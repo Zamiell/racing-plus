@@ -10,13 +10,23 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 
 ## Table of Contents
 
+1. [Introduction](#introduction)
 1. [Design Goals](#design-goals)
-1. [List of Main Changes](#list-of-main-changes)
-1. [Other Mods Included](#other-mods-included)
+1. [List of Major Changes](#list-of-major-changes)
 1. [List of Minor Changes](#list-of-minor-changes)
 1. [Additional Changes for Races](#additional-changes-for-races)
 1. [Additional Changes for Multi-Character Speedruns (Custom Challenges)](#additional-changes-for-multi-character-speedruns-custom-challenges)
 1. [Individual Room Changes](#individual-room-changes)
+
+<br />
+
+## Introduction
+
+Overall, the main point of the Racing+ mod is to enable multiplayer racing with out people. You will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
+
+With that said, Racing+ does make a lot of smaller changes that you might not be able to pick-up on right away. This page documents every change that it performs.
+
+Most changes are prefixed by a code, like: <code>001</code>. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818&searchtext=modconfigmenu). If a change does not have a prefix, you won't be able to toggle that option, since it is accomplished by modifying the game's resource files directly.
 
 <br />
 
@@ -31,20 +41,19 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 <br />
 
-## List of Main Changes
+## List of Major Changes
 
 <br />
 
 ### 1) Character Changes
 
-- <code>001</code> All characters now start with the D6 as a pocket item. (Much of the strategy in the game is centered around having this item and it mitigates run disparity.)
-- <code>003</code> Certain characters have their starting health slightly changed so that they can consistently take a devil deal.
-- <code>004</code> Judas starts with a bomb.
-- <code>005</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
+- <code>001</code> All characters now start with the D6, either as a pocket item or an active item. (Much of the strategy in the game is centered around having this item, and it mitigates run disparity.)
+- <code>002</code> Judas starts with a bomb.
+- <code>003</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
 
 ### 2) No Curses
 
-<code>002</code> All curses are automatically disabled.
+<code>004</code> All curses are automatically disabled.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
@@ -120,12 +129,6 @@ While there are thousands of rooms in the game, many players have already seen t
 - The disruptive teleport that occurs when entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
 - Having Duality will now always give you both the Devil Room and the Angel Room. (This does not happen consistently on vanilla like you would expect.)
-- All Spike Chests will spawn as Mimics instead. (Since they are so similar, there is little reason for Spike Chests to exist.)
-- Uriel and Gabriel will always drop the key piece that you happen to be missing, if any.
-- The Chub that spawns after The Matriarch will be automatically stunned for a few frames to prevent unavoidable damage.
-- Hosts and Mobile Hosts are now immune to fear. (This prevents bugs where feared Hosts will not properly play animations.)
-- The Forsaken is now immune to fear. (This prevents the bug where it will not attack.)
-- Blastocyst is now immune to freeze. (This prevents delays during the death animation.)
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.
 - The door to Hush is now automatically opened.
@@ -133,13 +136,12 @@ While there are thousands of rooms in the game, many players have already seen t
 - There is now a sound effect when a Walnut or a Wishbone breaks.
 -->
 
+<br />
+
 ### Cutscene & Animation Removal
 
 - <code>008</code> The cutscenes that occur when you launch the game and when you finish a run are removed.
-
-<!--
 - The cutscenes that occur before each boss are removed.
--->
 - Some animations are removed for the purposes of eliminating needless downtime:
 <!--
   - the fade when entering a new floor (replaced with a custom animation)
@@ -172,7 +174,6 @@ While there are thousands of rooms in the game, many players have already seen t
 - Taking Divorce Papers now causes Mysterious Paper to be removed from the trinket pool.
 - AAA Battery now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
-- Spiked Chests and Mimics that spawns in rooms that only have a narrow walkable path will spawn as normal chests to prevent unavoidable damage.
 - Defeating Mega Satan no longer has a chance to immediately end the run.
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room.
 - The Pony / White Pony can no longer be abused to steal Devil Room items.
@@ -185,15 +186,20 @@ While there are thousands of rooms in the game, many players have already seen t
 - The synergy of The Ludovico Technique, Brimstone, and Dr. Fetus will no longer softlock the player.
 - The synergy of The Ludovico Technique, Technology, and Mom's Knife will no longer softlock the player.
 - Fire Mind fires spawned from Angelic Prism tears will no longer damage the player.
+-->
+
+<br />
 
 ### Graphics & Sound Fixes
 
+<!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Bosses will be faded during their death animation so that they do not interfere with seeing other items or enemies that happen to be behind them.
 - Scared Hearts and Sticky Nickels now have unique sprites.
 - The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
-- The Abaddon collectible is replaced with the pre-Booster Pack 5 version.
+-->
 - The 20/20 collectible is now easier to see.
+<!-->
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - Pill sprites now have consistent orientations. (Thanks goes to [Nioffe](https://steamcommunity.com/id/nioffe) for creating the sprites in the [Consistent Pills](https://steamcommunity.com/sharedfiles/filedetails/?id=1418510121) mod.)
 - The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
@@ -207,8 +213,9 @@ While there are thousands of rooms in the game, many players have already seen t
 - Enemy red creep is changed to green (so that it is easier to see).
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
 - Fog is removed for the purposes of lag reduction. (Thanks goes to [Dan](https://moddingofisaac.com/user/255) for creating the graphics for this in the [Fogless!](https://moddingofisaac.com/mod/950/fogless) mod.)
+-->
 - The door opening sound will no longer play in crawlspaces.
-- Ticking Spiders will now display the correct frame during the "Appear" animation.
+<!--
 
 <br />
 

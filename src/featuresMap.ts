@@ -8,21 +8,9 @@ const featuresMap = new Map<keyof Config, [string, string, string]>([
     ],
   ],
   [
-    "disableCurses",
-    ["002", "Disable curses", "Disables all curses, like Curse of the Maze."],
-  ],
-  [
-    "extraStartingHealth",
-    [
-      "003",
-      "Give extra starting health",
-      "Gives extra health to some characters so that they can consistently take a devil deal.",
-    ],
-  ],
-  [
     "judasAddBomb",
     [
-      "004",
+      "002",
       "Add a bomb to Judas",
       "Makes Judas start with 1 bomb instead of 0 bombs.",
     ],
@@ -30,10 +18,14 @@ const featuresMap = new Map<keyof Config, [string, string, string]>([
   [
     "samsonDropHeart",
     [
-      "005",
+      "003",
       "Make Samson drop his trinket",
       "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run.",
     ],
+  ],
+  [
+    "disableCurses",
+    ["004", "Disable curses", "Disables all curses, like Curse of the Maze."],
   ],
   [
     "fastClear",
