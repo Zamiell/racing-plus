@@ -2,9 +2,6 @@ Directory: racing+_857628390
 Steam Workshop URL: https://steamcommunity.com/sharedfiles/filedetails/?id=857628390
 
 TODO:
-- In Rep, change health:
-  - Give Judas full red heart
-  - Give Cain + Eve + Apollyon half soul heart
 - Implement time offsets, show on the first room of each floor
 
 POST-FLIP ACTIONS:
@@ -38,4 +35,3 @@ TODO:
 - search for all "let \w+;"
 - search for all "let i = 0" THEN LOOK FOR THINGS THAT USE i THAT ASSUME 1 INSTEAD OF 0
    e.g. LIKE FOR DRAWING IN POST RENDER
-- search for "http." and "https."

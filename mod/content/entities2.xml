@@ -1,0 +1,32 @@
+<entities anm2root="gfx/" version="5">
+    <entity name="Invisible Pickup" id="5" variant="500" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+
+    <!--
+        Effects
+        (custom effects take variants past 200)
+    -->
+
+    <!-- Fast-Travel Effects -->
+    <!-- (we want them as effects because we don't want the smoke to appear when they are spawned) -->
+    <!-- (another advantage of this is "debug 10" doesn't kill effects) -->
+    <entity name="Trapdoor (Fast-Travel)" id="1000" variant="201" anm2path="grid/door_11_trapdoor.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+    <entity name="Crawlspace (Fast-Travel)" id="1000" variant="202" anm2path="grid/door_20_secrettrapdoor.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+    <entity name="Womb Trapdoor (Fast-Travel)" id="1000" variant="203" anm2path="grid/door_11_wombhole.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+    <entity name="Blue Womb Trapdoor (Fast-Travel)" id="1000" variant="204" anm2path="grid/door_11_wombhole_blue.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+    <entity name="Heaven Door (Fast-Travel)" id="1000" variant="205" anm2path="custom/heaven_door_fast_travel.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+    <entity name="Void Portal (Fast-Travel)" id="1000" variant="206" anm2path="grid/voidtrapdoor.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
+</entities>

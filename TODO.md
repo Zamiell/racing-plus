@@ -1,0 +1,4 @@
+- paschal candle
+- do BR rooms
+- test sack items
+- search for all math.random and delete

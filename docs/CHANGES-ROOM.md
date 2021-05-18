@@ -23,34 +23,34 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 
 ### Devil Room Rebalancing
 
-- Items per room have been redistributed for consistency. The average item per room is increased from 1.53 to 1.86.
-- All enemies are removed.
-- Extra hazards have been added to some rooms.
-- It is no longer possible to get heart drops from fires in Devil Rooms.
-- All rooms with 1 item have an additional reward:
-  - #4: ? card
-  - #7: black rune
-  - #11: Devil Beggar
-  - #16: 4 bombs
+- Items per room have been redistributed for consistency. The average item per room is increased from ? to ?.
+- All rooms with 1 item have an additional reward.
 - All rooms with 2 or more item pedestals have no extra rewards.
-- Rooms without 4 exits have been changed to have 4 exits.
+- All enemies are removed.
+- All fires are removed.
+- All doors are enabled.
+- New room designs have been added and others have been removed.
 - Some rooms have custom weight.
 
 <br />
 
 ### Angel Room Rebalancing
 
-- Items per room have been redistributed for consistency. The average item per room is increased from 1.65 to 1.88.
-- All rooms with 1 item pedestal have 2 Angel Statues.
-- All rooms with 2 item pedestals have 1 Angel Statue.
-- Rooms without 4 exits have been changed to have 4 exits.
-- Rooms without a weight of 1.0 have been changed to have weight 1.0.
+- Items per room have been redistributed for consistency. The average item per room is increased from ? to ?.
+- All rooms with 1 item pedestal have 2 Angel Statues. In some rooms, there is an additional reward.
+- All rooms with 2 item pedestals have 1 Angel Statue and have no extra rewards.
+- All fires are removed.
+- All doors are enabled.
+- New room designs have been added and others have been removed.
+- Some rooms have custom weight.
 
 <br />
 
 ### Trapdoor Room
 
 On Sheol, there exists a room with a trapdoor that takes you directly to the Dark Room without having to fight Satan. This puts too much of an extreme lower bound on the clear time of the floor.
+
+(There are also other rooms with trapdoors, but they are earlier on in the game and are not as impactful to the balance.)
 
 The deleted room is as follows:
 - Sheol: #290
@@ -475,9 +475,17 @@ The deleted rooms are as follows:
 
 ## Miscellaneous Changes
 
-### Graphics
+### Beggars in Angel Shops
 
-Props were removed from the starting room for better visibility.
+Beggars are moved out of the way in all angel shops. This is a quality-of-life change.
+
+The changed rooms are as follows:
+- #40
+- #41
+- #42
+- #43
+- #44
+- #45
 
 <br />
 
