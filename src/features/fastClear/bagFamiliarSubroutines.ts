@@ -48,15 +48,10 @@ export function shouldDropSomething(familiar: EntityFamiliar): boolean {
  * as they also include logic to account for the Daemon's Tail trinket.
  */
 export function shouldDropHeart(familiar: EntityFamiliar): boolean {
-  if (shouldDropSomething(familiar)) {
-    if (g.p.HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL)) {
-      return (getCurrentFamiliarSeed(familiar) & 5) === 0;
-    }
-
-    return true;
-  }
-
-  return false;
+  return (
+    !g.p.HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL) ||
+    (getCurrentFamiliarSeed(familiar) & 5) === 0
+  );
 }
 
 /**

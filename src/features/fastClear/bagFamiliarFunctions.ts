@@ -43,7 +43,8 @@ functionMap.set(FamiliarVariant.SACK_OF_PENNIES, (familiar: EntityFamiliar) => {
 
 // 22
 functionMap.set(FamiliarVariant.LITTLE_CHAD, (familiar: EntityFamiliar) => {
-  if (shouldDropHeart(familiar)) {
+  // Heart drops are subject to an additional Daemon's Tail check
+  if (shouldDropSomething(familiar) && shouldDropHeart(familiar)) {
     // Half heart
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
@@ -59,7 +60,8 @@ functionMap.set(FamiliarVariant.LITTLE_CHAD, (familiar: EntityFamiliar) => {
 
 // 23
 functionMap.set(FamiliarVariant.RELIC, (familiar: EntityFamiliar) => {
-  if (shouldDropHeart(familiar)) {
+  // Heart drops are subject to an additional Daemon's Tail check
+  if (shouldDropSomething(familiar) && shouldDropHeart(familiar)) {
     // Heart (soul)
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
@@ -101,17 +103,20 @@ functionMap.set(FamiliarVariant.MYSTERY_SACK, (familiar: EntityFamiliar) => {
 
   switch (mysterySackPickupType) {
     case 1: {
-      // From Heart (5.10.1) to Bone Heart (5.10.11)
-      const heartType = getRandom(1, 11, familiarSeed);
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_HEART,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        heartType,
-        familiarSeed,
-      );
+      // Heart drops are subject to an additional Daemon's Tail check
+      if (shouldDropHeart(familiar)) {
+        // From Heart (5.10.1) to Bone Heart (5.10.11)
+        const heartType = getRandom(1, 11, familiarSeed);
+        g.g.Spawn(
+          EntityType.ENTITY_PICKUP,
+          PickupVariant.PICKUP_HEART,
+          familiar.Position,
+          Vector.Zero,
+          familiar,
+          heartType,
+          familiarSeed,
+        );
+      }
       break;
     }
 
@@ -210,16 +215,19 @@ functionMap.set(FamiliarVariant.LIL_CHEST, (familiar: EntityFamiliar) => {
 
     switch (lilChestPickupType) {
       case 1: {
-        // Random Heart
-        g.g.Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_HEART,
-          familiar.Position,
-          Vector.Zero,
-          familiar,
-          0,
-          familiarSeed,
-        );
+        // Heart drops are subject to an additional Daemon's Tail check
+        if (shouldDropHeart(familiar)) {
+          // Random Heart
+          g.g.Spawn(
+            EntityType.ENTITY_PICKUP,
+            PickupVariant.PICKUP_HEART,
+            familiar.Position,
+            Vector.Zero,
+            familiar,
+            0,
+            familiarSeed,
+          );
+        }
         break;
       }
 
