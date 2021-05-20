@@ -16,7 +16,7 @@ const MULTIPLIER_MAP: Record<int, [int, int]> = {
 };
 
 /**
- * This algorithm applies to all bag familiars.
+ * This algorithm applies to most bag familiars (but not all).
  * The logic was reversed from the game by blcd / Will.
  */
 export function shouldDropSomething(familiar: EntityFamiliar): boolean {

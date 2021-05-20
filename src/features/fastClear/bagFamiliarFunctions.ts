@@ -2,6 +2,7 @@ import g from "../../globals";
 import { getRandom, incrementRNG } from "../../misc";
 import {
   getCurrentFamiliarSeed,
+  shouldDropHeart,
   shouldDropSomething,
 } from "./bagFamiliarSubroutines";
 
@@ -42,7 +43,8 @@ functionMap.set(FamiliarVariant.SACK_OF_PENNIES, (familiar: EntityFamiliar) => {
 
 // 22
 functionMap.set(FamiliarVariant.LITTLE_CHAD, (familiar: EntityFamiliar) => {
-  if (shouldDropSomething(familiar)) {
+  if (shouldDropHeart(familiar)) {
+    // Half heart
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_HEART,
@@ -57,7 +59,7 @@ functionMap.set(FamiliarVariant.LITTLE_CHAD, (familiar: EntityFamiliar) => {
 
 // 23
 functionMap.set(FamiliarVariant.RELIC, (familiar: EntityFamiliar) => {
-  if (shouldDropSomething(familiar)) {
+  if (shouldDropHeart(familiar)) {
     // Heart (soul)
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
