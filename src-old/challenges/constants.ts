@@ -1,3 +1,5 @@
+/*
+
 import { CollectibleTypeCustom, PlayerTypeCustom } from "../types/enums";
 import SeasonDescription from "../types/SeasonDescription";
 import { ChallengeCustom } from "./enums";
@@ -560,3 +562,5 @@ export const SEASON_9_CHARACTER_ITEM_BANS = new Map([
     ],
   ],
 ]);
+
+*/

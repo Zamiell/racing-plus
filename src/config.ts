@@ -1,5 +1,6 @@
 import g from "./globals";
 import * as saveDat from "./saveDat";
+import Config from "./types/Config";
 
 export function set<K extends keyof Config, V extends Config[K]>(
   key: K,

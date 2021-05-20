@@ -45,30 +45,31 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 <br />
 
-### 1) Character Changes
+### 1) The D6 for Everyone
 
-- <code>001</code> All characters now start with the D6, either as a pocket item or an active item. (Much of the strategy in the game is centered around having this item, and it mitigates run disparity.)
-- <code>002</code> Judas starts with a bomb.
-- <code>003</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
+<code>001</code> All characters now start with the D6, either as a pocket item or an active item. (Much of the strategy in the game is centered around having this item, and it mitigates run disparity.)
 
 ### 2) No Curses
 
-<code>004</code> All curses are automatically disabled.
+<code>002</code> All curses are automatically disabled.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-<code>006</code> Since Devil Rooms and Angel Rooms are the most skill-based component of the game, their rewards have been [slightly rebalanced](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md#devil-room-rebalancing) to make sure that the best players are consistently awarded in an appropriate way.
+- <code>003</code> On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
+  - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
+- Devil Rooms and Angel Rooms have been [customized](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md#devil-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+  - Average items per devil room are increased from [TODO] to [TODO].
+  - Average items per angel room are increased from [TODO] to [TODO]
 
 ### 4) Wrath of the Lamb Style Room Clear
 
-<code>007</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, but it was incorrectly ported to Rebirth.)
+<code>004</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
 
 <br />
 
-<!--
 ### 5) Room Fixes
 
-Hundreds of rooms with unavoidable damage or bugs have been fixed or deleted.
+Rooms with unavoidable damage or bugs have been fixed or deleted.
 
 ### 6) Room Flipping
 
@@ -76,51 +77,48 @@ While there are thousands of rooms in the game, many players have already seen t
 
 <br />
 
--->
-
 ## List of Minor Changes
 
 <br />
 
-<!--
 ### Custom Hotkeys
 
-- Racing+ allows you to bind two new hotkeys via a custom challenge:
-  - a drop button that will immediately drop all trinkets and pocket items (called "fast-drop")
-  - a dedicated Schoolbag switch button
-- Binding these hotkeys is optional. If they are not bound, Racing+ will use the vanilla behavior.
--->
+- Racing+ allows you to bind some optional hotkeys via Mod Config Menu:
+  - <code>011</code> a fast-drop button (for everything)
+  - <code>012</code> a fast-drop button for only trinkets
+  - <code>013</code> a fast-drop button for only pocket items
 
 ### Gameplay & Quality of Life Changes
+
+- <code>021</code> Judas starts with a bomb.
+- <code>022</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
 
 <!--
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
 - The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
+-->
 - Some items with no effect are removed:
-  - the Karma trinket (all Donation Machines are removed when curses are disabled)
-  - the Amnesia pill (this has no effect when curses are disabled)
-  - the ??? pill (this has no effect when curses are disabled)
+  - the Karma trinket (since all Donation Machines are removed)
+  - the Amnesia pill (since curses are removed)
+  - the ??? pill (since curses are removed)
+<!--
 - Some things that are unseeded are now seeded:
-  - rerolls on items after being touched or purchased
   - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
   - Dead Sea Scrolls item selection
   - cards from Sloth, Super Sloth, Pride, and Super Pride
   - Guppy's Head fly count
 - Void Portals are automatically deleted.
 -->
-- <code>010</code> The restart/reset key immediately restarts the game. (To perform a fast-restart on the second floor and beyond, you need to double tap R.)
+- <code>023</code> The restart/reset key immediately restarts the game. (To perform a fast-restart on the second floor and beyond, you need to double tap R.)
 <!--
-- [Special items](https://bindingofisaacrebirth.gamepedia.com/Special_Item) are no longer special.
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Identified pills (up to 7) will be shown when the player presses the map button (tab).
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
-- Duplicate rooms will no longer appear on the same run. (Basement 1 is exempt. All floors on set seeds are exempt.)
 - The Boss Rush is modified to include the Afterbirth+ bosses and Chapter 4 bosses.
 - Challenge Rooms are modified to include Womb enemies and bosses.
 - Boss Challenge Rooms will select random bosses instead of set bosses.
-- Maggy will automatically use her Speed Up pill at the beginning of the run.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
 - Cod Worms are replaced with Para-Bites.
 - Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
@@ -128,7 +126,9 @@ While there are thousands of rooms in the game, many players have already seen t
 - Death will no longer perform his slow attack.
 - The disruptive teleport that occurs when entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
+-->
 - Having Duality will now always give you both the Devil Room and the Angel Room. (This does not happen consistently on vanilla like you would expect.)
+<!--
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.
 - The door to Hush is now automatically opened.
@@ -140,14 +140,14 @@ While there are thousands of rooms in the game, many players have already seen t
 
 ### Cutscene & Animation Removal
 
-- <code>008</code> The cutscenes that occur when you launch the game and when you finish a run are removed.
+- The cutscenes that occur when you launch the game and when you finish a run are removed.
 - The cutscenes that occur before each boss are removed.
 - Some animations are removed for the purposes of eliminating needless downtime:
 <!--
   - the fade when entering a new floor (replaced with a custom animation)
   - the fade when entering or exiting crawlspaces (replaced with a normal room transition animation)
-  -->
-  - <code>009</code> all "giantbook" animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, black hearts, and rainbow poop)
+-->
+  - all "giantbook" animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, black hearts, and rainbow poop)
 <!--
   - the pause and unpause animations
   - traveling upwards in a beam of light (replaced with a faster version)
@@ -170,22 +170,13 @@ While there are thousands of rooms in the game, many players have already seen t
 - Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - The Book of Sin and Mystery Sack generate actual random pickups.
 - 9 Volt now properly synergizes with The Battery.
-- Greed's Gullet works properly on Keeper.
-- Taking Divorce Papers now causes Mysterious Paper to be removed from the trinket pool.
 - AAA Battery now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
 - Defeating Mega Satan no longer has a chance to immediately end the run.
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room.
-- The Pony / White Pony can no longer be abused to steal Devil Room items.
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
-- The babies on the Isaac fight can no longer spawn inside the hitbox of the player and will now randomly spawn throughout the room (as originally intended).
-- The random beams of light from Isaac and Conquest are fixed such that they will now target the player.
-- Multi-segment bosses will no longer drop more than one black heart when killed with Maw of the Void, Athame, or Serpent's Kiss.
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared.
 - All forms of teleport will no longer send you to an invalid entrance.
-- The synergy of The Ludovico Technique, Brimstone, and Dr. Fetus will no longer softlock the player.
-- The synergy of The Ludovico Technique, Technology, and Mom's Knife will no longer softlock the player.
-- Fire Mind fires spawned from Angelic Prism tears will no longer damage the player.
 -->
 
 <br />
@@ -196,8 +187,8 @@ While there are thousands of rooms in the game, many players have already seen t
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Bosses will be faded during their death animation so that they do not interfere with seeing other items or enemies that happen to be behind them.
 - Scared Hearts and Sticky Nickels now have unique sprites.
-- The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
 -->
+- The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
 - The 20/20 collectible is now easier to see.
 <!-->
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
@@ -208,13 +199,10 @@ While there are thousands of rooms in the game, many players have already seen t
 - The Locust of Famine graphic now matches the color of the flies.
 - Daemon's Tail and Error now have outlines. (Thanks goes to [O_o](http://steamcommunity.com/profiles/76561197993627005) for creating the sprites in the [Trinket Outlines](http://steamcommunity.com/sharedfiles/filedetails/?id=1138554495) mod.)
 - There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.)
-- Charge keys have custom animations to help distinguish them from normal keys.
-- Enemy fires are now red instead of yellow (so that players can distinguish between friendly fires).
 - Enemy red creep is changed to green (so that it is easier to see).
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
-- Fog is removed for the purposes of lag reduction. (Thanks goes to [Dan](https://moddingofisaac.com/user/255) for creating the graphics for this in the [Fogless!](https://moddingofisaac.com/mod/950/fogless) mod.)
 -->
-- The door opening sound will no longer play in crawlspaces.
+- The audio clips of mom and dad on the Ascent now be silenced.
 <!--
 
 <br />
@@ -236,5 +224,13 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
+
+-->
+
+<!--
+
+TTD GET FIXED IN REP:
+- The door opening sound should not play in a crawlspace.
+- Duplicate rooms will no longer appear on the same run. (Basement 1 is exempt. All floors on set seeds are exempt.)
 
 -->

@@ -1,509 +1,378 @@
-// Note that even though we previously incremented the familiar.RoomClearCount value before getting
-// here, we still need to project familiar.RoomClearCount one value into the future in order for the
-// logic to work properly
-
 import g from "../../globals";
-import { getRandom } from "../../misc";
+import { getRandom, incrementRNG } from "../../misc";
+import {
+  getCurrentFamiliarSeed,
+  shouldDropSomething,
+} from "./bagFamiliarSubroutines";
 
-const functionMap = new Map<
-  int,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    constant1: float,
-    constant2: float,
-  ) => void
->();
+const functionMap = new Map<int, (familiar: EntityFamiliar) => void>();
 export default functionMap;
 
 // 20
-functionMap.set(
-  FamiliarVariant.BOMB_BAG,
-  (familiar: EntityFamiliar, rng: RNG, constant1: float, _constant2: float) => {
-    // This drops a bomb based on the formula:
-    // floor(cleared / 1.1) > 0 && floor(cleared / 1.1) & 1 == 0
-    // or, with BFFs!:
-    // floor(cleared / 1.2) > 0 && floor(cleared / 1.2) & 1 == 0
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if (
-      math.floor(projectedClearCount / constant1) > 0 &&
-      (math.floor(projectedClearCount / constant1) & 1) === 0
-    ) {
-      // Random Bomb
-      rng.Next();
+functionMap.set(FamiliarVariant.BOMB_BAG, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    // Random Bomb
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_BOMB,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      0,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});
+
+// 21
+functionMap.set(FamiliarVariant.SACK_OF_PENNIES, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    // Random Coin
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_COIN,
+      familiar.Position,
+      Vector.Zero,
+      g.p,
+      0,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});
+
+// 22
+functionMap.set(FamiliarVariant.LITTLE_CHAD, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_HEART,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      HeartSubType.HEART_HALF,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});
+
+// 23
+functionMap.set(FamiliarVariant.RELIC, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    // Heart (soul)
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_HEART,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      HeartSubType.HEART_SOUL,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});
+
+// 52
+functionMap.set(FamiliarVariant.JUICY_SACK, (familiar: EntityFamiliar) => {
+  // Spawn either 1 or 2 blue spiders (50% chance of each)
+  const familiarSeed = getCurrentFamiliarSeed(familiar);
+  const spiders = getRandom(1, 2, familiarSeed);
+  g.p.AddBlueSpider(familiar.Position);
+  if (spiders === 2) {
+    g.p.AddBlueSpider(familiar.Position);
+  }
+
+  // The BFFS! synergy gives an additional spider
+  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) {
+    g.p.AddBlueSpider(familiar.Position);
+  }
+});
+
+// 57
+functionMap.set(FamiliarVariant.MYSTERY_SACK, (familiar: EntityFamiliar) => {
+  if (!shouldDropSomething(familiar)) {
+    return;
+  }
+
+  // First, decide whether we get a heart, coin, bomb, or key
+  const familiarSeed = getCurrentFamiliarSeed(familiar);
+  const mysterySackPickupType = getRandom(1, 4, familiarSeed);
+
+  switch (mysterySackPickupType) {
+    case 1: {
+      // From Heart (5.10.1) to Bone Heart (5.10.11)
+      const heartType = getRandom(1, 11, familiarSeed);
+      g.g.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_HEART,
+        familiar.Position,
+        Vector.Zero,
+        familiar,
+        heartType,
+        familiarSeed,
+      );
+      break;
+    }
+
+    case 2: {
+      // From Penny (5.20.1) to Sticky Nickel (5.20.6)
+      const coinType = getRandom(1, 6, familiarSeed);
+      g.g.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_COIN,
+        familiar.Position,
+        Vector.Zero,
+        familiar,
+        coinType,
+        familiarSeed,
+      );
+      break;
+    }
+
+    case 3: {
+      // From Key (5.30.1) to Charged Key (5.30.4)
+      const keyType = getRandom(1, 4, familiarSeed);
+      g.g.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_KEY,
+        familiar.Position,
+        Vector.Zero,
+        familiar,
+        keyType,
+        familiarSeed,
+      );
+      break;
+    }
+
+    case 4: {
+      // From Bomb (5.40.1) to Golden Bomb (5.40.4)
+      const bombType = getRandom(1, 4, familiarSeed);
       g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_BOMB,
         familiar.Position,
         Vector.Zero,
         familiar,
-        0,
-        rng.GetSeed(),
+        bombType,
+        familiarSeed,
       );
-    }
-  },
-);
-
-// 21
-functionMap.set(
-  FamiliarVariant.SACK_OF_PENNIES,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    _constant1: float,
-    _constant2: float,
-  ) => {
-    // This drops a penny/nickel/dime/etc. based on the formula:
-    // cleared > 0 && cleared & 1 == 0
-    // or, with BFFs!:
-    // cleared > 0 && (cleared & 1 == 0 || rand() % 3 == 0)
-    rng.Next();
-    const sackBFFChance = rng.RandomInt(4294967295);
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if (
-      (projectedClearCount > 0 && (projectedClearCount & 1) === 0) ||
-      (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
-        sackBFFChance % 3 === 0)
-    ) {
-      // Random Coin
-      rng.Next();
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COIN,
-        familiar.Position,
-        Vector.Zero,
-        g.p,
-        0,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
-
-// 22
-functionMap.set(
-  FamiliarVariant.LITTLE_CHAD,
-  (familiar: EntityFamiliar, rng: RNG, constant1: float, _constant2: float) => {
-    // This drops a half a red heart based on the formula:
-    // floor(cleared / 1.1) > 0 && floor(cleared / 1.1) & 1 == 0
-    // or, with BFFs!:
-    // floor(cleared / 1.2) > 0 && floor(cleared / 1.2) & 1 == 0
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if (
-      math.floor(projectedClearCount / constant1) > 0 &&
-      (math.floor(projectedClearCount / constant1) & 1) === 0
-    ) {
-      rng.Next();
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_HEART,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        HeartSubType.HEART_HALF,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
-
-// 23
-functionMap.set(
-  FamiliarVariant.RELIC,
-  (familiar: EntityFamiliar, rng: RNG, _constant1: float, constant2: float) => {
-    // This drops a soul heart based on the formula:
-    // floor(cleared / 1.11) & 3 == 2
-    // or, with BFFs!:
-    // floor(cleared / 1.15) & 3 == 2
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if ((math.floor(projectedClearCount / constant2) & 3) === 2) {
-      // Heart (soul)
-      rng.Next();
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_HEART,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        HeartSubType.HEART_SOUL,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
-
-// 52
-functionMap.set(
-  FamiliarVariant.JUICY_SACK,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    _constant1: float,
-    _constant2: float,
-  ) => {
-    // Spawn either 1 or 2 blue spiders (50% chance of each)
-    rng.Next();
-    const spiders = getRandom(1, 2, rng);
-    g.p.AddBlueSpider(familiar.Position);
-    if (spiders === 2) {
-      g.p.AddBlueSpider(familiar.Position);
+      break;
     }
 
-    // The BFFS! synergy gives an additional spider
-    if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) {
-      g.p.AddBlueSpider(familiar.Position);
+    default: {
+      error("Invalid Mystery Sack pickup type.");
     }
-  },
-);
+  }
+});
 
-// 57
-functionMap.set(
-  FamiliarVariant.MYSTERY_SACK,
-  (familiar: EntityFamiliar, rng: RNG, _constant1: float, constant2: float) => {
-    // This drops a heart, coin, bomb, or key based on the formula:
-    // floor(cleared / 1.11) & 3 == 2
-    // or:
-    // floor(cleared / 1.15) & 3 == 2
-    // (also, each pickup sub-type has an equal chance of occurring)
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if ((math.floor(projectedClearCount / constant2) & 3) !== 2) {
-      return;
-    }
+// 82
+functionMap.set(FamiliarVariant.LIL_CHEST, (familiar: EntityFamiliar) => {
+  // This drops a heart, coin, bomb, or key based on the formula:
+  // 10% chance for a trinket, if no trinket, 25% chance for a random consumable (based on time)
+  // Or, with BFFS!:
+  // 12.5% chance for a trinket, if no trinket, 31.25% chance for a random consumable (based on
+  // time)
+  // We don't want it based on time in the Racing+ mod, so we ignore that part
 
-    // First, decide whether we get a heart, coin, bomb, or key
-    rng.Next();
-    const mysterySackPickupType = getRandom(1, 4, rng);
-    rng.Next();
+  // First, decide whether we get a trinket
+  let familiarSeed = getCurrentFamiliarSeed(familiar);
+  const lilChestTrinket = getRandom(1, 1000, familiarSeed);
+  if (
+    lilChestTrinket <= 100 ||
+    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+      lilChestTrinket <= 125)
+  ) {
+    // Random Trinket
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_TRINKET,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      0,
+      familiarSeed,
+    );
+    return;
+  }
 
-    switch (mysterySackPickupType) {
+  // Second, decide whether it spawns a consumable
+  familiarSeed = incrementRNG(familiarSeed);
+  const lilChestConsumable = getRandom(1, 10000, familiarSeed);
+  if (
+    lilChestConsumable <= 2500 ||
+    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+      lilChestConsumable <= 3125)
+  ) {
+    // Third, decide whether we get a heart, coin, bomb, or key
+    familiarSeed = incrementRNG(familiarSeed);
+    const lilChestPickupType = getRandom(1, 4, familiarSeed);
+
+    switch (lilChestPickupType) {
       case 1: {
-        const heartType = getRandom(1, 11, rng); // From Heart (5.10.1) to Bone Heart (5.10.11)
+        // Random Heart
         g.g.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_HEART,
           familiar.Position,
           Vector.Zero,
           familiar,
-          heartType,
-          rng.GetSeed(),
+          0,
+          familiarSeed,
         );
         break;
       }
 
       case 2: {
-        const coinType = getRandom(1, 6, rng); // From Penny (5.20.1) to Sticky Nickel (5.20.6)
+        // Random Coin
         g.g.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_COIN,
           familiar.Position,
           Vector.Zero,
           familiar,
-          coinType,
-          rng.GetSeed(),
+          0,
+          familiarSeed,
         );
         break;
       }
 
       case 3: {
-        const keyType = getRandom(1, 4, rng); // From Key (5.30.1) to Charged Key (5.30.4)
+        // Random Key
         g.g.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_KEY,
           familiar.Position,
           Vector.Zero,
           familiar,
-          keyType,
-          rng.GetSeed(),
+          0,
+          familiarSeed,
         );
         break;
       }
 
       case 4: {
-        const bombType = getRandom(1, 4, rng); // From Bomb (5.40.1) to Golden Bomb (5.40.4)
+        // Random Bomb
         g.g.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_BOMB,
           familiar.Position,
           Vector.Zero,
           familiar,
-          bombType,
-          rng.GetSeed(),
+          0,
+          familiarSeed,
         );
         break;
       }
 
       default: {
-        error("Invalid Mystery Sack pickup type.");
+        error("Invalid Lil' Chest pickup type.");
       }
     }
-  },
-);
-
-// 82
-functionMap.set(
-  FamiliarVariant.LIL_CHEST,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    _constant1: float,
-    _constant2: float,
-  ) => {
-    // This drops a heart, coin, bomb, or key based on the formula:
-    // 10% chance for a trinket, if no trinket, 25% chance for a random consumable (based on time)
-    // Or, with BFFS!:
-    // 12.5% chance for a trinket, if no trinket, 31.25% chance for a random consumable (based on time)
-    // We don't want it based on time in the Racing+ mod
-
-    // First, decide whether we get a trinket
-    rng.Next();
-    const lilChestTrinket = getRandom(1, 1000, rng);
-    if (
-      lilChestTrinket <= 100 ||
-      (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
-        lilChestTrinket <= 125)
-    ) {
-      // Random Trinket
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_TRINKET,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        0,
-        rng.GetSeed(),
-      );
-      return;
-    }
-
-    // Second, decide whether it spawns a consumable
-    rng.Next();
-    const lilChestConsumable = getRandom(1, 10000, rng);
-    if (
-      lilChestConsumable <= 2500 ||
-      (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
-        lilChestConsumable <= 3125)
-    ) {
-      // Third, decide whether we get a heart, coin, bomb, or key
-      rng.Next();
-      const lilChestPickupType = getRandom(1, 4, rng);
-      rng.Next();
-
-      switch (lilChestPickupType) {
-        case 1: {
-          // Random Heart
-          g.g.Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_HEART,
-            familiar.Position,
-            Vector.Zero,
-            familiar,
-            0,
-            rng.GetSeed(),
-          );
-          break;
-        }
-
-        case 2: {
-          // Random Coin
-          g.g.Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_COIN,
-            familiar.Position,
-            Vector.Zero,
-            familiar,
-            0,
-            rng.GetSeed(),
-          );
-          break;
-        }
-
-        case 3: {
-          // Random Key
-          g.g.Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_KEY,
-            familiar.Position,
-            Vector.Zero,
-            familiar,
-            0,
-            rng.GetSeed(),
-          );
-          break;
-        }
-
-        case 4: {
-          // Random Bomb
-          g.g.Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_BOMB,
-            familiar.Position,
-            Vector.Zero,
-            familiar,
-            0,
-            rng.GetSeed(),
-          );
-          break;
-        }
-
-        default: {
-          error("Invalid Lil' Chest pickup type.");
-        }
-      }
-    }
-  },
-);
+  }
+});
 
 // 88
-functionMap.set(
-  FamiliarVariant.BUMBO,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    _constant1: float,
-    _constant2: float,
-  ) => {
-    // Level 2 Bumbo has a 32% chance (or 40% with BFFs!) to drop a random pickup
-    // It will be state 0 at level 1, state 1 at level 2, state 2 at level 3, and state 3 at level 4
-    if (familiar.State + 1 !== 2) {
-      return;
-    }
+functionMap.set(FamiliarVariant.BUMBO, (familiar: EntityFamiliar) => {
+  // Level 2 Bumbo has a 32% chance (or 40% with BFFs!) to drop a random pickup
+  // It will be state 0 at level 1, state 1 at level 2, state 2 at level 3, and state 3 at level 4
+  const bumboLevel = familiar.State + 1;
+  if (bumboLevel !== 2) {
+    return;
+  }
 
-    rng.Next();
-    const bumboPickup = getRandom(1, 100, rng);
-    if (
-      bumboPickup <= 32 ||
-      (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
-        bumboPickup <= 40)
-    ) {
-      // Spawn a random pickup
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        0,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        0,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
+  const familiarSeed = getCurrentFamiliarSeed(familiar);
+  const bumboPickup = getRandom(1, 100, familiarSeed);
+  if (
+    bumboPickup <= 32 ||
+    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) && bumboPickup <= 40)
+  ) {
+    // Spawn a random pickup
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      0,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      0,
+      familiarSeed,
+    );
+  }
+});
 
 // 91
-functionMap.set(
-  FamiliarVariant.RUNE_BAG,
-  (familiar: EntityFamiliar, rng: RNG, _constant1: float, constant2: float) => {
-    // This drops a random rune based on the formula:
-    // floor(roomsCleared / 1.11) & 3 == 2
-    // Or, with BFFs!:
-    // floor(roomsCleared / 1.15) & 3 == 2
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if ((math.floor(projectedClearCount / constant2) & 3) === 2) {
-      // For some reason you cannot spawn the "Random Rune" entity (5.301.0)
-      // So, use the GetCard() function as a workaround
-      rng.Next();
-      const subType = g.itemPool.GetCard(rng.GetSeed(), false, true, true);
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_TAROTCARD,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        subType,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
+functionMap.set(FamiliarVariant.RUNE_BAG, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    // For some reason you cannot spawn the "Random Rune" entity (5.301.0)
+    // So, use the GetCard() function as a workaround
+    const familiarSeed = getCurrentFamiliarSeed(familiar);
+    const subType = g.itemPool.GetCard(familiarSeed, false, true, true);
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_TAROTCARD,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      subType,
+      familiarSeed,
+    );
+  }
+});
 
 // 94
-functionMap.set(
-  FamiliarVariant.SPIDER_MOD,
-  (
-    familiar: EntityFamiliar,
-    rng: RNG,
-    _constant1: float,
-    _constant2: float,
-  ) => {
-    // Spider Mod has a 10% chance (or 12.5% with BFFs!) to do something
-    rng.Next();
-    const spiderModChance = getRandom(1, 1000, rng);
-    if (
-      spiderModChance <= 100 ||
-      (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
-        spiderModChance <= 125)
-    ) {
-      // There is a 1/3 chance to spawn a battery and a 2/3 chance to spawn a blue spider
-      rng.Next();
-      const spiderModDrop = getRandom(1, 3, rng);
-      if (spiderModDrop === 1) {
-        g.g.Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_LIL_BATTERY,
-          familiar.Position,
-          Vector.Zero,
-          familiar,
-          0,
-          rng.GetSeed(),
-        );
-      } else {
-        g.p.AddBlueSpider(familiar.Position);
-      }
+functionMap.set(FamiliarVariant.SPIDER_MOD, (familiar: EntityFamiliar) => {
+  // Spider Mod has a 10% chance (or 12.5% with BFFs!) to do something
+  let familiarSeed = getCurrentFamiliarSeed(familiar);
+  const spiderModChance = getRandom(1, 1000, familiarSeed);
+  if (
+    spiderModChance <= 100 ||
+    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+      spiderModChance <= 125)
+  ) {
+    // There is a 1/3 chance to spawn a battery and a 2/3 chance to spawn a blue spider
+    familiarSeed = incrementRNG(familiarSeed);
+    const spiderModDrop = getRandom(1, 3, familiarSeed);
+    if (spiderModDrop === 1) {
+      g.g.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_LIL_BATTERY,
+        familiar.Position,
+        Vector.Zero,
+        familiar,
+        0,
+        familiarSeed,
+      );
+    } else {
+      g.p.AddBlueSpider(familiar.Position);
     }
-  },
-);
+  }
+});
 
 // 112
-functionMap.set(
-  FamiliarVariant.SPIDER_MOD,
-  (familiar: EntityFamiliar, rng: RNG, constant1: float, _constant2: float) => {
-    // This drops a pill based on the formula:
-    // floor(roomsCleared / 1.1) > 0 && floor(roomsCleared / 1.1) & 1 == 0
-    // Or, with BFFs!:
-    // floor(roomsCleared / 1.2) > 0 && floor(roomsCleared / 1.2) & 1 == 0
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if (
-      math.floor(projectedClearCount / constant1) > 0 &&
-      (math.floor(projectedClearCount / constant1) & 1) === 0
-    ) {
-      // Random Pill
-      rng.Next();
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_PILL,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        0,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
+functionMap.set(FamiliarVariant.ACID_BABY, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    // Random Pill
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_PILL,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      0,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});
 
 // 114
-functionMap.set(
-  FamiliarVariant.SPIDER_MOD,
-  (familiar: EntityFamiliar, rng: RNG, constant1: float, _constant2: float) => {
-    // This drops a sack based on the formula:
-    // floor(roomsCleared / 1.1) > 0 && floor(roomsCleared / 1.1) & 1 == 0
-    // Or, with BFFs!:
-    // floor(roomsCleared / 1.2) > 0 && floor(roomsCleared / 1.2) & 1 == 0
-    const projectedClearCount = familiar.RoomClearCount + 1;
-    if (
-      math.floor(projectedClearCount / constant1) > 0 &&
-      (math.floor(projectedClearCount / constant1) & 1) === 0
-    ) {
-      rng.Next();
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_GRAB_BAG,
-        familiar.Position,
-        Vector.Zero,
-        familiar,
-        0,
-        rng.GetSeed(),
-      );
-    }
-  },
-);
+functionMap.set(FamiliarVariant.SACK_OF_SACKS, (familiar: EntityFamiliar) => {
+  if (shouldDropSomething(familiar)) {
+    g.g.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_GRAB_BAG,
+      familiar.Position,
+      Vector.Zero,
+      familiar,
+      0,
+      getCurrentFamiliarSeed(familiar),
+    );
+  }
+});

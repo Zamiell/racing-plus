@@ -1,7 +1,13 @@
+import Config from "./Config";
+import { SaveFileState } from "./enums";
 import GlobalsRun from "./GlobalsRun";
 import RaceData from "./RaceData";
+import SpeedrunData from "./SpeedrunData";
 
 export default class Globals {
+  debug = false;
+  corrupted = false;
+
   // Cached API functions
   g = Game();
   l = Game().GetLevel();
@@ -11,51 +17,31 @@ export default class Globals {
   // assertions everywhere
   // In reality, the value will be set in the PostPlayerInit callback, which should happen before
   // any other code gets run
-  p = Isaac.GetPlayer(0) as EntityPlayer;
+  p = Isaac.GetPlayer() as EntityPlayer;
   seeds = Game().GetSeeds();
   itemPool = Game().GetItemPool();
   itemConfig = Isaac.GetItemConfig();
   sfx = SFXManager();
   music = MusicManager();
 
-  // Special variables
-  debug = false;
-
   // Variables configurable from Mod Config Menu
-  config: Config = {
-    startWithD6: true,
-    disableCurses: true,
-    extraStartingHealth: true,
-    judasAddBomb: true,
-    samsonDropHeart: true,
-    fastClear: true,
-    fastReset: true,
-  };
+  config = new Config();
 
   // Variables per-run
   run = new GlobalsRun();
 
-  // This is the table that gets updated from the "save.dat" file
-  race: RaceData = {
-    userID: 0,
-    raceID: 0,
-    status: "none",
-    myStatus: "not ready",
-    ranked: false,
-    solo: false,
-    rFormat: "unseeded",
-    difficulty: "normal",
-    character: PlayerType.PLAYER_JUDAS,
-    goal: "Blue Baby",
-    seed: "-",
-    startingItems: [],
-    countdown: -1,
-    placeMid: 0,
-    place: 1,
-    numEntrants: 1,
-  };
+  race = new RaceData();
+  speedrun = new SpeedrunData();
 
-  speedrun = {
-    fastReset: false,
+  // Checked in the PostGameStarted callback
+  saveFile = {
+    state: SaveFileState.NOT_CHECKED,
+    fullyUnlocked: false,
+    oldRun: {
+      challenge: 0,
+      character: 0,
+      seededRun: false,
+      seed: "",
+    },
   };
 }

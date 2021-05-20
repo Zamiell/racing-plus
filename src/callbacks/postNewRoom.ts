@@ -37,7 +37,7 @@ function newRoom() {
   const roomVariant = roomDesc.Data.Variant;
 
   Isaac.DebugString(
-    `MC_POST_NEW_ROOM2 - ${roomStageID}.${roomVariant} (on stage ${stage})`,
+    `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage})`,
   );
 
   // Set variables

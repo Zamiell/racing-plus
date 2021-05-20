@@ -1,52 +1,5 @@
-// Check various things once per draw frame (60 times a second)
-// (this will fire while the floor/room is loading)
-
-import * as changeCharOrder from "../challenges/changeCharOrder";
-import * as changeKeybindings from "../challenges/changeKeybindings";
-import { ChallengeCustom } from "../challenges/enums";
-import { inSpeedrun } from "../challenges/misc";
-import * as speedrunPostRender from "../challenges/postRender";
-import * as speedrun from "../challenges/speedrun";
-import { SAVE_FILE_SEED, VERSION, Vector.Zero } from "../constants";
-import * as errors from "../errors";
-import * as challengeRooms from "../features/challengeRooms";
-import * as fastTravel from "../features/fastTravel";
-import * as seededDeath from "../features/seededDeath";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as soulJar from "../items/soulJar";
-import * as misc from "../misc";
-import * as pills from "../pills";
-import * as saveDat from "../saveDat";
-import * as sprites from "../sprites";
-import * as timer from "../timer";
-import { SaveFileState } from "../types/enums";
-import * as useItem from "./useItem";
-
+/*
 export function main(): void {
-  // Update some cached API functions to avoid crashing
-  g.l = g.g.GetLevel();
-  g.r = g.g.GetRoom();
-  const player = g.g.GetPlayer(0);
-  if (player !== null) {
-    g.p = player;
-  }
-  g.seeds = g.g.GetSeeds();
-  g.itemPool = g.g.GetItemPool();
-
-  // Read the "save.dat" file
-  saveDat.load();
-
-  // Keep track of whether the race is finished or not
-  // (we need to check for "open" because it is possible to quit at the main menu and then join
-  // another race before starting the game)
-  if (g.race.status === "none" || g.race.status === "open") {
-    g.raceVars.started = false;
-  }
-
-  // Restart the game if Easter Egg or character validation failed
-  checkRestart();
-
   // Get rid of the slow fade-in at the beginning of a run
   if (!g.run.erasedFadeIn) {
     g.run.erasedFadeIn = true;
@@ -345,82 +298,6 @@ function leadPencilChargeBar() {
     Vector.Zero,
     Vector.Zero,
   );
-}
-
-// Restart the game if Easter Egg or character validation failed
-// (we can't do this in the "PostGameStarted" callback because
-// the "restart" command will fail when the game is first loading)
-function checkRestart() {
-  // Local variables
-  const character = g.p.GetPlayerType();
-  const startSeedString = g.seeds.GetStartSeedString();
-  const customRun = g.seeds.IsCustomRun();
-  const challenge = Isaac.GetChallenge();
-
-  if (!g.run.restart) {
-    return;
-  }
-  g.run.restart = false;
-
-  // First, we need to do the fully unlocked save file check
-  if (g.saveFile.state === SaveFileState.GOING_TO_EDEN) {
-    if (challenge !== Challenge.CHALLENGE_NULL) {
-      misc.executeCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
-    }
-    if (character !== PlayerType.PLAYER_EDEN) {
-      misc.executeCommand(`restart ${PlayerType.PLAYER_EDEN}`);
-    }
-    if (startSeedString !== SAVE_FILE_SEED) {
-      misc.executeCommand(`seed ${SAVE_FILE_SEED}`);
-    }
-    return;
-  }
-  if (g.saveFile.state === SaveFileState.GOING_BACK) {
-    if (challenge !== g.saveFile.old.challenge) {
-      misc.executeCommand(`challenge ${g.saveFile.old.challenge}`);
-    }
-    if (character !== g.saveFile.old.character) {
-      misc.executeCommand(`restart ${g.saveFile.old.character}`);
-    }
-    if (customRun !== g.saveFile.old.seededRun) {
-      // This will change the reset behavior to that of an unseeded run
-      g.seeds.Reset();
-      misc.executeCommand("restart");
-    }
-    if (g.saveFile.old.seededRun && startSeedString !== g.saveFile.old.seed) {
-      misc.executeCommand(`seed ${g.saveFile.old.seed}`);
-    }
-    return;
-  }
-
-  // Change the seed of the run if need be
-  let intendedSeed;
-  if (g.race.rFormat === "seeded" && g.race.status === "in progress") {
-    intendedSeed = g.race.seed;
-  }
-  if (intendedSeed !== null && startSeedString !== intendedSeed) {
-    // Change the seed of the run and restart the game
-    misc.executeCommand(`seed ${intendedSeed}`);
-    // (we can perform another restart immediately afterwards to change the character && nothing
-    // will go wrong)
-  }
-
-  // The "restart" command takes an optional argument to specify the character;
-  // we might want to specify this
-  let command = "restart";
-  if (inSpeedrun()) {
-    const currentChar = speedrun.getCurrentCharacter();
-    if (!speedrun.checkValidCharOrder()) {
-      // The character order is not set properly; we will display an error to the user later on
-      return;
-    }
-    command = `${command} ${currentChar}`;
-  } else if (g.race.status !== "none" && g.race.rFormat !== "custom") {
-    // Custom races might switch between characters
-    command = `${command} ${g.race.character}`;
-  }
-
-  misc.executeCommand(command);
 }
 
 // Fix the bug where diagonal knife throws have a 1-frame window when playing on keyboard (1/2)
@@ -951,3 +828,4 @@ function displayFloorName() {
 
   g.run.streakText2 = g.l.GetName(stage, stageType, 0, 0, false);
 }
+*/

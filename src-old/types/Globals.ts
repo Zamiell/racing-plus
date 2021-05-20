@@ -1,39 +1,7 @@
-import { CHANGE_CHAR_ORDER_POSITIONS } from "../challenges/constants";
-import { ChangeCharOrderPhase } from "../challenges/enums";
-import {
-  CollectibleTypeCustom,
-  PlayerTypeCustom,
-  SaveFileState,
-} from "./enums";
-import GlobalsRun from "./GlobalsRun";
-import PillDescription from "./PillDescription";
-import RaceData from "./RaceData";
-
+/*
 export default class Globals {
   // More cached
   font = Font();
-  numTotalCollectibles = 0; // This is initialized in the PostGameStarted callback
-
-  debug = false;
-
-  // All errors are checked in the PostGameStarted callback
-  errors = {
-    corrupted: false,
-    invalidItemsXML: false,
-    resumedOldRun: false,
-  };
-
-  // Checked in the PostGameStarted callback
-  saveFile = {
-    state: SaveFileState.NOT_CHECKED,
-    fullyUnlocked: false,
-    old: {
-      challenge: 0,
-      character: 0,
-      seededRun: false,
-      seed: "",
-    },
-  };
 
   luaDebug = false; // Whether or not they are running the game with the "--luadebug" flag
   socket: LuaSocket | null = null;
@@ -190,3 +158,4 @@ export default class Globals {
     }
   }
 }
+*/

@@ -7,7 +7,7 @@ export function checkAdd(npc: EntityNPC): void {
 
   // Don't do anything if we are already tracking this NPC
   const ptrHash = GetPtrHash(npc);
-  if (g.run.fastClear.aliveEnemies.has(ptrHash)) {
+  if (g.run.fastClear.aliveEnemies.get(ptrHash) === undefined) {
     return;
   }
 
@@ -84,7 +84,7 @@ function checkFlushOldRoom() {
   // (we can't use the PostNewRoom callback to handle this since that callback fires after this one)
   // (roomFrameCount will be at -1 during the initialization phase)
   if (roomFrameCount === -1 && !g.run.fastClear.roomInitializing) {
-    g.run.fastClear.aliveEnemies = new Map<int, boolean>();
+    g.run.fastClear.aliveEnemies = new LuaTable();
     g.run.fastClear.aliveEnemiesCount = 0;
     g.run.fastClear.aliveBossesCount = 0;
     g.run.fastClear.roomInitializing = true; // (this will get set back to false in the PostNewRoom callback)
@@ -106,7 +106,7 @@ export function checkRemove(npc: EntityNPC, parentFunction: string): void {
   // We only care about entities that are in the "aliveEnemies" table
   const ptrHash = GetPtrHash(npc);
   const isBoss = g.run.fastClear.aliveEnemies.get(ptrHash);
-  if (isBoss === undefined) {
+  if (isBoss === null) {
     return;
   }
 
@@ -133,7 +133,7 @@ function remove(ptrHash: int, isBoss: boolean) {
   const gameFrameCount = g.g.GetFrameCount();
 
   // Keep track of the enemies in the room that are alive
-  g.run.fastClear.aliveEnemies.delete(ptrHash);
+  g.run.fastClear.aliveEnemies.set(ptrHash, null);
   g.run.fastClear.aliveEnemiesCount -= 1;
   if (isBoss) {
     g.run.fastClear.aliveBossesCount -= 1;

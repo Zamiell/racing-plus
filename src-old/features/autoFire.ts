@@ -24,7 +24,7 @@ export function isActionPressed(): boolean | null {
   }
 
   // Local variables
-  const player = Isaac.GetPlayer(0);
+  const player = Isaac.GetPlayer();
   // (we can't use cached API functions in this callback or else the game will crash)
   if (player === null) {
     return null;
@@ -64,7 +64,7 @@ export function getActionValue(_buttonAction: ButtonAction): int | null {
   }
 
   // Local variables
-  const player = Isaac.GetPlayer(0);
+  const player = Isaac.GetPlayer();
   // (we can't use cached API functions in this callback or else the game will crash)
   if (player === null) {
     return null;

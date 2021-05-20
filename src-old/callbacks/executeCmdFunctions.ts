@@ -1,11 +1,4 @@
-import * as speedrunPostUpdate from "../challenges/postUpdate";
-import { Vector.Zero } from "../constants";
-import * as fastTravel from "../features/fastTravel";
-import * as seededFloors from "../features/seededFloors";
-import g from "../globals";
-import * as misc from "../misc";
-import { CARD_NAME_TO_ID_MAP } from "./constants";
-
+/*
 const functionMap = new Map<string, (params: string) => void>();
 export default functionMap;
 
@@ -480,8 +473,6 @@ ExecuteCmd.functions["treasure"] = function(params)
   g.p.UseCard(Card.CARD_STARS) // 18
 });
 
-*/
-
 function blackMarket() {
   // Mark to potentially reposition the player (if they appear at a non-existent entrance)
   g.run.usedTeleport = true;
@@ -556,3 +547,4 @@ function validateNumber(params: string) {
   }
   return num;
 }
+*/

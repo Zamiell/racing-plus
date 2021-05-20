@@ -1,30 +1,6 @@
-// The version is updated automatically by IsaacScript
-export const VERSION = "0.56.0";
-
-export const Vector.Zero = Vector(0, 0);
+/*
 export const DEFAULT_COLOR = Color(1, 1, 1, 1, 0, 0, 0);
 export const DEFAULT_KCOLOR = KColor(1, 1, 1, 1);
-
-// cspell: disable-next-line
-export const SAVE_FILE_SEED = "P8Q3 MRKZ"; // A randomly chosen seed that contains a BP5 item
-
-export const SAVE_FILE_ITEMS = {
-  // Eden's items will change depending on how many custom items there are
-  // Thus, Eden's starting items will be different on Racing+ than on Racing+ & The Babies Mod,
-  // for example
-  racingPlus: {
-    activeItem: CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD, // 545
-    passiveItem: CollectibleType.COLLECTIBLE_CAMO_UNDIES, // 497
-  },
-  babiesMod: {
-    activeItem: CollectibleType.COLLECTIBLE_WAIT_WHAT, // 484
-    passiveItem: CollectibleType.COLLECTIBLE_PIGGY_BANK, // 227
-  },
-  racingPlusRebalanced: {
-    activeItem: CollectibleType.COLLECTIBLE_D6, // 105
-    passiveItem: CollectibleType.COLLECTIBLE_FOREVER_ALONE, // 128
-  },
-};
 
 export const TRANSFORMATION_NAMES = [
   "Guppy",
@@ -106,6 +82,8 @@ export const ALL_CACHE_FLAGS_MINUS_FAMILIARS =
   CacheFlag.CACHE_LUCK; // 1024
 
 export const SEEDED_DEATH_DEBUFF_SECONDS = 45;
+
+*/
 
 /* eslint-disable prettier/prettier */
 

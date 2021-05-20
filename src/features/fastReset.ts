@@ -1,5 +1,5 @@
 import g from "../globals";
-import { executeCommand, isActionTriggered } from "../misc";
+import { consoleCommand, isActionTriggered } from "../misc";
 
 export function postRender(): void {
   if (!g.config.fastReset) {
@@ -67,7 +67,7 @@ function reset() {
     // a slow/normal reset means to go back to the first character
     g.speedrun.fastReset = true;
 
-    executeCommand("restart");
+    consoleCommand("restart");
   } else {
     // In speedruns, we want to double tap R to return reset to the same character
     g.run.fastReset.frame = isaacFrameCount;

@@ -73,7 +73,7 @@ function InputAction.IsActionTriggeredDrop() {
 
   // Local variables
   const game = Game()
-  const player = Isaac.GetPlayer(0)
+  const player = Isaac.GetPlayer()
   // (we can't use cached API functions in this callback || } else { the game will crash)
   const character = player.GetPlayerType()
 
@@ -138,7 +138,7 @@ function InputAction.GetActionValueShoot(buttonAction)
 // Fix the bug where diagonal knife throws have a 1-frame window when playing on keyboard (2/2)
 function InputAction.KnifeDiagonalFix(buttonAction)
   // Local variables
-  const player = Isaac.GetPlayer(0)
+  const player = Isaac.GetPlayer()
   // (we can't use cached API functions in this callback || } else { the game will crash)
 
   if ( (

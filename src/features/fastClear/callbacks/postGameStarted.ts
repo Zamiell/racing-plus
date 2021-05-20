@@ -12,11 +12,13 @@ export function postGameStarted(): void {
 function initVariables() {
   const startSeed = g.seeds.GetStartSeed();
 
-  g.run.fastClear.roomClearAwardRNG = initRNG(startSeed);
-  g.run.fastClear.roomClearAwardRNG2 = initRNG(startSeed);
+  g.run.fastClear.roomClearAwardSeed = startSeed;
+
+  // We want to insure that the second RNG counter does not overlap with the first one
+  // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
+  const rng = initRNG(startSeed);
   for (let i = 0; i < 500; i++) {
-    // We want to insure that the second RNG counter does not overlap with the first one
-    // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
-    g.run.fastClear.roomClearAwardRNG2.Next();
+    rng.Next();
   }
+  g.run.fastClear.roomClearAwardSeedDevilAngel = rng.GetSeed();
 }

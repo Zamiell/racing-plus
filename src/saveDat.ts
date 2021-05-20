@@ -11,7 +11,7 @@ export function setMod(newMod: Mod): void {
 
 export function save(): void {
   if (mod === null) {
-    return;
+    error('"saveDat.save()" was called without the mod being initialized.');
   }
 
   const encodedData = json.encode(g);
@@ -20,7 +20,7 @@ export function save(): void {
 
 export function load(): void {
   if (mod === null) {
-    return;
+    error('"saveDat.load()" was called without the mod being initialized.');
   }
 
   if (!Isaac.HasModData(mod)) {

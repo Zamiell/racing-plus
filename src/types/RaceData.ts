@@ -2,6 +2,7 @@ type RaceStatus = "none" | "open" | "starting" | "in progress";
 type RaceMyStatus = "not ready" | "ready" | "racing";
 type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom" | "pageant";
 type RaceDifficulty = "normal" | "hard";
+
 export type RaceGoal =
   | "Blue Baby"
   | "The Lamb"
@@ -12,29 +13,29 @@ export type RaceGoal =
   | "Everything"
   | "Custom";
 
-export default interface RaceData {
+export default class RaceData {
   /** Equal to our Racing+ user ID. */
-  userID: int;
+  userID = 0;
   /** 0 if a race is not going on. */
-  raceID: int;
-  status: RaceStatus;
-  myStatus: RaceMyStatus;
-  ranked: boolean;
-  solo: boolean;
-  rFormat: RaceFormat;
-  difficulty: RaceDifficulty;
-  character: PlayerType;
-  goal: RaceGoal;
+  raceID = 0;
+  status: RaceStatus = "none";
+  myStatus: RaceMyStatus = "not ready";
+  ranked = false;
+  solo = false;
+  rFormat: RaceFormat = "unseeded";
+  difficulty: RaceDifficulty = "normal";
+  character = PlayerType.PLAYER_JUDAS;
+  goal: RaceGoal = "Blue Baby";
   /** Corresponds to the seed that is the race goal. */
-  seed: string;
+  seed = "-";
   /** The starting items for this race, if any. */
-  startingItems: CollectibleType[];
+  startingItems: CollectibleType[] = [];
   /** This corresponds to the graphic to draw on the screen. */
-  countdown: int;
+  countdown = -1;
   /** This is either the number of people ready, or the non-finished place. */
-  placeMid: int;
+  placeMid = 0;
   /** This is the final place. */
-  place: int;
+  place = 1;
   /** The number of people in the race. */
-  numEntrants: int;
+  numEntrants = 1;
 }

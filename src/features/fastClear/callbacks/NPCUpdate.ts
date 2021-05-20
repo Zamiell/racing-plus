@@ -48,8 +48,8 @@ export function stoney(npc: EntityNPC): void {
   // so they will get added to the aliveEnemies table before the room is loaded
   // To correct for this, we constantly check to see if Stoneys are on the aliveEnemies table
   const ptrHash = GetPtrHash(npc);
-  if (g.run.fastClear.aliveEnemies.has(ptrHash)) {
-    g.run.fastClear.aliveEnemies.delete(ptrHash);
+  if (g.run.fastClear.aliveEnemies.get(ptrHash) !== null) {
+    g.run.fastClear.aliveEnemies.set(ptrHash, null);
     g.run.fastClear.aliveEnemiesCount -= 1;
   }
 }

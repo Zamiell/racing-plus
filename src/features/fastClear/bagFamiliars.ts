@@ -1,5 +1,4 @@
 import g from "../../globals";
-import { initRNG } from "../../misc";
 import bagFamiliarFunctions from "./bagFamiliarFunctions";
 
 // In order to make bag familiars drop things after we clear a room,
@@ -9,13 +8,6 @@ import bagFamiliarFunctions from "./bagFamiliarFunctions";
 // All of these formulas were reverse engineered by blcd:
 // https://bindingofisaacrebirth.gamepedia.com/User:Blcd/RandomTidbits#Pickup_Familiars
 export function clearedRoom(): void {
-  let constant1 = 1.1; // For Little C.H.A.D., Bomb Bag, Acid Baby, Sack of Sacks
-  let constant2 = 1.11; // For The Relic, Mystery Sack, Rune Bag
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) {
-    constant1 = 1.2;
-    constant2 = 1.15;
-  }
-
   // Look through all of the player's familiars
   const familiars = Isaac.FindByType(
     EntityType.ENTITY_FAMILIAR,
@@ -28,30 +20,16 @@ export function clearedRoom(): void {
     const familiar = entity.ToFamiliar();
     if (familiar !== null) {
       familiar.RoomClearCount += 1;
-      checkForDrops(familiar, constant1, constant2);
+      checkForDrops(familiar);
       paschalCandle(familiar);
     }
   }
 }
 
-function checkForDrops(
-  familiar: EntityFamiliar,
-  constant1: float,
-  constant2: float,
-) {
-  const startSeed = g.seeds.GetStartSeed();
+function checkForDrops(familiar: EntityFamiliar) {
   const bagFamiliarFunction = bagFamiliarFunctions.get(familiar.Variant);
   if (bagFamiliarFunction !== undefined) {
-    const data = familiar.GetData();
-    if (data.racingPlusRNG === null) {
-      data.racingPlusRNG = initRNG(startSeed);
-    }
-    bagFamiliarFunction(
-      familiar,
-      data.racingPlusRNG as RNG,
-      constant1,
-      constant2,
-    );
+    bagFamiliarFunction(familiar);
   }
 }
 

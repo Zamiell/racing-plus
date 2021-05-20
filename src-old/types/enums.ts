@@ -1,10 +1,3 @@
-export enum SaveFileState {
-  NOT_CHECKED,
-  GOING_TO_EDEN, // Going to the set seed with Eden
-  GOING_BACK, // Going back to the old challenge/character/seed
-  FINISHED,
-}
-
 export enum SeededDeathState {
   DISABLED,
   DEATH_ANIMATION,

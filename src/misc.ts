@@ -1,14 +1,14 @@
 import g from "./globals";
 
+export function consoleCommand(command: string): void {
+  Isaac.DebugString(`Executing console command: ${command}`);
+  Isaac.ExecuteCommand(command);
+  Isaac.DebugString(`Finished executing console command: ${command}`);
+}
+
 // Use this on a switch statement's default case to get
 // the linter to complain if a case was not predicted
 export const ensureAllCases = (obj: never): never => obj;
-
-export function executeCommand(command: string): void {
-  Isaac.DebugString(`Executing command. ${command}`);
-  Isaac.ExecuteCommand(command);
-  Isaac.DebugString(`Finished executing command. ${command}`);
-}
 
 export function getItemMaxCharges(itemID: int): int {
   const itemConfigItem = g.itemConfig.GetCollectible(itemID);
@@ -18,7 +18,8 @@ export function getItemMaxCharges(itemID: int): int {
   return itemConfigItem.MaxCharges;
 }
 
-export function getRandom(x: int, y: int, rng: RNG): int {
+export function getRandom(x: int, y: int, seed: int): int {
+  const rng = initRNG(seed);
   return rng.RandomInt(y - x + 1) + x;
 }
 

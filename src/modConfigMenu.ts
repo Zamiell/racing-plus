@@ -1,6 +1,7 @@
 import * as config from "./config";
 import featuresMap from "./featuresMap";
 import g from "./globals";
+import Config from "./types/Config";
 
 const CATEGORY_NAME = "Racing+";
 
@@ -20,15 +21,21 @@ function debugModConfigMenu() {
 }
 
 function validateFeatures() {
+  // The features map is typed as having keys of "keyof Config"
+  // Thus, it is impossible for the features map to contain any non-config data
+  // However, the inverse is not true (i.e. a config value to be missing from), so we check this at runtime
+  /*
   for (const key of Object.keys(g.config)) {
     if (!featuresMap.has(key as keyof Config)) {
       error(`Failed to find config key "${key}" in the features map.`);
     }
   }
+  */
 }
 
 function registerFeatures() {
-  for (const [key, value] of featuresMap.entries()) {
+  for (const [keyString, value] of Object.entries(featuresMap)) {
+    const key = keyString as keyof Config;
     const [code, shortDescription, longDescription] = value;
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, "Features", {

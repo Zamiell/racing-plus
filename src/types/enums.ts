@@ -22,3 +22,11 @@ export enum EffectVariantCustom {
     "Void Portal (Fast-Travel)",
   ),
 }
+
+export enum SaveFileState {
+  NOT_CHECKED,
+  DEFERRED_UNTIL_NEW_RUN_BEGINS,
+  GOING_TO_EDEN, // Going to the set seed with Eden
+  GOING_BACK, // Going back to the old challenge/character/seed
+  FINISHED,
+}
