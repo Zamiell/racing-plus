@@ -54,17 +54,25 @@ export function postNewRoom(): void {
 }
 
 function giveTrinket(player: EntityPlayer) {
+  const character = g.p.GetPlayerType();
+
   g.p.AnimateHappy();
+
+  const trinketType =
+    character === PlayerType.PLAYER_KEEPER ||
+    character === PlayerType.PLAYER_KEEPER_B
+      ? TrinketType.TRINKET_STORE_CREDIT
+      : TrinketType.TRINKET_YOUR_SOUL;
 
   if (getOpenTrinketSlot(player) !== null) {
     // By default, put it directly in our inventory
-    g.p.AddTrinket(TrinketType.TRINKET_YOUR_SOUL);
+    g.p.AddTrinket(trinketType);
   } else {
     // If we do not have an available trinket slot, then spawn the trinket on the ground
     Isaac.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_TRINKET,
-      TrinketType.TRINKET_YOUR_SOUL,
+      trinketType,
       g.p.Position,
       Vector.Zero,
       null,

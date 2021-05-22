@@ -1,4 +1,3 @@
-- dont appear in center of room when moving floors
 - fast clear bug in DD room with buttons, seed Z4TF GD9V stage 2
 
 - draw the corrupted error on the screen

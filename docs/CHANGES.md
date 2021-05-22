@@ -43,8 +43,6 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ## List of Major Changes
 
-<br />
-
 ### 1) The D6 for Everyone
 
 <code>001</code> All characters now start with the D6, either as a pocket item or an active item. (Much of the strategy in the game is centered around having this item, and it mitigates run disparity.)
@@ -65,30 +63,28 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 <code>004</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
 
-<br />
-
 ### 5) Room Fixes
 
 Rooms with unavoidable damage or bugs have been fixed or deleted.
 
+<!--
 ### 6) Room Flipping
 
 While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
+-->
 
 <br />
 
 ## List of Minor Changes
 
-<br />
-
-### Custom Hotkeys
+### 1) Custom Hotkeys
 
 - Racing+ allows you to bind some optional hotkeys via Mod Config Menu:
-  - <code>011</code> a fast-drop button (for everything)
-  - <code>012</code> a fast-drop button for only trinkets
-  - <code>013</code> a fast-drop button for only pocket items
+  - a fast-drop button (for everything)
+  - a fast-drop button for only trinkets
+  - a fast-drop button for only pocket items
 
-### Gameplay & Quality of Life Changes
+### 2) Gameplay & Quality of Life Changes
 
 - <code>021</code> Judas starts with a bomb.
 - <code>022</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
@@ -136,9 +132,7 @@ While there are thousands of rooms in the game, many players have already seen t
 - There is now a sound effect when a Walnut or a Wishbone breaks.
 -->
 
-<br />
-
-### Cutscene & Animation Removal
+### 3) Cutscene & Animation Removal
 
 - The cutscenes that occur when you launch the game and when you finish a run are removed.
 - The cutscenes that occur before each boss are removed.
@@ -161,9 +155,11 @@ While there are thousands of rooms in the game, many players have already seen t
   - Ultra Greed's appear and death animation
 - Teleporting animations are sped up by a factor of 2.
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
+-->
 
-### Bug Fixes
+### 4) Bug Fixes
 
+<!--
 - Angels will drop key pieces even if another angel is still alive in the room.
 - Globins will permanently die upon the 5th regeneration to prevent Epic Fetus softlocks.
 - Flaming Hoppers will now automatically die after 5 seconds of being immobile to prevent softlocks.
@@ -176,12 +172,12 @@ While there are thousands of rooms in the game, many players have already seen t
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room.
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared.
-- All forms of teleport will no longer send you to an invalid entrance.
 -->
+- All forms of teleport will no longer send you to an invalid entrance.
 
 <br />
 
-### Graphics & Sound Fixes
+### 4) Graphics & Sound Fixes
 
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
@@ -190,7 +186,7 @@ While there are thousands of rooms in the game, many players have already seen t
 -->
 - The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
 - The 20/20 collectible is now easier to see.
-<!-->
+<!--
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - Pill sprites now have consistent orientations. (Thanks goes to [Nioffe](https://steamcommunity.com/id/nioffe) for creating the sprites in the [Consistent Pills](https://steamcommunity.com/sharedfiles/filedetails/?id=1418510121) mod.)
 - The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
@@ -203,19 +199,24 @@ While there are thousands of rooms in the game, many players have already seen t
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
 -->
 - The audio clips of mom and dad on the Ascent now be silenced.
-<!--
 
 <br />
 
 ## Additional Changes for Races
 
+<!--
 Racing+ allows players to perform [several different types of races](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-RACES.md) against each other. Some race formats may introduce additional changes.
+-->
+Racing against other players with the Racing+ client is not supported yet. [TODO]
 
 <br />
 
 ## Additional Changes for Multi-Character Speedruns (Custom Challenges)
 
+<!--
 Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md), each of which introduces additional changes to the game.
+-->
+7-character speedruns are not supported yet. [TODO]
 
 <br />
 
@@ -224,8 +225,6 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
-
--->
 
 <!--
 
