@@ -14,7 +14,7 @@ function RevelCopyTable(source, target)
     end
   else
     for k,v in pairs(target) do --For every variable in target (not in source as it might not have variables added in a new version)
-      if source[k] ~= nil then --If the source contains the variable
+      if source[k] ~= nil and type(source[k]) == type(target[k]) then --If the source contains the variable
         if type(source[k]) == "table" then --If the value of the variable is also a table, we need to do this again. (Actually, I'm not sure, but to be safe, do this)
           output[k] = RevelCopyTable(source[k],target[k]);
         else

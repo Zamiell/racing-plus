@@ -1,6 +1,6 @@
 import g from "../globals";
 
-export default function judasAddBomb(): void {
+export function postGameStarted(): void {
   if (!g.config.judasAddBomb) {
     return;
   }

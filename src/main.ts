@@ -1,3 +1,4 @@
+import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as NPCUpdate from "./callbacks/NPCUpdate";
 import * as postCurseEval from "./callbacks/postCurseEval";
@@ -14,6 +15,10 @@ import { VERSION } from "./constants";
 import * as modConfigMenu from "./modConfigMenu";
 import * as saveDat from "./saveDat";
 
+// Register the mod
+// (which will make it show up in the list of mods on the mod screen in the main menu)
+const racingPlus = RegisterMod("Racing+", 1);
+
 // Welcome banner
 const modName = "Racing+";
 const welcomeText = `${modName} ${VERSION} initialized.`;
@@ -22,10 +27,6 @@ const welcomeTextBorder = `+-${hyphens}-+`;
 Isaac.DebugString(welcomeTextBorder);
 Isaac.DebugString(`| ${welcomeText} |`);
 Isaac.DebugString(welcomeTextBorder);
-
-// Register the mod
-// (which will make it show up in the list of mods on the mod screen in the main menu)
-const racingPlus = RegisterMod("Racing+", 1);
 
 saveDat.setMod(racingPlus); // Give a copy of the mod object to the code in charge of saving
 saveDat.load(); // Load the "save#.dat" file
@@ -37,6 +38,7 @@ modConfigMenu.register();
 racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main); // 0
 racingPlus.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
 racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
+racingPlus.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main); // 11
 racingPlus.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
 racingPlus.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main); // 15
 racingPlus.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main); // 17

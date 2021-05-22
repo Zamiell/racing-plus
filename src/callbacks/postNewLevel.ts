@@ -1,6 +1,7 @@
 import g from "../globals";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
+import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
   const gameFrameCount = g.g.GetFrameCount();
@@ -24,14 +25,13 @@ export function newLevel(): void {
 
   Isaac.DebugString(`MC_POST_NEW_LEVEL_2 - ${stage}.${stageType}`);
 
-  // Set the new floor
-  g.run.level.stage = stage;
-  g.run.level.stageType = stageType;
-
   // Clear variables that track things per level
   g.run.level = new GlobalsRunLevel(stage, stageType);
 
   // Internally, the game saves the run state at the beginning of every floor
   // Mimic this functionality with our own mod data
-  saveDat.load();
+  saveDat.save();
+
+  // Call PostNewRoom manually (they get naturally called out of order)
+  postNewRoom.newRoom();
 }

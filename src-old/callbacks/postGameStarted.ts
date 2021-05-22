@@ -47,29 +47,6 @@ export function main(): void {
     g.itemPool.RemoveTrinket(TrinketType.TRINKET_WATCH_BATTERY); // 72
   }
 
-  // By default, the player starts near the bottom door
-  // Instead, put the player in the middle of the room
-  if (
-    g.g.Difficulty === Difficulty.DIFFICULTY_NORMAL ||
-    g.g.Difficulty === Difficulty.DIFFICULTY_HARD
-  ) {
-    // Don't do this in Greed Mode, since if the player starts at the center of the room,
-    // they they will immediately touch the trigger button
-    g.p.Position = centerPos;
-  }
-
-  // Also, put familiars in the middle of the room, if any
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
-  for (const familiar of familiars) {
-    familiar.Position = centerPos;
-  }
-
   // Give us custom racing items, depending on the character (mostly just the D6)
   if (characterInit()) {
     return;

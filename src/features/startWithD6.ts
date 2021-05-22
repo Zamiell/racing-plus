@@ -26,7 +26,7 @@ const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_JACOB2_B,
 ];
 
-export default function startWithD6(): void {
+export function postGameStarted(): void {
   if (!g.config.startWithD6) {
     return;
   }

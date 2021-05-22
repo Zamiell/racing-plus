@@ -1,5 +1,5 @@
 import g from "../globals";
-import { consoleCommand, isActionTriggered } from "../misc";
+import { consoleCommand, isActionTriggeredOnAnyInput } from "../misc";
 
 export function postRender(): void {
   if (!g.config.fastReset) {
@@ -50,11 +50,9 @@ function checkResetInput() {
   // Check to see if the player has pressed the restart input
   // (we check all inputs instead of "player.ControllerIndex" because
   // a controller player might be using the keyboard to reset)
-  if (!isActionTriggered(ButtonAction.ACTION_RESTART)) {
-    return;
+  if (isActionTriggeredOnAnyInput(ButtonAction.ACTION_RESTART)) {
+    reset();
   }
-
-  reset();
 }
 
 function reset() {

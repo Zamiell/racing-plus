@@ -1,7 +1,8 @@
-import judasAddBomb from "../features/judasAddBomb";
-import samsonDropHeart from "../features/samsonDropHeart";
+import * as centerStart from "../features/centerStart";
+import * as judasAddBomb from "../features/judasAddBomb";
+import * as samsonDropHeart from "../features/samsonDropHeart";
 import * as saveFileCheck from "../features/saveFileCheck";
-import startWithD6 from "../features/startWithD6";
+import * as startWithD6 from "../features/startWithD6";
 import g from "../globals";
 import GlobalsRun from "../types/GlobalsRun";
 import * as postGameStartedContinued from "./postGameStartedContinued";
@@ -49,9 +50,10 @@ export function main(isContinued: boolean): void {
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_KARMA);
 
   // Features
-  startWithD6();
-  judasAddBomb();
-  samsonDropHeart();
+  centerStart.postGameStarted();
+  startWithD6.postGameStarted();
+  judasAddBomb.postGameStarted();
+  samsonDropHeart.postGameStarted();
 
   // Call PostNewLevel manually (they get naturally called out of order)
   postNewLevel.newLevel();

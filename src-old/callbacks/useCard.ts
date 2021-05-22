@@ -104,9 +104,3 @@ export function questionMark(): void {
   // charge (1/2)
   g.run.questionMarkCard = g.g.GetFrameCount();
 }
-
-export function teleport(): void {
-  // Mark to potentially reposition the player
-  // (if they appear at a non-existent entrance)
-  g.run.usedTeleport = true;
-}

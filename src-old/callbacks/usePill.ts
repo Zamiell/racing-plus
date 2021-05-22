@@ -117,9 +117,6 @@ export function telepills(): void {
   const randomIndex = math.random(0, roomIndexes.length - 1);
   const gridIndex = roomIndexes[randomIndex];
 
-  // Mark to potentially reposition the player (if they appear at a non-existent entrance)
-  g.run.usedTeleport = true;
-
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;
 

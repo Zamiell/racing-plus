@@ -26,6 +26,16 @@ export default class GlobalsRun {
     victoryLaps: 0,
   };
 
+  // --------
+  // Features
+  // --------
+
+  freeDevilItem = {
+    /** Index is player ControllerIndex. */
+    takenDamage: new LuaTable<int, boolean>(),
+    granted: false,
+  };
+
   fastClear = {
     /**
      * Keys are NPC pointer hashes, values are isBoss.
@@ -60,4 +70,6 @@ export default class GlobalsRun {
     /** If this is set, fast-resetting is disabled. */
     consoleOpened: false,
   };
+
+  debugChaosCard = false;
 }

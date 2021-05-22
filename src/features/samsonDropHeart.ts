@@ -1,7 +1,7 @@
 import g from "../globals";
 import { gridToPos } from "../misc";
 
-export default function samsonDropHeart(): void {
+export function postGameStarted(): void {
   if (!g.config.samsonDropHeart) {
     return;
   }

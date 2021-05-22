@@ -1,92 +1,5 @@
-import * as changeCharOrder from "../challenges/changeCharOrder";
-import * as changeKeybindings from "../challenges/changeKeybindings";
-import { ChallengeCustom } from "../challenges/enums";
-import * as speedrunPostNewRoom from "../challenges/postNewRoom";
-import { Vector.Zero } from "../constants";
-import * as bossRush from "../features/bossRush";
-import * as challengeRooms from "../features/challengeRooms";
-import * as fastTravel from "../features/fastTravel";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import * as racePostNewRoom from "../race/postNewRoom";
-import * as sprites from "../sprites";
-import { EntityTypeCustom } from "../types/enums";
-import GlobalsRunRoom from "../types/GlobalsRunRoom";
-
-export function main(): void {
-  const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomStageID = roomDesc.Data.StageID;
-  const roomVariant = roomDesc.Data.Variant;
-
-  // Make sure the callbacks run in the right order
-  // (naturally, PostNewRoom gets called before the PostNewLevel and PostGameStarted callbacks)
-  if (
-    gameFrameCount === 0 ||
-    g.run.level.stage !== stage ||
-    g.run.level.stageType !== stageType
-  ) {
-    // Make an exception if we are using the "goto" command to go to a debug room
-    if (g.run.goingToDebugRoom && roomStageID === 2 && roomVariant === 0) {
-      g.run.goingToDebugRoom = false;
-    } else {
-      return;
-    }
-  }
-
-  // Don't enter the callback if ( we are planning on immediately reseeding the floor
-  if (g.run.reseedNextFloor) {
-    Isaac.DebugString(
-      "Not entering the NewRoom() function due to an imminent reseed.",
-    );
-    return;
-  }
-
-  newRoom();
-}
-
+/*
 export function newRoom(): void {
-  // Local variables
-  const stage = g.l.GetStage();
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomStageID = roomDesc.Data.StageID;
-  const roomVariant = roomDesc.Data.Variant;
-  const roomClear = g.r.IsClear();
-
-  Isaac.DebugString(
-    `MC_POST_NEW_ROOM2 - ${roomStageID}.${roomVariant} (on stage ${stage})`,
-  );
-
-  // Keep track of how many rooms we enter over the course of the run
-  g.run.roomsEntered += 1;
-
-  // Reset the state of whether the room is clear or not
-  // (this is needed so that we don't get credit for clearing a room when
-  // bombing from a room with enemies into an empty room)
-  g.run.currentRoomClearState = roomClear;
-
-  // Check to see if we need to remove the heart container from a Strength card on Keeper
-  // (this has to be done before the resetting of the "g.run.usedStrength" variable)
-  checkRemoveKeeperHeartContainerFromStrength();
-
-  samael.CheckHairpin(); // Check to see if we need to fix the Wraith Skull + Hairpin bug
-  schoolbag.postNewRoom(); // Handle the Glowing Hour Glass mechanics relating to the Schoolbag
-  bossRush.postNewRoom();
-  challengeRooms.postNewRoom();
-  // Check to see if we need to respawn trapdoors / crawlspaces / beams of light
-  fastTravel.entity.checkRespawn();
-  fastTravel.trapdoor.checkNewFloor(); // Check if we are just arriving on a new floor
-  fastTravel.crawlspace.checkMiscBugs(); // Check for miscellaneous crawlspace bugs
-
-  checkDrawEdenStartingItems();
-  // Remove the "More Options" buff if they have entered a Treasure Room
-  checkRemoveMoreOptions();
-  checkZeroHealth(); // Fix the bug where we don't die at 0 hearts
-  checkStartingRoom(); // Draw the starting room graphic
-  checkPostTeleportInvalidEntrance();
   checkSatanRoom(); // Check for the Satan room
   checkMegaSatanRoom(); // Check for Mega Satan on "Everything" races
   checkScolexRoom(); // Check for all of the Scolex boss rooms
@@ -219,89 +132,6 @@ function checkStartingRoom() {
   // On vanilla, the sprite is a slightly different color on the Burning Basement
   if (stageType === StageType.STAGETYPE_AFTERBIRTH) {
     controlsSprite.Color = Color(0.5, 0.5, 0.5, 1, 0, 0, 0);
-  }
-}
-
-function checkPostTeleportInvalidEntrance() {
-  if (!g.run.usedTeleport) {
-    return;
-  }
-  g.run.usedTeleport = false;
-
-  // Local variables
-  const roomShape = g.r.GetRoomShape();
-
-  // Don't bother fixing entrances in big room,
-  // as teleporting the player to a valid door can cause the camera to jerk in a buggy way
-  if (roomShape >= RoomShape.ROOMSHAPE_1x2) {
-    return;
-  }
-
-  // Check to see if they are at an entrance
-  let nextToADoor = false;
-  let firstDoorSlot: int | null = null;
-  let firstDoorPosition: Vector | null = null;
-  for (let i = 0; i <= 7; i++) {
-    const door = g.r.GetDoor(i);
-    if (
-      door !== null &&
-      door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
-      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
-    ) {
-      if (firstDoorSlot === null) {
-        firstDoorSlot = i;
-        firstDoorPosition = Vector(door.Position.X, door.Position.Y);
-      }
-      if (door.Position.Distance(g.p.Position) < 60) {
-        nextToADoor = true;
-        break;
-      }
-    }
-  }
-
-  // Some rooms have no doors, like I AM ERROR rooms
-  if (!nextToADoor && firstDoorSlot !== null && firstDoorPosition !== null) {
-    // They teleported to a non-existent entrance,
-    // so manually move the player next to the first door in the room
-    // We can't move them directly to the door position or they would just enter the loading zone
-    // Players always appear 40 units away from the door when entering a room,
-    // so calculate the offset based on the door slot
-    let x = firstDoorPosition.X;
-    let y = firstDoorPosition.Y;
-    if (firstDoorSlot === DoorSlot.LEFT0 || firstDoorSlot === DoorSlot.LEFT1) {
-      x += 40;
-    } else if (
-      firstDoorSlot === DoorSlot.UP0 ||
-      firstDoorSlot === DoorSlot.UP1
-    ) {
-      y += 40;
-    } else if (
-      firstDoorSlot === DoorSlot.RIGHT0 ||
-      firstDoorSlot === DoorSlot.RIGHT1
-    ) {
-      x -= 40;
-    } else if (
-      firstDoorSlot === DoorSlot.DOWN0 ||
-      firstDoorSlot === DoorSlot.DOWN1
-    ) {
-      y -= 40;
-    }
-
-    // Move the player
-    const newPosition = Vector(x, y);
-    g.p.Position = newPosition;
-
-    // Also move the familiars
-    const familiars = Isaac.FindByType(
-      EntityType.ENTITY_FAMILIAR,
-      -1,
-      -1,
-      false,
-      false,
-    );
-    for (const familiar of familiars) {
-      familiar.Position = newPosition;
-    }
   }
 }
 
@@ -795,3 +625,5 @@ function shouldBanB1CurseRoom() {
 
   return stage === 1 && challenge === ChallengeCustom.R7_SEASON_9;
 }
+
+*/

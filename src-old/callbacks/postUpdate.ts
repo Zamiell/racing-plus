@@ -1,5 +1,4 @@
-// Check various things once per game frame (30 times a second)
-// (this will not fire while a floor is loading or a room is loading)
+/*
 
 import * as season5 from "../challenges/season5";
 import { DEFAULT_COLOR, TRANSFORMATION_NAMES } from "../constants";
@@ -810,3 +809,5 @@ function isCustomInputPressed(racingPlusDataKey: string) {
 
   return misc.isButtonPressed(hotkey);
 }
+
+*/

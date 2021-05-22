@@ -57,9 +57,6 @@ export function teleport(): void {
   }
   const gridIndexSafe = room.SafeGridIndex;
 
-  // Mark to potentially reposition the player (if they appear at a non-existent entrance)
-  g.run.usedTeleport = true;
-
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;
 
@@ -180,9 +177,6 @@ export function undefinedItem(): void {
   math.randomseed(g.RNGCounter.Undefined);
   const randomRoomIndexesIndex = math.random(0, roomIndexes.length - 1);
   const gridIndex = roomIndexes[randomRoomIndexesIndex];
-
-  // Mark to potentially reposition the player (if they appear at a non-existent entrance)
-  g.run.usedTeleport = true;
 
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;

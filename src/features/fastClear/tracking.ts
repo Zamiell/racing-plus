@@ -7,7 +7,7 @@ export function checkAdd(npc: EntityNPC): void {
 
   // Don't do anything if we are already tracking this NPC
   const ptrHash = GetPtrHash(npc);
-  if (g.run.fastClear.aliveEnemies.get(ptrHash) === undefined) {
+  if (g.run.fastClear.aliveEnemies.get(ptrHash) !== undefined) {
     return;
   }
 
@@ -89,6 +89,7 @@ function checkFlushOldRoom() {
     g.run.fastClear.aliveBossesCount = 0;
     g.run.fastClear.roomInitializing = true; // (this will get set back to false in the PostNewRoom callback)
     g.run.fastClear.delayFrame = 0;
+    Isaac.DebugString("Fast-Clear - Reset all variables.");
   }
 }
 
@@ -99,6 +100,7 @@ function add(ptrHash: int, isBoss: boolean) {
   if (isBoss) {
     g.run.fastClear.aliveBossesCount += 1;
   }
+  Isaac.DebugString(`FastClear - Added: ${ptrHash}`);
 }
 
 /** As soon as an NPC dies, we want to remove it from the "aliveEnemies" map. */
@@ -118,7 +120,7 @@ export function checkRemove(npc: EntityNPC, parentFunction: string): void {
   // We cannot check for "npc.GetSprite().IsPlaying("ReGenChamp")",
   // because that will only be updated on the next frame
   if (
-    npc.GetChampionColorIdx() === ChampionColorIdx.DARK_RED &&
+    npc.GetChampionColorIdx() === ChampionColor.DARK_RED &&
     parentFunction === "PostEntityKill"
   ) {
     // We do not want to open the doors yet until the flesh pile is actually removed in the

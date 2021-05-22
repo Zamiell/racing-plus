@@ -1,9 +1,9 @@
 import disableCurses from "../features/disableCurses";
 
 export function main(curses: LevelCurse): LevelCurse {
-  const levelCurse = disableCurses();
-  if (levelCurse !== null) {
-    return levelCurse;
+  const newCurses = disableCurses();
+  if (newCurses !== null) {
+    return newCurses;
   }
 
   return curses;
