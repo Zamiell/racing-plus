@@ -38,12 +38,16 @@ export default class GlobalsRun {
 
   fastClear = {
     /**
-     * Keys are NPC pointer hashes, values are isBoss.
+     * Keys are NPC pointer hashes, the value is whether or not the NPC is a boss.
      * Note that we cannot use "npc.Index" as an index for the map because it is always set to 0 in
      * the PostNPCInit callback (even in Repentance).
      * We have to use a LuaTable instead of a Map because Maps don't get converted to JSON properly.
      */
     aliveEnemies: new LuaTable<int, boolean | null>(),
+    /**
+     * We need to track the count separately from the hash map because there is no method in Lua to
+     * get the number of entries in a table.
+     */
     aliveEnemiesCount: 0,
     aliveBossesCount: 0,
 

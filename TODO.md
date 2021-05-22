@@ -1,10 +1,11 @@
+- dont appear in center of room when moving floors
 - fast clear bug in DD room with buttons, seed Z4TF GD9V stage 2
-- test JSG tip that PostNewRoom is fucked for FastClear
 
 - draw the corrupted error on the screen
 - write script to look for duplicate rooms
 
 - chat system
+- custom console
 - paschal candle
 
 Racing+ new features:

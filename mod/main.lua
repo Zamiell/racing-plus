@@ -2150,28 +2150,56 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.56.0"
+____exports.VERSION = "0.56.1"
 return ____exports
 end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local printFastClearVariables
+function printFastClearVariables(self)
+    Isaac.DebugString("Fast clear variables:")
+    Isaac.DebugString("- aliveEnemies:")
+    for key, value in pairs(g.run.fastClear.aliveEnemies) do
+        Isaac.DebugString(
+            (("  - " .. tostring(key)) .. " - ") .. tostring(value)
+        )
+    end
+    Isaac.DebugString(
+        "- aliveEnemiesCount: " .. tostring(g.run.fastClear.aliveEnemiesCount)
+    )
+    Isaac.DebugString(
+        "- aliveBossesCount: " .. tostring(g.run.fastClear.aliveBossesCount)
+    )
+    Isaac.DebugString(
+        "- buttonsAllPushed: " .. tostring(g.run.fastClear.buttonsAllPushed)
+    )
+    Isaac.DebugString(
+        "- roomInitializing: " .. tostring(g.run.fastClear.roomInitializing)
+    )
+    Isaac.DebugString(
+        "- delayFrame: " .. tostring(g.run.fastClear.delayFrame)
+    )
+    Isaac.DebugString(
+        "- vanillaPhotosSpawning: " .. tostring(g.run.fastClear.vanillaPhotosSpawning)
+    )
+    Isaac.DebugString(
+        "- paschalCandleCounters: " .. tostring(g.run.fastClear.paschalCandleCounters)
+    )
+    Isaac.DebugString(
+        "- roomClearAwardSeed: " .. tostring(g.run.fastClear.roomClearAwardSeed)
+    )
+    Isaac.DebugString(
+        "- roomClearAwardSeedDevilAngel: " .. tostring(g.run.fastClear.roomClearAwardSeedDevilAngel)
+    )
+end
 function ____exports.default(self)
     g.debug = true
     Isaac.DebugString("+--------------------------+")
     Isaac.DebugString("| Entering debug function. |")
     Isaac.DebugString("+--------------------------+")
-    Isaac.DebugString("Fast clear variables:")
-    Isaac.DebugString("- aliveEnemies:")
-    local ItemPrice = ItemPrice or ({})
-    ItemPrice.Normal = 15
-    ItemPrice[ItemPrice.Normal] = "Normal"
-    ItemPrice.Double = 30
-    ItemPrice[ItemPrice.Double] = "Double"
-    ItemPrice.Sale = 7
-    ItemPrice[ItemPrice.Sale] = "Sale"
-    local itemPrices = {[CollectibleType.COLLECTIBLE_SAD_ONION] = ItemPrice.Normal, [CollectibleType.COLLECTIBLE_INNER_EYE] = ItemPrice.Normal, [CollectibleType.COLLECTIBLE_SPOON_BENDER] = ItemPrice.Sale}
+    printFastClearVariables(nil)
     Isaac.DebugString("+-------------------------+")
     Isaac.DebugString("| Exiting debug function. |")
     Isaac.DebugString("+-------------------------+")
@@ -2183,6 +2211,13 @@ require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+function ____exports.getRoomIndex(self)
+    local roomIndex = g.l:GetCurrentRoomDesc().SafeGridIndex
+    if roomIndex < 0 then
+        return g.l:GetCurrentRoomIndex()
+    end
+    return roomIndex
+end
 function ____exports.initRNG(self, seed)
     local RECOMMENDED_SHIFT_IDX = 35
     local rng = RNG()
@@ -2196,7 +2231,11 @@ function ____exports.consoleCommand(self, command)
 end
 ____exports.ensureAllCases = function(____, obj) return obj end
 function ____exports.enteredRoomViaTeleport(self)
-    return ((g.l.LeaveDoor == -1) and (g.run.roomsEntered ~= 0)) and (g.run.roomsEntered ~= 1)
+    local roomIndex = ____exports.getRoomIndex(nil)
+    local startingRoomIndex = g.l:GetStartingRoomIndex()
+    local isFirstVisit = g.r:IsFirstVisit()
+    local justReachedThisFloor = (roomIndex == startingRoomIndex) and isFirstVisit
+    return (g.l.LeaveDoor == -1) and (not justReachedThisFloor)
 end
 function ____exports.getItemMaxCharges(self, itemID)
     local itemConfigItem = g.itemConfig:GetCollectible(itemID)
@@ -2240,13 +2279,6 @@ end
 function ____exports.getRandom(self, x, y, seed)
     local rng = ____exports.initRNG(nil, seed)
     return rng:RandomInt((y - x) + 1) + x
-end
-function ____exports.getRoomIndex(self)
-    local roomIndex = g.l:GetCurrentRoomDesc().SafeGridIndex
-    if roomIndex < 0 then
-        return g.l:GetCurrentRoomIndex()
-    end
-    return roomIndex
 end
 function ____exports.gridToPos(self, x, y)
     x = x + 1
@@ -2820,6 +2852,31 @@ function ____exports.main(self, curses)
         return newCurses
     end
     return curses
+end
+return ____exports
+end,
+["features.fastClear.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local tracking = require("features.fastClear.tracking")
+function ____exports.main(self, entity)
+    if not g.config.fastClear then
+        return
+    end
+    local npc = entity:ToNPC()
+    if npc == nil then
+        return
+    end
+    tracking:checkRemove(npc, "postEntityKill")
+end
+return ____exports
+end,
+["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClearPostEntityKill = require("features.fastClear.callbacks.postEntityKill")
+function ____exports.main(self, entity)
+    fastClearPostEntityKill:main(entity)
 end
 return ____exports
 end,
@@ -4731,6 +4788,7 @@ local entityTakeDmg = require("callbacks.entityTakeDmg")
 local executeCmd = require("callbacks.executeCmd")
 local NPCUpdate = require("callbacks.NPCUpdate")
 local postCurseEval = require("callbacks.postCurseEval")
+local postEntityKill = require("callbacks.postEntityKill")
 local postEntityRemove = require("callbacks.postEntityRemove")
 local postGameStarted = require("callbacks.postGameStarted")
 local postNewLevel = require("callbacks.postNewLevel")
@@ -4771,33 +4829,9 @@ racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
 racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
+racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
-return ____exports
-end,
-["features.fastClear.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local tracking = require("features.fastClear.tracking")
-function ____exports.main(self, entity)
-    if not g.config.fastClear then
-        return
-    end
-    local npc = entity:ToNPC()
-    if npc == nil then
-        return
-    end
-    tracking:checkRemove(npc, "postEntityKill")
-end
-return ____exports
-end,
-["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClearPostEntityKill = require("features.fastClear.callbacks.postEntityKill")
-function ____exports.main(self, entity)
-    fastClearPostEntityKill:main(entity)
-end
 return ____exports
 end,
 ["features.fastClear.callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]

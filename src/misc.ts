@@ -11,9 +11,11 @@ export function consoleCommand(command: string): void {
 export const ensureAllCases = (obj: never): never => obj;
 
 export function enteredRoomViaTeleport(): boolean {
-  return (
-    g.l.LeaveDoor === -1 && g.run.roomsEntered !== 0 && g.run.roomsEntered !== 1
-  );
+  const roomIndex = getRoomIndex();
+  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const isFirstVisit = g.r.IsFirstVisit();
+  const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
+  return g.l.LeaveDoor === -1 && !justReachedThisFloor;
 }
 
 export function getItemMaxCharges(itemID: int): int {

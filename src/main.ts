@@ -2,6 +2,7 @@ import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as NPCUpdate from "./callbacks/NPCUpdate";
 import * as postCurseEval from "./callbacks/postCurseEval";
+import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
@@ -51,6 +52,7 @@ racingPlus.AddCallback(
   ModCallbacks.MC_POST_ENTITY_REMOVE,
   postEntityRemove.main,
 ); // 67
+racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
 
 // Register NPC callbacks (0)
 racingPlus.AddCallback(
