@@ -33,14 +33,34 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastClear",
+    "fastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "004",
+      "Fast reset",
+      "Instantaneously restart the game as soon as you press the R key.",
+    ],
+  ],
+  [
+    "fastClear",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "005",
       "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
   ],
+  /*
+  [
+    "fastTravel",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "005",
+      "Fast floor travel",
+      "Replace the fade-in and fade-out with a custom animation where you jump out of a hole.",
+    ],
+  ],
+  */
 ];
 
 export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
@@ -120,19 +140,49 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastReset",
+    "showEdenStartingItems",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "023",
-      "Fast reset",
-      "Instantaneously restart the game as soon as you press the R key.",
+      "Show Eden's starting items",
+      "Draw both of Eden's starting items on the screen while in the first room.",
     ],
   ],
+  [
+    "showDreamCatcherItem",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "024",
+      "Show the Dream Catcher item",
+      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
+    ],
+  ],
+  [
+    "speedUpFadeIn",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "025",
+      "Speed-up new run fade-ins",
+      "Speed-up the fade-in that occurs at the beginning of a new run.",
+    ],
+  ],
+  [
+    "customConsole",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "026",
+      "Enable the custom console",
+      "Press enter to bring up a custom console that is better than the vanilla console.",
+    ],
+  ],
+];
+
+export const BUG_FIXES: ConfigDescriptionArray = [
   [
     "fixTeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "024",
+      "051",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -143,4 +193,5 @@ export const ALL_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
   ...CUSTOM_HOTKEYS,
   ...GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES,
+  ...BUG_FIXES,
 ];

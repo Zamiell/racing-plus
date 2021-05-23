@@ -1,9 +1,4 @@
-import { Vector.Zero } from "../../constants";
-import g from "../../globals";
-import * as misc from "../../misc";
-import { EffectVariantCustom } from "../../types/enums";
-import { TRAPDOOR_OPEN_DISTANCE, TRAPDOOR_TOUCH_DISTANCE } from "./constants";
-import * as fastTravelEntity from "./entity";
+/*
 
 // Called from the "CheckEntities.Grid()" function
 export function replace(entity: GridEntity, gridIndex: int): void {
@@ -67,7 +62,7 @@ export function checkPlayerTouching(effect: EntityEffect): void {
   }
 
   // Check to see if a player is touching the crawlspace
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+  for (getPlayers()) {
     const player = Isaac.GetPlayer(i);
     if (player === null) {
       continue;
@@ -391,3 +386,5 @@ export function checkMiscBugs(): void {
   // return to the crawlspace
   g.run.crawlspace.blackMarket = roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
 }
+
+*/

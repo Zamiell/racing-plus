@@ -1,16 +1,4 @@
-import { ChallengeCustom } from "../../challenges/enums";
-import { Vector.Zero } from "../../constants";
-import g from "../../globals";
-import * as misc from "../../misc";
-import * as sprites from "../../sprites";
-import { EffectVariantCustom } from "../../types/enums";
-import * as seededFloors from "../seededFloors";
-import {
-  FADE_TO_BLACK_FRAMES,
-  FastTravelState,
-  JUMP_UP_ANIMATION_FRAME_LENGTH,
-} from "./constants";
-
+/*
 // Called from the "CheckEntities.Grid()" and "CheckEntities.NonGrid()" functions
 export function replace(entity: Entity | GridEntity, gridIndex: int): void {
   // Local variables
@@ -254,7 +242,7 @@ function checkStateControlsEnabled() {
   g.run.trapdoor.state = FastTravelState.PLAYER_JUMP;
   g.run.trapdoor.frame = gameFrameCount + JUMP_UP_ANIMATION_FRAME_LENGTH;
 
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+  for (getPlayers()) {
     const player = Isaac.GetPlayer(i);
     if (player === null) {
       continue;
@@ -299,7 +287,7 @@ function checkStatePlayerJump() {
   g.run.trapdoor.state = FastTravelState.DISABLED;
 
   // Enable the controls for all players
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+  for (getPlayers()) {
     const player = Isaac.GetPlayer(i);
     if (player !== null) {
       player.ControlsEnabled = true;
@@ -370,7 +358,7 @@ export function checkNewFloor(): void {
       pos = Vector(320, 560);
     }
 
-    for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+    for (getPlayers()) {
       const player = Isaac.GetPlayer(i);
       if (player === null) {
         continue;

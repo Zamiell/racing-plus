@@ -57,20 +57,45 @@ In terms of what to change about the game, the mod has several goals, and attemp
   - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
 - Devil Rooms and Angel Rooms have been [customized](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md#devil-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
-  - Average items per angel room are increased from [TODO] to [TODO]
+  - Average items per angel room are increased from [TODO] to [TODO].
 
-### 4) Wrath of the Lamb Style Room Clear
+### 4) Fast-Reset
 
-<code>004</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
+<code>004</code> The restart/reset key immediately restarts the game, as long as you have entered 3 or less rooms.
 
-### 5) Room Fixes
+### 5) Fast-Clear (Wrath of the Lamb Style Room Clear)
+
+<code>005</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
+
+### 6) Fast-Travel Between Floors and Crawlspaces
+
+<code>006</code> The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+
+### 7) Room Fixes
 
 Rooms with unavoidable damage or bugs have been fixed or deleted.
 
-<!--
-### 6) Room Flipping
+### 8) Room Flipping
 
 While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
+
+<!--
+
+Post-flip actions:
+
+1) Remove the duplicated start rooms for The Chest / Dark Room
+
+2) Un-flip Y-flipped Gurdy rooms:
+   The Chest - #20015, #30015
+
+3) Un-flip double Gate rooms (and enable all of the doors)
+   The Chest - #20040, #30040
+   Dark Room - #20012, #30012
+
+4) Un-flip some Mega Maw rooms:
+   The Chest - #20039, #30039, #20259, #30259
+   Dark Room - #20011, #30011
+
 -->
 
 <br />
@@ -88,25 +113,25 @@ While there are thousands of rooms in the game, many players have already seen t
 
 - <code>021</code> Judas starts with a bomb.
 - <code>022</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
-
-<!--
-- The Polaroid or The Negative will be automatically removed depending on your run goal.
-- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
--->
+- <code>023</code> Eden's starting items will be shown in the starting room.
+- <code>024</code> If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+- <code>025</code> The fade in at the beginning of a run is sped-up.
+- <code>026</code> A custom console is provided that is better than the vanilla console.
 - Some items with no effect are removed:
   - the Karma trinket (since all Donation Machines are removed)
   - the Amnesia pill (since curses are removed)
   - the ??? pill (since curses are removed)
+- Having Duality will now always give you both the Devil Room and the Angel Room. (This does not happen consistently on vanilla like you would expect.)
+
 <!--
+- The Polaroid or The Negative will be automatically removed depending on your run goal.
+- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
 - Some things that are unseeded are now seeded:
   - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
   - Dead Sea Scrolls item selection
   - cards from Sloth, Super Sloth, Pride, and Super Pride
   - Guppy's Head fly count
 - Void Portals are automatically deleted.
--->
-- <code>023</code> The restart/reset key immediately restarts the game. (To perform a fast-restart on the second floor and beyond, you need to double tap R.)
-<!--
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
@@ -122,9 +147,6 @@ While there are thousands of rooms in the game, many players have already seen t
 - Death will no longer perform his slow attack.
 - The disruptive teleport that occurs when entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
--->
-- Having Duality will now always give you both the Devil Room and the Angel Room. (This does not happen consistently on vanilla like you would expect.)
-<!--
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.
 - The door to Hush is now automatically opened.
@@ -138,7 +160,6 @@ While there are thousands of rooms in the game, many players have already seen t
 - The cutscenes that occur before each boss are removed.
 - Some animations are removed for the purposes of eliminating needless downtime:
 <!--
-  - the fade when entering a new floor (replaced with a custom animation)
   - the fade when entering or exiting crawlspaces (replaced with a normal room transition animation)
 -->
   - all "giantbook" animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)
@@ -159,6 +180,8 @@ While there are thousands of rooms in the game, many players have already seen t
 
 ### 4) Bug Fixes
 
+- All forms of teleport will no longer send you to an invalid entrance.
+
 <!--
 - Angels will drop key pieces even if another angel is still alive in the room.
 - Globins will permanently die upon the 5th regeneration to prevent Epic Fetus softlocks.
@@ -173,20 +196,20 @@ While there are thousands of rooms in the game, many players have already seen t
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared.
 -->
-- All forms of teleport will no longer send you to an invalid entrance.
 
 <br />
 
 ### 4) Graphics & Sound Fixes
 
+- The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
+- The 20/20 collectible is now easier to see.
+- The audio clips of mom and dad on the Ascent now be silenced.
+- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
+
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Bosses will be faded during their death animation so that they do not interfere with seeing other items or enemies that happen to be behind them.
 - Scared Hearts and Sticky Nickels now have unique sprites.
--->
-- The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
-- The 20/20 collectible is now easier to see.
-<!--
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - Pill sprites now have consistent orientations. (Thanks goes to [Nioffe](https://steamcommunity.com/id/nioffe) for creating the sprites in the [Consistent Pills](https://steamcommunity.com/sharedfiles/filedetails/?id=1418510121) mod.)
 - The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
@@ -198,25 +221,26 @@ While there are thousands of rooms in the game, many players have already seen t
 - Enemy red creep is changed to green (so that it is easier to see).
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
 -->
-- The audio clips of mom and dad on the Ascent now be silenced.
 
 <br />
 
 ## Additional Changes for Races
 
+Racing against other players with the Racing+ client is not supported yet. [TODO]
+
 <!--
 Racing+ allows players to perform [several different types of races](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-RACES.md) against each other. Some race formats may introduce additional changes.
 -->
-Racing against other players with the Racing+ client is not supported yet. [TODO]
 
 <br />
 
 ## Additional Changes for Multi-Character Speedruns (Custom Challenges)
 
+7-character speedruns are not supported yet. [TODO]
+
 <!--
 Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md), each of which introduces additional changes to the game.
 -->
-7-character speedruns are not supported yet. [TODO]
 
 <br />
 
@@ -225,11 +249,3 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
-
-<!--
-
-TTD GET FIXED IN REP:
-- The door opening sound should not play in a crawlspace.
-- Duplicate rooms will no longer appear on the same run. (Basement 1 is exempt. All floors on set seeds are exempt.)
-
--->

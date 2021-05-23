@@ -325,4 +325,15 @@ function spawnBoss(bossArray: [int, int, int]) {
     null,
   );
 }
+
+// Remove the "More Options" buff if they have entered a Treasure Room
+function checkRemoveMoreOptions() {
+  // Local variables
+  const roomType = g.r.GetType();
+
+  if (g.run.removeMoreOptions === true && roomType === RoomType.ROOM_TREASURE) {
+    g.run.removeMoreOptions = false;
+    g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
+  }
+}
 */

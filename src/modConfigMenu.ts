@@ -1,6 +1,7 @@
 import * as config from "./config";
 import {
   ALL_DESCRIPTIONS,
+  BUG_FIXES,
   ConfigDescriptionArray,
   CUSTOM_HOTKEYS,
   GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES,
@@ -22,6 +23,7 @@ export function register(): void {
   registerSubMenu("Major", MAJOR_CHANGES);
   registerSubMenu("Hotkeys", CUSTOM_HOTKEYS);
   registerSubMenu("Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES);
+  registerSubMenu("Bug Fixes", BUG_FIXES);
 }
 
 function deleteOldConfig() {

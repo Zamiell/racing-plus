@@ -1,6 +1,4 @@
-import g from "../globals";
-import * as misc from "../misc";
-
+/*
 const ENABLED = true; // Set to false when debugging
 
 // Different inventory and health conditions can affect special room generation
@@ -20,11 +18,10 @@ export function before(stage: int): void {
   const coins = g.p.GetNumCoins();
   const keys = g.p.GetNumKeys();
   let seed = g.seeds.GetStageSeed(stage);
-  const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
 
   // Only swap things if we are playing a specific seed
-  if (challenge !== 0 || !customRun) {
+  if (!playingOnSetSeed()) {
     return;
   }
 
@@ -136,7 +133,6 @@ export function after(): void {
   }
 
   // Local variables
-  const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
   const devilVisited = g.run.seededSwap.devilVisited;
   const bookTouched = g.run.seededSwap.bookTouched;
@@ -144,7 +140,7 @@ export function after(): void {
   const keys = g.run.seededSwap.keys;
 
   // Only swap things if we are playing a specific seed
-  if (challenge !== 0 || !customRun) {
+  if (!playingOnSetSeed()) {
     return;
   }
 
@@ -300,3 +296,4 @@ function loadHealth() {
 
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }
+*/

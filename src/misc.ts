@@ -1,4 +1,13 @@
+import { MAX_VANILLA_ITEM_ID } from "./constants";
 import g from "./globals";
+
+export function changeRoom(roomIndex: int): void {
+  // This must be set before every ChangeRoom() invocation or else the function can send
+  // you to the wrong room
+  g.l.LeaveDoor = -1;
+
+  g.g.ChangeRoom(roomIndex);
+}
 
 export function consoleCommand(command: string): void {
   Isaac.DebugString(`Executing console command: ${command}`);
@@ -6,8 +15,8 @@ export function consoleCommand(command: string): void {
   Isaac.DebugString(`Finished executing console command: ${command}`);
 }
 
-// Use this on a switch statement's default case to get
-// the linter to complain if a case was not predicted
+// Use this on a switch statement's default case to get the linter to complain if a case was not
+// predicted
 export const ensureAllCases = (obj: never): never => obj;
 
 export function enteredRoomViaTeleport(): boolean {
@@ -23,6 +32,7 @@ export function getItemMaxCharges(itemID: int): int {
   if (itemConfigItem === null) {
     return 0;
   }
+
   return itemConfigItem.MaxCharges;
 }
 
@@ -87,6 +97,23 @@ export function incrementRNG(seed: int): int {
   return rng.GetSeed();
 }
 
+export function initGlowingItemSprite(
+  collectibleType: CollectibleType,
+): Sprite {
+  let fileNum: string;
+  if (collectibleType >= 1 && collectibleType <= MAX_VANILLA_ITEM_ID) {
+    const paddedNumber = collectibleType.toString().padStart(3, "0");
+    fileNum = paddedNumber;
+  } else {
+    fileNum = "NEW";
+  }
+
+  return initSprite(
+    "gfx/glowing-item.anm2",
+    `gfx/items-glowing/collectibles/collectibles_${fileNum}.png`,
+  );
+}
+
 export function initRNG(seed: int): RNG {
   // This is the ShiftIdx that blcd recommended after having reviewing the game's internal functions
   const RECOMMENDED_SHIFT_IDX = 35;
@@ -97,6 +124,22 @@ export function initRNG(seed: int): RNG {
   rng.SetSeed(seed, RECOMMENDED_SHIFT_IDX);
 
   return rng;
+}
+
+export function initSprite(anm2Path: string, pngPath?: string): Sprite {
+  const sprite = Sprite();
+
+  if (pngPath === undefined) {
+    sprite.Load(anm2Path, true);
+  } else {
+    sprite.Load(anm2Path, false);
+    sprite.ReplaceSpritesheet(0, pngPath);
+    sprite.LoadGraphics();
+  }
+
+  sprite.SetFrame("Default", 0);
+
+  return sprite;
 }
 
 export function isActionTriggeredOnAnyInput(
@@ -110,6 +153,13 @@ export function isActionTriggeredOnAnyInput(
   }
 
   return false;
+}
+
+export function playingOnSetSeed(): boolean {
+  const customRun = g.seeds.IsCustomRun();
+  const challenge = Isaac.GetChallenge();
+
+  return challenge === 0 && customRun;
 }
 
 export function openAllDoors(): void {

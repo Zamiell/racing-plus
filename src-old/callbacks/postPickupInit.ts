@@ -12,7 +12,6 @@ export function coin(pickup: EntityPickup): void {
     return;
   }
 
-  // Local variables
   const sprite = pickup.GetSprite();
   const data = pickup.GetData();
 

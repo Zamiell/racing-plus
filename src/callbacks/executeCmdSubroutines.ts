@@ -11,6 +11,11 @@ export function chaosCardTears(): void {
   print(`${enabled} Chaos Card tears.`);
 }
 
+export function crawlspace(): void {
+  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+  Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
+}
+
 export function commands(
   functionMap: Map<string, (params: string) => void>,
 ): void {
@@ -34,10 +39,16 @@ export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
 
+export function trapdoor(): void {
+  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
+}
+
 export function validateNumber(params: string): number | undefined {
   const num = tonumber(params);
   if (num === undefined) {
     print("You must specify a number.");
   }
+
   return num;
 }

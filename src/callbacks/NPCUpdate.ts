@@ -1,4 +1,4 @@
-import * as fastClearNPCUpdate from "../features/fastClear/callbacks/NPCUpdate";
+import * as fastClearNPCUpdate from "../features/optional/major/fastClear/callbacks/NPCUpdate";
 
 export function main(npc: EntityNPC): void {
   fastClearNPCUpdate.main(npc);

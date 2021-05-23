@@ -1,18 +1,5 @@
 /*
 export function main(): void {
-  // Get rid of the slow fade-in at the beginning of a run
-  if (!g.run.erasedFadeIn) {
-    g.run.erasedFadeIn = true;
-    g.g.Fadein(0.15); // This is fine tuned from trial && error to be a good speed
-    return;
-  }
-
-  // Draw any error messages
-  // If there are any errors, we can skip the remainder of this function
-  if (errors.draw()) {
-    return;
-  }
-
   // Draw graphics
   sprites.display();
   drawStreakText();
@@ -238,7 +225,6 @@ function holyMantle() {
 
 // Make an additional charge bar for the Lead Pencil
 function leadPencilChargeBar() {
-  // Local variables
   const character = g.p.GetPlayerType();
   const flyingOffset = g.p.GetFlyingOffset();
 

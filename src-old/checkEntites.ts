@@ -1,12 +1,7 @@
-import checkEntitiesFunctions from "./checkEntitiesFunctions";
-import * as fastTravel from "./features/fastTravel";
-import g from "./globals";
-import * as misc from "./misc";
-
+/*
 // Check all the grid entities in the room
 // (called from the PostUpdate callback)
 export function grid(): void {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
@@ -68,3 +63,4 @@ function nonGrid() {
     }
   }
 }
+*/

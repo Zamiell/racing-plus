@@ -1,4 +1,4 @@
-import * as freeDevilItem from "../features/freeDevilItem";
+import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
 export function main(
   tookDamage: Entity,

@@ -30,10 +30,14 @@ export default class GlobalsRun {
   // Features
   // --------
 
-  freeDevilItem = {
-    /** Index is player ControllerIndex. */
-    takenDamage: new LuaTable<int, boolean>(),
-    granted: false,
+  debugChaosCard = false;
+  spedUpFadeIn = false;
+
+  edenStartingItems = {
+    active: 0 as CollectibleType,
+    passive: 0 as CollectibleType,
+    activeSprite: null as Sprite | null,
+    passiveSprite: null as Sprite | null,
   };
 
   fastClear = {
@@ -69,11 +73,16 @@ export default class GlobalsRun {
     roomClearAwardSeedDevilAngel: 0,
   };
 
-  fastReset = {
-    frame: 0,
-    /** If this is set, fast-resetting is disabled. */
-    consoleOpened: false,
+  /** Needed for speedruns to return to the same character. */
+  fastResetFrame = 0;
+
+  freeDevilItem = {
+    /** Index is player ControllerIndex. Value is whether or not they have taken damage. */
+    takenDamage: new LuaTable<int, boolean>(),
+    granted: false,
   };
 
-  debugChaosCard = false;
+  pillEffects: PillEffect[] = [];
+
+  slideAnimationHappening = false;
 }

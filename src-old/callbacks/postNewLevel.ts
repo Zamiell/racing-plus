@@ -1,3 +1,5 @@
+/*
+
 import { ChallengeCustom } from "../challenges/enums";
 import * as season7 from "../challenges/season7";
 import * as fastTravel from "../features/fastTravel";
@@ -10,7 +12,6 @@ import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
 
 function newLevel() {
-  const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
 
   // Reset the RNG of some items that should be seeded per floor
@@ -245,7 +246,6 @@ function checkDupeRooms() {
           return true;
         }
 
-        /*
         // Also check to see if this room ID appears multiple times on this floor
         for (let j = 0; j < roomIDs.length; j++) {
           if ( roomID === roomIDs[j] ) {
@@ -255,7 +255,6 @@ function checkDupeRooms() {
             return true
           }
         }
-        */
       }
 
       // Keep track of this room ID
@@ -271,3 +270,5 @@ function checkDupeRooms() {
 
   return false;
 }
+
+*/

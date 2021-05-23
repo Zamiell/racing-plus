@@ -3,17 +3,7 @@
 // - heaven doors
 // - void portals
 
-import { Vector.Zero } from "../../constants";
-import g from "../../globals";
-import * as misc from "../../misc";
-import { EffectVariantCustom } from "../../types/enums";
-import {
-  FastTravelState,
-  JUMP_DOWN_ANIMATION_FRAME_LENGTH,
-  TRAPDOOR_OPEN_DISTANCE,
-  TRAPDOOR_PICKUP_TOUCH_DISTANCE,
-  TRAPDOOR_TOUCH_DISTANCE,
-} from "./constants";
+/*
 
 export function checkPickupTouching(pickup: EntityPickup): void {
   // Local variables
@@ -157,7 +147,7 @@ export function checkPlayerTouching(
   }
 
   // Check to see if a player is touching the fast travel entity
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+  for (getPlayers()) {
     const player = Isaac.GetPlayer(i);
     if (player === null) {
       continue;
@@ -513,7 +503,7 @@ function removeOverlappingGridEntity(pos: Vector) {
 }
 
 export function isPlayerClose(position: Vector, distance: float): boolean {
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
+  for (getPlayers()) {
     const player = Isaac.GetPlayer(i);
     if (player !== null && player.Position.Distance(position) <= distance) {
       return true;
@@ -522,3 +512,5 @@ export function isPlayerClose(position: Vector, distance: float): boolean {
 
   return false;
 }
+
+*/

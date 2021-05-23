@@ -1,10 +1,4 @@
-import { FastTravelState } from "../features/fastTravel/constants";
-import { SeededDeathState } from "./enums";
-import FamiliarVars from "./FamiliarVars";
-import GlobalsRunLevel from "./GlobalsRunLevel";
-import GlobalsRunRoom from "./GlobalsRunRoom";
-import PillDescription from "./PillDescription";
-
+/*
 // Per-run variables
 export default class GlobalsRun {
   // Tracking per run
@@ -206,3 +200,4 @@ export default class GlobalsRun {
     },
   };
 }
+*/

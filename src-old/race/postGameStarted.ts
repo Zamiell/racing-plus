@@ -1,11 +1,4 @@
-import { ChallengeCustom } from "../challenges/enums";
-import * as season7diversity from "../challenges/season7diversity";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import * as sprites from "../sprites";
-import { CollectibleTypeCustom } from "../types/enums";
-
+/*
 // This occurs when first going into the game and after a reset occurs mid-race
 export function main(): boolean {
   // Do special ruleset related initialization first
@@ -23,7 +16,6 @@ export function main(): boolean {
 
   // Local variables
   const character = g.p.GetPlayerType();
-  const customRun = g.seeds.IsCustomRun();
   const startSeedString = g.seeds.GetStartSeedString();
   const challenge = Isaac.GetChallenge();
 
@@ -72,8 +64,7 @@ export function main(): boolean {
     // (this will be true if we are on a set seed or on a challenge,
     // but we won't get this far if we are on a challenge)
     if (
-      customRun &&
-      !g.debug // Make an exception if we are trying to debug something on a certain seed
+      isOnSetSeed() &&
     ) {
       // If the run started with a set seed,
       // this will change the reset behavior to that of an unseeded run
@@ -492,3 +483,4 @@ function unseededRankedSolo() {
     misc.giveItemAndRemoveFromPools(itemID);
   }
 }
+*/

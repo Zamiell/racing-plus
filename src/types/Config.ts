@@ -4,6 +4,7 @@ export default class Config {
   startWithD6 = true;
   disableCurses = true;
   freeDevilItem = true;
+  fastReset = true;
   fastClear = true;
 
   // Custom Hotkeys
@@ -17,6 +18,11 @@ export default class Config {
   // Gameplay & Quality of Life Changes
   judasAddBomb = true;
   samsonDropHeart = true;
-  fastReset = true;
+  showEdenStartingItems = true;
+  showDreamCatcherItem = true;
+  speedUpFadeIn = true;
+  customConsole = true;
+
+  // Bug Fixes
   fixTeleportInvalidEntrance = true;
 }

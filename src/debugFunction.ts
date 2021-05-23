@@ -8,14 +8,16 @@ export default function debugFunction(): void {
   Isaac.DebugString("| Entering debug function. |");
   Isaac.DebugString("+--------------------------+");
 
-  printFastClearVariables();
+  // printFastClearVariables();
 
   Isaac.DebugString("+-------------------------+");
   Isaac.DebugString("| Exiting debug function. |");
   Isaac.DebugString("+-------------------------+");
 }
 
-function printFastClearVariables() {
+export function debugFunction2(): void {}
+
+export function printFastClearVariables(): void {
   Isaac.DebugString("Fast clear variables:");
   Isaac.DebugString("- aliveEnemies:");
   for (const [key, value] of pairs(g.run.fastClear.aliveEnemies)) {

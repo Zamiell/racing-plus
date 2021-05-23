@@ -1,7 +1,11 @@
 import * as cache from "../cache";
-import * as fastClearPostNewRoom from "../features/fastClear/callbacks/postNewRoom";
-import * as fixTeleportInvalidEntrance from "../features/fixTeleportInvalidEntrance";
-import * as freeDevilItem from "../features/freeDevilItem";
+import * as controlsGraphic from "../features/mandatory/controlsGraphic";
+import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
+import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
+import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
+import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import g from "../globals";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
 
@@ -47,34 +51,28 @@ export function newRoom(): void {
   g.run.room = new GlobalsRunRoom();
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
-  // Features
+  // Mandatory features
+  detectSlideAnimation.postNewRoom();
+  controlsGraphic.postNewRoom();
+
+  // Optional features - Major
   freeDevilItem.postNewRoom();
   fastClearPostNewRoom.main();
+
+  // Optional features - Quality of Life
+  showEdenStartingItems.postNewRoom();
+  showDreamCatcherItemPostNewRoom.main();
+
+  // Optional features - Bux Fixes
   fixTeleportInvalidEntrance.postNewRoom();
 
   /*
-  // Reset the state of whether the room is clear or not
-  // (this is needed so that we don't get credit for clearing a room when
-  // bombing from a room with enemies into an empty room)
-  g.run.currentRoomClearState = roomClear;
-
-  // Check to see if we need to remove the heart container from a Strength card on Keeper
-  // (this has to be done before the resetting of the "g.run.usedStrength" variable)
-  checkRemoveKeeperHeartContainerFromStrength();
-
-  samael.CheckHairpin(); // Check to see if we need to fix the Wraith Skull + Hairpin bug
-  schoolbag.postNewRoom(); // Handle the Glowing Hour Glass mechanics relating to the Schoolbag
-  bossRush.postNewRoom();
-  challengeRooms.postNewRoom();
   // Check to see if we need to respawn trapdoors / crawlspaces / beams of light
   fastTravel.entity.checkRespawn();
   fastTravel.trapdoor.checkNewFloor(); // Check if we are just arriving on a new floor
   fastTravel.crawlspace.checkMiscBugs(); // Check for miscellaneous crawlspace bugs
 
-  checkDrawEdenStartingItems();
   // Remove the "More Options" buff if they have entered a Treasure Room
   checkRemoveMoreOptions();
-  checkZeroHealth(); // Fix the bug where we don't die at 0 hearts
-  checkStartingRoom(); // Draw the starting room graphic
   */
 }

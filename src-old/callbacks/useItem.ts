@@ -1,7 +1,4 @@
-import * as seededFloors from "../features/seededFloors";
-import g from "../globals";
-import * as misc from "../misc";
-
+/*
 export function main(collectibleType: CollectibleType): void {
   // Local variables
   const gameFrameCount = g.g.GetFrameCount();
@@ -84,11 +81,10 @@ export function d6(): void {
 export function forgetMeNow(): void {
   // Local variables
   const stage = g.l.GetStage();
-  const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
 
-  // Do nothing if ( we are ! playing on a set seed
-  if (challenge !== 0 || !customRun) {
+  // Do nothing if we are are playing on a set seed
+  if (playingOnSetSeed()) {
     return;
   }
 

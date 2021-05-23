@@ -3,6 +3,11 @@ export enum PickupVariantCustom {
   INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup"),
 }
 
+export enum PickupPriceCustom {
+  // This can be any arbitrary value between -7 and -999; see the PickupPrice enum
+  PRICE_NO_MINIMAP = -50,
+}
+
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
   TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName("Trapdoor (Fast-Travel)"),
@@ -21,6 +26,11 @@ export enum EffectVariantCustom {
   VOID_PORTAL_FAST_TRAVEL = Isaac.GetEntityVariantByName(
     "Void Portal (Fast-Travel)",
   ),
+}
+
+export enum EffectSubTypeCustom {
+  // We re-use the same subtype that is used in StageAPI for consistency
+  FLOOR_EFFECT_CREEP = 12345, // There is no "Isaac.GetEntitySubTypeByName()" function
 }
 
 export enum SaveFileState {

@@ -1,8 +1,13 @@
-import * as centerStart from "../features/centerStart";
-import * as judasAddBomb from "../features/judasAddBomb";
-import * as samsonDropHeart from "../features/samsonDropHeart";
-import * as saveFileCheck from "../features/saveFileCheck";
-import * as startWithD6 from "../features/startWithD6";
+import * as centerStart from "../features/mandatory/centerStart";
+import * as removeKarma from "../features/mandatory/removeKarma";
+import * as removeUselessPills from "../features/mandatory/removeUselessPills";
+import * as saveFileCheck from "../features/mandatory/saveFileCheck";
+import * as seededDrops from "../features/mandatory/seededDrops";
+import * as seededFloors from "../features/mandatory/seededFloors";
+import * as startWithD6 from "../features/optional/major/startWithD6";
+import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
+import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
+import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import g from "../globals";
 import GlobalsRun from "../types/GlobalsRun";
 import * as postGameStartedContinued from "./postGameStartedContinued";
@@ -16,17 +21,7 @@ export function main(isContinued: boolean): void {
     `MC_POST_GAME_STARTED - Seed: ${startSeedString} - IsaacFrame: ${isaacFrameCount}`,
   );
 
-  // We may have had the Curse of the Unknown seed enabled in a previous run,
-  // so ensure that it is removed
-  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
-
-  // We need to disable achievements so that the R+ sprite shows above the stats on the left side of
-  // the screen
-  // We want the R+ sprite to display on all runs so that the "1st" sprite has somewhere to go
-  // The easiest way to disable achievements without affecting gameplay is to enable the easter egg
-  // that disables Curse of Darkness
-  // (this has no effect since all curses are removed in the "PostCurseEval" callback anyway)
-  g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
+  setSeeds();
 
   // Make sure that the MinimapAPI is enabled (we may have disabled it in a previous run)
   if (MinimapAPI !== undefined) {
@@ -46,17 +41,37 @@ export function main(isContinued: boolean): void {
     return;
   }
 
-  // Racing+ removes the Karma trinket from the game
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_KARMA);
-
-  // Features
+  // Mandatory features
+  removeKarma.postGameStarted();
+  removeUselessPills.postGameStarted();
+  seededDrops.postGameStarted();
+  seededFloors.postGameStarted();
   centerStart.postGameStarted();
+
+  // Optional features - Major
   startWithD6.postGameStarted();
-  judasAddBomb.postGameStarted();
+
+  // Optional features - Quality of Life
   samsonDropHeart.postGameStarted();
+  judasAddBomb.postGameStarted();
+  showEdenStartingItems.postGameStarted();
 
   // Call PostNewLevel manually (they get naturally called out of order)
   postNewLevel.newLevel();
+}
+
+function setSeeds() {
+  // We may have had the Curse of the Unknown seed enabled in a previous run,
+  // so ensure that it is removed
+  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
+
+  // We need to disable achievements so that the R+ sprite shows above the stats on the left side of
+  // the screen
+  // We want the R+ sprite to display on all runs so that the "1st" sprite has somewhere to go
+  // The easiest way to disable achievements without affecting gameplay is to enable the easter egg
+  // that disables Curse of Darkness
+  // (this has no effect since all curses are removed in the "PostCurseEval" callback anyway)
+  g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
 }
 
 // If Racing+ is turned on from the mod menu and then the user immediately tries to play,

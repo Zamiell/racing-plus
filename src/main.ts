@@ -1,9 +1,11 @@
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as executeCmd from "./callbacks/executeCmd";
+import * as getPillEffect from "./callbacks/getPillEffect";
 import * as NPCUpdate from "./callbacks/NPCUpdate";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
+import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
@@ -52,6 +54,8 @@ racingPlus.AddCallback(
   ModCallbacks.MC_POST_ENTITY_REMOVE,
   postEntityRemove.main,
 ); // 67
+racingPlus.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
+racingPlus.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
 racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
 
 // Register NPC callbacks (0)

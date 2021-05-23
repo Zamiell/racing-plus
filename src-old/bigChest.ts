@@ -22,7 +22,6 @@ let action = Action.LEAVE_ALONE;
 let checkpointPos = Vector.Zero;
 
 export function postPickupInit(pickup: EntityPickup): void {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const centerPos = g.r.GetCenterPos();
@@ -114,7 +113,6 @@ export function postPickupInit(pickup: EntityPickup): void {
 }
 
 function doBigChestReplacement(pickup: EntityPickup) {
-  // Local variables
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomSeed = g.r.GetSpawnSeed();
@@ -220,7 +218,6 @@ function doBigChestReplacement(pickup: EntityPickup) {
 }
 
 function S1R9() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -235,7 +232,6 @@ function S1R9() {
 }
 
 function S1R14() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -250,7 +246,6 @@ function S1R14() {
 }
 
 function S2() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -273,7 +268,6 @@ function S2() {
 }
 
 function speedrunAlternate() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -314,7 +308,6 @@ function speedrunAlternate() {
 }
 
 function speedrunUp() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -333,7 +326,6 @@ function speedrunUp() {
 }
 
 function S7() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const roomIndexUnsafe = g.l.GetCurrentRoomIndex();
@@ -377,7 +369,6 @@ function S7() {
 }
 
 function speedrunVanilla() {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
@@ -392,7 +383,6 @@ function speedrunVanilla() {
 }
 
 function pageant() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (stage === 11) {
@@ -404,7 +394,6 @@ function pageant() {
 }
 
 function blueBaby() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -419,7 +408,6 @@ function blueBaby() {
 }
 
 function theLamb() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -434,7 +422,6 @@ function theLamb() {
 }
 
 function everything() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -458,7 +445,6 @@ function everything() {
 }
 
 function megaSatan() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
 
@@ -478,7 +464,6 @@ function megaSatan() {
 }
 
 function hush() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (stage === 9) {
@@ -487,7 +472,6 @@ function hush() {
 }
 
 function delirium() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (stage === 12) {
@@ -496,7 +480,6 @@ function delirium() {
 }
 
 function bossRush() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (stage === 6) {

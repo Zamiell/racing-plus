@@ -1,9 +1,14 @@
 import * as cache from "../cache";
-import * as customConsole from "../features/customConsole";
-import * as fastReset from "../features/fastReset";
-import * as race from "../features/race/main";
-import * as saveFileCheck from "../features/saveFileCheck";
-import * as speedrun from "../features/speedrun/main";
+import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as errors from "../features/mandatory/errors";
+import * as saveFileCheck from "../features/mandatory/saveFileCheck";
+import * as fastReset from "../features/optional/major/fastReset";
+import * as customConsole from "../features/optional/quality/customConsole";
+import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
+import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
+import * as racePostRender from "../features/race/callbacks/postRender";
+import * as speedrunPostRender from "../features/speedrun/callbacks/postRender";
 import g from "../globals";
 import { consoleCommand } from "../misc";
 
@@ -14,9 +19,23 @@ export function main(): void {
     return;
   }
 
-  // Features
-  customConsole.postRender();
+  speedUpFadeIn.postRender();
+
+  // If there are any errors, we can skip the remainder of this function
+  if (errors.postRender()) {
+    return;
+  }
+
+  // Mandatory features
+  detectSlideAnimation.postRender();
+
+  // Optional features - Major
   fastReset.postRender();
+
+  // Optional features - Quality of Life
+  showEdenStartingItems.postRender();
+  showDreamCatcherItemPostRender.main();
+  customConsole.postRender();
 }
 
 // Conditionally restart the game
@@ -33,15 +52,15 @@ function checkRestart() {
     return true;
   }
 
-  if (race.checkRestartWrongCharacter()) {
+  if (racePostRender.checkRestartWrongCharacter()) {
     return true;
   }
 
-  if (race.checkRestartWrongSeed()) {
+  if (racePostRender.checkRestartWrongSeed()) {
     return true;
   }
 
-  if (speedrun.checkRestartWrongCharacter()) {
+  if (speedrunPostRender.checkRestartWrongCharacter()) {
     return true;
   }
 

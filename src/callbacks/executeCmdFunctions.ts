@@ -1,13 +1,20 @@
 import CARD_MAP from "../cardMap";
-import debugFunction from "../debugFunction";
+import debugFunction, { debugFunction2 } from "../debugFunction";
+import {
+  EDEN_ACTIVE_ITEM,
+  EDEN_PASSIVE_ITEM,
+  SAVE_FILE_SEED,
+} from "../features/mandatory/saveFileCheck";
 import g from "../globals";
-import { gridToPos } from "../misc";
+import { consoleCommand, gridToPos } from "../misc";
 import {
   blackMarket,
   chaosCardTears,
   commands,
+  crawlspace,
   devil,
   IAMERROR,
+  trapdoor,
   validateNumber,
 } from "./executeCmdSubroutines";
 
@@ -103,12 +110,24 @@ functionMap.set("chaos", (_params: string) => {
   chaosCardTears();
 });
 
+functionMap.set("crawl", (_params: string) => {
+  crawlspace();
+});
+
+functionMap.set("crawlspace", (_params: string) => {
+  crawlspace();
+});
+
 functionMap.set("dd", (_params: string) => {
   devil();
 });
 
 functionMap.set("debug", (_params: string) => {
   debugFunction();
+});
+
+functionMap.set("debug2", (_params: string) => {
+  debugFunction2();
 });
 
 functionMap.set("devil", (_params: string) => {
@@ -140,6 +159,18 @@ functionMap.set("error", (_params: string) => {
   IAMERROR();
 });
 
+// Used in: https://pastebin.com/1YY4jb4P
+// cspell:disable-next-line
+functionMap.set("getedenseed", (_params: string) => {
+  print(
+    `The seed to check for a fully-unlocked save file is: ${SAVE_FILE_SEED}`,
+  );
+  const activeItemName = g.itemConfig.GetCollectible(EDEN_ACTIVE_ITEM).Name;
+  print(`Eden should start with an active item of: ${activeItemName}`);
+  const passiveItemName = g.itemConfig.GetCollectible(EDEN_PASSIVE_ITEM).Name;
+  print(`Eden should start with a passive item of: ${passiveItemName}`);
+});
+
 functionMap.set("help", (_params: string) => {
   commands(functionMap);
 });
@@ -167,6 +198,10 @@ functionMap.set("list", (_params: string) => {
   print('Logged the entities in the room to the "log.txt" file.');
 });
 
+functionMap.set("luck", (_params: string) => {
+  consoleCommand("debug 9");
+});
+
 functionMap.set("pills", (_params: string) => {
   let pillNum = 1;
   for (let y = 0; y <= 6; y++) {
@@ -187,8 +222,59 @@ functionMap.set("pills", (_params: string) => {
   }
 });
 
+functionMap.set("pos", (_params: string) => {
+  print(`Player position: (${g.p.Position.X}, ${g.p.Position.Y})`);
+});
+
+functionMap.set("s", (params: string) => {
+  if (params === "") {
+    print("You must specify a stage number.");
+    return;
+  }
+
+  const finalCharacter = params.slice(-1);
+  let stageString: string;
+  let stageType: string;
+  if (
+    finalCharacter === "a" ||
+    finalCharacter === "b" ||
+    finalCharacter === "c" ||
+    finalCharacter === "d"
+  ) {
+    // e.g. "s 11a" for going to The Chest
+    stageString = params.charAt(params.length - 2); // The second to last character
+    stageType = finalCharacter;
+  } else {
+    // e.g. "s 11" for going to the Dark Room
+    stageString = params;
+    stageType = "";
+  }
+
+  const stage = validateNumber(stageString);
+  if (stage === undefined) {
+    return;
+  }
+
+  const minStage = 1;
+  const maxStage = 13;
+  if (stage < minStage || stage > maxStage) {
+    print(`Invalid stage number; must be between ${minStage} and ${maxStage}.`);
+    return;
+  }
+
+  consoleCommand(`stage ${stage}${stageType}`);
+});
+
 functionMap.set("shop", (_params: string) => {
   g.p.UseCard(Card.CARD_HERMIT);
+});
+
+functionMap.set("sound", (params: string) => {
+  const soundEffect = validateNumber(params);
+  if (soundEffect === undefined) {
+    return;
+  }
+  g.sfx.Play(soundEffect);
 });
 
 functionMap.set("sounds", (_params: string) => {
@@ -198,6 +284,14 @@ functionMap.set("sounds", (_params: string) => {
       Isaac.DebugString(`Currently playing sound effect: ${i}`);
     }
   }
+});
+
+functionMap.set("trap", (_params: string) => {
+  trapdoor();
+});
+
+functionMap.set("trapdoor", (_params: string) => {
+  trapdoor();
 });
 
 functionMap.set("treasure", (_params: string) => {

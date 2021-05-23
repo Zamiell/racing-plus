@@ -1,4 +1,4 @@
-import * as fastClearPreEntitySpawnCollectible from "../features/fastClear/callbacks/preEntitySpawnCollectible";
+import * as fastClearPreEntitySpawnCollectible from "../features/optional/major/fastClear/callbacks/preEntitySpawnCollectible";
 
 const functionMap = new Map<
   PickupVariant,

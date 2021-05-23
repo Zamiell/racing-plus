@@ -8,7 +8,8 @@ export function main(command: string, parameters: string): void {
   }
   Isaac.DebugString(debugString);
 
-  const executeCmdFunction = executeCmdFunctions.get(command);
+  const lowercaseCommand = command.toLowerCase();
+  const executeCmdFunction = executeCmdFunctions.get(lowercaseCommand);
   if (executeCmdFunction !== undefined) {
     executeCmdFunction(parameters);
   } else {

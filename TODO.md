@@ -1,8 +1,10 @@
-- fast clear bug in DD room with buttons, seed Z4TF GD9V stage 2
+- show boss with dream catcher
+- finish coding seeded drops
+- start game, continue run, reset, still shows not fully unlocked
 
-- draw the corrupted error on the screen
-- write script to look for duplicate rooms
+- write script to look for duplicate rooms / empty rooms
 
+- fast travel
 - chat system
 - custom console
 - paschal candle
@@ -13,3 +15,4 @@ Racing+ new features:
 - automatically open door after going to 2x1 room in mines with completed knife
 - change Vasiculous to be faded tears
 - Add charge bar for No. 2
+- Implement time offsets, show on the first room of each floor

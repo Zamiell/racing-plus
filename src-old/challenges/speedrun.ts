@@ -1,10 +1,4 @@
-import g from "../globals";
-import * as timer from "../timer";
-import { CollectibleTypeCustom, SoundEffectCustom } from "../types/enums";
-import { CHALLENGE_DEFINITIONS, SEASON_5_CHARACTER_NAME } from "./constants";
-import { ChallengeCustom } from "./enums";
-import { inSpeedrun } from "./misc";
-
+/*
 // Called from the PostUpdate callback (the "CheckEntities.NonGrid()" function)
 export function finishedSpeedrun(): void {
   // Local variables
@@ -68,111 +62,6 @@ export function postGameEnd(gameOver: boolean): void {
   Isaac.DebugString("Game over detected.");
 }
 
-export function checkValidCharOrder(): boolean {
-  // Local variables
-  const challenge = Isaac.GetChallenge();
-
-  // There is no character order for season 5
-  if (challenge === ChallengeCustom.R7_SEASON_5) {
-    return true;
-  }
-
-  // Otherwise, we get the character order from the Racing+ Data mod's "save#.dat" file
-  if (RacingPlusData === null) {
-    return false;
-  }
-
-  const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
-  if (challengeDefinition === undefined) {
-    Isaac.DebugString(
-      `Error: Failed to find challenge ${challenge} in the challenge definitions.`,
-    );
-    return false;
-  }
-
-  const [abbreviation, numElements] = challengeDefinition;
-  if (abbreviation === undefined || numElements === undefined) {
-    return false;
-  }
-
-  const key = `charOrder-${abbreviation}`;
-  const characterOrder = RacingPlusData.Get(key) as int[] | null;
-  if (characterOrder === null) {
-    return false;
-  }
-
-  if (type(characterOrder) !== "table") {
-    Isaac.DebugString(
-      `Error: The RacingPlusData value for the key of "${key}" was not a table.`,
-    );
-    return false;
-  }
-
-  if (characterOrder.length !== numElements) {
-    Isaac.DebugString(
-      `Error: The RacingPlusData value for the key of "${key}" did not have ${numElements} like it was supposed to.`,
-    );
-    return false;
-  }
-
-  return true;
-}
-
-export function getCurrentCharacter(): int {
-  // Local variables
-  const challenge = Isaac.GetChallenge();
-
-  // In season 5, we always return the character ID of "Random Baby"
-  if (challenge === ChallengeCustom.R7_SEASON_5) {
-    // "randomBabyType" cannot be a constant because The Babies Mod loads after Racing+
-    const randomBabyType = Isaac.GetPlayerTypeByName(SEASON_5_CHARACTER_NAME);
-
-    if (randomBabyType === -1) {
-      return 0;
-    }
-
-    return randomBabyType;
-  }
-
-  // Otherwise, we get the value from the Racing+ Data mod's "save#.dat" file
-  if (RacingPlusData === null) {
-    return 0;
-  }
-
-  const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
-  if (challengeDefinition === undefined) {
-    Isaac.DebugString(
-      `Error: Failed to find challenge ${challenge} in the challenge definitions.`,
-    );
-    return 0;
-  }
-
-  const [abbreviation, numElements] = challengeDefinition;
-  if (abbreviation === undefined || numElements === undefined) {
-    return 0;
-  }
-
-  const key = `charOrder-${abbreviation}`;
-  const characterOrder = RacingPlusData.Get(key) as int[] | null;
-  if (characterOrder === null) {
-    return 0;
-  }
-
-  if (characterOrder === null) {
-    return 0;
-  }
-  if (type(characterOrder) !== "table") {
-    return 0;
-  }
-
-  const characterID = characterOrder[g.speedrun.characterNum];
-  if (characterID === undefined) {
-    return 0;
-  }
-
-  return characterID;
-}
-
 export function isOnFinalCharacter(): boolean {
   // Local variables
   const challenge = Isaac.GetChallenge();
@@ -216,3 +105,4 @@ export function getAverageTimePerCharacter(): string {
 
   return `${minute1}${minute2}.${second1}${second2}`;
 }
+*/
