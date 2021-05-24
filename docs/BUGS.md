@@ -7,7 +7,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 ## Miscellaneous Bugs
 
 - Antibirth doors are not spawned after a boss dies. (You can get them to appear by exiting and re-entering the room.)
-  - Furthermore, the door to It Lives! on Mausoleum 2 or Gehenna 2 will be automatically opened when re-entering the room.
+  - Furthermore, when re-entering a room with an Antibirth door, it will sometimes be automatically opened (without having to use a key, bomb, etc.).
 
 <!--
 - When returning to the Boss Rush from a crawlspace, the camera will jerk from the door to the location of the crawlspace.

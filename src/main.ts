@@ -2,6 +2,7 @@ import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
+import * as inputAction from "./callbacks/inputAction";
 import * as NPCUpdate from "./callbacks/NPCUpdate";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEntityKill from "./callbacks/postEntityKill";
@@ -12,6 +13,7 @@ import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postRender from "./callbacks/postRender";
+import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
@@ -45,6 +47,7 @@ racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
 racingPlus.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
 racingPlus.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main); // 11
 racingPlus.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
+racingPlus.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
 racingPlus.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main); // 15
 racingPlus.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main); // 17
 racingPlus.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main); // 18
@@ -70,4 +73,11 @@ racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
   NPCUpdate.stoney,
   EntityType.ENTITY_STONEY, // 302
+);
+
+// Register PostEffectInit callbacks (40)
+racingPlus.AddCallback(
+  ModCallbacks.MC_POST_TEAR_UPDATE,
+  postTearUpdate.blood,
+  TearVariant.BLOOD,
 );

@@ -167,10 +167,28 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "customConsole",
+    "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "026",
+      "Subvert disruptive teleports",
+      "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
+    ],
+  ],
+  [
+    "fadeVasculitisTears",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "027",
+      "Fade Vasculitis tears",
+      "Fade the tears that explode out of enemies when you have Vasculitis.",
+    ],
+  ],
+  [
+    "customConsole",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "028",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console.",
     ],

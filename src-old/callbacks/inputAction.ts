@@ -1,40 +1,4 @@
-// Different actions occur on different inputHooks and this is not documented
-// Thus, each action's particular inputHook must be determined through trial and error
-// Also note that we can't use cached API functions in this callback or else the game will crash
-// ButtonAction.ACTION_MENUCONFIRM (14) is bugged and will never fire
-
-// InputHook.IS_ACTION_PRESSED (0)
-export function isActionPressed(
-  _player: EntityPlayer,
-  _inputHook: InputHook,
-  buttonAction: ButtonAction,
-): boolean {
-  const actionPressedFunction =
-    InputAction.IsActionPressedFunction[buttonAction];
-  if (actionPressedFunction !== null) {
-    return actionPressedFunction();
-  }
-}
-
 /*
-// InputHook.IS_ACTION_TRIGGERED (1)
-function isActionTriggered(entity, inputHook, buttonAction) {
-  const actionTriggeredFunction = InputAction.IsActionTriggeredFunction[buttonAction]
-  if ( actionTriggeredFunction !== null ) {
-    return actionTriggeredFunction()
-  }
-}
-
-// InputHook.GET_ACTION_VALUE (2)
-function GetActionValue(entity, inputHook, buttonAction) {
-  const actionValueFunction = InputAction.GetActionValueFunction[buttonAction]
-  if ( actionValueFunction !== null ) {
-    // We pass the buttonAction because the child functions need to know what specific button was
-    // pressed
-    return actionValueFunction(buttonAction)
-  }
-}
-
 //
 // InputHook.IS_ACTION_TRIGGERED (1)
 //
@@ -57,15 +21,6 @@ function InputAction.IsActionTriggeredPillCard() {
 }
 
 function InputAction.IsActionTriggeredDrop() {
-  // Manually switch from The Soul to The Forgotten in specific circumstances
-  if ( g.run.switchForgotten ) {
-    g.run.switchForgotten = false
-    if ( g.run.seededDeath.state === SeededDeath.state.DEATH_ANIMATION ) {
-      g.p.PlayExtraAnimation("Death")
-    }
-    return true
-  }
-
   // Prevent character switching while entering a trapdoor
   if ( g.run.trapdoor.state === 0 ) {
     return

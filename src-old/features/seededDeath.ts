@@ -1,14 +1,16 @@
-import { ChallengeCustom } from "../challenges/enums";
-import {
-  DEFAULT_COLOR,
-  SEEDED_DEATH_DEBUFF_SECONDS,
-  Vector.Zero,
-} from "../constants";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import { CollectibleTypeCustom, SeededDeathState } from "../types/enums";
+/*
 
+This code needs to run after a forgotten switch
+
+    if (g.run.seededDeath.state === SeededDeath.state.DEATH_ANIMATION) {
+      g.p.PlayExtraAnimation("Death");
+    }
+
+Test to see what happens if Soul dies in seeded death
+
+*/
+
+/*
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   // Local variables
@@ -658,3 +660,4 @@ export function deleteMegaBlastLaser(laser: EntityLaser): void {
   laser.SpriteScale = Vector.Zero;
   laser.SizeMulti = Vector.Zero;
 }
+*/

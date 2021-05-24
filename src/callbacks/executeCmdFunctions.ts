@@ -292,8 +292,10 @@ functionMap.set("speed", (_params: string) => {
   const enabled = g.run.debugSpeed ? "Enabled" : "Disabled";
   print(`${enabled} max speed.`);
 
-  g.p.AddCacheFlags(CacheFlag.CACHE_SPEED);
-  g.p.EvaluateItems();
+  // Also, give the player flight
+  g.p.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
+  // (adding this will trigger the speed stat modification, so we don't have to explicitly call
+  // "EvaluateItems()")
 });
 
 functionMap.set("trap", (_params: string) => {

@@ -1,6 +1,16 @@
 import { MAX_VANILLA_ITEM_ID } from "./constants";
 import g from "./globals";
 
+export function anyPlayerHas(collectibleType: CollectibleType): boolean {
+  for (const player of getPlayers()) {
+    if (player.HasCollectible(collectibleType)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export function changeRoom(roomIndex: int): void {
   // This must be set before every ChangeRoom() invocation or else the function can send
   // you to the wrong room

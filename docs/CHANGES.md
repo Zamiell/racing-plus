@@ -139,7 +139,9 @@ Post-flip actions:
 > Why? Since the fast-travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
 - `025` The fade in at the beginning of a run is sped-up.
-- `026` A custom console is provided that is better than the vanilla console.
+- `026` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `027` The tears that explode out of enemies when you have Vasculitis are faded.
+- `028` A custom console is provided that is better than the vanilla console.
 - Some items with no effect are removed:
   - the Karma trinket (since all Donation Machines are removed)
   - the Amnesia pill (since curses are removed)
@@ -168,7 +170,6 @@ Post-flip actions:
 - Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
 - Mom's Hands, Mom's Dead Hands, Wizoobs, and Red Ghosts have faster attack patterns.
 - Death will no longer perform his slow attack.
-- The disruptive teleport that occurs when entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.

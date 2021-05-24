@@ -32,6 +32,7 @@ function drawControlsGraphic() {
     return;
   }
 
+  controlsEffect.CollisionDamage = 0;
   controlsEffect.Timeout = 1000000;
   const controlsSprite = controlsEffect.GetSprite();
   controlsSprite.Load("gfx/backdrop/controls_custom.anm2", true);

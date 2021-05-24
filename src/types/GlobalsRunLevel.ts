@@ -12,7 +12,6 @@ export default class GlobalsRunLevel {
     itemSprites: [] as Sprite[],
     bossSprites: [] as Sprite[],
     warpState: WarpState.INITIAL,
-    displayFlagsMap: new LuaTable<int, int>(),
   };
 
   constructor(stage: int, stageType: int) {

@@ -30,7 +30,7 @@ export default class GlobalsRun {
   // Custom Callbacks
   // ----------------
 
-  ghostForm = false;
+  ghostForm = new LuaTable<ControllerIndex, boolean>();
   currentCharacter = -1 as PlayerType;
 
   // --------
@@ -85,8 +85,7 @@ export default class GlobalsRun {
   fastResetFrame = 0;
 
   freeDevilItem = {
-    /** Index is player ControllerIndex. Value is whether or not they have taken damage. */
-    takenDamage: new LuaTable<int, boolean>(),
+    takenDamage: new LuaTable<ControllerIndex, boolean>(),
     granted: false,
   };
 
@@ -100,4 +99,5 @@ export default class GlobalsRun {
 
   slideAnimationHappening = false;
   spedUpFadeIn = false;
+  switchForgotten = false;
 }

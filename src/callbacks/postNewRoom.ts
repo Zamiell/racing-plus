@@ -1,12 +1,14 @@
 import * as cache from "../cache";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as itLivesFix from "../features/mandatory/itLivesFix";
 import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import g from "../globals";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
 
@@ -56,6 +58,7 @@ export function newRoom(): void {
   // Mandatory features
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
+  itLivesFix.postNewRoom();
 
   // Optional features - Major
   startWithD6.postNewRoom();
@@ -65,6 +68,7 @@ export function newRoom(): void {
   // Optional features - Quality of Life
   showEdenStartingItems.postNewRoom();
   showDreamCatcherItemPostNewRoom.main();
+  subvertTeleport.postNewRoom();
 
   // Optional features - Bux Fixes
   fixTeleportInvalidEntrance.postNewRoom();

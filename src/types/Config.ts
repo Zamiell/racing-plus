@@ -21,6 +21,8 @@ export default class Config {
   showEdenStartingItems = true;
   showDreamCatcherItem = true;
   speedUpFadeIn = true;
+  subvertTeleport = true;
+  fadeVasculitisTears = true;
   customConsole = true;
 
   // Bug Fixes

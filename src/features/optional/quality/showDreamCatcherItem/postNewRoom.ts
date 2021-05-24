@@ -1,7 +1,7 @@
 import g from "../../../../globals";
 import {
+  anyPlayerHas,
   changeRoom,
-  getPlayers,
   getRoomIndex,
   initGlowingItemSprite,
   initSprite,
@@ -53,7 +53,7 @@ function warp() {
   }
 
   g.run.level.dreamCatcher.warpState = WarpState.WARPING;
-  saveMinimapDisplayFlags();
+  const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
   let bossRoomIndex: int | null = null;
@@ -82,7 +82,7 @@ function warp() {
     resetRoomState(bossRoomIndex);
   }
 
-  restoreMinimapDisplayFlags();
+  restoreMinimapDisplayFlags(displayFlagsMap);
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
@@ -94,16 +94,8 @@ function shouldWarp() {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
 
-  let someoneHasDreamCatcher = false;
-  for (const player of getPlayers()) {
-    if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
-      someoneHasDreamCatcher = true;
-      break;
-    }
-  }
-
   return (
-    someoneHasDreamCatcher &&
+    anyPlayerHas(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
     g.run.level.dreamCatcher.warpState === WarpState.INITIAL &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
@@ -112,17 +104,17 @@ function shouldWarp() {
   );
 }
 
-function saveMinimapDisplayFlags() {
+function getMinimapDisplayFlagsMap() {
+  const displayFlags = new LuaTable<int, int>();
   const rooms = g.l.GetRooms();
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
     if (room !== null) {
-      g.run.level.dreamCatcher.displayFlagsMap.set(
-        room.SafeGridIndex,
-        room.DisplayFlags,
-      );
+      displayFlags.set(room.SafeGridIndex, room.DisplayFlags);
     }
   }
+
+  return displayFlags;
 }
 
 function getRoomIndexForType(roomType: RoomType) {
@@ -196,10 +188,8 @@ function resetRoomState(roomIndex: int) {
   room.ClearCount = 0;
 }
 
-function restoreMinimapDisplayFlags() {
-  for (const [gridIndex, displayFlags] of pairs(
-    g.run.level.dreamCatcher.displayFlagsMap,
-  )) {
+function restoreMinimapDisplayFlags(displayFlagsMap: LuaTable<int, int>) {
+  for (const [gridIndex, displayFlags] of pairs(displayFlagsMap)) {
     const room = g.l.GetRoomByIdx(gridIndex);
     room.DisplayFlags = displayFlags;
   }

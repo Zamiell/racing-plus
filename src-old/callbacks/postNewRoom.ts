@@ -225,56 +225,6 @@ function checkScolexRoom() {
   }
 }
 
-// Prevent unavoidable damage in a specific room in the Dank Depths
-function checkDepthsPuzzle() {
-  // Local variables
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomVariant = roomDesc.Data.Variant;
-  const gridSize = g.r.GetGridSize();
-
-  // We only need to check if we are in the Dank Depths
-  if (stage !== 5 && stage !== 6) {
-    return;
-  }
-  if (stageType !== 2) {
-    return;
-  }
-
-  if (
-    roomVariant !== 41 &&
-    roomVariant !== 10041 && // (flipped)
-    roomVariant !== 20041 && // (flipped)
-    roomVariant !== 30041 // (flipped)
-  ) {
-    return;
-  }
-
-  // Scan the entire room to see if any rocks were replaced with spikes
-  for (let i = 1; i <= gridSize; i++) {
-    const gridEntity = g.r.GetGridEntity(i);
-    if (gridEntity !== null) {
-      const saveState = gridEntity.GetSaveState();
-      if (saveState.Type === GridEntityType.GRID_SPIKES) {
-        // Remove the spikes
-        gridEntity.Sprite = Sprite(); // If we don't do this, it will still show for a frame
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
-
-        // Originally, we would add a rock here with:
-        // "Isaac.GridSpawn(GridEntityType.GRID_ROCK, 0, gridEntity.Position, true)"
-        // However, this results in invisible collision persisting after the rock is killed
-        // This bug can probably be subverted by waiting a frame for the spikes to fully despawn,
-        // but then having rocks spawn "out of nowhere" would look glitchy,
-        // so just remove the spikes and don't do anything else
-        Isaac.DebugString(
-          "Removed spikes from the Dank Depths bomb puzzle room.",
-        );
-      }
-    }
-  }
-}
-
 // Check for various NPCs all at once
 // (we want to loop through all of the entities in the room only for performance reasons)
 function checkEntities() {
@@ -285,18 +235,8 @@ function checkEntities() {
   const roomSeed = g.r.GetSpawnSeed();
   const character = g.p.GetPlayerType();
 
-  let subvertTeleport = false;
   let pinFound = false;
   for (const entity of Isaac.GetRoomEntities()) {
-    if (
-      entity.Type === EntityType.ENTITY_GURDY || // 36
-      entity.Type === EntityType.ENTITY_MOM || // 45
-      entity.Type === EntityType.ENTITY_MOMS_HEART // 78 (this includes It Lives!)
-    ) {
-      subvertTeleport = true;
-      if (entity.Type === EntityType.ENTITY_MOM) {
-        g.run.room.forceMomStomp = true;
-      }
     } else if (
       entity.Type === EntityType.ENTITY_SLOTH || // Sloth (46.0) and Super Sloth (46.1)
       entity.Type === EntityType.ENTITY_PRIDE // Pride (52.0) and Super Pride (52.1)
@@ -348,46 +288,6 @@ function checkEntities() {
       entity.Remove();
       Isaac.DebugString("Removed a buggy stray Suction Pitfall.");
     }
-  }
-
-  // Subvert the disruptive teleportation from Gurdy, Mom, Mom's Heart, and It Lives
-  if (
-    subvertTeleport &&
-    !roomClear &&
-    roomShape === RoomShape.ROOMSHAPE_1x1
-    // (there are Double Trouble rooms with Gurdy but they don't cause a teleport)
-  ) {
-    g.run.room.teleportSubverted = true;
-
-    // Make the player invisible or else it will show them on the teleported position for 1 frame
-    // (we can't just move the player here because the teleport occurs after this callback finishes)
-    g.run.room.teleportSubvertScale = g.p.SpriteScale;
-    g.p.SpriteScale = Vector.Zero;
-    // (we actually move the player on the next frame in the "checkSubvertTeleport()" function)
-
-    // Also make the familiars invisible
-    // (for some reason, we can use the "Visible" property instead of resorting to "SpriteScale"
-    // like we do for the player)
-    const familiars = Isaac.FindByType(
-      EntityType.ENTITY_FAMILIAR,
-      -1,
-      -1,
-      false,
-      false,
-    );
-    for (const familiar of familiars) {
-      familiar.Visible = false;
-    }
-
-    // If we are The Soul, the Forgotten body will also need to be teleported
-    // However, if we change its position manually,
-    // it will just warp back to the same spot on the next frame
-    // Thus, just manually switch to the Forgotten to avoid this bug
-    if (character === PlayerType.PLAYER_THESOUL) {
-      g.run.switchForgotten = true;
-    }
-
-    Isaac.DebugString("Subverted a position teleport (1/2).");
   }
 
   // If Pin is in the room, cause a rumble as a warning for deaf players

@@ -1856,6 +1856,8 @@ ____exports.default = (function()
         self.showEdenStartingItems = true
         self.showDreamCatcherItem = true
         self.speedUpFadeIn = true
+        self.subvertTeleport = true
+        self.fadeVasculitisTears = true
         self.customConsole = true
         self.fixTeleportInvalidEntrance = true
     end
@@ -1923,7 +1925,7 @@ ____exports.default = (function()
     local GlobalsRunLevel = ____exports.default
     GlobalsRunLevel.name = "GlobalsRunLevel"
     function GlobalsRunLevel.prototype.____constructor(self, stage, stageType)
-        self.dreamCatcher = {items = {}, bosses = {}, dreamCatcherSprite = nil, itemSprites = {}, bossSprites = {}, warpState = WarpState.INITIAL, displayFlagsMap = {}}
+        self.dreamCatcher = {items = {}, bosses = {}, dreamCatcherSprite = nil, itemSprites = {}, bossSprites = {}, warpState = WarpState.INITIAL}
         self.stage = stage
         self.stageType = stageType
     end
@@ -1962,7 +1964,7 @@ ____exports.default = (function()
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
         self.room = __TS__New(GlobalsRunRoom, true)
         self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
-        self.ghostForm = false
+        self.ghostForm = {}
         self.currentCharacter = -1
         self.debugChaosCard = false
         self.debugSpeed = false
@@ -1975,6 +1977,7 @@ ____exports.default = (function()
         self.seededDrops = {roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
         self.slideAnimationHappening = false
         self.spedUpFadeIn = false
+        self.switchForgotten = false
     end
     return GlobalsRun
 end)()
@@ -2119,9 +2122,12 @@ local ____Globals = require("types.Globals")
 local Globals = ____Globals.default
 local loadSuccess
 function loadSuccess(self, newGlobals)
-    local validatedNewGlobals = RevelCopyTable(newGlobals, g)
+    local oldGlobals = {config = g.config, run = g.run, race = g.race, speedrun = g.speedrun}
+    local validatedNewGlobals = RevelCopyTable(newGlobals, oldGlobals)
     g.config = validatedNewGlobals.config
     g.run = validatedNewGlobals.run
+    g.race = validatedNewGlobals.race
+    g.speedrun = validatedNewGlobals.speedrun
 end
 local mod = nil
 function ____exports.setMod(self, newMod)
@@ -2131,7 +2137,9 @@ function ____exports.save(self)
     if mod == nil then
         error("\"saveDat.save()\" was called without the mod being initialized.")
     end
-    local encodedData = json.encode(g)
+    local globalsToSave = {config = g.config, run = g.run, race = g.race, speedrun = g.speedrun}
+    globalsToSave.run.fastClear.aliveEnemies = {}
+    local encodedData = json.encode(globalsToSave)
     mod:SaveData(encodedData)
 end
 function ____exports.load(self)
@@ -2178,7 +2186,7 @@ require("lualib_bundle");
 local ____exports = {}
 ____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
-____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"customConsole", {4, "026", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
+____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"fadeVasculitisTears", {4, "027", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "028", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
 ____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
 ____exports.ALL_DESCRIPTIONS = {
     table.unpack(
@@ -2202,7 +2210,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.6"
+____exports.VERSION = "0.57.7"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -2260,6 +2268,20 @@ local ____constants = require("constants")
 local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
 local ____globals = require("globals")
 local g = ____globals.default
+function ____exports.getPlayers(self)
+    local players = {}
+    do
+        local i = 0
+        while i < g.g:GetNumPlayers() do
+            local player = Isaac.GetPlayer(i)
+            if player ~= nil then
+                __TS__ArrayPush(players, player)
+            end
+            i = i + 1
+        end
+    end
+    return players
+end
 function ____exports.getRoomIndex(self)
     local roomIndex = g.l:GetCurrentRoomDesc().SafeGridIndex
     if roomIndex < 0 then
@@ -2284,6 +2306,16 @@ function ____exports.initSprite(self, anm2Path, pngPath)
     end
     sprite:SetFrame("Default", 0)
     return sprite
+end
+function ____exports.anyPlayerHas(self, collectibleType)
+    for ____, player in ipairs(
+        ____exports.getPlayers(nil)
+    ) do
+        if player:HasCollectible(collectibleType) then
+            return true
+        end
+    end
+    return false
 end
 function ____exports.changeRoom(self, roomIndex)
     g.l.LeaveDoor = -1
@@ -2326,20 +2358,6 @@ function ____exports.getOpenTrinketSlot(self, player)
         ("The player has " .. tostring(maxTrinkets)) .. " trinket slots, which is not supported."
     )
     return nil
-end
-function ____exports.getPlayers(self)
-    local players = {}
-    do
-        local i = 0
-        while i < g.g:GetNumPlayers() do
-            local player = Isaac.GetPlayer(i)
-            if player ~= nil then
-                __TS__ArrayPush(players, player)
-            end
-            i = i + 1
-        end
-    end
-    return players
 end
 function ____exports.getRandom(self, x, y, seed)
     local rng = ____exports.initRNG(nil, seed)
@@ -3073,8 +3091,7 @@ functionMap:set(
         g.run.debugSpeed = not g.run.debugSpeed
         local enabled = (g.run.debugSpeed and "Enabled") or "Disabled"
         print(enabled .. " max speed.")
-        g.p:AddCacheFlags(CacheFlag.CACHE_SPEED)
-        g.p:EvaluateItems()
+        g.p:AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)
     end
 )
 functionMap:set(
@@ -3193,6 +3210,75 @@ function ____exports.main(self, pillEffect, pillColor)
     end
     return nil
 end
+return ____exports
+end,
+["features.mandatory.switchForgotten"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.actionDrop(self)
+    if g.run.switchForgotten then
+        g.run.switchForgotten = false
+        return true
+    end
+    return nil
+end
+return ____exports
+end,
+["callbacks.isActionTriggeredFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local switchForgotten = require("features.mandatory.switchForgotten")
+local functionMap = __TS__New(Map)
+____exports.default = functionMap
+functionMap:set(
+    ButtonAction.ACTION_DROP,
+    function()
+        local returnValue = switchForgotten:actionDrop()
+        if returnValue ~= nil then
+            return returnValue
+        end
+        return nil
+    end
+)
+return ____exports
+end,
+["callbacks.inputAction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____isActionTriggeredFunctions = require("callbacks.isActionTriggeredFunctions")
+local isActionTriggeredFunctions = ____isActionTriggeredFunctions.default
+local inputHookFunctionMap
+function ____exports.main(self, player, inputHook, buttonAction)
+    local inputHookFunction = inputHookFunctionMap:get(inputHook)
+    if inputHookFunction ~= nil then
+        return inputHookFunction(nil, player, buttonAction)
+    end
+    return nil
+end
+inputHookFunctionMap = __TS__New(Map)
+inputHookFunctionMap:set(
+    InputHook.IS_ACTION_PRESSED,
+    function(____, _player, _buttonAction)
+        return nil
+    end
+)
+inputHookFunctionMap:set(
+    InputHook.IS_ACTION_TRIGGERED,
+    function(____, player, buttonAction)
+        local isActionTriggeredFunction = isActionTriggeredFunctions:get(buttonAction)
+        if isActionTriggeredFunction ~= nil then
+            return isActionTriggeredFunction(nil, player)
+        end
+        return nil
+    end
+)
+inputHookFunctionMap:set(
+    InputHook.GET_ACTION_VALUE,
+    function(____, _player, _buttonAction)
+        return nil
+    end
+)
 return ____exports
 end,
 ["features.optional.major.fastClear.tracking"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -3862,6 +3948,7 @@ function drawControlsGraphic(self)
     if controlsEffect == nil then
         return
     end
+    controlsEffect.CollisionDamage = 0
     controlsEffect.Timeout = 1000000
     local controlsSprite = controlsEffect:GetSprite()
     controlsSprite:Load("gfx/backdrop/controls_custom.anm2", true)
@@ -3901,6 +3988,34 @@ function ____exports.postRender(self)
 end
 function ____exports.postNewRoom(self)
     recordSlideAnimationStarted(nil)
+end
+return ____exports
+end,
+["features.mandatory.itLivesFix"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local MOMS_HEART_MAUSOLEUM_VARIANT, shouldRemoveItLives, removeItLives
+function shouldRemoveItLives(self)
+    local stage = g.l:GetStage()
+    local roomDesc = g.l:GetCurrentRoomDesc()
+    local roomVariant = roomDesc.Data.Variant
+    local roomType = g.r:GetType()
+    local fullKnives = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.KNIFE_FULL, -1, false, false)
+    return (((stage == 6) and (roomType == RoomType.ROOM_BOSS)) and (roomVariant == MOMS_HEART_MAUSOLEUM_VARIANT)) and (#fullKnives == 0)
+end
+function removeItLives(self)
+    local momsHeartEntities = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, false)
+    for ____, momsHeart in ipairs(momsHeartEntities) do
+        momsHeart:Remove()
+        g.p:AnimateSad()
+    end
+end
+MOMS_HEART_MAUSOLEUM_VARIANT = 6040
+function ____exports.postNewRoom(self)
+    if shouldRemoveItLives(nil) then
+        removeItLives(nil)
+    end
 end
 return ____exports
 end,
@@ -4001,8 +4116,8 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local anyPlayerHas = ____misc.anyPlayerHas
 local changeRoom = ____misc.changeRoom
-local getPlayers = ____misc.getPlayers
 local getRoomIndex = ____misc.getRoomIndex
 local initGlowingItemSprite = ____misc.initGlowingItemSprite
 local initSprite = ____misc.initSprite
@@ -4012,7 +4127,7 @@ local ____bossPNGMap = require("features.optional.quality.showDreamCatcherItem.b
 local bossPNGMap = ____bossPNGMap.bossPNGMap
 local ____enums = require("features.optional.quality.showDreamCatcherItem.enums")
 local WarpState = ____enums.WarpState
-local revertItemPrices, warp, shouldWarp, saveMinimapDisplayFlags, getRoomIndexForType, getRoomItemsAndSetPrice, getRoomBosses, bossInArray, resetRoomState, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, initBossSprite
+local revertItemPrices, warp, shouldWarp, getMinimapDisplayFlagsMap, getRoomIndexForType, getRoomItemsAndSetPrice, getRoomBosses, bossInArray, resetRoomState, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, initBossSprite
 function revertItemPrices(self)
     local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
     for ____, entity in ipairs(collectibles) do
@@ -4029,7 +4144,7 @@ function warp(self)
         return
     end
     g.run.level.dreamCatcher.warpState = WarpState.WARPING
-    saveMinimapDisplayFlags(nil)
+    local displayFlagsMap = getMinimapDisplayFlagsMap(nil)
     local treasureRoomIndex = getRoomIndexForType(nil, RoomType.ROOM_TREASURE)
     local bossRoomIndex = nil
     if (stage >= 1) and (stage <= 7) then
@@ -4050,36 +4165,29 @@ function warp(self)
     if bossRoomIndex ~= nil then
         resetRoomState(nil, bossRoomIndex)
     end
-    restoreMinimapDisplayFlags(nil)
+    restoreMinimapDisplayFlags(nil, displayFlagsMap)
     g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER
 end
 function shouldWarp(self)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local isFirstVisit = g.r:IsFirstVisit()
     local roomIndex = getRoomIndex(nil)
-    local someoneHasDreamCatcher = false
-    for ____, player in ipairs(
-        getPlayers(nil)
-    ) do
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) then
-            someoneHasDreamCatcher = true
-            break
-        end
-    end
-    return (((someoneHasDreamCatcher and (g.run.level.dreamCatcher.warpState == WarpState.INITIAL)) and (not g.g:IsGreedMode())) and (roomIndex == startingRoomIndex)) and isFirstVisit
+    return (((anyPlayerHas(nil, CollectibleType.COLLECTIBLE_DREAM_CATCHER) and (g.run.level.dreamCatcher.warpState == WarpState.INITIAL)) and (not g.g:IsGreedMode())) and (roomIndex == startingRoomIndex)) and isFirstVisit
 end
-function saveMinimapDisplayFlags(self)
+function getMinimapDisplayFlagsMap(self)
+    local displayFlags = {}
     local rooms = g.l:GetRooms()
     do
         local i = 0
         while i < rooms.Size do
             local room = rooms:Get(i)
             if room ~= nil then
-                g.run.level.dreamCatcher.displayFlagsMap[room.SafeGridIndex] = room.DisplayFlags
+                displayFlags[room.SafeGridIndex] = room.DisplayFlags
             end
             i = i + 1
         end
     end
+    return displayFlags
 end
 function getRoomIndexForType(self, roomType)
     local rooms = g.l:GetRooms()
@@ -4136,8 +4244,8 @@ function resetRoomState(self, roomIndex)
     room.Clear = false
     room.ClearCount = 0
 end
-function restoreMinimapDisplayFlags(self)
-    for gridIndex, displayFlags in pairs(g.run.level.dreamCatcher.displayFlagsMap) do
+function restoreMinimapDisplayFlags(self, displayFlagsMap)
+    for gridIndex, displayFlags in pairs(displayFlagsMap) do
         local room = g.l:GetRoomByIdx(gridIndex)
         room.DisplayFlags = displayFlags
     end
@@ -4198,18 +4306,145 @@ function ____exports.main(self)
 end
 return ____exports
 end,
+["features.optional.quality.subvertTeleport"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local shouldSubvertTeleport, subvertTeleport, getNormalRoomEnterPosition, shouldForceMomStomp, forceMomStomp
+function shouldSubvertTeleport(self)
+    local roomShape = g.r:GetRoomShape()
+    local gurdies = Isaac.FindByType(EntityType.ENTITY_GURDY, -1, -1, false, false)
+    local moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false)
+    local momsHearts = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, false)
+    return (((#gurdies > 0) or (#moms > 0)) or (#momsHearts > 0)) and (roomShape == RoomShape.ROOMSHAPE_1x1)
+end
+function subvertTeleport(self)
+    local normalPosition = getNormalRoomEnterPosition(nil)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        player.Position = normalPosition
+        local character = player:GetPlayerType()
+        if character == PlayerType.PLAYER_THESOUL then
+            g.run.switchForgotten = true
+        end
+    end
+    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, -1, -1, false, false)
+    for ____, familiar in ipairs(familiars) do
+        familiar.Position = normalPosition
+    end
+end
+function getNormalRoomEnterPosition(self)
+    local ____switch12 = g.l.LeaveDoor
+    if ____switch12 == DoorSlot.LEFT0 then
+        goto ____switch12_case_0
+    elseif ____switch12 == DoorSlot.UP0 then
+        goto ____switch12_case_1
+    elseif ____switch12 == DoorSlot.RIGHT0 then
+        goto ____switch12_case_2
+    elseif ____switch12 == DoorSlot.DOWN0 then
+        goto ____switch12_case_3
+    elseif ____switch12 == DoorSlot.LEFT1 then
+        goto ____switch12_case_4
+    elseif ____switch12 == DoorSlot.UP1 then
+        goto ____switch12_case_5
+    elseif ____switch12 == DoorSlot.RIGHT1 then
+        goto ____switch12_case_6
+    elseif ____switch12 == DoorSlot.DOWN1 then
+        goto ____switch12_case_7
+    end
+    goto ____switch12_case_default
+    ::____switch12_case_0::
+    do
+        do
+            return Vector(560, 280)
+        end
+    end
+    ::____switch12_case_1::
+    do
+        do
+            return Vector(320, 400)
+        end
+    end
+    ::____switch12_case_2::
+    do
+        do
+            return Vector(80, 280)
+        end
+    end
+    ::____switch12_case_3::
+    do
+        do
+            return Vector(320, 160)
+        end
+    end
+    ::____switch12_case_4::
+    do
+        do
+            return Vector(560, 280)
+        end
+    end
+    ::____switch12_case_5::
+    do
+        do
+            return Vector(320, 400)
+        end
+    end
+    ::____switch12_case_6::
+    do
+        do
+            return Vector(80, 280)
+        end
+    end
+    ::____switch12_case_7::
+    do
+        do
+            return Vector(320, 160)
+        end
+    end
+    ::____switch12_case_default::
+    do
+        do
+            return Vector(320, 400)
+        end
+    end
+    ::____switch12_end::
+end
+function shouldForceMomStomp(self)
+    local moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false)
+    return #moms > 0
+end
+function forceMomStomp(self)
+end
+function ____exports.postNewRoom(self)
+    if not g.config.subvertTeleport then
+        return
+    end
+    if shouldSubvertTeleport(nil) then
+        subvertTeleport(nil)
+        if shouldForceMomStomp(nil) then
+            forceMomStomp(nil)
+        end
+    end
+end
+return ____exports
+end,
 ["callbacks.postNewRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local cache = require("cache")
 local controlsGraphic = require("features.mandatory.controlsGraphic")
 local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
+local itLivesFix = require("features.mandatory.itLivesFix")
 local fixTeleportInvalidEntrance = require("features.optional.bugfix.fixTeleportInvalidEntrance")
 local fastClearPostNewRoom = require("features.optional.major.fastClear.callbacks.postNewRoom")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
 local startWithD6 = require("features.optional.major.startWithD6")
 local showDreamCatcherItemPostNewRoom = require("features.optional.quality.showDreamCatcherItem.postNewRoom")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
+local subvertTeleport = require("features.optional.quality.subvertTeleport")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
@@ -4229,11 +4464,13 @@ function ____exports.newRoom(self)
     ____obj[____index] = ____obj[____index] + 1
     detectSlideAnimation:postNewRoom()
     controlsGraphic:postNewRoom()
+    itLivesFix:postNewRoom()
     startWithD6:postNewRoom()
     freeDevilItem:postNewRoom()
     fastClearPostNewRoom:main()
     showEdenStartingItems:postNewRoom()
     showDreamCatcherItemPostNewRoom:main()
+    subvertTeleport:postNewRoom()
     fixTeleportInvalidEntrance:postNewRoom()
 end
 function ____exports.main(self)
@@ -4871,6 +5108,34 @@ function ____exports.main(self)
     showEdenStartingItems:postRender()
     showDreamCatcherItemPostRender:main()
     customConsole:postRender()
+end
+return ____exports
+end,
+["features.optional.quality.fadeVasculitisTears"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____misc = require("misc")
+local anyPlayerHas = ____misc.anyPlayerHas
+local FADED_COLOR, shouldFadeTear, fadeTear
+function shouldFadeTear(self, tear)
+    return ((tear.FrameCount == 0) and (tear.SpawnerType == 0)) and anyPlayerHas(nil, CollectibleType.COLLECTIBLE_VASCULITIS)
+end
+function fadeTear(self, tear)
+    tear:SetColor(FADED_COLOR, 1000, 0)
+end
+local FADE_AMOUNT = 0.15
+FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0)
+function ____exports.postTearUpdateBloodParticle(self, tear)
+    if shouldFadeTear(nil, tear) then
+        fadeTear(nil, tear)
+    end
+end
+return ____exports
+end,
+["callbacks.postTearUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fadeVasculitisTears = require("features.optional.quality.fadeVasculitisTears")
+function ____exports.blood(self, tear)
+    fadeVasculitisTears:postTearUpdateBloodParticle(tear)
 end
 return ____exports
 end,
@@ -5593,30 +5858,34 @@ local ____exports = {}
 local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
 local ____globals = require("globals")
 local g = ____globals.default
-local shouldCheckForWhiteFire, ghostFormOn
-function shouldCheckForWhiteFire(self)
-    local stage = g.l:GetStage()
-    local stageType = g.l:GetStageType()
-    return ((not g.run.ghostForm) and (stage == 2)) and ((stageType == StageType.STAGETYPE_REPENTANCE) or (stageType == StageType.STAGETYPE_REPENTANCE_B))
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local isGhostForm, ghostFormChanged, ghostFormOn, ghostFormOff
+function isGhostForm(self, player)
+    return player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
+end
+function ghostFormChanged(self, ghostForm)
+    if ghostForm then
+        ghostFormOn(nil)
+    else
+        ghostFormOff(nil)
+    end
 end
 function ghostFormOn(self)
-    g.run.ghostForm = true
     fastClearClearRoom:setDeferClearForGhost(true)
 end
-local MIN_DISTANCE_TO_TOUCH_FIRE = 40
+function ghostFormOff(self)
+end
 function ____exports.postUpdate(self)
-    if not shouldCheckForWhiteFire(nil) then
-        return
-    end
-    local whiteFires = Isaac.FindByType(EntityType.ENTITY_FIREPLACE, 4, -1, false, false)
-    for ____, whiteFire in ipairs(whiteFires) do
-        if whiteFire.Position:Distance(g.p.Position) <= MIN_DISTANCE_TO_TOUCH_FIRE then
-            ghostFormOn(nil)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local ghostForm = isGhostForm(nil, player)
+        if ghostForm ~= g.run.ghostForm[player.ControllerIndex] then
+            g.run.ghostForm[player.ControllerIndex] = ghostForm
+            ghostFormChanged(nil, ghostForm)
         end
     end
-end
-function ____exports.ghostFormOff(self)
-    g.run.ghostForm = false
 end
 return ____exports
 end,
@@ -5625,10 +5894,8 @@ local ____exports = {}
 local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
 local ____globals = require("globals")
 local g = ____globals.default
-local ghostForm = require("customCallbacks.ghostForm")
 local roomClear
 function roomClear(self)
-    ghostForm:ghostFormOff()
     fastClearClearRoom:setDeferClearForGhost(false)
 end
 function ____exports.postUpdate(self)
@@ -6139,6 +6406,7 @@ local entityTakeDmg = require("callbacks.entityTakeDmg")
 local evaluateCache = require("callbacks.evaluateCache")
 local executeCmd = require("callbacks.executeCmd")
 local getPillEffect = require("callbacks.getPillEffect")
+local inputAction = require("callbacks.inputAction")
 local NPCUpdate = require("callbacks.NPCUpdate")
 local postCurseEval = require("callbacks.postCurseEval")
 local postEntityKill = require("callbacks.postEntityKill")
@@ -6149,6 +6417,7 @@ local postNewLevel = require("callbacks.postNewLevel")
 local postNewRoom = require("callbacks.postNewRoom")
 local postNPCInit = require("callbacks.postNPCInit")
 local postRender = require("callbacks.postRender")
+local postTearUpdate = require("callbacks.postTearUpdate")
 local postUpdate = require("callbacks.postUpdate")
 local preEntitySpawn = require("callbacks.preEntitySpawn")
 local preGameExit = require("callbacks.preGameExit")
@@ -6176,6 +6445,7 @@ racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
 racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
 racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
+racingPlus:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
 racingPlus:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main)
@@ -6189,6 +6459,7 @@ racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
+racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
 return ____exports
 end,
 ["types.RevelCopyTable"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
