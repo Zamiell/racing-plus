@@ -9,15 +9,23 @@ enum PhotoSituation {
   RANDOM_BOSS_ITEM,
 }
 
+const MOM_ROOM_VARIANTS = [1060, 1061, 1062, 1063, 1064];
+
 export function spawn(): void {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
   // Only spawn the photos after the boss of Depths 2
-  if (stage === 6 && roomType === RoomType.ROOM_BOSS) {
+  if (stage === 6 && roomType === RoomType.ROOM_BOSS && isMomRoom()) {
     const situation = getPhotoSituation();
     doPhotoSituation(situation);
   }
+}
+
+function isMomRoom() {
+  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomVariant = roomDesc.Data.Variant;
+  return MOM_ROOM_VARIANTS.includes(roomVariant);
 }
 
 function getPhotoSituation() {

@@ -2202,7 +2202,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.4"
+____exports.VERSION = "0.57.5"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -3992,7 +3992,7 @@ end,
 ["features.optional.quality.showDreamCatcherItem.bossPNGMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.bossPNGMap = __TS__New(Map, {{EntityType.ENTITY_LARRYJR, {"portrait_19.0_larryjr.png", "portrait_19.1_thehollow.png"}}, {EntityType.ENTITY_MONSTRO, {"portrait_20.0_monstro.png"}}})
+____exports.bossPNGMap = __TS__New(Map, {{EntityType.ENTITY_LARRYJR, {"portrait_19.0_larryjr.png", "portrait_19.1_thehollow.png", "portrait_19.100_tufftwins.png", "portrait_shell.png"}}, {EntityType.ENTITY_MONSTRO, {"portrait_20.0_monstro.png"}}, {EntityType.ENTITY_CHUB, {"portrait_28.0_chub.png", "portrait_28.1_chad.png", "portrait_28.2_carrionqueen.png"}}, {EntityType.ENTITY_GURDY, {"portrait_36.0_gurdy.png"}}, {EntityType.ENTITY_MONSTRO2, {"portrait_43.0_monstro2.png", "portrait_43.1_gish.png"}}, {EntityType.ENTITY_MOM, {"portrait_45.0_mom.png"}}, {EntityType.ENTITY_PIN, {"portrait_62.0_pin.png", "portrait_62.1_scolex.png", "portrait_thefrail.png"}}, {EntityType.ENTITY_FAMINE, {"portrait_63.0_famine.png"}}, {EntityType.ENTITY_PESTILENCE, {"portrait_64.0_pestilence.png"}}, {EntityType.ENTITY_WAR, {"portrait_65.0_war.png", "portrait_65.1_conquest.png"}}, {EntityType.ENTITY_DEATH, {"portrait_66.0_death.png"}}, {EntityType.ENTITY_DUKE, {"portrait_67.0_dukeofflies.png", "portrait_67.1_thehusk.png"}}, {EntityType.ENTITY_PEEP, {"portrait_68.0_peep.png", "portrait_68.1_bloat.png"}}, {EntityType.ENTITY_LOKI, {"portrait_69.0_loki.png", "portrait_69.1_lokii.png"}}, {EntityType.ENTITY_FISTULA_BIG, {"portrait_71.0_fistula.png", "portrait_71.1_teratoma.png"}}, {EntityType.ENTITY_BLASTOCYST_BIG, {"portrait_74.0_blastocyst.png"}}, {EntityType.ENTITY_MOMS_HEART, {"portrait_78.0_momsheart.png", "portrait_78.1_itlives.png"}}, {EntityType.ENTITY_GEMINI, {"portrait_79.0_gemini.png", "portrait_79.1_steven.png", "portrait_79.2_blightedovum.png"}}, {EntityType.ENTITY_FALLEN, {"portrait_81.0_thefallen.png"}}, {EntityType.ENTITY_HEADLESS_HORSEMAN, {"portrait_82.0_headlesshorseman.png"}}, {EntityType.ENTITY_SATAN, {"portrait_84.0_satan.png"}}, {EntityType.ENTITY_MASK_OF_INFAMY, {"portrait_97.0_maskofinfamy.png"}}, {EntityType.ENTITY_GURDY_JR, {"portrait_99.0_gurdyjr.png"}}, {EntityType.ENTITY_WIDOW, {"portrait_100.0_widow.png", "portrait_100.1_thewretched.png"}}, {EntityType.ENTITY_DADDYLONGLEGS, {"portrait_101.0_daddylonglegs.png", "portrait_101.1_triachnid.png"}}, {EntityType.ENTITY_ISAAC, {"portrait_102.0_isaac.png", "portrait_102.1_bluebaby.png"}}, {EntityType.ENTITY_THE_HAUNT, {"portrait_260.0_thehaunt.png"}}, {EntityType.ENTITY_DINGLE, {"portrait_261.0_dingle.png", "portrait_dangle.png"}}, {EntityType.ENTITY_MEGA_MAW, {"portrait_262.0_megamaw.png"}}, {EntityType.ENTITY_GATE, {"portrait_263.0_megamaw2.png"}}, {EntityType.ENTITY_MEGA_FATTY, {"portrait_264.0_megafatty.png"}}, {EntityType.ENTITY_CAGE, {"portrait_265.0_fatty2.png"}}, {EntityType.ENTITY_MAMA_GURDY, {"portrait_266.0_mamagurdy.png"}}, {EntityType.ENTITY_DARK_ONE, {"portrait_267.0_darkone.png"}}, {EntityType.ENTITY_ADVERSARY, {"portrait_268.0_darkone2.png"}}, {EntityType.ENTITY_POLYCEPHALUS, {"portrait_269.0_polycephalus.png", "portrait_269.1_polycephalus2.png"}}, {EntityType.ENTITY_MR_FRED, {"portrait_270.0_megafred.png"}}, {EntityType.ENTITY_THE_LAMB, {"portrait_273.0_thelamb.png"}}, {EntityType.ENTITY_MEGA_SATAN, {"portrait_274.0_megasatan.png"}}, {EntityType.ENTITY_GURGLING, {"portrait_276.0_gurglings.png", "portrait_turdlings.png"}}, {EntityType.ENTITY_STAIN, {"portrait_401.0_thestain.png"}}, {EntityType.ENTITY_BROWNIE, {"portrait_402.0_brownie.png"}}, {EntityType.ENTITY_FORSAKEN, {"portrait_403.0_theforsaken.png"}}, {EntityType.ENTITY_LITTLE_HORN, {"portrait_404.0_littlehorn.png"}}, {EntityType.ENTITY_RAG_MAN, {"portrait_405.0_ragman.png"}}, {EntityType.ENTITY_ULTRA_GREED, {"portrait_406.0_ultragreed.png"}}, {EntityType.ENTITY_HUSH, {"portrait_407.0_hush.png"}}, {EntityType.ENTITY_RAG_MEGA, {"portrait_ragmega.png"}}, {EntityType.ENTITY_SISTERS_VIS, {"portrait_sistersvis.png"}}, {EntityType.ENTITY_BIG_HORN, {"portrait_bighorn.png"}}, {EntityType.ENTITY_DELIRIUM, {"portrait_delirium.png"}}, {EntityType.ENTITY_MATRIARCH, {"portrait_matriarch.png"}}, {EntityType.ENTITY_REAP_CREEP, {"portrait_900.0_reapcreep.png"}}, {EntityType.ENTITY_LIL_BLUB, {"portrait_901.0_beelzeblub.png"}}, {EntityType.ENTITY_RAINMAKER, {"portrait_902.0_rainmaker.png"}}, {EntityType.ENTITY_VISAGE, {"portrait_903.0_visage.png"}}, {EntityType.ENTITY_SIREN, {"portrait_904.0_siren.png"}}, {EntityType.ENTITY_HERETIC, {"portrait_905.0_heretic.png"}}, {EntityType.ENTITY_HORNFEL, {"portrait_906.0_hornfel.png"}}, {EntityType.ENTITY_GIDEON, {"portrait_907.0_gideon.png"}}, {EntityType.ENTITY_BABY_PLUM, {"portrait_908.0_babyplum.png"}}, {EntityType.ENTITY_SCOURGE, {"portrait_909.0_scourge.png"}}, {EntityType.ENTITY_CHIMERA, {"portrait_910.0_chimera.png"}}, {EntityType.ENTITY_ROTGUT, {"portrait_911.0_rotgut.png"}}, {EntityType.ENTITY_MOTHER, {"portrait_mother.png"}}, {EntityType.ENTITY_MIN_MIN, {"portrait_minmin.png"}}, {EntityType.ENTITY_CLOG, {"portrait_clog.png"}}, {EntityType.ENTITY_SINGE, {"portrait_singe.png"}}, {EntityType.ENTITY_BUMBINO, {"portrait_bumbino.png"}}, {EntityType.ENTITY_COLOSTOMIA, {"portrait_colostomia.png"}}, {EntityType.ENTITY_TURDLET, {"portrait_turdlet.png"}}, {EntityType.ENTITY_RAGLICH, {"portrait_raglich.png"}}, {EntityType.ENTITY_HORNY_BOYS, {"portrait_hornyboys.png"}}, {EntityType.ENTITY_CLUTCH, {"portrait_clutch.png"}}, {EntityType.ENTITY_DOGMA, {"portrait_dogma.png"}}})
 return ____exports
 end,
 ["features.optional.quality.showDreamCatcherItem.postNewRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -4012,7 +4012,7 @@ local ____bossPNGMap = require("features.optional.quality.showDreamCatcherItem.b
 local bossPNGMap = ____bossPNGMap.bossPNGMap
 local ____enums = require("features.optional.quality.showDreamCatcherItem.enums")
 local WarpState = ____enums.WarpState
-local revertItemPrices, warp, shouldWarpToTreasureRoom, saveMinimapDisplayFlags, getTreasureRoomIndex, getRoomItemsAndSetPrice, resetTreasureRoomState, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, initBossSprite
+local revertItemPrices, warp, shouldWarp, saveMinimapDisplayFlags, getRoomIndexForType, getRoomItemsAndSetPrice, getRoomBosses, bossInArray, resetRoomState, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, initBossSprite
 function revertItemPrices(self)
     local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
     for ____, entity in ipairs(collectibles) do
@@ -4023,25 +4023,37 @@ function revertItemPrices(self)
     end
 end
 function warp(self)
+    local stage = g.l:GetStage()
     local startingRoomIndex = g.l:GetStartingRoomIndex()
-    if not shouldWarpToTreasureRoom(nil) then
-        return
-    end
-    local treasureRoomIndex = getTreasureRoomIndex(nil)
-    if treasureRoomIndex == nil then
-        g.run.level.dreamCatcher.warpState = WarpState.FINISHED
+    if not shouldWarp(nil) then
         return
     end
     g.run.level.dreamCatcher.warpState = WarpState.WARPING
     saveMinimapDisplayFlags(nil)
-    changeRoom(nil, treasureRoomIndex)
-    g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice(nil)
+    local treasureRoomIndex = getRoomIndexForType(nil, RoomType.ROOM_TREASURE)
+    local bossRoomIndex = nil
+    if (stage >= 1) and (stage <= 7) then
+        bossRoomIndex = getRoomIndexForType(nil, RoomType.ROOM_BOSS)
+    end
+    if treasureRoomIndex ~= nil then
+        changeRoom(nil, treasureRoomIndex)
+        g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice(nil)
+    end
+    if bossRoomIndex ~= nil then
+        changeRoom(nil, bossRoomIndex)
+        g.run.level.dreamCatcher.bosses = getRoomBosses(nil)
+    end
     changeRoom(nil, startingRoomIndex)
-    resetTreasureRoomState(nil)
+    if treasureRoomIndex ~= nil then
+        resetRoomState(nil, treasureRoomIndex)
+    end
+    if bossRoomIndex ~= nil then
+        resetRoomState(nil, bossRoomIndex)
+    end
     restoreMinimapDisplayFlags(nil)
     g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER
 end
-function shouldWarpToTreasureRoom(self)
+function shouldWarp(self)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local isFirstVisit = g.r:IsFirstVisit()
     local roomIndex = getRoomIndex(nil)
@@ -4069,13 +4081,13 @@ function saveMinimapDisplayFlags(self)
         end
     end
 end
-function getTreasureRoomIndex(self)
+function getRoomIndexForType(self, roomType)
     local rooms = g.l:GetRooms()
     do
         local i = 0
         while i < rooms.Size do
             local room = rooms:Get(i)
-            if (room ~= nil) and (room.Data.Type == RoomType.ROOM_TREASURE) then
+            if (room ~= nil) and (room.Data.Type == roomType) then
                 return room.SafeGridIndex
             end
             i = i + 1
@@ -4095,14 +4107,34 @@ function getRoomItemsAndSetPrice(self)
     end
     return collectibleTypes
 end
-function resetTreasureRoomState(self)
-    local treasureRoomIndex = getTreasureRoomIndex(nil)
-    if treasureRoomIndex ~= nil then
-        local room = g.l:GetRoomByIdx(treasureRoomIndex)
-        room.VisitedCount = 0
-        room.Clear = false
-        room.ClearCount = 0
+function getRoomBosses(self)
+    local bosses = {}
+    for ____, entity in ipairs(
+        Isaac.GetRoomEntities()
+    ) do
+        local npc = entity:ToNPC()
+        if (npc ~= nil) and npc:IsBoss() then
+            local bossArray = {npc.Type, npc.Variant}
+            if not bossInArray(nil, bossArray, bosses) then
+                __TS__ArrayPush(bosses, bossArray)
+            end
+        end
     end
+    return bosses
+end
+function bossInArray(self, newBossArray, bosses)
+    for ____, bossArray in ipairs(bosses) do
+        if (bossArray[1] == newBossArray[1]) and (bossArray[2] == newBossArray[2]) then
+            return true
+        end
+    end
+    return false
+end
+function resetRoomState(self, roomIndex)
+    local room = g.l:GetRoomByIdx(roomIndex)
+    room.VisitedCount = 0
+    room.Clear = false
+    room.ClearCount = 0
 end
 function restoreMinimapDisplayFlags(self)
     for gridIndex, displayFlags in pairs(g.run.level.dreamCatcher.displayFlagsMap) do
@@ -4152,8 +4184,9 @@ function initBossSprite(self, entityType, variant)
             ("Failed to find the boss of " .. tostring(entityType)) .. " in the boss PNG map."
         )
     end
-    local png = pngArray[variant + 1]
-    return initSprite(nil, "gfx/boss.anm2", png)
+    local pngFileName = pngArray[variant + 1]
+    local pngPath = "gfx/ui/boss/" .. pngFileName
+    return initSprite(nil, "gfx/boss.anm2", pngPath)
 end
 function ____exports.main(self)
     if not g.config.showDreamCatcherItem then
@@ -5216,13 +5249,19 @@ end
 return ____exports
 end,
 ["features.optional.major.fastClear.photos"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local ensureAllCases = ____misc.ensureAllCases
 local incrementRNG = ____misc.incrementRNG
-local PhotoSituation, getPhotoSituation, getPhotoSituationRace, doPhotoSituation
+local PhotoSituation, MOM_ROOM_VARIANTS, isMomRoom, getPhotoSituation, getPhotoSituationRace, doPhotoSituation
+function isMomRoom(self)
+    local roomDesc = g.l:GetCurrentRoomDesc()
+    local roomVariant = roomDesc.Data.Variant
+    return __TS__ArrayIncludes(MOM_ROOM_VARIANTS, roomVariant)
+end
 function getPhotoSituation(self)
     local hasPolaroid = g.p:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
     local hasNegative = g.p:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
@@ -5245,98 +5284,98 @@ function getPhotoSituation(self)
     return PhotoSituation.BOTH
 end
 function getPhotoSituationRace(self, goal)
-    local ____switch11 = goal
-    if ____switch11 == "Blue Baby" then
-        goto ____switch11_case_0
-    elseif ____switch11 == "The Lamb" then
-        goto ____switch11_case_1
-    elseif ____switch11 == "Mega Satan" then
-        goto ____switch11_case_2
-    elseif ____switch11 == "Hush" then
-        goto ____switch11_case_3
-    elseif ____switch11 == "Delirium" then
-        goto ____switch11_case_4
-    elseif ____switch11 == "Boss Rush" then
-        goto ____switch11_case_5
-    elseif ____switch11 == "Everything" then
-        goto ____switch11_case_6
-    elseif ____switch11 == "Custom" then
-        goto ____switch11_case_7
+    local ____switch12 = goal
+    if ____switch12 == "Blue Baby" then
+        goto ____switch12_case_0
+    elseif ____switch12 == "The Lamb" then
+        goto ____switch12_case_1
+    elseif ____switch12 == "Mega Satan" then
+        goto ____switch12_case_2
+    elseif ____switch12 == "Hush" then
+        goto ____switch12_case_3
+    elseif ____switch12 == "Delirium" then
+        goto ____switch12_case_4
+    elseif ____switch12 == "Boss Rush" then
+        goto ____switch12_case_5
+    elseif ____switch12 == "Everything" then
+        goto ____switch12_case_6
+    elseif ____switch12 == "Custom" then
+        goto ____switch12_case_7
     end
-    goto ____switch11_case_default
-    ::____switch11_case_0::
+    goto ____switch12_case_default
+    ::____switch12_case_0::
     do
         do
             return PhotoSituation.POLAROID
         end
     end
-    ::____switch11_case_1::
+    ::____switch12_case_1::
     do
         do
             return PhotoSituation.NEGATIVE
         end
     end
-    ::____switch11_case_2::
+    ::____switch12_case_2::
     do
     end
-    ::____switch11_case_3::
+    ::____switch12_case_3::
     do
     end
-    ::____switch11_case_4::
+    ::____switch12_case_4::
     do
     end
-    ::____switch11_case_5::
+    ::____switch12_case_5::
     do
     end
-    ::____switch11_case_6::
+    ::____switch12_case_6::
     do
     end
-    ::____switch11_case_7::
+    ::____switch12_case_7::
     do
         do
             return PhotoSituation.BOTH
         end
     end
-    ::____switch11_case_default::
+    ::____switch12_case_default::
     do
         do
             ensureAllCases(nil, goal)
             return PhotoSituation.RANDOM_BOSS_ITEM
         end
     end
-    ::____switch11_end::
+    ::____switch12_end::
 end
 function doPhotoSituation(self, situation)
     local roomSeed = g.r:GetSpawnSeed()
     local posCenter = Vector(320, 360)
     local posCenterLeft = Vector(280, 360)
     local posCenterRight = Vector(360, 360)
-    local ____switch17 = situation
-    if ____switch17 == PhotoSituation.POLAROID then
-        goto ____switch17_case_0
-    elseif ____switch17 == PhotoSituation.NEGATIVE then
-        goto ____switch17_case_1
-    elseif ____switch17 == PhotoSituation.BOTH then
-        goto ____switch17_case_2
-    elseif ____switch17 == PhotoSituation.RANDOM_BOSS_ITEM then
-        goto ____switch17_case_3
+    local ____switch18 = situation
+    if ____switch18 == PhotoSituation.POLAROID then
+        goto ____switch18_case_0
+    elseif ____switch18 == PhotoSituation.NEGATIVE then
+        goto ____switch18_case_1
+    elseif ____switch18 == PhotoSituation.BOTH then
+        goto ____switch18_case_2
+    elseif ____switch18 == PhotoSituation.RANDOM_BOSS_ITEM then
+        goto ____switch18_case_3
     end
-    goto ____switch17_case_default
-    ::____switch17_case_0::
+    goto ____switch18_case_default
+    ::____switch18_case_0::
     do
         do
             g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed)
-            goto ____switch17_end
+            goto ____switch18_end
         end
     end
-    ::____switch17_case_1::
+    ::____switch18_case_1::
     do
         do
             g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_NEGATIVE, roomSeed)
-            goto ____switch17_end
+            goto ____switch18_end
         end
     end
-    ::____switch17_case_2::
+    ::____switch18_case_2::
     do
         do
             local polaroid = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterLeft, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed):ToPickup()
@@ -5348,10 +5387,10 @@ function doPhotoSituation(self, situation)
             if negative ~= nil then
                 negative.OptionsPickupIndex = 1
             end
-            goto ____switch17_end
+            goto ____switch18_end
         end
     end
-    ::____switch17_case_3::
+    ::____switch18_case_3::
     do
         do
             if g.p:HasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS) then
@@ -5367,16 +5406,16 @@ function doPhotoSituation(self, situation)
             else
                 g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, 0, roomSeed)
             end
-            goto ____switch17_end
+            goto ____switch18_end
         end
     end
-    ::____switch17_case_default::
+    ::____switch18_case_default::
     do
         do
             ensureAllCases(nil, situation)
         end
     end
-    ::____switch17_end::
+    ::____switch18_end::
 end
 PhotoSituation = PhotoSituation or ({})
 PhotoSituation.POLAROID = 0
@@ -5387,10 +5426,11 @@ PhotoSituation.BOTH = 2
 PhotoSituation[PhotoSituation.BOTH] = "BOTH"
 PhotoSituation.RANDOM_BOSS_ITEM = 3
 PhotoSituation[PhotoSituation.RANDOM_BOSS_ITEM] = "RANDOM_BOSS_ITEM"
+MOM_ROOM_VARIANTS = {1060, 1061, 1062, 1063, 1064}
 function ____exports.spawn(self)
     local stage = g.l:GetStage()
     local roomType = g.r:GetType()
-    if (stage == 6) and (roomType == RoomType.ROOM_BOSS) then
+    if ((stage == 6) and (roomType == RoomType.ROOM_BOSS)) and isMomRoom(nil) then
         local situation = getPhotoSituation(nil)
         doPhotoSituation(nil, situation)
     end

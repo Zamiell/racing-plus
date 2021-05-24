@@ -42,35 +42,54 @@ function revertItemPrices() {
   }
 }
 
+// In order to find out what the Treasure Room item is and what the bosses are,
+// we have to warp to the room and look for ourselves
 function warp() {
+  const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
-  if (!shouldWarpToTreasureRoom()) {
-    return;
-  }
-
-  const treasureRoomIndex = getTreasureRoomIndex();
-  if (treasureRoomIndex === null) {
-    // This floor does not have a Treasure Room, so we don't need to do anything further
-    g.run.level.dreamCatcher.warpState = WarpState.FINISHED;
+  if (!shouldWarp()) {
     return;
   }
 
   g.run.level.dreamCatcher.warpState = WarpState.WARPING;
   saveMinimapDisplayFlags();
-  changeRoom(treasureRoomIndex);
-  g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice();
+
+  const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
+  let bossRoomIndex: int | null = null;
+  if (stage >= 1 && stage <= 7) {
+    // We don't need to show what the boss is for floors that always have the same boss
+    bossRoomIndex = getRoomIndexForType(RoomType.ROOM_BOSS);
+  }
+
+  if (treasureRoomIndex !== null) {
+    changeRoom(treasureRoomIndex);
+    g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice();
+  }
+
+  if (bossRoomIndex !== null) {
+    changeRoom(bossRoomIndex);
+    g.run.level.dreamCatcher.bosses = getRoomBosses();
+  }
+
   changeRoom(startingRoomIndex);
-  resetTreasureRoomState();
+
+  if (treasureRoomIndex !== null) {
+    resetRoomState(treasureRoomIndex);
+  }
+
+  if (bossRoomIndex !== null) {
+    resetRoomState(bossRoomIndex);
+  }
+
   restoreMinimapDisplayFlags();
-  // g.run.level.dreamCatcher.bosses.push(EntityType.ENTITY_MONSTRO);
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
   g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER;
 }
 
-function shouldWarpToTreasureRoom() {
+function shouldWarp() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
@@ -106,11 +125,11 @@ function saveMinimapDisplayFlags() {
   }
 }
 
-function getTreasureRoomIndex() {
+function getRoomIndexForType(roomType: RoomType) {
   const rooms = g.l.GetRooms();
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
-    if (room !== null && room.Data.Type === RoomType.ROOM_TREASURE) {
+    if (room !== null && room.Data.Type === roomType) {
       return room.SafeGridIndex;
     }
   }
@@ -144,14 +163,37 @@ function getRoomItemsAndSetPrice() {
   return collectibleTypes;
 }
 
-function resetTreasureRoomState() {
-  const treasureRoomIndex = getTreasureRoomIndex();
-  if (treasureRoomIndex !== null) {
-    const room = g.l.GetRoomByIdx(treasureRoomIndex);
-    room.VisitedCount = 0;
-    room.Clear = false;
-    room.ClearCount = 0;
+function getRoomBosses() {
+  const bosses: Array<[int, int]> = [];
+  for (const entity of Isaac.GetRoomEntities()) {
+    const npc = entity.ToNPC();
+    if (npc !== null && npc.IsBoss()) {
+      const bossArray: [int, int] = [npc.Type, npc.Variant];
+      if (!bossInArray(bossArray, bosses)) {
+        bosses.push(bossArray);
+      }
+    }
   }
+
+  return bosses;
+}
+
+// We have to make a custom function for this because arrays are passed by reference
+function bossInArray(newBossArray: [int, int], bosses: Array<[int, int]>) {
+  for (const bossArray of bosses) {
+    if (bossArray[0] === newBossArray[0] && bossArray[1] === newBossArray[1]) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function resetRoomState(roomIndex: int) {
+  const room = g.l.GetRoomByIdx(roomIndex);
+  room.VisitedCount = 0;
+  room.Clear = false;
+  room.ClearCount = 0;
 }
 
 function restoreMinimapDisplayFlags() {
@@ -212,6 +254,7 @@ function initBossSprite(entityType: EntityType, variant: int) {
   if (pngArray === undefined) {
     error(`Failed to find the boss of ${entityType} in the boss PNG map.`);
   }
-  const png = pngArray[variant];
-  return initSprite("gfx/boss.anm2", png);
+  const pngFileName = pngArray[variant];
+  const pngPath = `gfx/ui/boss/${pngFileName}`;
+  return initSprite("gfx/boss.anm2", pngPath);
 }
