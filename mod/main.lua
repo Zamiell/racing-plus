@@ -2202,7 +2202,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.3"
+____exports.VERSION = "0.57.4"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,

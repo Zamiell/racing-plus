@@ -1,6 +1,6 @@
 {
   "name": "racing-plus",
-  "version": "0.57.3",
+  "version": "0.57.4",
   "description": "A mod for The Binding of Isaac: Afterbirth+",
   "keywords": [
     "isaac",
@@ -11,6 +11,6 @@
   ],
   "license": "GPL-3.0",
   "dependencies": {
-    "isaacscript": "^1.0.101"
+    "isaacscript": "^1.0.102"
   }
 }

@@ -10,7 +10,6 @@ exec echo "Error: requires python"
 import os
 import shutil
 import sys
-import write_version
 
 MOD_NAME = "racing-plus"
 SCRIPT_PATH = os.path.realpath(__file__)
@@ -36,9 +35,6 @@ def main():
     print(PRE_FLIPPING_DIRECTORY)
     if os.path.exists(PRE_FLIPPING_DIRECTORY):
         shutil.rmtree(PRE_FLIPPING_DIRECTORY)
-
-    # Draw the version on the title screen
-    write_version.main()
 
 
 if __name__ == "__main__":

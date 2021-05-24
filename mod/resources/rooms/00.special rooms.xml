@@ -45906,19 +45906,19 @@
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
 		<spawn x="3" y="1">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="4" y="1">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="8" y="1">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="9" y="1">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="2" y="2">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="3" y="2">
 			<entity type="1931" variant="2" subtype="0" weight="1.0"/>
@@ -45936,10 +45936,10 @@
 			<entity type="1931" variant="9" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="10" y="2">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="1" y="3">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="2" y="3">
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
@@ -45948,10 +45948,10 @@
 			<entity type="1931" variant="3" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="4" y="3">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="8" y="3">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="9" y="3">
 			<entity type="1931" variant="8" subtype="0" weight="1.0"/>
@@ -45960,10 +45960,10 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="11" y="3">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="2" y="4">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="3" y="4">
 			<entity type="1931" variant="4" subtype="0" weight="1.0"/>
@@ -45978,19 +45978,19 @@
 			<entity type="1931" variant="7" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="10" y="4">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="3" y="5">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="4" y="5">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="8" y="5">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="9" y="5">
-			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1900" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="58" name="Devil (2 items, black poop)" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
