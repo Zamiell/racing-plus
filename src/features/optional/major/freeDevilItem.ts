@@ -3,13 +3,15 @@ import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
   getPlayers,
+  hasFlag,
+  printAllFlags,
 } from "../../../misc";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmg(
   tookDamage: Entity,
   _damageAmount: float,
-  _damageFlags: DamageFlag,
+  damageFlags: DamageFlag,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ): void {
@@ -17,8 +19,17 @@ export function entityTakeDmg(
     return;
   }
 
+  Isaac.DebugString(`FLAGS: ${damageFlags}`);
+  printAllFlags(damageFlags, 32);
+
   const player = tookDamage.ToPlayer();
-  if (player !== null) {
+  if (
+    player !== null &&
+    // Exclude self-damage from e.g. Curse Room spikes
+    !hasFlag(damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) &&
+    // Exclude self-damage from e.g. Razor
+    !hasFlag(damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
+  ) {
     g.run.freeDevilItem.takenDamage.set(player.ControllerIndex, true);
   }
 }

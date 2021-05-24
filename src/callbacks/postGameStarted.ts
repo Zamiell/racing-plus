@@ -1,3 +1,4 @@
+import * as postPlayerChange from "../customCallbacks/postPlayerChange";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeUselessPills from "../features/mandatory/removeUselessPills";
@@ -40,6 +41,9 @@ export function main(isContinued: boolean): void {
   if (checkCorruptMod() || saveFileCheck.isNotFullyUnlocked()) {
     return;
   }
+
+  // Custom callbacks
+  postPlayerChange.postGameStarted();
 
   // Mandatory features
   removeKarma.postGameStarted();

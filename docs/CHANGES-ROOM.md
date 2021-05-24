@@ -140,6 +140,15 @@ The changed room is as follows:
 
 <br />
 
+### Swarm Spider Fix
+
+In some rooms, Swarm Spiders can get stuck in inaccessible parts of the room.
+
+The change room is as follows:
+
+- Cellar: #1023
+- Burning: #1192
+
 
 
 
@@ -300,7 +309,7 @@ The deleted room is as follows:
 Some rooms in the game do not have anything in them (or just have a few rocks, pits, etc.). These types of rooms rob the player of interesting gameplay.
 
 The removed rooms are as follows:
-- TODO USE A SCRIPT
+- [TODO USE A SCRIPT]
 - Basement/Cellar/Burning: #26, #27, #29, #30, #39, #92, #144, #147, #338, #520, #600, #617, #621, #622, #749, #900, #951, #952
 - Basement/Burning: #32, #217, #223, #229, #230, #281, #282, #286, #287, #288, #290, #291, #292, #315, #1039
 - Cellar: #24, #32, #55, #210, #211, #212, #213, #254, #255, #256, #257, #258, #304, #305, #306, #307, #308

@@ -8,6 +8,7 @@ export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_MR_DOLLY;
 
 // We can verify that the player is playing on a fully unlocked save by file by going to a specific
 // seed on Eden and checking to see if the items are accurate
+// This is called from the PostGameStarted callback
 // This function returns true if the PostGameStarted callback should halt
 export function isNotFullyUnlocked(): boolean {
   const character = g.p.GetPlayerType();
@@ -20,7 +21,10 @@ export function isNotFullyUnlocked(): boolean {
   }
 
   // Not checked
-  if (g.saveFile.state === SaveFileState.NOT_CHECKED) {
+  if (
+    g.saveFile.state === SaveFileState.NOT_CHECKED ||
+    g.saveFile.state === SaveFileState.DEFERRED_UNTIL_NEW_RUN_BEGINS
+  ) {
     // Store what the current run was like
     g.saveFile.oldRun.challenge = challenge;
     g.saveFile.oldRun.character = character;
@@ -28,6 +32,9 @@ export function isNotFullyUnlocked(): boolean {
     g.saveFile.oldRun.seed = startSeedString;
 
     g.saveFile.state = SaveFileState.GOING_TO_EDEN;
+    Isaac.DebugString(
+      "saveFileCheck - Performing a save file check with Eden.",
+    );
   }
 
   // Going to the set seed with Eden
@@ -65,6 +72,7 @@ export function isNotFullyUnlocked(): boolean {
     }
 
     g.saveFile.state = SaveFileState.GOING_BACK;
+    Isaac.DebugString("saveFileCheck - Going back to the old run.");
   }
 
   // Going back to the old challenge/character/seed
@@ -91,6 +99,7 @@ export function isNotFullyUnlocked(): boolean {
     }
 
     g.saveFile.state = SaveFileState.FINISHED;
+    Isaac.DebugString("saveFileCheck - Completed.");
   }
 
   return false;

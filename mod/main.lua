@@ -1963,12 +1963,14 @@ ____exports.default = (function()
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
         self.room = __TS__New(GlobalsRunRoom)
         self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
+        self.currentCharacter = -1
         self.debugChaosCard = false
         self.spedUpFadeIn = false
         self.edenStartingItems = {active = 0, passive = 0, activeSprite = nil, passiveSprite = nil}
         self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, paschalCandleCounters = 0, roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
         self.fastResetFrame = 0
         self.freeDevilItem = {takenDamage = {}, granted = false}
+        self.pocketActiveD6Charge = 0
         self.pillEffects = {}
         self.slideAnimationHappening = false
     end
@@ -2353,6 +2355,9 @@ function ____exports.gridToPos(self, x, y)
     local gridIndex = (y * g.r:GetGridWidth()) + x
     return g.r:GetGridPosition(gridIndex)
 end
+function ____exports.hasFlag(self, flags, flag)
+    return (flags & flag) == flag
+end
 function ____exports.incrementRNG(self, seed)
     local rng = ____exports.initRNG(nil, seed)
     rng:Next()
@@ -2389,6 +2394,19 @@ function ____exports.playingOnSetSeed(self)
     local challenge = Isaac.GetChallenge()
     return (challenge == 0) and customRun
 end
+function ____exports.printAllFlags(self, flags, maxShift)
+    do
+        local i = 0
+        while i <= maxShift do
+            if ____exports.hasFlag(nil, flags, 1 << i) then
+                Isaac.DebugString(
+                    "Has flag: " .. tostring(i)
+                )
+            end
+            i = i + 1
+        end
+    end
+end
 function ____exports.openAllDoors(self)
     do
         local i = 0
@@ -2415,6 +2433,8 @@ local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
 local getPlayers = ____misc.getPlayers
+local hasFlag = ____misc.hasFlag
+local printAllFlags = ____misc.printAllFlags
 local giveTrinket
 function giveTrinket(self, player)
     local character = g.p:GetPlayerType()
@@ -2426,12 +2446,16 @@ function giveTrinket(self, player)
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinketType, g.p.Position, Vector.Zero, nil)
     end
 end
-function ____exports.entityTakeDmg(self, tookDamage, _damageAmount, _damageFlags, _damageSource, _damageCountdownFrames)
+function ____exports.entityTakeDmg(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
     if not g.config.freeDevilItem then
         return
     end
+    Isaac.DebugString(
+        "FLAGS: " .. tostring(damageFlags)
+    )
+    printAllFlags(nil, damageFlags, 32)
     local player = tookDamage:ToPlayer()
-    if player ~= nil then
+    if ((player ~= nil) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_NO_PENALTIES))) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_RED_HEARTS)) then
         g.run.freeDevilItem.takenDamage[player.ControllerIndex] = true
     end
 end
@@ -2484,12 +2508,13 @@ function ____exports.isNotFullyUnlocked(self)
     if g.saveFile.state == SaveFileState.FINISHED then
         return false
     end
-    if g.saveFile.state == SaveFileState.NOT_CHECKED then
+    if (g.saveFile.state == SaveFileState.NOT_CHECKED) or (g.saveFile.state == SaveFileState.DEFERRED_UNTIL_NEW_RUN_BEGINS) then
         g.saveFile.oldRun.challenge = challenge
         g.saveFile.oldRun.character = character
         g.saveFile.oldRun.seededRun = playingOnSetSeed(nil)
         g.saveFile.oldRun.seed = startSeedString
         g.saveFile.state = SaveFileState.GOING_TO_EDEN
+        Isaac.DebugString("saveFileCheck - Performing a save file check with Eden.")
     end
     if g.saveFile.state == SaveFileState.GOING_TO_EDEN then
         local valid = true
@@ -2520,6 +2545,7 @@ function ____exports.isNotFullyUnlocked(self)
             Isaac.DebugString("Valid save file detected.")
         end
         g.saveFile.state = SaveFileState.GOING_BACK
+        Isaac.DebugString("saveFileCheck - Going back to the old run.")
     end
     if g.saveFile.state == SaveFileState.GOING_BACK then
         local valid = true
@@ -2540,6 +2566,7 @@ function ____exports.isNotFullyUnlocked(self)
             return true
         end
         g.saveFile.state = SaveFileState.FINISHED
+        Isaac.DebugString("saveFileCheck - Completed.")
     end
     return false
 end
@@ -3336,6 +3363,83 @@ function ____exports.main(self, tear)
 end
 return ____exports
 end,
+["features.optional.major.startWithD6"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
+function shouldGetPocketActiveD6(self)
+    local character = g.p:GetPlayerType()
+    return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_ESAU)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
+end
+function shouldGetActiveD6(self)
+    local character = g.p:GetPlayerType()
+    return __TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character)
+end
+function givePocketActiveD6(self, charge)
+    g.p:SetPocketActiveItem(CollectibleType.COLLECTIBLE_D6, ActiveSlot.SLOT_POCKET)
+    if charge ~= nil then
+        g.p:SetActiveCharge(charge, ActiveSlot.SLOT_POCKET)
+    end
+end
+function giveActiveD6(self)
+    g.p:AddCollectible(CollectibleType.COLLECTIBLE_D6, 6)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
+end
+function checkGenesisRoom(self)
+    local roomDesc = g.l:GetCurrentRoomDesc()
+    local roomType = g.r:GetType()
+    if ((roomType == RoomType.ROOM_ISAACS) and (roomDesc.Data.Variant == 1000)) and shouldGetPocketActiveD6(nil) then
+        givePocketActiveD6(nil, g.run.pocketActiveD6Charge)
+    end
+end
+TAINTED_CHARACTERS_WITH_POCKET_ACTIVES = {PlayerType.PLAYER_MAGDALENA_B, PlayerType.PLAYER_CAIN_B, PlayerType.PLAYER_JUDAS_B, PlayerType.PLAYER_XXX_B, PlayerType.PLAYER_EVE_B, PlayerType.PLAYER_LAZARUS_B, PlayerType.PLAYER_APOLLYON_B, PlayerType.PLAYER_BETHANY_B, PlayerType.PLAYER_JACOB_B, PlayerType.PLAYER_LAZARUS2_B, PlayerType.PLAYER_JACOB2_B}
+TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES = {PlayerType.PLAYER_ISAAC_B, PlayerType.PLAYER_SAMSON_B, PlayerType.PLAYER_AZAZEL_B, PlayerType.PLAYER_EDEN_B, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_LILITH_B, PlayerType.PLAYER_KEEPER_B, PlayerType.PLAYER_THEFORGOTTEN_B, PlayerType.PLAYER_THESOUL_B}
+function ____exports.postUpdate(self)
+    g.run.pocketActiveD6Charge = g.p:GetActiveCharge(ActiveSlot.SLOT_POCKET)
+end
+function ____exports.postGameStarted(self)
+    if not g.config.startWithD6 then
+        return
+    end
+    if shouldGetPocketActiveD6(nil) then
+        givePocketActiveD6(nil)
+    elseif shouldGetActiveD6(nil) then
+        giveActiveD6(nil)
+    end
+end
+function ____exports.postNewRoom(self)
+    checkGenesisRoom(nil)
+end
+function ____exports.postPlayerChange(self)
+    if shouldGetPocketActiveD6(nil) then
+        givePocketActiveD6(nil, g.run.pocketActiveD6Charge)
+    end
+end
+return ____exports
+end,
+["customCallbacks.postPlayerChange"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local startWithD6 = require("features.optional.major.startWithD6")
+local ____globals = require("globals")
+local g = ____globals.default
+local postPlayerChange
+function postPlayerChange(self)
+    startWithD6:postPlayerChange()
+end
+function ____exports.postUpdate(self)
+    local character = g.p:GetPlayerType()
+    if character ~= g.run.currentCharacter then
+        g.run.currentCharacter = character
+        postPlayerChange(nil)
+    end
+end
+function ____exports.postGameStarted(self)
+    g.run.currentCharacter = g.p:GetPlayerType()
+end
+return ____exports
+end,
 ["features.mandatory.centerStart"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -3528,37 +3632,6 @@ function ____exports.postGameStarted(self)
         g.itemPool:RemoveTrinket(TrinketType.TRINKET_HOLY_CROWN)
         g.itemPool:RemoveTrinket(TrinketType.TRINKET_WICKED_CROWN)
     end
-end
-return ____exports
-end,
-["features.optional.major.startWithD6"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local givePocketActiveD6, giveActiveD6
-function givePocketActiveD6(self)
-    g.p:SetPocketActiveItem(CollectibleType.COLLECTIBLE_D6, ActiveSlot.SLOT_POCKET)
-end
-function giveActiveD6(self)
-    g.p:AddCollectible(CollectibleType.COLLECTIBLE_D6, 6)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
-end
-local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES = {PlayerType.PLAYER_MAGDALENA_B, PlayerType.PLAYER_CAIN_B, PlayerType.PLAYER_JUDAS_B, PlayerType.PLAYER_XXX_B, PlayerType.PLAYER_EVE_B, PlayerType.PLAYER_LAZARUS_B, PlayerType.PLAYER_APOLLYON_B, PlayerType.PLAYER_BETHANY_B, PlayerType.PLAYER_JACOB_B, PlayerType.PLAYER_LAZARUS2_B, PlayerType.PLAYER_JACOB2_B}
-local TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES = {PlayerType.PLAYER_ISAAC_B, PlayerType.PLAYER_SAMSON_B, PlayerType.PLAYER_AZAZEL_B, PlayerType.PLAYER_EDEN_B, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_LILITH_B, PlayerType.PLAYER_KEEPER_B, PlayerType.PLAYER_THEFORGOTTEN_B, PlayerType.PLAYER_THESOUL_B}
-function ____exports.postGameStarted(self)
-    if not g.config.startWithD6 then
-        return
-    end
-    local character = g.p:GetPlayerType()
-    if (character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_ESAU) then
-        givePocketActiveD6(nil)
-    elseif __TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character) then
-        giveActiveD6(nil)
-    elseif __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character) then
-        givePocketActiveD6(nil)
-    end
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
 end
 return ____exports
 end,
@@ -4064,6 +4137,7 @@ local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local fixTeleportInvalidEntrance = require("features.optional.bugfix.fixTeleportInvalidEntrance")
 local fastClearPostNewRoom = require("features.optional.major.fastClear.callbacks.postNewRoom")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
+local startWithD6 = require("features.optional.major.startWithD6")
 local showDreamCatcherItemPostNewRoom = require("features.optional.quality.showDreamCatcherItem.postNewRoom")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
 local ____globals = require("globals")
@@ -4084,6 +4158,7 @@ function ____exports.newRoom(self)
     ____obj[____index] = ____obj[____index] + 1
     detectSlideAnimation:postNewRoom()
     controlsGraphic:postNewRoom()
+    startWithD6:postNewRoom()
     freeDevilItem:postNewRoom()
     fastClearPostNewRoom:main()
     showEdenStartingItems:postNewRoom()
@@ -4144,6 +4219,7 @@ end,
 ["callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local postPlayerChange = require("customCallbacks.postPlayerChange")
 local centerStart = require("features.mandatory.centerStart")
 local removeKarma = require("features.mandatory.removeKarma")
 local removeUselessPills = require("features.mandatory.removeUselessPills")
@@ -4197,6 +4273,7 @@ function ____exports.main(self, isContinued)
     if checkCorruptMod(nil) or saveFileCheck:isNotFullyUnlocked() then
         return
     end
+    postPlayerChange:postGameStarted()
     removeKarma:postGameStarted()
     removeUselessPills:postGameStarted()
     seededDrops:postGameStarted()
@@ -4341,6 +4418,8 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____enums = require("types.enums")
+local SaveFileState = ____enums.SaveFileState
 local ____speedrun = require("features.speedrun.speedrun")
 local checkValidCharOrder = ____speedrun.checkValidCharOrder
 local inSpeedrun = ____speedrun.inSpeedrun
@@ -4385,14 +4464,12 @@ function drawNotFullyUnlocked(self)
     y = y + 10
     Isaac.RenderText("and speedruns. You can download a fully", x, y, 2, 2, 2, 2)
     y = y + 10
-    Isaac.RenderText("unlocked save file at.", x, y, 2, 2, 2, 2)
+    Isaac.RenderText("unlocked save file at:", x, y, 2, 2, 2, 2)
     x = x - 42
     y = y + 20
     Isaac.RenderText("https://www.speedrun.com/repentance/resources", x, y, 2, 2, 2, 2)
     y = y + 20
-    Isaac.RenderText("For save file troubleshooting, please read the", x, y, 2, 2, 2, 2)
-    y = y + 10
-    Isaac.RenderText("following link:", x, y, 2, 2, 2, 2)
+    Isaac.RenderText("If you have problems, please read this guide:", x, y, 2, 2, 2, 2)
     y = y + 20
     Isaac.RenderText("https://pastebin.com/1YY4jb4P", x, y, 2, 2, 2, 2)
 end
@@ -4417,7 +4494,7 @@ function ____exports.postRender(self)
         drawCorrupted(nil)
         return true
     end
-    if not g.saveFile.fullyUnlocked then
+    if (g.saveFile.state == SaveFileState.FINISHED) and (not g.saveFile.fullyUnlocked) then
         drawNotFullyUnlocked(nil)
         return true
     end
@@ -5540,9 +5617,13 @@ return ____exports
 end,
 ["callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local postPlayerChange = require("customCallbacks.postPlayerChange")
 local fastDrop = require("features.optional.hotkeys.fastDrop")
 local fastClearPostUpdates = require("features.optional.major.fastClear.callbacks.postUpdate")
+local startWithD6 = require("features.optional.major.startWithD6")
 function ____exports.main(self)
+    postPlayerChange:postUpdate()
+    startWithD6:postUpdate()
     fastClearPostUpdates:main()
     fastDrop:postUpdate()
 end

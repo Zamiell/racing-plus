@@ -30,6 +30,7 @@ export default class GlobalsRun {
   // Features
   // --------
 
+  currentCharacter = -1 as PlayerType;
   debugChaosCard = false;
   spedUpFadeIn = false;
 
@@ -82,6 +83,7 @@ export default class GlobalsRun {
     granted: false,
   };
 
+  pocketActiveD6Charge: int = 0;
   pillEffects: PillEffect[] = [];
 
   slideAnimationHappening = false;

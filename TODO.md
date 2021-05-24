@@ -1,7 +1,4 @@
 - show boss with dream catcher
-- finish coding seeded drops
-- start game, continue run, reset, still shows not fully unlocked
-
 - write script to look for duplicate rooms / empty rooms
 
 - fast travel

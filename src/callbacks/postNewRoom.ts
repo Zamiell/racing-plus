@@ -4,6 +4,7 @@ import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimatio
 import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import g from "../globals";
@@ -56,6 +57,7 @@ export function newRoom(): void {
   controlsGraphic.postNewRoom();
 
   // Optional features - Major
+  startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
   fastClearPostNewRoom.main();
 

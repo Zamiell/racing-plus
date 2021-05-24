@@ -201,8 +201,9 @@ Post-flip actions:
 
 ### 4) Graphics & Sound Fixes
 
-- The Distant Admiration, Forever Alone, and Friend Zone collectibles now match the color of the actual familiars.
-- The 20/20 collectible is now easier to see.
+- The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
+- The 20/20 sprite is now easier to see.
+- The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.)
 - The audio clips of mom and dad on the Ascent now be silenced.
 - The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
 

@@ -91,6 +91,10 @@ export function gridToPos(x: int, y: int): Vector {
   return g.r.GetGridPosition(gridIndex);
 }
 
+export function hasFlag(flags: int, flag: int): boolean {
+  return (flags & flag) === flag;
+}
+
 export function incrementRNG(seed: int): int {
   const rng = initRNG(seed);
   rng.Next();
@@ -160,6 +164,14 @@ export function playingOnSetSeed(): boolean {
   const challenge = Isaac.GetChallenge();
 
   return challenge === 0 && customRun;
+}
+
+export function printAllFlags(flags: int, maxShift: int): void {
+  for (let i = 0; i <= maxShift; i++) {
+    if (hasFlag(flags, 1 << i)) {
+      Isaac.DebugString(`Has flag: ${i}`);
+    }
+  }
 }
 
 export function openAllDoors(): void {

@@ -1,4 +1,5 @@
 import g from "../../globals";
+import { SaveFileState } from "../../types/enums";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const STARTING_X = 115;
@@ -17,7 +18,10 @@ export function postRender(): boolean {
     return true;
   }
 
-  if (!g.saveFile.fullyUnlocked) {
+  if (
+    g.saveFile.state === SaveFileState.FINISHED &&
+    !g.saveFile.fullyUnlocked
+  ) {
     drawNotFullyUnlocked();
     return true;
   }
@@ -136,7 +140,7 @@ function drawNotFullyUnlocked() {
   y += 10;
   Isaac.RenderText("and speedruns. You can download a fully", x, y, 2, 2, 2, 2);
   y += 10;
-  Isaac.RenderText("unlocked save file at.", x, y, 2, 2, 2, 2);
+  Isaac.RenderText("unlocked save file at:", x, y, 2, 2, 2, 2);
   x -= 42;
   y += 20;
   Isaac.RenderText(
@@ -150,7 +154,7 @@ function drawNotFullyUnlocked() {
   );
   y += 20;
   Isaac.RenderText(
-    "For save file troubleshooting, please read the",
+    "If you have problems, please read this guide:",
     x,
     y,
     2,
@@ -158,8 +162,6 @@ function drawNotFullyUnlocked() {
     2,
     2,
   );
-  y += 10;
-  Isaac.RenderText("following link:", x, y, 2, 2, 2, 2);
   y += 20;
   Isaac.RenderText("https://pastebin.com/1YY4jb4P", x, y, 2, 2, 2, 2);
 }
