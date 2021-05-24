@@ -26,7 +26,7 @@ Overall, the main point of the Racing+ mod is to enable multiplayer racing with 
 
 With that said, Racing+ does make a lot of smaller changes that you might not be able to pick-up on right away. This page documents every change that it performs.
 
-Most changes are prefixed by a code, like: <code>001</code>. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818&searchtext=modconfigmenu). If a change does not have a prefix, you won't be able to toggle that option, since it is accomplished by modifying the game's resource files directly.
+Most changes are prefixed by a code, like: `001`. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818&searchtext=modconfigmenu). If a change does not have a prefix, you won't be able to toggle that option, since it is accomplished by modifying the game's resource files directly.
 
 <br />
 
@@ -45,31 +45,40 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 1) The D6 for Everyone
 
-<code>001</code> All characters now start with the D6, either as a pocket item or an active item. (Much of the strategy in the game is centered around having this item, and it mitigates run disparity.)
+`001` All characters now start with the D6, either as a pocket item or an active item.
+
+> Why? Much of the strategy in the game is centered around having this item. The best players win races more consistently when having the D6 because it mitigates run disparity.
 
 ### 2) No Curses
 
-<code>002</code> All curses are automatically disabled.
+`002` All curses are automatically disabled.
+
+> Why? Curses make the game less-skilled based, robbing the player of meaningful decision-making and strategy.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- <code>003</code> On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
+- `003` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
   - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
+
+> Why? Some characters do not start with enough health to take a devil deal. Instead of buffing the health of only some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
+
 - Devil Rooms and Angel Rooms have been [customized](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md#devil-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
   - Average items per angel room are increased from [TODO] to [TODO].
 
+> Why? The best players separate themselves from the mid-tier players by not taking any damage and hitting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
+
 ### 4) Fast-Reset
 
-<code>004</code> The restart/reset key immediately restarts the game, as long as you have entered 3 or less rooms.
+`004` The restart/reset key immediately restarts the game, as long as you have entered 3 or less rooms.
 
 ### 5) Fast-Clear (Wrath of the Lamb Style Room Clear)
 
-<code>005</code> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
+`005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
 
 ### 6) Fast-Travel Between Floors and Crawlspaces
 
-<code>006</code> The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+`006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
 
 ### 7) Room Fixes
 
@@ -111,12 +120,24 @@ Post-flip actions:
 
 ### 2) Gameplay & Quality of Life Changes
 
-- <code>021</code> Judas starts with a bomb.
-- <code>022</code> Samson's Child's Heart is automatically dropped. (This is a quality of life change, since the Child's Heart is usually immediately dropped.)
-- <code>023</code> Eden's starting items will be shown in the starting room.
-- <code>024</code> If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
-- <code>025</code> The fade in at the beginning of a run is sped-up.
-- <code>026</code> A custom console is provided that is better than the vanilla console.
+- `021` Judas starts with a bomb.
+
+> Why? Historically, Isaac was the main character used in tournaments. After Balls of Steel 4, tournaments started using Judas as the main character instead, since he had a higher damage multiplier. At this time, it was desirable for Judas to have a bomb so that he would play in a similar way to Isaac. Starting with a bomb makes the game slightly more skill-based, since it gives players the option to bomb a tinted rock, escape a slow 2x2 room, and so forth.
+
+- `022` Samson's Child's Heart is automatically dropped.
+
+>  Why? Historically, when playing as Samson, players immediately drop the Child's Heart to improve their odds at good room drops.
+
+- `023` Eden's starting items will be shown in the starting room.
+
+> Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to quickly reset the game if the items are bad.
+
+- `024` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+
+> Why? Since the fast-travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
+
+- `025` The fade in at the beginning of a run is sped-up.
+- `026` A custom console is provided that is better than the vanilla console.
 - Some items with no effect are removed:
   - the Karma trinket (since all Donation Machines are removed)
   - the Amnesia pill (since curses are removed)
@@ -204,7 +225,7 @@ Post-flip actions:
 - The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - The 20/20 sprite is now easier to see.
 - The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.)
-- The audio clips of mom and dad on the Ascent now be silenced.
+- The audio clips of mom and dad on the Ascent are silenced.
 - The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
 
 <!--
