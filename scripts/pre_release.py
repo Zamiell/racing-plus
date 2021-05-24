@@ -1,7 +1,16 @@
+#!/bin/bash
+# http://stackoverflow.com/questions/18993438/shebang-env-preferred-python-version
+# http://stackoverflow.com/questions/12070516/conditional-shebang-line-for-different-versions-of-python
+""":"
+which python3 >/dev/null 2>&1 && exec python3 "$0" "$@"
+which python  >/dev/null 2>&1 && exec python  "$0" "$@"
+exec echo "Error: requires python"
+":"""
+
 import os
 import shutil
 import sys
-import write_version
+from . import write_version
 
 MOD_NAME = "racing-plus"
 SCRIPT_PATH = os.path.realpath(__file__)
