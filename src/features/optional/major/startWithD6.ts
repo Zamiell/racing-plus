@@ -50,16 +50,19 @@ function shouldGetPocketActiveD6() {
   const character = g.p.GetPlayerType();
 
   return (
-    // The original characters
+    // The original characters, minus Jacob & Esau
     (character >= PlayerType.PLAYER_ISAAC &&
-      character <= PlayerType.PLAYER_ESAU) ||
+      character <= PlayerType.PLAYER_BETHANY) ||
     TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES.includes(character)
   );
 }
 
 function shouldGetActiveD6() {
   const character = g.p.GetPlayerType();
-  return TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character);
+  return (
+    character === PlayerType.PLAYER_JACOB ||
+    TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character)
+  );
 }
 
 function givePocketActiveD6(charge?: int) {

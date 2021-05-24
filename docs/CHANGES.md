@@ -70,11 +70,13 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 4) Fast-Reset
 
-`004` The restart/reset key immediately restarts the game, as long as you have entered 3 or less rooms.
+`004` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
 ### 5) Fast-Clear (Wrath of the Lamb Style Room Clear)
 
 `005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
+
+[TODO this is not implemented yet]
 
 ### 6) Fast-Travel Between Floors and Crawlspaces
 
@@ -126,11 +128,11 @@ Post-flip actions:
 
 - `022` Samson's Child's Heart is automatically dropped.
 
->  Why? Historically, when playing as Samson, players immediately drop the Child's Heart to improve their odds at good room drops.
+>  Why? When playing as Samson, players immediately drop the Child's Heart to improve their odds at good room drops.
 
 - `023` Eden's starting items will be shown in the starting room.
 
-> Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to quickly reset the game if the items are bad.
+> Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
 - `024` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
 
