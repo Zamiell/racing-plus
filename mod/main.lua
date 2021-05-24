@@ -1903,16 +1903,14 @@ end,
 ["features.optional.quality.showDreamCatcherItem.enums"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 ____exports.WarpState = WarpState or ({})
-____exports.WarpState.NOT_WARPING = 0
-____exports.WarpState[____exports.WarpState.NOT_WARPING] = "NOT_WARPING"
-____exports.WarpState.WARPING_TO_TREASURE_ROOM = 1
-____exports.WarpState[____exports.WarpState.WARPING_TO_TREASURE_ROOM] = "WARPING_TO_TREASURE_ROOM"
-____exports.WarpState.WARPING_TO_STARTING_ROOM = 2
-____exports.WarpState[____exports.WarpState.WARPING_TO_STARTING_ROOM] = "WARPING_TO_STARTING_ROOM"
-____exports.WarpState.REPOSITIONING_PLAYER = 3
+____exports.WarpState.INITIAL = 0
+____exports.WarpState[____exports.WarpState.INITIAL] = "INITIAL"
+____exports.WarpState.WARPING = 1
+____exports.WarpState[____exports.WarpState.WARPING] = "WARPING"
+____exports.WarpState.REPOSITIONING_PLAYER = 2
 ____exports.WarpState[____exports.WarpState.REPOSITIONING_PLAYER] = "REPOSITIONING_PLAYER"
-____exports.WarpState.FINISHED_WARPING = 4
-____exports.WarpState[____exports.WarpState.FINISHED_WARPING] = "FINISHED_WARPING"
+____exports.WarpState.FINISHED = 3
+____exports.WarpState[____exports.WarpState.FINISHED] = "FINISHED"
 return ____exports
 end,
 ["types.GlobalsRunLevel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -1925,7 +1923,7 @@ ____exports.default = (function()
     local GlobalsRunLevel = ____exports.default
     GlobalsRunLevel.name = "GlobalsRunLevel"
     function GlobalsRunLevel.prototype.____constructor(self, stage, stageType)
-        self.dreamCatcher = {items = {}, dreamCatcherSprite = nil, itemSprites = {}, warpState = WarpState.NOT_WARPING, displayFlagsMap = {}}
+        self.dreamCatcher = {items = {}, bosses = {}, dreamCatcherSprite = nil, itemSprites = {}, bossSprites = {}, warpState = WarpState.INITIAL, displayFlagsMap = {}}
         self.stage = stage
         self.stageType = stageType
     end
@@ -2200,7 +2198,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.56.1"
+____exports.VERSION = "0.57.2"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -3450,6 +3448,9 @@ local getPlayers = ____misc.getPlayers
 local distributeAround
 function ____exports.centerPlayers(self)
     local centerPos = g.r:GetCenterPos()
+    if g.g:IsGreedMode() then
+        return
+    end
     local players = getPlayers(nil)
     if #players == 1 then
         g.p.Position = centerPos
@@ -3489,9 +3490,7 @@ function distributeAround(self, centerPos, distance, numPoints)
     return positions
 end
 function ____exports.postGameStarted(self)
-    if (g.g.Difficulty == Difficulty.DIFFICULTY_NORMAL) or (g.g.Difficulty == Difficulty.DIFFICULTY_HARD) then
-        ____exports.centerPlayers(nil)
-    end
+    ____exports.centerPlayers(nil)
 end
 return ____exports
 end,
@@ -3815,7 +3814,7 @@ function shouldDrawControlsGraphic(self)
     local stage = g.l:GetStage()
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local roomIndex = getRoomIndex(nil)
-    return (((g.g.Difficulty == Difficulty.DIFFICULTY_NORMAL) or (g.g.Difficulty == Difficulty.DIFFICULTY_HARD)) and (stage == 1)) and (roomIndex == startingRoomIndex)
+    return ((not g.g:IsGreedMode()) and (stage == 1)) and (roomIndex == startingRoomIndex)
 end
 function ____exports.postNewRoom(self)
     drawControlsGraphic(nil)
@@ -3929,6 +3928,12 @@ function ____exports.main(self)
 end
 return ____exports
 end,
+["features.optional.quality.showDreamCatcherItem.bossPNGMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+____exports.bossPNGMap = __TS__New(Map, {{EntityType.ENTITY_LARRYJR, {"portrait_19.0_larryjr.png", "portrait_19.1_thehollow.png"}}, {EntityType.ENTITY_MONSTRO, {"portrait_20.0_monstro.png"}}})
+return ____exports
+end,
 ["features.optional.quality.showDreamCatcherItem.postNewRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -3936,90 +3941,49 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local changeRoom = ____misc.changeRoom
-local ensureAllCases = ____misc.ensureAllCases
 local getPlayers = ____misc.getPlayers
 local getRoomIndex = ____misc.getRoomIndex
 local initGlowingItemSprite = ____misc.initGlowingItemSprite
+local initSprite = ____misc.initSprite
 local ____enums = require("types.enums")
 local PickupPriceCustom = ____enums.PickupPriceCustom
+local ____bossPNGMap = require("features.optional.quality.showDreamCatcherItem.bossPNGMap")
+local bossPNGMap = ____bossPNGMap.bossPNGMap
 local ____enums = require("features.optional.quality.showDreamCatcherItem.enums")
 local WarpState = ____enums.WarpState
-local warp, shouldWarpToTreasureRoom, saveMinimapDisplayFlags, getTreasureRoomIndex, getRoomItemsAndSetPrice, resetTreasureRoom, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, revertItemPrices
+local revertItemPrices, warp, shouldWarpToTreasureRoom, saveMinimapDisplayFlags, getTreasureRoomIndex, getRoomItemsAndSetPrice, resetTreasureRoomState, restoreMinimapDisplayFlags, setItemSprites, shouldShowSprites, initBossSprite
+function revertItemPrices(self)
+    local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
+    for ____, entity in ipairs(collectibles) do
+        local pickup = entity:ToPickup()
+        if (pickup ~= nil) and (pickup.Price == PickupPriceCustom.PRICE_NO_MINIMAP) then
+            pickup.Price = 0
+        end
+    end
+end
 function warp(self)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
-    local ____switch5 = g.run.level.dreamCatcher.warpState
-    if ____switch5 == WarpState.NOT_WARPING then
-        goto ____switch5_case_0
-    elseif ____switch5 == WarpState.WARPING_TO_TREASURE_ROOM then
-        goto ____switch5_case_1
-    elseif ____switch5 == WarpState.WARPING_TO_STARTING_ROOM then
-        goto ____switch5_case_2
-    elseif ____switch5 == WarpState.REPOSITIONING_PLAYER then
-        goto ____switch5_case_3
-    elseif ____switch5 == WarpState.FINISHED_WARPING then
-        goto ____switch5_case_4
+    if not shouldWarpToTreasureRoom(nil) then
+        return
     end
-    goto ____switch5_case_default
-    ::____switch5_case_0::
-    do
-        do
-            if shouldWarpToTreasureRoom(nil) then
-                saveMinimapDisplayFlags(nil)
-                local treasureRoomIndex = getTreasureRoomIndex(nil)
-                if treasureRoomIndex == nil then
-                    g.run.level.dreamCatcher.warpState = WarpState.FINISHED_WARPING
-                    return
-                end
-                g.run.level.dreamCatcher.warpState = WarpState.WARPING_TO_TREASURE_ROOM
-                changeRoom(nil, treasureRoomIndex)
-            end
-            goto ____switch5_end
-        end
+    local treasureRoomIndex = getTreasureRoomIndex(nil)
+    if treasureRoomIndex == nil then
+        g.run.level.dreamCatcher.warpState = WarpState.FINISHED
+        return
     end
-    ::____switch5_case_1::
-    do
-        do
-            g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice(nil)
-            g.run.level.dreamCatcher.warpState = WarpState.WARPING_TO_STARTING_ROOM
-            changeRoom(nil, startingRoomIndex)
-            goto ____switch5_end
-        end
-    end
-    ::____switch5_case_2::
-    do
-        do
-            resetTreasureRoom(nil)
-            restoreMinimapDisplayFlags(nil)
-            g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER
-            goto ____switch5_end
-        end
-    end
-    ::____switch5_case_3::
-    do
-        do
-            goto ____switch5_end
-        end
-    end
-    ::____switch5_case_4::
-    do
-        do
-            goto ____switch5_end
-        end
-    end
-    ::____switch5_case_default::
-    do
-        do
-            ensureAllCases(nil, g.run.level.dreamCatcher.warpState)
-            goto ____switch5_end
-        end
-    end
-    ::____switch5_end::
+    g.run.level.dreamCatcher.warpState = WarpState.WARPING
+    saveMinimapDisplayFlags(nil)
+    changeRoom(nil, treasureRoomIndex)
+    g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice(nil)
+    changeRoom(nil, startingRoomIndex)
+    resetTreasureRoomState(nil)
+    restoreMinimapDisplayFlags(nil)
+    g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER
 end
 function shouldWarpToTreasureRoom(self)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local isFirstVisit = g.r:IsFirstVisit()
     local roomIndex = getRoomIndex(nil)
-    local notOnGreedMode = (g.g.Difficulty == Difficulty.DIFFICULTY_NORMAL) or (g.g.Difficulty == Difficulty.DIFFICULTY_HARD)
     local someoneHasDreamCatcher = false
     for ____, player in ipairs(
         getPlayers(nil)
@@ -4029,7 +3993,7 @@ function shouldWarpToTreasureRoom(self)
             break
         end
     end
-    return ((notOnGreedMode and someoneHasDreamCatcher) and (roomIndex == startingRoomIndex)) and isFirstVisit
+    return (((someoneHasDreamCatcher and (g.run.level.dreamCatcher.warpState == WarpState.INITIAL)) and (not g.g:IsGreedMode())) and (roomIndex == startingRoomIndex)) and isFirstVisit
 end
 function saveMinimapDisplayFlags(self)
     local rooms = g.l:GetRooms()
@@ -4070,7 +4034,7 @@ function getRoomItemsAndSetPrice(self)
     end
     return collectibleTypes
 end
-function resetTreasureRoom(self)
+function resetTreasureRoomState(self)
     local treasureRoomIndex = getTreasureRoomIndex(nil)
     if treasureRoomIndex ~= nil then
         local room = g.l:GetRoomByIdx(treasureRoomIndex)
@@ -4090,6 +4054,7 @@ function setItemSprites(self)
     if not shouldShowSprites(nil) then
         g.run.level.dreamCatcher.dreamCatcherSprite = nil
         g.run.level.dreamCatcher.itemSprites = {}
+        g.run.level.dreamCatcher.bossSprites = {}
         return
     end
     g.run.level.dreamCatcher.dreamCatcherSprite = initGlowingItemSprite(nil, CollectibleType.COLLECTIBLE_DREAM_CATCHER)
@@ -4103,28 +4068,39 @@ function setItemSprites(self)
             i = i + 1
         end
     end
+    do
+        local i = 0
+        while i < #g.run.level.dreamCatcher.bosses do
+            if g.run.level.dreamCatcher.bossSprites[i + 1] == nil then
+                local entityType, variant = table.unpack(g.run.level.dreamCatcher.bosses[i + 1])
+                g.run.level.dreamCatcher.bossSprites[i + 1] = initBossSprite(nil, entityType, variant)
+            end
+            i = i + 1
+        end
+    end
 end
 function shouldShowSprites(self)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local roomIndex = getRoomIndex(nil)
-    return ((#g.run.level.dreamCatcher.items > 0) and (roomIndex == startingRoomIndex)) and ((g.g.Difficulty == Difficulty.DIFFICULTY_NORMAL) or (g.g.Difficulty == Difficulty.DIFFICULTY_HARD))
+    return ((#g.run.level.dreamCatcher.items > 0) and (roomIndex == startingRoomIndex)) and (not g.g:IsGreedMode())
 end
-function revertItemPrices(self)
-    local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
-    for ____, entity in ipairs(collectibles) do
-        local pickup = entity:ToPickup()
-        if (pickup ~= nil) and (pickup.Price == PickupPriceCustom.PRICE_NO_MINIMAP) then
-            pickup.Price = 0
-        end
+function initBossSprite(self, entityType, variant)
+    local pngArray = bossPNGMap:get(entityType)
+    if pngArray == nil then
+        error(
+            ("Failed to find the boss of " .. tostring(entityType)) .. " in the boss PNG map."
+        )
     end
+    local png = pngArray[variant + 1]
+    return initSprite(nil, "gfx/boss.anm2", png)
 end
 function ____exports.main(self)
     if not g.config.showDreamCatcherItem then
         return
     end
+    revertItemPrices(nil)
     warp(nil)
     setItemSprites(nil)
-    revertItemPrices(nil)
 end
 return ____exports
 end,
@@ -4613,7 +4589,7 @@ local WarpState = ____enums.WarpState
 local SPRITE_SPACING, repositionPlayer, drawItemSprites
 function repositionPlayer(self)
     if g.run.level.dreamCatcher.warpState == WarpState.REPOSITIONING_PLAYER then
-        g.run.level.dreamCatcher.warpState = WarpState.FINISHED_WARPING
+        g.run.level.dreamCatcher.warpState = WarpState.FINISHED
         centerPlayers(nil)
     end
 end
@@ -4623,18 +4599,32 @@ function drawItemSprites(self)
     if g.run.slideAnimationHappening and (playerAnimation ~= "Appear") then
         return
     end
+    local topLeftRoomPosition = gridToPos(nil, 1, 1)
+    local nextToDreamCatcherPosition = gridToPos(nil, 2, 1)
     if g.run.level.dreamCatcher.dreamCatcherSprite ~= nil then
-        local topLeftRoomPosition = gridToPos(nil, 1, 1)
+        local sprite = g.run.level.dreamCatcher.dreamCatcherSprite
         local renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition)
-        g.run.level.dreamCatcher.dreamCatcherSprite:RenderLayer(0, renderPosition)
+        sprite:RenderLayer(0, renderPosition)
     end
     do
         local i = 0
         while i < #g.run.level.dreamCatcher.itemSprites do
             local sprite = g.run.level.dreamCatcher.itemSprites[i + 1]
-            local topLeftRoomPosition = gridToPos(nil, 2, 1)
-            local renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition)
-            local positionAdjustment = Vector(SPRITE_SPACING * i, 0)
+            local renderPosition = Isaac.WorldToRenderPosition(nextToDreamCatcherPosition)
+            local numRightShifts = i
+            local positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0)
+            local position = renderPosition:__add(positionAdjustment)
+            sprite:RenderLayer(0, position)
+            i = i + 1
+        end
+    end
+    do
+        local i = 0
+        while i < #g.run.level.dreamCatcher.bossSprites do
+            local sprite = g.run.level.dreamCatcher.bossSprites[i + 1]
+            local renderPosition = Isaac.WorldToRenderPosition(nextToDreamCatcherPosition)
+            local numRightShifts = i + #g.run.level.dreamCatcher.itemSprites
+            local positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0)
             local position = renderPosition:__add(positionAdjustment)
             sprite:RenderLayer(0, position)
             i = i + 1

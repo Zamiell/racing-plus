@@ -10,7 +10,7 @@ exec echo "Error: requires python"
 import os
 import shutil
 import sys
-from . import write_version
+import write_version
 
 MOD_NAME = "racing-plus"
 SCRIPT_PATH = os.path.realpath(__file__)

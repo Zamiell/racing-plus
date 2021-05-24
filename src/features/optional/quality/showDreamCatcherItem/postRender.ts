@@ -17,7 +17,7 @@ export function main(): void {
 
 function repositionPlayer() {
   if (g.run.level.dreamCatcher.warpState === WarpState.REPOSITIONING_PLAYER) {
-    g.run.level.dreamCatcher.warpState = WarpState.FINISHED_WARPING;
+    g.run.level.dreamCatcher.warpState = WarpState.FINISHED;
     centerPlayers();
   }
 }
@@ -30,17 +30,33 @@ function drawItemSprites() {
     return;
   }
 
+  const topLeftRoomPosition = gridToPos(1, 1);
+  const nextToDreamCatcherPosition = gridToPos(2, 1);
+
   if (g.run.level.dreamCatcher.dreamCatcherSprite !== null) {
-    const topLeftRoomPosition = gridToPos(1, 1);
+    const sprite = g.run.level.dreamCatcher.dreamCatcherSprite;
     const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);
-    g.run.level.dreamCatcher.dreamCatcherSprite.RenderLayer(0, renderPosition);
+    sprite.RenderLayer(0, renderPosition);
   }
 
   for (let i = 0; i < g.run.level.dreamCatcher.itemSprites.length; i++) {
     const sprite = g.run.level.dreamCatcher.itemSprites[i];
-    const topLeftRoomPosition = gridToPos(2, 1);
-    const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);
-    const positionAdjustment = Vector(SPRITE_SPACING * i, 0);
+    const renderPosition = Isaac.WorldToRenderPosition(
+      nextToDreamCatcherPosition,
+    );
+    const numRightShifts = i;
+    const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
+    const position = renderPosition.__add(positionAdjustment);
+    sprite.RenderLayer(0, position);
+  }
+
+  for (let i = 0; i < g.run.level.dreamCatcher.bossSprites.length; i++) {
+    const sprite = g.run.level.dreamCatcher.bossSprites[i];
+    const renderPosition = Isaac.WorldToRenderPosition(
+      nextToDreamCatcherPosition,
+    );
+    const numRightShifts = i + g.run.level.dreamCatcher.itemSprites.length;
+    const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.__add(positionAdjustment);
     sprite.RenderLayer(0, position);
   }

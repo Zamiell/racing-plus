@@ -6,9 +6,12 @@ export default class GlobalsRunLevel {
 
   dreamCatcher = {
     items: [] as CollectibleType[],
+    /** Bosses are stored as an array of "[entityType, variant]". */
+    bosses: [] as Array<[EntityType, int]>,
     dreamCatcherSprite: null as Sprite | null,
     itemSprites: [] as Sprite[],
-    warpState: WarpState.NOT_WARPING,
+    bossSprites: [] as Sprite[],
+    warpState: WarpState.INITIAL,
     displayFlagsMap: new LuaTable<int, int>(),
   };
 

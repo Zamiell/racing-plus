@@ -1,12 +1,13 @@
 import g from "../../../../globals";
 import {
   changeRoom,
-  ensureAllCases,
   getPlayers,
   getRoomIndex,
   initGlowingItemSprite,
+  initSprite,
 } from "../../../../misc";
 import { PickupPriceCustom } from "../../../../types/enums";
+import { bossPNGMap } from "./bossPNGMap";
 import { WarpState } from "./enums";
 
 export function main(): void {
@@ -14,73 +15,65 @@ export function main(): void {
     return;
   }
 
+  revertItemPrices(); // This must be before the "warp()" function
   warp();
   setItemSprites();
-  revertItemPrices();
+}
+
+// When we initially visited the room, we set the prices of the items to an arbitrary value
+// Now that we have arrived in the room for real, reset the prices back to the way that they are
+// supposed to be
+function revertItemPrices() {
+  const collectibles = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+    -1,
+    false,
+    false,
+  );
+  for (const entity of collectibles) {
+    const pickup = entity.ToPickup();
+    if (
+      pickup !== null &&
+      pickup.Price === PickupPriceCustom.PRICE_NO_MINIMAP
+    ) {
+      pickup.Price = 0;
+    }
+  }
 }
 
 function warp() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
-  switch (g.run.level.dreamCatcher.warpState) {
-    case WarpState.NOT_WARPING: {
-      if (shouldWarpToTreasureRoom()) {
-        saveMinimapDisplayFlags();
-
-        const treasureRoomIndex = getTreasureRoomIndex();
-        if (treasureRoomIndex === null) {
-          // This floor does not have a Treasure Room, so we don't need to do anything further
-          g.run.level.dreamCatcher.warpState = WarpState.FINISHED_WARPING;
-          return;
-        }
-        g.run.level.dreamCatcher.warpState = WarpState.WARPING_TO_TREASURE_ROOM;
-        changeRoom(treasureRoomIndex);
-      }
-
-      break;
-    }
-
-    case WarpState.WARPING_TO_TREASURE_ROOM: {
-      g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice();
-      g.run.level.dreamCatcher.warpState = WarpState.WARPING_TO_STARTING_ROOM;
-      changeRoom(startingRoomIndex);
-
-      break;
-    }
-
-    case WarpState.WARPING_TO_STARTING_ROOM: {
-      resetTreasureRoom();
-      restoreMinimapDisplayFlags();
-
-      // We cannot reposition the player in the PostNewRoom callback for some reason,
-      // so mark to do it on the next render frame
-      g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER;
-      break;
-    }
-
-    case WarpState.REPOSITIONING_PLAYER: {
-      break;
-    }
-
-    case WarpState.FINISHED_WARPING: {
-      break;
-    }
-
-    default: {
-      ensureAllCases(g.run.level.dreamCatcher.warpState);
-      break;
-    }
+  if (!shouldWarpToTreasureRoom()) {
+    return;
   }
+
+  const treasureRoomIndex = getTreasureRoomIndex();
+  if (treasureRoomIndex === null) {
+    // This floor does not have a Treasure Room, so we don't need to do anything further
+    g.run.level.dreamCatcher.warpState = WarpState.FINISHED;
+    return;
+  }
+
+  g.run.level.dreamCatcher.warpState = WarpState.WARPING;
+  saveMinimapDisplayFlags();
+  changeRoom(treasureRoomIndex);
+  g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice();
+  changeRoom(startingRoomIndex);
+  resetTreasureRoomState();
+  restoreMinimapDisplayFlags();
+  // g.run.level.dreamCatcher.bosses.push(EntityType.ENTITY_MONSTRO);
+
+  // We cannot reposition the player in the PostNewRoom callback for some reason,
+  // so mark to do it on the next render frame
+  g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER;
 }
 
 function shouldWarpToTreasureRoom() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
-
-  const notOnGreedMode =
-    g.g.Difficulty === Difficulty.DIFFICULTY_NORMAL ||
-    g.g.Difficulty === Difficulty.DIFFICULTY_HARD;
 
   let someoneHasDreamCatcher = false;
   for (const player of getPlayers()) {
@@ -91,8 +84,10 @@ function shouldWarpToTreasureRoom() {
   }
 
   return (
-    notOnGreedMode &&
     someoneHasDreamCatcher &&
+    g.run.level.dreamCatcher.warpState === WarpState.INITIAL &&
+    // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
+    !g.g.IsGreedMode() &&
     roomIndex === startingRoomIndex &&
     isFirstVisit
   );
@@ -149,7 +144,7 @@ function getRoomItemsAndSetPrice() {
   return collectibleTypes;
 }
 
-function resetTreasureRoom() {
+function resetTreasureRoomState() {
   const treasureRoomIndex = getTreasureRoomIndex();
   if (treasureRoomIndex !== null) {
     const room = g.l.GetRoomByIdx(treasureRoomIndex);
@@ -173,6 +168,7 @@ function setItemSprites() {
   if (!shouldShowSprites()) {
     g.run.level.dreamCatcher.dreamCatcherSprite = null;
     g.run.level.dreamCatcher.itemSprites = [];
+    g.run.level.dreamCatcher.bossSprites = [];
     return;
   }
 
@@ -187,6 +183,16 @@ function setItemSprites() {
         initGlowingItemSprite(collectibleType);
     }
   }
+
+  for (let i = 0; i < g.run.level.dreamCatcher.bosses.length; i++) {
+    if (g.run.level.dreamCatcher.bossSprites[i] === null) {
+      const [entityType, variant] = g.run.level.dreamCatcher.bosses[i];
+      g.run.level.dreamCatcher.bossSprites[i] = initBossSprite(
+        entityType,
+        variant,
+      );
+    }
+  }
 }
 
 // Only show the sprites in the starting room
@@ -197,26 +203,15 @@ function shouldShowSprites() {
     g.run.level.dreamCatcher.items.length > 0 &&
     roomIndex === startingRoomIndex &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
-    (g.g.Difficulty === Difficulty.DIFFICULTY_NORMAL ||
-      g.g.Difficulty === Difficulty.DIFFICULTY_HARD)
+    !g.g.IsGreedMode()
   );
 }
 
-function revertItemPrices() {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
-  );
-  for (const entity of collectibles) {
-    const pickup = entity.ToPickup();
-    if (
-      pickup !== null &&
-      pickup.Price === PickupPriceCustom.PRICE_NO_MINIMAP
-    ) {
-      pickup.Price = 0;
-    }
+function initBossSprite(entityType: EntityType, variant: int) {
+  const pngArray = bossPNGMap.get(entityType);
+  if (pngArray === undefined) {
+    error(`Failed to find the boss of ${entityType} in the boss PNG map.`);
   }
+  const png = pngArray[variant];
+  return initSprite("gfx/boss.anm2", png);
 }

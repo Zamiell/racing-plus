@@ -56,10 +56,7 @@ function shouldDrawControlsGraphic() {
   const roomIndex = getRoomIndex();
 
   return (
-    (g.g.Difficulty === Difficulty.DIFFICULTY_NORMAL ||
-      g.g.Difficulty === Difficulty.DIFFICULTY_HARD) &&
-    stage === 1 &&
-    roomIndex === startingRoomIndex
+    !g.g.IsGreedMode() && stage === 1 && roomIndex === startingRoomIndex
     // TODO add logic for races
   );
 }

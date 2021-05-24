@@ -4,18 +4,17 @@ import g from "../../globals";
 import { getPlayers } from "../../misc";
 
 export function postGameStarted(): void {
-  // Don't center the players in Greed Mode, since if the player starts at the center of the room,
-  // they they will immediately touch the trigger button
-  if (
-    g.g.Difficulty === Difficulty.DIFFICULTY_NORMAL ||
-    g.g.Difficulty === Difficulty.DIFFICULTY_HARD
-  ) {
-    centerPlayers();
-  }
+  centerPlayers();
 }
 
 export function centerPlayers(): void {
   const centerPos = g.r.GetCenterPos();
+
+  // Don't center the players in Greed Mode, since if the player starts at the center of the room,
+  // they they will immediately touch the trigger button
+  if (g.g.IsGreedMode()) {
+    return;
+  }
 
   // By default, the player starts near the bottom door
   // Instead, put the player in the middle of the room
