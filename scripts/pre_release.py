@@ -33,6 +33,7 @@ PRE_FLIPPING_DIRECTORY = os.path.join(
 
 def main():
     # Remove the "pre-flipping" directory, since it isn't necessary to send this to the end-user
+    print(PRE_FLIPPING_DIRECTORY)
     if os.path.exists(PRE_FLIPPING_DIRECTORY):
         shutil.rmtree(PRE_FLIPPING_DIRECTORY)
 
