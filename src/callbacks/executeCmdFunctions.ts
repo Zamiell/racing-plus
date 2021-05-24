@@ -1,4 +1,5 @@
 import CARD_MAP from "../cardMap";
+import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
 import {
   EDEN_ACTIVE_ITEM,
@@ -286,6 +287,15 @@ functionMap.set("sounds", (_params: string) => {
   }
 });
 
+functionMap.set("speed", (_params: string) => {
+  g.run.debugSpeed = !g.run.debugSpeed;
+  const enabled = g.run.debugSpeed ? "Enabled" : "Disabled";
+  print(`${enabled} max speed.`);
+
+  g.p.AddCacheFlags(CacheFlag.CACHE_SPEED);
+  g.p.EvaluateItems();
+});
+
 functionMap.set("trap", (_params: string) => {
   trapdoor();
 });
@@ -296,4 +306,10 @@ functionMap.set("trapdoor", (_params: string) => {
 
 functionMap.set("treasure", (_params: string) => {
   g.p.UseCard(Card.CARD_STARS);
+});
+
+functionMap.set("version", (_params: string) => {
+  const msg = `Racing+ version: ${VERSION}`;
+  Isaac.DebugString(msg);
+  print(msg);
 });

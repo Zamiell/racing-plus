@@ -1,4 +1,5 @@
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
+import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
 import * as NPCUpdate from "./callbacks/NPCUpdate";
@@ -41,6 +42,7 @@ modConfigMenu.register();
 racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main); // 0
 racingPlus.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
 racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
+racingPlus.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
 racingPlus.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main); // 11
 racingPlus.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
 racingPlus.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main); // 15

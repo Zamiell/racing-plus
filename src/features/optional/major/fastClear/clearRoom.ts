@@ -218,3 +218,7 @@ function getChargesToAdd(player: EntityPlayer, slot: ActiveSlot) {
   // Clearing a room grants 1 charge by default
   return 1;
 }
+
+export function setDeferClearForGhost(value: boolean): void {
+  g.run.fastClear.deferClearForGhost = value;
+}

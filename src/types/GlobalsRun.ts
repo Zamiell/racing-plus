@@ -18,7 +18,7 @@ export default class GlobalsRun {
   level = new GlobalsRunLevel(0, 0);
 
   // Tracking per room
-  room = new GlobalsRunRoom();
+  room = new GlobalsRunRoom(true);
 
   race = {
     finished: false,
@@ -26,13 +26,19 @@ export default class GlobalsRun {
     victoryLaps: 0,
   };
 
+  // ----------------
+  // Custom Callbacks
+  // ----------------
+
+  ghostForm = false;
+  currentCharacter = -1 as PlayerType;
+
   // --------
   // Features
   // --------
 
-  currentCharacter = -1 as PlayerType;
   debugChaosCard = false;
-  spedUpFadeIn = false;
+  debugSpeed = false;
 
   edenStartingItems = {
     active: 0 as CollectibleType,
@@ -66,12 +72,13 @@ export default class GlobalsRun {
     /** Used to prevent the vanilla photos from spawning. */
     vanillaPhotosSpawning: false,
 
-    paschalCandleCounters: 0,
+    /**
+     * If we are in ghost form after touching a white fire, then we need to allow the vanilla room
+     * clear to happen at least once so that the game can turn us back from the ghost form.
+     */
+    deferClearForGhost: false,
 
-    /** Used to generate seeded rewards after a fast-clear. */
-    roomClearAwardSeed: 0,
-    /** Used to generate seeded rewards after a fast-clear. */
-    roomClearAwardSeedDevilAngel: 0,
+    paschalCandleCounters: 0,
   };
 
   /** Needed for speedruns to return to the same character. */
@@ -86,5 +93,11 @@ export default class GlobalsRun {
   pocketActiveD6Charge: int = 0;
   pillEffects: PillEffect[] = [];
 
+  seededDrops = {
+    roomClearAwardSeed: 0,
+    roomClearAwardSeedDevilAngel: 0,
+  };
+
   slideAnimationHappening = false;
+  spedUpFadeIn = false;
 }

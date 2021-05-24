@@ -43,13 +43,14 @@ export function newRoom(): void {
   const roomDesc = g.l.GetCurrentRoomDesc();
   const roomStageID = roomDesc.Data.StageID;
   const roomVariant = roomDesc.Data.Variant;
+  const isClear = g.r.IsClear();
 
   Isaac.DebugString(
     `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType})`,
   );
 
   // Set variables
-  g.run.room = new GlobalsRunRoom();
+  g.run.room = new GlobalsRunRoom(isClear);
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
   // Mandatory features

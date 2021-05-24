@@ -36,10 +36,4 @@ export function printFastClearVariables(): void {
   Isaac.DebugString(
     `- paschalCandleCounters: ${g.run.fastClear.paschalCandleCounters}`,
   );
-  Isaac.DebugString(
-    `- roomClearAwardSeed: ${g.run.fastClear.roomClearAwardSeed}`,
-  );
-  Isaac.DebugString(
-    `- roomClearAwardSeedDevilAngel: ${g.run.fastClear.roomClearAwardSeedDevilAngel}`,
-  );
 }

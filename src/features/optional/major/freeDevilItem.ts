@@ -4,7 +4,6 @@ import {
   getOpenTrinketSlot,
   getPlayers,
   hasFlag,
-  printAllFlags,
 } from "../../../misc";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
@@ -18,9 +17,6 @@ export function entityTakeDmg(
   if (!g.config.freeDevilItem) {
     return;
   }
-
-  Isaac.DebugString(`FLAGS: ${damageFlags}`);
-  printAllFlags(damageFlags, 32);
 
   const player = tookDamage.ToPlayer();
   if (

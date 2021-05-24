@@ -39,7 +39,8 @@ function checkClearRoom() {
     !roomClear &&
     checkAllPressurePlatesPushed() &&
     // Under certain conditions, the room can be clear of enemies on the first frame
-    roomFrameCount > 1
+    roomFrameCount > 1 &&
+    !g.run.fastClear.deferClearForGhost
   ) {
     clearRoom();
   }

@@ -1938,7 +1938,8 @@ ____exports.default = (function()
     ____exports.default = __TS__Class()
     local GlobalsRunRoom = ____exports.default
     GlobalsRunRoom.name = "GlobalsRunRoom"
-    function GlobalsRunRoom.prototype.____constructor(self)
+    function GlobalsRunRoom.prototype.____constructor(self, clear)
+        self.clear = clear
     end
     return GlobalsRunRoom
 end)()
@@ -1959,18 +1960,21 @@ ____exports.default = (function()
         self.restart = false
         self.roomsEntered = 0
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
-        self.room = __TS__New(GlobalsRunRoom)
+        self.room = __TS__New(GlobalsRunRoom, true)
         self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
+        self.ghostForm = false
         self.currentCharacter = -1
         self.debugChaosCard = false
-        self.spedUpFadeIn = false
+        self.debugSpeed = false
         self.edenStartingItems = {active = 0, passive = 0, activeSprite = nil, passiveSprite = nil}
-        self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, paschalCandleCounters = 0, roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
+        self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, deferClearForGhost = false, paschalCandleCounters = 0}
         self.fastResetFrame = 0
         self.freeDevilItem = {takenDamage = {}, granted = false}
         self.pocketActiveD6Charge = 0
         self.pillEffects = {}
+        self.seededDrops = {roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
         self.slideAnimationHappening = false
+        self.spedUpFadeIn = false
     end
     return GlobalsRun
 end)()
@@ -2198,7 +2202,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.2"
+____exports.VERSION = "0.57.3"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -2245,12 +2249,6 @@ function ____exports.printFastClearVariables(self)
     )
     Isaac.DebugString(
         "- paschalCandleCounters: " .. tostring(g.run.fastClear.paschalCandleCounters)
-    )
-    Isaac.DebugString(
-        "- roomClearAwardSeed: " .. tostring(g.run.fastClear.roomClearAwardSeed)
-    )
-    Isaac.DebugString(
-        "- roomClearAwardSeedDevilAngel: " .. tostring(g.run.fastClear.roomClearAwardSeedDevilAngel)
     )
 end
 return ____exports
@@ -2432,7 +2430,6 @@ local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
 local getPlayers = ____misc.getPlayers
 local hasFlag = ____misc.hasFlag
-local printAllFlags = ____misc.printAllFlags
 local giveTrinket
 function giveTrinket(self, player)
     local character = g.p:GetPlayerType()
@@ -2448,10 +2445,6 @@ function ____exports.entityTakeDmg(self, tookDamage, _damageAmount, damageFlags,
     if not g.config.freeDevilItem then
         return
     end
-    Isaac.DebugString(
-        "FLAGS: " .. tostring(damageFlags)
-    )
-    printAllFlags(nil, damageFlags, 32)
     local player = tookDamage:ToPlayer()
     if ((player ~= nil) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_NO_PENALTIES))) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_RED_HEARTS)) then
         g.run.freeDevilItem.takenDamage[player.ControllerIndex] = true
@@ -2483,6 +2476,39 @@ local freeDevilItem = require("features.optional.major.freeDevilItem")
 function ____exports.main(self, tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
     freeDevilItem:entityTakeDmg(tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
     return nil
+end
+return ____exports
+end,
+["callbacks.evaluateCacheFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local debugSpeed
+function debugSpeed(self, player)
+    if g.run.debugSpeed then
+        player.MoveSpeed = 2
+    end
+end
+local functionMap = __TS__New(Map)
+____exports.default = functionMap
+functionMap:set(
+    CacheFlag.CACHE_SPEED,
+    function(____, player)
+        debugSpeed(nil, player)
+    end
+)
+return ____exports
+end,
+["callbacks.evaluateCache"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____evaluateCacheFunctions = require("callbacks.evaluateCacheFunctions")
+local evaluateCacheFunctions = ____evaluateCacheFunctions.default
+function ____exports.main(self, player, cacheFlag)
+    local evaluateCacheFunction = evaluateCacheFunctions:get(cacheFlag)
+    if evaluateCacheFunction ~= nil then
+        evaluateCacheFunction(nil, player)
+    end
 end
 return ____exports
 end,
@@ -2690,6 +2716,8 @@ require("lualib_bundle");
 local ____exports = {}
 local ____cardMap = require("cardMap")
 local CARD_MAP = ____cardMap.default
+local ____constants = require("constants")
+local VERSION = ____constants.VERSION
 local ____debugFunction = require("debugFunction")
 local debugFunction = ____debugFunction.default
 local debugFunction2 = ____debugFunction.debugFunction2
@@ -3040,6 +3068,16 @@ functionMap:set(
     end
 )
 functionMap:set(
+    "speed",
+    function(____, _params)
+        g.run.debugSpeed = not g.run.debugSpeed
+        local enabled = (g.run.debugSpeed and "Enabled") or "Disabled"
+        print(enabled .. " max speed.")
+        g.p:AddCacheFlags(CacheFlag.CACHE_SPEED)
+        g.p:EvaluateItems()
+    end
+)
+functionMap:set(
     "trap",
     function(____, _params)
         trapdoor(nil)
@@ -3055,6 +3093,14 @@ functionMap:set(
     "treasure",
     function(____, _params)
         g.p:UseCard(Card.CARD_STARS)
+    end
+)
+functionMap:set(
+    "version",
+    function(____, _params)
+        local msg = "Racing+ version: " .. VERSION
+        Isaac.DebugString(msg)
+        print(msg)
     end
 )
 return ____exports
@@ -3513,8 +3559,22 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local incrementRNG = ____misc.incrementRNG
+local initRNG = ____misc.initRNG
 local playingOnSetSeed = ____misc.playingOnSetSeed
-local removeSeededItemsTrinkets
+local initVariables, removeSeededItemsTrinkets
+function initVariables(self)
+    local startSeed = g.seeds:GetStartSeed()
+    g.run.seededDrops.roomClearAwardSeed = startSeed
+    local rng = initRNG(nil, startSeed)
+    do
+        local i = 0
+        while i < 500 do
+            rng:Next()
+            i = i + 1
+        end
+    end
+    g.run.seededDrops.roomClearAwardSeedDevilAngel = rng:GetSeed()
+end
 function removeSeededItemsTrinkets(self)
     if playingOnSetSeed(nil) then
         g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
@@ -3538,11 +3598,11 @@ function ____exports.spawn(self)
     local centerPos = g.r:GetCenterPos()
     local seed
     if (roomType == RoomType.ROOM_DEVIL) or (roomType == RoomType.ROOM_ANGEL) then
-        g.run.fastClear.roomClearAwardSeedDevilAngel = incrementRNG(nil, g.run.fastClear.roomClearAwardSeedDevilAngel)
-        seed = g.run.fastClear.roomClearAwardSeedDevilAngel
+        g.run.seededDrops.roomClearAwardSeedDevilAngel = incrementRNG(nil, g.run.seededDrops.roomClearAwardSeedDevilAngel)
+        seed = g.run.seededDrops.roomClearAwardSeedDevilAngel
     else
-        g.run.fastClear.roomClearAwardSeed = incrementRNG(nil, g.run.fastClear.roomClearAwardSeed)
-        seed = g.run.fastClear.roomClearAwardSeed
+        g.run.seededDrops.roomClearAwardSeed = incrementRNG(nil, g.run.seededDrops.roomClearAwardSeed)
+        seed = g.run.seededDrops.roomClearAwardSeed
     end
     local rng = RNG()
     rng:SetSeed(seed, 35)
@@ -3613,6 +3673,7 @@ function ____exports.spawn(self)
     end
 end
 function ____exports.postGameStarted(self)
+    initVariables(nil)
     removeSeededItemsTrinkets(nil)
 end
 return ____exports
@@ -4126,10 +4187,11 @@ function ____exports.newRoom(self)
     local roomDesc = g.l:GetCurrentRoomDesc()
     local roomStageID = roomDesc.Data.StageID
     local roomVariant = roomDesc.Data.Variant
+    local isClear = g.r:IsClear()
     Isaac.DebugString(
         ((((((("MC_POST_NEW_ROOM_2 - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ")"
     )
-    g.run.room = __TS__New(GlobalsRunRoom)
+    g.run.room = __TS__New(GlobalsRunRoom, isClear)
     local ____obj, ____index = g.run, "roomsEntered"
     ____obj[____index] = ____obj[____index] + 1
     detectSlideAnimation:postNewRoom()
@@ -4776,75 +4838,6 @@ function ____exports.main(self)
     showEdenStartingItems:postRender()
     showDreamCatcherItemPostRender:main()
     customConsole:postRender()
-end
-return ____exports
-end,
-["features.optional.hotkeys.fastDrop"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local getPlayers = ____misc.getPlayers
-local checkInput, checkInputAll, checkInputTrinkets, checkInputPocket, fastDrop
-function checkInput(self)
-    for ____, player in ipairs(
-        getPlayers(nil)
-    ) do
-        checkInputAll(nil, player)
-        checkInputTrinkets(nil, player)
-        checkInputPocket(nil, player)
-    end
-end
-function checkInputAll(self, player)
-    if (g.config.fastDropAllKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropAllKeyboard, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.ALL)
-    end
-    if (g.config.fastDropAllController ~= -1) and Input.IsButtonPressed(g.config.fastDropAllController, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.ALL)
-    end
-end
-function checkInputTrinkets(self, player)
-    if (g.config.fastDropTrinketsKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropTrinketsKeyboard, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
-    end
-    if (g.config.fastDropTrinketsController ~= -1) and Input.IsButtonPressed(g.config.fastDropTrinketsController, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
-    end
-end
-function checkInputPocket(self, player)
-    if (g.config.fastDropPocketKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropPocketKeyboard, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
-    end
-    if (g.config.fastDropPocketController ~= -1) and Input.IsButtonPressed(g.config.fastDropPocketController, player.ControllerIndex) then
-        fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
-    end
-end
-function fastDrop(self, player, target)
-    if not player:IsItemQueueEmpty() then
-        return
-    end
-    if (target == ____exports.FastDropTarget.ALL) or (target == ____exports.FastDropTarget.TRINKETS) then
-        local pos3 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
-        player:DropTrinket(pos3, false)
-        local pos4 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
-        player:DropTrinket(pos4, false)
-    end
-    if (target == ____exports.FastDropTarget.ALL) or (target == ____exports.FastDropTarget.POCKET) then
-        local pos1 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
-        player:DropPocketItem(0, pos1)
-        local pos2 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
-        player:DropPocketItem(1, pos2)
-    end
-end
-____exports.FastDropTarget = FastDropTarget or ({})
-____exports.FastDropTarget.ALL = 0
-____exports.FastDropTarget[____exports.FastDropTarget.ALL] = "ALL"
-____exports.FastDropTarget.TRINKETS = 1
-____exports.FastDropTarget[____exports.FastDropTarget.TRINKETS] = "TRINKETS"
-____exports.FastDropTarget.POCKET = 2
-____exports.FastDropTarget[____exports.FastDropTarget.POCKET] = "POCKET"
-function ____exports.postUpdate(self)
-    checkInput(nil)
 end
 return ____exports
 end,
@@ -5550,6 +5543,130 @@ function ____exports.default(self)
     addCharge(nil)
     bagFamiliars:clearedRoom()
 end
+function ____exports.setDeferClearForGhost(self, value)
+    g.run.fastClear.deferClearForGhost = value
+end
+return ____exports
+end,
+["customCallbacks.ghostForm"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
+local ____globals = require("globals")
+local g = ____globals.default
+local shouldCheckForWhiteFire, ghostFormOn
+function shouldCheckForWhiteFire(self)
+    local stage = g.l:GetStage()
+    local stageType = g.l:GetStageType()
+    return ((not g.run.ghostForm) and (stage == 2)) and ((stageType == StageType.STAGETYPE_REPENTANCE) or (stageType == StageType.STAGETYPE_REPENTANCE_B))
+end
+function ghostFormOn(self)
+    g.run.ghostForm = true
+    fastClearClearRoom:setDeferClearForGhost(true)
+end
+local MIN_DISTANCE_TO_TOUCH_FIRE = 40
+function ____exports.postUpdate(self)
+    if not shouldCheckForWhiteFire(nil) then
+        return
+    end
+    local whiteFires = Isaac.FindByType(EntityType.ENTITY_FIREPLACE, 4, -1, false, false)
+    for ____, whiteFire in ipairs(whiteFires) do
+        if whiteFire.Position:Distance(g.p.Position) <= MIN_DISTANCE_TO_TOUCH_FIRE then
+            ghostFormOn(nil)
+        end
+    end
+end
+function ____exports.ghostFormOff(self)
+    g.run.ghostForm = false
+end
+return ____exports
+end,
+["customCallbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
+local ____globals = require("globals")
+local g = ____globals.default
+local ghostForm = require("customCallbacks.ghostForm")
+local roomClear
+function roomClear(self)
+    ghostForm:ghostFormOff()
+    fastClearClearRoom:setDeferClearForGhost(false)
+end
+function ____exports.postUpdate(self)
+    local clear = g.r:IsClear()
+    if clear ~= g.run.room.clear then
+        g.run.room.clear = clear
+        roomClear(nil)
+    end
+end
+return ____exports
+end,
+["features.optional.hotkeys.fastDrop"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local checkInput, checkInputAll, checkInputTrinkets, checkInputPocket, fastDrop
+function checkInput(self)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        checkInputAll(nil, player)
+        checkInputTrinkets(nil, player)
+        checkInputPocket(nil, player)
+    end
+end
+function checkInputAll(self, player)
+    if (g.config.fastDropAllKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropAllKeyboard, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.ALL)
+    end
+    if (g.config.fastDropAllController ~= -1) and Input.IsButtonPressed(g.config.fastDropAllController, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.ALL)
+    end
+end
+function checkInputTrinkets(self, player)
+    if (g.config.fastDropTrinketsKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropTrinketsKeyboard, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
+    end
+    if (g.config.fastDropTrinketsController ~= -1) and Input.IsButtonPressed(g.config.fastDropTrinketsController, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
+    end
+end
+function checkInputPocket(self, player)
+    if (g.config.fastDropPocketKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropPocketKeyboard, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
+    end
+    if (g.config.fastDropPocketController ~= -1) and Input.IsButtonPressed(g.config.fastDropPocketController, player.ControllerIndex) then
+        fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
+    end
+end
+function fastDrop(self, player, target)
+    if not player:IsItemQueueEmpty() then
+        return
+    end
+    if (target == ____exports.FastDropTarget.ALL) or (target == ____exports.FastDropTarget.TRINKETS) then
+        local pos3 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
+        player:DropTrinket(pos3, false)
+        local pos4 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
+        player:DropTrinket(pos4, false)
+    end
+    if (target == ____exports.FastDropTarget.ALL) or (target == ____exports.FastDropTarget.POCKET) then
+        local pos1 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
+        player:DropPocketItem(0, pos1)
+        local pos2 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
+        player:DropPocketItem(1, pos2)
+    end
+end
+____exports.FastDropTarget = FastDropTarget or ({})
+____exports.FastDropTarget.ALL = 0
+____exports.FastDropTarget[____exports.FastDropTarget.ALL] = "ALL"
+____exports.FastDropTarget.TRINKETS = 1
+____exports.FastDropTarget[____exports.FastDropTarget.TRINKETS] = "TRINKETS"
+____exports.FastDropTarget.POCKET = 2
+____exports.FastDropTarget[____exports.FastDropTarget.POCKET] = "POCKET"
+function ____exports.postUpdate(self)
+    checkInput(nil)
+end
 return ____exports
 end,
 ["features.optional.major.fastClear.callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -5572,7 +5689,7 @@ function checkClearRoom(self)
     if (g.run.fastClear.delayFrame ~= 0) and (gameFrameCount >= g.run.fastClear.delayFrame) then
         g.run.fastClear.delayFrame = 0
     end
-    if ((((g.run.fastClear.aliveEnemiesCount == 0) and (g.run.fastClear.delayFrame == 0)) and (not roomClear)) and checkAllPressurePlatesPushed(nil)) and (roomFrameCount > 1) then
+    if (((((g.run.fastClear.aliveEnemiesCount == 0) and (g.run.fastClear.delayFrame == 0)) and (not roomClear)) and checkAllPressurePlatesPushed(nil)) and (roomFrameCount > 1)) and (not g.run.fastClear.deferClearForGhost) then
         clearRoom(nil)
     end
 end
@@ -5607,12 +5724,16 @@ return ____exports
 end,
 ["callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local ghostForm = require("customCallbacks.ghostForm")
 local postPlayerChange = require("customCallbacks.postPlayerChange")
+local postRoomClear = require("customCallbacks.postRoomClear")
 local fastDrop = require("features.optional.hotkeys.fastDrop")
 local fastClearPostUpdates = require("features.optional.major.fastClear.callbacks.postUpdate")
 local startWithD6 = require("features.optional.major.startWithD6")
 function ____exports.main(self)
     postPlayerChange:postUpdate()
+    postRoomClear:postUpdate()
+    ghostForm:postUpdate()
     startWithD6:postUpdate()
     fastClearPostUpdates:main()
     fastDrop:postUpdate()
@@ -5975,6 +6096,7 @@ end,
 ["main"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local entityTakeDmg = require("callbacks.entityTakeDmg")
+local evaluateCache = require("callbacks.evaluateCache")
 local executeCmd = require("callbacks.executeCmd")
 local getPillEffect = require("callbacks.getPillEffect")
 local NPCUpdate = require("callbacks.NPCUpdate")
@@ -6011,6 +6133,7 @@ modConfigMenu:register()
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
+racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
 racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
@@ -6026,34 +6149,6 @@ racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
-return ____exports
-end,
-["features.optional.major.fastClear.callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local initRNG = ____misc.initRNG
-local initVariables
-function initVariables(self)
-    local startSeed = g.seeds:GetStartSeed()
-    g.run.fastClear.roomClearAwardSeed = startSeed
-    local rng = initRNG(nil, startSeed)
-    do
-        local i = 0
-        while i < 500 do
-            rng:Next()
-            i = i + 1
-        end
-    end
-    g.run.fastClear.roomClearAwardSeedDevilAngel = rng:GetSeed()
-end
-function ____exports.postGameStarted(self)
-    if not g.config.fastClear then
-        return
-    end
-    initVariables(nil)
-end
 return ____exports
 end,
 ["types.RevelCopyTable"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]

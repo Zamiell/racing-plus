@@ -2,7 +2,7 @@
 // causing a seed to be different
 
 import g from "../../globals";
-import { incrementRNG, playingOnSetSeed } from "../../misc";
+import { incrementRNG, initRNG, playingOnSetSeed } from "../../misc";
 
 export function shouldSpawnSeededDrop(): boolean {
   const roomType = g.r.GetType();
@@ -45,15 +45,15 @@ export function spawn(): void {
     roomType === RoomType.ROOM_DEVIL || // 14
     roomType === RoomType.ROOM_ANGEL // 15
   ) {
-    g.run.fastClear.roomClearAwardSeedDevilAngel = incrementRNG(
-      g.run.fastClear.roomClearAwardSeedDevilAngel,
+    g.run.seededDrops.roomClearAwardSeedDevilAngel = incrementRNG(
+      g.run.seededDrops.roomClearAwardSeedDevilAngel,
     );
-    seed = g.run.fastClear.roomClearAwardSeedDevilAngel;
+    seed = g.run.seededDrops.roomClearAwardSeedDevilAngel;
   } else {
-    g.run.fastClear.roomClearAwardSeed = incrementRNG(
-      g.run.fastClear.roomClearAwardSeed,
+    g.run.seededDrops.roomClearAwardSeed = incrementRNG(
+      g.run.seededDrops.roomClearAwardSeed,
     );
-    seed = g.run.fastClear.roomClearAwardSeed;
+    seed = g.run.seededDrops.roomClearAwardSeed;
   }
 
   // Get a random value between 0 and 1 that will determine what kind of reward we get
@@ -172,7 +172,22 @@ export function spawn(): void {
 }
 
 export function postGameStarted(): void {
+  initVariables();
   removeSeededItemsTrinkets();
+}
+
+function initVariables() {
+  const startSeed = g.seeds.GetStartSeed();
+
+  g.run.seededDrops.roomClearAwardSeed = startSeed;
+
+  // We want to insure that the second RNG counter does not overlap with the first one
+  // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
+  const rng = initRNG(startSeed);
+  for (let i = 0; i < 500; i++) {
+    rng.Next();
+  }
+  g.run.seededDrops.roomClearAwardSeedDevilAngel = rng.GetSeed();
 }
 
 function removeSeededItemsTrinkets() {
