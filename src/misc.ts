@@ -1,6 +1,11 @@
 import { MAX_VANILLA_ITEM_ID } from "./constants";
 import g from "./globals";
 
+const EXCLUDED_CHARACTERS = [
+  PlayerType.PLAYER_ESAU, // 20
+  PlayerType.PLAYER_THESOUL_B, // 40
+];
+
 export function anyPlayerHas(collectibleType: CollectibleType): boolean {
   for (const player of getPlayers()) {
     if (player.HasCollectible(collectibleType)) {
@@ -60,6 +65,10 @@ export function getItemMaxCharges(itemID: int): int {
   return itemConfigItem.MaxCharges;
 }
 
+export function getPlayerLuaTableIndex(player: EntityPlayer): string {
+  return player.ControllerIndex.toString();
+}
+
 export function getTearsStat(fireDelay: int): float {
   return 30 / (fireDelay + 1);
 }
@@ -92,11 +101,6 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
   error(`The player has ${maxTrinkets} trinket slots, which is not supported.`);
   return null;
 }
-
-const EXCLUDED_CHARACTERS = [
-  PlayerType.PLAYER_ESAU, // 20
-  PlayerType.PLAYER_THESOUL_B, // 40
-];
 
 export function getPlayers(): EntityPlayer[] {
   const players: EntityPlayer[] = [];

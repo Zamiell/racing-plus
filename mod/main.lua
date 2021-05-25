@@ -1983,7 +1983,7 @@ ____exports.default = (function()
         self.switchForgotten = false
         for ____, player in ipairs(players) do
             local character = player:GetPlayerType()
-            local index = player.ControllerIndex
+            local index = tostring(player.ControllerIndex)
             self.ghostForm[index] = false
             self.currentCharacters[index] = character
             self.fastClear.paschalCandleCounters[index] = 1
@@ -2222,7 +2222,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.9"
+____exports.VERSION = "0.57.10"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -2290,6 +2290,7 @@ end
 function ____exports.log(self, msg)
     Isaac.DebugString(msg)
 end
+EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 function ____exports.anyPlayerHas(self, collectibleType)
     for ____, player in ipairs(
         ____exports.getPlayers(nil)
@@ -2337,6 +2338,9 @@ function ____exports.getItemMaxCharges(self, itemID)
     end
     return itemConfigItem.MaxCharges
 end
+function ____exports.getPlayerLuaTableIndex(self, player)
+    return tostring(player.ControllerIndex)
+end
 function ____exports.getTearsStat(self, fireDelay)
     return 30 / (fireDelay + 1)
 end
@@ -2367,7 +2371,6 @@ function ____exports.getOpenTrinketSlot(self, player)
     )
     return nil
 end
-EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 function ____exports.getRandom(self, x, y, seed)
     local rng = ____exports.initRNG(nil, seed)
     return rng:RandomInt((y - x) + 1) + x
@@ -2467,6 +2470,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getFireDelayFromTearsStat = ____misc.getFireDelayFromTearsStat
+local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getTearsStat = ____misc.getTearsStat
 local isSelfDamage = ____misc.isSelfDamage
 local MAX_COUNTERS = 5
@@ -2477,13 +2481,14 @@ function ____exports.clearedRoom(self, familiar)
         return
     end
     local player = familiar.Player
-    local oldCounters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
+    local index = getPlayerLuaTableIndex(nil, player)
+    local oldCounters = g.run.fastClear.paschalCandleCounters[index]
     local newCounters = oldCounters + 1
     if newCounters > MAX_COUNTERS then
         newCounters = MAX_COUNTERS
     end
     if oldCounters ~= newCounters then
-        g.run.fastClear.paschalCandleCounters[player.ControllerIndex] = newCounters
+        g.run.fastClear.paschalCandleCounters[index] = newCounters
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
     end
@@ -2493,7 +2498,9 @@ function ____exports.postRender(self, familiar)
     if sprite:GetFilename() ~= CUSTOM_ANM2_PATH then
         sprite:Load(CUSTOM_ANM2_PATH, true)
     end
-    local counters = g.run.fastClear.paschalCandleCounters[familiar.Player.ControllerIndex]
+    local player = familiar.Player
+    local index = getPlayerLuaTableIndex(nil, player)
+    local counters = g.run.fastClear.paschalCandleCounters[index]
     local animation = sprite:GetAnimation()
     local correctAnimation = "ModifiedIdle" .. tostring(counters)
     if animation ~= correctAnimation then
@@ -2501,7 +2508,11 @@ function ____exports.postRender(self, familiar)
     end
 end
 function ____exports.fireDelay(self, player)
-    local counters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE) then
+        return
+    end
+    local index = getPlayerLuaTableIndex(nil, player)
+    local counters = g.run.fastClear.paschalCandleCounters[index]
     if counters == nil then
         return
     end
@@ -2520,9 +2531,13 @@ function ____exports.entityTakeDmg(self, tookDamage, damageFlags)
     if player == nil then
         return
     end
-    local counters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
-    if ((player ~= nil) and (not isSelfDamage(nil, damageFlags))) and (counters > 0) then
-        g.run.fastClear.paschalCandleCounters[player.ControllerIndex] = 0
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE) then
+        return
+    end
+    local index = getPlayerLuaTableIndex(nil, player)
+    local counters = g.run.fastClear.paschalCandleCounters[index]
+    if (not isSelfDamage(nil, damageFlags)) and (counters > 0) then
+        g.run.fastClear.paschalCandleCounters[index] = 0
         player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
         player:EvaluateItems()
     end
@@ -2536,6 +2551,7 @@ local g = ____globals.default
 local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
+local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local isSelfDamage = ____misc.isSelfDamage
 local giveTrinket
@@ -2555,7 +2571,8 @@ function ____exports.entityTakeDmg(self, tookDamage, damageFlags)
     end
     local player = tookDamage:ToPlayer()
     if (player ~= nil) and (not isSelfDamage(nil, damageFlags)) then
-        g.run.freeDevilItem.takenDamage[player.ControllerIndex] = true
+        local index = getPlayerLuaTableIndex(nil, player)
+        g.run.freeDevilItem.takenDamage[index] = true
     end
 end
 function ____exports.postNewRoom(self)
@@ -2569,7 +2586,8 @@ function ____exports.postNewRoom(self)
         for ____, player in ipairs(
             getPlayers(nil)
         ) do
-            local takenDamage = g.run.freeDevilItem.takenDamage[player.ControllerIndex]
+            local index = getPlayerLuaTableIndex(nil, player)
+            local takenDamage = g.run.freeDevilItem.takenDamage[index]
             if takenDamage == false then
                 giveTrinket(nil, player)
             end
@@ -3886,6 +3904,7 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
 function shouldGetPocketActiveD6(self, player)
@@ -3925,8 +3944,9 @@ function ____exports.postUpdate(self)
     for ____, player in ipairs(
         getPlayers(nil)
     ) do
+        local index = getPlayerLuaTableIndex(nil, player)
         local pocketActiveCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET)
-        g.run.pocketActiveD6Charge[player.ControllerIndex] = pocketActiveCharge
+        g.run.pocketActiveD6Charge[index] = pocketActiveCharge
     end
 end
 function ____exports.postGameStarted(self)
@@ -3948,7 +3968,8 @@ function ____exports.postNewRoom(self)
 end
 function ____exports.postPlayerChange(self, player)
     if shouldGetPocketActiveD6(nil, player) then
-        local charge = g.run.pocketActiveD6Charge[player.ControllerIndex]
+        local index = getPlayerLuaTableIndex(nil, player)
+        local charge = g.run.pocketActiveD6Charge[index]
         givePocketActiveD6(nil, player, charge)
     end
 end
@@ -5918,7 +5939,7 @@ local openAllDoors = ____misc.openAllDoors
 local seededDrops = require("features.mandatory.seededDrops")
 local bagFamiliars = require("features.optional.major.fastClear.bagFamiliars")
 local photos = require("features.optional.major.fastClear.photos")
-local playDoorOpenSoundEffect, killExtraEntities, postBossActions, spawnClearAward, addCharge, getChargesToAdd
+local playDoorOpenSoundEffect, killExtraEntities, postBossActions, spawnClearAward, checkAddCharge, addCharge, getChargesToAdd, getChargesWithAAAModifier, shouldPlayFullRechargeSound
 function playDoorOpenSoundEffect(self)
     local roomType = g.r:GetType()
     if roomType ~= RoomType.ROOM_DUNGEON then
@@ -6005,23 +6026,34 @@ function spawnClearAward(self)
         g.run.fastClear.vanillaPhotosSpawning = false
     end
 end
-function addCharge(self)
-    local hud = g.g:GetHUD()
+function checkAddCharge(self)
     for ____, player in ipairs(
         getPlayers(nil)
     ) do
         for ____, slot in ipairs({ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_SECONDARY, ActiveSlot.SLOT_POCKET}) do
             if player:NeedsCharge(slot) then
-                local currentCharge = player:GetActiveCharge(slot)
-                local chargesToAdd = getChargesToAdd(nil, player, slot)
-                local newCharge = currentCharge + chargesToAdd
-                player:SetActiveCharge(newCharge, slot)
-                hud:FlashChargeBar(player, slot)
-                if not g.sfx:IsPlaying(SoundEffect.SOUND_BEEP) then
-                    g.sfx:Play(SoundEffect.SOUND_BEEP)
-                end
+                addCharge(nil, player, slot)
             end
         end
+    end
+end
+function addCharge(self, player, slot)
+    local hud = g.g:GetHUD()
+    local currentCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local chargesToAdd = getChargesToAdd(nil, player, slot)
+    local modifiedChargesToAdd = getChargesWithAAAModifier(nil, player, slot, chargesToAdd)
+    local newCharge = (currentCharge + batteryCharge) + modifiedChargesToAdd
+    player:SetActiveCharge(newCharge, slot)
+    hud:FlashChargeBar(player, slot)
+    Isaac.DebugString(
+        "XXX " .. tostring(
+            shouldPlayFullRechargeSound(nil, player, slot)
+        )
+    )
+    local chargeSoundEffect = (shouldPlayFullRechargeSound(nil, player, slot) and SoundEffect.SOUND_BATTERYCHARGE) or SoundEffect.SOUND_BEEP
+    if not g.sfx:IsPlaying(chargeSoundEffect) then
+        g.sfx:Play(chargeSoundEffect)
     end
 end
 function getChargesToAdd(self, player, slot)
@@ -6029,17 +6061,53 @@ function getChargesToAdd(self, player, slot)
     local activeItem = player:GetActiveItem(slot)
     local activeCharge = player:GetActiveCharge(slot)
     local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
     local maxCharges = getItemMaxCharges(nil, activeItem)
+    if (not hasBattery) and (activeCharge == maxCharges) then
+        return 0
+    end
+    if hasBattery and (batteryCharge == maxCharges) then
+        return 0
+    end
+    if (not hasBattery) and ((activeCharge + 1) == maxCharges) then
+        return 1
+    end
+    if hasBattery and ((batteryCharge + 1) == maxCharges) then
+        return 1
+    end
     if roomShape >= RoomShape.ROOMSHAPE_2x2 then
         return 2
     end
-    if player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY) and (activeCharge == (maxCharges - 2)) then
-        return 2
-    end
-    if ((player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY) and (activeCharge == maxCharges)) and player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)) and (batteryCharge == (maxCharges - 2)) then
-        return 2
-    end
     return 1
+end
+function getChargesWithAAAModifier(self, player, slot, chargesToAdd)
+    local activeItem = player:GetActiveItem(slot)
+    local activeCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+    local hasAAABattery = player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY)
+    local maxCharges = getItemMaxCharges(nil, activeItem)
+    if not hasAAABattery then
+        return chargesToAdd
+    end
+    if (not hasBattery) and ((activeCharge + chargesToAdd) == (maxCharges - 1)) then
+        return maxCharges + 1
+    end
+    if hasBattery and ((batteryCharge + chargesToAdd) == (maxCharges - 1)) then
+        return maxCharges + 1
+    end
+    return chargesToAdd
+end
+function shouldPlayFullRechargeSound(self, player, slot)
+    local activeItem = player:GetActiveItem(slot)
+    local activeCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+    local maxCharges = getItemMaxCharges(nil, activeItem)
+    if not hasBattery then
+        return not player:NeedsCharge(slot)
+    end
+    return (not player:NeedsCharge(slot)) or ((activeCharge == maxCharges) and (batteryCharge == 0))
 end
 function ____exports.default(self)
     log(nil, "Fast-clear initiated.")
@@ -6050,7 +6118,7 @@ function ____exports.default(self)
     postBossActions(nil)
     spawnClearAward(nil)
     photos:spawn()
-    addCharge(nil)
+    checkAddCharge(nil)
     bagFamiliars:clearedRoom()
 end
 function ____exports.setDeferClearForGhost(self, value)
@@ -6064,6 +6132,7 @@ local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom"
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local isGhostForm, ghostFormChanged, ghostFormOn, ghostFormOff
 function isGhostForm(self, player)
@@ -6086,8 +6155,9 @@ function ____exports.postUpdate(self)
         getPlayers(nil)
     ) do
         local ghostForm = isGhostForm(nil, player)
-        if ghostForm ~= g.run.ghostForm[player.ControllerIndex] then
-            g.run.ghostForm[player.ControllerIndex] = ghostForm
+        local index = getPlayerLuaTableIndex(nil, player)
+        if ghostForm ~= g.run.ghostForm[index] then
+            g.run.ghostForm[index] = ghostForm
             ghostFormChanged(nil, ghostForm)
         end
     end
@@ -6100,6 +6170,7 @@ local startWithD6 = require("features.optional.major.startWithD6")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local postPlayerChange
 function postPlayerChange(self, player)
@@ -6110,8 +6181,9 @@ function ____exports.postUpdate(self)
         getPlayers(nil)
     ) do
         local character = player:GetPlayerType()
-        if character ~= g.run.currentCharacters[player.ControllerIndex] then
-            g.run.currentCharacters[player.ControllerIndex] = character
+        local index = getPlayerLuaTableIndex(nil, player)
+        if character ~= g.run.currentCharacters[index] then
+            g.run.currentCharacters[index] = character
             postPlayerChange(nil, player)
         end
     end

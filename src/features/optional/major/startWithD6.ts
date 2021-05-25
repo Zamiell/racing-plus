@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayers } from "../../../misc";
+import { getPlayerLuaTableIndex, getPlayers } from "../../../misc";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,
@@ -30,8 +30,9 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   for (const player of getPlayers()) {
+    const index = getPlayerLuaTableIndex(player);
     const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-    g.run.pocketActiveD6Charge.set(player.ControllerIndex, pocketActiveCharge);
+    g.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
   }
 }
 
@@ -111,7 +112,8 @@ function checkGenesisRoom() {
 // Give another pocket D6 if needed
 export function postPlayerChange(player: EntityPlayer): void {
   if (shouldGetPocketActiveD6(player)) {
-    const charge = g.run.pocketActiveD6Charge.get(player.ControllerIndex);
+    const index = getPlayerLuaTableIndex(player);
+    const charge = g.run.pocketActiveD6Charge.get(index);
     givePocketActiveD6(player, charge);
   }
 }

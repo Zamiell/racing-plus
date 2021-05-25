@@ -2,6 +2,7 @@ import g from "../../../globals";
 import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
+  getPlayerLuaTableIndex,
   getPlayers,
   isSelfDamage,
 } from "../../../misc";
@@ -17,7 +18,8 @@ export function entityTakeDmg(
 
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
-    g.run.freeDevilItem.takenDamage.set(player.ControllerIndex, true);
+    const index = getPlayerLuaTableIndex(player);
+    g.run.freeDevilItem.takenDamage.set(index, true);
   }
 }
 
@@ -41,9 +43,8 @@ export function postNewRoom(): void {
     g.run.freeDevilItem.granted = true;
 
     for (const player of getPlayers()) {
-      const takenDamage = g.run.freeDevilItem.takenDamage.get(
-        player.ControllerIndex,
-      );
+      const index = getPlayerLuaTableIndex(player);
+      const takenDamage = g.run.freeDevilItem.takenDamage.get(index);
       if (takenDamage === false) {
         giveTrinket(player);
       }

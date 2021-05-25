@@ -1,6 +1,7 @@
 import g from "../../../../globals";
 import {
   getFireDelayFromTearsStat,
+  getPlayerLuaTableIndex,
   getTearsStat,
   isSelfDamage,
 } from "../../../../misc";
@@ -16,33 +17,30 @@ export function clearedRoom(familiar: EntityFamiliar): void {
   }
 
   const player = familiar.Player;
-  const oldCounters = g.run.fastClear.paschalCandleCounters.get(
-    player.ControllerIndex,
-  );
+  const index = getPlayerLuaTableIndex(player);
+  const oldCounters = g.run.fastClear.paschalCandleCounters.get(index);
   let newCounters = oldCounters + 1;
   if (newCounters > MAX_COUNTERS) {
     newCounters = MAX_COUNTERS;
   }
   if (oldCounters !== newCounters) {
-    g.run.fastClear.paschalCandleCounters.set(
-      player.ControllerIndex,
-      newCounters,
-    );
+    g.run.fastClear.paschalCandleCounters.set(index, newCounters);
     player.AddCacheFlags(CacheFlag.CACHE_FIREDELAY);
     player.EvaluateItems();
   }
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
+// FamiliarVariant.PASCHAL_CANDLE (221)
 export function postRender(familiar: EntityFamiliar): void {
   const sprite = familiar.GetSprite();
   if (sprite.GetFilename() !== CUSTOM_ANM2_PATH) {
     sprite.Load(CUSTOM_ANM2_PATH, true);
   }
 
-  const counters = g.run.fastClear.paschalCandleCounters.get(
-    familiar.Player.ControllerIndex,
-  );
+  const player = familiar.Player;
+  const index = getPlayerLuaTableIndex(player);
+  const counters = g.run.fastClear.paschalCandleCounters.get(index);
 
   const animation = sprite.GetAnimation();
   const correctAnimation = `ModifiedIdle${counters}`;
@@ -53,9 +51,12 @@ export function postRender(familiar: EntityFamiliar): void {
 
 // ModCallbacks.MC_EVALUATE_CACHE (8)
 export function fireDelay(player: EntityPlayer): void {
-  const counters = g.run.fastClear.paschalCandleCounters.get(
-    player.ControllerIndex,
-  );
+  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE)) {
+    return;
+  }
+
+  const index = getPlayerLuaTableIndex(player);
+  const counters = g.run.fastClear.paschalCandleCounters.get(index);
   if (counters === undefined) {
     return;
   }
@@ -76,11 +77,15 @@ export function entityTakeDmg(
   if (player === null) {
     return;
   }
-  const counters = g.run.fastClear.paschalCandleCounters.get(
-    player.ControllerIndex,
-  );
-  if (player !== null && !isSelfDamage(damageFlags) && counters > 0) {
-    g.run.fastClear.paschalCandleCounters.set(player.ControllerIndex, 0);
+
+  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE)) {
+    return;
+  }
+
+  const index = getPlayerLuaTableIndex(player);
+  const counters = g.run.fastClear.paschalCandleCounters.get(index);
+  if (!isSelfDamage(damageFlags) && counters > 0) {
+    g.run.fastClear.paschalCandleCounters.set(index, 0);
     player.AddCacheFlags(CacheFlag.CACHE_FIREDELAY);
     player.EvaluateItems();
   }

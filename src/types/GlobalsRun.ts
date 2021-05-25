@@ -1,6 +1,12 @@
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
 
+// Several variables are maps that track things for each player
+// If we have a Lua table indexed by ControllerIndex,
+// that will cause problems because Lua will interpret it as an array instead of a map
+// Instead, we use a Lua table with keys that are the ControllerIndex converted to a string
+type ControllerIndexString = string;
+
 // Per-run variables
 export default class GlobalsRun {
   // Tracking per run
@@ -30,8 +36,8 @@ export default class GlobalsRun {
   // Custom Callbacks
   // ----------------
 
-  ghostForm = new LuaTable<ControllerIndex, boolean>();
-  currentCharacters = new LuaTable<ControllerIndex, PlayerType>();
+  ghostForm = new LuaTable<ControllerIndexString, boolean>();
+  currentCharacters = new LuaTable<ControllerIndexString, PlayerType>();
 
   // --------
   // Features
@@ -81,18 +87,18 @@ export default class GlobalsRun {
     /**
      * After picking up the Paschal Candle, it automatically grants one rooms worth of tear-rate.
      */
-    paschalCandleCounters: new LuaTable<ControllerIndex, int>(),
+    paschalCandleCounters: new LuaTable<ControllerIndexString, int>(),
   };
 
   /** Needed for speedruns to return to the same character. */
   fastResetFrame = 0;
 
   freeDevilItem = {
-    takenDamage: new LuaTable<ControllerIndex, boolean>(),
+    takenDamage: new LuaTable<ControllerIndexString, boolean>(),
     granted: false,
   };
 
-  pocketActiveD6Charge = new LuaTable<ControllerIndex, int>();
+  pocketActiveD6Charge = new LuaTable<ControllerIndexString, int>();
   pillEffects: PillEffect[] = [];
 
   seededDrops = {
@@ -110,7 +116,8 @@ export default class GlobalsRun {
   constructor(players: EntityPlayer[]) {
     for (const player of players) {
       const character = player.GetPlayerType();
-      const index = player.ControllerIndex;
+      // The index must be calculated in the same way as the "getPlayerLuaTableIndex()" function
+      const index = player.ControllerIndex.toString();
 
       this.ghostForm.set(index, false);
       this.currentCharacters.set(index, character);
