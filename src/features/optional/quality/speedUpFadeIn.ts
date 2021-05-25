@@ -8,13 +8,18 @@ export function postRender(): void {
     return;
   }
 
-  speedUpFadeIn();
+  if (shouldSpeedUpFadeIn()) {
+    speedUpFadeIn();
+  }
+}
+
+function shouldSpeedUpFadeIn() {
+  const gameFrameCount = g.g.GetFrameCount();
+  return !g.run.spedUpFadeIn && gameFrameCount === 0;
 }
 
 // Get rid of the slow fade-in at the beginning of a run
 function speedUpFadeIn() {
-  if (!g.run.spedUpFadeIn) {
-    g.run.spedUpFadeIn = true;
-    g.g.Fadein(FADE_IN_SPEED);
-  }
+  g.run.spedUpFadeIn = true;
+  g.g.Fadein(FADE_IN_SPEED);
 }

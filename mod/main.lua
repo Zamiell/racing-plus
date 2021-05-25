@@ -1961,7 +1961,7 @@ ____exports.default = (function()
     ____exports.default = __TS__Class()
     local GlobalsRun = ____exports.default
     GlobalsRun.name = "GlobalsRun"
-    function GlobalsRun.prototype.____constructor(self)
+    function GlobalsRun.prototype.____constructor(self, players)
         self.restart = false
         self.roomsEntered = 0
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
@@ -1981,6 +1981,15 @@ ____exports.default = (function()
         self.slideAnimationHappening = false
         self.spedUpFadeIn = false
         self.switchForgotten = false
+        for ____, player in ipairs(players) do
+            local character = player:GetPlayerType()
+            local index = player.ControllerIndex
+            self.ghostForm[index] = false
+            self.currentCharacters[index] = character
+            self.fastClear.paschalCandleCounters[index] = 1
+            self.freeDevilItem.takenDamage[index] = false
+            self.pocketActiveD6Charge[index] = 6
+        end
     end
     return GlobalsRun
 end)()
@@ -2072,7 +2081,7 @@ ____exports.default = (function()
         self.sfx = SFXManager()
         self.music = MusicManager()
         self.config = __TS__New(Config)
-        self.run = __TS__New(GlobalsRun)
+        self.run = __TS__New(GlobalsRun, {})
         self.race = __TS__New(RaceData)
         self.speedrun = __TS__New(SpeedrunData)
         self.saveFile = {state = SaveFileState.NOT_CHECKED, fullyUnlocked = false, oldRun = {challenge = 0, character = 0, seededRun = false, seed = ""}}
@@ -2213,7 +2222,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.8"
+____exports.VERSION = "0.57.9"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -2235,6 +2244,7 @@ local ____constants = require("constants")
 local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
 local ____globals = require("globals")
 local g = ____globals.default
+local EXCLUDED_CHARACTERS
 function ____exports.getPlayers(self)
     local players = {}
     do
@@ -2242,7 +2252,10 @@ function ____exports.getPlayers(self)
         while i < g.g:GetNumPlayers() do
             local player = Isaac.GetPlayer(i)
             if player ~= nil then
-                __TS__ArrayPush(players, player)
+                local character = player:GetPlayerType()
+                if not __TS__ArrayIncludes(EXCLUDED_CHARACTERS, character) then
+                    __TS__ArrayPush(players, player)
+                end
             end
             i = i + 1
         end
@@ -2354,6 +2367,7 @@ function ____exports.getOpenTrinketSlot(self, player)
     )
     return nil
 end
+EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 function ____exports.getRandom(self, x, y, seed)
     local rng = ____exports.initRNG(nil, seed)
     return rng:RandomInt((y - x) + 1) + x
@@ -2431,6 +2445,15 @@ function ____exports.openAllDoors(self)
             i = i + 1
         end
     end
+end
+function ____exports.restartAsCharacter(self, character)
+    if character == PlayerType.PLAYER_THESOUL_B then
+        character = PlayerType.PLAYER_THEFORGOTTEN_B
+    end
+    ____exports.consoleCommand(
+        nil,
+        "restart " .. tostring(character)
+    )
 end
 function ____exports.teleport(self, roomIndex)
     g.l.LeaveDoor = -1
@@ -2547,7 +2570,7 @@ function ____exports.postNewRoom(self)
             getPlayers(nil)
         ) do
             local takenDamage = g.run.freeDevilItem.takenDamage[player.ControllerIndex]
-            if takenDamage == nil then
+            if takenDamage == false then
                 giveTrinket(nil, player)
             end
         end
@@ -2627,6 +2650,7 @@ local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
 local log = ____misc.log
 local playingOnSetSeed = ____misc.playingOnSetSeed
+local restartAsCharacter = ____misc.restartAsCharacter
 local ____enums = require("types.enums")
 local SaveFileState = ____enums.SaveFileState
 ____exports.SAVE_FILE_SEED = "31XY AQGT"
@@ -2723,10 +2747,7 @@ function ____exports.checkRestart(self)
                 )
             end
             if character ~= PlayerType.PLAYER_EDEN then
-                consoleCommand(
-                    nil,
-                    "restart " .. tostring(PlayerType.PLAYER_EDEN)
-                )
+                restartAsCharacter(nil, PlayerType.PLAYER_EDEN)
             end
             if startSeedString ~= ____exports.SAVE_FILE_SEED then
                 consoleCommand(nil, "seed " .. ____exports.SAVE_FILE_SEED)
@@ -2744,10 +2765,7 @@ function ____exports.checkRestart(self)
                 )
             end
             if character ~= g.saveFile.oldRun.character then
-                consoleCommand(
-                    nil,
-                    "restart " .. tostring(g.saveFile.oldRun.character)
-                )
+                restartAsCharacter(nil, g.saveFile.oldRun.character)
             end
             if playingOnSetSeed(nil) ~= g.saveFile.oldRun.seededRun then
                 g.seeds:Reset()
@@ -3631,7 +3649,7 @@ function ____exports.centerPlayers(self)
     end
     local players = getPlayers(nil)
     if #players == 1 then
-        g.p.Position = centerPos
+        players[1].Position = centerPos
     else
         local distanceBetweenPlayers = 50
         local positions = distributeAround(nil, centerPos, distanceBetweenPlayers, #players)
@@ -3641,6 +3659,24 @@ function ____exports.centerPlayers(self)
                 players[i + 1].Position = positions[i + 1]
                 i = i + 1
             end
+        end
+    end
+    local esaus = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_ESAU, false, false)
+    for ____, esau in ipairs(esaus) do
+        local player = esau:ToPlayer()
+        if player ~= nil then
+            local jacob = player:GetMainTwin()
+            local adjustment = Vector(20, 0)
+            local position = jacob.Position:__add(adjustment)
+            esau.Position = position
+        end
+    end
+    local taintedSouls = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_THESOUL_B, false, false)
+    for ____, taintedSoul in ipairs(taintedSouls) do
+        local player = taintedSoul:ToPlayer()
+        if player ~= nil then
+            local forgotten = player:GetMainTwin()
+            taintedSoul.Position = forgotten.Position
         end
     end
     local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, -1, -1, false, false)
@@ -4738,18 +4774,10 @@ function ____exports.main(self, isContinued)
         postGameStartedContinued:main()
         return
     end
-    g.run = __TS__New(GlobalsRun)
-    for ____, player in ipairs(
+    g.run = __TS__New(
+        GlobalsRun,
         getPlayers(nil)
-    ) do
-        local character = player:GetPlayerType()
-        local index = player.ControllerIndex
-        g.run.ghostForm[index] = false
-        g.run.currentCharacters[index] = character
-        g.run.fastClear.paschalCandleCounters[index] = 1
-        g.run.freeDevilItem.takenDamage[index] = false
-        g.run.pocketActiveD6Charge[index] = 6
-    end
+    )
     if checkCorruptMod(nil) or saveFileCheck:isNotFullyUnlocked() then
         return
     end
@@ -5165,19 +5193,23 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local FADE_IN_SPEED, speedUpFadeIn
+local FADE_IN_SPEED, shouldSpeedUpFadeIn, speedUpFadeIn
+function shouldSpeedUpFadeIn(self)
+    local gameFrameCount = g.g:GetFrameCount()
+    return (not g.run.spedUpFadeIn) and (gameFrameCount == 0)
+end
 function speedUpFadeIn(self)
-    if not g.run.spedUpFadeIn then
-        g.run.spedUpFadeIn = true
-        g.g:Fadein(FADE_IN_SPEED)
-    end
+    g.run.spedUpFadeIn = true
+    g.g:Fadein(FADE_IN_SPEED)
 end
 FADE_IN_SPEED = 0.15
 function ____exports.postRender(self)
     if not g.config.speedUpFadeIn then
         return
     end
-    speedUpFadeIn(nil)
+    if shouldSpeedUpFadeIn(nil) then
+        speedUpFadeIn(nil)
+    end
 end
 return ____exports
 end,
@@ -5187,16 +5219,14 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
+local restartAsCharacter = ____misc.restartAsCharacter
 function ____exports.checkRestartWrongCharacter(self)
     if (g.race.status == "none") or (g.race.rFormat == "custom") then
         return false
     end
     local character = g.p:GetPlayerType()
     if character ~= g.race.character then
-        consoleCommand(
-            nil,
-            "restart " .. tostring(g.race.character)
-        )
+        restartAsCharacter(nil, g.race.character)
         return true
     end
     return false
@@ -5219,7 +5249,7 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local consoleCommand = ____misc.consoleCommand
+local restartAsCharacter = ____misc.restartAsCharacter
 local ____speedrun = require("features.speedrun.speedrun")
 local checkValidCharOrder = ____speedrun.checkValidCharOrder
 local getCurrentCharacter = ____speedrun.getCurrentCharacter
@@ -5234,10 +5264,7 @@ function ____exports.checkRestartWrongCharacter(self)
     local character = g.p:GetPlayerType()
     local characterForThisSpeedrun = getCurrentCharacter(nil)
     if character ~= characterForThisSpeedrun then
-        consoleCommand(
-            nil,
-            "restart " .. tostring(characterForThisSpeedrun)
-        )
+        restartAsCharacter(nil, characterForThisSpeedrun)
         return true
     end
     return false

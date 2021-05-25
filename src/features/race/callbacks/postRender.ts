@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { consoleCommand } from "../../../misc";
+import { consoleCommand, restartAsCharacter } from "../../../misc";
 
 export function checkRestartWrongCharacter(): boolean {
   if (g.race.status === "none" || g.race.rFormat === "custom") {
@@ -9,7 +9,7 @@ export function checkRestartWrongCharacter(): boolean {
   const character = g.p.GetPlayerType();
 
   if (character !== g.race.character) {
-    consoleCommand(`restart ${g.race.character}`);
+    restartAsCharacter(g.race.character);
     return true;
   }
 

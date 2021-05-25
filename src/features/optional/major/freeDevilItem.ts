@@ -44,7 +44,7 @@ export function postNewRoom(): void {
       const takenDamage = g.run.freeDevilItem.takenDamage.get(
         player.ControllerIndex,
       );
-      if (takenDamage === undefined) {
+      if (takenDamage === false) {
         giveTrinket(player);
       }
     }

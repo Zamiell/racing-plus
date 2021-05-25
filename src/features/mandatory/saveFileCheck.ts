@@ -1,5 +1,10 @@
 import g from "../../globals";
-import { consoleCommand, log, playingOnSetSeed } from "../../misc";
+import {
+  consoleCommand,
+  log,
+  playingOnSetSeed,
+  restartAsCharacter,
+} from "../../misc";
 import { SaveFileState } from "../../types/enums";
 
 export const SAVE_FILE_SEED = "31XY AQGT"; // cspell:disable-line
@@ -115,7 +120,7 @@ export function checkRestart(): boolean {
       }
 
       if (character !== PlayerType.PLAYER_EDEN) {
-        consoleCommand(`restart ${PlayerType.PLAYER_EDEN}`);
+        restartAsCharacter(PlayerType.PLAYER_EDEN);
       }
 
       if (startSeedString !== SAVE_FILE_SEED) {
@@ -131,7 +136,7 @@ export function checkRestart(): boolean {
       }
 
       if (character !== g.saveFile.oldRun.character) {
-        consoleCommand(`restart ${g.saveFile.oldRun.character}`);
+        restartAsCharacter(g.saveFile.oldRun.character);
       }
 
       if (playingOnSetSeed() !== g.saveFile.oldRun.seededRun) {

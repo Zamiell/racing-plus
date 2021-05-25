@@ -103,4 +103,20 @@ export default class GlobalsRun {
   slideAnimationHappening = false;
   spedUpFadeIn = false;
   switchForgotten = false;
+
+  // Initialize variables that are tracked per player
+  // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
+  // yet at that point)
+  constructor(players: EntityPlayer[]) {
+    for (const player of players) {
+      const character = player.GetPlayerType();
+      const index = player.ControllerIndex;
+
+      this.ghostForm.set(index, false);
+      this.currentCharacters.set(index, character);
+      this.fastClear.paschalCandleCounters.set(index, 1);
+      this.freeDevilItem.takenDamage.set(index, false);
+      this.pocketActiveD6Charge.set(index, 6);
+    }
+  }
 }

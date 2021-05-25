@@ -20,7 +20,7 @@ export function centerPlayers(): void {
   // Instead, put the player in the middle of the room
   const players = getPlayers();
   if (players.length === 1) {
-    g.p.Position = centerPos;
+    players[0].Position = centerPos;
   } else {
     // This is a multiplayer game,
     // so spread out the players in a circle around the center of the room
@@ -32,6 +32,40 @@ export function centerPlayers(): void {
     );
     for (let i = 0; i < players.length; i++) {
       players[i].Position = positions[i];
+    }
+  }
+
+  // Put Esau next to Jacob
+  const esaus = Isaac.FindByType(
+    EntityType.ENTITY_PLAYER,
+    0,
+    PlayerType.PLAYER_ESAU,
+    false,
+    false,
+  );
+  for (const esau of esaus) {
+    const player = esau.ToPlayer();
+    if (player !== null) {
+      const jacob = player.GetMainTwin();
+      const adjustment = Vector(20, 0);
+      const position = jacob.Position.__add(adjustment);
+      esau.Position = position;
+    }
+  }
+
+  // Put the Tainted Soul next to the corresponding Tainted Forgotten
+  const taintedSouls = Isaac.FindByType(
+    EntityType.ENTITY_PLAYER,
+    0,
+    PlayerType.PLAYER_THESOUL_B,
+    false,
+    false,
+  );
+  for (const taintedSoul of taintedSouls) {
+    const player = taintedSoul.ToPlayer();
+    if (player !== null) {
+      const forgotten = player.GetMainTwin();
+      taintedSoul.Position = forgotten.Position;
     }
   }
 

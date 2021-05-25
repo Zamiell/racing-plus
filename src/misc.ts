@@ -93,12 +93,22 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
   return null;
 }
 
+const EXCLUDED_CHARACTERS = [
+  PlayerType.PLAYER_ESAU, // 20
+  PlayerType.PLAYER_THESOUL_B, // 40
+];
+
 export function getPlayers(): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
     if (player !== null) {
-      players.push(player);
+      // We only want to make a list of players that are fully-functioning and controlled by humans
+      // Thus, we need to exclude certain characters
+      const character = player.GetPlayerType();
+      if (!EXCLUDED_CHARACTERS.includes(character)) {
+        players.push(player);
+      }
     }
   }
 
@@ -233,6 +243,15 @@ export function openAllDoors(): void {
       door.Open();
     }
   }
+}
+
+export function restartAsCharacter(character: PlayerType): void {
+  // Doing a "restart 40" causes the player to spawn as Tainted Soul without a Forgotten companion
+  if (character === PlayerType.PLAYER_THESOUL_B) {
+    character = PlayerType.PLAYER_THEFORGOTTEN_B;
+  }
+
+  consoleCommand(`restart ${character}`);
 }
 
 export function teleport(roomIndex: int): void {

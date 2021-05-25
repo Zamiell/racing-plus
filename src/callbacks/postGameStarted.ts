@@ -35,21 +35,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Initialize run-based variables
-  g.run = new GlobalsRun();
-
-  // Initialize variables tracker per player
-  // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
-  // yet at that point)
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    const index = player.ControllerIndex;
-
-    g.run.ghostForm.set(index, false);
-    g.run.currentCharacters.set(index, character);
-    g.run.fastClear.paschalCandleCounters.set(index, 1);
-    g.run.freeDevilItem.takenDamage.set(index, false);
-    g.run.pocketActiveD6Charge.set(index, 6);
-  }
+  g.run = new GlobalsRun(getPlayers());
 
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (checkCorruptMod() || saveFileCheck.isNotFullyUnlocked()) {

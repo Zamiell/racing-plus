@@ -1,5 +1,3 @@
-- write script to look for duplicate rooms / empty rooms
-
 - fast travel
 - chat system
 - custom console

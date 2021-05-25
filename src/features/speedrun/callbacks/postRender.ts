@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { consoleCommand } from "../../../misc";
+import { restartAsCharacter } from "../../../misc";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -20,7 +20,7 @@ export function checkRestartWrongCharacter(): boolean {
   const characterForThisSpeedrun = getCurrentCharacter();
 
   if (character !== characterForThisSpeedrun) {
-    consoleCommand(`restart ${characterForThisSpeedrun}`);
+    restartAsCharacter(characterForThisSpeedrun);
     return true;
   }
 

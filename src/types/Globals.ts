@@ -28,7 +28,7 @@ export default class Globals {
   config = new Config();
 
   // Variables per-run
-  run = new GlobalsRun();
+  run = new GlobalsRun([]);
 
   race = new RaceData();
   speedrun = new SpeedrunData();
