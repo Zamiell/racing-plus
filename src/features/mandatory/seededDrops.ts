@@ -2,7 +2,13 @@
 // causing a seed to be different
 
 import g from "../../globals";
-import { incrementRNG, initRNG, playingOnSetSeed } from "../../misc";
+import {
+  anyPlayerHas,
+  getTotalCollectibles,
+  incrementRNG,
+  initRNG,
+  playingOnSetSeed,
+} from "../../misc";
 
 export function shouldSpawnSeededDrop(): boolean {
   const roomType = g.r.GetType();
@@ -108,12 +114,11 @@ export function spawn(): void {
   // 2) or make nothing drop
   let pickupCount = 1;
   if (
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) &&
+    anyPlayerHas(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) &&
     pickupVariant !== PickupVariant.PICKUP_TRINKET
   ) {
     pickupCount =
-      g.p.GetCollectibleNum(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) +
-      1;
+      getTotalCollectibles(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) + 1;
 
     // Nothing chance with:
     // 1 contract / 2 pickups: 0.44
@@ -137,17 +142,22 @@ export function spawn(): void {
   }
 
   // Broken Modem has a chance to increase the amount of pickups that drop
-  if (
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_BROKEN_MODEM) &&
-    rng.RandomInt(4) === 0 &&
-    pickupCount >= 1 &&
-    (pickupVariant === PickupVariant.PICKUP_HEART || // 10
-      pickupVariant === PickupVariant.PICKUP_COIN || // 20
-      pickupVariant === PickupVariant.PICKUP_KEY || // 30
-      pickupVariant === PickupVariant.PICKUP_BOMB || // 40
-      pickupVariant === PickupVariant.PICKUP_GRAB_BAG) // 69
-  ) {
-    pickupCount += 1;
+  if (pickupCount >= 1) {
+    const numBrokenModems = getTotalCollectibles(
+      CollectibleType.COLLECTIBLE_BROKEN_MODEM,
+    );
+    for (let i = 0; i < numBrokenModems; i++) {
+      if (
+        rng.RandomInt(4) === 0 &&
+        (pickupVariant === PickupVariant.PICKUP_HEART || // 10
+          pickupVariant === PickupVariant.PICKUP_COIN || // 20
+          pickupVariant === PickupVariant.PICKUP_KEY || // 30
+          pickupVariant === PickupVariant.PICKUP_BOMB || // 40
+          pickupVariant === PickupVariant.PICKUP_GRAB_BAG) // 69
+      ) {
+        pickupCount += 1;
+      }
+    }
   }
 
   if (pickupCount > 0 && pickupVariant !== PickupVariant.PICKUP_NULL) {

@@ -1,5 +1,9 @@
 import g from "../../../globals";
-import { enteredRoomViaTeleport, getPlayers } from "../../../misc";
+import {
+  anyPlayerCloserThan,
+  enteredRoomViaTeleport,
+  getPlayers,
+} from "../../../misc";
 
 export function postNewRoom(): void {
   if (!g.config.fixTeleportInvalidEntrance) {
@@ -33,7 +37,7 @@ export function postNewRoom(): void {
         firstDoorSlot = i;
         firstDoorPosition = Vector(door.Position.X, door.Position.Y);
       }
-      if (door.Position.Distance(g.p.Position) < 60) {
+      if (anyPlayerCloserThan(door.Position, 60)) {
         nextToADoor = true;
         break;
       }

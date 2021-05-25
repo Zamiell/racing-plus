@@ -1867,6 +1867,9 @@ return ____exports
 end,
 ["types.enums"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+____exports.FamiliarVariantCustom = FamiliarVariantCustom or ({})
+____exports.FamiliarVariantCustom.PASCHAL_CANDLE_FAST_CLEAR = Isaac.GetEntityVariantByName("Paschal Candle (Fast-Clear)")
+____exports.FamiliarVariantCustom[____exports.FamiliarVariantCustom.PASCHAL_CANDLE_FAST_CLEAR] = "PASCHAL_CANDLE_FAST_CLEAR"
 ____exports.PickupVariantCustom = PickupVariantCustom or ({})
 ____exports.PickupVariantCustom.INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup")
 ____exports.PickupVariantCustom[____exports.PickupVariantCustom.INVISIBLE_PICKUP] = "INVISIBLE_PICKUP"
@@ -1965,14 +1968,14 @@ ____exports.default = (function()
         self.room = __TS__New(GlobalsRunRoom, true)
         self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
         self.ghostForm = {}
-        self.currentCharacter = -1
+        self.currentCharacters = {}
         self.debugChaosCard = false
         self.debugSpeed = false
         self.edenStartingItems = {active = 0, passive = 0, activeSprite = nil, passiveSprite = nil}
-        self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, deferClearForGhost = false, paschalCandleCounters = 0}
+        self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, deferClearForGhost = false, paschalCandleCounters = {}}
         self.fastResetFrame = 0
         self.freeDevilItem = {takenDamage = {}, granted = false}
-        self.pocketActiveD6Charge = 0
+        self.pocketActiveD6Charge = {}
         self.pillEffects = {}
         self.seededDrops = {roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
         self.slideAnimationHappening = false
@@ -2210,7 +2213,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.7"
+____exports.VERSION = "0.57.8"
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
@@ -2220,44 +2223,8 @@ local ____globals = require("globals")
 local g = ____globals.default
 function ____exports.default(self)
     g.debug = true
-    Isaac.DebugString("+--------------------------+")
-    Isaac.DebugString("| Entering debug function. |")
-    Isaac.DebugString("+--------------------------+")
-    Isaac.DebugString("+-------------------------+")
-    Isaac.DebugString("| Exiting debug function. |")
-    Isaac.DebugString("+-------------------------+")
 end
 function ____exports.debugFunction2(self)
-end
-function ____exports.printFastClearVariables(self)
-    Isaac.DebugString("Fast clear variables:")
-    Isaac.DebugString("- aliveEnemies:")
-    for key, value in pairs(g.run.fastClear.aliveEnemies) do
-        Isaac.DebugString(
-            (("  - " .. tostring(key)) .. " - ") .. tostring(value)
-        )
-    end
-    Isaac.DebugString(
-        "- aliveEnemiesCount: " .. tostring(g.run.fastClear.aliveEnemiesCount)
-    )
-    Isaac.DebugString(
-        "- aliveBossesCount: " .. tostring(g.run.fastClear.aliveBossesCount)
-    )
-    Isaac.DebugString(
-        "- buttonsAllPushed: " .. tostring(g.run.fastClear.buttonsAllPushed)
-    )
-    Isaac.DebugString(
-        "- roomInitializing: " .. tostring(g.run.fastClear.roomInitializing)
-    )
-    Isaac.DebugString(
-        "- delayFrame: " .. tostring(g.run.fastClear.delayFrame)
-    )
-    Isaac.DebugString(
-        "- vanillaPhotosSpawning: " .. tostring(g.run.fastClear.vanillaPhotosSpawning)
-    )
-    Isaac.DebugString(
-        "- paschalCandleCounters: " .. tostring(g.run.fastClear.paschalCandleCounters)
-    )
 end
 return ____exports
 end,
@@ -2307,6 +2274,9 @@ function ____exports.initSprite(self, anm2Path, pngPath)
     sprite:SetFrame("Default", 0)
     return sprite
 end
+function ____exports.log(self, msg)
+    Isaac.DebugString(msg)
+end
 function ____exports.anyPlayerHas(self, collectibleType)
     for ____, player in ipairs(
         ____exports.getPlayers(nil)
@@ -2317,14 +2287,24 @@ function ____exports.anyPlayerHas(self, collectibleType)
     end
     return false
 end
+function ____exports.anyPlayerCloserThan(self, position, distance)
+    for ____, player in ipairs(
+        ____exports.getPlayers(nil)
+    ) do
+        if player.Position:Distance(position) < distance then
+            return true
+        end
+    end
+    return false
+end
 function ____exports.changeRoom(self, roomIndex)
     g.l.LeaveDoor = -1
     g.g:ChangeRoom(roomIndex)
 end
 function ____exports.consoleCommand(self, command)
-    Isaac.DebugString("Executing console command: " .. command)
+    ____exports.log(nil, "Executing console command: " .. command)
     Isaac.ExecuteCommand(command)
-    Isaac.DebugString("Finished executing console command: " .. command)
+    ____exports.log(nil, "Finished executing console command: " .. command)
 end
 ____exports.ensureAllCases = function(____, obj) return obj end
 function ____exports.enteredRoomViaTeleport(self)
@@ -2334,12 +2314,27 @@ function ____exports.enteredRoomViaTeleport(self)
     local justReachedThisFloor = (roomIndex == startingRoomIndex) and isFirstVisit
     return (g.l.LeaveDoor == -1) and (not justReachedThisFloor)
 end
+function ____exports.getFireDelayFromTearsStat(self, tearsStat)
+    return math.max((30 / tearsStat) - 1, -0.99)
+end
 function ____exports.getItemMaxCharges(self, itemID)
     local itemConfigItem = g.itemConfig:GetCollectible(itemID)
     if itemConfigItem == nil then
         return 0
     end
     return itemConfigItem.MaxCharges
+end
+function ____exports.getTearsStat(self, fireDelay)
+    return 30 / (fireDelay + 1)
+end
+function ____exports.getTotalCollectibles(self, collectibleType)
+    local numCollectibles = 0
+    for ____, player in ipairs(
+        ____exports.getPlayers(nil)
+    ) do
+        numCollectibles = numCollectibles + player:GetCollectibleNum(collectibleType)
+    end
+    return numCollectibles
 end
 function ____exports.getOpenTrinketSlot(self, player)
     local maxTrinkets = player:GetMaxTrinkets()
@@ -2403,6 +2398,9 @@ function ____exports.isActionTriggeredOnAnyInput(self, buttonAction)
     end
     return false
 end
+function ____exports.isSelfDamage(self, damageFlags)
+    return ____exports.hasFlag(nil, damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) or ____exports.hasFlag(nil, damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
+end
 function ____exports.playingOnSetSeed(self)
     local customRun = g.seeds:IsCustomRun()
     local challenge = Isaac.GetChallenge()
@@ -2413,7 +2411,8 @@ function ____exports.printAllFlags(self, flags, maxShift)
         local i = 0
         while i <= maxShift do
             if ____exports.hasFlag(nil, flags, 1 << i) then
-                Isaac.DebugString(
+                ____exports.log(
+                    nil,
                     "Has flag: " .. tostring(i)
                 )
             end
@@ -2439,6 +2438,74 @@ function ____exports.teleport(self, roomIndex)
 end
 return ____exports
 end,
+["features.optional.major.fastClear.paschalCandle"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getFireDelayFromTearsStat = ____misc.getFireDelayFromTearsStat
+local getTearsStat = ____misc.getTearsStat
+local isSelfDamage = ____misc.isSelfDamage
+local MAX_COUNTERS = 5
+local TEARS_INCREASE = 0.4
+local CUSTOM_ANM2_PATH = "gfx/003.221_paschal candle custom.anm2"
+function ____exports.clearedRoom(self, familiar)
+    if familiar.Variant ~= FamiliarVariant.PASCHAL_CANDLE then
+        return
+    end
+    local player = familiar.Player
+    local oldCounters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
+    local newCounters = oldCounters + 1
+    if newCounters > MAX_COUNTERS then
+        newCounters = MAX_COUNTERS
+    end
+    if oldCounters ~= newCounters then
+        g.run.fastClear.paschalCandleCounters[player.ControllerIndex] = newCounters
+        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+        player:EvaluateItems()
+    end
+end
+function ____exports.postRender(self, familiar)
+    local sprite = familiar:GetSprite()
+    if sprite:GetFilename() ~= CUSTOM_ANM2_PATH then
+        sprite:Load(CUSTOM_ANM2_PATH, true)
+    end
+    local counters = g.run.fastClear.paschalCandleCounters[familiar.Player.ControllerIndex]
+    local animation = sprite:GetAnimation()
+    local correctAnimation = "ModifiedIdle" .. tostring(counters)
+    if animation ~= correctAnimation then
+        sprite:Play(correctAnimation, true)
+    end
+end
+function ____exports.fireDelay(self, player)
+    local counters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
+    if counters == nil then
+        return
+    end
+    do
+        local i = 0
+        while i < counters do
+            local tearStat = getTearsStat(nil, player.MaxFireDelay)
+            local newTearsStat = tearStat + TEARS_INCREASE
+            player.MaxFireDelay = getFireDelayFromTearsStat(nil, newTearsStat)
+            i = i + 1
+        end
+    end
+end
+function ____exports.entityTakeDmg(self, tookDamage, damageFlags)
+    local player = tookDamage:ToPlayer()
+    if player == nil then
+        return
+    end
+    local counters = g.run.fastClear.paschalCandleCounters[player.ControllerIndex]
+    if ((player ~= nil) and (not isSelfDamage(nil, damageFlags))) and (counters > 0) then
+        g.run.fastClear.paschalCandleCounters[player.ControllerIndex] = 0
+        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+        player:EvaluateItems()
+    end
+end
+return ____exports
+end,
 ["features.optional.major.freeDevilItem"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -2447,24 +2514,24 @@ local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
 local getPlayers = ____misc.getPlayers
-local hasFlag = ____misc.hasFlag
+local isSelfDamage = ____misc.isSelfDamage
 local giveTrinket
 function giveTrinket(self, player)
-    local character = g.p:GetPlayerType()
-    g.p:AnimateHappy()
+    local character = player:GetPlayerType()
+    player:AnimateHappy()
     local trinketType = (((character == PlayerType.PLAYER_KEEPER) or (character == PlayerType.PLAYER_KEEPER_B)) and TrinketType.TRINKET_STORE_CREDIT) or TrinketType.TRINKET_YOUR_SOUL
     if getOpenTrinketSlot(nil, player) ~= nil then
-        g.p:AddTrinket(trinketType)
+        player:AddTrinket(trinketType)
     else
-        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinketType, g.p.Position, Vector.Zero, nil)
+        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinketType, player.Position, Vector.Zero, nil)
     end
 end
-function ____exports.entityTakeDmg(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
+function ____exports.entityTakeDmg(self, tookDamage, damageFlags)
     if not g.config.freeDevilItem then
         return
     end
     local player = tookDamage:ToPlayer()
-    if ((player ~= nil) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_NO_PENALTIES))) and (not hasFlag(nil, damageFlags, DamageFlag.DAMAGE_RED_HEARTS)) then
+    if (player ~= nil) and (not isSelfDamage(nil, damageFlags)) then
         g.run.freeDevilItem.takenDamage[player.ControllerIndex] = true
     end
 end
@@ -2490,16 +2557,32 @@ return ____exports
 end,
 ["callbacks.entityTakeDmg"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local fastClearPaschalCandle = require("features.optional.major.fastClear.paschalCandle")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
-function ____exports.main(self, tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
-    freeDevilItem:entityTakeDmg(tookDamage, damageAmount, damageFlags, damageSource, damageCountdownFrames)
+function ____exports.main(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
+    freeDevilItem:entityTakeDmg(tookDamage, damageFlags)
+    fastClearPaschalCandle:entityTakeDmg(tookDamage, damageFlags)
     return nil
+end
+return ____exports
+end,
+["features.optional.major.fastClear.callbacks.evaluateCache"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local paschalCandle = require("features.optional.major.fastClear.paschalCandle")
+function ____exports.fireDelay(self, player)
+    if not g.config.fastClear then
+        return
+    end
+    paschalCandle:fireDelay(player)
 end
 return ____exports
 end,
 ["callbacks.evaluateCacheFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local fastClearEvaluateCache = require("features.optional.major.fastClear.callbacks.evaluateCache")
 local ____globals = require("globals")
 local g = ____globals.default
 local debugSpeed
@@ -2510,6 +2593,12 @@ function debugSpeed(self, player)
 end
 local functionMap = __TS__New(Map)
 ____exports.default = functionMap
+functionMap:set(
+    CacheFlag.CACHE_FIREDELAY,
+    function(____, player)
+        fastClearEvaluateCache:fireDelay(player)
+    end
+)
 functionMap:set(
     CacheFlag.CACHE_SPEED,
     function(____, player)
@@ -2536,6 +2625,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
+local log = ____misc.log
 local playingOnSetSeed = ____misc.playingOnSetSeed
 local ____enums = require("types.enums")
 local SaveFileState = ____enums.SaveFileState
@@ -2556,7 +2646,7 @@ function ____exports.isNotFullyUnlocked(self)
         g.saveFile.oldRun.seededRun = playingOnSetSeed(nil)
         g.saveFile.oldRun.seed = startSeedString
         g.saveFile.state = SaveFileState.GOING_TO_EDEN
-        Isaac.DebugString("saveFileCheck - Performing a save file check with Eden.")
+        log(nil, "saveFileCheck - Performing a save file check with Eden.")
     end
     if g.saveFile.state == SaveFileState.GOING_TO_EDEN then
         local valid = true
@@ -2578,16 +2668,16 @@ function ____exports.isNotFullyUnlocked(self)
         local text = ("Error: On seed \"" .. ____exports.SAVE_FILE_SEED) .. "\", Eden needs "
         if activeItem ~= neededActiveItem then
             text = tostring(text) .. (((("an active item of " .. tostring(neededActiveItem)) .. " (they have an active item of ") .. tostring(activeItem)) .. ").")
-            Isaac.DebugString(text)
+            log(nil, text)
         elseif not g.p:HasCollectible(neededPassiveItem) then
             text = tostring(text) .. (("a passive item of " .. tostring(neededPassiveItem)) .. ".")
-            Isaac.DebugString(text)
+            log(nil, text)
         else
             g.saveFile.fullyUnlocked = true
-            Isaac.DebugString("Valid save file detected.")
+            log(nil, "Valid save file detected.")
         end
         g.saveFile.state = SaveFileState.GOING_BACK
-        Isaac.DebugString("saveFileCheck - Going back to the old run.")
+        log(nil, "saveFileCheck - Going back to the old run.")
     end
     if g.saveFile.state == SaveFileState.GOING_BACK then
         local valid = true
@@ -2608,7 +2698,7 @@ function ____exports.isNotFullyUnlocked(self)
             return true
         end
         g.saveFile.state = SaveFileState.FINISHED
-        Isaac.DebugString("saveFileCheck - Completed.")
+        log(nil, "saveFileCheck - Completed.")
     end
     return false
 end
@@ -2748,6 +2838,7 @@ local g = ____globals.default
 local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
 local gridToPos = ____misc.gridToPos
+local log = ____misc.log
 local ____executeCmdSubroutines = require("callbacks.executeCmdSubroutines")
 local blackMarket = ____executeCmdSubroutines.blackMarket
 local chaosCardTears = ____executeCmdSubroutines.chaosCardTears
@@ -2961,7 +3052,7 @@ functionMap:set(
 functionMap:set(
     "list",
     function(____, _params)
-        Isaac.DebugString("Entities in the room:")
+        log(nil, "Entities in the room:")
         local roomEntities = Isaac.GetRoomEntities()
         do
             local i = 0
@@ -2973,7 +3064,7 @@ functionMap:set(
                     debugString = tostring(debugString) .. ("." .. tostring(npc.State))
                 end
                 debugString = tostring(debugString) .. ((" (InitSeed: " .. tostring(entity.InitSeed)) .. ")")
-                Isaac.DebugString(debugString)
+                log(nil, debugString)
                 i = i + 1
             end
         end
@@ -3076,7 +3167,8 @@ functionMap:set(
             local i = 0
             while i < SoundEffect.NUM_SOUND_EFFECTS do
                 if g.sfx:IsPlaying(i) then
-                    Isaac.DebugString(
+                    log(
+                        nil,
                         "Currently playing sound effect: " .. tostring(i)
                     )
                 end
@@ -3092,6 +3184,14 @@ functionMap:set(
         local enabled = (g.run.debugSpeed and "Enabled") or "Disabled"
         print(enabled .. " max speed.")
         g.p:AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)
+    end
+)
+functionMap:set(
+    "tears",
+    function(____, _params)
+        print(
+            "Max fire delay: " .. tostring(g.p.MaxFireDelay)
+        )
     end
 )
 functionMap:set(
@@ -3116,7 +3216,7 @@ functionMap:set(
     "version",
     function(____, _params)
         local msg = "Racing+ version: " .. VERSION
-        Isaac.DebugString(msg)
+        log(nil, msg)
         print(msg)
     end
 )
@@ -3124,6 +3224,8 @@ return ____exports
 end,
 ["callbacks.executeCmd"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local ____misc = require("misc")
+local log = ____misc.log
 local ____executeCmdFunctions = require("callbacks.executeCmdFunctions")
 local executeCmdFunctions = ____executeCmdFunctions.default
 function ____exports.main(self, command, parameters)
@@ -3131,7 +3233,7 @@ function ____exports.main(self, command, parameters)
     if parameters ~= "" then
         debugString = tostring(debugString) .. (" " .. parameters)
     end
-    Isaac.DebugString(debugString)
+    log(nil, debugString)
     local lowercaseCommand = string.lower(command)
     local executeCmdFunction = executeCmdFunctions:get(lowercaseCommand)
     if executeCmdFunction ~= nil then
@@ -3478,6 +3580,27 @@ function ____exports.main(self, entity)
 end
 return ____exports
 end,
+["features.optional.major.fastClear.callbacks.familiarPostRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local pc = require("features.optional.major.fastClear.paschalCandle")
+function ____exports.paschalCandle(self, familiar)
+    if not g.config.fastClear then
+        return
+    end
+    pc:postRender(familiar)
+end
+return ____exports
+end,
+["callbacks.postFamiliarRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClearFamiliarPostRender = require("features.optional.major.fastClear.callbacks.familiarPostRender")
+function ____exports.paschalCandle(self, familiar)
+    fastClearFamiliarPostRender:paschalCandle(familiar)
+end
+return ____exports
+end,
 ["callbacks.postFireTear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -3490,83 +3613,6 @@ function chaosCardTears(self, tear)
 end
 function ____exports.main(self, tear)
     chaosCardTears(nil, tear)
-end
-return ____exports
-end,
-["features.optional.major.startWithD6"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
-function shouldGetPocketActiveD6(self)
-    local character = g.p:GetPlayerType()
-    return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_BETHANY)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
-end
-function shouldGetActiveD6(self)
-    local character = g.p:GetPlayerType()
-    return (character == PlayerType.PLAYER_JACOB) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character)
-end
-function givePocketActiveD6(self, charge)
-    g.p:SetPocketActiveItem(CollectibleType.COLLECTIBLE_D6, ActiveSlot.SLOT_POCKET)
-    if charge ~= nil then
-        g.p:SetActiveCharge(charge, ActiveSlot.SLOT_POCKET)
-    end
-end
-function giveActiveD6(self)
-    g.p:AddCollectible(CollectibleType.COLLECTIBLE_D6, 6)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
-end
-function checkGenesisRoom(self)
-    local roomDesc = g.l:GetCurrentRoomDesc()
-    local roomType = g.r:GetType()
-    if ((roomType == RoomType.ROOM_ISAACS) and (roomDesc.Data.Variant == 1000)) and shouldGetPocketActiveD6(nil) then
-        givePocketActiveD6(nil, g.run.pocketActiveD6Charge)
-    end
-end
-TAINTED_CHARACTERS_WITH_POCKET_ACTIVES = {PlayerType.PLAYER_MAGDALENA_B, PlayerType.PLAYER_CAIN_B, PlayerType.PLAYER_JUDAS_B, PlayerType.PLAYER_XXX_B, PlayerType.PLAYER_EVE_B, PlayerType.PLAYER_LAZARUS_B, PlayerType.PLAYER_APOLLYON_B, PlayerType.PLAYER_BETHANY_B, PlayerType.PLAYER_JACOB_B, PlayerType.PLAYER_LAZARUS2_B, PlayerType.PLAYER_JACOB2_B}
-TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES = {PlayerType.PLAYER_ISAAC_B, PlayerType.PLAYER_SAMSON_B, PlayerType.PLAYER_AZAZEL_B, PlayerType.PLAYER_EDEN_B, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_LILITH_B, PlayerType.PLAYER_KEEPER_B, PlayerType.PLAYER_THEFORGOTTEN_B, PlayerType.PLAYER_THESOUL_B}
-function ____exports.postUpdate(self)
-    g.run.pocketActiveD6Charge = g.p:GetActiveCharge(ActiveSlot.SLOT_POCKET)
-end
-function ____exports.postGameStarted(self)
-    if not g.config.startWithD6 then
-        return
-    end
-    if shouldGetPocketActiveD6(nil) then
-        givePocketActiveD6(nil)
-    elseif shouldGetActiveD6(nil) then
-        giveActiveD6(nil)
-    end
-end
-function ____exports.postNewRoom(self)
-    checkGenesisRoom(nil)
-end
-function ____exports.postPlayerChange(self)
-    if shouldGetPocketActiveD6(nil) then
-        givePocketActiveD6(nil, g.run.pocketActiveD6Charge)
-    end
-end
-return ____exports
-end,
-["customCallbacks.postPlayerChange"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local startWithD6 = require("features.optional.major.startWithD6")
-local ____globals = require("globals")
-local g = ____globals.default
-local postPlayerChange
-function postPlayerChange(self)
-    startWithD6:postPlayerChange()
-end
-function ____exports.postUpdate(self)
-    local character = g.p:GetPlayerType()
-    if character ~= g.run.currentCharacter then
-        g.run.currentCharacter = character
-        postPlayerChange(nil)
-    end
-end
-function ____exports.postGameStarted(self)
-    g.run.currentCharacter = g.p:GetPlayerType()
 end
 return ____exports
 end,
@@ -3630,11 +3676,17 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
 function ____exports.postGameStarted(self)
-    local character = g.p:GetPlayerType()
     g.itemPool:RemoveTrinket(TrinketType.TRINKET_KARMA)
-    if ((character == PlayerType.PLAYER_EDEN) or (character == PlayerType.PLAYER_EDEN_B)) and g.p:HasTrinket(TrinketType.TRINKET_KARMA) then
-        g.p:TryRemoveTrinket(TrinketType.TRINKET_KARMA)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local character = player:GetPlayerType()
+        if ((character == PlayerType.PLAYER_EDEN) or (character == PlayerType.PLAYER_EDEN_B)) and player:HasTrinket(TrinketType.TRINKET_KARMA) then
+            player:TryRemoveTrinket(TrinketType.TRINKET_KARMA)
+        end
     end
 end
 return ____exports
@@ -3644,6 +3696,8 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local anyPlayerHas = ____misc.anyPlayerHas
+local getTotalCollectibles = ____misc.getTotalCollectibles
 local incrementRNG = ____misc.incrementRNG
 local initRNG = ____misc.initRNG
 local playingOnSetSeed = ____misc.playingOnSetSeed
@@ -3722,8 +3776,8 @@ function ____exports.spawn(self)
         end
     end
     local pickupCount = 1
-    if g.p:HasCollectible(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) and (pickupVariant ~= PickupVariant.PICKUP_TRINKET) then
-        pickupCount = g.p:GetCollectibleNum(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) + 1
+    if anyPlayerHas(nil, CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) and (pickupVariant ~= PickupVariant.PICKUP_TRINKET) then
+        pickupCount = getTotalCollectibles(nil, CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) + 1
         local nothingChance = 0.666 ~ pickupCount
         if (nothingChance * 0.5) > rng:RandomFloat() then
             pickupCount = 0
@@ -3734,8 +3788,17 @@ function ____exports.spawn(self)
             pickupVariant = PickupVariant.PICKUP_NULL
         end
     end
-    if ((g.p:HasCollectible(CollectibleType.COLLECTIBLE_BROKEN_MODEM) and (rng:RandomInt(4) == 0)) and (pickupCount >= 1)) and (((((pickupVariant == PickupVariant.PICKUP_HEART) or (pickupVariant == PickupVariant.PICKUP_COIN)) or (pickupVariant == PickupVariant.PICKUP_KEY)) or (pickupVariant == PickupVariant.PICKUP_BOMB)) or (pickupVariant == PickupVariant.PICKUP_GRAB_BAG)) then
-        pickupCount = pickupCount + 1
+    if pickupCount >= 1 then
+        local numBrokenModems = getTotalCollectibles(nil, CollectibleType.COLLECTIBLE_BROKEN_MODEM)
+        do
+            local i = 0
+            while i < numBrokenModems do
+                if (rng:RandomInt(4) == 0) and (((((pickupVariant == PickupVariant.PICKUP_HEART) or (pickupVariant == PickupVariant.PICKUP_COIN)) or (pickupVariant == PickupVariant.PICKUP_KEY)) or (pickupVariant == PickupVariant.PICKUP_BOMB)) or (pickupVariant == PickupVariant.PICKUP_GRAB_BAG)) then
+                    pickupCount = pickupCount + 1
+                end
+                i = i + 1
+            end
+        end
     end
     if (pickupCount > 0) and (pickupVariant ~= PickupVariant.PICKUP_NULL) then
         local subType = 0
@@ -3781,17 +3844,97 @@ function ____exports.postGameStarted(self)
 end
 return ____exports
 end,
+["features.optional.major.startWithD6"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
+function shouldGetPocketActiveD6(self, player)
+    local character = player:GetPlayerType()
+    return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_BETHANY)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
+end
+function shouldGetActiveD6(self, player)
+    local character = player:GetPlayerType()
+    return (character == PlayerType.PLAYER_JACOB) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character)
+end
+function givePocketActiveD6(self, player, charge)
+    player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_D6, ActiveSlot.SLOT_POCKET)
+    if charge ~= nil then
+        player:SetActiveCharge(charge, ActiveSlot.SLOT_POCKET)
+    end
+end
+function giveActiveD6(self, player)
+    player:AddCollectible(CollectibleType.COLLECTIBLE_D6, 6)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
+end
+function checkGenesisRoom(self)
+    local roomDesc = g.l:GetCurrentRoomDesc()
+    local roomType = g.r:GetType()
+    if (roomType == RoomType.ROOM_ISAACS) and (roomDesc.Data.Variant == 1000) then
+        for ____, player in ipairs(
+            getPlayers(nil)
+        ) do
+            if shouldGetPocketActiveD6(nil, player) then
+                givePocketActiveD6(nil, player)
+            end
+        end
+    end
+end
+TAINTED_CHARACTERS_WITH_POCKET_ACTIVES = {PlayerType.PLAYER_MAGDALENA_B, PlayerType.PLAYER_CAIN_B, PlayerType.PLAYER_JUDAS_B, PlayerType.PLAYER_XXX_B, PlayerType.PLAYER_EVE_B, PlayerType.PLAYER_LAZARUS_B, PlayerType.PLAYER_APOLLYON_B, PlayerType.PLAYER_BETHANY_B, PlayerType.PLAYER_JACOB_B, PlayerType.PLAYER_LAZARUS2_B, PlayerType.PLAYER_JACOB2_B}
+TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES = {PlayerType.PLAYER_ISAAC_B, PlayerType.PLAYER_SAMSON_B, PlayerType.PLAYER_AZAZEL_B, PlayerType.PLAYER_EDEN_B, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_LILITH_B, PlayerType.PLAYER_KEEPER_B, PlayerType.PLAYER_THEFORGOTTEN_B, PlayerType.PLAYER_THESOUL_B}
+function ____exports.postUpdate(self)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local pocketActiveCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET)
+        g.run.pocketActiveD6Charge[player.ControllerIndex] = pocketActiveCharge
+    end
+end
+function ____exports.postGameStarted(self)
+    if not g.config.startWithD6 then
+        return
+    end
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        if shouldGetPocketActiveD6(nil, player) then
+            givePocketActiveD6(nil, player)
+        elseif shouldGetActiveD6(nil, player) then
+            giveActiveD6(nil, player)
+        end
+    end
+end
+function ____exports.postNewRoom(self)
+    checkGenesisRoom(nil)
+end
+function ____exports.postPlayerChange(self, player)
+    if shouldGetPocketActiveD6(nil, player) then
+        local charge = g.run.pocketActiveD6Charge[player.ControllerIndex]
+        givePocketActiveD6(nil, player, charge)
+    end
+end
+return ____exports
+end,
 ["features.optional.quality.judasAddBomb"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
 function ____exports.postGameStarted(self)
     if not g.config.judasAddBomb then
         return
     end
-    local character = g.p:GetPlayerType()
-    if character == PlayerType.PLAYER_JUDAS then
-        g.p:AddBombs(1)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local character = player:GetPlayerType()
+        if character == PlayerType.PLAYER_JUDAS then
+            player:AddBombs(1)
+        end
     end
 end
 return ____exports
@@ -3801,23 +3944,28 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
 local gridToPos = ____misc.gridToPos
 function ____exports.postGameStarted(self)
     if not g.config.samsonDropHeart then
         return
     end
-    local character = g.p:GetPlayerType()
-    if character == PlayerType.PLAYER_SAMSON then
-        g.p:TryRemoveTrinket(TrinketType.TRINKET_CHILDS_HEART)
-        local childsHeart = Isaac.Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_TRINKET,
-            TrinketType.TRINKET_CHILDS_HEART,
-            gridToPos(nil, 0, 6),
-            Vector.Zero,
-            g.p
-        )
-        childsHeart:GetSprite():Play("Idle", true)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local character = player:GetPlayerType()
+        if character == PlayerType.PLAYER_SAMSON then
+            player:TryRemoveTrinket(TrinketType.TRINKET_CHILDS_HEART)
+            local childsHeart = Isaac.Spawn(
+                EntityType.ENTITY_PICKUP,
+                PickupVariant.PICKUP_TRINKET,
+                TrinketType.TRINKET_CHILDS_HEART,
+                gridToPos(nil, 0, 6),
+                Vector.Zero,
+                player
+            )
+            childsHeart:GetSprite():Play("Idle", true)
+        end
     end
 end
 return ____exports
@@ -4024,6 +4172,7 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local anyPlayerCloserThan = ____misc.anyPlayerCloserThan
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getPlayers = ____misc.getPlayers
 local getDoorEnterPosition
@@ -4064,7 +4213,7 @@ function ____exports.postNewRoom(self)
                     firstDoorSlot = i
                     firstDoorPosition = Vector(door.Position.X, door.Position.Y)
                 end
-                if door.Position:Distance(g.p.Position) < 60 then
+                if anyPlayerCloserThan(nil, door.Position, 60) then
                     nextToADoor = true
                     break
                 end
@@ -4447,6 +4596,8 @@ local showEdenStartingItems = require("features.optional.quality.showEdenStartin
 local subvertTeleport = require("features.optional.quality.subvertTeleport")
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
 local GlobalsRunRoom = ____GlobalsRunRoom.default
 function ____exports.newRoom(self)
@@ -4456,7 +4607,8 @@ function ____exports.newRoom(self)
     local roomStageID = roomDesc.Data.StageID
     local roomVariant = roomDesc.Data.Variant
     local isClear = g.r:IsClear()
-    Isaac.DebugString(
+    log(
+        nil,
         ((((((("MC_POST_NEW_ROOM_2 - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ")"
     )
     g.run.room = __TS__New(GlobalsRunRoom, isClear)
@@ -4481,7 +4633,8 @@ function ____exports.main(self)
     local roomDesc = g.l:GetCurrentRoomDesc()
     local roomStageID = roomDesc.Data.StageID
     local roomVariant = roomDesc.Data.Variant
-    Isaac.DebugString(
+    log(
+        nil,
         ((((((("MC_POST_NEW_ROOM - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ")"
     )
     if ((gameFrameCount == 0) or (g.run.level.stage ~= stage)) or (g.run.level.stageType ~= stageType) then
@@ -4496,6 +4649,8 @@ require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
 local saveDat = require("saveDat")
 local ____GlobalsRunLevel = require("types.GlobalsRunLevel")
 local GlobalsRunLevel = ____GlobalsRunLevel.default
@@ -4503,7 +4658,8 @@ local postNewRoom = require("callbacks.postNewRoom")
 function ____exports.newLevel(self)
     local stage = g.l:GetStage()
     local stageType = g.l:GetStageType()
-    Isaac.DebugString(
+    log(
+        nil,
         (("MC_POST_NEW_LEVEL_2 - " .. tostring(stage)) .. ".") .. tostring(stageType)
     )
     g.run.level = __TS__New(GlobalsRunLevel, stage, stageType)
@@ -4514,7 +4670,8 @@ function ____exports.main(self)
     local gameFrameCount = g.g:GetFrameCount()
     local stage = g.l:GetStage()
     local stageType = g.l:GetStageType()
-    Isaac.DebugString(
+    log(
+        nil,
         (("MC_POST_NEW_LEVEL - " .. tostring(stage)) .. ".") .. tostring(stageType)
     )
     if gameFrameCount == 0 then
@@ -4527,7 +4684,6 @@ end,
 ["callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local postPlayerChange = require("customCallbacks.postPlayerChange")
 local centerStart = require("features.mandatory.centerStart")
 local removeKarma = require("features.mandatory.removeKarma")
 local removeUselessPills = require("features.mandatory.removeUselessPills")
@@ -4540,6 +4696,9 @@ local samsonDropHeart = require("features.optional.quality.samsonDropHeart")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local log = ____misc.log
 local ____GlobalsRun = require("types.GlobalsRun")
 local GlobalsRun = ____GlobalsRun.default
 local postGameStartedContinued = require("callbacks.postGameStartedContinued")
@@ -4556,7 +4715,8 @@ function checkCorruptMod(self)
     sprite:SetLastFrame()
     local lastFrame = sprite:GetFrame()
     if lastFrame ~= 0 then
-        Isaac.DebugString(
+        log(
+            nil,
             ("Error: Corrupted Racing+ instantiation detected. (The last frame of the \"Scene\" animation is frame " .. tostring(lastFrame)) .. ".)"
         )
         g.corrupted = true
@@ -4566,7 +4726,8 @@ end
 function ____exports.main(self, isContinued)
     local startSeedString = g.seeds:GetStartSeedString()
     local isaacFrameCount = Isaac.GetFrameCount()
-    Isaac.DebugString(
+    log(
+        nil,
         (("MC_POST_GAME_STARTED - Seed: " .. startSeedString) .. " - IsaacFrame: ") .. tostring(isaacFrameCount)
     )
     setSeeds(nil)
@@ -4578,10 +4739,20 @@ function ____exports.main(self, isContinued)
         return
     end
     g.run = __TS__New(GlobalsRun)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local character = player:GetPlayerType()
+        local index = player.ControllerIndex
+        g.run.ghostForm[index] = false
+        g.run.currentCharacters[index] = character
+        g.run.fastClear.paschalCandleCounters[index] = 1
+        g.run.freeDevilItem.takenDamage[index] = false
+        g.run.pocketActiveD6Charge[index] = 6
+    end
     if checkCorruptMod(nil) or saveFileCheck:isNotFullyUnlocked() then
         return
     end
-    postPlayerChange:postGameStarted()
     removeKarma:postGameStarted()
     removeUselessPills:postGameStarted()
     seededDrops:postGameStarted()
@@ -4616,6 +4787,15 @@ function ____exports.main(self, npc)
 end
 return ____exports
 end,
+["callbacks.postPlayerInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.main(self, player)
+    g.p = player
+end
+return ____exports
+end,
 ["features.speedrun.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -4629,6 +4809,8 @@ require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
 local ____constants = require("features.speedrun.constants")
 local CHALLENGE_DEFINITIONS = ____constants.CHALLENGE_DEFINITIONS
 function ____exports.checkValidCharOrder(self)
@@ -4650,13 +4832,15 @@ function ____exports.checkValidCharOrder(self)
         return false
     end
     if type(characterOrder) ~= "table" then
-        Isaac.DebugString(
+        log(
+            nil,
             ("Error: The character order for challenge " .. tostring(challenge)) .. " was not a table."
         )
         return false
     end
     if #characterOrder ~= numElements then
-        Isaac.DebugString(
+        log(
+            nil,
             ((((("Error: The character order for challenge " .. tostring(challenge)) .. " had ") .. tostring(#characterOrder)) .. " elements, but it needs to have ") .. tostring(numElements)) .. "."
         )
         return false
@@ -4682,23 +4866,26 @@ function ____exports.getCurrentCharacter(self)
         return 0
     end
     if type(characterOrder) ~= "table" then
-        Isaac.DebugString(
+        log(
+            nil,
             ("Error: The character order for challenge " .. tostring(challenge)) .. " was not a table."
         )
         return 0
     end
     if #characterOrder ~= numElements then
-        Isaac.DebugString(
+        log(
+            nil,
             ((((("Error: The character order for challenge " .. tostring(challenge)) .. " had ") .. tostring(#characterOrder)) .. " elements, but it needs to have ") .. tostring(numElements)) .. "."
         )
         return 0
     end
     if g.speedrun.characterNum < 1 then
-        Isaac.DebugString("Error: The character number is less than 1.")
+        log(nil, "Error: The character number is less than 1.")
         return 0
     end
     if g.speedrun.characterNum > #characterOrder then
-        Isaac.DebugString(
+        log(
+            nil,
             ("Error: The character number is greater than " .. tostring(#characterOrder)) .. " (i.e. the amount of characters in this speedrun)."
         )
         return 0
@@ -4706,7 +4893,8 @@ function ____exports.getCurrentCharacter(self)
     local arrayIndex = g.speedrun.characterNum - 1
     local character = characterOrder[arrayIndex + 1]
     if character == nil then
-        Isaac.DebugString(
+        log(
+            nil,
             ((("Error: Failed to find the character at array index " .. tostring(arrayIndex)) .. " for the character order of challenge ") .. tostring(challenge)) .. "."
         )
         return 0
@@ -5142,8 +5330,6 @@ end,
 ["features.optional.major.fastClear.bagFamiliarSubroutines"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
 local ____misc = require("misc")
 local initRNG = ____misc.initRNG
 function ____exports.getCurrentFamiliarSeed(self, familiar)
@@ -5159,7 +5345,8 @@ function ____exports.getCurrentFamiliarSeed(self, familiar)
 end
 local MULTIPLIER_MAP = __TS__New(Map, {{FamiliarVariant.BOMB_BAG, {0.35, 0.42}}, {FamiliarVariant.BOMB_BAG, {0.35, 0.42}}, {FamiliarVariant.SACK_OF_PENNIES, {0.5, 0.57}}, {FamiliarVariant.SACK_OF_PENNIES, {0.5, 0.57}}, {FamiliarVariant.LITTLE_CHAD, {0.35, 0.42}}, {FamiliarVariant.RELIC, {0.166, 0.125}}, {FamiliarVariant.MYSTERY_SACK, {0.18, 0.22}}, {FamiliarVariant.RUNE_BAG, {0.125, 0.166}}, {FamiliarVariant.ACID_BABY, {0.125, 0.166}}, {FamiliarVariant.SACK_OF_SACKS, {0.125, 0.166}}})
 function ____exports.shouldDropSomething(self, familiar)
-    local character = g.p:GetPlayerType()
+    local player = familiar.Player
+    local character = player:GetPlayerType()
     local multipliers = MULTIPLIER_MAP:get(familiar.Variant)
     if multipliers == nil then
         error(
@@ -5167,14 +5354,14 @@ function ____exports.shouldDropSomething(self, familiar)
         )
     end
     local multiplierNormal, multiplierBFFS = table.unpack(multipliers)
-    local multiplier = (g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and multiplierBFFS) or multiplierNormal
+    local multiplier = (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and multiplierBFFS) or multiplierNormal
     if character == PlayerType.PLAYER_BETHANY then
         multiplier = multiplier * 0.75
     end
     return math.floor((familiar.RoomClearCount + 1) * multiplier) > math.floor(familiar.RoomClearCount * multiplier)
 end
 function ____exports.shouldDropHeart(self, familiar)
-    return (not g.p:HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL)) or ((____exports.getCurrentFamiliarSeed(nil, familiar) & 5) == 0)
+    return familiar.Player:HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL) or ((____exports.getCurrentFamiliarSeed(nil, familiar) & 5) == 0)
 end
 return ____exports
 end,
@@ -5217,7 +5404,7 @@ functionMap:set(
                 PickupVariant.PICKUP_COIN,
                 familiar.Position,
                 Vector.Zero,
-                g.p,
+                familiar.Player,
                 0,
                 getCurrentFamiliarSeed(nil, familiar)
             )
@@ -5259,14 +5446,15 @@ functionMap:set(
 functionMap:set(
     FamiliarVariant.JUICY_SACK,
     function(____, familiar)
+        local player = familiar.Player
         local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
         local spiders = getRandom(nil, 1, 2, familiarSeed)
-        g.p:AddBlueSpider(familiar.Position)
+        player:AddBlueSpider(familiar.Position)
         if spiders == 2 then
-            g.p:AddBlueSpider(familiar.Position)
+            player:AddBlueSpider(familiar.Position)
         end
-        if g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
-            g.p:AddBlueSpider(familiar.Position)
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
+            player:AddBlueSpider(familiar.Position)
         end
     end
 )
@@ -5337,13 +5525,13 @@ functionMap:set(
     function(____, familiar)
         local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
         local lilChestTrinket = getRandom(nil, 1, 1000, familiarSeed)
-        if (lilChestTrinket <= 100) or (g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestTrinket <= 125)) then
+        if (lilChestTrinket <= 100) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestTrinket <= 125)) then
             g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
             return
         end
         familiarSeed = incrementRNG(nil, familiarSeed)
         local lilChestConsumable = getRandom(nil, 1, 10000, familiarSeed)
-        if (lilChestConsumable <= 2500) or (g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestConsumable <= 3125)) then
+        if (lilChestConsumable <= 2500) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestConsumable <= 3125)) then
             familiarSeed = incrementRNG(nil, familiarSeed)
             local lilChestPickupType = getRandom(nil, 1, 4, familiarSeed)
             local ____switch25 = lilChestPickupType
@@ -5406,7 +5594,7 @@ functionMap:set(
         end
         local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
         local bumboPickup = getRandom(nil, 1, 100, familiarSeed)
-        if (bumboPickup <= 32) or (g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (bumboPickup <= 40)) then
+        if (bumboPickup <= 32) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (bumboPickup <= 40)) then
             g.g:Spawn(EntityType.ENTITY_PICKUP, 0, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
         end
     end
@@ -5426,13 +5614,13 @@ functionMap:set(
     function(____, familiar)
         local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
         local spiderModChance = getRandom(nil, 1, 1000, familiarSeed)
-        if (spiderModChance <= 100) or (g.p:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (spiderModChance <= 125)) then
+        if (spiderModChance <= 100) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (spiderModChance <= 125)) then
             familiarSeed = incrementRNG(nil, familiarSeed)
             local spiderModDrop = getRandom(nil, 1, 3, familiarSeed)
             if spiderModDrop == 1 then
                 g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
             else
-                g.p:AddBlueSpider(familiar.Position)
+                familiar.Player:AddBlueSpider(familiar.Position)
             end
         end
     end
@@ -5473,31 +5661,14 @@ return ____exports
 end,
 ["features.optional.major.fastClear.bagFamiliars"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
 local ____bagFamiliarFunctions = require("features.optional.major.fastClear.bagFamiliarFunctions")
 local bagFamiliarFunctions = ____bagFamiliarFunctions.default
-local checkForDrops, paschalCandle
+local paschalCandle = require("features.optional.major.fastClear.paschalCandle")
+local checkForDrops
 function checkForDrops(self, familiar)
     local bagFamiliarFunction = bagFamiliarFunctions:get(familiar.Variant)
     if bagFamiliarFunction ~= nil then
         bagFamiliarFunction(nil, familiar)
-    end
-end
-function paschalCandle(self, familiar)
-    if familiar.Variant ~= FamiliarVariant.PASCHAL_CANDLE then
-        return
-    end
-    local oldCounters = g.run.fastClear.paschalCandleCounters
-    local ____obj, ____index = g.run.fastClear, "paschalCandleCounters"
-    ____obj[____index] = ____obj[____index] + 1
-    local maxCounters = 5
-    if g.run.fastClear.paschalCandleCounters > maxCounters then
-        g.run.fastClear.paschalCandleCounters = maxCounters
-    end
-    if oldCounters ~= g.run.fastClear.paschalCandleCounters then
-        g.p:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-        g.p:EvaluateItems()
     end
 end
 function ____exports.clearedRoom(self)
@@ -5507,7 +5678,7 @@ function ____exports.clearedRoom(self)
         if familiar ~= nil then
             familiar.RoomClearCount = familiar.RoomClearCount + 1
             checkForDrops(nil, familiar)
-            paschalCandle(nil, familiar)
+            paschalCandle:clearedRoom(familiar)
         end
     end
 end
@@ -5521,6 +5692,8 @@ local g = ____globals.default
 local ____misc = require("misc")
 local ensureAllCases = ____misc.ensureAllCases
 local incrementRNG = ____misc.incrementRNG
+local ____enums = require("features.speedrun.enums")
+local ChallengeCustom = ____enums.ChallengeCustom
 local PhotoSituation, MOM_ROOM_VARIANTS, isMomRoom, getPhotoSituation, getPhotoSituationRace, doPhotoSituation
 function isMomRoom(self)
     local roomDesc = g.l:GetCurrentRoomDesc()
@@ -5528,11 +5701,15 @@ function isMomRoom(self)
     return __TS__ArrayIncludes(MOM_ROOM_VARIANTS, roomVariant)
 end
 function getPhotoSituation(self)
+    local challenge = Isaac.GetChallenge()
     local hasPolaroid = g.p:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
     local hasNegative = g.p:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
     if g.p:HasTrinket(TrinketType.TRINKET_MYSTERIOUS_PAPER) then
         hasPolaroid = false
         hasNegative = false
+    end
+    if challenge == ChallengeCustom.R7_SEASON_1 then
+        return PhotoSituation.POLAROID
     end
     if hasPolaroid and hasNegative then
         return PhotoSituation.RANDOM_BOSS_ITEM
@@ -5549,98 +5726,98 @@ function getPhotoSituation(self)
     return PhotoSituation.BOTH
 end
 function getPhotoSituationRace(self, goal)
-    local ____switch12 = goal
-    if ____switch12 == "Blue Baby" then
-        goto ____switch12_case_0
-    elseif ____switch12 == "The Lamb" then
-        goto ____switch12_case_1
-    elseif ____switch12 == "Mega Satan" then
-        goto ____switch12_case_2
-    elseif ____switch12 == "Hush" then
-        goto ____switch12_case_3
-    elseif ____switch12 == "Delirium" then
-        goto ____switch12_case_4
-    elseif ____switch12 == "Boss Rush" then
-        goto ____switch12_case_5
-    elseif ____switch12 == "Everything" then
-        goto ____switch12_case_6
-    elseif ____switch12 == "Custom" then
-        goto ____switch12_case_7
+    local ____switch13 = goal
+    if ____switch13 == "Blue Baby" then
+        goto ____switch13_case_0
+    elseif ____switch13 == "The Lamb" then
+        goto ____switch13_case_1
+    elseif ____switch13 == "Mega Satan" then
+        goto ____switch13_case_2
+    elseif ____switch13 == "Hush" then
+        goto ____switch13_case_3
+    elseif ____switch13 == "Delirium" then
+        goto ____switch13_case_4
+    elseif ____switch13 == "Boss Rush" then
+        goto ____switch13_case_5
+    elseif ____switch13 == "Everything" then
+        goto ____switch13_case_6
+    elseif ____switch13 == "Custom" then
+        goto ____switch13_case_7
     end
-    goto ____switch12_case_default
-    ::____switch12_case_0::
+    goto ____switch13_case_default
+    ::____switch13_case_0::
     do
         do
             return PhotoSituation.POLAROID
         end
     end
-    ::____switch12_case_1::
+    ::____switch13_case_1::
     do
         do
             return PhotoSituation.NEGATIVE
         end
     end
-    ::____switch12_case_2::
+    ::____switch13_case_2::
     do
     end
-    ::____switch12_case_3::
+    ::____switch13_case_3::
     do
     end
-    ::____switch12_case_4::
+    ::____switch13_case_4::
     do
     end
-    ::____switch12_case_5::
+    ::____switch13_case_5::
     do
     end
-    ::____switch12_case_6::
+    ::____switch13_case_6::
     do
     end
-    ::____switch12_case_7::
+    ::____switch13_case_7::
     do
         do
             return PhotoSituation.BOTH
         end
     end
-    ::____switch12_case_default::
+    ::____switch13_case_default::
     do
         do
             ensureAllCases(nil, goal)
             return PhotoSituation.RANDOM_BOSS_ITEM
         end
     end
-    ::____switch12_end::
+    ::____switch13_end::
 end
 function doPhotoSituation(self, situation)
     local roomSeed = g.r:GetSpawnSeed()
     local posCenter = Vector(320, 360)
     local posCenterLeft = Vector(280, 360)
     local posCenterRight = Vector(360, 360)
-    local ____switch18 = situation
-    if ____switch18 == PhotoSituation.POLAROID then
-        goto ____switch18_case_0
-    elseif ____switch18 == PhotoSituation.NEGATIVE then
-        goto ____switch18_case_1
-    elseif ____switch18 == PhotoSituation.BOTH then
-        goto ____switch18_case_2
-    elseif ____switch18 == PhotoSituation.RANDOM_BOSS_ITEM then
-        goto ____switch18_case_3
+    local ____switch19 = situation
+    if ____switch19 == PhotoSituation.POLAROID then
+        goto ____switch19_case_0
+    elseif ____switch19 == PhotoSituation.NEGATIVE then
+        goto ____switch19_case_1
+    elseif ____switch19 == PhotoSituation.BOTH then
+        goto ____switch19_case_2
+    elseif ____switch19 == PhotoSituation.RANDOM_BOSS_ITEM then
+        goto ____switch19_case_3
     end
-    goto ____switch18_case_default
-    ::____switch18_case_0::
+    goto ____switch19_case_default
+    ::____switch19_case_0::
     do
         do
             g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed)
-            goto ____switch18_end
+            goto ____switch19_end
         end
     end
-    ::____switch18_case_1::
+    ::____switch19_case_1::
     do
         do
             g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_NEGATIVE, roomSeed)
-            goto ____switch18_end
+            goto ____switch19_end
         end
     end
-    ::____switch18_case_2::
+    ::____switch19_case_2::
     do
         do
             local polaroid = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterLeft, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed):ToPickup()
@@ -5652,10 +5829,10 @@ function doPhotoSituation(self, situation)
             if negative ~= nil then
                 negative.OptionsPickupIndex = 1
             end
-            goto ____switch18_end
+            goto ____switch19_end
         end
     end
-    ::____switch18_case_3::
+    ::____switch19_case_3::
     do
         do
             if g.p:HasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS) then
@@ -5671,16 +5848,16 @@ function doPhotoSituation(self, situation)
             else
                 g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, 0, roomSeed)
             end
-            goto ____switch18_end
+            goto ____switch19_end
         end
     end
-    ::____switch18_case_default::
+    ::____switch19_case_default::
     do
         do
             ensureAllCases(nil, situation)
         end
     end
-    ::____switch18_end::
+    ::____switch19_end::
 end
 PhotoSituation = PhotoSituation or ({})
 PhotoSituation.POLAROID = 0
@@ -5709,6 +5886,7 @@ local g = ____globals.default
 local ____misc = require("misc")
 local getItemMaxCharges = ____misc.getItemMaxCharges
 local getPlayers = ____misc.getPlayers
+local log = ____misc.log
 local openAllDoors = ____misc.openAllDoors
 local seededDrops = require("features.mandatory.seededDrops")
 local bagFamiliars = require("features.optional.major.fastClear.bagFamiliars")
@@ -5837,7 +6015,7 @@ function getChargesToAdd(self, player, slot)
     return 1
 end
 function ____exports.default(self)
-    Isaac.DebugString("Fast-clear initiated.")
+    log(nil, "Fast-clear initiated.")
     g.r:SetClear(true)
     openAllDoors(nil)
     playDoorOpenSoundEffect(nil)
@@ -5884,6 +6062,30 @@ function ____exports.postUpdate(self)
         if ghostForm ~= g.run.ghostForm[player.ControllerIndex] then
             g.run.ghostForm[player.ControllerIndex] = ghostForm
             ghostFormChanged(nil, ghostForm)
+        end
+    end
+end
+return ____exports
+end,
+["customCallbacks.postPlayerChange"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local startWithD6 = require("features.optional.major.startWithD6")
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+local postPlayerChange
+function postPlayerChange(self, player)
+    startWithD6:postPlayerChange(player)
+end
+function ____exports.postUpdate(self)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local character = player:GetPlayerType()
+        if character ~= g.run.currentCharacters[player.ControllerIndex] then
+            g.run.currentCharacters[player.ControllerIndex] = character
+            postPlayerChange(nil, player)
         end
     end
 end
@@ -6051,6 +6253,8 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
 local ____enums = require("types.enums")
 local PickupVariantCustom = ____enums.PickupVariantCustom
 local preventVanillaPhotos
@@ -6058,7 +6262,7 @@ function preventVanillaPhotos(self, subType)
     if g.run.fastClear.vanillaPhotosSpawning and ((subType == CollectibleType.COLLECTIBLE_POLAROID) or (subType == CollectibleType.COLLECTIBLE_NEGATIVE)) then
         local photoText = (CollectibleType.COLLECTIBLE_POLAROID and "Polaroid") or "Negative"
         local text = ("Preventing a vanilla " .. photoText) .. " from spawning."
-        Isaac.DebugString(text)
+        log(nil, text)
         return {EntityType.ENTITY_PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0}
     end
     return nil
@@ -6411,11 +6615,13 @@ local NPCUpdate = require("callbacks.NPCUpdate")
 local postCurseEval = require("callbacks.postCurseEval")
 local postEntityKill = require("callbacks.postEntityKill")
 local postEntityRemove = require("callbacks.postEntityRemove")
+local postFamiliarRender = require("callbacks.postFamiliarRender")
 local postFireTear = require("callbacks.postFireTear")
 local postGameStarted = require("callbacks.postGameStarted")
 local postNewLevel = require("callbacks.postNewLevel")
 local postNewRoom = require("callbacks.postNewRoom")
 local postNPCInit = require("callbacks.postNPCInit")
+local postPlayerInit = require("callbacks.postPlayerInit")
 local postRender = require("callbacks.postRender")
 local postTearUpdate = require("callbacks.postTearUpdate")
 local postUpdate = require("callbacks.postUpdate")
@@ -6423,6 +6629,8 @@ local preEntitySpawn = require("callbacks.preEntitySpawn")
 local preGameExit = require("callbacks.preGameExit")
 local ____constants = require("constants")
 local VERSION = ____constants.VERSION
+local ____misc = require("misc")
+local log = ____misc.log
 local modConfigMenu = require("modConfigMenu")
 local saveDat = require("saveDat")
 local racingPlus = RegisterMod("Racing+", 1)
@@ -6433,9 +6641,9 @@ local hyphens = string.rep(
     math.floor(#welcomeText)
 )
 local welcomeTextBorder = ("+-" .. hyphens) .. "-+"
-Isaac.DebugString(welcomeTextBorder)
-Isaac.DebugString(("| " .. welcomeText) .. " |")
-Isaac.DebugString(welcomeTextBorder)
+log(nil, welcomeTextBorder)
+log(nil, ("| " .. welcomeText) .. " |")
+log(nil, welcomeTextBorder)
 saveDat:setMod(racingPlus)
 saveDat:load()
 modConfigMenu:register()
@@ -6443,6 +6651,7 @@ racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
 racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
+racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
 racingPlus:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
@@ -6459,6 +6668,7 @@ racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
+racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
 racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
 return ____exports
 end,

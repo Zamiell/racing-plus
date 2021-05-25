@@ -1,10 +1,4 @@
-import { ChallengeCustom } from "./challenges/enums";
-import { Vector.Zero } from "./constants";
-import * as fastTravel from "./features/fastTravel";
-import g from "./globals";
-import * as misc from "./misc";
-import * as sprites from "./sprites";
-import { CollectibleTypeCustom, EntityTypeCustom } from "./types/enums";
+/*
 
 // Enums
 enum Action {
@@ -26,8 +20,6 @@ export function postPickupInit(pickup: EntityPickup): void {
   const stageType = g.l.GetStageType();
   const centerPos = g.r.GetCenterPos();
   const challenge = Isaac.GetChallenge();
-
-  Isaac.DebugString("Big Chest detected.");
 
   // Since the chest's position is not initialized yet in this callback,
   // manually set it to the center of the room for use in subsequent functions
@@ -486,3 +478,4 @@ function bossRush() {
     action = Action.TROPHY;
   }
 }
+*/

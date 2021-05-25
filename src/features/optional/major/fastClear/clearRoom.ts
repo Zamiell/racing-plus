@@ -1,12 +1,17 @@
 import g from "../../../../globals";
-import { getItemMaxCharges, getPlayers, openAllDoors } from "../../../../misc";
+import {
+  getItemMaxCharges,
+  getPlayers,
+  log,
+  openAllDoors,
+} from "../../../../misc";
 import * as seededDrops from "../../../mandatory/seededDrops";
 import * as bagFamiliars from "./bagFamiliars";
 import * as photos from "./photos";
 
 // This emulates what happens when you normally clear a room
 export default function clearRoom(): void {
-  Isaac.DebugString("Fast-clear initiated.");
+  log("Fast-clear initiated.");
 
   // Set the room clear status to true (so that it gets marked off on the minimap)
   g.r.SetClear(true);

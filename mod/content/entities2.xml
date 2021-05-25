@@ -1,4 +1,7 @@
 <entities anm2root="gfx/" version="5">
+    <!-- We use the normal variant of 221 + 1000 -->
+    <entity name="Paschal Candle (Fast-Clear)" anm2path="003.221_paschal candle.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0"   collisionMass="3"  collisionRadius="13" friction="1" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant="1221" />
+
     <entity name="Invisible Pickup" id="5" variant="500" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
     </entity>

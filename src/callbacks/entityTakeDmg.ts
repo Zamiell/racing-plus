@@ -1,19 +1,15 @@
+import * as fastClearPaschalCandle from "../features/optional/major/fastClear/paschalCandle";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
 export function main(
   tookDamage: Entity,
-  damageAmount: float,
+  _damageAmount: float,
   damageFlags: DamageFlag,
-  damageSource: EntityRef,
-  damageCountdownFrames: int,
+  _damageSource: EntityRef,
+  _damageCountdownFrames: int,
 ): boolean | null {
-  freeDevilItem.entityTakeDmg(
-    tookDamage,
-    damageAmount,
-    damageFlags,
-    damageSource,
-    damageCountdownFrames,
-  );
+  freeDevilItem.entityTakeDmg(tookDamage, damageFlags);
+  fastClearPaschalCandle.entityTakeDmg(tookDamage, damageFlags);
 
   return null;
 }

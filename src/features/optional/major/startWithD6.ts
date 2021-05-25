@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import { getPlayers } from "../../../misc";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,
@@ -28,7 +29,10 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
-  g.run.pocketActiveD6Charge = g.p.GetActiveCharge(ActiveSlot.SLOT_POCKET);
+  for (const player of getPlayers()) {
+    const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
+    g.run.pocketActiveD6Charge.set(player.ControllerIndex, pocketActiveCharge);
+  }
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -37,17 +41,18 @@ export function postGameStarted(): void {
     return;
   }
 
-  if (shouldGetPocketActiveD6()) {
-    givePocketActiveD6();
-  } else if (shouldGetActiveD6()) {
-    giveActiveD6();
+  for (const player of getPlayers()) {
+    if (shouldGetPocketActiveD6(player)) {
+      givePocketActiveD6(player);
+    } else if (shouldGetActiveD6(player)) {
+      giveActiveD6(player);
+    }
+    // Note that modded characters are not given anything
   }
-
-  // Note that modded characters are not given anything
 }
 
-function shouldGetPocketActiveD6() {
-  const character = g.p.GetPlayerType();
+function shouldGetPocketActiveD6(player: EntityPlayer) {
+  const character = player.GetPlayerType();
 
   return (
     // The original characters, minus Jacob & Esau
@@ -57,28 +62,28 @@ function shouldGetPocketActiveD6() {
   );
 }
 
-function shouldGetActiveD6() {
-  const character = g.p.GetPlayerType();
+function shouldGetActiveD6(player: EntityPlayer) {
+  const character = player.GetPlayerType();
   return (
     character === PlayerType.PLAYER_JACOB ||
     TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character)
   );
 }
 
-function givePocketActiveD6(charge?: int) {
-  g.p.SetPocketActiveItem(
+function givePocketActiveD6(player: EntityPlayer, charge?: int) {
+  player.SetPocketActiveItem(
     CollectibleType.COLLECTIBLE_D6,
     ActiveSlot.SLOT_POCKET,
   );
   // (the above function also removes it from item pools)
 
   if (charge !== undefined) {
-    g.p.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
+    player.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
   }
 }
 
-function giveActiveD6() {
-  g.p.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
+function giveActiveD6(player: EntityPlayer) {
+  player.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D6);
 }
 
@@ -93,19 +98,20 @@ function checkGenesisRoom() {
   const roomDesc = g.l.GetCurrentRoomDesc();
   const roomType = g.r.GetType();
 
-  if (
-    roomType === RoomType.ROOM_ISAACS &&
-    roomDesc.Data.Variant === 1000 &&
-    shouldGetPocketActiveD6()
-  ) {
-    givePocketActiveD6(g.run.pocketActiveD6Charge);
+  if (roomType === RoomType.ROOM_ISAACS && roomDesc.Data.Variant === 1000) {
+    for (const player of getPlayers()) {
+      if (shouldGetPocketActiveD6(player)) {
+        givePocketActiveD6(player);
+      }
+    }
   }
 }
 
 // The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
 // Give another pocket D6 if needed
-export function postPlayerChange(): void {
-  if (shouldGetPocketActiveD6()) {
-    givePocketActiveD6(g.run.pocketActiveD6Charge);
+export function postPlayerChange(player: EntityPlayer): void {
+  if (shouldGetPocketActiveD6(player)) {
+    const charge = g.run.pocketActiveD6Charge.get(player.ControllerIndex);
+    givePocketActiveD6(player, charge);
   }
 }

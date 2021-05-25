@@ -1,4 +1,3 @@
-import * as postPlayerChange from "../customCallbacks/postPlayerChange";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeUselessPills from "../features/mandatory/removeUselessPills";
@@ -10,6 +9,7 @@ import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import g from "../globals";
+import { getPlayers, log } from "../misc";
 import GlobalsRun from "../types/GlobalsRun";
 import * as postGameStartedContinued from "./postGameStartedContinued";
 import * as postNewLevel from "./postNewLevel";
@@ -18,7 +18,7 @@ export function main(isContinued: boolean): void {
   const startSeedString = g.seeds.GetStartSeedString();
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  Isaac.DebugString(
+  log(
     `MC_POST_GAME_STARTED - Seed: ${startSeedString} - IsaacFrame: ${isaacFrameCount}`,
   );
 
@@ -37,13 +37,24 @@ export function main(isContinued: boolean): void {
   // Initialize run-based variables
   g.run = new GlobalsRun();
 
+  // Initialize variables tracker per player
+  // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
+  // yet at that point)
+  for (const player of getPlayers()) {
+    const character = player.GetPlayerType();
+    const index = player.ControllerIndex;
+
+    g.run.ghostForm.set(index, false);
+    g.run.currentCharacters.set(index, character);
+    g.run.fastClear.paschalCandleCounters.set(index, 1);
+    g.run.freeDevilItem.takenDamage.set(index, false);
+    g.run.pocketActiveD6Charge.set(index, 6);
+  }
+
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (checkCorruptMod() || saveFileCheck.isNotFullyUnlocked()) {
     return;
   }
-
-  // Custom callbacks
-  postPlayerChange.postGameStarted();
 
   // Mandatory features
   removeKarma.postGameStarted();
@@ -92,7 +103,7 @@ function checkCorruptMod() {
   sprite.SetLastFrame();
   const lastFrame = sprite.GetFrame();
   if (lastFrame !== 0) {
-    Isaac.DebugString(
+    log(
       `Error: Corrupted Racing+ instantiation detected. (The last frame of the "Scene" animation is frame ${lastFrame}.)`,
     );
     g.corrupted = true;

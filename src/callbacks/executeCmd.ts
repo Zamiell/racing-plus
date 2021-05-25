@@ -1,3 +1,4 @@
+import { log } from "../misc";
 import executeCmdFunctions from "./executeCmdFunctions";
 
 export function main(command: string, parameters: string): void {
@@ -6,7 +7,7 @@ export function main(command: string, parameters: string): void {
   if (parameters !== "") {
     debugString += ` ${parameters}`;
   }
-  Isaac.DebugString(debugString);
+  log(debugString);
 
   const lowercaseCommand = command.toLowerCase();
   const executeCmdFunction = executeCmdFunctions.get(lowercaseCommand);

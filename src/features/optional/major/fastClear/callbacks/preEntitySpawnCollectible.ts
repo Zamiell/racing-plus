@@ -1,4 +1,5 @@
 import g from "../../../../../globals";
+import { log } from "../../../../../misc";
 import { PickupVariantCustom } from "../../../../../types/enums";
 
 export function main(subType: int): [EntityType | int, int, int, int] | null {
@@ -28,7 +29,7 @@ function preventVanillaPhotos(
       ? "Polaroid"
       : "Negative";
     const text = `Preventing a vanilla ${photoText} from spawning.`;
-    Isaac.DebugString(text);
+    log(text);
 
     return [
       EntityType.ENTITY_PICKUP,

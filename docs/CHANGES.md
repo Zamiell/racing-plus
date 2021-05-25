@@ -223,13 +223,12 @@ Post-flip actions:
 
 <br />
 
-### 4) Graphics & Sound Fixes
+### 4) Graphics
 
+- Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - The 20/20 sprite is now easier to see.
 - The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.)
-- The audio clips of mom and dad on the Ascent are silenced.
-- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
 
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
@@ -246,6 +245,11 @@ Post-flip actions:
 - Enemy red creep is changed to green (so that it is easier to see).
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
 -->
+
+### 5) Sound Fixes
+
+- The audio clips of mom and dad on the Ascent are silenced.
+- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
 
 <br />
 

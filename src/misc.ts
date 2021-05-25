@@ -11,6 +11,16 @@ export function anyPlayerHas(collectibleType: CollectibleType): boolean {
   return false;
 }
 
+export function anyPlayerCloserThan(position: Vector, distance: int): boolean {
+  for (const player of getPlayers()) {
+    if (player.Position.Distance(position) < distance) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export function changeRoom(roomIndex: int): void {
   // This must be set before every ChangeRoom() invocation or else the function can send
   // you to the wrong room
@@ -20,9 +30,9 @@ export function changeRoom(roomIndex: int): void {
 }
 
 export function consoleCommand(command: string): void {
-  Isaac.DebugString(`Executing console command: ${command}`);
+  log(`Executing console command: ${command}`);
   Isaac.ExecuteCommand(command);
-  Isaac.DebugString(`Finished executing console command: ${command}`);
+  log(`Finished executing console command: ${command}`);
 }
 
 // Use this on a switch statement's default case to get the linter to complain if a case was not
@@ -37,6 +47,10 @@ export function enteredRoomViaTeleport(): boolean {
   return g.l.LeaveDoor === -1 && !justReachedThisFloor;
 }
 
+export function getFireDelayFromTearsStat(tearsStat: float): float {
+  return math.max(30 / tearsStat - 1, -0.99);
+}
+
 export function getItemMaxCharges(itemID: int): int {
   const itemConfigItem = g.itemConfig.GetCollectible(itemID);
   if (itemConfigItem === null) {
@@ -44,6 +58,19 @@ export function getItemMaxCharges(itemID: int): int {
   }
 
   return itemConfigItem.MaxCharges;
+}
+
+export function getTearsStat(fireDelay: int): float {
+  return 30 / (fireDelay + 1);
+}
+
+export function getTotalCollectibles(collectibleType: CollectibleType): int {
+  let numCollectibles = 0;
+  for (const player of getPlayers()) {
+    numCollectibles += player.GetCollectibleNum(collectibleType);
+  }
+
+  return numCollectibles;
 }
 
 export function getOpenTrinketSlot(player: EntityPlayer): int | null {
@@ -169,6 +196,19 @@ export function isActionTriggeredOnAnyInput(
   return false;
 }
 
+export function isSelfDamage(damageFlags: int): boolean {
+  return (
+    // Exclude self-damage from e.g. Curse Room spikes
+    hasFlag(damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) ||
+    // Exclude self-damage from e.g. Razor
+    hasFlag(damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
+  );
+}
+
+export function log(msg: string): void {
+  Isaac.DebugString(msg);
+}
+
 export function playingOnSetSeed(): boolean {
   const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
@@ -179,7 +219,7 @@ export function playingOnSetSeed(): boolean {
 export function printAllFlags(flags: int, maxShift: int): void {
   for (let i = 0; i <= maxShift; i++) {
     if (hasFlag(flags, 1 << i)) {
-      Isaac.DebugString(`Has flag: ${i}`);
+      log(`Has flag: ${i}`);
     }
   }
 }

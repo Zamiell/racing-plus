@@ -1,4 +1,3 @@
-import g from "../../../../globals";
 import { initRNG } from "../../../../misc";
 
 /** The multiplier constants for each familiar were reversed from the game by blcd / Will. */
@@ -20,7 +19,8 @@ const MULTIPLIER_MAP = new Map<FamiliarVariant, [int, int]>([
  * The logic was reversed from the game by blcd / Will.
  */
 export function shouldDropSomething(familiar: EntityFamiliar): boolean {
-  const character = g.p.GetPlayerType();
+  const player = familiar.Player;
+  const character = player.GetPlayerType();
 
   const multipliers = MULTIPLIER_MAP.get(familiar.Variant);
   if (multipliers === undefined) {
@@ -30,7 +30,7 @@ export function shouldDropSomething(familiar: EntityFamiliar): boolean {
   }
   const [multiplierNormal, multiplierBFFS] = multipliers;
 
-  let multiplier = g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
+  let multiplier = player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
     ? multiplierBFFS
     : multiplierNormal;
   if (character === PlayerType.PLAYER_BETHANY) {
@@ -49,7 +49,7 @@ export function shouldDropSomething(familiar: EntityFamiliar): boolean {
  */
 export function shouldDropHeart(familiar: EntityFamiliar): boolean {
   return (
-    !g.p.HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL) ||
+    familiar.Player.HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL) ||
     (getCurrentFamiliarSeed(familiar) & 5) === 0
   );
 }

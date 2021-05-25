@@ -1,12 +1,15 @@
 import g from "../../../globals";
+import { getPlayers } from "../../../misc";
 
 export function postGameStarted(): void {
   if (!g.config.judasAddBomb) {
     return;
   }
 
-  const character = g.p.GetPlayerType();
-  if (character === PlayerType.PLAYER_JUDAS) {
-    g.p.AddBombs(1);
+  for (const player of getPlayers()) {
+    const character = player.GetPlayerType();
+    if (character === PlayerType.PLAYER_JUDAS) {
+      player.AddBombs(1);
+    }
   }
 }

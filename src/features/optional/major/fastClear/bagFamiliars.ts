@@ -1,5 +1,5 @@
-import g from "../../../../globals";
 import bagFamiliarFunctions from "./bagFamiliarFunctions";
+import * as paschalCandle from "./paschalCandle";
 
 // In order to make bag familiars drop things after we clear a room,
 // we cannot simply increment the "familiar.RoomClearCount" variable,
@@ -21,7 +21,7 @@ export function clearedRoom(): void {
     if (familiar !== null) {
       familiar.RoomClearCount += 1;
       checkForDrops(familiar);
-      paschalCandle(familiar);
+      paschalCandle.clearedRoom(familiar);
     }
   }
 }
@@ -30,23 +30,5 @@ function checkForDrops(familiar: EntityFamiliar) {
   const bagFamiliarFunction = bagFamiliarFunctions.get(familiar.Variant);
   if (bagFamiliarFunction !== undefined) {
     bagFamiliarFunction(familiar);
-  }
-}
-
-function paschalCandle(familiar: EntityFamiliar) {
-  if (familiar.Variant !== FamiliarVariant.PASCHAL_CANDLE) {
-    return;
-  }
-
-  const oldCounters = g.run.fastClear.paschalCandleCounters;
-  g.run.fastClear.paschalCandleCounters += 1;
-  const maxCounters = 5;
-  if (g.run.fastClear.paschalCandleCounters > maxCounters) {
-    g.run.fastClear.paschalCandleCounters = maxCounters;
-  }
-
-  if (oldCounters !== g.run.fastClear.paschalCandleCounters) {
-    g.p.AddCacheFlags(CacheFlag.CACHE_FIREDELAY);
-    g.p.EvaluateItems();
   }
 }

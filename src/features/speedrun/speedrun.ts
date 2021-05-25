@@ -1,4 +1,5 @@
 import g from "../../globals";
+import { log } from "../../misc";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 
 export function checkValidCharOrder(): boolean {
@@ -23,14 +24,14 @@ export function checkValidCharOrder(): boolean {
   }
 
   if (type(characterOrder) !== "table") {
-    Isaac.DebugString(
+    log(
       `Error: The character order for challenge ${challenge} was not a table.`,
     );
     return false;
   }
 
   if (characterOrder.length !== numElements) {
-    Isaac.DebugString(
+    log(
       `Error: The character order for challenge ${challenge} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
     );
     return false;
@@ -61,26 +62,26 @@ export function getCurrentCharacter(): int {
   }
 
   if (type(characterOrder) !== "table") {
-    Isaac.DebugString(
+    log(
       `Error: The character order for challenge ${challenge} was not a table.`,
     );
     return 0;
   }
 
   if (characterOrder.length !== numElements) {
-    Isaac.DebugString(
+    log(
       `Error: The character order for challenge ${challenge} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
     );
     return 0;
   }
 
   if (g.speedrun.characterNum < 1) {
-    Isaac.DebugString("Error: The character number is less than 1.");
+    log("Error: The character number is less than 1.");
     return 0;
   }
 
   if (g.speedrun.characterNum > characterOrder.length) {
-    Isaac.DebugString(
+    log(
       `Error: The character number is greater than ${characterOrder.length} (i.e. the amount of characters in this speedrun).`,
     );
     return 0;
@@ -89,7 +90,7 @@ export function getCurrentCharacter(): int {
   const arrayIndex = g.speedrun.characterNum - 1;
   const character = characterOrder[arrayIndex];
   if (character === undefined) {
-    Isaac.DebugString(
+    log(
       `Error: Failed to find the character at array index ${arrayIndex} for the character order of challenge ${challenge}.`,
     );
     return 0;

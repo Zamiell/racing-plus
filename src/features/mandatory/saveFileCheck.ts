@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { consoleCommand, playingOnSetSeed } from "../../misc";
+import { consoleCommand, log, playingOnSetSeed } from "../../misc";
 import { SaveFileState } from "../../types/enums";
 
 export const SAVE_FILE_SEED = "31XY AQGT"; // cspell:disable-line
@@ -32,9 +32,7 @@ export function isNotFullyUnlocked(): boolean {
     g.saveFile.oldRun.seed = startSeedString;
 
     g.saveFile.state = SaveFileState.GOING_TO_EDEN;
-    Isaac.DebugString(
-      "saveFileCheck - Performing a save file check with Eden.",
-    );
+    log("saveFileCheck - Performing a save file check with Eden.");
   }
 
   // Going to the set seed with Eden
@@ -62,17 +60,17 @@ export function isNotFullyUnlocked(): boolean {
     let text = `Error: On seed "${SAVE_FILE_SEED}", Eden needs `;
     if (activeItem !== neededActiveItem) {
       text += `an active item of ${neededActiveItem} (they have an active item of ${activeItem}).`;
-      Isaac.DebugString(text);
+      log(text);
     } else if (!g.p.HasCollectible(neededPassiveItem)) {
       text += `a passive item of ${neededPassiveItem}.`;
-      Isaac.DebugString(text);
+      log(text);
     } else {
       g.saveFile.fullyUnlocked = true;
-      Isaac.DebugString("Valid save file detected.");
+      log("Valid save file detected.");
     }
 
     g.saveFile.state = SaveFileState.GOING_BACK;
-    Isaac.DebugString("saveFileCheck - Going back to the old run.");
+    log("saveFileCheck - Going back to the old run.");
   }
 
   // Going back to the old challenge/character/seed
@@ -99,7 +97,7 @@ export function isNotFullyUnlocked(): boolean {
     }
 
     g.saveFile.state = SaveFileState.FINISHED;
-    Isaac.DebugString("saveFileCheck - Completed.");
+    log("saveFileCheck - Completed.");
   }
 
   return false;

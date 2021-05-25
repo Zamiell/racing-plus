@@ -3,29 +3,20 @@ import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
   getPlayers,
-  hasFlag,
+  isSelfDamage,
 } from "../../../misc";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmg(
   tookDamage: Entity,
-  _damageAmount: float,
   damageFlags: DamageFlag,
-  _damageSource: EntityRef,
-  _damageCountdownFrames: int,
 ): void {
   if (!g.config.freeDevilItem) {
     return;
   }
 
   const player = tookDamage.ToPlayer();
-  if (
-    player !== null &&
-    // Exclude self-damage from e.g. Curse Room spikes
-    !hasFlag(damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) &&
-    // Exclude self-damage from e.g. Razor
-    !hasFlag(damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
-  ) {
+  if (player !== null && !isSelfDamage(damageFlags)) {
     g.run.freeDevilItem.takenDamage.set(player.ControllerIndex, true);
   }
 }
@@ -61,9 +52,9 @@ export function postNewRoom(): void {
 }
 
 function giveTrinket(player: EntityPlayer) {
-  const character = g.p.GetPlayerType();
+  const character = player.GetPlayerType();
 
-  g.p.AnimateHappy();
+  player.AnimateHappy();
 
   const trinketType =
     character === PlayerType.PLAYER_KEEPER ||
@@ -73,14 +64,14 @@ function giveTrinket(player: EntityPlayer) {
 
   if (getOpenTrinketSlot(player) !== null) {
     // By default, put it directly in our inventory
-    g.p.AddTrinket(trinketType);
+    player.AddTrinket(trinketType);
   } else {
     // If we do not have an available trinket slot, then spawn the trinket on the ground
     Isaac.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_TRINKET,
       trinketType,
-      g.p.Position,
+      player.Position,
       Vector.Zero,
       null,
     );

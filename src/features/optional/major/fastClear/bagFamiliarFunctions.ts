@@ -34,7 +34,7 @@ functionMap.set(FamiliarVariant.SACK_OF_PENNIES, (familiar: EntityFamiliar) => {
       PickupVariant.PICKUP_COIN,
       familiar.Position,
       Vector.Zero,
-      g.p,
+      familiar.Player,
       0,
       getCurrentFamiliarSeed(familiar),
     );
@@ -77,17 +77,19 @@ functionMap.set(FamiliarVariant.RELIC, (familiar: EntityFamiliar) => {
 
 // 52
 functionMap.set(FamiliarVariant.JUICY_SACK, (familiar: EntityFamiliar) => {
+  const player = familiar.Player;
+
   // Spawn either 1 or 2 blue spiders (50% chance of each)
   const familiarSeed = getCurrentFamiliarSeed(familiar);
   const spiders = getRandom(1, 2, familiarSeed);
-  g.p.AddBlueSpider(familiar.Position);
+  player.AddBlueSpider(familiar.Position);
   if (spiders === 2) {
-    g.p.AddBlueSpider(familiar.Position);
+    player.AddBlueSpider(familiar.Position);
   }
 
   // The BFFS! synergy gives an additional spider
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) {
-    g.p.AddBlueSpider(familiar.Position);
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) {
+    player.AddBlueSpider(familiar.Position);
   }
 });
 
@@ -185,7 +187,7 @@ functionMap.set(FamiliarVariant.LIL_CHEST, (familiar: EntityFamiliar) => {
   const lilChestTrinket = getRandom(1, 1000, familiarSeed);
   if (
     lilChestTrinket <= 100 ||
-    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+    (familiar.Player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
       lilChestTrinket <= 125)
   ) {
     // Random Trinket
@@ -206,7 +208,7 @@ functionMap.set(FamiliarVariant.LIL_CHEST, (familiar: EntityFamiliar) => {
   const lilChestConsumable = getRandom(1, 10000, familiarSeed);
   if (
     lilChestConsumable <= 2500 ||
-    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+    (familiar.Player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
       lilChestConsumable <= 3125)
   ) {
     // Third, decide whether we get a heart, coin, bomb, or key
@@ -293,7 +295,8 @@ functionMap.set(FamiliarVariant.BUMBO, (familiar: EntityFamiliar) => {
   const bumboPickup = getRandom(1, 100, familiarSeed);
   if (
     bumboPickup <= 32 ||
-    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) && bumboPickup <= 40)
+    (familiar.Player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+      bumboPickup <= 40)
   ) {
     // Spawn a random pickup
     g.g.Spawn(
@@ -334,7 +337,7 @@ functionMap.set(FamiliarVariant.SPIDER_MOD, (familiar: EntityFamiliar) => {
   const spiderModChance = getRandom(1, 1000, familiarSeed);
   if (
     spiderModChance <= 100 ||
-    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
+    (familiar.Player.HasCollectible(CollectibleType.COLLECTIBLE_BFFS) &&
       spiderModChance <= 125)
   ) {
     // There is a 1/3 chance to spawn a battery and a 2/3 chance to spawn a blue spider
@@ -351,7 +354,7 @@ functionMap.set(FamiliarVariant.SPIDER_MOD, (familiar: EntityFamiliar) => {
         familiarSeed,
       );
     } else {
-      g.p.AddBlueSpider(familiar.Position);
+      familiar.Player.AddBlueSpider(familiar.Position);
     }
   }
 });

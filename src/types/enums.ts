@@ -1,3 +1,10 @@
+// EntityType.ENTITY_FAMILIAR (3)
+export enum FamiliarVariantCustom {
+  PASCHAL_CANDLE_FAST_CLEAR = Isaac.GetEntityVariantByName(
+    "Paschal Candle (Fast-Clear)",
+  ),
+}
+
 // EntityType.ENTITY_PICKUP (5)
 export enum PickupVariantCustom {
   INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup"),

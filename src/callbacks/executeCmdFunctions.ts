@@ -7,7 +7,7 @@ import {
   SAVE_FILE_SEED,
 } from "../features/mandatory/saveFileCheck";
 import g from "../globals";
-import { consoleCommand, gridToPos } from "../misc";
+import { consoleCommand, gridToPos, log } from "../misc";
 import {
   blackMarket,
   chaosCardTears,
@@ -182,7 +182,7 @@ functionMap.set("iamerror", (_params: string) => {
 
 functionMap.set("list", (_params: string) => {
   // Used to print out all of the entities in the room
-  Isaac.DebugString("Entities in the room:");
+  log("Entities in the room:");
   const roomEntities = Isaac.GetRoomEntities();
   for (let i = 0; i < roomEntities.length; i++) {
     const entity = roomEntities[i];
@@ -194,7 +194,7 @@ functionMap.set("list", (_params: string) => {
       debugString += `.${npc.State}`;
     }
     debugString += ` (InitSeed: ${entity.InitSeed})`;
-    Isaac.DebugString(debugString);
+    log(debugString);
   }
   print('Logged the entities in the room to the "log.txt" file.');
 });
@@ -282,7 +282,7 @@ functionMap.set("sounds", (_params: string) => {
   print("Printing out the currently playing sounds:");
   for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
     if (g.sfx.IsPlaying(i)) {
-      Isaac.DebugString(`Currently playing sound effect: ${i}`);
+      log(`Currently playing sound effect: ${i}`);
     }
   }
 });
@@ -296,6 +296,10 @@ functionMap.set("speed", (_params: string) => {
   g.p.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
   // (adding this will trigger the speed stat modification, so we don't have to explicitly call
   // "EvaluateItems()")
+});
+
+functionMap.set("tears", (_params: string) => {
+  print(`Max fire delay: ${g.p.MaxFireDelay}`);
 });
 
 functionMap.set("trap", (_params: string) => {
@@ -312,6 +316,6 @@ functionMap.set("treasure", (_params: string) => {
 
 functionMap.set("version", (_params: string) => {
   const msg = `Racing+ version: ${VERSION}`;
-  Isaac.DebugString(msg);
+  log(msg);
   print(msg);
 });

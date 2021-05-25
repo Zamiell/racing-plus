@@ -1,6 +1,7 @@
 import g from "../../../../globals";
 import { ensureAllCases, incrementRNG } from "../../../../misc";
 import { RaceGoal } from "../../../../types/RaceData";
+import { ChallengeCustom } from "../../../speedrun/enums";
 
 enum PhotoSituation {
   POLAROID,
@@ -29,6 +30,8 @@ function isMomRoom() {
 }
 
 function getPhotoSituation() {
+  const challenge = Isaac.GetChallenge();
+
   // Figure out if we need to spawn The Polaroid, The Negative, or both
   let hasPolaroid = g.p.HasCollectible(CollectibleType.COLLECTIBLE_POLAROID);
   let hasNegative = g.p.HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE);
@@ -41,11 +44,9 @@ function getPhotoSituation() {
     hasNegative = false;
   }
 
-  /*
   if (challenge === ChallengeCustom.R7_SEASON_1) {
     return PhotoSituation.POLAROID;
   }
-  */
 
   if (hasPolaroid && hasNegative) {
     // The player has both photos already (which can only occur in a diversity race)

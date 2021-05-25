@@ -1,11 +1,8 @@
-- change Vasculitis to be faded tears
-
 - write script to look for duplicate rooms / empty rooms
 
 - fast travel
 - chat system
 - custom console
-- paschal candle
 
 Racing+ new features:
 - Charge bars for all of the charge items

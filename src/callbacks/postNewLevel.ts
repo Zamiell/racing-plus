@@ -1,4 +1,5 @@
 import g from "../globals";
+import { log } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
@@ -8,7 +9,7 @@ export function main(): void {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  Isaac.DebugString(`MC_POST_NEW_LEVEL - ${stage}.${stageType}`);
+  log(`MC_POST_NEW_LEVEL - ${stage}.${stageType}`);
 
   // Make sure the callbacks run in the right order
   // (naturally, PostNewLevel gets called before the PostGameStarted callbacks)
@@ -23,7 +24,7 @@ export function newLevel(): void {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  Isaac.DebugString(`MC_POST_NEW_LEVEL_2 - ${stage}.${stageType}`);
+  log(`MC_POST_NEW_LEVEL_2 - ${stage}.${stageType}`);
 
   // Clear variables that track things per level
   g.run.level = new GlobalsRunLevel(stage, stageType);

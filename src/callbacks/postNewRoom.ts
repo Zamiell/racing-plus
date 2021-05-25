@@ -10,6 +10,7 @@ import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/s
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import g from "../globals";
+import { log } from "../misc";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
 
 export function main(): void {
@@ -22,7 +23,7 @@ export function main(): void {
   const roomStageID = roomDesc.Data.StageID;
   const roomVariant = roomDesc.Data.Variant;
 
-  Isaac.DebugString(
+  log(
     `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType})`,
   );
 
@@ -47,7 +48,7 @@ export function newRoom(): void {
   const roomVariant = roomDesc.Data.Variant;
   const isClear = g.r.IsClear();
 
-  Isaac.DebugString(
+  log(
     `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType})`,
   );
 

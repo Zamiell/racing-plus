@@ -31,7 +31,7 @@ export default class GlobalsRun {
   // ----------------
 
   ghostForm = new LuaTable<ControllerIndex, boolean>();
-  currentCharacter = -1 as PlayerType;
+  currentCharacters = new LuaTable<ControllerIndex, PlayerType>();
 
   // --------
   // Features
@@ -78,7 +78,10 @@ export default class GlobalsRun {
      */
     deferClearForGhost: false,
 
-    paschalCandleCounters: 0,
+    /**
+     * After picking up the Paschal Candle, it automatically grants one rooms worth of tear-rate.
+     */
+    paschalCandleCounters: new LuaTable<ControllerIndex, int>(),
   };
 
   /** Needed for speedruns to return to the same character. */
@@ -89,7 +92,7 @@ export default class GlobalsRun {
     granted: false,
   };
 
-  pocketActiveD6Charge: int = 0;
+  pocketActiveD6Charge = new LuaTable<ControllerIndex, int>();
   pillEffects: PillEffect[] = [];
 
   seededDrops = {
