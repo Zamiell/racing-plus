@@ -1,6 +1,6 @@
-import * as config from "./config";
 import {
-  ALL_DESCRIPTIONS,
+  ALL_CONFIG_DESCRIPTIONS,
+  ALL_HOTKEY_DESCRIPTIONS,
   BUG_FIXES,
   ConfigDescriptionArray,
   CUSTOM_HOTKEYS,
@@ -9,8 +9,10 @@ import {
 } from "./configDescription";
 import g from "./globals";
 import Config from "./types/Config";
+import Hotkeys from "./types/Hotkeys";
 
 const CATEGORY_NAME = "Racing+";
+const PRESETS_NAME = "Presets";
 
 export function register(): void {
   if (ModConfigMenu === null) {
@@ -20,10 +22,11 @@ export function register(): void {
   deleteOldConfig();
   validateConfigDescriptions();
 
-  registerSubMenu("Major", MAJOR_CHANGES);
-  registerSubMenu("Hotkeys", CUSTOM_HOTKEYS);
-  registerSubMenu("Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES);
-  registerSubMenu("Bug Fixes", BUG_FIXES);
+  registerPresets();
+  registerSubMenuConfig("Major", MAJOR_CHANGES);
+  registerSubMenuHotkeys("Hotkeys", CUSTOM_HOTKEYS);
+  registerSubMenuConfig("Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES);
+  registerSubMenuConfig("Bug Fixes", BUG_FIXES);
 }
 
 function deleteOldConfig() {
@@ -40,18 +43,69 @@ function deleteOldConfig() {
 }
 
 function validateConfigDescriptions() {
-  // The descriptions are typed as having keys of "keyof Config"
-  // Thus, it is impossible for them to contain any non-config data
+  // The descriptions are typed as having keys of "keyof Config | keyof Hotkeys"
+  // Thus, it is impossible for them to contain any incorrect data
   // However, the inverse is not true (i.e. a config value can be missing a description)
   // So, we check this at runtime
   for (const key of Object.keys(g.config)) {
-    if (!ALL_DESCRIPTIONS.some((array) => key === array[0])) {
-      error(`Failed to find config key "${key}" in the config descriptions.`);
+    if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
+      error(`Failed to find key "${key}" in the config descriptions.`);
+    }
+  }
+
+  for (const key of Object.keys(g.hotkeys)) {
+    if (!ALL_HOTKEY_DESCRIPTIONS.some((array) => key === array[0])) {
+      error(`Failed to find key "${key}" in the hotkey descriptions.`);
     }
   }
 }
 
-function registerSubMenu(
+function registerPresets() {
+  ModConfigMenu.AddText(CATEGORY_NAME, PRESETS_NAME, () => "Mod by Zamiel");
+  ModConfigMenu.AddText(CATEGORY_NAME, PRESETS_NAME, () => "isaacracing.net");
+  ModConfigMenu.AddSpace(CATEGORY_NAME, PRESETS_NAME);
+
+  ModConfigMenu.AddSetting(CATEGORY_NAME, PRESETS_NAME, {
+    Type: ModConfigMenuOptionType.BOOLEAN,
+    CurrentSetting: () => isAllConfigSetTo(true),
+    Display: () => `Enable every setting: ${onOff(isAllConfigSetTo(true))}`,
+    OnChange: (newValue: boolean | number) => {
+      setAllSettings(newValue as boolean);
+    },
+    Info: ["Turn every configurable setting on."],
+  });
+
+  ModConfigMenu.AddSetting(CATEGORY_NAME, PRESETS_NAME, {
+    Type: ModConfigMenuOptionType.BOOLEAN,
+    CurrentSetting: () => isAllConfigSetTo(false),
+    Display: () => `Disable every setting: ${onOff(isAllConfigSetTo(false))}`,
+    OnChange: (newValue: boolean | number) => {
+      setAllSettings(!newValue);
+    },
+    Info: ["Turn every configurable setting off."],
+  });
+}
+
+function isAllConfigSetTo(value: boolean) {
+  for (const key of Object.keys(g.config)) {
+    const assertedKey = key as keyof Config;
+    const currentValue = g.config[assertedKey];
+    if (currentValue !== value) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function setAllSettings(newValue: boolean) {
+  for (const key of Object.keys(g.config)) {
+    const assertedKey = key as keyof Config;
+    g.config[assertedKey] = newValue;
+  }
+}
+
+function registerSubMenuConfig(
   subMenuName: string,
   descriptions: ConfigDescriptionArray,
 ) {
@@ -60,17 +114,45 @@ function registerSubMenu(
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {
       Type: optionType,
-      CurrentSetting: () => g.config[configName],
+      CurrentSetting: () => g.config[configName as keyof Config],
       Display: () =>
-        getDisplayText(configName, optionType, code, shortDescription),
+        getDisplayTextBoolean(
+          configName as keyof Config,
+          code,
+          shortDescription,
+        ),
+      OnChange: (newValue: number | boolean) => {
+        g.config[configName as keyof Config] = newValue as boolean;
+      },
+      Info: [longDescription],
+    });
+  }
+}
+
+function registerSubMenuHotkeys(
+  subMenuName: string,
+  descriptions: ConfigDescriptionArray,
+) {
+  for (const [configName, array] of descriptions) {
+    const [optionType, , shortDescription, longDescription] = array;
+
+    ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {
+      Type: optionType,
+      CurrentSetting: () => g.hotkeys[configName as keyof Hotkeys],
+      Display: () =>
+        getDisplayTextKeyboardController(
+          configName as keyof Hotkeys,
+          optionType,
+          shortDescription,
+        ),
       OnChange: (newValue: number | boolean) => {
         if (newValue === null) {
           // The value passed by Mod Config Menu will be null if the user canceled a popup dialog
           newValue = getDefaultValue(optionType);
         }
-        config.set(configName, newValue);
+        g.hotkeys[configName as keyof Hotkeys] = newValue as number;
       },
-      Popup: getPopup(configName, optionType),
+      Popup: () => getPopupDescription(configName as keyof Hotkeys, optionType),
       PopupGfx: getPopupGfx(optionType),
       PopupWidth: getPopupWidth(optionType),
       Info: [longDescription],
@@ -96,20 +178,23 @@ function getDefaultValue(optionType: ModConfigMenuOptionType) {
   }
 }
 
-function getDisplayText(
+function getDisplayTextBoolean(
   configName: keyof Config,
-  optionType: ModConfigMenuOptionType,
   code: string,
   shortDescription: string,
 ) {
-  switch (optionType) {
-    case ModConfigMenuOptionType.BOOLEAN: {
-      const currentValue = g.config[configName] as boolean;
-      return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
-    }
+  const currentValue = g.config[configName];
+  return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
+}
 
+function getDisplayTextKeyboardController(
+  configName: keyof Hotkeys,
+  optionType: ModConfigMenuOptionType,
+  shortDescription: string,
+) {
+  switch (optionType) {
     case ModConfigMenuOptionType.KEYBIND_KEYBOARD: {
-      const currentValue = g.config[configName] as number;
+      const currentValue = g.hotkeys[configName];
 
       let text: string;
       if (currentValue === -1) {
@@ -123,7 +208,7 @@ function getDisplayText(
     }
 
     case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
-      const currentValue = g.config[configName] as number;
+      const currentValue = g.hotkeys[configName];
 
       let text: string;
       if (currentValue === -1) {
@@ -147,18 +232,11 @@ function onOff(setting: boolean) {
   return setting ? "ON" : "OFF";
 }
 
-function getPopup(
-  configName: keyof Config,
+function getPopupDescription(
+  configName: keyof Hotkeys,
   optionType: ModConfigMenuOptionType,
 ) {
-  return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
-    optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
-    ? () => popup(configName, optionType)
-    : null;
-}
-
-function popup(configName: keyof Config, optionType: ModConfigMenuOptionType) {
-  const currentValue = g.config[configName] as int;
+  const currentValue = g.hotkeys[configName];
 
   const deviceString = popupGetDeviceString(optionType);
   const keepSettingString = popupGetKeepSettingString(optionType, currentValue);

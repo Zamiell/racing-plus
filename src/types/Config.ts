@@ -6,14 +6,7 @@ export default class Config {
   freeDevilItem = true;
   fastReset = true;
   fastClear = true;
-
-  // Custom Hotkeys
-  fastDropAllKeyboard = -1;
-  fastDropAllController = -1;
-  fastDropTrinketsKeyboard = -1;
-  fastDropTrinketsController = -1;
-  fastDropPocketKeyboard = -1;
-  fastDropPocketController = -1;
+  fastTravel = true;
 
   // Gameplay & Quality of Life Changes
   judasAddBomb = true;

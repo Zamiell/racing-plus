@@ -24,7 +24,7 @@ export function main(): void {
   const roomVariant = roomDesc.Data.Variant;
 
   log(
-    `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType})`,
+    `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
   );
 
   // Make sure the callbacks run in the right order
@@ -41,6 +41,7 @@ export function main(): void {
 }
 
 export function newRoom(): void {
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const roomDesc = g.l.GetCurrentRoomDesc();
@@ -49,7 +50,7 @@ export function newRoom(): void {
   const isClear = g.r.IsClear();
 
   log(
-    `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType})`,
+    `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
   );
 
   // Set variables

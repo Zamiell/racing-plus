@@ -3,10 +3,15 @@ declare const ModConfigMenu: ModConfigMenuInterface;
 /** @noSelf */
 declare interface ModConfigMenuInterface {
   AddSetting(
-    this: void,
     categoryName: string,
     subcategoryName: string,
     setting?: ModConfigMenuSetting,
+  ): void;
+  AddSpace(categoryName: string, subcategoryName: string): void;
+  AddText(
+    categoryName: string,
+    subcategoryName: string,
+    textFunction: () => string,
   ): void;
   GetCategoryIDByName(categoryName: string): int | null;
 
@@ -34,9 +39,9 @@ declare interface ModConfigMenuSetting {
   Display: () => string;
   Info: string[];
   OnChange: (newValue: number | boolean) => void;
-  Popup: (() => void) | null;
-  PopupGfx: string | null;
-  PopupWidth: int | null;
+  Popup?: (() => void) | null;
+  PopupGfx?: string | null;
+  PopupWidth?: int | null;
   Type: ModConfigMenuOptionType;
 }
 

@@ -53,7 +53,7 @@ export function enteredRoomViaTeleport(): boolean {
 }
 
 export function getFireDelayFromTearsStat(tearsStat: float): float {
-  return math.max(30 / tearsStat - 1, -0.99);
+  return math.max(30 / tearsStat - 1, -0.9999);
 }
 
 export function getItemMaxCharges(itemID: int): int {
@@ -69,7 +69,7 @@ export function getPlayerLuaTableIndex(player: EntityPlayer): string {
   return player.ControllerIndex.toString();
 }
 
-export function getTearsStat(fireDelay: int): float {
+export function getTearsStat(fireDelay: float): float {
   return 30 / (fireDelay + 1);
 }
 
@@ -164,7 +164,7 @@ export function initGlowingItemSprite(
   }
 
   return initSprite(
-    "gfx/glowing-item.anm2",
+    "gfx/glowing_item.anm2",
     `gfx/items-glowing/collectibles/collectibles_${fileNum}.png`,
   );
 }

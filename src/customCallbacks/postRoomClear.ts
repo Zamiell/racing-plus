@@ -10,5 +10,7 @@ export function postUpdate(): void {
 }
 
 function roomClear() {
+  const gameFrameCount = g.g.GetFrameCount();
+  Isaac.DebugString(`Room clear detected on frame: ${gameFrameCount}`);
   fastClearClearRoom.setDeferClearForGhost(false);
 }

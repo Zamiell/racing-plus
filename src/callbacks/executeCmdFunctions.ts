@@ -156,6 +156,22 @@ functionMap.set("fool", (_params: string) => {
   g.p.UseCard(Card.CARD_FOOL);
 });
 
+functionMap.set("effects", (_params: string) => {
+  const effects = g.p.GetEffects();
+  const effectsList = effects.GetEffectsList();
+  if (effectsList.Size === 0) {
+    print("There are no current temporary effects.");
+    return;
+  }
+  for (let i = 0; i < effectsList.Size; i++) {
+    const effect = effectsList.Get(i);
+    if (effect !== null) {
+      log(`${i + 1} - ${effect.Item.Name}`);
+    }
+  }
+  print('Logged the player\'s effects to the "log.txt" file.');
+});
+
 functionMap.set("error", (_params: string) => {
   IAMERROR();
 });

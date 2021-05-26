@@ -1845,12 +1845,7 @@ ____exports.default = (function()
         self.freeDevilItem = true
         self.fastReset = true
         self.fastClear = true
-        self.fastDropAllKeyboard = -1
-        self.fastDropAllController = -1
-        self.fastDropTrinketsKeyboard = -1
-        self.fastDropTrinketsController = -1
-        self.fastDropPocketKeyboard = -1
-        self.fastDropPocketController = -1
+        self.fastTravel = true
         self.judasAddBomb = true
         self.samsonDropHeart = true
         self.showEdenStartingItems = true
@@ -1877,6 +1872,8 @@ ____exports.PickupPriceCustom = PickupPriceCustom or ({})
 ____exports.PickupPriceCustom.PRICE_NO_MINIMAP = -50
 ____exports.PickupPriceCustom[____exports.PickupPriceCustom.PRICE_NO_MINIMAP] = "PRICE_NO_MINIMAP"
 ____exports.EffectVariantCustom = EffectVariantCustom or ({})
+____exports.EffectVariantCustom.NPC_DEATH_ANIMATION = Isaac.GetEntityVariantByName("NPC Death Animation")
+____exports.EffectVariantCustom[____exports.EffectVariantCustom.NPC_DEATH_ANIMATION] = "NPC_DEATH_ANIMATION"
 ____exports.EffectVariantCustom.TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName("Trapdoor (Fast-Travel)")
 ____exports.EffectVariantCustom[____exports.EffectVariantCustom.TRAPDOOR_FAST_TRAVEL] = "TRAPDOOR_FAST_TRAVEL"
 ____exports.EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL = Isaac.GetEntityVariantByName("Crawlspace (Fast-Travel)")
@@ -1995,6 +1992,25 @@ ____exports.default = (function()
 end)()
 return ____exports
 end,
+["types.Hotkeys"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+____exports.default = (function()
+    ____exports.default = __TS__Class()
+    local Hotkeys = ____exports.default
+    Hotkeys.name = "Hotkeys"
+    function Hotkeys.prototype.____constructor(self)
+        self.fastDropAllKeyboard = -1
+        self.fastDropAllController = -1
+        self.fastDropTrinketsKeyboard = -1
+        self.fastDropTrinketsController = -1
+        self.fastDropPocketKeyboard = -1
+        self.fastDropPocketController = -1
+    end
+    return Hotkeys
+end)()
+return ____exports
+end,
 ["types.RaceData"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -2060,6 +2076,8 @@ local ____enums = require("types.enums")
 local SaveFileState = ____enums.SaveFileState
 local ____GlobalsRun = require("types.GlobalsRun")
 local GlobalsRun = ____GlobalsRun.default
+local ____Hotkeys = require("types.Hotkeys")
+local Hotkeys = ____Hotkeys.default
 local ____RaceData = require("types.RaceData")
 local RaceData = ____RaceData.default
 local ____SpeedrunData = require("types.SpeedrunData")
@@ -2081,6 +2099,7 @@ ____exports.default = (function()
         self.sfx = SFXManager()
         self.music = MusicManager()
         self.config = __TS__New(Config)
+        self.hotkeys = __TS__New(Hotkeys)
         self.run = __TS__New(GlobalsRun, {})
         self.race = __TS__New(RaceData)
         self.speedrun = __TS__New(SpeedrunData)
@@ -2123,91 +2142,18 @@ local CARD_MAP = __TS__New(Map, {{"fool", 1}, {"magician", 2}, {"magi", 2}, {"ma
 ____exports.default = CARD_MAP
 return ____exports
 end,
-["saveDat"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local json = require("json")
-local ____globals = require("globals")
-local g = ____globals.default
-require("lib.RevelCopyTable")
-local ____Globals = require("types.Globals")
-local Globals = ____Globals.default
-local loadSuccess
-function loadSuccess(self, newGlobals)
-    local oldGlobals = {config = g.config, run = g.run, race = g.race, speedrun = g.speedrun}
-    local validatedNewGlobals = RevelCopyTable(newGlobals, oldGlobals)
-    g.config = validatedNewGlobals.config
-    g.run = validatedNewGlobals.run
-    g.race = validatedNewGlobals.race
-    g.speedrun = validatedNewGlobals.speedrun
-end
-local mod = nil
-function ____exports.setMod(self, newMod)
-    mod = newMod
-end
-function ____exports.save(self)
-    if mod == nil then
-        error("\"saveDat.save()\" was called without the mod being initialized.")
-    end
-    local globalsToSave = {config = g.config, run = g.run, race = g.race, speedrun = g.speedrun}
-    globalsToSave.run.fastClear.aliveEnemies = {}
-    local encodedData = json.encode(globalsToSave)
-    mod:SaveData(encodedData)
-end
-function ____exports.load(self)
-    if mod == nil then
-        error("\"saveDat.load()\" was called without the mod being initialized.")
-    end
-    if not Isaac.HasModData(mod) then
-        return
-    end
-    local newGlobals = nil
-    local function loadJSON()
-        if mod == nil then
-            return
-        end
-        local modDataString = Isaac.LoadModData(mod)
-        if __TS__StringTrim(modDataString) == "" then
-            newGlobals = __TS__New(Globals)
-        else
-            newGlobals = json.decode(modDataString)
-        end
-    end
-    local ok = pcall(loadJSON)
-    if ok and (newGlobals ~= nil) then
-        loadSuccess(nil, newGlobals)
-    else
-        error("Failed to load the \"save#.dat\" file.")
-    end
-end
-return ____exports
-end,
-["config"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local saveDat = require("saveDat")
-function ____exports.set(self, key, value)
-    g.config[key] = value
-    saveDat:save()
-end
-return ____exports
-end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}}
+____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
 ____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"fadeVasculitisTears", {4, "027", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "028", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
 ____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
-____exports.ALL_DESCRIPTIONS = {
+____exports.ALL_CONFIG_DESCRIPTIONS = {
     table.unpack(
         __TS__ArrayConcat(
             {
                 table.unpack(____exports.MAJOR_CHANGES)
-            },
-            {
-                table.unpack(____exports.CUSTOM_HOTKEYS)
             },
             {
                 table.unpack(____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES)
@@ -2217,6 +2163,9 @@ ____exports.ALL_DESCRIPTIONS = {
             }
         )
     )
+}
+____exports.ALL_HOTKEY_DESCRIPTIONS = {
+    table.unpack(____exports.CUSTOM_HOTKEYS)
 }
 return ____exports
 end,
@@ -2329,7 +2278,7 @@ function ____exports.enteredRoomViaTeleport(self)
     return (g.l.LeaveDoor == -1) and (not justReachedThisFloor)
 end
 function ____exports.getFireDelayFromTearsStat(self, tearsStat)
-    return math.max((30 / tearsStat) - 1, -0.99)
+    return math.max((30 / tearsStat) - 1, -0.9999)
 end
 function ____exports.getItemMaxCharges(self, itemID)
     local itemConfigItem = g.itemConfig:GetCollectible(itemID)
@@ -2401,7 +2350,7 @@ function ____exports.initGlowingItemSprite(self, collectibleType)
     else
         fileNum = "NEW"
     end
-    return ____exports.initSprite(nil, "gfx/glowing-item.anm2", ("gfx/items-glowing/collectibles/collectibles_" .. fileNum) .. ".png")
+    return ____exports.initSprite(nil, "gfx/glowing_item.anm2", ("gfx/items-glowing/collectibles/collectibles_" .. fileNum) .. ".png")
 end
 function ____exports.isActionTriggeredOnAnyInput(self, buttonAction)
     do
@@ -3058,6 +3007,31 @@ functionMap:set(
     end
 )
 functionMap:set(
+    "effects",
+    function(____, _params)
+        local effects = g.p:GetEffects()
+        local effectsList = effects:GetEffectsList()
+        if effectsList.Size == 0 then
+            print("There are no current temporary effects.")
+            return
+        end
+        do
+            local i = 0
+            while i < effectsList.Size do
+                local effect = effectsList:Get(i)
+                if effect ~= nil then
+                    log(
+                        nil,
+                        (tostring(i + 1) .. " - ") .. effect.Item.Name
+                    )
+                end
+                i = i + 1
+            end
+        end
+        print("Logged the player's effects to the \"log.txt\" file.")
+    end
+)
+functionMap:set(
     "error",
     function(____, _params)
         IAMERROR(nil)
@@ -3586,8 +3560,26 @@ end,
 ["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostEntityKill = require("features.optional.major.fastClear.callbacks.postEntityKill")
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local openAllDoors = ____misc.openAllDoors
 function ____exports.main(self, entity)
     fastClearPostEntityKill:main(entity)
+    local npc = entity:ToNPC()
+    if npc ~= nil then
+        local gameFrameCount = g.g:GetFrameCount()
+        npc:Remove()
+        Isaac.DebugString(
+            "Removed NPC on frame: " .. tostring(gameFrameCount)
+        )
+        if npc:IsBoss() then
+            openAllDoors(nil)
+            Isaac.DebugString(
+                "Opened doors on frame: " .. tostring(gameFrameCount)
+            )
+        end
+    end
 end
 return ____exports
 end,
@@ -4116,6 +4108,105 @@ function ____exports.postGameStarted(self)
         return
     end
     storeItemIdentities(nil)
+end
+return ____exports
+end,
+["tableUtils"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+function ____exports.merge(self, oldTable, newTable)
+    if (type(oldTable) ~= "table") or (type(newTable) ~= "table") then
+        error("merge is comparing a value that is not a table.")
+    end
+    for ____, key in ipairs(
+        __TS__ObjectKeys(oldTable)
+    ) do
+        do
+            local oldValue = oldTable[key]
+            local newValue = newTable[key]
+            local oldType = type(oldValue)
+            local newType = type(newValue)
+            if oldType ~= newType then
+                goto __continue4
+            end
+            if oldType == "table" then
+                ____exports.merge(nil, oldValue, newValue)
+                goto __continue4
+            end
+            oldTable[key] = newValue
+        end
+        ::__continue4::
+    end
+end
+return ____exports
+end,
+["types.GlobalsToSave"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+return ____exports
+end,
+["saveDat"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local json = require("json")
+local ____globals = require("globals")
+local g = ____globals.default
+local tableUtils = require("tableUtils")
+local mod, readSaveDat, convertStringToTable
+function readSaveDat(self)
+    local defaultModData = "{}"
+    local modDataString = defaultModData
+    local function loadModData()
+        if mod == nil then
+            error("\"loadModData()\" was called without the mod being initialized.")
+        end
+        modDataString = Isaac.LoadModData(mod)
+    end
+    local ok = pcall(loadModData)
+    if not ok then
+        modDataString = defaultModData
+    end
+    modDataString = __TS__StringTrim(modDataString)
+    if modDataString == "" then
+        modDataString = defaultModData
+    end
+    return modDataString
+end
+function convertStringToTable(self, modDataString)
+    local defaultTable = {}
+    local ____table = nil
+    local function decodeJSON()
+        ____table = json.decode(modDataString)
+    end
+    local ok = pcall(decodeJSON)
+    if (not ok) or (____table == nil) then
+        ____table = defaultTable
+    end
+    return ____table
+end
+mod = nil
+function ____exports.setMod(self, newMod)
+    mod = newMod
+end
+function ____exports.save(self)
+    if mod == nil then
+        error("\"saveDat.save()\" was called without the mod being initialized.")
+    end
+    g.run.fastClear.aliveEnemies = {}
+    local globalsToSave = {config = g.config, hotkeys = g.hotkeys, run = g.run, race = g.race, speedrun = g.speedrun}
+    local encodedData = json.encode(globalsToSave)
+    mod:SaveData(encodedData)
+end
+function ____exports.load(self)
+    if mod == nil then
+        error("\"saveDat.load()\" was called without the mod being initialized.")
+    end
+    if not Isaac.HasModData(mod) then
+        return
+    end
+    local modDataString = readSaveDat(nil)
+    local newGlobals = convertStringToTable(nil, modDataString)
+    local oldGlobals = {config = g.config, hotkeys = g.hotkeys, run = g.run, race = g.race, speedrun = g.speedrun}
+    tableUtils:merge(oldGlobals, newGlobals)
 end
 return ____exports
 end,
@@ -4658,6 +4749,7 @@ local log = ____misc.log
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
 local GlobalsRunRoom = ____GlobalsRunRoom.default
 function ____exports.newRoom(self)
+    local gameFrameCount = g.g:GetFrameCount()
     local stage = g.l:GetStage()
     local stageType = g.l:GetStageType()
     local roomDesc = g.l:GetCurrentRoomDesc()
@@ -4666,7 +4758,7 @@ function ____exports.newRoom(self)
     local isClear = g.r:IsClear()
     log(
         nil,
-        ((((((("MC_POST_NEW_ROOM_2 - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ")"
+        ((((((((("MC_POST_NEW_ROOM_2 - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ") (game frame ") .. tostring(gameFrameCount)) .. ")"
     )
     g.run.room = __TS__New(GlobalsRunRoom, isClear)
     local ____obj, ____index = g.run, "roomsEntered"
@@ -4692,7 +4784,7 @@ function ____exports.main(self)
     local roomVariant = roomDesc.Data.Variant
     log(
         nil,
-        ((((((("MC_POST_NEW_ROOM - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ")"
+        ((((((((("MC_POST_NEW_ROOM - " .. tostring(roomStageID)) .. ".") .. tostring(roomVariant)) .. " (on stage ") .. tostring(stage)) .. ".") .. tostring(stageType)) .. ") (game frame ") .. tostring(gameFrameCount)) .. ")"
     )
     if ((gameFrameCount == 0) or (g.run.level.stage ~= stage)) or (g.run.level.stageType ~= stageType) then
         return
@@ -5732,6 +5824,94 @@ function ____exports.clearedRoom(self)
 end
 return ____exports
 end,
+["features.optional.major.fastClear.charge"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getItemMaxCharges = ____misc.getItemMaxCharges
+local getPlayers = ____misc.getPlayers
+local add, getNumChargesToAdd, getNumChargesWithAAAModifier, shouldPlayFullRechargeSound
+function add(self, player, slot)
+    local hud = g.g:GetHUD()
+    local currentCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local chargesToAdd = getNumChargesToAdd(nil, player, slot)
+    local modifiedChargesToAdd = getNumChargesWithAAAModifier(nil, player, slot, chargesToAdd)
+    local newCharge = (currentCharge + batteryCharge) + modifiedChargesToAdd
+    player:SetActiveCharge(newCharge, slot)
+    hud:FlashChargeBar(player, slot)
+    local chargeSoundEffect = (shouldPlayFullRechargeSound(nil, player, slot) and SoundEffect.SOUND_BATTERYCHARGE) or SoundEffect.SOUND_BEEP
+    if not g.sfx:IsPlaying(chargeSoundEffect) then
+        g.sfx:Play(chargeSoundEffect)
+    end
+end
+function getNumChargesToAdd(self, player, slot)
+    local roomShape = g.r:GetRoomShape()
+    local activeItem = player:GetActiveItem(slot)
+    local activeCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+    local maxCharges = getItemMaxCharges(nil, activeItem)
+    if (not hasBattery) and (activeCharge == maxCharges) then
+        return 0
+    end
+    if hasBattery and (batteryCharge == maxCharges) then
+        return 0
+    end
+    if (not hasBattery) and ((activeCharge + 1) == maxCharges) then
+        return 1
+    end
+    if hasBattery and ((batteryCharge + 1) == maxCharges) then
+        return 1
+    end
+    if roomShape >= RoomShape.ROOMSHAPE_2x2 then
+        return 2
+    end
+    return 1
+end
+function getNumChargesWithAAAModifier(self, player, slot, chargesToAdd)
+    local activeItem = player:GetActiveItem(slot)
+    local activeCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+    local hasAAABattery = player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY)
+    local maxCharges = getItemMaxCharges(nil, activeItem)
+    if not hasAAABattery then
+        return chargesToAdd
+    end
+    if (not hasBattery) and ((activeCharge + chargesToAdd) == (maxCharges - 1)) then
+        return maxCharges + 1
+    end
+    if hasBattery and ((batteryCharge + chargesToAdd) == (maxCharges - 1)) then
+        return maxCharges + 1
+    end
+    return chargesToAdd
+end
+function shouldPlayFullRechargeSound(self, player, slot)
+    local activeItem = player:GetActiveItem(slot)
+    local activeCharge = player:GetActiveCharge(slot)
+    local batteryCharge = player:GetBatteryCharge(slot)
+    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+    local maxCharges = getItemMaxCharges(nil, activeItem)
+    if not hasBattery then
+        return not player:NeedsCharge(slot)
+    end
+    return (not player:NeedsCharge(slot)) or ((activeCharge == maxCharges) and (batteryCharge == 0))
+end
+function ____exports.checkAdd(self)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        for ____, slot in ipairs({ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_SECONDARY, ActiveSlot.SLOT_POCKET}) do
+            if player:NeedsCharge(slot) then
+                add(nil, player, slot)
+            end
+        end
+    end
+end
+return ____exports
+end,
 ["features.optional.major.fastClear.photos"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -5932,14 +6112,13 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getItemMaxCharges = ____misc.getItemMaxCharges
-local getPlayers = ____misc.getPlayers
 local log = ____misc.log
 local openAllDoors = ____misc.openAllDoors
 local seededDrops = require("features.mandatory.seededDrops")
 local bagFamiliars = require("features.optional.major.fastClear.bagFamiliars")
+local charge = require("features.optional.major.fastClear.charge")
 local photos = require("features.optional.major.fastClear.photos")
-local playDoorOpenSoundEffect, killExtraEntities, postBossActions, spawnClearAward, checkAddCharge, addCharge, getChargesToAdd, getChargesWithAAAModifier, shouldPlayFullRechargeSound
+local playDoorOpenSoundEffect, killExtraEntities, postBossActions, spawnClearAward
 function playDoorOpenSoundEffect(self)
     local roomType = g.r:GetType()
     if roomType ~= RoomType.ROOM_DUNGEON then
@@ -6026,89 +6205,6 @@ function spawnClearAward(self)
         g.run.fastClear.vanillaPhotosSpawning = false
     end
 end
-function checkAddCharge(self)
-    for ____, player in ipairs(
-        getPlayers(nil)
-    ) do
-        for ____, slot in ipairs({ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_SECONDARY, ActiveSlot.SLOT_POCKET}) do
-            if player:NeedsCharge(slot) then
-                addCharge(nil, player, slot)
-            end
-        end
-    end
-end
-function addCharge(self, player, slot)
-    local hud = g.g:GetHUD()
-    local currentCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local chargesToAdd = getChargesToAdd(nil, player, slot)
-    local modifiedChargesToAdd = getChargesWithAAAModifier(nil, player, slot, chargesToAdd)
-    local newCharge = (currentCharge + batteryCharge) + modifiedChargesToAdd
-    player:SetActiveCharge(newCharge, slot)
-    hud:FlashChargeBar(player, slot)
-    Isaac.DebugString(
-        "XXX " .. tostring(
-            shouldPlayFullRechargeSound(nil, player, slot)
-        )
-    )
-    local chargeSoundEffect = (shouldPlayFullRechargeSound(nil, player, slot) and SoundEffect.SOUND_BATTERYCHARGE) or SoundEffect.SOUND_BEEP
-    if not g.sfx:IsPlaying(chargeSoundEffect) then
-        g.sfx:Play(chargeSoundEffect)
-    end
-end
-function getChargesToAdd(self, player, slot)
-    local roomShape = g.r:GetRoomShape()
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if (not hasBattery) and (activeCharge == maxCharges) then
-        return 0
-    end
-    if hasBattery and (batteryCharge == maxCharges) then
-        return 0
-    end
-    if (not hasBattery) and ((activeCharge + 1) == maxCharges) then
-        return 1
-    end
-    if hasBattery and ((batteryCharge + 1) == maxCharges) then
-        return 1
-    end
-    if roomShape >= RoomShape.ROOMSHAPE_2x2 then
-        return 2
-    end
-    return 1
-end
-function getChargesWithAAAModifier(self, player, slot, chargesToAdd)
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local hasAAABattery = player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if not hasAAABattery then
-        return chargesToAdd
-    end
-    if (not hasBattery) and ((activeCharge + chargesToAdd) == (maxCharges - 1)) then
-        return maxCharges + 1
-    end
-    if hasBattery and ((batteryCharge + chargesToAdd) == (maxCharges - 1)) then
-        return maxCharges + 1
-    end
-    return chargesToAdd
-end
-function shouldPlayFullRechargeSound(self, player, slot)
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if not hasBattery then
-        return not player:NeedsCharge(slot)
-    end
-    return (not player:NeedsCharge(slot)) or ((activeCharge == maxCharges) and (batteryCharge == 0))
-end
 function ____exports.default(self)
     log(nil, "Fast-clear initiated.")
     g.r:SetClear(true)
@@ -6118,7 +6214,7 @@ function ____exports.default(self)
     postBossActions(nil)
     spawnClearAward(nil)
     photos:spawn()
-    checkAddCharge(nil)
+    charge:checkAdd()
     bagFamiliars:clearedRoom()
 end
 function ____exports.setDeferClearForGhost(self, value)
@@ -6197,6 +6293,10 @@ local ____globals = require("globals")
 local g = ____globals.default
 local roomClear
 function roomClear(self)
+    local gameFrameCount = g.g:GetFrameCount()
+    Isaac.DebugString(
+        "Room clear detected on frame: " .. tostring(gameFrameCount)
+    )
     fastClearClearRoom:setDeferClearForGhost(false)
 end
 function ____exports.postUpdate(self)
@@ -6225,26 +6325,26 @@ function checkInput(self)
     end
 end
 function checkInputAll(self, player)
-    if (g.config.fastDropAllKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropAllKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropAllKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropAllKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.ALL)
     end
-    if (g.config.fastDropAllController ~= -1) and Input.IsButtonPressed(g.config.fastDropAllController, player.ControllerIndex) then
+    if (g.hotkeys.fastDropAllController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropAllController, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.ALL)
     end
 end
 function checkInputTrinkets(self, player)
-    if (g.config.fastDropTrinketsKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropTrinketsKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropTrinketsKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
     end
-    if (g.config.fastDropTrinketsController ~= -1) and Input.IsButtonPressed(g.config.fastDropTrinketsController, player.ControllerIndex) then
+    if (g.hotkeys.fastDropTrinketsController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropTrinketsController, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.TRINKETS)
     end
 end
 function checkInputPocket(self, player)
-    if (g.config.fastDropPocketKeyboard ~= -1) and InputHelper.KeyboardPressed(g.config.fastDropPocketKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropPocketKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropPocketKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
     end
-    if (g.config.fastDropPocketController ~= -1) and Input.IsButtonPressed(g.config.fastDropPocketController, player.ControllerIndex) then
+    if (g.hotkeys.fastDropPocketController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropPocketController, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.POCKET)
     end
 end
@@ -6441,16 +6541,16 @@ end,
 ["modConfigMenu"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local config = require("config")
 local ____configDescription = require("configDescription")
-local ALL_DESCRIPTIONS = ____configDescription.ALL_DESCRIPTIONS
+local ALL_CONFIG_DESCRIPTIONS = ____configDescription.ALL_CONFIG_DESCRIPTIONS
+local ALL_HOTKEY_DESCRIPTIONS = ____configDescription.ALL_HOTKEY_DESCRIPTIONS
 local BUG_FIXES = ____configDescription.BUG_FIXES
 local CUSTOM_HOTKEYS = ____configDescription.CUSTOM_HOTKEYS
 local GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = ____configDescription.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES
 local MAJOR_CHANGES = ____configDescription.MAJOR_CHANGES
 local ____globals = require("globals")
 local g = ____globals.default
-local CATEGORY_NAME, deleteOldConfig, validateConfigDescriptions, registerSubMenu, getDefaultValue, getDisplayText, onOff, getPopup, popup, popupGetDeviceString, popupGetKeepSettingString, getKeyName, popupGetBackKeyText, getPopupGfx, getPopupWidth
+local CATEGORY_NAME, PRESETS_NAME, deleteOldConfig, validateConfigDescriptions, registerPresets, isAllConfigSetTo, setAllSettings, registerSubMenuConfig, registerSubMenuHotkeys, getDefaultValue, getDisplayTextBoolean, getDisplayTextKeyboardController, onOff, getPopupDescription, popupGetDeviceString, popupGetKeepSettingString, getKeyName, popupGetBackKeyText, getPopupGfx, getPopupWidth
 function deleteOldConfig(self)
     local categoryID = ModConfigMenu.GetCategoryIDByName(CATEGORY_NAME)
     if categoryID ~= nil then
@@ -6462,14 +6562,89 @@ function validateConfigDescriptions(self)
         __TS__ObjectKeys(g.config)
     ) do
         if not __TS__ArraySome(
-            ALL_DESCRIPTIONS,
+            ALL_CONFIG_DESCRIPTIONS,
             function(____, array) return key == array[1] end
         ) then
-            error(("Failed to find config key \"" .. key) .. "\" in the config descriptions.")
+            error(("Failed to find key \"" .. key) .. "\" in the config descriptions.")
+        end
+    end
+    for ____, key in ipairs(
+        __TS__ObjectKeys(g.hotkeys)
+    ) do
+        if not __TS__ArraySome(
+            ALL_HOTKEY_DESCRIPTIONS,
+            function(____, array) return key == array[1] end
+        ) then
+            error(("Failed to find key \"" .. key) .. "\" in the hotkey descriptions.")
         end
     end
 end
-function registerSubMenu(self, subMenuName, descriptions)
+function registerPresets(self)
+    ModConfigMenu.AddText(
+        CATEGORY_NAME,
+        PRESETS_NAME,
+        function() return "Mod by Zamiel" end
+    )
+    ModConfigMenu.AddText(
+        CATEGORY_NAME,
+        PRESETS_NAME,
+        function() return "isaacracing.net" end
+    )
+    ModConfigMenu.AddSpace(CATEGORY_NAME, PRESETS_NAME)
+    ModConfigMenu.AddSetting(
+        CATEGORY_NAME,
+        PRESETS_NAME,
+        {
+            Type = 4,
+            CurrentSetting = function() return isAllConfigSetTo(nil, true) end,
+            Display = function() return "Enable every setting: " .. onOff(
+                nil,
+                isAllConfigSetTo(nil, true)
+            ) end,
+            OnChange = function(newValue)
+                setAllSettings(nil, newValue)
+            end,
+            Info = {"Turn every configurable setting on."}
+        }
+    )
+    ModConfigMenu.AddSetting(
+        CATEGORY_NAME,
+        PRESETS_NAME,
+        {
+            Type = 4,
+            CurrentSetting = function() return isAllConfigSetTo(nil, false) end,
+            Display = function() return "Disable every setting: " .. onOff(
+                nil,
+                isAllConfigSetTo(nil, false)
+            ) end,
+            OnChange = function(newValue)
+                setAllSettings(nil, not newValue)
+            end,
+            Info = {"Turn every configurable setting off."}
+        }
+    )
+end
+function isAllConfigSetTo(self, value)
+    for ____, key in ipairs(
+        __TS__ObjectKeys(g.config)
+    ) do
+        local assertedKey = key
+        local currentValue = g.config[assertedKey]
+        if currentValue ~= value then
+            return false
+        end
+    end
+    return true
+end
+function setAllSettings(self, newValue)
+    for ____, key in ipairs(
+        __TS__ObjectKeys(g.config)
+    ) do
+        local assertedKey = key
+        g.config[assertedKey] = newValue
+    end
+end
+function registerSubMenuConfig(self, subMenuName, descriptions)
     for ____, ____value in ipairs(descriptions) do
         local configName
         configName = ____value[1]
@@ -6482,14 +6657,36 @@ function registerSubMenu(self, subMenuName, descriptions)
             {
                 Type = optionType,
                 CurrentSetting = function() return g.config[configName] end,
-                Display = function() return getDisplayText(nil, configName, optionType, code, shortDescription) end,
+                Display = function() return getDisplayTextBoolean(nil, configName, code, shortDescription) end,
+                OnChange = function(newValue)
+                    g.config[configName] = newValue
+                end,
+                Info = {longDescription}
+            }
+        )
+    end
+end
+function registerSubMenuHotkeys(self, subMenuName, descriptions)
+    for ____, ____value in ipairs(descriptions) do
+        local configName
+        configName = ____value[1]
+        local array
+        array = ____value[2]
+        local optionType, ____, shortDescription, longDescription = table.unpack(array)
+        ModConfigMenu.AddSetting(
+            CATEGORY_NAME,
+            subMenuName,
+            {
+                Type = optionType,
+                CurrentSetting = function() return g.hotkeys[configName] end,
+                Display = function() return getDisplayTextKeyboardController(nil, configName, optionType, shortDescription) end,
                 OnChange = function(newValue)
                     if newValue == nil then
                         newValue = getDefaultValue(nil, optionType)
                     end
-                    config:set(configName, newValue)
+                    g.hotkeys[configName] = newValue
                 end,
-                Popup = getPopup(nil, configName, optionType),
+                Popup = function() return getPopupDescription(nil, configName, optionType) end,
                 PopupGfx = getPopupGfx(nil, optionType),
                 PopupWidth = getPopupWidth(nil, optionType),
                 Info = {longDescription}
@@ -6498,31 +6695,31 @@ function registerSubMenu(self, subMenuName, descriptions)
     end
 end
 function getDefaultValue(self, optionType)
-    local ____switch17 = optionType
-    if ____switch17 == 4 then
-        goto ____switch17_case_0
-    elseif ____switch17 == 6 then
-        goto ____switch17_case_1
-    elseif ____switch17 == 7 then
-        goto ____switch17_case_2
+    local ____switch40 = optionType
+    if ____switch40 == 4 then
+        goto ____switch40_case_0
+    elseif ____switch40 == 6 then
+        goto ____switch40_case_1
+    elseif ____switch40 == 7 then
+        goto ____switch40_case_2
     end
-    goto ____switch17_case_default
-    ::____switch17_case_0::
+    goto ____switch40_case_default
+    ::____switch40_case_0::
     do
         do
             return true
         end
     end
-    ::____switch17_case_1::
+    ::____switch40_case_1::
     do
     end
-    ::____switch17_case_2::
+    ::____switch40_case_2::
     do
         do
             return -1
         end
     end
-    ::____switch17_case_default::
+    ::____switch40_case_default::
     do
         do
             error(
@@ -6531,29 +6728,24 @@ function getDefaultValue(self, optionType)
             return false
         end
     end
-    ::____switch17_end::
+    ::____switch40_end::
 end
-function getDisplayText(self, configName, optionType, code, shortDescription)
-    local ____switch22 = optionType
-    if ____switch22 == 4 then
-        goto ____switch22_case_0
-    elseif ____switch22 == 6 then
-        goto ____switch22_case_1
-    elseif ____switch22 == 7 then
-        goto ____switch22_case_2
+function getDisplayTextBoolean(self, configName, code, shortDescription)
+    local currentValue = g.config[configName]
+    return (((code .. " - ") .. shortDescription) .. ": ") .. onOff(nil, currentValue)
+end
+function getDisplayTextKeyboardController(self, configName, optionType, shortDescription)
+    local ____switch46 = optionType
+    if ____switch46 == 6 then
+        goto ____switch46_case_0
+    elseif ____switch46 == 7 then
+        goto ____switch46_case_1
     end
-    goto ____switch22_case_default
-    ::____switch22_case_0::
+    goto ____switch46_case_default
+    ::____switch46_case_0::
     do
         do
-            local currentValue = g.config[configName]
-            return (((code .. " - ") .. shortDescription) .. ": ") .. onOff(nil, currentValue)
-        end
-    end
-    ::____switch22_case_1::
-    do
-        do
-            local currentValue = g.config[configName]
+            local currentValue = g.hotkeys[configName]
             local text
             if currentValue == -1 then
                 text = "None"
@@ -6564,10 +6756,10 @@ function getDisplayText(self, configName, optionType, code, shortDescription)
             return ((shortDescription .. ": ") .. text) .. " (keyboard)"
         end
     end
-    ::____switch22_case_2::
+    ::____switch46_case_1::
     do
         do
-            local currentValue = g.config[configName]
+            local currentValue = g.hotkeys[configName]
             local text
             if currentValue == -1 then
                 text = "None"
@@ -6578,7 +6770,7 @@ function getDisplayText(self, configName, optionType, code, shortDescription)
             return ((shortDescription .. ": ") .. text) .. " (controller)"
         end
     end
-    ::____switch22_case_default::
+    ::____switch46_case_default::
     do
         do
             error(
@@ -6587,42 +6779,39 @@ function getDisplayText(self, configName, optionType, code, shortDescription)
             return "Unknown"
         end
     end
-    ::____switch22_end::
+    ::____switch46_end::
 end
 function onOff(self, setting)
     return (setting and "ON") or "OFF"
 end
-function getPopup(self, configName, optionType)
-    return (((optionType == 6) or (optionType == 7)) and (function() return popup(nil, configName, optionType) end)) or nil
-end
-function popup(self, configName, optionType)
-    local currentValue = g.config[configName]
+function getPopupDescription(self, configName, optionType)
+    local currentValue = g.hotkeys[configName]
     local deviceString = popupGetDeviceString(nil, optionType)
     local keepSettingString = popupGetKeepSettingString(nil, optionType, currentValue)
     local backKeyText = popupGetBackKeyText(nil)
     return ((((("Press a button on your " .. deviceString) .. " to change this setting.$newline$newline") .. keepSettingString) .. "Press \"") .. backKeyText) .. "\" to go back and clear this setting."
 end
 function popupGetDeviceString(self, optionType)
-    local ____switch36 = optionType
-    if ____switch36 == 6 then
-        goto ____switch36_case_0
-    elseif ____switch36 == 7 then
-        goto ____switch36_case_1
+    local ____switch57 = optionType
+    if ____switch57 == 6 then
+        goto ____switch57_case_0
+    elseif ____switch57 == 7 then
+        goto ____switch57_case_1
     end
-    goto ____switch36_case_default
-    ::____switch36_case_0::
+    goto ____switch57_case_default
+    ::____switch57_case_0::
     do
         do
             return "keyboard"
         end
     end
-    ::____switch36_case_1::
+    ::____switch57_case_1::
     do
         do
             return "controller"
         end
     end
-    ::____switch36_case_default::
+    ::____switch57_case_default::
     do
         do
             error(
@@ -6631,7 +6820,7 @@ function popupGetDeviceString(self, optionType)
             return "unknown"
         end
     end
-    ::____switch36_end::
+    ::____switch57_end::
 end
 function popupGetKeepSettingString(self, optionType, currentValue)
     if currentValue == -1 then
@@ -6641,26 +6830,26 @@ function popupGetKeepSettingString(self, optionType, currentValue)
     return ("This setting is currently set to \"" .. tostring(currentKeyName)) .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
 end
 function getKeyName(self, optionType, key)
-    local ____switch43 = optionType
-    if ____switch43 == 6 then
-        goto ____switch43_case_0
-    elseif ____switch43 == 7 then
-        goto ____switch43_case_1
+    local ____switch64 = optionType
+    if ____switch64 == 6 then
+        goto ____switch64_case_0
+    elseif ____switch64 == 7 then
+        goto ____switch64_case_1
     end
-    goto ____switch43_case_default
-    ::____switch43_case_0::
+    goto ____switch64_case_default
+    ::____switch64_case_0::
     do
         do
             return InputHelper.KeyboardToString[key]
         end
     end
-    ::____switch43_case_1::
+    ::____switch64_case_1::
     do
         do
             return InputHelper.ControllerToString[key]
         end
     end
-    ::____switch43_case_default::
+    ::____switch64_case_default::
     do
         do
             error(
@@ -6669,7 +6858,7 @@ function getKeyName(self, optionType, key)
             return "unknown"
         end
     end
-    ::____switch43_end::
+    ::____switch64_end::
 end
 function popupGetBackKeyText(self)
     local lastBackPressed = ModConfigMenu.Config.LastBackPressed
@@ -6690,16 +6879,18 @@ function getPopupWidth(self, optionType)
     return (((optionType == 6) or (optionType == 7)) and 280) or nil
 end
 CATEGORY_NAME = "Racing+"
+PRESETS_NAME = "Presets"
 function ____exports.register(self)
     if ModConfigMenu == nil then
         return
     end
     deleteOldConfig(nil)
     validateConfigDescriptions(nil)
-    registerSubMenu(nil, "Major", MAJOR_CHANGES)
-    registerSubMenu(nil, "Hotkeys", CUSTOM_HOTKEYS)
-    registerSubMenu(nil, "Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES)
-    registerSubMenu(nil, "Bug Fixes", BUG_FIXES)
+    registerPresets(nil)
+    registerSubMenuConfig(nil, "Major", MAJOR_CHANGES)
+    registerSubMenuHotkeys(nil, "Hotkeys", CUSTOM_HOTKEYS)
+    registerSubMenuConfig(nil, "Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES)
+    registerSubMenuConfig(nil, "Bug Fixes", BUG_FIXES)
 end
 return ____exports
 end,

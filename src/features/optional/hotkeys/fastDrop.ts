@@ -22,9 +22,9 @@ function checkInput() {
 
 function checkInputAll(player: EntityPlayer) {
   if (
-    g.config.fastDropAllKeyboard !== -1 &&
+    g.hotkeys.fastDropAllKeyboard !== -1 &&
     InputHelper.KeyboardPressed(
-      g.config.fastDropAllKeyboard,
+      g.hotkeys.fastDropAllKeyboard,
       player.ControllerIndex,
     )
   ) {
@@ -32,9 +32,9 @@ function checkInputAll(player: EntityPlayer) {
   }
 
   if (
-    g.config.fastDropAllController !== -1 &&
+    g.hotkeys.fastDropAllController !== -1 &&
     Input.IsButtonPressed(
-      g.config.fastDropAllController,
+      g.hotkeys.fastDropAllController,
       player.ControllerIndex,
     )
   ) {
@@ -44,9 +44,9 @@ function checkInputAll(player: EntityPlayer) {
 
 function checkInputTrinkets(player: EntityPlayer) {
   if (
-    g.config.fastDropTrinketsKeyboard !== -1 &&
+    g.hotkeys.fastDropTrinketsKeyboard !== -1 &&
     InputHelper.KeyboardPressed(
-      g.config.fastDropTrinketsKeyboard,
+      g.hotkeys.fastDropTrinketsKeyboard,
       player.ControllerIndex,
     )
   ) {
@@ -54,9 +54,9 @@ function checkInputTrinkets(player: EntityPlayer) {
   }
 
   if (
-    g.config.fastDropTrinketsController !== -1 &&
+    g.hotkeys.fastDropTrinketsController !== -1 &&
     Input.IsButtonPressed(
-      g.config.fastDropTrinketsController,
+      g.hotkeys.fastDropTrinketsController,
       player.ControllerIndex,
     )
   ) {
@@ -66,9 +66,9 @@ function checkInputTrinkets(player: EntityPlayer) {
 
 function checkInputPocket(player: EntityPlayer) {
   if (
-    g.config.fastDropPocketKeyboard !== -1 &&
+    g.hotkeys.fastDropPocketKeyboard !== -1 &&
     InputHelper.KeyboardPressed(
-      g.config.fastDropPocketKeyboard,
+      g.hotkeys.fastDropPocketKeyboard,
       player.ControllerIndex,
     )
   ) {
@@ -76,9 +76,9 @@ function checkInputPocket(player: EntityPlayer) {
   }
 
   if (
-    g.config.fastDropPocketController !== -1 &&
+    g.hotkeys.fastDropPocketController !== -1 &&
     Input.IsButtonPressed(
-      g.config.fastDropPocketController,
+      g.hotkeys.fastDropPocketController,
       player.ControllerIndex,
     )
   ) {

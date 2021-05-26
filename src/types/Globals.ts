@@ -1,6 +1,7 @@
 import Config from "./Config";
 import { SaveFileState } from "./enums";
 import GlobalsRun from "./GlobalsRun";
+import Hotkeys from "./Hotkeys";
 import RaceData from "./RaceData";
 import SpeedrunData from "./SpeedrunData";
 
@@ -26,6 +27,7 @@ export default class Globals {
 
   // Variables configurable from Mod Config Menu
   config = new Config();
+  hotkeys = new Hotkeys();
 
   // Variables per-run
   run = new GlobalsRun([]);

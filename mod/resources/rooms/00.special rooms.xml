@@ -45324,7 +45324,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="2" name="Devil (1 item, dice shard)" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="2" name="Devil (1 item, perthro rune)" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -45348,7 +45348,7 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="7" y="4">
-			<entity type="5" variant="300" subtype="49" weight="1.0"/>
+			<entity type="5" variant="300" subtype="37" weight="1.0"/>
 		</spawn>
 		<spawn x="1" y="6">
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>

@@ -1,7 +1,11 @@
 import Config from "./types/Config";
+import Hotkeys from "./types/Hotkeys";
 
 export type ConfigDescriptionArray = Array<
-  [keyof Config, [ModConfigMenuOptionType, string, string, string]]
+  [
+    keyof Config | keyof Hotkeys,
+    [ModConfigMenuOptionType, string, string, string],
+  ]
 >;
 
 export const MAJOR_CHANGES: ConfigDescriptionArray = [
@@ -50,7 +54,6 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
   ],
-  /*
   [
     "fastTravel",
     [
@@ -60,7 +63,6 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "Replace the fade-in and fade-out with a custom animation where you jump out of a hole.",
     ],
   ],
-  */
 ];
 
 export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
@@ -207,9 +209,10 @@ export const BUG_FIXES: ConfigDescriptionArray = [
   ],
 ];
 
-export const ALL_DESCRIPTIONS = [
+export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
-  ...CUSTOM_HOTKEYS,
   ...GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES,
   ...BUG_FIXES,
 ];
+
+export const ALL_HOTKEY_DESCRIPTIONS = [...CUSTOM_HOTKEYS];
