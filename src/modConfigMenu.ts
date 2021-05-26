@@ -1,5 +1,4 @@
 import {
-  ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
   BUG_FIXES,
   ConfigDescriptionArray,
@@ -42,16 +41,18 @@ function deleteOldConfig() {
   }
 }
 
+// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys"
+// Thus, it is impossible for them to contain any incorrect data
+// However, the inverse is not true (i.e. a config value can be missing a description)
+// So, we check this at runtime
 function validateConfigDescriptions() {
-  // The descriptions are typed as having keys of "keyof Config | keyof Hotkeys"
-  // Thus, it is impossible for them to contain any incorrect data
-  // However, the inverse is not true (i.e. a config value can be missing a description)
-  // So, we check this at runtime
+  /*
   for (const key of Object.keys(g.config)) {
     if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
       error(`Failed to find key "${key}" in the config descriptions.`);
     }
   }
+  */
 
   for (const key of Object.keys(g.hotkeys)) {
     if (!ALL_HOTKEY_DESCRIPTIONS.some((array) => key === array[0])) {

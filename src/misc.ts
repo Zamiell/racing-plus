@@ -1,10 +1,9 @@
-import { MAX_VANILLA_ITEM_ID } from "./constants";
+import {
+  EXCLUDED_CHARACTERS,
+  MAX_POSSIBLE_RADIUS,
+  MAX_VANILLA_ITEM_ID,
+} from "./constants";
 import g from "./globals";
-
-const EXCLUDED_CHARACTERS = [
-  PlayerType.PLAYER_ESAU, // 20
-  PlayerType.PLAYER_THESOUL_B, // 40
-];
 
 export function anyPlayerHas(collectibleType: CollectibleType): boolean {
   for (const player of getPlayers()) {
@@ -67,6 +66,16 @@ export function getItemMaxCharges(itemID: int): int {
 
 export function getPlayerLuaTableIndex(player: EntityPlayer): string {
   return player.ControllerIndex.toString();
+}
+
+export function getRoomEnemies(): Entity[] {
+  const centerPos = g.r.GetCenterPos();
+
+  return Isaac.FindInRadius(
+    centerPos,
+    MAX_POSSIBLE_RADIUS,
+    EntityPartition.ENEMY,
+  );
 }
 
 export function getTearsStat(fireDelay: float): float {

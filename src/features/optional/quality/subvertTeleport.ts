@@ -4,6 +4,12 @@
 import g from "../../../globals";
 import { getPlayers } from "../../../misc";
 
+const ENTITIES_THAT_CAUSE_TELEPORT = [
+  EntityType.ENTITY_GURDY, // 36
+  EntityType.ENTITY_MOM, // 45
+  EntityType.ENTITY_MOMS_HEART, // 78
+];
+
 export function postNewRoom(): void {
   if (!g.config.subvertTeleport) {
     return;
@@ -20,33 +26,19 @@ export function postNewRoom(): void {
 function shouldSubvertTeleport() {
   const roomShape = g.r.GetRoomShape();
 
-  // 36
-  const gurdies = Isaac.FindByType(
-    EntityType.ENTITY_GURDY,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  // There are Double Trouble rooms with Gurdy but they don't cause a teleport
+  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
+    return false;
+  }
 
-  // 45
-  const moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false);
+  for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT) {
+    const entities = Isaac.FindByType(entityType, -1, -1, false, true);
+    if (entities.length > 0) {
+      return true;
+    }
+  }
 
-  // 78
-  // (this includes It Lives!)
-  const momsHearts = Isaac.FindByType(
-    EntityType.ENTITY_MOMS_HEART,
-    -1,
-    -1,
-    false,
-    false,
-  );
-
-  return (
-    (gurdies.length > 0 || moms.length > 0 || momsHearts.length > 0) &&
-    // There are Double Trouble rooms with Gurdy but they don't cause a teleport
-    roomShape === RoomShape.ROOMSHAPE_1x1
-  );
+  return false;
 }
 
 function subvertTeleport() {
@@ -129,7 +121,7 @@ function getNormalRoomEnterPosition() {
 }
 
 function shouldForceMomStomp() {
-  const moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false);
+  const moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, true);
   return moms.length > 0;
 }
 

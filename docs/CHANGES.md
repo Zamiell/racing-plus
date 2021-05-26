@@ -205,7 +205,6 @@ Post-flip actions:
 ### 4) Bug Fixes
 
 - `051` All forms of teleport will no longer send you to an invalid entrance.
-- AAA Battery now properly synergizes with The Battery. (This is part of Fast-Clear.)
 
 <!--
 - Angels will drop key pieces even if another angel is still alive in the room.
@@ -249,8 +248,6 @@ Post-flip actions:
 ### 5) Sound Fixes
 
 - The audio clips of mom and dad on the Ascent are silenced.
-- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
-- The proper sound effects will now play when you have The Battery. (This is part of Fast-Clear.)
 
 <br />
 
@@ -279,3 +276,11 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
+
+<!--
+
+Old changes that are no longer present:
+- AAA Battery now properly synergizes with The Battery. (This is part of Fast-Clear.)
+- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
+- The proper sound effects will now play when you have The Battery. (This is part of Fast-Clear.)
+-->

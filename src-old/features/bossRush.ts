@@ -1,14 +1,6 @@
 // Racing+ replaces the vanilla Boss Rush with a custom version
 
-import { ChallengeCustom } from "../challenges/constants";
-import { SPLITTING_BOSSES, Vector.Zero } from "../constants";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import { EntityTypeCustom } from "../types/enums";
-import * as bagFamiliars from "./bagFamiliars";
-import * as fastClear from "./fastClear";
-
+/*
 const BOSS_LIST: Array<[int, int]> = [
   [19, 0], // Larry Jr.
   [19, 1], // The Hollow
@@ -405,3 +397,4 @@ function finish() {
   g.run.streakText = "Complete!";
   g.run.streakFrame = Isaac.GetFrameCount();
 }
+*/

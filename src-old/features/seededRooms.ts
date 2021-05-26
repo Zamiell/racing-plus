@@ -1,7 +1,4 @@
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-
+/*
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   // We only want to manually create certain rooms in seeded races
@@ -326,3 +323,4 @@ export function preEntitySpawn(
 
   return null;
 }
+*/

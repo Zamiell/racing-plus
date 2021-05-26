@@ -2,6 +2,7 @@ import g from "../../../../globals";
 import {
   anyPlayerHas,
   changeRoom,
+  getRoomEnemies,
   getRoomIndex,
   initGlowingItemSprite,
   initSprite,
@@ -157,7 +158,7 @@ function getRoomItemsAndSetPrice() {
 
 function getRoomBosses() {
   const bosses: Array<[int, int]> = [];
-  for (const entity of Isaac.GetRoomEntities()) {
+  for (const entity of getRoomEnemies()) {
     const npc = entity.ToNPC();
     if (npc !== null && npc.IsBoss()) {
       const bossArray: [int, int] = [npc.Type, npc.Variant];

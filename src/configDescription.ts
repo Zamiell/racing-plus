@@ -45,6 +45,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "Instantaneously restart the game as soon as you press the R key.",
     ],
   ],
+  /*
   [
     "fastClear",
     [
@@ -52,6 +53,16 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "005",
       "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
+    ],
+  ],
+  */
+  [
+    "fastClear2",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "005",
+      "Fast room clear (beta)",
+      "A new version of fast-clear that might have less bugs.",
     ],
   ],
   [

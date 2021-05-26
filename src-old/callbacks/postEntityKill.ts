@@ -1,10 +1,4 @@
-import { ChallengeCustom } from "../challenges/enums";
-import { Vector.Zero } from "../constants";
-import * as fastClear from "../features/fastClear";
-import g from "../globals";
-import * as stage8paths from "../stage8paths";
-import { EntityTypeCustom } from "../types/enums";
-
+/*
 export function main(entity: Entity): void {
   // Track which enemies are cleared for the purposes of the "fast-clear" feature
   fastClear.postEntityKill(entity);
@@ -422,3 +416,4 @@ function killExtraEnemies() {
     }
   }
 }
+*/

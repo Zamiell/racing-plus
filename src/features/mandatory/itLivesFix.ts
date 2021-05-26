@@ -35,14 +35,14 @@ function shouldRemoveItLives() {
 
 function removeItLives() {
   // The player got here without properly completing the quest, so remove the boss
-  const momsHeartEntities = Isaac.FindByType(
+  const momsHearts = Isaac.FindByType(
     EntityType.ENTITY_MOMS_HEART,
     -1,
     -1,
     false,
-    false,
+    true,
   );
-  for (const momsHeart of momsHeartEntities) {
+  for (const momsHeart of momsHearts) {
     momsHeart.Remove();
     g.p.AnimateSad();
   }

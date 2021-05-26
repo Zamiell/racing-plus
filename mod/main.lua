@@ -1844,7 +1844,8 @@ ____exports.default = (function()
         self.disableCurses = true
         self.freeDevilItem = true
         self.fastReset = true
-        self.fastClear = true
+        self.fastClear = false
+        self.fastClear2 = true
         self.fastTravel = true
         self.judasAddBomb = true
         self.samsonDropHeart = true
@@ -1872,8 +1873,6 @@ ____exports.PickupPriceCustom = PickupPriceCustom or ({})
 ____exports.PickupPriceCustom.PRICE_NO_MINIMAP = -50
 ____exports.PickupPriceCustom[____exports.PickupPriceCustom.PRICE_NO_MINIMAP] = "PRICE_NO_MINIMAP"
 ____exports.EffectVariantCustom = EffectVariantCustom or ({})
-____exports.EffectVariantCustom.NPC_DEATH_ANIMATION = Isaac.GetEntityVariantByName("NPC Death Animation")
-____exports.EffectVariantCustom[____exports.EffectVariantCustom.NPC_DEATH_ANIMATION] = "NPC_DEATH_ANIMATION"
 ____exports.EffectVariantCustom.TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName("Trapdoor (Fast-Travel)")
 ____exports.EffectVariantCustom[____exports.EffectVariantCustom.TRAPDOOR_FAST_TRAVEL] = "TRAPDOOR_FAST_TRAVEL"
 ____exports.EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL = Isaac.GetEntityVariantByName("Crawlspace (Fast-Travel)")
@@ -2145,7 +2144,7 @@ end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
+____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear2", {4, "005", "Fast room clear (beta)", "A new version of fast-clear that might have less bugs."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
 ____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"fadeVasculitisTears", {4, "027", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "028", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
 ____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
@@ -2171,8 +2170,10 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.10"
+____exports.VERSION = "0.57.13"
+____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
+____exports.MAX_POSSIBLE_RADIUS = 875
 return ____exports
 end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2190,10 +2191,11 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local ____constants = require("constants")
+local EXCLUDED_CHARACTERS = ____constants.EXCLUDED_CHARACTERS
+local MAX_POSSIBLE_RADIUS = ____constants.MAX_POSSIBLE_RADIUS
 local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
 local ____globals = require("globals")
 local g = ____globals.default
-local EXCLUDED_CHARACTERS
 function ____exports.getPlayers(self)
     local players = {}
     do
@@ -2239,7 +2241,6 @@ end
 function ____exports.log(self, msg)
     Isaac.DebugString(msg)
 end
-EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 function ____exports.anyPlayerHas(self, collectibleType)
     for ____, player in ipairs(
         ____exports.getPlayers(nil)
@@ -2289,6 +2290,10 @@ function ____exports.getItemMaxCharges(self, itemID)
 end
 function ____exports.getPlayerLuaTableIndex(self, player)
     return tostring(player.ControllerIndex)
+end
+function ____exports.getRoomEnemies(self)
+    local centerPos = g.r:GetCenterPos()
+    return Isaac.FindInRadius(centerPos, MAX_POSSIBLE_RADIUS, EntityPartition.ENEMY)
 end
 function ____exports.getTearsStat(self, fireDelay)
     return 30 / (fireDelay + 1)
@@ -3557,29 +3562,37 @@ function ____exports.main(self, entity)
 end
 return ____exports
 end,
+["features.optional.major.fastClear2"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local SPLITTING_CHAMPIONS, isSplittingChampion
+function isSplittingChampion(self, npc)
+    local isChampion = npc:IsChampion()
+    local championColor = npc:GetChampionColorIdx()
+    return isChampion and __TS__ArrayIncludes(SPLITTING_CHAMPIONS, championColor)
+end
+local SPLITTING_ENTITIES = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_LARRYJR, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_FALLEN, EntityType.ENTITY_GURGLE, EntityType.ENTITY_HANGER, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_NEST, EntityType.ENTITY_FATTY, EntityType.ENTITY_FAT_SACK, EntityType.ENTITY_BLUBBER, EntityType.ENTITY_SWINGER, EntityType.ENTITY_SQUIRT, EntityType.ENTITY_SKINNY, EntityType.ENTITY_DINGA, EntityType.ENTITY_GRUB, EntityType.ENTITY_CONJOINED_FATTY, EntityType.ENTITY_BLACK_GLOBIN, EntityType.ENTITY_MEGA_CLOTTY, EntityType.ENTITY_MOMS_DEAD_HAND, EntityType.ENTITY_MEATBALL, EntityType.ENTITY_BLISTER, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_PUSTULE}
+SPLITTING_CHAMPIONS = {ChampionColor.PULSE_GREEN, ChampionColor.FLY_PROTECTED}
+function ____exports.postEntityKill(self, entity)
+    if not g.config.fastClear2 then
+        return
+    end
+    local npc = entity:ToNPC()
+    if ((npc ~= nil) and (not __TS__ArrayIncludes(SPLITTING_ENTITIES, npc.Type))) and (not isSplittingChampion(nil, npc)) then
+        npc:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+    end
+end
+return ____exports
+end,
 ["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostEntityKill = require("features.optional.major.fastClear.callbacks.postEntityKill")
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local openAllDoors = ____misc.openAllDoors
+local fastClear2 = require("features.optional.major.fastClear2")
 function ____exports.main(self, entity)
     fastClearPostEntityKill:main(entity)
-    local npc = entity:ToNPC()
-    if npc ~= nil then
-        local gameFrameCount = g.g:GetFrameCount()
-        npc:Remove()
-        Isaac.DebugString(
-            "Removed NPC on frame: " .. tostring(gameFrameCount)
-        )
-        if npc:IsBoss() then
-            openAllDoors(nil)
-            Isaac.DebugString(
-                "Opened doors on frame: " .. tostring(gameFrameCount)
-            )
-        end
-    end
+    fastClear2:postEntityKill(entity)
 end
 return ____exports
 end,
@@ -4301,8 +4314,8 @@ function shouldRemoveItLives(self)
     return (((stage == 6) and (roomType == RoomType.ROOM_BOSS)) and (roomVariant == MOMS_HEART_MAUSOLEUM_VARIANT)) and (#fullKnives == 0)
 end
 function removeItLives(self)
-    local momsHeartEntities = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, false)
-    for ____, momsHeart in ipairs(momsHeartEntities) do
+    local momsHearts = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, true)
+    for ____, momsHeart in ipairs(momsHearts) do
         momsHeart:Remove()
         g.p:AnimateSad()
     end
@@ -4415,6 +4428,7 @@ local g = ____globals.default
 local ____misc = require("misc")
 local anyPlayerHas = ____misc.anyPlayerHas
 local changeRoom = ____misc.changeRoom
+local getRoomEnemies = ____misc.getRoomEnemies
 local getRoomIndex = ____misc.getRoomIndex
 local initGlowingItemSprite = ____misc.initGlowingItemSprite
 local initSprite = ____misc.initSprite
@@ -4515,7 +4529,7 @@ end
 function getRoomBosses(self)
     local bosses = {}
     for ____, entity in ipairs(
-        Isaac.GetRoomEntities()
+        getRoomEnemies(nil)
     ) do
         local npc = entity:ToNPC()
         if (npc ~= nil) and npc:IsBoss() then
@@ -4609,13 +4623,19 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
-local shouldSubvertTeleport, subvertTeleport, getNormalRoomEnterPosition, shouldForceMomStomp, forceMomStomp
+local ENTITIES_THAT_CAUSE_TELEPORT, shouldSubvertTeleport, subvertTeleport, getNormalRoomEnterPosition, shouldForceMomStomp, forceMomStomp
 function shouldSubvertTeleport(self)
     local roomShape = g.r:GetRoomShape()
-    local gurdies = Isaac.FindByType(EntityType.ENTITY_GURDY, -1, -1, false, false)
-    local moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false)
-    local momsHearts = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, false)
-    return (((#gurdies > 0) or (#moms > 0)) or (#momsHearts > 0)) and (roomShape == RoomShape.ROOMSHAPE_1x1)
+    if roomShape ~= RoomShape.ROOMSHAPE_1x1 then
+        return false
+    end
+    for ____, entityType in ipairs(ENTITIES_THAT_CAUSE_TELEPORT) do
+        local entities = Isaac.FindByType(entityType, -1, -1, false, true)
+        if #entities > 0 then
+            return true
+        end
+    end
+    return false
 end
 function subvertTeleport(self)
     local normalPosition = getNormalRoomEnterPosition(nil)
@@ -4634,87 +4654,88 @@ function subvertTeleport(self)
     end
 end
 function getNormalRoomEnterPosition(self)
-    local ____switch12 = g.l.LeaveDoor
-    if ____switch12 == DoorSlot.LEFT0 then
-        goto ____switch12_case_0
-    elseif ____switch12 == DoorSlot.UP0 then
-        goto ____switch12_case_1
-    elseif ____switch12 == DoorSlot.RIGHT0 then
-        goto ____switch12_case_2
-    elseif ____switch12 == DoorSlot.DOWN0 then
-        goto ____switch12_case_3
-    elseif ____switch12 == DoorSlot.LEFT1 then
-        goto ____switch12_case_4
-    elseif ____switch12 == DoorSlot.UP1 then
-        goto ____switch12_case_5
-    elseif ____switch12 == DoorSlot.RIGHT1 then
-        goto ____switch12_case_6
-    elseif ____switch12 == DoorSlot.DOWN1 then
-        goto ____switch12_case_7
+    local ____switch15 = g.l.LeaveDoor
+    if ____switch15 == DoorSlot.LEFT0 then
+        goto ____switch15_case_0
+    elseif ____switch15 == DoorSlot.UP0 then
+        goto ____switch15_case_1
+    elseif ____switch15 == DoorSlot.RIGHT0 then
+        goto ____switch15_case_2
+    elseif ____switch15 == DoorSlot.DOWN0 then
+        goto ____switch15_case_3
+    elseif ____switch15 == DoorSlot.LEFT1 then
+        goto ____switch15_case_4
+    elseif ____switch15 == DoorSlot.UP1 then
+        goto ____switch15_case_5
+    elseif ____switch15 == DoorSlot.RIGHT1 then
+        goto ____switch15_case_6
+    elseif ____switch15 == DoorSlot.DOWN1 then
+        goto ____switch15_case_7
     end
-    goto ____switch12_case_default
-    ::____switch12_case_0::
+    goto ____switch15_case_default
+    ::____switch15_case_0::
     do
         do
             return Vector(560, 280)
         end
     end
-    ::____switch12_case_1::
+    ::____switch15_case_1::
     do
         do
             return Vector(320, 400)
         end
     end
-    ::____switch12_case_2::
+    ::____switch15_case_2::
     do
         do
             return Vector(80, 280)
         end
     end
-    ::____switch12_case_3::
+    ::____switch15_case_3::
     do
         do
             return Vector(320, 160)
         end
     end
-    ::____switch12_case_4::
+    ::____switch15_case_4::
     do
         do
             return Vector(560, 280)
         end
     end
-    ::____switch12_case_5::
+    ::____switch15_case_5::
     do
         do
             return Vector(320, 400)
         end
     end
-    ::____switch12_case_6::
+    ::____switch15_case_6::
     do
         do
             return Vector(80, 280)
         end
     end
-    ::____switch12_case_7::
+    ::____switch15_case_7::
     do
         do
             return Vector(320, 160)
         end
     end
-    ::____switch12_case_default::
+    ::____switch15_case_default::
     do
         do
             return Vector(320, 400)
         end
     end
-    ::____switch12_end::
+    ::____switch15_end::
 end
 function shouldForceMomStomp(self)
-    local moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, false)
+    local moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, true)
     return #moms > 0
 end
 function forceMomStomp(self)
 end
+ENTITIES_THAT_CAUSE_TELEPORT = {EntityType.ENTITY_GURDY, EntityType.ENTITY_MOM, EntityType.ENTITY_MOMS_HEART}
 function ____exports.postNewRoom(self)
     if not g.config.subvertTeleport then
         return
@@ -6108,6 +6129,7 @@ end
 return ____exports
 end,
 ["features.optional.major.fastClear.clearRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
@@ -6118,7 +6140,7 @@ local seededDrops = require("features.mandatory.seededDrops")
 local bagFamiliars = require("features.optional.major.fastClear.bagFamiliars")
 local charge = require("features.optional.major.fastClear.charge")
 local photos = require("features.optional.major.fastClear.photos")
-local playDoorOpenSoundEffect, killExtraEntities, postBossActions, spawnClearAward
+local CREEP_VARIANTS_TO_KILL, playDoorOpenSoundEffect, killExtraEntities, killDeathsHeads, killFleshDeathsHeads, killCreep, postBossActions, spawnClearAward
 function playDoorOpenSoundEffect(self)
     local roomType = g.r:GetType()
     if roomType ~= RoomType.ROOM_DUNGEON then
@@ -6126,58 +6148,36 @@ function playDoorOpenSoundEffect(self)
     end
 end
 function killExtraEntities(self)
-    for ____, entity in ipairs(
-        Isaac.GetRoomEntities()
-    ) do
-        local ____switch7 = entity.Type
-        if ____switch7 == EntityType.ENTITY_DEATHS_HEAD then
-            goto ____switch7_case_0
-        elseif ____switch7 == EntityType.ENTITY_FLESH_DEATHS_HEAD then
-            goto ____switch7_case_1
-        elseif ____switch7 == EntityType.ENTITY_EFFECT then
-            goto ____switch7_case_2
+    killDeathsHeads(nil)
+    killFleshDeathsHeads(nil)
+    killCreep(nil)
+end
+function killDeathsHeads(self)
+    local deathsHeads = Isaac.FindByType(EntityType.ENTITY_DEATHS_HEAD, 0, -1, false, true)
+    for ____, deathsHead in ipairs(deathsHeads) do
+        local npc = deathsHead:ToNPC()
+        if npc ~= nil then
+            npc.State = 18
         end
-        goto ____switch7_case_default
-        ::____switch7_case_0::
-        do
-            do
-                if entity.Variant == 0 then
-                    local npc = entity:ToNPC()
-                    if npc ~= nil then
-                        npc.State = 18
-                    end
-                end
-                goto ____switch7_end
-            end
+    end
+end
+function killFleshDeathsHeads(self)
+    local fleshDeathsHeads = Isaac.FindByType(EntityType.ENTITY_FLESH_DEATHS_HEAD, -1, -1, false, true)
+    for ____, entity in ipairs(fleshDeathsHeads) do
+        entity.Visible = false
+        entity:Kill()
+        local newHead = g.g:Spawn(entity.Type, entity.Variant, entity.Position, entity.Velocity, entity.Parent, entity.SubType, entity.InitSeed):ToNPC()
+        if newHead ~= nil then
+            newHead.State = 18
         end
-        ::____switch7_case_1::
-        do
-            do
-                entity.Visible = false
-                entity:Kill()
-                local newHead = g.g:Spawn(entity.Type, entity.Variant, entity.Position, entity.Velocity, entity.Parent, entity.SubType, entity.InitSeed):ToNPC()
-                if newHead ~= nil then
-                    newHead.State = 18
-                end
-                goto ____switch7_end
-            end
+    end
+end
+function killCreep(self)
+    local creepEntities = Isaac.FindByType(EntityType.ENTITY_FLESH_DEATHS_HEAD, -1, -1, false, true)
+    for ____, entity in ipairs(creepEntities) do
+        if __TS__ArrayIncludes(CREEP_VARIANTS_TO_KILL, entity.Variant) then
+            entity:Kill()
         end
-        ::____switch7_case_2::
-        do
-            do
-                if ((((((entity.Variant == EffectVariant.CREEP_RED) or (entity.Variant == EffectVariant.CREEP_GREEN)) or (entity.Variant == EffectVariant.CREEP_YELLOW)) or (entity.Variant == EffectVariant.CREEP_WHITE)) or (entity.Variant == EffectVariant.CREEP_BLACK)) or (entity.Variant == EffectVariant.CREEP_BROWN)) or (entity.Variant == EffectVariant.CREEP_SLIPPERY_BROWN) then
-                    entity:Kill()
-                end
-                goto ____switch7_end
-            end
-        end
-        ::____switch7_case_default::
-        do
-            do
-                goto ____switch7_end
-            end
-        end
-        ::____switch7_end::
     end
 end
 function postBossActions(self)
@@ -6205,6 +6205,7 @@ function spawnClearAward(self)
         g.run.fastClear.vanillaPhotosSpawning = false
     end
 end
+CREEP_VARIANTS_TO_KILL = {EffectVariant.CREEP_RED, EffectVariant.CREEP_GREEN, EffectVariant.CREEP_YELLOW, EffectVariant.CREEP_WHITE, EffectVariant.CREEP_BLACK, EffectVariant.CREEP_BROWN, EffectVariant.CREEP_SLIPPERY_BROWN}
 function ____exports.default(self)
     log(nil, "Fast-clear initiated.")
     g.r:SetClear(true)
@@ -6542,7 +6543,6 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local ____configDescription = require("configDescription")
-local ALL_CONFIG_DESCRIPTIONS = ____configDescription.ALL_CONFIG_DESCRIPTIONS
 local ALL_HOTKEY_DESCRIPTIONS = ____configDescription.ALL_HOTKEY_DESCRIPTIONS
 local BUG_FIXES = ____configDescription.BUG_FIXES
 local CUSTOM_HOTKEYS = ____configDescription.CUSTOM_HOTKEYS
@@ -6558,16 +6558,6 @@ function deleteOldConfig(self)
     end
 end
 function validateConfigDescriptions(self)
-    for ____, key in ipairs(
-        __TS__ObjectKeys(g.config)
-    ) do
-        if not __TS__ArraySome(
-            ALL_CONFIG_DESCRIPTIONS,
-            function(____, array) return key == array[1] end
-        ) then
-            error(("Failed to find key \"" .. key) .. "\" in the config descriptions.")
-        end
-    end
     for ____, key in ipairs(
         __TS__ObjectKeys(g.hotkeys)
     ) do
@@ -6695,31 +6685,31 @@ function registerSubMenuHotkeys(self, subMenuName, descriptions)
     end
 end
 function getDefaultValue(self, optionType)
-    local ____switch40 = optionType
-    if ____switch40 == 4 then
-        goto ____switch40_case_0
-    elseif ____switch40 == 6 then
-        goto ____switch40_case_1
-    elseif ____switch40 == 7 then
-        goto ____switch40_case_2
+    local ____switch37 = optionType
+    if ____switch37 == 4 then
+        goto ____switch37_case_0
+    elseif ____switch37 == 6 then
+        goto ____switch37_case_1
+    elseif ____switch37 == 7 then
+        goto ____switch37_case_2
     end
-    goto ____switch40_case_default
-    ::____switch40_case_0::
+    goto ____switch37_case_default
+    ::____switch37_case_0::
     do
         do
             return true
         end
     end
-    ::____switch40_case_1::
+    ::____switch37_case_1::
     do
     end
-    ::____switch40_case_2::
+    ::____switch37_case_2::
     do
         do
             return -1
         end
     end
-    ::____switch40_case_default::
+    ::____switch37_case_default::
     do
         do
             error(
@@ -6728,21 +6718,21 @@ function getDefaultValue(self, optionType)
             return false
         end
     end
-    ::____switch40_end::
+    ::____switch37_end::
 end
 function getDisplayTextBoolean(self, configName, code, shortDescription)
     local currentValue = g.config[configName]
     return (((code .. " - ") .. shortDescription) .. ": ") .. onOff(nil, currentValue)
 end
 function getDisplayTextKeyboardController(self, configName, optionType, shortDescription)
-    local ____switch46 = optionType
-    if ____switch46 == 6 then
-        goto ____switch46_case_0
-    elseif ____switch46 == 7 then
-        goto ____switch46_case_1
+    local ____switch43 = optionType
+    if ____switch43 == 6 then
+        goto ____switch43_case_0
+    elseif ____switch43 == 7 then
+        goto ____switch43_case_1
     end
-    goto ____switch46_case_default
-    ::____switch46_case_0::
+    goto ____switch43_case_default
+    ::____switch43_case_0::
     do
         do
             local currentValue = g.hotkeys[configName]
@@ -6756,7 +6746,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return ((shortDescription .. ": ") .. text) .. " (keyboard)"
         end
     end
-    ::____switch46_case_1::
+    ::____switch43_case_1::
     do
         do
             local currentValue = g.hotkeys[configName]
@@ -6770,7 +6760,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return ((shortDescription .. ": ") .. text) .. " (controller)"
         end
     end
-    ::____switch46_case_default::
+    ::____switch43_case_default::
     do
         do
             error(
@@ -6779,7 +6769,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return "Unknown"
         end
     end
-    ::____switch46_end::
+    ::____switch43_end::
 end
 function onOff(self, setting)
     return (setting and "ON") or "OFF"
@@ -6792,26 +6782,26 @@ function getPopupDescription(self, configName, optionType)
     return ((((("Press a button on your " .. deviceString) .. " to change this setting.$newline$newline") .. keepSettingString) .. "Press \"") .. backKeyText) .. "\" to go back and clear this setting."
 end
 function popupGetDeviceString(self, optionType)
-    local ____switch57 = optionType
-    if ____switch57 == 6 then
-        goto ____switch57_case_0
-    elseif ____switch57 == 7 then
-        goto ____switch57_case_1
+    local ____switch54 = optionType
+    if ____switch54 == 6 then
+        goto ____switch54_case_0
+    elseif ____switch54 == 7 then
+        goto ____switch54_case_1
     end
-    goto ____switch57_case_default
-    ::____switch57_case_0::
+    goto ____switch54_case_default
+    ::____switch54_case_0::
     do
         do
             return "keyboard"
         end
     end
-    ::____switch57_case_1::
+    ::____switch54_case_1::
     do
         do
             return "controller"
         end
     end
-    ::____switch57_case_default::
+    ::____switch54_case_default::
     do
         do
             error(
@@ -6820,7 +6810,7 @@ function popupGetDeviceString(self, optionType)
             return "unknown"
         end
     end
-    ::____switch57_end::
+    ::____switch54_end::
 end
 function popupGetKeepSettingString(self, optionType, currentValue)
     if currentValue == -1 then
@@ -6830,26 +6820,26 @@ function popupGetKeepSettingString(self, optionType, currentValue)
     return ("This setting is currently set to \"" .. tostring(currentKeyName)) .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
 end
 function getKeyName(self, optionType, key)
-    local ____switch64 = optionType
-    if ____switch64 == 6 then
-        goto ____switch64_case_0
-    elseif ____switch64 == 7 then
-        goto ____switch64_case_1
+    local ____switch61 = optionType
+    if ____switch61 == 6 then
+        goto ____switch61_case_0
+    elseif ____switch61 == 7 then
+        goto ____switch61_case_1
     end
-    goto ____switch64_case_default
-    ::____switch64_case_0::
+    goto ____switch61_case_default
+    ::____switch61_case_0::
     do
         do
             return InputHelper.KeyboardToString[key]
         end
     end
-    ::____switch64_case_1::
+    ::____switch61_case_1::
     do
         do
             return InputHelper.ControllerToString[key]
         end
     end
-    ::____switch64_case_default::
+    ::____switch61_case_default::
     do
         do
             error(
@@ -6858,7 +6848,7 @@ function getKeyName(self, optionType, key)
             return "unknown"
         end
     end
-    ::____switch64_end::
+    ::____switch61_end::
 end
 function popupGetBackKeyText(self)
     local lastBackPressed = ModConfigMenu.Config.LastBackPressed

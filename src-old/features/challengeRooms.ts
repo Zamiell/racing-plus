@@ -1,14 +1,7 @@
 // Racing+ replaces the vanilla Challenge Rooms with a custom version
 
-import { SPLITTING_BOSSES, Vector.Zero } from "../constants";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import { EntityTypeCustom } from "../types/enums";
-import * as bagFamiliars from "./bagFamiliars";
-import * as fastClear from "./fastClear";
-
-// For normal waves, each wave is specified by entity type && number of entities to spawn
+/*
+// For normal waves, each wave is specified by entity type and number of entities to spawn
 const NORMAL_WAVES = [
   [
     // Basement / Cellar / Burning Basement
@@ -502,3 +495,4 @@ export function teleport(): void {
   g.run.level.challengeRoom.started = false;
   g.run.level.challengeRoom.currentWave = 0;
 }
+*/

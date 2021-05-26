@@ -1,5 +1,4 @@
-import g from "./globals";
-
+/*
 const functionMap = new Map<int, (entity: Entity) => void>();
 export default functionMap;
 

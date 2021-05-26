@@ -5,6 +5,16 @@ import * as bagFamiliars from "./bagFamiliars";
 import * as charge from "./charge";
 import * as photos from "./photos";
 
+const CREEP_VARIANTS_TO_KILL = [
+  EffectVariant.CREEP_RED, // 22
+  EffectVariant.CREEP_GREEN, // 23
+  EffectVariant.CREEP_YELLOW, // 24
+  EffectVariant.CREEP_WHITE, // 25
+  EffectVariant.CREEP_BLACK, // 26
+  EffectVariant.CREEP_BROWN, // 56
+  EffectVariant.CREEP_SLIPPERY_BROWN, // 94
+];
+
 // This emulates what happens when you normally clear a room
 export default function clearRoom(): void {
   log("Fast-clear initiated.");
@@ -37,70 +47,71 @@ function playDoorOpenSoundEffect() {
   }
 }
 
-// Manually kill Death's Heads, Flesh Death's Heads, and any type of creep
-// (by default, they will only die after the death animations are completed)
-// Additionally, open any closed heaven doors
 function killExtraEntities() {
-  for (const entity of Isaac.GetRoomEntities()) {
-    switch (entity.Type) {
-      // 212
-      case EntityType.ENTITY_DEATHS_HEAD: {
-        // We don't want to target Dank Death's Heads (212.1)
-        if (entity.Variant === 0) {
-          // Activate the death state
-          const npc = entity.ToNPC();
-          if (npc !== null) {
-            npc.State = 18; // There is no enum for this particular death state
-          }
-        }
+  killDeathsHeads();
+  killFleshDeathsHeads();
+  killCreep();
+}
 
-        break;
-      }
+function killDeathsHeads() {
+  // We need to specify variant 0 because we do not want to target Dank Death's Heads
+  const deathsHeads = Isaac.FindByType(
+    EntityType.ENTITY_DEATHS_HEAD,
+    0,
+    -1,
+    false,
+    true,
+  );
+  for (const deathsHead of deathsHeads) {
+    // Activate the death state
+    const npc = deathsHead.ToNPC();
+    if (npc !== null) {
+      npc.State = 18; // There is no enum for this particular death state
+    }
+  }
+}
 
-      // 286
-      case EntityType.ENTITY_FLESH_DEATHS_HEAD: {
-        // Activating the death state won't make the tears explode out of it,
-        // so just kill it and spawn another one, which will immediately die
-        entity.Visible = false;
-        entity.Kill();
-        const newHead = g.g
-          .Spawn(
-            entity.Type,
-            entity.Variant,
-            entity.Position,
-            entity.Velocity,
-            entity.Parent,
-            entity.SubType,
-            entity.InitSeed,
-          )
-          .ToNPC();
-        if (newHead !== null) {
-          newHead.State = 18; // There is no enum for this particular death state
-        }
+function killFleshDeathsHeads() {
+  const fleshDeathsHeads = Isaac.FindByType(
+    EntityType.ENTITY_FLESH_DEATHS_HEAD,
+    -1,
+    -1,
+    false,
+    true,
+  );
+  for (const entity of fleshDeathsHeads) {
+    // Activating the death state won't make the tears explode out of it,
+    // so just kill it and spawn another one, which will immediately die
+    entity.Visible = false;
+    entity.Kill();
+    const newHead = g.g
+      .Spawn(
+        entity.Type,
+        entity.Variant,
+        entity.Position,
+        entity.Velocity,
+        entity.Parent,
+        entity.SubType,
+        entity.InitSeed,
+      )
+      .ToNPC();
+    if (newHead !== null) {
+      newHead.State = 18; // There is no enum for this particular death state
+    }
+  }
+}
 
-        break;
-      }
-
-      // 1000
-      case EntityType.ENTITY_EFFECT: {
-        if (
-          entity.Variant === EffectVariant.CREEP_RED || // 22
-          entity.Variant === EffectVariant.CREEP_GREEN || // 23
-          entity.Variant === EffectVariant.CREEP_YELLOW || // 24
-          entity.Variant === EffectVariant.CREEP_WHITE || // 25
-          entity.Variant === EffectVariant.CREEP_BLACK || // 26
-          entity.Variant === EffectVariant.CREEP_BROWN || // 56
-          entity.Variant === EffectVariant.CREEP_SLIPPERY_BROWN // 94
-        ) {
-          entity.Kill();
-        }
-
-        break;
-      }
-
-      default: {
-        break;
-      }
+function killCreep() {
+  const creepEntities = Isaac.FindByType(
+    EntityType.ENTITY_FLESH_DEATHS_HEAD,
+    -1,
+    -1,
+    false,
+    true,
+  );
+  for (const entity of creepEntities) {
+    if (CREEP_VARIANTS_TO_KILL.includes(entity.Variant)) {
+      entity.Kill();
     }
   }
 }
