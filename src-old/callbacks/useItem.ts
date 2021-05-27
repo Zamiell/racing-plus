@@ -57,7 +57,7 @@ export function teleport(): void {
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;
 
-  g.g.StartRoomTransition(
+  teleport(
     gridIndexSafe,
     Direction.NO_DIRECTION,
     RoomTransition.TRANSITION_TELEPORT,
@@ -177,7 +177,7 @@ export function undefinedItem(): void {
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;
 
-  g.g.StartRoomTransition(
+  teleport(
     gridIndex,
     Direction.NO_DIRECTION,
     RoomTransition.TRANSITION_TELEPORT,

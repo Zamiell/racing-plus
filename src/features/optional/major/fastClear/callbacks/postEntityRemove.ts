@@ -2,7 +2,7 @@ import g from "../../../../../globals";
 import * as tracking from "../tracking";
 
 export function main(entity: Entity): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 

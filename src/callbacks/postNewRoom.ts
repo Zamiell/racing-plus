@@ -4,6 +4,7 @@ import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimatio
 import * as itLivesFix from "../features/mandatory/itLivesFix";
 import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
+import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
@@ -66,6 +67,7 @@ export function newRoom(): void {
   startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
   fastClearPostNewRoom.main();
+  fastTravelPostNewRoom.main();
 
   // Optional features - Quality of Life
   showEdenStartingItems.postNewRoom();

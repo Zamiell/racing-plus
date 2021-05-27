@@ -27,6 +27,7 @@ export default class Globals {
 
   // Variables configurable from Mod Config Menu
   config = new Config();
+  fastClear = false; // TODO remove this
   hotkeys = new Hotkeys();
 
   // Variables per-run

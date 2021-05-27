@@ -1844,7 +1844,6 @@ ____exports.default = (function()
         self.disableCurses = true
         self.freeDevilItem = true
         self.fastReset = true
-        self.fastClear = false
         self.fastClear2 = true
         self.fastTravel = true
         self.judasAddBomb = true
@@ -1853,6 +1852,7 @@ ____exports.default = (function()
         self.showDreamCatcherItem = true
         self.speedUpFadeIn = true
         self.subvertTeleport = true
+        self.deleteVoidPortals = true
         self.fadeVasculitisTears = true
         self.customConsole = true
         self.fixTeleportInvalidEntrance = true
@@ -1901,6 +1901,32 @@ ____exports.SaveFileState.FINISHED = 4
 ____exports.SaveFileState[____exports.SaveFileState.FINISHED] = "FINISHED"
 return ____exports
 end,
+["features.optional.major.fastTravel.enums"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+____exports.FastTravelState = FastTravelState or ({})
+____exports.FastTravelState.DISABLED = 0
+____exports.FastTravelState[____exports.FastTravelState.DISABLED] = "DISABLED"
+____exports.FastTravelState.PLAYER_ANIMATION = 1
+____exports.FastTravelState[____exports.FastTravelState.PLAYER_ANIMATION] = "PLAYER_ANIMATION"
+____exports.FastTravelState.FADING_TO_BLACK = 2
+____exports.FastTravelState[____exports.FastTravelState.FADING_TO_BLACK] = "FADING_TO_BLACK"
+____exports.FastTravelState.SCREEN_IS_BLACK = 3
+____exports.FastTravelState[____exports.FastTravelState.SCREEN_IS_BLACK] = "SCREEN_IS_BLACK"
+____exports.FastTravelState.POST_NEW_ROOM_1 = 4
+____exports.FastTravelState[____exports.FastTravelState.POST_NEW_ROOM_1] = "POST_NEW_ROOM_1"
+____exports.FastTravelState.POST_NEW_ROOM_2 = 5
+____exports.FastTravelState[____exports.FastTravelState.POST_NEW_ROOM_2] = "POST_NEW_ROOM_2"
+____exports.FastTravelState.CONTROLS_ENABLED = 6
+____exports.FastTravelState[____exports.FastTravelState.CONTROLS_ENABLED] = "CONTROLS_ENABLED"
+____exports.FastTravelState.PLAYER_JUMP = 7
+____exports.FastTravelState[____exports.FastTravelState.PLAYER_JUMP] = "PLAYER_JUMP"
+____exports.FastTravelEntityState = FastTravelEntityState or ({})
+____exports.FastTravelEntityState.Open = 0
+____exports.FastTravelEntityState[____exports.FastTravelEntityState.Open] = "Open"
+____exports.FastTravelEntityState.Closed = 1
+____exports.FastTravelEntityState[____exports.FastTravelEntityState.Closed] = "Closed"
+return ____exports
+end,
 ["features.optional.quality.showDreamCatcherItem.enums"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 ____exports.WarpState = WarpState or ({})
@@ -1914,6 +1940,10 @@ ____exports.WarpState.FINISHED = 3
 ____exports.WarpState[____exports.WarpState.FINISHED] = "FINISHED"
 return ____exports
 end,
+["types.EntityLocation"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+return ____exports
+end,
 ["types.GlobalsRunLevel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -1925,6 +1955,7 @@ ____exports.default = (function()
     GlobalsRunLevel.name = "GlobalsRunLevel"
     function GlobalsRunLevel.prototype.____constructor(self, stage, stageType)
         self.dreamCatcher = {items = {}, bosses = {}, dreamCatcherSprite = nil, itemSprites = {}, bossSprites = {}, warpState = WarpState.INITIAL}
+        self.fastTravel = {replacedTrapdoors = {}, replacedHeavenDoors = {}, replacedCrawlspaces = {}, crawlspace = {blackMarket = false, previousRoomIndex = nil, subvertedRoomTransitionDirection = Direction.NO_DIRECTION}}
         self.stage = stage
         self.stageType = stageType
     end
@@ -1940,6 +1971,8 @@ ____exports.default = (function()
     local GlobalsRunRoom = ____exports.default
     GlobalsRunRoom.name = "GlobalsRunRoom"
     function GlobalsRunRoom.prototype.____constructor(self, clear)
+        self.fastClear2 = {itLivesDead = false}
+        self.fastTravel = {crawlspace = {amTeleporting = false}}
         self.clear = clear
     end
     return GlobalsRunRoom
@@ -1949,6 +1982,8 @@ end,
 ["types.GlobalsRun"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local ____enums = require("features.optional.major.fastTravel.enums")
+local FastTravelState = ____enums.FastTravelState
 local ____GlobalsRunLevel = require("types.GlobalsRunLevel")
 local GlobalsRunLevel = ____GlobalsRunLevel.default
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
@@ -1970,6 +2005,7 @@ ____exports.default = (function()
         self.edenStartingItems = {active = 0, passive = 0, activeSprite = nil, passiveSprite = nil}
         self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, deferClearForGhost = false, paschalCandleCounters = {}}
         self.fastResetFrame = 0
+        self.fastTravel = {state = FastTravelState.DISABLED}
         self.freeDevilItem = {takenDamage = {}, granted = false}
         self.pocketActiveD6Charge = {}
         self.pillEffects = {}
@@ -2098,6 +2134,7 @@ ____exports.default = (function()
         self.sfx = SFXManager()
         self.music = MusicManager()
         self.config = __TS__New(Config)
+        self.fastClear = false
         self.hotkeys = __TS__New(Hotkeys)
         self.run = __TS__New(GlobalsRun, {})
         self.race = __TS__New(RaceData)
@@ -2146,7 +2183,7 @@ require("lualib_bundle");
 local ____exports = {}
 ____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear2", {4, "005", "Fast room clear (beta)", "A new version of fast-clear that might have less bugs."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
-____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"fadeVasculitisTears", {4, "027", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "028", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
+____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "027", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeVasculitisTears", {4, "028", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "029", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
 ____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
 ____exports.ALL_CONFIG_DESCRIPTIONS = {
     table.unpack(
@@ -2170,10 +2207,11 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.57.13"
+____exports.VERSION = "0.57.14"
+____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
-____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 ____exports.MAX_POSSIBLE_RADIUS = 875
+____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 return ____exports
 end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2191,6 +2229,7 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local ____constants = require("constants")
+local CENTER_OF_2X2_ROOM = ____constants.CENTER_OF_2X2_ROOM
 local EXCLUDED_CHARACTERS = ____constants.EXCLUDED_CHARACTERS
 local MAX_POSSIBLE_RADIUS = ____constants.MAX_POSSIBLE_RADIUS
 local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
@@ -2272,11 +2311,14 @@ function ____exports.consoleCommand(self, command)
 end
 ____exports.ensureAllCases = function(____, obj) return obj end
 function ____exports.enteredRoomViaTeleport(self)
-    local roomIndex = ____exports.getRoomIndex(nil)
     local startingRoomIndex = g.l:GetStartingRoomIndex()
+    local previousRoomIndex = g.l:GetPreviousRoomIndex()
     local isFirstVisit = g.r:IsFirstVisit()
+    local roomIndex = ____exports.getRoomIndex(nil)
     local justReachedThisFloor = (roomIndex == startingRoomIndex) and isFirstVisit
-    return (g.l.LeaveDoor == -1) and (not justReachedThisFloor)
+    local inCrawlspace = roomIndex == GridRooms.ROOM_DUNGEON_IDX
+    local cameFromCrawlspace = previousRoomIndex == GridRooms.ROOM_DUNGEON_IDX
+    return (((g.l.LeaveDoor == -1) and (not justReachedThisFloor)) and (not inCrawlspace)) and (not cameFromCrawlspace)
 end
 function ____exports.getFireDelayFromTearsStat(self, tearsStat)
     return math.max((30 / tearsStat) - 1, -0.9999)
@@ -2292,8 +2334,7 @@ function ____exports.getPlayerLuaTableIndex(self, player)
     return tostring(player.ControllerIndex)
 end
 function ____exports.getRoomEnemies(self)
-    local centerPos = g.r:GetCenterPos()
-    return Isaac.FindInRadius(centerPos, MAX_POSSIBLE_RADIUS, EntityPartition.ENEMY)
+    return Isaac.FindInRadius(CENTER_OF_2X2_ROOM, MAX_POSSIBLE_RADIUS, EntityPartition.ENEMY)
 end
 function ____exports.getTearsStat(self, fireDelay)
     return 30 / (fireDelay + 1)
@@ -2372,6 +2413,38 @@ end
 function ____exports.isSelfDamage(self, damageFlags)
     return ____exports.hasFlag(nil, damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) or ____exports.hasFlag(nil, damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
 end
+function ____exports.isPostBossVoidPortal(self, gridEntity)
+    local saveState = gridEntity:GetSaveState()
+    return saveState.VarData == 1
+end
+function ____exports.movePlayersAndFamiliars(self, position)
+    local players = ____exports.getPlayers(nil)
+    for ____, player in ipairs(players) do
+        player.Position = position
+    end
+    local esaus = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_ESAU, false, false)
+    for ____, esau in ipairs(esaus) do
+        local player = esau:ToPlayer()
+        if player ~= nil then
+            local jacob = player:GetMainTwin()
+            local adjustment = Vector(20, 0)
+            local adjustedPosition = jacob.Position:__add(adjustment)
+            esau.Position = adjustedPosition
+        end
+    end
+    local taintedSouls = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_THESOUL_B, false, false)
+    for ____, taintedSoul in ipairs(taintedSouls) do
+        local player = taintedSoul:ToPlayer()
+        if player ~= nil then
+            local forgotten = player:GetMainTwin()
+            taintedSoul.Position = forgotten.Position
+        end
+    end
+    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, -1, -1, false, false)
+    for ____, familiar in ipairs(familiars) do
+        familiar.Position = position
+    end
+end
 function ____exports.playingOnSetSeed(self)
     local customRun = g.seeds:IsCustomRun()
     local challenge = Isaac.GetChallenge()
@@ -2412,9 +2485,15 @@ function ____exports.restartAsCharacter(self, character)
         "restart " .. tostring(character)
     )
 end
-function ____exports.teleport(self, roomIndex)
+function ____exports.teleport(self, roomIndex, direction, roomTransitionAnim)
+    if direction == nil then
+        direction = Direction.NO_DIRECTION
+    end
+    if roomTransitionAnim == nil then
+        roomTransitionAnim = RoomTransitionAnim.TELEPORT
+    end
     g.l.LeaveDoor = -1
-    g.g:StartRoomTransition(roomIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
+    g.g:StartRoomTransition(roomIndex, direction, roomTransitionAnim)
 end
 return ____exports
 end,
@@ -2567,7 +2646,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local paschalCandle = require("features.optional.major.fastClear.paschalCandle")
 function ____exports.fireDelay(self, player)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     paschalCandle:fireDelay(player)
@@ -3476,7 +3555,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local tracking = require("features.optional.major.fastClear.tracking")
 function ____exports.main(self, npc)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     if npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
@@ -3486,7 +3565,7 @@ function ____exports.main(self, npc)
     tracking:checkAdd(npc)
 end
 function ____exports.ragling(self, npc)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     if (npc.Variant == 1) and (npc.State == NpcState.STATE_UNIQUE_DEATH) then
@@ -3494,7 +3573,7 @@ function ____exports.ragling(self, npc)
     end
 end
 function ____exports.stoney(self, npc)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     local ptrHash = GetPtrHash(npc)
@@ -3545,13 +3624,450 @@ function ____exports.main(self, curses)
 end
 return ____exports
 end,
+["features.optional.major.fastTravel.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+____exports.TRAPDOOR_OPEN_DISTANCE = 60
+____exports.TRAPDOOR_OPEN_DISTANCE_FOR_FRESH = ____exports.TRAPDOOR_OPEN_DISTANCE * 2.5
+____exports.TRAPDOOR_TOUCH_DISTANCE = 16.5
+____exports.TRAPDOOR_PICKUP_TOUCH_DISTANCE = ____exports.TRAPDOOR_TOUCH_DISTANCE + 2
+____exports.JUMP_DOWN_ANIMATION_FRAME_LENGTH = 16
+____exports.FADE_TO_BLACK_FRAMES = 9
+____exports.JUMP_UP_ANIMATION_FRAME_LENGTH = 7
+return ____exports
+end,
+["features.optional.major.fastTravel.fastTravel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local ____constants = require("features.optional.major.fastTravel.constants")
+local TRAPDOOR_OPEN_DISTANCE = ____constants.TRAPDOOR_OPEN_DISTANCE
+local TRAPDOOR_OPEN_DISTANCE_FOR_FRESH = ____constants.TRAPDOOR_OPEN_DISTANCE_FOR_FRESH
+local TRAPDOOR_TOUCH_DISTANCE = ____constants.TRAPDOOR_TOUCH_DISTANCE
+local ____enums = require("features.optional.major.fastTravel.enums")
+local FastTravelEntityState = ____enums.FastTravelEntityState
+local FastTravelState = ____enums.FastTravelState
+local shouldOpen, shouldBeClosedBecauseOfEnemies, shouldBeClosedBecausePlayerClose, shouldBeClosedBecausePlayerCloseAndFreshSpawn, open, canInteractWith
+function shouldOpen(self, effect)
+    return (((effect.State ~= FastTravelEntityState.Open) and (not shouldBeClosedBecauseOfEnemies(nil, effect))) and (not shouldBeClosedBecausePlayerClose(nil, effect))) and (not shouldBeClosedBecausePlayerCloseAndFreshSpawn(nil, effect))
+end
+function shouldBeClosedBecauseOfEnemies(self, effect)
+    local isClear = g.r:IsClear()
+    local data = effect:GetData()
+    if data.fresh then
+        return false
+    end
+    return not isClear
+end
+function shouldBeClosedBecausePlayerClose(self, effect)
+    local playersClose = Isaac.FindInRadius(effect.Position, TRAPDOOR_OPEN_DISTANCE, EntityPartition.PLAYER)
+    return #playersClose > 0
+end
+function shouldBeClosedBecausePlayerCloseAndFreshSpawn(self, effect)
+    local roomType = g.r:GetType()
+    local playersClose = Isaac.FindInRadius(effect.Position, TRAPDOOR_OPEN_DISTANCE_FOR_FRESH, EntityPartition.PLAYER)
+    local data = effect:GetData()
+    local respawned = data.respawned
+    return (((roomType == RoomType.ROOM_BOSS) and (effect.FrameCount <= 30)) and (respawned == nil)) and (#playersClose > 0)
+end
+function open(self, effect, playAnimation)
+    if playAnimation == nil then
+        playAnimation = false
+    end
+    effect.State = FastTravelEntityState.Open
+    local sprite = effect:GetSprite()
+    local animationName = (playAnimation and "Open Animation") or "Opened"
+    sprite:Play(animationName, true)
+end
+function canInteractWith(self, player)
+    local sprite = player:GetSprite()
+    return ((not player:IsHoldingItem()) and (not sprite:IsPlaying("Happy"))) and (not sprite:IsPlaying("Jump"))
+end
+function ____exports.checkShouldOpen(self, effect)
+    if shouldOpen(nil, effect) then
+        open(nil, effect, true)
+    end
+end
+local function close(self, effect)
+    effect.State = FastTravelEntityState.Closed
+    local sprite = effect:GetSprite()
+    local animationName = ((effect.Variant == EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL) and "Disappear") or "Closed"
+    sprite:Play(animationName, true)
+end
+function ____exports.checkPlayerTouched(self, effect, touchedFunction)
+    if g.run.fastTravel.state ~= FastTravelState.DISABLED then
+        return
+    end
+    if effect.State == FastTravelEntityState.Closed then
+        return
+    end
+    local playersTouching = Isaac.FindInRadius(effect.Position, TRAPDOOR_TOUCH_DISTANCE, EntityPartition.PLAYER)
+    for ____, entity in ipairs(playersTouching) do
+        local player = entity:ToPlayer()
+        if (player ~= nil) and canInteractWith(nil, player) then
+            touchedFunction(nil, effect)
+            return
+        end
+    end
+end
+function ____exports.spawn(self, variant, position, shouldSpawnOpen)
+    local roomFrameCount = g.r:GetFrameCount()
+    local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, variant, 0, position, Vector.Zero, nil):ToEffect()
+    if effect == nil then
+        error("Failed to spawn a new fast-travel effect.")
+    end
+    if variant == EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL then
+        effect.DepthOffset = 15
+    else
+        effect.DepthOffset = -100
+    end
+    if roomFrameCount > 0 then
+        local data = effect:GetData()
+        data.fresh = true
+    end
+    if shouldSpawnOpen(nil, effect) then
+        open(nil, effect)
+    else
+        close(nil, effect)
+    end
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.heavenDoor"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getRoomIndex = ____misc.getRoomIndex
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local fastTravel = require("features.optional.major.fastTravel.fastTravel")
+function ____exports.replace(self, effect)
+    local roomIndex = getRoomIndex(nil)
+    effect:Remove()
+    fastTravel:spawn(EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL, effect.Position, ____exports.shouldSpawnOpen)
+    __TS__ArrayPush(g.run.level.fastTravel.replacedHeavenDoors, {room = roomIndex, position = effect.Position})
+end
+function ____exports.shouldSpawnOpen(self)
+    return not g.r:IsClear()
+end
+function ____exports.postEffectInit(self, effect)
+    ____exports.replace(nil, effect)
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.callbacks.postEffectInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local heavenDoor = require("features.optional.major.fastTravel.heavenDoor")
+function ____exports.heavenLightDoor(self, effect)
+    if not g.config.fastTravel then
+        return
+    end
+    heavenDoor:postEffectInit(effect)
+end
+return ____exports
+end,
+["callbacks.postEffectInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastTravelPostEffectInit = require("features.optional.major.fastTravel.callbacks.postEffectInit")
+function ____exports.heavenLightDoor(self, effect)
+    fastTravelPostEffectInit:heavenLightDoor(effect)
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.crawlspace"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local anyPlayerCloserThan = ____misc.anyPlayerCloserThan
+local getRoomIndex = ____misc.getRoomIndex
+local log = ____misc.log
+local movePlayersAndFamiliars = ____misc.movePlayersAndFamiliars
+local teleport = ____misc.teleport
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local ____constants = require("features.optional.major.fastTravel.constants")
+local TRAPDOOR_OPEN_DISTANCE = ____constants.TRAPDOOR_OPEN_DISTANCE
+local fastTravel = require("features.optional.major.fastTravel.fastTravel")
+local GRID_INDEX_OF_TOP_OF_LADDER, TOP_OF_LADDER_POSITION, DEVIL_ANGEL_EXIT_MAP, BOSS_RUSH_EXIT_MAP, BOSS_ROOM_ENTER_MAP, replace, repositionPlayer, checkBlackMarket, checkReturningToRoomOutsideTheGrid, checkPostRoomTransitionSubvert, touched, getExitDirection
+function replace(self, gridEntity, gridIndex)
+    local roomIndex = getRoomIndex(nil)
+    g.r:RemoveGridEntity(gridIndex, 0, false)
+    fastTravel:spawn(EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL, gridEntity.Position, ____exports.shouldSpawnOpen)
+    __TS__ArrayPush(g.run.level.fastTravel.replacedCrawlspaces, {room = roomIndex, position = gridEntity.Position})
+end
+function ____exports.shouldSpawnOpen(self, crawlspaceEffect)
+    return not anyPlayerCloserThan(nil, crawlspaceEffect.Position, TRAPDOOR_OPEN_DISTANCE)
+end
+function repositionPlayer(self)
+    local roomIndex = getRoomIndex(nil)
+    if (roomIndex == GridRooms.ROOM_DUNGEON_IDX) and (not g.run.level.fastTravel.crawlspace.blackMarket) then
+        movePlayersAndFamiliars(nil, TOP_OF_LADDER_POSITION)
+    end
+end
+function checkBlackMarket(self)
+    local roomIndex = getRoomIndex(nil)
+    g.run.level.fastTravel.crawlspace.blackMarket = roomIndex == GridRooms.ROOM_BLACK_MARKET_IDX
+end
+function checkReturningToRoomOutsideTheGrid(self)
+    local roomIndex = getRoomIndex(nil)
+    local prevRoomIndex = g.l:GetPreviousRoomIndex()
+    if (((prevRoomIndex == GridRooms.ROOM_DUNGEON_IDX) and (roomIndex < 0)) and (roomIndex ~= GridRooms.ROOM_DUNGEON_IDX)) and (roomIndex ~= GridRooms.ROOM_BLACK_MARKET_IDX) then
+        movePlayersAndFamiliars(nil, g.l.DungeonReturnPosition)
+    end
+end
+function checkPostRoomTransitionSubvert(self)
+    local direction = g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection
+    if direction ~= Direction.NO_DIRECTION then
+        local gridPosition = BOSS_ROOM_ENTER_MAP:get(direction)
+        if gridPosition ~= nil then
+            g.p.Position = g.r:GetGridPosition(gridPosition)
+            g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection = Direction.NO_DIRECTION
+            log(nil, "Changed the player's position after subverting the room transition animation for a room outside of the grid.")
+        end
+    end
+end
+function touched(self, effect)
+    local roomIndex = getRoomIndex(nil)
+    local previousRoomIndex = g.l:GetPreviousRoomIndex()
+    local previousRoomIndexToUse = ((g.run.level.fastTravel.crawlspace.previousRoomIndex == nil) and previousRoomIndex) or g.run.level.fastTravel.crawlspace.previousRoomIndex
+    g.run.level.fastTravel.crawlspace.previousRoomIndex = previousRoomIndexToUse
+    g.l.DungeonReturnRoomIndex = roomIndex
+    g.l.DungeonReturnPosition = effect.Position
+    Isaac.DebugString("DEBUG - TELEPORTING")
+    teleport(nil, GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK)
+end
+function ____exports.checkTopOfCrawlspaceLadder(self, player)
+    local roomType = g.r:GetType()
+    local playerGridIndex = g.r:GetGridIndex(player.Position)
+    if (roomType == RoomType.ROOM_DUNGEON) and (playerGridIndex == GRID_INDEX_OF_TOP_OF_LADDER) then
+        g.run.room.fastTravel.crawlspace.amTeleporting = true
+        teleport(nil, g.l.DungeonReturnRoomIndex, Direction.UP, RoomTransitionAnim.WALK)
+    end
+end
+function ____exports.checkExitSoftlock(self, player)
+    local previousRoomIndex = g.l:GetPreviousRoomIndex()
+    local roomType = g.r:GetType()
+    if (previousRoomIndex ~= GridRooms.ROOM_DUNGEON_IDX) or (g.run.level.fastTravel.crawlspace.previousRoomIndex == nil) then
+        return
+    end
+    local direction = getExitDirection(nil, roomType, player)
+    if direction ~= nil then
+        g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection = direction
+        g.run.room.fastTravel.crawlspace.amTeleporting = true
+        teleport(nil, g.run.level.fastTravel.crawlspace.previousRoomIndex, direction, RoomTransitionAnim.WALK)
+        log(nil, "Subverted exiting a room outside of the grid to avoid a crawlspace-related softlock.")
+    end
+end
+function getExitDirection(self, roomType, player)
+    local playerGridIndex = g.r:GetGridIndex(player.Position)
+    local ____switch24 = roomType
+    if ____switch24 == RoomType.ROOM_DEVIL then
+        goto ____switch24_case_0
+    elseif ____switch24 == RoomType.ROOM_ANGEL then
+        goto ____switch24_case_1
+    elseif ____switch24 == RoomType.ROOM_BOSSRUSH then
+        goto ____switch24_case_2
+    end
+    goto ____switch24_case_default
+    ::____switch24_case_0::
+    do
+    end
+    ::____switch24_case_1::
+    do
+        do
+            return DEVIL_ANGEL_EXIT_MAP:get(playerGridIndex)
+        end
+    end
+    ::____switch24_case_2::
+    do
+        do
+            return BOSS_RUSH_EXIT_MAP:get(playerGridIndex)
+        end
+    end
+    ::____switch24_case_default::
+    do
+        do
+            return nil
+        end
+    end
+    ::____switch24_end::
+end
+GRID_INDEX_OF_TOP_OF_LADDER = 2
+TOP_OF_LADDER_POSITION = Vector(120, 160)
+DEVIL_ANGEL_EXIT_MAP = __TS__New(Map, {{7, Direction.UP}, {74, Direction.RIGHT}, {127, Direction.DOWN}, {60, Direction.LEFT}})
+BOSS_RUSH_EXIT_MAP = __TS__New(Map, {{7, Direction.UP}, {112, Direction.LEFT}, {139, Direction.RIGHT}, {427, Direction.DOWN}})
+BOSS_ROOM_ENTER_MAP = __TS__New(Map, {{Direction.LEFT, 73}, {Direction.UP, 112}, {Direction.RIGHT, 61}, {Direction.DOWN, 22}})
+function ____exports.postGridEntityUpdateCrawlspace(self, gridEntity, gridIndex)
+    replace(nil, gridEntity, gridIndex)
+end
+function ____exports.postNewRoom(self)
+    repositionPlayer(nil)
+    checkBlackMarket(nil)
+    checkReturningToRoomOutsideTheGrid(nil)
+    checkPostRoomTransitionSubvert(nil)
+end
+function ____exports.postEffectUpdateCrawlspace(self, effect)
+    fastTravel:checkShouldOpen(effect)
+    fastTravel:checkPlayerTouched(effect, touched)
+end
+function ____exports.postPlayerUpdate(self, player)
+    if g.run.room.fastTravel.crawlspace.amTeleporting then
+        return
+    end
+    ____exports.checkTopOfCrawlspaceLadder(nil, player)
+    ____exports.checkExitSoftlock(nil, player)
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.trapdoor"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getRoomIndex = ____misc.getRoomIndex
+local isPostBossVoidPortal = ____misc.isPostBossVoidPortal
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local fastTravel = require("features.optional.major.fastTravel.fastTravel")
+local shouldReplace, shouldDeleteAndNotReplace
+function shouldReplace(self, gridEntity)
+    if isPostBossVoidPortal(nil, gridEntity) then
+        return false
+    end
+    if g.seeds:HasSeedEffect(SeedEffect.SEED_INFINITE_BASEMENT) then
+        return false
+    end
+    return true
+end
+function ____exports.replace(self, entity, gridIndex)
+    local roomIndex = getRoomIndex(nil)
+    if gridIndex == -1 then
+        entity:Remove()
+    else
+        g.r:RemoveGridEntity(gridIndex, 0, false)
+    end
+    if shouldDeleteAndNotReplace(nil) then
+        return
+    end
+    local effectVariant = ____exports.getTrapdoorVariant(nil)
+    fastTravel:spawn(effectVariant, entity.Position, ____exports.shouldSpawnOpen)
+    __TS__ArrayPush(g.run.level.fastTravel.replacedTrapdoors, {room = roomIndex, position = entity.Position})
+end
+function shouldDeleteAndNotReplace(self)
+    local stage = g.l:GetStage()
+    if ((stage == 6) and (g.race.status == "in progress")) and (g.race.goal == "Boss Rush") then
+        return true
+    end
+    return false
+end
+function ____exports.getTrapdoorVariant(self)
+    local stage = g.l:GetStage()
+    local roomIndex = getRoomIndex(nil)
+    if roomIndex == GridRooms.ROOM_BLUE_WOOM_IDX then
+        return EffectVariantCustom.BLUE_WOMB_TRAPDOOR_FAST_TRAVEL
+    end
+    if roomIndex == GridRooms.ROOM_THE_VOID_IDX then
+        return EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL
+    end
+    if (stage == 6) or (stage == 7) then
+        return EffectVariantCustom.WOMB_TRAPDOOR_FAST_TRAVEL
+    end
+    return EffectVariantCustom.TRAPDOOR_FAST_TRAVEL
+end
+function ____exports.shouldSpawnOpen(self)
+    local stage = g.l:GetStage()
+    local roomType = g.r:GetType()
+    if roomType == RoomType.ROOM_ERROR then
+        return true
+    end
+    if stage == 10 then
+        return true
+    end
+    return false
+end
+function ____exports.postEffectUpdateTrapdoor(self, _effect)
+end
+function ____exports.postGridEntityUpdateTrapdoor(self, gridEntity, gridIndex)
+    if not shouldReplace(nil, gridEntity) then
+        ____exports.replace(nil, gridEntity, gridIndex)
+    end
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.callbacks.postEffectUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local crawlspace = require("features.optional.major.fastTravel.crawlspace")
+local trapdoor = require("features.optional.major.fastTravel.trapdoor")
+function ____exports.trapdoorFastTravel(self, effect)
+    if not g.config.fastTravel then
+        return
+    end
+    trapdoor:postEffectUpdateTrapdoor(effect)
+end
+function ____exports.crawlspaceFastTravel(self, effect)
+    if not g.config.fastTravel then
+        return
+    end
+    crawlspace:postEffectUpdateCrawlspace(effect)
+end
+function ____exports.wombTrapdoorFastTravel(self, _effect)
+    if not g.config.fastTravel then
+    end
+end
+function ____exports.blueWombTrapdoorFastTravel(self, _effect)
+    if not g.config.fastTravel then
+    end
+end
+function ____exports.heavenDoorFastTravel(self, _effect)
+    if not g.config.fastTravel then
+    end
+end
+function ____exports.voidPortalFastTravel(self, _effect)
+    if not g.config.fastTravel then
+    end
+end
+return ____exports
+end,
+["callbacks.postEffectUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastTravelPostEffectUpdate = require("features.optional.major.fastTravel.callbacks.postEffectUpdate")
+function ____exports.trapdoorFastTravel(self, effect)
+    fastTravelPostEffectUpdate:trapdoorFastTravel(effect)
+end
+function ____exports.crawlspaceFastTravel(self, effect)
+    fastTravelPostEffectUpdate:crawlspaceFastTravel(effect)
+end
+function ____exports.wombTrapdoorFastTravel(self, effect)
+    fastTravelPostEffectUpdate:wombTrapdoorFastTravel(effect)
+end
+function ____exports.blueWombTrapdoorFastTravel(self, effect)
+    fastTravelPostEffectUpdate:blueWombTrapdoorFastTravel(effect)
+end
+function ____exports.heavenDoorFastTravel(self, effect)
+    fastTravelPostEffectUpdate:heavenDoorFastTravel(effect)
+end
+function ____exports.voidPortalFastTravel(self, effect)
+    fastTravelPostEffectUpdate:voidPortalFastTravel(effect)
+end
+return ____exports
+end,
 ["features.optional.major.fastClear.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local tracking = require("features.optional.major.fastClear.tracking")
 function ____exports.main(self, entity)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     local npc = entity:ToNPC()
@@ -3567,22 +4083,60 @@ require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local SPLITTING_CHAMPIONS, isSplittingChampion
+local SPLITTING_ENTITIES, SPLITTING_CHAMPIONS, deleteFriendlyEye, shouldDeleteFriendlyEye, deleteItLivesProjectile, setItLivesDead, addFriendlyFlag, isSplittingChampion
+function deleteFriendlyEye(self, npc)
+    if shouldDeleteFriendlyEye(nil) then
+        npc:Remove()
+    end
+end
+function shouldDeleteFriendlyEye(self)
+    return g.run.room.fastClear2.itLivesDead
+end
+function deleteItLivesProjectile(self, projectile)
+    if g.run.room.fastClear2.itLivesDead and (projectile.SpawnerType == EntityType.ENTITY_MOMS_HEART) then
+        projectile:Remove()
+        g.g:Spawn(projectile.Type, projectile.Variant, projectile.Position, projectile.Velocity, nil, projectile.SubType, projectile.InitSeed)
+    end
+end
+function setItLivesDead(self, npc)
+    if npc.Type == EntityType.ENTITY_MOMS_HEART then
+        g.run.room.fastClear2.itLivesDead = true
+    end
+end
+function addFriendlyFlag(self, npc)
+    if (not __TS__ArrayIncludes(SPLITTING_ENTITIES, npc.Type)) and (not isSplittingChampion(nil, npc)) then
+        npc:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+    end
+end
 function isSplittingChampion(self, npc)
     local isChampion = npc:IsChampion()
     local championColor = npc:GetChampionColorIdx()
     return isChampion and __TS__ArrayIncludes(SPLITTING_CHAMPIONS, championColor)
 end
-local SPLITTING_ENTITIES = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_LARRYJR, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_FALLEN, EntityType.ENTITY_GURGLE, EntityType.ENTITY_HANGER, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_NEST, EntityType.ENTITY_FATTY, EntityType.ENTITY_FAT_SACK, EntityType.ENTITY_BLUBBER, EntityType.ENTITY_SWINGER, EntityType.ENTITY_SQUIRT, EntityType.ENTITY_SKINNY, EntityType.ENTITY_DINGA, EntityType.ENTITY_GRUB, EntityType.ENTITY_CONJOINED_FATTY, EntityType.ENTITY_BLACK_GLOBIN, EntityType.ENTITY_MEGA_CLOTTY, EntityType.ENTITY_MOMS_DEAD_HAND, EntityType.ENTITY_MEATBALL, EntityType.ENTITY_BLISTER, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_PUSTULE}
-SPLITTING_CHAMPIONS = {ChampionColor.PULSE_GREEN, ChampionColor.FLY_PROTECTED}
+SPLITTING_ENTITIES = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_LARRYJR, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_FALLEN, EntityType.ENTITY_GURGLE, EntityType.ENTITY_HANGER, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_ISAAC, EntityType.ENTITY_NEST, EntityType.ENTITY_FATTY, EntityType.ENTITY_FAT_SACK, EntityType.ENTITY_BLUBBER, EntityType.ENTITY_SWINGER, EntityType.ENTITY_SQUIRT, EntityType.ENTITY_SKINNY, EntityType.ENTITY_DINGA, EntityType.ENTITY_GRUB, EntityType.ENTITY_CONJOINED_FATTY, EntityType.ENTITY_BLACK_GLOBIN, EntityType.ENTITY_MEGA_CLOTTY, EntityType.ENTITY_MOMS_DEAD_HAND, EntityType.ENTITY_MEATBALL, EntityType.ENTITY_BLISTER, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_PUSTULE}
+SPLITTING_CHAMPIONS = {ChampionColor.PULSE_GREEN, ChampionColor.FLY_PROTECTED, ChampionColor.SIZE_PULSE, ChampionColor.RAINBOW}
+function ____exports.postNPCInitEye(self, npc)
+    if not g.config.fastClear2 then
+        return
+    end
+    deleteFriendlyEye(nil, npc)
+end
+function ____exports.postProjectileInit(self, projectile)
+    if not g.config.fastClear2 then
+        return
+    end
+    deleteItLivesProjectile(nil, projectile)
+end
 function ____exports.postEntityKill(self, entity)
     if not g.config.fastClear2 then
         return
     end
     local npc = entity:ToNPC()
-    if ((npc ~= nil) and (not __TS__ArrayIncludes(SPLITTING_ENTITIES, npc.Type))) and (not isSplittingChampion(nil, npc)) then
-        npc:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+    if npc == nil then
+        return
     end
+    setItLivesDead(nil, npc)
+    addFriendlyFlag(nil, npc)
 end
 return ____exports
 end,
@@ -3602,7 +4156,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local tracking = require("features.optional.major.fastClear.tracking")
 function ____exports.main(self, entity)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     local npc = entity:ToNPC()
@@ -3627,7 +4181,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local pc = require("features.optional.major.fastClear.paschalCandle")
 function ____exports.paschalCandle(self, familiar)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     pc:postRender(familiar)
@@ -3664,16 +4218,16 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
+local movePlayersAndFamiliars = ____misc.movePlayersAndFamiliars
 local distributeAround
 function ____exports.centerPlayers(self)
     local centerPos = g.r:GetCenterPos()
     if g.g:IsGreedMode() then
         return
     end
+    movePlayersAndFamiliars(nil, centerPos)
     local players = getPlayers(nil)
-    if #players == 1 then
-        players[1].Position = centerPos
-    else
+    if #players > 1 then
         local distanceBetweenPlayers = 50
         local positions = distributeAround(nil, centerPos, distanceBetweenPlayers, #players)
         do
@@ -3683,28 +4237,6 @@ function ____exports.centerPlayers(self)
                 i = i + 1
             end
         end
-    end
-    local esaus = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_ESAU, false, false)
-    for ____, esau in ipairs(esaus) do
-        local player = esau:ToPlayer()
-        if player ~= nil then
-            local jacob = player:GetMainTwin()
-            local adjustment = Vector(20, 0)
-            local position = jacob.Position:__add(adjustment)
-            esau.Position = position
-        end
-    end
-    local taintedSouls = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_THESOUL_B, false, false)
-    for ____, taintedSoul in ipairs(taintedSouls) do
-        local player = taintedSoul:ToPlayer()
-        if player ~= nil then
-            local forgotten = player:GetMainTwin()
-            taintedSoul.Position = forgotten.Position
-        end
-    end
-    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, -1, -1, false, false)
-    for ____, familiar in ipairs(familiars) do
-        familiar.Position = centerPos
     end
     local poofs = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, false, false)
     for ____, poof in ipairs(poofs) do
@@ -4336,6 +4868,7 @@ local ____misc = require("misc")
 local anyPlayerCloserThan = ____misc.anyPlayerCloserThan
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getPlayers = ____misc.getPlayers
+local log = ____misc.log
 local getDoorEnterPosition
 function getDoorEnterPosition(self, doorSlot, doorPosition)
     local x = doorPosition.X
@@ -4355,11 +4888,16 @@ function ____exports.postNewRoom(self)
     if not g.config.fixTeleportInvalidEntrance then
         return
     end
+    local stage = g.l:GetStage()
+    local roomType = g.r:GetType()
     local roomShape = g.r:GetRoomShape()
     if not enteredRoomViaTeleport(nil) then
         return
     end
     if roomShape >= RoomShape.ROOMSHAPE_1x2 then
+        return
+    end
+    if (stage == 6) and (roomType == RoomType.ROOM_BOSS) then
         return
     end
     local nextToADoor = false
@@ -4394,6 +4932,7 @@ function ____exports.postNewRoom(self)
             familiar.Position = doorOffset
         end
     end
+    log(nil, "Fixed teleporting to an invalid entrance.")
 end
 return ____exports
 end,
@@ -4407,10 +4946,78 @@ function resetVariables(self)
     g.run.fastClear.roomInitializing = false
 end
 function ____exports.main(self)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     resetVariables(nil)
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.callbacks.postNewRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getRoomIndex = ____misc.getRoomIndex
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local crawlspace = require("features.optional.major.fastTravel.crawlspace")
+local fastTravel = require("features.optional.major.fastTravel.fastTravel")
+local heavenDoor = require("features.optional.major.fastTravel.heavenDoor")
+local trapdoor = require("features.optional.major.fastTravel.trapdoor")
+local respawnTrapdoors, respawnCrawlspaces, respawnHeavenDoors, removeOverlappingGridEntity, removeCornyPoopFly
+function respawnTrapdoors(self, roomIndex)
+    for ____, replacedTrapdoor in ipairs(g.run.level.fastTravel.replacedTrapdoors) do
+        if replacedTrapdoor.room == roomIndex then
+            removeOverlappingGridEntity(nil, replacedTrapdoor.position)
+            local effectVariant = trapdoor:getTrapdoorVariant()
+            fastTravel:spawn(effectVariant, replacedTrapdoor.position, trapdoor.shouldSpawnOpen)
+        end
+    end
+end
+function respawnCrawlspaces(self, roomIndex)
+    for ____, replacedCrawlspace in ipairs(g.run.level.fastTravel.replacedCrawlspaces) do
+        if replacedCrawlspace.room == roomIndex then
+            removeOverlappingGridEntity(nil, replacedCrawlspace.position)
+            fastTravel:spawn(EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL, replacedCrawlspace.position, crawlspace.shouldSpawnOpen)
+        end
+    end
+end
+function respawnHeavenDoors(self, roomIndex)
+    for ____, replacedHeavenDoor in ipairs(g.run.level.fastTravel.replacedHeavenDoors) do
+        if replacedHeavenDoor.room == roomIndex then
+            removeOverlappingGridEntity(nil, replacedHeavenDoor.position)
+            fastTravel:spawn(EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL, replacedHeavenDoor.position, heavenDoor.shouldSpawnOpen)
+        end
+    end
+end
+function removeOverlappingGridEntity(self, position)
+    local gridIndex = g.r:GetGridIndex(position)
+    local gridEntity = g.r:GetGridEntity(gridIndex)
+    if gridEntity == nil then
+        return
+    end
+    g.r:RemoveGridEntity(gridIndex, 0, false)
+    removeCornyPoopFly(nil, gridEntity)
+end
+function removeCornyPoopFly(self, gridEntity)
+    local saveState = gridEntity:GetSaveState()
+    if (saveState.Type == GridEntityType.GRID_POOP) and (saveState.Variant == 2) then
+        local flies = Isaac.FindByType(EntityType.ENTITY_ETERNALFLY, -1, -1, false, false)
+        for ____, fly in ipairs(flies) do
+            fly:Remove()
+        end
+    end
+end
+function ____exports.main(self)
+    if not g.config.fastTravel then
+        return
+    end
+    local roomIndex = getRoomIndex(nil)
+    crawlspace:postNewRoom()
+    respawnTrapdoors(nil, roomIndex)
+    respawnCrawlspaces(nil, roomIndex)
+    respawnHeavenDoors(nil, roomIndex)
 end
 return ____exports
 end,
@@ -4623,6 +5230,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
+local log = ____misc.log
 local ENTITIES_THAT_CAUSE_TELEPORT, shouldSubvertTeleport, subvertTeleport, getNormalRoomEnterPosition, shouldForceMomStomp, forceMomStomp
 function shouldSubvertTeleport(self)
     local roomShape = g.r:GetRoomShape()
@@ -4652,6 +5260,7 @@ function subvertTeleport(self)
     for ____, familiar in ipairs(familiars) do
         familiar.Position = normalPosition
     end
+    log(nil, "Subverted a teleport.")
 end
 function getNormalRoomEnterPosition(self)
     local ____switch15 = g.l.LeaveDoor
@@ -4758,6 +5367,7 @@ local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local itLivesFix = require("features.mandatory.itLivesFix")
 local fixTeleportInvalidEntrance = require("features.optional.bugfix.fixTeleportInvalidEntrance")
 local fastClearPostNewRoom = require("features.optional.major.fastClear.callbacks.postNewRoom")
+local fastTravelPostNewRoom = require("features.optional.major.fastTravel.callbacks.postNewRoom")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
 local startWithD6 = require("features.optional.major.startWithD6")
 local showDreamCatcherItemPostNewRoom = require("features.optional.quality.showDreamCatcherItem.postNewRoom")
@@ -4790,6 +5400,7 @@ function ____exports.newRoom(self)
     startWithD6:postNewRoom()
     freeDevilItem:postNewRoom()
     fastClearPostNewRoom:main()
+    fastTravelPostNewRoom:main()
     showEdenStartingItems:postNewRoom()
     showDreamCatcherItemPostNewRoom:main()
     subvertTeleport:postNewRoom()
@@ -4934,7 +5545,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local tracking = require("features.optional.major.fastClear.tracking")
 function ____exports.main(self, npc)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     tracking:checkAdd(npc)
@@ -4944,8 +5555,12 @@ end,
 ["callbacks.postNPCInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostNPCInit = require("features.optional.major.fastClear.callbacks.postNPCInit")
+local fastClear2 = require("features.optional.major.fastClear2")
 function ____exports.main(self, npc)
     fastClearPostNPCInit:main(npc)
+end
+function ____exports.eye(self, npc)
+    fastClear2:postNPCInitEye(npc)
 end
 return ____exports
 end,
@@ -4955,6 +5570,35 @@ local ____globals = require("globals")
 local g = ____globals.default
 function ____exports.main(self, player)
     g.p = player
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.callbacks.postPlayerUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local crawlspace = require("features.optional.major.fastTravel.crawlspace")
+function ____exports.main(self, player)
+    if not g.config.fastTravel then
+        return
+    end
+    crawlspace:postPlayerUpdate(player)
+end
+return ____exports
+end,
+["callbacks.postPlayerUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastTravelPostPlayerUpdate = require("features.optional.major.fastTravel.callbacks.postPlayerUpdate")
+function ____exports.main(self, player)
+    fastTravelPostPlayerUpdate:main(player)
+end
+return ____exports
+end,
+["callbacks.postProjectileInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClear2 = require("features.optional.major.fastClear2")
+function ____exports.main(self, projectile)
+    fastClear2:postProjectileInit(projectile)
 end
 return ____exports
 end,
@@ -5462,6 +6106,8 @@ return ____exports
 end,
 ["features.optional.quality.fadeVasculitisTears"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
 local ____misc = require("misc")
 local anyPlayerHas = ____misc.anyPlayerHas
 local FADED_COLOR, shouldFadeTear, fadeTear
@@ -5474,6 +6120,9 @@ end
 local FADE_AMOUNT = 0.15
 FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0)
 function ____exports.postTearUpdateBloodParticle(self, tear)
+    if not g.config.fadeVasculitisTears then
+        return
+    end
     if shouldFadeTear(nil, tear) then
         fadeTear(nil, tear)
     end
@@ -6261,6 +6910,89 @@ function ____exports.postUpdate(self)
 end
 return ____exports
 end,
+["features.optional.major.fastTravel.callbacks.postGridEntityUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local cs = require("features.optional.major.fastTravel.crawlspace")
+local td = require("features.optional.major.fastTravel.trapdoor")
+function ____exports.trapdoor(self, gridEntity, gridIndex)
+    if not g.config.fastTravel then
+        return
+    end
+    td:postGridEntityUpdateTrapdoor(gridEntity, gridIndex)
+end
+function ____exports.crawlspace(self, gridEntity, gridIndex)
+    if not g.config.fastTravel then
+        return
+    end
+    cs:postGridEntityUpdateCrawlspace(gridEntity, gridIndex)
+end
+return ____exports
+end,
+["features.optional.quality.deleteVoidPortals"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local isPostBossVoidPortal = ____misc.isPostBossVoidPortal
+function ____exports.postGridEntityUpdateTrapdoor(self, gridEntity, i)
+    if not g.config.deleteVoidPortals then
+        return
+    end
+    if isPostBossVoidPortal(nil, gridEntity) then
+        g.r:RemoveGridEntity(i, 0, false)
+    end
+end
+return ____exports
+end,
+["customCallbacks.postGridEntityUpdateFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local fastTravelPostGridEntityUpdate = require("features.optional.major.fastTravel.callbacks.postGridEntityUpdate")
+local deleteVoidPortals = require("features.optional.quality.deleteVoidPortals")
+local functionMap = __TS__New(Map)
+____exports.default = functionMap
+functionMap:set(
+    GridEntityType.GRID_TRAPDOOR,
+    function(____, gridEntity, gridIndex)
+        deleteVoidPortals:postGridEntityUpdateTrapdoor(gridEntity, gridIndex)
+        fastTravelPostGridEntityUpdate:trapdoor(gridEntity, gridIndex)
+    end
+)
+functionMap:set(
+    GridEntityType.GRID_STAIRS,
+    function(____, gridEntity, gridIndex)
+        fastTravelPostGridEntityUpdate:crawlspace(gridEntity, gridIndex)
+    end
+)
+return ____exports
+end,
+["customCallbacks.postGridEntityUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____postGridEntityUpdateFunctions = require("customCallbacks.postGridEntityUpdateFunctions")
+local postGridEntityUpdateFunctions = ____postGridEntityUpdateFunctions.default
+function ____exports.postUpdate(self)
+    local gridSize = g.r:GetGridSize()
+    do
+        local gridIndex = 1
+        while gridIndex <= gridSize do
+            local gridEntity = g.r:GetGridEntity(gridIndex)
+            if gridEntity ~= nil then
+                local saveState = gridEntity:GetSaveState()
+                local postGridEntityUpdateFunction = postGridEntityUpdateFunctions:get(saveState.Type)
+                if postGridEntityUpdateFunction ~= nil then
+                    postGridEntityUpdateFunction(nil, gridEntity, gridIndex)
+                end
+            end
+            gridIndex = gridIndex + 1
+        end
+    end
+end
+return ____exports
+end,
 ["customCallbacks.postPlayerChange"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local startWithD6 = require("features.optional.major.startWithD6")
@@ -6287,18 +7019,65 @@ function ____exports.postUpdate(self)
 end
 return ____exports
 end,
-["customCallbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.callbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
 local ____globals = require("globals")
 local g = ____globals.default
+local ____clearRoom = require("features.optional.major.fastClear.clearRoom")
+local setDeferClearForGhost = ____clearRoom.setDeferClearForGhost
+function ____exports.main(self)
+    if not g.fastClear then
+        return
+    end
+    setDeferClearForGhost(nil, false)
+end
+return ____exports
+end,
+["features.optional.major.fastTravel.callbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
+local ____enums = require("features.optional.major.fastTravel.enums")
+local FastTravelEntityState = ____enums.FastTravelEntityState
+local openClosedHeavenDoors
+function openClosedHeavenDoors(self)
+    local heavenDoors = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL, -1, false, false)
+    for ____, heavenDoor in ipairs(heavenDoors) do
+        local effect = heavenDoor:ToEffect()
+        if (effect ~= nil) and (effect.State == FastTravelEntityState.Closed) then
+            effect.State = FastTravelEntityState.Open
+            local sprite = effect:GetSprite()
+            sprite:Play("Appear", true)
+        end
+    end
+end
+function ____exports.main(self)
+    if not g.config.fastTravel then
+        return
+    end
+    openClosedHeavenDoors(nil)
+end
+return ____exports
+end,
+["customCallbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastClearPostClearRoom = require("features.optional.major.fastClear.callbacks.postRoomClear")
+local fastTravelPostClearRoom = require("features.optional.major.fastTravel.callbacks.postRoomClear")
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
 local roomClear
 function roomClear(self)
     local gameFrameCount = g.g:GetFrameCount()
-    Isaac.DebugString(
+    log(
+        nil,
         "Room clear detected on frame: " .. tostring(gameFrameCount)
     )
-    fastClearClearRoom:setDeferClearForGhost(false)
+    fastClearPostClearRoom:main()
+    fastTravelPostClearRoom:main()
 end
 function ____exports.postUpdate(self)
     local clear = g.r:IsClear()
@@ -6424,7 +7203,7 @@ function checkAllPressurePlatesPushed(self)
     return true
 end
 function ____exports.main(self)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return
     end
     checkClearRoom(nil)
@@ -6434,12 +7213,14 @@ end,
 ["callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ghostForm = require("customCallbacks.ghostForm")
+local postGridEntityUpdate = require("customCallbacks.postGridEntityUpdate")
 local postPlayerChange = require("customCallbacks.postPlayerChange")
 local postRoomClear = require("customCallbacks.postRoomClear")
 local fastDrop = require("features.optional.hotkeys.fastDrop")
 local fastClearPostUpdates = require("features.optional.major.fastClear.callbacks.postUpdate")
 local startWithD6 = require("features.optional.major.startWithD6")
 function ____exports.main(self)
+    postGridEntityUpdate:postUpdate()
     postPlayerChange:postUpdate()
     postRoomClear:postUpdate()
     ghostForm:postUpdate()
@@ -6468,7 +7249,7 @@ function preventVanillaPhotos(self, subType)
     return nil
 end
 function ____exports.main(self, subType)
-    if not g.config.fastClear then
+    if not g.fastClear then
         return nil
     end
     local returnArray = preventVanillaPhotos(nil, subType)
@@ -6893,6 +7674,8 @@ local getPillEffect = require("callbacks.getPillEffect")
 local inputAction = require("callbacks.inputAction")
 local NPCUpdate = require("callbacks.NPCUpdate")
 local postCurseEval = require("callbacks.postCurseEval")
+local postEffectInit = require("callbacks.postEffectInit")
+local postEffectUpdate = require("callbacks.postEffectUpdate")
 local postEntityKill = require("callbacks.postEntityKill")
 local postEntityRemove = require("callbacks.postEntityRemove")
 local postFamiliarRender = require("callbacks.postFamiliarRender")
@@ -6902,6 +7685,8 @@ local postNewLevel = require("callbacks.postNewLevel")
 local postNewRoom = require("callbacks.postNewRoom")
 local postNPCInit = require("callbacks.postNPCInit")
 local postPlayerInit = require("callbacks.postPlayerInit")
+local postPlayerUpdate = require("callbacks.postPlayerUpdate")
+local postProjectileInit = require("callbacks.postProjectileInit")
 local postRender = require("callbacks.postRender")
 local postTearUpdate = require("callbacks.postTearUpdate")
 local postUpdate = require("callbacks.postUpdate")
@@ -6913,6 +7698,8 @@ local ____misc = require("misc")
 local log = ____misc.log
 local modConfigMenu = require("modConfigMenu")
 local saveDat = require("saveDat")
+local ____enums = require("types.enums")
+local EffectVariantCustom = ____enums.EffectVariantCustom
 local racingPlus = RegisterMod("Racing+", 1)
 local modName = "Racing+"
 local welcomeText = ((modName .. " ") .. VERSION) .. " initialized."
@@ -6942,6 +7729,8 @@ racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
 racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
 racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
+racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
+racingPlus:AddCallback(ModCallbacks.MC_POST_PROJECTILE_INIT, postProjectileInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
 racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
@@ -6949,7 +7738,15 @@ racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
 racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
+racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.eye, EntityType.ENTITY_EYE)
 racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.trapdoorFastTravel, EffectVariantCustom.TRAPDOOR_FAST_TRAVEL)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.crawlspaceFastTravel, EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.wombTrapdoorFastTravel, EffectVariantCustom.WOMB_TRAPDOOR_FAST_TRAVEL)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.blueWombTrapdoorFastTravel, EffectVariantCustom.BLUE_WOMB_TRAPDOOR_FAST_TRAVEL)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.heavenDoorFastTravel, EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL)
+racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.voidPortalFastTravel, EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL)
 return ____exports
 end,
 ["types.RevelCopyTable"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]

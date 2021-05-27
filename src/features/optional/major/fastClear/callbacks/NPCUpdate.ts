@@ -2,7 +2,7 @@ import g from "../../../../../globals";
 import * as tracking from "../tracking";
 
 export function main(npc: EntityNPC): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 
@@ -23,7 +23,7 @@ export function main(npc: EntityNPC): void {
 
 // EntityType.ENTITY_RAGLING (246)
 export function ragling(npc: EntityNPC): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 
@@ -40,7 +40,7 @@ export function ragling(npc: EntityNPC): void {
 
 // EntityType.ENTITY_STONEY (302)
 export function stoney(npc: EntityNPC): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 

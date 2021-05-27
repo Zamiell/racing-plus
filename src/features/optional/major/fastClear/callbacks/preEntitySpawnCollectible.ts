@@ -3,7 +3,7 @@ import { log } from "../../../../../misc";
 import { PickupVariantCustom } from "../../../../../types/enums";
 
 export function main(subType: int): [EntityType | int, int, int, int] | null {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return null;
   }
 

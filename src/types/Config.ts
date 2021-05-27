@@ -5,7 +5,6 @@ export default class Config {
   disableCurses = true;
   freeDevilItem = true;
   fastReset = true;
-  fastClear = false;
   fastClear2 = true;
   fastTravel = true;
 
@@ -16,6 +15,7 @@ export default class Config {
   showDreamCatcherItem = true;
   speedUpFadeIn = true;
   subvertTeleport = true;
+  deleteVoidPortals = true;
   fadeVasculitisTears = true;
   customConsole = true;
 

@@ -59,7 +59,7 @@ export function postUpdate(): void {
     if (g.run.seededDeath.guppysCollar) {
       transition = RoomTransition.TRANSITION_GUPPYS_COLLAR;
     }
-    g.g.StartRoomTransition(previousRoomIndex, direction, transition);
+    teleport(previousRoomIndex, direction, transition);
     g.l.LeaveDoor = enterDoor;
 
     if (character === PlayerType.PLAYER_THESOUL) {

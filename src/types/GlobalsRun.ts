@@ -1,3 +1,4 @@
+import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
 
@@ -92,6 +93,10 @@ export default class GlobalsRun {
 
   /** Needed for speedruns to return to the same character. */
   fastResetFrame = 0;
+
+  fastTravel = {
+    state: FastTravelState.DISABLED,
+  };
 
   freeDevilItem = {
     takenDamage: new LuaTable<ControllerIndexString, boolean>(),

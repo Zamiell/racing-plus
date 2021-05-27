@@ -1,5 +1,7 @@
-import * as fastClearClearRoom from "../features/optional/major/fastClear/clearRoom";
+import * as fastClearPostClearRoom from "../features/optional/major/fastClear/callbacks/postRoomClear";
+import * as fastTravelPostClearRoom from "../features/optional/major/fastTravel/callbacks/postRoomClear";
 import g from "../globals";
+import { log } from "../misc";
 
 export function postUpdate(): void {
   const clear = g.r.IsClear();
@@ -11,6 +13,8 @@ export function postUpdate(): void {
 
 function roomClear() {
   const gameFrameCount = g.g.GetFrameCount();
-  Isaac.DebugString(`Room clear detected on frame: ${gameFrameCount}`);
-  fastClearClearRoom.setDeferClearForGhost(false);
+  log(`Room clear detected on frame: ${gameFrameCount}`);
+
+  fastClearPostClearRoom.main();
+  fastTravelPostClearRoom.main();
 }

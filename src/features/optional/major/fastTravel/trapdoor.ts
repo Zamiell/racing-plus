@@ -1,116 +1,38 @@
-/*
-// Called from the "CheckEntities.Grid()" and "CheckEntities.NonGrid()" functions
-export function replace(entity: Entity | GridEntity, gridIndex: int): void {
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-  const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const roomFrameCount = g.r.GetFrameCount();
-  const challenge = Isaac.GetChallenge();
+import g from "../../../../globals";
+import { getRoomIndex, isPostBossVoidPortal } from "../../../../misc";
+import { EffectVariantCustom } from "../../../../types/enums";
+import * as fastTravel from "./fastTravel";
+
+// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
+export function postEffectUpdateTrapdoor(_effect: EntityEffect): void {
+  // TODO
+}
+
+export function postGridEntityUpdateTrapdoor(
+  gridEntity: GridEntity,
+  gridIndex: int,
+): void {
+  if (!shouldReplace(gridEntity)) {
+    replace(gridEntity, gridIndex);
+  }
+}
+
+function shouldReplace(gridEntity: GridEntity) {
+  if (isPostBossVoidPortal(gridEntity)) {
+    return false;
+  }
 
   // There is no way to manually travel to the "Infinite Basements" Easter Egg floors,
-  // so just disable the fast-travel feature
+  // so just disable the fast-travel feature if this is the case
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_INFINITE_BASEMENT)) {
-    return;
+    return false;
   }
 
-  // Don't replace anything in The Void portal room
-  if (roomIndex === GridRooms.ROOM_THE_VOID_IDX) {
-    return;
-  }
+  return true;
+}
 
-  let deleteAndDontReplace = false;
-
-  // Delete the Womb trapdoor that spawns after Mom if the goal of the run is the Boss Rush
-  if (
-    stage === 6 &&
-    ((g.race.status === "in progress" && g.race.goal === "Boss Rush") ||
-      (challenge === ChallengeCustom.R7_SEASON_7 &&
-        g.season7.remainingGoals.includes("Boss Rush") &&
-        g.season7.remainingGoals.length === 1))
-  ) {
-    deleteAndDontReplace = true;
-  }
-
-  // Delete the "natural" trapdoor that spawns one frame after It Lives! (or Hush) is killed
-  // (it spawns after one frame because of fast-clear; on vanilla it spawns after a long delay)
-  if (gameFrameCount === g.run.itLivesKillFrame + 1) {
-    deleteAndDontReplace = true;
-  }
-
-  if (deleteAndDontReplace) {
-    (entity as GridEntity).Sprite = Sprite(); // If we don't do this, it will still show for a frame
-    g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
-    return;
-  }
-
-  // Spawn a custom entity to emulate the original
-  let trapdoor: EntityEffect | null;
-  if (roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
-    trapdoor = Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariantCustom.BLUE_WOMB_TRAPDOOR_FAST_TRAVEL,
-      0,
-      entity.Position,
-      Vector.Zero,
-      null,
-    ).ToEffect();
-  } else if (stage === 6 || stage === 7) {
-    trapdoor = Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariantCustom.WOMB_TRAPDOOR_FAST_TRAVEL,
-      0,
-      entity.Position,
-      Vector.Zero,
-      null,
-    ).ToEffect();
-  } else {
-    trapdoor = Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariantCustom.TRAPDOOR_FAST_TRAVEL,
-      0,
-      entity.Position,
-      Vector.Zero,
-      null,
-    ).ToEffect();
-  }
-
-  if (trapdoor === null) {
-    error("Failed to spawn the trapdoor.");
-  }
-
-  // This is needed so that the entity will not appear on top of the player
-  trapdoor.DepthOffset = -100;
-
-  if (roomFrameCount > 1) {
-    const data = trapdoor.GetData();
-    data.fresh = true; // Mark that it should be open even if the room is not cleared
-  }
-
-  // The custom entity will not respawn if we leave the room,
-  // so we need to keep track of it for the remainder of the floor
-  g.run.level.replacedTrapdoors.push({
-    room: roomIndex,
-    pos: entity.Position,
-  });
-
-  // Spawn the trapdoor closed by default
-  let closed = true;
-  if (
-    // After Satan, there is no reason to remain in Sheol
-    // After Blue Baby in an "Everything" race, there is no reason to remain on The Chest
-    (stage === 10 || stage === 11) &&
-    // We only want it to apply to Boss rooms because it looks buggy if the trapdoor snaps open in
-    // I AM ERROR rooms
-    roomType === RoomType.ROOM_BOSS
-  ) {
-    closed = false;
-  }
-  if (closed) {
-    trapdoor.State = 1;
-    trapdoor.GetSprite().Play("Closed", true);
-  }
+export function replace(entity: GridEntity | Entity, gridIndex: int): void {
+  const roomIndex = getRoomIndex();
 
   // Remove the original entity
   if (gridIndex === -1) {
@@ -118,11 +40,79 @@ export function replace(entity: Entity | GridEntity, gridIndex: int): void {
     (entity as Entity).Remove();
   } else {
     // We are replacing a trapdoor grid entity
-    (entity as GridEntity).Sprite = Sprite(); // If we don't do this, it will still show for a frame
     g.r.RemoveGridEntity(gridIndex, 0, false); // entity.Destroy() does not work
   }
+
+  if (shouldDeleteAndNotReplace()) {
+    return;
+  }
+
+  // Spawn a custom entity to emulate the original
+  const effectVariant = getTrapdoorVariant();
+  fastTravel.spawn(effectVariant, entity.Position, shouldSpawnOpen);
+
+  // The custom entity will not respawn if we leave the room,
+  // so we need to keep track of it for the remainder of the floor
+  g.run.level.fastTravel.replacedTrapdoors.push({
+    room: roomIndex,
+    position: entity.Position,
+  });
 }
 
+function shouldDeleteAndNotReplace() {
+  const stage = g.l.GetStage();
+
+  // Delete the Womb trapdoor that spawns after Mom if the goal of the run is the Boss Rush
+  if (
+    stage === 6 &&
+    g.race.status === "in progress" &&
+    g.race.goal === "Boss Rush"
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+export function getTrapdoorVariant(): EffectVariantCustom {
+  const stage = g.l.GetStage();
+  const roomIndex = getRoomIndex();
+
+  if (roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
+    return EffectVariantCustom.BLUE_WOMB_TRAPDOOR_FAST_TRAVEL;
+  }
+
+  if (roomIndex === GridRooms.ROOM_THE_VOID_IDX) {
+    return EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL;
+  }
+
+  if (stage === 6 || stage === 7) {
+    return EffectVariantCustom.WOMB_TRAPDOOR_FAST_TRAVEL;
+  }
+
+  return EffectVariantCustom.TRAPDOOR_FAST_TRAVEL;
+}
+
+export function shouldSpawnOpen(): boolean {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+
+  // It looks buggy if the trapdoor goes from closed --> open in I AM ERROR rooms,
+  // so just spawn it open by default
+  if (roomType === RoomType.ROOM_ERROR) {
+    return true;
+  }
+
+  // After Satan, there is no reason to remain in Sheol
+  if (stage === 10) {
+    return true;
+  }
+
+  // Spawn the trapdoor closed by default
+  return false;
+}
+
+/*
 // Called from the PostRender callback
 export function checkState(): void {
   // Fix the bug where Dr. Fetus bombs can be shot while jumping
@@ -184,7 +174,7 @@ function checkStatePlayerAnimation() {
 
   // Make the screen fade to black
   // (we can go to any room for this, so we just use the starting room)
-  g.g.StartRoomTransition(
+  teleport(
     g.l.GetStartingRoomIndex(),
     Direction.NO_DIRECTION,
     RoomTransition.TRANSITION_NONE,
@@ -435,7 +425,7 @@ export function gotoNextFloor(upwards: boolean, redirectStage?: int): void {
 
   // Handle custom Mega Satan trapdoors
   if (g.run.trapdoor.megaSatan) {
-    g.g.StartRoomTransition(
+    teleport(
       GridRooms.ROOM_MEGA_SATAN_IDX,
       Direction.UP,
       RoomTransition.TRANSITION_NONE,
@@ -563,24 +553,24 @@ function getNextStageType(nextStage: int, upwards: boolean) {
   return getStageType(nextStage);
 }
 
+// The following is the game's internal code to determine the floor type
+// (this came directly from Spider)
+/*
+  u32 Seed = g_Game->GetSeeds().GetStageSeed(NextStage);
+  if (!g_Game->IsGreedMode()) {
+    StageType = ((Seed % 2) == 0 && (
+      ((NextStage == STAGE1_1 || NextStage == STAGE1_2) && gd.Unlocked(ACHIEVEMENT_CELLAR)) ||
+      ((NextStage == STAGE2_1 || NextStage == STAGE2_2) && gd.Unlocked(ACHIEVEMENT_CATACOMBS)) ||
+      ((NextStage == STAGE3_1 || NextStage == STAGE3_2) && gd.Unlocked(ACHIEVEMENT_NECROPOLIS)) ||
+      ((NextStage == STAGE4_1 || NextStage == STAGE4_2)))
+    ) ? STAGETYPE_WOTL : STAGETYPE_ORIGINAL;
+  if (Seed % 3 == 0 && NextStage < STAGE5)
+    StageType = STAGETYPE_AFTERBIRTH;
+*/
+/*
 export function getStageType(stage: int): StageType {
   // Local variables
   const stageSeed = g.seeds.GetStageSeed(stage);
-
-  // The following is the game's internal code to determine the floor type
-  // (this came directly from Spider)
-  /*
-    u32 Seed = g_Game->GetSeeds().GetStageSeed(NextStage);
-    if (!g_Game->IsGreedMode()) {
-      StageType = ((Seed % 2) == 0 && (
-        ((NextStage == STAGE1_1 || NextStage == STAGE1_2) && gd.Unlocked(ACHIEVEMENT_CELLAR)) ||
-        ((NextStage == STAGE2_1 || NextStage == STAGE2_2) && gd.Unlocked(ACHIEVEMENT_CATACOMBS)) ||
-        ((NextStage == STAGE3_1 || NextStage == STAGE3_2) && gd.Unlocked(ACHIEVEMENT_NECROPOLIS)) ||
-        ((NextStage == STAGE4_1 || NextStage == STAGE4_2)))
-      ) ? STAGETYPE_WOTL : STAGETYPE_ORIGINAL;
-    if (Seed % 3 == 0 && NextStage < STAGE5)
-      StageType = STAGETYPE_AFTERBIRTH;
-  */
 
   // Emulate what the game's internal code does
   if (stageSeed % 2 === 0) {
@@ -658,3 +648,4 @@ function fixStrengthCardBug() {
     );
   }
 }
+*/

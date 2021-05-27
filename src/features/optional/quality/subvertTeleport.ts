@@ -2,7 +2,7 @@
 // or It Lives!
 
 import g from "../../../globals";
-import { getPlayers } from "../../../misc";
+import { getPlayers, log } from "../../../misc";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
   EntityType.ENTITY_GURDY, // 36
@@ -68,6 +68,8 @@ function subvertTeleport() {
   for (const familiar of familiars) {
     familiar.Position = normalPosition;
   }
+
+  log("Subverted a teleport.");
 }
 
 function getNormalRoomEnterPosition() {

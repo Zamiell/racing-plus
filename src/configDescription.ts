@@ -189,10 +189,19 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fadeVasculitisTears",
+    "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "027",
+      "Delete Void portals",
+      "Automatically delete the Void portals that spawn after bosses.",
+    ],
+  ],
+  [
+    "fadeVasculitisTears",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "028",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -201,7 +210,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "028",
+      "029",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console.",
     ],

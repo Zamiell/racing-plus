@@ -1,7 +1,4 @@
-import { ChallengeCustom } from "../challenges/constants";
-import g from "../globals";
-import * as misc from "../misc";
-
+/*
 // ModCallbacks.MC_USE_PILL (10)
 export function main(pillEffect: PillEffect): void {
   // Display the streak text (because Racing+ removes the vanilla streak text)
@@ -120,7 +117,7 @@ export function telepills(): void {
   // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
   g.l.LeaveDoor = -1;
 
-  g.g.StartRoomTransition(
+  teleport(
     gridIndex,
     Direction.NO_DIRECTION,
     RoomTransition.TRANSITION_TELEPORT,
@@ -172,3 +169,4 @@ export function horf(): void {
   // Allow this pill to cancel collectible pickup animation
   g.p.AnimateSad();
 }
+*/

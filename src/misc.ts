@@ -1,4 +1,5 @@
 import {
+  CENTER_OF_2X2_ROOM,
   EXCLUDED_CHARACTERS,
   MAX_POSSIBLE_RADIUS,
   MAX_VANILLA_ITEM_ID,
@@ -44,11 +45,19 @@ export function consoleCommand(command: string): void {
 export const ensureAllCases = (obj: never): never => obj;
 
 export function enteredRoomViaTeleport(): boolean {
-  const roomIndex = getRoomIndex();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const previousRoomIndex = g.l.GetPreviousRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
+  const roomIndex = getRoomIndex();
   const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
-  return g.l.LeaveDoor === -1 && !justReachedThisFloor;
+  const inCrawlspace = roomIndex === GridRooms.ROOM_DUNGEON_IDX;
+  const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
+  return (
+    g.l.LeaveDoor === -1 &&
+    !justReachedThisFloor &&
+    !inCrawlspace &&
+    !cameFromCrawlspace
+  );
 }
 
 export function getFireDelayFromTearsStat(tearsStat: float): float {
@@ -69,10 +78,8 @@ export function getPlayerLuaTableIndex(player: EntityPlayer): string {
 }
 
 export function getRoomEnemies(): Entity[] {
-  const centerPos = g.r.GetCenterPos();
-
   return Isaac.FindInRadius(
-    centerPos,
+    CENTER_OF_2X2_ROOM,
     MAX_POSSIBLE_RADIUS,
     EntityPartition.ENEMY,
   );
@@ -228,8 +235,70 @@ export function isSelfDamage(damageFlags: int): boolean {
   );
 }
 
+export function isPostBossVoidPortal(gridEntity: GridEntity): boolean {
+  // The VarData of Void Portals that are spawned after bosses will be equal to 1
+  // The VarData of the Void Portal in the room after hush is equal to 0
+  const saveState = gridEntity.GetSaveState();
+  return saveState.VarData === 1;
+}
+
 export function log(msg: string): void {
   Isaac.DebugString(msg);
+}
+
+export function movePlayersAndFamiliars(position: Vector): void {
+  // By default, the player starts near the bottom door
+  // Instead, put the player in the middle of the room
+  const players = getPlayers();
+  for (const player of players) {
+    player.Position = position;
+  }
+
+  // Put Esau next to Jacob
+  const esaus = Isaac.FindByType(
+    EntityType.ENTITY_PLAYER,
+    0,
+    PlayerType.PLAYER_ESAU,
+    false,
+    false,
+  );
+  for (const esau of esaus) {
+    const player = esau.ToPlayer();
+    if (player !== null) {
+      const jacob = player.GetMainTwin();
+      const adjustment = Vector(20, 0);
+      const adjustedPosition = jacob.Position.__add(adjustment);
+      esau.Position = adjustedPosition;
+    }
+  }
+
+  // Put the Tainted Soul next to the corresponding Tainted Forgotten
+  const taintedSouls = Isaac.FindByType(
+    EntityType.ENTITY_PLAYER,
+    0,
+    PlayerType.PLAYER_THESOUL_B,
+    false,
+    false,
+  );
+  for (const taintedSoul of taintedSouls) {
+    const player = taintedSoul.ToPlayer();
+    if (player !== null) {
+      const forgotten = player.GetMainTwin();
+      taintedSoul.Position = forgotten.Position;
+    }
+  }
+
+  // Put familiars next to the players
+  const familiars = Isaac.FindByType(
+    EntityType.ENTITY_FAMILIAR,
+    -1,
+    -1,
+    false,
+    false,
+  );
+  for (const familiar of familiars) {
+    familiar.Position = position;
+  }
 }
 
 export function playingOnSetSeed(): boolean {
@@ -267,14 +336,14 @@ export function restartAsCharacter(character: PlayerType): void {
   consoleCommand(`restart ${character}`);
 }
 
-export function teleport(roomIndex: int): void {
+export function teleport(
+  roomIndex: int,
+  direction = Direction.NO_DIRECTION,
+  roomTransitionAnim = RoomTransitionAnim.TELEPORT,
+): void {
   // This must be set before every StartRoomTransition() invocation or else the function can send
   // you to the wrong room
   g.l.LeaveDoor = -1;
 
-  g.g.StartRoomTransition(
-    roomIndex,
-    Direction.NO_DIRECTION,
-    RoomTransitionAnim.TELEPORT,
-  );
+  g.g.StartRoomTransition(roomIndex, direction, roomTransitionAnim);
 }

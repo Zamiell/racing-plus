@@ -1,13 +1,9 @@
-import ButtonDescription from "./ButtonDescription";
-import EntityLocation from "./EntityLocation";
-import PedestalDescription from "./PedestalDescription";
-
+/*
 export default class GlobalsRunLevel {
   stage: int;
   stageType: int;
 
   replacedPedestals: PedestalDescription[] = [];
-  replacedTrapdoors: EntityLocation[] = [];
   replacedCrawlspaces: EntityLocation[] = [];
   replacedHeavenDoors: EntityLocation[] = [];
   reseedCount = 0;
@@ -30,3 +26,4 @@ export default class GlobalsRunLevel {
     this.stageType = stageType;
   }
 }
+*/

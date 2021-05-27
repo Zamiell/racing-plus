@@ -80,7 +80,8 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 6) Fast-Travel Between Floors and Crawlspaces
 
-`006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+- `006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+- `006` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
 
 ### 7) Room Fixes
 
@@ -140,8 +141,9 @@ Post-flip actions:
 
 - `025` The fade in at the beginning of a run is sped-up.
 - `026` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `027` The tears that explode out of enemies when you have Vasculitis are faded.
-- `028` A custom console is provided that is better than the vanilla console.
+- `027` Void portals that spawn after bosses are automatically deleted (so that players do not accidentally jump into them).
+- `028` The tears that explode out of enemies when you have Vasculitis are faded.
+- `029` A custom console is provided that is better than the vanilla console.
 - Some items with no effect are removed:
   - the Karma trinket (since all Donation Machines are removed)
   - the Amnesia pill (since curses are removed)
@@ -205,6 +207,7 @@ Post-flip actions:
 ### 4) Bug Fixes
 
 - `051` All forms of teleport will no longer send you to an invalid entrance.
+- Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 
 <!--
 - Angels will drop key pieces even if another angel is still alive in the room.
@@ -215,7 +218,6 @@ Post-flip actions:
 - 9 Volt now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
 - Defeating Mega Satan no longer has a chance to immediately end the run.
-- Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room.
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared.
 -->

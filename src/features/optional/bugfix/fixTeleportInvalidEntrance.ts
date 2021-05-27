@@ -3,6 +3,7 @@ import {
   anyPlayerCloserThan,
   enteredRoomViaTeleport,
   getPlayers,
+  log,
 } from "../../../misc";
 
 export function postNewRoom(): void {
@@ -10,6 +11,8 @@ export function postNewRoom(): void {
     return;
   }
 
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const roomShape = g.r.GetRoomShape();
 
   if (!enteredRoomViaTeleport()) {
@@ -19,6 +22,11 @@ export function postNewRoom(): void {
   // Don't bother fixing entrances in big room,
   // as teleporting the player to a valid door can cause the camera to jerk in a buggy way
   if (roomShape >= RoomShape.ROOMSHAPE_1x2) {
+    return;
+  }
+
+  // Don't bother fixing entrances in the Mom boss room
+  if (stage === 6 && roomType === RoomType.ROOM_BOSS) {
     return;
   }
 
@@ -65,6 +73,8 @@ export function postNewRoom(): void {
       familiar.Position = doorOffset;
     }
   }
+
+  log("Fixed teleporting to an invalid entrance.");
 }
 
 function getDoorEnterPosition(doorSlot: DoorSlot, doorPosition: Vector) {

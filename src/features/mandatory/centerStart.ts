@@ -1,7 +1,7 @@
 // This feature is not configurable because it could grant an advantage to turn off
 
 import g from "../../globals";
-import { getPlayers } from "../../misc";
+import { getPlayers, movePlayersAndFamiliars } from "../../misc";
 
 export function postGameStarted(): void {
   centerPlayers();
@@ -16,12 +16,10 @@ export function centerPlayers(): void {
     return;
   }
 
-  // By default, the player starts near the bottom door
-  // Instead, put the player in the middle of the room
+  movePlayersAndFamiliars(centerPos);
+
   const players = getPlayers();
-  if (players.length === 1) {
-    players[0].Position = centerPos;
-  } else {
+  if (players.length > 1) {
     // This is a multiplayer game,
     // so spread out the players in a circle around the center of the room
     const distanceBetweenPlayers = 50;
@@ -33,52 +31,6 @@ export function centerPlayers(): void {
     for (let i = 0; i < players.length; i++) {
       players[i].Position = positions[i];
     }
-  }
-
-  // Put Esau next to Jacob
-  const esaus = Isaac.FindByType(
-    EntityType.ENTITY_PLAYER,
-    0,
-    PlayerType.PLAYER_ESAU,
-    false,
-    false,
-  );
-  for (const esau of esaus) {
-    const player = esau.ToPlayer();
-    if (player !== null) {
-      const jacob = player.GetMainTwin();
-      const adjustment = Vector(20, 0);
-      const position = jacob.Position.__add(adjustment);
-      esau.Position = position;
-    }
-  }
-
-  // Put the Tainted Soul next to the corresponding Tainted Forgotten
-  const taintedSouls = Isaac.FindByType(
-    EntityType.ENTITY_PLAYER,
-    0,
-    PlayerType.PLAYER_THESOUL_B,
-    false,
-    false,
-  );
-  for (const taintedSoul of taintedSouls) {
-    const player = taintedSoul.ToPlayer();
-    if (player !== null) {
-      const forgotten = player.GetMainTwin();
-      taintedSoul.Position = forgotten.Position;
-    }
-  }
-
-  // Also, put familiars in the middle of the room, if any
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
-  for (const familiar of familiars) {
-    familiar.Position = centerPos;
   }
 
   // If Eden starts with a familiar, it will appear in a puff of smoke

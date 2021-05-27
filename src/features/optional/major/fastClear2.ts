@@ -32,6 +32,8 @@ const SPLITTING_ENTITIES = [
   EntityType.ENTITY_SWARMER, // 91
   // Big Spiders split into 2 Spiders (85.0)
   EntityType.ENTITY_BIGSPIDER, // 94
+  // The Hush Blue Baby splits into Hush
+  EntityType.ENTITY_ISAAC, // 102
   // Nests have a chance to split into a Trite (29.1) or Big Spider (94.0)
   EntityType.ENTITY_NEST, // 205
   // Pale Fatties have a chance to split into a Blubber (210.0)
@@ -70,21 +72,94 @@ const SPLITTING_ENTITIES = [
 ];
 
 const SPLITTING_CHAMPIONS = [
-  ChampionColor.PULSE_GREEN,
-  ChampionColor.FLY_PROTECTED,
+  ChampionColor.PULSE_GREEN, // 15
+  ChampionColor.FLY_PROTECTED, // 17
+  ChampionColor.SIZE_PULSE, // 21
+  ChampionColor.RAINBOW, // 25
 ];
 
+// ModCallbacks.MC_POST_NPC_INIT (27)
+export function postNPCInitEye(npc: EntityNPC): void {
+  if (!g.config.fastClear2) {
+    return;
+  }
+
+  deleteFriendlyEye(npc);
+}
+
+function deleteFriendlyEye(npc: EntityNPC) {
+  // After It Lives! dies, we set an entity flag of FLAG_FRIENDLY to fast-clear the room
+  // However, this has the side effect of making the Eyes that she spawns as part of the encounter
+  // friendly eyes
+  // Delete them if this is the case
+  if (shouldDeleteFriendlyEye()) {
+    npc.Remove();
+  }
+}
+
+function shouldDeleteFriendlyEye() {
+  // "npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)" is equal to false here
+  // "itLives.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)" is also equal to false
+  // "itLives.IsDead()" is equal to false
+  // Instead, we simply record when It Lives! is dead
+  return g.run.room.fastClear2.itLivesDead;
+}
+
+// ModCallbacks.MC_POST_PROJECTILE_INIT (43)
+export function postProjectileInit(projectile: EntityProjectile): void {
+  if (!g.config.fastClear2) {
+    return;
+  }
+
+  deleteItLivesProjectile(projectile);
+}
+
+function deleteItLivesProjectile(projectile: EntityProjectile) {
+  // It Lives! will spawn a tear burst that is friendly to the player, so we need to fix this
+  // For some reason, "projectile.HasEntityFlag(EntityFlag.FLAG_FRIENDLY)" is false here
+  // Furthermore, if we remove the flag on the first frame of the PostTearUpdate callback,
+  // it won't do anything
+  // Instead, delete the projectile and spawn a new one in its place
+  if (
+    g.run.room.fastClear2.itLivesDead &&
+    projectile.SpawnerType === EntityType.ENTITY_MOMS_HEART
+  ) {
+    projectile.Remove();
+    g.g.Spawn(
+      projectile.Type,
+      projectile.Variant,
+      projectile.Position,
+      projectile.Velocity,
+      null,
+      projectile.SubType,
+      projectile.InitSeed,
+    );
+  }
+}
+
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(entity: Entity): void {
   if (!g.config.fastClear2) {
     return;
   }
 
   const npc = entity.ToNPC();
-  if (
-    npc !== null &&
-    !SPLITTING_ENTITIES.includes(npc.Type) &&
-    !isSplittingChampion(npc)
-  ) {
+  if (npc === null) {
+    return;
+  }
+
+  setItLivesDead(npc);
+  addFriendlyFlag(npc);
+}
+
+function setItLivesDead(npc: EntityNPC) {
+  if (npc.Type === EntityType.ENTITY_MOMS_HEART) {
+    g.run.room.fastClear2.itLivesDead = true;
+  }
+}
+
+function addFriendlyFlag(npc: EntityNPC) {
+  if (!SPLITTING_ENTITIES.includes(npc.Type) && !isSplittingChampion(npc)) {
     npc.AddEntityFlags(EntityFlag.FLAG_FRIENDLY);
   }
 }

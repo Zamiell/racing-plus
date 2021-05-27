@@ -1,15 +1,5 @@
-export enum FastTravelState {
-  DISABLED,
-  PLAYER_ANIMATION,
-  FADING_TO_BLACK,
-  SCREEN_IS_BLACK,
-  POST_NEW_ROOM_1,
-  POST_NEW_ROOM_2,
-  CONTROLS_ENABLED,
-  PLAYER_JUMP,
-}
-
 export const TRAPDOOR_OPEN_DISTANCE = 60; // This feels about right
+export const TRAPDOOR_OPEN_DISTANCE_FOR_FRESH = TRAPDOOR_OPEN_DISTANCE * 2.5;
 export const TRAPDOOR_TOUCH_DISTANCE = 16.5; // This feels about right
 // (it is slightly smaller than vanilla)
 export const TRAPDOOR_PICKUP_TOUCH_DISTANCE = TRAPDOOR_TOUCH_DISTANCE + 2;

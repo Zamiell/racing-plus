@@ -2,7 +2,7 @@ import g from "../../../../../globals";
 import clearRoom from "../clearRoom";
 
 export function main(): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 

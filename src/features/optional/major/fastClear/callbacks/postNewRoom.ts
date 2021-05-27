@@ -1,7 +1,7 @@
 import g from "../../../../../globals";
 
 export function main(): void {
-  if (!g.config.fastClear) {
+  if (!g.fastClear) {
     return;
   }
 
