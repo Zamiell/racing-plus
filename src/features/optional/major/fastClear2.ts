@@ -1,14 +1,16 @@
 import g from "../../../globals";
 
-const SPLITTING_ENTITIES = [
+// This list only contains splitting enemies that cause charmed enemies to appear
+// (there are some other enemies that split that are not on the list)
+const ENTITIES_WITH_LONG_DEATH_ANIMATIONS = [
   // Frowning Gaper, Gaper, and Flaming Gaper have a chance to split into
   // Gusher (11.0) or Pacer (11.1)
   EntityType.ENTITY_GAPER, // 10
   // Mulligan splits into 4 flies; nothing will spawn if the kill damage is high enough
   EntityType.ENTITY_MULLIGAN, // 16
-  EntityType.ENTITY_LARRYJR, // 19
   // Hive splits into 4 flies and Drowned Hive splits into 2 Drowned Chargers
   EntityType.ENTITY_HIVE, // 22
+  // The flesh pile will be charmed
   EntityType.ENTITY_GLOBIN, // 24
   // Drowned Boom Flies split into a Drowned Charger
   EntityType.ENTITY_BOOMFLY, // 25
@@ -23,11 +25,8 @@ const SPLITTING_ENTITIES = [
   EntityType.ENTITY_BLASTOCYST_SMALL, // 76
   // Moter splits into 2 Attack Flies (18.0)
   EntityType.ENTITY_MOTER, // 80
-  EntityType.ENTITY_FALLEN, // 81
   // Gurgles have a chance to split into a Splasher (238.0)
   EntityType.ENTITY_GURGLE, // 87
-  // Hangers split into an Attack Fly (18.0)
-  EntityType.ENTITY_HANGER, // 90
   // Swarmers split into a Boom Fly (25.0)
   EntityType.ENTITY_SWARMER, // 91
   // Big Spiders split into 2 Spiders (85.0)
@@ -35,40 +34,42 @@ const SPLITTING_ENTITIES = [
   // The Hush Blue Baby splits into Hush
   EntityType.ENTITY_ISAAC, // 102
   // Nests have a chance to split into a Trite (29.1) or Big Spider (94.0)
-  EntityType.ENTITY_NEST, // 205
+  // EntityType.ENTITY_NEST, // 205
   // Pale Fatties have a chance to split into a Blubber (210.0)
-  EntityType.ENTITY_FATTY, // 208
+  // EntityType.ENTITY_FATTY, // 208
   // Fat Sacks have a chance to split into a Blubber (210.0)
-  EntityType.ENTITY_FAT_SACK, // 209
+  // EntityType.ENTITY_FAT_SACK, // 209
   // Blubbers have a chance to split into a Half Sack (211.0)
-  EntityType.ENTITY_BLUBBER, // 210
+  // EntityType.ENTITY_BLUBBER, // 210
   // Swingers have a chance to split into a Maw (26.0) if you kill the body,
   // or a Globin (24.0) if you kill the head
-  EntityType.ENTITY_SWINGER, // 216
+  // EntityType.ENTITY_SWINGER, // 216
   // Squirts split into 2 Dips (217.0) and Dark Squirts split into 2 Clots (15.1)
-  EntityType.ENTITY_SQUIRT, // 220
+  // EntityType.ENTITY_SQUIRT, // 220
   // Rotties split into a Bony (227.0)
-  EntityType.ENTITY_SKINNY, // 226
+  // EntityType.ENTITY_SKINNY, // 226
   // Dingas split into two Squirts (220.0)
-  EntityType.ENTITY_DINGA, // 223
+  // EntityType.ENTITY_DINGA, // 223
   // Grubs split into a random Maggot
-  EntityType.ENTITY_GRUB, // 239
+  // EntityType.ENTITY_GRUB, // 239
   // Conjoined Fatties split into a Fatty (208.0)
-  EntityType.ENTITY_CONJOINED_FATTY, // 257
+  // EntityType.ENTITY_CONJOINED_FATTY, // 257
   // Black Globins split into Black Globin's Head (279.0) and Black Globin's Body (280.0)
-  EntityType.ENTITY_BLACK_GLOBIN, // 278
+  // EntityType.ENTITY_BLACK_GLOBIN, // 278
   // Mega Clotties split into 2 Clotties (15.0)
-  EntityType.ENTITY_MEGA_CLOTTY, // 282
+  // EntityType.ENTITY_MEGA_CLOTTY, // 282
   // Mom's Dead Hands split into 2 Spiders (85.0)
-  EntityType.ENTITY_MOMS_DEAD_HAND, // 287
+  // EntityType.ENTITY_MOMS_DEAD_HAND, // 287
   // Meatballs split into a Host (27.0)
-  EntityType.ENTITY_MEATBALL, // 290
+  // EntityType.ENTITY_MEATBALL, // 290
   // Blisters split into a Sack (30.2)
-  EntityType.ENTITY_BLISTER, // 303
+  // EntityType.ENTITY_BLISTER, // 303
   // Brownie splits into a Dangle (217.2)
-  EntityType.ENTITY_BROWNIE, // 402
+  // EntityType.ENTITY_BROWNIE, // 402
+  // Faceless spawns a Pacer or a Gusher
+  // EntityType.ENTITY_FACELESS, // 827
   // Pustule spawn Small Maggots (853.0)
-  EntityType.ENTITY_PUSTULE, // 861
+  // EntityType.ENTITY_PUSTULE, // 861
 ];
 
 const SPLITTING_CHAMPIONS = [

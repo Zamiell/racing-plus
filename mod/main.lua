@@ -2178,6 +2178,13 @@ local CARD_MAP = __TS__New(Map, {{"fool", 1}, {"magician", 2}, {"magi", 2}, {"ma
 ____exports.default = CARD_MAP
 return ____exports
 end,
+["characterMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"eve2", 26}, {"teve", 26}, {"samson2", 27}, {"tsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"laz2", 29}, {"tlaz", 29}, {"eden2", 30}, {"teden", 30}, {"lost2", 31}, {"tlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"jacob2", 37}, {"tjacob", 37}})
+____exports.default = CHARACTER_MAP
+return ____exports
+end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -2212,6 +2219,7 @@ ____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.MAX_POSSIBLE_RADIUS = 875
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
+____exports.RECOMMENDED_SHIFT_IDX = 35
 return ____exports
 end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2233,6 +2241,7 @@ local CENTER_OF_2X2_ROOM = ____constants.CENTER_OF_2X2_ROOM
 local EXCLUDED_CHARACTERS = ____constants.EXCLUDED_CHARACTERS
 local MAX_POSSIBLE_RADIUS = ____constants.MAX_POSSIBLE_RADIUS
 local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
+local RECOMMENDED_SHIFT_IDX = ____constants.RECOMMENDED_SHIFT_IDX
 local ____globals = require("globals")
 local g = ____globals.default
 function ____exports.getPlayers(self)
@@ -2260,7 +2269,6 @@ function ____exports.getRoomIndex(self)
     return roomIndex
 end
 function ____exports.initRNG(self, seed)
-    local RECOMMENDED_SHIFT_IDX = 35
     local rng = RNG()
     rng:SetSeed(seed, RECOMMENDED_SHIFT_IDX)
     return rng
@@ -2893,6 +2901,8 @@ require("lualib_bundle");
 local ____exports = {}
 local ____cardMap = require("cardMap")
 local CARD_MAP = ____cardMap.default
+local ____characterMap = require("characterMap")
+local CHARACTER_MAP = ____characterMap.default
 local ____constants = require("constants")
 local VERSION = ____constants.VERSION
 local ____debugFunction = require("debugFunction")
@@ -2908,6 +2918,7 @@ local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
 local gridToPos = ____misc.gridToPos
 local log = ____misc.log
+local restartAsCharacter = ____misc.restartAsCharacter
 local ____executeCmdSubroutines = require("callbacks.executeCmdSubroutines")
 local blackMarket = ____executeCmdSubroutines.blackMarket
 local chaosCardTears = ____executeCmdSubroutines.chaosCardTears
@@ -2971,26 +2982,17 @@ functionMap:set(
             )
             return
         end
-        local giveCardID = 0
-        for ____, ____value in __TS__Iterator(CARD_MAP) do
-            local word
-            word = ____value[1]
-            local cardID
-            cardID = ____value[2]
-            if params == word then
-                giveCardID = cardID
-                break
-            end
-        end
-        if giveCardID == 0 then
+        local word = string.lower(params)
+        local card = CARD_MAP:get(word)
+        if card == nil then
             print("Unknown card.")
             return
         end
         Isaac.ExecuteCommand(
-            "g k" .. tostring(giveCardID)
+            "g k" .. tostring(card)
         )
         print(
-            "Gave card: #" .. tostring(giveCardID)
+            "Gave card: #" .. tostring(card)
         )
     end
 )
@@ -3027,6 +3029,22 @@ functionMap:set(
     "chaos",
     function(____, _params)
         chaosCardTears(nil)
+    end
+)
+functionMap:set(
+    "char",
+    function(____, params)
+        if params == "" then
+            print("You must specify a character name.")
+            return
+        end
+        local word = string.lower(params)
+        local character = CHARACTER_MAP:get(word)
+        if character == nil then
+            print("Unknown character.")
+            return
+        end
+        restartAsCharacter(nil, character)
     end
 )
 functionMap:set(
@@ -3304,6 +3322,13 @@ functionMap:set(
     "treasure",
     function(____, _params)
         g.p:UseCard(Card.CARD_STARS)
+    end
+)
+functionMap:set(
+    "unseed",
+    function(____, _params)
+        g.seeds:Reset()
+        consoleCommand(nil, "restart")
     end
 )
 functionMap:set(
@@ -4083,7 +4108,7 @@ require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local SPLITTING_ENTITIES, SPLITTING_CHAMPIONS, deleteFriendlyEye, shouldDeleteFriendlyEye, deleteItLivesProjectile, setItLivesDead, addFriendlyFlag, isSplittingChampion
+local SPLITTING_CHAMPIONS, deleteFriendlyEye, shouldDeleteFriendlyEye, deleteItLivesProjectile, setItLivesDead, addFriendlyFlag, isSplittingChampion
 function deleteFriendlyEye(self, npc)
     if shouldDeleteFriendlyEye(nil) then
         npc:Remove()
@@ -4104,7 +4129,7 @@ function setItLivesDead(self, npc)
     end
 end
 function addFriendlyFlag(self, npc)
-    if (not __TS__ArrayIncludes(SPLITTING_ENTITIES, npc.Type)) and (not isSplittingChampion(nil, npc)) then
+    if (not SPLITTING_ENTITIES:includes(npc.Type)) and (not isSplittingChampion(nil, npc)) then
         npc:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
     end
 end
@@ -4113,7 +4138,7 @@ function isSplittingChampion(self, npc)
     local championColor = npc:GetChampionColorIdx()
     return isChampion and __TS__ArrayIncludes(SPLITTING_CHAMPIONS, championColor)
 end
-SPLITTING_ENTITIES = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_LARRYJR, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_FALLEN, EntityType.ENTITY_GURGLE, EntityType.ENTITY_HANGER, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_ISAAC, EntityType.ENTITY_NEST, EntityType.ENTITY_FATTY, EntityType.ENTITY_FAT_SACK, EntityType.ENTITY_BLUBBER, EntityType.ENTITY_SWINGER, EntityType.ENTITY_SQUIRT, EntityType.ENTITY_SKINNY, EntityType.ENTITY_DINGA, EntityType.ENTITY_GRUB, EntityType.ENTITY_CONJOINED_FATTY, EntityType.ENTITY_BLACK_GLOBIN, EntityType.ENTITY_MEGA_CLOTTY, EntityType.ENTITY_MOMS_DEAD_HAND, EntityType.ENTITY_MEATBALL, EntityType.ENTITY_BLISTER, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_PUSTULE}
+local ENTITIES_WITH_LONG_DEATH_ANIMATIONS = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_GURGLE, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_ISAAC}
 SPLITTING_CHAMPIONS = {ChampionColor.PULSE_GREEN, ChampionColor.FLY_PROTECTED, ChampionColor.SIZE_PULSE, ChampionColor.RAINBOW}
 function ____exports.postNPCInitEye(self, npc)
     if not g.config.fastClear2 then
@@ -7163,7 +7188,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____clearRoom = require("features.optional.major.fastClear.clearRoom")
 local clearRoom = ____clearRoom.default
-local checkClearRoom, checkAllPressurePlatesPushed
+local checkClearRoom, checkAllPressurePlatesPushed, deleteAngels, deleteDyingEntity
 function checkClearRoom(self)
     local gameFrameCount = g.g:GetFrameCount()
     local roomClear = g.r:IsClear()
@@ -7202,11 +7227,29 @@ function checkAllPressurePlatesPushed(self)
     g.run.fastClear.buttonsAllPushed = true
     return true
 end
+function deleteAngels(self)
+    for ____, entityType in ipairs({EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL}) do
+        local deathAnimationLength = 24
+        deleteDyingEntity(nil, entityType, deathAnimationLength)
+    end
+end
+function deleteDyingEntity(self, entityType, deathAnimationLength)
+    local gameFrameCount = g.g:GetFrameCount()
+    local entities = Isaac.FindByType(entityType, -1, -1, false, false)
+    for ____, entity in ipairs(entities) do
+        local data = entity:GetData()
+        local killedFrame = data.killedFrame
+        if (killedFrame ~= nil) and (gameFrameCount >= ((killedFrame + deathAnimationLength) - 1)) then
+            entity:Remove()
+        end
+    end
+end
 function ____exports.main(self)
     if not g.fastClear then
         return
     end
     checkClearRoom(nil)
+    deleteAngels(nil)
 end
 return ____exports
 end,

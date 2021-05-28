@@ -7,6 +7,7 @@ export function main(): void {
   }
 
   checkClearRoom();
+  deleteAngels();
 }
 
 function checkClearRoom() {
@@ -69,4 +70,33 @@ function checkAllPressurePlatesPushed() {
 
   g.run.fastClear.buttonsAllPushed = true;
   return true;
+}
+
+function deleteAngels() {
+  for (const entityType of [
+    EntityType.ENTITY_URIEL, // 271
+    EntityType.ENTITY_GABRIEL, // 272
+  ]) {
+    const deathAnimationLength = 24;
+    deleteDyingEntity(entityType, deathAnimationLength);
+  }
+}
+
+function deleteDyingEntity(entityType: EntityType, deathAnimationLength: int) {
+  const gameFrameCount = g.g.GetFrameCount();
+  const entities = Isaac.FindByType(entityType, -1, -1, false, false);
+  for (const entity of entities) {
+    // This is for deleting entities that drop items
+    // We want to delete the entity on the frame before they drop the item
+    // (this cannot be in the NPCUpdate callback because that does not fire when an NPC is in the
+    // death animation)
+    const data = entity.GetData();
+    const killedFrame = data.killedFrame as int | undefined;
+    if (
+      killedFrame !== undefined &&
+      gameFrameCount >= killedFrame + deathAnimationLength - 1
+    ) {
+      entity.Remove();
+    }
+  }
 }

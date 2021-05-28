@@ -3,6 +3,7 @@ import {
   EXCLUDED_CHARACTERS,
   MAX_POSSIBLE_RADIUS,
   MAX_VANILLA_ITEM_ID,
+  RECOMMENDED_SHIFT_IDX,
 } from "./constants";
 import g from "./globals";
 
@@ -186,9 +187,6 @@ export function initGlowingItemSprite(
 }
 
 export function initRNG(seed: int): RNG {
-  // This is the ShiftIdx that blcd recommended after having reviewing the game's internal functions
-  const RECOMMENDED_SHIFT_IDX = 35;
-
   const rng = RNG();
 
   // The game expects seeds in the range of 0 to 4294967295

@@ -1,4 +1,5 @@
 import CARD_MAP from "../cardMap";
+import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
 import {
@@ -7,7 +8,7 @@ import {
   SAVE_FILE_SEED,
 } from "../features/mandatory/saveFileCheck";
 import g from "../globals";
-import { consoleCommand, gridToPos, log } from "../misc";
+import { consoleCommand, gridToPos, log, restartAsCharacter } from "../misc";
 import {
   blackMarket,
   chaosCardTears,
@@ -67,20 +68,14 @@ functionMap.set("card", (params: string) => {
     return;
   }
 
-  let giveCardID = 0;
-  for (const [word, cardID] of CARD_MAP) {
-    if (params === word) {
-      giveCardID = cardID;
-      break;
-    }
-  }
-
-  if (giveCardID === 0) {
+  const word = params.toLowerCase();
+  const card = CARD_MAP.get(word);
+  if (card === undefined) {
     print("Unknown card.");
     return;
   }
-  Isaac.ExecuteCommand(`g k${giveCardID}`);
-  print(`Gave card: #${giveCardID}`);
+  Isaac.ExecuteCommand(`g k${card}`);
+  print(`Gave card: #${card}`);
 });
 
 functionMap.set("cards", (_params: string) => {
@@ -109,6 +104,22 @@ functionMap.set("cc", (_params: string) => {
 
 functionMap.set("chaos", (_params: string) => {
   chaosCardTears();
+});
+
+functionMap.set("char", (params: string) => {
+  if (params === "") {
+    print("You must specify a character name.");
+    return;
+  }
+
+  const word = params.toLowerCase();
+  const character = CHARACTER_MAP.get(word);
+  if (character === undefined) {
+    print("Unknown character.");
+    return;
+  }
+
+  restartAsCharacter(character);
 });
 
 functionMap.set("crawl", (_params: string) => {
@@ -328,6 +339,11 @@ functionMap.set("trapdoor", (_params: string) => {
 
 functionMap.set("treasure", (_params: string) => {
   g.p.UseCard(Card.CARD_STARS);
+});
+
+functionMap.set("unseed", (_params: string) => {
+  g.seeds.Reset();
+  consoleCommand("restart");
 });
 
 functionMap.set("version", (_params: string) => {

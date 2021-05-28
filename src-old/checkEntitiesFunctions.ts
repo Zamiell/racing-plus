@@ -76,27 +76,7 @@ functionMap.set(260, (entity) => {
   }
 });
 
-function angel(entity) {
-  // We want to delete angels on the frame before they drop the vanilla item
-  // This cannot be in the NPCUpdate callback because that does ! fire when an NPC is in the death
-  // animation
-  const data = entity.GetData()
-  if ( data.killedFrame === null ) {
-    // It is ! dead yet
-    return
-  }
-  const gameFrameCount = g.g.GetFrameCount()
-  if ( gameFrameCount >= data.killedFrame + 23 ) { // It disappears after 24 frames
-    entity.Remove()
-    Isaac.DebugString("Manually removed an angel one frame before its natural removal.")
-  }
-}
 
-// EntityType.ENTITY_URIEL (271)
-functionMap.set(271, angel)
-
-// EntityType.ENTITY_GABRIEL (272)
-functionMap.set(272, angel)
 
 // EntityType.ENTITY_RACE_TROPHY
 CheckEntities.functions[EntityType.ENTITY_RACE_TROPHY] = function(entity)

@@ -8,3 +8,6 @@ export const EXCLUDED_CHARACTERS = [
 ];
 export const MAX_POSSIBLE_RADIUS = 875;
 export const MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
+
+// This is the ShiftIdx that blcd recommended after having reviewing the game's internal functions
+export const RECOMMENDED_SHIFT_IDX = 35;
