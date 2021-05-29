@@ -57,31 +57,35 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- `003` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
-  - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
-
-> Why? Some characters do not start with enough health to take a devil deal. Instead of buffing the health of only some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
-
 - Devil Rooms and Angel Rooms have been [customized](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md#devil-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
   - Average items per angel room are increased from [TODO] to [TODO].
 
-> Why? The best players separate themselves from the mid-tier players by not taking any damage and hitting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
+> Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
+
+- `003` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
+  - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
+
+> Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of only some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
 
 ### 4) Fast-Reset
 
 `004` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
+> Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for imposing this limitation on players.Speeding this up makes resetting for a starting item less tedious.
+
 ### 5) Fast-Clear (Wrath of the Lamb Style Room Clear)
 
-`005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end. (This was the way the game was originally intended to be, as demonstrated in Wrath of the Lamb.)
+- `005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
-[TODO this is not implemented yet]
+> Why? It is obnoxious to have to sit and wait for a boss' long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
 ### 6) Fast-Travel Between Floors and Crawlspaces
 
 - `006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
 - `006` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
+
+[TODO this is not implemented yet]
 
 ### 7) Room Fixes
 
@@ -137,18 +141,41 @@ Post-flip actions:
 
 - `024` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
 
-> Why? Since the fast-travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
+> Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
 - `025` The fade in at the beginning of a run is sped-up.
 - `026` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `027` Void portals that spawn after bosses are automatically deleted (so that players do not accidentally jump into them).
-- `028` The tears that explode out of enemies when you have Vasculitis are faded.
+- `027` Void portals that spawn after bosses are automatically deleted.
+
+> Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
+
+- `028` Bosses will be faded during their death animation.
+
+> Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item. Furthermore, the death animation obscures other enemies that happen to be behind the dying boss.
+
+- `029` The tears that explode out of enemies when you have Vasculitis are faded.
+
+> Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
+
 - `029` A custom console is provided that is better than the vanilla console.
-- Some items with no effect are removed:
-  - the Karma trinket (since all Donation Machines are removed)
-  - the Amnesia pill (since curses are removed)
-  - the ??? pill (since curses are removed)
-- Having Duality will now always give you both the Devil Room and the Angel Room. (This does not happen consistently on vanilla like you would expect.)
+
+> Why? The vanilla console has an annoying animation and is inconvenient to use.
+
+- Azazel's Rage is removed.
+
+> Why? Unfortunately, this item is bugged with the Fast-Clear feature. In order to make it so that everyone gets consistent items on the same seeds, it is removed from the game regardless of whether or not you have the feature enabled.
+
+- The Karma trinket is removed.
+
+> Why? Since all Donation Machines are removed, it has no effect.
+
+- The Amnesia and ??? pills are removed.
+
+> Why? Since curses are automatically removed, these pills have no effect.
+
+- Having Duality will now always give you both the Devil Room and the Angel Room.
+
+> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have had to be adjusted to have 3 doors.
 
 <!--
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
@@ -164,9 +191,6 @@ Post-flip actions:
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Identified pills (up to 7) will be shown when the player presses the map button (tab).
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
-- The Boss Rush is modified to include the Afterbirth+ bosses and Chapter 4 bosses.
-- Challenge Rooms are modified to include Womb enemies and bosses.
-- Boss Challenge Rooms will select random bosses instead of set bosses.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
 - Cod Worms are replaced with Para-Bites.
 - Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
@@ -207,6 +231,9 @@ Post-flip actions:
 ### 4) Bug Fixes
 
 - `051` All forms of teleport will no longer send you to an invalid entrance.
+- AAA Battery now properly synergizes with The Battery. (This is part of Fast-Clear.)
+- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
+- The proper sound effects will now play when you have The Battery. (This is part of Fast-Clear.)
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 
 <!--
@@ -233,7 +260,6 @@ Post-flip actions:
 
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
-- Bosses will be faded during their death animation so that they do not interfere with seeing other items or enemies that happen to be behind them.
 - Scared Hearts and Sticky Nickels now have unique sprites.
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - Pill sprites now have consistent orientations. (Thanks goes to [Nioffe](https://steamcommunity.com/id/nioffe) for creating the sprites in the [Consistent Pills](https://steamcommunity.com/sharedfiles/filedetails/?id=1418510121) mod.)
@@ -278,11 +304,3 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
-
-<!--
-
-Old changes that are no longer present:
-- AAA Battery now properly synergizes with The Battery. (This is part of Fast-Clear.)
-- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
-- The proper sound effects will now play when you have The Battery. (This is part of Fast-Clear.)
--->

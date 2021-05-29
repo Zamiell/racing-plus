@@ -45,24 +45,13 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "Instantaneously restart the game as soon as you press the R key.",
     ],
   ],
-  /*
   [
-    "fastClear",
+    "fastClear3",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "005",
       "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
-    ],
-  ],
-  */
-  [
-    "fastClear2",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "005",
-      "Fast room clear (beta)",
-      "A new version of fast-clear that might have less bugs.",
     ],
   ],
   [
@@ -198,10 +187,19 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fadeVasculitisTears",
+    "fadeBosses",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "028",
+      "Fade dead bosses",
+      "Make bosses faded during their death animation so that you can see the dropped item.",
+    ],
+  ],
+  [
+    "fadeVasculitisTears",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "029",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -210,7 +208,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "029",
+      "030",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console.",
     ],

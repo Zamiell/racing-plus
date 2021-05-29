@@ -1844,7 +1844,7 @@ ____exports.default = (function()
         self.disableCurses = true
         self.freeDevilItem = true
         self.fastReset = true
-        self.fastClear2 = true
+        self.fastClear3 = true
         self.fastTravel = true
         self.judasAddBomb = true
         self.samsonDropHeart = true
@@ -1853,6 +1853,7 @@ ____exports.default = (function()
         self.speedUpFadeIn = true
         self.subvertTeleport = true
         self.deleteVoidPortals = true
+        self.fadeBosses = true
         self.fadeVasculitisTears = true
         self.customConsole = true
         self.fixTeleportInvalidEntrance = true
@@ -1885,6 +1886,8 @@ ____exports.EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL = Isaac.GetEntityVariant
 ____exports.EffectVariantCustom[____exports.EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL] = "HEAVEN_DOOR_FAST_TRAVEL"
 ____exports.EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL = Isaac.GetEntityVariantByName("Void Portal (Fast-Travel)")
 ____exports.EffectVariantCustom[____exports.EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL] = "VOID_PORTAL_FAST_TRAVEL"
+____exports.EffectVariantCustom.NPC_DEATH_ANIMATION = Isaac.GetEntityVariantByName("NPC Death Animation")
+____exports.EffectVariantCustom[____exports.EffectVariantCustom.NPC_DEATH_ANIMATION] = "NPC_DEATH_ANIMATION"
 ____exports.EffectSubTypeCustom = EffectSubTypeCustom or ({})
 ____exports.EffectSubTypeCustom.FLOOR_EFFECT_CREEP = 12345
 ____exports.EffectSubTypeCustom[____exports.EffectSubTypeCustom.FLOOR_EFFECT_CREEP] = "FLOOR_EFFECT_CREEP"
@@ -1971,7 +1974,6 @@ ____exports.default = (function()
     local GlobalsRunRoom = ____exports.default
     GlobalsRunRoom.name = "GlobalsRunRoom"
     function GlobalsRunRoom.prototype.____constructor(self, clear)
-        self.fastClear2 = {itLivesDead = false}
         self.fastTravel = {crawlspace = {amTeleporting = false}}
         self.clear = clear
     end
@@ -2124,6 +2126,7 @@ ____exports.default = (function()
     function Globals.prototype.____constructor(self)
         self.debug = false
         self.corrupted = false
+        self.fastClear = false
         self.g = Game()
         self.l = Game():GetLevel()
         self.r = Game():GetRoom()
@@ -2134,7 +2137,6 @@ ____exports.default = (function()
         self.sfx = SFXManager()
         self.music = MusicManager()
         self.config = __TS__New(Config)
-        self.fastClear = false
         self.hotkeys = __TS__New(Hotkeys)
         self.run = __TS__New(GlobalsRun, {})
         self.race = __TS__New(RaceData)
@@ -2188,9 +2190,9 @@ end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear2", {4, "005", "Fast room clear (beta)", "A new version of fast-clear that might have less bugs."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
+____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear3", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
-____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "027", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeVasculitisTears", {4, "028", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "029", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
+____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"showEdenStartingItems", {4, "023", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "024", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "025", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "026", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "027", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeBosses", {4, "028", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"fadeVasculitisTears", {4, "029", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"customConsole", {4, "030", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
 ____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
 ____exports.ALL_CONFIG_DESCRIPTIONS = {
     table.unpack(
@@ -4103,75 +4105,54 @@ function ____exports.main(self, entity)
 end
 return ____exports
 end,
-["features.optional.major.fastClear2"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
+["features.optional.major.fastClear3"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local SPLITTING_CHAMPIONS, deleteFriendlyEye, shouldDeleteFriendlyEye, deleteItLivesProjectile, setItLivesDead, addFriendlyFlag, isSplittingChampion
-function deleteFriendlyEye(self, npc)
-    if shouldDeleteFriendlyEye(nil) then
-        npc:Remove()
-    end
-end
-function shouldDeleteFriendlyEye(self)
-    return g.run.room.fastClear2.itLivesDead
-end
-function deleteItLivesProjectile(self, projectile)
-    if g.run.room.fastClear2.itLivesDead and (projectile.SpawnerType == EntityType.ENTITY_MOMS_HEART) then
-        projectile:Remove()
-        g.g:Spawn(projectile.Type, projectile.Variant, projectile.Position, projectile.Velocity, nil, projectile.SubType, projectile.InitSeed)
-    end
-end
-function setItLivesDead(self, npc)
-    if npc.Type == EntityType.ENTITY_MOMS_HEART then
-        g.run.room.fastClear2.itLivesDead = true
-    end
-end
-function addFriendlyFlag(self, npc)
-    if (not SPLITTING_ENTITIES:includes(npc.Type)) and (not isSplittingChampion(nil, npc)) then
-        npc:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
-    end
-end
-function isSplittingChampion(self, npc)
-    local isChampion = npc:IsChampion()
-    local championColor = npc:GetChampionColorIdx()
-    return isChampion and __TS__ArrayIncludes(SPLITTING_CHAMPIONS, championColor)
-end
-local ENTITIES_WITH_LONG_DEATH_ANIMATIONS = {EntityType.ENTITY_GAPER, EntityType.ENTITY_MULLIGAN, EntityType.ENTITY_HIVE, EntityType.ENTITY_GLOBIN, EntityType.ENTITY_BOOMFLY, EntityType.ENTITY_ENVY, EntityType.ENTITY_MEMBRAIN, EntityType.ENTITY_FISTULA_BIG, EntityType.ENTITY_FISTULA_MEDIUM, EntityType.ENTITY_FISTULA_SMALL, EntityType.ENTITY_BLASTOCYST_BIG, EntityType.ENTITY_BLASTOCYST_MEDIUM, EntityType.ENTITY_BLASTOCYST_SMALL, EntityType.ENTITY_MOTER, EntityType.ENTITY_GURGLE, EntityType.ENTITY_SWARMER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_ISAAC}
-SPLITTING_CHAMPIONS = {ChampionColor.PULSE_GREEN, ChampionColor.FLY_PROTECTED, ChampionColor.SIZE_PULSE, ChampionColor.RAINBOW}
-function ____exports.postNPCInitEye(self, npc)
-    if not g.config.fastClear2 then
-        return
-    end
-    deleteFriendlyEye(nil, npc)
-end
-function ____exports.postProjectileInit(self, projectile)
-    if not g.config.fastClear2 then
-        return
-    end
-    deleteItLivesProjectile(nil, projectile)
-end
 function ____exports.postEntityKill(self, entity)
-    if not g.config.fastClear2 then
+    if not g.config.fastClear3 then
         return
     end
     local npc = entity:ToNPC()
     if npc == nil then
         return
     end
-    setItLivesDead(nil, npc)
-    addFriendlyFlag(nil, npc)
+    npc.CanShutDoors = false
+end
+return ____exports
+end,
+["features.optional.quality.fadeBosses"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local FADE_AMOUNT = 0.4
+local FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0)
+local MULTI_SEGMENT_BOSSES = {EntityType.ENTITY_LARRYJR, EntityType.ENTITY_PIN, EntityType.ENTITY_GEMINI, EntityType.ENTITY_HEART_OF_INFAMY}
+function ____exports.postEntityKill(self, entity)
+    if not g.config.fadeBosses then
+        return
+    end
+    local npc = entity:ToNPC()
+    if (npc == nil) or (not npc:IsBoss()) then
+        return
+    end
+    if __TS__ArrayIncludes(MULTI_SEGMENT_BOSSES, entity.Type) then
+        return
+    end
+    entity:SetColor(FADE_COLOR, 1000, 0, true, true)
 end
 return ____exports
 end,
 ["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostEntityKill = require("features.optional.major.fastClear.callbacks.postEntityKill")
-local fastClear2 = require("features.optional.major.fastClear2")
+local fastClear3 = require("features.optional.major.fastClear3")
+local fadeBosses = require("features.optional.quality.fadeBosses")
 function ____exports.main(self, entity)
     fastClearPostEntityKill:main(entity)
-    fastClear2:postEntityKill(entity)
+    fastClear3:postEntityKill(entity)
+    fadeBosses:postEntityKill(entity)
 end
 return ____exports
 end,
@@ -4859,29 +4840,7 @@ return ____exports
 end,
 ["features.mandatory.itLivesFix"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local MOMS_HEART_MAUSOLEUM_VARIANT, shouldRemoveItLives, removeItLives
-function shouldRemoveItLives(self)
-    local stage = g.l:GetStage()
-    local roomDesc = g.l:GetCurrentRoomDesc()
-    local roomVariant = roomDesc.Data.Variant
-    local roomType = g.r:GetType()
-    local fullKnives = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.KNIFE_FULL, -1, false, false)
-    return (((stage == 6) and (roomType == RoomType.ROOM_BOSS)) and (roomVariant == MOMS_HEART_MAUSOLEUM_VARIANT)) and (#fullKnives == 0)
-end
-function removeItLives(self)
-    local momsHearts = Isaac.FindByType(EntityType.ENTITY_MOMS_HEART, -1, -1, false, true)
-    for ____, momsHeart in ipairs(momsHearts) do
-        momsHeart:Remove()
-        g.p:AnimateSad()
-    end
-end
-MOMS_HEART_MAUSOLEUM_VARIANT = 6040
 function ____exports.postNewRoom(self)
-    if shouldRemoveItLives(nil) then
-        removeItLives(nil)
-    end
 end
 return ____exports
 end,
@@ -4969,6 +4928,7 @@ local resetVariables
 function resetVariables(self)
     g.run.fastClear.buttonsAllPushed = false
     g.run.fastClear.roomInitializing = false
+    Isaac.DebugString("DEBUG - Fast-Clear - Room is initiated.")
 end
 function ____exports.main(self)
     if not g.fastClear then
@@ -5491,6 +5451,7 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local centerStart = require("features.mandatory.centerStart")
+local removeAzazelsRage = require("features.mandatory.removeAzazelsRage")
 local removeKarma = require("features.mandatory.removeKarma")
 local removeUselessPills = require("features.mandatory.removeUselessPills")
 local saveFileCheck = require("features.mandatory.saveFileCheck")
@@ -5551,6 +5512,7 @@ function ____exports.main(self, isContinued)
     if checkCorruptMod(nil) or saveFileCheck:isNotFullyUnlocked() then
         return
     end
+    removeAzazelsRage:postGameStarted()
     removeKarma:postGameStarted()
     removeUselessPills:postGameStarted()
     seededDrops:postGameStarted()
@@ -5580,12 +5542,8 @@ end,
 ["callbacks.postNPCInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostNPCInit = require("features.optional.major.fastClear.callbacks.postNPCInit")
-local fastClear2 = require("features.optional.major.fastClear2")
 function ____exports.main(self, npc)
     fastClearPostNPCInit:main(npc)
-end
-function ____exports.eye(self, npc)
-    fastClear2:postNPCInitEye(npc)
 end
 return ____exports
 end,
@@ -5616,14 +5574,6 @@ local ____exports = {}
 local fastTravelPostPlayerUpdate = require("features.optional.major.fastTravel.callbacks.postPlayerUpdate")
 function ____exports.main(self, player)
     fastTravelPostPlayerUpdate:main(player)
-end
-return ____exports
-end,
-["callbacks.postProjectileInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClear2 = require("features.optional.major.fastClear2")
-function ____exports.main(self, projectile)
-    fastClear2:postProjectileInit(projectile)
 end
 return ____exports
 end,
@@ -7188,7 +7138,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____clearRoom = require("features.optional.major.fastClear.clearRoom")
 local clearRoom = ____clearRoom.default
-local checkClearRoom, checkAllPressurePlatesPushed, deleteAngels, deleteDyingEntity
+local checkClearRoom, checkAllPressurePlatesPushed
 function checkClearRoom(self)
     local gameFrameCount = g.g:GetFrameCount()
     local roomClear = g.r:IsClear()
@@ -7227,29 +7177,11 @@ function checkAllPressurePlatesPushed(self)
     g.run.fastClear.buttonsAllPushed = true
     return true
 end
-function deleteAngels(self)
-    for ____, entityType in ipairs({EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL}) do
-        local deathAnimationLength = 24
-        deleteDyingEntity(nil, entityType, deathAnimationLength)
-    end
-end
-function deleteDyingEntity(self, entityType, deathAnimationLength)
-    local gameFrameCount = g.g:GetFrameCount()
-    local entities = Isaac.FindByType(entityType, -1, -1, false, false)
-    for ____, entity in ipairs(entities) do
-        local data = entity:GetData()
-        local killedFrame = data.killedFrame
-        if (killedFrame ~= nil) and (gameFrameCount >= ((killedFrame + deathAnimationLength) - 1)) then
-            entity:Remove()
-        end
-    end
-end
 function ____exports.main(self)
     if not g.fastClear then
         return
     end
     checkClearRoom(nil)
-    deleteAngels(nil)
 end
 return ____exports
 end,
@@ -7729,7 +7661,6 @@ local postNewRoom = require("callbacks.postNewRoom")
 local postNPCInit = require("callbacks.postNPCInit")
 local postPlayerInit = require("callbacks.postPlayerInit")
 local postPlayerUpdate = require("callbacks.postPlayerUpdate")
-local postProjectileInit = require("callbacks.postProjectileInit")
 local postRender = require("callbacks.postRender")
 local postTearUpdate = require("callbacks.postTearUpdate")
 local postUpdate = require("callbacks.postUpdate")
@@ -7773,7 +7704,6 @@ racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
 racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PROJECTILE_INIT, postProjectileInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
 racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
@@ -7781,7 +7711,6 @@ racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.ragling, EntityType.ENTITY_RAGLING)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.stoney, EntityType.ENTITY_STONEY)
 racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
-racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.eye, EntityType.ENTITY_EYE)
 racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
 racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
 racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.trapdoorFastTravel, EffectVariantCustom.TRAPDOOR_FAST_TRAVEL)

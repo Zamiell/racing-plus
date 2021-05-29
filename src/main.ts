@@ -17,7 +17,6 @@ import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
-import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
 import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
@@ -69,10 +68,6 @@ racingPlus.AddCallback(
   postPlayerUpdate.main,
 ); // 31
 racingPlus.AddCallback(
-  ModCallbacks.MC_POST_PROJECTILE_INIT,
-  postProjectileInit.main,
-); // 43
-racingPlus.AddCallback(
   ModCallbacks.MC_POST_ENTITY_REMOVE,
   postEntityRemove.main,
 ); // 67
@@ -97,13 +92,6 @@ racingPlus.AddCallback(
   ModCallbacks.MC_POST_FAMILIAR_RENDER,
   postFamiliarRender.paschalCandle,
   FamiliarVariant.PASCHAL_CANDLE,
-);
-
-// Register PostNPCInit callbacks (27)
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_NPC_INIT,
-  postNPCInit.eye,
-  EntityType.ENTITY_EYE, // 60
 );
 
 // Register PostTearUpdate callbacks (40)

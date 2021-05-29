@@ -6,6 +6,8 @@ import GlobalsRunRoom from "./GlobalsRunRoom";
 // If we have a Lua table indexed by ControllerIndex,
 // that will cause problems because Lua will interpret it as an array instead of a map
 // Instead, we use a Lua table with keys that are the ControllerIndex converted to a string
+// The valid values for this are "0", "1", "2", and "3"
+// It is inconvenient to set this explicitly on the type since we would have to do many assertions
 type ControllerIndexString = string;
 
 // Per-run variables

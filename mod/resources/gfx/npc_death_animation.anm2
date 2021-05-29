@@ -2,6 +2,7 @@
 	<Info CreatedBy="Unknown" CreatedOn="3/4/2018 9:36:08 AM" Version="5" Fps="30"/>
 	<Content>
 		<Spritesheets>
+			<Spritesheet Path="blank.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="none" Id="0" SpritesheetId="0"/>

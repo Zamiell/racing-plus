@@ -32,4 +32,9 @@
     <entity name="Void Portal (Fast-Travel)" id="1000" variant="206" anm2path="grid/voidtrapdoor.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
     </entity>
+
+    <!-- Fast-Clear Effects -->
+    <entity name="NPC Death Animation" id="1000" variant="207" anm2path="npc_death_animation.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+    </entity>
 </entities>

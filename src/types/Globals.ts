@@ -8,6 +8,7 @@ import SpeedrunData from "./SpeedrunData";
 export default class Globals {
   debug = false;
   corrupted = false;
+  fastClear = false; // TODO remove this
 
   // Cached API functions
   g = Game();
@@ -27,7 +28,6 @@ export default class Globals {
 
   // Variables configurable from Mod Config Menu
   config = new Config();
-  fastClear = false; // TODO remove this
   hotkeys = new Hotkeys();
 
   // Variables per-run

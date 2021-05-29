@@ -5,7 +5,7 @@ export default class Config {
   disableCurses = true;
   freeDevilItem = true;
   fastReset = true;
-  fastClear2 = true;
+  fastClear3 = true;
   fastTravel = true;
 
   // Gameplay & Quality of Life Changes
@@ -16,6 +16,7 @@ export default class Config {
   speedUpFadeIn = true;
   subvertTeleport = true;
   deleteVoidPortals = true;
+  fadeBosses = true;
   fadeVasculitisTears = true;
   customConsole = true;
 

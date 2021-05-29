@@ -7,7 +7,8 @@ export function main(): void {
   }
 
   checkClearRoom();
-  deleteAngels();
+  // deleteKrampus();
+  // deleteAngels();
 }
 
 function checkClearRoom() {
@@ -72,19 +73,36 @@ function checkAllPressurePlatesPushed() {
   return true;
 }
 
+/*
+
+function deleteKrampus() {
+  const deathAnimationLength = 29;
+  deleteDyingEntity(EntityType.ENTITY_FALLEN, 1, deathAnimationLength);
+}
+
 function deleteAngels() {
   for (const entityType of [
     EntityType.ENTITY_URIEL, // 271
     EntityType.ENTITY_GABRIEL, // 272
   ]) {
     const deathAnimationLength = 24;
-    deleteDyingEntity(entityType, deathAnimationLength);
+    deleteDyingEntity(entityType, 0, deathAnimationLength);
   }
 }
 
-function deleteDyingEntity(entityType: EntityType, deathAnimationLength: int) {
+function deleteDyingEntity(
+  entityType: EntityType,
+  entityVariant: int,
+  deathAnimationLength: int,
+) {
   const gameFrameCount = g.g.GetFrameCount();
-  const entities = Isaac.FindByType(entityType, -1, -1, false, false);
+  const entities = Isaac.FindByType(
+    entityType,
+    entityVariant,
+    -1,
+    false,
+    false,
+  );
   for (const entity of entities) {
     // This is for deleting entities that drop items
     // We want to delete the entity on the frame before they drop the item
@@ -100,3 +118,5 @@ function deleteDyingEntity(entityType: EntityType, deathAnimationLength: int) {
     }
   }
 }
+
+*/

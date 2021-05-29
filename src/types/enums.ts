@@ -17,6 +17,7 @@ export enum PickupPriceCustom {
 
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
+  // Fast-Travel
   TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName("Trapdoor (Fast-Travel)"),
   CRAWLSPACE_FAST_TRAVEL = Isaac.GetEntityVariantByName(
     "Crawlspace (Fast-Travel)",
@@ -33,6 +34,9 @@ export enum EffectVariantCustom {
   VOID_PORTAL_FAST_TRAVEL = Isaac.GetEntityVariantByName(
     "Void Portal (Fast-Travel)",
   ),
+
+  // Fast-Clear
+  NPC_DEATH_ANIMATION = Isaac.GetEntityVariantByName("NPC Death Animation"),
 }
 
 export enum EffectSubTypeCustom {

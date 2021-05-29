@@ -2,15 +2,16 @@
 // Mausoleum 2 or Gehenna 2
 // If the player exits the room and re-enters, the door will appear, but it will be in an open state
 
-import g from "../../globals";
-
-const MOMS_HEART_MAUSOLEUM_VARIANT = 6040;
-
 export function postNewRoom(): void {
+  /*
   if (shouldRemoveItLives()) {
     removeItLives();
   }
+  */
 }
+
+/*
+const MOMS_HEART_MAUSOLEUM_VARIANT = 6040;
 
 function shouldRemoveItLives() {
   const stage = g.l.GetStage();
@@ -47,3 +48,4 @@ function removeItLives() {
     g.p.AnimateSad();
   }
 }
+*/

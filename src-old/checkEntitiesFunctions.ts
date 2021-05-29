@@ -2,26 +2,6 @@
 const functionMap = new Map<int, (entity: Entity) => void>();
 export default functionMap;
 
-// EntityType.ENTITY_FALLEN (81)
-functionMap.set(81, (entity) => {
-  // Local variables
-  const gameFrameCount = g.g.GetFrameCount();
-  const data = entity.GetData();
-
-  // We want to delete Krampus on the frame before he drops the vanilla item
-  // This cannot be in the NPCUpdate callback because that does not fire when an NPC is in the death
-  // animation
-  if (data.killedFrame === undefined) {
-    // He is not dead yet
-    return;
-  }
-
-  if (gameFrameCount >= (data.killedFrame as int) + 28) {
-    // He disappears after 29 frames
-    entity.Remove();
-  }
-});
-
 /*
 // EntityType.ENTITY_THE_HAUNT (260)
 functionMap.set(260, (entity) => {

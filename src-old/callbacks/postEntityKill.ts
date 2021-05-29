@@ -1,39 +1,4 @@
 /*
-export function main(entity: Entity): void {
-  // Track which enemies are cleared for the purposes of the "fast-clear" feature
-  fastClear.postEntityKill(entity);
-  fadeKilledBosses(entity);
-}
-
-// When beginning a death animation, make bosses faded so that it makes it easier to see
-function fadeKilledBosses(entity: Entity) {
-  // We only want to fade bosses
-  const npc = entity.ToNPC();
-  if (npc === null) {
-    return;
-  }
-  if (!npc.IsBoss()) {
-    return;
-  }
-
-  // We don't want to fade multi-segment bosses since killing one segment will fade the rest of the
-  // segments
-  if (
-    entity.Type === EntityType.ENTITY_LARRYJR || // 19 (and The Hollow)
-    entity.Type === EntityType.ENTITY_PIN || // 62 (and Scolex / Frail)
-    entity.Type === EntityType.ENTITY_GEMINI || // 79 (and Steven / Blighted Ovum)
-    entity.Type === EntityType.ENTITY_HEART_OF_INFAMY // 98
-  ) {
-    return;
-  }
-
-  // Set the color to have an alpha of 0.4
-  const faded = Color(1, 1, 1, 0.4, 0, 0, 0);
-  entity.SetColor(faded, 1000, 0, true, true);
-  // Priority doesn't matter, but a low duration won't work;
-  // the longer the duration, the more fade, and a fade of 1000 looks nice
-}
-
 // EntityType.ENTITY_MOM (45)
 export function mom(_entity: Entity): void {
   // There can be up to 5 Mom entities in the room,

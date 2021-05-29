@@ -5,10 +5,6 @@ export default class GlobalsRunRoom {
 
   clear: boolean;
 
-  fastClear2 = {
-    itLivesDead: false,
-  };
-
   fastTravel = {
     crawlspace: {
       /**
