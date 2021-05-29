@@ -1,11 +1,4 @@
-import { Vector.Zero } from "../constants";
-import * as seededDeath from "../features/seededDeath";
-import g from "../globals";
-import * as misc from "../misc";
-import * as sprites from "../sprites";
-import { CollectibleTypeCustom } from "../types/enums";
-import * as racePostNewRoom from "./postNewRoom";
-
+/*
 export function main(): void {
   // We do not want to return if we are not in a race,
   // as there are also speedrun-related checks in the follow functions
@@ -152,7 +145,7 @@ export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
         gridEntity.Position.Y === button.pos.Y
       ) {
         sprites.init(`${button.type}-button`, "");
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+        removeGridEntity(gridEntity)
 
         race.victoryLap();
       }
@@ -165,7 +158,7 @@ export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
         gridEntity.Position.Y === button.pos.Y
       ) {
         sprites.init(`${button.type}-button`, "");
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+        removeGridEntity(gridEntity)
 
         // Disable this button
         button.roomIndex = 999999;
@@ -175,3 +168,4 @@ export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
     }
   }
 }
+*/

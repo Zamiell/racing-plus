@@ -1,26 +1,4 @@
-import {
-  DEFAULT_KCOLOR,
-  DIVERSITY_VALID_ACTIVE_ITEMS,
-  DIVERSITY_VALID_PASSIVE_ITEMS,
-  DIVERSITY_VALID_TRINKETS,
-  Vector.Zero,
-} from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import * as racePostGameStarted from "../race/postGameStarted";
-import * as sprites from "../sprites";
-import { EffectVariantCustom } from "../types/enums";
-import {
-  SEASON_7_EXTRA_ACTIVE_ITEM_BANS,
-  SEASON_7_EXTRA_PASSIVE_ITEM_BANS,
-  SEASON_7_EXTRA_TRINKET_BANS,
-  SEASON_7_GOALS,
-  SEASON_7_VALID_ACTIVE_ITEMS,
-  SEASON_7_VALID_PASSIVE_ITEMS,
-  SEASON_7_VALID_TRINKETS,
-} from "./constants";
-import { ChallengeCustom } from "./enums";
-
+/*
 export function initValidItems(): void {
   if (SEASON_7_VALID_ACTIVE_ITEMS.length === 0) {
     for (const itemID of DIVERSITY_VALID_ACTIVE_ITEMS) {
@@ -335,7 +313,7 @@ function postNewRoomStage9() {
 
   // Remove The Void door if it is open
   // (closing it does not work because it will automatically reopen)
-  g.r.RemoveGridEntity(20, 0, false); // gridEntity.Destroy() does not work
+  removeGridEntity(gridEntity)
   Isaac.DebugString("Manually deleted The Void door.");
 }
 
@@ -492,3 +470,4 @@ export function postNPCInitIsaac(npc: EntityNPC): void {
     );
   }
 }
+*/

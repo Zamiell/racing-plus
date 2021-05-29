@@ -1,22 +1,5 @@
 // These are shared functions for fast-travel entities
 
-// These are functions for both trapdoors and crawlspaces
-
-// TODO CHECK IF NECESSARY, BETTER TO JUST SPAWN BEAMS OF LIGHT IN A CLOSED STATE
-/*
-  // We want the player to be forced to dodge the final wave of tears from It Lives!
-  if (
-    upwards &&
-    stage === 8 &&
-    effect.FrameCount < 40 &&
-    // The beam of light is initially spawned with an InitSeed equal to the room seed
-    // The beam of light is spawned with an InitSeed of 0 when re-entering a room
-    effect.InitSeed !== 0
-  ) {
-    continue;
-  }
-*/
-
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import {

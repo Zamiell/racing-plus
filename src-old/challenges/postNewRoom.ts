@@ -1,11 +1,4 @@
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-import { ChallengeCustom } from "./enums";
-import { inSpeedrun } from "./misc";
-import * as season3 from "./season3";
-import * as season6 from "./season6";
-import * as season7 from "./season7";
-
+/*
 export function main(): void {
   if (!inSpeedrun()) {
     return;
@@ -30,7 +23,6 @@ function stage8IAMERROR() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomSeed = g.r.GetSpawnSeed();
-  const gridSize = g.r.GetGridSize();
 
   if (stage !== 8 || roomType !== RoomType.ROOM_ERROR) {
     return;
@@ -53,7 +45,7 @@ function stage8IAMERROR() {
   // Find any existing trapdoors
   let trapdoor: GridEntity | undefined;
   let trapdoorIndex: int | undefined;
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
@@ -72,7 +64,7 @@ function stage8IAMERROR() {
 
   // If we are going up and there is already a trapdoor, we need to remove it
   if (trapdoor !== undefined && trapdoorIndex !== undefined && goingUp) {
-    g.r.RemoveGridEntity(trapdoorIndex, 0, false); // gridEntity.Destroy() does not work
+    removeGridEntity(gridEntity)
 
     // Spawn a Heaven Door (it will get replaced with the fast-travel version on this frame)
     // Make the spawner entity the player so that we can distinguish it from the vanilla
@@ -162,7 +154,6 @@ function checkCurseRoom() {
 function checkSacrificeRoom() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const gridSize = g.r.GetGridSize();
   const isFirstVisit = g.r.IsFirstVisit();
   const challenge = Isaac.GetChallenge();
 
@@ -184,12 +175,12 @@ function checkSacrificeRoom() {
     g.p.AnimateSad();
   }
 
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
       if (saveState.Type === GridEntityType.GRID_SPIKES) {
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+        removeGridEntity(gridEntity)
       }
     }
   }
@@ -197,3 +188,4 @@ function checkSacrificeRoom() {
     "Deleted the spikes in a Sacrifice Room (during a no-reset run).",
   );
 }
+*/

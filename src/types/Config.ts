@@ -5,7 +5,7 @@ export default class Config {
   disableCurses = true;
   freeDevilItem = true;
   fastReset = true;
-  fastClear3 = true;
+  fastClear4 = true;
   fastTravel = true;
 
   // Gameplay & Quality of Life Changes

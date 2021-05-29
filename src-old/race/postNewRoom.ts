@@ -92,7 +92,6 @@ function checkEverythingFloorSkip() {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const roomType = g.r.GetType();
-  const gridSize = g.r.GetGridSize();
 
   // Prevent players from skipping a floor on the "Everything" race goal
   if (
@@ -115,7 +114,7 @@ function checkEverythingFloorSkip() {
 
     if (convertTrapdoorsToBeamsOfLight) {
       // Replace all trapdoors with beams of light
-      for (let i = 1; i <= gridSize; i++) {
+      for (let i = 0; i < g.r.GetGridSize(); i++) {
         const gridEntity = g.r.GetGridEntity(i);
         if (gridEntity !== null) {
           const saveState = gridEntity.GetSaveState();
@@ -125,7 +124,7 @@ function checkEverythingFloorSkip() {
             // in the "FastTravel.ReplaceHeavenDoor()" function
             // Make the spawner entity the player so that we can distinguish it from the vanilla
             // heaven door
-            g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+            removeGridEntity(gridEntity)
             Isaac.Spawn(
               EntityType.ENTITY_EFFECT,
               EffectVariant.HEAVEN_LIGHT_DOOR,

@@ -5,9 +5,8 @@ export function grid(): void {
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const gridSize = g.r.GetGridSize();
 
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity === null) {
       continue;

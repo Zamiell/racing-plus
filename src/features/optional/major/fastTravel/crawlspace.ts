@@ -4,6 +4,7 @@ import {
   getRoomIndex,
   log,
   movePlayersAndFamiliars,
+  removeGridEntity,
   teleport,
 } from "../../../../misc";
 import { EffectVariantCustom } from "../../../../types/enums";
@@ -36,18 +37,14 @@ const BOSS_ROOM_ENTER_MAP = new Map<Direction, int>([
   [Direction.DOWN, 22], // 3 (returning from the top door)
 ]);
 
-export function postGridEntityUpdateCrawlspace(
-  gridEntity: GridEntity,
-  gridIndex: int,
-): void {
-  replace(gridEntity, gridIndex);
+export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
+  // replace(gridEntity);
 }
 
-function replace(gridEntity: GridEntity, gridIndex: int) {
+function replace(gridEntity: GridEntity) {
   const roomIndex = getRoomIndex();
 
-  // Remove the original entity
-  g.r.RemoveGridEntity(gridIndex, 0, false); // entity.Destroy() does not work
+  removeGridEntity(gridEntity);
 
   // Spawn a custom entity to emulate the original
   fastTravel.spawn(
@@ -176,7 +173,6 @@ function touched(effect: EntityEffect) {
   g.l.DungeonReturnPosition = effect.Position;
 
   // Go to the crawlspace
-  Isaac.DebugString("DEBUG - TELEPORTING");
   teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
 }
 

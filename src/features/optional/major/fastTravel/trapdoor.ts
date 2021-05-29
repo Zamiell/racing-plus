@@ -1,5 +1,9 @@
 import g from "../../../../globals";
-import { getRoomIndex, isPostBossVoidPortal } from "../../../../misc";
+import {
+  getRoomIndex,
+  isPostBossVoidPortal,
+  removeGridEntity,
+} from "../../../../misc";
 import { EffectVariantCustom } from "../../../../types/enums";
 import * as fastTravel from "./fastTravel";
 
@@ -8,12 +12,16 @@ export function postEffectUpdateTrapdoor(_effect: EntityEffect): void {
   // TODO
 }
 
-export function postGridEntityUpdateTrapdoor(
-  gridEntity: GridEntity,
-  gridIndex: int,
-): void {
+export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   if (!shouldReplace(gridEntity)) {
-    replace(gridEntity, gridIndex);
+    // replace(gridEntity, false);
+  }
+
+  gridEntity.State = TrapdoorState.CLOSED;
+  const sprite = gridEntity.GetSprite();
+  const fileName = sprite.GetFilename();
+  if (fileName === "gfx/grid/Door_11_TrapDoor.anm2") {
+    sprite.Load("gfx/grid/door_11_trapdoor_custom.anm2", true);
   }
 }
 
@@ -31,19 +39,15 @@ function shouldReplace(gridEntity: GridEntity) {
   return true;
 }
 
-export function replace(entity: GridEntity | Entity, gridIndex: int): void {
+export function replace(
+  entity: GridEntity | Entity,
+  isBigChest: boolean,
+): void {
   const roomIndex = getRoomIndex();
 
-  // Remove the original entity
-  if (gridIndex === -1) {
-    // We are replacing a Big Chest
-    (entity as Entity).Remove();
-  } else {
-    // We are replacing a trapdoor grid entity
-    g.r.RemoveGridEntity(gridIndex, 0, false); // entity.Destroy() does not work
-  }
+  remove(entity, isBigChest);
 
-  if (shouldDeleteAndNotReplace()) {
+  if (shouldRemoveAndNotReplace()) {
     return;
   }
 
@@ -59,7 +63,19 @@ export function replace(entity: GridEntity | Entity, gridIndex: int): void {
   });
 }
 
-function shouldDeleteAndNotReplace() {
+function remove(entity: GridEntity | Entity, isBigChest: boolean) {
+  // Remove the original entity
+  if (isBigChest) {
+    const bigChest = entity as Entity;
+    bigChest.Remove();
+  } else {
+    // We are replacing a trapdoor grid entity
+    const gridEntity = entity as GridEntity;
+    removeGridEntity(gridEntity);
+  }
+}
+
+function shouldRemoveAndNotReplace() {
   const stage = g.l.GetStage();
 
   // Delete the Womb trapdoor that spawns after Mom if the goal of the run is the Boss Rush

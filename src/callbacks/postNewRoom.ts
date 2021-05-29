@@ -1,7 +1,6 @@
 import * as cache from "../cache";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
-import * as itLivesFix from "../features/mandatory/itLivesFix";
 import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
@@ -61,7 +60,6 @@ export function newRoom(): void {
   // Mandatory features
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
-  itLivesFix.postNewRoom();
 
   // Optional features - Major
   startWithD6.postNewRoom();

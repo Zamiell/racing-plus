@@ -304,7 +304,6 @@ export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
 // Prevent people from abusing the death mechanic to use a Sacrifice Room
 export function postNewRoomCheckSacrificeRoom(): void {
   const roomType = g.r.GetType();
-  const gridSize = g.r.GetGridSize();
 
   if (
     g.run.seededDeath.state !== SeededDeathState.GHOST_FORM ||
@@ -314,12 +313,12 @@ export function postNewRoomCheckSacrificeRoom(): void {
   }
 
   g.p.AnimateSad();
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
       if (saveState.Type === GridEntityType.GRID_SPIKES) {
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+        removeGridEntity(gridEntity)
       }
     }
   }

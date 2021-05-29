@@ -1,5 +1,5 @@
 import g from "../../../../../globals";
-import { getRoomIndex } from "../../../../../misc";
+import { getRoomIndex, removeGridEntity } from "../../../../../misc";
 import { EffectVariantCustom } from "../../../../../types/enums";
 import * as crawlspace from "../crawlspace";
 import * as fastTravel from "../fastTravel";
@@ -13,7 +13,7 @@ export function main(): void {
 
   const roomIndex = getRoomIndex();
 
-  crawlspace.postNewRoom();
+  // crawlspace.postNewRoom();
 
   respawnTrapdoors(roomIndex);
   respawnCrawlspaces(roomIndex);
@@ -70,7 +70,7 @@ function removeOverlappingGridEntity(position: Vector) {
     return;
   }
 
-  g.r.RemoveGridEntity(gridIndex, 0, false); // entity.Destroy() does not work
+  removeGridEntity(gridEntity);
   removeCornyPoopFly(gridEntity);
 }
 

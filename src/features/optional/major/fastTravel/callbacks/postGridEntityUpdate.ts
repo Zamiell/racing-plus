@@ -2,18 +2,18 @@ import g from "../../../../../globals";
 import * as cs from "../crawlspace";
 import * as td from "../trapdoor";
 
-export function trapdoor(gridEntity: GridEntity, gridIndex: int): void {
+export function trapdoor(gridEntity: GridEntity): void {
   if (!g.config.fastTravel) {
     return;
   }
 
-  td.postGridEntityUpdateTrapdoor(gridEntity, gridIndex);
+  td.postGridEntityUpdateTrapdoor(gridEntity);
 }
 
-export function crawlspace(gridEntity: GridEntity, gridIndex: int): void {
+export function crawlspace(gridEntity: GridEntity): void {
   if (!g.config.fastTravel) {
     return;
   }
 
-  cs.postGridEntityUpdateCrawlspace(gridEntity, gridIndex);
+  cs.postGridEntityUpdateCrawlspace(gridEntity);
 }

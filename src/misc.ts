@@ -65,6 +65,18 @@ export function getFireDelayFromTearsStat(tearsStat: float): float {
   return math.max(30 / tearsStat - 1, -0.9999);
 }
 
+export function getGridEntities(): GridEntity[] {
+  const gridEntities: GridEntity[] = [];
+  for (let gridIndex = 0; gridIndex < g.r.GetGridSize(); gridIndex++) {
+    const gridEntity = g.r.GetGridEntity(gridIndex);
+    if (gridEntity !== null) {
+      gridEntities.push(gridEntity);
+    }
+  }
+
+  return gridEntities;
+}
+
 export function getItemMaxCharges(itemID: int): int {
   const itemConfigItem = g.itemConfig.GetCollectible(itemID);
   if (itemConfigItem === null) {
@@ -149,6 +161,11 @@ export function getRoomIndex(): int {
   }
 
   return roomIndex;
+}
+
+export function removeGridEntity(gridEntity: GridEntity): void {
+  const gridIndex = gridEntity.GetGridIndex();
+  g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
 }
 
 export function gridToPos(x: int, y: int): Vector {

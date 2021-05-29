@@ -1,25 +1,16 @@
 import * as fastTravelPostGridEntityUpdate from "../features/optional/major/fastTravel/callbacks/postGridEntityUpdate";
 import * as deleteVoidPortals from "../features/optional/quality/deleteVoidPortals";
 
-const functionMap = new Map<
-  GridEntityType,
-  (gridEntity: GridEntity, gridIndex: int) => void
->();
+const functionMap = new Map<GridEntityType, (gridEntity: GridEntity) => void>();
 export default functionMap;
 
 // 17
-functionMap.set(
-  GridEntityType.GRID_TRAPDOOR,
-  (gridEntity: GridEntity, gridIndex: int) => {
-    deleteVoidPortals.postGridEntityUpdateTrapdoor(gridEntity, gridIndex);
-    fastTravelPostGridEntityUpdate.trapdoor(gridEntity, gridIndex);
-  },
-);
+functionMap.set(GridEntityType.GRID_TRAPDOOR, (gridEntity: GridEntity) => {
+  deleteVoidPortals.postGridEntityUpdateTrapdoor(gridEntity);
+  fastTravelPostGridEntityUpdate.trapdoor(gridEntity);
+});
 
 // 18
-functionMap.set(
-  GridEntityType.GRID_STAIRS,
-  (gridEntity: GridEntity, gridIndex: int) => {
-    fastTravelPostGridEntityUpdate.crawlspace(gridEntity, gridIndex);
-  },
-);
+functionMap.set(GridEntityType.GRID_STAIRS, (gridEntity: GridEntity) => {
+  fastTravelPostGridEntityUpdate.crawlspace(gridEntity);
+});

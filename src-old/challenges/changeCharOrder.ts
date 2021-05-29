@@ -1,10 +1,4 @@
-import { DEFAULT_COLOR, DEFAULT_KCOLOR, Vector.Zero } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import SeasonDescription from "../types/SeasonDescription";
-import { BIG_4_ITEMS, CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import { ChallengeCustom, ChangeCharOrderPhase } from "./enums";
-
+/*
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   const challenge = Isaac.GetChallenge();
@@ -244,8 +238,6 @@ function createItemBanButtonsNormal() {
 
 // In R+7 Season 4, remove all the S class item buttons
 function removeSClassButtons(indexChosen: int) {
-  // Local variables
-  const gridSize = g.r.GetGridSize();
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -254,7 +246,7 @@ function removeSClassButtons(indexChosen: int) {
     error("itemPositions does not exist in the season.");
   }
 
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
@@ -269,7 +261,7 @@ function removeSClassButtons(indexChosen: int) {
             gridEntity.Position.X === big4ItemPos.X &&
             gridEntity.Position.Y === big4ItemPos.Y
           ) {
-            g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+            removeGridEntity(gridEntity)
           }
         }
       }
@@ -402,7 +394,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
 
     // Break the rocks so that they can choose Eden for the second character and beyond
     const destroyRock = (gridIndex: int) => {
-      g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+      removeGridEntity(gridEntity)
     };
     destroyRock(25);
     destroyRock(26);
@@ -911,14 +903,14 @@ export function postNewRoom(): void {
 }
 
 function removeAllRoomButtons() {
-  const gridSize = g.r.GetGridSize();
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
       if (saveState.Type === GridEntityType.GRID_PRESSURE_PLATE) {
-        g.r.RemoveGridEntity(i, 0, false); // gridEntity.Destroy() does not work
+        removeGridEntity(gridEntity)
       }
     }
   }
 }
+*/

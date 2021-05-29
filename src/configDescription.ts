@@ -46,7 +46,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastClear3",
+    "fastClear4",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "005",

@@ -1,4 +1,5 @@
 import g from "../../../../../globals";
+import { getGridEntities } from "../../../../../misc";
 import clearRoom from "../clearRoom";
 
 export function main(): void {
@@ -7,8 +8,6 @@ export function main(): void {
   }
 
   checkClearRoom();
-  // deleteKrampus();
-  // deleteAngels();
 }
 
 function checkClearRoom() {
@@ -54,69 +53,16 @@ function checkAllPressurePlatesPushed() {
     return true;
   }
 
-  // Check all the grid entities in the room
-  const gridSize = g.r.GetGridSize();
-  for (let i = 1; i <= gridSize; i++) {
-    const gridEntity = g.r.GetGridEntity(i);
-    if (gridEntity !== null) {
-      const saveState = gridEntity.GetSaveState();
-      if (
-        saveState.Type === GridEntityType.GRID_PRESSURE_PLATE &&
-        saveState.State !== 3
-      ) {
-        return false;
-      }
+  for (const gridEntity of getGridEntities()) {
+    const saveState = gridEntity.GetSaveState();
+    if (
+      saveState.Type === GridEntityType.GRID_PRESSURE_PLATE &&
+      saveState.State !== 3
+    ) {
+      return false;
     }
   }
 
   g.run.fastClear.buttonsAllPushed = true;
   return true;
 }
-
-/*
-
-function deleteKrampus() {
-  const deathAnimationLength = 29;
-  deleteDyingEntity(EntityType.ENTITY_FALLEN, 1, deathAnimationLength);
-}
-
-function deleteAngels() {
-  for (const entityType of [
-    EntityType.ENTITY_URIEL, // 271
-    EntityType.ENTITY_GABRIEL, // 272
-  ]) {
-    const deathAnimationLength = 24;
-    deleteDyingEntity(entityType, 0, deathAnimationLength);
-  }
-}
-
-function deleteDyingEntity(
-  entityType: EntityType,
-  entityVariant: int,
-  deathAnimationLength: int,
-) {
-  const gameFrameCount = g.g.GetFrameCount();
-  const entities = Isaac.FindByType(
-    entityType,
-    entityVariant,
-    -1,
-    false,
-    false,
-  );
-  for (const entity of entities) {
-    // This is for deleting entities that drop items
-    // We want to delete the entity on the frame before they drop the item
-    // (this cannot be in the NPCUpdate callback because that does not fire when an NPC is in the
-    // death animation)
-    const data = entity.GetData();
-    const killedFrame = data.killedFrame as int | undefined;
-    if (
-      killedFrame !== undefined &&
-      gameFrameCount >= killedFrame + deathAnimationLength - 1
-    ) {
-      entity.Remove();
-    }
-  }
-}
-
-*/

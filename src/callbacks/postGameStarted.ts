@@ -1,5 +1,4 @@
 import * as centerStart from "../features/mandatory/centerStart";
-import * as removeAzazelsRage from "../features/mandatory/removeAzazelsRage";
 import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeUselessPills from "../features/mandatory/removeUselessPills";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
@@ -44,7 +43,6 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
-  removeAzazelsRage.postGameStarted();
   removeKarma.postGameStarted();
   removeUselessPills.postGameStarted();
   seededDrops.postGameStarted();

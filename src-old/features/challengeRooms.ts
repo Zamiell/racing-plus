@@ -192,8 +192,7 @@ function start() {
   );
 
   // Close the door
-  const gridSize = g.r.GetGridSize();
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const door = gridEntity.ToDoor();
@@ -464,8 +463,7 @@ function finish() {
   g.r.SpawnClearAward();
 
   // Open the door
-  const gridSize = g.r.GetGridSize();
-  for (let i = 1; i <= gridSize; i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) {
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const door = gridEntity.ToDoor();
