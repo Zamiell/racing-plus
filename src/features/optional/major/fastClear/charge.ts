@@ -1,5 +1,3 @@
-// Give a charge to the player's active item
-
 import g from "../../../../globals";
 import { getItemMaxCharges, getPlayers } from "../../../../misc";
 

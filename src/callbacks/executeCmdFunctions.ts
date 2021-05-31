@@ -40,6 +40,14 @@ functionMap.set("blackmarket", (_params: string) => {
   blackMarket();
 });
 
+functionMap.set("bomb", (_params: string) => {
+  g.p.AddBombs(1);
+});
+
+functionMap.set("bombs", (_params: string) => {
+  g.p.AddBombs(99);
+});
+
 functionMap.set("boss", (_params: string) => {
   g.p.UseCard(Card.CARD_EMPEROR);
 });
@@ -129,6 +137,14 @@ functionMap.set("char", (params: string) => {
   restartAsCharacter(character);
 });
 
+functionMap.set("coin", (_params: string) => {
+  g.p.AddCoins(1);
+});
+
+functionMap.set("coins", (_params: string) => {
+  g.p.AddCoins(99);
+});
+
 functionMap.set("commands", (_params: string) => {
   commands(functionMap);
 });
@@ -199,6 +215,14 @@ functionMap.set("help", (_params: string) => {
 
 functionMap.set("iamerror", (_params: string) => {
   IAMERROR();
+});
+
+functionMap.set("key", (_params: string) => {
+  g.p.AddKeys(1);
+});
+
+functionMap.set("keys", (_params: string) => {
+  g.p.AddKeys(99);
 });
 
 functionMap.set("list", (_params: string) => {

@@ -53,15 +53,35 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
+      // -8
       if (roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
+
+      // -9
       if (roomIndex === GridRooms.ROOM_THE_VOID_IDX) {
         return "gfx/grid/voidtrapdoor.anm2";
       }
+
+      // -10
+      if (roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
+        if (stage === 1 || stage === 2) {
+          return "gfx/grid/trapdoor_downpour_custom.anm2";
+        }
+
+        if (stage === 3 || stage === 4) {
+          return "gfx/grid/trapdoor_mines_custom.anm2";
+        }
+
+        if (stage === 5 || stage === 6) {
+          return "gfx/grid/trapdoor_mausoleum_custom.anm2";
+        }
+      }
+
       if (stage === 6 || stage === 7) {
         return "gfx/grid/door_11_wombhole_custom.anm2";
       }
+
       return "gfx/grid/door_11_trapdoor_custom.anm2";
     }
 

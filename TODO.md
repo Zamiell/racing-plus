@@ -1,8 +1,7 @@
-- test fast trave with womb trapdoors
-- test fast trave with blue womb trapdoors
-- test fast travel with Void Portals
+- trapdoor on dross 1 does not go to dross 2
 
-- fast travel
+- seed where mom drops a lot of hearts: XP6W BDJC
+
 - chat system
 - custom console
 

@@ -17,6 +17,7 @@ export function init(
   g.run.fastTravel.upwards = upwards;
   g.run.fastTravel.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
+  g.run.fastTravel.antibirth = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   setPlayerAttributes(player, entity);
   warpForgottenBody(player);
@@ -105,7 +106,8 @@ export function goto(upwards: boolean): void {
   // it will use the same floor layout as the previous floor
   // Thus, in these cases, we need to mark to perform a "reseed" command before doing the "stage"
   // command
-  g.run.fastTravel.reseed = stage === nextStage;
+  // However, Antibirth floors do not need to be reseeded for some reason
+  g.run.fastTravel.reseed = stage === nextStage && !g.run.fastTravel.antibirth;
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications
@@ -119,7 +121,6 @@ export function goto(upwards: boolean): void {
 }
 
 function getNextStage() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (g.run.fastTravel.blueWomb) {
@@ -128,6 +129,10 @@ function getNextStage() {
 
   if (g.run.fastTravel.theVoid) {
     return 12;
+  }
+
+  if (g.run.fastTravel.antibirth) {
+    return stage;
   }
 
   if (stage === 8) {
@@ -152,8 +157,11 @@ function getNextStage() {
 }
 
 function getNextStageType(nextStage: int, upwards: boolean) {
-  // Local variables
   const stageType = g.l.GetStageType();
+
+  if (g.run.fastTravel.antibirth) {
+    return getStageTypeAntibirth(stageType);
+  }
 
   if (nextStage === 9) {
     // Blue Womb does not have any alternate floors
@@ -183,7 +191,7 @@ function getNextStageType(nextStage: int, upwards: boolean) {
   return getStageType(nextStage);
 }
 
-function getStageType(stage: int): StageType {
+function getStageType(stage: int) {
   // The following is the game's internal code to determine the floor type
   // (this came directly from Spider)
   /*
@@ -213,13 +221,30 @@ function getStageType(stage: int): StageType {
   return StageType.STAGETYPE_ORIGINAL;
 }
 
-function travelStage(stage: int, stageType: int): void {
+function getStageTypeAntibirth(stage: int) {
+  // This algorithm is from Kilburn
+  // We add one because the alt path is offset by 1 relative to the normal path
+  const stageSeed = g.seeds.GetStageSeed(stage + 1);
+
+  // Kilburn does not know why he divided the stage seed by 2 first
+  if ((stageSeed / 2) % 2 === 0) {
+    return StageType.STAGETYPE_REPENTANCE_B;
+  }
+
+  return StageType.STAGETYPE_REPENTANCE;
+}
+
+function travelStage(stage: int, stageType: int) {
   // Build the command that will take us to the next floor
   let command = `stage ${stage}`;
   if (stageType === 1) {
     command += "a";
   } else if (stageType === 2) {
     command += "b";
+  } else if (stageType === 3) {
+    command += "c";
+  } else if (stageType === 4) {
+    command += "d";
   }
 
   consoleCommand(command);

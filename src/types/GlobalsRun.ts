@@ -105,6 +105,7 @@ export default class GlobalsRun {
     upwards: false,
     blueWomb: false,
     theVoid: false,
+    antibirth: false,
     reseed: false,
   };
 

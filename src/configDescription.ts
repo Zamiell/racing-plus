@@ -3,7 +3,7 @@ import Hotkeys from "./types/Hotkeys";
 
 export type ConfigDescriptionArray = Array<
   [
-    keyof Config | keyof Hotkeys,
+    keyof Config | keyof Hotkeys | null,
     [ModConfigMenuOptionType, string, string, string],
   ]
 >;
@@ -25,6 +25,15 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
       "002",
       "Disable curses",
       "Disables all curses, like Curse of the Maze.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Customized Devil/Angel Rooms",
+      "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files.",
     ],
   ],
   [
@@ -58,9 +67,27 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastTravel",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "005",
+      "006",
       "Fast floor travel",
-      "Replace the fade-in and fade-out with a custom animation where you jump out of a hole.",
+      "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Room fixes",
+      "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Room flipping",
+      "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.",
     ],
   ],
 ];
@@ -122,7 +149,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
   ],
 ];
 
-export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
+export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   [
     "judasAddBomb",
     [
@@ -146,8 +173,8 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "023",
-      "Make Tainted Keeper start with 15 cents",
-      "This gives Tainted Keeper enough money to start a Treasure Room item.",
+      "Tainted Keeper extra money",
+      "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
   ],
   [
@@ -159,6 +186,9 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
       "Draw both of Eden's starting items on the screen while in the first room.",
     ],
   ],
+];
+
+export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
   [
     "showDreamCatcherItem",
     [
@@ -218,8 +248,8 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "037",
-      "Automatically open the Hush door",
-      "Save yourself the tedium of watching the door slowly open every single time.",
+      "Open the Hush door",
+      "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
   ],
   [
@@ -231,13 +261,73 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
+];
+
+export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   [
-    "customConsole",
+    null,
     [
-      ModConfigMenuOptionType.BOOLEAN,
-      "041",
-      "Enable the custom console",
-      "Press enter to bring up a custom console that is better than the vanilla console.",
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove Karma trinket",
+      "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove Amnesia and ??? pills",
+      "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons.",
+    ],
+  ],
+];
+
+export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove intro cutscene",
+      "Remove the intro cutscene so that you go straight to the main menu upon launching the game.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove ending cutscenes",
+      "Remove the cutscenes that play upon completing a run.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove boss cutscenes",
+      "Remove the cutscenes that play upon entering a boss room.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      'Remove "giantbook" animations',
+      'Remove all "giantbook" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).',
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove pausing/unpausing animations",
+      "Pause and unpause the game instantaneously.",
     ],
   ],
 ];
@@ -252,12 +342,126 @@ export const BUG_FIXES: ConfigDescriptionArray = [
       "Never teleport to a non-existent entrance.",
     ],
   ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix Duality not giving both rooms",
+      "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix Black Market entrances",
+      "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix crawlspace exits",
+      "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
+    ],
+  ],
+];
+
+export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better Paschal Candle",
+      'Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.',
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix fly colors",
+      "The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better 20/20",
+      "The 20/20 sprite is now easier to see.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better Star of Bethlehem",
+      "The Star of Bethlehem sprite is more distinct from Eden's Soul.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Consistent pill orientation",
+      "Pills now have a consistent orientation on the ground.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better pill colors",
+      "The color of some pills are changed to make them easier to identify at a glance.",
+    ],
+  ],
+];
+
+export const SOUND_CHANGES: ConfigDescriptionArray = [
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Silence mom & dad",
+      "The audio clips of mom and dad on the Ascent are silenced.",
+    ],
+  ],
+];
+
+export const OTHER_FEATURES: ConfigDescriptionArray = [
+  [
+    "customConsole",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "061",
+      "Enable the custom console",
+      "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
+    ],
+  ],
 ];
 
 export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
-  ...GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES,
+  ...CHARACTER_CHANGES,
+  ...QUALITY_OF_LIFE_CHANGES,
+  ...GAMEPLAY_CHANGES,
+  ...CUTSCENE_CHANGES,
   ...BUG_FIXES,
+  ...GRAPHIC_CHANGES,
+  ...SOUND_CHANGES,
+  ...OTHER_FEATURES,
 ];
 
 export const ALL_HOTKEY_DESCRIPTIONS = [...CUSTOM_HOTKEYS];

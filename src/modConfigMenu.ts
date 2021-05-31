@@ -1,10 +1,17 @@
 import {
+  ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
   BUG_FIXES,
+  CHARACTER_CHANGES,
   ConfigDescriptionArray,
   CUSTOM_HOTKEYS,
-  GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES,
+  CUTSCENE_CHANGES,
+  GAMEPLAY_CHANGES,
+  GRAPHIC_CHANGES,
   MAJOR_CHANGES,
+  OTHER_FEATURES,
+  QUALITY_OF_LIFE_CHANGES,
+  SOUND_CHANGES,
 } from "./configDescription";
 import g from "./globals";
 import * as saveDat from "./saveDat";
@@ -25,8 +32,14 @@ export function register(): void {
   registerPresets();
   registerSubMenuConfig("Major", MAJOR_CHANGES);
   registerSubMenuHotkeys("Hotkeys", CUSTOM_HOTKEYS);
-  registerSubMenuConfig("Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES);
+  registerSubMenuConfig("Chars", CHARACTER_CHANGES);
+  registerSubMenuConfig("QoL", QUALITY_OF_LIFE_CHANGES);
+  registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
+  registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);
   registerSubMenuConfig("Bug Fixes", BUG_FIXES);
+  registerSubMenuConfig("Graphics", GRAPHIC_CHANGES);
+  registerSubMenuConfig("Sound", SOUND_CHANGES);
+  registerSubMenuConfig("Other", OTHER_FEATURES);
 }
 
 function deleteOldConfig() {
@@ -47,13 +60,11 @@ function deleteOldConfig() {
 // However, the inverse is not true (i.e. a config value can be missing a description)
 // So, we check this at runtime
 function validateConfigDescriptions() {
-  /*
   for (const key of Object.keys(g.config)) {
     if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
       error(`Failed to find key "${key}" in the config descriptions.`);
     }
   }
-  */
 
   for (const key of Object.keys(g.hotkeys)) {
     if (!ALL_HOTKEY_DESCRIPTIONS.some((array) => key === array[0])) {
@@ -188,8 +199,16 @@ function getDisplayTextBoolean(
   code: string,
   shortDescription: string,
 ) {
-  const currentValue = g.config[configName];
-  return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
+  switch (code) {
+    case "": {
+      return `${shortDescription}: n/a`;
+    }
+
+    default: {
+      const currentValue = g.config[configName];
+      return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
+    }
+  }
 }
 
 function getDisplayTextKeyboardController(

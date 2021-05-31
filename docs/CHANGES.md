@@ -85,8 +85,6 @@ In terms of what to change about the game, the mod has several goals, and attemp
 - `006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
 - `006` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
 
-[TODO this is not implemented yet]
-
 ### 7) Room Fixes
 
 Rooms with unavoidable damage or bugs have been fixed or deleted.
@@ -175,10 +173,6 @@ Post-flip actions:
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-- Having Duality will now always give you both the Devil Room and the Angel Room.
-
-> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.
-
 <!--
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
 - The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
@@ -207,7 +201,8 @@ Post-flip actions:
 
 ### 3) Cutscene & Animation Removal
 
-- The cutscenes that occur when you launch the game and when you finish a run are removed.
+- The intro that occurs when you launch the game is removed.
+- The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
 - Some animations are removed for the purposes of eliminating needless downtime:
 <!--
@@ -232,9 +227,11 @@ Post-flip actions:
 ### 4) Bug Fixes
 
 - `051` All forms of teleport will no longer send you to an invalid entrance.
-- AAA Battery now properly synergizes with The Battery. (This is part of Fast-Clear.)
-- The door opening sound will no longer play in a crawlspace. (This is part of Fast-Clear.)
-- The proper sound effects will now play when you have The Battery. (This is part of Fast-Clear.)
+- Having Duality will now always give you both the Devil Room and the Angel Room.
+
+> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.
+
+- Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 
 <!--

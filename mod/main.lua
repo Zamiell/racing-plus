@@ -2038,7 +2038,7 @@ ____exports.default = (function()
         self.edenStartingItems = {active = 0, passive = 0, activeSprite = nil, passiveSprite = nil}
         self.fastClear = {aliveEnemies = {}, aliveEnemiesCount = 0, aliveBossesCount = 0, buttonsAllPushed = false, roomInitializing = false, delayFrame = 0, vanillaPhotosSpawning = false, deferClearForGhost = false, paschalCandleCounters = {}}
         self.fastResetFrame = 0
-        self.fastTravel = {state = FastTravelState.Disabled, framesPassed = 0, upwards = false, blueWomb = false, theVoid = false, reseed = false}
+        self.fastTravel = {state = FastTravelState.Disabled, framesPassed = 0, upwards = false, blueWomb = false, theVoid = false, antibirth = false, reseed = false}
         self.freeDevilItem = {takenDamage = {}, granted = false}
         self.pickingUpItem = {}
         self.pills = {}
@@ -2239,10 +2239,16 @@ end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear4", {4, "005", "Fast room clear (v4)", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "005", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole."}}}
+____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {nil, {1, "", "Customized Devil/Angel Rooms", "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear4", {4, "005", "Fast room clear (v4)", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "006", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation."}}, {nil, {1, "", "Room fixes", "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files."}}, {nil, {1, "", "Room flipping", "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
-____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Make Tainted Keeper start with 15 cents", "This gives Tainted Keeper enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}, {"showDreamCatcherItem", {4, "031", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "032", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "033", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "034", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeBosses", {4, "035", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"fadeVasculitisTears", {4, "036", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"openHushDoor", {4, "037", "Automatically open the Hush door", "Save yourself the tedium of watching the door slowly open every single time."}}, {"showPills", {4, "038", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}, {"customConsole", {4, "041", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console."}}}
-____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}}
+____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Tainted Keeper extra money", "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}}
+____exports.QUALITY_OF_LIFE_CHANGES = {{"showDreamCatcherItem", {4, "031", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"speedUpFadeIn", {4, "032", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"subvertTeleport", {4, "033", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "034", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeBosses", {4, "035", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"fadeVasculitisTears", {4, "036", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"openHushDoor", {4, "037", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}, {"showPills", {4, "038", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}}
+____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
+____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
+____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "051", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}}
+____exports.GRAPHIC_CHANGES = {{nil, {1, "", "Better Paschal Candle", "Paschal Candle now visually \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Fix fly colors", "The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars."}}, {nil, {1, "", "Better 20/20", "The 20/20 sprite is now easier to see."}}, {nil, {1, "", "Better Star of Bethlehem", "The Star of Bethlehem sprite is more distinct from Eden's Soul."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}}
+____exports.SOUND_CHANGES = {{nil, {1, "", "Silence mom & dad", "The audio clips of mom and dad on the Ascent are silenced."}}}
+____exports.OTHER_FEATURES = {{"customConsole", {4, "061", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)"}}}
 ____exports.ALL_CONFIG_DESCRIPTIONS = {
     table.unpack(
         __TS__ArrayConcat(
@@ -2250,10 +2256,28 @@ ____exports.ALL_CONFIG_DESCRIPTIONS = {
                 table.unpack(____exports.MAJOR_CHANGES)
             },
             {
-                table.unpack(____exports.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES)
+                table.unpack(____exports.CHARACTER_CHANGES)
+            },
+            {
+                table.unpack(____exports.QUALITY_OF_LIFE_CHANGES)
+            },
+            {
+                table.unpack(____exports.GAMEPLAY_CHANGES)
+            },
+            {
+                table.unpack(____exports.CUTSCENE_CHANGES)
             },
             {
                 table.unpack(____exports.BUG_FIXES)
+            },
+            {
+                table.unpack(____exports.GRAPHIC_CHANGES)
+            },
+            {
+                table.unpack(____exports.SOUND_CHANGES)
+            },
+            {
+                table.unpack(____exports.OTHER_FEATURES)
             }
         )
     )
@@ -2265,7 +2289,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.0"
+____exports.VERSION = "0.58.1"
 ____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
@@ -3040,6 +3064,18 @@ functionMap:set(
     end
 )
 functionMap:set(
+    "bomb",
+    function(____, _params)
+        g.p:AddBombs(1)
+    end
+)
+functionMap:set(
+    "bombs",
+    function(____, _params)
+        g.p:AddBombs(99)
+    end
+)
+functionMap:set(
     "boss",
     function(____, _params)
         g.p:UseCard(Card.CARD_EMPEROR)
@@ -3145,6 +3181,18 @@ functionMap:set(
     end
 )
 functionMap:set(
+    "coin",
+    function(____, _params)
+        g.p:AddCoins(1)
+    end
+)
+functionMap:set(
+    "coins",
+    function(____, _params)
+        g.p:AddCoins(99)
+    end
+)
+functionMap:set(
     "commands",
     function(____, _params)
         commands(nil, functionMap)
@@ -3243,6 +3291,18 @@ functionMap:set(
     "iamerror",
     function(____, _params)
         IAMERROR(nil)
+    end
+)
+functionMap:set(
+    "key",
+    function(____, _params)
+        g.p:AddKeys(1)
+    end
+)
+functionMap:set(
+    "keys",
+    function(____, _params)
+        g.p:AddKeys(99)
     end
 )
 functionMap:set(
@@ -3895,6 +3955,17 @@ function getCustomSpriteFilename(self, fastTravelEntityType)
             if roomIndex == GridRooms.ROOM_THE_VOID_IDX then
                 return "gfx/grid/voidtrapdoor.anm2"
             end
+            if roomIndex == GridRooms.ROOM_SECRET_EXIT_IDX then
+                if (stage == 1) or (stage == 2) then
+                    return "gfx/grid/trapdoor_downpour_custom.anm2"
+                end
+                if (stage == 3) or (stage == 4) then
+                    return "gfx/grid/trapdoor_mines_custom.anm2"
+                end
+                if (stage == 5) or (stage == 6) then
+                    return "gfx/grid/trapdoor_mausoleum_custom.anm2"
+                end
+            end
             if (stage == 6) or (stage == 7) then
                 return "gfx/grid/door_11_wombhole_custom.anm2"
             end
@@ -3987,7 +4058,7 @@ local getPlayers = ____misc.getPlayers
 local getRoomIndex = ____misc.getRoomIndex
 local ____enums = require("features.optional.major.fastTravel.enums")
 local FastTravelState = ____enums.FastTravelState
-local setPlayerAttributes, warpForgottenBody, playTravellingAnimation, getNextStage, getNextStageType, getStageType, travelStage
+local setPlayerAttributes, warpForgottenBody, playTravellingAnimation, getNextStage, getNextStageType, getStageType, getStageTypeAntibirth, travelStage
 function setPlayerAttributes(self, playerTouchedTrapdoor, entity)
     playerTouchedTrapdoor.Position = entity.Position
     ____exports.immobilizeAllPlayers(nil)
@@ -4031,6 +4102,9 @@ function getNextStage(self)
     if g.run.fastTravel.theVoid then
         return 12
     end
+    if g.run.fastTravel.antibirth then
+        return stage
+    end
     if stage == 8 then
         return 10
     end
@@ -4044,6 +4118,9 @@ function getNextStage(self)
 end
 function getNextStageType(self, nextStage, upwards)
     local stageType = g.l:GetStageType()
+    if g.run.fastTravel.antibirth then
+        return getStageTypeAntibirth(nil, stageType)
+    end
     if nextStage == 9 then
         return 0
     end
@@ -4071,12 +4148,23 @@ function getStageType(self, stage)
     end
     return StageType.STAGETYPE_ORIGINAL
 end
+function getStageTypeAntibirth(self, stage)
+    local stageSeed = g.seeds:GetStageSeed(stage + 1)
+    if ((stageSeed / 2) % 2) == 0 then
+        return StageType.STAGETYPE_REPENTANCE_B
+    end
+    return StageType.STAGETYPE_REPENTANCE
+end
 function travelStage(self, stage, stageType)
     local command = "stage " .. tostring(stage)
     if stageType == 1 then
         command = tostring(command) .. "a"
     elseif stageType == 2 then
         command = tostring(command) .. "b"
+    elseif stageType == 3 then
+        command = tostring(command) .. "c"
+    elseif stageType == 4 then
+        command = tostring(command) .. "d"
     end
     consoleCommand(nil, command)
     if g.run.fastTravel.reseed then
@@ -4091,6 +4179,7 @@ function ____exports.init(self, entity, player, upwards)
     g.run.fastTravel.upwards = upwards
     g.run.fastTravel.blueWomb = roomIndex == GridRooms.ROOM_BLUE_WOOM_IDX
     g.run.fastTravel.theVoid = roomIndex == GridRooms.ROOM_THE_VOID_IDX
+    g.run.fastTravel.antibirth = roomIndex == GridRooms.ROOM_SECRET_EXIT_IDX
     setPlayerAttributes(nil, player, entity)
     warpForgottenBody(nil, player)
     playTravellingAnimation(nil, player, upwards)
@@ -4107,7 +4196,7 @@ ____exports["goto"] = function(self, upwards)
     local stage = g.l:GetStage()
     local nextStage = getNextStage(nil)
     local nextStageType = getNextStageType(nil, nextStage, upwards)
-    g.run.fastTravel.reseed = stage == nextStage
+    g.run.fastTravel.reseed = (stage == nextStage) and (not g.run.fastTravel.antibirth)
     travelStage(nil, nextStage, nextStageType)
 end
 return ____exports
@@ -8563,11 +8652,18 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local ____configDescription = require("configDescription")
+local ALL_CONFIG_DESCRIPTIONS = ____configDescription.ALL_CONFIG_DESCRIPTIONS
 local ALL_HOTKEY_DESCRIPTIONS = ____configDescription.ALL_HOTKEY_DESCRIPTIONS
 local BUG_FIXES = ____configDescription.BUG_FIXES
+local CHARACTER_CHANGES = ____configDescription.CHARACTER_CHANGES
 local CUSTOM_HOTKEYS = ____configDescription.CUSTOM_HOTKEYS
-local GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES = ____configDescription.GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES
+local CUTSCENE_CHANGES = ____configDescription.CUTSCENE_CHANGES
+local GAMEPLAY_CHANGES = ____configDescription.GAMEPLAY_CHANGES
+local GRAPHIC_CHANGES = ____configDescription.GRAPHIC_CHANGES
 local MAJOR_CHANGES = ____configDescription.MAJOR_CHANGES
+local OTHER_FEATURES = ____configDescription.OTHER_FEATURES
+local QUALITY_OF_LIFE_CHANGES = ____configDescription.QUALITY_OF_LIFE_CHANGES
+local SOUND_CHANGES = ____configDescription.SOUND_CHANGES
 local ____globals = require("globals")
 local g = ____globals.default
 local saveDat = require("saveDat")
@@ -8579,6 +8675,16 @@ function deleteOldConfig(self)
     end
 end
 function validateConfigDescriptions(self)
+    for ____, key in ipairs(
+        __TS__ObjectKeys(g.config)
+    ) do
+        if not __TS__ArraySome(
+            ALL_CONFIG_DESCRIPTIONS,
+            function(____, array) return key == array[1] end
+        ) then
+            error(("Failed to find key \"" .. key) .. "\" in the config descriptions.")
+        end
+    end
     for ____, key in ipairs(
         __TS__ObjectKeys(g.hotkeys)
     ) do
@@ -8708,31 +8814,31 @@ function registerSubMenuHotkeys(self, subMenuName, descriptions)
     end
 end
 function getDefaultValue(self, optionType)
-    local ____switch37 = optionType
-    if ____switch37 == 4 then
-        goto ____switch37_case_0
-    elseif ____switch37 == 6 then
-        goto ____switch37_case_1
-    elseif ____switch37 == 7 then
-        goto ____switch37_case_2
+    local ____switch40 = optionType
+    if ____switch40 == 4 then
+        goto ____switch40_case_0
+    elseif ____switch40 == 6 then
+        goto ____switch40_case_1
+    elseif ____switch40 == 7 then
+        goto ____switch40_case_2
     end
-    goto ____switch37_case_default
-    ::____switch37_case_0::
+    goto ____switch40_case_default
+    ::____switch40_case_0::
     do
         do
             return true
         end
     end
-    ::____switch37_case_1::
+    ::____switch40_case_1::
     do
     end
-    ::____switch37_case_2::
+    ::____switch40_case_2::
     do
         do
             return -1
         end
     end
-    ::____switch37_case_default::
+    ::____switch40_case_default::
     do
         do
             error(
@@ -8741,21 +8847,38 @@ function getDefaultValue(self, optionType)
             return false
         end
     end
-    ::____switch37_end::
+    ::____switch40_end::
 end
 function getDisplayTextBoolean(self, configName, code, shortDescription)
-    local currentValue = g.config[configName]
-    return (((code .. " - ") .. shortDescription) .. ": ") .. onOff(nil, currentValue)
+    local ____switch45 = code
+    if ____switch45 == "" then
+        goto ____switch45_case_0
+    end
+    goto ____switch45_case_default
+    ::____switch45_case_0::
+    do
+        do
+            return shortDescription .. ": n/a"
+        end
+    end
+    ::____switch45_case_default::
+    do
+        do
+            local currentValue = g.config[configName]
+            return (((code .. " - ") .. shortDescription) .. ": ") .. onOff(nil, currentValue)
+        end
+    end
+    ::____switch45_end::
 end
 function getDisplayTextKeyboardController(self, configName, optionType, shortDescription)
-    local ____switch43 = optionType
-    if ____switch43 == 6 then
-        goto ____switch43_case_0
-    elseif ____switch43 == 7 then
-        goto ____switch43_case_1
+    local ____switch49 = optionType
+    if ____switch49 == 6 then
+        goto ____switch49_case_0
+    elseif ____switch49 == 7 then
+        goto ____switch49_case_1
     end
-    goto ____switch43_case_default
-    ::____switch43_case_0::
+    goto ____switch49_case_default
+    ::____switch49_case_0::
     do
         do
             local currentValue = g.hotkeys[configName]
@@ -8769,7 +8892,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return ((shortDescription .. ": ") .. text) .. " (keyboard)"
         end
     end
-    ::____switch43_case_1::
+    ::____switch49_case_1::
     do
         do
             local currentValue = g.hotkeys[configName]
@@ -8783,7 +8906,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return ((shortDescription .. ": ") .. text) .. " (controller)"
         end
     end
-    ::____switch43_case_default::
+    ::____switch49_case_default::
     do
         do
             error(
@@ -8792,7 +8915,7 @@ function getDisplayTextKeyboardController(self, configName, optionType, shortDes
             return "Unknown"
         end
     end
-    ::____switch43_end::
+    ::____switch49_end::
 end
 function onOff(self, setting)
     return (setting and "ON") or "OFF"
@@ -8805,26 +8928,26 @@ function getPopupDescription(self, configName, optionType)
     return ((((("Press a button on your " .. deviceString) .. " to change this setting.$newline$newline") .. keepSettingString) .. "Press \"") .. backKeyText) .. "\" to go back and clear this setting."
 end
 function popupGetDeviceString(self, optionType)
-    local ____switch54 = optionType
-    if ____switch54 == 6 then
-        goto ____switch54_case_0
-    elseif ____switch54 == 7 then
-        goto ____switch54_case_1
+    local ____switch60 = optionType
+    if ____switch60 == 6 then
+        goto ____switch60_case_0
+    elseif ____switch60 == 7 then
+        goto ____switch60_case_1
     end
-    goto ____switch54_case_default
-    ::____switch54_case_0::
+    goto ____switch60_case_default
+    ::____switch60_case_0::
     do
         do
             return "keyboard"
         end
     end
-    ::____switch54_case_1::
+    ::____switch60_case_1::
     do
         do
             return "controller"
         end
     end
-    ::____switch54_case_default::
+    ::____switch60_case_default::
     do
         do
             error(
@@ -8833,7 +8956,7 @@ function popupGetDeviceString(self, optionType)
             return "unknown"
         end
     end
-    ::____switch54_end::
+    ::____switch60_end::
 end
 function popupGetKeepSettingString(self, optionType, currentValue)
     if currentValue == -1 then
@@ -8843,26 +8966,26 @@ function popupGetKeepSettingString(self, optionType, currentValue)
     return ("This setting is currently set to \"" .. tostring(currentKeyName)) .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
 end
 function getKeyName(self, optionType, key)
-    local ____switch61 = optionType
-    if ____switch61 == 6 then
-        goto ____switch61_case_0
-    elseif ____switch61 == 7 then
-        goto ____switch61_case_1
+    local ____switch67 = optionType
+    if ____switch67 == 6 then
+        goto ____switch67_case_0
+    elseif ____switch67 == 7 then
+        goto ____switch67_case_1
     end
-    goto ____switch61_case_default
-    ::____switch61_case_0::
+    goto ____switch67_case_default
+    ::____switch67_case_0::
     do
         do
             return InputHelper.KeyboardToString[key]
         end
     end
-    ::____switch61_case_1::
+    ::____switch67_case_1::
     do
         do
             return InputHelper.ControllerToString[key]
         end
     end
-    ::____switch61_case_default::
+    ::____switch67_case_default::
     do
         do
             error(
@@ -8871,7 +8994,7 @@ function getKeyName(self, optionType, key)
             return "unknown"
         end
     end
-    ::____switch61_end::
+    ::____switch67_end::
 end
 function popupGetBackKeyText(self)
     local lastBackPressed = ModConfigMenu.Config.LastBackPressed
@@ -8902,8 +9025,14 @@ function ____exports.register(self)
     registerPresets(nil)
     registerSubMenuConfig(nil, "Major", MAJOR_CHANGES)
     registerSubMenuHotkeys(nil, "Hotkeys", CUSTOM_HOTKEYS)
-    registerSubMenuConfig(nil, "Gameplay", GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES)
+    registerSubMenuConfig(nil, "Chars", CHARACTER_CHANGES)
+    registerSubMenuConfig(nil, "QoL", QUALITY_OF_LIFE_CHANGES)
+    registerSubMenuConfig(nil, "Gameplay", GAMEPLAY_CHANGES)
+    registerSubMenuConfig(nil, "Cutscene", CUTSCENE_CHANGES)
     registerSubMenuConfig(nil, "Bug Fixes", BUG_FIXES)
+    registerSubMenuConfig(nil, "Graphics", GRAPHIC_CHANGES)
+    registerSubMenuConfig(nil, "Sound", SOUND_CHANGES)
+    registerSubMenuConfig(nil, "Other", OTHER_FEATURES)
 end
 return ____exports
 end,
