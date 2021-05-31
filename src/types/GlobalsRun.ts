@@ -1,6 +1,8 @@
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
+import PickingUpItemDescription from "./PickingUpItemDescription";
+import PillDescription from "./PillDescription";
 
 // Several variables are maps that track things for each player
 // If we have a Lua table indexed by ControllerIndex,
@@ -97,7 +99,13 @@ export default class GlobalsRun {
   fastResetFrame = 0;
 
   fastTravel = {
-    state: FastTravelState.DISABLED,
+    state: FastTravelState.Disabled,
+    /** These are Isaac frames, not game frames. */
+    framesPassed: 0,
+    upwards: false,
+    blueWomb: false,
+    theVoid: false,
+    reseed: false,
   };
 
   freeDevilItem = {
@@ -105,8 +113,16 @@ export default class GlobalsRun {
     granted: false,
   };
 
+  pickingUpItem = new LuaTable<
+    ControllerIndexString,
+    PickingUpItemDescription
+  >();
+
+  /** We track all identified pills so that we can display them. */
+  pills: PillDescription[] = [];
+  pillsPHD = false;
+  pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<ControllerIndexString, int>();
-  pillEffects: PillEffect[] = [];
 
   seededDrops = {
     roomClearAwardSeed: 0,
@@ -115,7 +131,18 @@ export default class GlobalsRun {
 
   slideAnimationHappening = false;
   spedUpFadeIn = false;
+
+  /** Text that appears after players touch an item, reach a new level, etc. */
+  streakText = {
+    text: "",
+    /** Text of less importance that is only shown if there is no main text. */
+    tabText: "",
+    frame: 0,
+  };
+
   switchForgotten = false;
+
+  transformations = new LuaTable<ControllerIndexString, boolean[]>();
 
   // Initialize variables that are tracked per player
   // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
@@ -130,7 +157,20 @@ export default class GlobalsRun {
       this.currentCharacters.set(index, character);
       this.fastClear.paschalCandleCounters.set(index, 1);
       this.freeDevilItem.takenDamage.set(index, false);
+
+      this.pickingUpItem.set(index, {
+        id: CollectibleType.COLLECTIBLE_NULL,
+        type: ItemType.ITEM_NULL,
+        roomIndex: -1,
+      });
+
       this.pocketActiveD6Charge.set(index, 6);
+
+      const transformationArray = [];
+      for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {
+        transformationArray.push(false);
+      }
+      this.transformations.set(index, transformationArray);
     }
   }
 }

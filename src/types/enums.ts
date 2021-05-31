@@ -1,8 +1,5 @@
-// EntityType.ENTITY_FAMILIAR (3)
-export enum FamiliarVariantCustom {
-  PASCHAL_CANDLE_FAST_CLEAR = Isaac.GetEntityVariantByName(
-    "Paschal Candle (Fast-Clear)",
-  ),
+export enum EntityTypeCustom {
+  ENTITY_RACE_TROPHY = Isaac.GetEntityTypeByName("Race Trophy"),
 }
 
 // EntityType.ENTITY_PICKUP (5)
@@ -10,33 +7,34 @@ export enum PickupVariantCustom {
   INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup"),
 }
 
-export enum PickupPriceCustom {
-  // This can be any arbitrary value between -7 and -999; see the PickupPrice enum
-  PRICE_NO_MINIMAP = -50,
-}
-
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
-  // Fast-Travel
-  TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName("Trapdoor (Fast-Travel)"),
-  CRAWLSPACE_FAST_TRAVEL = Isaac.GetEntityVariantByName(
-    "Crawlspace (Fast-Travel)",
-  ),
-  WOMB_TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName(
-    "Womb Trapdoor (Fast-Travel)",
-  ),
-  BLUE_WOMB_TRAPDOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName(
-    "Blue Womb Trapdoor (Fast-Travel)",
-  ),
-  HEAVEN_DOOR_FAST_TRAVEL = Isaac.GetEntityVariantByName(
-    "Heaven Door (Fast-Travel)",
-  ),
-  VOID_PORTAL_FAST_TRAVEL = Isaac.GetEntityVariantByName(
-    "Void Portal (Fast-Travel)",
-  ),
+  PITFALL_CUSTOM = Isaac.GetEntityVariantByName("Pitfall (Custom)"),
+}
 
-  // Fast-Clear
-  NPC_DEATH_ANIMATION = Isaac.GetEntityVariantByName("NPC Death Animation"),
+export enum CollectibleTypeCustom {
+  COLLECTIBLE_13_LUCK = Isaac.GetItemIdByName("13 Luck"),
+
+  // Utility items
+  COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),
+  COLLECTIBLE_CHECKPOINT = Isaac.GetItemIdByName("Checkpoint"),
+  COLLECTIBLE_OFF_LIMITS = Isaac.GetItemIdByName("Off Limits"),
+  COLLECTIBLE_DIVERSITY_PLACEHOLDER_1 = Isaac.GetItemIdByName(
+    "Diversity Placeholder 1",
+  ),
+  COLLECTIBLE_DIVERSITY_PLACEHOLDER_2 = Isaac.GetItemIdByName(
+    "Diversity Placeholder 2",
+  ),
+  COLLECTIBLE_DIVERSITY_PLACEHOLDER_3 = Isaac.GetItemIdByName(
+    "Diversity Placeholder 3",
+  ),
+  COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
+}
+
+export enum PickupPriceCustom {
+  // This can be any arbitrary value as long as it does not conflict with anything in the
+  // PickupPrice enum
+  PRICE_NO_MINIMAP = -50,
 }
 
 export enum EffectSubTypeCustom {
@@ -44,12 +42,12 @@ export enum EffectSubTypeCustom {
   FLOOR_EFFECT_CREEP = 12345, // There is no "Isaac.GetEntitySubTypeByName()" function
 }
 
+// Needs to be here to avoid a dependency cycle
 export enum SaveFileState {
-  NOT_CHECKED,
-  DEFERRED_UNTIL_NEW_RUN_BEGINS,
-  /** Going to the set seed with Eden. */
-  GOING_TO_EDEN,
+  NotChecked,
+  DeferredUntilNewRunBegins,
+  GoingToSetSeedWithEden,
   /** Going back to the old challenge/character/seed. */
-  GOING_BACK,
-  FINISHED,
+  GoingBack,
+  Finished,
 }

@@ -1,49 +1,71 @@
 import g from "../../../../globals";
-import { getRoomIndex } from "../../../../misc";
-import { EffectVariantCustom } from "../../../../types/enums";
+import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
+import * as nextFloor from "./nextFloor";
+import * as state from "./state";
 
-// TODO CHECK IF NECESSARY, BETTER TO JUST SPAWN BEAMS OF LIGHT IN A CLOSED STATE
-/*
-  // We want the player to be forced to dodge the final wave of tears from It Lives!
-  if (
-    upwards &&
-    stage === 8 &&
-    effect.FrameCount < 40 &&
-    // The beam of light is initially spawned with an InitSeed equal to the room seed
-    // The beam of light is spawned with an InitSeed of 0 when re-entering a room
-    effect.InitSeed !== 0
-  ) {
-    continue;
-  }
-*/
+const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
 
+// ModCallbacks.MC_POST_EFFECT_INIT (54)
 export function postEffectInit(effect: EntityEffect): void {
-  replace(effect);
+  fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
-export function replace(effect: EntityEffect): void {
-  const roomIndex = getRoomIndex();
+// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
+export function postEffectUpdate(effect: EntityEffect): void {
+  // Beams of light start at state 0 and get incremented by 1 on every frame
+  // Players can only get taken up by heaven doors if the state is at a high enough value
+  // Thus, we can disable the vanilla functionality by setting the state to 0 on every frame
+  effect.State = 0;
 
-  // Remove the original entity
-  effect.Remove();
+  fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
 
-  // Spawn a custom entity to emulate the original
-  fastTravel.spawn(
-    EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL,
-    effect.Position,
-    shouldSpawnOpen,
+function shouldSpawnOpen() {
+  // In almost all cases, beams of light are spawned after defeating a boss
+  // This means that the room will be clear and they should spawn in an open state
+  // Rarely, players can also encounter beams of light in an I AM ERROR room with enemies
+  // If this is the case, spawn the heaven door in a closed state so that the player must defeat
+  // all of the enemies in the room before going up
+  return g.r.IsClear();
+}
+
+function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
+  // Perform some extra checks before we consider the player to have activated the heaven door
+  const entityDescription = state.getDescription(
+    entity,
+    FAST_TRAVEL_ENTITY_TYPE,
   );
+  const effect = entity as EntityEffect;
 
-  // The custom entity will not respawn if we leave the room,
-  // so we need to keep track of it for the remainder of the floor
-  g.run.level.fastTravel.replacedHeavenDoors.push({
-    room: roomIndex,
-    position: effect.Position,
-  });
+  if (!entityDescription.initial && effect.FrameCount < 40) {
+    // We want the player to be forced to dodge the final wave of tears from It Lives!
+    return;
+  }
+
+  nextFloor.init(entity, player, true);
 }
 
-export function shouldSpawnOpen(): boolean {
-  // If the room is not cleared yet, close the beam of light
-  return !g.r.IsClear();
+// ModCallbacksCustom.MC_POST_ROOM_CLEAR
+export function postRoomClear(): void {
+  openClosedHeavenDoors();
+}
+
+function openClosedHeavenDoors() {
+  const heavenDoors = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+    -1,
+    false,
+    false,
+  );
+  for (const entity of heavenDoors) {
+    const effect = entity.ToEffect();
+    if (effect !== null) {
+      const entityState = state.get(effect, FAST_TRAVEL_ENTITY_TYPE);
+      if (entityState === FastTravelEntityState.Closed) {
+        state.open(effect, FAST_TRAVEL_ENTITY_TYPE);
+      }
+    }
+  }
 }

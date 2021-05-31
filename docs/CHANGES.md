@@ -64,9 +64,9 @@ In terms of what to change about the game, the mod has several goals, and attemp
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
 - `003` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
-  - Keeper will get a Store Credit trinket instead of a Your Soul trinket.
+  - Keeper and Tainted Keeper will be awarded 15 cents instead of a Your Soul trinket.
 
-> Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of only some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
+> Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
 
 ### 4) Fast-Reset
 
@@ -135,35 +135,37 @@ Post-flip actions:
 
 >  Why? When playing as Samson, players immediately drop the Child's Heart to improve their odds at good room drops.
 
-- `023` Eden's starting items will be shown in the starting room.
+- `023` Tainted Keeper starts with 15 cents.
+
+> Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be essential for unseeded speedruns.
+
+- `024` Eden's starting items will be shown in the starting room.
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-- `024` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+- `031` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `025` The fade in at the beginning of a run is sped-up.
-- `026` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `027` Void portals that spawn after bosses are automatically deleted.
+- `032` The fade in at the beginning of a run is sped-up.
+- `033` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `034` Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `028` Bosses will be faded during their death animation.
+- `035` Bosses will be faded during their death animation.
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item. Furthermore, the death animation obscures other enemies that happen to be behind the dying boss.
 
-- `029` The tears that explode out of enemies when you have Vasculitis are faded.
+- `036` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `029` A custom console is provided that is better than the vanilla console.
+- `037` The Hush door will be automatically opened.
+- `038` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `041` A custom console is provided that is better than the vanilla console.
 
 > Why? The vanilla console has an annoying animation and is inconvenient to use.
-
-- Azazel's Rage is removed.
-
-> Why? Unfortunately, this item is bugged with the Fast-Clear feature. In order to make it so that everyone gets consistent items on the same seeds, it is removed from the game regardless of whether or not you have the feature enabled.
 
 - The Karma trinket is removed.
 
@@ -175,7 +177,7 @@ Post-flip actions:
 
 - Having Duality will now always give you both the Devil Room and the Angel Room.
 
-> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have had to be adjusted to have 3 doors.
+> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.
 
 <!--
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
@@ -189,7 +191,6 @@ Post-flip actions:
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
-- Identified pills (up to 7) will be shown when the player presses the map button (tab).
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
 - Cod Worms are replaced with Para-Bites.
@@ -213,8 +214,8 @@ Post-flip actions:
   - the fade when entering or exiting crawlspaces (replaced with a normal room transition animation)
 -->
   - all "giantbook" animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)
-<!--
   - the pause and unpause animations
+<!--
   - traveling upwards in a beam of light (replaced with a faster version)
   - the use animation for Telepills
   - the use animation for Blank Card when you have a teleport card
@@ -257,12 +258,16 @@ Post-flip actions:
 - The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - The 20/20 sprite is now easier to see.
 - The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.)
+- Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
+- The color of some pills are changed to make them easier to identify at a glance:
+  - White-dotted / Red --> Full red
+  - Pink / Red --> White / Red
+  - White / White-dotted --> Full white-dotted
 
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Scared Hearts and Sticky Nickels now have unique sprites.
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
-- Pill sprites now have consistent orientations. (Thanks goes to [Nioffe](https://steamcommunity.com/id/nioffe) for creating the sprites in the [Consistent Pills](https://steamcommunity.com/sharedfiles/filedetails/?id=1418510121) mod.)
 - The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
 - The white spotted pill sprite has been changed to an all-spotted sprite so that it is easier to distinguish from the white pill.
 - The white has been changed on the red-white pill sprite so that it is easier to see.

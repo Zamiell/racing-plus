@@ -1,6 +1,4 @@
-import * as seededRooms from "../features/seededRooms";
-import g from "../globals";
-
+/*
 export function main(
   entityType: EntityType | int,
   variant: EntityVariantForAC,
@@ -111,3 +109,4 @@ function basement1EasyItems(gridIndex: int): [EntityType, int, int] | null {
 
   return null;
 }
+*/

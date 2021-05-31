@@ -1,11 +1,13 @@
-- check to see if all crawlspace variables are necessary
-- test to see if I AM ERROR trapdoors work properly (they are spawned open by default? what if there are enemies?)
+- test fast trave with womb trapdoors
+- test fast trave with blue womb trapdoors
+- test fast travel with Void Portals
 
 - fast travel
 - chat system
 - custom console
 
 Racing+ new features:
+- detect pause buffering and punish the player
 - Charge bars for all of the charge items
 	- Azazel's Rage
 - automatically open door after going to 2x1 room in mines with completed knife

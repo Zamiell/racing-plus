@@ -1,0 +1,12 @@
+<items gfxroot="gfx/items/" version="1">
+	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" />
+
+	<!-- Utility items -->
+	<passive description="" gfx="Trophy.png" name="Trophy" />
+	<passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" />
+	<passive description="B1 Treasure Room items are off limits in this format" gfx="Off_Limits.png" name="Off Limits" />
+	<passive description="" name="Diversity Placeholder 1" />
+	<passive description="" name="Diversity Placeholder 2" />
+	<passive description="" name="Diversity Placeholder 3" />
+	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" />
+</items>

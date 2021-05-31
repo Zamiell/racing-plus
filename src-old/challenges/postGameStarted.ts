@@ -1,30 +1,11 @@
-import g from "../globals";
-import * as misc from "../misc";
-import { CollectibleTypeCustom } from "../types/enums";
-import { ChallengeCustom } from "./enums";
-import { inSpeedrun } from "./misc";
-import * as season1 from "./season1";
-import * as season2 from "./season2";
-import * as season3 from "./season3";
-import * as season4 from "./season4";
-import * as season5 from "./season5";
-import * as season6 from "./season6";
-import * as season7 from "./season7";
-import * as season8 from "./season8";
-import * as season9 from "./season9";
-import * as speedrun from "./speedrun";
-
+/*
 // Called from the "PostGameStarted.Main()" function
 export function main(): void {
   // Local variables
   const character = g.p.GetPlayerType();
   const challenge = Isaac.GetChallenge();
 
-  // Initialize some data structures
-  season7.initValidItems();
-
   // Reset some per-run variables
-  g.speedrun.spawnedCheckpoint = false;
   g.speedrun.fadeFrame = 0;
   g.speedrun.resetFrame = 0;
 
@@ -228,3 +209,4 @@ export function main(): void {
     }
   }
 }
+*/

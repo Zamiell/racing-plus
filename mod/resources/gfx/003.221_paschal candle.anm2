@@ -1,7 +1,3 @@
-<!--
-	This anm2 file is only used for players who have fast-clear disabled.
-	We provide it so that if players have fast-clear disabled, they still get the "fill-up" graphics.
--->
 <AnimatedActor>
 	<Info CreatedBy="trtv" CreatedOn="5/24/2021 10:45:31 PM" Version="3" Fps="30"/>
 	<Content>

@@ -16,25 +16,6 @@ export function newRoom(): void {
   speedrunPostNewRoom.main(); // Do speedrun related stuff
 }
 
-// Check to see if we need to remove the heart container from a Strength card on Keeper
-// (this has to be done before the resetting of the "g.run.usedStrength" variable)
-function checkRemoveKeeperHeartContainerFromStrength() {
-  // Local variables
-  const character = g.p.GetPlayerType();
-
-  if (
-    character === PlayerType.PLAYER_KEEPER &&
-    g.run.keeper.baseHearts === 4 &&
-    g.run.room.usedStrength
-  ) {
-    g.run.keeper.baseHearts = 2;
-    g.p.AddMaxHearts(-2, true); // Take away a heart container
-    Isaac.DebugString(
-      "Took away 1 heart container from Keeper (via a Strength card). (PostNewRoom)",
-    );
-  }
-}
-
 // Instantly spawn the first part of the fight
 // (there is an annoying delay before The Fallen and the leeches spawn)
 function checkSatanRoom() {
@@ -124,26 +105,6 @@ function checkMegaSatanRoom() {
 
   // Emulate reaching a new floor, using a custom floor number of 13 (The Void is 12)
   Isaac.DebugString("Entered the Mega Satan room.");
-
-  // Check to see if we are cheating on the "Everything" race goal
-  if (g.race.goal === "Everything" && !g.run.killedLamb) {
-    // Do a little something fun
-    g.sfx.Play(SoundEffect.SOUND_THUMBS_DOWN, 1, 0, false, 1);
-    for (let i = 0; i < 20; i++) {
-      const pos = g.r.FindFreePickupSpawnPosition(g.p.Position, 50, true);
-      // Use a value of 50 to spawn them far from the player
-      const monstro = Isaac.Spawn(
-        EntityType.ENTITY_MONSTRO,
-        0,
-        0,
-        pos,
-        Vector.Zero,
-        null,
-      );
-      monstro.MaxHitPoints = 1000000;
-      monstro.HitPoints = 1000000;
-    }
-  }
 }
 
 function checkScolexRoom() {

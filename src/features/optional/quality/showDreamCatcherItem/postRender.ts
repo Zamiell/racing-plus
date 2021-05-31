@@ -16,8 +16,8 @@ export function main(): void {
 }
 
 function repositionPlayer() {
-  if (g.run.level.dreamCatcher.warpState === WarpState.REPOSITIONING_PLAYER) {
-    g.run.level.dreamCatcher.warpState = WarpState.FINISHED;
+  if (g.run.level.dreamCatcher.warpState === WarpState.RepositioningPlayer) {
+    g.run.level.dreamCatcher.warpState = WarpState.Finished;
     centerPlayers();
   }
 }

@@ -1,11 +1,4 @@
-// Note: This callback only fires on frame 1 and onwards
-
-import * as season8 from "../challenges/season8";
-import * as fastTravel from "../features/fastTravel";
-import g from "../globals";
-import * as pedestals from "../pedestals";
-import BlackHeartNPC from "../types/BlackHeartNPC";
-
+/*
 export function main(pickup: EntityPickup): void {
   const sprite = pickup.GetSprite();
 
@@ -137,3 +130,4 @@ export function tarotCard(pickup: EntityPickup): void {
 export function trinket(pickup: EntityPickup): void {
   season8.postPickupUpdateTrinket(pickup);
 }
+*/

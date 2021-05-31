@@ -108,18 +108,29 @@ functionMap.set("chaos", (_params: string) => {
 
 functionMap.set("char", (params: string) => {
   if (params === "") {
-    print("You must specify a character name.");
+    print("You must specify a character name or number.");
     return;
   }
 
-  const word = params.toLowerCase();
-  const character = CHARACTER_MAP.get(word);
-  if (character === undefined) {
-    print("Unknown character.");
-    return;
+  let character: PlayerType;
+  const num = tonumber(params);
+  if (num !== undefined) {
+    character = num;
+  } else {
+    const word = params.toLowerCase();
+    const characterFromMap = CHARACTER_MAP.get(word);
+    if (characterFromMap === undefined) {
+      print("Unknown character.");
+      return;
+    }
+    character = characterFromMap;
   }
 
   restartAsCharacter(character);
+});
+
+functionMap.set("commands", (_params: string) => {
+  commands(functionMap);
 });
 
 functionMap.set("crawl", (_params: string) => {
@@ -144,23 +155,6 @@ functionMap.set("debug2", (_params: string) => {
 
 functionMap.set("devil", (_params: string) => {
   devil();
-});
-
-functionMap.set("char", (params: string) => {
-  if (params === "") {
-    print("You must specify a character number.");
-  }
-
-  const num = validateNumber(params);
-  if (num === undefined) {
-    return;
-  }
-
-  g.speedrun.characterNum = num;
-});
-
-functionMap.set("commands", (_params: string) => {
-  commands(functionMap);
 });
 
 functionMap.set("fool", (_params: string) => {

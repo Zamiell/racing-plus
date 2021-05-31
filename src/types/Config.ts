@@ -11,6 +11,7 @@ export default class Config {
   // Gameplay & Quality of Life Changes
   judasAddBomb = true;
   samsonDropHeart = true;
+  taintedKeeperMoney = true;
   showEdenStartingItems = true;
   showDreamCatcherItem = true;
   speedUpFadeIn = true;
@@ -18,6 +19,8 @@ export default class Config {
   deleteVoidPortals = true;
   fadeBosses = true;
   fadeVasculitisTears = true;
+  openHushDoor = true;
+  showPills = true;
   customConsole = true;
 
   // Bug Fixes

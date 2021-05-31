@@ -34,9 +34,9 @@ The following items are also removed from all item pools, because they allow you
 
 To add to the diversity, several extra starting items are added to the Treasure Room Pool, but only for Basement 1. From Basement 2 onwards, these items will not appear in the Treasure Room item pool.
 
-- Incubus (from a Mom's Knife fart-reroll)
-- Crown of Light (from a Epic Fetus fart-reroll)
-- Sacred Heart (from a Tech X fart-reroll)
+- Incubus
+- Crown of Light
+- Sacred Heart
 
 <br />
 

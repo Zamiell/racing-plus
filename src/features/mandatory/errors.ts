@@ -19,7 +19,7 @@ export function postRender(): boolean {
   }
 
   if (
-    g.saveFile.state === SaveFileState.FINISHED &&
+    g.saveFile.state === SaveFileState.Finished &&
     !g.saveFile.fullyUnlocked
   ) {
     drawNotFullyUnlocked();

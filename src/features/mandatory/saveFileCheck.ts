@@ -7,9 +7,9 @@ import {
 } from "../../misc";
 import { SaveFileState } from "../../types/enums";
 
-export const SAVE_FILE_SEED = "31XY AQGT"; // cspell:disable-line
+export const SAVE_FILE_SEED = "KAZ7 NXD6"; // cspell:disable-line
 export const EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
-export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_MR_DOLLY;
+export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_GODS_FLESH;
 
 // We can verify that the player is playing on a fully unlocked save by file by going to a specific
 // seed on Eden and checking to see if the items are accurate
@@ -21,14 +21,14 @@ export function isNotFullyUnlocked(): boolean {
   const startSeedString = g.seeds.GetStartSeedString();
   const challenge = Isaac.GetChallenge();
 
-  if (g.saveFile.state === SaveFileState.FINISHED) {
+  if (g.saveFile.state === SaveFileState.Finished) {
     return false;
   }
 
   // Not checked
   if (
-    g.saveFile.state === SaveFileState.NOT_CHECKED ||
-    g.saveFile.state === SaveFileState.DEFERRED_UNTIL_NEW_RUN_BEGINS
+    g.saveFile.state === SaveFileState.NotChecked ||
+    g.saveFile.state === SaveFileState.DeferredUntilNewRunBegins
   ) {
     // Store what the current run was like
     g.saveFile.oldRun.challenge = challenge;
@@ -36,12 +36,12 @@ export function isNotFullyUnlocked(): boolean {
     g.saveFile.oldRun.seededRun = playingOnSetSeed();
     g.saveFile.oldRun.seed = startSeedString;
 
-    g.saveFile.state = SaveFileState.GOING_TO_EDEN;
+    g.saveFile.state = SaveFileState.GoingToSetSeedWithEden;
     log("saveFileCheck - Performing a save file check with Eden.");
   }
 
   // Going to the set seed with Eden
-  if (g.saveFile.state === SaveFileState.GOING_TO_EDEN) {
+  if (g.saveFile.state === SaveFileState.GoingToSetSeedWithEden) {
     let valid = true;
     if (challenge !== Challenge.CHALLENGE_NULL) {
       valid = false;
@@ -74,12 +74,12 @@ export function isNotFullyUnlocked(): boolean {
       log("Valid save file detected.");
     }
 
-    g.saveFile.state = SaveFileState.GOING_BACK;
+    g.saveFile.state = SaveFileState.GoingBack;
     log("saveFileCheck - Going back to the old run.");
   }
 
   // Going back to the old challenge/character/seed
-  if (g.saveFile.state === SaveFileState.GOING_BACK) {
+  if (g.saveFile.state === SaveFileState.GoingBack) {
     let valid = true;
     if (challenge !== g.saveFile.oldRun.challenge) {
       valid = false;
@@ -101,7 +101,7 @@ export function isNotFullyUnlocked(): boolean {
       return true;
     }
 
-    g.saveFile.state = SaveFileState.FINISHED;
+    g.saveFile.state = SaveFileState.Finished;
     log("saveFileCheck - Completed.");
   }
 
@@ -114,7 +114,7 @@ export function checkRestart(): boolean {
   const challenge = Isaac.GetChallenge();
 
   switch (g.saveFile.state) {
-    case SaveFileState.GOING_TO_EDEN: {
+    case SaveFileState.GoingToSetSeedWithEden: {
       if (challenge !== Challenge.CHALLENGE_NULL) {
         consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
       }
@@ -130,7 +130,7 @@ export function checkRestart(): boolean {
       return true;
     }
 
-    case SaveFileState.GOING_BACK: {
+    case SaveFileState.GoingBack: {
       if (challenge !== g.saveFile.oldRun.challenge) {
         consoleCommand(`challenge ${g.saveFile.oldRun.challenge}`);
       }

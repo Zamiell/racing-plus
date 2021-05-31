@@ -1,8 +1,4 @@
-import { Vector.Zero } from "../constants";
-import * as fastTravel from "../features/fastTravel";
-import g from "../globals";
-import * as useItem from "./useItem";
-
+/*
 // EffectVariant.DEVIL (6)
 export function devil(effect: EntityEffect): void {
   // Fade the statue if there are any collectibles in range
@@ -52,30 +48,6 @@ export function diceFloor(effect: EntityEffect): void {
     g.run.room.diceRoomActivated = true;
     useItem.forgetMeNow();
   }
-}
-
-export function trapdoor(effect: EntityEffect): void {
-  fastTravel.entity.checkOpen(effect);
-  fastTravel.entity.checkClose(effect);
-  fastTravel.entity.checkPlayerTouching(effect, false);
-}
-
-export function crawlspace(effect: EntityEffect): void {
-  fastTravel.entity.checkOpen(effect);
-  fastTravel.entity.checkClose(effect);
-  fastTravel.crawlspace.checkPlayerTouching(effect);
-}
-
-export function heavenDoor(effect: EntityEffect): void {
-  fastTravel.entity.checkPlayerTouching(effect, true);
-}
-
-export function voidPortal(effect: EntityEffect): void {
-  fastTravel.entity.checkPlayerTouching(effect, false);
-}
-
-export function megaSatanTrapdoor(effect: EntityEffect): void {
-  fastTravel.entity.checkPlayerTouching(effect, false);
 }
 
 export function tearPoof(effect: EntityEffect): void {
@@ -175,3 +147,4 @@ export function stickyNickel(effect: EntityEffect): void {
     }
   }
 }
+*/

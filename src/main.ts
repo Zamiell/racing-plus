@@ -15,6 +15,7 @@ import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
+import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -22,11 +23,12 @@ import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
+import * as useCard from "./callbacks/useCard";
+import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
 import { log } from "./misc";
 import * as modConfigMenu from "./modConfigMenu";
 import * as saveDat from "./saveDat";
-import { EffectVariantCustom } from "./types/enums";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -51,8 +53,10 @@ modConfigMenu.register();
 racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main); // 0
 racingPlus.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
 racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
+racingPlus.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
 racingPlus.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
 racingPlus.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
+racingPlus.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
 racingPlus.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main); // 11
 racingPlus.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
 racingPlus.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
@@ -94,6 +98,13 @@ racingPlus.AddCallback(
   FamiliarVariant.PASCHAL_CANDLE,
 );
 
+// Register PostPickupInit callbacks (34)
+racingPlus.AddCallback(
+  ModCallbacks.MC_POST_PICKUP_INIT,
+  postPickupInit.bigChest,
+  PickupVariant.PICKUP_BIGCHEST,
+); // 340
+
 // Register PostTearUpdate callbacks (40)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_TEAR_UPDATE,
@@ -104,38 +115,18 @@ racingPlus.AddCallback(
 // Register PostEffectInit callbacks (54)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_EFFECT_INIT,
+  postEffectInit.poof01,
+  EffectVariant.POOF01,
+); // 15
+racingPlus.AddCallback(
+  ModCallbacks.MC_POST_EFFECT_INIT,
   postEffectInit.heavenLightDoor,
   EffectVariant.HEAVEN_LIGHT_DOOR,
-);
+); // 39
 
 // Register PostEffectUpdate callbacks (55)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.trapdoorFastTravel,
-  EffectVariantCustom.TRAPDOOR_FAST_TRAVEL,
-);
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.crawlspaceFastTravel,
-  EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL,
-);
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.wombTrapdoorFastTravel,
-  EffectVariantCustom.WOMB_TRAPDOOR_FAST_TRAVEL,
-);
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.blueWombTrapdoorFastTravel,
-  EffectVariantCustom.BLUE_WOMB_TRAPDOOR_FAST_TRAVEL,
-);
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.heavenDoorFastTravel,
-  EffectVariantCustom.HEAVEN_DOOR_FAST_TRAVEL,
-);
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_UPDATE,
-  postEffectUpdate.voidPortalFastTravel,
-  EffectVariantCustom.VOID_PORTAL_FAST_TRAVEL,
+  postEffectUpdate.heavenLightDoor,
+  EffectVariant.HEAVEN_LIGHT_DOOR,
 );

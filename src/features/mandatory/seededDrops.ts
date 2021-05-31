@@ -163,7 +163,7 @@ export function spawn(): void {
   if (pickupCount > 0 && pickupVariant !== PickupVariant.PICKUP_NULL) {
     let subType = 0;
     for (let i = 1; i <= pickupCount; i++) {
-      const pos = g.r.FindFreePickupSpawnPosition(centerPos, 1, true);
+      const pos = g.r.FindFreePickupSpawnPosition(centerPos, 0, true);
       const pickup = g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         pickupVariant,

@@ -1,7 +1,4 @@
-import g from "./globals";
-import * as misc from "./misc";
-import SpriteDescription from "./types/SpriteDescription";
-
+/*
 // Variables
 export const sprites = new Map<string, SpriteDescription>();
 
@@ -94,7 +91,7 @@ function getFileName(spriteType: string, spriteName: string) {
     }
 
     case "black": {
-      return "gfx/misc/black.anm2";
+      return "gfx/black.anm2";
     }
 
     case "dps-button": {
@@ -343,3 +340,4 @@ export function clearPostRaceStartGraphics(): void {
   init("diversity-item4", "");
   init("diversity-item5", "");
 }
+*/

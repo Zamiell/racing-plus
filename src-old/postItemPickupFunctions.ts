@@ -1,12 +1,6 @@
 // These functions are used to deposit items directly in the player's inventory, if there is room
 
-import { ChallengeCustom } from "./challenges/enums";
-import { Vector.Zero } from "./constants";
-import g from "./globals";
-import * as misc from "./misc";
-import * as postItemPickup from "./postItemPickup";
-import { CollectibleTypeCustom } from "./types/enums";
-
+/*
 const functionMap = new Map<CollectibleType, () => void>();
 export default functionMap;
 
@@ -90,7 +84,7 @@ functionMap.set(CollectibleType.COLLECTIBLE_CAFFEINE_PILL, () => {
   // Drop the pill given from Caffeine Pill
   // (we spawn it instead of using "player.DropPoketItem()" to avoid the complexity of having two
   // slots)
-  const pos = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+  const pos = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
   Isaac.Spawn(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_PILL,
@@ -195,3 +189,4 @@ functionMap.set(CollectibleType.COLLECTIBLE_DIVORCE_PAPERS, () => {
   }
   postItemPickup.insertNearestTrinket();
 });
+*/

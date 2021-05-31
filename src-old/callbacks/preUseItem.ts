@@ -1,9 +1,4 @@
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import { CollectibleTypeCustom } from "../types/enums";
-import * as useItem from "./useItem";
-
+/*
 // 26 total item effects
 // https://bindingofisaacrebirth.gamepedia.com/Dead_Sea_Scrolls
 // Listed in alphabetical order
@@ -374,3 +369,4 @@ function unreplacedItemsExist() {
 
   return false;
 }
+*/

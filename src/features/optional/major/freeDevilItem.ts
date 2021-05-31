@@ -57,12 +57,16 @@ function giveTrinket(player: EntityPlayer) {
 
   player.AnimateHappy();
 
-  const trinketType =
+  if (
     character === PlayerType.PLAYER_KEEPER ||
     character === PlayerType.PLAYER_KEEPER_B
-      ? TrinketType.TRINKET_STORE_CREDIT
-      : TrinketType.TRINKET_YOUR_SOUL;
+  ) {
+    // In the special case of Keeper or Tainted Keeper, we award 15 cents instead of a trinket
+    player.AddCoins(15);
+    return;
+  }
 
+  const trinketType = TrinketType.TRINKET_YOUR_SOUL;
   if (getOpenTrinketSlot(player) !== null) {
     // By default, put it directly in our inventory
     player.AddTrinket(trinketType);

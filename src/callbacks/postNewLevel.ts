@@ -1,3 +1,4 @@
+import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import g from "../globals";
 import { log } from "../misc";
 import * as saveDat from "../saveDat";
@@ -32,6 +33,9 @@ export function newLevel(): void {
   // Internally, the game saves the run state at the beginning of every floor
   // Mimic this functionality with our own mod data
   saveDat.save();
+
+  // Features
+  openHushDoor.postNewLevel();
 
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();

@@ -1,10 +1,4 @@
-// Note: This callback only fires on frame 1 and onwards
-
-import { DEFAULT_COLOR, Vector.Zero } from "../constants";
-import * as fastClear from "../features/fastClear";
-import g from "../globals";
-import { EntityTypeCustom } from "../types/enums";
-
+/*
 export function main(npc: EntityNPC): void {
   // Check for dying enemies so that we can fix the bug where multi-segment enemies drop multiple
   // black hearts
@@ -363,3 +357,4 @@ export function speedupGhost(npc: EntityNPC): void {
     npc.StateFrame = 0; // StateFrame decrements down from 60 to 0, so just jump ahead
   }
 }
+*/

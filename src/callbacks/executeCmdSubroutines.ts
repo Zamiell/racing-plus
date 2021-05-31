@@ -12,7 +12,7 @@ export function chaosCardTears(): void {
 }
 
 export function crawlspace(): void {
-  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
   Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
 }
 
@@ -40,7 +40,7 @@ export function IAMERROR(): void {
 }
 
 export function trapdoor(): void {
-  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
   Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
 }
 

@@ -38,4 +38,6 @@ export default class RaceData {
   place = 1;
   /** The number of people in the race. */
   numEntrants = 1;
+
+  finished = false;
 }

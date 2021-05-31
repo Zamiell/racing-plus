@@ -1,9 +1,4 @@
-import g from "../globals";
-import { CollectibleTypeCustom } from "../types/enums";
-import { inSpeedrun } from "./misc";
-import * as season7 from "./season7";
-import * as season8 from "./season8";
-
+/*
 export function main(): void {
   if (!inSpeedrun()) {
     return;
@@ -30,7 +25,7 @@ export function main(): void {
 }
 
 // Check to see if the player just picked up the "Checkpoint" custom item
-function checkCheckpointTouched(forceGoToNextCharacter = false) {
+function checkCheckpointTouched() {
   // Local variables
   const isaacFrameCount = Isaac.GetFrameCount();
 
@@ -40,12 +35,6 @@ function checkCheckpointTouched(forceGoToNextCharacter = false) {
       g.p.QueuedItem.Item.ID !== CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT ||
       g.run.seededDeath.state !== 0)
   ) {
-    return;
-  }
-
-  if (g.speedrun.spawnedCheckpoint) {
-    g.speedrun.spawnedCheckpoint = false;
-  } else if (!forceGoToNextCharacter) {
     return;
   }
 
@@ -75,3 +64,4 @@ function checkCheckpointTouched(forceGoToNextCharacter = false) {
   // Perform some additional actions for some specific seasons
   season7.checkpointTouched();
 }
+*/

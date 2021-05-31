@@ -1,12 +1,20 @@
-import * as removeUselessPills from "../features/mandatory/removeUselessPills";
+// Some pills are removed via specifying a bogus achievement in pocketitems.xml
+// However, they can still appear if the player gets a False PHD and it converts a Telepills,
+// I can see forever!, or Lemon Party
+// If this happens, convert them to specific other pills
+
+const BANNED_PILLS = new Map<PillEffect, PillEffect>([
+  [PillEffect.PILLEFFECT_AMNESIA, PillEffect.PILLEFFECT_HORF], // 25
+  [PillEffect.PILLEFFECT_QUESTIONMARK, PillEffect.PILLEFFECT_IM_EXCITED], // 31
+]);
 
 export function main(
   pillEffect: PillEffect,
-  pillColor: PillColor,
-): PillEffect | null {
-  const newPillEffect = removeUselessPills.getPillEffect(pillEffect, pillColor);
-  if (newPillEffect !== null) {
-    return pillEffect;
+  _pillColor: PillColor,
+): number | null {
+  const pillReplacement = BANNED_PILLS.get(pillEffect);
+  if (pillReplacement !== undefined) {
+    return pillReplacement;
   }
 
   return null;

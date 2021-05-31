@@ -1,25 +1,4 @@
 /*
-
-import * as season5 from "../challenges/season5";
-import { DEFAULT_COLOR, TRANSFORMATION_NAMES } from "../constants";
-import * as bossRush from "../features/bossRush";
-import * as challengeRooms from "../features/challengeRooms";
-import * as fastClear from "../features/fastClear";
-import * as fastTravel from "../features/fastTravel";
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import * as postItemPickup from "../postItemPickup";
-import postItemPickupFunctions from "../postItemPickupFunctions";
-import {
-  CollectibleTypeCustom,
-  EffectVariantCustom,
-  EntityTypeCustom,
-  PickupVariantCustom,
-  PlayerTypeCustom,
-  SoundEffectCustom,
-} from "../types/enums";
-
 export function main(): void {
   removeInvisibleEntities();
   checkStartTime();
@@ -27,7 +6,6 @@ export function main(): void {
   checkDDItems();
   checkKeeperHearts();
   checkItemPickup();
-  checkTransformations();
   checkCharacter();
   checkHauntSpeedup();
   checkMomStomp();
@@ -78,8 +56,6 @@ export function main(): void {
 
   // Check the player's health for the Soul Jar mechanic
   soulJar.PostUpdate();
-
-  pills.CheckPHD();
 
   // Handle things for races
   racePostUpdate.Main();
@@ -252,92 +228,6 @@ function checkKeeperHearts() {
   }
 }
 
-function checkItemPickup() {
-  if (g.p.IsItemQueueEmpty()) {
-    checkItemPickupQueueEmpty();
-  } else {
-    checkItemPickupQueueNotEmpty();
-  }
-}
-
-function checkItemPickupQueueEmpty() {
-  // Check to see if we were picking up something on the previous frame
-  if (g.run.pickingUpItem === CollectibleType.COLLECTIBLE_NULL) {
-    return;
-  }
-
-  // We just finished putting an item into our inventory
-  // (e.g. the animation where Isaac holds the item over his head just finished)
-  // Check to see if we need to do something specific after this item is added to our inventory
-  if (
-    g.run.pickingUpItemType === ItemType.ITEM_PASSIVE || // 1
-    g.run.pickingUpItemType === ItemType.ITEM_ACTIVE || // 3
-    g.run.pickingUpItemType === ItemType.ITEM_FAMILIAR // 4
-  ) {
-    postNewItem();
-  }
-
-  // Mark that we are no longer picking up anything anymore
-  g.run.pickingUpItem = CollectibleType.COLLECTIBLE_NULL;
-  g.run.pickingUpItemRoom = 0;
-  g.run.pickingUpItemType = ItemType.ITEM_NULL;
-}
-
-function checkItemPickupQueueNotEmpty() {
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-
-  // We are currently in the animation where Isaac holds an item over his head
-  if (g.run.pickingUpItem !== CollectibleType.COLLECTIBLE_NULL) {
-    // We have already marked down which item is being held, so do nothing
-    return;
-  }
-
-  if (g.p.QueuedItem.Item === null) {
-    // We are currently picking up an item, but QueuedItem is null
-    // This should never happen
-    return;
-  }
-
-  // Record which item we are picking up
-  g.run.pickingUpItem = g.p.QueuedItem.Item.ID;
-  g.run.pickingUpItemRoom = roomIndex;
-  g.run.pickingUpItemType = g.p.QueuedItem.Item.Type;
-
-  preItemPickup(g.p.QueuedItem.Item);
-}
-
-function preItemPickup(itemConfigItem: ItemConfigItem) {
-  // Mark that we have touched a pedestal item (for Challenge Rooms & the Boss Rush)
-  // (trinkets do not start Challenge Rooms or the Boss Rush on vanilla)
-  if (g.run.pickingUpItemType !== ItemType.ITEM_TRINKET) {
-    g.run.room.touchedPickup = true;
-  }
-
-  // Mark to draw the streak text for this item
-  g.run.streakText = itemConfigItem.Name;
-  g.run.streakFrame = Isaac.GetFrameCount();
-
-  // Keep track of our passive items over the course of the run
-  if (
-    itemConfigItem.Type === ItemType.ITEM_PASSIVE || // 1
-    itemConfigItem.Type === ItemType.ITEM_FAMILIAR // 4
-  ) {
-    g.run.passiveItems.push(itemConfigItem.ID);
-  }
-
-  // Put Mutant Spider's Inner Eye on the item tracker
-  if (
-    itemConfigItem.ID ===
-    CollectibleTypeCustom.COLLECTIBLE_MUTANT_SPIDER_INNER_EYE
-  ) {
-    Isaac.DebugString("Adding collectible 3001 (Mutant Spider's Inner Eye)");
-  }
-
-  // Other
-  season5.preItemPickup(itemConfigItem);
-}
-
 function postNewItem() {
   // Local variables
   const roomIndex = misc.getRoomIndex();
@@ -370,22 +260,6 @@ function postNewItem() {
     !isCustomInputPressed("hotkeyDropPocket")
   ) {
     postItemFunction();
-  }
-}
-
-function checkTransformations() {
-  for (let i = 0; i <= PlayerForm.NUM_PLAYER_FORMS - 1; i++) {
-    const hasForm = g.p.HasPlayerForm(i);
-    if (hasForm && !g.run.transformations.has(i)) {
-      // We have gotten a new transformation that has not been recorded yet
-      g.run.transformations.set(i, true);
-      g.run.streakText = TRANSFORMATION_NAMES[i];
-      g.run.streakFrame = Isaac.GetFrameCount();
-
-      if (i === PlayerForm.PLAYERFORM_DRUGS) {
-        postItemPickup.insertNearestPill();
-      }
-    }
   }
 }
 

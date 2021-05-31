@@ -495,7 +495,7 @@ function debuffOff() {
       schoolbag.put(activeItem, activeCharge);
     } else {
       // There is no room in the Schoolbag, so spawn it on the ground
-      const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+      const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
       const pedestal = Isaac.Spawn(
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_COLLECTIBLE,

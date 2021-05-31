@@ -40,7 +40,7 @@ export function momsHeart(entity: Entity): void {
   }
 
   // Record when we killed It Lives! or Hush;
-  // a trapdoor and/or beam of light will spawn 1 frame from now, and we will delete it in the
+  // a trapdoor and/or heaven door will spawn 1 frame from now, and we will delete it in the
   // fastTravel functions
   g.run.itLivesKillFrame = gameFrameCount;
   Isaac.DebugString(
@@ -131,7 +131,7 @@ export function roomClearDelayNPC(_entity: Entity): void {
 // Blisters also need to be killed twice (to kill the spawned Sacks)
 // Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma)
 // This code is also necessary to fix the issue where a Globin will prevent the removal of the
-// natural trapdoor and beam of light after It Lives!
+// natural trapdoor and heaven door after It Lives!
 // (in the fast travel replacement functions)
 function killExtraEnemies() {
   Isaac.DebugString(

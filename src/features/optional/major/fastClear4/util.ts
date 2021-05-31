@@ -1,3 +1,5 @@
+// For testing, a seed with Monstro on Basement 1 is: WZVC T7V1
+
 import g from "../../../../globals";
 
 export function deleteDyingEntity(

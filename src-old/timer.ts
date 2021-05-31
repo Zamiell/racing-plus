@@ -1,15 +1,9 @@
-import { SEASON_6_ITEM_LOCK_MILLISECONDS } from "./challenges/constants";
-import { ChallengeCustom } from "./challenges/enums";
-import { inSpeedrun } from "./challenges/misc";
-import g from "./globals";
-import * as misc from "./misc";
-import { CollectibleTypeCustom, SeededDeathState } from "./types/enums";
-
+/*
 // Types
 enum TimerType {
-  RACE_OR_SPEEDRUN,
-  RUN,
-  SEEDED_DEATH,
+  RaceOrSpeedrun,
+  Run,
+  SeededDeath,
 }
 interface Sprites {
   clock: Sprite;
@@ -311,3 +305,4 @@ export function convertSecondsToStrings(
 
   return [hours, minute1, minute2, second1, second2, tenths];
 }
+*/

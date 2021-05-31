@@ -2,7 +2,6 @@
 export function main(): void {
   // Draw graphics
   sprites.display();
-  drawStreakText();
   schoolbag.spriteDisplay();
   soulJar.spriteDisplay();
   theLostHealth();
@@ -12,7 +11,6 @@ export function main(): void {
   timer.checkDisplayRaceSpeedrun();
   timer.checkDisplayRun();
   timer.checkDisplaySeededDeath();
-  displayFloorName();
   pills.postRender();
   changeCharOrder.postRender();
   changeKeybindings.postRender();
@@ -45,70 +43,6 @@ export function main(): void {
 
   // Handle things for multi-character speedruns
   speedrunPostRender.main();
-}
-
-// We replace the vanilla streak text because it blocks the map occasionally
-function drawStreakText() {
-  if (g.run.streakFrame === 0) {
-    // Only draw the secondary streak text if ( there is no normal streak text showing
-    if (g.run.streakText2 !== "") {
-      // Draw the string
-      const posGame = misc.gridToPos(6, 0); // Below the top door
-      const pos = Isaac.WorldToRenderPosition(posGame);
-      const color = KColor(1, 1, 1, 1);
-      const scale = 1;
-      const length = g.font.GetStringWidthUTF8(g.run.streakText2) * scale;
-      g.font.DrawStringScaled(
-        g.run.streakText2,
-        pos.X - length / 2,
-        pos.Y,
-        scale,
-        scale,
-        color,
-        0,
-        true,
-      );
-    }
-    return;
-  }
-
-  // Players who prefer the vanilla streak text will have a separate mod enabled
-  if (VanillaStreakText === true && !g.run.streakForce) {
-    return;
-  }
-
-  // The streak text will slowly fade out
-  const elapsedFrames = Isaac.GetFrameCount() - g.run.streakFrame;
-  const framesBeforeFade = 50;
-  let fade;
-  if (elapsedFrames <= framesBeforeFade) {
-    fade = 1;
-  } else {
-    const fadeFrames = elapsedFrames - framesBeforeFade;
-    fade = 1 - 0.02 * fadeFrames;
-  }
-  if (fade <= 0) {
-    g.run.streakFrame = 0;
-    g.run.streakForce = false;
-    return;
-  }
-
-  // Draw the string
-  const posGame = misc.gridToPos(6, 0); // Below the top door
-  const pos = Isaac.WorldToRenderPosition(posGame);
-  const color = KColor(1, 1, 1, fade);
-  const scale = 1;
-  const length = g.font.GetStringWidthUTF8(g.run.streakText) * scale;
-  g.font.DrawStringScaled(
-    g.run.streakText,
-    pos.X - length / 2,
-    pos.Y,
-    scale,
-    scale,
-    color,
-    0,
-    true,
-  );
 }
 
 function theLostHealth() {
@@ -713,24 +647,5 @@ function drawVersion() {
     y += 15;
     Isaac.RenderText(text, x, y, 2, 2, 2, 2);
   }
-}
-
-function displayFloorName() {
-  // Players who prefer the vanilla streak text will have a separate mod enabled
-  if (VanillaStreakText !== null) {
-    return;
-  }
-
-  // Only show the floor name if the user is pressing tab
-  if (!misc.isActionPressed(ButtonAction.ACTION_MAP)) {
-    g.run.streakText2 = "";
-    return;
-  }
-
-  // Local variables
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  g.run.streakText2 = g.l.GetName(stage, stageType, 0, 0, false);
 }
 */

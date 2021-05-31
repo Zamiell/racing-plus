@@ -50,7 +50,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "005",
-      "Fast room clear",
+      "Fast room clear (v4)",
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
   ],
@@ -142,10 +142,19 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "showEdenStartingItems",
+    "taintedKeeperMoney",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "023",
+      "Make Tainted Keeper start with 15 cents",
+      "This gives Tainted Keeper enough money to start a Treasure Room item.",
+    ],
+  ],
+  [
+    "showEdenStartingItems",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "024",
       "Show Eden's starting items",
       "Draw both of Eden's starting items on the screen while in the first room.",
     ],
@@ -154,7 +163,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "024",
+      "031",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -163,7 +172,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "speedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "025",
+      "032",
       "Speed-up new run fade-ins",
       "Speed-up the fade-in that occurs at the beginning of a new run.",
     ],
@@ -172,7 +181,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "026",
+      "033",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -181,7 +190,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "027",
+      "034",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
     ],
@@ -190,7 +199,7 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "fadeBosses",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "028",
+      "035",
       "Fade dead bosses",
       "Make bosses faded during their death animation so that you can see the dropped item.",
     ],
@@ -199,16 +208,34 @@ export const GAMEPLAY_AND_QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "029",
+      "036",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
+    ],
+  ],
+  [
+    "openHushDoor",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "037",
+      "Automatically open the Hush door",
+      "Save yourself the tedium of watching the door slowly open every single time.",
+    ],
+  ],
+  [
+    "showPills",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "038",
+      "Remember pills",
+      "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
   [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "030",
+      "041",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console.",
     ],

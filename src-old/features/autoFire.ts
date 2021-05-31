@@ -1,5 +1,4 @@
-import g from "../globals";
-
+/*
 export function toggle(): void {
   // Local variables
   const isaacFrameCount = Isaac.GetFrameCount();
@@ -80,3 +79,4 @@ export function getActionValue(_buttonAction: ButtonAction): int | null {
 
   return null;
 }
+*/

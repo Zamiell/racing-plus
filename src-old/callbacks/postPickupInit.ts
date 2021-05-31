@@ -1,11 +1,4 @@
-// Note: Position, SpawnerType, SpawnerVariant, and Price are not initialized yet in this callback
-
-import * as bigChestFunctions from "../bigChest";
-import { inSpeedrun } from "../challenges/misc";
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-import { EffectVariantCustom } from "../types/enums";
-
+/*
 // PickupVariant.PICKUP_COIN (20)
 export function coin(pickup: EntityPickup): void {
   if (pickup.SubType !== CoinSubType.COIN_STICKYNICKEL) {
@@ -82,11 +75,6 @@ export function tarotCard(pickup: EntityPickup): void {
     sprite.ReplaceSpritesheet(0, `gfx/cards/${pickup.SubType}.png`);
     sprite.LoadGraphics();
   }
-}
-
-// PickupVariant.PICKUP_BIGCHEST (340)
-export function bigChest(pickup: EntityPickup): void {
-  bigChestFunctions.postPickupInit(pickup);
 }
 
 // PickupVariant.PICKUP_TROPHY (370)
@@ -265,3 +253,4 @@ export function checkSpikedChestUnavoidable(pickup: EntityPickup): void {
     data.unavoidableReplacement = true;
   }
 }
+*/

@@ -7,7 +7,6 @@ export default class GlobalsRun {
   roomsEntered = 0;
   items: CollectibleType[] = [];
   roomIDs: int[] = [];
-  pills: PillDescription[] = []; // We want to track all pills taken for identification purposes
   edenStartingItems: CollectibleType[] = [];
   metKrampus = false;
   movingBoxOpen = true;
@@ -29,12 +28,6 @@ export default class GlobalsRun {
   reseededFloor = false;
   goingToDebugRoom = false;
   forgetMeNow = false;
-  streakText = ""; // Text that appears after players touch an item, reach a new level, etc.
-  // Secondary streak text that will only show if there is no primary streak text
-  streakText2 = "";
-  streakFrame = 0;
-  streakForce = false;
-  streakIgnore = false;
   usedD6Frame = 0; // Set when the D6 is used; used to prevent bugs with The Void + D6
   usedVoidFrame = 0; // Set when Void is used; used to prevent bugs with The Void + D6
   usedTelepills = false; // Used to replace the "use" animation
@@ -47,7 +40,7 @@ export default class GlobalsRun {
   vanillaPhotosSpawning = false; // Used when replacing The Polaroid and The Negative
   playerGeneratedPedestalSeeds = [] as int[]; // Used so that we properly seed player-generated pedestals (1/2)
   playerGeneratedPedestalFrame = 0; // Used so that we properly seed player-generated pedestals (2/2)
-  // Used to delete the trapdoor and beam of light after It Lives! and Hush
+  // Used to delete the trapdoor and heaven door after It Lives! and Hush
   itLivesKillFrame = 0;
   speedLilHauntsFrame = 0; // Used to speed up The Haunt fight (1/2)
   speedLilHauntsBlack = false; // Used to speed up The Haunt fight (2/2)

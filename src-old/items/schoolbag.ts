@@ -1,8 +1,4 @@
-import { ALL_CACHE_FLAGS_MINUS_FAMILIARS, Vector.Zero } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import { CollectibleTypeCustom } from "../types/enums";
-
+/*
 // Variables
 export const sprites = {
   item: null as Sprite | null,
@@ -496,7 +492,7 @@ export function checkRemoved(): void {
     if (g.run.schoolbag.item !== 0) {
       // Drop the item that was in the Schoolbag on the ground
       // (spawn it with an InitSeed of 0 so that it will be replaced on the next frame)
-      const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 1, true);
+      const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
       const collectible = g.g
         .Spawn(
           EntityType.ENTITY_PICKUP,
@@ -580,3 +576,4 @@ export function glowingHourGlass(): void {
     `Glowing Hour Glass used. Manually restored the Schoolbag item: ${last.schoolbag.item} - ${last.schoolbag.charge} - ${last.schoolbag.chargeBattery}`,
   );
 }
+*/

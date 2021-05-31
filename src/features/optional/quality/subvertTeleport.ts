@@ -55,6 +55,13 @@ function subvertTeleport() {
     if (character === PlayerType.PLAYER_THESOUL) {
       g.run.switchForgotten = true;
     }
+
+    // If we are Jacob & Esau, then Esau will also need to be teleported
+    if (character === PlayerType.PLAYER_JACOB) {
+      const esau = player.GetOtherTwin();
+      esau.Position = normalPosition;
+      Isaac.DebugString("SWAPPED ESAU");
+    }
   }
 
   // Also, account for familiars

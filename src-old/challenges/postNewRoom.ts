@@ -77,7 +77,7 @@ function stage8IAMERROR() {
       Vector.Zero,
       g.p,
     );
-    Isaac.DebugString("Replaced a trapdoor with a beam of light.");
+    Isaac.DebugString("Replaced a trapdoor with a heaven door.");
     return;
   }
 
@@ -94,18 +94,18 @@ function stage8IAMERROR() {
     heavenDoor = heavenDoors[0];
   }
 
-  // If we are going up and there is already a beam of light, we don't need to do anything
+  // If we are going up and there is already a heaven door, we don't need to do anything
   if (heavenDoor !== undefined && goingUp) {
     return;
   }
 
-  // If we are going down and there is already a beam of light, we need to remove it
+  // If we are going down and there is already a heaven door, we need to remove it
   if (heavenDoor !== undefined && !goingUp) {
     heavenDoor.Remove();
 
     // Spawn a trapdoor (it will get replaced with the fast-travel version on this frame)
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, heavenDoor.Position, true);
-    Isaac.DebugString("Replaced a beam of light with a trapdoor.");
+    Isaac.DebugString("Replaced a heaven door with a trapdoor.");
   }
 }
 

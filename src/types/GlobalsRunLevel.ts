@@ -12,31 +12,29 @@ export default class GlobalsRunLevel {
     dreamCatcherSprite: null as Sprite | null,
     itemSprites: [] as Sprite[],
     bossSprites: [] as Sprite[],
-    warpState: WarpState.INITIAL,
+    warpState: WarpState.Initial,
   };
 
   fastTravel = {
-    replacedTrapdoors: [] as EntityLocation[],
-    replacedHeavenDoors: [] as EntityLocation[],
-    replacedCrawlspaces: [] as EntityLocation[],
-    crawlspace: {
-      /**
-       * Used for keeping track of whether or not we are in a Black Market so that we can position
-       * the player properly.
-       */
-      blackMarket: false,
-      /**
-       * Used for the purposes of fixing the softlock when a player returns from a crawlspace to a
-       * room outside of the grid.
-       */
-      previousRoomIndex: null as int | null,
-      /**
-       * Used to reposition the player after we subvert their touching of a loading zone and
-       * manually teleport them to the right room.
-       */
-      subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
-    },
+    /**
+     * Used for keeping track of whether or not we are in a Black Market so that we can position
+     * the player properly.
+     */
+    blackMarket: false,
+    /**
+     * Used for the purposes of fixing the softlock when a player returns from a crawlspace to a
+     * room outside of the grid.
+     */
+    previousRoomIndex: null as int | null,
+    /**
+     * Used to reposition the player after we subvert their touching of a loading zone and
+     * manually teleport them to the right room.
+     */
+    subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
   };
+
+  numSacrifices = 0;
+  trophy = null as EntityLocation | null;
 
   constructor(stage: int, stageType: int) {
     this.stage = stage;

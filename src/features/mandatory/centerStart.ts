@@ -8,11 +8,12 @@ export function postGameStarted(): void {
 }
 
 export function centerPlayers(): void {
+  const isGreedMode = g.g.IsGreedMode();
   const centerPos = g.r.GetCenterPos();
 
-  // Don't center the players in Greed Mode, since if the player starts at the center of the room,
-  // they they will immediately touch the trigger button
-  if (g.g.IsGreedMode()) {
+  // In Greed Mode, we cannot put the player in the center of the room,
+  // because they would immediately touch the trigger button
+  if (isGreedMode) {
     return;
   }
 
@@ -31,20 +32,6 @@ export function centerPlayers(): void {
     for (let i = 0; i < players.length; i++) {
       players[i].Position = positions[i];
     }
-  }
-
-  // If Eden starts with a familiar, it will appear in a puff of smoke
-  // Delete the puff of smoke that betrays where the familiar really spawned
-  const poofs = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
-    EffectVariant.POOF01,
-    -1,
-    false,
-    false,
-  );
-  for (const poof of poofs) {
-    poof.Remove();
-    poof.Visible = false;
   }
 }
 

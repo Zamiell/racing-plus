@@ -1,24 +1,4 @@
 /*
-export const DEFAULT_COLOR = Color(1, 1, 1, 1, 0, 0, 0);
-export const DEFAULT_KCOLOR = KColor(1, 1, 1, 1);
-
-export const TRANSFORMATION_NAMES = [
-  "Guppy",
-  "Beelzebub",
-  "Fun Guy",
-  "Seraphim",
-  "Bob",
-  "Spun",
-  "Yes Mother?",
-  "Conjoined",
-  "Leviathan",
-  "Oh Crap",
-  "Bookworm",
-  "Adult",
-  "Spider Baby",
-  "Stompy",
-];
-
 export const SPLITTING_BOSSES = [
   EntityType.ENTITY_LARRYJR, // 19
   EntityType.ENTITY_FISTULA_BIG, // 71

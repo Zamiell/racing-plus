@@ -1,6 +1,5 @@
 import * as centerStart from "../features/mandatory/centerStart";
 import * as removeKarma from "../features/mandatory/removeKarma";
-import * as removeUselessPills from "../features/mandatory/removeUselessPills";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
@@ -8,6 +7,7 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import g from "../globals";
 import { getPlayers, log } from "../misc";
 import GlobalsRun from "../types/GlobalsRun";
@@ -44,7 +44,6 @@ export function main(isContinued: boolean): void {
 
   // Mandatory features
   removeKarma.postGameStarted();
-  removeUselessPills.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
@@ -55,6 +54,7 @@ export function main(isContinued: boolean): void {
   // Optional features - Quality of Life
   samsonDropHeart.postGameStarted();
   judasAddBomb.postGameStarted();
+  taintedKeeperMoney.postGameStarted();
   showEdenStartingItems.postGameStarted();
 
   // Call PostNewLevel manually (they get naturally called out of order)

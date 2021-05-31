@@ -355,7 +355,7 @@ function finish() {
   g.g.SetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE, true);
   Isaac.DebugString("Custom Boss Rush finished.");
 
-  const pos = g.r.FindFreePickupSpawnPosition(g.r.GetCenterPos(), 1, true);
+  const pos = g.r.FindFreePickupSpawnPosition(g.r.GetCenterPos(), 0, true);
   if (
     challenge === ChallengeCustom.R7_SEASON_7 ||
     (g.race.status === "in progress" && g.race.goal === "Boss Rush")

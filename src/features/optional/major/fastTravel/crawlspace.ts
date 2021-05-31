@@ -1,15 +1,16 @@
+// For testing, a seed with a black market is: 2SB2 M4R6
+
 import g from "../../../../globals";
 import {
-  anyPlayerCloserThan,
+  getGridEntities,
   getRoomIndex,
   log,
   movePlayersAndFamiliars,
-  removeGridEntity,
   teleport,
 } from "../../../../misc";
-import { EffectVariantCustom } from "../../../../types/enums";
-import { TRAPDOOR_OPEN_DISTANCE } from "./constants";
+import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
+import * as state from "./state";
 
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
@@ -37,43 +38,24 @@ const BOSS_ROOM_ENTER_MAP = new Map<Direction, int>([
   [Direction.DOWN, 22], // 3 (returning from the top door)
 ]);
 
-export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
-  // replace(gridEntity);
-}
-
-function replace(gridEntity: GridEntity) {
-  const roomIndex = getRoomIndex();
-
-  removeGridEntity(gridEntity);
-
-  // Spawn a custom entity to emulate the original
-  fastTravel.spawn(
-    EffectVariantCustom.CRAWLSPACE_FAST_TRAVEL,
-    gridEntity.Position,
-    shouldSpawnOpen,
-  );
-
-  // The custom entity will not respawn if we leave the room,
-  // so we need to keep track of it for the remainder of the floor
-  g.run.level.fastTravel.replacedCrawlspaces.push({
-    room: roomIndex,
-    position: gridEntity.Position,
-  });
-}
-
-export function shouldSpawnOpen(crawlspaceEffect: EntityEffect): boolean {
-  return !anyPlayerCloserThan(
-    crawlspaceEffect.Position,
-    TRAPDOOR_OPEN_DISTANCE,
-  );
-}
+const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Crawlspace;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  initAll();
   repositionPlayer();
   checkBlackMarket(); // This must be after the "repositionPlayer()" function
   checkReturningToRoomOutsideTheGrid();
   checkPostRoomTransitionSubvert();
+}
+
+function initAll() {
+  for (const gridEntity of getGridEntities()) {
+    const saveState = gridEntity.GetSaveState();
+    if (saveState.Type === GridEntityType.GRID_STAIRS) {
+      fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+    }
+  }
 }
 
 function repositionPlayer() {
@@ -89,7 +71,7 @@ function repositionPlayer() {
     roomIndex === GridRooms.ROOM_DUNGEON_IDX &&
     // If we are returning from a Black Market, then being at the right-most door is the correct
     // position and we should not do anything further
-    !g.run.level.fastTravel.crawlspace.blackMarket
+    !g.run.level.fastTravel.blackMarket
   ) {
     movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
   }
@@ -97,7 +79,7 @@ function repositionPlayer() {
 
 function checkBlackMarket() {
   const roomIndex = getRoomIndex();
-  g.run.level.fastTravel.crawlspace.blackMarket =
+  g.run.level.fastTravel.blackMarket =
     roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
 }
 
@@ -130,13 +112,12 @@ function checkPostRoomTransitionSubvert() {
   // If we subverted the room transition for a room outside of the grid,
   // we might not end up in a spot where the player expects
   // So, move to the most logical position
-  const direction =
-    g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection;
+  const direction = g.run.level.fastTravel.subvertedRoomTransitionDirection;
   if (direction !== Direction.NO_DIRECTION) {
     const gridPosition = BOSS_ROOM_ENTER_MAP.get(direction);
     if (gridPosition !== undefined) {
       g.p.Position = g.r.GetGridPosition(gridPosition);
-      g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection =
+      g.run.level.fastTravel.subvertedRoomTransitionDirection =
         Direction.NO_DIRECTION;
       log(
         "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
@@ -145,40 +126,9 @@ function checkPostRoomTransitionSubvert() {
   }
 }
 
-// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
-export function postEffectUpdateCrawlspace(effect: EntityEffect): void {
-  fastTravel.checkShouldOpen(effect);
-  fastTravel.checkPlayerTouched(effect, touched);
-}
-
-function touched(effect: EntityEffect) {
-  const roomIndex = getRoomIndex();
-  const previousRoomIndex = g.l.GetPreviousRoomIndex();
-
-  // If we return to a room outside of the grid from a crawlspace,
-  // the previous room index will be the crawlspace
-  // We need to preserve the room index of the last non-negative room
-  const previousRoomIndexToUse =
-    g.run.level.fastTravel.crawlspace.previousRoomIndex === null
-      ? previousRoomIndex
-      : g.run.level.fastTravel.crawlspace.previousRoomIndex;
-
-  // Save the previous room information so that we can return there after exiting the crawlspace
-  // (for the special case where we return to a room outside of the grid)
-  g.run.level.fastTravel.crawlspace.previousRoomIndex = previousRoomIndexToUse;
-
-  // Vanilla crawlspaces uses these variables to return the player to the previous room
-  // Even though we are re-implementing crawlspaces, we will use the same variables
-  g.l.DungeonReturnRoomIndex = roomIndex;
-  g.l.DungeonReturnPosition = effect.Position;
-
-  // Go to the crawlspace
-  teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
-}
-
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
-  if (g.run.room.fastTravel.crawlspace.amTeleporting) {
+  if (g.run.room.fastTravel.amChangingRooms) {
     return;
   }
 
@@ -187,14 +137,11 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 }
 
 export function checkTopOfCrawlspaceLadder(player: EntityPlayer): void {
-  const roomType = g.r.GetType();
-  const playerGridIndex = g.r.GetGridIndex(player.Position);
-
   if (
-    roomType === RoomType.ROOM_DUNGEON &&
-    playerGridIndex === GRID_INDEX_OF_TOP_OF_LADDER
+    g.r.GetType() === RoomType.ROOM_DUNGEON &&
+    g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
   ) {
-    g.run.room.fastTravel.crawlspace.amTeleporting = true;
+    g.run.room.fastTravel.amChangingRooms = true;
     teleport(g.l.DungeonReturnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
   }
 }
@@ -210,18 +157,17 @@ export function checkExitSoftlock(player: EntityPlayer): void {
 
   if (
     previousRoomIndex !== GridRooms.ROOM_DUNGEON_IDX ||
-    g.run.level.fastTravel.crawlspace.previousRoomIndex === null
+    g.run.level.fastTravel.previousRoomIndex === null
   ) {
     return;
   }
 
   const direction = getExitDirection(roomType, player);
   if (direction !== undefined) {
-    g.run.level.fastTravel.crawlspace.subvertedRoomTransitionDirection =
-      direction;
-    g.run.room.fastTravel.crawlspace.amTeleporting = true;
+    g.run.level.fastTravel.subvertedRoomTransitionDirection = direction;
+    g.run.room.fastTravel.amChangingRooms = true;
     teleport(
-      g.run.level.fastTravel.crawlspace.previousRoomIndex,
+      g.run.level.fastTravel.previousRoomIndex,
       direction,
       RoomTransitionAnim.WALK,
     );
@@ -248,4 +194,59 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
       return undefined;
     }
   }
+}
+
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// GridEntityType.GRID_STAIRS
+export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
+  // Keep it closed on every frame so that we can implement our own custom functionality
+  gridEntity.State = TrapdoorState.CLOSED;
+
+  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
+
+function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
+  if (g.r.GetFrameCount() === 0) {
+    // If we just entered a new room with enemies in it, spawn the crawlspace closed so that the
+    // player has to defeat the enemies first before using the crawlspace
+    if (!g.r.IsClear()) {
+      return false;
+    }
+
+    // If we just entered a new room that is already cleared,
+    // spawn the crawlspace closed if we are standing close to it, and open otherwise
+    return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
+  }
+
+  // Crawlspaces created after a room has already initialized should spawn closed by default
+  // e.g. crawlspaces created by We Need to Go Deeper! should spawn closed because the player will
+  // be standing on top of them
+  return false;
+}
+
+function touched(entity: GridEntity | EntityEffect) {
+  const roomIndex = getRoomIndex();
+  const previousRoomIndex = g.l.GetPreviousRoomIndex();
+
+  // If we return to a room outside of the grid from a crawlspace,
+  // the previous room index will be the crawlspace
+  // We need to preserve the room index of the last non-negative room
+  const previousRoomIndexToUse =
+    g.run.level.fastTravel.previousRoomIndex === null
+      ? previousRoomIndex
+      : g.run.level.fastTravel.previousRoomIndex;
+
+  // Save the previous room information so that we can return there after exiting the crawlspace
+  // (for the special case where we return to a room outside of the grid)
+  g.run.level.fastTravel.previousRoomIndex = previousRoomIndexToUse;
+
+  // Vanilla crawlspaces uses these variables to return the player to the previous room
+  // Even though we are re-implementing crawlspaces, we will use the same variables
+  g.l.DungeonReturnRoomIndex = roomIndex;
+  g.l.DungeonReturnPosition = entity.Position;
+
+  // Go to the crawlspace
+  teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
 }

@@ -1,6 +1,6 @@
 export enum WarpState {
-  INITIAL,
-  WARPING,
-  REPOSITIONING_PLAYER,
-  FINISHED,
+  Initial,
+  Warping,
+  RepositioningPlayer,
+  Finished,
 }

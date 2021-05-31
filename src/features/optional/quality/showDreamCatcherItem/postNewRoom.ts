@@ -53,7 +53,7 @@ function warp() {
     return;
   }
 
-  g.run.level.dreamCatcher.warpState = WarpState.WARPING;
+  g.run.level.dreamCatcher.warpState = WarpState.Warping;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
@@ -87,7 +87,7 @@ function warp() {
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
-  g.run.level.dreamCatcher.warpState = WarpState.REPOSITIONING_PLAYER;
+  g.run.level.dreamCatcher.warpState = WarpState.RepositioningPlayer;
 }
 
 function shouldWarp() {
@@ -97,7 +97,7 @@ function shouldWarp() {
 
   return (
     anyPlayerHas(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    g.run.level.dreamCatcher.warpState === WarpState.INITIAL &&
+    g.run.level.dreamCatcher.warpState === WarpState.Initial &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
     roomIndex === startingRoomIndex &&

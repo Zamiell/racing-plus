@@ -1,16 +1,9 @@
-import { Vector.Zero } from "../constants";
-import BlackHeartNPC from "./BlackHeartNPC";
-import { GlobinDescription } from "./GlobinDescription";
-import HopperDescription from "./HopperDescription";
-import LightDescription from "./LightDescription";
-
+/*
 export default class GlobalsRunRoom {
   fastCleared = false;
   currentGlobins = new Map<int, GlobinDescription>(); // Used for softlock prevention
   currentLilHaunts = []; // Used to delete invulnerability frames
   currentHoppers = new Map<int, HopperDescription>(); // Used to prevent softlocks
-  usedStrength = false;
-  usedStrengthChar = 0;
   handsDelay = 0; // Used to speed up Mom's Hands
   handPositions = new Map<int, Vector>(); // Used to play an "Appear" animation for Mom's Hands
   diceRoomActivated = false;
@@ -37,3 +30,4 @@ export default class GlobalsRunRoom {
     stunFrame: 0,
   };
 }
+*/

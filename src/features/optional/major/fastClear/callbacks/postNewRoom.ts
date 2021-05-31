@@ -14,5 +14,4 @@ function resetVariables() {
   g.run.fastClear.roomInitializing = false;
   // (this is set to true when the room frame count is -1 and set to false here,
   // where the frame count is 0)
-  Isaac.DebugString("DEBUG - Fast-Clear - Room is initiated.");
 }

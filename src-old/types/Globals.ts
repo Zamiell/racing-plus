@@ -1,8 +1,5 @@
 /*
 export default class Globals {
-  // More cached
-  font = Font();
-
   luaDebug = false; // Whether or not they are running the game with the "--luadebug" flag
   socket: LuaSocket | null = null;
 

@@ -1,3 +1,9 @@
+<!--
+	Since the game will change the state of trapdoors on every frame, we need to rename all of the
+	vanilla animations so that the state change will no have visual effect.
+	(This has the side effect of making warning messages in the log.txt.)
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="robot" CreatedOn="03.02.2017 17:32:51" Version="106" Fps="30"/>
 	<Content>

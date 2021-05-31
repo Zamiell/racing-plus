@@ -1,12 +1,9 @@
-import { ChallengeCustom } from "./challenges/enums";
-import { Vector.Zero } from "./constants";
-import g from "./globals";
-
+/*
 enum ItLivesSituation {
-  NEITHER,
-  BEAM_OF_LIGHT,
-  TRAPDOOR,
-  BOTH,
+  Neither,
+  HeavenDoor,
+  Trapdoor,
+  Both,
 }
 
 export function spawn(entity: Entity): void {
@@ -15,7 +12,7 @@ export function spawn(entity: Entity): void {
   const centerPos = g.r.GetCenterPos();
   const challenge = Isaac.GetChallenge();
 
-  // Define positions for the trapdoor and beam of light (recorded from vanilla)
+  // Define positions for the trapdoor and heaven door (recorded from vanilla)
   let posCenter = Vector(320, 280);
   let posCenterLeft = Vector(280, 280);
   let posCenterRight = Vector(360, 280);
@@ -26,7 +23,7 @@ export function spawn(entity: Entity): void {
     posCenterRight = Vector(640, 280);
   }
 
-  // Figure out if we need to spawn either a trapdoor, a beam of light, or both
+  // Figure out if we need to spawn either a trapdoor, a heaven door, or both
   let situation = getItLivesSituation(entity);
 
   // Handle special things for Season 7
@@ -65,7 +62,7 @@ export function spawn(entity: Entity): void {
       "It Lives! or Hush killed; situation 0 - neither up nor down.",
     );
   } else if (situation === ItLivesSituation.BEAM_OF_LIGHT) {
-    // Spawn a beam of light, a.k.a. Heaven Door (1000.39)
+    // Spawn a heaven door, a.k.a. Heaven Door (1000.39)
     // It will get replaced with the fast-travel version on this frame
     // Make the spawner entity the player so that we can distinguish it from the vanilla heaven door
     Isaac.Spawn(
@@ -82,7 +79,7 @@ export function spawn(entity: Entity): void {
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, posCenter, true);
     Isaac.DebugString("It Lives! || Hush killed; situation 2 - only down.");
   } else if (situation === ItLivesSituation.BOTH) {
-    // Spawn both a trapdoor && a beam of light
+    // Spawn both a trapdoor and a heaven door
     // They will get replaced with the fast-travel versions on this frame
     // Make the spawner entity the player so that we can distinguish it from the vanilla heaven door
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, posCenterLeft, true);
@@ -179,3 +176,4 @@ function getItLivesSituation(entity: Entity) {
   // so give them a choice between the directions
   return ItLivesSituation.BOTH;
 }
+*/

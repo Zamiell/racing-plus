@@ -4,9 +4,12 @@ import g from "../globals";
 import { log } from "../misc";
 
 export function postUpdate(): void {
-  const clear = g.r.IsClear();
-  if (clear !== g.run.room.clear) {
-    g.run.room.clear = clear;
+  const gameFrameCount = g.g.GetFrameCount();
+  const isClear = g.r.IsClear();
+
+  if (isClear !== g.run.room.clear) {
+    g.run.room.clear = isClear;
+    g.run.room.clearFrame = gameFrameCount;
     roomClear();
   }
 }

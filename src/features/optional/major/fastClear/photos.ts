@@ -4,10 +4,10 @@ import { RaceGoal } from "../../../../types/RaceData";
 import { ChallengeCustom } from "../../../speedrun/enums";
 
 enum PhotoSituation {
-  POLAROID,
-  NEGATIVE,
-  BOTH,
-  RANDOM_BOSS_ITEM,
+  Polaroid,
+  Negative,
+  Both,
+  RandomBossItem,
 }
 
 const MOM_ROOM_VARIANTS = [1060, 1061, 1062, 1063, 1064];
@@ -44,28 +44,28 @@ function getPhotoSituation() {
     hasNegative = false;
   }
 
-  if (challenge === ChallengeCustom.R7_SEASON_1) {
-    return PhotoSituation.POLAROID;
+  if (challenge === ChallengeCustom.SEASON_1) {
+    return PhotoSituation.Polaroid;
   }
 
   if (hasPolaroid && hasNegative) {
     // The player has both photos already (which can only occur in a diversity race)
     // Spawn a random boss item instead of a photo
-    return PhotoSituation.RANDOM_BOSS_ITEM;
+    return PhotoSituation.RandomBossItem;
   }
 
   if (hasPolaroid) {
     // The player has The Polaroid already
     // (which can occur if Eden, or in a diversity race, or in Season 7)
     // Spawn The Negative instead
-    return PhotoSituation.NEGATIVE;
+    return PhotoSituation.Negative;
   }
 
   if (hasNegative) {
     // The player has The Negative already
     // (which can occur if Eden, or in a diversity race, or in Season 7)
     // Spawn The Polaroid instead
-    return PhotoSituation.POLAROID;
+    return PhotoSituation.Polaroid;
   }
 
   if (g.race.status === "in progress") {
@@ -73,17 +73,17 @@ function getPhotoSituation() {
   }
 
   // They are doing a normal non-client run, so by default spawn both photos
-  return PhotoSituation.BOTH;
+  return PhotoSituation.Both;
 }
 
 function getPhotoSituationRace(goal: RaceGoal) {
   switch (goal) {
     case "Blue Baby": {
-      return PhotoSituation.POLAROID;
+      return PhotoSituation.Polaroid;
     }
 
     case "The Lamb": {
-      return PhotoSituation.NEGATIVE;
+      return PhotoSituation.Negative;
     }
 
     case "Mega Satan":
@@ -93,12 +93,12 @@ function getPhotoSituationRace(goal: RaceGoal) {
     case "Everything":
     case "Custom": {
       // Give the player a choice between the photos for races to alternate objectives
-      return PhotoSituation.BOTH;
+      return PhotoSituation.Both;
     }
 
     default: {
       ensureAllCases(goal);
-      return PhotoSituation.RANDOM_BOSS_ITEM;
+      return PhotoSituation.RandomBossItem;
     }
   }
 }
@@ -112,7 +112,7 @@ function doPhotoSituation(situation: PhotoSituation) {
   const posCenterRight = Vector(360, 360);
 
   switch (situation) {
-    case PhotoSituation.POLAROID: {
+    case PhotoSituation.Polaroid: {
       g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_COLLECTIBLE,
@@ -125,7 +125,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       break;
     }
 
-    case PhotoSituation.NEGATIVE: {
+    case PhotoSituation.Negative: {
       g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_COLLECTIBLE,
@@ -138,7 +138,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       break;
     }
 
-    case PhotoSituation.BOTH: {
+    case PhotoSituation.Both: {
       const polaroid = g.g
         .Spawn(
           EntityType.ENTITY_PICKUP,
@@ -175,7 +175,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       break;
     }
 
-    case PhotoSituation.RANDOM_BOSS_ITEM: {
+    case PhotoSituation.RandomBossItem: {
       // If we spawn a boss item using an InitSeed of 0, the item will always be Magic Mushroom,
       // so use the room seed instead
       // Spawning an item with a SubType of 0 will make a random item of the pool according to the

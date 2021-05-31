@@ -1,9 +1,4 @@
-import { Vector.Zero } from "../constants";
-import { FastTravelState } from "../features/fastTravel/constants";
-import g from "../globals";
-import * as misc from "../misc";
-import * as sprites from "../sprites";
-
+/*
 // Called from the PostUpdate callback (the "CheckEntities.EntityRaceTrophy()" function)
 export function finish(): void {
   // Local variables
@@ -77,3 +72,4 @@ export function victoryLap(): void {
   // (because the PostNewRoom callback will occur 3 times instead of 2)
   g.raceVars.victoryLaps += 1;
 }
+*/

@@ -2,10 +2,13 @@ import * as cache from "../cache";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
+import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
+import * as fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/quality/customConsole";
 import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import * as racePostRender from "../features/race/callbacks/postRender";
 import * as speedrunPostRender from "../features/speedrun/callbacks/postRender";
@@ -28,13 +31,16 @@ export function main(): void {
 
   // Mandatory features
   detectSlideAnimation.postRender();
+  streakText.postRender();
 
   // Optional features - Major
+  fastTravelPostRender.main();
   fastReset.postRender();
 
   // Optional features - Quality of Life
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender.main();
+  showPills.postRender();
   customConsole.postRender();
 }
 

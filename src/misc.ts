@@ -5,6 +5,7 @@ import {
   MAX_VANILLA_ITEM_ID,
   RECOMMENDED_SHIFT_IDX,
 } from "./constants";
+import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
 
 export function anyPlayerHas(collectibleType: CollectibleType): boolean {
@@ -53,7 +54,9 @@ export function enteredRoomViaTeleport(): boolean {
   const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
   const inCrawlspace = roomIndex === GridRooms.ROOM_DUNGEON_IDX;
   const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
+
   return (
+    g.run.fastTravel.state === FastTravelState.Disabled &&
     g.l.LeaveDoor === -1 &&
     !justReachedThisFloor &&
     !inCrawlspace &&
@@ -131,6 +134,7 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
   return null;
 }
 
+/** This will not include characters that are not directly controlled by the player (like Esau). */
 export function getPlayers(): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
@@ -228,6 +232,17 @@ export function initSprite(anm2Path: string, pngPath?: string): Sprite {
   return sprite;
 }
 
+export function isActionPressedOnAnyInput(buttonAction: ButtonAction): boolean {
+  // There are 4 possible inputs/players from 0 to 3
+  for (let i = 0; i <= 3; i++) {
+    if (Input.IsActionPressed(buttonAction, i)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export function isActionTriggeredOnAnyInput(
   buttonAction: ButtonAction,
 ): boolean {
@@ -252,7 +267,7 @@ export function isSelfDamage(damageFlags: int): boolean {
 
 export function isPostBossVoidPortal(gridEntity: GridEntity): boolean {
   // The VarData of Void Portals that are spawned after bosses will be equal to 1
-  // The VarData of the Void Portal in the room after hush is equal to 0
+  // The VarData of the Void Portal in the room after Hush is equal to 0
   const saveState = gridEntity.GetSaveState();
   return saveState.VarData === 1;
 }
@@ -315,6 +330,8 @@ export function movePlayersAndFamiliars(position: Vector): void {
     familiar.Position = position;
   }
 }
+
+export function pass(): void {}
 
 export function playingOnSetSeed(): boolean {
   const customRun = g.seeds.IsCustomRun();

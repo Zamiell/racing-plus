@@ -7,6 +7,7 @@ import {
   MAJOR_CHANGES,
 } from "./configDescription";
 import g from "./globals";
+import * as saveDat from "./saveDat";
 import Config from "./types/Config";
 import Hotkeys from "./types/Hotkeys";
 
@@ -104,6 +105,8 @@ function setAllSettings(newValue: boolean) {
     const assertedKey = key as keyof Config;
     g.config[assertedKey] = newValue;
   }
+
+  saveDat.save();
 }
 
 function registerSubMenuConfig(
@@ -124,6 +127,7 @@ function registerSubMenuConfig(
         ),
       OnChange: (newValue: number | boolean) => {
         g.config[configName as keyof Config] = newValue as boolean;
+        saveDat.save();
       },
       Info: [longDescription],
     });
