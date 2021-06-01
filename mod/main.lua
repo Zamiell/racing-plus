@@ -2289,7 +2289,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.1"
+____exports.VERSION = "0.58.2"
 ____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
@@ -4477,17 +4477,22 @@ end
 return ____exports
 end,
 ["features.optional.major.fastClear4.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local angels = require("features.optional.major.fastClear4.angels")
 local krampus = require("features.optional.major.fastClear4.krampus")
+local FAST_CLEAR_EXCEPTIONS = {EntityType.ENTITY_MOM}
 function ____exports.main(self, entity)
     if not g.config.fastClear4 then
         return
     end
     local npc = entity:ToNPC()
     if npc == nil then
+        return
+    end
+    if __TS__ArrayIncludes(FAST_CLEAR_EXCEPTIONS, npc.Type) then
         return
     end
     npc.CanShutDoors = false

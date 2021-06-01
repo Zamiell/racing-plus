@@ -13,6 +13,9 @@ import g from "../../../../../globals";
 import * as angels from "../angels";
 import * as krampus from "../krampus";
 
+// Mom is exempt from Fast-Clear to prevent the bug where all 4 copies of her will drop hearts
+const FAST_CLEAR_EXCEPTIONS = [EntityType.ENTITY_MOM];
+
 export function main(entity: Entity): void {
   if (!g.config.fastClear4) {
     return;
@@ -20,6 +23,10 @@ export function main(entity: Entity): void {
 
   const npc = entity.ToNPC();
   if (npc === null) {
+    return;
+  }
+
+  if (FAST_CLEAR_EXCEPTIONS.includes(npc.Type)) {
     return;
   }
 

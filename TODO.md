@@ -1,3 +1,4 @@
+- integrate empty room fixes
 - trapdoor on dross 1 does not go to dross 2
 
 - seed where mom drops a lot of hearts: XP6W BDJC
