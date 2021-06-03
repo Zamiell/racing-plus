@@ -94,6 +94,7 @@ export function getPlayerLuaTableIndex(player: EntityPlayer): string {
 }
 
 export function getRoomEnemies(): Entity[] {
+  // Using FindInRadius() is faster than GetRoomEntities()
   return Isaac.FindInRadius(
     CENTER_OF_2X2_ROOM,
     MAX_POSSIBLE_RADIUS,

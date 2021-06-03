@@ -1,5 +1,5 @@
 // The version is updated automatically by IsaacScript
-export const VERSION = "0.58.3";
+export const VERSION = "0.58.4";
 
 export const CENTER_OF_2X2_ROOM = Vector(640, 560);
 export const EXCLUDED_CHARACTERS = [
