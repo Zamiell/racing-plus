@@ -4,7 +4,7 @@
 // This feature is not configurable because we destroy the original starting room graphic file
 
 import g from "../../globals";
-import { getRoomIndex } from "../../misc";
+import { getRoomIndex, isAntibirthStage } from "../../misc";
 import { EffectSubTypeCustom } from "../../types/enums";
 
 export function postNewRoom(): void {
@@ -57,7 +57,10 @@ function shouldDrawControlsGraphic() {
   const roomIndex = getRoomIndex();
 
   return (
-    !g.g.IsGreedMode() && stage === 1 && roomIndex === startingRoomIndex
+    !g.g.IsGreedMode() &&
+    stage === 1 &&
+    roomIndex === startingRoomIndex &&
+    !isAntibirthStage()
     // TODO add logic for races
   );
 }

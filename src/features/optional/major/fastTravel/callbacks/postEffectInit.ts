@@ -6,5 +6,7 @@ export function heavenLightDoor(effect: EntityEffect): void {
     return;
   }
 
-  heavenDoor.postEffectInit(effect);
+  if (effect.SubType === 0) {
+    heavenDoor.postEffectInit(effect);
+  }
 }

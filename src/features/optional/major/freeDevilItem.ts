@@ -19,7 +19,7 @@ export function entityTakeDmg(
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
     const index = getPlayerLuaTableIndex(player);
-    g.run.freeDevilItem.takenDamage.set(index, true);
+    g.run.freeDevilItem.tookDamage.set(index, true);
   }
 }
 
@@ -44,7 +44,7 @@ export function postNewRoom(): void {
 
     for (const player of getPlayers()) {
       const index = getPlayerLuaTableIndex(player);
-      const takenDamage = g.run.freeDevilItem.takenDamage.get(index);
+      const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
       if (takenDamage === false) {
         giveTrinket(player);
       }

@@ -102,15 +102,20 @@ export default class GlobalsRun {
     state: FastTravelState.Disabled,
     /** These are Isaac frames, not game frames. */
     framesPassed: 0,
+    playerIndexTouchedTrapdoor: -1,
     upwards: false,
     blueWomb: false,
     theVoid: false,
-    antibirth: false,
+    /**
+     * Antibirth secret exits are located in the room outside the grid.
+     * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
+     */
+    antibirthSecretExit: false,
     reseed: false,
   };
 
   freeDevilItem = {
-    takenDamage: new LuaTable<ControllerIndexString, boolean>(),
+    tookDamage: new LuaTable<ControllerIndexString, boolean>(),
     granted: false,
   };
 
@@ -157,7 +162,7 @@ export default class GlobalsRun {
       this.ghostForm.set(index, false);
       this.currentCharacters.set(index, character);
       this.fastClear.paschalCandleCounters.set(index, 1);
-      this.freeDevilItem.takenDamage.set(index, false);
+      this.freeDevilItem.tookDamage.set(index, false);
 
       this.pickingUpItem.set(index, {
         id: CollectibleType.COLLECTIBLE_NULL,

@@ -6,6 +6,7 @@ import {
   ConfigDescriptionArray,
   CUSTOM_HOTKEYS,
   CUTSCENE_CHANGES,
+  ENEMY_CHANGES,
   GAMEPLAY_CHANGES,
   GRAPHIC_CHANGES,
   MAJOR_CHANGES,
@@ -33,6 +34,7 @@ export function register(): void {
   registerSubMenuConfig("Major", MAJOR_CHANGES);
   registerSubMenuHotkeys("Hotkeys", CUSTOM_HOTKEYS);
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
+  registerSubMenuConfig("Enemies", ENEMY_CHANGES);
   registerSubMenuConfig("QoL", QUALITY_OF_LIFE_CHANGES);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);

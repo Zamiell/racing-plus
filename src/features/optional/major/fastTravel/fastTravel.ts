@@ -48,6 +48,7 @@ export function init(
 }
 
 function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
+  const isGreedMode = g.g.IsGreedMode();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
 
@@ -78,7 +79,10 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
         }
       }
 
-      if (stage === 6 || stage === 7) {
+      if (
+        (isGreedMode && stage === 3) ||
+        (!isGreedMode && (stage === 6 || stage === 7))
+      ) {
         return "gfx/grid/door_11_wombhole_custom.anm2";
       }
 

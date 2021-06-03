@@ -188,12 +188,42 @@ export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
+export const ENEMY_CHANGES: ConfigDescriptionArray = [
+  [
+    "fadeBosses",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "031",
+      "Fade dead bosses",
+      "Make bosses faded during their death animation so that you can see the dropped item.",
+    ],
+  ],
+  [
+    "replaceCodWorms",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "032",
+      "Replace Cod Worms",
+      "Cod Worms are replaced with Para-Bites.",
+    ],
+  ],
+  [
+    "fastSatan",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "033",
+      "Fast Satan",
+      "All of the waiting during the Satan Fight is removed.",
+    ],
+  ],
+];
+
 export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
   [
     "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "031",
+      "041",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -202,7 +232,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "speedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "032",
+      "042",
       "Speed-up new run fade-ins",
       "Speed-up the fade-in that occurs at the beginning of a new run.",
     ],
@@ -211,7 +241,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "033",
+      "043",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -220,25 +250,16 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "034",
+      "044",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
-    ],
-  ],
-  [
-    "fadeBosses",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "035",
-      "Fade dead bosses",
-      "Make bosses faded during their death animation so that you can see the dropped item.",
     ],
   ],
   [
     "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "036",
+      "045",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -247,7 +268,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "openHushDoor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "037",
+      "046",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -256,7 +277,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "038",
+      "047",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -337,9 +358,18 @@ export const BUG_FIXES: ConfigDescriptionArray = [
     "fixTeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "051",
+      "071",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix shop Restock Machines",
+      "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla.",
     ],
   ],
   [
@@ -367,6 +397,15 @@ export const BUG_FIXES: ConfigDescriptionArray = [
       "",
       "Fix crawlspace exits",
       "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix I AM ERROR exits",
+      "Exits in an I AM ERROR room will be properly blocked if the room is not clear.",
     ],
   ],
 ];
@@ -445,7 +484,7 @@ export const OTHER_FEATURES: ConfigDescriptionArray = [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "061",
+      "101",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
     ],
@@ -455,6 +494,7 @@ export const OTHER_FEATURES: ConfigDescriptionArray = [
 export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
   ...CHARACTER_CHANGES,
+  ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,

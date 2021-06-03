@@ -149,10 +149,21 @@ The changed room is as follows:
 
 In some rooms, Swarm Spiders can get stuck in inaccessible parts of the room.
 
-The change room is as follows:
+The changed rooms are as follows:
 
 - Cellar: #1023
 - Burning: #1192
+
+<br />
+
+### Trite Fix
+
+In one room, Trites can get stuck in the top part of the room.
+
+The changed room is as follows:
+- Cellar: #1021
+
+<br />
 
 
 

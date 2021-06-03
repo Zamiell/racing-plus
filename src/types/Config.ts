@@ -8,16 +8,22 @@ export default class Config {
   fastClear4 = true;
   fastTravel = true;
 
-  // Gameplay & Quality of Life Changes
+  // Character Changes
   judasAddBomb = true;
   samsonDropHeart = true;
   taintedKeeperMoney = true;
   showEdenStartingItems = true;
+
+  // Enemy Changes
+  fadeBosses = true;
+  replaceCodWorms = true;
+  fastSatan = true;
+
+  // Quality of Life Changes
   showDreamCatcherItem = true;
   speedUpFadeIn = true;
   subvertTeleport = true;
   deleteVoidPortals = true;
-  fadeBosses = true;
   fadeVasculitisTears = true;
   openHushDoor = true;
   showPills = true;

@@ -1,3 +1,5 @@
+/*
+// Is this necessary now in Rep?
 // 6
 functionMap.set(
   EntityType.ENTITY_SLOT,
@@ -20,21 +22,6 @@ functionMap.set(
     }
 
     return null;
-  },
-);
-
-// 221
-functionMap.set(
-  EntityType.ENTITY_COD_WORM,
-  (
-    _variant: EntityVariantForAC,
-    _subType: int,
-    _position: Vector,
-    _spawner: Entity,
-    initSeed: int,
-  ) => {
-    // Replace Cod Worms with Para-Bites
-    return [EntityType.ENTITY_PARA_BITE, 0, 0, initSeed];
   },
 );
 
@@ -81,3 +68,4 @@ functionMap.set(
     return null;
   },
 );
+*/

@@ -6,6 +6,7 @@ import * as fastClearPostNewRoom from "../features/optional/major/fastClear/call
 import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
+import * as fastSatan from "../features/optional/quality/fastSatan";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
@@ -61,26 +62,26 @@ export function newRoom(): void {
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
 
-  // Optional features - Major
+  // Major features
   startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
   fastClearPostNewRoom.main();
   fastTravelPostNewRoom.main();
 
-  // Optional features - Quality of Life
+  // Character changes
   showEdenStartingItems.postNewRoom();
+
+  // Enemy changes
+  fastSatan.postNewRoom();
+
+  // Quality of life
   showDreamCatcherItemPostNewRoom.main();
   subvertTeleport.postNewRoom();
 
-  // Optional features - Bux Fixes
+  // Bux fixes
   fixTeleportInvalidEntrance.postNewRoom();
 
   /*
-  // Check to see if we need to respawn trapdoors / crawlspaces / beams of light
-  fastTravel.entity.checkRespawn();
-  fastTravel.trapdoor.checkNewFloor(); // Check if we are just arriving on a new floor
-  fastTravel.crawlspace.checkMiscBugs(); // Check for miscellaneous crawlspace bugs
-
   // Remove the "More Options" buff if they have entered a Treasure Room
   checkRemoveMoreOptions();
   */

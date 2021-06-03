@@ -1,5 +1,10 @@
 import g from "../../../../globals";
-import { consoleCommand, getPlayers, getRoomIndex } from "../../../../misc";
+import {
+  consoleCommand,
+  getPlayers,
+  getRoomIndex,
+  isAntibirthStage,
+} from "../../../../misc";
 import { FastTravelState } from "./enums";
 
 export function init(
@@ -17,7 +22,8 @@ export function init(
   g.run.fastTravel.upwards = upwards;
   g.run.fastTravel.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
-  g.run.fastTravel.antibirth = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+  g.run.fastTravel.antibirthSecretExit =
+    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   setPlayerAttributes(player, entity);
   warpForgottenBody(player);
@@ -106,8 +112,18 @@ export function goto(upwards: boolean): void {
   // it will use the same floor layout as the previous floor
   // Thus, in these cases, we need to mark to perform a "reseed" command before doing the "stage"
   // command
-  // However, Antibirth floors do not need to be reseeded for some reason
-  g.run.fastTravel.reseed = stage === nextStage && !g.run.fastTravel.antibirth;
+  // However, when we travel to the same floor layout from an Antibirth exit,
+  // floors do not need to be reseeded for some reason
+  g.run.fastTravel.reseed =
+    stage === nextStage && !g.run.fastTravel.antibirthSecretExit;
+
+  // Executing a console command to change floors will not increment the "GetStagesWithoutDamage()"
+  // variable
+  // Thus, we have to set it increment it manually if the player did not take any damage on this
+  // floor
+  if (!g.run.level.fastTravel.tookDamage) {
+    g.g.AddStageWithoutDamage();
+  }
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications
@@ -131,8 +147,13 @@ function getNextStage() {
     return 12;
   }
 
-  if (g.run.fastTravel.antibirth) {
+  if (g.run.fastTravel.antibirthSecretExit) {
     return stage;
+  }
+
+  if (isAntibirthStage() && (stage === 2 || stage === 4 || stage === 6)) {
+    // e.g. Downpour 2 goes to Caves 2
+    return stage + 2;
   }
 
   if (stage === 8) {
@@ -159,7 +180,14 @@ function getNextStage() {
 function getNextStageType(nextStage: int, upwards: boolean) {
   const stageType = g.l.GetStageType();
 
-  if (g.run.fastTravel.antibirth) {
+  if (g.run.fastTravel.antibirthSecretExit) {
+    return getStageTypeAntibirth(stageType);
+  }
+
+  if (
+    isAntibirthStage() &&
+    (nextStage === 2 || nextStage === 4 || nextStage === 6)
+  ) {
     return getStageTypeAntibirth(stageType);
   }
 
@@ -237,13 +265,13 @@ function getStageTypeAntibirth(stage: int) {
 function travelStage(stage: int, stageType: int) {
   // Build the command that will take us to the next floor
   let command = `stage ${stage}`;
-  if (stageType === 1) {
+  if (stageType === StageType.STAGETYPE_WOTL) {
     command += "a";
-  } else if (stageType === 2) {
+  } else if (stageType === StageType.STAGETYPE_AFTERBIRTH) {
     command += "b";
-  } else if (stageType === 3) {
+  } else if (stageType === StageType.STAGETYPE_REPENTANCE) {
     command += "c";
-  } else if (stageType === 4) {
+  } else if (stageType === StageType.STAGETYPE_REPENTANCE_B) {
     command += "d";
   }
 

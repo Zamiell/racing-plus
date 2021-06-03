@@ -15,6 +15,7 @@ import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
+import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
@@ -67,6 +68,7 @@ racingPlus.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main); // 19
 racingPlus.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
 racingPlus.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main); // 24
 racingPlus.AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main); // 27
+racingPlus.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_PLAYER_UPDATE,
   postPlayerUpdate.main,

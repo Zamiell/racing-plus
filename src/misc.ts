@@ -19,13 +19,13 @@ export function anyPlayerHas(collectibleType: CollectibleType): boolean {
 }
 
 export function anyPlayerCloserThan(position: Vector, distance: int): boolean {
-  for (const player of getPlayers()) {
-    if (player.Position.Distance(position) < distance) {
-      return true;
-    }
-  }
+  const playersInRange = Isaac.FindInRadius(
+    position,
+    distance,
+    EntityPartition.PLAYER,
+  );
 
-  return false;
+  return playersInRange.length > 0;
 }
 
 export function changeRoom(roomIndex: int): void {
@@ -135,7 +135,7 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
 }
 
 /** This will not include characters that are not directly controlled by the player (like Esau). */
-export function getPlayers(): EntityPlayer[] {
+export function getPlayers(performExclusions = true): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
@@ -143,7 +143,7 @@ export function getPlayers(): EntityPlayer[] {
       // We only want to make a list of players that are fully-functioning and controlled by humans
       // Thus, we need to exclude certain characters
       const character = player.GetPlayerType();
-      if (!EXCLUDED_CHARACTERS.includes(character)) {
+      if (!performExclusions || !EXCLUDED_CHARACTERS.includes(character)) {
         players.push(player);
       }
     }
@@ -254,6 +254,14 @@ export function isActionTriggeredOnAnyInput(
   }
 
   return false;
+}
+
+export function isAntibirthStage(): boolean {
+  const stageType = g.l.GetStageType();
+  return (
+    stageType === StageType.STAGETYPE_REPENTANCE ||
+    stageType === StageType.STAGETYPE_REPENTANCE_B
+  );
 }
 
 export function isSelfDamage(damageFlags: int): boolean {

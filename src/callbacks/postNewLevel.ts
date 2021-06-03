@@ -1,6 +1,6 @@
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import g from "../globals";
-import { log } from "../misc";
+import { getPlayers, log } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
@@ -34,9 +34,56 @@ export function newLevel(): void {
   // Mimic this functionality with our own mod data
   saveDat.save();
 
-  // Features
+  // Other miscellaneous things
+  if (shouldShowLevelText()) {
+    showLevelText();
+  }
+
+  // Optional features
   openHushDoor.postNewLevel();
 
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();
+}
+
+function showLevelText() {
+  // Show what the new floor is
+  // (the game will not show this naturally after doing a "stage" console command)
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
+
+  if (VanillaStreakText) {
+    g.l.ShowName(false);
+  } else {
+    let text = g.l.GetName(stage, stageType, 0, 0, false);
+    if (text === "???") {
+      text = "Blue Womb";
+    }
+
+    g.run.streakText.text = text;
+    g.run.streakText.frame = Isaac.GetFrameCount();
+  }
+}
+
+function shouldShowLevelText() {
+  return (
+    // If the race is finished, the "Victory Lap" text will overlap with the stage text,
+    // so don't bother showing it
+    !g.race.finished &&
+    // If one or more players are playing as "Random Baby", the baby descriptions will slightly
+    // overlap with the stage text, so don't bother showing it
+    !oneOrMorePlayersIsRandomBaby()
+  );
+}
+
+function oneOrMorePlayersIsRandomBaby() {
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+  for (const player of getPlayers()) {
+    const character = player.GetPlayerType();
+    if (character === randomBaby) {
+      return true;
+    }
+  }
+
+  return false;
 }

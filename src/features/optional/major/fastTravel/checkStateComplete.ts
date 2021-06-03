@@ -73,14 +73,11 @@ function incrementFramesPassed() {
 
 function makePlayersJump() {
   for (const player of getPlayers()) {
-    // Make the player(s) visible again
-    // TODO
-
     // Play the jumping out of the hole animation
     player.PlayExtraAnimation("Jump");
   }
 
-  // Make the hole do the disappear animation
+  // Make the hole disappear
   const pitfalls = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariantCustom.PITFALL_CUSTOM,
@@ -121,10 +118,6 @@ function postNewRoomChangingToSameRoom() {
 }
 
 function postNewRoomGoingToNewFloor() {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const centerPos = g.r.GetCenterPos();
-
   // The GoingToNewFloor state is completed once we arrive on the new floor
   g.run.fastTravel.state = FastTravelState.FadingIn;
   g.run.fastTravel.framesPassed = 0;
@@ -134,47 +127,8 @@ function postNewRoomGoingToNewFloor() {
     EntityType.ENTITY_EFFECT,
     EffectVariantCustom.PITFALL_CUSTOM,
     0,
-    centerPos,
+    g.p.Position,
     Vector.Zero,
     null,
   );
-
-  // Show what the new floor is
-  // (the game will not show this naturally after doing a "stage" console command)
-  if (shouldShowLevelText()) {
-    if (VanillaStreakText) {
-      g.l.ShowName(false);
-    } else {
-      let text = g.l.GetName(stage, stageType, 0, 0, false);
-      if (text === "???") {
-        text = "Blue Womb";
-      }
-
-      g.run.streakText.text = text;
-      g.run.streakText.frame = Isaac.GetFrameCount();
-    }
-  }
-}
-
-function shouldShowLevelText() {
-  return (
-    // If the race is finished, the "Victory Lap" text will overlap with the stage text,
-    // so don't bother showing it
-    !g.race.finished &&
-    // If one or more players are playing as "Random Baby", the baby descriptions will slightly
-    // overlap with the stage text, so don't bother showing it
-    !oneOrMorePlayersIsRandomBaby()
-  );
-}
-
-function oneOrMorePlayersIsRandomBaby() {
-  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === randomBaby) {
-      return true;
-    }
-  }
-
-  return false;
 }

@@ -107,7 +107,7 @@ Post-flip actions:
    Dark Room - #20012, #30012
 
 4) Un-flip some Mega Maw rooms:
-   The Chest - #20039, #30039, #20259, #30259
+   The Chest - #20039, #30039, #20059, #30059, #20121, #30121
    Dark Room - #20011, #30011
 
 -->
@@ -123,7 +123,7 @@ Post-flip actions:
   - a fast-drop button for only trinkets
   - a fast-drop button for only pocket items
 
-### 2) Gameplay & Quality of Life Changes
+### 2) Character Changes
 
 - `021` Judas starts with a bomb.
 
@@ -141,29 +141,38 @@ Post-flip actions:
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-- `031` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+### 3) Enemy Changes
 
-> Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
-
-- `032` The fade in at the beginning of a run is sped-up.
-- `033` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `034` Void portals that spawn after bosses are automatically deleted.
-
-> Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
-
-- `035` Bosses will be faded during their death animation.
+- `031` Bosses will be faded during their death animation.
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item. Furthermore, the death animation obscures other enemies that happen to be behind the dying boss.
 
-- `036` The tears that explode out of enemies when you have Vasculitis are faded.
+- `032` Cod Worms are replaced with Para-Bites.
+
+> Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
+
+- `033` The waiting during the Satan Fight is removed.
+
+### 4) Quality of Life Changes
+
+- `041` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+
+> Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
+
+- `042` The fade in at the beginning of a run is sped-up.
+- `043` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `044` Void portals that spawn after bosses are automatically deleted.
+
+> Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
+
+- `045` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `037` The Hush door will be automatically opened.
-- `038` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
-- `041` A custom console is provided that is better than the vanilla console.
+- `046` The Hush door will be automatically opened.
+- `047` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
-> Why? The vanilla console has an annoying animation and is inconvenient to use.
+### 5) Gameplay Changes
 
 - The Karma trinket is removed.
 
@@ -173,111 +182,53 @@ Post-flip actions:
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-<!--
-- The Polaroid or The Negative will be automatically removed depending on your run goal.
-- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
-- Some things that are unseeded are now seeded:
-  - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
-  - Dead Sea Scrolls item selection
-  - cards from Sloth, Super Sloth, Pride, and Super Pride
-  - Guppy's Head fly count
-- Void Portals are automatically deleted.
-- Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
-- You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
-- Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
-- Diagonal knife throws have a 3-frame window instead of a 1-frame window.
-- Pin's first attack happens on the 15th frame (instead of the 73rd frame).
-- Cod Worms are replaced with Para-Bites.
-- Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
-- Mom's Hands, Mom's Dead Hands, Wizoobs, and Red Ghosts have faster attack patterns.
-- Death will no longer perform his slow attack.
-- The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
-- The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
-- All pills can now be used to cancel pedestal pickup animations.
-- The door to Hush is now automatically opened.
-- The devil statue will be faded if there is an item pedestal hiding behind it.
-- There is now a sound effect when a Walnut or a Wishbone breaks.
--->
-
-### 3) Cutscene & Animation Removal
+### 6) Cutscene & Animation Removal
 
 - The intro that occurs when you launch the game is removed.
 - The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
-- Some animations are removed for the purposes of eliminating needless downtime:
-<!--
-  - the fade when entering or exiting crawlspaces (replaced with a normal room transition animation)
--->
-  - all "giantbook" animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)
-  - the pause and unpause animations
-<!--
-  - traveling upwards in a beam of light (replaced with a faster version)
-  - the use animation for Telepills
-  - the use animation for Blank Card when you have a teleport card
-  - various animations during the Satan fight
-  - various animations during the Mega Satan fight
-  - various animations during The Haunt fight
-  - various animations during the Big Horn fight
-  - Hush's appear animation
-  - Ultra Greed's appear and death animation
-- Teleporting animations are sped up by a factor of 2.
-- The disappearing animation for Pitfalls are sped up by a factor of 2.
--->
+- All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
+- The pause and unpause animations are removed.
 
-### 4) Bug Fixes
+### 7) Bug Fixes
 
-- `051` All forms of teleport will no longer send you to an invalid entrance.
+- `071` All forms of teleport will no longer send you to an invalid entrance.
+- Restock Machines will now appear in shops 25% of the game.
+
+> Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
+
 - Having Duality will now always give you both the Devil Room and the Angel Room.
 
 > Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.
 
-- Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)
+- Entering a Black Market will no longer send you to the I AM ERROR room.
+
+> Why? In v820, all Black Markets became broken in this way.
+
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
+- The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 
-<!--
-- Angels will drop key pieces even if another angel is still alive in the room.
-- Globins will permanently die upon the 5th regeneration to prevent Epic Fetus softlocks.
-- Flaming Hoppers will now automatically die after 5 seconds of being immobile to prevent softlocks.
-- Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- The Book of Sin and Mystery Sack generate actual random pickups.
-- 9 Volt now properly synergizes with The Battery.
-- Double coins and nickels heal Keeper for their proper amount.
-- Defeating Mega Satan no longer has a chance to immediately end the run.
-- Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
-- The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared.
--->
-
-<br />
-
-### 5) Graphics
+### 8) Graphics Fixes
 
 - Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - The 20/20 sprite is now easier to see.
-- The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.)
+- The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.) <!-- cspell:disable-line -->
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
   - White-dotted / Red --> Full red
   - Pink / Red --> White / Red
   - White / White-dotted --> Full white-dotted
 
-<!--
-- The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
-- Scared Hearts and Sticky Nickels now have unique sprites.
-- The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
-- The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
-- The white spotted pill sprite has been changed to an all-spotted sprite so that it is easier to distinguish from the white pill.
-- The white has been changed on the red-white pill sprite so that it is easier to see.
-- The Locust of Famine graphic now matches the color of the flies.
-- Daemon's Tail and Error now have outlines. (Thanks goes to [O_o](http://steamcommunity.com/profiles/76561197993627005) for creating the sprites in the [Trinket Outlines](http://steamcommunity.com/sharedfiles/filedetails/?id=1138554495) mod.)
-- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.)
-- Enemy red creep is changed to green (so that it is easier to see).
-- Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
--->
-
-### 5) Sound Fixes
+### 9) Sound Fixes
 
 - The audio clips of mom and dad on the Ascent are silenced.
+
+### 10) Other
+
+- `101` A custom console is provided that is better than the vanilla console.
+
+> Why? The vanilla console has an annoying animation and is inconvenient to use.
 
 <br />
 
@@ -306,3 +257,62 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
+
+<!--
+  - the use animation for Telepills
+  - the use animation for Blank Card when you have a teleport card
+  - various animations during the Mega Satan fight
+  - various animations during The Haunt fight
+  - various animations during the Big Horn fight
+  - Hush's appear animation
+  - Ultra Greed's appear and death animation
+- Teleporting animations are sped up by a factor of 2.
+- The disappearing animation for Pitfalls are sped up by a factor of 2.
+-->
+<!--
+- The Polaroid or The Negative will be automatically removed depending on your run goal.
+- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
+- Some things that are unseeded are now seeded:
+  - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
+  - Dead Sea Scrolls item selection
+  - cards from Sloth, Super Sloth, Pride, and Super Pride
+  - Guppy's Head fly count
+- Void Portals are automatically deleted.
+- Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
+- You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
+- Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
+- Diagonal knife throws have a 3-frame window instead of a 1-frame window.
+- Pin's first attack happens on the 15th frame (instead of the 73rd frame).
+- Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
+- Mom's Hands, Mom's Dead Hands, Wizoobs, and Red Ghosts have faster attack patterns.
+- Death will no longer perform his slow attack.
+- The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
+- The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
+- All pills can now be used to cancel pedestal pickup animations.
+- The door to Hush is now automatically opened.
+- The devil statue will be faded if there is an item pedestal hiding behind it.
+- There is now a sound effect when a Walnut or a Wishbone breaks.
+-->
+<!--
+- Globins will permanently die upon the 5th regeneration to prevent Epic Fetus softlocks.
+- Flaming Hoppers will now automatically die after 5 seconds of being immobile to prevent softlocks.
+- Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
+- The Book of Sin and Mystery Sack generate actual random pickups.
+- 9 Volt now properly synergizes with The Battery.
+- Double coins and nickels heal Keeper for their proper amount.
+- Defeating Mega Satan no longer has a chance to immediately end the run.
+- Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
+-->
+<!--
+- The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
+- Scared Hearts and Sticky Nickels now have unique sprites.
+- The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
+- The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
+- The white spotted pill sprite has been changed to an all-spotted sprite so that it is easier to distinguish from the white pill.
+- The white has been changed on the red-white pill sprite so that it is easier to see.
+- The Locust of Famine graphic now matches the color of the flies.
+- Daemon's Tail and Error now have outlines. (Thanks goes to [O_o](http://steamcommunity.com/profiles/76561197993627005) for creating the sprites in the [Trinket Outlines](http://steamcommunity.com/sharedfiles/filedetails/?id=1138554495) mod.)
+- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.)
+- Enemy red creep is changed to green (so that it is easier to see).
+- Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
+-->
