@@ -1,5 +1,6 @@
 {
   "projectName": "racing-plus",
   "modsDirectory": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\The Binding of Isaac Rebirth\\mods",
-  "saveSlot": 1
+  "saveSlot": 1,
+  "steamCmdPath": "D:\\Apps\\Misc\\steamcmd\\steamcmd.exe"
 }
