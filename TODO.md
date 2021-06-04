@@ -1,3 +1,6 @@
+- remove oud, obnoxious laugh from Mom.
+- fix depths2 door
+
 - chat system
 - custom console
 

@@ -78,7 +78,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 - `005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
-> Why? It is obnoxious to have to sit and wait for a boss' long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
+> Why? It is obnoxious to have to sit and wait for a long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
 ### 6) Fast-Travel
 
@@ -87,7 +87,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 7) Room Fixes
 
-Rooms with unavoidable damage or bugs have been fixed or deleted.
+Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](CHANGES-ROOM.md).
 
 ### 8) Room Flipping
 
@@ -131,11 +131,11 @@ Post-flip actions:
 
 - `022` Samson's Child's Heart is automatically dropped.
 
->  Why? When playing as Samson, players immediately drop the Child's Heart to improve their odds at good room drops.
+>  Why? When playing as Samson, players usually immediately drop the Child's Heart to improve their odds at good room drops.
 
 - `023` Tainted Keeper starts with 15 cents.
 
-> Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be essential for unseeded speedruns.
+> Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
 - `024` Eden's starting items will be shown in the starting room.
 
@@ -175,7 +175,7 @@ Post-flip actions:
 > Why? This is convenient because it makes the player equidistant to all of the doors.
 
 - `041` The fade in at the beginning of a run is sped-up.
-- `042` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+- `042` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
@@ -213,7 +213,7 @@ Post-flip actions:
 ### 7) Bug Fixes
 
 - `071` All forms of teleport will no longer send you to an invalid entrance.
-- Restock Machines will now appear in shops 25% of the game.
+- Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
 
@@ -270,12 +270,6 @@ Racing+ allows players to perform [several different types of races](https://git
 <!--
 Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md), each of which introduces additional changes to the game.
 -->
-
-<br />
-
-## Individual Room Changes
-
-The technical specifics of all of the individual room changes are listed in a [separate page](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-ROOM.md).
 
 <br />
 
