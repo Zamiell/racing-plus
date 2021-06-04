@@ -72,15 +72,15 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 `004` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
-> Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for imposing this limitation on players.Speeding this up makes resetting for a starting item less tedious.
+> Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for this. Speeding this up makes resetting for a starting item less tedious.
 
-### 5) Fast-Clear (Wrath of the Lamb Style Room Clear)
+### 5) Fast-Clear
 
 - `005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
 > Why? It is obnoxious to have to sit and wait for a boss' long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
-### 6) Fast-Travel Between Floors and Crawlspaces
+### 6) Fast-Travel
 
 - `006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
 - `006` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
