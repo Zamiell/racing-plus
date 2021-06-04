@@ -57,7 +57,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- Devil Rooms and Angel Rooms have been [customized](CHANGES-ROOM.md#devil-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+- Devil Rooms and Angel Rooms have been [customized](CHANGES-ROOM.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
   - Average items per angel room are increased from [TODO] to [TODO].
 
