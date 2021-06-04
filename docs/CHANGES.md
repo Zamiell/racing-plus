@@ -22,7 +22,7 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 
 ## Introduction
 
-Overall, the main point of the Racing+ mod is to enable multiplayer racing with out people. You will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
+Overall, the main point of the Racing+ mod is to enable multiplayer racing with other people. You will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
 
 With that said, Racing+ does make a lot of smaller changes that you might not be able to pick-up on right away. This page documents every change that it performs.
 
