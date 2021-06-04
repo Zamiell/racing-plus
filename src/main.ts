@@ -24,6 +24,7 @@ import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
+import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as useCard from "./callbacks/useCard";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
@@ -84,8 +85,33 @@ racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); /
 // Register NPC callbacks (0)
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
+  NPCUpdate.momsHand,
+  EntityType.ENTITY_MOMS_HAND, // 213
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  NPCUpdate.wizoob,
+  EntityType.ENTITY_WIZOOB, // 219
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
   NPCUpdate.ragling,
   EntityType.ENTITY_RAGLING, // 246
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  NPCUpdate.haunt,
+  EntityType.ENTITY_THE_HAUNT, // 260
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  NPCUpdate.redGhost,
+  EntityType.ENTITY_RED_GHOST, // 285
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  NPCUpdate.momsDeadHand,
+  EntityType.ENTITY_MOMS_DEAD_HAND, // 287
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
@@ -120,15 +146,22 @@ racingPlus.AddCallback(
   postEffectInit.poof01,
   EffectVariant.POOF01,
 ); // 15
-racingPlus.AddCallback(
-  ModCallbacks.MC_POST_EFFECT_INIT,
-  postEffectInit.heavenLightDoor,
-  EffectVariant.HEAVEN_LIGHT_DOOR,
-); // 39
 
 // Register PostEffectUpdate callbacks (55)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_EFFECT_UPDATE,
   postEffectUpdate.heavenLightDoor,
   EffectVariant.HEAVEN_LIGHT_DOOR,
+);
+
+// Register PreNPCUpdate callbacks (69)
+racingPlus.AddCallback(
+  ModCallbacks.MC_PRE_NPC_UPDATE,
+  preNPCUpdate.momsHand,
+  EntityType.ENTITY_MOMS_HAND, // 213
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_PRE_NPC_UPDATE,
+  preNPCUpdate.momsDeadHand,
+  EntityType.ENTITY_MOMS_DEAD_HAND, // 287
 );

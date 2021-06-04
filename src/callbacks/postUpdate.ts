@@ -9,6 +9,7 @@ import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import * as fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
 import * as fastClear4PostUpdate from "../features/optional/major/fastClear4/callbacks/postUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
+import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 
 export function main(): void {
@@ -23,12 +24,13 @@ export function main(): void {
   // Mandatory features
   showLevelText.postUpdate();
 
-  // Optional features - Major
+  // Major features
   startWithD6.postUpdate();
   fastClearPostUpdate.main();
   fastClear4PostUpdate.main();
   fastDrop.postUpdate();
 
-  // Optional features - Quality
+  // QoL
   showPills.postUpdate();
+  showMaxFamiliars.postUpdate();
 }

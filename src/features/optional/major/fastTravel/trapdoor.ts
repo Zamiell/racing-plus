@@ -1,12 +1,13 @@
 import g from "../../../../globals";
 import {
   getGridEntities,
+  isAntibirthStage,
   isPostBossVoidPortal,
   removeGridEntity,
 } from "../../../../misc";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
-import * as nextFloor from "./nextFloor";
+import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Trapdoor;
@@ -19,22 +20,40 @@ export function postNewRoom(): void {
 function initAll() {
   for (const gridEntity of getGridEntities()) {
     const saveState = gridEntity.GetSaveState();
-    if (saveState.Type === GridEntityType.GRID_TRAPDOOR) {
+    if (
+      saveState.Type === GridEntityType.GRID_TRAPDOOR &&
+      !shouldIgnore(gridEntity)
+    ) {
       fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
     }
   }
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_TRAPDOOR
-export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
+function shouldIgnore(gridEntity: GridEntity) {
+  const stage = g.l.GetStage();
+
   if (isPostBossVoidPortal(gridEntity)) {
-    return;
+    return true;
   }
 
   // There is no way to manually travel to the "Infinite Basements" Easter Egg floors,
   // so just disable the fast-travel feature if this is the case
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_INFINITE_BASEMENT)) {
+    return true;
+  }
+
+  // Don't replace the trap door that leads to Mother
+  if (stage === 8 && isAntibirthStage()) {
+    return true;
+  }
+
+  return false;
+}
+
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// GridEntityType.GRID_TRAPDOOR
+export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
+  if (shouldIgnore(gridEntity)) {
     return;
   }
 
@@ -87,13 +106,13 @@ export function shouldSpawnOpen(entity: GridEntity | EntityEffect): boolean {
   }
 
   // Trapdoors created after a room has already initialized should spawn closed by default
-  // e.g. trapdoors created after bosses should spawn closed so that players do not accidently jump
-  // into them
+  // e.g. trapdoors created after bosses should spawn closed so that players do not accidentally
+  // jump into them
   // e.g. trapdoors created by We Need to Go Deeper! should spawn closed because the player will
   // be standing on top of them
   return false;
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
-  nextFloor.init(entity, player, false);
+  setFadingToBlack(entity, player, false);
 }

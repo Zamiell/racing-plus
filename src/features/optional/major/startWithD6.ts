@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayerLuaTableIndex, getPlayers } from "../../../misc";
+import { getPlayerLuaTableIndex, getPlayers, log } from "../../../misc";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,
@@ -115,5 +115,7 @@ export function postPlayerChange(player: EntityPlayer): void {
     const index = getPlayerLuaTableIndex(player);
     const charge = g.run.pocketActiveD6Charge.get(index);
     givePocketActiveD6(player, charge);
+
+    log("Awarded another pocket D6 (due to character change).");
   }
 }

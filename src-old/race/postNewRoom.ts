@@ -146,9 +146,6 @@ function checkEverythingFloorSkip() {
       const heavenDoors = Isaac.FindByType(
         EntityType.ENTITY_EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
-        -1,
-        false,
-        false,
       );
       for (const heavenDoor of heavenDoors) {
         heavenDoor.Remove();
@@ -191,13 +188,7 @@ function raceStartRoom() {
   g.p.Position = pos;
 
   // Put familiars next to the bottom door, if any
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   for (const familiar of familiars) {
     familiar.Position = pos;
   }
@@ -270,23 +261,11 @@ function checkVictoryLapBossReplace() {
       roomVariant === 5130)
   ) {
     // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps)
-    const isaacs = Isaac.FindByType(
-      EntityType.ENTITY_ISAAC,
-      -1,
-      -1,
-      false,
-      false,
-    );
+    const isaacs = Isaac.FindByType(EntityType.ENTITY_ISAAC);
     for (const entity of isaacs) {
       entity.Remove();
     }
-    const lambs = Isaac.FindByType(
-      EntityType.ENTITY_THE_LAMB,
-      -1,
-      -1,
-      false,
-      false,
-    );
+    const lambs = Isaac.FindByType(EntityType.ENTITY_THE_LAMB);
     for (const entity of lambs) {
       entity.Remove();
     }

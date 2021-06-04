@@ -12,7 +12,7 @@ export function telepills(): void {
     insertErrorRoom = true;
 
     // There is a 2% chance have a Black Market inserted into the list of possibilities
-    // (according to blcd)
+    // (according to Blade)
     g.RNGCounter.Telepills = misc.incrementRNG(g.RNGCounter.Telepills);
     math.randomseed(g.RNGCounter.Telepills);
     const blackMarketRoll = math.random(1, 100);

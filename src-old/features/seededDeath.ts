@@ -113,8 +113,6 @@ export function postNewRoom(): void {
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_COLLECTIBLE,
       CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-      false,
-      false,
     );
     for (const checkpoint of checkpoints) {
       const pickup = checkpoint.ToPickup();
@@ -573,10 +571,6 @@ function debuffOff() {
   // (re-giving back some items will cause pickups to spawn)
   const pickups = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
-    -1,
-    -1,
-    false,
-    false,
   );
   for (const pickup of pickups) {
     if (
@@ -598,9 +592,6 @@ function debuffOff() {
     const blueFlies = Isaac.FindByType(
       EntityType.ENTITY_FAMILIAR,
       FamiliarVariant.BLUE_FLY,
-      -1,
-      false,
-      false,
     );
     for (const fly of blueFlies) {
       fly.Remove();
@@ -622,8 +613,6 @@ function debuffOff() {
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-    false,
-    false,
   );
   for (const checkpoint of checkpoints) {
     const pickup = checkpoint.ToPickup();

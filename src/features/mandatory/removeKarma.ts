@@ -11,12 +11,7 @@ export function postGameStarted(): void {
 
   // If Eden started with the Karma trinket, we need to delete it
   for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (
-      (character === PlayerType.PLAYER_EDEN ||
-        character === PlayerType.PLAYER_EDEN_B) &&
-      player.HasTrinket(TrinketType.TRINKET_KARMA)
-    ) {
+    if (player.HasTrinket(TrinketType.TRINKET_KARMA)) {
       player.TryRemoveTrinket(TrinketType.TRINKET_KARMA);
     }
   }

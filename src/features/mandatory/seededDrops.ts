@@ -28,7 +28,7 @@ export function shouldSpawnSeededDrop(): boolean {
 // Thus, we overwrite the game's room drop system with one that manually spawns awards in order
 // The following code is based on the game's internal logic, documented here:
 // https://bindingofisaacrebirth.gamepedia.com/Room_Clear_Awards
-// (it was reverse engineered by blcd)
+// (it was reverse engineered by Blade)
 // However, there is some major difference from vanilla
 // We hard-code values of 0 luck so that room drops are completely consistent
 // (otherwise, one player would be able to get a lucky Emperor card by using a Luck Up or Luck Down

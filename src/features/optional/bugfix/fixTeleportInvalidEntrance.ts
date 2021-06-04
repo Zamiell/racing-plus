@@ -4,6 +4,7 @@ import {
   enteredRoomViaTeleport,
   getPlayers,
   log,
+  moveEsauNextToJacob,
 } from "../../../misc";
 
 export function postNewRoom(): void {
@@ -30,10 +31,34 @@ export function postNewRoom(): void {
     return;
   }
 
-  // Check to see if they are at an entrance
-  let nextToADoor = false;
-  let firstDoorSlot: int | null = null;
-  let firstDoorPosition: Vector | null = null;
+  if (!isPlayerNextToADoor()) {
+    return;
+  }
+
+  const [firstDoorSlot, firstDoorPosition] = getFirstDoorSlotAndPosition();
+  if (firstDoorSlot === null || firstDoorPosition === null) {
+    // Some rooms have no doors, like I AM ERROR rooms
+    return;
+  }
+
+  // They teleported to a non-existent entrance,
+  // so manually move the players next to the first door in the room
+  const position = getDoorEnterPosition(firstDoorSlot, firstDoorPosition);
+  for (const player of getPlayers()) {
+    player.Position = position;
+  }
+  moveEsauNextToJacob();
+
+  // Also move the familiars
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
+  for (const familiar of familiars) {
+    familiar.Position = position;
+  }
+
+  log("Fixed teleporting a player to an invalid entrance.");
+}
+
+function isPlayerNextToADoor() {
   for (let i = 0; i <= 7; i++) {
     const door = g.r.GetDoor(i);
     if (
@@ -41,40 +66,28 @@ export function postNewRoom(): void {
       door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
       door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
     ) {
-      if (firstDoorSlot === null) {
-        firstDoorSlot = i;
-        firstDoorPosition = Vector(door.Position.X, door.Position.Y);
-      }
       if (anyPlayerCloserThan(door.Position, 60)) {
-        nextToADoor = true;
-        break;
+        return true;
       }
     }
   }
 
-  // Some rooms have no doors, like I AM ERROR rooms
-  if (!nextToADoor && firstDoorSlot !== null && firstDoorPosition !== null) {
-    // They teleported to a non-existent entrance,
-    // so manually move the players next to the first door in the room
-    const doorOffset = getDoorEnterPosition(firstDoorSlot, firstDoorPosition);
-    for (const player of getPlayers()) {
-      player.Position = doorOffset;
-    }
+  return false;
+}
 
-    // Also move the familiars
-    const familiars = Isaac.FindByType(
-      EntityType.ENTITY_FAMILIAR,
-      -1,
-      -1,
-      false,
-      false,
-    );
-    for (const familiar of familiars) {
-      familiar.Position = doorOffset;
+function getFirstDoorSlotAndPosition(): [int | null, Vector | null] {
+  for (let i = 0; i <= 7; i++) {
+    const door = g.r.GetDoor(i);
+    if (
+      door !== null &&
+      door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
+      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
+    ) {
+      return [i, door.Position];
     }
   }
 
-  log("Fixed teleporting to an invalid entrance.");
+  return [null, null];
 }
 
 function getDoorEnterPosition(doorSlot: DoorSlot, doorPosition: Vector) {

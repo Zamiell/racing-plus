@@ -1,6 +1,6 @@
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
-import { initSprite, isActionPressedOnAnyInput } from "../../../misc";
+import { initSprite, isActionPressedOnAnyInput, log } from "../../../misc";
 
 const NUM_PILLS_IN_POOL = 13;
 
@@ -73,7 +73,7 @@ export function getSprite(pillColor: PillColor): Sprite {
 }
 
 function initSprites() {
-  sprites.push(Sprite()); // For convienence, make a null sprite on index 0
+  sprites.push(Sprite()); // For convenience, make a null sprite on index 0
   for (let i = 1; i < PillColor.NUM_STANDARD_PILLS; i++) {
     const sprite = initSprite("gfx/pills/pill.anm2", `gfx/pills/${i}.png`);
     sprites.push(sprite);
@@ -158,7 +158,7 @@ function checkPHD() {
   }
 
   g.run.pillsPHD = true;
-  Isaac.DebugString("Converting bad pill effects.");
+  log("Converting bad pill effects.");
 
   // Change the text for any identified pills
   for (const pillEntry of g.run.pills) {
@@ -180,7 +180,7 @@ function checkFalsePHD() {
   }
 
   g.run.pillsFalsePHD = true;
-  Isaac.DebugString("Converting good pill effects.");
+  log("Converting good pill effects.");
 
   // Change the text for any identified pills
   for (const pillEntry of g.run.pills) {

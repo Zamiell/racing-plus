@@ -1,15 +1,10 @@
 import g from "../../../../globals";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
-import * as nextFloor from "./nextFloor";
+import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
-
-// ModCallbacks.MC_POST_EFFECT_INIT (54)
-export function postEffectInit(effect: EntityEffect): void {
-  fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-}
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
@@ -18,6 +13,9 @@ export function postEffectUpdate(effect: EntityEffect): void {
   // Thus, we can disable the vanilla functionality by setting the state to 0 on every frame
   effect.State = 0;
 
+  // We can't initialize the entity in the PostEffectInit callback because that fires before the
+  // PostNewRoom callback
+  fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
@@ -43,7 +41,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     return;
   }
 
-  nextFloor.init(entity, player, true);
+  setFadingToBlack(entity, player, true);
 }
 
 // ModCallbacksCustom.MC_POST_ROOM_CLEAR
@@ -55,9 +53,6 @@ function openClosedHeavenDoors() {
   const heavenDoors = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
-    -1,
-    false,
-    false,
   );
   for (const entity of heavenDoors) {
     const effect = entity.ToEffect();

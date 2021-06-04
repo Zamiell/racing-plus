@@ -1,6 +1,7 @@
 import * as json from "json";
 import g from "./globals";
 import * as tableUtils from "./tableUtils";
+import GlobalsRunRoom from "./types/GlobalsRunRoom";
 import GlobalsToSave from "./types/GlobalsToSave";
 
 let mod: Mod | null = null;
@@ -10,9 +11,18 @@ export function setMod(newMod: Mod): void {
 }
 
 export function save(): void {
+  const isClear = g.r.IsClear();
+
   if (mod === null) {
     error('"saveDat.save()" was called without the mod being initialized.');
   }
+
+  // Wipe the variables for the current room, since we do not need to store that
+  // (it will be re-created as soon as they re-enter the game)
+  // Wiping this now should be safe, since the only time that a user can save the state in the
+  // middle of a room is by changing a setting using Mod Config Menu, and Mod Config Menu can only
+  // be opened when the room is already clear
+  g.run.room = new GlobalsRunRoom(isClear);
 
   // Scrub some specific data that cannot be represented in JSON
   g.run.fastClear.aliveEnemies = new LuaTable();

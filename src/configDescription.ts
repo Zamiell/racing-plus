@@ -216,25 +216,70 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
       "All of the waiting during the Satan Fight is removed.",
     ],
   ],
+  [
+    "disableInvulnerability",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "034",
+      "Disable invulnerability",
+      "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
+    ],
+  ],
+  [
+    "fastGhosts",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "035",
+      "Fast ghosts",
+      "Wizoobs and Red Ghosts have faster attack patterns.",
+    ],
+  ],
+  [
+    "fastHands",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "036",
+      "Fast hands",
+      "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
+    ],
+  ],
+  [
+    "appearHands",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "037",
+      "Reveal hands",
+      "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
+    ],
+  ],
 ];
 
 export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
   [
-    "showDreamCatcherItem",
+    null,
     [
-      ModConfigMenuOptionType.BOOLEAN,
-      "041",
-      "Show the Dream Catcher item",
-      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Start in the center",
+      "On a new run, start in the center of the room (instead of at the bottom).",
     ],
   ],
   [
     "speedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "042",
+      "041",
       "Speed-up new run fade-ins",
       "Speed-up the fade-in that occurs at the beginning of a new run.",
+    ],
+  ],
+  [
+    "showDreamCatcherItem",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "042",
+      "Show the Dream Catcher item",
+      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
   ],
   [
@@ -280,6 +325,15 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
       "047",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
+    ],
+  ],
+  [
+    "showMaxFamiliars",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "048",
+      "Show max familiars",
+      "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
   ],
 ];
@@ -463,6 +517,15 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
       "",
       "Better pill colors",
       "The color of some pills are changed to make them easier to identify at a glance.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Speedrunning controls graphic",
+      "The controls graphic in the start room is changed to be speedrunning-themed.",
     ],
   ],
 ];

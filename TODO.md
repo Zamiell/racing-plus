@@ -1,11 +1,3 @@
-- fast-travel - have 2nd char jump into hole after a delay
-- dont bother immobilizing all players, use InputAction callback
-
-- integrate empty room fixes
-- trapdoor on dross 1 does not go to dross 2
-
-- seed where mom drops a lot of hearts: XP6W BDJC
-
 - chat system
 - custom console
 

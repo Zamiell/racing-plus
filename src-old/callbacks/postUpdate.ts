@@ -73,9 +73,6 @@ function removeInvisibleEntities() {
   const invisiblePickups = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariantCustom.INVISIBLE_PICKUP,
-    -1,
-    false,
-    false,
   );
   for (const invisiblePickup of invisiblePickups) {
     invisiblePickup.Remove();
@@ -85,9 +82,6 @@ function removeInvisibleEntities() {
   const invisibleEffects = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariantCustom.INVISIBLE_EFFECT,
-    -1,
-    false,
-    false,
   );
   for (const invisibleEffect of invisibleEffects) {
     invisibleEffect.Remove();
@@ -148,9 +142,6 @@ function checkDDItems() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   let numDDItems = 0;
   for (const entity of collectibles) {
@@ -279,13 +270,7 @@ function checkCharacter() {
 
   // Fix the bug where the player can accidentally switch characters and go down a trapdoor
   if (g.run.trapdoor.state === 0) {
-    const effects = Isaac.FindByType(
-      EntityType.ENTITY_EFFECT,
-      -1,
-      -1,
-      false,
-      false,
-    );
+    const effects = Isaac.FindByType(EntityType.ENTITY_EFFECT);
     for (const entity of effects) {
       if (
         (entity.Variant === EffectVariantCustom.TRAPDOOR_FAST_TRAVEL ||
@@ -407,13 +392,7 @@ function checkMomStomp() {
       g.p.Position = centerPos;
       g.p.Visible = false;
 
-      const familiars = Isaac.FindByType(
-        EntityType.ENTITY_FAMILIAR,
-        -1,
-        -1,
-        false,
-        false,
-      );
+      const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
       for (const familiar of familiars) {
         familiar.Visible = false;
       }
@@ -464,26 +443,9 @@ function checkMomStomp() {
         familiar.Visible = true;
       }
 
-      const knives = Isaac.FindByType(
-        EntityType.ENTITY_KNIFE,
-        -1,
-        -1,
-        false,
-        false,
-      );
+      const knives = Isaac.FindByType(EntityType.ENTITY_KNIFE);
       for (const knife of knives) {
         knife.Visible = true;
-      }
-
-      const scythes = Isaac.FindByType(
-        EntityTypeCustom.ENTITY_SAMAEL_SCYTHE,
-        -1,
-        -1,
-        false,
-        false,
-      );
-      for (const scythe of scythes) {
-        scythe.Visible = true;
       }
 
       g.run.room.forceMomStomp = false;
@@ -600,8 +562,6 @@ function checkWishbone() {
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_TRINKET,
         TrinketType.TRINKET_WISH_BONE,
-        false,
-        false,
       );
       if (wishBones.length === 0) {
         g.sfx.Play(SoundEffectCustom.SOUND_WALNUT, 1, 0, false, 1);
@@ -621,8 +581,6 @@ function checkWalnut() {
         EntityType.ENTITY_PICKUP,
         PickupVariant.PICKUP_TRINKET,
         TrinketType.TRINKET_WALNUT,
-        false,
-        false,
       );
       if (walnuts.length === 0) {
         g.sfx.Play(SoundEffectCustom.SOUND_WALNUT, 1, 0, false, 1);

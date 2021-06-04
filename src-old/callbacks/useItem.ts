@@ -128,7 +128,7 @@ export function undefinedItem(): void {
     insertErrorRoom = true;
 
     // There is a 1% chance have a Black Market inserted into the list of possibilities
-    // (according to blcd)
+    // (according to Blade)
     g.RNGCounter.undefined = misc.incrementRNG(g.RNGCounter.undefined);
     math.randomseed(g.RNGCounter.undefined);
     const blackMarketRoll = math.random(1, 100);
@@ -198,9 +198,6 @@ function UseItem.Void() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false
   )
   if (collectibles.length > 0 ) {
     g.run.touchedPickup = true
@@ -213,7 +210,7 @@ function UseItem.MovingBox() {
   if ( g.run.movingBoxOpen ) {
     // Check to see if ( there are any pickups on the ground
     const pickupsPresent = false
-    const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)
+    const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP)
     for (const pickup of pickups) {
       if ( (
         pickup.Variant !== PickupVariant.PICKUP_BIGCHEST // 340

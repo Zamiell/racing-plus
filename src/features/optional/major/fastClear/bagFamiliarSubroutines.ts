@@ -1,6 +1,6 @@
 import { initRNG } from "../../../../misc";
 
-/** The multiplier constants for each familiar were reversed from the game by blcd / Will. */
+/** The multiplier constants for each familiar were reversed from the game by Blade. */
 const MULTIPLIER_MAP = new Map<FamiliarVariant, [int, int]>([
   [FamiliarVariant.BOMB_BAG, [0.35, 0.42]],
   [FamiliarVariant.BOMB_BAG, [0.35, 0.42]],
@@ -16,7 +16,7 @@ const MULTIPLIER_MAP = new Map<FamiliarVariant, [int, int]>([
 
 /**
  * This algorithm applies to most bag familiars (but not all).
- * The logic was reversed from the game by blcd / Will.
+ * The logic was reversed from the game by Blade.
  */
 export function shouldDropSomething(familiar: EntityFamiliar): boolean {
   const player = familiar.Player;

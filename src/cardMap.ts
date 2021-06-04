@@ -198,13 +198,13 @@ const CARD_MAP = new Map([
   ["world?", 77],
   ["world2", 77],
   ["cracked key", 78],
-  ["crackedkey", 78],
+  ["crackedkey", 78], // cspell:disable-line
   ["cracked", 78],
   ["key", 78],
   ["queen of hearts", 79],
-  ["queenofhearts", 79],
+  ["queenofhearts", 79], // cspell:disable-line
   ["queen hearts", 79],
-  ["queenhearts", 79],
+  ["queenhearts", 79], // cspell:disable-line
   ["queen", 79],
   ["wild card", 80],
   ["wildcard", 80],
@@ -233,7 +233,7 @@ const CARD_MAP = new Map([
   ["soulofbluebaby", 85], // cspell:disable-line
   ["soulbluebaby", 85], // cspell:disable-line
   ["blue baby", 85],
-  ["bluebaby", 85],
+  ["bluebaby", 85], // cspell:disable-line
   ["soul of eve", 86],
   ["soulofeve", 86], // cspell:disable-line
   ["souleve", 86], // cspell:disable-line

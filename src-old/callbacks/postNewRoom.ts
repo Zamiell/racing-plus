@@ -72,9 +72,6 @@ function checkScolexRoom() {
     const scolexes = Isaac.FindByType(
       EntityType.ENTITY_PIN,
       1,
-      -1,
-      false,
-      false,
     );
     for (const scolex of scolexes) {
       scolex.Remove(); // This takes a game frame to actually get removed

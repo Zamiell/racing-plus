@@ -1,6 +1,10 @@
 import g from "../globals";
 
 export function main(player: EntityPlayer): void {
+  cachePlayerObject(player);
+}
+
+function cachePlayerObject(player: EntityPlayer) {
   // Cache the player object so that we don't have to repeatedly call Isaac.GetPlayer()
   const character = player.GetPlayerType();
   if (

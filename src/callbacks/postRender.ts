@@ -8,6 +8,7 @@ import * as fastTravelPostRender from "../features/optional/major/fastTravel/cal
 import * as customConsole from "../features/optional/quality/customConsole";
 import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import * as racePostRender from "../features/race/callbacks/postRender";
@@ -41,6 +42,7 @@ export function main(): void {
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender.main();
   showPills.postRender();
+  showMaxFamiliars.postRender();
   customConsole.postRender();
 }
 

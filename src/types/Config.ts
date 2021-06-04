@@ -18,6 +18,10 @@ export default class Config {
   fadeBosses = true;
   replaceCodWorms = true;
   fastSatan = true;
+  disableInvulnerability = true;
+  fastGhosts = true;
+  fastHands = true;
+  appearHands = true;
 
   // Quality of Life Changes
   showDreamCatcherItem = true;
@@ -27,6 +31,7 @@ export default class Config {
   fadeVasculitisTears = true;
   openHushDoor = true;
   showPills = true;
+  showMaxFamiliars = true;
   customConsole = true;
 
   // Bug Fixes

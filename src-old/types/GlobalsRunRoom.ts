@@ -23,11 +23,5 @@ export default class GlobalsRunRoom {
   blackHeartNPCs = new Map<int, BlackHeartNPC>(); // Keys are NPC indexes
   blackHeartCount = new Map<int, int>(); // Keys are NPC init seeds
   touchedPickup = false; // Used for Challenge Rooms
-  matriarch = {
-    // Used to rebalance The Matriarch
-    spawned: false,
-    chubIndex: -1,
-    stunFrame: 0,
-  };
 }
 */

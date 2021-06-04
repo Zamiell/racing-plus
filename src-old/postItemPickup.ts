@@ -1,6 +1,4 @@
-import * as season8 from "./challenges/season8";
-import g from "./globals";
-
+/*
 export function insertNearestCoin(): void {
   insertNearestPickup(PickupVariant.PICKUP_COIN);
 }
@@ -101,9 +99,6 @@ export function getNearestPickup(variant: PickupVariant): EntityPickup | null {
   const pickups = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     variant,
-    -1,
-    false,
-    false,
   );
   let nearestPickup: EntityPickup | null = null;
   let nearestPickupDistance: int | null = null;
@@ -358,3 +353,4 @@ function checkTrinketSlotOpen() {
   error(`The player has an unknown number of trinket slots: ${slots}`);
   return false;
 }
+*/

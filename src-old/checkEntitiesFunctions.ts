@@ -33,22 +33,6 @@ functionMap.set(260, (entity) => {
     Isaac.DebugString(string);
   }
 
-  // Remove invulnerability frames from Lil' Haunts that are ! attached to a Haunt
-  // (we can't ) { it any earlier than the 4th frame because it will introduce additional bugs,
-  // such as the Lil' Haunt becoming invisible)
-  if (npc.Parent === null && npc.FrameCount === 4) {
-    // Changing the NPC's state triggers the invulnerability removal in the next frame
-    npc.State = NpcState.STATE_MOVE; // 4
-
-    // Additionally, we also have to manually set the collision, because
-    // tears will pass through Lil' Haunts when they first spawn
-    npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL; // 4
-
-    Isaac.DebugString(
-      `Removed invulnerability frames && set collision for a Lil' Haunt with index. ${npc.Index.toString()}`,
-    );
-  }
-
   // Lock newly spawned Lil' Haunts in place so that they don't immediately rush the player
   if (npc.State === NpcState.STATE_MOVE && npc.FrameCount <= 16) {
     npc.Position = g.run.room.currentLilHaunts[index].pos;

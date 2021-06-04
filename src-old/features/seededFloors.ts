@@ -112,9 +112,6 @@ export function before(stage: int): void {
       const blueFlies = Isaac.FindByType(
         EntityType.ENTITY_FAMILIAR,
         FamiliarVariant.BLUE_FLY,
-        -1,
-        false,
-        false,
       );
       for (let i = 0; i < blueFlies.length; i++) {
         if (i >= 3) {

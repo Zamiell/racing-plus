@@ -2,7 +2,7 @@
 // or It Lives!
 
 import g from "../../../globals";
-import { getPlayers, log } from "../../../misc";
+import { getPlayers, log, moveEsauNextToJacob } from "../../../misc";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
   EntityType.ENTITY_GURDY, // 36
@@ -55,23 +55,12 @@ function subvertTeleport() {
     if (character === PlayerType.PLAYER_THESOUL) {
       g.run.switchForgotten = true;
     }
-
-    // If we are Jacob & Esau, then Esau will also need to be teleported
-    if (character === PlayerType.PLAYER_JACOB) {
-      const esau = player.GetOtherTwin();
-      esau.Position = normalPosition;
-      Isaac.DebugString("SWAPPED ESAU");
-    }
   }
 
+  moveEsauNextToJacob();
+
   // Also, account for familiars
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   for (const familiar of familiars) {
     familiar.Position = normalPosition;
   }

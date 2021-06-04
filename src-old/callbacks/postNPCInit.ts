@@ -1,8 +1,4 @@
-// In this callback, an NPC's position will not be initialized yet
-
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-
+/*
 // EntityType.ENTITY_BABY (38)
 export function baby(npc: EntityNPC): void {
   if (g.run.spawningAngel) {
@@ -17,13 +13,7 @@ export function baby(npc: EntityNPC): void {
   }
 
   // Get the position of the boss
-  const isaacs = Isaac.FindByType(
-    EntityType.ENTITY_ISAAC,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const isaacs = Isaac.FindByType(EntityType.ENTITY_ISAAC);
   if (isaacs.length === 0) {
     return;
   }
@@ -73,3 +63,4 @@ export function theHaunt(npc: EntityNPC): void {
     // function
   }
 }
+*/

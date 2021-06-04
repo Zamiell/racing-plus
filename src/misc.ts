@@ -135,8 +135,10 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
   return null;
 }
 
-/** This will not include characters that are not directly controlled by the player (like Esau). */
-export function getPlayers(performExclusions = true): EntityPlayer[] {
+/**
+ * By default, this returns characters that are not directly controlled by the player (like Esau).
+ */
+export function getPlayers(performExclusions = false): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
@@ -285,21 +287,11 @@ export function log(msg: string): void {
   Isaac.DebugString(msg);
 }
 
-export function movePlayersAndFamiliars(position: Vector): void {
-  // By default, the player starts near the bottom door
-  // Instead, put the player in the middle of the room
-  const players = getPlayers();
-  for (const player of players) {
-    player.Position = position;
-  }
-
-  // Put Esau next to Jacob
+export function moveEsauNextToJacob(): void {
   const esaus = Isaac.FindByType(
     EntityType.ENTITY_PLAYER,
     0,
     PlayerType.PLAYER_ESAU,
-    false,
-    false,
   );
   for (const esau of esaus) {
     const player = esau.ToPlayer();
@@ -310,31 +302,18 @@ export function movePlayersAndFamiliars(position: Vector): void {
       esau.Position = adjustedPosition;
     }
   }
+}
 
-  // Put the Tainted Soul next to the corresponding Tainted Forgotten
-  const taintedSouls = Isaac.FindByType(
-    EntityType.ENTITY_PLAYER,
-    0,
-    PlayerType.PLAYER_THESOUL_B,
-    false,
-    false,
-  );
-  for (const taintedSoul of taintedSouls) {
-    const player = taintedSoul.ToPlayer();
-    if (player !== null) {
-      const forgotten = player.GetMainTwin();
-      taintedSoul.Position = forgotten.Position;
-    }
+export function movePlayersAndFamiliars(position: Vector): void {
+  const players = getPlayers();
+  for (const player of players) {
+    player.Position = position;
   }
 
+  moveEsauNextToJacob();
+
   // Put familiars next to the players
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   for (const familiar of familiars) {
     familiar.Position = position;
   }

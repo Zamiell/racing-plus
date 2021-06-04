@@ -54,13 +54,7 @@ function spawnEnemies() {
 
 function primeStatue() {
   // Prime the statue to wake up quicker
-  const satans = Isaac.FindByType(
-    EntityType.ENTITY_SATAN,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const satans = Isaac.FindByType(EntityType.ENTITY_SATAN);
   for (const satan of satans) {
     const npc = satan.ToNPC();
     if (npc !== null) {

@@ -152,14 +152,33 @@ Post-flip actions:
 > Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
 - `033` The waiting during the Satan Fight is removed.
+- `034` Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
+
+> Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
+
+- `035` Wizoobs and Red Ghosts have faster attack patterns.
+
+> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `036` Mom's Hands and Mom's Dead Hands have faster attack patterns.
+
+> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `037` Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+
+> Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
 ### 4) Quality of Life Changes
 
-- `041` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
+- Players will start in the center of the room (instead of at the bottom).
+
+> Why? This is convenient because it makes the player equidistant to all of the doors.
+
+- `041` The fade in at the beginning of a run is sped-up.
+- `042` If you have Dream Catcher, the Treasure Room item will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `042` The fade in at the beginning of a run is sped-up.
 - `043` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - `044` Void portals that spawn after bosses are automatically deleted.
 
@@ -171,6 +190,7 @@ Post-flip actions:
 
 - `046` The Hush door will be automatically opened.
 - `047` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `048` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 
 ### 5) Gameplay Changes
 
@@ -219,6 +239,7 @@ Post-flip actions:
   - White-dotted / Red --> Full red
   - Pink / Red --> White / Red
   - White / White-dotted --> Full white-dotted
+- The controls graphic in the start room is changed to be speedrunning-themed.
 
 ### 9) Sound Fixes
 
@@ -283,13 +304,10 @@ The technical specifics of all of the individual room changes are listed in a [s
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
-- Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
-- Mom's Hands, Mom's Dead Hands, Wizoobs, and Red Ghosts have faster attack patterns.
 - Death will no longer perform his slow attack.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.
-- The door to Hush is now automatically opened.
 - The devil statue will be faded if there is an item pedestal hiding behind it.
 - There is now a sound effect when a Walnut or a Wishbone breaks.
 -->
@@ -312,7 +330,8 @@ The technical specifics of all of the individual room changes are listed in a [s
 - The white has been changed on the red-white pill sprite so that it is easier to see.
 - The Locust of Famine graphic now matches the color of the flies.
 - Daemon's Tail and Error now have outlines. (Thanks goes to [O_o](http://steamcommunity.com/profiles/76561197993627005) for creating the sprites in the [Trinket Outlines](http://steamcommunity.com/sharedfiles/filedetails/?id=1138554495) mod.)
-- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.)
+- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.) <!-- cspell:disable-line -->
+<!--
 - Enemy red creep is changed to green (so that it is easier to see).
 - Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
 -->

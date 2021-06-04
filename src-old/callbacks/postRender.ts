@@ -336,13 +336,7 @@ function checkSubvertTeleport() {
   g.p.SpriteScale = g.run.room.teleportSubvertScale;
 
   // Also, teleport all of the familiars (and make them visible again)
-  const familiars = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   for (const familiar of familiars) {
     familiar.Position = pos;
     familiar.Visible = true;

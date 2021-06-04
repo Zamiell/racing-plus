@@ -1,3 +1,4 @@
+/*
 // From: https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill
 // 18 effects in total
 export const THREE_DOLLAR_BILL_EFFECTS = [
@@ -180,3 +181,4 @@ export const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
   // Don't include Dogma (950.0) since it is a story boss
   // Don't include The Beast (951.0) since it is a story boss
 ];
+*/

@@ -8,7 +8,13 @@ import {
   SAVE_FILE_SEED,
 } from "../features/mandatory/saveFileCheck";
 import g from "../globals";
-import { consoleCommand, gridToPos, log, restartAsCharacter } from "../misc";
+import {
+  consoleCommand,
+  getPlayers,
+  gridToPos,
+  log,
+  restartAsCharacter,
+} from "../misc";
 import {
   blackMarket,
   chaosCardTears,
@@ -36,6 +42,7 @@ functionMap.set("angel", (_params: string) => {
   }
 });
 
+// cspell:disable-next-line
 functionMap.set("blackmarket", (_params: string) => {
   blackMarket();
 });
@@ -248,6 +255,12 @@ functionMap.set("luck", (_params: string) => {
   consoleCommand("debug 9");
 });
 
+functionMap.set("max", (_params: string) => {
+  for (let i = 0; i < 32; i++) {
+    g.p.UseActiveItem(CollectibleType.COLLECTIBLE_GUPPYS_HEAD);
+  }
+});
+
 functionMap.set("pills", (_params: string) => {
   let pillNum = 1;
   for (let y = 0; y <= 6; y++) {
@@ -269,7 +282,9 @@ functionMap.set("pills", (_params: string) => {
 });
 
 functionMap.set("pos", (_params: string) => {
-  print(`Player position: (${g.p.Position.X}, ${g.p.Position.Y})`);
+  for (const player of getPlayers()) {
+    print(`Player position: (${player.Position.X}, ${player.Position.Y})`);
+  }
 });
 
 functionMap.set("s", (params: string) => {
@@ -359,6 +374,7 @@ functionMap.set("treasure", (_params: string) => {
   g.p.UseCard(Card.CARD_STARS);
 });
 
+// cspell:disable-next-line
 functionMap.set("unseed", (_params: string) => {
   g.seeds.Reset();
   consoleCommand("restart");

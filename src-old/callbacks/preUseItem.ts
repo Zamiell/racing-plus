@@ -324,8 +324,6 @@ export function preventItemPedestalEffects(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-    false,
-    false,
   );
   if (checkpoints.length > 0) {
     Isaac.DebugString(
@@ -346,9 +344,6 @@ function unreplacedItemsExist() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   for (const collectible of collectibles) {
     let alreadyReplaced = false;

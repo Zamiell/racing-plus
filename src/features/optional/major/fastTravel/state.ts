@@ -67,25 +67,26 @@ export function initDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
+  const roomFrameCount = g.r.GetFrameCount();
   const index = getIndex(entity, fastTravelEntityType);
-  const desription = {
-    initial: g.r.GetFrameCount() === 0,
+  const description = {
+    initial: roomFrameCount === 0,
     state: FastTravelEntityState.Open,
   };
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
-      g.run.room.fastTravel.trapdoors.set(index, desription);
+      g.run.room.fastTravel.trapdoors.set(index, description);
       break;
     }
 
     case FastTravelEntityType.Crawlspace: {
-      g.run.room.fastTravel.crawlspaces.set(index, desription);
+      g.run.room.fastTravel.crawlspaces.set(index, description);
       break;
     }
 
     case FastTravelEntityType.HeavenDoor: {
-      g.run.room.fastTravel.heavenDoors.set(index, desription);
+      g.run.room.fastTravel.heavenDoors.set(index, description);
       break;
     }
 

@@ -85,9 +85,6 @@ function stage8IAMERROR() {
   const heavenDoors = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
-    -1,
-    false,
-    false,
   );
   let heavenDoor: Entity | undefined;
   if (heavenDoors.length > 0) {
@@ -128,17 +125,11 @@ function checkCurseRoom() {
   }
 
   // Check to see if there are any pickups in the room
-  const pickups = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    -1,
-    -1,
-    false,
-    false,
-  );
+  const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP);
   for (const pickup of pickups) {
     pickup.Remove();
   }
-  const slots = Isaac.FindByType(EntityType.ENTITY_SLOT, -1, -1, false, false);
+  const slots = Isaac.FindByType(EntityType.ENTITY_SLOT);
   for (const slot of slots) {
     slot.Remove();
   }

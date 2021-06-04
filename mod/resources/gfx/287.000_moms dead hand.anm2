@@ -9,7 +9,7 @@
 			<Layer Name="body" Id="0" SpritesheetId="0"/>
 		</Layers>
 		<Nulls>
-			<Null Name="OverlayEffect" Id="0" ShowRect="false"/>
+			<Null Name="OverlayEffect" Id="0"/>
 		</Nulls>
 		<Events>
 			<Event Name="Land" Id="0"/>

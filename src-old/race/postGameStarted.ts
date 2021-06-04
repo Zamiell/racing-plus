@@ -467,9 +467,6 @@ function pageant() {
   const trinkets = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_TRINKET,
-    -1,
-    false,
-    false,
   );
   for (const trinket of trinkets) {
     trinket.Remove();

@@ -1,3 +1,4 @@
+// cspell:disable-next-line
 // For testing, a seed with Monstro on Basement 1 is: WZVC T7V1
 
 import g from "../../../../globals";
@@ -12,13 +13,7 @@ export function deleteDyingEntity(
   // (this cannot be in the NPCUpdate callback because that does not fire when an NPC is in the
   // death animation)
   const gameFrameCount = g.g.GetFrameCount();
-  const entities = Isaac.FindByType(
-    entityType,
-    entityVariant,
-    -1,
-    false,
-    false,
-  );
+  const entities = Isaac.FindByType(entityType, entityVariant);
   for (const entity of entities) {
     const data = entity.GetData();
     const killedFrame = data.killedFrame as int | undefined;

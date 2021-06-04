@@ -81,8 +81,7 @@ export function chub(npc: EntityNPC): void {
       if (
         entity.ToNPC() !== null &&
         entity.Type !== EntityType.ENTITY_CHUB &&
-        entity.Type !== EntityTypeCustom.ENTITY_ROOM_CLEAR_DELAY_NPC &&
-        entity.Type !== EntityTypeCustom.ENTITY_SAMAEL_SCYTHE
+        entity.Type !== EntityTypeCustom.ENTITY_ROOM_CLEAR_DELAY_NPC
       ) {
         entity.Kill();
       }
@@ -143,7 +142,7 @@ export function pin(npc: EntityNPC): void {
   }
 
   // Don't do anything if there is more than one Pin in the room
-  const pins = Isaac.FindByType(EntityType.ENTITY_PIN, -1, -1, false, false);
+  const pins = Isaac.FindByType(EntityType.ENTITY_PIN);
   let numPins = 0;
   for (const pinEntity of pins) {
     if (pinEntity.Parent === null) {
@@ -308,53 +307,6 @@ export function freezeImmunity(npc: EntityNPC): void {
     // We can't use "npc.ClearEntityFlags(EntityFlag.FLAG_FREEZE)" because
     // it will not remove the color change
     npc.RemoveStatusEffects();
-  }
-}
-
-// EntityType.ENTITY_MOMS_HAND (213)
-// EntityType.ENTITY_MOMS_DEAD_HAND (287)
-export function speedupHand(npc: EntityNPC): void {
-  if (npc.FrameCount === 1) {
-    // Play a custom "Appear" animation
-    const sprite = npc.GetSprite();
-    if (!sprite.IsPlaying("Appear")) {
-      const pos = g.run.room.handPositions.get(npc.Index);
-      if (pos !== undefined) {
-        npc.Position = pos;
-      }
-      sprite.Play("Appear", true);
-    }
-  }
-
-  if (npc.State === NpcState.STATE_MOVE && npc.StateFrame < 25) {
-    // Speed up their attack patterns
-    // (StateFrame starts between 0 and a random negative value and ticks upwards)
-    // (we have to do a small adjustment because if multiple hands fall at the exact same time,
-    // they can stack on top of each other and cause buggy behavior)
-    npc.StateFrame = 25 + g.run.room.handsDelay;
-    g.run.room.handsDelay += 3;
-    if (g.run.room.handsDelay === 10) {
-      g.run.room.handsDelay = 0;
-    }
-  }
-}
-
-// EntityType.ENTITY_WIZOOB (219)
-// EntityType.ENTITY_RED_GHOST (285)
-export function speedupGhost(npc: EntityNPC): void {
-  // Make it so that tears don't pass through them
-  // Most NPCs are only visible on the 4th frame, but these are visible immediately
-  if (npc.FrameCount === 0) {
-    // The ghost is set to ENTCOLL_NONE until the first reappearance
-    npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
-  }
-
-  // Speed up their attack pattern
-  if (
-    npc.State === NpcState.STATE_IDLE && // This is when they are disappeared and doing nothing
-    npc.StateFrame !== 0
-  ) {
-    npc.StateFrame = 0; // StateFrame decrements down from 60 to 0, so just jump ahead
   }
 }
 */

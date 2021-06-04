@@ -3,6 +3,7 @@
 // Also note that we can't use cached API functions in this callback or else the game will crash
 // ButtonAction.ACTION_MENUCONFIRM (14) is bugged and will never fire
 
+import getActionValueFunctions from "./getActionValueFunctions";
 import isActionTriggeredFunctions from "./isActionTriggeredFunctions";
 
 export function main(
@@ -27,6 +28,7 @@ const inputHookFunctionMap = new Map<
 inputHookFunctionMap.set(
   InputHook.IS_ACTION_PRESSED,
   (_player: EntityPlayer, _buttonAction: ButtonAction) => {
+    // Currently unused
     return null;
   },
 );
@@ -48,7 +50,12 @@ inputHookFunctionMap.set(
 // 2
 inputHookFunctionMap.set(
   InputHook.GET_ACTION_VALUE,
-  (_player: EntityPlayer, _buttonAction: ButtonAction) => {
+  (player: EntityPlayer, buttonAction: ButtonAction) => {
+    const getActionValueFunction = getActionValueFunctions.get(buttonAction);
+    if (getActionValueFunction !== undefined) {
+      return getActionValueFunction(player);
+    }
+
     return null;
   },
 );

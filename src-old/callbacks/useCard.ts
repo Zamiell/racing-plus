@@ -16,9 +16,6 @@ export function blackRune(): void {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   if (collectibles.length > 0) {
     g.run.room.touchedPickup = true;

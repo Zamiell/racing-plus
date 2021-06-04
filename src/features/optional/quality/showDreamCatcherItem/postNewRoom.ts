@@ -28,9 +28,6 @@ function revertItemPrices() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   for (const entity of collectibles) {
     const pickup = entity.ToPickup();
@@ -135,9 +132,6 @@ function getRoomItemsAndSetPrice() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   for (const entity of collectibles) {
     collectibleTypes.push(entity.SubType);

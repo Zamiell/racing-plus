@@ -1,112 +1,11 @@
 import g from "../../../../globals";
-import {
-  consoleCommand,
-  getPlayers,
-  getRoomIndex,
-  isAntibirthStage,
-} from "../../../../misc";
-import { FastTravelState } from "./enums";
-
-export function init(
-  entity: GridEntity | EntityEffect,
-  player: EntityPlayer,
-  upwards: boolean,
-): void {
-  const roomIndex = getRoomIndex();
-
-  // Begin the process of moving the player to the next floor
-  // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
-  // the travelling animation
-  g.run.fastTravel.state = FastTravelState.FadingToBlack;
-  g.run.fastTravel.framesPassed = 0;
-  g.run.fastTravel.upwards = upwards;
-  g.run.fastTravel.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
-  g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
-  g.run.fastTravel.antibirthSecretExit =
-    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
-
-  setPlayerAttributes(player, entity);
-  warpForgottenBody(player);
-  playTravellingAnimation(player, upwards);
-}
-
-function setPlayerAttributes(
-  playerTouchedTrapdoor: EntityPlayer,
-  entity: GridEntity | EntityEffect,
-) {
-  // Snap the player to the exact position of the trapdoor so that they cleanly jump down the hole
-  playerTouchedTrapdoor.Position = entity.Position;
-  immobilizeAllPlayers();
-}
-
-export function immobilizeAllPlayers(): void {
-  if (g.run.fastTravel.state === FastTravelState.Disabled) {
-    return;
-  }
-
-  // We want all players in the room to be immobile during the Fast-Travel process
-  for (const player of getPlayers()) {
-    player.Velocity = Vector.Zero;
-    // We don't want enemy attacks to move the players
-    player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-    player.ControlsEnabled = false;
-  }
-}
-
-export function mobilizeAllPlayers(): void {
-  // Make it so that the players can move again
-  for (const player of getPlayers()) {
-    player.ControlsEnabled = true;
-    player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
-  }
-}
-
-function warpForgottenBody(player: EntityPlayer) {
-  // If The Soul is travelling to the next floor, the Forgotten body will also need to be teleported
-  if (player.GetPlayerType() !== PlayerType.PLAYER_THESOUL) {
-    return;
-  }
-
-  // If we change the position of the Forgotten Body manually,
-  // it will warp back to the same spot on the next frame
-  // Instead, manually switch to the Forgotten to avoid this bug
-  g.run.switchForgotten = true;
-
-  // Also warp the body to where The Soul is so that The Forgotten won't jump down through a normal
-  // floor
-  const forgottenBodies = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariant.FORGOTTEN_BODY,
-    -1,
-    false,
-    false,
-  );
-  for (const forgottenBody of forgottenBodies) {
-    forgottenBody.Position = player.Position;
-  }
-}
-
-function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
-  // Playing the vanilla animations results in the player re-appearing,
-  // because the animations are not long enough to last for the full fade-out
-  // Use custom animations instead that are 40 frames long
-  let animation: string;
-  if (upwards) {
-    // The vanilla "LightTravel" animation is 28 frames long
-    animation = "LightTravelCustom";
-  } else {
-    // The vanilla "Trapdoor" animation is 16 frames long
-    animation = "TrapdoorCustom";
-  }
-
-  player.PlayExtraAnimation(animation);
-}
+import { consoleCommand, isAntibirthStage } from "../../../../misc";
 
 export function goto(upwards: boolean): void {
   // Get the number and type of the next floor
   const stage = g.l.GetStage();
   const nextStage = getNextStage();
-  const nextStageType = getNextStageType(nextStage, upwards);
+  const nextStageType = getNextStageType(stage, nextStage, upwards);
 
   // If we do a "stage" command to go to the same floor that we are already on,
   // it will use the same floor layout as the previous floor
@@ -138,6 +37,7 @@ export function goto(upwards: boolean): void {
 
 function getNextStage() {
   const stage = g.l.GetStage();
+  const antibirthStage = isAntibirthStage();
 
   if (g.run.fastTravel.blueWomb) {
     return 9;
@@ -148,10 +48,25 @@ function getNextStage() {
   }
 
   if (g.run.fastTravel.antibirthSecretExit) {
+    if (antibirthStage) {
+      // e.g. From Downpour 2 to Mines 1
+      return stage + 1;
+    }
+
+    // e.g. From Basement 2 to Downpour 2
     return stage;
   }
 
-  if (isAntibirthStage() && (stage === 2 || stage === 4 || stage === 6)) {
+  if (
+    antibirthStage &&
+    stage === 6 &&
+    g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
+  ) {
+    // e.g. From Mausoleum 2 to Corpse 1
+    return stage + 1;
+  }
+
+  if (antibirthStage && (stage === 2 || stage === 4 || stage === 6)) {
     // e.g. Downpour 2 goes to Caves 2
     return stage + 2;
   }
@@ -177,18 +92,27 @@ function getNextStage() {
   return (stage as int) + 1;
 }
 
-function getNextStageType(nextStage: int, upwards: boolean) {
+function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
   const stageType = g.l.GetStageType();
+  const antibirthStage = isAntibirthStage();
 
   if (g.run.fastTravel.antibirthSecretExit) {
-    return getStageTypeAntibirth(stageType);
+    return getStageTypeAntibirth(nextStage);
   }
 
   if (
-    isAntibirthStage() &&
-    (nextStage === 2 || nextStage === 4 || nextStage === 6)
+    antibirthStage &&
+    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
   ) {
-    return getStageTypeAntibirth(stageType);
+    return getStageTypeAntibirth(nextStage);
+  }
+
+  if (
+    antibirthStage &&
+    stage === 6 &&
+    g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
+  ) {
+    return getStageTypeAntibirth(nextStage);
   }
 
   if (nextStage === 9) {
@@ -250,12 +174,18 @@ function getStageType(stage: int) {
 }
 
 function getStageTypeAntibirth(stage: int) {
+  // There is no alternate floor for Corpse
+  if (stage === 7) {
+    return StageType.STAGETYPE_REPENTANCE;
+  }
+
   // This algorithm is from Kilburn
   // We add one because the alt path is offset by 1 relative to the normal path
   const stageSeed = g.seeds.GetStageSeed(stage + 1);
 
   // Kilburn does not know why he divided the stage seed by 2 first
-  if ((stageSeed / 2) % 2 === 0) {
+  const halfStageSeed = Math.floor(stageSeed / 2);
+  if (halfStageSeed % 2 === 0) {
     return StageType.STAGETYPE_REPENTANCE_B;
   }
 

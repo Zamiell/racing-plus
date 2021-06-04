@@ -3,7 +3,9 @@ import g from "../globals";
 import { getPlayerLuaTableIndex, getPlayers } from "../misc";
 
 export function postUpdate(): void {
-  for (const player of getPlayers()) {
+  // We must perform exclusions in the "getPlayers()" function because we don't want to have two
+  // players on the same controller index
+  for (const player of getPlayers(true)) {
     const character = player.GetPlayerType();
     const index = getPlayerLuaTableIndex(player);
     if (character !== g.run.currentCharacters.get(index)) {

@@ -7,9 +7,6 @@ export function devil(effect: EntityEffect): void {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-    -1,
-    false,
-    false,
   );
   for (const collectible of collectibles) {
     if (

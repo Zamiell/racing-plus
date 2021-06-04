@@ -1,10 +1,6 @@
 import { FastTravelEntityDescription } from "../features/optional/major/fastTravel/constants";
 
 export default class GlobalsRunRoom {
-  // ----------------
-  // Custom Callbacks
-  // ----------------
-
   clear: boolean;
   /** Equal to the game frame count that the room was cleared. */
   clearFrame = -1;

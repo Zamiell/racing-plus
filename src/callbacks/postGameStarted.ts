@@ -78,8 +78,8 @@ function setSeeds() {
 // If Racing+ is turned on from the mod menu and then the user immediately tries to play,
 // it won't work properly; some things like boss cutscenes will still be enabled
 // In order to fix this, the game needs to be completely restarted
-// One way to detect this corrupted state is to get how many frames there are
-// in the currently loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2")
+// One way to detect this corrupted state is to get how many frames there are in the currently
+// loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2")
 // Racing+ removes boss cutscenes, so this value should be 0
 // This function returns true if the PostGameStarted callback should halt
 function checkCorruptMod() {

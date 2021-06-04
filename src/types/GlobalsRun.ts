@@ -64,6 +64,7 @@ export default class GlobalsRun {
      * Note that we cannot use "npc.Index" as an index for the map because it is always set to 0 in
      * the PostNPCInit callback (even in Repentance).
      * We have to use a LuaTable instead of a Map because Maps don't get converted to JSON properly.
+     * This cannot be on the "g.run.room" table because NPCs initialize before PostNewRoom fires.
      */
     aliveEnemies: new LuaTable<int, boolean | null>(),
     /**
@@ -118,6 +119,8 @@ export default class GlobalsRun {
     tookDamage: new LuaTable<ControllerIndexString, boolean>(),
     granted: false,
   };
+
+  maxFamiliars = false;
 
   pickingUpItem = new LuaTable<
     ControllerIndexString,
