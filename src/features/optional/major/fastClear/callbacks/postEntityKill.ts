@@ -14,5 +14,5 @@ export function main(entity: Entity): void {
     return;
   }
 
-  tracking.checkRemove(npc, "postEntityKill");
+  tracking.checkRemove(npc, true);
 }

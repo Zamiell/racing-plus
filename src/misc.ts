@@ -143,7 +143,8 @@ export function getPlayers(performExclusions = false): EntityPlayer[] {
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
     if (player !== null) {
-      // We only want to make a list of players that are fully-functioning and controlled by humans
+      // We might only want to make a list of players that are fully-functioning and controlled by
+      // humans
       // Thus, we need to exclude certain characters
       const character = player.GetPlayerType();
       if (!performExclusions || !EXCLUDED_CHARACTERS.includes(character)) {

@@ -1,7 +1,8 @@
 // The version is updated automatically by IsaacScript
-export const VERSION = "0.58.6";
+export const VERSION = "0.58.7";
 
 export const CENTER_OF_2X2_ROOM = Vector(640, 560);
+export const COLLECTIBLE_SPRITE_LAYER = 1;
 export const EXCLUDED_CHARACTERS = [
   PlayerType.PLAYER_ESAU, // 20
   PlayerType.PLAYER_THESOUL_B, // 40

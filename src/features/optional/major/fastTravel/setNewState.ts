@@ -3,6 +3,7 @@ import {
   changeRoom,
   getPlayers,
   getRoomIndex,
+  isAntibirthStage,
   moveEsauNextToJacob,
 } from "../../../../misc";
 import { EffectVariantCustom } from "../../../../types/enums";
@@ -50,7 +51,9 @@ export function setFadingToBlack(
   player: EntityPlayer,
   upwards: boolean,
 ): void {
+  const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
+  const antibirthStage = isAntibirthStage();
 
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
@@ -62,6 +65,16 @@ export function setFadingToBlack(
   g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   g.run.fastTravel.antibirthSecretExit =
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+
+  // Before we change rooms, handle setting the flag for when the player goes past the photo door on
+  // the way to the backwards path
+  if (
+    !antibirthStage &&
+    stage === 6 &&
+    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+  ) {
+    g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
+  }
 
   setPlayerAttributes(player, entity.Position);
   warpForgottenBody(player);

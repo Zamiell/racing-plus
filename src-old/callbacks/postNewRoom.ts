@@ -141,24 +141,6 @@ function checkEntities() {
       // 62
       pinFound = true;
     } else if (
-      entity.Type === EntityType.ENTITY_THE_HAUNT &&
-      entity.Variant === 0
-    ) {
-      // Haunt (260.0)
-      // Speed up the first Lil' Haunt attached to a Haunt (1/3)
-      // Later on this frame, the Lil' Haunts will spawn and have their state altered
-      // in the "PostNPCInit.Main()" function
-      // We will mark to actually detach one of them one frame from now
-      // (or two of them, if there are two Haunts in the room)
-      g.run.speedLilHauntsFrame = gameFrameCount + 1;
-
-      // We also need to check for the black champion version of The Haunt,
-      // since both of his Lil' Haunts should detach at the same time
-      const npc = entity.ToNPC();
-      if (npc !== null && npc.GetBossColorIdx() === 17) {
-        g.run.speedLilHauntsBlack = true;
-      }
-    } else if (
       entity.Type === EntityType.ENTITY_PITFALL &&
       entity.Variant === 1 &&
       roomClear

@@ -1,12 +1,13 @@
 import * as cache from "../cache";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
+import * as appearHands from "../features/optional/enemies/appearHands";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as fastSatan from "../features/optional/quality/fastSatan";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
@@ -73,6 +74,7 @@ export function newRoom(): void {
 
   // Enemy changes
   fastSatan.postNewRoom();
+  appearHands.postNewRoom();
 
   // Quality of life
   showDreamCatcherItemPostNewRoom.main();

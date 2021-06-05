@@ -339,7 +339,7 @@ functionMap.set("sound", (params: string) => {
 });
 
 functionMap.set("sounds", (_params: string) => {
-  print("Printing out the currently playing sounds:");
+  print("Printing out the currently playing sounds to the log.txt.");
   for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
     if (g.sfx.IsPlaying(i)) {
       log(`Currently playing sound effect: ${i}`);

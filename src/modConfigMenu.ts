@@ -1,6 +1,7 @@
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
+  BOSS_CHANGES,
   BUG_FIXES,
   CHARACTER_CHANGES,
   ConfigDescriptionArray,
@@ -34,6 +35,7 @@ export function register(): void {
   registerSubMenuConfig("Major", MAJOR_CHANGES);
   registerSubMenuHotkeys("Hotkeys", CUSTOM_HOTKEYS);
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
+  registerSubMenuConfig("Bosses", BOSS_CHANGES);
   registerSubMenuConfig("Enemies", ENEMY_CHANGES);
   registerSubMenuConfig("QoL", QUALITY_OF_LIFE_CHANGES);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);

@@ -52,7 +52,7 @@ export function tearPoof(effect: EntityEffect): void {
   // (changing the color does not work in the PostEffectInit callback)
   if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID)) {
     const blue = Color(1, 1, 20, 1, 0, 0, 0);
-    effect.SetColor(blue, 0, 0, false, false);
+    effect.SetColor(blue, 0, 0);
   }
 }
 

@@ -1,4 +1,5 @@
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
+import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import g from "../globals";
 import { getPlayers, log } from "../misc";
 import * as saveDat from "../saveDat";
@@ -39,8 +40,17 @@ export function newLevel(): void {
     showLevelText();
   }
 
-  // Optional features
+  // QoL
   openHushDoor.postNewLevel();
+
+  // Sounds
+  silenceMomDad.postNewLevel();
+
+  for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
+    if (g.sfx.IsPlaying(i)) {
+      log(`Currently playing sound effect: ${i}`);
+    }
+  }
 
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();

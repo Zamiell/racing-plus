@@ -11,7 +11,7 @@ export function main(npc: EntityNPC): void {
   // Thus, we have to wait until they are initialized and not remove them from the table
   if (npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
     // Remove it from the list if it is on it
-    tracking.checkRemove(npc, "NPCUpdate");
+    tracking.checkRemove(npc, false);
     return;
   }
 
@@ -34,7 +34,7 @@ export function ragling(npc: EntityNPC): void {
     npc.State === NpcState.STATE_UNIQUE_DEATH
     // (they go to STATE_UNIQUE_DEATH when they are patches on the ground)
   ) {
-    tracking.checkRemove(npc, "NPCUpdateRagling");
+    tracking.checkRemove(npc, false);
   }
 }
 

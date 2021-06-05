@@ -10,7 +10,7 @@ export function deleteDyingEntity(
 ): void {
   // This is for deleting entities that drop items
   // We want to delete the entity on the frame before they drop the item
-  // (this cannot be in the NPCUpdate callback because that does not fire when an NPC is in the
+  // (this cannot be in the PostNPCUpdate callback because that does not fire when an NPC is in the
   // death animation)
   const gameFrameCount = g.g.GetFrameCount();
   const entities = Isaac.FindByType(entityType, entityVariant);

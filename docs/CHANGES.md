@@ -141,58 +141,65 @@ Post-flip actions:
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-### 3) Enemy Changes
+### 3) Boss Changes
 
 - `031` Bosses will be faded during their death animation.
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item. Furthermore, the death animation obscures other enemies that happen to be behind the dying boss.
 
-- `032` Cod Worms are replaced with Para-Bites.
+- `032` Stop Death from performing his slow attack.
+- `033` The unnecessary waiting during the Haunt fight is removed.
+- `034` The unnecessary waiting during the Satan fight is removed.
+
+> Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
+
+### 4) Enemy Changes
+
+- `041` Cod Worms are replaced with Para-Bites.
 
 > Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
-- `033` The waiting during the Satan Fight is removed.
-- `034` Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
+- `042` Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
 
 > Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
 
-- `035` Wizoobs and Red Ghosts have faster attack patterns.
+- `043` Wizoobs and Red Ghosts have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `036` Mom's Hands and Mom's Dead Hands have faster attack patterns.
+- `044` Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `037` Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `045` Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-### 4) Quality of Life Changes
+### 5) Quality of Life Changes
 
 - Players will start in the center of the room (instead of at the bottom).
 
 > Why? This is convenient because it makes the player equidistant to all of the doors.
 
-- `041` The fade in at the beginning of a run is sped-up.
-- `042` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `051` The fade in at the beginning of a run is sped-up.
+- `052` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `043` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `044` Void portals that spawn after bosses are automatically deleted.
+- `053` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `054` Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `045` The tears that explode out of enemies when you have Vasculitis are faded.
+- `055` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `046` The Hush door will be automatically opened.
-- `047` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
-- `048` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `056` The Hush door will be automatically opened.
+- `057` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `058` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 
-### 5) Gameplay Changes
+### 6) Gameplay Changes
 
 - The Karma trinket is removed.
 
@@ -202,7 +209,7 @@ Post-flip actions:
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-### 6) Cutscene & Animation Removal
+### 7) Cutscene & Animation Removal
 
 - The intro that occurs when you launch the game is removed.
 - The cutscenes that occur when finishing a run are removed.
@@ -210,9 +217,9 @@ Post-flip actions:
 - All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
 - The pause and unpause animations are removed.
 
-### 7) Bug Fixes
+### 8) Bug Fixes
 
-- `071` All forms of teleport will no longer send you to an invalid entrance.
+- `081` All forms of teleport will no longer send you to an invalid entrance.
 - Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
@@ -228,12 +235,12 @@ Post-flip actions:
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 
-### 8) Graphics Fixes
+### 9) Graphics Fixes
 
-- Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
-- The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
-- The 20/20 sprite is now easier to see.
-- The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.) <!-- cspell:disable-line -->
+- `091` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
+- `092` The 20/20 sprite is now easier to see.
+- `093` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.) <!-- cspell:disable-line -->
+- `094` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
   - White-dotted / Red --> Full red
@@ -241,13 +248,13 @@ Post-flip actions:
   - White / White-dotted --> Full white-dotted
 - The controls graphic in the start room is changed to be speedrunning-themed.
 
-### 9) Sound Fixes
+### 10) Sound Fixes
 
-- The audio clips of mom and dad on the Ascent are silenced.
+- `101` The audio clips of mom and dad on the Ascent are silenced.
 
-### 10) Other
+### 11) Other
 
-- `101` A custom console is provided that is better than the vanilla console.
+- `111` A custom console is provided that is better than the vanilla console.
 
 > Why? The vanilla console has an annoying animation and is inconvenient to use.
 
@@ -277,7 +284,6 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
   - the use animation for Telepills
   - the use animation for Blank Card when you have a teleport card
   - various animations during the Mega Satan fight
-  - various animations during The Haunt fight
   - various animations during the Big Horn fight
   - Hush's appear animation
   - Ultra Greed's appear and death animation

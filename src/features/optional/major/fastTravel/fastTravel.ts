@@ -83,7 +83,10 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
-        if (antibirthStage && stage === 4) {
+        if (
+          (antibirthStage && stage === 4) ||
+          (!antibirthStage && stage === 6)
+        ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
       }

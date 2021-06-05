@@ -1,6 +1,6 @@
 import g from "../../../globals";
 
-export function NPCUpdate(npc: EntityNPC): void {
+export function postNPCUpdate(npc: EntityNPC): void {
   if (!g.config.fastGhosts) {
     return;
   }

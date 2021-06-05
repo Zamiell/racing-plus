@@ -3,12 +3,12 @@ import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
 import * as inputAction from "./callbacks/inputAction";
-import * as NPCUpdate from "./callbacks/NPCUpdate";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
+import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
@@ -16,6 +16,7 @@ import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
+import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
@@ -52,7 +53,7 @@ saveDat.load(); // Load the "save#.dat" file
 modConfigMenu.register();
 
 // Register miscellaneous callbacks
-racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, NPCUpdate.main); // 0
+racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main); // 0
 racingPlus.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
 racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
 racingPlus.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
@@ -82,76 +83,93 @@ racingPlus.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
 racingPlus.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
 racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
 
-// Register NPC callbacks (0)
+// Register PostNPCUpdate callbacks (0)
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.momsHand,
+  postNPCUpdate.death,
+  EntityType.ENTITY_DEATH, // 66
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  postNPCUpdate.momsHand,
   EntityType.ENTITY_MOMS_HAND, // 213
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.wizoob,
+  postNPCUpdate.wizoob,
   EntityType.ENTITY_WIZOOB, // 219
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.ragling,
+  postNPCUpdate.ragling,
   EntityType.ENTITY_RAGLING, // 246
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.haunt,
+  postNPCUpdate.haunt,
   EntityType.ENTITY_THE_HAUNT, // 260
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.redGhost,
+  postNPCUpdate.redGhost,
   EntityType.ENTITY_RED_GHOST, // 285
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.momsDeadHand,
+  postNPCUpdate.momsDeadHand,
   EntityType.ENTITY_MOMS_DEAD_HAND, // 287
 );
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
-  NPCUpdate.stoney,
+  postNPCUpdate.stoney,
   EntityType.ENTITY_STONEY, // 302
+);
+
+// Register PostFamiliarInit callbacks (7)
+racingPlus.AddCallback(
+  ModCallbacks.MC_FAMILIAR_INIT,
+  postFamiliarInit.paschalCandle,
+  FamiliarVariant.PASCHAL_CANDLE, // 221
 );
 
 // Register PostFamiliarRender callbacks (25)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_FAMILIAR_RENDER,
   postFamiliarRender.paschalCandle,
-  FamiliarVariant.PASCHAL_CANDLE,
+  FamiliarVariant.PASCHAL_CANDLE, // 221
 );
 
 // Register PostPickupInit callbacks (34)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_PICKUP_INIT,
+  postPickupInit.collectible,
+  PickupVariant.PICKUP_COLLECTIBLE, // 100
+);
+racingPlus.AddCallback(
+  ModCallbacks.MC_POST_PICKUP_INIT,
   postPickupInit.bigChest,
-  PickupVariant.PICKUP_BIGCHEST,
-); // 340
+  PickupVariant.PICKUP_BIGCHEST, // 340
+);
 
 // Register PostTearUpdate callbacks (40)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_TEAR_UPDATE,
   postTearUpdate.blood,
-  TearVariant.BLOOD,
+  TearVariant.BLOOD, // 1
 );
 
 // Register PostEffectInit callbacks (54)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_EFFECT_INIT,
   postEffectInit.poof01,
-  EffectVariant.POOF01,
-); // 15
+  EffectVariant.POOF01, // 15
+);
 
 // Register PostEffectUpdate callbacks (55)
 racingPlus.AddCallback(
   ModCallbacks.MC_POST_EFFECT_UPDATE,
   postEffectUpdate.heavenLightDoor,
-  EffectVariant.HEAVEN_LIGHT_DOOR,
+  EffectVariant.HEAVEN_LIGHT_DOOR, // 39
 );
 
 // Register PreNPCUpdate callbacks (69)

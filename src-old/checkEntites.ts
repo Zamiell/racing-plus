@@ -18,7 +18,6 @@ export function grid(): void {
       case GridEntityType.GRID_PRESSURE_PLATE: {
         changeCharOrder.checkButtonPressed(gridEntity);
         racePostUpdate.checkFinalButtons(gridEntity, i);
-        season6.checkVetoButton(gridEntity);
         break;
       }
 
@@ -28,3 +27,4 @@ export function grid(): void {
     }
   }
 }
+*/

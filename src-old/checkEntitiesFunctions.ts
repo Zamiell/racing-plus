@@ -14,7 +14,7 @@ functionMap.set(260, (entity) => {
   // Add them to the table so that we can track them
   const index = GetPtrHash(npc); // It is safer to use "GetPtrHash()" than "npc.Index"
   if (g.run.currentLilHaunts[index] === null) {
-    // This can't be in the NPC_UPDATE callback because it does ! fire during the "Appear" animation
+    // This can't be in the NPC_UPDATE callback because it does not fire during the "Appear" animation
     // This can't be in the PostNPCInit callback because the position is always equal to (0, 0)
     // there
     g.run.currentLilHaunts[index] = {
@@ -39,8 +39,6 @@ functionMap.set(260, (entity) => {
     npc.Velocity = Vector.Zero;
   }
 });
-
-
 
 // EntityType.ENTITY_RACE_TROPHY
 CheckEntities.functions[EntityType.ENTITY_RACE_TROPHY] = function(entity)

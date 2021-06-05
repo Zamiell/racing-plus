@@ -7,7 +7,6 @@ export function main(): void {
   checkKeeperHearts();
   checkItemPickup();
   checkCharacter();
-  checkHauntSpeedup();
   checkMomStomp();
   checkManualRechargeActive();
   checkMutantSpiderInnerEye();
@@ -289,89 +288,6 @@ function checkCharacter() {
       }
     }
   }
-}
-
-// Speed up the first Lil' Haunt attached to a Haunt (3/3)
-function checkHauntSpeedup() {
-  // Local variables
-  const gameFrameCount = g.g.GetFrameCount();
-  const blackChampionHaunt = g.run.speedLilHauntsBlack;
-  if (
-    g.run.speedLilHauntsFrame === 0 ||
-    gameFrameCount < g.run.speedLilHauntsFrame
-  ) {
-    return;
-  }
-  g.run.speedLilHauntsFrame = 0;
-  g.run.speedLilHauntsBlack = false;
-
-  // Haunt (260.0)
-  const hauntCount = Isaac.CountEntities(
-    null,
-    EntityType.ENTITY_THE_HAUNT,
-    0,
-    -1,
-  );
-
-  // As a sanity check, do not do anything if there are no Haunts in the room
-  if (hauntCount === 0) {
-    return;
-  }
-
-  // Lil' Haunt (260.10)
-  const lilHaunts = Isaac.FindByType(
-    EntityType.ENTITY_THE_HAUNT,
-    10,
-    0,
-    false,
-    true,
-  );
-
-  // If there is more than one Haunt, detach every Lil Haunt,
-  // because tracking everything will be too hard
-  if (hauntCount > 1) {
-    for (const lilHaunt of lilHaunts) {
-      const npc = lilHaunt.ToNPC();
-      if (npc !== null) {
-        detachLilHaunt(npc);
-      }
-    }
-    return;
-  }
-
-  const lilHauntIndexes: int[] = [];
-  for (const lilHaunt of lilHaunts) {
-    const npc = lilHaunt.ToNPC();
-    if (npc !== null) {
-      lilHauntIndexes.push(lilHaunt.Index);
-    }
-  }
-  table.sort(lilHauntIndexes);
-  for (const lilHaunt of lilHaunts) {
-    const npc = lilHaunt.ToNPC();
-    if (npc !== null) {
-      if (lilHaunt.Index === lilHauntIndexes[0]) {
-        detachLilHaunt(npc);
-      }
-      if (lilHaunt.Index === lilHauntIndexes[1] && blackChampionHaunt) {
-        detachLilHaunt(npc);
-      }
-    }
-  }
-}
-
-function detachLilHaunt(npc: EntityNPC) {
-  // Detach them
-  npc.State = NpcState.STATE_MOVE;
-
-  // We need to manually set them to visible (or else they will be invisible for some reason)
-  npc.Visible = true;
-
-  // We need to manually set the color, or else the Lil' Haunt will remain faded
-  npc.SetColor(DEFAULT_COLOR, 0, 0, false, false);
-
-  // We need to manually set their collision or else ears will pass through them
-  npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
 }
 
 // Subverting the teleport on the Mom fight can result in a buggy interaction where Mom does not

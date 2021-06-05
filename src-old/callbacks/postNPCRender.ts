@@ -1,5 +1,4 @@
-import g from "../globals";
-
+/*
 // EntityType.ENTITY_PITFALL (291)
 export function pitfall(npc: EntityNPC, _renderOffset: Vector): void {
   // Disable this feature in Boss Rooms (since Big Horn can spawn Pitfalls)
@@ -13,3 +12,4 @@ export function pitfall(npc: EntityNPC, _renderOffset: Vector): void {
     sprite.PlaybackSpeed = 3;
   }
 }
+*/

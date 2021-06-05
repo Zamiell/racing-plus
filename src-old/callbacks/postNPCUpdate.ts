@@ -16,7 +16,7 @@ export function main(npc: EntityNPC): void {
   }
 
   // Track all NPCs for the purposes of opening the doors early
-  fastClear.NPCUpdate(npc);
+  fastClear.PostNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_GLOBIN (24)
@@ -186,25 +186,12 @@ export function pin(npc: EntityNPC): void {
   }
 }
 
-// EntityType.ENTITY_DEATH (66)
-export function death(npc: EntityNPC): void {
-  // We only care about the main Death
-  if (npc.Variant !== 0) {
-    return;
-  }
-
-  // Stop Death from performing his slow attack
-  if (npc.State === NpcState.STATE_ATTACK) {
-    npc.State = NpcState.STATE_MOVE;
-  }
-}
-
 // EntityType.ENTITY_DINGLE (261)
 export function dingle(npc: EntityNPC): void {
   // We only care about Dangles that are freshly spawned
   if (npc.Variant === 1 && npc.State === NpcState.STATE_INIT) {
     // Fix the bug where a Dangle spawned from a Brownie will be faded
-    npc.SetColor(DEFAULT_COLOR, 1000, 0, true, true);
+    npc.SetColor(Color.Default, 1000, 0, true, true);
   }
 }
 

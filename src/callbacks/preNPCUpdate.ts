@@ -1,4 +1,4 @@
-import * as appearHands from "../features/optional/quality/appearHands";
+import * as appearHands from "../features/optional/enemies/appearHands";
 
 // EntityType.ENTITY_MOMS_HAND (213)
 export function momsHand(npc: EntityNPC): boolean | null {

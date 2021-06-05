@@ -14,10 +14,14 @@ export default class Config {
   taintedKeeperMoney = true;
   showEdenStartingItems = true;
 
-  // Enemy Changes
+  // Boss Changes
   fadeBosses = true;
-  replaceCodWorms = true;
+  stopDeathSlow = true;
+  fastHaunt = true;
   fastSatan = true;
+
+  // Enemy Changes
+  replaceCodWorms = true;
   disableInvulnerability = true;
   fastGhosts = true;
   fastHands = true;
@@ -36,4 +40,13 @@ export default class Config {
 
   // Bug Fixes
   fixTeleportInvalidEntrance = true;
+
+  // Graphics
+  flyItemSprites = true;
+  twentyTwenty = true;
+  starOfBethlehem = true;
+  paschalCandle = true;
+
+  // Sounds
+  silenceMomDad = true;
 }

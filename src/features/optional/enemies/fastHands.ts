@@ -4,7 +4,7 @@ const SHADOW_APPEAR_FRAME = 40;
 const START_FRAME = SHADOW_APPEAR_FRAME - 15;
 const DELAY_FRAMES = 4;
 
-export function NPCUpdate(npc: EntityNPC): void {
+export function postNPCUpdate(npc: EntityNPC): void {
   if (!g.config.fastHands) {
     return;
   }

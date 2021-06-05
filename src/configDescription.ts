@@ -8,6 +8,7 @@ export type ConfigDescriptionArray = Array<
   ]
 >;
 
+// 01X
 export const MAJOR_CHANGES: ConfigDescriptionArray = [
   [
     "startWithD6",
@@ -92,6 +93,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
+// n/a
 export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
   [
     "fastDropAllKeyboard",
@@ -149,6 +151,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
   ],
 ];
 
+// 02X
 export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   [
     "judasAddBomb",
@@ -188,7 +191,8 @@ export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-export const ENEMY_CHANGES: ConfigDescriptionArray = [
+// 03X
+export const BOSS_CHANGES: ConfigDescriptionArray = [
   [
     "fadeBosses",
     [
@@ -199,12 +203,21 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "replaceCodWorms",
+    "stopDeathSlow",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "034",
+      "Stop Death's slow attack",
+      "Stop Death from performing the attack that reduces your speed by a factor of 2.",
+    ],
+  ],
+  [
+    "fastHaunt",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "032",
-      "Replace Cod Worms",
-      "Cod Worms are replaced with Para-Bites.",
+      "Fast The Haunt",
+      "Some animations in The Haunt fight are sped up.",
     ],
   ],
   [
@@ -216,11 +229,24 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
       "All of the waiting during the Satan Fight is removed.",
     ],
   ],
+];
+
+// 04X
+export const ENEMY_CHANGES: ConfigDescriptionArray = [
+  [
+    "replaceCodWorms",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "041",
+      "Replace Cod Worms",
+      "Cod Worms are replaced with Para-Bites.",
+    ],
+  ],
   [
     "disableInvulnerability",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "034",
+      "042",
       "Disable invulnerability",
       "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
     ],
@@ -229,7 +255,7 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     "fastGhosts",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "035",
+      "043",
       "Fast ghosts",
       "Wizoobs and Red Ghosts have faster attack patterns.",
     ],
@@ -238,7 +264,7 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     "fastHands",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "036",
+      "044",
       "Fast hands",
       "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
     ],
@@ -247,13 +273,14 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     "appearHands",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "037",
+      "045",
       "Reveal hands",
       "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
     ],
   ],
 ];
 
+// 05X
 export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
   [
     null,
@@ -268,7 +295,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "speedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "041",
+      "051",
       "Speed-up new run fade-ins",
       "Speed-up the fade-in that occurs at the beginning of a new run.",
     ],
@@ -277,7 +304,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "042",
+      "052",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -286,7 +313,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "043",
+      "053",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -295,7 +322,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "044",
+      "054",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
     ],
@@ -304,7 +331,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "045",
+      "055",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -313,7 +340,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "openHushDoor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "046",
+      "056",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -322,7 +349,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "047",
+      "057",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -331,13 +358,14 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "048",
+      "058",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
   ],
 ];
 
+// n/a
 export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   [
     null,
@@ -359,6 +387,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
+// n/a
 export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   [
     null,
@@ -407,12 +436,13 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
+// 08X
 export const BUG_FIXES: ConfigDescriptionArray = [
   [
     "fixTeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "071",
+      "081",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -459,46 +489,47 @@ export const BUG_FIXES: ConfigDescriptionArray = [
       ModConfigMenuOptionType.TEXT,
       "",
       "Fix I AM ERROR exits",
-      "Exits in an I AM ERROR room will be properly blocked if the room is not clear.",
+      "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)",
     ],
   ],
 ];
 
+// 09X
 export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
   [
-    null,
+    "flyItemSprites",
     [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Better Paschal Candle",
-      'Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.',
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      ModConfigMenuOptionType.BOOLEAN,
+      "091",
       "Fix fly colors",
       "The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.",
     ],
   ],
   [
-    null,
+    "twentyTwenty",
     [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      ModConfigMenuOptionType.BOOLEAN,
+      "092",
       "Better 20/20",
       "The 20/20 sprite is now easier to see.",
     ],
   ],
   [
-    null,
+    "starOfBethlehem",
     [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      ModConfigMenuOptionType.BOOLEAN,
+      "093",
       "Better Star of Bethlehem",
       "The Star of Bethlehem sprite is more distinct from Eden's Soul.",
+    ],
+  ],
+  [
+    "paschalCandle",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "094",
+      "Better Paschal Candle",
+      'Paschal Candle now "fills up" so that you can easily tell at a glance if it is maxed out.',
     ],
   ],
   [
@@ -530,24 +561,26 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
+// 10X
 export const SOUND_CHANGES: ConfigDescriptionArray = [
   [
-    null,
+    "silenceMomDad",
     [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      ModConfigMenuOptionType.BOOLEAN,
+      "101",
       "Silence mom & dad",
       "The audio clips of mom and dad on the Ascent are silenced.",
     ],
   ],
 ];
 
+// 11X
 export const OTHER_FEATURES: ConfigDescriptionArray = [
   [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "101",
+      "111",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
     ],
@@ -557,6 +590,7 @@ export const OTHER_FEATURES: ConfigDescriptionArray = [
 export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
   ...CHARACTER_CHANGES,
+  ...BOSS_CHANGES,
   ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES,
   ...GAMEPLAY_CHANGES,

@@ -1,4 +1,4 @@
-import g from "../globals";
+import * as replaceCodWorms from "../features/optional/enemies/replaceCodWorms";
 import preEntitySpawnPickupFunctions from "./preEntitySpawnPickupFunctions";
 
 const functionMap = new Map<
@@ -43,9 +43,9 @@ functionMap.set(
     _spawner: Entity,
     initSeed: int,
   ) => {
-    if (g.config.replaceCodWorms) {
-      // Replace Cod Worms with Para-Bites
-      return [EntityType.ENTITY_PARA_BITE, 0, 0, initSeed];
+    const returnValue = replaceCodWorms.preEntitySpawn(initSeed);
+    if (returnValue !== null) {
+      return returnValue;
     }
 
     return null;

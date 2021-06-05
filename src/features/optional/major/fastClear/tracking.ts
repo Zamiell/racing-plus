@@ -17,7 +17,7 @@ export function checkAdd(npc: EntityNPC): void {
   }
 
   // We don't care if the NPC is already dead
-  // (this is needed because we can enter this function from the NPCUpdate callback)
+  // (this is needed because we can enter this function from the PostNPCUpdate callback)
   if (npc.IsDead()) {
     return;
   }
@@ -102,7 +102,10 @@ function add(ptrHash: int, isBoss: boolean) {
 }
 
 /** As soon as an NPC dies, we want to remove it from the "aliveEnemies" map. */
-export function checkRemove(npc: EntityNPC, parentFunction: string): void {
+export function checkRemove(
+  npc: EntityNPC,
+  callbackIsPostEntityKill: boolean,
+): void {
   // We only care about entities that are in the "aliveEnemies" table
   const ptrHash = GetPtrHash(npc);
   const isBoss = g.run.fastClear.aliveEnemies.get(ptrHash);
@@ -119,7 +122,7 @@ export function checkRemove(npc: EntityNPC, parentFunction: string): void {
   // because that will only be updated on the next frame
   if (
     npc.GetChampionColorIdx() === ChampionColor.DARK_RED &&
-    parentFunction === "PostEntityKill"
+    callbackIsPostEntityKill
   ) {
     // We do not want to open the doors yet until the flesh pile is actually removed in the
     // PostEntityRemove callback
