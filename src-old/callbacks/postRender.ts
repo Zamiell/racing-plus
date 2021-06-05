@@ -9,7 +9,6 @@ export function main(): void {
   leadPencilChargeBar();
   schoolbag.glowingHourGlass();
   timer.checkDisplayRaceSpeedrun();
-  timer.checkDisplayRun();
   timer.checkDisplaySeededDeath();
   pills.postRender();
   changeCharOrder.postRender();

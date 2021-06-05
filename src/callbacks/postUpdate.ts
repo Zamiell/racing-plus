@@ -4,6 +4,7 @@ import * as postGridEntityUpdate from "../customCallbacks/postGridEntityUpdate";
 import * as postPlayerChange from "../customCallbacks/postPlayerChange";
 import * as postRoomClear from "../customCallbacks/postRoomClear";
 import * as postTransformation from "../customCallbacks/postTransformation";
+import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import * as fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
@@ -23,6 +24,7 @@ export function main(): void {
 
   // Mandatory features
   showLevelText.postUpdate();
+  runTimer.postUpdate();
 
   // Major features
   startWithD6.postUpdate();

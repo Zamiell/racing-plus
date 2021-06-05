@@ -1,6 +1,7 @@
 import * as cache from "../cache";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
+import * as runTimer from "../features/mandatory/runTimer";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
@@ -33,6 +34,7 @@ export function main(): void {
   // Mandatory features
   detectSlideAnimation.postRender();
   streakText.postRender();
+  runTimer.postRender();
 
   // Optional features - Major
   fastTravelPostRender.main();

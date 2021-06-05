@@ -2042,12 +2042,9 @@ ____exports.default = (function()
     local GlobalsRun = ____exports.default
     GlobalsRun.name = "GlobalsRun"
     function GlobalsRun.prototype.____constructor(self, players)
-        self.restart = false
-        self.roomsEntered = 0
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
         self.room = __TS__New(GlobalsRunRoom, true)
         self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
-        self.ghostForm = {}
         self.currentCharacters = {}
         self.debugChaosCard = false
         self.debugSpeed = false
@@ -2056,15 +2053,19 @@ ____exports.default = (function()
         self.fastResetFrame = 0
         self.fastTravel = {state = FastTravelState.Disabled, framesPassed = 0, playerIndexTouchedTrapdoor = -1, upwards = false, blueWomb = false, theVoid = false, antibirthSecretExit = false, reseed = false}
         self.freeDevilItem = {tookDamage = {}, granted = false}
+        self.ghostForm = {}
         self.maxFamiliars = false
         self.pickingUpItem = {}
         self.pills = {}
         self.pillsPHD = false
         self.pillsFalsePHD = false
         self.pocketActiveD6Charge = {}
+        self.restart = false
+        self.roomsEntered = 0
         self.seededDrops = {roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
         self.slideAnimationHappening = false
         self.spedUpFadeIn = false
+        self.startedTime = 0
         self.streakText = {text = "", tabText = "", frame = 0}
         self.switchForgotten = false
         self.transformations = {}
@@ -2314,7 +2315,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.8"
+____exports.VERSION = "0.58.9"
 ____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.COLLECTIBLE_SPRITE_LAYER = 1
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
@@ -7733,6 +7734,181 @@ function ____exports.postRender(self)
 end
 return ____exports
 end,
+["timer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local ____misc = require("misc")
+local initSprite = ____misc.initSprite
+local getNewTimerSprites
+function getNewTimerSprites(self)
+    local sprites = {
+        clock = initSprite(nil, "gfx/timer/clock.anm2"),
+        colons = {},
+        digits = {},
+        digitMini = initSprite(nil, "gfx/timer/timerMini.anm2")
+    }
+    do
+        local i = 0
+        while i < 2 do
+            local colonSprite = initSprite(nil, "gfx/timer/colon.anm2")
+            __TS__ArrayPush(sprites.colons, colonSprite)
+            i = i + 1
+        end
+    end
+    do
+        local i = 0
+        while i < 5 do
+            local digitSprite = initSprite(nil, "gfx/timer/timer.anm2")
+            __TS__ArrayPush(sprites.digits, digitSprite)
+            i = i + 1
+        end
+    end
+    return sprites
+end
+function ____exports.convertSecondsToTimerValues(self, totalSeconds)
+    local hours = math.floor(totalSeconds / 3600)
+    local minutes = math.floor(totalSeconds / 60)
+    if hours > 0 then
+        minutes = minutes - (hours * 60)
+    end
+    local minutesString
+    if minutes < 10 then
+        minutesString = "0" .. tostring(minutes)
+    else
+        minutesString = tostring(minutes)
+    end
+    local minute1String = string.sub(minutesString, 1, 1)
+    local minute1 = tonumber(minute1String)
+    if minute1 == nil then
+        error("Failed to parse the first minute of the timer.")
+    end
+    local minute2String = string.sub(minutesString, 2, 2)
+    local minute2 = tonumber(minute2String)
+    if minute2 == nil then
+        error("Failed to parse the second minute of the timer.")
+    end
+    local seconds = math.floor(totalSeconds % 60)
+    local secondsString
+    if seconds < 10 then
+        secondsString = "0" .. tostring(seconds)
+    else
+        secondsString = tostring(seconds)
+    end
+    local second1String = string.sub(secondsString, 1, 1)
+    local second1 = tonumber(second1String)
+    if second1 == nil then
+        error("Failed to parse the first second of the timer.")
+    end
+    local second2String = string.sub(secondsString, 2, 2)
+    local second2 = tonumber(second2String)
+    if second2 == nil then
+        error("Failed to parse the second second of the timer.")
+    end
+    local rawSeconds = totalSeconds % 60
+    local decimals = rawSeconds - math.floor(rawSeconds)
+    local tenths = math.floor(decimals * 10)
+    return {hours, minute1, minute2, second1, second2, tenths}
+end
+____exports.TimerType = TimerType or ({})
+____exports.TimerType.RaceOrSpeedrun = 0
+____exports.TimerType[____exports.TimerType.RaceOrSpeedrun] = "RaceOrSpeedrun"
+____exports.TimerType.RunRealTime = 1
+____exports.TimerType[____exports.TimerType.RunRealTime] = "RunRealTime"
+local DIGIT_LENGTH = 7.25
+local spriteCollectionMap = __TS__New(Map)
+function ____exports.display(self, timerType, seconds, startingX, startingY)
+    local hourAdjustment = 2
+    local hourAdjustment2 = 0
+    local sprites = spriteCollectionMap:get(timerType)
+    if sprites == nil then
+        sprites = getNewTimerSprites(nil)
+        spriteCollectionMap:set(timerType, sprites)
+    end
+    local hours, minute1, minute2, second1, second2, tenths = table.unpack(
+        ____exports.convertSecondsToTimerValues(nil, seconds)
+    )
+    local positionClock = Vector(startingX + 34, startingY + 45)
+    sprites.clock:RenderLayer(0, positionClock)
+    if hours > 0 then
+        hourAdjustment2 = 2
+        startingX = startingX + (DIGIT_LENGTH + hourAdjustment)
+        local positionHours = Vector((startingX - DIGIT_LENGTH) - hourAdjustment, startingY)
+        local hoursDigitSprite = sprites.digits[5]
+        hoursDigitSprite:SetFrame("Default", hours)
+        hoursDigitSprite:RenderLayer(0, positionHours)
+        local positionColon = Vector((startingX - DIGIT_LENGTH) + 7, startingY + 19)
+        local colonHoursSprite = sprites.colons[2]
+        colonHoursSprite:RenderLayer(0, positionColon)
+    end
+    local positionMinute1 = Vector(startingX, startingY)
+    local minute1Sprite = sprites.digits[1]
+    minute1Sprite:SetFrame("Default", minute1)
+    minute1Sprite:RenderLayer(0, positionMinute1)
+    local positionMinute2 = Vector(startingX + DIGIT_LENGTH, startingY)
+    local minute2Sprite = sprites.digits[2]
+    minute2Sprite:SetFrame("Default", minute2)
+    minute2Sprite:RenderLayer(0, positionMinute2)
+    local positionColon1 = Vector((startingX + DIGIT_LENGTH) + 10, startingY + 19)
+    local colonMinutesSprite = sprites.colons[1]
+    colonMinutesSprite:RenderLayer(0, positionColon1)
+    local positionSecond1 = Vector((startingX + DIGIT_LENGTH) + 11, startingY)
+    local second1Sprite = sprites.digits[3]
+    second1Sprite:SetFrame("Default", second1)
+    second1Sprite:RenderLayer(0, positionSecond1)
+    local positionSecond2 = Vector(((((startingX + DIGIT_LENGTH) + 11) + DIGIT_LENGTH) + 1) - hourAdjustment2, startingY)
+    local second2Sprite = sprites.digits[4]
+    second2Sprite:SetFrame("Default", second2)
+    second2Sprite:RenderLayer(0, positionSecond2)
+    local positionTenths = Vector((((((startingX + DIGIT_LENGTH) + 11) + DIGIT_LENGTH) + 1) - hourAdjustment2) + DIGIT_LENGTH, startingY + 1)
+    sprites.digitMini:SetFrame("Default", tenths)
+    sprites.digitMini:RenderLayer(0, positionTenths)
+end
+return ____exports
+end,
+["features.mandatory.runTimer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local isActionPressedOnAnyInput = ____misc.isActionPressedOnAnyInput
+local timer = require("timer")
+local ____timer = require("timer")
+local TimerType = ____timer.TimerType
+local checkStartTimer
+function checkStartTimer(self)
+    if g.run.startedTime == 0 then
+        g.run.startedTime = Isaac.GetTime()
+    end
+end
+function ____exports.checkDisplay(self)
+    if not isActionPressedOnAnyInput(nil, ButtonAction.ACTION_MAP) then
+        return
+    end
+    if g.seeds:HasSeedEffect(SeedEffect.SEED_NO_HUD) then
+        return
+    end
+    if #g.run.pills >= 11 then
+        return
+    end
+    local elapsedTime
+    if g.run.startedTime == 0 then
+        elapsedTime = 0
+    else
+        elapsedTime = Isaac.GetTime() - g.run.startedTime
+    end
+    local seconds = elapsedTime / 1000
+    local startingX = 52
+    local startingY = 41
+    timer:display(TimerType.RunRealTime, seconds, startingX, startingY)
+end
+function ____exports.postUpdate(self)
+    checkStartTimer(nil)
+end
+function ____exports.postRender(self)
+    ____exports.checkDisplay(nil)
+end
+return ____exports
+end,
 ["features.mandatory.streakText"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -8191,6 +8367,7 @@ local ____exports = {}
 local cache = require("cache")
 local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local errors = require("features.mandatory.errors")
+local runTimer = require("features.mandatory.runTimer")
 local saveFileCheck = require("features.mandatory.saveFileCheck")
 local streakText = require("features.mandatory.streakText")
 local fastReset = require("features.optional.major.fastReset")
@@ -8239,6 +8416,7 @@ function ____exports.main(self)
     end
     detectSlideAnimation:postRender()
     streakText:postRender()
+    runTimer:postRender()
     fastTravelPostRender:main()
     fastReset:postRender()
     showEdenStartingItems:postRender()
@@ -9501,6 +9679,7 @@ local postGridEntityUpdate = require("customCallbacks.postGridEntityUpdate")
 local postPlayerChange = require("customCallbacks.postPlayerChange")
 local postRoomClear = require("customCallbacks.postRoomClear")
 local postTransformation = require("customCallbacks.postTransformation")
+local runTimer = require("features.mandatory.runTimer")
 local showLevelText = require("features.mandatory.showLevelText")
 local fastDrop = require("features.optional.hotkeys.fastDrop")
 local fastClearPostUpdate = require("features.optional.major.fastClear.callbacks.postUpdate")
@@ -9516,6 +9695,7 @@ function ____exports.main(self)
     ghostForm:postUpdate()
     itemPickup:postUpdate()
     showLevelText:postUpdate()
+    runTimer:postUpdate()
     startWithD6:postUpdate()
     fastClearPostUpdate:main()
     fastClear4PostUpdate:main()

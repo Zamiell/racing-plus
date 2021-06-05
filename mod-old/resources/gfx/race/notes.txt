@@ -13,13 +13,8 @@ Graphic notes:
 - autocrop
 - outline 2 size: 2
 
-
-
 "Unseeded" race image:
 - same as above
 - font size 35
 - color 1: #d9d9d9 (3 off white from color picker)
 - color 2: #262626 (3 off black from color picker)
-
-
-numbers for ready:

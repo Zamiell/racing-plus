@@ -14,21 +14,10 @@ type ControllerIndexString = string;
 
 // Per-run variables
 export default class GlobalsRun {
-  // Tracking per run
-  /**
-   * Whether or not to restart the run on the next frame.
-   * This variable is used because the game prevents you from executing a "restart" console command
-   * while in the PostGameStarted callback.
-   */
-  restart = false;
-  roomsEntered = 0;
-
-  // Tracking per level
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
 
-  // Tracking per room
   room = new GlobalsRunRoom(true);
 
   race = {
@@ -37,17 +26,7 @@ export default class GlobalsRun {
     victoryLaps: 0,
   };
 
-  // ----------------
-  // Custom Callbacks
-  // ----------------
-
-  ghostForm = new LuaTable<ControllerIndexString, boolean>();
   currentCharacters = new LuaTable<ControllerIndexString, PlayerType>();
-
-  // --------
-  // Features
-  // --------
-
   debugChaosCard = false;
   debugSpeed = false;
 
@@ -120,6 +99,7 @@ export default class GlobalsRun {
     granted: false,
   };
 
+  ghostForm = new LuaTable<ControllerIndexString, boolean>();
   maxFamiliars = false;
 
   pickingUpItem = new LuaTable<
@@ -133,6 +113,14 @@ export default class GlobalsRun {
   pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<ControllerIndexString, int>();
 
+  /**
+   * Whether or not to restart the run on the next frame.
+   * This variable is used because the game prevents you from executing a "restart" console command
+   * while in the PostGameStarted callback.
+   */
+  restart = false;
+  roomsEntered = 0;
+
   seededDrops = {
     roomClearAwardSeed: 0,
     roomClearAwardSeedDevilAngel: 0,
@@ -140,6 +128,7 @@ export default class GlobalsRun {
 
   slideAnimationHappening = false;
   spedUpFadeIn = false;
+  startedTime = 0;
 
   /** Text that appears after players touch an item, reach a new level, etc. */
   streakText = {

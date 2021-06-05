@@ -2,9 +2,6 @@
 // Per-run variables
 export default class GlobalsRun {
   // Tracking per run
-  startedTime = 0;
-  erasedFadeIn = false;
-  roomsEntered = 0;
   items: CollectibleType[] = [];
   roomIDs: int[] = [];
   edenStartingItems: CollectibleType[] = [];
@@ -15,17 +12,11 @@ export default class GlobalsRun {
   PHDPills = false; // Used to determine when to change the pill text
   haveWishbone = false;
   haveWalnut = false;
-  debugDamage = false;
-  debugTears = false;
-  debugSpeed = false;
-  debugChaosCard = false;
 
   // Temporary tracking
-  restart = false; // If set, we restart the run on the next frame
   currentRoomClearState = true;
   lastDamageFrame = 0;
   diversity = false; // Whether or not this is a diversity race
-  reseededFloor = false;
   goingToDebugRoom = false;
   forgetMeNow = false;
   usedD6Frame = 0; // Set when the D6 is used; used to prevent bugs with The Void + D6
@@ -42,8 +33,6 @@ export default class GlobalsRun {
   playerGeneratedPedestalFrame = 0; // Used so that we properly seed player-generated pedestals (2/2)
   // Used to delete the trapdoor and heaven door after It Lives! and Hush
   itLivesKillFrame = 0;
-  speedLilHauntsFrame = 0; // Used to speed up The Haunt fight (1/2)
-  speedLilHauntsBlack = false; // Used to speed up The Haunt fight (2/2)
   rechargeItemFrame = 0; // Used to recharge a D6 or a Void after a failed attempt
   killAttackFly = false; // Used to prevent a bug with trapdoors/crawlspaces and Corny Poop
   extraIncubus = false; // Used in Racing+ Season 4

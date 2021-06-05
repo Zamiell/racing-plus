@@ -1,7 +1,6 @@
 /*
 export function main(): void {
   removeInvisibleEntities();
-  checkStartTime();
   checkRoomCleared();
   checkDDItems();
   checkKeeperHearts();
@@ -84,13 +83,6 @@ function removeInvisibleEntities() {
   );
   for (const invisibleEffect of invisibleEffects) {
     invisibleEffect.Remove();
-  }
-}
-
-// Check to see if we need to start the timers
-function checkStartTime() {
-  if (g.run.startedTime === 0) {
-    g.run.startedTime = Isaac.GetTime();
   }
 }
 
