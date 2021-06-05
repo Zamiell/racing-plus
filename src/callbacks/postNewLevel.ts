@@ -46,12 +46,6 @@ export function newLevel(): void {
   // Sounds
   silenceMomDad.postNewLevel();
 
-  for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
-    if (g.sfx.IsPlaying(i)) {
-      log(`Currently playing sound effect: ${i}`);
-    }
-  }
-
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();
 }

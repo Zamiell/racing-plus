@@ -126,7 +126,7 @@ export function roomClearDelayNPC(_entity: Entity): void {
 }
 
 // After killing Mom, Mom's Heart, or It Lives!, all entities in the room are killed
-// However, Nicalis didn't consider that Globins need to be killed twice
+// However, the developers did not consider that Globins need to be killed twice
 // (to kill their flesh pile forms)
 // Blisters also need to be killed twice (to kill the spawned Sacks)
 // Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma)

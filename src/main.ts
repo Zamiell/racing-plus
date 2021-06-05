@@ -19,6 +19,7 @@ import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
+import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postRender from "./callbacks/postRender";
 import * as postTearUpdate from "./callbacks/postTearUpdate";
@@ -76,6 +77,10 @@ racingPlus.AddCallback(
   postPlayerUpdate.main,
 ); // 31
 racingPlus.AddCallback(
+  ModCallbacks.MC_POST_PLAYER_RENDER,
+  postPlayerRender.main,
+); // 32
+racingPlus.AddCallback(
   ModCallbacks.MC_POST_ENTITY_REMOVE,
   postEntityRemove.main,
 ); // 67
@@ -84,6 +89,11 @@ racingPlus.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 
 racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
 
 // Register PostNPCUpdate callbacks (0)
+racingPlus.AddCallback(
+  ModCallbacks.MC_NPC_UPDATE,
+  postNPCUpdate.globin,
+  EntityType.ENTITY_GLOBIN, // 24
+);
 racingPlus.AddCallback(
   ModCallbacks.MC_NPC_UPDATE,
   postNPCUpdate.death,

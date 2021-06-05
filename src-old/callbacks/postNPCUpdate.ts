@@ -19,36 +19,6 @@ export function main(npc: EntityNPC): void {
   fastClear.PostNPCUpdate(npc);
 }
 
-// EntityType.ENTITY_GLOBIN (24)
-export function globin(npc: EntityNPC): void {
-  // Keep track of Globins for softlock prevention
-  let currentGlobin = g.run.room.currentGlobins.get(npc.Index);
-  if (currentGlobin === undefined) {
-    currentGlobin = {
-      npc,
-      lastState: npc.State,
-      numRegenerations: 0,
-    };
-    g.run.room.currentGlobins.set(npc.Index, currentGlobin);
-  }
-
-  // Fix Globin softlocks
-  if (
-    npc.State === NpcState.STATE_IDLE &&
-    npc.State !== currentGlobin.lastState
-  ) {
-    // A globin went down
-    currentGlobin.lastState = npc.State;
-    currentGlobin.numRegenerations += 1;
-    if (currentGlobin.numRegenerations >= 5) {
-      npc.Kill();
-      g.run.room.currentGlobins.delete(npc.Index);
-    }
-  } else {
-    currentGlobin.lastState = npc.State;
-  }
-}
-
 // EntityType.ENTITY_CHUB (28)
 export function chub(npc: EntityNPC): void {
   // Local variables

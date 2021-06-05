@@ -26,6 +26,7 @@ export default class Config {
   fastGhosts = true;
   fastHands = true;
   appearHands = true;
+  globinSoftlock = true;
 
   // Quality of Life Changes
   showDreamCatcherItem = true;
@@ -36,10 +37,12 @@ export default class Config {
   openHushDoor = true;
   showPills = true;
   showMaxFamiliars = true;
-  customConsole = true;
+
+  // Cutscenes & Animations
+  fastTeleports = true;
 
   // Bug Fixes
-  fixTeleportInvalidEntrance = true;
+  teleportInvalidEntrance = true;
 
   // Graphics
   flyItemSprites = true;
@@ -49,4 +52,7 @@ export default class Config {
 
   // Sounds
   silenceMomDad = true;
+
+  // Other
+  customConsole = true;
 }

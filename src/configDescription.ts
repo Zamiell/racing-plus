@@ -278,6 +278,15 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
       "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
     ],
   ],
+  [
+    "globinSoftlock",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "046",
+      "Fix Globin softlocks",
+      "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
+    ],
+  ],
 ];
 
 // 05X
@@ -387,7 +396,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// n/a
+// 07X
 export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   [
     null,
@@ -426,6 +435,15 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
+    "fastTeleports",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "071",
+      "Fast teleports",
+      "Teleport animations are sped up by a factor of 2.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -439,7 +457,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
 // 08X
 export const BUG_FIXES: ConfigDescriptionArray = [
   [
-    "fixTeleportInvalidEntrance",
+    "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "081",
@@ -502,7 +520,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
       ModConfigMenuOptionType.BOOLEAN,
       "091",
       "Fix fly colors",
-      "The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.",
+      "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
     ],
   ],
   [
@@ -511,7 +529,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
       ModConfigMenuOptionType.BOOLEAN,
       "092",
       "Better 20/20",
-      "The 20/20 sprite is now easier to see.",
+      "Make the 20/20 sprite easier to see.",
     ],
   ],
   [
@@ -520,7 +538,25 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
       ModConfigMenuOptionType.BOOLEAN,
       "093",
       "Better Star of Bethlehem",
-      "The Star of Bethlehem sprite is more distinct from Eden's Soul.",
+      "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix Locust of Famine",
+      "Make the Locust of Famine sprite match the color of the flies.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix Error",
+      "Make the Error trinket sprite have an outline.",
     ],
   ],
   [

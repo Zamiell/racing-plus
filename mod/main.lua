@@ -1859,6 +1859,7 @@ ____exports.default = (function()
         self.fastGhosts = true
         self.fastHands = true
         self.appearHands = true
+        self.globinSoftlock = true
         self.showDreamCatcherItem = true
         self.speedUpFadeIn = true
         self.subvertTeleport = true
@@ -1867,13 +1868,14 @@ ____exports.default = (function()
         self.openHushDoor = true
         self.showPills = true
         self.showMaxFamiliars = true
-        self.customConsole = true
-        self.fixTeleportInvalidEntrance = true
+        self.fastTeleports = true
+        self.teleportInvalidEntrance = true
         self.flyItemSprites = true
         self.twentyTwenty = true
         self.starOfBethlehem = true
         self.paschalCandle = true
         self.silenceMomDad = true
+        self.customConsole = true
     end
     return Config
 end)()
@@ -2258,12 +2260,12 @@ ____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Ma
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
 ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Tainted Keeper extra money", "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}}
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
-____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}}
+____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}, {"globinSoftlock", {4, "046", "Fix Globin softlocks", "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks."}}}
 ____exports.QUALITY_OF_LIFE_CHANGES = {{nil, {1, "", "Start in the center", "On a new run, start in the center of the room (instead of at the bottom)."}}, {"speedUpFadeIn", {4, "051", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"showDreamCatcherItem", {4, "052", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"subvertTeleport", {4, "053", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "054", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"fadeVasculitisTears", {4, "055", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"openHushDoor", {4, "056", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}, {"showPills", {4, "057", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}, {"showMaxFamiliars", {4, "058", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}}
 ____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
-____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
-____exports.BUG_FIXES = {{"fixTeleportInvalidEntrance", {4, "081", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix shop Restock Machines", "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}, {nil, {1, "", "Fix I AM ERROR exits", "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)"}}}
-____exports.GRAPHIC_CHANGES = {{"flyItemSprites", {4, "091", "Fix fly colors", "The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars."}}, {"twentyTwenty", {4, "092", "Better 20/20", "The 20/20 sprite is now easier to see."}}, {"starOfBethlehem", {4, "093", "Better Star of Bethlehem", "The Star of Bethlehem sprite is more distinct from Eden's Soul."}}, {"paschalCandle", {4, "094", "Better Paschal Candle", "Paschal Candle now \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}, {nil, {1, "", "Speedrunning controls graphic", "The controls graphic in the start room is changed to be speedrunning-themed."}}}
+____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {"fastTeleports", {4, "071", "Fast teleports", "Teleport animations are sped up by a factor of 2."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
+____exports.BUG_FIXES = {{"teleportInvalidEntrance", {4, "081", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix shop Restock Machines", "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}, {nil, {1, "", "Fix I AM ERROR exits", "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)"}}}
+____exports.GRAPHIC_CHANGES = {{"flyItemSprites", {4, "091", "Fix fly colors", "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars."}}, {"twentyTwenty", {4, "092", "Better 20/20", "Make the 20/20 sprite easier to see."}}, {"starOfBethlehem", {4, "093", "Better Star of Bethlehem", "Make the Star of Bethlehem sprite more distinct from Eden's Soul."}}, {nil, {1, "", "Fix Locust of Famine", "Make the Locust of Famine sprite match the color of the flies."}}, {nil, {1, "", "Fix Error", "Make the Error trinket sprite have an outline."}}, {"paschalCandle", {4, "094", "Better Paschal Candle", "Paschal Candle now \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}, {nil, {1, "", "Speedrunning controls graphic", "The controls graphic in the start room is changed to be speedrunning-themed."}}}
 ____exports.SOUND_CHANGES = {{"silenceMomDad", {4, "101", "Silence mom & dad", "The audio clips of mom and dad on the Ascent are silenced."}}}
 ____exports.OTHER_FEATURES = {{"customConsole", {4, "111", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)"}}}
 ____exports.ALL_CONFIG_DESCRIPTIONS = {
@@ -2312,7 +2314,7 @@ return ____exports
 end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.7"
+____exports.VERSION = "0.58.8"
 ____exports.CENTER_OF_2X2_ROOM = Vector(640, 560)
 ____exports.COLLECTIBLE_SPRITE_LAYER = 1
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
@@ -2320,6 +2322,7 @@ ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
 ____exports.MAX_POSSIBLE_RADIUS = 875
 ____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 ____exports.RECOMMENDED_SHIFT_IDX = 35
+____exports.TRINKET_SPRITE_LAYER = 0
 return ____exports
 end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -4217,6 +4220,12 @@ local getNextStage, getNextStageType, getStageType, getStageTypeAntibirth, trave
 function getNextStage(self)
     local stage = g.l:GetStage()
     local antibirthStage = isAntibirthStage(nil)
+    if g.g:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) then
+        if stage == 1 then
+            return 13
+        end
+        return stage - 1
+    end
     if g.run.fastTravel.blueWomb then
         return 9
     end
@@ -5703,7 +5712,7 @@ function ____exports.postNewRoom(self)
 end
 return ____exports
 end,
-["features.optional.bugfix.fixTeleportInvalidEntrance"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.bugfix.teleportInvalidEntrance"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
@@ -5757,7 +5766,7 @@ function getDoorEnterPosition(self, doorSlot, doorPosition)
     return Vector(x, y)
 end
 function ____exports.postNewRoom(self)
-    if not g.config.fixTeleportInvalidEntrance then
+    if not g.config.teleportInvalidEntrance then
         return
     end
     local stage = g.l:GetStage()
@@ -5766,19 +5775,20 @@ function ____exports.postNewRoom(self)
     if not enteredRoomViaTeleport(nil) then
         return
     end
-    if roomShape >= RoomShape.ROOMSHAPE_1x2 then
-        return
-    end
     if (stage == 6) and (roomType == RoomType.ROOM_BOSS) then
         return
     end
-    if not isPlayerNextToADoor(nil) then
+    if isPlayerNextToADoor(nil) then
         return
     end
     local firstDoorSlot, firstDoorPosition = table.unpack(
         getFirstDoorSlotAndPosition(nil)
     )
     if (firstDoorSlot == nil) or (firstDoorPosition == nil) then
+        return
+    end
+    if roomShape >= RoomShape.ROOMSHAPE_1x2 then
+        Isaac.DebugString("Not fixing an invalid entrance teleport due to being in a large room.")
         return
     end
     local position = getDoorEnterPosition(nil, firstDoorSlot, firstDoorPosition)
@@ -6574,7 +6584,7 @@ local cache = require("cache")
 local controlsGraphic = require("features.mandatory.controlsGraphic")
 local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local fastSatan = require("features.optional.bosses.fastSatan")
-local fixTeleportInvalidEntrance = require("features.optional.bugfix.fixTeleportInvalidEntrance")
+local teleportInvalidEntrance = require("features.optional.bugfix.teleportInvalidEntrance")
 local appearHands = require("features.optional.enemies.appearHands")
 local fastClearPostNewRoom = require("features.optional.major.fastClear.callbacks.postNewRoom")
 local fastTravelPostNewRoom = require("features.optional.major.fastTravel.callbacks.postNewRoom")
@@ -6615,7 +6625,7 @@ function ____exports.newRoom(self)
     appearHands:postNewRoom()
     showDreamCatcherItemPostNewRoom:main()
     subvertTeleport:postNewRoom()
-    fixTeleportInvalidEntrance:postNewRoom()
+    teleportInvalidEntrance:postNewRoom()
 end
 function ____exports.main(self)
     cache:updateAPIFunctions()
@@ -6665,18 +6675,6 @@ function ____exports.newLevel(self)
     end
     openHushDoor:postNewLevel()
     silenceMomDad:postNewLevel()
-    do
-        local i = 0
-        while i < SoundEffect.NUM_SOUND_EFFECTS do
-            if g.sfx:IsPlaying(i) then
-                log(
-                    nil,
-                    "Currently playing sound effect: " .. tostring(i)
-                )
-            end
-            i = i + 1
-        end
-    end
     postNewRoom:newRoom()
 end
 function showLevelText(self)
@@ -7057,6 +7055,36 @@ function ____exports.postNPCUpdate(self, npc)
 end
 return ____exports
 end,
+["features.optional.enemies.globinSoftlock"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local log = ____misc.log
+local MAX_REGENERATIONS = 4
+function ____exports.postNPCUpdate(self, npc)
+    if not g.config.globinSoftlock then
+        return
+    end
+    local data = npc:GetData()
+    if npc.State == data.lastState then
+        return
+    end
+    data.lastState = npc.State
+    if npc.State ~= NpcState.STATE_IDLE then
+        return
+    end
+    if data.numRegenerations == nil then
+        data.numRegenerations = 0
+    end
+    data.numRegenerations = data.numRegenerations + 1
+    if data.numRegenerations == MAX_REGENERATIONS then
+        npc:Kill()
+        log(nil, "Manually killed a Globin to prevent a softlock.")
+    end
+end
+return ____exports
+end,
 ["features.optional.major.fastClear.callbacks.postNPCUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -7101,9 +7129,13 @@ local appearHands = require("features.optional.enemies.appearHands")
 local disableInvulnerability = require("features.optional.enemies.disableInvulnerability")
 local fastGhosts = require("features.optional.enemies.fastGhosts")
 local fastHands = require("features.optional.enemies.fastHands")
+local globinSoftlock = require("features.optional.enemies.globinSoftlock")
 local fastClearPostNPCUpdate = require("features.optional.major.fastClear.callbacks.postNPCUpdate")
 function ____exports.main(self, npc)
     fastClearPostNPCUpdate:main(npc)
+end
+function ____exports.globin(self, npc)
+    globinSoftlock:postNPCUpdate(npc)
 end
 function ____exports.death(self, npc)
     stopDeathSlow:postNPCUpdate(npc)
@@ -7445,6 +7477,32 @@ function cachePlayerObject(self, player)
 end
 function ____exports.main(self, player)
     cachePlayerObject(nil, player)
+end
+return ____exports
+end,
+["features.optional.cutscenes.fastTeleports"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ANIMATION_SPEED_MULTIPLIER = 1.66
+function ____exports.postPlayerRender(self, player)
+    if not g.config.fastTeleports then
+        return
+    end
+    local sprite = player:GetSprite()
+    local animation = sprite:GetAnimation()
+    if ((animation == "TeleportUp") or (animation == "TeleportDown")) and (sprite.PlaybackSpeed == 1) then
+        sprite.PlaybackSpeed = ANIMATION_SPEED_MULTIPLIER
+        Isaac.DebugString(("Increased the playback speed of a " .. animation) .. " animation.")
+    end
+end
+return ____exports
+end,
+["callbacks.postPlayerRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local fastTeleports = require("features.optional.cutscenes.fastTeleports")
+function ____exports.main(self, player)
+    fastTeleports:postPlayerRender(player)
 end
 return ____exports
 end,
@@ -10067,6 +10125,7 @@ local postNPCRender = require("callbacks.postNPCRender")
 local postNPCUpdate = require("callbacks.postNPCUpdate")
 local postPickupInit = require("callbacks.postPickupInit")
 local postPlayerInit = require("callbacks.postPlayerInit")
+local postPlayerRender = require("callbacks.postPlayerRender")
 local postPlayerUpdate = require("callbacks.postPlayerUpdate")
 local postRender = require("callbacks.postRender")
 local postTearUpdate = require("callbacks.postTearUpdate")
@@ -10115,10 +10174,12 @@ racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
+racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
 racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
 racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
+racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.globin, EntityType.ENTITY_GLOBIN)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.death, EntityType.ENTITY_DEATH)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
 racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.wizoob, EntityType.ENTITY_WIZOOB)

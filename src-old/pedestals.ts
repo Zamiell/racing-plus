@@ -1,11 +1,4 @@
-import * as postNewRoom from "./callbacks/postNewRoom";
-import { ChallengeCustom } from "./challenges/enums";
-import * as season8 from "./challenges/season8";
-import g from "./globals";
-import * as schoolbag from "./items/schoolbag";
-import * as misc from "./misc";
-import { CollectibleTypeCustom } from "./types/enums";
-
+/*
 // Racing+ replaces all item pedestals with custom seeds
 // This is in order to fix seed "incrementation" from touching active pedestal items over and over
 // Additionally, we also do some other various pedestal fixes
@@ -463,3 +456,4 @@ function getSeed(pickup: EntityPickup, playerGenerated: boolean) {
 
   return newSeed;
 }
+*/

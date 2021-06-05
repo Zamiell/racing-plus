@@ -4,10 +4,16 @@ import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
+import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 
 export function main(npc: EntityNPC): void {
   fastClearPostNPCUpdate.main(npc);
+}
+
+// EntityType.ENTITY_GLOBIN (24)
+export function globin(npc: EntityNPC): void {
+  globinSoftlock.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_DEATH (66)

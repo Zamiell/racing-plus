@@ -2,7 +2,7 @@ import * as cache from "../cache";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
-import * as fixTeleportInvalidEntrance from "../features/optional/bugfix/fixTeleportInvalidEntrance";
+import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
@@ -81,7 +81,7 @@ export function newRoom(): void {
   subvertTeleport.postNewRoom();
 
   // Bux fixes
-  fixTeleportInvalidEntrance.postNewRoom();
+  teleportInvalidEntrance.postNewRoom();
 
   /*
   // Remove the "More Options" buff if they have entered a Treasure Room

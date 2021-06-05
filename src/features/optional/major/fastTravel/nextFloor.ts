@@ -39,6 +39,15 @@ function getNextStage() {
   const stage = g.l.GetStage();
   const antibirthStage = isAntibirthStage();
 
+  if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
+    if (stage === 1) {
+      // e.g. From Basement 1 to Home
+      return 13;
+    }
+
+    return stage - 1;
+  }
+
   if (g.run.fastTravel.blueWomb) {
     return 9;
   }

@@ -24,9 +24,6 @@ export function main(): void {
   // Make Cursed Eye seeded
   checkCursedEye();
 
-  // Speed up teleport animations
-  speedUpTeleport();
-
   // Check for trapdoor related things
   fastTravel.trapdoor.checkState();
 
@@ -270,47 +267,6 @@ function checkCursedEye() {
 
   Isaac.DebugString("Cursed Eye teleport detected.");
   useItem.teleport();
-}
-
-function speedUpTeleport() {
-  // Local variables
-  const playerSprite = g.p.GetSprite();
-
-  // Replace the "item raising" animation after using Telepills with a "TeleportUp" animation
-  // (this has to be in the PostRender callback because game frames do not tick when the use
-  // animation is happening)
-  if (g.run.usedTelepills) {
-    g.run.usedTelepills = false;
-    playerSprite.Play("TeleportUp", true);
-    Isaac.DebugString(
-      'Replaced the "use" animation for Telepills with a "TeleportUp" animation.',
-    );
-  }
-
-  // Replace the "item raising" animation after using Blank Card with a "TeleportUp" animation
-  // (this has to be in the PostRender callback because game frames do not tick when the use
-  // animation is happening)
-  if (g.run.usedBlankCard) {
-    g.run.usedBlankCard = false;
-    // Using "playerSprite.Play("TeleportUp", true)" does not work here for some reason
-    g.p.AnimateTeleport(true);
-    Isaac.DebugString(
-      'Replaced the "use" animation for Blank Card with a "TeleportUp" animation.',
-    );
-  }
-
-  // The vanilla teleport animations are annoyingly slow, so speed them up by a factor of 2
-  if (
-    (playerSprite.IsPlaying("TeleportUp") ||
-      playerSprite.IsPlaying("TeleportDown")) &&
-    playerSprite.PlaybackSpeed === 1
-  ) {
-    playerSprite.PlaybackSpeed = 2;
-    Isaac.DebugString("Increased the playback speed of a teleport animation.");
-
-    // Furthermore, cancel any ongoing Challenge Rooms
-    challengeRooms.teleport();
-  }
 }
 
 // Check to see if we are subverting a teleport from Gurdy, Mom, Mom's Heart, or It Lives

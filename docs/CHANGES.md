@@ -175,6 +175,10 @@ Post-flip actions:
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
+- `046` Globins will permanently die on the 4th regeneration to prevent softlocks.
+
+> Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
+
 ### 5) Quality of Life Changes
 
 - Players will start in the center of the room (instead of at the bottom).
@@ -209,12 +213,13 @@ Post-flip actions:
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-### 7) Cutscene & Animation Removal
+### 7) Cutscenes & Animations
 
 - The intro that occurs when you launch the game is removed.
 - The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
 - All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
+- `071` Teleport animations are sped up by a factor of 2.
 - The pause and unpause animations are removed.
 
 ### 8) Bug Fixes
@@ -235,11 +240,14 @@ Post-flip actions:
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 
+
 ### 9) Graphics Fixes
 
 - `091` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - `092` The 20/20 sprite is now easier to see.
-- `093` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026) for creating it.) <!-- cspell:disable-line -->
+- `093` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
+- The Locust of Famine sprite now matches the color of the flies.
+- The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
 - `094` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
@@ -281,13 +289,9 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 <br />
 
 <!--
-  - the use animation for Telepills
-  - the use animation for Blank Card when you have a teleport card
   - various animations during the Mega Satan fight
   - various animations during the Big Horn fight
   - Hush's appear animation
-  - Ultra Greed's appear and death animation
-- Teleporting animations are sped up by a factor of 2.
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
 -->
 <!--
@@ -312,10 +316,7 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 - There is now a sound effect when a Walnut or a Wishbone breaks.
 -->
 <!--
-- Globins will permanently die upon the 5th regeneration to prevent Epic Fetus softlocks.
-- Flaming Hoppers will now automatically die after 5 seconds of being immobile to prevent softlocks.
 - Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- The Book of Sin and Mystery Sack generate actual random pickups.
 - 9 Volt now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
 - Defeating Mega Satan no longer has a chance to immediately end the run.
@@ -325,11 +326,6 @@ Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Scared Hearts and Sticky Nickels now have unique sprites.
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
-- The red spotted pill sprite has been changed to an all-red sprite so that it is easier to see.
-- The white spotted pill sprite has been changed to an all-spotted sprite so that it is easier to distinguish from the white pill.
-- The white has been changed on the red-white pill sprite so that it is easier to see.
-- The Locust of Famine graphic now matches the color of the flies.
-- Daemon's Tail and Error now have outlines. (Thanks goes to [O_o](http://steamcommunity.com/profiles/76561197993627005) for creating the sprites in the [Trinket Outlines](http://steamcommunity.com/sharedfiles/filedetails/?id=1138554495) mod.)
 - There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.) <!-- cspell:disable-line -->
 <!--
 - Enemy red creep is changed to green (so that it is easier to see).
