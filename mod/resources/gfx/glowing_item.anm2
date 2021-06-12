@@ -6,9 +6,7 @@
 			<Layer Name="item" Id="0" SpritesheetId="0"/>
 		</Layers>
 		<Nulls/>
-		<Events>
-			<Event Name="Unnamed" Id="0"/>
-		</Events>
+		<Events/>
 	</Content>
 	<Animations DefaultAnimation="Default">
 		<Animation Name="Default" FrameNum="1" Loop="true">

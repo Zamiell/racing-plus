@@ -1,5 +1,7 @@
+import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
-import { getPlayerLuaTableIndex, getPlayers } from "../misc";
+import { getPlayers } from "../misc";
+import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
 export const TRANSFORMATION_NAMES = [
   "Guppy",
@@ -41,6 +43,6 @@ function postTransformation(transformation: PlayerForm) {
 }
 
 function showStreakText(transformation: PlayerForm) {
-  g.run.streakText.text = TRANSFORMATION_NAMES[transformation];
-  g.run.streakText.frame = Isaac.GetFrameCount();
+  const transformationName = TRANSFORMATION_NAMES[transformation];
+  streakText.set(transformationName);
 }

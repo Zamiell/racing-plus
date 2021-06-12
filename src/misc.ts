@@ -89,10 +89,6 @@ export function getItemMaxCharges(itemID: int): int {
   return itemConfigItem.MaxCharges;
 }
 
-export function getPlayerLuaTableIndex(player: EntityPlayer): string {
-  return player.ControllerIndex.toString();
-}
-
 export function getRoomEnemies(): Entity[] {
   // Using FindInRadius() is faster than GetRoomEntities()
   return Isaac.FindInRadius(
@@ -207,7 +203,7 @@ export function initGlowingItemSprite(
 
   return initSprite(
     "gfx/glowing_item.anm2",
-    `gfx/items-glowing/collectibles/collectibles_${fileNum}.png`,
+    `gfx/items_glowing/collectibles/collectibles_${fileNum}.png`,
   );
 }
 
@@ -326,7 +322,7 @@ export function playingOnSetSeed(): boolean {
   const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
 
-  return challenge === 0 && customRun;
+  return challenge === Challenge.CHALLENGE_NULL && customRun;
 }
 
 export function printAllFlags(flags: int, maxShift: int): void {

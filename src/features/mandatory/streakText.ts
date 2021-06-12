@@ -58,3 +58,8 @@ function draw(text: string, fade: float) {
     true,
   );
 }
+
+export function set(text: string): void {
+  g.run.streakText.text = text;
+  g.run.streakText.frame = Isaac.GetFrameCount();
+}

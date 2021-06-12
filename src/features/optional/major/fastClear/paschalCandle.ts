@@ -1,10 +1,10 @@
 import g from "../../../../globals";
 import {
   getFireDelayFromTearsStat,
-  getPlayerLuaTableIndex,
   getTearsStat,
   isSelfDamage,
 } from "../../../../misc";
+import { getPlayerLuaTableIndex } from "../../../../types/GlobalsRun";
 
 const MAX_COUNTERS = 5;
 const TEARS_INCREASE = 0.4;

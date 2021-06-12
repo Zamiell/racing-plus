@@ -1,3 +1,11 @@
+- entityTakeDmg to use only EntityPlayer 3rd arg
+- delete fast clear
+- add socket ENUM
+
+
+- when resuming a run in a challenge:
+	[Racing+] Error in "PostUpdate" call: ...n\The Binding of Isaac Rebirth/mods/racing-plus/main.lua:9607: attempt to index a nil value (local 'transformations')
+
 - chat system
 - custom console
 

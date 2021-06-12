@@ -1,0 +1,12 @@
+<!--
+
+Notes:
+- We can't make the names too long or it will overflow off of the end of the note
+- We delete the "Blue Baby" icon from "hudpickups.png" so that it does not interfere with the
+  character progression UI
+
+-->
+<challenges version="1">
+	<challenge name="R+7 (Coming Soon)" endstage="11" altpath="true" />
+	<challenge name="Change Char Order" endstage="11" canshoot="false" />
+</challenges>

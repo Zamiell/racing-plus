@@ -24,7 +24,7 @@ const CATEGORY_NAME = "Racing+";
 const PRESETS_NAME = "Presets";
 
 export function register(): void {
-  if (ModConfigMenu === null) {
+  if (ModConfigMenu === null || InputHelper === null) {
     return;
   }
 

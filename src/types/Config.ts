@@ -1,6 +1,7 @@
 // Should match the ordering in "configDescription.ts"
 export default class Config {
   // Major Changes
+  clientCommunication = true;
   startWithD6 = true;
   disableCurses = true;
   freeDevilItem = true;

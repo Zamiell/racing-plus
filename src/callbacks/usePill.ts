@@ -1,3 +1,4 @@
+import * as streakText from "../features/mandatory/streakText";
 import * as showPills from "../features/optional/quality/showPills";
 import g from "../globals";
 
@@ -36,6 +37,6 @@ function newPill(pillColor: PillColor, pillEffect: PillEffect) {
 }
 
 function showStreakText(pillEffect: PillEffect) {
-  g.run.streakText.text = g.itemConfig.GetPillEffect(pillEffect).Name;
-  g.run.streakText.frame = Isaac.GetFrameCount();
+  const pillEffectName = g.itemConfig.GetPillEffect(pillEffect).Name;
+  streakText.set(pillEffectName);
 }

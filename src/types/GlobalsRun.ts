@@ -148,8 +148,7 @@ export default class GlobalsRun {
   constructor(players: EntityPlayer[]) {
     for (const player of players) {
       const character = player.GetPlayerType();
-      // The index must be calculated in the same way as the "getPlayerLuaTableIndex()" function
-      const index = player.ControllerIndex.toString();
+      const index = getPlayerLuaTableIndex(player);
 
       this.ghostForm.set(index, false);
       this.currentCharacters.set(index, character);
@@ -171,4 +170,15 @@ export default class GlobalsRun {
       this.transformations.set(index, transformationArray);
     }
   }
+}
+
+export function getPlayerLuaTableIndex(player: EntityPlayer): string {
+  // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
+  // or Tainted Forgotten
+  // The PtrHash of the player will correctly persist after saving and quitting and continuing,
+  // but it will be different after completely closing and re-opening the game
+  // We explicitly don't handle this case since the code complexity isn't worth the tradeoff
+  // We convert the pointer hash to a string to avoid null element creation when saving the table as
+  // JSON
+  return GetPtrHash(player).toString();
 }

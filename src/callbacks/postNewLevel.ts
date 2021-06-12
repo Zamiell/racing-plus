@@ -1,3 +1,4 @@
+import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import g from "../globals";
@@ -64,8 +65,7 @@ function showLevelText() {
       text = "Blue Womb";
     }
 
-    g.run.streakText.text = text;
-    g.run.streakText.frame = Isaac.GetFrameCount();
+    streakText.set(text);
   }
 }
 

@@ -2,10 +2,10 @@ import g from "../../../globals";
 import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
-  getPlayerLuaTableIndex,
   getPlayers,
   isSelfDamage,
 } from "../../../misc";
+import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmg(

@@ -1,6 +1,7 @@
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import g from "../globals";
-import { getPlayerLuaTableIndex, getPlayers } from "../misc";
+import { getPlayers } from "../misc";
+import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
 export function postUpdate(): void {
   // We must perform exclusions in the "getPlayers()" function because we don't want to have two

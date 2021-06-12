@@ -11,6 +11,15 @@ export type ConfigDescriptionArray = Array<
 // 01X
 export const MAJOR_CHANGES: ConfigDescriptionArray = [
   [
+    "clientCommunication",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "000",
+      "Enable client support",
+      "Allow the mod to talk with the Racing+ client. You can disable this if you are not using the client to very slightly reduce lag.",
+    ],
+  ],
+  [
     "startWithD6",
     [
       ModConfigMenuOptionType.BOOLEAN,
@@ -99,7 +108,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropAllKeyboard",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
-      "011",
+      "",
       "Fast drop",
       "Drop all of your items instantaneously.",
     ],
@@ -108,7 +117,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropAllController",
     [
       ModConfigMenuOptionType.KEYBIND_CONTROLLER,
-      "011",
+      "",
       "Fast drop",
       "Drop all of your items instantaneously.",
     ],
@@ -117,7 +126,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropTrinketsKeyboard",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
-      "011",
+      "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",
     ],
@@ -126,7 +135,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropTrinketsController",
     [
       ModConfigMenuOptionType.KEYBIND_CONTROLLER,
-      "011",
+      "",
       "Fast drop (trinkets)",
       "Drop your trinkets instantaneously.",
     ],
@@ -135,7 +144,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropPocketKeyboard",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
-      "011",
+      "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",
     ],
@@ -144,7 +153,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     "fastDropPocketController",
     [
       ModConfigMenuOptionType.KEYBIND_CONTROLLER,
-      "011",
+      "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",
     ],

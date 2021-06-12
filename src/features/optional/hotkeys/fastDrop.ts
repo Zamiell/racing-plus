@@ -23,10 +23,7 @@ function checkInput() {
 function checkInputAll(player: EntityPlayer) {
   if (
     g.hotkeys.fastDropAllKeyboard !== -1 &&
-    InputHelper.KeyboardPressed(
-      g.hotkeys.fastDropAllKeyboard,
-      player.ControllerIndex,
-    )
+    isKeyboardPressed(g.hotkeys.fastDropAllKeyboard, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.All);
   }
@@ -45,7 +42,7 @@ function checkInputAll(player: EntityPlayer) {
 function checkInputTrinkets(player: EntityPlayer) {
   if (
     g.hotkeys.fastDropTrinketsKeyboard !== -1 &&
-    InputHelper.KeyboardPressed(
+    isKeyboardPressed(
       g.hotkeys.fastDropTrinketsKeyboard,
       player.ControllerIndex,
     )
@@ -67,10 +64,7 @@ function checkInputTrinkets(player: EntityPlayer) {
 function checkInputPocket(player: EntityPlayer) {
   if (
     g.hotkeys.fastDropPocketKeyboard !== -1 &&
-    InputHelper.KeyboardPressed(
-      g.hotkeys.fastDropPocketKeyboard,
-      player.ControllerIndex,
-    )
+    isKeyboardPressed(g.hotkeys.fastDropPocketKeyboard, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.Pocket);
   }
@@ -108,4 +102,12 @@ function fastDrop(player: EntityPlayer, target: FastDropTarget) {
     const pos2 = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
     player.DropPocketItem(1, pos2);
   }
+}
+
+// This logic is copied from InputHelper
+function isKeyboardPressed(key: Keyboard, controllerIndex: int) {
+  return (
+    Input.IsButtonPressed(key, controllerIndex) &&
+    !Input.IsButtonPressed(key % 32, controllerIndex)
+  );
 }

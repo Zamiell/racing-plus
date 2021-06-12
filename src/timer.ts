@@ -192,7 +192,7 @@ function getNewTimerSprites() {
     clock: initSprite("gfx/timer/clock.anm2"),
     colons: [],
     digits: [],
-    digitMini: initSprite("gfx/timer/timerMini.anm2"),
+    digitMini: initSprite("gfx/timer/timer_mini.anm2"),
   };
 
   for (let i = 0; i < 2; i++) {

@@ -1,5 +1,6 @@
 import g from "../../../globals";
-import { getPlayerLuaTableIndex, getPlayers, log } from "../../../misc";
+import { getPlayers, log } from "../../../misc";
+import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,

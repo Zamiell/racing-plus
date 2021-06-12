@@ -3,11 +3,14 @@ import { SaveFileState } from "./enums";
 import GlobalsRun from "./GlobalsRun";
 import Hotkeys from "./Hotkeys";
 import RaceData from "./RaceData";
+import Sandbox from "./Sandbox";
+import SocketClient from "./SocketClient";
 import SpeedrunData from "./SpeedrunData";
 
 export default class Globals {
   debug = false;
   corrupted = false;
+
   fastClear = false; // TODO remove this if Fast-Travel4 is robust
 
   // Cached API functions
@@ -49,7 +52,38 @@ export default class Globals {
     },
   };
 
+  socket = {
+    enabled: false,
+    sandbox: null as Sandbox | null,
+    client: null as SocketClient | null,
+    connectionAttemptFrame: 0,
+  };
+
   constructor() {
     this.font.Load("font/droid.fnt");
+    this.checkEnableSocket();
+  }
+
+  // Racing+ installs a sandbox that prevents mods from accessing DLLs
+  // If the sandbox is in place, then we should be clear to request a socket later on
+  checkEnableSocket(): void {
+    const [ok, requiredSandbox] = pcall(require, "sandbox");
+    if (!ok) {
+      Isaac.DebugString("Did not detect the sandbox environment.");
+      return;
+    }
+
+    this.socket.sandbox = requiredSandbox as Sandbox;
+
+    if (!this.socket.sandbox.isSocketInitialized()) {
+      this.socket.sandbox = null;
+      Isaac.DebugString(
+        'Detected sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
+      );
+      return;
+    }
+
+    Isaac.DebugString("Detected sandbox environment.");
+    this.socket.enabled = true;
   }
 }

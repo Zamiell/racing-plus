@@ -3,6 +3,7 @@ import * as removeKarma from "../features/mandatory/removeKarma";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
+import * as socket from "../features/optional/major/socket";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
@@ -10,8 +11,9 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import g from "../globals";
 import { getPlayers, log } from "../misc";
+import * as saveDat from "../saveDat";
+import { SaveFileState } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
-import * as postGameStartedContinued from "./postGameStartedContinued";
 import * as postNewLevel from "./postNewLevel";
 
 export function main(isContinued: boolean): void {
@@ -30,7 +32,7 @@ export function main(isContinued: boolean): void {
   }
 
   if (isContinued) {
-    postGameStartedContinued.main();
+    continued();
     return;
   }
 
@@ -49,6 +51,7 @@ export function main(isContinued: boolean): void {
   centerStart.postGameStarted();
 
   // Optional features - Major
+  socket.postGameStarted();
   startWithD6.postGameStarted();
 
   // Optional features - Quality of Life
@@ -66,13 +69,23 @@ function setSeeds() {
   // so ensure that it is removed
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 
-  // We need to disable achievements so that the R+ sprite shows above the stats on the left side of
-  // the screen
-  // We want the R+ sprite to display on all runs so that the "1st" sprite has somewhere to go
-  // The easiest way to disable achievements without affecting gameplay is to enable the easter egg
-  // that disables Curse of Darkness
-  // (this has no effect since all curses are removed in the "PostCurseEval" callback anyway)
+  // We make an "R+" sprite replace the "No Achievements" icon
+  // We want this sprite to appear on all runs, so we need to disable achievements on all runs
+  // The easiest way to do this without affecting gameplay is to enable an easter egg that prevents
+  // a curse from appearing
+  // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
+}
+
+export function continued(): void {
+  saveDat.load();
+
+  if (g.saveFile.state === SaveFileState.NotChecked) {
+    // In order to determine if the user has a fully-unlocked save file, we need to restart the game
+    // Since we are continuing a run, that would destroy their current progress
+    // Defer the check until the next new run starts
+    g.saveFile.state = SaveFileState.DeferredUntilNewRunBegins;
+  }
 }
 
 // If Racing+ is turned on from the mod menu and then the user immediately tries to play,

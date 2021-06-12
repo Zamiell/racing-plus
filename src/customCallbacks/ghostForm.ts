@@ -1,6 +1,7 @@
 import * as fastClearClearRoom from "../features/optional/major/fastClear/clearRoom";
 import g from "../globals";
-import { getPlayerLuaTableIndex, getPlayers } from "../misc";
+import { getPlayers } from "../misc";
+import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
 export function postUpdate(): void {
   for (const player of getPlayers()) {

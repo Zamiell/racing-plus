@@ -1840,6 +1840,7 @@ ____exports.default = (function()
     local Config = ____exports.default
     Config.name = "Config"
     function Config.prototype.____constructor(self)
+        self.clientCommunication = true
         self.startWithD6 = true
         self.disableCurses = true
         self.freeDevilItem = true
@@ -2037,6 +2038,11 @@ local ____GlobalsRunLevel = require("types.GlobalsRunLevel")
 local GlobalsRunLevel = ____GlobalsRunLevel.default
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
 local GlobalsRunRoom = ____GlobalsRunRoom.default
+function ____exports.getPlayerLuaTableIndex(self, player)
+    return tostring(
+        GetPtrHash(player)
+    )
+end
 ____exports.default = (function()
     ____exports.default = __TS__Class()
     local GlobalsRun = ____exports.default
@@ -2071,7 +2077,7 @@ ____exports.default = (function()
         self.transformations = {}
         for ____, player in ipairs(players) do
             local character = player:GetPlayerType()
-            local index = tostring(player.ControllerIndex)
+            local index = ____exports.getPlayerLuaTableIndex(nil, player)
             self.ghostForm[index] = false
             self.currentCharacters[index] = character
             self.fastClear.paschalCandleCounters[index] = 1
@@ -2142,6 +2148,14 @@ ____exports.default = (function()
 end)()
 return ____exports
 end,
+["types.SocketClient"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+return ____exports
+end,
+["types.Sandbox"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+return ____exports
+end,
 ["features.speedrun.enums"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 ____exports.SEASON_1_NAME = "R+7 (Season 1)"
@@ -2208,7 +2222,24 @@ ____exports.default = (function()
         self.race = __TS__New(RaceData)
         self.speedrun = __TS__New(SpeedrunData)
         self.saveFile = {state = SaveFileState.NotChecked, fullyUnlocked = false, oldRun = {challenge = 0, character = 0, seededRun = false, seed = ""}}
+        self.socket = {enabled = false, sandbox = nil, client = nil, connectionAttemptFrame = 0}
         self.font:Load("font/droid.fnt")
+        self:checkEnableSocket()
+    end
+    function Globals.prototype.checkEnableSocket(self)
+        local ok, requiredSandbox = pcall(require, "sandbox")
+        if not ok then
+            Isaac.DebugString("Did not detect the sandbox environment.")
+            return
+        end
+        self.socket.sandbox = requiredSandbox
+        if not self.socket.sandbox:isSocketInitialized() then
+            self.socket.sandbox = nil
+            Isaac.DebugString("Detected sandbox environment, but the socket library failed to load. (The \"--luadebug\" flag is probably turned off.)")
+            return
+        end
+        Isaac.DebugString("Detected sandbox environment.")
+        self.socket.enabled = true
     end
     return Globals
 end)()
@@ -2222,6 +2253,7 @@ local Globals = ____Globals.default
 local globals = __TS__New(Globals)
 ____exports.default = globals
 RacingPlusGlobals = globals
+g = globals
 return ____exports
 end,
 ["cache"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2257,8 +2289,8 @@ end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {nil, {1, "", "Customized Devil/Angel Rooms", "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear4", {4, "005", "Fast room clear (v4)", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "006", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation."}}, {nil, {1, "", "Room fixes", "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files."}}, {nil, {1, "", "Room flipping", "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes."}}}
-____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "011", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "011", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "011", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
+____exports.MAJOR_CHANGES = {{"clientCommunication", {4, "000", "Enable client support", "Allow the mod to talk with the Racing+ client. You can disable this if you are not using the client to very slightly reduce lag."}}, {"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {nil, {1, "", "Customized Devil/Angel Rooms", "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear4", {4, "005", "Fast room clear (v4)", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "006", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation."}}, {nil, {1, "", "Room fixes", "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files."}}, {nil, {1, "", "Room flipping", "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes."}}}
+____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
 ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Tainted Keeper extra money", "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}}
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
 ____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}, {"globinSoftlock", {4, "046", "Fix Globin softlocks", "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks."}}}
@@ -2455,9 +2487,6 @@ function ____exports.getItemMaxCharges(self, itemID)
     end
     return itemConfigItem.MaxCharges
 end
-function ____exports.getPlayerLuaTableIndex(self, player)
-    return tostring(player.ControllerIndex)
-end
 function ____exports.getRoomEnemies(self)
     return Isaac.FindInRadius(CENTER_OF_2X2_ROOM, MAX_POSSIBLE_RADIUS, EntityPartition.ENEMY)
 end
@@ -2525,7 +2554,7 @@ function ____exports.initGlowingItemSprite(self, collectibleType)
     else
         fileNum = "NEW"
     end
-    return ____exports.initSprite(nil, "gfx/glowing_item.anm2", ("gfx/items-glowing/collectibles/collectibles_" .. fileNum) .. ".png")
+    return ____exports.initSprite(nil, "gfx/glowing_item.anm2", ("gfx/items_glowing/collectibles/collectibles_" .. fileNum) .. ".png")
 end
 function ____exports.isActionPressedOnAnyInput(self, buttonAction)
     do
@@ -2590,7 +2619,7 @@ end
 function ____exports.playingOnSetSeed(self)
     local customRun = g.seeds:IsCustomRun()
     local challenge = Isaac.GetChallenge()
-    return (challenge == 0) and customRun
+    return (challenge == Challenge.CHALLENGE_NULL) and customRun
 end
 function ____exports.printAllFlags(self, flags, maxShift)
     do
@@ -2645,9 +2674,10 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getFireDelayFromTearsStat = ____misc.getFireDelayFromTearsStat
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getTearsStat = ____misc.getTearsStat
 local isSelfDamage = ____misc.isSelfDamage
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local MAX_COUNTERS = 5
 local TEARS_INCREASE = 0.4
 local CUSTOM_ANM2_PATH = "gfx/003.221_paschal candle custom.anm2"
@@ -2743,9 +2773,10 @@ local g = ____globals.default
 local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local isSelfDamage = ____misc.isSelfDamage
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local giveTrinket
 function giveTrinket(self, player)
     local character = player:GetPlayerType()
@@ -5200,15 +5231,82 @@ function ____exports.postGameStarted(self)
 end
 return ____exports
 end,
+["features.optional.major.socket"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local PORT, MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS, read, connect, send
+function read(self)
+    if g.socket.client == nil then
+        return
+    end
+    local data, errMsg = g.socket.client:receive()
+    if data == nil then
+        if errMsg ~= "timeout" then
+            g.socket.client = nil
+            Isaac.DebugString("Failed to read data: " .. errMsg)
+        end
+        return
+    end
+    Isaac.DebugString("Received data: " .. data)
+end
+function connect(self)
+    if (not g.socket.enabled) or (g.socket.sandbox == nil) then
+        return
+    end
+    if g.socket.client ~= nil then
+        return
+    end
+    local isaacFrameCount = Isaac.GetFrameCount()
+    if (g.socket.connectionAttemptFrame ~= 0) and (isaacFrameCount < (g.socket.connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS)) then
+        return
+    end
+    g.socket.connectionAttemptFrame = isaacFrameCount
+    g.socket.client = g.socket.sandbox.connectLocalhost(PORT)
+    if g.socket.client ~= nil then
+        g.socket.client:settimeout(0)
+    end
+end
+function send(self, msg)
+    if g.socket.client == nil then
+        return
+    end
+    local sentBytes, errMsg = g.socket.client:send(msg)
+    if sentBytes == nil then
+        Isaac.DebugString("Failed to send data over the socket: " .. errMsg)
+        g.socket.client = nil
+    end
+end
+PORT = 9112
+MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60
+function ____exports.postRender(self)
+    if not g.config.clientCommunication then
+        return
+    end
+    if g.socket.client == nil then
+        return
+    end
+    send(nil, "ping")
+    read(nil)
+end
+function ____exports.postGameStarted(self)
+    if not g.config.clientCommunication then
+        return
+    end
+    connect(nil)
+end
+return ____exports
+end,
 ["features.optional.major.startWithD6"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local log = ____misc.log
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
 function shouldGetPocketActiveD6(self, player)
     local character = player:GetPlayerType()
@@ -5542,18 +5640,52 @@ function ____exports.load(self)
 end
 return ____exports
 end,
-["callbacks.postGameStartedContinued"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.mandatory.streakText"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local saveDat = require("saveDat")
-local ____enums = require("types.enums")
-local SaveFileState = ____enums.SaveFileState
-function ____exports.main(self)
-    saveDat:load()
-    if g.saveFile.state == SaveFileState.NotChecked then
-        g.saveFile.state = SaveFileState.DeferredUntilNewRunBegins
+local ____misc = require("misc")
+local gridToPos = ____misc.gridToPos
+local FRAMES_BEFORE_FADE, checkDraw, draw
+function checkDraw(self)
+    if VanillaStreakText ~= nil then
+        return
     end
+    if g.run.streakText.frame == 0 then
+        if g.run.streakText.tabText ~= "" then
+            draw(nil, g.run.streakText.tabText, 1)
+        end
+        return
+    end
+    local elapsedFrames = Isaac.GetFrameCount() - g.run.streakText.frame
+    local fade
+    if elapsedFrames <= FRAMES_BEFORE_FADE then
+        fade = 1
+    else
+        local fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE
+        fade = 1 - (0.02 * fadeFrames)
+    end
+    if fade <= 0 then
+        g.run.streakText.frame = 0
+        return
+    end
+    draw(nil, g.run.streakText.text, fade)
+end
+function draw(self, text, fade)
+    local positionGame = gridToPos(nil, 6, 0)
+    local position = Isaac.WorldToRenderPosition(positionGame)
+    local color = KColor(1, 1, 1, fade)
+    local scale = 1
+    local length = g.font:GetStringWidthUTF8(text) * scale
+    g.font:DrawStringScaled(text, position.X - (length / 2), position.Y, scale, scale, color, 0, true)
+end
+FRAMES_BEFORE_FADE = 50
+function ____exports.postRender(self)
+    checkDraw(nil)
+end
+function ____exports.set(self, text)
+    g.run.streakText.text = text
+    g.run.streakText.frame = Isaac.GetFrameCount()
 end
 return ____exports
 end,
@@ -6650,6 +6782,7 @@ end,
 ["callbacks.postNewLevel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local streakText = require("features.mandatory.streakText")
 local openHushDoor = require("features.optional.quality.openHushDoor")
 local silenceMomDad = require("features.optional.sound.silenceMomDad")
 local ____globals = require("globals")
@@ -6688,8 +6821,7 @@ function showLevelText(self)
         if text == "???" then
             text = "Blue Womb"
         end
-        g.run.streakText.text = text
-        g.run.streakText.frame = Isaac.GetFrameCount()
+        streakText:set(text)
     end
 end
 function shouldShowLevelText(self)
@@ -6730,6 +6862,7 @@ local removeKarma = require("features.mandatory.removeKarma")
 local saveFileCheck = require("features.mandatory.saveFileCheck")
 local seededDrops = require("features.mandatory.seededDrops")
 local seededFloors = require("features.mandatory.seededFloors")
+local socket = require("features.optional.major.socket")
 local startWithD6 = require("features.optional.major.startWithD6")
 local judasAddBomb = require("features.optional.quality.judasAddBomb")
 local samsonDropHeart = require("features.optional.quality.samsonDropHeart")
@@ -6740,14 +6873,22 @@ local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
 local log = ____misc.log
+local saveDat = require("saveDat")
+local ____enums = require("types.enums")
+local SaveFileState = ____enums.SaveFileState
 local ____GlobalsRun = require("types.GlobalsRun")
 local GlobalsRun = ____GlobalsRun.default
-local postGameStartedContinued = require("callbacks.postGameStartedContinued")
 local postNewLevel = require("callbacks.postNewLevel")
 local setSeeds, checkCorruptMod
 function setSeeds(self)
     g.seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN)
     g.seeds:AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS)
+end
+function ____exports.continued(self)
+    saveDat:load()
+    if g.saveFile.state == SaveFileState.NotChecked then
+        g.saveFile.state = SaveFileState.DeferredUntilNewRunBegins
+    end
 end
 function checkCorruptMod(self)
     local sprite = Sprite()
@@ -6776,7 +6917,7 @@ function ____exports.main(self, isContinued)
         MinimapAPI.Config.Disable = false
     end
     if isContinued then
-        postGameStartedContinued:main()
+        ____exports.continued(nil)
         return
     end
     g.run = __TS__New(
@@ -6790,6 +6931,7 @@ function ____exports.main(self, isContinued)
     seededDrops:postGameStarted()
     seededFloors:postGameStarted()
     centerStart:postGameStarted()
+    socket:postGameStarted()
     startWithD6:postGameStarted()
     samsonDropHeart:postGameStarted()
     judasAddBomb:postGameStarted()
@@ -7734,6 +7876,34 @@ function ____exports.postRender(self)
 end
 return ____exports
 end,
+["features.mandatory.racingPlusSprite"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local initSprite = ____misc.initSprite
+local SpriteLayer = SpriteLayer or ({})
+SpriteLayer.Blue = 0
+SpriteLayer[SpriteLayer.Blue] = "Blue"
+SpriteLayer.Green = 1
+SpriteLayer[SpriteLayer.Green] = "Green"
+local SPRITE_POSITION = Vector(4, 74)
+local SPRITE_LEFT_OFFSET = Vector(-3, 0)
+local SPRITE_RIGHT_OFFSET = Vector(13, 0)
+local sprite = initSprite(nil, "gfx/ui/racing_plus/racing_plus.anm2")
+function ____exports.postRender(self)
+    local challenge = Isaac.GetChallenge()
+    local position = SPRITE_POSITION
+    if challenge ~= Challenge.CHALLENGE_NULL then
+        position = position:__add(SPRITE_LEFT_OFFSET)
+    elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
+        position = position:__add(SPRITE_RIGHT_OFFSET)
+    end
+    local spriteLayer = ((g.socket.client == nil) and SpriteLayer.Blue) or SpriteLayer.Green
+    sprite:RenderLayer(spriteLayer, position)
+end
+return ____exports
+end,
 ["timer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -7745,7 +7915,7 @@ function getNewTimerSprites(self)
         clock = initSprite(nil, "gfx/timer/clock.anm2"),
         colons = {},
         digits = {},
-        digitMini = initSprite(nil, "gfx/timer/timerMini.anm2")
+        digitMini = initSprite(nil, "gfx/timer/timer_mini.anm2")
     }
     do
         local i = 0
@@ -7906,51 +8076,6 @@ function ____exports.postUpdate(self)
 end
 function ____exports.postRender(self)
     ____exports.checkDisplay(nil)
-end
-return ____exports
-end,
-["features.mandatory.streakText"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local gridToPos = ____misc.gridToPos
-local FRAMES_BEFORE_FADE, checkDraw, draw
-function checkDraw(self)
-    if VanillaStreakText ~= nil then
-        return
-    end
-    if g.run.streakText.frame == 0 then
-        if g.run.streakText.tabText ~= "" then
-            draw(nil, g.run.streakText.tabText, 1)
-        end
-        return
-    end
-    local elapsedFrames = Isaac.GetFrameCount() - g.run.streakText.frame
-    local fade
-    if elapsedFrames <= FRAMES_BEFORE_FADE then
-        fade = 1
-    else
-        local fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE
-        fade = 1 - (0.02 * fadeFrames)
-    end
-    if fade <= 0 then
-        g.run.streakText.frame = 0
-        return
-    end
-    draw(nil, g.run.streakText.text, fade)
-end
-function draw(self, text, fade)
-    local positionGame = gridToPos(nil, 6, 0)
-    local position = Isaac.WorldToRenderPosition(positionGame)
-    local color = KColor(1, 1, 1, fade)
-    local scale = 1
-    local length = g.font:GetStringWidthUTF8(text) * scale
-    g.font:DrawStringScaled(text, position.X - (length / 2), position.Y, scale, scale, color, 0, true)
-end
-FRAMES_BEFORE_FADE = 50
-function ____exports.postRender(self)
-    checkDraw(nil)
 end
 return ____exports
 end,
@@ -8367,11 +8492,13 @@ local ____exports = {}
 local cache = require("cache")
 local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local errors = require("features.mandatory.errors")
+local racingPlusSprite = require("features.mandatory.racingPlusSprite")
 local runTimer = require("features.mandatory.runTimer")
 local saveFileCheck = require("features.mandatory.saveFileCheck")
 local streakText = require("features.mandatory.streakText")
 local fastReset = require("features.optional.major.fastReset")
 local fastTravelPostRender = require("features.optional.major.fastTravel.callbacks.postRender")
+local socket = require("features.optional.major.socket")
 local customConsole = require("features.optional.quality.customConsole")
 local showDreamCatcherItemPostRender = require("features.optional.quality.showDreamCatcherItem.postRender")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
@@ -8414,9 +8541,11 @@ function ____exports.main(self)
     if errors:postRender() then
         return
     end
+    racingPlusSprite:postRender()
     detectSlideAnimation:postRender()
     streakText:postRender()
     runTimer:postRender()
+    socket:postRender()
     fastTravelPostRender:main()
     fastReset:postRender()
     showEdenStartingItems:postRender()
@@ -9201,8 +9330,9 @@ local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom"
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local isGhostForm, ghostFormChanged, ghostFormOn, ghostFormOff
 function isGhostForm(self, player)
     return player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
@@ -9235,13 +9365,15 @@ return ____exports
 end,
 ["customCallbacks.itemPickup"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local streakText = require("features.mandatory.streakText")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
 local getRoomIndex = ____misc.getRoomIndex
-local queueEmpty, queueNotEmpty, preItemPickup, postItemPickup, drawStreakText
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
+local queueEmpty, queueNotEmpty, preItemPickup, postItemPickup
 function queueEmpty(self, player)
     local index = getPlayerLuaTableIndex(nil, player)
     local pickingUpItem = g.run.pickingUpItem[index]
@@ -9263,13 +9395,9 @@ function queueNotEmpty(self, player)
     end
 end
 function preItemPickup(self, queuedItem)
-    drawStreakText(nil, queuedItem.Name)
+    streakText:set(queuedItem.Name)
 end
 function postItemPickup(self, _player)
-end
-function drawStreakText(self, itemName)
-    g.run.streakText.text = itemName
-    g.run.streakText.frame = Isaac.GetFrameCount()
 end
 function ____exports.postUpdate(self)
     for ____, player in ipairs(
@@ -9368,8 +9496,9 @@ local startWithD6 = require("features.optional.major.startWithD6")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local postPlayerChange
 function postPlayerChange(self, player)
     startWithD6:postPlayerChange(player)
@@ -9482,18 +9611,20 @@ return ____exports
 end,
 ["customCallbacks.postTransformation"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local streakText = require("features.mandatory.streakText")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
-local getPlayerLuaTableIndex = ____misc.getPlayerLuaTableIndex
 local getPlayers = ____misc.getPlayers
+local ____GlobalsRun = require("types.GlobalsRun")
+local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local postTransformation, showStreakText
 function postTransformation(self, transformation)
     showStreakText(nil, transformation)
 end
 function showStreakText(self, transformation)
-    g.run.streakText.text = ____exports.TRANSFORMATION_NAMES[transformation + 1]
-    g.run.streakText.frame = Isaac.GetFrameCount()
+    local transformationName = ____exports.TRANSFORMATION_NAMES[transformation + 1]
+    streakText:set(transformationName)
 end
 ____exports.TRANSFORMATION_NAMES = {"Guppy", "Beelzebub", "Fun Guy", "Seraphim", "Bob", "Spun", "Yes Mother?", "Conjoined", "Leviathan", "Oh Crap", "Bookworm", "Adult", "Spider Baby", "Stompy", "Flight"}
 function ____exports.postUpdate(self)
@@ -9544,7 +9675,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
-local checkInput, checkInputAll, checkInputTrinkets, checkInputPocket, fastDrop
+local checkInput, checkInputAll, checkInputTrinkets, checkInputPocket, fastDrop, isKeyboardPressed
 function checkInput(self)
     for ____, player in ipairs(
         getPlayers(nil)
@@ -9555,7 +9686,7 @@ function checkInput(self)
     end
 end
 function checkInputAll(self, player)
-    if (g.hotkeys.fastDropAllKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropAllKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropAllKeyboard ~= -1) and isKeyboardPressed(nil, g.hotkeys.fastDropAllKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.All)
     end
     if (g.hotkeys.fastDropAllController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropAllController, player.ControllerIndex) then
@@ -9563,7 +9694,7 @@ function checkInputAll(self, player)
     end
 end
 function checkInputTrinkets(self, player)
-    if (g.hotkeys.fastDropTrinketsKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropTrinketsKeyboard ~= -1) and isKeyboardPressed(nil, g.hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.Trinkets)
     end
     if (g.hotkeys.fastDropTrinketsController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropTrinketsController, player.ControllerIndex) then
@@ -9571,7 +9702,7 @@ function checkInputTrinkets(self, player)
     end
 end
 function checkInputPocket(self, player)
-    if (g.hotkeys.fastDropPocketKeyboard ~= -1) and InputHelper.KeyboardPressed(g.hotkeys.fastDropPocketKeyboard, player.ControllerIndex) then
+    if (g.hotkeys.fastDropPocketKeyboard ~= -1) and isKeyboardPressed(nil, g.hotkeys.fastDropPocketKeyboard, player.ControllerIndex) then
         fastDrop(nil, player, ____exports.FastDropTarget.Pocket)
     end
     if (g.hotkeys.fastDropPocketController ~= -1) and Input.IsButtonPressed(g.hotkeys.fastDropPocketController, player.ControllerIndex) then
@@ -9594,6 +9725,9 @@ function fastDrop(self, player, target)
         local pos2 = g.r:FindFreePickupSpawnPosition(player.Position, 0, true)
         player:DropPocketItem(1, pos2)
     end
+end
+function isKeyboardPressed(self, key, controllerIndex)
+    return Input.IsButtonPressed(key, controllerIndex) and (not Input.IsButtonPressed(key % 32, controllerIndex))
 end
 ____exports.FastDropTarget = FastDropTarget or ({})
 ____exports.FastDropTarget.All = 0
@@ -9839,13 +9973,14 @@ return ____exports
 end,
 ["callbacks.useCard"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local streakText = require("features.mandatory.streakText")
 local ____globals = require("globals")
 local g = ____globals.default
 local showStreakText
 function showStreakText(self, card)
     if card ~= Card.RUNE_BLANK then
-        g.run.streakText.text = g.itemConfig:GetCard(card).Name
-        g.run.streakText.frame = Isaac.GetFrameCount()
+        local cardName = g.itemConfig:GetCard(card).Name
+        streakText:set(cardName)
     end
 end
 function ____exports.main(self, card)
@@ -9856,6 +9991,7 @@ end,
 ["callbacks.usePill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local streakText = require("features.mandatory.streakText")
 local showPills = require("features.optional.quality.showPills")
 local ____globals = require("globals")
 local g = ____globals.default
@@ -9881,8 +10017,8 @@ function newPill(self, pillColor, pillEffect)
     __TS__ArrayPush(g.run.pills, pillDescription)
 end
 function showStreakText(self, pillEffect)
-    g.run.streakText.text = g.itemConfig:GetPillEffect(pillEffect).Name
-    g.run.streakText.frame = Isaac.GetFrameCount()
+    local pillEffectName = g.itemConfig:GetPillEffect(pillEffect).Name
+    streakText:set(pillEffectName)
 end
 function ____exports.main(self, pillEffect)
     checkNewPill(nil, g.p, pillEffect)
@@ -10261,7 +10397,7 @@ end
 CATEGORY_NAME = "Racing+"
 PRESETS_NAME = "Presets"
 function ____exports.register(self)
-    if ModConfigMenu == nil then
+    if (ModConfigMenu == nil) or (InputHelper == nil) then
         return
     end
     deleteOldConfig(nil)
@@ -10321,62 +10457,99 @@ local ____misc = require("misc")
 local log = ____misc.log
 local modConfigMenu = require("modConfigMenu")
 local saveDat = require("saveDat")
-local racingPlus = RegisterMod("Racing+", 1)
-local modName = "Racing+"
-local welcomeText = ((modName .. " ") .. VERSION) .. " initialized."
-local hyphens = string.rep(
-    "-",
-    math.floor(#welcomeText)
-)
-local welcomeTextBorder = ("+-" .. hyphens) .. "-+"
-log(nil, welcomeTextBorder)
-log(nil, ("| " .. welcomeText) .. " |")
-log(nil, welcomeTextBorder)
-saveDat:setMod(racingPlus)
-saveDat:load()
-modConfigMenu:register()
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
-racingPlus:AddCallback(ModCallbacks.MC_USE_CARD, useCard.main)
-racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main)
-racingPlus:AddCallback(ModCallbacks.MC_USE_PILL, usePill.main)
-racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
-racingPlus:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
-racingPlus:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
-racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
-racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
-racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
-racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.globin, EntityType.ENTITY_GLOBIN)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.death, EntityType.ENTITY_DEATH)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.wizoob, EntityType.ENTITY_WIZOOB)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.ragling, EntityType.ENTITY_RAGLING)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.haunt, EntityType.ENTITY_THE_HAUNT)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.redGhost, EntityType.ENTITY_RED_GHOST)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
-racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.stoney, EntityType.ENTITY_STONEY)
-racingPlus:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postFamiliarInit.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
-racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.collectible, PickupVariant.PICKUP_COLLECTIBLE)
-racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.bigChest, PickupVariant.PICKUP_BIGCHEST)
-racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
-racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.poof01, EffectVariant.POOF01)
-racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
-racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
-racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+local main, welcomeBanner, registerCallbacks, registerMiscCallbacks, registerNPCUpdateCallbacks, registerPostFamiliarInitCallbacks, registerPostFamiliarRenderCallbacks, registerPostPickupInitCallbacks, registerPostTearUpdateCallbacks, registerPostEffectInitCallbacks, registerPostEffectUpdateCallbacks, registerPreNPCUpdateCallbacks
+function main(self)
+    local racingPlus = RegisterMod("Racing+", 1)
+    welcomeBanner(nil)
+    saveDat:setMod(racingPlus)
+    saveDat:load()
+    modConfigMenu:register()
+    registerCallbacks(nil, racingPlus)
+end
+function welcomeBanner(self)
+    local modName = "Racing+"
+    local welcomeText = ((modName .. " ") .. VERSION) .. " initialized."
+    local hyphens = string.rep(
+        "-",
+        math.floor(#welcomeText)
+    )
+    local welcomeTextBorder = ("+-" .. hyphens) .. "-+"
+    log(nil, welcomeTextBorder)
+    log(nil, ("| " .. welcomeText) .. " |")
+    log(nil, welcomeTextBorder)
+end
+function registerCallbacks(self, racingPlus)
+    registerMiscCallbacks(nil, racingPlus)
+    registerNPCUpdateCallbacks(nil, racingPlus)
+    registerPostFamiliarInitCallbacks(nil, racingPlus)
+    registerPostFamiliarRenderCallbacks(nil, racingPlus)
+    registerPostPickupInitCallbacks(nil, racingPlus)
+    registerPostTearUpdateCallbacks(nil, racingPlus)
+    registerPostEffectInitCallbacks(nil, racingPlus)
+    registerPostEffectUpdateCallbacks(nil, racingPlus)
+    registerPreNPCUpdateCallbacks(nil, racingPlus)
+end
+function registerMiscCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
+    racingPlus:AddCallback(ModCallbacks.MC_USE_CARD, useCard.main)
+    racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main)
+    racingPlus:AddCallback(ModCallbacks.MC_USE_PILL, usePill.main)
+    racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
+    racingPlus:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
+    racingPlus:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
+    racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
+    racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
+    racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
+end
+function registerNPCUpdateCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.globin, EntityType.ENTITY_GLOBIN)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.death, EntityType.ENTITY_DEATH)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.wizoob, EntityType.ENTITY_WIZOOB)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.ragling, EntityType.ENTITY_RAGLING)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.haunt, EntityType.ENTITY_THE_HAUNT)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.redGhost, EntityType.ENTITY_RED_GHOST)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.stoney, EntityType.ENTITY_STONEY)
+end
+function registerPostFamiliarInitCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postFamiliarInit.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
+end
+function registerPostFamiliarRenderCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
+end
+function registerPostPickupInitCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.collectible, PickupVariant.PICKUP_COLLECTIBLE)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.bigChest, PickupVariant.PICKUP_BIGCHEST)
+end
+function registerPostTearUpdateCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
+end
+function registerPostEffectInitCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.poof01, EffectVariant.POOF01)
+end
+function registerPostEffectUpdateCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
+end
+function registerPreNPCUpdateCallbacks(self, racingPlus)
+    racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
+    racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+end
+main(nil)
 return ____exports
 end,
 ["features.optional.bosses.fadeBosses"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]

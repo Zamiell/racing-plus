@@ -1,3 +1,4 @@
+import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
 
 export function main(card: Card): void {
@@ -5,9 +6,9 @@ export function main(card: Card): void {
 }
 
 function showStreakText(card: Card) {
+  // We ignore Blank Runes because we want to show the streak text of the actual random effect
   if (card !== Card.RUNE_BLANK) {
-    // We ignore Blank Runes because we want to show the streak text of the actual random effect
-    g.run.streakText.text = g.itemConfig.GetCard(card).Name;
-    g.run.streakText.frame = Isaac.GetFrameCount();
+    const cardName = g.itemConfig.GetCard(card).Name;
+    streakText.set(cardName);
   }
 }

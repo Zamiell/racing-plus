@@ -1,11 +1,13 @@
 import * as cache from "../cache";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
+import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
 import * as fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
+import * as socket from "../features/optional/major/socket";
 import * as customConsole from "../features/optional/quality/customConsole";
 import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
@@ -32,11 +34,13 @@ export function main(): void {
   }
 
   // Mandatory features
+  racingPlusSprite.postRender();
   detectSlideAnimation.postRender();
   streakText.postRender();
   runTimer.postRender();
 
   // Optional features - Major
+  socket.postRender();
   fastTravelPostRender.main();
   fastReset.postRender();
 

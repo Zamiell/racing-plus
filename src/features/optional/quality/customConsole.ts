@@ -58,6 +58,7 @@ function close() {
     consoleCommand(consoleText);
   }
   if (consoleTextIndex === 0) {
+    // TODO
   }
 
   // Isaac.DebugString("Console closed.");

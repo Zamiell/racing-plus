@@ -1,7 +1,9 @@
 // This custom callback provides preItemPickup and postItemPickup
 
+import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
-import { getPlayerLuaTableIndex, getPlayers, getRoomIndex } from "../misc";
+import { getPlayers, getRoomIndex } from "../misc";
+import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
 export function postUpdate(): void {
   for (const player of getPlayers()) {
@@ -41,13 +43,7 @@ function queueNotEmpty(player: EntityPlayer) {
 }
 
 function preItemPickup(queuedItem: ItemConfigItem) {
-  drawStreakText(queuedItem.Name);
+  streakText.set(queuedItem.Name);
 }
 
 function postItemPickup(_player: EntityPlayer) {}
-
-function drawStreakText(itemName: string) {
-  // Mark to draw the streak text for this item
-  g.run.streakText.text = itemName;
-  g.run.streakText.frame = Isaac.GetFrameCount();
-}
