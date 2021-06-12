@@ -1845,7 +1845,7 @@ ____exports.default = (function()
         self.disableCurses = true
         self.freeDevilItem = true
         self.fastReset = true
-        self.fastClear4 = true
+        self.fastClear = true
         self.fastTravel = true
         self.judasAddBomb = true
         self.samsonDropHeart = true
@@ -2205,7 +2205,6 @@ ____exports.default = (function()
     function Globals.prototype.____constructor(self)
         self.debug = false
         self.corrupted = false
-        self.fastClear = false
         self.g = Game()
         self.l = Game():GetLevel()
         self.r = Game():GetRoom()
@@ -2289,7 +2288,7 @@ end,
 ["configDescription"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-____exports.MAJOR_CHANGES = {{"clientCommunication", {4, "000", "Enable client support", "Allow the mod to talk with the Racing+ client. You can disable this if you are not using the client to very slightly reduce lag."}}, {"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {nil, {1, "", "Customized Devil/Angel Rooms", "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear4", {4, "005", "Fast room clear (v4)", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "006", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation."}}, {nil, {1, "", "Room fixes", "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files."}}, {nil, {1, "", "Room flipping", "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes."}}}
+____exports.MAJOR_CHANGES = {{"clientCommunication", {4, "000", "Enable client support", "Allow the mod to talk with the Racing+ client. You can disable this if you are not using the client to very slightly reduce lag."}}, {"startWithD6", {4, "001", "Start with the D6", "Makes each character start with a D6 or a pocket D6."}}, {"disableCurses", {4, "002", "Disable curses", "Disables all curses, like Curse of the Maze."}}, {nil, {1, "", "Customized Devil/Angel Rooms", "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files."}}, {"freeDevilItem", {4, "003", "Free devil item", "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage."}}, {"fastReset", {4, "004", "Fast reset", "Instantaneously restart the game as soon as you press the R key."}}, {"fastClear", {4, "005", "Fast room clear", "Makes doors open at the beginning of the death animation instead of at the end."}}, {"fastTravel", {4, "006", "Fast floor travel", "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation."}}, {nil, {1, "", "Room fixes", "Fixes various softlocks and bugs. This cannot be disabled because it affects the STB files."}}, {nil, {1, "", "Room flipping", "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes."}}}
 ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropAllController", {7, "", "Fast drop", "Drop all of your items instantaneously."}}, {"fastDropTrinketsKeyboard", {6, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropTrinketsController", {7, "", "Fast drop (trinkets)", "Drop your trinkets instantaneously."}}, {"fastDropPocketKeyboard", {6, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}, {"fastDropPocketController", {7, "", "Fast drop (pocket)", "Drop your pocket items instantaneously."}}}
 ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Tainted Keeper extra money", "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}}
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
@@ -2668,87 +2667,6 @@ function ____exports.teleport(self, roomIndex, direction, roomTransitionAnim)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.paschalCandle"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local getFireDelayFromTearsStat = ____misc.getFireDelayFromTearsStat
-local getTearsStat = ____misc.getTearsStat
-local isSelfDamage = ____misc.isSelfDamage
-local ____GlobalsRun = require("types.GlobalsRun")
-local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
-local MAX_COUNTERS = 5
-local TEARS_INCREASE = 0.4
-local CUSTOM_ANM2_PATH = "gfx/003.221_paschal candle custom.anm2"
-function ____exports.clearedRoom(self, familiar)
-    if familiar.Variant ~= FamiliarVariant.PASCHAL_CANDLE then
-        return
-    end
-    local player = familiar.Player
-    local index = getPlayerLuaTableIndex(nil, player)
-    local oldCounters = g.run.fastClear.paschalCandleCounters[index]
-    local newCounters = oldCounters + 1
-    if newCounters > MAX_COUNTERS then
-        newCounters = MAX_COUNTERS
-    end
-    if oldCounters ~= newCounters then
-        g.run.fastClear.paschalCandleCounters[index] = newCounters
-        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-        player:EvaluateItems()
-    end
-end
-function ____exports.postRender(self, familiar)
-    local sprite = familiar:GetSprite()
-    if sprite:GetFilename() ~= CUSTOM_ANM2_PATH then
-        sprite:Load(CUSTOM_ANM2_PATH, true)
-    end
-    local player = familiar.Player
-    local index = getPlayerLuaTableIndex(nil, player)
-    local counters = g.run.fastClear.paschalCandleCounters[index]
-    local animation = sprite:GetAnimation()
-    local correctAnimation = "ModifiedIdle" .. tostring(counters)
-    if animation ~= correctAnimation then
-        sprite:Play(correctAnimation, true)
-    end
-end
-function ____exports.fireDelay(self, player)
-    if not player:HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE) then
-        return
-    end
-    local index = getPlayerLuaTableIndex(nil, player)
-    local counters = g.run.fastClear.paschalCandleCounters[index]
-    if counters == nil then
-        return
-    end
-    do
-        local i = 0
-        while i < counters do
-            local tearStat = getTearsStat(nil, player.MaxFireDelay)
-            local newTearsStat = tearStat + TEARS_INCREASE
-            player.MaxFireDelay = getFireDelayFromTearsStat(nil, newTearsStat)
-            i = i + 1
-        end
-    end
-end
-function ____exports.entityTakeDmg(self, tookDamage, damageFlags)
-    local player = tookDamage:ToPlayer()
-    if player == nil then
-        return
-    end
-    if not player:HasCollectible(CollectibleType.COLLECTIBLE_PASCHAL_CANDLE) then
-        return
-    end
-    local index = getPlayerLuaTableIndex(nil, player)
-    local counters = g.run.fastClear.paschalCandleCounters[index]
-    if (not isSelfDamage(nil, damageFlags)) and (counters > 0) then
-        g.run.fastClear.paschalCandleCounters[index] = 0
-        player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-        player:EvaluateItems()
-    end
-end
-return ____exports
-end,
 ["features.optional.major.fastTravel.callbacks.entityTakeDmg"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -2825,34 +2743,18 @@ return ____exports
 end,
 ["callbacks.entityTakeDmg"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local fastClearPaschalCandle = require("features.optional.major.fastClear.paschalCandle")
 local fastTravelEntityTakeDmg = require("features.optional.major.fastTravel.callbacks.entityTakeDmg")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
 function ____exports.main(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
     freeDevilItem:entityTakeDmg(tookDamage, damageFlags)
-    fastClearPaschalCandle:entityTakeDmg(tookDamage, damageFlags)
     fastTravelEntityTakeDmg:main(tookDamage, damageFlags)
     return nil
-end
-return ____exports
-end,
-["features.optional.major.fastClear.callbacks.evaluateCache"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local paschalCandle = require("features.optional.major.fastClear.paschalCandle")
-function ____exports.fireDelay(self, player)
-    if not g.fastClear then
-        return
-    end
-    paschalCandle:fireDelay(player)
 end
 return ____exports
 end,
 ["callbacks.evaluateCacheFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local fastClearEvaluateCache = require("features.optional.major.fastClear.callbacks.evaluateCache")
 local ____globals = require("globals")
 local g = ____globals.default
 local debugSpeed
@@ -2863,12 +2765,6 @@ function debugSpeed(self, player)
 end
 local functionMap = __TS__New(Map)
 ____exports.default = functionMap
-functionMap:set(
-    CacheFlag.CACHE_FIREDELAY,
-    function(____, player)
-        fastClearEvaluateCache:fireDelay(player)
-    end
-)
 functionMap:set(
     CacheFlag.CACHE_SPEED,
     function(____, player)
@@ -4642,96 +4538,7 @@ function ____exports.heavenLightDoor(self, effect)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.tracking"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local isAttachedNPC, checkFlushOldRoom, add, remove
-function isAttachedNPC(self, npc)
-    return (((((((((((npc.Type == EntityType.ENTITY_CHARGER) and (npc.Variant == 0)) and (npc.SubType == 1)) or ((npc.Type == EntityType.ENTITY_VIS) and (npc.Variant == 22))) or ((npc.Type == EntityType.ENTITY_DEATH) and (npc.Variant == 10))) or ((npc.Type == EntityType.ENTITY_PEEP) and (npc.Variant == 10))) or ((npc.Type == EntityType.ENTITY_PEEP) and (npc.Variant == 11))) or ((npc.Type == EntityType.ENTITY_BEGOTTEN) and (npc.Variant == 10))) or ((npc.Type == EntityType.ENTITY_MAMA_GURDY) and (npc.Variant == 1))) or ((npc.Type == EntityType.ENTITY_MAMA_GURDY) and (npc.Variant == 2))) or ((npc.Type == EntityType.ENTITY_BIG_HORN) and (npc.Variant == 1))) or ((npc.Type == EntityType.ENTITY_BIG_HORN) and (npc.Variant == 2))
-end
-function checkFlushOldRoom(self)
-    local roomFrameCount = g.r:GetFrameCount()
-    if (roomFrameCount == -1) and (not g.run.fastClear.roomInitializing) then
-        g.run.fastClear.aliveEnemies = {}
-        g.run.fastClear.aliveEnemiesCount = 0
-        g.run.fastClear.aliveBossesCount = 0
-        g.run.fastClear.roomInitializing = true
-        g.run.fastClear.delayFrame = 0
-    end
-end
-function add(self, ptrHash, isBoss)
-    g.run.fastClear.aliveEnemies[ptrHash] = isBoss
-    local ____obj, ____index = g.run.fastClear, "aliveEnemiesCount"
-    ____obj[____index] = ____obj[____index] + 1
-    if isBoss then
-        local ____obj, ____index = g.run.fastClear, "aliveBossesCount"
-        ____obj[____index] = ____obj[____index] + 1
-    end
-end
-function remove(self, ptrHash, isBoss)
-    local gameFrameCount = g.g:GetFrameCount()
-    g.run.fastClear.aliveEnemies[ptrHash] = nil
-    local ____obj, ____index = g.run.fastClear, "aliveEnemiesCount"
-    ____obj[____index] = ____obj[____index] - 1
-    if isBoss then
-        local ____obj, ____index = g.run.fastClear, "aliveBossesCount"
-        ____obj[____index] = ____obj[____index] - 1
-    end
-    g.run.fastClear.delayFrame = gameFrameCount + 1
-end
-function ____exports.checkAdd(self, npc)
-    local isBoss = npc:IsBoss()
-    local ptrHash = GetPtrHash(npc)
-    if g.run.fastClear.aliveEnemies[ptrHash] ~= nil then
-        return
-    end
-    if not npc.CanShutDoors then
-        return
-    end
-    if npc:IsDead() then
-        return
-    end
-    if ((npc.Type == EntityType.ENTITY_RAGLING) and (npc.Variant == 1)) and (npc.State == NpcState.STATE_UNIQUE_DEATH) then
-        return
-    end
-    if isAttachedNPC(nil, npc) then
-        return
-    end
-    checkFlushOldRoom(nil)
-    add(nil, ptrHash, isBoss)
-end
-function ____exports.checkRemove(self, npc, callbackIsPostEntityKill)
-    local ptrHash = GetPtrHash(npc)
-    local isBoss = g.run.fastClear.aliveEnemies[ptrHash]
-    if isBoss == nil then
-        return
-    end
-    if (npc:GetChampionColorIdx() == ChampionColor.DARK_RED) and callbackIsPostEntityKill then
-        return
-    end
-    remove(nil, ptrHash, isBoss)
-end
-return ____exports
-end,
-["features.optional.major.fastClear.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local tracking = require("features.optional.major.fastClear.tracking")
-function ____exports.main(self, entity)
-    if not g.fastClear then
-        return
-    end
-    local npc = entity:ToNPC()
-    if npc == nil then
-        return
-    end
-    tracking:checkRemove(npc, true)
-end
-return ____exports
-end,
-["features.optional.major.fastClear4.util"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.util"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
@@ -4753,11 +4560,11 @@ function ____exports.getItemDropPosition(self, npc)
 end
 return ____exports
 end,
-["features.optional.major.fastClear4.angels"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.angels"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local ____util = require("features.optional.major.fastClear4.util")
+local ____util = require("features.optional.major.fastClear.util")
 local deleteDyingEntity = ____util.deleteDyingEntity
 local getItemDropPosition = ____util.getItemDropPosition
 local markDeathFrame, getKeySubType
@@ -4814,19 +4621,19 @@ function ____exports.postEntityKill(self, npc)
 end
 return ____exports
 end,
-["features.optional.major.fastClear4.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 ____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_SPIDER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_DEATHS_HEAD, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_FLESH_DEATHS_HEAD, EntityType.ENTITY_DUKIE, EntityType.ENTITY_STONEY, EntityType.ENTITY_PORTAL, EntityType.ENTITY_STAIN, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_MATRIARCH, EntityType.ENTITY_FARTIGAN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_ROTGUT, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
 return ____exports
 end,
-["features.optional.major.fastClear4.krampus"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.krampus"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getRandom = ____misc.getRandom
-local ____util = require("features.optional.major.fastClear4.util")
+local ____util = require("features.optional.major.fastClear.util")
 local deleteDyingEntity = ____util.deleteDyingEntity
 local getItemDropPosition = ____util.getItemDropPosition
 local markDeathFrame, getKrampusItemSubType, getKrampusBans
@@ -4897,15 +4704,15 @@ function ____exports.postEntityKill(self, npc)
 end
 return ____exports
 end,
-["features.optional.major.fastClear4.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local angels = require("features.optional.major.fastClear4.angels")
-local ____constants = require("features.optional.major.fastClear4.constants")
+local angels = require("features.optional.major.fastClear.angels")
+local ____constants = require("features.optional.major.fastClear.constants")
 local FAST_CLEAR_WHITELIST = ____constants.FAST_CLEAR_WHITELIST
-local krampus = require("features.optional.major.fastClear4.krampus")
+local krampus = require("features.optional.major.fastClear.krampus")
 local getFinalFrame
 function getFinalFrame(self, sprite)
     local currentFrame = sprite:GetFrame()
@@ -4915,7 +4722,7 @@ function getFinalFrame(self, sprite)
     return finalFrame
 end
 function ____exports.main(self, entity)
-    if not g.config.fastClear4 then
+    if not g.config.fastClear then
         return
     end
     local npc = entity:ToNPC()
@@ -4965,37 +4772,10 @@ end,
 ["callbacks.postEntityKill"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostEntityKill = require("features.optional.major.fastClear.callbacks.postEntityKill")
-local fastClear4PostEntityKill = require("features.optional.major.fastClear4.callbacks.postEntityKill")
 local fadeBosses = require("features.optional.quality.fadeBosses")
 function ____exports.main(self, entity)
     fastClearPostEntityKill:main(entity)
-    fastClear4PostEntityKill:main(entity)
     fadeBosses:postEntityKill(entity)
-end
-return ____exports
-end,
-["features.optional.major.fastClear.callbacks.postEntityRemove"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local tracking = require("features.optional.major.fastClear.tracking")
-function ____exports.main(self, entity)
-    if not g.fastClear then
-        return
-    end
-    local npc = entity:ToNPC()
-    if npc == nil then
-        return
-    end
-    tracking:checkRemove(npc, false)
-end
-return ____exports
-end,
-["callbacks.postEntityRemove"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClearPostEntityRemove = require("features.optional.major.fastClear.callbacks.postEntityRemove")
-function ____exports.main(self, entity)
-    fastClearPostEntityRemove:main(entity)
 end
 return ____exports
 end,
@@ -5021,27 +4801,6 @@ local ____exports = {}
 local pc = require("features.optional.graphics.paschalCandle")
 function ____exports.paschalCandle(self, familiar)
     pc:postFamiliarInit(familiar)
-end
-return ____exports
-end,
-["features.optional.major.fastClear.callbacks.familiarPostRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local pc = require("features.optional.major.fastClear.paschalCandle")
-function ____exports.paschalCandle(self, familiar)
-    if not g.fastClear then
-        return
-    end
-    pc:postRender(familiar)
-end
-return ____exports
-end,
-["callbacks.postFamiliarRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClearFamiliarPostRender = require("features.optional.major.fastClear.callbacks.familiarPostRender")
-function ____exports.paschalCandle(self, familiar)
-    fastClearFamiliarPostRender:paschalCandle(familiar)
 end
 return ____exports
 end,
@@ -5970,23 +5729,6 @@ function ____exports.postNewRoom(self)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.callbacks.postNewRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local resetVariables
-function resetVariables(self)
-    g.run.fastClear.buttonsAllPushed = false
-    g.run.fastClear.roomInitializing = false
-end
-function ____exports.main(self)
-    if not g.fastClear then
-        return
-    end
-    resetVariables(nil)
-end
-return ____exports
-end,
 ["features.optional.major.fastTravel.checkStateComplete"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -6719,7 +6461,6 @@ local detectSlideAnimation = require("features.mandatory.detectSlideAnimation")
 local fastSatan = require("features.optional.bosses.fastSatan")
 local teleportInvalidEntrance = require("features.optional.bugfix.teleportInvalidEntrance")
 local appearHands = require("features.optional.enemies.appearHands")
-local fastClearPostNewRoom = require("features.optional.major.fastClear.callbacks.postNewRoom")
 local fastTravelPostNewRoom = require("features.optional.major.fastTravel.callbacks.postNewRoom")
 local freeDevilItem = require("features.optional.major.freeDevilItem")
 local startWithD6 = require("features.optional.major.startWithD6")
@@ -6751,7 +6492,6 @@ function ____exports.newRoom(self)
     controlsGraphic:postNewRoom()
     startWithD6:postNewRoom()
     freeDevilItem:postNewRoom()
-    fastClearPostNewRoom:main()
     fastTravelPostNewRoom:main()
     showEdenStartingItems:postNewRoom()
     fastSatan:postNewRoom()
@@ -6941,29 +6681,10 @@ function ____exports.main(self, isContinued)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.callbacks.postNPCInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.optional.major.fastClear.callbacks.postNPCRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local tracking = require("features.optional.major.fastClear.tracking")
-function ____exports.main(self, npc)
-    if not g.fastClear then
-        return
-    end
-    tracking:checkAdd(npc)
-end
-return ____exports
-end,
-["callbacks.postNPCInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClearPostNPCInit = require("features.optional.major.fastClear.callbacks.postNPCInit")
-function ____exports.main(self, npc)
-    fastClearPostNPCInit:main(npc)
-end
-return ____exports
-end,
-["features.optional.major.fastClear4.callbacks.postNPCRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
 local checkFinalFrameOfDeathAnimation
 function checkFinalFrameOfDeathAnimation(self, npc)
     local data = npc:GetData()
@@ -6979,15 +6700,18 @@ function checkFinalFrameOfDeathAnimation(self, npc)
     end
 end
 function ____exports.main(self, npc)
+    if not g.config.fastClear then
+        return
+    end
     checkFinalFrameOfDeathAnimation(nil, npc)
 end
 return ____exports
 end,
 ["callbacks.postNPCRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local fastClear4PostNPCRender = require("features.optional.major.fastClear4.callbacks.postNPCRender")
+local fastClearPostNPCRender = require("features.optional.major.fastClear.callbacks.postNPCRender")
 function ____exports.main(self, npc)
-    fastClear4PostNPCRender:main(npc)
+    fastClearPostNPCRender:main(npc)
 end
 return ____exports
 end,
@@ -7228,42 +6952,6 @@ function ____exports.postNPCUpdate(self, npc)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.callbacks.postNPCUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local tracking = require("features.optional.major.fastClear.tracking")
-function ____exports.main(self, npc)
-    if not g.fastClear then
-        return
-    end
-    if npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-        tracking:checkRemove(npc, false)
-        return
-    end
-    tracking:checkAdd(npc)
-end
-function ____exports.ragling(self, npc)
-    if not g.fastClear then
-        return
-    end
-    if (npc.Variant == 1) and (npc.State == NpcState.STATE_UNIQUE_DEATH) then
-        tracking:checkRemove(npc, false)
-    end
-end
-function ____exports.stoney(self, npc)
-    if not g.fastClear then
-        return
-    end
-    local ptrHash = GetPtrHash(npc)
-    if g.run.fastClear.aliveEnemies[ptrHash] ~= nil then
-        g.run.fastClear.aliveEnemies[ptrHash] = nil
-        local ____obj, ____index = g.run.fastClear, "aliveEnemiesCount"
-        ____obj[____index] = ____obj[____index] - 1
-    end
-end
-return ____exports
-end,
 ["callbacks.postNPCUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastHaunt = require("features.optional.bosses.fastHaunt")
@@ -7273,10 +6961,6 @@ local disableInvulnerability = require("features.optional.enemies.disableInvulne
 local fastGhosts = require("features.optional.enemies.fastGhosts")
 local fastHands = require("features.optional.enemies.fastHands")
 local globinSoftlock = require("features.optional.enemies.globinSoftlock")
-local fastClearPostNPCUpdate = require("features.optional.major.fastClear.callbacks.postNPCUpdate")
-function ____exports.main(self, npc)
-    fastClearPostNPCUpdate:main(npc)
-end
 function ____exports.globin(self, npc)
     globinSoftlock:postNPCUpdate(npc)
 end
@@ -7291,9 +6975,6 @@ function ____exports.wizoob(self, npc)
     disableInvulnerability:setGhostCollisionClass(npc)
     fastGhosts:postNPCUpdate(npc)
 end
-function ____exports.ragling(self, npc)
-    fastClearPostNPCUpdate:ragling(npc)
-end
 function ____exports.haunt(self, npc)
     disableInvulnerability:setGhostCollisionClass(npc)
     fastHaunt:postNPCUpdate(npc)
@@ -7305,9 +6986,6 @@ end
 function ____exports.momsDeadHand(self, npc)
     appearHands:postNPCUpdate(npc)
     fastHands:postNPCUpdate(npc)
-end
-function ____exports.stoney(self, npc)
-    fastClearPostNPCUpdate:stoney(npc)
 end
 return ____exports
 end,
@@ -8589,780 +8267,6 @@ function ____exports.blood(self, tear)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.bagFamiliarSubroutines"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____misc = require("misc")
-local initRNG = ____misc.initRNG
-function ____exports.getCurrentFamiliarSeed(self, familiar)
-    local rng = initRNG(nil, familiar.InitSeed)
-    do
-        local i = 0
-        while i < familiar.RoomClearCount do
-            rng:Next()
-            i = i + 1
-        end
-    end
-    return rng:GetSeed()
-end
-local MULTIPLIER_MAP = __TS__New(Map, {{FamiliarVariant.BOMB_BAG, {0.35, 0.42}}, {FamiliarVariant.BOMB_BAG, {0.35, 0.42}}, {FamiliarVariant.SACK_OF_PENNIES, {0.5, 0.57}}, {FamiliarVariant.SACK_OF_PENNIES, {0.5, 0.57}}, {FamiliarVariant.LITTLE_CHAD, {0.35, 0.42}}, {FamiliarVariant.RELIC, {0.166, 0.125}}, {FamiliarVariant.MYSTERY_SACK, {0.18, 0.22}}, {FamiliarVariant.RUNE_BAG, {0.125, 0.166}}, {FamiliarVariant.ACID_BABY, {0.125, 0.166}}, {FamiliarVariant.SACK_OF_SACKS, {0.125, 0.166}}})
-function ____exports.shouldDropSomething(self, familiar)
-    local player = familiar.Player
-    local character = player:GetPlayerType()
-    local multipliers = MULTIPLIER_MAP:get(familiar.Variant)
-    if multipliers == nil then
-        error(
-            "Failed to find the multipliers for familiar variant: " .. tostring(familiar.Variant)
-        )
-    end
-    local multiplierNormal, multiplierBFFS = table.unpack(multipliers)
-    local multiplier = (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and multiplierBFFS) or multiplierNormal
-    if character == PlayerType.PLAYER_BETHANY then
-        multiplier = multiplier * 0.75
-    end
-    return math.floor((familiar.RoomClearCount + 1) * multiplier) > math.floor(familiar.RoomClearCount * multiplier)
-end
-function ____exports.shouldDropHeart(self, familiar)
-    return familiar.Player:HasTrinket(TrinketType.TRINKET_DAEMONS_TAIL) or ((____exports.getCurrentFamiliarSeed(nil, familiar) & 5) == 0)
-end
-return ____exports
-end,
-["features.optional.major.fastClear.bagFamiliarFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local getRandom = ____misc.getRandom
-local incrementRNG = ____misc.incrementRNG
-local ____bagFamiliarSubroutines = require("features.optional.major.fastClear.bagFamiliarSubroutines")
-local getCurrentFamiliarSeed = ____bagFamiliarSubroutines.getCurrentFamiliarSeed
-local shouldDropHeart = ____bagFamiliarSubroutines.shouldDropHeart
-local shouldDropSomething = ____bagFamiliarSubroutines.shouldDropSomething
-local functionMap = __TS__New(Map)
-____exports.default = functionMap
-functionMap:set(
-    FamiliarVariant.BOMB_BAG,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_BOMB,
-                familiar.Position,
-                Vector.Zero,
-                familiar,
-                0,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.SACK_OF_PENNIES,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_COIN,
-                familiar.Position,
-                Vector.Zero,
-                familiar.Player,
-                0,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.LITTLE_CHAD,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) and shouldDropHeart(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_HEART,
-                familiar.Position,
-                Vector.Zero,
-                familiar,
-                HeartSubType.HEART_HALF,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.RELIC,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) and shouldDropHeart(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_HEART,
-                familiar.Position,
-                Vector.Zero,
-                familiar,
-                HeartSubType.HEART_SOUL,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.JUICY_SACK,
-    function(____, familiar)
-        local player = familiar.Player
-        local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-        local spiders = getRandom(nil, 1, 2, familiarSeed)
-        player:AddBlueSpider(familiar.Position)
-        if spiders == 2 then
-            player:AddBlueSpider(familiar.Position)
-        end
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
-            player:AddBlueSpider(familiar.Position)
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.MYSTERY_SACK,
-    function(____, familiar)
-        if not shouldDropSomething(nil, familiar) then
-            return
-        end
-        local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-        local mysterySackPickupType = getRandom(nil, 1, 4, familiarSeed)
-        local ____switch15 = mysterySackPickupType
-        if ____switch15 == 1 then
-            goto ____switch15_case_0
-        elseif ____switch15 == 2 then
-            goto ____switch15_case_1
-        elseif ____switch15 == 3 then
-            goto ____switch15_case_2
-        elseif ____switch15 == 4 then
-            goto ____switch15_case_3
-        end
-        goto ____switch15_case_default
-        ::____switch15_case_0::
-        do
-            do
-                if shouldDropHeart(nil, familiar) then
-                    local heartType = getRandom(nil, 1, 11, familiarSeed)
-                    g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, familiar.Position, Vector.Zero, familiar, heartType, familiarSeed)
-                end
-                goto ____switch15_end
-            end
-        end
-        ::____switch15_case_1::
-        do
-            do
-                local coinType = getRandom(nil, 1, 6, familiarSeed)
-                g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, familiar.Position, Vector.Zero, familiar, coinType, familiarSeed)
-                goto ____switch15_end
-            end
-        end
-        ::____switch15_case_2::
-        do
-            do
-                local keyType = getRandom(nil, 1, 4, familiarSeed)
-                g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, familiar.Position, Vector.Zero, familiar, keyType, familiarSeed)
-                goto ____switch15_end
-            end
-        end
-        ::____switch15_case_3::
-        do
-            do
-                local bombType = getRandom(nil, 1, 4, familiarSeed)
-                g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, familiar.Position, Vector.Zero, familiar, bombType, familiarSeed)
-                goto ____switch15_end
-            end
-        end
-        ::____switch15_case_default::
-        do
-            do
-                error("Invalid Mystery Sack pickup type.")
-            end
-        end
-        ::____switch15_end::
-    end
-)
-functionMap:set(
-    FamiliarVariant.LIL_CHEST,
-    function(____, familiar)
-        local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-        local lilChestTrinket = getRandom(nil, 1, 1000, familiarSeed)
-        if (lilChestTrinket <= 100) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestTrinket <= 125)) then
-            g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-            return
-        end
-        familiarSeed = incrementRNG(nil, familiarSeed)
-        local lilChestConsumable = getRandom(nil, 1, 10000, familiarSeed)
-        if (lilChestConsumable <= 2500) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (lilChestConsumable <= 3125)) then
-            familiarSeed = incrementRNG(nil, familiarSeed)
-            local lilChestPickupType = getRandom(nil, 1, 4, familiarSeed)
-            local ____switch25 = lilChestPickupType
-            if ____switch25 == 1 then
-                goto ____switch25_case_0
-            elseif ____switch25 == 2 then
-                goto ____switch25_case_1
-            elseif ____switch25 == 3 then
-                goto ____switch25_case_2
-            elseif ____switch25 == 4 then
-                goto ____switch25_case_3
-            end
-            goto ____switch25_case_default
-            ::____switch25_case_0::
-            do
-                do
-                    if shouldDropHeart(nil, familiar) then
-                        g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-                    end
-                    goto ____switch25_end
-                end
-            end
-            ::____switch25_case_1::
-            do
-                do
-                    g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-                    goto ____switch25_end
-                end
-            end
-            ::____switch25_case_2::
-            do
-                do
-                    g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-                    goto ____switch25_end
-                end
-            end
-            ::____switch25_case_3::
-            do
-                do
-                    g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-                    goto ____switch25_end
-                end
-            end
-            ::____switch25_case_default::
-            do
-                do
-                    error("Invalid Lil' Chest pickup type.")
-                end
-            end
-            ::____switch25_end::
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.BUMBO,
-    function(____, familiar)
-        local bumboLevel = familiar.State + 1
-        if bumboLevel ~= 2 then
-            return
-        end
-        local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-        local bumboPickup = getRandom(nil, 1, 100, familiarSeed)
-        if (bumboPickup <= 32) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (bumboPickup <= 40)) then
-            g.g:Spawn(EntityType.ENTITY_PICKUP, 0, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.RUNE_BAG,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) then
-            local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-            local subType = g.itemPool:GetCard(familiarSeed, false, true, true)
-            g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, familiar.Position, Vector.Zero, familiar, subType, familiarSeed)
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.SPIDER_MOD,
-    function(____, familiar)
-        local familiarSeed = getCurrentFamiliarSeed(nil, familiar)
-        local spiderModChance = getRandom(nil, 1, 1000, familiarSeed)
-        if (spiderModChance <= 100) or (familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and (spiderModChance <= 125)) then
-            familiarSeed = incrementRNG(nil, familiarSeed)
-            local spiderModDrop = getRandom(nil, 1, 3, familiarSeed)
-            if spiderModDrop == 1 then
-                g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, familiar.Position, Vector.Zero, familiar, 0, familiarSeed)
-            else
-                familiar.Player:AddBlueSpider(familiar.Position)
-            end
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.ACID_BABY,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_PILL,
-                familiar.Position,
-                Vector.Zero,
-                familiar,
-                0,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-functionMap:set(
-    FamiliarVariant.SACK_OF_SACKS,
-    function(____, familiar)
-        if shouldDropSomething(nil, familiar) then
-            g.g:Spawn(
-                EntityType.ENTITY_PICKUP,
-                PickupVariant.PICKUP_GRAB_BAG,
-                familiar.Position,
-                Vector.Zero,
-                familiar,
-                0,
-                getCurrentFamiliarSeed(nil, familiar)
-            )
-        end
-    end
-)
-return ____exports
-end,
-["features.optional.major.fastClear.bagFamiliars"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____bagFamiliarFunctions = require("features.optional.major.fastClear.bagFamiliarFunctions")
-local bagFamiliarFunctions = ____bagFamiliarFunctions.default
-local paschalCandle = require("features.optional.major.fastClear.paschalCandle")
-local checkForDrops
-function checkForDrops(self, familiar)
-    local bagFamiliarFunction = bagFamiliarFunctions:get(familiar.Variant)
-    if bagFamiliarFunction ~= nil then
-        bagFamiliarFunction(nil, familiar)
-    end
-end
-function ____exports.clearedRoom(self)
-    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR)
-    for ____, entity in ipairs(familiars) do
-        local familiar = entity:ToFamiliar()
-        if familiar ~= nil then
-            familiar.RoomClearCount = familiar.RoomClearCount + 1
-            checkForDrops(nil, familiar)
-            paschalCandle:clearedRoom(familiar)
-        end
-    end
-end
-return ____exports
-end,
-["features.optional.major.fastClear.charge"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local getItemMaxCharges = ____misc.getItemMaxCharges
-local getPlayers = ____misc.getPlayers
-local add, getNumChargesToAdd, getNumChargesWithAAAModifier, shouldPlayFullRechargeSound
-function add(self, player, slot)
-    local hud = g.g:GetHUD()
-    local currentCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local chargesToAdd = getNumChargesToAdd(nil, player, slot)
-    local modifiedChargesToAdd = getNumChargesWithAAAModifier(nil, player, slot, chargesToAdd)
-    local newCharge = (currentCharge + batteryCharge) + modifiedChargesToAdd
-    player:SetActiveCharge(newCharge, slot)
-    hud:FlashChargeBar(player, slot)
-    local chargeSoundEffect = (shouldPlayFullRechargeSound(nil, player, slot) and SoundEffect.SOUND_BATTERYCHARGE) or SoundEffect.SOUND_BEEP
-    if not g.sfx:IsPlaying(chargeSoundEffect) then
-        g.sfx:Play(chargeSoundEffect)
-    end
-end
-function getNumChargesToAdd(self, player, slot)
-    local roomShape = g.r:GetRoomShape()
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if (not hasBattery) and (activeCharge == maxCharges) then
-        return 0
-    end
-    if hasBattery and (batteryCharge == maxCharges) then
-        return 0
-    end
-    if (not hasBattery) and ((activeCharge + 1) == maxCharges) then
-        return 1
-    end
-    if hasBattery and ((batteryCharge + 1) == maxCharges) then
-        return 1
-    end
-    if roomShape >= RoomShape.ROOMSHAPE_2x2 then
-        return 2
-    end
-    return 1
-end
-function getNumChargesWithAAAModifier(self, player, slot, chargesToAdd)
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local hasAAABattery = player:HasTrinket(TrinketType.TRINKET_AAA_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if not hasAAABattery then
-        return chargesToAdd
-    end
-    if (not hasBattery) and ((activeCharge + chargesToAdd) == (maxCharges - 1)) then
-        return maxCharges + 1
-    end
-    if hasBattery and ((batteryCharge + chargesToAdd) == (maxCharges - 1)) then
-        return maxCharges + 1
-    end
-    return chargesToAdd
-end
-function shouldPlayFullRechargeSound(self, player, slot)
-    local activeItem = player:GetActiveItem(slot)
-    local activeCharge = player:GetActiveCharge(slot)
-    local batteryCharge = player:GetBatteryCharge(slot)
-    local hasBattery = player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
-    local maxCharges = getItemMaxCharges(nil, activeItem)
-    if not hasBattery then
-        return not player:NeedsCharge(slot)
-    end
-    return (not player:NeedsCharge(slot)) or ((activeCharge == maxCharges) and (batteryCharge == 0))
-end
-function ____exports.checkAdd(self)
-    for ____, player in ipairs(
-        getPlayers(nil)
-    ) do
-        for ____, slot in ipairs({ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_SECONDARY, ActiveSlot.SLOT_POCKET}) do
-            if player:NeedsCharge(slot) then
-                add(nil, player, slot)
-            end
-        end
-    end
-end
-return ____exports
-end,
-["features.optional.major.fastClear.photos"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local ensureAllCases = ____misc.ensureAllCases
-local incrementRNG = ____misc.incrementRNG
-local ____enums = require("features.speedrun.enums")
-local ChallengeCustom = ____enums.ChallengeCustom
-local PhotoSituation, MOM_ROOM_VARIANTS, isMomRoom, getPhotoSituation, getPhotoSituationRace, doPhotoSituation
-function isMomRoom(self)
-    local roomDesc = g.l:GetCurrentRoomDesc()
-    local roomVariant = roomDesc.Data.Variant
-    return __TS__ArrayIncludes(MOM_ROOM_VARIANTS, roomVariant)
-end
-function getPhotoSituation(self)
-    local challenge = Isaac.GetChallenge()
-    local hasPolaroid = g.p:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
-    local hasNegative = g.p:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
-    if g.p:HasTrinket(TrinketType.TRINKET_MYSTERIOUS_PAPER) then
-        hasPolaroid = false
-        hasNegative = false
-    end
-    if challenge == ChallengeCustom.SEASON_1 then
-        return PhotoSituation.Polaroid
-    end
-    if hasPolaroid and hasNegative then
-        return PhotoSituation.RandomBossItem
-    end
-    if hasPolaroid then
-        return PhotoSituation.Negative
-    end
-    if hasNegative then
-        return PhotoSituation.Polaroid
-    end
-    if g.race.status == "in progress" then
-        return getPhotoSituationRace(nil, g.race.goal)
-    end
-    return PhotoSituation.Both
-end
-function getPhotoSituationRace(self, goal)
-    local ____switch13 = goal
-    if ____switch13 == "Blue Baby" then
-        goto ____switch13_case_0
-    elseif ____switch13 == "The Lamb" then
-        goto ____switch13_case_1
-    elseif ____switch13 == "Mega Satan" then
-        goto ____switch13_case_2
-    elseif ____switch13 == "Hush" then
-        goto ____switch13_case_3
-    elseif ____switch13 == "Delirium" then
-        goto ____switch13_case_4
-    elseif ____switch13 == "Boss Rush" then
-        goto ____switch13_case_5
-    elseif ____switch13 == "Everything" then
-        goto ____switch13_case_6
-    elseif ____switch13 == "Custom" then
-        goto ____switch13_case_7
-    end
-    goto ____switch13_case_default
-    ::____switch13_case_0::
-    do
-        do
-            return PhotoSituation.Polaroid
-        end
-    end
-    ::____switch13_case_1::
-    do
-        do
-            return PhotoSituation.Negative
-        end
-    end
-    ::____switch13_case_2::
-    do
-    end
-    ::____switch13_case_3::
-    do
-    end
-    ::____switch13_case_4::
-    do
-    end
-    ::____switch13_case_5::
-    do
-    end
-    ::____switch13_case_6::
-    do
-    end
-    ::____switch13_case_7::
-    do
-        do
-            return PhotoSituation.Both
-        end
-    end
-    ::____switch13_case_default::
-    do
-        do
-            ensureAllCases(nil, goal)
-            return PhotoSituation.RandomBossItem
-        end
-    end
-    ::____switch13_end::
-end
-function doPhotoSituation(self, situation)
-    local roomSeed = g.r:GetSpawnSeed()
-    local posCenter = Vector(320, 360)
-    local posCenterLeft = Vector(280, 360)
-    local posCenterRight = Vector(360, 360)
-    local ____switch19 = situation
-    if ____switch19 == PhotoSituation.Polaroid then
-        goto ____switch19_case_0
-    elseif ____switch19 == PhotoSituation.Negative then
-        goto ____switch19_case_1
-    elseif ____switch19 == PhotoSituation.Both then
-        goto ____switch19_case_2
-    elseif ____switch19 == PhotoSituation.RandomBossItem then
-        goto ____switch19_case_3
-    end
-    goto ____switch19_case_default
-    ::____switch19_case_0::
-    do
-        do
-            g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed)
-            goto ____switch19_end
-        end
-    end
-    ::____switch19_case_1::
-    do
-        do
-            g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, CollectibleType.COLLECTIBLE_NEGATIVE, roomSeed)
-            goto ____switch19_end
-        end
-    end
-    ::____switch19_case_2::
-    do
-        do
-            local polaroid = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterLeft, Vector.Zero, nil, CollectibleType.COLLECTIBLE_POLAROID, roomSeed):ToPickup()
-            if polaroid ~= nil then
-                polaroid.OptionsPickupIndex = 1
-            end
-            local newSeed = incrementRNG(nil, roomSeed)
-            local negative = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterRight, Vector.Zero, nil, CollectibleType.COLLECTIBLE_NEGATIVE, newSeed):ToPickup()
-            if negative ~= nil then
-                negative.OptionsPickupIndex = 1
-            end
-            goto ____switch19_end
-        end
-    end
-    ::____switch19_case_3::
-    do
-        do
-            if g.p:HasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS) then
-                local item1 = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterLeft, Vector.Zero, nil, 0, roomSeed):ToPickup()
-                if item1 ~= nil then
-                    item1.OptionsPickupIndex = 1
-                end
-                local newSeed = incrementRNG(nil, roomSeed)
-                local item2 = g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenterRight, Vector.Zero, nil, 0, newSeed):ToPickup()
-                if item2 ~= nil then
-                    item2.OptionsPickupIndex = 1
-                end
-            else
-                g.g:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, posCenter, Vector.Zero, nil, 0, roomSeed)
-            end
-            goto ____switch19_end
-        end
-    end
-    ::____switch19_case_default::
-    do
-        do
-            ensureAllCases(nil, situation)
-        end
-    end
-    ::____switch19_end::
-end
-PhotoSituation = PhotoSituation or ({})
-PhotoSituation.Polaroid = 0
-PhotoSituation[PhotoSituation.Polaroid] = "Polaroid"
-PhotoSituation.Negative = 1
-PhotoSituation[PhotoSituation.Negative] = "Negative"
-PhotoSituation.Both = 2
-PhotoSituation[PhotoSituation.Both] = "Both"
-PhotoSituation.RandomBossItem = 3
-PhotoSituation[PhotoSituation.RandomBossItem] = "RandomBossItem"
-MOM_ROOM_VARIANTS = {1060, 1061, 1062, 1063, 1064}
-function ____exports.spawn(self)
-    local stage = g.l:GetStage()
-    local roomType = g.r:GetType()
-    if ((stage == 6) and (roomType == RoomType.ROOM_BOSS)) and isMomRoom(nil) then
-        local situation = getPhotoSituation(nil)
-        doPhotoSituation(nil, situation)
-    end
-end
-return ____exports
-end,
-["features.optional.major.fastClear.clearRoom"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local log = ____misc.log
-local openAllDoors = ____misc.openAllDoors
-local seededDrops = require("features.mandatory.seededDrops")
-local bagFamiliars = require("features.optional.major.fastClear.bagFamiliars")
-local charge = require("features.optional.major.fastClear.charge")
-local photos = require("features.optional.major.fastClear.photos")
-local CREEP_VARIANTS_TO_KILL, playDoorOpenSoundEffect, killExtraEntities, killDeathsHeads, killFleshDeathsHeads, killCreep, postBossActions, spawnClearAward
-function playDoorOpenSoundEffect(self)
-    local roomType = g.r:GetType()
-    if roomType ~= RoomType.ROOM_DUNGEON then
-        g.sfx:Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN, 1, 0, false, 1)
-    end
-end
-function killExtraEntities(self)
-    killDeathsHeads(nil)
-    killFleshDeathsHeads(nil)
-    killCreep(nil)
-end
-function killDeathsHeads(self)
-    local deathsHeads = Isaac.FindByType(EntityType.ENTITY_DEATHS_HEAD, 0, -1, false, true)
-    for ____, deathsHead in ipairs(deathsHeads) do
-        local npc = deathsHead:ToNPC()
-        if npc ~= nil then
-            npc.State = 18
-        end
-    end
-end
-function killFleshDeathsHeads(self)
-    local fleshDeathsHeads = Isaac.FindByType(EntityType.ENTITY_FLESH_DEATHS_HEAD, -1, -1, false, true)
-    for ____, entity in ipairs(fleshDeathsHeads) do
-        entity.Visible = false
-        entity:Kill()
-        local newHead = g.g:Spawn(entity.Type, entity.Variant, entity.Position, entity.Velocity, entity.Parent, entity.SubType, entity.InitSeed):ToNPC()
-        if newHead ~= nil then
-            newHead.State = 18
-        end
-    end
-end
-function killCreep(self)
-    local creepEntities = Isaac.FindByType(EntityType.ENTITY_FLESH_DEATHS_HEAD, -1, -1, false, true)
-    for ____, entity in ipairs(creepEntities) do
-        if __TS__ArrayIncludes(CREEP_VARIANTS_TO_KILL, entity.Variant) then
-            entity:Kill()
-        end
-    end
-end
-function postBossActions(self)
-    local roomType = g.r:GetType()
-    local stage = g.l:GetStage()
-    if roomType ~= RoomType.ROOM_BOSS then
-        return
-    end
-    g.r:TrySpawnDevilRoomDoor(true)
-    if stage == 6 then
-        local ignoreTime = (g.race.status == "in progress") and (g.race.goal == "Boss Rush")
-        g.r:TrySpawnBossRushDoor(ignoreTime)
-    elseif stage == 8 then
-        if ((g.race.status == "in progress") and (g.race.goal == "Hush")) or ((g.race.status == "in progress") and (g.race.goal == "Delirium")) then
-            g.r:TrySpawnBlueWombDoor(true, true)
-        end
-    end
-end
-function spawnClearAward(self)
-    if seededDrops:shouldSpawnSeededDrop() then
-        seededDrops:spawn()
-    else
-        g.run.fastClear.vanillaPhotosSpawning = true
-        g.r:SpawnClearAward()
-        g.run.fastClear.vanillaPhotosSpawning = false
-    end
-end
-CREEP_VARIANTS_TO_KILL = {EffectVariant.CREEP_RED, EffectVariant.CREEP_GREEN, EffectVariant.CREEP_YELLOW, EffectVariant.CREEP_WHITE, EffectVariant.CREEP_BLACK, EffectVariant.CREEP_BROWN, EffectVariant.CREEP_SLIPPERY_BROWN}
-function ____exports.default(self)
-    log(nil, "Fast-clear initiated.")
-    g.r:SetClear(true)
-    openAllDoors(nil)
-    playDoorOpenSoundEffect(nil)
-    killExtraEntities(nil)
-    postBossActions(nil)
-    spawnClearAward(nil)
-    photos:spawn()
-    charge:checkAdd()
-    bagFamiliars:clearedRoom()
-end
-function ____exports.setDeferClearForGhost(self, value)
-    g.run.fastClear.deferClearForGhost = value
-end
-return ____exports
-end,
-["customCallbacks.ghostForm"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local fastClearClearRoom = require("features.optional.major.fastClear.clearRoom")
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local getPlayers = ____misc.getPlayers
-local ____GlobalsRun = require("types.GlobalsRun")
-local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
-local isGhostForm, ghostFormChanged, ghostFormOn, ghostFormOff
-function isGhostForm(self, player)
-    return player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
-end
-function ghostFormChanged(self, ghostForm)
-    if ghostForm then
-        ghostFormOn(nil)
-    else
-        ghostFormOff(nil)
-    end
-end
-function ghostFormOn(self)
-    fastClearClearRoom:setDeferClearForGhost(true)
-end
-function ghostFormOff(self)
-end
-function ____exports.postUpdate(self)
-    for ____, player in ipairs(
-        getPlayers(nil)
-    ) do
-        local ghostForm = isGhostForm(nil, player)
-        local index = getPlayerLuaTableIndex(nil, player)
-        if ghostForm ~= g.run.ghostForm[index] then
-            g.run.ghostForm[index] = ghostForm
-            ghostFormChanged(nil, ghostForm)
-        end
-    end
-end
-return ____exports
-end,
 ["customCallbacks.itemPickup"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local streakText = require("features.mandatory.streakText")
@@ -9521,20 +8425,6 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local ____clearRoom = require("features.optional.major.fastClear.clearRoom")
-local setDeferClearForGhost = ____clearRoom.setDeferClearForGhost
-function ____exports.main(self)
-    if not g.fastClear then
-        return
-    end
-    setDeferClearForGhost(nil, false)
-end
-return ____exports
-end,
-["features.optional.major.fastClear4.callbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
 local ____misc = require("misc")
 local getRoomEnemies = ____misc.getRoomEnemies
 local resetAllDyingNPCs
@@ -9558,7 +8448,7 @@ function resetAllDyingNPCs(self)
     end
 end
 function ____exports.main(self)
-    if not g.config.fastClear4 then
+    if not g.config.fastClear then
         return
     end
     resetAllDyingNPCs(nil)
@@ -9581,7 +8471,6 @@ end,
 ["customCallbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostRoomClear = require("features.optional.major.fastClear.callbacks.postRoomClear")
-local fastClear4PostRoomClear = require("features.optional.major.fastClear4.callbacks.postRoomClear")
 local fastTravelPostRoomClear = require("features.optional.major.fastTravel.callbacks.postRoomClear")
 local ____globals = require("globals")
 local g = ____globals.default
@@ -9595,7 +8484,6 @@ function roomClear(self)
         "Room clear detected on frame: " .. tostring(gameFrameCount)
     )
     fastClearPostRoomClear:main()
-    fastClear4PostRoomClear:main()
     fastTravelPostRoomClear:main()
 end
 function ____exports.postUpdate(self)
@@ -9745,59 +8633,10 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local ____misc = require("misc")
-local getGridEntities = ____misc.getGridEntities
-local ____clearRoom = require("features.optional.major.fastClear.clearRoom")
-local clearRoom = ____clearRoom.default
-local checkClearRoom, checkAllPressurePlatesPushed
-function checkClearRoom(self)
-    local gameFrameCount = g.g:GetFrameCount()
-    local roomClear = g.r:IsClear()
-    local roomFrameCount = g.r:GetFrameCount()
-    if g.g.Difficulty >= Difficulty.DIFFICULTY_GREED then
-        return
-    end
-    if g.seeds:HasSeedEffect(SeedEffect.SEED_PACIFIST) then
-        return
-    end
-    if (g.run.fastClear.delayFrame ~= 0) and (gameFrameCount >= g.run.fastClear.delayFrame) then
-        g.run.fastClear.delayFrame = 0
-    end
-    if (((((g.run.fastClear.aliveEnemiesCount == 0) and (g.run.fastClear.delayFrame == 0)) and (not roomClear)) and checkAllPressurePlatesPushed(nil)) and (roomFrameCount > 1)) and (not g.run.fastClear.deferClearForGhost) then
-        clearRoom(nil)
-    end
-end
-function checkAllPressurePlatesPushed(self)
-    if g.run.fastClear.buttonsAllPushed or (not g.r:HasTriggerPressurePlates()) then
-        return true
-    end
-    for ____, gridEntity in ipairs(
-        getGridEntities(nil)
-    ) do
-        local saveState = gridEntity:GetSaveState()
-        if (saveState.Type == GridEntityType.GRID_PRESSURE_PLATE) and (saveState.State ~= 3) then
-            return false
-        end
-    end
-    g.run.fastClear.buttonsAllPushed = true
-    return true
-end
+local angels = require("features.optional.major.fastClear.angels")
+local krampus = require("features.optional.major.fastClear.krampus")
 function ____exports.main(self)
-    if not g.fastClear then
-        return
-    end
-    checkClearRoom(nil)
-end
-return ____exports
-end,
-["features.optional.major.fastClear4.callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local angels = require("features.optional.major.fastClear4.angels")
-local krampus = require("features.optional.major.fastClear4.krampus")
-function ____exports.main(self)
-    if not g.config.fastClear4 then
+    if not g.config.fastClear then
         return
     end
     krampus:postUpdate()
@@ -9807,7 +8646,6 @@ return ____exports
 end,
 ["callbacks.postUpdate"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-local ghostForm = require("customCallbacks.ghostForm")
 local itemPickup = require("customCallbacks.itemPickup")
 local postGridEntityUpdate = require("customCallbacks.postGridEntityUpdate")
 local postPlayerChange = require("customCallbacks.postPlayerChange")
@@ -9817,7 +8655,6 @@ local runTimer = require("features.mandatory.runTimer")
 local showLevelText = require("features.mandatory.showLevelText")
 local fastDrop = require("features.optional.hotkeys.fastDrop")
 local fastClearPostUpdate = require("features.optional.major.fastClear.callbacks.postUpdate")
-local fastClear4PostUpdate = require("features.optional.major.fastClear4.callbacks.postUpdate")
 local startWithD6 = require("features.optional.major.startWithD6")
 local showMaxFamiliars = require("features.optional.quality.showMaxFamiliars")
 local showPills = require("features.optional.quality.showPills")
@@ -9826,13 +8663,11 @@ function ____exports.main(self)
     postGridEntityUpdate:postUpdate()
     postPlayerChange:postUpdate()
     postTransformation:postUpdate()
-    ghostForm:postUpdate()
     itemPickup:postUpdate()
     showLevelText:postUpdate()
     runTimer:postUpdate()
     startWithD6:postUpdate()
     fastClearPostUpdate:main()
-    fastClear4PostUpdate:main()
     fastDrop:postUpdate()
     showPills:postUpdate()
     showMaxFamiliars:postUpdate()
@@ -9851,72 +8686,12 @@ function ____exports.preEntitySpawn(self, initSeed)
 end
 return ____exports
 end,
-["features.optional.major.fastClear.callbacks.preEntitySpawnCollectible"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local log = ____misc.log
-local ____enums = require("types.enums")
-local PickupVariantCustom = ____enums.PickupVariantCustom
-local preventVanillaPhotos
-function preventVanillaPhotos(self, subType)
-    if g.run.fastClear.vanillaPhotosSpawning and ((subType == CollectibleType.COLLECTIBLE_POLAROID) or (subType == CollectibleType.COLLECTIBLE_NEGATIVE)) then
-        local photoText = (CollectibleType.COLLECTIBLE_POLAROID and "Polaroid") or "Negative"
-        local text = ("Preventing a vanilla " .. photoText) .. " from spawning."
-        log(nil, text)
-        return {EntityType.ENTITY_PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0}
-    end
-    return nil
-end
-function ____exports.main(self, subType)
-    if not g.fastClear then
-        return nil
-    end
-    local returnArray = preventVanillaPhotos(nil, subType)
-    if returnArray ~= nil then
-        return returnArray
-    end
-    return nil
-end
-return ____exports
-end,
-["callbacks.preEntitySpawnPickupFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-local ____exports = {}
-local fastClearPreEntitySpawnCollectible = require("features.optional.major.fastClear.callbacks.preEntitySpawnCollectible")
-local functionMap = __TS__New(Map)
-____exports.default = functionMap
-functionMap:set(
-    PickupVariant.PICKUP_COLLECTIBLE,
-    function(____, subType, _position, _spawner, _initSeed)
-        local returnTable = fastClearPreEntitySpawnCollectible:main(subType)
-        if returnTable ~= nil then
-            return returnTable
-        end
-        return nil
-    end
-)
-return ____exports
-end,
 ["callbacks.preEntitySpawnFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local replaceCodWorms = require("features.optional.enemies.replaceCodWorms")
-local ____preEntitySpawnPickupFunctions = require("callbacks.preEntitySpawnPickupFunctions")
-local preEntitySpawnPickupFunctions = ____preEntitySpawnPickupFunctions.default
 local functionMap = __TS__New(Map)
 ____exports.default = functionMap
-functionMap:set(
-    EntityType.ENTITY_PICKUP,
-    function(____, variant, subType, position, spawner, initSeed)
-        local preEntitySpawnPickupFunction = preEntitySpawnPickupFunctions:get(variant)
-        if preEntitySpawnPickupFunction ~= nil then
-            return preEntitySpawnPickupFunction(nil, subType, position, spawner, initSeed)
-        end
-        return nil
-    end
-)
 functionMap:set(
     EntityType.ENTITY_COD_WORM,
     function(____, _variant, _subType, _position, _spawner, initSeed)
@@ -10429,14 +9204,11 @@ local postCurseEval = require("callbacks.postCurseEval")
 local postEffectInit = require("callbacks.postEffectInit")
 local postEffectUpdate = require("callbacks.postEffectUpdate")
 local postEntityKill = require("callbacks.postEntityKill")
-local postEntityRemove = require("callbacks.postEntityRemove")
 local postFamiliarInit = require("callbacks.postFamiliarInit")
-local postFamiliarRender = require("callbacks.postFamiliarRender")
 local postFireTear = require("callbacks.postFireTear")
 local postGameStarted = require("callbacks.postGameStarted")
 local postNewLevel = require("callbacks.postNewLevel")
 local postNewRoom = require("callbacks.postNewRoom")
-local postNPCInit = require("callbacks.postNPCInit")
 local postNPCRender = require("callbacks.postNPCRender")
 local postNPCUpdate = require("callbacks.postNPCUpdate")
 local postPickupInit = require("callbacks.postPickupInit")
@@ -10457,7 +9229,7 @@ local ____misc = require("misc")
 local log = ____misc.log
 local modConfigMenu = require("modConfigMenu")
 local saveDat = require("saveDat")
-local main, welcomeBanner, registerCallbacks, registerMiscCallbacks, registerNPCUpdateCallbacks, registerPostFamiliarInitCallbacks, registerPostFamiliarRenderCallbacks, registerPostPickupInitCallbacks, registerPostTearUpdateCallbacks, registerPostEffectInitCallbacks, registerPostEffectUpdateCallbacks, registerPreNPCUpdateCallbacks
+local main, welcomeBanner, registerCallbacks, registerMiscCallbacks, registerNPCUpdateCallbacks, registerPostFamiliarInitCallbacks, registerPostPickupInitCallbacks, registerPostTearUpdateCallbacks, registerPostEffectInitCallbacks, registerPostEffectUpdateCallbacks, registerPreNPCUpdateCallbacks
 function main(self)
     local racingPlus = RegisterMod("Racing+", 1)
     welcomeBanner(nil)
@@ -10482,7 +9254,6 @@ function registerCallbacks(self, racingPlus)
     registerMiscCallbacks(nil, racingPlus)
     registerNPCUpdateCallbacks(nil, racingPlus)
     registerPostFamiliarInitCallbacks(nil, racingPlus)
-    registerPostFamiliarRenderCallbacks(nil, racingPlus)
     registerPostPickupInitCallbacks(nil, racingPlus)
     registerPostTearUpdateCallbacks(nil, racingPlus)
     registerPostEffectInitCallbacks(nil, racingPlus)
@@ -10490,7 +9261,6 @@ function registerCallbacks(self, racingPlus)
     registerPreNPCUpdateCallbacks(nil, racingPlus)
 end
 function registerMiscCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
     racingPlus:AddCallback(ModCallbacks.MC_USE_CARD, useCard.main)
@@ -10506,11 +9276,9 @@ function registerMiscCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
     racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
     racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
     racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
     racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
@@ -10520,17 +9288,12 @@ function registerNPCUpdateCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.death, EntityType.ENTITY_DEATH)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.wizoob, EntityType.ENTITY_WIZOOB)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.ragling, EntityType.ENTITY_RAGLING)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.haunt, EntityType.ENTITY_THE_HAUNT)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.redGhost, EntityType.ENTITY_RED_GHOST)
     racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.stoney, EntityType.ENTITY_STONEY)
 end
 function registerPostFamiliarInitCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postFamiliarInit.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
-end
-function registerPostFamiliarRenderCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, postFamiliarRender.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
 end
 function registerPostPickupInitCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.collectible, PickupVariant.PICKUP_COLLECTIBLE)

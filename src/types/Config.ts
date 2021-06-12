@@ -6,7 +6,7 @@ export default class Config {
   disableCurses = true;
   freeDevilItem = true;
   fastReset = true;
-  fastClear4 = true;
+  fastClear = true;
   fastTravel = true;
 
   // Character Changes

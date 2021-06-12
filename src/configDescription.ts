@@ -65,11 +65,11 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastClear4",
+    "fastClear",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "005",
-      "Fast room clear (v4)",
+      "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
   ],

@@ -1,5 +1,4 @@
 import * as fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
-import * as fastClear4PostRoomClear from "../features/optional/major/fastClear4/callbacks/postRoomClear";
 import * as fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
 import g from "../globals";
 import { log } from "../misc";
@@ -20,6 +19,5 @@ function roomClear() {
   log(`Room clear detected on frame: ${gameFrameCount}`);
 
   fastClearPostRoomClear.main();
-  fastClear4PostRoomClear.main();
   fastTravelPostRoomClear.main();
 }

@@ -5,11 +5,6 @@ import * as disableInvulnerability from "../features/optional/enemies/disableInv
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
-import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
-
-export function main(npc: EntityNPC): void {
-  fastClearPostNPCUpdate.main(npc);
-}
 
 // EntityType.ENTITY_GLOBIN (24)
 export function globin(npc: EntityNPC): void {
@@ -33,11 +28,6 @@ export function wizoob(npc: EntityNPC): void {
   fastGhosts.postNPCUpdate(npc);
 }
 
-// EntityType.ENTITY_RAGLING (246)
-export function ragling(npc: EntityNPC): void {
-  fastClearPostNPCUpdate.ragling(npc);
-}
-
 // EntityType.ENTITY_THE_HAUNT (260)
 export function haunt(npc: EntityNPC): void {
   disableInvulnerability.setGhostCollisionClass(npc);
@@ -54,9 +44,4 @@ export function redGhost(npc: EntityNPC): void {
 export function momsDeadHand(npc: EntityNPC): void {
   appearHands.postNPCUpdate(npc);
   fastHands.postNPCUpdate(npc);
-}
-
-// EntityType.ENTITY_STONEY (302)
-export function stoney(npc: EntityNPC): void {
-  fastClearPostNPCUpdate.stoney(npc);
 }

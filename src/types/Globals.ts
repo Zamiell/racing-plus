@@ -11,8 +11,6 @@ export default class Globals {
   debug = false;
   corrupted = false;
 
-  fastClear = false; // TODO remove this if Fast-Travel4 is robust
-
   // Cached API functions
   g = Game();
   l = Game().GetLevel();

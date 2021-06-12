@@ -7,14 +7,11 @@ import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
-import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
-import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
-import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
@@ -64,7 +61,6 @@ function registerCallbacks(racingPlus: Mod) {
   // Register callbacks that take a 3rd argument for a specific entity
   registerNPCUpdateCallbacks(racingPlus); // 0
   registerPostFamiliarInitCallbacks(racingPlus); // 7
-  registerPostFamiliarRenderCallbacks(racingPlus); // 25
   registerPostPickupInitCallbacks(racingPlus); // 34
   registerPostTearUpdateCallbacks(racingPlus); // 40
   registerPostEffectInitCallbacks(racingPlus); // 54
@@ -73,7 +69,6 @@ function registerCallbacks(racingPlus: Mod) {
 }
 
 function registerMiscCallbacks(racingPlus: Mod) {
-  racingPlus.AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main); // 0
   racingPlus.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
   racingPlus.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   racingPlus.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
@@ -92,7 +87,6 @@ function registerMiscCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main); // 19
   racingPlus.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
   racingPlus.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main); // 24
-  racingPlus.AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main); // 27
   racingPlus.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
   racingPlus.AddCallback(
     ModCallbacks.MC_POST_PLAYER_UPDATE,
@@ -102,10 +96,6 @@ function registerMiscCallbacks(racingPlus: Mod) {
     ModCallbacks.MC_POST_PLAYER_RENDER,
     postPlayerRender.main,
   ); // 32
-  racingPlus.AddCallback(
-    ModCallbacks.MC_POST_ENTITY_REMOVE,
-    postEntityRemove.main,
-  ); // 67
   racingPlus.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
   racingPlus.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
   racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
@@ -135,11 +125,6 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
   );
   racingPlus.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
-    postNPCUpdate.ragling,
-    EntityType.ENTITY_RAGLING, // 246
-  );
-  racingPlus.AddCallback(
-    ModCallbacks.MC_NPC_UPDATE,
     postNPCUpdate.haunt,
     EntityType.ENTITY_THE_HAUNT, // 260
   );
@@ -153,11 +138,6 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
     postNPCUpdate.momsDeadHand,
     EntityType.ENTITY_MOMS_DEAD_HAND, // 287
   );
-  racingPlus.AddCallback(
-    ModCallbacks.MC_NPC_UPDATE,
-    postNPCUpdate.stoney,
-    EntityType.ENTITY_STONEY, // 302
-  );
 }
 
 // 7
@@ -165,15 +145,6 @@ function registerPostFamiliarInitCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(
     ModCallbacks.MC_FAMILIAR_INIT,
     postFamiliarInit.paschalCandle,
-    FamiliarVariant.PASCHAL_CANDLE, // 221
-  );
-}
-
-// 25
-function registerPostFamiliarRenderCallbacks(racingPlus: Mod) {
-  racingPlus.AddCallback(
-    ModCallbacks.MC_POST_FAMILIAR_RENDER,
-    postFamiliarRender.paschalCandle,
     FamiliarVariant.PASCHAL_CANDLE, // 221
   );
 }

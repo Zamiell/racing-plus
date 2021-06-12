@@ -1,4 +1,10 @@
+import g from "../../../../../globals";
+
 export function main(npc: EntityNPC): void {
+  if (!g.config.fastClear) {
+    return;
+  }
+
   checkFinalFrameOfDeathAnimation(npc);
 }
 

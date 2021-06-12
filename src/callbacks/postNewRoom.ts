@@ -4,7 +4,6 @@ import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimatio
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
-import * as fastClearPostNewRoom from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -66,7 +65,6 @@ export function newRoom(): void {
   // Major features
   startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
-  fastClearPostNewRoom.main();
   fastTravelPostNewRoom.main();
 
   // Character changes
