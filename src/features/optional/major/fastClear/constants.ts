@@ -2,6 +2,8 @@
 // This is used as a whitelist to know which entities should be affected by Fast-Clear
 export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_MONSTRO, // 20
+  EntityType.ENTITY_CHUB, // 28
+  EntityType.ENTITY_HOPPER, // 29 (only included because of Eggy)
   EntityType.ENTITY_GURDY, // 36
   EntityType.ENTITY_MONSTRO2, // 43
   EntityType.ENTITY_PEEP, // 68
