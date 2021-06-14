@@ -7,6 +7,7 @@ import {
 } from "./constants";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
+import { CollectibleTypeCustom } from "./types/enums";
 
 export function anyPlayerHas(collectibleType: CollectibleType): boolean {
   for (const player of getPlayers()) {
@@ -80,8 +81,21 @@ export function getGridEntities(): GridEntity[] {
   return gridEntities;
 }
 
-export function getItemMaxCharges(itemID: int): int {
-  const itemConfigItem = g.itemConfig.GetCollectible(itemID);
+export function getItemInitCharges(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): int {
+  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
+  if (itemConfigItem === null) {
+    return -1; // The default value for this property is -1
+  }
+
+  return itemConfigItem.InitCharge;
+}
+
+export function getItemMaxCharges(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): int {
+  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
   if (itemConfigItem === null) {
     return 0;
   }
@@ -167,9 +181,16 @@ export function getRoomIndex(): int {
   return roomIndex;
 }
 
-export function removeGridEntity(gridEntity: GridEntity): void {
-  const gridIndex = gridEntity.GetGridIndex();
-  g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+export function giveItemAndRemoveFromPools(
+  player: EntityPlayer,
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): void {
+  const initCharges = getItemInitCharges(collectibleType);
+  const maxCharges = getItemMaxCharges(collectibleType);
+  const charges = initCharges === -1 ? maxCharges : initCharges;
+
+  player.AddCollectible(collectibleType, charges, false);
+  g.itemPool.RemoveCollectible(collectibleType);
 }
 
 export function gridToPos(x: int, y: int): Vector {
@@ -342,6 +363,20 @@ export function openAllDoors(): void {
       door.Open();
     }
   }
+}
+
+export function removeGridEntity(gridEntity: GridEntity): void {
+  const gridIndex = gridEntity.GetGridIndex();
+  g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+}
+
+export function removeItemFromItemTracker(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): void {
+  const itemConfig = g.itemConfig.GetCollectible(collectibleType);
+  Isaac.DebugString(
+    `Removing collectible ${collectibleType} (${itemConfig.Name})`,
+  );
 }
 
 export function restartAsCharacter(character: PlayerType): void {

@@ -12,7 +12,7 @@ export function main(): void {
 function check3DollarBill() {
   if (
     g.race.status === "in progress" &&
-    g.race.rFormat === "seeded" &&
+    g.race.format === "seeded" &&
     g.p.HasCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL)
   ) {
     g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL);

@@ -40,7 +40,12 @@ export function postGameStarted(): void {
     return;
   }
 
+  const startSeedString = g.seeds.GetStartSeedString();
+  const difficulty = g.g.Difficulty;
+
   connect();
+  send("seed", startSeedString);
+  send("difficulty", difficulty.toString());
 }
 
 function connect(): void {
@@ -68,16 +73,32 @@ function connect(): void {
   g.socket.connectionAttemptFrame = isaacFrameCount;
   g.socket.client = g.socket.sandbox.connectLocalhost(PORT);
   if (g.socket.client !== null) {
+    // We check for new socket data on every PostRender frame
+    // However, the remote socket might not necessarily have any new data for us
+    // Thus, we set the timeout to 0 in order to prevent lag
     g.socket.client.settimeout(0);
   }
 }
 
-function send(msg: string): void {
+// ModCallbacks.MC_PRE_GAME_EXIT (17)
+export function preGameExit(): void {
+  send("mainMenu");
+}
+
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
+export function postNewLevel(stage: int, stageType: int): void {
+  send("level", `${stage}-${stageType}`);
+}
+
+// Subroutines
+export function send(command: string, data = ""): void {
   if (g.socket.client === null) {
     return;
   }
 
-  const [sentBytes, errMsg] = g.socket.client.send(msg);
+  const separator = " ";
+  const combined = `${command}${separator}${data}`;
+  const [sentBytes, errMsg] = g.socket.client.send(combined);
   if (sentBytes === null) {
     Isaac.DebugString(`Failed to send data over the socket: ${errMsg}`);
     g.socket.client = null;

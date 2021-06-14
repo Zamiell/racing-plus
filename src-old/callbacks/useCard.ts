@@ -8,18 +8,8 @@ export function justice(): void {
 
 // Card.RUNE_BLACK (41)
 export function blackRune(): void {
-  // Local variables
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
-
-  // Voided pedestal items should count as starting a Challenge Room or the Boss Rush
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-  if (collectibles.length > 0) {
-    g.run.room.touchedPickup = true;
-  }
 
   for (const collectible of collectibles) {
     if (collectible.SubType === CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT) {
@@ -36,12 +26,6 @@ export function blackRune(): void {
       Isaac.DebugString(
         "A black rune deleted a Checkpoint - spawning another one.",
       );
-
-      // Kill the player if they are trying to cheat on the season 7 custom challenge
-      if (challenge === ChallengeCustom.R7_SEASON_7 && stage === 8) {
-        g.p.AnimateSad();
-        g.p.Kill();
-      }
     }
   }
 }

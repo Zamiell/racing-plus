@@ -38,20 +38,6 @@ function newLevel() {
     );
   }
 
-  // Handle the Soul Jar
-  soulJar.postNewLevel();
-
-  // Ensure that the "More Options" buff does not persist beyond Basement 1
-  // (it is removed as soon as they enter the first Treasure Room,
-  // but they might have skipped the Basement 1 Treasure Room for some reason)
-  if (stage >= 2 && g.run.removeMoreOptions === true) {
-    g.run.removeMoreOptions = false;
-    g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
-  }
-
-  // Handle multi-character speedruns
-  season7.postNewLevel();
-
   // Seed floors that are generated when a player uses a Forget Me Now or a 5-pip Dice Room
   if (g.run.forgetMeNow) {
     g.run.forgetMeNow = false;

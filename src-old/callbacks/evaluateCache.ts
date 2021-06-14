@@ -232,7 +232,7 @@ function thirteenLuck(player: EntityPlayer) {
 
 function pageantBoyRuleset(player: EntityPlayer) {
   // The Pageant Boy ruleset starts with 7 luck
-  if (g.race.rFormat === "pageant") {
+  if (g.race.format === "pageant") {
     player.Luck += 7;
   }
 }

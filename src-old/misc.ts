@@ -1,5 +1,4 @@
-import { CollectibleTypeCustom } from "./types/enums";
-
+/*
 export function arrayEquals(arr1: int[], arr2: int[]): boolean {
   if (arr1.length !== arr2.length) {
     return false;
@@ -122,23 +121,6 @@ export function getScreenSize(): [int, int] {
   return [x, y];
 }
 
-export function giveItemAndRemoveFromPools(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): void {
-  const maxCharges = getItemMaxCharges(collectibleType);
-  g.p.AddCollectible(collectibleType, maxCharges, false);
-  g.itemPool.RemoveCollectible(collectibleType);
-}
-
-export function removeItemFromItemTracker(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): void {
-  const itemConfig = g.itemConfig.GetCollectible(collectibleType);
-  Isaac.DebugString(
-    `Removing collectible ${collectibleType} (${itemConfig.Name})`,
-  );
-}
-
 export function removeValueFromArray<T>(value: T, array: T[]): void {
   const index = array.indexOf(value);
   if (index !== -1) {
@@ -151,3 +133,4 @@ export function round(value: float, precision: int): float {
   const multiplier = 10 ** (precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
+*/

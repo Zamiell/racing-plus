@@ -10,6 +10,7 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
+import * as racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import g from "../globals";
 import { log } from "../misc";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
@@ -63,6 +64,7 @@ export function newRoom(): void {
   controlsGraphic.postNewRoom();
 
   // Major features
+  racePostNewRoom.main();
   startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
   fastTravelPostNewRoom.main();
@@ -80,9 +82,4 @@ export function newRoom(): void {
 
   // Bux fixes
   teleportInvalidEntrance.postNewRoom();
-
-  /*
-  // Remove the "More Options" buff if they have entered a Treasure Room
-  checkRemoveMoreOptions();
-  */
 }

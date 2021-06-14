@@ -64,7 +64,7 @@ function checkScolexRoom() {
   }
 
   if (
-    g.race.rFormat === "seeded" ||
+    g.race.format === "seeded" ||
     challenge === ChallengeCustom.R7_SEASON_6
   ) {
     // Since Scolex (62.1) attack patterns ruin seeded races, delete it and replace it with two Frails
@@ -236,7 +236,7 @@ function shouldBanB1TreasureRoom() {
 
   return (
     stage === 1 &&
-    (g.race.rFormat === "seeded" ||
+    (g.race.format === "seeded" ||
       challenge === ChallengeCustom.R7_SEASON_4 ||
       (challenge === ChallengeCustom.R7_SEASON_5 &&
         g.speedrun.characterNum >= 2) ||

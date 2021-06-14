@@ -413,7 +413,7 @@ function crownOfLight() {
     !g.run.removedCrownHearts &&
     stage === 1 &&
     g.p.HasCollectible(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) &&
-    (((g.race.rFormat === "unseeded" || g.race.rFormat === "diversity") &&
+    (((g.race.format === "unseeded" || g.race.format === "diversity") &&
       g.race.status === "in progress") ||
       challenge === ChallengeCustom.R7_SEASON_7)
   ) {

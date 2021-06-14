@@ -41,6 +41,20 @@ function __TS__ArrayConcat(arr1, ...)
     return out
 end
 
+function __TS__ArrayEntries(array)
+    local key = 0
+    return {
+        [Symbol.iterator] = function(self)
+            return self
+        end,
+        next = function(self)
+            local result = {done = array[key + 1] == nil, value = {key, array[key + 1]}}
+            key = key + 1
+            return result
+        end
+    }
+end
+
 function __TS__ArrayEvery(arr, callbackfn)
     do
         local i = 0
@@ -2038,6 +2052,26 @@ local ____GlobalsRunLevel = require("types.GlobalsRunLevel")
 local GlobalsRunLevel = ____GlobalsRunLevel.default
 local ____GlobalsRunRoom = require("types.GlobalsRunRoom")
 local GlobalsRunRoom = ____GlobalsRunRoom.default
+function ____exports.initPlayerVariables(self, player, run)
+    local character = player:GetPlayerType()
+    local index = ____exports.getPlayerLuaTableIndex(nil, player)
+    run.ghostForm[index] = false
+    run.currentCharacters[index] = character
+    run.fastClear.paschalCandleCounters[index] = 1
+    run.freeDevilItem.tookDamage[index] = false
+    run.pickingUpItem[index] = {id = CollectibleType.COLLECTIBLE_NULL, type = ItemType.ITEM_NULL, roomIndex = -1}
+    run.pocketActiveD6Charge[index] = 6
+    local transformationArray = {}
+    do
+        local i = 0
+        while i < PlayerForm.NUM_PLAYER_FORMS do
+            __TS__ArrayPush(transformationArray, false)
+            i = i + 1
+        end
+    end
+    run.transformations[index] = transformationArray
+    Isaac.DebugString("Initialized variables for player: " .. index)
+end
 function ____exports.getPlayerLuaTableIndex(self, player)
     return tostring(
         GetPtrHash(player)
@@ -2050,7 +2084,6 @@ ____exports.default = (function()
     function GlobalsRun.prototype.____constructor(self, players)
         self.level = __TS__New(GlobalsRunLevel, 0, 0)
         self.room = __TS__New(GlobalsRunRoom, true)
-        self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
         self.currentCharacters = {}
         self.debugChaosCard = false
         self.debugSpeed = false
@@ -2066,6 +2099,8 @@ ____exports.default = (function()
         self.pillsPHD = false
         self.pillsFalsePHD = false
         self.pocketActiveD6Charge = {}
+        self.race = {finished = false, finishedTime = 0, victoryLaps = 0}
+        self.removeMoreOptions = false
         self.restart = false
         self.roomsEntered = 0
         self.seededDrops = {roomClearAwardSeed = 0, roomClearAwardSeedDevilAngel = 0}
@@ -2076,23 +2111,7 @@ ____exports.default = (function()
         self.switchForgotten = false
         self.transformations = {}
         for ____, player in ipairs(players) do
-            local character = player:GetPlayerType()
-            local index = ____exports.getPlayerLuaTableIndex(nil, player)
-            self.ghostForm[index] = false
-            self.currentCharacters[index] = character
-            self.fastClear.paschalCandleCounters[index] = 1
-            self.freeDevilItem.tookDamage[index] = false
-            self.pickingUpItem[index] = {id = CollectibleType.COLLECTIBLE_NULL, type = ItemType.ITEM_NULL, roomIndex = -1}
-            self.pocketActiveD6Charge[index] = 6
-            local transformationArray = {}
-            do
-                local i = 0
-                while i < PlayerForm.NUM_PLAYER_FORMS do
-                    __TS__ArrayPush(transformationArray, false)
-                    i = i + 1
-                end
-            end
-            self.transformations[index] = transformationArray
+            ____exports.initPlayerVariables(nil, player, self)
         end
     end
     return GlobalsRun
@@ -2132,7 +2151,7 @@ ____exports.default = (function()
         self.myStatus = "not ready"
         self.ranked = false
         self.solo = false
-        self.rFormat = "unseeded"
+        self.format = "unseeded"
         self.difficulty = "normal"
         self.character = PlayerType.PLAYER_JUDAS
         self.goal = "Blue Baby"
@@ -2479,8 +2498,15 @@ function ____exports.getGridEntities(self)
     end
     return gridEntities
 end
-function ____exports.getItemMaxCharges(self, itemID)
-    local itemConfigItem = g.itemConfig:GetCollectible(itemID)
+function ____exports.getItemInitCharges(self, collectibleType)
+    local itemConfigItem = g.itemConfig:GetCollectible(collectibleType)
+    if itemConfigItem == nil then
+        return -1
+    end
+    return itemConfigItem.InitCharge
+end
+function ____exports.getItemMaxCharges(self, collectibleType)
+    local itemConfigItem = g.itemConfig:GetCollectible(collectibleType)
     if itemConfigItem == nil then
         return 0
     end
@@ -2523,9 +2549,12 @@ function ____exports.getRandom(self, x, y, seed)
     local rng = ____exports.initRNG(nil, seed)
     return rng:RandomInt((y - x) + 1) + x
 end
-function ____exports.removeGridEntity(self, gridEntity)
-    local gridIndex = gridEntity:GetGridIndex()
-    g.r:RemoveGridEntity(gridIndex, 0, false)
+function ____exports.giveItemAndRemoveFromPools(self, player, collectibleType)
+    local initCharges = ____exports.getItemInitCharges(nil, collectibleType)
+    local maxCharges = ____exports.getItemMaxCharges(nil, collectibleType)
+    local charges = ((initCharges == -1) and maxCharges) or initCharges
+    player:AddCollectible(collectibleType, charges, false)
+    g.itemPool:RemoveCollectible(collectibleType)
 end
 function ____exports.gridToPos(self, x, y)
     x = x + 1
@@ -2645,6 +2674,16 @@ function ____exports.openAllDoors(self)
             i = i + 1
         end
     end
+end
+function ____exports.removeGridEntity(self, gridEntity)
+    local gridIndex = gridEntity:GetGridIndex()
+    g.r:RemoveGridEntity(gridIndex, 0, false)
+end
+function ____exports.removeItemFromItemTracker(self, collectibleType)
+    local itemConfig = g.itemConfig:GetCollectible(collectibleType)
+    Isaac.DebugString(
+        ((("Removing collectible " .. tostring(collectibleType)) .. " (") .. itemConfig.Name) .. ")"
+    )
 end
 function ____exports.restartAsCharacter(self, character)
     if character == PlayerType.PLAYER_THESOUL_B then
@@ -4994,7 +5033,7 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local PORT, MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS, read, connect, send
+local PORT, MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS, read, connect
 function read(self)
     if g.socket.client == nil then
         return
@@ -5026,11 +5065,16 @@ function connect(self)
         g.socket.client:settimeout(0)
     end
 end
-function send(self, msg)
+function ____exports.send(self, command, data)
+    if data == nil then
+        data = ""
+    end
     if g.socket.client == nil then
         return
     end
-    local sentBytes, errMsg = g.socket.client:send(msg)
+    local separator = " "
+    local combined = (command .. separator) .. data
+    local sentBytes, errMsg = g.socket.client:send(combined)
     if sentBytes == nil then
         Isaac.DebugString("Failed to send data over the socket: " .. errMsg)
         g.socket.client = nil
@@ -5045,14 +5089,32 @@ function ____exports.postRender(self)
     if g.socket.client == nil then
         return
     end
-    send(nil, "ping")
+    ____exports.send(nil, "ping")
     read(nil)
 end
 function ____exports.postGameStarted(self)
     if not g.config.clientCommunication then
         return
     end
+    local startSeedString = g.seeds:GetStartSeedString()
+    local difficulty = g.g.Difficulty
     connect(nil)
+    ____exports.send(nil, "seed", startSeedString)
+    ____exports.send(
+        nil,
+        "difficulty",
+        tostring(difficulty)
+    )
+end
+function ____exports.preGameExit(self)
+    ____exports.send(nil, "mainMenu")
+end
+function ____exports.postNewLevel(self, stage, stageType)
+    ____exports.send(
+        nil,
+        "level",
+        (tostring(stage) .. "-") .. tostring(stageType)
+    )
 end
 return ____exports
 end,
@@ -5063,6 +5125,7 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
+local giveItemAndRemoveFromPools = ____misc.giveItemAndRemoveFromPools
 local log = ____misc.log
 local ____GlobalsRun = require("types.GlobalsRun")
 local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
@@ -5082,8 +5145,7 @@ function givePocketActiveD6(self, player, charge)
     end
 end
 function giveActiveD6(self, player)
-    player:AddCollectible(CollectibleType.COLLECTIBLE_D6, 6)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D6)
+    giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_D6)
 end
 function checkGenesisRoom(self)
     local roomDesc = g.l:GetCurrentRoomDesc()
@@ -5293,6 +5355,222 @@ function ____exports.postGameStarted(self)
             player:AddCoins(15)
         end
     end
+end
+return ____exports
+end,
+["features.race.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+____exports.COLLECTIBLE_13_LUCK_SERVER_ID = 600
+return ____exports
+end,
+["features.race.tempMoreOptions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local removeItemFromItemTracker = ____misc.removeItemFromItemTracker
+function ____exports.postNewLevel(self)
+    local stage = g.l:GetStage()
+    if (stage >= 2) and (g.run.removeMoreOptions == true) then
+        g.run.removeMoreOptions = false
+        g.p:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
+    end
+end
+function ____exports.postNewRoom(self)
+    local roomType = g.r:GetType()
+    if g.run.removeMoreOptions and (roomType == RoomType.ROOM_TREASURE) then
+        g.run.removeMoreOptions = false
+        g.p:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
+    end
+end
+function ____exports.give(self, player)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+        return
+    end
+    player:AddCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
+    removeItemFromItemTracker(nil, CollectibleType.COLLECTIBLE_MORE_OPTIONS)
+    player:RemoveCostume(
+        g.itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
+    )
+    g.run.removeMoreOptions = true
+end
+return ____exports
+end,
+["features.race.callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local giveItemAndRemoveFromPools = ____misc.giveItemAndRemoveFromPools
+local playingOnSetSeed = ____misc.playingOnSetSeed
+local ____enums = require("types.enums")
+local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
+local socket = require("features.optional.major.socket")
+local ____constants = require("features.race.constants")
+local COLLECTIBLE_13_LUCK_SERVER_ID = ____constants.COLLECTIBLE_13_LUCK_SERVER_ID
+local tempMoreOptions = require("features.race.tempMoreOptions")
+local validateChallenge, validateDifficulty, validateSeed, validateCharacter, unseeded, unseededRankedSolo, seeded
+function validateChallenge(self)
+    local challenge = Isaac.GetChallenge()
+    if (challenge ~= Challenge.CHALLENGE_NULL) and (g.race.format ~= "custom") then
+        g.g:Fadeout(0.05, 2)
+        Isaac.DebugString("We are in a race but also in a custom challenge; fading out back to the menu.")
+        return false
+    end
+    return true
+end
+function validateDifficulty(self)
+    if ((g.race.difficulty == "normal") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL)) and (g.race.format ~= "custom") then
+        Isaac.DebugString(
+            ("Race error: Supposed to be on easy mode. (Currently, the difficulty is " .. tostring(g.g.Difficulty)) .. ".)"
+        )
+        return false
+    end
+    if ((g.race.difficulty == "hard") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_HARD)) and (g.race.format ~= "custom") then
+        Isaac.DebugString(
+            ("Race error: Supposed to be on hard mode. (Currently, the difficulty is " .. tostring(g.g.Difficulty)) .. ".)"
+        )
+        return false
+    end
+    return true
+end
+function validateSeed(self)
+    local startSeedString = g.seeds:GetStartSeedString()
+    if ((g.race.format == "seeded") and (g.race.status == "in progress")) and (startSeedString ~= g.race.seed) then
+        g.run.restart = true
+        return false
+    end
+    if ((g.race.format == "unseeded") or (g.race.format == "diversity")) and playingOnSetSeed(nil) then
+        g.seeds:Reset()
+        g.run.restart = true
+        return false
+    end
+    return true
+end
+function validateCharacter(self, player)
+    local character = player:GetPlayerType()
+    if (character ~= g.race.character) and (g.race.format ~= "custom") then
+        g.run.restart = true
+        return false
+    end
+    return true
+end
+function unseeded(self, player)
+    tempMoreOptions:give(player)
+end
+function unseededRankedSolo(self, player)
+    for ____, itemID in ipairs(g.race.startingItems) do
+        giveItemAndRemoveFromPools(nil, player, itemID)
+    end
+end
+function seeded(self, player)
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_COMPASS) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_COMPASS)
+    end
+    for ____, itemID in ipairs(g.race.startingItems) do
+        if itemID == COLLECTIBLE_13_LUCK_SERVER_ID then
+            itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK
+        end
+        giveItemAndRemoveFromPools(nil, player, itemID)
+    end
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH)
+    if g.race.status == "in progress" then
+    end
+end
+function ____exports.diversity(self, player)
+    if g.race.status ~= "in progress" then
+        return
+    end
+    local trinket1 = player:GetTrinket(0)
+    tempMoreOptions:give(player)
+    local startingItems = g.race.startingItems
+    do
+        local i = 0
+        while i < #startingItems do
+            local itemOrTrinketID = startingItems[i + 1]
+            if i == 0 then
+                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
+            elseif ((i == 1) or (i == 2)) or (i == 3) then
+                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
+                if itemOrTrinketID == CollectibleType.COLLECTIBLE_INCUBUS then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
+                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_SACRED_HEART then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
+                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
+                end
+            elseif i == 4 then
+                player:TryRemoveTrinket(trinket1)
+                player:AddTrinket(itemOrTrinketID)
+                player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false, false, false, false)
+                if trinket1 ~= 0 then
+                    player:AddTrinket(trinket1)
+                end
+                g.itemPool:RemoveTrinket(itemOrTrinketID)
+            end
+            i = i + 1
+        end
+    end
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_EPIC_FETUS)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D100)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY)
+end
+function ____exports.main(self)
+    if g.race.status == "none" then
+        return
+    end
+    local player = Isaac.GetPlayer()
+    if player == nil then
+        return
+    end
+    if (((not validateChallenge(nil)) or (not validateDifficulty(nil))) or (not validateSeed(nil))) or (not validateCharacter(nil, player)) then
+        return
+    end
+    socket:send("runMatchesRuleset")
+    local ____switch6 = g.race.format
+    if ____switch6 == "unseeded" then
+        goto ____switch6_case_0
+    elseif ____switch6 == "seeded" then
+        goto ____switch6_case_1
+    elseif ____switch6 == "diversity" then
+        goto ____switch6_case_2
+    end
+    goto ____switch6_case_default
+    ::____switch6_case_0::
+    do
+        do
+            if g.race.ranked and g.race.solo then
+                unseededRankedSolo(nil, player)
+            else
+                unseeded(nil, player)
+            end
+            goto ____switch6_end
+        end
+    end
+    ::____switch6_case_1::
+    do
+        do
+            seeded(nil, player)
+            goto ____switch6_end
+        end
+    end
+    ::____switch6_case_2::
+    do
+        do
+            ____exports.diversity(nil, player)
+            goto ____switch6_end
+        end
+    end
+    ::____switch6_case_default::
+    do
+        do
+            goto ____switch6_end
+        end
+    end
+    ::____switch6_end::
 end
 return ____exports
 end,
@@ -6467,6 +6745,7 @@ local startWithD6 = require("features.optional.major.startWithD6")
 local showDreamCatcherItemPostNewRoom = require("features.optional.quality.showDreamCatcherItem.postNewRoom")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
 local subvertTeleport = require("features.optional.quality.subvertTeleport")
+local tempMoreOptions = require("features.race.tempMoreOptions")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
@@ -6490,6 +6769,7 @@ function ____exports.newRoom(self)
     ____obj[____index] = ____obj[____index] + 1
     detectSlideAnimation:postNewRoom()
     controlsGraphic:postNewRoom()
+    tempMoreOptions:postNewRoom()
     startWithD6:postNewRoom()
     freeDevilItem:postNewRoom()
     fastTravelPostNewRoom:main()
@@ -6523,8 +6803,10 @@ end,
 require("lualib_bundle");
 local ____exports = {}
 local streakText = require("features.mandatory.streakText")
+local socket = require("features.optional.major.socket")
 local openHushDoor = require("features.optional.quality.openHushDoor")
 local silenceMomDad = require("features.optional.sound.silenceMomDad")
+local tempMoreOptions = require("features.race.tempMoreOptions")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
@@ -6547,6 +6829,8 @@ function ____exports.newLevel(self)
     if shouldShowLevelText(nil) then
         showLevelText(nil)
     end
+    socket:postNewLevel(stage, stageType)
+    tempMoreOptions:postNewLevel()
     openHushDoor:postNewLevel()
     silenceMomDad:postNewLevel()
     postNewRoom:newRoom()
@@ -6608,6 +6892,7 @@ local judasAddBomb = require("features.optional.quality.judasAddBomb")
 local samsonDropHeart = require("features.optional.quality.samsonDropHeart")
 local showEdenStartingItems = require("features.optional.quality.showEdenStartingItems")
 local taintedKeeperMoney = require("features.optional.quality.taintedKeeperMoney")
+local racePostGameStarted = require("features.race.callbacks.postGameStarted")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
@@ -6615,6 +6900,7 @@ local getPlayers = ____misc.getPlayers
 local log = ____misc.log
 local saveDat = require("saveDat")
 local ____enums = require("types.enums")
+local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
 local SaveFileState = ____enums.SaveFileState
 local ____GlobalsRun = require("types.GlobalsRun")
 local GlobalsRun = ____GlobalsRun.default
@@ -6677,6 +6963,12 @@ function ____exports.main(self, isContinued)
     judasAddBomb:postGameStarted()
     taintedKeeperMoney:postGameStarted()
     showEdenStartingItems:postGameStarted()
+    if (g.race.status ~= "in progress") or (g.race.format ~= "diversity") then
+        g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
+        g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
+        g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
+    end
+    racePostGameStarted:main()
     postNewLevel:newLevel()
 end
 return ____exports
@@ -7289,6 +7581,8 @@ end,
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____GlobalsRun = require("types.GlobalsRun")
+local initPlayerVariables = ____GlobalsRun.initPlayerVariables
 local cachePlayerObject
 function cachePlayerObject(self, player)
     local character = player:GetPlayerType()
@@ -7297,7 +7591,12 @@ function cachePlayerObject(self, player)
     end
 end
 function ____exports.main(self, player)
-    cachePlayerObject(nil, player)
+    local gameFrameCount = g.g:GetFrameCount()
+    if gameFrameCount == 0 then
+        cachePlayerObject(nil, player)
+    else
+        initPlayerVariables(nil, player, g.run)
+    end
 end
 return ____exports
 end,
@@ -8115,7 +8414,7 @@ local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
 local restartAsCharacter = ____misc.restartAsCharacter
 function ____exports.checkRestartWrongCharacter(self)
-    if (g.race.status == "none") or (g.race.rFormat == "custom") then
+    if (g.race.status == "none") or (g.race.format == "custom") then
         return false
     end
     local character = g.p:GetPlayerType()
@@ -8126,7 +8425,7 @@ function ____exports.checkRestartWrongCharacter(self)
     return false
 end
 function ____exports.checkRestartWrongSeed(self)
-    if (g.race.rFormat ~= "seeded") or (g.race.status ~= "in progress") then
+    if (g.race.format ~= "seeded") or (g.race.status ~= "in progress") then
         return false
     end
     local startSeedString = g.seeds:GetStartSeedString()
@@ -8414,6 +8713,7 @@ function ____exports.postUpdate(self)
         local character = player:GetPlayerType()
         local index = getPlayerLuaTableIndex(nil, player)
         if character ~= g.run.currentCharacters[index] then
+            Isaac.DebugString("Detected a character change for player: " .. index)
             g.run.currentCharacters[index] = character
             postPlayerChange(nil, player)
         end
@@ -8718,12 +9018,21 @@ end
 return ____exports
 end,
 ["callbacks.preGameExit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
+local socket = require("features.optional.major.socket")
+local ____globals = require("globals")
+local g = ____globals.default
 local saveDat = require("saveDat")
+local ____GlobalsRun = require("types.GlobalsRun")
+local GlobalsRun = ____GlobalsRun.default
 function ____exports.main(self, shouldSave)
     if shouldSave then
         saveDat:save()
+    else
+        g.run = __TS__New(GlobalsRun, {})
     end
+    socket:preGameExit()
 end
 return ____exports
 end,
@@ -9341,6 +9650,17 @@ end,
 ["features.optional.major.fastTravel.movement"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 function ____exports.setDesination(self)
+end
+return ____exports
+end,
+["features.race.sprites"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
+local ____exports = {}
+local sprites = __TS__New(Map)
+function ____exports.init(self, spriteKey, _spriteName)
+    local sprite = sprites:get(spriteKey)
+    if sprite == nil then
+    end
 end
 return ____exports
 end,

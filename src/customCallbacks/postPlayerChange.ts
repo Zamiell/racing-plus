@@ -10,6 +10,7 @@ export function postUpdate(): void {
     const character = player.GetPlayerType();
     const index = getPlayerLuaTableIndex(player);
     if (character !== g.run.currentCharacters.get(index)) {
+      Isaac.DebugString(`Detected a character change for player: ${index}`);
       g.run.currentCharacters.set(index, character);
       postPlayerChange(player);
     }

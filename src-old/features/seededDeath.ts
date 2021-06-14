@@ -183,7 +183,7 @@ export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
 
   // Check to see if this is a situation where the custom death mechanic should apply
   if (
-    g.race.rFormat !== "seeded" &&
+    g.race.format !== "seeded" &&
     challenge !== ChallengeCustom.R7_SEASON_6
   ) {
     return null;

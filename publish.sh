@@ -7,4 +7,4 @@ set -e # Exit on any errors
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd "$DIR"
-npx isaacscript publish $1 $2 $3 $4
+npx isaacscript publish "$@"

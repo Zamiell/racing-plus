@@ -87,7 +87,8 @@ function registerPresets() {
     CurrentSetting: () => isAllConfigSetTo(true),
     Display: () => `Enable every setting: ${onOff(isAllConfigSetTo(true))}`,
     OnChange: (newValue: boolean | number) => {
-      setAllSettings(newValue as boolean);
+      const booleanNewValue = newValue as boolean;
+      setAllSettings(booleanNewValue);
     },
     Info: ["Turn every configurable setting on."],
   });
@@ -97,7 +98,8 @@ function registerPresets() {
     CurrentSetting: () => isAllConfigSetTo(false),
     Display: () => `Disable every setting: ${onOff(isAllConfigSetTo(false))}`,
     OnChange: (newValue: boolean | number) => {
-      setAllSettings(!newValue);
+      const booleanNewValue = newValue as boolean;
+      setAllSettings(!booleanNewValue);
     },
     Info: ["Turn every configurable setting off."],
   });

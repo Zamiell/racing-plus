@@ -9,10 +9,11 @@ import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
+import * as racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import { getPlayers, log } from "../misc";
 import * as saveDat from "../saveDat";
-import { SaveFileState } from "../types/enums";
+import { CollectibleTypeCustom, SaveFileState } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
 import * as postNewLevel from "./postNewLevel";
 
@@ -59,6 +60,27 @@ export function main(isContinued: boolean): void {
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
   showEdenStartingItems.postGameStarted();
+
+  // Remove the 3 placeholder items if this is not a diversity race
+  if (g.race.status !== "in progress" || g.race.format !== "diversity") {
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
+    );
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
+    );
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
+    );
+  }
+
+  // Do more run initialization things specifically pertaining to races
+  racePostGameStarted.main();
+
+  // Conditionally show a festive hat
+  // (commented out if it is not currently a holiday)
+  // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
+  // (this corresponds to "n016_Christmas.anm2" in the "costumes2.xml" file)
 
   // Call PostNewLevel manually (they get naturally called out of order)
   postNewLevel.newLevel();

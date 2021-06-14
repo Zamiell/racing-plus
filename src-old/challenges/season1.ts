@@ -1,8 +1,4 @@
-import g from "../globals";
-import * as schoolbag from "../items/schoolbag";
-import * as misc from "../misc";
-import { CollectibleTypeCustom } from "../types/enums";
-
+/*
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted9(): void {
   // Local variables
@@ -107,3 +103,4 @@ function postGameStartedKeeper() {
   g.p.AddCoins(25); // Add a 2nd container
   g.p.AddCoins(1); // This fills in the 2nd new heart container
 }
+*/

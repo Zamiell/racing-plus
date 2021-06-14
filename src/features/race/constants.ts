@@ -1,0 +1,1 @@
+export const COLLECTIBLE_13_LUCK_SERVER_ID = 600;

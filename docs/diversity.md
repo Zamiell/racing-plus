@@ -2,9 +2,15 @@
 
 ## General Description
 
-In diversity races, each racer starts with the same 3 random passive items, 1 random active item (inside of a Schoolbag), and 1 random smelted trinket. (This is in addition to the character's original passive items and resources.) These items are hidden from the player until the race starts.
+In diversity races, each racer starts with the same 5 items:
 
-In general, the extra power level increase from these 5 items is a fun boost at the beginning of a run. However, you don't always start with "good" items! One of the most interesting things about diversity races is that it forces players to use the items in the game that they would not normally pick up. This puts players in unique situations that they would never otherwise be in. For example, in a normal speedrun or race, you would generally never want to take Libra. But on a diversity race that happens to start with Soy Milk, picking up Libra is a very good idea!
+- 3 random passive items
+- 1 random active item
+- 1 random smelted trinket
+
+This is in addition to the character's original passive items and resources. These items are hidden from the player until the race starts.
+
+In general, the extra power level increase from these 5 items is a fun boost at the beginning of a run. However, you don't always start with "good" items! One of the most interesting things about diversity races is that it forces players to use the items in the game that they would not normally pick up. This puts players in unique situations that they would never otherwise be in.
 
 <br />
 
@@ -19,8 +25,6 @@ To cut down on the reset time to get the run going, the first Treasure Room will
 The following items are removed from all items pools, because they override tear effects. Note that it is still possible to start with them as one of the 3 random passive items.
 
 - Mom's Knife
-- Epic Fetus
-- Tech X
 
 The following items are also removed from all item pools, because they allow you to re-roll your build, which spoils the fun.
 
@@ -71,14 +75,6 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 428 - PJs
 - 455 - Dad's Lost Coin
 - 456 - Moldy Bread
-
-<br />
-
-## Item-Specific Bans
-
-The following items are only banned if you start with other specific items:
-
-- 186 - Blood Rights (with Isaac's Heart)
-- 276 - Isaac's Heart (with Blood Rights)
+- 707 - Supper - TODO SET SERVER ITEMS
 
 <br />

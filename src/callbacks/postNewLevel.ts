@@ -1,6 +1,8 @@
 import * as streakText from "../features/mandatory/streakText";
+import * as socket from "../features/optional/major/socket";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
+import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import { getPlayers, log } from "../misc";
 import * as saveDat from "../saveDat";
@@ -40,6 +42,10 @@ export function newLevel(): void {
   if (shouldShowLevelText()) {
     showLevelText();
   }
+
+  // Major
+  socket.postNewLevel(stage, stageType);
+  racePostNewLevel.main();
 
   // QoL
   openHushDoor.postNewLevel();

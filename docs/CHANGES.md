@@ -57,7 +57,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- Devil Rooms and Angel Rooms have been [customized](CHANGES-ROOM.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+- Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
   - Average items per angel room are increased from [TODO] to [TODO].
 
@@ -87,7 +87,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 7) Room Fixes
 
-Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](CHANGES-ROOM.md).
+Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](changes-room.md).
 
 ### 8) Room Flipping
 
@@ -270,21 +270,13 @@ Post-flip actions:
 
 ## Additional Changes for Races
 
-Racing against other players with the Racing+ client is not supported yet. [TODO]
-
-<!--
-Racing+ allows players to perform [several different types of races](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-RACES.md) against each other. Some race formats may introduce additional changes.
--->
+Racing+ allows players to perform [several different types of races](race-formats.md) against each other. Some race formats may introduce additional changes.
 
 <br />
 
 ## Additional Changes for Multi-Character Speedruns (Custom Challenges)
 
-7-character speedruns are not supported yet. [TODO]
-
-<!--
-Racing+ has [several custom challenges](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md), each of which introduces additional changes to the game.
--->
+Racing+ has [several custom challenges](challenges.md), each of which introduces additional changes to the game.
 
 <br />
 

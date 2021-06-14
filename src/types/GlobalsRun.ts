@@ -17,14 +17,7 @@ export default class GlobalsRun {
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
-
   room = new GlobalsRunRoom(true);
-
-  race = {
-    finished: false,
-    finishedTime: 0,
-    victoryLaps: 0,
-  };
 
   currentCharacters = new LuaTable<ControllerIndexString, PlayerType>();
   debugChaosCard = false;
@@ -113,6 +106,14 @@ export default class GlobalsRun {
   pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<ControllerIndexString, int>();
 
+  race = {
+    finished: false,
+    finishedTime: 0,
+    victoryLaps: 0,
+  };
+
+  /** Used to give only one double item Treasure Room. */
+  removeMoreOptions = false;
   /**
    * Whether or not to restart the run on the next frame.
    * This variable is used because the game prevents you from executing a "restart" console command
@@ -139,7 +140,6 @@ export default class GlobalsRun {
   };
 
   switchForgotten = false;
-
   transformations = new LuaTable<ControllerIndexString, boolean[]>();
 
   // Initialize variables that are tracked per player
@@ -147,29 +147,38 @@ export default class GlobalsRun {
   // yet at that point)
   constructor(players: EntityPlayer[]) {
     for (const player of players) {
-      const character = player.GetPlayerType();
-      const index = getPlayerLuaTableIndex(player);
-
-      this.ghostForm.set(index, false);
-      this.currentCharacters.set(index, character);
-      this.fastClear.paschalCandleCounters.set(index, 1);
-      this.freeDevilItem.tookDamage.set(index, false);
-
-      this.pickingUpItem.set(index, {
-        id: CollectibleType.COLLECTIBLE_NULL,
-        type: ItemType.ITEM_NULL,
-        roomIndex: -1,
-      });
-
-      this.pocketActiveD6Charge.set(index, 6);
-
-      const transformationArray = [];
-      for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {
-        transformationArray.push(false);
-      }
-      this.transformations.set(index, transformationArray);
+      initPlayerVariables(player, this);
     }
   }
+}
+
+export function initPlayerVariables(
+  player: EntityPlayer,
+  run: GlobalsRun,
+): void {
+  const character = player.GetPlayerType();
+  const index = getPlayerLuaTableIndex(player);
+
+  run.ghostForm.set(index, false);
+  run.currentCharacters.set(index, character);
+  run.fastClear.paschalCandleCounters.set(index, 1);
+  run.freeDevilItem.tookDamage.set(index, false);
+
+  run.pickingUpItem.set(index, {
+    id: CollectibleType.COLLECTIBLE_NULL,
+    type: ItemType.ITEM_NULL,
+    roomIndex: -1,
+  });
+
+  run.pocketActiveD6Charge.set(index, 6);
+
+  const transformationArray = [];
+  for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {
+    transformationArray.push(false);
+  }
+  run.transformations.set(index, transformationArray);
+
+  Isaac.DebugString(`Initialized variables for player: ${index}`);
 }
 
 export function getPlayerLuaTableIndex(player: EntityPlayer): string {
@@ -179,6 +188,6 @@ export function getPlayerLuaTableIndex(player: EntityPlayer): string {
   // but it will be different after completely closing and re-opening the game
   // We explicitly don't handle this case since the code complexity isn't worth the tradeoff
   // We convert the pointer hash to a string to avoid null element creation when saving the table as
-  // JSON
+  // JSON (which is done to handle save & quit)
   return GetPtrHash(player).toString();
 }

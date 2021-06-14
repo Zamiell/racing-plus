@@ -1,1 +1,0 @@
-export function setDesination(): void {}

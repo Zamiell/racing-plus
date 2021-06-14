@@ -2,7 +2,7 @@
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   // We only want to manually create certain rooms in seeded races
-  if (g.race.rFormat !== "seeded" || g.race.status !== "in progress") {
+  if (g.race.format !== "seeded" || g.race.status !== "in progress") {
     return;
   }
 
@@ -304,7 +304,7 @@ export function preEntitySpawn(
   _seed: int,
 ): [int, int, int] | null {
   // We only want to delete things in seeded races
-  if (g.race.rFormat !== "seeded" || g.race.status !== "in progress") {
+  if (g.race.format !== "seeded" || g.race.status !== "in progress") {
     return null;
   }
 

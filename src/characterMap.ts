@@ -1,11 +1,11 @@
 const CHARACTER_MAP = new Map<string, PlayerType>([
   ["isaac", 0],
   ["magdalene", 1],
-  ["maggy", 1],
+  ["maggy", 1], // cspell:disable-line
   ["cain", 2],
   ["judas", 3],
   ["blue baby", 4],
-  ["bluebaby", 4],
+  ["bluebaby", 4], // cspell:disable-line
   ["bb", 4],
   ["eve", 5],
   ["samson", 6],
@@ -21,7 +21,7 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["dark judas", 12],
   ["darkjudas", 12], // cspell:disable-line
   ["black judas", 12],
-  ["blackjudas", 12],
+  ["blackjudas", 12], // cspell:disable-line
   ["lilith", 13],
   ["keeper", 14],
   ["apollyon", 15],
@@ -37,14 +37,14 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["isaac2", 21],
   ["tisaac", 21], // cspell:disable-line
   ["magdalene2", 22],
-  ["maggy2", 22],
+  ["maggy2", 22], // cspell:disable-line
   ["tmagdalene", 22], // cspell:disable-line
   ["tmaggy", 22], // cspell:disable-line
   ["cain2", 23],
   ["tcain", 23], // cspell:disable-line
   ["judas2", 24],
   ["tjudas", 24], // cspell:disable-line
-  ["bluebaby2", 25],
+  ["bluebaby2", 25], // cspell:disable-line
   ["tbluebaby", 25], // cspell:disable-line
   ["bb2", 25],
   ["tbb", 25],

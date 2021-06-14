@@ -412,7 +412,7 @@ function race() {
   if (
     g.race.difficulty === "hard" &&
     g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
-    g.race.rFormat !== "custom"
+    g.race.format !== "custom"
   ) {
     sprites.init("top", "error-not-hard-mode"); // Error: You are not on hard mode.
     return;
@@ -428,7 +428,7 @@ function race() {
   if (
     g.race.difficulty === "normal" &&
     g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
-    g.race.rFormat !== "custom"
+    g.race.format !== "custom"
   ) {
     sprites.init("top", "error-hard-mode"); // Error: You are on hard mode.
     return;
@@ -471,8 +471,8 @@ function race() {
       sprites.init("raceRanked", "unranked");
       sprites.init("raceRankedIcon", "unranked-icon");
     }
-    sprites.init("raceFormat", g.race.rFormat);
-    sprites.init("raceFormatIcon", `${g.race.rFormat}-icon`);
+    sprites.init("raceFormat", g.race.format);
+    sprites.init("raceFormatIcon", `${g.race.format}-icon`);
     sprites.init("goal", "goal");
     sprites.init("raceGoal", g.race.goal);
   } else {
@@ -513,7 +513,7 @@ function race() {
       // We don't want to show the place graphic until we get to the 2nd floor
       g.raceVars.startedTime = Isaac.GetTime(); // Mark when the race started
       g.raceVars.startedFrame = Isaac.GetFrameCount(); // Also mark the frame the race started
-      Isaac.DebugString(`Starting the race! (${g.race.rFormat})`);
+      Isaac.DebugString(`Starting the race! (${g.race.format})`);
     }
 
     // Find out how much time has passed since the race started

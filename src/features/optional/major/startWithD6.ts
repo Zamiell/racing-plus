@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayers, log } from "../../../misc";
+import { getPlayers, giveItemAndRemoveFromPools, log } from "../../../misc";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
@@ -85,8 +85,7 @@ function givePocketActiveD6(player: EntityPlayer, charge?: int) {
 }
 
 function giveActiveD6(player: EntityPlayer) {
-  player.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D6);
+  giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

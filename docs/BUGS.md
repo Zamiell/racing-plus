@@ -6,15 +6,10 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 
 ## Miscellaneous Bugs
 
-- Antibirth doors are not spawned after a boss dies. (You can get them to appear by exiting and re-entering the room.)
-  - Furthermore, when re-entering a room with an Antibirth door, it will sometimes be automatically opened (without having to use a key, bomb, etc.).
+- When returning to the Boss Rush from a crawlspace, the camera will jerk from the door to the location of the crawlspace.
 
 <!--
-- When returning to the Boss Rush from a crawlspace, the camera will jerk from the door to the location of the crawlspace.
-- In a multi-character speedrun, if you save and quit on the frame that the Checkpoint spawns, then you will also spawn a trophy. (Reported by thereisnofuture)
 - Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
-- If The Forgotten or The Soul falls into a pitfall and dies, then the game will lock up for a few seconds. (Reported by Gamonymous)
-- If there are multiple The Haunts in a room, all of the Lil Haunts will be detached at once, because tracking the individual ones is too difficult. (Reported by thereisnofuture)
 -->
 
 <br />

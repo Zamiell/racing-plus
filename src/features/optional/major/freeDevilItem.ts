@@ -45,7 +45,7 @@ export function postNewRoom(): void {
     for (const player of getPlayers()) {
       const index = getPlayerLuaTableIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
-      if (takenDamage === false) {
+      if (!takenDamage) {
         giveTrinket(player);
       }
     }

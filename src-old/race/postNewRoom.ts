@@ -15,7 +15,6 @@ export function main(): void {
 
   gotoRaceRoom();
   threeDollarBill();
-  checkEverythingFloorSkip();
   checkOpenMegaSatanDoor();
   checkVictoryLapBossReplace();
 
@@ -85,84 +84,6 @@ export function threeDollarBill(): void {
 
   // We have every single item in the list, so do nothing
   g.run.threeDollarBillItem = 0;
-}
-
-function checkEverythingFloorSkip() {
-  // Local variables
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomType = g.r.GetType();
-
-  // Prevent players from skipping a floor on the "Everything" race goal
-  if (
-    g.race.goal === "Everything" &&
-    (roomType === RoomType.ROOM_ERROR || // 3
-      roomType === RoomType.ROOM_BLACK_MARKET) // 22
-  ) {
-    let convertTrapdoorsToBeamsOfLight = false;
-    let convertBeamsOfLightToTrapdoors = false;
-    if (stage === 8) {
-      convertTrapdoorsToBeamsOfLight = true;
-    } else if (stage === 10 && stageType === 1) {
-      // Cathedral
-      convertBeamsOfLightToTrapdoors = true;
-    } else if (stage === 10 && stageType === 0) {
-      // Sheol
-      convertTrapdoorsToBeamsOfLight = true;
-    }
-    // (it is impossible to get a I AM ERROR room or a Black Market on The Chest or the Dark Room)
-
-    if (convertTrapdoorsToBeamsOfLight) {
-      // Replace all trapdoors with beams of light
-      for (let i = 0; i < g.r.GetGridSize(); i++) {
-        const gridEntity = g.r.GetGridEntity(i);
-        if (gridEntity !== null) {
-          const saveState = gridEntity.GetSaveState();
-          if (saveState.Type === GridEntityType.GRID_TRAPDOOR) {
-            // Remove the crawlspace and spawn a Heaven Door (1000.39),
-            // which will get replaced on the next frame
-            // in the "FastTravel.ReplaceHeavenDoor()" function
-            // Make the spawner entity the player so that we can distinguish it from the vanilla
-            // heaven door
-            removeGridEntity(gridEntity)
-            Isaac.Spawn(
-              EntityType.ENTITY_EFFECT,
-              EffectVariant.HEAVEN_LIGHT_DOOR,
-              0,
-              gridEntity.Position,
-              Vector.Zero,
-              g.p,
-            );
-            Isaac.DebugString(
-              "Replaced a trapdoor with a heaven door for an Everything race.",
-            );
-          }
-        }
-      }
-    }
-
-    if (convertBeamsOfLightToTrapdoors) {
-      // Replace all beams of light with trapdoors
-      const heavenDoors = Isaac.FindByType(
-        EntityType.ENTITY_EFFECT,
-        EffectVariant.HEAVEN_LIGHT_DOOR,
-      );
-      for (const heavenDoor of heavenDoors) {
-        heavenDoor.Remove();
-
-        // Spawn a trapdoor (it will get replaced with the fast-travel version on this frame)
-        Isaac.GridSpawn(
-          GridEntityType.GRID_TRAPDOOR,
-          0,
-          heavenDoor.Position,
-          true,
-        );
-        Isaac.DebugString(
-          "Replaced a heaven door with a trapdoor for an Everything race.",
-        );
-      }
-    }
-  }
 }
 
 function raceStartRoom() {
@@ -302,16 +223,5 @@ function spawnBoss(bossArray: [int, int, int]) {
     Vector.Zero,
     null,
   );
-}
-
-// Remove the "More Options" buff if they have entered a Treasure Room
-function checkRemoveMoreOptions() {
-  // Local variables
-  const roomType = g.r.GetType();
-
-  if (g.run.removeMoreOptions === true && roomType === RoomType.ROOM_TREASURE) {
-    g.run.removeMoreOptions = false;
-    g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
-  }
 }
 */

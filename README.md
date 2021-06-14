@@ -13,11 +13,11 @@ This is the Lua mod for Racing+, a Binding of Isaac: Afterbirth+ racing platform
 This mod is written using [IsaacScript](https://isaacscript.github.io/).
 
 See also:
-- [Mod changes](docs/CHANGES.md)
-- [Race formats](docs/CHANGES-RACES.md)
-- [Custom challenges](docs/CHANGES-CHALLENGES.md) (multi-character speedruns)
+- [Mod changes](docs/changes.md)
+- [Race formats](docs/race-formats.md)
+- [Custom challenges](docs/challenges.md) (i.e. multi-character speedruns)
 - [Version history](https://github.com/Zamiell/isaac-racing-client/blob/master/HISTORY.md)
-- [Known bugs](docs/BUGS.md)
+- [Known bugs](docs/bugs.md)
 
 You may also be interested in [the client repository](https://github.com/Zamiell/isaac-racing-client) or [the server repository](https://github.com/Zamiell/isaac-racing-server).
 
@@ -26,7 +26,6 @@ You may also be interested in [the client repository](https://github.com/Zamiell
 <!--
 
 Other notes:
-
-- Directory: racing+_857628390
+- Mod directory name: racing+_857628390
 
 -->

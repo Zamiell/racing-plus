@@ -47,7 +47,7 @@ function InputAction.IsActionTriggeredConsole() {
   }
 
   // Allow usage of the console in custom races
-  if ( g.race.status === "in progress" && g.race.rFormat !== "custom" ) {
+  if ( g.race.status === "in progress" && g.race.format !== "custom" ) {
     return false
   }
 }

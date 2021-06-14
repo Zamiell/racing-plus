@@ -1,3 +1,5 @@
+import { CollectibleTypeCustom } from "./enums";
+
 type RaceStatus = "none" | "open" | "starting" | "in progress";
 type RaceMyStatus = "not ready" | "ready" | "racing";
 type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom" | "pageant";
@@ -22,14 +24,14 @@ export default class RaceData {
   myStatus: RaceMyStatus = "not ready";
   ranked = false;
   solo = false;
-  rFormat: RaceFormat = "unseeded";
+  format: RaceFormat = "unseeded";
   difficulty: RaceDifficulty = "normal";
   character = PlayerType.PLAYER_JUDAS;
   goal: RaceGoal = "Blue Baby";
   /** Corresponds to the seed that is the race goal. */
   seed = "-";
   /** The starting items for this race, if any. */
-  startingItems: CollectibleType[] = [];
+  startingItems: Array<CollectibleType | CollectibleTypeCustom> = [];
   /** This corresponds to the graphic to draw on the screen. */
   countdown = -1;
   /** This is either the number of people ready, or the non-finished place. */

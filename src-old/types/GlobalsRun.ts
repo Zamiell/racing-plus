@@ -8,7 +8,6 @@ export default class GlobalsRun {
   metKrampus = false;
   movingBoxOpen = true;
   killedLamb = false; // Used for the "Everything" race goal
-  removeMoreOptions = false; // Used to give only one double item Treasure Room
   PHDPills = false; // Used to determine when to change the pill text
   haveWishbone = false;
   haveWalnut = false;
@@ -59,7 +58,6 @@ export default class GlobalsRun {
   customBossRoomIndex = -1000; // Used in Season 7
   pencilCounter = 0; // Used for tracking the number of tears fired (for Lead Pencil)
   spamButtons = false; // Used to spam Blood Rights
-  startingRoomGraphics = false; // Used to toggle off the controls graphic in some race types
   // Used to reposition the player (if they appear at a non-existent entrance)
   usedTeleport = false;
   spawnedUltraGreed = false; // Used in Season 7

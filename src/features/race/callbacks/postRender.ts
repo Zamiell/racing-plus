@@ -2,7 +2,7 @@ import g from "../../../globals";
 import { consoleCommand, restartAsCharacter } from "../../../misc";
 
 export function checkRestartWrongCharacter(): boolean {
-  if (g.race.status === "none" || g.race.rFormat === "custom") {
+  if (g.race.status === "none" || g.race.format === "custom") {
     return false;
   }
 
@@ -17,7 +17,7 @@ export function checkRestartWrongCharacter(): boolean {
 }
 
 export function checkRestartWrongSeed(): boolean {
-  if (g.race.rFormat !== "seeded" || g.race.status !== "in progress") {
+  if (g.race.format !== "seeded" || g.race.status !== "in progress") {
     return false;
   }
 

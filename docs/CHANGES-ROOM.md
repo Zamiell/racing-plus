@@ -37,6 +37,7 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 - All rooms with 1 item have an additional reward.
 - All rooms with 2 or more item pedestals have no extra rewards.
 - All enemies are removed.
+- In "Number Magnet" rooms, there are enemies in every room, but there are always 3 item pedestals.
 
 #### Angel Rooms
 
