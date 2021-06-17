@@ -19,7 +19,6 @@ export function newRoom(): void {
 // Check to see if we are entering the Mega Satan room so we can update the floor tracker and
 // prevent cheating on the "Everything" race goal
 function checkMegaSatanRoom() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
 
   // Check to see if we are entering the Mega Satan room
@@ -32,10 +31,10 @@ function checkMegaSatanRoom() {
 }
 
 function checkScolexRoom() {
-  // Local variables
   const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomStageID = roomDesc.Data.StageID;
-  const roomVariant = roomDesc.Data.Variant;
+  const roomData = roomDesc.Data;
+  const roomStageID = roomData.StageID;
+  const roomVariant = roomData.Variant;
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
   const challenge = Isaac.GetChallenge();
@@ -110,7 +109,6 @@ function checkScolexRoom() {
 // Check for various NPCs all at once
 // (we want to loop through all of the entities in the room only for performance reasons)
 function checkEntities() {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const roomClear = g.r.IsClear();
   const roomShape = g.r.GetRoomShape();
@@ -161,38 +159,6 @@ function checkEntities() {
   }
 }
 
-// Check to see if we need to respawn an end-of-race or end-of-speedrun trophy
-function checkRespawnTrophy() {
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-  const stage = g.l.GetStage();
-
-  if (
-    g.run.trophy.spawned === false ||
-    g.run.trophy.stage !== stage ||
-    g.run.trophy.roomIndex !== roomIndex
-  ) {
-    return;
-  }
-
-  // Don't respawn the trophy if we already touched it and finished a race/speedrun
-  if (g.raceVars.finished || g.speedrun.finished) {
-    return;
-  }
-
-  // We are re-entering a room where a trophy spawned (which is a custom entity),
-  // so we need to respawn it
-  Isaac.Spawn(
-    EntityTypeCustom.ENTITY_RACE_TROPHY,
-    0,
-    0,
-    g.run.trophy.position,
-    Vector.Zero,
-    null,
-  );
-  Isaac.DebugString("Respawned the end of race/speedrun trophy.");
-}
-
 function banB1TreasureRoom() {
   if (!shouldBanB1TreasureRoom()) {
     return;
@@ -230,7 +196,6 @@ function banB1TreasureRoom() {
 }
 
 function shouldBanB1TreasureRoom() {
-  // Local variables
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 
@@ -283,7 +248,6 @@ function banB1CurseRoom() {
 }
 
 function shouldBanB1CurseRoom() {
-  // Local variables
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 

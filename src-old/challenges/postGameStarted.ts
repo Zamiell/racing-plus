@@ -1,7 +1,6 @@
 /*
 // Called from the "PostGameStarted.Main()" function
 export function main(): void {
-  // Local variables
   const character = g.p.GetPlayerType();
   const challenge = Isaac.GetChallenge();
 

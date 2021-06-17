@@ -7,7 +7,6 @@ enum ItLivesSituation {
 }
 
 export function spawn(entity: Entity): void {
-  // Local variables
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
   const challenge = Isaac.GetChallenge();
@@ -96,7 +95,6 @@ export function spawn(entity: Entity): void {
 }
 
 function getItLivesSituation(entity: Entity) {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
   if (

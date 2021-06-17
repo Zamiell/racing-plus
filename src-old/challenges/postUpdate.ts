@@ -26,7 +26,6 @@ export function main(): void {
 
 // Check to see if the player just picked up the "Checkpoint" custom item
 function checkCheckpointTouched() {
-  // Local variables
   const isaacFrameCount = Isaac.GetFrameCount();
 
   if (
@@ -60,8 +59,5 @@ function checkCheckpointTouched() {
 
   // Show the run summary (including the average time per character for the run so far)
   g.run.endOfRunText = true;
-
-  // Perform some additional actions for some specific seasons
-  season7.checkpointTouched();
 }
 */

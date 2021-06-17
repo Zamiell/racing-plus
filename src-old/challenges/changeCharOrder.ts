@@ -10,7 +10,6 @@ export function postUpdate(): void {
     return;
   }
 
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   if (
@@ -50,7 +49,6 @@ export function postUpdate(): void {
 }
 
 function createCharacterButtons() {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -96,7 +94,6 @@ function createCharacterButtons() {
 }
 
 function createItemButtons() {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -160,7 +157,6 @@ function createItemButtons() {
 }
 
 function createItemBanButtonsBig4() {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -200,7 +196,6 @@ function createItemBanButtonsBig4() {
 }
 
 function createItemBanButtonsNormal() {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -335,7 +330,6 @@ function checkButtonPressedPhaseSeasonSelect(gridEntity: GridEntity) {
 }
 
 function seasonButtonPressed(seasonChosen: string) {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   g.changeCharOrder.phase = 2;
@@ -350,7 +344,6 @@ function seasonButtonPressed(seasonChosen: string) {
 }
 
 function checkButtonPressedPhaseCharacterSelect(gridEntity: GridEntity) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -371,7 +364,6 @@ function checkButtonPressedPhaseCharacterSelect(gridEntity: GridEntity) {
 }
 
 function characterButtonPressed(gridEntity: GridEntity, i: int) {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
@@ -443,7 +435,6 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
 }
 
 function checkButtonPressedPhaseItemSelect(gridEntity: GridEntity) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -467,7 +458,6 @@ function checkButtonPressedPhaseItemSelect(gridEntity: GridEntity) {
 }
 
 function itemButtonPressed(gridEntity: GridEntity, i: int) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -539,7 +529,6 @@ function itemButtonsFinished() {
 }
 
 function checkButtonPressedPhaseItemSelectBanBig4(gridEntity: GridEntity) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -563,7 +552,6 @@ function checkButtonPressedPhaseItemSelectBanBig4(gridEntity: GridEntity) {
 }
 
 function itemBig4ButtonPressed(gridEntity: GridEntity, i: int) {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
@@ -599,7 +587,6 @@ function itemBig4ButtonPressed(gridEntity: GridEntity, i: int) {
 }
 
 function checkButtonPressedPhaseItemSelectBanNormal(gridEntity: GridEntity) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -623,7 +610,6 @@ function checkButtonPressedPhaseItemSelectBanNormal(gridEntity: GridEntity) {
 }
 
 function itemNormalButtonPressed(gridEntity: GridEntity, i: int) {
-  // Local variables
   if (g.changeCharOrder.seasonChosen === null) {
     error("seasonChosen is nil.");
   }
@@ -662,7 +648,6 @@ function itemNormalButtonPressed(gridEntity: GridEntity, i: int) {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const challenge = Isaac.GetChallenge();
 
@@ -817,7 +802,6 @@ function getItemSpriteXY(season: SeasonDescription, i: int): [int, int] {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.CHANGE_CHAR_ORDER) {
@@ -828,9 +812,8 @@ export function postNewRoom(): void {
   }
 
   if (g.run.roomsEntered === 1) {
-    Isaac.ExecuteCommand("stage 1a"); // The Cellar is the cleanest floor
-    g.run.goingToDebugRoom = true;
-    Isaac.ExecuteCommand("goto d.0"); // We do more things in the next "PostNewRoom" callback
+    consoleCommand("stage 1a"); // The Cellar is the cleanest floor
+    consoleCommand("goto d.0"); // We do more things in the next "PostNewRoom" callback
     return;
   }
   if (g.run.roomsEntered !== 2) {

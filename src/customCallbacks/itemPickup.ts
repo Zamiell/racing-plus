@@ -1,9 +1,11 @@
 // This custom callback provides preItemPickup and postItemPickup
 
 import * as streakText from "../features/mandatory/streakText";
+import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import g from "../globals";
 import { getPlayers, getRoomIndex } from "../misc";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
+import PickingUpItemDescription from "../types/PickingUpItemDescription";
 
 export function postUpdate(): void {
   for (const player of getPlayers()) {
@@ -17,12 +19,14 @@ export function postUpdate(): void {
 
 function queueEmpty(player: EntityPlayer) {
   const index = getPlayerLuaTableIndex(player);
-  const pickingUpItem = g.run.pickingUpItem.get(index);
+  const pickingUpItemDescription = g.run.pickingUpItem.get(index);
 
   // Check to see if we were picking up something on the previous frame
-  if (pickingUpItem.id !== CollectibleType.COLLECTIBLE_NULL) {
-    pickingUpItem.id = 0;
-    postItemPickup(player);
+  if (pickingUpItemDescription.id !== CollectibleType.COLLECTIBLE_NULL) {
+    postItemPickup(player, pickingUpItemDescription);
+    pickingUpItemDescription.id = CollectibleType.COLLECTIBLE_NULL;
+    pickingUpItemDescription.type = ItemType.ITEM_NULL;
+    pickingUpItemDescription.roomIndex = 0;
   }
 }
 
@@ -38,12 +42,17 @@ function queueNotEmpty(player: EntityPlayer) {
     pickingUpItem.type = queuedItem.Type;
     pickingUpItem.roomIndex = roomIndex;
 
-    preItemPickup(queuedItem);
+    preItemPickup(player, queuedItem);
   }
 }
 
-function preItemPickup(queuedItem: ItemConfigItem) {
+function preItemPickup(_player: EntityPlayer, queuedItem: ItemConfigItem) {
   streakText.set(queuedItem.Name);
 }
 
-function postItemPickup(_player: EntityPlayer) {}
+function postItemPickup(
+  _player: EntityPlayer,
+  pickingUpItemDescription: PickingUpItemDescription,
+) {
+  racePostItemPickup.main(pickingUpItemDescription);
+}

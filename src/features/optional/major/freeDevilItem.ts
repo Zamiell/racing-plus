@@ -8,7 +8,7 @@ import {
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-export function entityTakeDmg(
+export function entityTakeDmgPlayer(
   tookDamage: Entity,
   damageFlags: DamageFlag,
 ): void {

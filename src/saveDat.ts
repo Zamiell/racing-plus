@@ -1,5 +1,6 @@
-import * as json from "json";
 import g from "./globals";
+import * as jsonHelper from "./jsonHelper";
+import log from "./log";
 import * as tableUtils from "./tableUtils";
 import GlobalsRunRoom from "./types/GlobalsRunRoom";
 import GlobalsToSave from "./types/GlobalsToSave";
@@ -38,8 +39,8 @@ export function save(): void {
     speedrun: g.speedrun,
   };
 
-  const encodedData = json.encode(globalsToSave);
-  mod.SaveData(encodedData);
+  const jsonString = jsonHelper.encode(globalsToSave);
+  mod.SaveData(jsonString);
 }
 
 export function load(): void {
@@ -52,8 +53,11 @@ export function load(): void {
     return;
   }
 
-  const modDataString = readSaveDat();
-  const newGlobals = convertStringToTable(modDataString);
+  const jsonString = readSaveDatFile(mod);
+  if (jsonString === null) {
+    return;
+  }
+  const newGlobals = jsonHelper.decode(jsonString);
 
   const oldGlobals: GlobalsToSave = {
     config: g.config,
@@ -65,63 +69,26 @@ export function load(): void {
   tableUtils.merge(oldGlobals as LuaTable, newGlobals);
 }
 
-function readSaveDat() {
+function readSaveDatFile(modObject: Mod) {
+  const isaacFrameCount = Isaac.GetFrameCount();
   const defaultModData = "{}";
-  let modDataString = defaultModData;
-  function loadModData(this: void) {
-    if (mod === null) {
-      error('"loadModData()" was called without the mod being initialized.');
-    }
-    modDataString = Isaac.LoadModData(mod);
-  }
-  const [ok] = pcall(loadModData);
+
+  const [ok, jsonStringOrErrMsg] = pcall(tryLoadModData, modObject);
   if (!ok) {
-    modDataString = defaultModData;
-  }
-  modDataString = modDataString.trim();
-  if (modDataString === "") {
-    modDataString = defaultModData;
+    log(
+      `Racing+ failed to read from the "save#.dat" file on Isaac frame ${isaacFrameCount}: ${jsonStringOrErrMsg}`,
+    );
+    return defaultModData;
   }
 
-  return modDataString;
+  const jsonStringTrimmed = jsonStringOrErrMsg.trim();
+  if (jsonStringTrimmed === "") {
+    return defaultModData;
+  }
+
+  return jsonStringTrimmed;
 }
 
-function convertStringToTable(modDataString: string) {
-  const defaultTable = new LuaTable();
-  let table: LuaTable | null = null;
-  function decodeJSON(this: void) {
-    table = json.decode(modDataString) as LuaTable;
-  }
-  const [ok] = pcall(decodeJSON);
-  if (!ok || table === null) {
-    table = defaultTable;
-  }
-
-  return table;
+function tryLoadModData(this: void, modObject: Mod) {
+  return Isaac.LoadModData(modObject);
 }
-
-/*
-function loadSuccess(newGlobals: GlobalsToSave) {
-  // The loaded save data might have an older schema than the one we are currently using
-  // We can use the RevelCopyTable function to create a new table that will have any missing fields
-  // copied over from the default table
-  const oldGlobals: GlobalsToSave = {
-    config: g.config,
-    hotkeys: g.hotkeys,
-    run: g.run,
-    race: g.race,
-    speedrun: g.speedrun,
-  };
-  const validatedNewGlobals = RevelCopyTable(
-    newGlobals as unknown as LuaTable,
-    oldGlobals as unknown as LuaTable,
-  ) as unknown as GlobalsToSave;
-
-  // Restore the specific parts of the globals that were saved
-  g.config = validatedNewGlobals.config;
-  g.hotkeys = validatedNewGlobals.hotkeys;
-  g.run = validatedNewGlobals.run;
-  g.race = validatedNewGlobals.race;
-  g.speedrun = validatedNewGlobals.speedrun;
-}
-*/

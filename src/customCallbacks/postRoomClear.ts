@@ -1,7 +1,7 @@
 import * as fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
 import * as fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
 import g from "../globals";
-import { log } from "../misc";
+import log from "../log";
 
 export function postUpdate(): void {
   const gameFrameCount = g.g.GetFrameCount();

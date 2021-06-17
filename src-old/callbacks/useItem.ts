@@ -1,6 +1,5 @@
 /*
 export function main(collectibleType: CollectibleType): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const activeItem = g.p.GetActiveItem();
   const activeCharge = g.p.GetActiveCharge();
@@ -33,7 +32,6 @@ export function main(collectibleType: CollectibleType): void {
 // This callback is used naturally by Broken Remote
 // This callback is manually called for Cursed Eye
 export function teleport(): void {
-  // Local variables
   const rooms = g.l.GetRooms();
 
   // Get a random room index
@@ -79,7 +77,6 @@ export function d6(): void {
 // CollectibleType.COLLECTIBLE_FORGET_ME_NOW (127)
 // Also called manually when we touch a 5-pip Dice Room
 export function forgetMeNow(): void {
-  // Local variables
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 
@@ -116,7 +113,6 @@ export function blankCard(): void {
 
 // CollectibleType.COLLECTIBLE_UNDEFINED (324)
 export function undefinedItem(): void {
-  // Local variables
   const stage = g.l.GetStage();
   const rooms = g.l.GetRooms();
 

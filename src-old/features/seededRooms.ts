@@ -6,7 +6,6 @@ export function postNewRoom(): void {
     return;
   }
 
-  // Local variables
   const roomType = g.r.GetType();
 
   // We only want to replace things on the first visit, or else everything will get duplicated

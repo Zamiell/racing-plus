@@ -79,7 +79,6 @@ export function tarotCard(pickup: EntityPickup): void {
 
 // PickupVariant.PICKUP_TROPHY (370)
 export function trophy(pickup: EntityPickup): void {
-  // Local variables
   const centerPos = g.r.GetCenterPos();
 
   // Do nothing if we are not on a custom speedrun challenge
@@ -103,7 +102,6 @@ export function trophy(pickup: EntityPickup): void {
 }
 
 export function checkSpikedChestUnavoidable(pickup: EntityPickup): void {
-  // Local variables
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const roomData = g.l.GetCurrentRoomDesc().Data;

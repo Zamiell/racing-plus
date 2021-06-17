@@ -57,7 +57,6 @@ export function tearPoof(effect: EntityEffect): void {
 }
 
 export function crackTheSkyBase(effect: EntityEffect): void {
-  // Local variables
   const centerPos = g.r.GetCenterPos();
   const data = effect.GetData();
   const sprite = effect.GetSprite();
@@ -114,7 +113,6 @@ export function crackTheSkyBase(effect: EntityEffect): void {
 }
 
 export function stickyNickel(effect: EntityEffect): void {
-  // Local variables
   const sprite = effect.GetSprite();
   const data = effect.GetData();
 

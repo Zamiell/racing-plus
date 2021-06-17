@@ -123,7 +123,6 @@ export function display(): void {
 }
 
 function getPosition(spriteType: string) {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const challenge = Isaac.GetChallenge();
   const typeFormatX = 110;
@@ -303,41 +302,5 @@ function getPosition(spriteType: string) {
       return pos;
     }
   }
-}
-
-// This clears the graphics that should only appear in the starting room
-export function clearStartingRoomGraphicsTop(): void {
-  init("myStatus", "");
-  init("ready", "");
-  init("slash", "");
-  init("readyTotal", "");
-}
-
-export function clearStartingRoomGraphicsBottom(): void {
-  init("raceRanked", "");
-  init("raceRankedIcon", "");
-  init("raceFormat", "");
-  init("raceFormatIcon", "");
-  init("goal", "");
-  init("raceGoal", "");
-}
-
-// This clears the graphics that appear in the starting room after the race has started
-export function clearPostRaceStartGraphics(): void {
-  init("seeded-starting-item", "");
-  init("seeded-starting-build", "");
-  init("seeded-item1", "");
-  init("seeded-item2", "");
-  init("seeded-item3", "");
-  init("seeded-item4", "");
-  init("seeded-item5", "");
-  init("diversity-active", "");
-  init("diversity-passives", "");
-  init("diversity-trinket", "");
-  init("diversity-item1", "");
-  init("diversity-item2", "");
-  init("diversity-item3", "");
-  init("diversity-item4", "");
-  init("diversity-item5", "");
 }
 */

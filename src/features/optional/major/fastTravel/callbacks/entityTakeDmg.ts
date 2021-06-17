@@ -1,7 +1,10 @@
 import g from "../../../../../globals";
 import { isSelfDamage } from "../../../../../misc";
 
-export function main(tookDamage: Entity, damageFlags: DamageFlag): void {
+export function entityTakeDmgPlayer(
+  tookDamage: Entity,
+  damageFlags: DamageFlag,
+): void {
   if (!g.config.fastTravel) {
     return;
   }

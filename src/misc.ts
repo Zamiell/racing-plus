@@ -1,23 +1,12 @@
 import {
-  CENTER_OF_2X2_ROOM,
   EXCLUDED_CHARACTERS,
-  MAX_POSSIBLE_RADIUS,
   MAX_VANILLA_ITEM_ID,
   RECOMMENDED_SHIFT_IDX,
 } from "./constants";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
+import log from "./log";
 import { CollectibleTypeCustom } from "./types/enums";
-
-export function anyPlayerHas(collectibleType: CollectibleType): boolean {
-  for (const player of getPlayers()) {
-    if (player.HasCollectible(collectibleType)) {
-      return true;
-    }
-  }
-
-  return false;
-}
 
 export function anyPlayerCloserThan(position: Vector, distance: int): boolean {
   const playersInRange = Isaac.FindInRadius(
@@ -27,6 +16,42 @@ export function anyPlayerCloserThan(position: Vector, distance: int): boolean {
   );
 
   return playersInRange.length > 0;
+}
+
+export function anyPlayerHasCollectible(
+  collectibleType: CollectibleType,
+): boolean {
+  for (const player of getPlayers()) {
+    if (player.HasCollectible(collectibleType)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+export function anyPlayerHasTrinket(trinketType: TrinketType): boolean {
+  for (const player of getPlayers()) {
+    if (player.HasTrinket(trinketType)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+export function arrayEquals<T>(array1: T[], array2: T[]): boolean {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    if (array1[i] !== array2[i]) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 export function changeRoom(roomIndex: int): void {
@@ -65,10 +90,6 @@ export function enteredRoomViaTeleport(): boolean {
   );
 }
 
-export function getFireDelayFromTearsStat(tearsStat: float): float {
-  return math.max(30 / tearsStat - 1, -0.9999);
-}
-
 export function getGridEntities(): GridEntity[] {
   const gridEntities: GridEntity[] = [];
   for (let gridIndex = 0; gridIndex < g.r.GetGridSize(); gridIndex++) {
@@ -81,7 +102,7 @@ export function getGridEntities(): GridEntity[] {
   return gridEntities;
 }
 
-export function getItemInitCharges(
+function getItemInitCharges(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): int {
   const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
@@ -92,7 +113,7 @@ export function getItemInitCharges(
   return itemConfigItem.InitCharge;
 }
 
-export function getItemMaxCharges(
+function getItemMaxCharges(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): int {
   const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
@@ -103,17 +124,16 @@ export function getItemMaxCharges(
   return itemConfigItem.MaxCharges;
 }
 
-export function getRoomEnemies(): Entity[] {
-  // Using FindInRadius() is faster than GetRoomEntities()
-  return Isaac.FindInRadius(
-    CENTER_OF_2X2_ROOM,
-    MAX_POSSIBLE_RADIUS,
-    EntityPartition.ENEMY,
-  );
-}
+export function getRoomNPCs(): EntityNPC[] {
+  const npcs: EntityNPC[] = [];
+  for (const entity of Isaac.GetRoomEntities()) {
+    const npc = entity.ToNPC();
+    if (npc !== null) {
+      npcs.push(npc);
+    }
+  }
 
-export function getTearsStat(fireDelay: float): float {
-  return 30 / (fireDelay + 1);
+  return npcs;
 }
 
 export function getTotalCollectibles(collectibleType: CollectibleType): int {
@@ -219,7 +239,7 @@ export function initGlowingItemSprite(
     const paddedNumber = collectibleType.toString().padStart(3, "0");
     fileNum = paddedNumber;
   } else {
-    fileNum = "NEW";
+    fileNum = "NEW"; // This is a "Curse of the Blind" item sprite
   }
 
   return initSprite(
@@ -301,10 +321,6 @@ export function isPostBossVoidPortal(gridEntity: GridEntity): boolean {
   return saveState.VarData === 1;
 }
 
-export function log(msg: string): void {
-  Isaac.DebugString(msg);
-}
-
 export function moveEsauNextToJacob(): void {
   const esaus = Isaac.FindByType(
     EntityType.ENTITY_PLAYER,
@@ -337,8 +353,6 @@ export function movePlayersAndFamiliars(position: Vector): void {
   }
 }
 
-export function pass(): void {}
-
 export function playingOnSetSeed(): boolean {
   const customRun = g.seeds.IsCustomRun();
   const challenge = Isaac.GetChallenge();
@@ -346,6 +360,7 @@ export function playingOnSetSeed(): boolean {
   return challenge === Challenge.CHALLENGE_NULL && customRun;
 }
 
+/*
 export function printAllFlags(flags: int, maxShift: int): void {
   for (let i = 0; i <= maxShift; i++) {
     if (hasFlag(flags, 1 << i)) {
@@ -353,7 +368,9 @@ export function printAllFlags(flags: int, maxShift: int): void {
     }
   }
 }
+*/
 
+/*
 export function openAllDoors(): void {
   for (let i = 0; i <= 7; i++) {
     const door = g.r.GetDoor(i);
@@ -364,6 +381,7 @@ export function openAllDoors(): void {
     }
   }
 }
+*/
 
 export function removeGridEntity(gridEntity: GridEntity): void {
   const gridIndex = gridEntity.GetGridIndex();
@@ -374,9 +392,7 @@ export function removeItemFromItemTracker(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
   const itemConfig = g.itemConfig.GetCollectible(collectibleType);
-  Isaac.DebugString(
-    `Removing collectible ${collectibleType} (${itemConfig.Name})`,
-  );
+  log(`Removing collectible ${collectibleType} (${itemConfig.Name})`);
 }
 
 export function restartAsCharacter(character: PlayerType): void {

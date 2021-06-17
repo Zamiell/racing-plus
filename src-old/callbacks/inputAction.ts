@@ -4,10 +4,9 @@
 //
 
 function InputAction.IsActionTriggeredPillCard() {
-  // Local variables
+  // We can't use cached API functions in this callback or else the game will crash
   const game = Game()
   const room = game.GetRoom()
-  // (we can't use cached API functions in this callback || } else { the game will crash)
   const roomFrameCount = room.GetFrameCount()
 
   // Disable using cards/pills if ( we are in the trapdoor animation
@@ -26,7 +25,6 @@ function InputAction.IsActionTriggeredDrop() {
     return
   }
 
-  // Local variables
   const game = Game()
   const player = Isaac.GetPlayer()
   // (we can't use cached API functions in this callback || } else { the game will crash)
@@ -92,7 +90,6 @@ function InputAction.GetActionValueShoot(buttonAction)
 
 // Fix the bug where diagonal knife throws have a 1-frame window when playing on keyboard (2/2)
 function InputAction.KnifeDiagonalFix(buttonAction)
-  // Local variables
   const player = Isaac.GetPlayer()
   // (we can't use cached API functions in this callback || } else { the game will crash)
 

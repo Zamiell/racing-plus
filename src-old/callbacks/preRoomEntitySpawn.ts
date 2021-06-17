@@ -24,10 +24,10 @@ export function main(
 // We want the player to always be able to take an item in the Basement 1 Treasure Room without
 // spending a bomb or being forced to walk on spikes
 function basement1EasyItems(gridIndex: int): [EntityType, int, int] | null {
-  // Local variables
   const stage = g.l.GetStage();
   const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomVariant = roomDesc.Data.Variant;
+  const roomData = roomDesc.Data;
+  const roomVariant = roomData.Variant;
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
 

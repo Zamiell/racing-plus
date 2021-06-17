@@ -195,13 +195,14 @@ Post-flip actions:
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `055` The tears that explode out of enemies when you have Vasculitis are faded.
+- `055` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
+- `056` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `056` The Hush door will be automatically opened.
-- `057` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
-- `058` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `057` The Hush door will be automatically opened.
+- `058` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `059` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 
 ### 6) Gameplay Changes
 

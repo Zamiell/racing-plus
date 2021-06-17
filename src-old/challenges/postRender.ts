@@ -1,11 +1,4 @@
-import g from "../globals";
-import { CHALLENGE_DEFINITIONS } from "./constants";
-import { ChallengeCustom } from "./enums";
-import { inSpeedrun } from "./misc";
-import * as season6 from "./season6";
-import * as season7 from "./season7";
-import * as season8 from "./season8";
-
+/*
 export function main(): void {
   if (!inSpeedrun()) {
     return;
@@ -23,7 +16,6 @@ export function main(): void {
 }
 
 function checkRestart() {
-  // Local variables
   const isaacFrameCount = Isaac.GetFrameCount();
 
   // We grabbed the checkpoint, so fade out the screen before we reset
@@ -49,7 +41,6 @@ function checkRestart() {
 
 // Called from the "PostRender.Main()" function
 function displayCharProgress() {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
   // Don't show the progress if we are not in the custom challenge
@@ -88,7 +79,6 @@ function displayCharProgress() {
     g.speedrun.sprites.season.SetFrame("Default", 0);
   }
 
-  // Local variables
   const digitLength = 7.25;
   const startingX = 23;
   const startingY = 79;
@@ -158,3 +148,4 @@ function displayCharProgress() {
   g.speedrun.sprites.season.SetFrame("Default", 0);
   g.speedrun.sprites.season.RenderLayer(0, posSeason);
 }
+*/

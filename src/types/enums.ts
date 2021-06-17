@@ -2,11 +2,6 @@ export enum EntityTypeCustom {
   ENTITY_RACE_TROPHY = Isaac.GetEntityTypeByName("Race Trophy"),
 }
 
-// EntityType.ENTITY_PICKUP (5)
-export enum PickupVariantCustom {
-  INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup"),
-}
-
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
   PITFALL_CUSTOM = Isaac.GetEntityVariantByName("Pitfall (Custom)"),
@@ -40,6 +35,10 @@ export enum PickupPriceCustom {
 export enum EffectSubTypeCustom {
   // We re-use the same subtype that is used in StageAPI for consistency
   FLOOR_EFFECT_CREEP = 12345, // There is no "Isaac.GetEntitySubTypeByName()" function
+}
+
+export enum SoundEffectCustom {
+  SOUND_SPEEDRUN_FINISH = Isaac.GetSoundIdByName("Speedrun Finish"),
 }
 
 // Needs to be here to avoid a dependency cycle

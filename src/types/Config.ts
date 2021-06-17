@@ -34,6 +34,7 @@ export default class Config {
   speedUpFadeIn = true;
   subvertTeleport = true;
   deleteVoidPortals = true;
+  showNumSacrifices = true;
   fadeVasculitisTears = true;
   openHushDoor = true;
   showPills = true;

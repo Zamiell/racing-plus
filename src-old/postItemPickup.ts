@@ -300,7 +300,6 @@ function insertCard(card: EntityPickup) {
 }
 
 function checkPocketSlotOpen() {
-  // Local variables
   const card1 = g.p.GetCard(0); // Returns 0 if no card
   const card2 = g.p.GetCard(1); // Returns 0 if no card
   const pill1 = g.p.GetPill(0); // Returns 0 if no pill
@@ -308,7 +307,7 @@ function checkPocketSlotOpen() {
   const slot1Open = card1 === 0 && pill1 === 0;
   const slot2Open = card2 === 0 && pill2 === 0;
 
-  const slots = g.p.GetMaxPoketItems();
+  const slots = g.p.GetMaxPocketItems();
   if (slots === 1) {
     return slot1Open;
   }
@@ -337,7 +336,6 @@ function insertTrinket(trinket: EntityPickup) {
 }
 
 function checkTrinketSlotOpen() {
-  // Local variables
   const trinket1 = g.p.GetTrinket(0); // Returns 0 if no trinket
   const trinket2 = g.p.GetTrinket(1); // Returns 0 if no trinket
   const slot1Open = trinket1 === 0;

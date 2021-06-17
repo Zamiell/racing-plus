@@ -3,7 +3,6 @@ import * as removeKarma from "../features/mandatory/removeKarma";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
-import * as socket from "../features/optional/major/socket";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
@@ -11,7 +10,8 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import * as racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
-import { getPlayers, log } from "../misc";
+import log from "../log";
+import { getPlayers } from "../misc";
 import * as saveDat from "../saveDat";
 import { CollectibleTypeCustom, SaveFileState } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
@@ -41,7 +41,7 @@ export function main(isContinued: boolean): void {
   g.run = new GlobalsRun(getPlayers());
 
   // Check for errors that should prevent the Racing+ mod from doing anything
-  if (checkCorruptMod() || saveFileCheck.isNotFullyUnlocked()) {
+  if (isCorruptMod() || !saveFileCheck.isFullyUnlocked()) {
     return;
   }
 
@@ -52,7 +52,7 @@ export function main(isContinued: boolean): void {
   centerStart.postGameStarted();
 
   // Optional features - Major
-  socket.postGameStarted();
+  racePostGameStarted.main();
   startWithD6.postGameStarted();
 
   // Optional features - Quality of Life
@@ -73,9 +73,6 @@ export function main(isContinued: boolean): void {
       CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
     );
   }
-
-  // Do more run initialization things specifically pertaining to races
-  racePostGameStarted.main();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)
@@ -117,7 +114,7 @@ export function continued(): void {
 // loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2")
 // Racing+ removes boss cutscenes, so this value should be 0
 // This function returns true if the PostGameStarted callback should halt
-function checkCorruptMod() {
+function isCorruptMod() {
   const sprite = Sprite();
   sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
   sprite.SetFrame("Scene", 0);

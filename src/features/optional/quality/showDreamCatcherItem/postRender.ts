@@ -23,7 +23,11 @@ function repositionPlayer() {
 }
 
 function drawItemSprites() {
-  const playerSprite = g.p.GetSprite();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+  const playerSprite = player.GetSprite();
   const playerAnimation = playerSprite.GetAnimation();
 
   if (g.run.slideAnimationHappening && playerAnimation !== "Appear") {

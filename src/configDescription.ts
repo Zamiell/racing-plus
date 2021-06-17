@@ -346,10 +346,19 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fadeVasculitisTears",
+    "showNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "055",
+      "Show the number of sacrifices",
+      "Show the number of sacrifices in the top-left when in a Sacrifice Room.",
+    ],
+  ],
+  [
+    "fadeVasculitisTears",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "056",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -358,7 +367,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "openHushDoor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "056",
+      "057",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -367,7 +376,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "057",
+      "058",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -376,7 +385,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "059",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],

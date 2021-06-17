@@ -99,7 +99,6 @@ export function heart(pickup: EntityPickup): void {
 
 // PickupVariant.PICKUP_COIN (20)
 export function coin(pickup: EntityPickup): void {
-  // Local variables
   const sprite = pickup.GetSprite();
   const data = pickup.GetData();
 

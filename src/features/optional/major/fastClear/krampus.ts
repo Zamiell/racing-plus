@@ -1,5 +1,5 @@
 import g from "../../../../globals";
-import { getRandom } from "../../../../misc";
+import { anyPlayerHasCollectible, getRandom } from "../../../../misc";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;
@@ -75,11 +75,11 @@ function getKrampusBans() {
   let coalBanned = false;
   let headBanned = false;
 
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)) {
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)) {
     coalBanned = true;
   }
 
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS)) {
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS)) {
     headBanned = true;
   }
 

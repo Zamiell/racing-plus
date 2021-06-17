@@ -1,5 +1,6 @@
 import g from "../../../globals";
-import { getPlayers, giveItemAndRemoveFromPools, log } from "../../../misc";
+import log from "../../../log";
+import { getPlayers, giveItemAndRemoveFromPools } from "../../../misc";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [

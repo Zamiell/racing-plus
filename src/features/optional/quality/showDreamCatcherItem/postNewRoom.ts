@@ -1,9 +1,9 @@
 import g from "../../../../globals";
 import {
-  anyPlayerHas,
+  anyPlayerHasCollectible,
   changeRoom,
-  getRoomEnemies,
   getRoomIndex,
+  getRoomNPCs,
   initGlowingItemSprite,
   initSprite,
 } from "../../../../misc";
@@ -93,7 +93,7 @@ function shouldWarp() {
   const roomIndex = getRoomIndex();
 
   return (
-    anyPlayerHas(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
     g.run.level.dreamCatcher.warpState === WarpState.Initial &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
@@ -152,9 +152,8 @@ function getRoomItemsAndSetPrice() {
 
 function getRoomBosses() {
   const bosses: Array<[int, int]> = [];
-  for (const entity of getRoomEnemies()) {
-    const npc = entity.ToNPC();
-    if (npc !== null && npc.IsBoss()) {
+  for (const npc of getRoomNPCs()) {
+    if (npc.IsBoss() && !isBossException(npc.Type, npc.Variant)) {
       const bossArray: [int, int] = [npc.Type, npc.Variant];
       if (!bossInArray(bossArray, bosses)) {
         bosses.push(bossArray);
@@ -163,6 +162,18 @@ function getRoomBosses() {
   }
 
   return bosses;
+}
+
+function isBossException(type: EntityType, variant: int) {
+  if (type === EntityType.ENTITY_GEMINI) {
+    // 79.10 is Gemini Baby
+    // 79.11 is Stephen Baby
+    // 79.12 is The Blighted Ovum Baby
+    // 79.20 is Umbilical Cord
+    return variant === 10 || variant === 11 || variant === 12 || variant === 20;
+  }
+
+  return false;
 }
 
 // We have to make a custom function for this because arrays are passed by reference
@@ -240,6 +251,11 @@ function initBossSprite(entityType: EntityType, variant: int) {
     error(`Failed to find the boss of ${entityType} in the boss PNG map.`);
   }
   const pngFileName = pngArray[variant];
+  if (pngFileName === undefined) {
+    error(
+      `Failed to find the boss of ${entityType}.${variant} in the boss PNG map.`,
+    );
+  }
   const pngPath = `gfx/ui/boss/${pngFileName}`;
   return initSprite("gfx/boss.anm2", pngPath);
 }

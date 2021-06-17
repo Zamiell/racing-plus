@@ -1,4 +1,5 @@
 import g from "../../../../globals";
+import { anyPlayerHasCollectible, anyPlayerHasTrinket } from "../../../../misc";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 24;
@@ -45,9 +46,9 @@ export function spawnKeyPiece(npc: EntityNPC): void {
   // Do not drop any key pieces if the player already has both of them
   // (this matches the behavior of vanilla)
   if (
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) && // 238
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) && // 239
-    !g.p.HasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS) // 123
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) && // 238
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) && // 239
+    !anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS) // 123
   ) {
     return;
   }
@@ -65,7 +66,7 @@ export function spawnKeyPiece(npc: EntityNPC): void {
 }
 
 function getKeySubType(npc: EntityNPC) {
-  if (g.p.HasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS)) {
+  if (anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS)) {
     // Even if the player has both key pieces,
     // Filigree Feather will still make an angel drop a random item
     return CollectibleType.COLLECTIBLE_NULL; // A random item
@@ -73,14 +74,14 @@ function getKeySubType(npc: EntityNPC) {
 
   if (
     npc.Type === EntityType.ENTITY_URIEL &&
-    !g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
   }
 
   if (
     npc.Type === EntityType.ENTITY_GABRIEL &&
-    !g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_2;
   }
@@ -88,11 +89,11 @@ function getKeySubType(npc: EntityNPC) {
   // In vanilla, angels will always drop their respective key piece
   // Since it is possible on Racing+ for two of the same angel to spawn,
   // ensure that an angel will drop the other key piece instead of dropping nothing
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)) {
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_2;
   }
 
-  if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)) {
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
   }
 

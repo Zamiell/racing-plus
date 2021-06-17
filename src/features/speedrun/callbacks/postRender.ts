@@ -1,4 +1,3 @@
-import g from "../../../globals";
 import { restartAsCharacter } from "../../../misc";
 import {
   checkValidCharOrder,
@@ -16,13 +15,17 @@ export function checkRestartWrongCharacter(): boolean {
     return false;
   }
 
-  const character = g.p.GetPlayerType();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return false;
+  }
+  const character = player.GetPlayerType();
   const characterForThisSpeedrun = getCurrentCharacter();
 
-  if (character !== characterForThisSpeedrun) {
-    restartAsCharacter(characterForThisSpeedrun);
-    return true;
+  if (character === characterForThisSpeedrun) {
+    return false;
   }
 
-  return false;
+  restartAsCharacter(characterForThisSpeedrun);
+  return true;
 }

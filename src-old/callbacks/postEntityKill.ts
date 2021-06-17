@@ -19,7 +19,6 @@ export function mom(_entity: Entity): void {
 // EntityType.ENTITY_MOMS_HEART (78)
 // EntityType.ENTITY_HUSH (407)
 export function momsHeart(entity: Entity): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
@@ -63,7 +62,6 @@ export function momsHeart(entity: Entity): void {
 }
 
 function hushKilled() {
-  // Local variables
   const centerPos = g.r.GetCenterPos();
   const challenge = Isaac.GetChallenge();
 

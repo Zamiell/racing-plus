@@ -1,6 +1,5 @@
 /*
 export function toggle(): void {
-  // Local variables
   const isaacFrameCount = Isaac.GetFrameCount();
 
   // Only allow the input to be pressed once every 30 frames (1 second)
@@ -22,7 +21,6 @@ export function isActionPressed(): boolean | null {
     return null;
   }
 
-  // Local variables
   const player = Isaac.GetPlayer();
   // (we can't use cached API functions in this callback or else the game will crash)
   if (player === null) {
@@ -62,7 +60,6 @@ export function getActionValue(_buttonAction: ButtonAction): int | null {
     return null;
   }
 
-  // Local variables
   const player = Isaac.GetPlayer();
   // (we can't use cached API functions in this callback or else the game will crash)
   if (player === null) {

@@ -52,7 +52,6 @@ export function checkDisplayRaceSpeedrun(): void {
 
 /*
 export function checkDisplaySeededDeath(): void {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {

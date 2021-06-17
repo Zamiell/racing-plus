@@ -3,7 +3,6 @@
 // This is in order to fix seed "incrementation" from touching active pedestal items over and over
 // Additionally, we also do some other various pedestal fixes
 export function replace(pickup: EntityPickup): void {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
@@ -401,7 +400,6 @@ export function replace(pickup: EntityPickup): void {
 }
 
 function getSeed(pickup: EntityPickup, playerGenerated: boolean) {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const roomSeed = g.r.GetSpawnSeed();
 

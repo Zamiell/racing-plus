@@ -13,7 +13,6 @@ Test to see what happens if Soul dies in seeded death
 /*
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
   const character = g.p.GetPlayerType();
@@ -84,7 +83,6 @@ export function postUpdate(): void {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  // Local variables
   const playerSprite = g.p.GetSprite();
 
   if (g.run.seededDeath.state === SeededDeathState.FETAL_POSITION) {
@@ -99,7 +97,6 @@ export function postRender(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // Local variables
   const effects = g.p.GetEffects();
 
   // Add a temporary Holy Mantle effect for Keeper after a seeded revival
@@ -165,7 +162,6 @@ export function postNewRoom(): void {
 }
 
 export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const character = g.p.GetPlayerType();
@@ -323,7 +319,6 @@ export function postNewRoomCheckSacrificeRoom(): void {
 }
 
 function debuffOn() {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const playerSprite = g.p.GetSprite();
@@ -423,7 +418,6 @@ function debuffOn() {
 }
 
 function debuffOff() {
-  // Local variables
   const stage = g.l.GetStage();
   const playerSprite = g.p.GetSprite();
   const character = g.p.GetPlayerType();

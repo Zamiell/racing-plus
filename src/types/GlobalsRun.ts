@@ -1,4 +1,6 @@
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
+import SeededDeathState from "../features/race/types/SeededDeathState";
+import log from "../log";
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
 import PickingUpItemDescription from "./PickingUpItemDescription";
@@ -17,7 +19,11 @@ export default class GlobalsRun {
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
+  /** Used to go to a new floor on game frame 0. */
+  forceNextLevel = false; //
   room = new GlobalsRunRoom(true);
+  /** Used to go to a new room on game frame 0. */
+  forceNextRoom = false;
 
   currentCharacters = new LuaTable<ControllerIndexString, PlayerType>();
   debugChaosCard = false;
@@ -87,6 +93,8 @@ export default class GlobalsRun {
     reseed: false,
   };
 
+  fireworksSpawned = 0;
+
   freeDevilItem = {
     tookDamage: new LuaTable<ControllerIndexString, boolean>(),
     granted: false,
@@ -122,6 +130,10 @@ export default class GlobalsRun {
   restart = false;
   roomsEntered = 0;
 
+  seededDeath = {
+    state: SeededDeathState.Disabled,
+  };
+
   seededDrops = {
     roomClearAwardSeed: 0,
     roomClearAwardSeedDevilAngel: 0,
@@ -141,6 +153,15 @@ export default class GlobalsRun {
 
   switchForgotten = false;
   transformations = new LuaTable<ControllerIndexString, boolean[]>();
+
+  trophy = {
+    spawned: false,
+    stage: 0,
+    roomIndex: 0,
+    position: Vector.Zero,
+  };
+
+  victoryLaps = 0;
 
   // Initialize variables that are tracked per player
   // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
@@ -178,7 +199,7 @@ export function initPlayerVariables(
   }
   run.transformations.set(index, transformationArray);
 
-  Isaac.DebugString(`Initialized variables for player: ${index}`);
+  log(`Initialized variables for player: ${index}`);
 }
 
 export function getPlayerLuaTableIndex(player: EntityPlayer): string {

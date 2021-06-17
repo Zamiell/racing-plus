@@ -1,9 +1,9 @@
 import g from "../../../globals";
+import log from "../../../log";
 import {
   anyPlayerCloserThan,
   enteredRoomViaTeleport,
   getPlayers,
-  log,
   moveEsauNextToJacob,
 } from "../../../misc";
 

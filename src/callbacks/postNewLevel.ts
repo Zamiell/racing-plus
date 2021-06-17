@@ -1,10 +1,10 @@
 import * as streakText from "../features/mandatory/streakText";
-import * as socket from "../features/optional/major/socket";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
-import { getPlayers, log } from "../misc";
+import log from "../log";
+import { getPlayers } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
@@ -14,22 +14,28 @@ export function main(): void {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  log(`MC_POST_NEW_LEVEL - ${stage}.${stageType}`);
+  log(
+    `MC_POST_NEW_LEVEL - ${stage}.${stageType} (game frame ${gameFrameCount})`,
+  );
 
   // Make sure the callbacks run in the right order
   // (naturally, PostNewLevel gets called before the PostGameStarted callbacks)
-  if (gameFrameCount === 0) {
+  if (gameFrameCount === 0 && !g.run.forceNextLevel) {
     return;
   }
+  g.run.forceNextLevel = false;
 
   newLevel();
 }
 
 export function newLevel(): void {
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  log(`MC_POST_NEW_LEVEL_2 - ${stage}.${stageType}`);
+  log(
+    `MC_POST_NEW_LEVEL_2 - ${stage}.${stageType} (game frame ${gameFrameCount})`,
+  );
 
   // Clear variables that track things per level
   g.run.level = new GlobalsRunLevel(stage, stageType);
@@ -44,7 +50,6 @@ export function newLevel(): void {
   }
 
   // Major
-  socket.postNewLevel(stage, stageType);
   racePostNewLevel.main();
 
   // QoL

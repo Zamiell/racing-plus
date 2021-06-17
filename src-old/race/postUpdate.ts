@@ -3,9 +3,7 @@ export function main(): void {
   // We do not want to return if we are not in a race,
   // as there are also speedrun-related checks in the follow functions
   check3DollarBill();
-  checkFireworks();
   checkKeeperHolyMantle();
-  checkFinalRoom();
   seededDeath.postUpdate();
 }
 
@@ -29,72 +27,8 @@ function check3DollarBill() {
   }
 }
 
-// Make race winners get sparkles and fireworks
-function checkFireworks() {
-  // Local variables
-  const gameFrameCount = g.g.GetFrameCount();
-
-  // Make fireworks quieter
-  if (
-    Isaac.CountEntities(
-      null,
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.FIREWORKS,
-      -1,
-    ) > 0 &&
-    g.sfx.IsPlaying(SoundEffect.SOUND_BOSS1_EXPLOSIONS)
-  ) {
-    g.sfx.AdjustVolume(SoundEffect.SOUND_BOSS1_EXPLOSIONS, 0.2);
-  }
-
-  // Do something special for a first place finish (or a speedrun completion)
-  if (
-    (g.raceVars.finished === true &&
-      g.race.status === "none" &&
-      g.race.place === 1 &&
-      g.race.numEntrants >= 3) ||
-    g.speedrun.finished
-  ) {
-    // Give Isaac sparkly feet (1000.103.0)
-    const randomVector = RandomVector().__mul(10);
-    const blingPosition = g.p.Position.__add(randomVector);
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.ULTRA_GREED_BLING,
-      0,
-      blingPosition,
-      Vector.Zero,
-      null,
-    );
-
-    // Spawn 30 fireworks (1000.104.0)
-    // (some can be duds randomly && ! spawn any fireworks after the 20 frame countdown)
-    if (g.raceVars.fireworks < 40 && gameFrameCount % 20 === 0) {
-      for (let i = 0; i < 5; i++) {
-        g.raceVars.fireworks += 1;
-        const fireworkPos = misc.gridToPos(
-          math.random(1, 11),
-          math.random(2, 8),
-        );
-        const firework = Isaac.Spawn(
-          EntityType.ENTITY_EFFECT,
-          EffectVariant.FIREWORKS,
-          0,
-          fireworkPos,
-          Vector.Zero,
-          null,
-        ).ToEffect();
-        if (firework !== null) {
-          firework.SetTimeout(20);
-        }
-      }
-    }
-  }
-}
-
 // Check to see if Keeper took damage with his temporary Holy Mantle
 function checkKeeperHolyMantle() {
-  // Local variables
   const effects = g.p.GetEffects();
 
   if (
@@ -102,70 +36,6 @@ function checkKeeperHolyMantle() {
     !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
   ) {
     g.run.level.tempHolyMantle = false;
-  }
-}
-
-function checkFinalRoom() {
-  if (!g.raceVars.finished) {
-    return;
-  }
-
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-  const roomFrameCount = g.r.GetFrameCount();
-
-  if (roomFrameCount !== 1) {
-    return;
-  }
-
-  for (const button of g.run.level.buttons) {
-    if (button.roomIndex === roomIndex) {
-      sprites.init(`${button.type}-button`, `${button.type}-button`);
-
-      // The buttons will cause the door to close, so re-open the door
-      // (thankfully, the door will stay open since the room is already cleared)
-      misc.openAllDoors();
-    }
-  }
-}
-
-export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
-  if (!g.raceVars.finished) {
-    return;
-  }
-
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-
-  for (const button of g.run.level.buttons) {
-    if (button.type === "victory-lap" && button.roomIndex === roomIndex) {
-      if (
-        gridEntity.GetSaveState().State === 3 &&
-        gridEntity.Position.X === button.pos.X &&
-        gridEntity.Position.Y === button.pos.Y
-      ) {
-        sprites.init(`${button.type}-button`, "");
-        removeGridEntity(gridEntity)
-
-        race.victoryLap();
-      }
-    }
-
-    if (button.type === "dps" && button.roomIndex === roomIndex) {
-      if (
-        gridEntity.GetSaveState().State === 3 &&
-        gridEntity.Position.X === button.pos.X &&
-        gridEntity.Position.Y === button.pos.Y
-      ) {
-        sprites.init(`${button.type}-button`, "");
-        removeGridEntity(gridEntity)
-
-        // Disable this button
-        button.roomIndex = 999999;
-
-        PotatoDummy.Spawn();
-      }
-    }
   }
 }
 */

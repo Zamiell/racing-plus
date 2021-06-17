@@ -1,8 +1,10 @@
 import g from "../../../globals";
 import { giveItemAndRemoveFromPools, playingOnSetSeed } from "../../../misc";
 import { CollectibleTypeCustom } from "../../../types/enums";
-import * as socket from "../../optional/major/socket";
 import { COLLECTIBLE_13_LUCK_SERVER_ID } from "../constants";
+import * as raceRoom from "../raceRoom";
+import * as socket from "../socket";
+import * as startingRoom from "../startingRoom";
 import * as tempMoreOptions from "../tempMoreOptions";
 
 export function main(): void {
@@ -10,10 +12,10 @@ export function main(): void {
     return;
   }
 
-  // If we are not in a race, don't do anything
-  if (g.race.status === "none") {
-    return;
-  }
+  socket.postGameStarted();
+
+  raceRoom.resetSprites();
+  startingRoom.resetSprites();
 
   // For race validation purposes, use the 0th player
   const player = Isaac.GetPlayer();
@@ -21,18 +23,18 @@ export function main(): void {
     return;
   }
 
-  if (
-    !validateChallenge() ||
-    !validateDifficulty() ||
-    !validateSeed() ||
-    !validateCharacter(player)
-  ) {
+  if (!validateRace(player)) {
     return;
   }
-
   socket.send("runMatchesRuleset");
 
-  // Give extra items depending on the format
+  giveFormatItems(player);
+
+  raceRoom.initSprites();
+  startingRoom.initSprites();
+}
+
+function giveFormatItems(player: EntityPlayer) {
   switch (g.race.format) {
     case "unseeded": {
       if (g.race.ranked && g.race.solo) {
@@ -58,6 +60,20 @@ export function main(): void {
       break;
     }
   }
+}
+
+function validateRace(player: EntityPlayer) {
+  return (
+    validateInRace() &&
+    validateChallenge() &&
+    validateDifficulty() &&
+    validateSeed() &&
+    validateCharacter(player)
+  );
+}
+
+function validateInRace() {
+  return g.race.status !== "none";
 }
 
 function validateChallenge() {
@@ -139,6 +155,11 @@ function validateCharacter(player: EntityPlayer) {
 }
 
 function unseeded(player: EntityPlayer) {
+  // If the race has not started yet, don't give the items
+  if (g.race.status !== "in progress") {
+    return;
+  }
+
   // Unseeded is like vanilla,
   // but the player will still start with More Options to reduce the resetting time
   tempMoreOptions.give(player);
@@ -177,35 +198,10 @@ function seeded(player: EntityPlayer) {
   // Since this race type has a custom death mechanic, we also want to remove the Broken Ankh
   // (since we need the custom revival to always take priority over random revivals)
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
-
-  // Initialize the sprites for the starting room
-  // (but don't show these graphics until the race starts)
-  if (g.race.status === "in progress") {
-    // TODO
-    /*
-    if (g.race.startingItems.length === 1) {
-      sprites.init("seeded-starting-item", "seeded-starting-item");
-      sprites.init("seeded-item1", g.race.startingItems[0].toString());
-    } else if (g.race.startingItems.length === 2) {
-      sprites.init("seeded-starting-build", "seeded-starting-build");
-      sprites.init("seeded-item2", g.race.startingItems[0].toString());
-      sprites.init("seeded-item3", g.race.startingItems[1].toString());
-    } else if (g.race.startingItems.length === 4) {
-      // Only the Mega Blast build has 4 starting items
-      sprites.init("seeded-starting-build", "seeded-starting-build");
-      sprites.init("seeded-item2", g.race.startingItems[1].toString());
-      sprites.init("seeded-item3", g.race.startingItems[2].toString());
-      // This will be to the left of 2
-      sprites.init("seeded-item4", g.race.startingItems[0].toString());
-      // This will be to the right of 3
-      sprites.init("seeded-item5", g.race.startingItems[3].toString());
-    }
-    */
-  }
 }
 
 export function diversity(player: EntityPlayer): void {
-  // If the diversity race has not started yet, don't give the items
+  // If the race has not started yet, don't give the items
   if (g.race.status !== "in progress") {
     return;
   }
@@ -269,17 +265,4 @@ export function diversity(player: EntityPlayer): void {
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D4);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D100);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY);
-
-  // Initialize the sprites for the starting room
-  // TODO
-  /*
-  sprites.init("diversity-active", "diversity-active");
-  sprites.init("diversity-passives", "diversity-passives");
-  sprites.init("diversity-trinket", "diversity-trinket");
-  sprites.init("diversity-item1", startingItems[0].toString());
-  sprites.init("diversity-item2", startingItems[1].toString());
-  sprites.init("diversity-item3", startingItems[2].toString());
-  sprites.init("diversity-item4", startingItems[3].toString());
-  sprites.init("diversity-item5", startingItems[4].toString());
-  */
 }

@@ -5,7 +5,7 @@ declare const MinimapAPI: {
   GetRoomByIdx(roomIndex: int): MinimapAPIRoomDescriptor;
 };
 
-declare interface MinimapAPIRoomDescriptor {
+interface MinimapAPIRoomDescriptor {
   Remove(): void;
   DisplayFlags: int;
 }

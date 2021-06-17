@@ -1,10 +1,10 @@
 // For testing, a seed with a black market is: 2SB2 M4R6
 
 import g from "../../../../globals";
+import log from "../../../../log";
 import {
   getGridEntities,
   getRoomIndex,
-  log,
   movePlayersAndFamiliars,
   teleport,
 } from "../../../../misc";
@@ -116,12 +116,15 @@ function checkPostRoomTransitionSubvert() {
   if (direction !== Direction.NO_DIRECTION) {
     const gridPosition = BOSS_ROOM_ENTER_MAP.get(direction);
     if (gridPosition !== undefined) {
-      g.p.Position = g.r.GetGridPosition(gridPosition);
-      g.run.level.fastTravel.subvertedRoomTransitionDirection =
-        Direction.NO_DIRECTION;
-      log(
-        "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
-      );
+      const player = Isaac.GetPlayer();
+      if (player !== null) {
+        player.Position = g.r.GetGridPosition(gridPosition);
+        g.run.level.fastTravel.subvertedRoomTransitionDirection =
+          Direction.NO_DIRECTION;
+        log(
+          "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
+        );
+      }
     }
   }
 }

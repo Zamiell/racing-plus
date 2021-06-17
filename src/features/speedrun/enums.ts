@@ -1,5 +1,5 @@
-export const SEASON_1_NAME = "R+7 (Season 1)";
-export const CHANGE_CHAR_ORDER_NAME = "Change Char Order";
+const SEASON_1_NAME = "R+7 (Season 1)";
+const CHANGE_CHAR_ORDER_NAME = "Change Char Order";
 
 export enum ChallengeCustom {
   SEASON_1 = Isaac.GetChallengeIdByName(SEASON_1_NAME),

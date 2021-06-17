@@ -1,6 +1,11 @@
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
-import { initSprite, isActionPressedOnAnyInput, log } from "../../../misc";
+import log from "../../../log";
+import {
+  anyPlayerHasCollectible,
+  initSprite,
+  isActionPressedOnAnyInput,
+} from "../../../misc";
 
 const NUM_PILLS_IN_POOL = 13;
 
@@ -151,8 +156,8 @@ function checkPHD() {
   }
 
   if (
-    !g.p.HasCollectible(CollectibleType.COLLECTIBLE_PHD) &&
-    !g.p.HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PHD) &&
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
   ) {
     return;
   }
@@ -175,7 +180,7 @@ function checkFalsePHD() {
     return;
   }
 
-  if (!g.p.HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) {
+  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) {
     return;
   }
 

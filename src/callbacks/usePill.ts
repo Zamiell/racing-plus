@@ -3,7 +3,12 @@ import * as showPills from "../features/optional/quality/showPills";
 import g from "../globals";
 
 export function main(pillEffect: PillEffect): void {
-  checkNewPill(g.p, pillEffect);
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+
+  checkNewPill(player, pillEffect);
   showStreakText(pillEffect);
 }
 

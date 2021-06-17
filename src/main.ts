@@ -27,7 +27,7 @@ import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as useCard from "./callbacks/useCard";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
-import { log } from "./misc";
+import log from "./log";
 import * as modConfigMenu from "./modConfigMenu";
 import * as saveDat from "./saveDat";
 
@@ -61,6 +61,7 @@ function registerCallbacks(racingPlus: Mod) {
   // Register callbacks that take a 3rd argument for a specific entity
   registerNPCUpdateCallbacks(racingPlus); // 0
   registerPostFamiliarInitCallbacks(racingPlus); // 7
+  registerEntityTakeDmgCallbacks(racingPlus); // 11
   registerPostPickupInitCallbacks(racingPlus); // 34
   registerPostTearUpdateCallbacks(racingPlus); // 40
   registerPostEffectInitCallbacks(racingPlus); // 54
@@ -75,7 +76,6 @@ function registerMiscCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
   racingPlus.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
   racingPlus.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
-  racingPlus.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.main); // 11
   racingPlus.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
   racingPlus.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
   racingPlus.AddCallback(
@@ -146,6 +146,15 @@ function registerPostFamiliarInitCallbacks(racingPlus: Mod) {
     ModCallbacks.MC_FAMILIAR_INIT,
     postFamiliarInit.paschalCandle,
     FamiliarVariant.PASCHAL_CANDLE, // 221
+  );
+}
+
+// 11
+function registerEntityTakeDmgCallbacks(racingPlus: Mod) {
+  racingPlus.AddCallback(
+    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    entityTakeDmg.player,
+    EntityType.ENTITY_PLAYER, // 1
   );
 }
 

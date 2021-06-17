@@ -1,0 +1,5 @@
+<sounds root="sfx/">
+	<sound name="Speedrun Finish">
+		<sample weight="1" path="speedrun_finish.wav" />
+	</sound>
+</sounds>

@@ -9,7 +9,6 @@ export default class GlobalsRunRoom {
   diceRoomActivated = false;
   numDDItems = 0;
   megaSatanDead = false;
-  endOfRunText = false; // Shown when the run is completed but only for one room
   teleportSubverted = false; // Used for repositioning the player on It Lives! / Gurdy (1/2)
   // Used for repositioning the player on It Lives! / Gurdy (2/2)
   teleportSubvertScale = Vector(1, 1);

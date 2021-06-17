@@ -18,13 +18,20 @@ export function postRender(): void {
 }
 
 function checkKeyboardInput() {
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+
   if (g.g.IsPaused()) {
     return;
   }
 
   // Record the pressed state of every possible key
   for (const keyboardValue of Object.values(Keyboard)) {
-    if (Input.IsButtonPressed(keyboardValue as Keyboard, g.p.ControllerIndex)) {
+    if (
+      Input.IsButtonPressed(keyboardValue as Keyboard, player.ControllerIndex)
+    ) {
       keysPressed.set(keyboardValue as Keyboard, true);
     } else {
       keysPressed.delete(keyboardValue as Keyboard);

@@ -34,7 +34,6 @@ const DEAD_SEA_SCROLLS_EFFECTS = [
 // CollectibleType.COLLECTIBLE_WE_NEED_GO_DEEPER (84)
 // This callback is used naturally by Ehwaz (Passage) runes
 export function weNeedToGoDeeper(): boolean | null {
-  // Local variables
   const stage = g.l.GetStage();
 
   // Prevent the racers from "cheating" by using the shovel on Womb 2 in the "Everything" race goal
@@ -292,7 +291,6 @@ export function smelter(): void {
 export function preventItemPedestalEffects(
   itemID: CollectibleType,
 ): boolean | null {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   // Car Battery will mess up the D6 and D100 (and possibly others) because
@@ -337,7 +335,6 @@ export function preventItemPedestalEffects(
 }
 
 function unreplacedItemsExist() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
 
   // Look for pedestals that have not been replaced yet

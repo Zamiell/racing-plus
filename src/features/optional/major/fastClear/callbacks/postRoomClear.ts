@@ -1,5 +1,5 @@
 import g from "../../../../../globals";
-import { getRoomEnemies } from "../../../../../misc";
+import { getRoomNPCs } from "../../../../../misc";
 
 export function main(): void {
   if (!g.config.fastClear) {
@@ -19,13 +19,8 @@ function resetAllDyingNPCs() {
   // the final boss (since the CanShutDoors value of the 2nd boss has not been reset back to normal)
   // This can be fixed by resetting the CanShutDoors values of all NPCs in the room when the room is
   // cleared
-  for (const entity of getRoomEnemies()) {
-    const npc = entity.ToNPC();
-    if (npc === null) {
-      continue;
-    }
-
-    const data = entity.GetData();
+  for (const npc of getRoomNPCs()) {
+    const data = npc.GetData();
     if (data.resetAttributeFrame === undefined) {
       continue;
     }

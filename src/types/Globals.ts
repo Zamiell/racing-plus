@@ -1,11 +1,13 @@
+import RaceData from "../features/race/types/RaceData";
+import SpeedrunData from "../features/speedrun/types/SpeedrunData";
+import log from "../log";
 import Config from "./Config";
 import { SaveFileState } from "./enums";
 import GlobalsRun from "./GlobalsRun";
 import Hotkeys from "./Hotkeys";
-import RaceData from "./RaceData";
+import RaceVars from "./RaceVars";
 import Sandbox from "./Sandbox";
 import SocketClient from "./SocketClient";
-import SpeedrunData from "./SpeedrunData";
 
 export default class Globals {
   debug = false;
@@ -15,12 +17,6 @@ export default class Globals {
   g = Game();
   l = Game().GetLevel();
   r = Game().GetRoom();
-  // "Isaac.GetPlayer()" will return nil if called from the main menu
-  // We "lie" and say that it gets set to an EntityPlayer so that we don't have to do non-null
-  // assertions everywhere
-  // In reality, the value will be set in the PostPlayerInit callback, which should happen before
-  // any other code gets run
-  p = Isaac.GetPlayer() as EntityPlayer;
   seeds = Game().GetSeeds();
   itemPool = Game().GetItemPool();
   itemConfig = Isaac.GetItemConfig();
@@ -35,7 +31,12 @@ export default class Globals {
   // Variables per-run
   run = new GlobalsRun([]);
 
+  /** Race variables that are set via the client communicating with us over a socket. */
   race = new RaceData();
+
+  /** Extra variables for races that are separate from what the client knows about. */
+  raceVars = new RaceVars();
+
   speedrun = new SpeedrunData();
 
   // Checked in the PostGameStarted callback
@@ -81,7 +82,7 @@ export default class Globals {
       return;
     }
 
-    Isaac.DebugString("Detected sandbox environment.");
+    log("Detected sandbox environment.");
     this.socket.enabled = true;
   }
 }

@@ -8,11 +8,11 @@ import {
   SAVE_FILE_SEED,
 } from "../features/mandatory/saveFileCheck";
 import g from "../globals";
+import log from "../log";
 import {
   consoleCommand,
   getPlayers,
   gridToPos,
-  log,
   restartAsCharacter,
 } from "../misc";
 import {
@@ -30,15 +30,19 @@ const functionMap = new Map<string, (params: string) => void>();
 export default functionMap;
 
 functionMap.set("angel", (_params: string) => {
-  const hasEucharist = g.p.HasCollectible(
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+  const hasEucharist = player.HasCollectible(
     CollectibleType.COLLECTIBLE_EUCHARIST,
   );
   if (!hasEucharist) {
-    g.p.AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false);
+    player.AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false);
   }
-  g.p.UseCard(Card.CARD_JOKER);
+  player.UseCard(Card.CARD_JOKER);
   if (!hasEucharist) {
-    g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST);
+    player.RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST);
   }
 });
 
@@ -48,15 +52,24 @@ functionMap.set("blackmarket", (_params: string) => {
 });
 
 functionMap.set("bomb", (_params: string) => {
-  g.p.AddBombs(1);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddBombs(1);
+  }
 });
 
 functionMap.set("bombs", (_params: string) => {
-  g.p.AddBombs(99);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddBombs(99);
+  }
 });
 
 functionMap.set("boss", (_params: string) => {
-  g.p.UseCard(Card.CARD_EMPEROR);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.UseCard(Card.CARD_EMPEROR);
+  }
 });
 
 functionMap.set("bm", (_params: string) => {
@@ -78,7 +91,7 @@ functionMap.set("card", (params: string) => {
     }
 
     // They entered a number instead of a name, so just give the card corresponding to this number
-    Isaac.ExecuteCommand(`g k${num}`);
+    consoleCommand(`g k${num}`);
     print(`Gave card: #${num}`);
     return;
   }
@@ -89,7 +102,7 @@ functionMap.set("card", (params: string) => {
     print("Unknown card.");
     return;
   }
-  Isaac.ExecuteCommand(`g k${card}`);
+  consoleCommand(`g k${card}`);
   print(`Gave card: #${card}`);
 });
 
@@ -145,11 +158,17 @@ functionMap.set("char", (params: string) => {
 });
 
 functionMap.set("coin", (_params: string) => {
-  g.p.AddCoins(1);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddCoins(1);
+  }
 });
 
 functionMap.set("coins", (_params: string) => {
-  g.p.AddCoins(99);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddCoins(99);
+  }
 });
 
 functionMap.set("commands", (_params: string) => {
@@ -181,11 +200,18 @@ functionMap.set("devil", (_params: string) => {
 });
 
 functionMap.set("fool", (_params: string) => {
-  g.p.UseCard(Card.CARD_FOOL);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.UseCard(Card.CARD_FOOL);
+  }
 });
 
 functionMap.set("effects", (_params: string) => {
-  const effects = g.p.GetEffects();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+  const effects = player.GetEffects();
   const effectsList = effects.GetEffectsList();
   if (effectsList.Size === 0) {
     print("There are no current temporary effects.");
@@ -225,11 +251,17 @@ functionMap.set("iamerror", (_params: string) => {
 });
 
 functionMap.set("key", (_params: string) => {
-  g.p.AddKeys(1);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddKeys(1);
+  }
 });
 
 functionMap.set("keys", (_params: string) => {
-  g.p.AddKeys(99);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.AddKeys(99);
+  }
 });
 
 functionMap.set("list", (_params: string) => {
@@ -253,12 +285,6 @@ functionMap.set("list", (_params: string) => {
 
 functionMap.set("luck", (_params: string) => {
   consoleCommand("debug 9");
-});
-
-functionMap.set("max", (_params: string) => {
-  for (let i = 0; i < 32; i++) {
-    g.p.UseActiveItem(CollectibleType.COLLECTIBLE_GUPPYS_HEAD);
-  }
 });
 
 functionMap.set("pills", (_params: string) => {
@@ -327,7 +353,10 @@ functionMap.set("s", (params: string) => {
 });
 
 functionMap.set("shop", (_params: string) => {
-  g.p.UseCard(Card.CARD_HERMIT);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.UseCard(Card.CARD_HERMIT);
+  }
 });
 
 functionMap.set("sound", (params: string) => {
@@ -348,18 +377,19 @@ functionMap.set("sounds", (_params: string) => {
 });
 
 functionMap.set("speed", (_params: string) => {
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+
   g.run.debugSpeed = !g.run.debugSpeed;
   const enabled = g.run.debugSpeed ? "Enabled" : "Disabled";
   print(`${enabled} max speed.`);
 
   // Also, give the player flight
-  g.p.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
+  player.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
   // (adding this will trigger the speed stat modification, so we don't have to explicitly call
   // "EvaluateItems()")
-});
-
-functionMap.set("tears", (_params: string) => {
-  print(`Max fire delay: ${g.p.MaxFireDelay}`);
 });
 
 functionMap.set("trap", (_params: string) => {
@@ -371,7 +401,10 @@ functionMap.set("trapdoor", (_params: string) => {
 });
 
 functionMap.set("treasure", (_params: string) => {
-  g.p.UseCard(Card.CARD_STARS);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.UseCard(Card.CARD_STARS);
+  }
 });
 
 // cspell:disable-next-line

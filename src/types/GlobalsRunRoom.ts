@@ -17,6 +17,8 @@ export default class GlobalsRunRoom {
     amChangingRooms: false,
   };
 
+  showEndOfRunText = false;
+
   constructor(clear: boolean) {
     this.clear = clear;
   }

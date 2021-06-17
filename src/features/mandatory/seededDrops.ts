@@ -3,7 +3,7 @@
 
 import g from "../../globals";
 import {
-  anyPlayerHas,
+  anyPlayerHasCollectible,
   getTotalCollectibles,
   incrementRNG,
   initRNG,
@@ -39,7 +39,6 @@ export function shouldSpawnSeededDrop(): boolean {
 // (Old Capacitor does not need to be removed, since the Lil Battery chance is independent of the
 // room drop)
 export function spawn(): void {
-  // Local variables
   const roomType = g.r.GetType();
   const centerPos = g.r.GetCenterPos();
 
@@ -114,7 +113,7 @@ export function spawn(): void {
   // 2) or make nothing drop
   let pickupCount = 1;
   if (
-    anyPlayerHas(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) &&
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) &&
     pickupVariant !== PickupVariant.PICKUP_TRINKET
   ) {
     pickupCount =

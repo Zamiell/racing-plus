@@ -21,7 +21,6 @@ export function main(npc: EntityNPC): void {
 
 // EntityType.ENTITY_CHUB (28)
 export function chub(npc: EntityNPC): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   // We only care about Chubs spawned from The Matriarch
@@ -70,7 +69,6 @@ export function chub(npc: EntityNPC): void {
 
 // EntityType.ENTITY_FLAMINGHOPPER (54)
 export function flamingHopper(npc: EntityNPC): void {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   // Prevent Flaming Hopper softlocks
@@ -123,7 +121,6 @@ export function pin(npc: EntityNPC): void {
     return;
   }
 
-  // Local variables
   const roomShape = g.r.GetRoomShape();
 
   // Normally, Pin/Frail/Scolex first attacks on frame 73, so speed this up

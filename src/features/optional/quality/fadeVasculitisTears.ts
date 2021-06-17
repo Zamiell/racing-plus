@@ -3,7 +3,7 @@
 // Fade all tears of this nature so that they are easy to distinguish
 
 import g from "../../../globals";
-import { anyPlayerHas } from "../../../misc";
+import { anyPlayerHasCollectible } from "../../../misc";
 
 const FADE_AMOUNT = 0.15;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
@@ -24,7 +24,7 @@ function shouldFadeTear(tear: EntityTear) {
   return (
     tear.FrameCount === 0 &&
     tear.SpawnerType === 0 &&
-    anyPlayerHas(CollectibleType.COLLECTIBLE_VASCULITIS)
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VASCULITIS)
   );
 }
 

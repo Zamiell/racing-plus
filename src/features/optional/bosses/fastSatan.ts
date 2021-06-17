@@ -13,8 +13,9 @@ export function postNewRoom(): void {
 // To fix this, we manually spawn it as soon as the room is entered
 function instantlySpawnSatan() {
   const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomStageID = roomDesc.Data.StageID;
-  const roomVariant = roomDesc.Data.Variant;
+  const roomData = roomDesc.Data;
+  const roomStageID = roomData.StageID;
+  const roomVariant = roomData.Variant;
   const roomClear = g.r.IsClear();
 
   if (roomClear) {

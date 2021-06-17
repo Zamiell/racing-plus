@@ -1,27 +1,30 @@
-import { CollectibleTypeCustom } from "./enums";
+import { CollectibleTypeCustom } from "../../../types/enums";
 
 type RaceStatus = "none" | "open" | "starting" | "in progress";
-type RaceMyStatus = "not ready" | "ready" | "racing";
-type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom" | "pageant";
+type RacerStatus =
+  | "not ready"
+  | "ready"
+  | "racing"
+  | "finished"
+  | "quit"
+  | "disqualified";
+type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom";
 type RaceDifficulty = "normal" | "hard";
-
-export type RaceGoal =
+type RaceGoal =
   | "Blue Baby"
   | "The Lamb"
   | "Mega Satan"
   | "Hush"
   | "Delirium"
   | "Boss Rush"
-  | "Everything"
-  | "Custom";
+  | "custom";
 
+/** This must match the "ModSocket" class on the client. */
 export default class RaceData {
-  /** Equal to our Racing+ user ID. */
-  userID = 0;
-  /** 0 if a race is not going on. */
-  raceID = 0;
+  /** -1 if a race is not going on. */
+  raceID = -1;
   status: RaceStatus = "none";
-  myStatus: RaceMyStatus = "not ready";
+  myStatus: RacerStatus = "not ready";
   ranked = false;
   solo = false;
   format: RaceFormat = "unseeded";
@@ -34,12 +37,21 @@ export default class RaceData {
   startingItems: Array<CollectibleType | CollectibleTypeCustom> = [];
   /** This corresponds to the graphic to draw on the screen. */
   countdown = -1;
-  /** This is either the number of people ready, or the non-finished place. */
+  /**
+   * This is either the number of people ready (in a pre-race)
+   * or the non-finished place (in a race).
+   */
   placeMid = 0;
   /** This is the final place. */
-  place = 1;
+  place = -1;
   /** The number of people in the race. */
   numEntrants = 1;
 
   finished = false;
+
+  clone(): RaceData {
+    const copiedRaceData = { ...this }; // Shallow copy
+    copiedRaceData.startingItems = { ...this.startingItems }; // Copy nested arrays
+    return copiedRaceData;
+  }
 }

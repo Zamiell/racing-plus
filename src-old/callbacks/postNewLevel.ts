@@ -107,7 +107,6 @@ function checkForgottenSoftlock() {
     return false;
   }
 
-  // Local variables
   const stage = g.l.GetStage();
   if (stage <= 2 || stage >= 9) {
     return false;
@@ -177,7 +176,6 @@ function checkForgottenSoftlock() {
 
 // Reseed the floor if there are duplicate rooms
 function checkDupeRooms() {
-  // Local variables
   const stage = g.l.GetStage();
   const rooms = g.l.GetRooms();
 

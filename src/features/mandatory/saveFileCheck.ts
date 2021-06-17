@@ -1,7 +1,7 @@
 import g from "../../globals";
+import log from "../../log";
 import {
   consoleCommand,
-  log,
   playingOnSetSeed,
   restartAsCharacter,
 } from "../../misc";
@@ -15,14 +15,19 @@ export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_GODS_FLESH;
 // seed on Eden and checking to see if the items are accurate
 // This is called from the PostGameStarted callback
 // This function returns true if the PostGameStarted callback should halt
-export function isNotFullyUnlocked(): boolean {
-  const character = g.p.GetPlayerType();
-  const activeItem = g.p.GetActiveItem();
+export function isFullyUnlocked(): boolean {
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return false;
+  }
+
+  const character = player.GetPlayerType();
+  const activeItem = player.GetActiveItem();
   const startSeedString = g.seeds.GetStartSeedString();
   const challenge = Isaac.GetChallenge();
 
   if (g.saveFile.state === SaveFileState.Finished) {
-    return false;
+    return true;
   }
 
   // Not checked
@@ -54,7 +59,7 @@ export function isNotFullyUnlocked(): boolean {
     }
     if (!valid) {
       g.run.restart = true;
-      return true;
+      return false;
     }
 
     // We are on the specific Eden seed, so check to see if our items are correct
@@ -66,7 +71,7 @@ export function isNotFullyUnlocked(): boolean {
     if (activeItem !== neededActiveItem) {
       text += `an active item of ${neededActiveItem} (they have an active item of ${activeItem}).`;
       log(text);
-    } else if (!g.p.HasCollectible(neededPassiveItem)) {
+    } else if (!player.HasCollectible(neededPassiveItem)) {
       text += `a passive item of ${neededPassiveItem}.`;
       log(text);
     } else {
@@ -98,18 +103,22 @@ export function isNotFullyUnlocked(): boolean {
     }
     if (!valid) {
       g.run.restart = true;
-      return true;
+      return false;
     }
 
     g.saveFile.state = SaveFileState.Finished;
     log("saveFileCheck - Completed.");
   }
 
-  return false;
+  return true;
 }
 
 export function checkRestart(): boolean {
-  const character = g.p.GetPlayerType();
+  const player = Isaac.GetPlayer(0);
+  if (player === null) {
+    return false;
+  }
+  const character = player.GetPlayerType();
   const startSeedString = g.seeds.GetStartSeedString();
   const challenge = Isaac.GetChallenge();
 

@@ -1,7 +1,4 @@
-import { HEALTH_UP_ITEMS } from "../constants";
-import g from "../globals";
-import { CollectibleTypeCustom } from "../types/enums";
-
+/*
 // CacheFlag.CACHE_DAMAGE (1)
 export function damage(player: EntityPlayer, _cacheFlag: CacheFlag): void {
   debugDamage(player);
@@ -52,7 +49,6 @@ export function shotSpeed(player: EntityPlayer, _cacheFlag: CacheFlag): void {
 }
 
 function crownOfLightHealJudas(player: EntityPlayer) {
-  // Local variables
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const character = player.GetPlayerType();
@@ -75,7 +71,6 @@ export function range(player: EntityPlayer, _cacheFlag: CacheFlag): void {
 }
 
 function manageKeeperHeartContainers(player: EntityPlayer) {
-  // Local variables
   const character = player.GetPlayerType();
   const maxHearts = player.GetMaxHearts();
   const coins = player.GetNumCoins();
@@ -191,7 +186,6 @@ function debugSpeed(player: EntityPlayer) {
 }
 
 function magdaleneSpeedUp(player: EntityPlayer) {
-  // Local variables
   const character = player.GetPlayerType();
 
   if (character !== PlayerType.PLAYER_MAGDALENA) {
@@ -236,3 +230,4 @@ function pageantBoyRuleset(player: EntityPlayer) {
     player.Luck += 7;
   }
 }
+*/

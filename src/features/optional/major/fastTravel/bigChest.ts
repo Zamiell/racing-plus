@@ -1,5 +1,9 @@
 import g from "../../../../globals";
-import { ensureAllCases, getRoomIndex } from "../../../../misc";
+import {
+  anyPlayerHasCollectible,
+  ensureAllCases,
+  getRoomIndex,
+} from "../../../../misc";
 import {
   CollectibleTypeCustom,
   EntityTypeCustom,
@@ -33,7 +37,7 @@ function getReplacementAction() {
   if (
     stage === 10 &&
     stageType === 0 &&
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
   ) {
     return ReplacementAction.TrapdoorDown;
   }
@@ -41,7 +45,7 @@ function getReplacementAction() {
   if (
     stage === 10 &&
     stageType === 1 &&
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
   ) {
     return ReplacementAction.BeamOfLightUp;
   }

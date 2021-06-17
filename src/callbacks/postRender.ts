@@ -1,4 +1,5 @@
 import * as cache from "../cache";
+import { VERSION } from "../constants";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
@@ -7,7 +8,6 @@ import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
 import * as fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
-import * as socket from "../features/optional/major/socket";
 import * as customConsole from "../features/optional/quality/customConsole";
 import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
@@ -16,6 +16,7 @@ import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import * as racePostRender from "../features/race/callbacks/postRender";
 import * as speedrunPostRender from "../features/speedrun/callbacks/postRender";
+import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
 import { consoleCommand } from "../misc";
 
@@ -40,7 +41,8 @@ export function main(): void {
   runTimer.postRender();
 
   // Optional features - Major
-  socket.postRender();
+  drawTopLeftText();
+  racePostRender.main();
   fastTravelPostRender.main();
   fastReset.postRender();
 
@@ -81,4 +83,106 @@ function checkRestart() {
   // Since no special conditions apply, just do a normal restart
   consoleCommand("restart");
   return true;
+}
+
+function drawTopLeftText() {
+  const roomType = g.r.GetType();
+  const roomFrameCount = g.r.GetFrameCount();
+  const seedString = g.seeds.GetStartSeedString();
+
+  // We want to place informational text for the player to the right of the heart containers
+  // (which will depend on how many heart containers we have)
+  const x = 55 + getHeartXOffset();
+  let y = 10;
+  const lineLength = 15;
+
+  if (g.config.clientCommunication && g.run.victoryLaps > 0) {
+    // Display the number of victory laps
+    // (this should have priority over showing the seed)
+    const text = `Victory Lap #${g.run.victoryLaps}`;
+    Isaac.RenderText(text, x, y, 2, 2, 2, 2);
+  } else if (g.run.room.showEndOfRunText) {
+    // Show some run summary information
+    // (it will be removed if they exit the room)
+    const firstLine = `R+ ${VERSION} - ${seedString}`;
+    Isaac.RenderText(firstLine, x, y, 2, 2, 2, 2);
+
+    y += lineLength;
+    let secondLine: string;
+    if (speedrun.inSpeedrun()) {
+      secondLine = "Avg. time per char: unknown"; // ${speedrun.getAverageTimePerCharacter()}`; // TODO CHANGE TO FRAMES
+    } else {
+      secondLine = `Rooms entered: ${g.run.roomsEntered}`;
+    }
+    Isaac.RenderText(secondLine, x, y, 2, 2, 2, 2);
+
+    // Draw a 3rd line to show the total frames
+    if (!speedrun.inSpeedrun() || speedrun.isOnFinalCharacter()) {
+      let frames: int;
+      if (speedrun.inSpeedrun()) {
+        frames = g.speedrun.finishedFrames;
+      } else {
+        frames = g.raceVars.finishedFrames;
+      }
+      const seconds = Math.floor(frames / 60);
+      y += lineLength;
+      const thirdLine = `${frames} frames (${seconds}s)`;
+      Isaac.RenderText(thirdLine, x, y, 2, 2, 2, 2);
+    }
+  } else if (
+    g.config.clientCommunication &&
+    g.race.raceID !== -1 &&
+    g.race.status === "in progress" &&
+    Isaac.GetTime() - g.raceVars.startedTime <= 2000
+  ) {
+    // Only show it in the first two seconds of the race
+    const text = `Race ID: ${g.race.raceID}`;
+    Isaac.RenderText(text, x, y, 2, 2, 2, 2);
+  } else if (
+    g.config.showNumSacrifices &&
+    roomType === RoomType.ROOM_SACRIFICE &&
+    roomFrameCount > 0
+  ) {
+    const text = `Sacrifices: ${g.run.level.numSacrifices}`;
+    Isaac.RenderText(text, x, y, 2, 2, 2, 2);
+  }
+}
+
+export function getHeartXOffset(): int {
+  const curses = g.l.GetCurses();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return 0;
+  }
+  const maxHearts = player.GetMaxHearts();
+  const soulHearts = player.GetSoulHearts();
+  const boneHearts = player.GetBoneHearts();
+  const extraLives = player.GetExtraLives();
+
+  const heartLength = 12; // This is how long each heart is on the UI in the upper left hand corner
+  // (this is not in pixels, but in draw coordinates;
+  // you can see that it is 13 pixels wide in the "ui_hearts.png" file)
+  let combinedHearts = maxHearts + soulHearts + boneHearts * 2; // There are no half bone hearts
+  if (combinedHearts > 12) {
+    combinedHearts = 12; // After 6 hearts, it wraps to a second row
+  }
+
+  if (curses === LevelCurse.CURSE_OF_THE_UNKNOWN) {
+    combinedHearts = 2;
+  }
+
+  let offset = (combinedHearts / 2) * heartLength;
+  if (extraLives > 9) {
+    offset += 20;
+    if (player.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
+      offset += 6;
+    }
+  } else if (extraLives > 0) {
+    offset += 16;
+    if (player.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
+      offset += 4;
+    }
+  }
+
+  return offset;
 }

@@ -1,11 +1,11 @@
 // These are shared functions for fast-travel entities
 
 import g from "../../../../globals";
+import log from "../../../../log";
 import {
   ensureAllCases,
   getRoomIndex,
   isAntibirthStage,
-  log,
 } from "../../../../misc";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
 import {

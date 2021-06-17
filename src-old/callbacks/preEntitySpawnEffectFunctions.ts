@@ -1,8 +1,4 @@
-import { Vector.Zero } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import { EffectVariantCustom } from "../types/enums";
-
+/*
 const functionMap = new Map<
   EffectVariant,
   (
@@ -17,7 +13,6 @@ export default functionMap;
 functionMap.set(
   EffectVariant.CRACK_THE_SKY,
   (subType: int, spawner: Entity, initSeed: int) => {
-    // Local variables
     const roomFrameCount = g.r.GetFrameCount();
 
     // Custom Crack the Sky effect
@@ -183,3 +178,4 @@ functionMap.set(
     ];
   },
 );
+*/

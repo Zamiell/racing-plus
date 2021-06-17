@@ -1,4 +1,4 @@
-import { log } from "../misc";
+import log from "../log";
 import executeCmdFunctions from "./executeCmdFunctions";
 
 export function main(command: string, parameters: string): void {

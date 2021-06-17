@@ -1,7 +1,6 @@
 /*
 // PillEffect.PILLEFFECT_TELEPILLS (19)
 export function telepills(): void {
-  // Local variables
   const stage = g.l.GetStage();
   const rooms = g.l.GetRooms();
 

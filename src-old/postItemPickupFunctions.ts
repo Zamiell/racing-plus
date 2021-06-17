@@ -57,7 +57,6 @@ functionMap.set(
 // Caffeine Pill is unique in that it will already insert the pill into the player's inventory
 // Change the behavior such that given pill will not replace your current card/pill
 functionMap.set(CollectibleType.COLLECTIBLE_CAFFEINE_PILL, () => {
-  // Local variables
   const pill1 = g.p.GetPill(0); // Returns 0 if no pill
 
   // Find the first pill or card on the ground that is freshly spawned
@@ -176,7 +175,6 @@ functionMap.set(
 
 // 547
 functionMap.set(CollectibleType.COLLECTIBLE_DIVORCE_PAPERS, () => {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_MYSTERIOUS_PAPER);

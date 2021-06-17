@@ -12,7 +12,6 @@ export function before(stage: int): void {
     return;
   }
 
-  // Local variables
   const character = g.p.GetPlayerType();
   const goldenHearts = g.p.GetGoldenHearts();
   const coins = g.p.GetNumCoins();
@@ -129,7 +128,6 @@ export function after(): void {
     return;
   }
 
-  // Local variables
   const challenge = Isaac.GetChallenge();
   const devilVisited = g.run.seededSwap.devilVisited;
   const bookTouched = g.run.seededSwap.bookTouched;
@@ -154,7 +152,6 @@ export function after(): void {
 
 // Based on the "REVEL.StoreHealth()" function in the Revelations mod
 function saveHealth() {
-  // Local variables
   const character = g.p.GetPlayerType();
   const soulHeartTypes: HeartSubType[] = [];
   let maxHearts = g.p.GetMaxHearts();
@@ -240,7 +237,6 @@ function saveHealth() {
 
 // Based on the "REVEL.LoadHealth()" function in the Revelations mod
 function loadHealth() {
-  // Local variables
   const character = g.p.GetPlayerType();
   const health = g.run.seededSwap.health;
 

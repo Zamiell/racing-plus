@@ -13,8 +13,6 @@ export function main(): void {
   pills.postRender();
   changeCharOrder.postRender();
   changeKeybindings.postRender();
-  drawNumSacRoom();
-  displayTopLeftText();
   drawVersion();
 
   // Check for inputs
@@ -34,7 +32,6 @@ export function main(): void {
   seededDeath.postRender();
 
   // Do race specific stuff
-  race();
   shadow.Draw();
 
   // Handle things for multi-character speedruns
@@ -237,7 +234,6 @@ function checkDirection() {
 // (this has to be in the PostRender callback because game frames do not tick when the teleport
 // animation is happening)
 function checkCursedEye() {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const playerSprite = g.p.GetSprite();
   const hearts = g.p.GetHearts();
@@ -270,7 +266,6 @@ function checkCursedEye() {
 
 // Check to see if we are subverting a teleport from Gurdy, Mom, Mom's Heart, or It Lives
 function checkSubvertTeleport() {
-  // Local variables
   const stage = g.l.GetStage();
 
   if (!g.run.room.teleportSubverted) {
@@ -300,264 +295,7 @@ function checkSubvertTeleport() {
   Isaac.DebugString("Subverted a position teleport (2/2).");
 }
 
-function drawNumSacRoom() {
-  const roomType = g.r.GetType();
-  if (roomType !== RoomType.ROOM_SACRIFICE) {
-    return;
-  }
-
-  const roomFrameCount = g.r.GetFrameCount();
-  if (roomFrameCount === 0) {
-    return;
-  }
-
-  // We want to place informational text for the player to the right of the heart containers
-  // (which will depend on how many heart containers we have)
-  // (this code is copied from the "DisplayTopLeftText()" function)
-  const x = 55 + misc.getHeartXOffset();
-  const y = 10;
-  const text = `Sacrifices: ${g.run.level.numSacrifices}`;
-  Isaac.RenderText(text, x, y, 2, 2, 2, 2);
-}
-
-function displayTopLeftText() {
-  // Local variables
-  const seedString = g.seeds.GetStartSeedString();
-
-  // We want to place informational text for the player to the right of the heart containers
-  // (which will depend on how many heart containers we have)
-  const x = 55 + misc.getHeartXOffset();
-  let y = 10;
-  const lineLength = 15;
-
-  if (g.raceVars.victoryLaps > 0) {
-    // Display the number of victory laps
-    // (this should have priority over showing the seed)
-    Isaac.RenderText(
-      `Victory Lap #${g.raceVars.victoryLaps}`,
-      x,
-      y,
-      2,
-      2,
-      2,
-      2,
-    );
-  } else if (g.run.endOfRunText) {
-    // Show some run summary information
-    // (it will be removed if they exit the room)
-    const firstLine = `R+ ${VERSION} - ${seedString}`;
-    Isaac.RenderText(firstLine, x, y, 2, 2, 2, 2);
-    y += lineLength;
-    let secondLine: string;
-    if (inSpeedrun()) {
-      // We can't put average time on a 3rd line because it will be blocked by the Checkpoint item
-      // text
-      secondLine = `Avg. time per char: ${speedrun.getAverageTimePerCharacter()}`;
-    } else {
-      secondLine = `Rooms entered: ${g.run.roomsEntered}`;
-    }
-    Isaac.RenderText(secondLine, x, y, 2, 2, 2, 2);
-
-    // Draw a 3rd line to show the total frames
-    if (!inSpeedrun() || speedrun.isOnFinalCharacter()) {
-      let frames: int;
-      if (inSpeedrun()) {
-        frames = g.speedrun.finishedFrames;
-      } else {
-        frames = g.raceVars.finishedFrames;
-      }
-      const seconds = misc.round(frames / 60, 1);
-      y += lineLength;
-      const thirdLine = `${frames} frames (${seconds}s)`;
-      Isaac.RenderText(thirdLine, x, y, 2, 2, 2, 2);
-    }
-  } else if (
-    g.race.raceID !== null &&
-    g.race.status === "in progress" &&
-    g.run.roomsEntered <= 1 &&
-    Isaac.GetTime() - g.raceVars.startedTime <= 2000
-  ) {
-    // Only show it in the first two seconds of the race
-    Isaac.RenderText(`Race ID: ${g.race.raceID}`, x, y, 2, 2, 2, 2);
-  }
-}
-
-// Do race specific stuff
-function race() {
-  // Local variables
-  const roomIndex = misc.getRoomIndex();
-  const stage = g.l.GetStage();
-  const challenge = Isaac.GetChallenge();
-  const topSprite = sprites.sprites.get("top");
-
-  // If we are not in a race, do nothing
-  if (g.race.status === "none" && challenge !== ChallengeCustom.R7_SEASON_7) {
-    sprites.clearPostRaceStartGraphics();
-  }
-  if (g.race.status === "none") {
-    // Remove graphics as soon as the race is over
-    sprites.init("top", "");
-    sprites.clearStartingRoomGraphicsTop();
-    sprites.clearStartingRoomGraphicsBottom();
-    if (!g.raceVars.finished) {
-      sprites.init("place", ""); // Keep the place there at the end of a race
-    }
-    return;
-  }
-
-  //
-  // Race validation / show warning messages
-  //
-
-  if (
-    g.race.difficulty === "hard" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
-    g.race.format !== "custom"
-  ) {
-    sprites.init("top", "error-not-hard-mode"); // Error: You are not on hard mode.
-    return;
-  }
-
-  if (
-    topSprite !== undefined &&
-    topSprite.spriteName === "error-not-hard-mode"
-  ) {
-    sprites.init("top", "");
-  }
-
-  if (
-    g.race.difficulty === "normal" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
-    g.race.format !== "custom"
-  ) {
-    sprites.init("top", "error-hard-mode"); // Error: You are on hard mode.
-    return;
-  }
-
-  if (topSprite !== undefined && topSprite.spriteName === "error-hard-mode") {
-    sprites.init("top", "");
-  }
-
-  //
-  // Graphics for the "Race Start" room
-  //
-
-  // Show the graphics for the "Race Start" room (the top half)
-  if (g.race.status === "open" && roomIndex === GridRooms.ROOM_DEBUG_IDX) {
-    sprites.init("top", "wait"); // "Wait for the race to begin!"
-    sprites.init("myStatus", g.race.myStatus);
-    sprites.init("ready", g.race.placeMid.toString());
-    // We use "placeMid" to hold this variable, since it isn't used before a race starts
-    sprites.init("slash", "slash");
-    sprites.init("readyTotal", g.race.numEntrants.toString());
-  } else {
-    if (topSprite !== undefined && topSprite.spriteName === "wait") {
-      // There can be other things on the "top" sprite location and we don't want to have to reload
-      // it on every frame
-      sprites.init("top", "");
-    }
-    sprites.clearStartingRoomGraphicsTop();
-  }
-
-  // Show the graphics for the "Race Start" room (the bottom half)
-  if (
-    (g.race.status === "open" || g.race.status === "starting") &&
-    roomIndex === GridRooms.ROOM_DEBUG_IDX
-  ) {
-    if (g.race.ranked || !g.race.solo) {
-      sprites.init("raceRanked", "ranked");
-      sprites.init("raceRankedIcon", "ranked-icon");
-    } else {
-      sprites.init("raceRanked", "unranked");
-      sprites.init("raceRankedIcon", "unranked-icon");
-    }
-    sprites.init("raceFormat", g.race.format);
-    sprites.init("raceFormatIcon", `${g.race.format}-icon`);
-    sprites.init("goal", "goal");
-    sprites.init("raceGoal", g.race.goal);
-  } else {
-    sprites.clearStartingRoomGraphicsBottom();
-  }
-
-  //
-  // Countdown graphics
-  //
-
-  // Show the appropriate countdown graphic/text
-  if (g.race.status === "starting") {
-    if (g.race.countdown === 10) {
-      sprites.init("top", "10");
-    } else if (g.race.countdown === 5) {
-      sprites.init("top", "5");
-    } else if (g.race.countdown === 4) {
-      sprites.init("top", "4");
-    } else if (g.race.countdown === 3) {
-      sprites.init("top", "3");
-    } else if (g.race.countdown === 2) {
-      sprites.init("top", "2");
-    } else if (g.race.countdown === 1) {
-      sprites.init("top", "1");
-    }
-  }
-
-  //
-  // Race active
-  //
-
-  if (g.race.status === "in progress") {
-    // The client will set countdown equal to 0 and the status equal to "in progress" at the same
-    // time
-    if (!g.raceVars.started) {
-      // Reset some race-related variables
-      g.raceVars.started = true;
-      // We don't want to show the place graphic until we get to the 2nd floor
-      g.raceVars.startedTime = Isaac.GetTime(); // Mark when the race started
-      g.raceVars.startedFrame = Isaac.GetFrameCount(); // Also mark the frame the race started
-      Isaac.DebugString(`Starting the race! (${g.race.format})`);
-    }
-
-    // Find out how much time has passed since the race started
-    // "Isaac.GetTime()" is analogous to Lua's "os.clock()"
-    const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
-    const elapsedSeconds = elapsedMilliseconds / 1000;
-
-    // Draw the "Go!" graphic
-    if (elapsedSeconds < 3) {
-      sprites.init("top", "go");
-    } else {
-      sprites.init("top", "");
-    }
-
-    // Draw the graphic that shows what place we are in
-    if (
-      stage >= 2 && // Our place is irrelevant on the first floor, so don't bother showing it
-      // It is irrelevant to show "1st" when there is only one person in the race
-      !g.race.solo
-    ) {
-      sprites.init("place", g.race.placeMid.toString());
-    } else {
-      sprites.init("place", "");
-    }
-  }
-
-  // Remove graphics as soon as we enter another room
-  // (this is done separately from the above if block in case the client and mod become
-  // desynchronized)
-  if (g.raceVars.started === true && g.run.roomsEntered > 1) {
-    sprites.clearPostRaceStartGraphics();
-  }
-
-  // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect)
-  // (this looks glitchy and jittery if it is done in the PostUpdate callback, so do it here
-  // instead)
-  if (roomIndex === GridRooms.ROOM_DEBUG_IDX && !g.raceVars.started) {
-    // The starting position is (320, 380)
-    g.p.Position = Vector(320, 380);
-  }
-}
-
 function drawVersion() {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
 
   // Make the version persist for at least 2 seconds after the player presses "v"

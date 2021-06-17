@@ -18,6 +18,17 @@ module.exports = {
   // We modify the linting rules from the base for some specific things
   // (listed in alphabetical order)
   rules: {
-    // Insert changed or disabled rules here, if necessary
+    // Documentation:
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unused-modules.md
+    // Not defined in parent configs
+    // This helps to find dead code that should be deleted
+    "import/no-unused-modules": [
+      "error",
+      {
+        missingExports: true,
+        unusedExports: true,
+        ignoreExports: ["src/**/*.d.ts", ".eslintrc.js", "src/main.ts"],
+      },
+    ],
   },
 };

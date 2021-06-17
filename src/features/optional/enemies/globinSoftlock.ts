@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { log } from "../../../misc";
+import log from "../../../log";
 
 const MAX_REGENERATIONS = 4;
 

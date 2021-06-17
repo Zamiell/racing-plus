@@ -13,7 +13,6 @@ export function main(): void {
   sprites.init("dps-button", "");
   sprites.init("victory-lap-button", "");
 
-  gotoRaceRoom();
   threeDollarBill();
   checkOpenMegaSatanDoor();
   checkVictoryLapBossReplace();
@@ -26,19 +25,6 @@ export function main(): void {
   seededRooms.postNewRoom();
 }
 
-// Go to the custom "Race Room"
-function gotoRaceRoom() {
-  if (g.race.status === "open" || g.race.status === "starting") {
-    if (g.run.roomsEntered === 1) {
-      Isaac.ExecuteCommand("stage 1a"); // The Cellar is the cleanest floor
-      g.run.goingToDebugRoom = true;
-      Isaac.ExecuteCommand("goto d.0"); // We do more things in the next "PostNewRoom" callback
-    } else if (g.run.roomsEntered === 2) {
-      raceStartRoom();
-    }
-  }
-}
-
 export function threeDollarBill(): void {
   if (
     !g.p.HasCollectible(CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED)
@@ -46,7 +32,6 @@ export function threeDollarBill(): void {
     return;
   }
 
-  // Local variables
   const roomSeed = g.r.GetSpawnSeed();
 
   // Remove the old item
@@ -86,58 +71,7 @@ export function threeDollarBill(): void {
   g.run.threeDollarBillItem = 0;
 }
 
-function raceStartRoom() {
-  // Remove all enemies
-  for (const entity of Isaac.GetRoomEntities()) {
-    const npc = entity.ToNPC();
-    if (npc !== null) {
-      entity.Remove();
-    }
-  }
-  g.r.SetClear(true);
-
-  // Prevent the mod from thinking the room was cleared in a vanilla way
-  g.run.room.fastCleared = true;
-
-  // We want to trap the player in the room, so delete all 4 doors
-  for (let i = 0; i <= 3; i++) {
-    g.r.RemoveDoor(i);
-  }
-
-  // Put the player next to the bottom door
-  const pos = Vector(320, 400);
-  g.p.Position = pos;
-
-  // Put familiars next to the bottom door, if any
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
-    familiar.Position = pos;
-  }
-
-  // Spawn two Gaping Maws (235.0)
-  const positions = [
-    [5, 5],
-    [7, 5],
-  ];
-  for (const [x, y] of positions) {
-    Isaac.Spawn(
-      EntityType.ENTITY_GAPING_MAW,
-      0,
-      0,
-      misc.gridToPos(x, y),
-      Vector.Zero,
-      null,
-    );
-  }
-
-  // Disable the MinimapAPI to emulate what happens with the vanilla map
-  if (MinimapAPI !== null) {
-    MinimapAPI.Config.Disable = true;
-  }
-}
-
 function checkOpenMegaSatanDoor() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
   const stage = g.l.GetStage();
 
@@ -161,10 +95,10 @@ function checkOpenMegaSatanDoor() {
 }
 
 function checkVictoryLapBossReplace() {
-  // Local variables
   const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomStageID = roomDesc.Data.StageID;
-  const roomVariant = roomDesc.Data.Variant;
+  const roomData = roomDesc.Data;
+  const roomStageID = roomData.StageID;
+  const roomVariant = roomData.Variant;
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
 

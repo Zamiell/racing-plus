@@ -19,7 +19,6 @@ export function main(): void {
 // Fix the bug where the "correct" exit always appears in the I AM ERROR room in custom challenges
 // (1/2)
 function stage8IAMERROR() {
-  // Local variables
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomSeed = g.r.GetSpawnSeed();

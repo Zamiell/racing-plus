@@ -16,7 +16,6 @@ export function main(): void {
   checkWalnut();
   fix9VoltSynergy();
   checkDisableControls();
-  checkRemoveWraithSkull();
   bossRush.postUpdate();
   challengeRooms.postUpdate();
 
@@ -66,30 +65,9 @@ export function main(): void {
   changeCharOrder.PostUpdate();
 }
 
-function removeInvisibleEntities() {
-  // Remove invisible pickups on every frame, since they will not go away by themselves
-  const invisiblePickups = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariantCustom.INVISIBLE_PICKUP,
-  );
-  for (const invisiblePickup of invisiblePickups) {
-    invisiblePickup.Remove();
-  }
-
-  // Remove invisible effects on every frame, since they will not go away by themselves
-  const invisibleEffects = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
-    EffectVariantCustom.INVISIBLE_EFFECT,
-  );
-  for (const invisibleEffect of invisibleEffects) {
-    invisibleEffect.Remove();
-  }
-}
-
 // Keep track of the when the room is cleared
 // and the total amount of rooms cleared on this run thus far
 function checkRoomCleared() {
-  // Local variables
   const roomClear = g.r.IsClear();
 
   // Check the clear status of the room and compare it to what it was a frame ago
@@ -115,7 +93,6 @@ function checkRoomCleared() {
 }
 
 function checkDDItems() {
-  // Local variables
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
@@ -156,7 +133,6 @@ function checkDDItems() {
 // Keep track of our hearts if we are Keeper
 // (to fix the Greed's Gullet bug and the double coin / nickel healing bug)
 function checkKeeperHearts() {
-  // Local variables
   const character = g.p.GetPlayerType();
   const maxHearts = g.p.GetMaxHearts();
   const coins = g.p.GetNumCoins();
@@ -211,7 +187,6 @@ function checkKeeperHearts() {
 }
 
 function postNewItem() {
-  // Local variables
   const roomIndex = misc.getRoomIndex();
 
   // Keep track of all the items that we pick up
@@ -290,7 +265,6 @@ function checkMomStomp() {
     return;
   }
 
-  // Local variables
   const roomFrameCount = g.r.GetFrameCount();
   const centerPos = g.r.GetCenterPos();
 
@@ -395,7 +369,6 @@ function checkMutantSpiderInnerEye() {
 // Check to see if the player just picked up the a Crown of Light from a Basement 1 Treasure Room
 // fart-reroll
 function crownOfLight() {
-  // Local variables
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 
@@ -426,7 +399,6 @@ function crownOfLight() {
 // In R+7 Season 4 and Racing+ Rebalanced,
 // we want to remove the Lilith's extra Incubus if they attempt to switch characters
 function checkLilithExtraIncubus() {
-  // Local variables
   const character = g.p.GetPlayerType();
 
   if (g.run.extraIncubus && character !== PlayerType.PLAYER_LILITH) {
@@ -511,29 +483,6 @@ function checkDisableControls() {
   if (g.run.disableControls) {
     g.run.disableControls = false;
     g.p.ControlsEnabled = false;
-  }
-}
-
-function checkRemoveWraithSkull() {
-  // Local variables
-  const character = g.p.GetPlayerType();
-
-  // Judas Shadow + Wraith Skull bug
-  if (character !== PlayerTypeCustom.PLAYER_SAMAEL) {
-    if (g.p.HasCollectible(CollectibleTypeCustom.COLLECTIBLE_WRAITH_SKULL)) {
-      g.p.RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_WRAITH_SKULL);
-      Isaac.DebugString(
-        "Removed the Wraith Skull since we are not on Samael anymore.",
-      );
-    }
-    if (
-      g.run.schoolbag.item === CollectibleTypeCustom.COLLECTIBLE_WRAITH_SKULL
-    ) {
-      schoolbag.remove();
-      Isaac.DebugString(
-        "Removed the Wraith Skull (from the Schoolbag) since we are not on Samael anymore.",
-      );
-    }
   }
 }
 

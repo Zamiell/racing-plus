@@ -64,8 +64,13 @@ function setItemSprites() {
 function shouldShowSprites() {
   const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const character = g.p.GetPlayerType();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return false;
+  }
+  const character = player.GetPlayerType();
   const roomIndex = getRoomIndex();
+
   return (
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
@@ -84,7 +89,11 @@ export function postGameStarted(): void {
 }
 
 function storeItemIdentities() {
-  const character = g.p.GetPlayerType();
+  const player = Isaac.GetPlayer();
+  if (player === null) {
+    return;
+  }
+  const character = player.GetPlayerType();
 
   if (
     character !== PlayerType.PLAYER_EDEN &&
@@ -93,21 +102,23 @@ function storeItemIdentities() {
     return;
   }
 
-  g.run.edenStartingItems.active = g.p.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
-  const passive = getEdenPassiveItem();
+  g.run.edenStartingItems.active = player.GetActiveItem(
+    ActiveSlot.SLOT_PRIMARY,
+  );
+  const passive = getEdenPassiveItem(player);
   if (passive === null) {
     error("Failed to find Eden's passive item.");
   }
   g.run.edenStartingItems.passive = passive;
 }
 
-function getEdenPassiveItem() {
-  const activeItem = g.p.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
+function getEdenPassiveItem(player: EntityPlayer) {
+  const activeItem = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
   const highestCollectible = g.itemConfig.GetCollectibles().Size - 1;
 
   for (let i = 1; i <= highestCollectible; i++) {
     if (
-      g.p.HasCollectible(i) &&
+      player.HasCollectible(i) &&
       i !== activeItem &&
       i !== CollectibleType.COLLECTIBLE_D6
     ) {

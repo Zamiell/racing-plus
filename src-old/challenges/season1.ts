@@ -1,7 +1,6 @@
 /*
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted9(): void {
-  // Local variables
   const character = g.p.GetPlayerType();
 
   Isaac.DebugString("In the R+9 (Season 1) challenge.");
@@ -14,7 +13,6 @@ export function postGameStarted9(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted14(): void {
-  // Local variables
   const character = g.p.GetPlayerType();
 
   Isaac.DebugString("In the R+14 (Season 1) challenge.");

@@ -16,7 +16,6 @@ export default class GlobalsRun {
   currentRoomClearState = true;
   lastDamageFrame = 0;
   diversity = false; // Whether or not this is a diversity race
-  goingToDebugRoom = false;
   forgetMeNow = false;
   usedD6Frame = 0; // Set when the D6 is used; used to prevent bugs with The Void + D6
   usedVoidFrame = 0; // Set when Void is used; used to prevent bugs with The Void + D6
@@ -66,7 +65,6 @@ export default class GlobalsRun {
   disableControls = false;
   autofire = false;
   autofireChangeFrame = 0;
-  endOfRunText = false;
   soulJarSouls = 0;
   reseedNextFloor = false;
   lostHealthSprite: Sprite | null = null;

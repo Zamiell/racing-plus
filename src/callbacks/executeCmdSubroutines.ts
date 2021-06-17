@@ -12,8 +12,11 @@ export function chaosCardTears(): void {
 }
 
 export function crawlspace(): void {
-  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
-  Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    const position = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
+  }
 }
 
 export function commands(
@@ -32,7 +35,10 @@ export function commands(
 }
 
 export function devil(): void {
-  g.p.UseCard(Card.CARD_JOKER);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    player.UseCard(Card.CARD_JOKER);
+  }
 }
 
 export function IAMERROR(): void {
@@ -40,8 +46,11 @@ export function IAMERROR(): void {
 }
 
 export function trapdoor(): void {
-  const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
-  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
+  const player = Isaac.GetPlayer();
+  if (player !== null) {
+    const position = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
+  }
 }
 
 export function validateNumber(params: string): number | undefined {
