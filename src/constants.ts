@@ -1,5 +1,5 @@
 // The version is updated automatically by IsaacScript
-export const VERSION = "0.58.10";
+export const VERSION = "0.58.11";
 
 export const COLLECTIBLE_SPRITE_LAYER = 1;
 export const EXCLUDED_CHARACTERS = [
