@@ -6,7 +6,7 @@ import { checkRaceChanged } from "./checkRaceChanged";
 import socketFunctions, { reset } from "./socketFunctions";
 import RaceData, { cloneRaceData } from "./types/RaceData";
 
-const DEBUG = true;
+const DEBUG = false;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
 const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
 

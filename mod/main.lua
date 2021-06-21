@@ -2432,7 +2432,7 @@ return ____exports
  end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.11"
+____exports.VERSION = "0.58.12"
 ____exports.COLLECTIBLE_SPRITE_LAYER = 1
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
@@ -3013,9 +3013,9 @@ local playingOnSetSeed = ____misc.playingOnSetSeed
 local restartAsCharacter = ____misc.restartAsCharacter
 local ____enums = require("types.enums")
 local SaveFileState = ____enums.SaveFileState
-____exports.SAVE_FILE_SEED = "KAZ7 NXD6"
+____exports.SAVE_FILE_SEED = "SG3K BG3F"
 ____exports.EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
-____exports.EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_GODS_FLESH
+____exports.EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES
 function ____exports.isFullyUnlocked(self)
     local player = Isaac.GetPlayer()
     if player == nil then
@@ -3474,6 +3474,9 @@ local inRaceRoom = ____raceRoom.inRaceRoom
 local GFX_PATH, MAX_PLACE, sprite, drawSprite, getPosition
 function drawSprite(self)
     if inRaceRoom(nil) then
+        return
+    end
+    if g.race.solo then
         return
     end
     if sprite ~= nil then
@@ -4263,7 +4266,7 @@ function disconnect(self)
     g.socket.client = nil
     reset(nil)
 end
-DEBUG = true
+DEBUG = false
 MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60
 PORT = 9112
 function ____exports.postRender(self)

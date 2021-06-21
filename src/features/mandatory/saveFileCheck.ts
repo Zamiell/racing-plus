@@ -7,9 +7,9 @@ import {
 } from "../../misc";
 import { SaveFileState } from "../../types/enums";
 
-export const SAVE_FILE_SEED = "KAZ7 NXD6"; // cspell:disable-line
+export const SAVE_FILE_SEED = "SG3K BG3F"; // cspell:disable-line
 export const EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
-export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_GODS_FLESH;
+export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES;
 
 // We can verify that the player is playing on a fully unlocked save by file by going to a specific
 // seed on Eden and checking to see if the items are accurate

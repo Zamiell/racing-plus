@@ -20,6 +20,11 @@ function drawSprite() {
     return;
   }
 
+  // We don't want place graphics to show in solo races
+  if (g.race.solo) {
+    return;
+  }
+
   if (sprite !== null) {
     const position = getPosition();
     sprite.RenderLayer(0, position);
