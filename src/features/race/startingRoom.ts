@@ -1,14 +1,15 @@
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../misc";
 
+const GFX_PATH = "gfx/race/starting-room";
+
 const sprites = {
-  seededStartingItem: null as Sprite | null,
-  seededStartingBuild: null as Sprite | null,
-  seededItem1: null as Sprite | null,
-  seededItem2: null as Sprite | null,
-  seededItem3: null as Sprite | null,
-  seededItem4: null as Sprite | null,
-  seededItem5: null as Sprite | null,
+  seededStartingTitle: null as Sprite | null, // "Item" or "Build"
+  seededItemCenter: null as Sprite | null,
+  seededItemLeft: null as Sprite | null,
+  seededItemRight: null as Sprite | null,
+  seededItemFarLeft: null as Sprite | null,
+  seededItemFarRight: null as Sprite | null,
 
   diversityActive: null as Sprite | null,
   diversityPassives: null as Sprite | null,
@@ -26,15 +27,85 @@ export function postRender(): void {
 }
 
 function drawSprites() {
-  const centerPos = g.r.GetCenterPos();
-
-  for (const key of Object.keys(sprites)) {
-    const property = key as keyof typeof sprites;
-    const sprite = sprites[property];
-
+  for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const renderPosition = Isaac.WorldToRenderPosition(centerPos);
-      sprite.RenderLayer(0, renderPosition);
+      const spriteName = key as keyof typeof sprites;
+      const position = getPosition(spriteName);
+      sprite.RenderLayer(0, position);
+    }
+  }
+}
+
+function getPosition(spriteName: keyof typeof sprites) {
+  const centerPos = g.r.GetCenterPos();
+  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
+  const itemRow1Y = renderPosition.Y - 10;
+
+  switch (spriteName) {
+    case "seededStartingTitle": {
+      return Vector(renderPosition.X, renderPosition.Y - 40);
+    }
+
+    case "seededItemCenter": {
+      return Vector(renderPosition.X, itemRow1Y);
+    }
+
+    case "seededItemLeft": {
+      return Vector(renderPosition.X - 15, itemRow1Y);
+    }
+
+    case "seededItemRight": {
+      return Vector(renderPosition.X + 15, itemRow1Y);
+    }
+
+    case "seededItemFarLeft": {
+      return Vector(renderPosition.X - 45, itemRow1Y);
+    }
+
+    case "seededItemFarRight": {
+      return Vector(renderPosition.X + 45, itemRow1Y);
+    }
+
+    case "diversityActive": {
+      return Vector(renderPosition.X - 90, renderPosition.Y - 70);
+    }
+
+    case "diversityPassives": {
+      return Vector(renderPosition.X + 90, renderPosition.Y - 40);
+    }
+
+    case "diversityTrinket": {
+      return Vector(renderPosition.X - 90, renderPosition.Y + 30);
+    }
+
+    case "diversityItem1": {
+      // The active item
+      return Vector(renderPosition.X - 90, renderPosition.Y - 40);
+    }
+
+    case "diversityItem2": {
+      // The 1st passive item
+      return Vector(renderPosition.X + 60, itemRow1Y);
+    }
+
+    case "diversityItem3": {
+      // The 2nd passive item
+      return Vector(renderPosition.X + 90, itemRow1Y);
+    }
+
+    case "diversityItem4": {
+      // The 3rd passive item
+      return Vector(renderPosition.X + 120, itemRow1Y);
+    }
+
+    case "diversityItem5": {
+      // The trinket
+      return Vector(renderPosition.X - 90, renderPosition.Y + 60);
+    }
+
+    default: {
+      error(`Starting room sprites named "${spriteName}" are unsupported.`);
+      return Vector.Zero;
     }
   }
 }
@@ -76,49 +147,52 @@ export function initSprites(): void {
 }
 
 function initSeededSprites() {
+  const title = g.race.startingItems.length === 1 ? "item" : "build";
+  sprites.seededStartingTitle = initSprite(
+    `${GFX_PATH}/seeded-starting-${title}.anm2`,
+  );
+
   if (g.race.startingItems.length === 1) {
-    sprites.seededStartingItem = initSprite(
-      "gfx/race/seeded-starting-item.anm2",
-    );
-    sprites.seededItem1 = initGlowingItemSprite(
+    sprites.seededItemCenter = initGlowingItemSprite(
       g.race.startingItems[0] as CollectibleType,
     );
   } else if (g.race.startingItems.length === 2) {
-    sprites.seededStartingBuild = initSprite(
-      "gfx/race/seeded-starting-build.anm2",
-    );
-    sprites.seededItem2 = initGlowingItemSprite(
+    sprites.seededItemLeft = initGlowingItemSprite(
       g.race.startingItems[0] as CollectibleType,
     );
-    sprites.seededItem3 = initGlowingItemSprite(
+    sprites.seededItemRight = initGlowingItemSprite(
       g.race.startingItems[1] as CollectibleType,
     );
-  } else if (g.race.startingItems.length === 4) {
-    // Only the Mega Blast build has 4 starting items
-    sprites.seededStartingBuild = initSprite(
-      "gfx/race/seeded-starting-build.anm2",
+  } else if (g.race.startingItems.length === 3) {
+    sprites.seededItemCenter = initGlowingItemSprite(
+      g.race.startingItems[0] as CollectibleType,
     );
-    sprites.seededItem2 = initGlowingItemSprite(
+    sprites.seededItemFarLeft = initGlowingItemSprite(
       g.race.startingItems[1] as CollectibleType,
     );
-    sprites.seededItem3 = initGlowingItemSprite(
+    sprites.seededItemFarRight = initGlowingItemSprite(
       g.race.startingItems[2] as CollectibleType,
     );
-    // This will be to the left of 2
-    sprites.seededItem4 = initGlowingItemSprite(
+  } else if (g.race.startingItems.length === 4) {
+    sprites.seededItemLeft = initGlowingItemSprite(
+      g.race.startingItems[1] as CollectibleType,
+    );
+    sprites.seededItemRight = initGlowingItemSprite(
+      g.race.startingItems[2] as CollectibleType,
+    );
+    sprites.seededItemFarLeft = initGlowingItemSprite(
       g.race.startingItems[0] as CollectibleType,
     );
-    // This will be to the right of 3
-    sprites.seededItem5 = initGlowingItemSprite(
+    sprites.seededItemFarRight = initGlowingItemSprite(
       g.race.startingItems[3] as CollectibleType,
     );
   }
 }
 
 function initDiversitySprites() {
-  sprites.diversityActive = initSprite("gfx/race/diversity-active.anm2");
-  sprites.diversityPassives = initSprite("gfx/race/diversity-passives.anm2");
-  sprites.diversityTrinket = initSprite("gfx/race/diversity-trinket.anm2");
+  sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
+  sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
+  sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
   sprites.diversityItem1 = initGlowingItemSprite(
     g.race.startingItems[0] as CollectibleType,
   );

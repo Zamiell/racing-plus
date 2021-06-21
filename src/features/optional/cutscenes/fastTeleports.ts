@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import log from "../../../log";
 
 const ANIMATION_SPEED_MULTIPLIER = 1.66;
 
@@ -15,8 +16,6 @@ export function postPlayerRender(player: EntityPlayer): void {
     sprite.PlaybackSpeed === 1
   ) {
     sprite.PlaybackSpeed = ANIMATION_SPEED_MULTIPLIER;
-    Isaac.DebugString(
-      `Increased the playback speed of a ${animation} animation.`,
-    );
+    log(`Increased the playback speed of a ${animation} animation.`);
   }
 }

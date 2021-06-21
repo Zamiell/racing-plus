@@ -4,9 +4,11 @@ import PickingUpItemDescription from "../../types/PickingUpItemDescription";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import socketFunctions, { reset } from "./socketFunctions";
+import RaceData, { cloneRaceData } from "./types/RaceData";
 
-const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
+const DEBUG = true;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
+const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -27,9 +29,7 @@ export function postRender(): void {
   }
 
   // Read the socket until we run out of data to read
-  Isaac.DebugString(`1 STARTING ITEMS: ${g.race.startingItems.join(",")}`);
-  const oldRaceData = g.race.clone();
-  Isaac.DebugString(`2 STARTING ITEMS: ${g.race.startingItems.join(",")}`);
+  const oldRaceData = cloneRaceData(g.race);
   while (read()) {} // eslint-disable-line no-empty
   checkRaceChanged(oldRaceData, g.race);
 }
@@ -42,20 +42,22 @@ function read() {
   const [rawData, errMsg] = g.socket.client.receive();
   if (rawData === null) {
     if (errMsg !== "timeout") {
-      Isaac.DebugString(`Failed to read data: ${errMsg}`);
+      log(`Failed to read data: ${errMsg}`);
       disconnect();
     }
     return false;
   }
 
   const [command, data] = unpackSocketMsg(rawData);
+  if (DEBUG) {
+    log(`Got socket data: ${rawData}`);
+  }
 
   const socketFunction = socketFunctions.get(command);
   if (socketFunction !== undefined) {
-    Isaac.DebugString(`XXX ${command} ${data}`);
     socketFunction(data);
   } else {
-    Isaac.DebugString(`Error: Received an unknown socket command: ${command}`);
+    log(`Error: Received an unknown socket command: ${command}`);
   }
 
   return true;
@@ -65,19 +67,19 @@ function read() {
 export function postGameStarted(): void {
   const startSeedString = g.seeds.GetStartSeedString();
 
-  connect();
+  if (g.socket.client === null) {
+    if (!connect()) {
+      g.race = new RaceData();
+    }
+  }
+
   send("seed", startSeedString);
 }
 
-function connect(): void {
+export function connect(): boolean {
   // Do nothing if the sandbox is not present
-  if (!g.socket.enabled || g.socket.sandbox === null) {
-    return;
-  }
-
-  // Do nothing if we are already connected
-  if (g.socket.client !== null) {
-    return;
+  if (!g.socket.enabled || g.sandbox === null) {
+    return false;
   }
 
   // To minimize lag,
@@ -91,17 +93,21 @@ function connect(): void {
     // Reset the connection attempt frame to this one so that resetting over and over never triggers
     // a connection attempt
     g.socket.connectionAttemptFrame = isaacFrameCount;
-    return;
+    return false;
   }
 
   g.socket.connectionAttemptFrame = isaacFrameCount;
-  g.socket.client = g.socket.sandbox.connectLocalhost(PORT);
-  if (g.socket.client !== null) {
-    // We check for new socket data on every PostRender frame
-    // However, the remote socket might not necessarily have any new data for us
-    // Thus, we set the timeout to 0 in order to prevent lag
-    g.socket.client.settimeout(0);
+  g.socket.client = g.sandbox.connectLocalhost(PORT);
+  if (g.socket.client === null) {
+    return false;
   }
+
+  // We check for new socket data on every PostRender frame
+  // However, the remote socket might not necessarily have any new data for us
+  // Thus, we set the timeout to 0 in order to prevent lag
+  g.socket.client.settimeout(0);
+
+  return true;
 }
 
 // ModCallbacks.MC_PRE_GAME_EXIT (17)

@@ -9,6 +9,7 @@ export enum EffectVariantCustom {
 
 export enum CollectibleTypeCustom {
   COLLECTIBLE_13_LUCK = Isaac.GetItemIdByName("13 Luck"),
+  COLLECTIBLE_15_LUCK = Isaac.GetItemIdByName("15 Luck"),
 
   // Utility items
   COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),

@@ -60,7 +60,14 @@ function shouldDrawControlsGraphic() {
     !g.g.IsGreedMode() &&
     stage === 1 &&
     roomIndex === startingRoomIndex &&
-    !isAntibirthStage()
-    // TODO add logic for races
+    !isAntibirthStage() &&
+    !inSeededOrDiversityRace()
+  );
+}
+
+function inSeededOrDiversityRace() {
+  return (
+    g.race.status === "in progress" &&
+    (g.race.format === "seeded" || g.race.format === "diversity")
   );
 }

@@ -1,0 +1,16 @@
+import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloorItems";
+
+export function main(
+  _entityType: EntityType | int,
+  _variant: EntityVariantForAC,
+  _subType: int,
+  gridIndex: int,
+  _seed: int,
+): [EntityType, int, int] | null {
+  const newTable = easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
+  if (newTable !== null) {
+    return newTable;
+  }
+
+  return null;
+}

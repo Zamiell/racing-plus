@@ -1,3 +1,6 @@
+- trophy isn't respawning
+- remove treasure rooms from b1 for seeded
+- test to see if the place stays at the end of a race
 - test fireworks
 - test resetting during fireworks to see what happens
 

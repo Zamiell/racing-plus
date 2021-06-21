@@ -2,14 +2,14 @@ import g from "../../globals";
 import * as jsonHelper from "../../jsonHelper";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
-import RaceData from "./types/RaceData";
+import RaceData, { cloneRaceData } from "./types/RaceData";
 
 const functionMap = new Map<SocketCommandIn, (data: string) => void>();
 export default functionMap;
 
 functionMap.set("reset", reset);
 export function reset(): void {
-  const oldRaceData = g.race.clone();
+  const oldRaceData = cloneRaceData(g.race);
   g.race = new RaceData();
   checkRaceChanged(oldRaceData, g.race);
 }

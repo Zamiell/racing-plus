@@ -57,7 +57,7 @@ export function load(): void {
   if (jsonString === null) {
     return;
   }
-  const newGlobals = jsonHelper.decode(jsonString);
+  const newGlobals = jsonHelper.decode(jsonString) as unknown as GlobalsToSave;
 
   const oldGlobals: GlobalsToSave = {
     config: g.config,
@@ -66,7 +66,12 @@ export function load(): void {
     race: g.race,
     speedrun: g.speedrun,
   };
-  tableUtils.merge(oldGlobals as LuaTable, newGlobals);
+  tableUtils.merge(
+    oldGlobals as unknown as LuaTable,
+    newGlobals as unknown as LuaTable,
+  );
+
+  log('Loaded the "save#.dat" file.');
 }
 
 function readSaveDatFile(modObject: Mod) {

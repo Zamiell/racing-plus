@@ -1,5 +1,6 @@
 import {
   EXCLUDED_CHARACTERS,
+  MAX_NUM_DOORS,
   MAX_VANILLA_ITEM_ID,
   RECOMMENDED_SHIFT_IDX,
 } from "./constants";
@@ -88,6 +89,18 @@ export function enteredRoomViaTeleport(): boolean {
     !inCrawlspace &&
     !cameFromCrawlspace
   );
+}
+
+export function getAllDoors(): GridEntityDoor[] {
+  const doors: GridEntityDoor[] = [];
+  for (let i = 0; i < MAX_NUM_DOORS; i++) {
+    const door = g.r.GetDoor(i);
+    if (door !== null) {
+      doors.push(door);
+    }
+  }
+
+  return doors;
 }
 
 export function getGridEntities(): GridEntity[] {
@@ -321,6 +334,19 @@ export function isPostBossVoidPortal(gridEntity: GridEntity): boolean {
   return saveState.VarData === 1;
 }
 
+// eslint-disable-next-line import/no-unused-modules
+export function logAllEntityFlags(flags: int): void {
+  logAllFlags(flags, 59);
+}
+
+function logAllFlags(flags: int, maxShift: int) {
+  for (let i = 0; i <= maxShift; i++) {
+    if (hasFlag(flags, 1 << i)) {
+      log(`Has flag: ${i}`);
+    }
+  }
+}
+
 export function moveEsauNextToJacob(): void {
   const esaus = Isaac.FindByType(
     EntityType.ENTITY_PLAYER,
@@ -360,28 +386,14 @@ export function playingOnSetSeed(): boolean {
   return challenge === Challenge.CHALLENGE_NULL && customRun;
 }
 
-/*
-export function printAllFlags(flags: int, maxShift: int): void {
-  for (let i = 0; i <= maxShift; i++) {
-    if (hasFlag(flags, 1 << i)) {
-      log(`Has flag: ${i}`);
-    }
-  }
-}
-*/
-
-/*
+// eslint-disable-next-line import/no-unused-modules
 export function openAllDoors(): void {
-  for (let i = 0; i <= 7; i++) {
-    const door = g.r.GetDoor(i);
-    if (door !== null) {
-      // If we try to open a hidden secret room door (or super secret room door),
-      // then nothing will happen
-      door.Open();
-    }
+  for (const door of getAllDoors()) {
+    // If we try to open a hidden secret room door (or super secret room door),
+    // then nothing will happen
+    door.Open();
   }
 }
-*/
 
 export function removeGridEntity(gridEntity: GridEntity): void {
   const gridIndex = gridEntity.GetGridIndex();

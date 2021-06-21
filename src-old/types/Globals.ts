@@ -13,7 +13,6 @@ export default class Globals {
     finishedTime: 0,
     finishedFrames: 0,
     fireworks: 0,
-    victoryLaps: 0,
     shadowEnabled: false,
   };
 

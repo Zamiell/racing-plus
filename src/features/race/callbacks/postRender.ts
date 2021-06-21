@@ -1,8 +1,11 @@
 import g from "../../../globals";
 import { consoleCommand, restartAsCharacter } from "../../../misc";
+import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
+import raceStart from "../raceStart";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
+import * as topSprite from "../topSprite";
 
 export function main(): void {
   if (!g.config.clientCommunication) {
@@ -10,8 +13,25 @@ export function main(): void {
   }
 
   socket.postRender();
-  raceRoom.postRender();
-  startingRoom.postRender();
+
+  if (g.race.status !== "none") {
+    checkGameOpenedInMiddleOfRace();
+    raceRoom.postRender();
+    startingRoom.postRender();
+    placeLeft.postRender();
+    topSprite.postRender();
+  }
+}
+
+function checkGameOpenedInMiddleOfRace() {
+  // The race variables are normally set when the race status over the socket changes
+  // Thus, if the game is closed and reopened in the middle of a race,
+  // then the race will never become started
+  // Explicitly check for this
+  // (the timer won't be correct, but at least everything else will be functional)
+  if (g.race.status === "in progress" && !g.raceVars.started) {
+    raceStart();
+  }
 }
 
 export function checkRestartWrongCharacter(): boolean {
@@ -60,144 +80,11 @@ export function checkRestartWrongSeed(): boolean {
 
 /*
 function race() {
-  const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
-  const challenge = Isaac.GetChallenge();
-  const topSprite = sprites.sprites.get("top");
-
-  // If we are not in a race, do nothing
-  if (g.race.status === "none") {
-    sprites.clearPostRaceStartGraphics();
-  }
-  if (g.race.status === "none") {
-    // Remove graphics as soon as the race is over
-    sprites.init("top", "");
-    sprites.clearStartingRoomGraphicsTop();
-    sprites.clearStartingRoomGraphicsBottom();
-    if (!g.raceVars.finished) {
-      sprites.init("place", ""); // Keep the place there at the end of a race
-    }
-    return;
-  }
-
-  //
-  // Race validation / show warning messages
-  //
-
-  if (
-    g.race.difficulty === "hard" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
-    g.race.format !== "custom"
-  ) {
-    sprites.init("top", "error-not-hard-mode"); // Error: You are not on hard mode.
-    return;
-  }
-
-  if (
-    topSprite !== undefined &&
-    topSprite.spriteName === "error-not-hard-mode"
-  ) {
-    sprites.init("top", "");
-  }
-
-  if (
-    g.race.difficulty === "normal" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
-    g.race.format !== "custom"
-  ) {
-    sprites.init("top", "error-hard-mode"); // Error: You are on hard mode.
-    return;
-  }
-
-  if (topSprite !== undefined && topSprite.spriteName === "error-hard-mode") {
-    sprites.init("top", "");
-  }
-
-  //
-  // Graphics for the "Race Start" room
-  //
-
-  // Show the graphics for the "Race Start" room (the top half)
-  if (g.race.status === "open" && roomIndex === GridRooms.ROOM_DEBUG_IDX) {
-    sprites.init("top", "wait"); // "Wait for the race to begin!"
-    sprites.init("myStatus", g.race.myStatus);
-    sprites.init("ready", g.race.placeMid.toString());
-    // We use "placeMid" to hold this variable, since it isn't used before a race starts
-    sprites.init("slash", "slash");
-    sprites.init("readyTotal", g.race.numEntrants.toString());
-  } else {
-    if (topSprite !== undefined && topSprite.spriteName === "wait") {
-      // There can be other things on the "top" sprite location and we don't want to have to reload
-      // it on every frame
-      sprites.init("top", "");
-    }
-    sprites.clearStartingRoomGraphicsTop();
-  }
-
-  // Show the graphics for the "Race Start" room (the bottom half)
-  if (
-    (g.race.status === "open" || g.race.status === "starting") &&
-    roomIndex === GridRooms.ROOM_DEBUG_IDX
-  ) {
-    if (g.race.ranked || !g.race.solo) {
-      sprites.init("raceRanked", "ranked");
-      sprites.init("raceRankedIcon", "ranked-icon");
-    } else {
-      sprites.init("raceRanked", "unranked");
-      sprites.init("raceRankedIcon", "unranked-icon");
-    }
-    sprites.init("raceFormat", g.race.format);
-    sprites.init("raceFormatIcon", `${g.race.format}-icon`);
-    sprites.init("goal", "goal");
-    sprites.init("raceGoal", g.race.goal);
-  } else {
-    sprites.clearStartingRoomGraphicsBottom();
-  }
-
-  //
-  // Countdown graphics
-  //
-
-  // Show the appropriate countdown graphic/text
-  if (g.race.status === "starting") {
-    if (g.race.countdown === 10) {
-      sprites.init("top", "10");
-    } else if (g.race.countdown === 5) {
-      sprites.init("top", "5");
-    } else if (g.race.countdown === 4) {
-      sprites.init("top", "4");
-    } else if (g.race.countdown === 3) {
-      sprites.init("top", "3");
-    } else if (g.race.countdown === 2) {
-      sprites.init("top", "2");
-    } else if (g.race.countdown === 1) {
-      sprites.init("top", "1");
-    }
-  }
-
   //
   // Race active
   //
 
   if (g.race.status === "in progress") {
-    // The client will set countdown equal to 0 and the status equal to "in progress" at the same
-    // time
-    if (!g.raceVars.started) {
-      // Reset some race-related variables
-      Isaac.DebugString(`Starting the race! (${g.race.format})`);
-    }
-
-    // Find out how much time has passed since the race started
-    const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
-    const elapsedSeconds = elapsedMilliseconds / 1000;
-
-    // Draw the "Go!" graphic
-    if (elapsedSeconds < 3) {
-      sprites.init("top", "go");
-    } else {
-      sprites.init("top", "");
-    }
-
     // Draw the graphic that shows what place we are in
     if (
       stage >= 2 && // Our place is irrelevant on the first floor, so don't bother showing it

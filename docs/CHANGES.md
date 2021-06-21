@@ -186,9 +186,9 @@ Post-flip actions:
 > Why? This is convenient because it makes the player equidistant to all of the doors.
 
 - `051` The fade in at the beginning of a run is sped-up.
-- `052` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `052` Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.
 
-> Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
+> Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
 - `053` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
 - `054` Void portals that spawn after bosses are automatically deleted.
@@ -196,13 +196,17 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `055` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `056` The tears that explode out of enemies when you have Vasculitis are faded.
+- `056` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+
+> Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
+
+- `057` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `057` The Hush door will be automatically opened.
 - `058` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 - `059` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `060` The Hush door will be automatically opened.
 
 ### 6) Gameplay Changes
 
@@ -297,7 +301,6 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
   - Guppy's Head fly count
 - Void Portals are automatically deleted.
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
-- You will always be able to take an item in the Basement 1 Treasure Room without spending a bomb or being forced to walk on spikes.
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).

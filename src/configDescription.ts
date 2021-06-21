@@ -319,12 +319,12 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "showDreamCatcherItem",
+    "easyFirstFloorItems",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "052",
-      "Show the Dream Catcher item",
-      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
+      "Easier first floor items",
+      "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.",
     ],
   ],
   [
@@ -355,21 +355,21 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fadeVasculitisTears",
+    "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "056",
-      "Fade Vasculitis tears",
-      "Fade the tears that explode out of enemies when you have Vasculitis.",
+      "Show the Dream Catcher item",
+      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
   ],
   [
-    "openHushDoor",
+    "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "057",
-      "Open the Hush door",
-      "Automatically open the big door to Hush when you arrive on the Blue womb.",
+      "Fade Vasculitis tears",
+      "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
   ],
   [
@@ -388,6 +388,15 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
       "059",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
+    ],
+  ],
+  [
+    "openHushDoor",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "060",
+      "Open the Hush door",
+      "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
   ],
 ];

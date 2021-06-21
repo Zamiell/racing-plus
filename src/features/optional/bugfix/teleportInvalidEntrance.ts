@@ -1,8 +1,10 @@
+import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
 import log from "../../../log";
 import {
   anyPlayerCloserThan,
   enteredRoomViaTeleport,
+  getAllDoors,
   getPlayers,
   moveEsauNextToJacob,
 } from "../../../misc";
@@ -38,7 +40,7 @@ export function postNewRoom(): void {
   // Don't bother fixing entrances in big room,
   // as teleporting the player to a valid door can cause the camera to jerk in a buggy way
   if (roomShape >= RoomShape.ROOMSHAPE_1x2) {
-    Isaac.DebugString(
+    log(
       "Not fixing an invalid entrance teleport due to being in a large room.",
     );
     return;
@@ -62,10 +64,8 @@ export function postNewRoom(): void {
 }
 
 function isPlayerNextToADoor() {
-  for (let i = 0; i <= 7; i++) {
-    const door = g.r.GetDoor(i);
+  for (const door of getAllDoors()) {
     if (
-      door !== null &&
       door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
       door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
     ) {
@@ -79,7 +79,7 @@ function isPlayerNextToADoor() {
 }
 
 function getFirstDoorSlotAndPosition(): [int | null, Vector | null] {
-  for (let i = 0; i <= 7; i++) {
+  for (let i = 0; i < MAX_NUM_DOORS; i++) {
     const door = g.r.GetDoor(i);
     if (
       door !== null &&

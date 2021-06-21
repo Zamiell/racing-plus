@@ -4,10 +4,8 @@ import {
   ensureAllCases,
   getRoomIndex,
 } from "../../../../misc";
-import {
-  CollectibleTypeCustom,
-  EntityTypeCustom,
-} from "../../../../types/enums";
+import { CollectibleTypeCustom } from "../../../../types/enums";
+import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
 
 enum ReplacementAction {
@@ -54,7 +52,7 @@ function getReplacementAction() {
     return season1();
   }
 
-  if (g.race.finished) {
+  if (g.raceVars.finished) {
     return ReplacementAction.VictoryLap;
   }
 
@@ -245,7 +243,6 @@ function bossRush() {
 }
 
 function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
-  const roomIndex = getRoomIndex();
   const position = g.r.FindFreePickupSpawnPosition(pickup.Position);
 
   if (replacementAction !== ReplacementAction.LeaveAlone) {
@@ -290,21 +287,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.Trophy: {
-      Isaac.Spawn(
-        EntityTypeCustom.ENTITY_RACE_TROPHY,
-        0,
-        0,
-        position,
-        Vector.Zero,
-        null,
-      );
-
-      // Keep track that we spawned it so that we can respawn it if the player re-enters the room
-      g.run.level.trophy = {
-        roomIndex,
-        position,
-      };
-
+      trophy.spawn(position);
       break;
     }
 

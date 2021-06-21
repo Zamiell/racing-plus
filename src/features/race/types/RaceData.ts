@@ -1,6 +1,7 @@
-import { CollectibleTypeCustom } from "../../../types/enums";
+// The possible types for values of RaceData
+export type RaceDataType = boolean | number | string | int[];
 
-type RaceStatus = "none" | "open" | "starting" | "in progress";
+export type RaceStatus = "none" | "open" | "starting" | "in progress";
 type RacerStatus =
   | "not ready"
   | "ready"
@@ -34,7 +35,7 @@ export default class RaceData {
   /** Corresponds to the seed that is the race goal. */
   seed = "-";
   /** The starting items for this race, if any. */
-  startingItems: Array<CollectibleType | CollectibleTypeCustom> = [];
+  startingItems: int[] = [];
   /** This corresponds to the graphic to draw on the screen. */
   countdown = -1;
   /**
@@ -44,14 +45,14 @@ export default class RaceData {
   placeMid = 0;
   /** This is the final place. */
   place = -1;
+  /** In a pre-race, the number of people who have readied up. */
+  numReady = 0;
   /** The number of people in the race. */
   numEntrants = 1;
+}
 
-  finished = false;
-
-  clone(): RaceData {
-    const copiedRaceData = { ...this }; // Shallow copy
-    copiedRaceData.startingItems = { ...this.startingItems }; // Copy nested arrays
-    return copiedRaceData;
-  }
+export function cloneRaceData(raceData: RaceData): RaceData {
+  const copiedRaceData = { ...raceData }; // Shallow copy
+  copiedRaceData.startingItems = [...raceData.startingItems]; // Copy nested arrays
+  return copiedRaceData;
 }

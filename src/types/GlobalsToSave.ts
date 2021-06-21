@@ -5,9 +5,9 @@ import GlobalsRun from "./GlobalsRun";
 import Hotkeys from "./Hotkeys";
 
 export default interface GlobalsToSave {
-  config?: Config;
-  hotkeys?: Hotkeys;
-  run?: GlobalsRun;
-  race?: RaceData;
-  speedrun?: SpeedrunData;
+  config: Config;
+  hotkeys: Hotkeys;
+  run: GlobalsRun;
+  race: RaceData;
+  speedrun: SpeedrunData;
 }

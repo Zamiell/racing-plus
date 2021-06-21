@@ -4,6 +4,7 @@ import {
   getPlayers,
   getRoomIndex,
   gridToPos,
+  initSprite,
 } from "../../misc";
 import {
   RACE_ROOM_POSITION,
@@ -11,12 +12,33 @@ import {
   RACE_ROOM_VARIANT,
 } from "./constants";
 
+const GFX_PATH = "gfx/race/race-room";
+const X_SPACING = 110;
+const Y_SPACING = 10;
+
 const sprites = {
-  spriteTodo: null as Sprite | null,
+  // Top half
+  wait: null as Sprite | null, // "Wait for the race to begin!"
+  myStatus: null as Sprite | null,
+  numReady: null as Sprite | null,
+  slash: null as Sprite | null,
+  numEntrants: null as Sprite | null,
+
+  // Bottom half
+  ranked: null as Sprite | null,
+  rankedIcon: null as Sprite | null,
+  format: null as Sprite | null,
+  formatIcon: null as Sprite | null,
+  goal: null as Sprite | null,
+  goalIcon: null as Sprite | null,
 };
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
+  if (!inRaceRoom()) {
+    return;
+  }
+
   emulateGapingMaws();
   drawSprites();
 }
@@ -25,14 +47,82 @@ function emulateGapingMaws() {
   // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect)
   // (this looks glitchy and jittery if it is done in the PostUpdate callback,
   // so do it here instead)
-  if (!g.raceVars.started && inRaceRoom()) {
-    for (const player of getPlayers()) {
-      player.Position = RACE_ROOM_POSITION;
+  for (const player of getPlayers()) {
+    player.Position = RACE_ROOM_POSITION;
+  }
+}
+
+function drawSprites() {
+  for (const [key, sprite] of Object.entries(sprites)) {
+    if (sprite !== null) {
+      const spriteName = key as keyof typeof sprites;
+      const position = getPosition(spriteName);
+      sprite.RenderLayer(0, position);
     }
   }
 }
 
-function drawSprites() {}
+function getPosition(spriteName: keyof typeof sprites) {
+  const centerPos = g.r.GetCenterPos();
+  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
+
+  switch (spriteName) {
+    case "wait": {
+      return Vector(renderPosition.X, renderPosition.Y - 80);
+    }
+
+    case "myStatus": {
+      return Vector(renderPosition.X, renderPosition.Y - 40);
+    }
+
+    case "numReady": {
+      return Vector(renderPosition.X - 20, renderPosition.Y - 15);
+    }
+
+    case "slash": {
+      return Vector(renderPosition.X, renderPosition.Y - 15);
+    }
+
+    case "numEntrants": {
+      return Vector(renderPosition.X + 20, renderPosition.Y - 15);
+    }
+
+    case "ranked": {
+      return Vector(renderPosition.X - X_SPACING, renderPosition.Y + Y_SPACING);
+    }
+
+    case "rankedIcon": {
+      return Vector(
+        renderPosition.X - X_SPACING,
+        renderPosition.Y + Y_SPACING + 23,
+      );
+    }
+
+    case "format": {
+      return Vector(renderPosition.X + X_SPACING, renderPosition.Y + Y_SPACING);
+    }
+
+    case "formatIcon": {
+      return Vector(
+        renderPosition.X + X_SPACING,
+        renderPosition.Y + Y_SPACING + 23,
+      );
+    }
+
+    case "goal": {
+      return Vector(renderPosition.X - 25, renderPosition.Y + 95);
+    }
+
+    case "goalIcon": {
+      return Vector(renderPosition.X + 25, renderPosition.Y + 95);
+    }
+
+    default: {
+      error(`Race room sprites named "${spriteName}" are unsupported.`);
+      return Vector.Zero;
+    }
+  }
+}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -108,7 +198,7 @@ function setupRaceRoom() {
     [7, 5],
   ];
   for (const [x, y] of positions) {
-    Isaac.Spawn(
+    const gapingMaw = Isaac.Spawn(
       EntityType.ENTITY_GAPING_MAW,
       0,
       0,
@@ -116,8 +206,8 @@ function setupRaceRoom() {
       Vector.Zero,
       null,
     );
+    gapingMaw.ClearEntityFlags(EntityFlag.FLAG_APPEAR); // Make them appear instantly
   }
-  g.sfx.Stop(SoundEffect.SOUND_SUMMON_POOF);
 
   // Disable the MinimapAPI to emulate what happens with the vanilla map
   if (MinimapAPI !== null) {
@@ -153,5 +243,73 @@ export function resetSprites(): void {
 }
 
 export function initSprites(): void {
-  // if (g.race.status === "" format)
+  if (g.race.status !== "open") {
+    return;
+  }
+
+  // Top half
+  sprites.wait = initSprite(`${GFX_PATH}/wait.anm2`);
+  initMyStatusSprite();
+  initNumReadySprite();
+  sprites.slash = initSprite(`${GFX_PATH}/slash.anm2`);
+  initNumEntrantsSprite();
+
+  // Bottom half
+  const isRanked = g.race.ranked || !g.race.solo;
+  const ranked = isRanked ? "ranked" : "unranked";
+  sprites.ranked = initSprite(`${GFX_PATH}/ranked/${ranked}.anm2`);
+  sprites.rankedIcon = initSprite(`${GFX_PATH}/ranked/${ranked}-icon.anm2`);
+  sprites.format = initSprite(`${GFX_PATH}/formats/${g.race.format}.anm2`);
+  sprites.formatIcon = initSprite(
+    `${GFX_PATH}/formats/${g.race.format}-icon.anm2`,
+  );
+  sprites.goal = initSprite(`${GFX_PATH}/goal.anm2`);
+  sprites.goalIcon = initSprite(`${GFX_PATH}/goals/${g.race.goal}.anm2`);
+}
+
+export function initMyStatusSprite(): void {
+  sprites.myStatus = initSprite(
+    `${GFX_PATH}/my-status/${g.race.myStatus}.anm2`,
+  );
+}
+
+export function initNumReadySprite(): void {
+  sprites.numReady = initNumSprite(g.race.numReady);
+}
+
+export function initNumEntrantsSprite(): void {
+  sprites.numEntrants = initNumSprite(g.race.numEntrants);
+}
+
+function initNumSprite(num: int) {
+  const anm2Name = num > 50 ? "unknown" : num.toString();
+  return initSprite(`${GFX_PATH}/ready/${anm2Name}.anm2`);
+}
+
+export function statusChanged(): void {
+  if (g.race.status === "starting") {
+    sprites.wait = null;
+    sprites.myStatus = null;
+    sprites.numReady = null;
+    sprites.slash = null;
+    sprites.numEntrants = null;
+  }
+}
+
+export function myStatusChanged(): void {
+  if (g.race.status === "open") {
+    initMyStatusSprite();
+  }
+}
+
+export function numReadyChanged(): void {
+  if (g.race.status === "open") {
+    initNumReadySprite();
+  }
+}
+
+export function numEntrantsChanged(): void {
+  if (g.race.status === "open") {
+    initNumEntrantsSprite();
+  }
 }

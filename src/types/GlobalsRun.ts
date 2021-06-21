@@ -6,14 +6,6 @@ import GlobalsRunRoom from "./GlobalsRunRoom";
 import PickingUpItemDescription from "./PickingUpItemDescription";
 import PillDescription from "./PillDescription";
 
-// Several variables are maps that track things for each player
-// If we have a Lua table indexed by ControllerIndex,
-// that will cause problems because Lua will interpret it as an array instead of a map
-// Instead, we use a Lua table with keys that are the ControllerIndex converted to a string
-// The valid values for this are "0", "1", "2", and "3"
-// It is inconvenient to set this explicitly on the type since we would have to do many assertions
-type ControllerIndexString = string;
-
 // Per-run variables
 export default class GlobalsRun {
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
@@ -25,7 +17,7 @@ export default class GlobalsRun {
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;
 
-  currentCharacters = new LuaTable<ControllerIndexString, PlayerType>();
+  currentCharacters = new LuaTable<PlayerLuaTableIndex, PlayerType>();
   debugChaosCard = false;
   debugSpeed = false;
 
@@ -71,7 +63,7 @@ export default class GlobalsRun {
     /**
      * After picking up the Paschal Candle, it automatically grants one rooms worth of tear-rate.
      */
-    paschalCandleCounters: new LuaTable<ControllerIndexString, int>(),
+    paschalCandleCounters: new LuaTable<PlayerLuaTableIndex, int>(),
   };
 
   /** Needed for speedruns to return to the same character. */
@@ -96,29 +88,19 @@ export default class GlobalsRun {
   fireworksSpawned = 0;
 
   freeDevilItem = {
-    tookDamage: new LuaTable<ControllerIndexString, boolean>(),
+    tookDamage: new LuaTable<PlayerLuaTableIndex, boolean>(),
     granted: false,
   };
 
-  ghostForm = new LuaTable<ControllerIndexString, boolean>();
   maxFamiliars = false;
 
-  pickingUpItem = new LuaTable<
-    ControllerIndexString,
-    PickingUpItemDescription
-  >();
+  pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
 
   /** We track all identified pills so that we can display them. */
   pills: PillDescription[] = [];
   pillsPHD = false;
   pillsFalsePHD = false;
-  pocketActiveD6Charge = new LuaTable<ControllerIndexString, int>();
-
-  race = {
-    finished: false,
-    finishedTime: 0,
-    victoryLaps: 0,
-  };
+  pocketActiveD6Charge = new LuaTable<PlayerLuaTableIndex, int>();
 
   /** Used to give only one double item Treasure Room. */
   removeMoreOptions = false;
@@ -152,15 +134,7 @@ export default class GlobalsRun {
   };
 
   switchForgotten = false;
-  transformations = new LuaTable<ControllerIndexString, boolean[]>();
-
-  trophy = {
-    spawned: false,
-    stage: 0,
-    roomIndex: 0,
-    position: Vector.Zero,
-  };
-
+  transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
   victoryLaps = 0;
 
   // Initialize variables that are tracked per player
@@ -180,7 +154,6 @@ export function initPlayerVariables(
   const character = player.GetPlayerType();
   const index = getPlayerLuaTableIndex(player);
 
-  run.ghostForm.set(index, false);
   run.currentCharacters.set(index, character);
   run.fastClear.paschalCandleCounters.set(index, 1);
   run.freeDevilItem.tookDamage.set(index, false);
@@ -202,7 +175,13 @@ export function initPlayerVariables(
   log(`Initialized variables for player: ${index}`);
 }
 
-export function getPlayerLuaTableIndex(player: EntityPlayer): string {
+// This represents the special case of a pointer hash converted to a string;
+// see the explanation below
+type PlayerLuaTableIndex = string;
+
+export function getPlayerLuaTableIndex(
+  player: EntityPlayer,
+): PlayerLuaTableIndex {
   // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
   // or Tainted Forgotten
   // The PtrHash of the player will correctly persist after saving and quitting and continuing,

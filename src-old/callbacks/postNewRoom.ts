@@ -5,10 +5,6 @@ export function newRoom(): void {
   checkScolexRoom(); // Check for all of the Scolex boss rooms
   checkDepthsPuzzle(); // Check for the unavoidable puzzle room in the Dank Depths
   checkEntities(); // Check for various NPCs
-  // Check to see if we need to respawn an end-of-race or end-of-speedrun trophy
-  checkRespawnTrophy();
-  banB1TreasureRoom(); // Certain formats ban the Treasure Room in Basement 1
-  banB1CurseRoom(); // Certain formats ban the Curse Room in Basement 1
 
   changeCharOrder.postNewRoom(); // The "Change Char Order" custom challenge
   changeKeybindings.postNewRoom(); // The "Change Keybindings" custom challenge
@@ -157,101 +153,6 @@ function checkEntities() {
     g.g.ShakeScreen(20);
     Isaac.DebugString("Pin detected; shaking the screen.");
   }
-}
-
-function banB1TreasureRoom() {
-  if (!shouldBanB1TreasureRoom()) {
-    return;
-  }
-
-  // Delete the doors to the Basement 1 treasure room, if any
-  // (this includes the doors in a Secret Room)
-  // (we must delete the door before changing the minimap, or else the icon will remain)
-  const roomIndex = g.l.QueryRoomTypeIndex(
-    RoomType.ROOM_TREASURE,
-    false,
-    RNG(),
-  );
-  for (let i = 0; i <= 7; i++) {
-    const door = g.r.GetDoor(i);
-    if (door !== null && door.TargetRoomIndex === roomIndex) {
-      g.r.RemoveDoor(i);
-      Isaac.DebugString("Removed the Treasure Room door on B1.");
-    }
-  }
-
-  // Delete the icon on the minimap
-  // (this has to be done on every room, because it will reappear)
-  let roomDesc;
-  if (MinimapAPI === null) {
-    roomDesc = g.l.GetRoomByIdx(roomIndex);
-    roomDesc.DisplayFlags = 0;
-    g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
-  } else {
-    roomDesc = MinimapAPI.GetRoomByIdx(roomIndex);
-    if (roomDesc !== null) {
-      roomDesc.Remove();
-    }
-  }
-}
-
-function shouldBanB1TreasureRoom() {
-  const stage = g.l.GetStage();
-  const challenge = Isaac.GetChallenge();
-
-  return (
-    stage === 1 &&
-    (g.race.format === "seeded" ||
-      challenge === ChallengeCustom.R7_SEASON_4 ||
-      (challenge === ChallengeCustom.R7_SEASON_5 &&
-        g.speedrun.characterNum >= 2) ||
-      challenge === ChallengeCustom.R7_SEASON_6 ||
-      challenge === ChallengeCustom.R7_SEASON_9)
-  );
-}
-
-function banB1CurseRoom() {
-  if (!shouldBanB1CurseRoom()) {
-    return;
-  }
-
-  // Delete the doors to the Basement 1 curse room, if any
-  // (this includes the doors in a Secret Room)
-  // (we must delete the door before changing the minimap, or else the icon will remain)
-  let roomIndex: int | null = null;
-  for (let i = 0; i <= 7; i++) {
-    const door = g.r.GetDoor(i);
-    // We check for "door.TargetRoomType" instead of "door.TargetRoomIndex" because it leads to bugs
-    if (door !== null && door.TargetRoomType === RoomType.ROOM_CURSE) {
-      g.r.RemoveDoor(i);
-      roomIndex = door.TargetRoomIndex;
-      Isaac.DebugString("Removed the Curse Room door on B1.");
-    }
-  }
-  if (roomIndex === null) {
-    return;
-  }
-
-  // Delete the icon on the minimap
-  // (this has to be done on every room, because it will reappear)
-  let roomDesc;
-  if (MinimapAPI === undefined) {
-    roomDesc = g.l.GetRoomByIdx(roomIndex);
-    roomDesc.DisplayFlags = 0;
-    g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
-  } else {
-    roomDesc = MinimapAPI.GetRoomByIdx(roomIndex);
-    if (roomDesc !== null) {
-      roomDesc.Remove();
-    }
-  }
-}
-
-function shouldBanB1CurseRoom() {
-  const stage = g.l.GetStage();
-  const challenge = Isaac.GetChallenge();
-
-  return stage === 1 && challenge === ChallengeCustom.R7_SEASON_9;
 }
 
 */

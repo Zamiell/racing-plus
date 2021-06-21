@@ -7,6 +7,7 @@ import {
   EDEN_PASSIVE_ITEM,
   SAVE_FILE_SEED,
 } from "../features/mandatory/saveFileCheck";
+import * as socket from "../features/race/socket";
 import g from "../globals";
 import log from "../log";
 import {
@@ -168,6 +169,14 @@ functionMap.set("coins", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== null) {
     player.AddCoins(99);
+  }
+});
+
+functionMap.set("connect", (_params: string) => {
+  if (socket.connect()) {
+    print("Successfully connected.");
+  } else {
+    print("Failed to connect.");
   }
 });
 

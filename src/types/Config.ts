@@ -30,15 +30,16 @@ export default class Config {
   globinSoftlock = true;
 
   // Quality of Life Changes
-  showDreamCatcherItem = true;
   speedUpFadeIn = true;
+  easyFirstFloorItems = true;
   subvertTeleport = true;
   deleteVoidPortals = true;
   showNumSacrifices = true;
-  fadeVasculitisTears = true;
-  openHushDoor = true;
+  showDreamCatcherItem = true; // 566
+  fadeVasculitisTears = true; // 657
   showPills = true;
   showMaxFamiliars = true;
+  openHushDoor = true;
 
   // Cutscenes & Animations
   fastTeleports = true;

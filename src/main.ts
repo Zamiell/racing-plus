@@ -24,6 +24,7 @@ import * as postUpdate from "./callbacks/postUpdate";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
+import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as useCard from "./callbacks/useCard";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
@@ -99,6 +100,10 @@ function registerMiscCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
   racingPlus.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
   racingPlus.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
+  racingPlus.AddCallback(
+    ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN,
+    preRoomEntitySpawn.main,
+  ); // 71
 }
 
 // 0

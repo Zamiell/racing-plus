@@ -1,21 +1,28 @@
 import g from "../../../globals";
+import log from "../../../log";
 import { giveItemAndRemoveFromPools, playingOnSetSeed } from "../../../misc";
 import { CollectibleTypeCustom } from "../../../types/enums";
-import { COLLECTIBLE_13_LUCK_SERVER_ID } from "../constants";
+import {
+  COLLECTIBLE_13_LUCK_SERVER_ID,
+  COLLECTIBLE_15_LUCK_SERVER_ID,
+} from "../constants";
+import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
+import * as socketFunctions from "../socketFunctions";
+import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as tempMoreOptions from "../tempMoreOptions";
+import * as topSprite from "../topSprite";
 
 export function main(): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
+  resetRaceVars();
   socket.postGameStarted();
-
-  raceRoom.resetSprites();
-  startingRoom.resetSprites();
+  sprites.resetAll();
 
   // For race validation purposes, use the 0th player
   const player = Isaac.GetPlayer();
@@ -32,6 +39,21 @@ export function main(): void {
 
   raceRoom.initSprites();
   startingRoom.initSprites();
+  topSprite.postGameStarted();
+  placeLeft.postGameStarted();
+}
+
+function resetRaceVars() {
+  // If we finished a race and we reset,
+  // we don't want to show any of the graphics on the starting screen
+  // Clear out all of the race data to defaults
+  // (the client will only explicitly reset the race data if we navigate back to the lobby)
+  if (g.raceVars.finished) {
+    socketFunctions.reset();
+  }
+
+  g.raceVars.finished = false;
+  g.raceVars.finishedTime = 0;
 }
 
 function giveFormatItems(player: EntityPlayer) {
@@ -81,7 +103,7 @@ function validateChallenge() {
 
   if (challenge !== Challenge.CHALLENGE_NULL && g.race.format !== "custom") {
     g.g.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
-    Isaac.DebugString(
+    log(
       "We are in a race but also in a custom challenge; fading out back to the menu.",
     );
     return false;
@@ -96,8 +118,8 @@ function validateDifficulty() {
     g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
     g.race.format !== "custom"
   ) {
-    Isaac.DebugString(
-      `Race error: Supposed to be on easy mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
+    log(
+      `Error: Supposed to be on easy mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
     );
     return false;
   }
@@ -107,8 +129,8 @@ function validateDifficulty() {
     g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
     g.race.format !== "custom"
   ) {
-    Isaac.DebugString(
-      `Race error: Supposed to be on hard mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
+    log(
+      `Error: Supposed to be on hard mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
     );
     return false;
   }
@@ -187,6 +209,8 @@ function seeded(player: EntityPlayer) {
     // so it uses an arbitrarily large number to represent it
     if (itemID === COLLECTIBLE_13_LUCK_SERVER_ID) {
       itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK;
+    } else if (itemID === COLLECTIBLE_15_LUCK_SERVER_ID) {
+      itemID = CollectibleTypeCustom.COLLECTIBLE_15_LUCK;
     }
 
     giveItemAndRemoveFromPools(player, itemID);

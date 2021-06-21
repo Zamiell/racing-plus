@@ -1,5 +1,6 @@
 <items gfxroot="gfx/items/" version="1">
 	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" />
+	<passive description="A horny amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
 
 	<!-- Utility items -->
 	<passive description="" gfx="Trophy.png" name="Trophy" hidden="true" />

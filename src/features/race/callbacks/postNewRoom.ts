@@ -1,8 +1,10 @@
 import g from "../../../globals";
+import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as tempMoreOptions from "../tempMoreOptions";
+import * as topSprite from "../topSprite";
 
 export function main(): void {
   if (!g.config.clientCommunication) {
@@ -13,4 +15,6 @@ export function main(): void {
   tempMoreOptions.postNewRoom();
   raceRoom.postNewRoom();
   startingRoom.postNewRoom();
+  topSprite.postNewRoom();
+  banFirstFloorTreasureRoom.postNewRoom();
 }

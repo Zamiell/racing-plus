@@ -1,11 +1,30 @@
 import g from "../../globals";
 import { getRoomIndex } from "../../misc";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
-import * as race from "../race/race";
+import raceFinish from "../race/raceFinish";
 import SeededDeathState from "../race/types/SeededDeathState";
 import * as speedrun from "../speedrun/speedrun";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
+
+export function spawn(position: Vector): void {
+  const roomIndex = getRoomIndex();
+
+  Isaac.Spawn(
+    EntityTypeCustom.ENTITY_RACE_TROPHY,
+    0,
+    0,
+    position,
+    Vector.Zero,
+    null,
+  );
+
+  // Keep track that we spawned it so that we can respawn it if the player re-enters the room
+  g.run.level.trophy = {
+    roomIndex,
+    position,
+  };
+}
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -46,6 +65,7 @@ function checkTouch() {
 
 function touch(trophy: Entity, player: EntityPlayer) {
   trophy.Remove();
+  g.run.level.trophy = null;
 
   // Make the player pick it up and have it sparkle
   player.AnimateCollectible(
@@ -59,7 +79,7 @@ function touch(trophy: Entity, player: EntityPlayer) {
   if (speedrun.inSpeedrun()) {
     speedrun.finish(player);
   } else {
-    race.finish();
+    raceFinish();
   }
 }
 
@@ -70,18 +90,11 @@ export function postNewRoom(): void {
 
 function checkRespawn() {
   const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
 
   if (
-    !g.run.trophy.spawned ||
-    stage !== g.run.trophy.stage ||
-    roomIndex !== g.run.trophy.roomIndex
+    g.run.level.trophy === null ||
+    roomIndex !== g.run.level.trophy.roomIndex
   ) {
-    return;
-  }
-
-  // Don't respawn the trophy if we already touched it
-  if (g.raceVars.finished || g.speedrun.finished) {
     return;
   }
 
@@ -91,7 +104,7 @@ function checkRespawn() {
     EntityTypeCustom.ENTITY_RACE_TROPHY,
     0,
     0,
-    g.run.trophy.position,
+    g.run.level.trophy.position,
     Vector.Zero,
     null,
   );

@@ -62,32 +62,46 @@ export function newLevel(): void {
   postNewRoom.newRoom();
 }
 
-function showLevelText() {
-  // Show what the new floor is
-  // (the game will not show this naturally after doing a "stage" console command)
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  if (VanillaStreakText) {
-    g.l.ShowName(false);
-  } else {
-    let text = g.l.GetName(stage, stageType, 0, 0, false);
-    if (text === "???") {
-      text = "Blue Womb";
-    }
-
-    streakText.set(text);
-  }
-}
-
 function shouldShowLevelText() {
   return (
     // If the race is finished, the "Victory Lap" text will overlap with the stage text,
     // so don't bother showing it
-    !g.race.finished &&
+    !g.raceVars.finished &&
     // If one or more players are playing as "Random Baby", the baby descriptions will slightly
     // overlap with the stage text, so don't bother showing it
     !oneOrMorePlayersIsRandomBaby()
+  );
+}
+
+function showLevelText() {
+  // Show what the new floor is
+  // (the game will not show this naturally after doing a "stage" console command)
+  if (VanillaStreakText) {
+    g.l.ShowName(false);
+  } else if (!goingToRaceRoom()) {
+    const text = getLevelText();
+    streakText.set(text);
+  }
+}
+
+function getLevelText() {
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
+
+  if (stage === 9) {
+    return "Blue Womb";
+  }
+
+  return g.l.GetName(stage, stageType);
+}
+
+function goingToRaceRoom() {
+  const stage = g.l.GetStage();
+
+  return (
+    g.race.status === "open" &&
+    stage === 1 &&
+    (g.run.roomsEntered === 0 || g.run.roomsEntered === 1)
   );
 }
 

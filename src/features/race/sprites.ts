@@ -1,10 +1,11 @@
-/* eslint-disable import/no-unused-modules */
+import * as placeLeft from "./placeLeft";
+import * as raceRoom from "./raceRoom";
+import * as startingRoom from "./startingRoom";
+import * as topSprite from "./topSprite";
 
-const sprites = new Map<string, Sprite>();
-
-export function init(spriteKey: string, _spriteName: string): void {
-  const sprite = sprites.get(spriteKey);
-  if (sprite === undefined) {
-    // TODO
-  }
+export function resetAll(): void {
+  raceRoom.resetSprites();
+  startingRoom.resetSprites();
+  placeLeft.resetSprite();
+  topSprite.resetSprite();
 }
