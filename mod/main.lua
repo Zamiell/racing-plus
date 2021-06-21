@@ -2380,7 +2380,7 @@ ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Juda
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
 ____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}, {"globinSoftlock", {4, "046", "Fix Globin softlocks", "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks."}}}
 ____exports.QUALITY_OF_LIFE_CHANGES = {{nil, {1, "", "Start in the center", "On a new run, start in the center of the room (instead of at the bottom)."}}, {"speedUpFadeIn", {4, "051", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"easyFirstFloorItems", {4, "052", "Easier first floor items", "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes."}}, {"subvertTeleport", {4, "053", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "054", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"showNumSacrifices", {4, "055", "Show the number of sacrifices", "Show the number of sacrifices in the top-left when in a Sacrifice Room."}}, {"showDreamCatcherItem", {4, "056", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"fadeVasculitisTears", {4, "057", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"showPills", {4, "058", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}, {"showMaxFamiliars", {4, "059", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}, {"openHushDoor", {4, "060", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}}
-____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
+____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Mercurius", "It is incredibly powerful and not very skill-based. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
 ____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {"fastTeleports", {4, "071", "Fast teleports", "Teleport animations are sped up by a factor of 2."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
 ____exports.BUG_FIXES = {{"teleportInvalidEntrance", {4, "081", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix shop Restock Machines", "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}, {nil, {1, "", "Fix I AM ERROR exits", "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)"}}}
 ____exports.GRAPHIC_CHANGES = {{"flyItemSprites", {4, "091", "Fix fly colors", "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars."}}, {"twentyTwenty", {4, "092", "Better 20/20", "Make the 20/20 sprite easier to see."}}, {"starOfBethlehem", {4, "093", "Better Star of Bethlehem", "Make the Star of Bethlehem sprite more distinct from Eden's Soul."}}, {nil, {1, "", "Fix Locust of Famine", "Make the Locust of Famine sprite match the color of the flies."}}, {nil, {1, "", "Fix Error", "Make the Error trinket sprite have an outline."}}, {"paschalCandle", {4, "094", "Better Paschal Candle", "Paschal Candle now \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}, {nil, {1, "", "Speedrunning controls graphic", "The controls graphic in the start room is changed to be speedrunning-themed."}}}
@@ -2432,7 +2432,7 @@ return ____exports
  end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.12"
+____exports.VERSION = "0.58.13"
 ____exports.COLLECTIBLE_SPRITE_LAYER = 1
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
@@ -6285,6 +6285,25 @@ function ____exports.postGameStarted(self)
 end
 return ____exports
  end,
+["features.mandatory.removeMercurius"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
+function ____exports.postGameStarted(self)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MERCURIUS)
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_MERCURIUS) then
+            player:RemoveCollectible(CollectibleType.COLLECTIBLE_MERCURIUS)
+            player:AddCollectible(CollectibleType.COLLECTIBLE_SAD_ONION)
+        end
+    end
+end
+return ____exports
+ end,
 ["features.mandatory.seededDrops"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -8613,6 +8632,7 @@ require("lualib_bundle");
 local ____exports = {}
 local centerStart = require("features.mandatory.centerStart")
 local removeKarma = require("features.mandatory.removeKarma")
+local removeMercurius = require("features.mandatory.removeMercurius")
 local saveFileCheck = require("features.mandatory.saveFileCheck")
 local seededDrops = require("features.mandatory.seededDrops")
 local seededFloors = require("features.mandatory.seededFloors")
@@ -8683,6 +8703,7 @@ function ____exports.main(self, isContinued)
     if isCorruptMod(nil) or (not saveFileCheck:isFullyUnlocked()) then
         return
     end
+    removeMercurius:postGameStarted()
     removeKarma:postGameStarted()
     seededDrops:postGameStarted()
     seededFloors:postGameStarted()

@@ -210,6 +210,10 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
+- Mercurius is removed.
+
+> Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.
+
 - The Karma trinket is removed.
 
 > Why? Since all Donation Machines are removed, it has no effect.

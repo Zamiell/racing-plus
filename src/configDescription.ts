@@ -408,6 +408,15 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
+      "Remove Mercurius",
+      "It is incredibly powerful and not very skill-based. This cannot be disabled for seeding reasons.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
       "Remove Karma trinket",
       "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons.",
     ],

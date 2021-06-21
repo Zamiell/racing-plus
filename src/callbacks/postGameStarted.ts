@@ -1,5 +1,6 @@
 import * as centerStart from "../features/mandatory/centerStart";
 import * as removeKarma from "../features/mandatory/removeKarma";
+import * as removeMercurius from "../features/mandatory/removeMercurius";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
@@ -46,6 +47,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
+  removeMercurius.postGameStarted();
   removeKarma.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
