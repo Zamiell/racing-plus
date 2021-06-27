@@ -4,9 +4,9 @@
     "content\\itempools.xml": "87e7b4a83979764441b4c68971375475c6f844d4",
     "content\\items.xml": "520b00a243db00580296a6d8cdb51d14545ffa5f",
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
-    "main.lua": "2efbcf89a7b0525d908e4deacccf3a8ff51704ee",
+    "main.lua": "93124aca3c3edc9c5536776fe9a8eaca00e5008e",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "a169ad8e9f55f06fd706dcf9df8bd34257de1e92",
+    "metadata.xml": "f089e5a21068c15a8dbb11fac0d87af778d5e666",
     "readme.txt": "60c47d66a27f37327fda4e9384472dcd08f56194",
     "resources\\cutscenes.xml": "cc51254f865ca8abf6ee97de98c08889eda17296",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -979,7 +979,7 @@
     "resources\\gfx\\items_glowing\\collectibles_537.png": "268bd9857eab6844cea6f191e53dd883f0ff3b49",
     "resources\\gfx\\items_glowing\\collectibles_538.png": "7a6bff4fe2b418016be83bc2b92eb5443cd25393",
     "resources\\gfx\\items_glowing\\collectibles_539.png": "a4dd43db0be17e5bb351809c23daefad3978d58b",
-    "resources\\gfx\\items_glowing\\collectibles_540.png": "6a350e19d71f353d2fa33006bbf6fe1ee171724f",
+    "resources\\gfx\\items_glowing\\collectibles_540.png": "723d15d9359a657a20eb40f52f29c2563f13981f",
     "resources\\gfx\\items_glowing\\collectibles_541.png": "4398a7aadf2742fc8928d1b39fbf69c56f190207",
     "resources\\gfx\\items_glowing\\collectibles_542.png": "836bfa0a01b0eb2694d9e7724643c768ec0cdb4b",
     "resources\\gfx\\items_glowing\\collectibles_543.png": "faeddf3996a8c74334cefb82962e0a4e734ce561",
@@ -1516,8 +1516,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "ff7ab183ce40e6ca3613f6336cf02fb49c119ce5",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "ff7ab183ce40e6ca3613f6336cf02fb49c119ce5",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "7c68d3e945b1d5b237591ee25b1a98e1687d8866",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "7c68d3e945b1d5b237591ee25b1a98e1687d8866",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\pausescreen.anm2": "ab53c8c85973a378543ccef5d83a33ecd817b9e2",
@@ -1555,5 +1555,5 @@
     "resources\\rooms\\36.backwards.stb": "c2fe29b259483debe8e2e345a988103c00b7d42c",
     "resources\\rules.txt": "802f14a2c460b3af0554b2dda856a74f6a9e93a9",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "24964d94250583e2f1c514e6e46b6765a5139b4e"
+    "version.txt": "b6d8b34d94282e39289a8954997652f42ff84ac3"
 }
