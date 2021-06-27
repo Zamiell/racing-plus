@@ -7,7 +7,10 @@
 import g from "../../globals";
 import { isActionPressedOnAnyInput } from "../../misc";
 import * as timer from "../../timer";
-import { TimerType } from "../../timer";
+import TimerType from "../../types/TimerType";
+
+const RUN_TIMER_X = 52;
+const RUN_TIMER_Y = 49;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -40,7 +43,7 @@ export function checkDisplay(): void {
   }
 
   // Find out how much time has passed since the run started
-  let elapsedTime;
+  let elapsedTime: float;
   if (g.run.startedTime === 0) {
     // We are currently fading in at the beginning of a run
     elapsedTime = 0;
@@ -49,8 +52,5 @@ export function checkDisplay(): void {
   }
   const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
 
-  const startingX = 52;
-  const startingY = 41;
-
-  timer.display(TimerType.RunRealTime, seconds, startingX, startingY);
+  timer.display(TimerType.RunRealTime, seconds, RUN_TIMER_X, RUN_TIMER_Y);
 }

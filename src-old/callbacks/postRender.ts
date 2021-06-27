@@ -8,7 +8,6 @@ export function main(): void {
   holyMantle();
   leadPencilChargeBar();
   schoolbag.glowingHourGlass();
-  timer.checkDisplayRaceSpeedrun();
   timer.checkDisplaySeededDeath();
   pills.postRender();
   changeCharOrder.postRender();

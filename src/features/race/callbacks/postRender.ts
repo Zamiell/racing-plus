@@ -1,8 +1,10 @@
 import g from "../../../globals";
+import log from "../../../log";
 import { consoleCommand, restartAsCharacter } from "../../../misc";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import raceStart from "../raceStart";
+import * as raceTimer from "../raceTimer";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
@@ -20,6 +22,7 @@ export function main(): void {
     startingRoom.postRender();
     placeLeft.postRender();
     topSprite.postRender();
+    raceTimer.postRender();
   }
 }
 
@@ -29,7 +32,12 @@ function checkGameOpenedInMiddleOfRace() {
   // then the race will never become started
   // Explicitly check for this
   // (the timer won't be correct, but at least everything else will be functional)
-  if (g.race.status === "in progress" && !g.raceVars.started) {
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    !g.raceVars.started
+  ) {
+    log("The game was opened in the middle of a race!");
     raceStart();
   }
 }
@@ -58,7 +66,8 @@ export function checkRestartWrongSeed(): boolean {
   if (
     !g.config.clientCommunication ||
     g.race.format !== "seeded" ||
-    g.race.status !== "in progress"
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing"
   ) {
     return false;
   }
@@ -74,31 +83,3 @@ export function checkRestartWrongSeed(): boolean {
 
   return false;
 }
-
-/*
-function race() {
-  //
-  // Race active
-  //
-
-  if (g.race.status === "in progress") {
-    // Draw the graphic that shows what place we are in
-    if (
-      stage >= 2 && // Our place is irrelevant on the first floor, so don't bother showing it
-      // It is irrelevant to show "1st" when there is only one person in the race
-      !g.race.solo
-    ) {
-      sprites.init("place", g.race.placeMid.toString());
-    } else {
-      sprites.init("place", "");
-    }
-  }
-
-  // Remove graphics as soon as we enter another room
-  // (this is done separately from the above if block in case the client and mod become
-  // desynchronized)
-  if (g.raceVars.started === true && g.run.roomsEntered > 1) {
-    sprites.clearPostRaceStartGraphics();
-  }
-}
-*/

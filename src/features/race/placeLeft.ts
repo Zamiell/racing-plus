@@ -40,7 +40,11 @@ function getPosition() {
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
 
-  if (g.race.status === "in progress" && stage === 2) {
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    stage === 2
+  ) {
     placeMidChanged();
   }
 }
@@ -59,7 +63,7 @@ export function statusOrMyStatusChanged(): void {
 
 export function placeChanged(): void {
   // Update the place graphic with our final race place
-  if (g.race.place > MAX_PLACE) {
+  if (g.race.place === -1 || g.race.place > MAX_PLACE) {
     sprite = null;
   } else {
     sprite = initSprite(`${GFX_PATH}/${g.race.place}.anm2`);
@@ -67,12 +71,13 @@ export function placeChanged(): void {
 }
 
 export function placeMidChanged(): void {
-  if (g.race.status !== "in progress") {
+  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
 
   // Update the place graphic with our mid-race place
-  if (g.race.placeMid > MAX_PLACE) {
+  // A place of -1 represents that we have just started the race or just reset
+  if (g.race.placeMid === -1 || g.race.placeMid > MAX_PLACE) {
     sprite = null;
   } else {
     sprite = initSprite(`${GFX_PATH}/${g.race.placeMid}.anm2`);

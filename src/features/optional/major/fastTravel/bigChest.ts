@@ -7,6 +7,8 @@ import {
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
+import { FastTravelEntityType } from "./enums";
+import * as fastTravel from "./fastTravel";
 
 enum ReplacementAction {
   LeaveAlone,
@@ -56,28 +58,30 @@ function getReplacementAction() {
     return ReplacementAction.VictoryLap;
   }
 
-  if (g.race.goal === "Blue Baby" && g.race.status === "in progress") {
-    return blueBaby();
-  }
+  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
+    if (g.race.goal === "Blue Baby") {
+      return blueBaby();
+    }
 
-  if (g.race.goal === "The Lamb" && g.race.status === "in progress") {
-    return theLamb();
-  }
+    if (g.race.goal === "The Lamb") {
+      return theLamb();
+    }
 
-  if (g.race.goal === "Mega Satan" && g.race.status === "in progress") {
-    return megaSatan();
-  }
+    if (g.race.goal === "Mega Satan") {
+      return megaSatan();
+    }
 
-  if (g.race.goal === "Hush" && g.race.status === "in progress") {
-    return hush();
-  }
+    if (g.race.goal === "Hush") {
+      return hush();
+    }
 
-  if (g.race.goal === "Delirium" && g.race.status === "in progress") {
-    return delirium();
-  }
+    if (g.race.goal === "Delirium") {
+      return delirium();
+    }
 
-  if (g.race.goal === "Boss Rush" && g.race.status === "in progress") {
-    return bossRush();
+    if (g.race.goal === "Boss Rush") {
+      return bossRush();
+    }
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -263,14 +267,26 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.BeamOfLightUp: {
-      Isaac.Spawn(
+      const heavenDoor = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
         0,
         position,
         Vector.Zero,
         null,
-      );
+      ).ToEffect();
+
+      // This will get naturally initialized by the fast-travel system on the next frame
+      // However, we explicitly initialize it now to prevent indexing errors later on this frame
+      // (when the room is cleared)
+      if (heavenDoor !== null) {
+        fastTravel.init(
+          heavenDoor,
+          FastTravelEntityType.HeavenDoor,
+          () => true,
+        );
+      }
+
       break;
     }
 

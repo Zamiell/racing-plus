@@ -4,9 +4,7 @@
 // It is not called for "set" drops (like Mr. Boom from Wrath) and manually spawned items
 // (like the Checkpoint)
 
-import g from "../globals";
-import * as misc from "../misc";
-
+/*
 // ModCallbacks.MC_PRE_GET_COLLECTIBLE (62)
 export function main(
   itemPoolType: ItemPoolType,
@@ -25,6 +23,7 @@ function seededRace(itemPoolType: ItemPoolType) {
   if (
     g.race.format !== "seeded" ||
     g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
     (itemPoolType !== ItemPoolType.POOL_DEVIL && // 3
       itemPoolType !== ItemPoolType.POOL_ANGEL && // 4
       itemPoolType !== ItemPoolType.POOL_DEMON_BEGGAR) // 11
@@ -116,3 +115,4 @@ function getNewSubType(itemPoolType: ItemPoolType) {
     }
   }
 }
+*/

@@ -78,6 +78,7 @@ function shouldRemove() {
   if (
     stage === 6 &&
     g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
     g.race.goal === "Boss Rush"
   ) {
     return true;

@@ -107,9 +107,7 @@ function getItLivesSituation(entity: Entity) {
     challenge === ChallengeCustom.R7_SEASON_8 ||
     challenge === ChallengeCustom.R7_SEASON_9 ||
     // Races to Blue Baby go to the Cathedral / The Chest
-    (g.race.status === "in progress" && g.race.goal === "Blue Baby") ||
-    // "Everything" races always go to Cathedral first (and Sheol after that)
-    (g.race.status === "in progress" && g.race.goal === "Everything")
+    (g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.goal === "Blue Baby")
   ) {
     return ItLivesSituation.BEAM_OF_LIGHT;
   }
@@ -118,7 +116,7 @@ function getItLivesSituation(entity: Entity) {
     // Season 2 speedruns always goes to Sheol / the Dark Room
     challenge === ChallengeCustom.R7_SEASON_2 ||
     // Races to The Lamb go to Sheol / the Dark Room
-    (g.race.status === "in progress" && g.race.goal === "The Lamb")
+    (g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.goal === "The Lamb")
   ) {
     return ItLivesSituation.TRAPDOOR;
   }
@@ -135,7 +133,7 @@ function getItLivesSituation(entity: Entity) {
   }
 
   if (
-    ((g.race.status === "in progress" && g.race.goal === "Hush") ||
+    ((g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.goal === "Hush") ||
       challenge === ChallengeCustom.R7_SEASON_7) &&
     entity.Type === EntityType.ENTITY_HUSH
   ) {

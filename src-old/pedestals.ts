@@ -110,7 +110,7 @@ export function replace(pickup: EntityPickup): void {
   if (
     stage === 1 &&
     roomType === RoomType.ROOM_TREASURE &&
-    ((g.race.format === "diversity" && g.race.status === "in progress") ||
+    ((g.race.format === "diversity" && g.race.status === "in progress" && g.race.myStatus === "racing") ||
       challenge === ChallengeCustom.R7_SEASON_7)
   ) {
     // This is a special Basement 1 diversity reroll
@@ -134,7 +134,7 @@ export function replace(pickup: EntityPickup): void {
   } else if (
     stage === 1 &&
     roomType === RoomType.ROOM_TREASURE &&
-    ((g.race.format === "unseeded" && g.race.status === "in progress") ||
+    ((g.race.format === "unseeded" && g.race.status === "in progress" && g.race.myStatus === "racing") ||
       challenge === ChallengeCustom.R7_SEASON_5)
   ) {
     // This is a special Big 4 reroll for unseeded races (50% chance to reroll)

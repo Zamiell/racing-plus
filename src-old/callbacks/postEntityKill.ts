@@ -83,7 +83,7 @@ function hushKilled() {
   // Manually open the Void door
   g.r.TrySpawnTheVoidDoor();
 
-  if (g.race.status === "in progress" && g.race.goal === "Hush") {
+  if (g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.goal === "Hush") {
     // Spawn a big chest (which will get replaced with a trophy on the next frame)
     Isaac.Spawn(
       EntityType.ENTITY_PICKUP,

@@ -143,6 +143,7 @@ function validateSeed() {
   if (
     g.race.format === "seeded" &&
     g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
     startSeedString !== g.race.seed
   ) {
     g.run.restart = true;
@@ -177,7 +178,7 @@ function validateCharacter(player: EntityPlayer) {
 
 function unseeded(player: EntityPlayer) {
   // If the race has not started yet, don't give the items
-  if (g.race.status !== "in progress") {
+  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
 
@@ -228,7 +229,7 @@ function seeded(player: EntityPlayer) {
 
 export function diversity(player: EntityPlayer): void {
   // If the race has not started yet, don't give the items
-  if (g.race.status !== "in progress") {
+  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
 

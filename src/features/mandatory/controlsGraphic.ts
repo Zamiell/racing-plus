@@ -68,6 +68,7 @@ function shouldDrawControlsGraphic() {
 function inSeededOrDiversityRace() {
   return (
     g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
     (g.race.format === "seeded" || g.race.format === "diversity")
   );
 }

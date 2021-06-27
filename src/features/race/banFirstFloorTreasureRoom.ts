@@ -42,6 +42,9 @@ function shouldBanB1TreasureRoom() {
   const stage = g.l.GetStage();
 
   return (
-    stage === 1 && g.race.status === "in progress" && g.race.format === "seeded"
+    stage === 1 &&
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.format === "seeded"
   );
 }

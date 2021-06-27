@@ -10,6 +10,7 @@ export function main(): void {
 function check3DollarBill() {
   if (
     g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
     g.race.format === "seeded" &&
     g.p.HasCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL)
   ) {

@@ -126,7 +126,7 @@ export function resetSprites(): void {
 }
 
 export function initSprites(): void {
-  if (g.race.status !== "in progress") {
+  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
 

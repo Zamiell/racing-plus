@@ -37,7 +37,8 @@ function hideGoSprite() {
   if (
     sprite !== null &&
     sprite.GetFilename() === GO_GFX_PATH &&
-    g.race.status === "in progress"
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing"
   ) {
     const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
     const elapsedSeconds = elapsedMilliseconds / 1000;
@@ -55,13 +56,15 @@ export function postGameStarted(): void {
 export function statusChanged(): void {
   if (g.race.status === "starting") {
     countdownChanged();
-  } else if (g.race.status === "in progress") {
+  } else if (g.race.status === "in progress" && g.race.myStatus === "racing") {
     sprite = initSprite(GO_GFX_PATH);
   }
 }
 
 export function countdownChanged(): void {
-  if (g.race.status === "starting") {
+  if (g.race.countdown === -1) {
+    sprite = null;
+  } else if (g.race.status === "starting") {
     sprite = initSprite(`${GFX_PATH}/countdown/${g.race.countdown}.anm2`);
   }
 }

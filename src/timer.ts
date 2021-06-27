@@ -1,9 +1,5 @@
-import { initSprite } from "./misc";
-
-export enum TimerType {
-  RaceOrSpeedrun,
-  RunRealTime,
-}
+import { getHUDOffsetVector, initSprite } from "./misc";
+import TimerType from "./types/TimerType";
 
 interface Sprites {
   clock: Sprite;
@@ -13,10 +9,12 @@ interface Sprites {
 }
 
 const DIGIT_LENGTH = 7.25;
+const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
 const spriteCollectionMap = new Map<int, Sprites>();
 
 /*
+// Copy this into "speedrunTimer.ts" when it exists
 export function checkDisplayRaceSpeedrun(): void {
   // Always show the timer in a speedrun
   // Don't show the timer if the race has not started yet or they quit in the middle of the race
@@ -43,10 +41,7 @@ export function checkDisplayRaceSpeedrun(): void {
   }
   const seconds = elapsedTime / 1000; // This will be in milliseconds, so we divide by 1000
 
-  const startingX = 19;
-  const startingY = 217;
-
-  display(TimerType.RACE_OR_SPEEDRUN, seconds, startingX, startingY);
+  display(TimerType.RaceOrSpeedrun, seconds, startingX, startingY);
 }
 */
 
@@ -109,9 +104,20 @@ export function checkDisplaySeededDeath(): void {
 export function display(
   timerType: TimerType,
   seconds: int,
-  startingX: int,
-  startingY: int,
+  startingX?: int,
+  startingY?: int,
 ): void {
+  if (startingX === undefined) {
+    startingX = RACE_TIMER_POSITION.X;
+  }
+  if (startingY === undefined) {
+    startingY = RACE_TIMER_POSITION.Y;
+  }
+
+  const HUDOffsetVector = getHUDOffsetVector();
+  startingX += HUDOffsetVector.X;
+  startingY += HUDOffsetVector.Y;
+
   const hourAdjustment = 2;
   let hourAdjustment2 = 0;
 

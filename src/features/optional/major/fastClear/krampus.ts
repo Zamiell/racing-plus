@@ -83,7 +83,7 @@ function getKrampusBans() {
     headBanned = true;
   }
 
-  if (g.race.status === "in progress") {
+  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
     if (
       g.race.startingItems.includes(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)
     ) {

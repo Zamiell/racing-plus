@@ -366,36 +366,6 @@ function checkMutantSpiderInnerEye() {
   }
 }
 
-// Check to see if the player just picked up the a Crown of Light from a Basement 1 Treasure Room
-// fart-reroll
-function crownOfLight() {
-  const stage = g.l.GetStage();
-  const challenge = Isaac.GetChallenge();
-
-  if (
-    !g.run.removedCrownHearts &&
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) &&
-    g.run.roomsEntered === 1 // They are still in the starting room
-  ) {
-    // The player started with Crown of Light, so we don't need to go into the below code block
-    g.run.removedCrownHearts = true;
-    return;
-  }
-
-  if (
-    !g.run.removedCrownHearts &&
-    stage === 1 &&
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) &&
-    (((g.race.format === "unseeded" || g.race.format === "diversity") &&
-      g.race.status === "in progress") ||
-      challenge === ChallengeCustom.R7_SEASON_7)
-  ) {
-    // Remove the two soul hearts that the Crown of Light gives
-    g.run.removedCrownHearts = true;
-    g.p.AddSoulHearts(-4);
-  }
-}
-
 // In R+7 Season 4 and Racing+ Rebalanced,
 // we want to remove the Lilith's extra Incubus if they attempt to switch characters
 function checkLilithExtraIncubus() {

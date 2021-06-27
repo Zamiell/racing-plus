@@ -2444,7 +2444,7 @@ ____exports.MAX_NUM_DOORS = 8
 ____exports.RECOMMENDED_SHIFT_IDX = 35
 ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
-____exports.VERSION = "0.58.15"
+____exports.VERSION = "0.58.16"
 return ____exports
  end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2696,6 +2696,14 @@ function ____exports.getRoomNPCs(self)
         end
     end
     return npcs
+end
+function ____exports.getBottomRightCorner(self)
+    local pos = g.r:WorldToScreenPosition(Vector.Zero):__sub(
+        g.r:GetRenderScrollOffset()
+    ):__sub(g.g.ScreenShakeOffset)
+    local rx = pos.X + 39
+    local ry = pos.Y + 91
+    return Vector((rx * 2) + 338, (ry * 2) + 182)
 end
 function ____exports.getTotalCollectibles(self, collectibleType)
     local numCollectibles = 0
@@ -3613,10 +3621,10 @@ function ____exports.statusOrMyStatusChanged(self)
     end
 end
 function ____exports.placeMidChanged(self)
-    if g.race.status ~= "in progress" then
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
         return
     end
-    if g.race.placeMid > MAX_PLACE then
+    if (g.race.placeMid == -1) or (g.race.placeMid > MAX_PLACE) then
         sprite = nil
     else
         sprite = initSprite(
@@ -3634,7 +3642,7 @@ function ____exports.postRender(self)
 end
 function ____exports.postNewLevel(self)
     local stage = g.l:GetStage()
-    if (g.race.status == "in progress") and (stage == 2) then
+    if ((g.race.status == "in progress") and (g.race.myStatus == "racing")) and (stage == 2) then
         ____exports.placeMidChanged(nil)
     end
 end
@@ -3642,7 +3650,7 @@ function ____exports.postGameStarted(self)
     ____exports.statusOrMyStatusChanged(nil)
 end
 function ____exports.placeChanged(self)
-    if g.race.place > MAX_PLACE then
+    if (g.race.place == -1) or (g.race.place > MAX_PLACE) then
         sprite = nil
     else
         sprite = initSprite(
@@ -3883,7 +3891,7 @@ function ____exports.postNewRoom(self)
     end
 end
 function ____exports.initSprites(self)
-    if g.race.status ~= "in progress" then
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
         return
     end
     local ____switch29 = g.race.format
@@ -3936,7 +3944,7 @@ function getPosition(self)
     return Vector(renderPos.X, renderPos.Y - 80)
 end
 function hideGoSprite(self)
-    if ((sprite ~= nil) and (sprite:GetFilename() == GO_GFX_PATH)) and (g.race.status == "in progress") then
+    if (((sprite ~= nil) and (sprite:GetFilename() == GO_GFX_PATH)) and (g.race.status == "in progress")) and (g.race.myStatus == "racing") then
         local elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime
         local elapsedSeconds = elapsedMilliseconds / 1000
         if elapsedSeconds >= 3 then
@@ -3947,12 +3955,14 @@ end
 function ____exports.statusChanged(self)
     if g.race.status == "starting" then
         ____exports.countdownChanged(nil)
-    elseif g.race.status == "in progress" then
+    elseif (g.race.status == "in progress") and (g.race.myStatus == "racing") then
         sprite = initSprite(nil, GO_GFX_PATH)
     end
 end
 function ____exports.countdownChanged(self)
-    if g.race.status == "starting" then
+    if g.race.countdown == -1 then
+        sprite = nil
+    elseif g.race.status == "starting" then
         sprite = initSprite(
             nil,
             ((GFX_PATH .. "/countdown/") .. tostring(g.race.countdown)) .. ".anm2"
@@ -4030,6 +4040,8 @@ local ____raceStart = require("features.race.raceStart")
 local raceStart = ____raceStart.default
 local sprites = require("features.race.sprites")
 local topSprite = require("features.race.topSprite")
+local ____RaceVars = require("features.race.types.RaceVars")
+local RaceVars = ____RaceVars.default
 local raceValueChanged, functionMap
 function raceValueChanged(self, property, oldValue, newValue)
     log(
@@ -4092,6 +4104,7 @@ functionMap:set(
                     g.run.restart = true
                     log(nil, "Restarting because we want to exit the race room.")
                 end
+                g.raceVars = __TS__New(RaceVars)
                 sprites:resetAll()
                 goto ____switch12_end
             end
@@ -4380,7 +4393,7 @@ function disconnect(self)
     g.socket.client = nil
     reset(nil)
 end
-DEBUG = true
+DEBUG = false
 MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60
 PORT = 9112
 function ____exports.postRender(self)
@@ -5335,6 +5348,7 @@ function set(self, entity, fastTravelEntityType, state)
 end
 function ____exports.getDescription(self, entity, fastTravelEntityType)
     local index = getIndex(nil, entity, fastTravelEntityType)
+    local description
     local ____switch15 = fastTravelEntityType
     if ____switch15 == FastTravelEntityType.Trapdoor then
         goto ____switch15_case_0
@@ -5347,68 +5361,77 @@ function ____exports.getDescription(self, entity, fastTravelEntityType)
     ::____switch15_case_0::
     do
         do
-            return g.run.room.fastTravel.trapdoors[index]
+            description = g.run.room.fastTravel.trapdoors[index]
+            goto ____switch15_end
         end
     end
     ::____switch15_case_1::
     do
         do
-            return g.run.room.fastTravel.crawlspaces[index]
+            description = g.run.room.fastTravel.crawlspaces[index]
+            goto ____switch15_end
         end
     end
     ::____switch15_case_2::
     do
         do
-            return g.run.room.fastTravel.heavenDoors[index]
+            description = g.run.room.fastTravel.heavenDoors[index]
+            goto ____switch15_end
         end
     end
     ::____switch15_case_default::
     do
         do
             ensureAllCases(nil, fastTravelEntityType)
-            return {initial = false, state = FastTravelEntityState.Open}
         end
     end
     ::____switch15_end::
+    if description == nil then
+        g.sandbox:traceback()
+        error(
+            (("Failed to get a " .. FastTravelEntityType[fastTravelEntityType]) .. " fast-travel entity description for index: ") .. tostring(index)
+        )
+    end
+    return description
 end
 function getIndex(self, entity, fastTravelEntityType)
-    local ____switch21 = fastTravelEntityType
-    if ____switch21 == FastTravelEntityType.Trapdoor then
-        goto ____switch21_case_0
-    elseif ____switch21 == FastTravelEntityType.Crawlspace then
-        goto ____switch21_case_1
-    elseif ____switch21 == FastTravelEntityType.HeavenDoor then
-        goto ____switch21_case_2
+    local ____switch22 = fastTravelEntityType
+    if ____switch22 == FastTravelEntityType.Trapdoor then
+        goto ____switch22_case_0
+    elseif ____switch22 == FastTravelEntityType.Crawlspace then
+        goto ____switch22_case_1
+    elseif ____switch22 == FastTravelEntityType.HeavenDoor then
+        goto ____switch22_case_2
     end
-    goto ____switch21_case_default
-    ::____switch21_case_0::
+    goto ____switch22_case_default
+    ::____switch22_case_0::
     do
         do
             local gridEntity = entity
             return gridEntity:GetGridIndex()
         end
     end
-    ::____switch21_case_1::
+    ::____switch22_case_1::
     do
         do
             local gridEntity = entity
             return gridEntity:GetGridIndex()
         end
     end
-    ::____switch21_case_2::
+    ::____switch22_case_2::
     do
         do
             return g.r:GetGridIndex(entity.Position)
         end
     end
-    ::____switch21_case_default::
+    ::____switch22_case_default::
     do
         do
             ensureAllCases(nil, fastTravelEntityType)
             return -1
         end
     end
-    ::____switch21_end::
+    ::____switch22_end::
 end
 function shouldBeClosedFromStartingInRoomWithEnemies(self, initial)
     return initial and (not g.r:IsClear())
@@ -6228,7 +6251,7 @@ function getKrampusBans(self)
     if anyPlayerHasCollectible(nil, CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS) then
         headBanned = true
     end
-    if g.race.status == "in progress" then
+    if (g.race.status == "in progress") and (g.race.myStatus == "racing") then
         if __TS__ArrayIncludes(g.race.startingItems, CollectibleType.COLLECTIBLE_LUMP_OF_COAL) then
             coalBanned = true
         end
@@ -6917,7 +6940,7 @@ function validateDifficulty(self)
 end
 function validateSeed(self)
     local startSeedString = g.seeds:GetStartSeedString()
-    if ((g.race.format == "seeded") and (g.race.status == "in progress")) and (startSeedString ~= g.race.seed) then
+    if (((g.race.format == "seeded") and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (startSeedString ~= g.race.seed) then
         g.run.restart = true
         return false
     end
@@ -6937,7 +6960,7 @@ function validateCharacter(self, player)
     return true
 end
 function unseeded(self, player)
-    if g.race.status ~= "in progress" then
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
         return
     end
     tempMoreOptions:give(player)
@@ -6963,7 +6986,7 @@ function seeded(self, player)
     g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
 end
 function ____exports.diversity(self, player)
-    if g.race.status ~= "in progress" then
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
         return
     end
     local trinket1 = player:GetTrinket(0)
@@ -7273,7 +7296,7 @@ function shouldDrawControlsGraphic(self)
     return ((((not g.g:IsGreedMode()) and (stage == 1)) and (roomIndex == startingRoomIndex)) and (not isAntibirthStage(nil))) and (not inSeededOrDiversityRace(nil))
 end
 function inSeededOrDiversityRace(self)
-    return (g.race.status == "in progress") and ((g.race.format == "seeded") or (g.race.format == "diversity"))
+    return ((g.race.status == "in progress") and (g.race.myStatus == "racing")) and ((g.race.format == "seeded") or (g.race.format == "diversity"))
 end
 function ____exports.postNewRoom(self)
     drawControlsGraphic(nil)
@@ -8045,7 +8068,7 @@ function shouldIgnore(self, gridEntity)
 end
 function shouldRemove(self)
     local stage = g.l:GetStage()
-    if ((stage == 6) and (g.race.status == "in progress")) and (g.race.goal == "Boss Rush") then
+    if (((stage == 6) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.goal == "Boss Rush") then
         return true
     end
     return false
@@ -8466,7 +8489,7 @@ local log = ____log.default
 local shouldBanB1TreasureRoom
 function shouldBanB1TreasureRoom(self)
     local stage = g.l:GetStage()
-    return ((stage == 1) and (g.race.status == "in progress")) and (g.race.format == "seeded")
+    return (((stage == 1) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.format == "seeded")
 end
 function ____exports.postNewRoom(self)
     if not shouldBanB1TreasureRoom(nil) then
@@ -8773,7 +8796,7 @@ function ____exports.main(self, isContinued)
     judasAddBomb:postGameStarted()
     taintedKeeperMoney:postGameStarted()
     showEdenStartingItems:postGameStarted()
-    if (g.race.status ~= "in progress") or (g.race.format ~= "diversity") then
+    if ((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.format ~= "diversity") then
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
@@ -9163,6 +9186,9 @@ local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
 local trophy = require("features.mandatory.trophy")
 local ____enums = require("features.speedrun.enums")
 local ChallengeCustom = ____enums.ChallengeCustom
+local ____enums = require("features.optional.major.fastTravel.enums")
+local FastTravelEntityType = ____enums.FastTravelEntityType
+local fastTravel = require("features.optional.major.fastTravel.fastTravel")
 local ReplacementAction, DEFAULT_REPLACEMENT_ACTION, getReplacementAction, season1, blueBaby, theLamb, megaSatan, hush, delirium, bossRush, replace
 function getReplacementAction(self)
     local stage = g.l:GetStage()
@@ -9180,23 +9206,25 @@ function getReplacementAction(self)
     if g.raceVars.finished then
         return ReplacementAction.VictoryLap
     end
-    if (g.race.goal == "Blue Baby") and (g.race.status == "in progress") then
-        return blueBaby(nil)
-    end
-    if (g.race.goal == "The Lamb") and (g.race.status == "in progress") then
-        return theLamb(nil)
-    end
-    if (g.race.goal == "Mega Satan") and (g.race.status == "in progress") then
-        return megaSatan(nil)
-    end
-    if (g.race.goal == "Hush") and (g.race.status == "in progress") then
-        return hush(nil)
-    end
-    if (g.race.goal == "Delirium") and (g.race.status == "in progress") then
-        return delirium(nil)
-    end
-    if (g.race.goal == "Boss Rush") and (g.race.status == "in progress") then
-        return bossRush(nil)
+    if (g.race.status == "in progress") and (g.race.myStatus == "racing") then
+        if g.race.goal == "Blue Baby" then
+            return blueBaby(nil)
+        end
+        if g.race.goal == "The Lamb" then
+            return theLamb(nil)
+        end
+        if g.race.goal == "Mega Satan" then
+            return megaSatan(nil)
+        end
+        if g.race.goal == "Hush" then
+            return hush(nil)
+        end
+        if g.race.goal == "Delirium" then
+            return delirium(nil)
+        end
+        if g.race.goal == "Boss Rush" then
+            return bossRush(nil)
+        end
     end
     return DEFAULT_REPLACEMENT_ACTION
 end
@@ -9266,78 +9294,85 @@ function replace(self, pickup, replacementAction)
     if replacementAction ~= ReplacementAction.LeaveAlone then
         pickup:Remove()
     end
-    local ____switch32 = replacementAction
-    if ____switch32 == ReplacementAction.LeaveAlone then
-        goto ____switch32_case_0
-    elseif ____switch32 == ReplacementAction.TrapdoorDown then
-        goto ____switch32_case_1
-    elseif ____switch32 == ReplacementAction.BeamOfLightUp then
-        goto ____switch32_case_2
-    elseif ____switch32 == ReplacementAction.Checkpoint then
-        goto ____switch32_case_3
-    elseif ____switch32 == ReplacementAction.Trophy then
-        goto ____switch32_case_4
-    elseif ____switch32 == ReplacementAction.VictoryLap then
-        goto ____switch32_case_5
-    elseif ____switch32 == ReplacementAction.Remove then
-        goto ____switch32_case_6
+    local ____switch33 = replacementAction
+    if ____switch33 == ReplacementAction.LeaveAlone then
+        goto ____switch33_case_0
+    elseif ____switch33 == ReplacementAction.TrapdoorDown then
+        goto ____switch33_case_1
+    elseif ____switch33 == ReplacementAction.BeamOfLightUp then
+        goto ____switch33_case_2
+    elseif ____switch33 == ReplacementAction.Checkpoint then
+        goto ____switch33_case_3
+    elseif ____switch33 == ReplacementAction.Trophy then
+        goto ____switch33_case_4
+    elseif ____switch33 == ReplacementAction.VictoryLap then
+        goto ____switch33_case_5
+    elseif ____switch33 == ReplacementAction.Remove then
+        goto ____switch33_case_6
     end
-    goto ____switch32_case_default
-    ::____switch32_case_0::
+    goto ____switch33_case_default
+    ::____switch33_case_0::
     do
         do
             pickup.Touched = true
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_1::
+    ::____switch33_case_1::
     do
         do
             Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true)
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_2::
+    ::____switch33_case_2::
     do
         do
-            Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, position, Vector.Zero, nil)
-            goto ____switch32_end
+            local heavenDoor = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, position, Vector.Zero, nil):ToEffect()
+            if heavenDoor ~= nil then
+                fastTravel:init(
+                    heavenDoor,
+                    FastTravelEntityType.HeavenDoor,
+                    function() return true end
+                )
+            end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_3::
+    ::____switch33_case_3::
     do
         do
             Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT, position, Vector.Zero, nil)
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_4::
+    ::____switch33_case_4::
     do
         do
             trophy:spawn(position)
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_5::
+    ::____switch33_case_5::
     do
         do
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_6::
+    ::____switch33_case_6::
     do
         do
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_case_default::
+    ::____switch33_case_default::
     do
         do
             ensureAllCases(nil, replacementAction)
-            goto ____switch32_end
+            goto ____switch33_end
         end
     end
-    ::____switch32_end::
+    ::____switch33_end::
 end
 ReplacementAction = ReplacementAction or ({})
 ReplacementAction.LeaveAlone = 0
@@ -9540,10 +9575,21 @@ function ____exports.postRender(self)
 end
 return ____exports
  end,
+["types.TimerType"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local TimerType = TimerType or ({})
+TimerType.RaceOrSpeedrun = 0
+TimerType[TimerType.RaceOrSpeedrun] = "RaceOrSpeedrun"
+TimerType.RunRealTime = 1
+TimerType[TimerType.RunRealTime] = "RunRealTime"
+____exports.default = TimerType
+return ____exports
+ end,
 ["timer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
 local ____misc = require("misc")
+local getHUDOffsetVector = ____misc.getHUDOffsetVector
 local initSprite = ____misc.initSprite
 local getNewTimerSprites
 function getNewTimerSprites(self)
@@ -9615,14 +9661,19 @@ function ____exports.convertSecondsToTimerValues(self, totalSeconds)
     local tenths = math.floor(decimals * 10)
     return {hours, minute1, minute2, second1, second2, tenths}
 end
-____exports.TimerType = TimerType or ({})
-____exports.TimerType.RaceOrSpeedrun = 0
-____exports.TimerType[____exports.TimerType.RaceOrSpeedrun] = "RaceOrSpeedrun"
-____exports.TimerType.RunRealTime = 1
-____exports.TimerType[____exports.TimerType.RunRealTime] = "RunRealTime"
 local DIGIT_LENGTH = 7.25
+local RACE_TIMER_POSITION = Vector(19, 198)
 local spriteCollectionMap = __TS__New(Map)
 function ____exports.display(self, timerType, seconds, startingX, startingY)
+    if startingX == nil then
+        startingX = RACE_TIMER_POSITION.X
+    end
+    if startingY == nil then
+        startingY = RACE_TIMER_POSITION.Y
+    end
+    local HUDOffsetVector = getHUDOffsetVector(nil)
+    startingX = startingX + HUDOffsetVector.X
+    startingY = startingY + HUDOffsetVector.Y
     local hourAdjustment = 2
     local hourAdjustment2 = 0
     local sprites = spriteCollectionMap:get(timerType)
@@ -9678,9 +9729,9 @@ local g = ____globals.default
 local ____misc = require("misc")
 local isActionPressedOnAnyInput = ____misc.isActionPressedOnAnyInput
 local timer = require("timer")
-local ____timer = require("timer")
-local TimerType = ____timer.TimerType
-local checkStartTimer
+local ____TimerType = require("types.TimerType")
+local TimerType = ____TimerType.default
+local RUN_TIMER_X, RUN_TIMER_Y, checkStartTimer
 function checkStartTimer(self)
     if g.run.startedTime == 0 then
         g.run.startedTime = Isaac.GetTime()
@@ -9703,10 +9754,10 @@ function ____exports.checkDisplay(self)
         elapsedTime = Isaac.GetTime() - g.run.startedTime
     end
     local seconds = elapsedTime / 1000
-    local startingX = 52
-    local startingY = 41
-    timer:display(TimerType.RunRealTime, seconds, startingX, startingY)
+    timer:display(TimerType.RunRealTime, seconds, RUN_TIMER_X, RUN_TIMER_Y)
 end
+RUN_TIMER_X = 52
+RUN_TIMER_Y = 49
 function ____exports.postUpdate(self)
     checkStartTimer(nil)
 end
@@ -10069,10 +10120,41 @@ function ____exports.postRender(self)
 end
 return ____exports
  end,
+["features.race.raceTimer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local timer = require("timer")
+local ____TimerType = require("types.TimerType")
+local TimerType = ____TimerType.default
+local checkDisplay
+function checkDisplay(self)
+    if g.race.myStatus ~= "racing" then
+        return
+    end
+    if g.seeds:HasSeedEffect(SeedEffect.SEED_NO_HUD) then
+        return
+    end
+    local elapsedTime
+    if g.raceVars.finished then
+        elapsedTime = g.raceVars.finishedTime
+    else
+        elapsedTime = Isaac.GetTime() - g.raceVars.startedTime
+    end
+    local seconds = elapsedTime / 1000
+    timer:display(TimerType.RaceOrSpeedrun, seconds)
+end
+function ____exports.postRender(self)
+    checkDisplay(nil)
+end
+return ____exports
+ end,
 ["features.race.callbacks.postRender"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local ____log = require("log")
+local log = ____log.default
 local ____misc = require("misc")
 local consoleCommand = ____misc.consoleCommand
 local restartAsCharacter = ____misc.restartAsCharacter
@@ -10080,12 +10162,14 @@ local placeLeft = require("features.race.placeLeft")
 local raceRoom = require("features.race.raceRoom")
 local ____raceStart = require("features.race.raceStart")
 local raceStart = ____raceStart.default
+local raceTimer = require("features.race.raceTimer")
 local socket = require("features.race.socket")
 local startingRoom = require("features.race.startingRoom")
 local topSprite = require("features.race.topSprite")
 local checkGameOpenedInMiddleOfRace
 function checkGameOpenedInMiddleOfRace(self)
-    if (g.race.status == "in progress") and (not g.raceVars.started) then
+    if ((g.race.status == "in progress") and (g.race.myStatus == "racing")) and (not g.raceVars.started) then
+        log(nil, "The game was opened in the middle of a race!")
         raceStart(nil)
     end
 end
@@ -10100,6 +10184,7 @@ function ____exports.main(self)
         startingRoom:postRender()
         placeLeft:postRender()
         topSprite:postRender()
+        raceTimer:postRender()
     end
 end
 function ____exports.checkRestartWrongCharacter(self)
@@ -10115,7 +10200,7 @@ function ____exports.checkRestartWrongCharacter(self)
     return true
 end
 function ____exports.checkRestartWrongSeed(self)
-    if ((not g.config.clientCommunication) or (g.race.format ~= "seeded")) or (g.race.status ~= "in progress") then
+    if (((not g.config.clientCommunication) or (g.race.format ~= "seeded")) or (g.race.status ~= "in progress")) or (g.race.myStatus ~= "racing") then
         return false
     end
     local startSeedString = g.seeds:GetStartSeedString()
@@ -10233,7 +10318,7 @@ function drawTopLeftText(self)
             local thirdLine = ((tostring(frames) .. " frames (") .. tostring(seconds)) .. "s)"
             Isaac.RenderText(thirdLine, x, y, 2, 2, 2, 2)
         end
-    elseif ((g.config.clientCommunication and (g.race.raceID ~= -1)) and (g.race.status == "in progress")) and ((Isaac.GetTime() - g.raceVars.startedTime) <= 2000) then
+    elseif (((g.config.clientCommunication and (g.race.raceID ~= -1)) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and ((Isaac.GetTime() - g.raceVars.startedTime) <= 2000) then
         local text = "Race ID: " .. tostring(g.race.raceID)
         Isaac.RenderText(text, x, y, 2, 2, 2, 2)
     elseif (g.config.showNumSacrifices and (roomType == RoomType.ROOM_SACRIFICE)) and (roomFrameCount > 0) then

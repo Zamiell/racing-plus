@@ -7,6 +7,7 @@ import raceStart from "./raceStart";
 import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
 import RaceData, { RaceDataType, RaceStatus } from "./types/RaceData";
+import RaceVars from "./types/RaceVars";
 
 export function checkRaceChanged(
   oldRaceData: RaceData,
@@ -68,6 +69,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
         log("Restarting because we want to exit the race room.");
       }
 
+      g.raceVars = new RaceVars();
       sprites.resetAll();
       break;
     }

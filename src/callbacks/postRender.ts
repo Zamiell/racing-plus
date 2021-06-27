@@ -133,6 +133,7 @@ function drawTopLeftText() {
     g.config.clientCommunication &&
     g.race.raceID !== -1 &&
     g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
     Isaac.GetTime() - g.raceVars.startedTime <= 2000
   ) {
     // Only show it in the first two seconds of the race

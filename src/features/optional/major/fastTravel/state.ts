@@ -102,27 +102,36 @@ export function getDescription(
 ): FastTravelEntityDescription {
   const index = getIndex(entity, fastTravelEntityType);
 
+  let description: FastTravelEntityDescription | undefined;
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
-      return g.run.room.fastTravel.trapdoors.get(index);
+      description = g.run.room.fastTravel.trapdoors.get(index);
+      break;
     }
 
     case FastTravelEntityType.Crawlspace: {
-      return g.run.room.fastTravel.crawlspaces.get(index);
+      description = g.run.room.fastTravel.crawlspaces.get(index);
+      break;
     }
 
     case FastTravelEntityType.HeavenDoor: {
-      return g.run.room.fastTravel.heavenDoors.get(index);
+      description = g.run.room.fastTravel.heavenDoors.get(index);
+      break;
     }
 
     default: {
       ensureAllCases(fastTravelEntityType);
-      return {
-        initial: false,
-        state: FastTravelEntityState.Open,
-      };
     }
   }
+
+  if (description === undefined) {
+    g.sandbox?.traceback();
+    error(
+      `Failed to get a ${FastTravelEntityType[fastTravelEntityType]} fast-travel entity description for index: ${index}`,
+    );
+  }
+
+  return description;
 }
 
 function getIndex(

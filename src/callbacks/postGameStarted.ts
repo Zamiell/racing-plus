@@ -64,7 +64,11 @@ export function main(isContinued: boolean): void {
   showEdenStartingItems.postGameStarted();
 
   // Remove the 3 placeholder items if this is not a diversity race
-  if (g.race.status !== "in progress" || g.race.format !== "diversity") {
+  if (
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
+    g.race.format !== "diversity"
+  ) {
     g.itemPool.RemoveCollectible(
       CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
     );
