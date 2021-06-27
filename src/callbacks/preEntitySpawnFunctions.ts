@@ -8,7 +8,7 @@ const functionMap = new Map<
     position: Vector,
     spawner: Entity,
     initSeed: int,
-  ) => [EntityType, int, int, int] | null
+  ) => [EntityType, int, int, int] | void
 >();
 export default functionMap;
 
@@ -22,11 +22,6 @@ functionMap.set(
     _spawner: Entity,
     initSeed: int,
   ) => {
-    const returnValue = replaceCodWorms.preEntitySpawn(initSeed);
-    if (returnValue !== null) {
-      return returnValue;
-    }
-
-    return null;
+    return replaceCodWorms.preEntitySpawn(initSeed);
   },
 );

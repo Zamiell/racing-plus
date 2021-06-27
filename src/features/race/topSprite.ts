@@ -53,35 +53,11 @@ export function postGameStarted(): void {
 }
 
 export function statusChanged(): void {
-  if (g.race.status === "open") {
-    statusChangedOpen();
-  } else if (g.race.status === "starting") {
+  if (g.race.status === "starting") {
     countdownChanged();
   } else if (g.race.status === "in progress") {
     sprite = initSprite(GO_GFX_PATH);
   }
-}
-
-export function statusChangedOpen(): void {
-  if (
-    g.race.difficulty === "hard" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
-    g.race.format !== "custom"
-  ) {
-    sprite = initSprite(`${GFX_PATH}/error-not-hard-mode.anm2`); // Error: You are not on hard mode.
-    return;
-  }
-
-  if (
-    g.race.difficulty === "normal" &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
-    g.race.format !== "custom"
-  ) {
-    sprite = initSprite(`${GFX_PATH}/error-hard-mode.anm2`); // Error: You are on hard mode.
-    return;
-  }
-
-  sprite = null;
 }
 
 export function countdownChanged(): void {
@@ -109,6 +85,14 @@ export function placeChanged(): void {
   } else {
     sprite = initSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
   }
+}
+
+export function setErrorNormalMode(): void {
+  sprite = initSprite(`${GFX_PATH}/error-not-hard-mode.anm2`); // Error: You are not on hard mode.
+}
+
+export function setErrorHardMode(): void {
+  sprite = initSprite(`${GFX_PATH}/error-hard-mode.anm2`); // Error: You are on hard mode.
 }
 
 export function resetSprite(): void {

@@ -22,10 +22,6 @@ export function isActionPressed(): boolean | null {
   }
 
   const player = Isaac.GetPlayer();
-  // (we can't use cached API functions in this callback or else the game will crash)
-  if (player === null) {
-    return null;
-  }
 
   if (
     (!player.HasCollectible(CollectibleType.COLLECTIBLE_ANTI_GRAVITY) && // 222
@@ -61,10 +57,6 @@ export function getActionValue(_buttonAction: ButtonAction): int | null {
   }
 
   const player = Isaac.GetPlayer();
-  // (we can't use cached API functions in this callback or else the game will crash)
-  if (player === null) {
-    return null;
-  }
 
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_ANTI_GRAVITY)) {
     return null;

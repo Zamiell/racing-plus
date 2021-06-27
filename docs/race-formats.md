@@ -23,9 +23,9 @@ On Racing+, players have the option to choose from different kinds of races.
 - In seeded races, both players play on the same seed. (This means that they should get all of the same items, bosses, and so forth.)
 - Resetting is allowed, but it will just take a player back to the beginning of the same seed.
 - Each player will start with a pre-defined starting item that is chosen before the match, such as Cricket's Head or Mom's Knife.
-- The Basement 1 Treasure Room is barred. (This is to prevent players from starting with 2 items instead of 1.)
-- All characters start with The Compass and the Schoolbag in addition to their other items.
-- If the character is supposed to start with an item that is not the D6, that item will be inside the Schoolbag.
+- The Basement 1 Treasure Room is removed. (This is to prevent players from starting with 2 items instead of 1.)
+- All characters start with The Compass in addition to their other items.
+<!--
 - Some additional things are guaranteed to be seeded:
   - Room drops (given in order)
   - Level generation (consistent special rooms)
@@ -40,8 +40,12 @@ On Racing+, players have the option to choose from different kinds of races.
   - Instead of dying, players will respawn in the previous room with 1.5 soul hearts.
   - They will have a "debuff" effect that removes all of the items. The debuff will last 45 seconds.
   - This mechanic does not apply to deaths in Devil Rooms, Sacrifice Rooms, or the Boss Rush. (Deaths in those rooms will be permanent.)
-- Lucky Foot is removed from all pools.
+-->
+- Sol is removed from all pools.
+- Cain's Eye is removed.
+<!--
 - Cain's Eye, Broken Ankh, Silver Dollar, Bloody Crown, Daemon's Tail, Child's Heart, Rusted Key, Match Stick, Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, Holy Crown, Wicked Crown, and Nuh Uh! trinkets are removed from the trinket pool (since they change floor-generation or drop-generation).
+-->
 
 <br />
 

@@ -151,9 +151,6 @@ function drawTopLeftText() {
 export function getHeartXOffset(): int {
   const curses = g.l.GetCurses();
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return 0;
-  }
   const maxHearts = player.GetMaxHearts();
   const soulHearts = player.GetSoulHearts();
   const boneHearts = player.GetBoneHearts();

@@ -65,9 +65,6 @@ function shouldShowSprites() {
   const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return false;
-  }
   const character = player.GetPlayerType();
   const roomIndex = getRoomIndex();
 
@@ -90,9 +87,6 @@ export function postGameStarted(): void {
 
 function storeItemIdentities() {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
   const character = player.GetPlayerType();
 
   if (

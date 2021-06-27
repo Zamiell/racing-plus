@@ -1,12 +1,7 @@
-import g from "../globals";
-
+/*
 export function main(tear: EntityTear): void {
   if (g.run.debugDamage) {
     tear.Scale = 5;
-  }
-
-  if (g.run.debugChaosCard) {
-    tear.ChangeVariant(TearVariant.CHAOS_CARD);
   }
 
   // The vanilla Lead Pencil counter accumulates even if the player does not have the item
@@ -76,3 +71,4 @@ function fixMonstrosLungSynergy(tear: EntityTear) {
     }
   }
 }
+*/

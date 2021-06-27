@@ -10,15 +10,12 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_MOMS_HEART, // 78
   EntityType.ENTITY_FALLEN, // 81
   EntityType.ENTITY_SATAN, // 84
-  EntityType.ENTITY_SPIDER, // 85
-  EntityType.ENTITY_BIGSPIDER, // 94 // cspell:disable-line
   EntityType.ENTITY_MASK_OF_INFAMY, // 97
   EntityType.ENTITY_HEART_OF_INFAMY, // 98
   EntityType.ENTITY_GURDY_JR, // 99
   EntityType.ENTITY_WIDOW, // 100
   EntityType.ENTITY_DADDYLONGLEGS, // 101 // cspell:disable-line
   EntityType.ENTITY_ISAAC, // 102
-  EntityType.ENTITY_DEATHS_HEAD, // 212
   EntityType.ENTITY_GURGLING, // 237
   EntityType.ENTITY_THE_HAUNT, // 260
   EntityType.ENTITY_DINGLE, // 261
@@ -36,12 +33,7 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_THE_LAMB, // 273
   EntityType.ENTITY_MEGA_SATAN, // 274
   EntityType.ENTITY_MEGA_SATAN_2, // 275
-  EntityType.ENTITY_FLESH_DEATHS_HEAD, // 286
-  EntityType.ENTITY_DUKIE, // 288
-  EntityType.ENTITY_STONEY, // 302
-  EntityType.ENTITY_PORTAL, // 306
   EntityType.ENTITY_STAIN, // 401
-  EntityType.ENTITY_BROWNIE, // 402
   EntityType.ENTITY_FORSAKEN, // 403
   EntityType.ENTITY_LITTLE_HORN, // 404
   EntityType.ENTITY_RAG_MAN, // 405
@@ -49,8 +41,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_HUSH, // 407
   EntityType.ENTITY_SISTERS_VIS, // 410
   EntityType.ENTITY_BIG_HORN, // 411
-  EntityType.ENTITY_MATRIARCH, // 413
-  EntityType.ENTITY_FARTIGAN, // 874
   EntityType.ENTITY_REAP_CREEP, // 900
   EntityType.ENTITY_RAINMAKER, // 902
   EntityType.ENTITY_VISAGE, // 903

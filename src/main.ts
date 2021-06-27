@@ -193,6 +193,18 @@ function registerPostEffectInitCallbacks(racingPlus: Mod) {
     postEffectInit.poof01,
     EffectVariant.POOF01, // 15
   );
+
+  racingPlus.AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
+    postEffectInit.creepRed,
+    EffectVariant.CREEP_RED, // 22
+  );
+
+  racingPlus.AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
+    postEffectInit.playerCreepGreen,
+    EffectVariant.PLAYER_CREEP_GREEN, // 53
+  );
 }
 
 // 55

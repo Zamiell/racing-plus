@@ -11,11 +11,11 @@ const BANNED_PILLS = new Map<PillEffect, PillEffect>([
 export function main(
   pillEffect: PillEffect,
   _pillColor: PillColor,
-): number | null {
+): number | void {
   const pillReplacement = BANNED_PILLS.get(pillEffect);
   if (pillReplacement !== undefined) {
     return pillReplacement;
   }
 
-  return null;
+  return undefined;
 }

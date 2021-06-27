@@ -32,9 +32,6 @@ export default functionMap;
 
 functionMap.set("angel", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
   const hasEucharist = player.HasCollectible(
     CollectibleType.COLLECTIBLE_EUCHARIST,
   );
@@ -217,9 +214,6 @@ functionMap.set("fool", (_params: string) => {
 
 functionMap.set("effects", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
   const effects = player.GetEffects();
   const effectsList = effects.GetEffectsList();
   if (effectsList.Size === 0) {
@@ -387,9 +381,6 @@ functionMap.set("sounds", (_params: string) => {
 
 functionMap.set("speed", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
 
   g.run.debugSpeed = !g.run.debugSpeed;
   const enabled = g.run.debugSpeed ? "Enabled" : "Disabled";

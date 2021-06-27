@@ -56,7 +56,6 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["tazazel", 28], // cspell:disable-line
   ["lazarus2", 29],
   ["tlazarus", 29], // cspell:disable-line
-  ["laz2", 29],
   ["tlaz", 29], // cspell:disable-line
   ["eden2", 30],
   ["teden", 30], // cspell:disable-line

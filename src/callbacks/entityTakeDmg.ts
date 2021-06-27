@@ -9,14 +9,12 @@ export function player(
   damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
-): boolean | null {
+): boolean | void {
   sacrificeRoom(damageFlags);
 
   // Major features
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmg.entityTakeDmgPlayer(tookDamage, damageFlags);
-
-  return null;
 }
 
 function sacrificeRoom(damageFlags: int) {

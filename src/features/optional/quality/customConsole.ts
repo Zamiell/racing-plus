@@ -19,9 +19,6 @@ export function postRender(): void {
 
 function checkKeyboardInput() {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
 
   if (g.g.IsPaused()) {
     return;

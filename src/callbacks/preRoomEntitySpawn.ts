@@ -6,11 +6,11 @@ export function main(
   _subType: int,
   gridIndex: int,
   _seed: int,
-): [EntityType, int, int] | null {
+): [EntityType, int, int] | void {
   const newTable = easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
   if (newTable !== null) {
     return newTable;
   }
 
-  return null;
+  return undefined;
 }

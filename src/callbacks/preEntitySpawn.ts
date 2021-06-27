@@ -23,11 +23,11 @@ export function main(
   _velocity: Vector,
   spawner: Entity,
   initSeed: int,
-): [EntityType, int, int, int] | null {
+): [EntityType, int, int, int] | void {
   const preEntityFunction = preEntitySpawnFunctions.get(entityType);
   if (preEntityFunction !== undefined) {
     return preEntityFunction(variant, subType, position, spawner, initSeed);
   }
 
-  return null;
+  return undefined;
 }

@@ -2,10 +2,12 @@
 
 import g from "../../globals";
 import { initSprite } from "../../misc";
+import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
 
 const GFX_PATH = "gfx/race/place-left";
 const MAX_PLACE = 16; // There are only small sprites created for places up to 16
+const SPRITE_OFFSET = Vector(20, 7);
 
 let sprite: Sprite | null = null;
 
@@ -32,23 +34,7 @@ function drawSprite() {
 }
 
 function getPosition() {
-  const challenge = Isaac.GetChallenge();
-
-  // Place it next to the "R+" icon
-  let x = 24;
-
-  // If playing on hard mode, the hard mode icon will interfere,
-  // so it needs to be moved to the right
-  if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
-    x += 10;
-  }
-
-  // If playing on a challenge, the challenge icon will interfere, so it needs to be moved to the right
-  if (challenge !== 0) {
-    x = 67;
-  }
-
-  return Vector(x, 79);
+  return racingPlusSprite.getPosition().__add(SPRITE_OFFSET);
 }
 
 export function postNewLevel(): void {

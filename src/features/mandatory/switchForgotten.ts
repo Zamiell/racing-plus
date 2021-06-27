@@ -1,11 +1,11 @@
 import g from "../../globals";
 
 // Manually switch from The Soul to The Forgotten in specific circumstances
-export function actionDrop(): boolean | null {
+export function actionDrop(): boolean | void {
   if (g.run.switchForgotten) {
     g.run.switchForgotten = false;
     return true;
   }
 
-  return null;
+  return undefined;
 }

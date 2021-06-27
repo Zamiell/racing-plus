@@ -1,7 +1,6 @@
 import {
   EXCLUDED_CHARACTERS,
   MAX_NUM_DOORS,
-  MAX_VANILLA_ITEM_ID,
   RECOMMENDED_SHIFT_IDX,
 } from "./constants";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
@@ -113,6 +112,40 @@ export function getGridEntities(): GridEntity[] {
   }
 
   return gridEntities;
+}
+
+export function getHUDOffsetVector(): Vector {
+  const defaultVector = Vector.Zero;
+
+  // In Mod Config Menu, players can set a Hud Offset
+  if (
+    ModConfigMenu === undefined ||
+    ModConfigMenu.Config === undefined ||
+    ModConfigMenu.Config.General === undefined
+  ) {
+    return defaultVector;
+  }
+
+  const hudOffset = ModConfigMenu.Config.General.HudOffset;
+  if (hudOffset === undefined) {
+    return defaultVector;
+  }
+
+  // Expected values are integers between 1 and 10
+  if (type(hudOffset) !== "number" || hudOffset < 1 || hudOffset > 10) {
+    return defaultVector;
+  }
+
+  const x = hudOffset * 2;
+  let y = hudOffset;
+  if (y >= 4) {
+    y += 1;
+  }
+  if (y >= 9) {
+    y += 1;
+  }
+
+  return Vector(x, y);
 }
 
 function getItemInitCharges(
@@ -244,20 +277,35 @@ export function incrementRNG(seed: int): int {
   return rng.GetSeed();
 }
 
-export function initGlowingItemSprite(
-  collectibleType: CollectibleType,
-): Sprite {
+export function initGlowingItemSprite(itemID: int): Sprite {
+  // "NEW" is a "Curse of the Blind" item sprite
   let fileNum: string;
-  if (collectibleType >= 1 && collectibleType <= MAX_VANILLA_ITEM_ID) {
-    const paddedNumber = collectibleType.toString().padStart(3, "0");
+  if (itemID < 1) {
+    fileNum = "NEW";
+  } else if (itemID >= 1 && itemID <= 729) {
+    // Between Sad Onion and Decap Attack
+    const paddedNumber = itemID.toString().padStart(3, "0");
     fileNum = paddedNumber;
+  } else if (itemID > 729 && itemID < 2001) {
+    // Between Decap Attack and Swallowed Penny
+    fileNum = "NEW";
+  } else if (itemID >= 2001 && itemID <= 2189) {
+    // Between Swallowed Penny and Sigil of Baphomet
+    fileNum = itemID.toString();
+  } else if (itemID > 2189 && itemID < 32769) {
+    // Between Sigil of Baphomet and Golden Swallowed Penny
+    fileNum = "NEW";
+  } else if (itemID >= 32769 && itemID <= 32957) {
+    // Between Golden Swallowed Penny and Golden Sigil of Baphomet
+    fileNum = itemID.toString();
   } else {
-    fileNum = "NEW"; // This is a "Curse of the Blind" item sprite
+    // Past Golden Sigil of Baphomet
+    fileNum = "NEW";
   }
 
   return initSprite(
     "gfx/glowing_item.anm2",
-    `gfx/items_glowing/collectibles/collectibles_${fileNum}.png`,
+    `gfx/items_glowing/collectibles_${fileNum}.png`,
   );
 }
 
@@ -345,6 +393,13 @@ function logAllFlags(flags: int, maxShift: int) {
       log(`Has flag: ${i}`);
     }
   }
+}
+
+// eslint-disable-next-line import/no-unused-modules
+export function logColor(color: Color): void {
+  Isaac.DebugString(
+    `${color.R} ${color.G} ${color.B} ${color.A} ${color.RO} ${color.GO} ${color.BO}`,
+  );
 }
 
 export function moveEsauNextToJacob(): void {

@@ -3,10 +3,8 @@ import * as showPills from "../features/optional/quality/showPills";
 import g from "../globals";
 
 export function main(pillEffect: PillEffect): void {
+  // This callback does not pass the player, so we have to assume player 0 ate the pill
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
 
   checkNewPill(player, pillEffect);
   showStreakText(pillEffect);

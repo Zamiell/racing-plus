@@ -43,10 +43,7 @@ export function checkRestartWrongCharacter(): boolean {
     return false;
   }
 
-  const player = Isaac.GetPlayer(0);
-  if (player === null) {
-    return false;
-  }
+  const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 
   if (character === g.race.character) {

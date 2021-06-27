@@ -9,9 +9,6 @@ export function postNewLevel(): void {
 
   const stage = g.l.GetStage();
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
 
   if (stage === 9) {
     const hushDoor = g.r.GetDoor(1);

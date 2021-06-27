@@ -26,9 +26,6 @@ export function main(): void {
 
   // For race validation purposes, use the 0th player
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
 
   if (!validateRace(player)) {
     return;
@@ -119,8 +116,9 @@ function validateDifficulty() {
     g.race.format !== "custom"
   ) {
     log(
-      `Error: Supposed to be on easy mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
+      `Error: Supposed to be on normal mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
     );
+    topSprite.setErrorHardMode();
     return false;
   }
 
@@ -132,6 +130,7 @@ function validateDifficulty() {
     log(
       `Error: Supposed to be on hard mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
     );
+    topSprite.setErrorNormalMode();
     return false;
   }
 
@@ -216,12 +215,15 @@ function seeded(player: EntityPlayer) {
     giveItemAndRemoveFromPools(player, itemID);
   }
 
-  // Remove Cain's Eye from pools since we start with the Compass (making it essentially useless)
+  // Remove Sol from pools, since it is mostly useless
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
+
+  // Remove Cain's Eye, since it is useless
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 
   // Since this race type has a custom death mechanic, we also want to remove the Broken Ankh
   // (since we need the custom revival to always take priority over random revivals)
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
+  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
 }
 
 export function diversity(player: EntityPlayer): void {
@@ -264,7 +266,10 @@ export function diversity(player: EntityPlayer): void {
       }
     } else if (i === 4) {
       // The fifth item is the trinket
-      player.TryRemoveTrinket(trinket1); // It is safe to feed 0 to this function
+      if (trinket1 !== 0) {
+        player.TryRemoveTrinket(trinket1);
+      }
+
       player.AddTrinket(itemOrTrinketID);
       player.UseActiveItem(
         CollectibleType.COLLECTIBLE_SMELTER,
@@ -276,7 +281,7 @@ export function diversity(player: EntityPlayer): void {
 
       // Regive Paper Clip to Cain, for example
       if (trinket1 !== 0) {
-        player.AddTrinket(trinket1); // The game crashes if 0 is fed to this function
+        player.AddTrinket(trinket1);
       }
 
       // Remove it from the trinket pool

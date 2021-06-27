@@ -24,9 +24,6 @@ function repositionPlayer() {
 
 function drawItemSprites() {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
-  }
   const playerSprite = player.GetSprite();
   const playerAnimation = playerSprite.GetAnimation();
 

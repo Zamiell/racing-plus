@@ -1974,6 +1974,7 @@ ____exports.default = (function()
         self.globinSoftlock = true
         self.speedUpFadeIn = true
         self.easyFirstFloorItems = true
+        self.changeCreepColor = true
         self.subvertTeleport = true
         self.deleteVoidPortals = true
         self.showNumSacrifices = true
@@ -2194,7 +2195,7 @@ function ____exports.initPlayerVariables(self, player, run)
 end
 function ____exports.getPlayerLuaTableIndex(self, player)
     return tostring(
-        GetPtrHash(player)
+        player:GetCollectibleRNG(1):GetSeed()
     )
 end
 ____exports.default = (function()
@@ -2367,7 +2368,7 @@ return ____exports
 ["characterMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"eve2", 26}, {"teve", 26}, {"samson2", 27}, {"tsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"laz2", 29}, {"tlaz", 29}, {"eden2", 30}, {"teden", 30}, {"lost2", 31}, {"tlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"jacob2", 37}, {"tjacob", 37}})
+local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"eve2", 26}, {"teve", 26}, {"samson2", 27}, {"tsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"tlaz", 29}, {"eden2", 30}, {"teden", 30}, {"lost2", 31}, {"tlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"jacob2", 37}, {"tjacob", 37}})
 ____exports.default = CHARACTER_MAP
 return ____exports
  end,
@@ -2379,11 +2380,12 @@ ____exports.CUSTOM_HOTKEYS = {{"fastDropAllKeyboard", {6, "", "Fast drop", "Drop
 ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Judas", "Makes Judas start with 1 bomb instead of 0 bombs."}}, {"samsonDropHeart", {4, "022", "Make Samson drop his trinket", "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run."}}, {"taintedKeeperMoney", {4, "023", "Tainted Keeper extra money", "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item."}}, {"showEdenStartingItems", {4, "024", "Show Eden's starting items", "Draw both of Eden's starting items on the screen while in the first room."}}}
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
 ____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}, {"globinSoftlock", {4, "046", "Fix Globin softlocks", "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks."}}}
-____exports.QUALITY_OF_LIFE_CHANGES = {{nil, {1, "", "Start in the center", "On a new run, start in the center of the room (instead of at the bottom)."}}, {"speedUpFadeIn", {4, "051", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"easyFirstFloorItems", {4, "052", "Easier first floor items", "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes."}}, {"subvertTeleport", {4, "053", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "054", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"showNumSacrifices", {4, "055", "Show the number of sacrifices", "Show the number of sacrifices in the top-left when in a Sacrifice Room."}}, {"showDreamCatcherItem", {4, "056", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"fadeVasculitisTears", {4, "057", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"showPills", {4, "058", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}, {"showMaxFamiliars", {4, "059", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}, {"openHushDoor", {4, "060", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}}
+____exports.QUALITY_OF_LIFE_CHANGES_1 = {{nil, {1, "", "Start in the center", "On a new run, start in the center of the room (instead of at the bottom)."}}, {"speedUpFadeIn", {4, "051", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"easyFirstFloorItems", {4, "052", "Easier first floor items", "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes."}}, {"changeCreepColor", {4, "053", "Consistent creep color", "Change enemy red creep to green and change friendly green creep to red."}}, {"subvertTeleport", {4, "054", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "055", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"showNumSacrifices", {4, "056", "Show the number of sacrifices", "Show the number of sacrifices in the top-left when in a Sacrifice Room."}}, {"showDreamCatcherItem", {4, "057", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"fadeVasculitisTears", {4, "058", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"showPills", {4, "059", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}}
+____exports.QUALITY_OF_LIFE_CHANGES_2 = {{"showMaxFamiliars", {4, "060", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}, {"openHushDoor", {4, "061", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}}
 ____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Mercurius", "It is incredibly powerful and not very skill-based. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
 ____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {"fastTeleports", {4, "071", "Fast teleports", "Teleport animations are sped up by a factor of 2."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
 ____exports.BUG_FIXES = {{"teleportInvalidEntrance", {4, "081", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix shop Restock Machines", "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}, {nil, {1, "", "Fix I AM ERROR exits", "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)"}}}
-____exports.GRAPHIC_CHANGES = {{"flyItemSprites", {4, "091", "Fix fly colors", "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars."}}, {"twentyTwenty", {4, "092", "Better 20/20", "Make the 20/20 sprite easier to see."}}, {"starOfBethlehem", {4, "093", "Better Star of Bethlehem", "Make the Star of Bethlehem sprite more distinct from Eden's Soul."}}, {nil, {1, "", "Fix Locust of Famine", "Make the Locust of Famine sprite match the color of the flies."}}, {nil, {1, "", "Fix Error", "Make the Error trinket sprite have an outline."}}, {"paschalCandle", {4, "094", "Better Paschal Candle", "Paschal Candle now \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}, {nil, {1, "", "Speedrunning controls graphic", "The controls graphic in the start room is changed to be speedrunning-themed."}}}
+____exports.GRAPHIC_CHANGES = {{"flyItemSprites", {4, "091", "Fix fly colors", "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars."}}, {"twentyTwenty", {4, "092", "Better 20/20", "Make the 20/20 sprite easier to see."}}, {"starOfBethlehem", {4, "093", "Better Star of Bethlehem", "Make the Star of Bethlehem sprite more distinct from Eden's Soul."}}, {nil, {1, "", "Fix Locust of Famine", "Make the Locust of Famine sprite match the color of the flies."}}, {nil, {1, "", "Fix Error", "Make the Error trinket sprite have an outline."}}, {"paschalCandle", {4, "094", "Better Paschal Candle", "Paschal Candle now \"fills up\" so that you can easily tell at a glance if it is maxed out."}}, {nil, {1, "", "Consistent pill orientation", "Pills now have a consistent orientation on the ground."}}, {nil, {1, "", "Better pill colors", "The color of some pills are changed to make them easier to identify at a glance."}}, {nil, {1, "", "Better Purity colors", "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow."}}, {nil, {1, "", "Speedrunning controls graphic", "The controls graphic in the start room is changed to be speedrunning-themed."}}}
 ____exports.SOUND_CHANGES = {{"silenceMomDad", {4, "101", "Silence mom & dad", "The audio clips of mom and dad on the Ascent are silenced."}}}
 ____exports.OTHER_FEATURES = {{"customConsole", {4, "111", "Enable the custom console", "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)"}}}
 ____exports.ALL_CONFIG_DESCRIPTIONS = {
@@ -2402,7 +2404,10 @@ ____exports.ALL_CONFIG_DESCRIPTIONS = {
                 table.unpack(____exports.ENEMY_CHANGES)
             },
             {
-                table.unpack(____exports.QUALITY_OF_LIFE_CHANGES)
+                table.unpack(____exports.QUALITY_OF_LIFE_CHANGES_1)
+            },
+            {
+                table.unpack(____exports.QUALITY_OF_LIFE_CHANGES_2)
             },
             {
                 table.unpack(____exports.GAMEPLAY_CHANGES)
@@ -2432,13 +2437,14 @@ return ____exports
  end,
 ["constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.VERSION = "0.58.13"
 ____exports.COLLECTIBLE_SPRITE_LAYER = 1
 ____exports.EXCLUDED_CHARACTERS = {PlayerType.PLAYER_ESAU, PlayerType.PLAYER_THESOUL_B}
 ____exports.KCOLOR_DEFAULT = KColor(1, 1, 1, 1)
 ____exports.MAX_NUM_DOORS = 8
-____exports.MAX_VANILLA_ITEM_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK
 ____exports.RECOMMENDED_SHIFT_IDX = 35
+____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
+____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
+____exports.VERSION = "0.58.14"
 return ____exports
  end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -2487,7 +2493,6 @@ local ____exports = {}
 local ____constants = require("constants")
 local EXCLUDED_CHARACTERS = ____constants.EXCLUDED_CHARACTERS
 local MAX_NUM_DOORS = ____constants.MAX_NUM_DOORS
-local MAX_VANILLA_ITEM_ID = ____constants.MAX_VANILLA_ITEM_ID
 local RECOMMENDED_SHIFT_IDX = ____constants.RECOMMENDED_SHIFT_IDX
 local ____enums = require("features.optional.major.fastTravel.enums")
 local FastTravelState = ____enums.FastTravelState
@@ -2644,6 +2649,28 @@ function ____exports.getGridEntities(self)
     end
     return gridEntities
 end
+function ____exports.getHUDOffsetVector(self)
+    local defaultVector = Vector.Zero
+    if ((ModConfigMenu == nil) or (ModConfigMenu.Config == nil)) or (ModConfigMenu.Config.General == nil) then
+        return defaultVector
+    end
+    local hudOffset = ModConfigMenu.Config.General.HudOffset
+    if hudOffset == nil then
+        return defaultVector
+    end
+    if ((type(hudOffset) ~= "number") or (hudOffset < 1)) or (hudOffset > 10) then
+        return defaultVector
+    end
+    local x = hudOffset * 2
+    local y = hudOffset
+    if y >= 4 then
+        y = y + 1
+    end
+    if y >= 9 then
+        y = y + 1
+    end
+    return Vector(x, y)
+end
 local function getItemInitCharges(self, collectibleType)
     local itemConfigItem = g.itemConfig:GetCollectible(collectibleType)
     if itemConfigItem == nil then
@@ -2719,19 +2746,29 @@ function ____exports.incrementRNG(self, seed)
     rng:Next()
     return rng:GetSeed()
 end
-function ____exports.initGlowingItemSprite(self, collectibleType)
+function ____exports.initGlowingItemSprite(self, itemID)
     local fileNum
-    if (collectibleType >= 1) and (collectibleType <= MAX_VANILLA_ITEM_ID) then
+    if itemID < 1 then
+        fileNum = "NEW"
+    elseif (itemID >= 1) and (itemID <= 729) then
         local paddedNumber = __TS__StringPadStart(
-            tostring(collectibleType),
+            tostring(itemID),
             3,
             "0"
         )
         fileNum = paddedNumber
+    elseif (itemID > 729) and (itemID < 2001) then
+        fileNum = "NEW"
+    elseif (itemID >= 2001) and (itemID <= 2189) then
+        fileNum = tostring(itemID)
+    elseif (itemID > 2189) and (itemID < 32769) then
+        fileNum = "NEW"
+    elseif (itemID >= 32769) and (itemID <= 32957) then
+        fileNum = tostring(itemID)
     else
         fileNum = "NEW"
     end
-    return ____exports.initSprite(nil, "gfx/glowing_item.anm2", ("gfx/items_glowing/collectibles/collectibles_" .. fileNum) .. ".png")
+    return ____exports.initSprite(nil, "gfx/glowing_item.anm2", ("gfx/items_glowing/collectibles_" .. fileNum) .. ".png")
 end
 function ____exports.isActionPressedOnAnyInput(self, buttonAction)
     do
@@ -2770,6 +2807,11 @@ function ____exports.isPostBossVoidPortal(self, gridEntity)
 end
 function ____exports.logAllEntityFlags(self, flags)
     logAllFlags(nil, flags, 59)
+end
+function ____exports.logColor(self, color)
+    Isaac.DebugString(
+        (((((((((((tostring(color.R) .. " ") .. tostring(color.G)) .. " ") .. tostring(color.B)) .. " ") .. tostring(color.A)) .. " ") .. tostring(color.RO)) .. " ") .. tostring(color.GO)) .. " ") .. tostring(color.BO)
+    )
 end
 function ____exports.moveEsauNextToJacob(self)
     local esaus = Isaac.FindByType(EntityType.ENTITY_PLAYER, 0, PlayerType.PLAYER_ESAU)
@@ -2850,7 +2892,7 @@ function ____exports.entityTakeDmgPlayer(self, tookDamage, damageFlags)
     end
     local player = tookDamage:ToPlayer()
     if (player ~= nil) and (not isSelfDamage(nil, damageFlags)) then
-        g.run.level.fastTravel.tookDamage = false
+        g.run.level.fastTravel.tookDamage = true
     end
 end
 return ____exports
@@ -2935,13 +2977,52 @@ function ____exports.player(self, tookDamage, _damageAmount, damageFlags, _damag
     sacrificeRoom(nil, damageFlags)
     freeDevilItem:entityTakeDmgPlayer(tookDamage, damageFlags)
     fastTravelEntityTakeDmg:entityTakeDmgPlayer(tookDamage, damageFlags)
-    return nil
+end
+return ____exports
+ end,
+["features.optional.quality.changeCreepColor"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.evaluateCacheTearColor(self, player)
+    if not g.config.changeCreepColor then
+        return
+    end
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID) then
+        return
+    end
+    local color = player.TearColor
+    player.TearColor = Color(color.R, color.G, color.B, color.A, color.RO, color.GO - 0.2, color.BO + 0.2)
+end
+function ____exports.postEffectInitCreepRed(self, effect)
+    if g.config.changeCreepColor then
+        return
+    end
+    local sprite = effect:GetSprite()
+    local oldColor = sprite.Color
+    local newColor = Color(oldColor.R, oldColor.G, oldColor.B, oldColor.A, oldColor.RO, oldColor.GO, oldColor.BO)
+    newColor:SetColorize(0, 2.9, 0, 1)
+    sprite.Color = newColor
+end
+function ____exports.postEffectInitPlayerCreepGreen(self, effect)
+    if not g.config.changeCreepColor then
+        return
+    end
+    if (effect.SpawnerType == EntityType.ENTITY_FAMILIAR) and (effect.SpawnerVariant == FamiliarVariant.LIL_SPEWER) then
+        return
+    end
+    local sprite = effect:GetSprite()
+    local oldColor = sprite.Color
+    local newColor = Color(oldColor.R, oldColor.G, oldColor.B, oldColor.A, oldColor.RO, oldColor.GO, oldColor.BO)
+    newColor:SetColorize(0, 0, 255, 1)
+    sprite.Color = newColor
 end
 return ____exports
  end,
 ["callbacks.evaluateCacheFunctions"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local changeCreepColor = require("features.optional.quality.changeCreepColor")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____enums = require("types.enums")
@@ -2978,6 +3059,12 @@ functionMap:set(
     CacheFlag.CACHE_SPEED,
     function(____, player)
         debugSpeed(nil, player)
+    end
+)
+functionMap:set(
+    CacheFlag.CACHE_TEARCOLOR,
+    function(____, player)
+        changeCreepColor:evaluateCacheTearColor(player)
     end
 )
 functionMap:set(
@@ -3018,9 +3105,6 @@ ____exports.EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
 ____exports.EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES
 function ____exports.isFullyUnlocked(self)
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return false
-    end
     local character = player:GetPlayerType()
     local activeItem = player:GetActiveItem()
     local startSeedString = g.seeds:GetStartSeedString()
@@ -3091,21 +3175,18 @@ function ____exports.isFullyUnlocked(self)
     return true
 end
 function ____exports.checkRestart(self)
-    local player = Isaac.GetPlayer(0)
-    if player == nil then
-        return false
-    end
+    local player = Isaac.GetPlayer()
     local character = player:GetPlayerType()
     local startSeedString = g.seeds:GetStartSeedString()
     local challenge = Isaac.GetChallenge()
-    local ____switch22 = g.saveFile.state
-    if ____switch22 == SaveFileState.GoingToSetSeedWithEden then
-        goto ____switch22_case_0
-    elseif ____switch22 == SaveFileState.GoingBack then
-        goto ____switch22_case_1
+    local ____switch20 = g.saveFile.state
+    if ____switch20 == SaveFileState.GoingToSetSeedWithEden then
+        goto ____switch20_case_0
+    elseif ____switch20 == SaveFileState.GoingBack then
+        goto ____switch20_case_1
     end
-    goto ____switch22_case_default
-    ::____switch22_case_0::
+    goto ____switch20_case_default
+    ::____switch20_case_0::
     do
         do
             if challenge ~= Challenge.CHALLENGE_NULL then
@@ -3123,7 +3204,7 @@ function ____exports.checkRestart(self)
             return true
         end
     end
-    ::____switch22_case_1::
+    ::____switch20_case_1::
     do
         do
             if challenge ~= g.saveFile.oldRun.challenge then
@@ -3145,18 +3226,54 @@ function ____exports.checkRestart(self)
             return true
         end
     end
-    ::____switch22_case_default::
+    ::____switch20_case_default::
     do
         do
             return false
         end
     end
-    ::____switch22_end::
+    ::____switch20_end::
 end
 return ____exports
  end,
 ["types.SocketCommands"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+return ____exports
+ end,
+["features.mandatory.racingPlusSprite"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____constants = require("constants")
+local SPRITE_CHALLENGE_OFFSET = ____constants.SPRITE_CHALLENGE_OFFSET
+local SPRITE_DIFFICULTY_OFFSET = ____constants.SPRITE_DIFFICULTY_OFFSET
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getHUDOffsetVector = ____misc.getHUDOffsetVector
+local initSprite = ____misc.initSprite
+local SPRITE_POSITION
+function ____exports.getPosition(self)
+    local challenge = Isaac.GetChallenge()
+    local HUDOffsetVector = getHUDOffsetVector(nil)
+    local position = SPRITE_POSITION:__add(HUDOffsetVector)
+    if challenge ~= Challenge.CHALLENGE_NULL then
+        position = position:__add(SPRITE_CHALLENGE_OFFSET)
+    elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
+        position = position:__add(SPRITE_DIFFICULTY_OFFSET)
+    end
+    return position
+end
+local SpriteLayer = SpriteLayer or ({})
+SpriteLayer.Blue = 0
+SpriteLayer[SpriteLayer.Blue] = "Blue"
+SpriteLayer.Green = 1
+SpriteLayer[SpriteLayer.Green] = "Green"
+SPRITE_POSITION = Vector(4, 72)
+local sprite = initSprite(nil, "gfx/ui/racing_plus/racing_plus.anm2")
+function ____exports.postRender(self)
+    local spriteLayer = ((g.socket.client == nil) and SpriteLayer.Blue) or SpriteLayer.Green
+    local position = ____exports.getPosition(nil)
+    sprite:RenderLayer(spriteLayer, position)
+end
 return ____exports
  end,
 ["features.race.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -3469,9 +3586,10 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
 local initSprite = ____misc.initSprite
+local racingPlusSprite = require("features.mandatory.racingPlusSprite")
 local ____raceRoom = require("features.race.raceRoom")
 local inRaceRoom = ____raceRoom.inRaceRoom
-local GFX_PATH, MAX_PLACE, sprite, drawSprite, getPosition
+local GFX_PATH, MAX_PLACE, SPRITE_OFFSET, sprite, drawSprite, getPosition
 function drawSprite(self)
     if inRaceRoom(nil) then
         return
@@ -3485,15 +3603,7 @@ function drawSprite(self)
     end
 end
 function getPosition(self)
-    local challenge = Isaac.GetChallenge()
-    local x = 24
-    if g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
-        x = x + 10
-    end
-    if challenge ~= 0 then
-        x = 67
-    end
-    return Vector(x, 79)
+    return racingPlusSprite:getPosition():__add(SPRITE_OFFSET)
 end
 function ____exports.statusOrMyStatusChanged(self)
     if g.race.status == "open" then
@@ -3517,6 +3627,7 @@ function ____exports.placeMidChanged(self)
 end
 GFX_PATH = "gfx/race/place-left"
 MAX_PLACE = 16
+SPRITE_OFFSET = Vector(20, 7)
 sprite = nil
 function ____exports.postRender(self)
     drawSprite(nil)
@@ -3568,7 +3679,7 @@ local g = ____globals.default
 local ____misc = require("misc")
 local initGlowingItemSprite = ____misc.initGlowingItemSprite
 local initSprite = ____misc.initSprite
-local GFX_PATH, sprites, drawSprites, getPosition, initSeededSprites, initDiversitySprites
+local FIRST_GOLDEN_TRINKET_ID, GFX_PATH, sprites, drawSprites, getPosition, initSeededSprites, initDiversitySprites
 function drawSprites(self)
     for ____, ____value in ipairs(
         __TS__ObjectEntries(sprites)
@@ -3749,8 +3860,18 @@ function initDiversitySprites(self)
     sprites.diversityItem2 = initGlowingItemSprite(nil, g.race.startingItems[2])
     sprites.diversityItem3 = initGlowingItemSprite(nil, g.race.startingItems[3])
     sprites.diversityItem4 = initGlowingItemSprite(nil, g.race.startingItems[4])
-    sprites.diversityItem5 = initGlowingItemSprite(nil, g.race.startingItems[5])
+    local modifiedTrinketID = tonumber(g.race.startingItems[5])
+    if modifiedTrinketID == nil then
+        error(
+            "Failed to convert the diversity trinket to a number: " .. tostring(g.race.startingItems[5])
+        )
+    end
+    if modifiedTrinketID < FIRST_GOLDEN_TRINKET_ID then
+        modifiedTrinketID = modifiedTrinketID + 2000
+    end
+    sprites.diversityItem5 = initGlowingItemSprite(nil, modifiedTrinketID)
 end
+FIRST_GOLDEN_TRINKET_ID = 32769
 GFX_PATH = "gfx/race/starting-room"
 sprites = {seededStartingTitle = nil, seededItemCenter = nil, seededItemLeft = nil, seededItemRight = nil, seededItemFarLeft = nil, seededItemFarRight = nil, diversityActive = nil, diversityPassives = nil, diversityTrinket = nil, diversityItem1 = nil, diversityItem2 = nil, diversityItem3 = nil, diversityItem4 = nil, diversityItem5 = nil}
 function ____exports.postRender(self)
@@ -3824,24 +3945,11 @@ function hideGoSprite(self)
     end
 end
 function ____exports.statusChanged(self)
-    if g.race.status == "open" then
-        ____exports.statusChangedOpen(nil)
-    elseif g.race.status == "starting" then
+    if g.race.status == "starting" then
         ____exports.countdownChanged(nil)
     elseif g.race.status == "in progress" then
         sprite = initSprite(nil, GO_GFX_PATH)
     end
-end
-function ____exports.statusChangedOpen(self)
-    if ((g.race.difficulty == "hard") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_HARD)) and (g.race.format ~= "custom") then
-        sprite = initSprite(nil, GFX_PATH .. "/error-not-hard-mode.anm2")
-        return
-    end
-    if ((g.race.difficulty == "normal") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL)) and (g.race.format ~= "custom") then
-        sprite = initSprite(nil, GFX_PATH .. "/error-hard-mode.anm2")
-        return
-    end
-    sprite = nil
 end
 function ____exports.countdownChanged(self)
     if g.race.status == "starting" then
@@ -3879,6 +3987,12 @@ function ____exports.placeChanged(self)
             ((GFX_PATH .. "/place-top/") .. tostring(g.race.place)) .. ".anm2"
         )
     end
+end
+function ____exports.setErrorNormalMode(self)
+    sprite = initSprite(nil, GFX_PATH .. "/error-not-hard-mode.anm2")
+end
+function ____exports.setErrorHardMode(self)
+    sprite = initSprite(nil, GFX_PATH .. "/error-hard-mode.anm2")
 end
 function ____exports.resetSprite(self)
     sprite = nil
@@ -4266,7 +4380,7 @@ function disconnect(self)
     g.socket.client = nil
     reset(nil)
 end
-DEBUG = false
+DEBUG = true
 MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60
 PORT = 9112
 function ____exports.postRender(self)
@@ -4428,9 +4542,6 @@ functionMap:set(
     "angel",
     function(____, _params)
         local player = Isaac.GetPlayer()
-        if player == nil then
-            return
-        end
         local hasEucharist = player:HasCollectible(CollectibleType.COLLECTIBLE_EUCHARIST)
         if not hasEucharist then
             player:AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false)
@@ -4658,9 +4769,6 @@ functionMap:set(
     "effects",
     function(____, _params)
         local player = Isaac.GetPlayer()
-        if player == nil then
-            return
-        end
         local effects = player:GetEffects()
         local effectsList = effects:GetEffectsList()
         if effectsList.Size == 0 then
@@ -4868,9 +4976,6 @@ functionMap:set(
     "speed",
     function(____, _params)
         local player = Isaac.GetPlayer()
-        if player == nil then
-            return
-        end
         g.run.debugSpeed = not g.run.debugSpeed
         local enabled = (g.run.debugSpeed and "Enabled") or "Disabled"
         print(enabled .. " max speed.")
@@ -4976,81 +5081,49 @@ ____exports.default = functionMap
 functionMap:set(
     ButtonAction.ACTION_LEFT,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_RIGHT,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_UP,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_DOWN,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_SHOOTLEFT,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_SHOOTRIGHT,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_SHOOTUP,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 functionMap:set(
     ButtonAction.ACTION_SHOOTDOWN,
     function()
-        local returnValue = fastTravelInputAction:disableInput()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return fastTravelInputAction:disableInput()
     end
 )
 return ____exports
@@ -5077,11 +5150,7 @@ ____exports.default = functionMap
 functionMap:set(
     ButtonAction.ACTION_DROP,
     function()
-        local returnValue = switchForgotten:actionDrop()
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return switchForgotten:actionDrop()
     end
 )
 return ____exports
@@ -5102,12 +5171,6 @@ function ____exports.main(self, player, inputHook, buttonAction)
     return nil
 end
 inputHookFunctionMap = __TS__New(Map)
-inputHookFunctionMap:set(
-    InputHook.IS_ACTION_PRESSED,
-    function(____, _player, _buttonAction)
-        return nil
-    end
-)
 inputHookFunctionMap:set(
     InputHook.IS_ACTION_TRIGGERED,
     function(____, player, buttonAction)
@@ -5225,8 +5288,15 @@ return ____exports
 ["callbacks.postEffectInit"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local centerStart = require("features.mandatory.centerStart")
+local changeCreepColor = require("features.optional.quality.changeCreepColor")
 function ____exports.poof01(self, effect)
     centerStart:poof01(effect)
+end
+function ____exports.creepRed(self, effect)
+    changeCreepColor:postEffectInitCreepRed(effect)
+end
+function ____exports.playerCreepGreen(self, effect)
+    changeCreepColor:postEffectInitPlayerCreepGreen(effect)
 end
 return ____exports
  end,
@@ -5701,6 +5771,9 @@ ____exports["goto"] = function(self, upwards)
     g.run.fastTravel.reseed = (stage == nextStage) and (not g.run.fastTravel.antibirthSecretExit)
     if not g.run.level.fastTravel.tookDamage then
         g.g:AddStageWithoutDamage()
+        Isaac.DebugString("Finished this floor without taking any damage.")
+    else
+        Isaac.DebugString("Finished this floor with damage taken.")
     end
     travelStage(nil, nextStage, nextStageType)
 end
@@ -6093,7 +6166,7 @@ return ____exports
  end,
 ["features.optional.major.fastClear.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_CHUB, EntityType.ENTITY_HOPPER, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_SPIDER, EntityType.ENTITY_BIGSPIDER, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_DEATHS_HEAD, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_FLESH_DEATHS_HEAD, EntityType.ENTITY_DUKIE, EntityType.ENTITY_STONEY, EntityType.ENTITY_PORTAL, EntityType.ENTITY_STAIN, EntityType.ENTITY_BROWNIE, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_MATRIARCH, EntityType.ENTITY_FARTIGAN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_ROTGUT, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
+____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_CHUB, EntityType.ENTITY_HOPPER, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_STAIN, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_ROTGUT, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
 return ____exports
  end,
 ["features.optional.major.fastClear.krampus"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -6628,18 +6701,12 @@ function shouldShowSprites(self)
     local stage = g.l:GetStage()
     local startingRoomIndex = g.l:GetStartingRoomIndex()
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return false
-    end
     local character = player:GetPlayerType()
     local roomIndex = getRoomIndex(nil)
     return (((character == PlayerType.PLAYER_EDEN) or (character == PlayerType.PLAYER_EDEN_B)) and (stage == 1)) and (roomIndex == startingRoomIndex)
 end
 function storeItemIdentities(self)
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     local character = player:GetPlayerType()
     if (character ~= PlayerType.PLAYER_EDEN) and (character ~= PlayerType.PLAYER_EDEN_B) then
         return
@@ -6714,10 +6781,7 @@ local ____misc = require("misc")
 local removeItemFromItemTracker = ____misc.removeItemFromItemTracker
 function ____exports.postNewLevel(self)
     local stage = g.l:GetStage()
-    local player = Isaac.GetPlayer(0)
-    if player == nil then
-        return
-    end
+    local player = Isaac.GetPlayer()
     if (stage >= 2) and g.run.removeMoreOptions then
         g.run.removeMoreOptions = false
         player:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
@@ -6725,10 +6789,7 @@ function ____exports.postNewLevel(self)
 end
 function ____exports.postNewRoom(self)
     local roomType = g.r:GetType()
-    local player = Isaac.GetPlayer(0)
-    if player == nil then
-        return
-    end
+    local player = Isaac.GetPlayer()
     if g.run.removeMoreOptions and (roomType == RoomType.ROOM_TREASURE) then
         g.run.removeMoreOptions = false
         player:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
@@ -6778,16 +6839,16 @@ function resetRaceVars(self)
     g.raceVars.finishedTime = 0
 end
 function giveFormatItems(self, player)
-    local ____switch9 = g.race.format
-    if ____switch9 == "unseeded" then
-        goto ____switch9_case_0
-    elseif ____switch9 == "seeded" then
-        goto ____switch9_case_1
-    elseif ____switch9 == "diversity" then
-        goto ____switch9_case_2
+    local ____switch8 = g.race.format
+    if ____switch8 == "unseeded" then
+        goto ____switch8_case_0
+    elseif ____switch8 == "seeded" then
+        goto ____switch8_case_1
+    elseif ____switch8 == "diversity" then
+        goto ____switch8_case_2
     end
-    goto ____switch9_case_default
-    ::____switch9_case_0::
+    goto ____switch8_case_default
+    ::____switch8_case_0::
     do
         do
             if g.race.ranked and g.race.solo then
@@ -6795,30 +6856,30 @@ function giveFormatItems(self, player)
             else
                 unseeded(nil, player)
             end
-            goto ____switch9_end
+            goto ____switch8_end
         end
     end
-    ::____switch9_case_1::
+    ::____switch8_case_1::
     do
         do
             seeded(nil, player)
-            goto ____switch9_end
+            goto ____switch8_end
         end
     end
-    ::____switch9_case_2::
+    ::____switch8_case_2::
     do
         do
             ____exports.diversity(nil, player)
-            goto ____switch9_end
+            goto ____switch8_end
         end
     end
-    ::____switch9_case_default::
+    ::____switch8_case_default::
     do
         do
-            goto ____switch9_end
+            goto ____switch8_end
         end
     end
-    ::____switch9_end::
+    ::____switch8_end::
 end
 function validateRace(self, player)
     return (((validateInRace(nil) and validateChallenge(nil)) and validateDifficulty(nil)) and validateSeed(nil)) and validateCharacter(nil, player)
@@ -6839,8 +6900,9 @@ function validateDifficulty(self)
     if ((g.race.difficulty == "normal") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL)) and (g.race.format ~= "custom") then
         log(
             nil,
-            ("Error: Supposed to be on easy mode. (Currently, the difficulty is " .. tostring(g.g.Difficulty)) .. ".)"
+            ("Error: Supposed to be on normal mode. (Currently, the difficulty is " .. tostring(g.g.Difficulty)) .. ".)"
         )
+        topSprite:setErrorHardMode()
         return false
     end
     if ((g.race.difficulty == "hard") and (g.g.Difficulty ~= Difficulty.DIFFICULTY_HARD)) and (g.race.format ~= "custom") then
@@ -6848,6 +6910,7 @@ function validateDifficulty(self)
             nil,
             ("Error: Supposed to be on hard mode. (Currently, the difficulty is " .. tostring(g.g.Difficulty)) .. ".)"
         )
+        topSprite:setErrorNormalMode()
         return false
     end
     return true
@@ -6896,8 +6959,8 @@ function seeded(self, player)
         end
         giveItemAndRemoveFromPools(nil, player, itemID)
     end
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_SOL)
     g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
-    g.itemPool:RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH)
 end
 function ____exports.diversity(self, player)
     if g.race.status ~= "in progress" then
@@ -6922,7 +6985,9 @@ function ____exports.diversity(self, player)
                     g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
                 end
             elseif i == 4 then
-                player:TryRemoveTrinket(trinket1)
+                if trinket1 ~= 0 then
+                    player:TryRemoveTrinket(trinket1)
+                end
                 player:AddTrinket(itemOrTrinketID)
                 player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false, false, false, false)
                 if trinket1 ~= 0 then
@@ -6946,9 +7011,6 @@ function ____exports.main(self)
     socket:postGameStarted()
     sprites:resetAll()
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     if not validateRace(nil, player) then
         return
     end
@@ -7135,9 +7197,6 @@ function ____exports.postNewLevel(self)
     end
     local stage = g.l:GetStage()
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     if stage == 9 then
         local hushDoor = g.r:GetDoor(1)
         if hushDoor ~= nil then
@@ -9481,34 +9540,6 @@ function ____exports.postRender(self)
 end
 return ____exports
  end,
-["features.mandatory.racingPlusSprite"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-local ____misc = require("misc")
-local initSprite = ____misc.initSprite
-local SpriteLayer = SpriteLayer or ({})
-SpriteLayer.Blue = 0
-SpriteLayer[SpriteLayer.Blue] = "Blue"
-SpriteLayer.Green = 1
-SpriteLayer[SpriteLayer.Green] = "Green"
-local SPRITE_POSITION = Vector(4, 74)
-local SPRITE_LEFT_OFFSET = Vector(-3, 0)
-local SPRITE_RIGHT_OFFSET = Vector(13, 0)
-local sprite = initSprite(nil, "gfx/ui/racing_plus/racing_plus.anm2")
-function ____exports.postRender(self)
-    local challenge = Isaac.GetChallenge()
-    local position = SPRITE_POSITION
-    if challenge ~= Challenge.CHALLENGE_NULL then
-        position = position:__add(SPRITE_LEFT_OFFSET)
-    elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
-        position = position:__add(SPRITE_RIGHT_OFFSET)
-    end
-    local spriteLayer = ((g.socket.client == nil) and SpriteLayer.Blue) or SpriteLayer.Green
-    sprite:RenderLayer(spriteLayer, position)
-end
-return ____exports
- end,
 ["timer"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
@@ -9746,9 +9777,6 @@ local consoleCommand = ____misc.consoleCommand
 local isConsoleOpen, consoleText, consoleTextIndex, keysPressed, checkKeyboardInput, handleInput, open, close
 function checkKeyboardInput(self)
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     if g.g:IsPaused() then
         return
     end
@@ -9816,9 +9844,6 @@ function repositionPlayer(self)
 end
 function drawItemSprites(self)
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     local playerSprite = player:GetSprite()
     local playerAnimation = playerSprite:GetAnimation()
     if g.run.slideAnimationHappening and (playerAnimation ~= "Appear") then
@@ -10081,10 +10106,7 @@ function ____exports.checkRestartWrongCharacter(self)
     if ((not g.config.clientCommunication) or (g.race.status == "none")) or (g.race.format == "custom") then
         return false
     end
-    local player = Isaac.GetPlayer(0)
-    if player == nil then
-        return false
-    end
+    local player = Isaac.GetPlayer()
     local character = player:GetPlayerType()
     if character == g.race.character then
         return false
@@ -10121,9 +10143,6 @@ function ____exports.checkRestartWrongCharacter(self)
         return false
     end
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return false
-    end
     local character = player:GetPlayerType()
     local characterForThisSpeedrun = getCurrentCharacter(nil)
     if character == characterForThisSpeedrun then
@@ -10225,9 +10244,6 @@ end
 function ____exports.getHeartXOffset(self)
     local curses = g.l:GetCurses()
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return 0
-    end
     local maxHearts = player:GetMaxHearts()
     local soulHearts = player:GetSoulHearts()
     local boneHearts = player:GetBoneHearts()
@@ -10603,6 +10619,7 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local getPlayers = ____misc.getPlayers
 local gridToPos = ____misc.gridToPos
 local makeFireworksQuieter, spawnSparkleOnPlayer, spawnFireworks
 function makeFireworksQuieter(self)
@@ -10615,13 +10632,13 @@ function makeFireworksQuieter(self)
     end
 end
 function spawnSparkleOnPlayer(self)
-    local player = Isaac.GetPlayer()
-    if player == nil then
-        return
+    for ____, player in ipairs(
+        getPlayers(nil)
+    ) do
+        local randomVector = RandomVector():__mul(10)
+        local blingPosition = player.Position:__add(randomVector)
+        Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ULTRA_GREED_BLING, 0, blingPosition, Vector.Zero, nil)
     end
-    local randomVector = RandomVector():__mul(10)
-    local blingPosition = player.Position:__add(randomVector)
-    Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ULTRA_GREED_BLING, 0, blingPosition, Vector.Zero, nil)
 end
 function spawnFireworks(self)
     local gameFrameCount = g.g:GetFrameCount()
@@ -10824,11 +10841,7 @@ ____exports.default = functionMap
 functionMap:set(
     EntityType.ENTITY_COD_WORM,
     function(____, _variant, _subType, _position, _spawner, initSeed)
-        local returnValue = replaceCodWorms:preEntitySpawn(initSeed)
-        if returnValue ~= nil then
-            return returnValue
-        end
-        return nil
+        return replaceCodWorms:preEntitySpawn(initSeed)
     end
 )
 return ____exports
@@ -10886,18 +10899,10 @@ return ____exports
 local ____exports = {}
 local appearHands = require("features.optional.enemies.appearHands")
 function ____exports.momsHand(self, npc)
-    local returnValue = appearHands:preNPCUpdate(npc)
-    if returnValue ~= nil then
-        return returnValue
-    end
-    return nil
+    return appearHands:preNPCUpdate(npc)
 end
 function ____exports.momsDeadHand(self, npc)
-    local returnValue = appearHands:preNPCUpdate(npc)
-    if returnValue ~= nil then
-        return returnValue
-    end
-    return nil
+    return appearHands:preNPCUpdate(npc)
 end
 return ____exports
  end,
@@ -11063,9 +11068,6 @@ function showStreakText(self, pillEffect)
 end
 function ____exports.main(self, pillEffect)
     local player = Isaac.GetPlayer()
-    if player == nil then
-        return
-    end
     checkNewPill(nil, player, pillEffect)
     showStreakText(nil, pillEffect)
 end
@@ -11087,7 +11089,8 @@ local GAMEPLAY_CHANGES = ____configDescription.GAMEPLAY_CHANGES
 local GRAPHIC_CHANGES = ____configDescription.GRAPHIC_CHANGES
 local MAJOR_CHANGES = ____configDescription.MAJOR_CHANGES
 local OTHER_FEATURES = ____configDescription.OTHER_FEATURES
-local QUALITY_OF_LIFE_CHANGES = ____configDescription.QUALITY_OF_LIFE_CHANGES
+local QUALITY_OF_LIFE_CHANGES_1 = ____configDescription.QUALITY_OF_LIFE_CHANGES_1
+local QUALITY_OF_LIFE_CHANGES_2 = ____configDescription.QUALITY_OF_LIFE_CHANGES_2
 local SOUND_CHANGES = ____configDescription.SOUND_CHANGES
 local ____globals = require("globals")
 local g = ____globals.default
@@ -11455,7 +11458,8 @@ function ____exports.register(self)
     registerSubMenuConfig(nil, "Chars", CHARACTER_CHANGES)
     registerSubMenuConfig(nil, "Bosses", BOSS_CHANGES)
     registerSubMenuConfig(nil, "Enemies", ENEMY_CHANGES)
-    registerSubMenuConfig(nil, "QoL", QUALITY_OF_LIFE_CHANGES)
+    registerSubMenuConfig(nil, "QoL (1)", QUALITY_OF_LIFE_CHANGES_1)
+    registerSubMenuConfig(nil, "QoL (2)", QUALITY_OF_LIFE_CHANGES_2)
     registerSubMenuConfig(nil, "Gameplay", GAMEPLAY_CHANGES)
     registerSubMenuConfig(nil, "Cutscene", CUTSCENE_CHANGES)
     registerSubMenuConfig(nil, "Bug Fixes", BUG_FIXES)
@@ -11581,6 +11585,8 @@ function registerPostTearUpdateCallbacks(self, racingPlus)
 end
 function registerPostEffectInitCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.poof01, EffectVariant.POOF01)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.creepRed, EffectVariant.CREEP_RED)
+    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.playerCreepGreen, EffectVariant.PLAYER_CREEP_GREEN)
 end
 function registerPostEffectUpdateCallbacks(self, racingPlus)
     racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)

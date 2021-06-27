@@ -11,6 +11,6 @@ export function entityTakeDmgPlayer(
 
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
-    g.run.level.fastTravel.tookDamage = false;
+    g.run.level.fastTravel.tookDamage = true;
   }
 }

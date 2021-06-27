@@ -17,9 +17,9 @@ export function postNPCUpdate(npc: EntityNPC): void {
 }
 
 // ModCallbacks.MC_PRE_NPC_UPDATE (69)
-export function preNPCUpdate(npc: EntityNPC): boolean | null {
+export function preNPCUpdate(npc: EntityNPC): boolean | void {
   if (!g.config.appearHands) {
-    return null;
+    return undefined;
   }
 
   const sprite = npc.GetSprite();
@@ -29,7 +29,7 @@ export function preNPCUpdate(npc: EntityNPC): boolean | null {
     return true;
   }
 
-  return null;
+  return undefined;
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

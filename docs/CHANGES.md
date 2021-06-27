@@ -186,27 +186,31 @@ Post-flip actions:
 > Why? This is convenient because it makes the player equidistant to all of the doors.
 
 - `051` The fade in at the beginning of a run is sped-up.
-- `052` Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.
+- `052` First floor Treasure Rooms are slightly changed so that you never have to spend a bomb or walk on spikes.
 
 > Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `053` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `054` Void portals that spawn after bosses are automatically deleted.
+- `053` Enemy red creep is changed to green and friendly green creep is changed to red.
+
+> Why? So that player creep will never be mistaken for enemy creep and vice versa. Furthermore, it is very difficult to see red enemy creep on the Womb floors.
+
+- `054` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `055` Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `055` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `056` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `056` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
+- `057` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `057` The tears that explode out of enemies when you have Vasculitis are faded.
+- `058` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `058` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
-- `059` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `060` The Hush door will be automatically opened.
+- `059` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `060` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `061` The Hush door will be automatically opened.
 
 ### 6) Gameplay Changes
 
@@ -263,6 +267,7 @@ Post-flip actions:
   - White-dotted / Red --> Full red
   - Pink / Red --> White / Red
   - White / White-dotted --> Full white-dotted
+- The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The controls graphic in the start room is changed to be speedrunning-themed.
 
 ### 10) Sound Fixes
@@ -325,9 +330,4 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 <!--
 - The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Scared Hearts and Sticky Nickels now have unique sprites.
-- The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.) <!-- cspell:disable-line -->
-<!--
-- Enemy red creep is changed to green (so that it is easier to see).
-- Friendly green creep is changed to red (so that it is easier to distinguish from enemy creep).
--->

@@ -299,7 +299,7 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 05X
-export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
+export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
   [
     null,
     [
@@ -328,10 +328,19 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "subvertTeleport",
+    "changeCreepColor",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "053",
+      "Consistent creep color",
+      "Change enemy red creep to green and change friendly green creep to red.",
+    ],
+  ],
+  [
+    "subvertTeleport",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "054",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -340,7 +349,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "054",
+      "055",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
     ],
@@ -349,7 +358,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "055",
+      "056",
       "Show the number of sacrifices",
       "Show the number of sacrifices in the top-left when in a Sacrifice Room.",
     ],
@@ -358,7 +367,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "056",
+      "057",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -367,7 +376,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "057",
+      "058",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -376,16 +385,19 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "059",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
+];
+
+export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "059",
+      "060",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -394,7 +406,7 @@ export const QUALITY_OF_LIFE_CHANGES: ConfigDescriptionArray = [
     "openHushDoor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "060",
+      "061",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -627,6 +639,15 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
+      "Better Purity colors",
+      "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
       "Speedrunning controls graphic",
       "The controls graphic in the start room is changed to be speedrunning-themed.",
     ],
@@ -664,7 +685,8 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...CHARACTER_CHANGES,
   ...BOSS_CHANGES,
   ...ENEMY_CHANGES,
-  ...QUALITY_OF_LIFE_CHANGES,
+  ...QUALITY_OF_LIFE_CHANGES_1,
+  ...QUALITY_OF_LIFE_CHANGES_2,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
   ...BUG_FIXES,

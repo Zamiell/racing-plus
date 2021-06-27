@@ -2,86 +2,46 @@ import * as fastTravelInputAction from "../features/optional/major/fastTravel/ca
 
 const functionMap = new Map<
   ButtonAction,
-  (player: EntityPlayer) => float | null
+  (player: EntityPlayer) => float | void
 >();
 export default functionMap;
 
 // 0
 functionMap.set(ButtonAction.ACTION_LEFT, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 1
 functionMap.set(ButtonAction.ACTION_RIGHT, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 2
 functionMap.set(ButtonAction.ACTION_UP, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 3
 functionMap.set(ButtonAction.ACTION_DOWN, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 4
 functionMap.set(ButtonAction.ACTION_SHOOTLEFT, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 5
 functionMap.set(ButtonAction.ACTION_SHOOTRIGHT, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 6
 functionMap.set(ButtonAction.ACTION_SHOOTUP, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });
 
 // 7
 functionMap.set(ButtonAction.ACTION_SHOOTDOWN, () => {
-  const returnValue = fastTravelInputAction.disableInput();
-  if (returnValue !== null) {
-    return returnValue;
-  }
-
-  return null;
+  return fastTravelInputAction.disableInput();
 });

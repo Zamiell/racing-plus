@@ -1,3 +1,4 @@
+import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import g from "../globals";
 import { CollectibleTypeCustom } from "../types/enums";
 
@@ -14,6 +15,11 @@ function debugSpeed(player: EntityPlayer) {
     player.MoveSpeed = 2;
   }
 }
+
+// 1 << 6
+functionMap.set(CacheFlag.CACHE_TEARCOLOR, (player: EntityPlayer) => {
+  changeCreepColor.evaluateCacheTearColor(player);
+});
 
 // 1 << 10
 functionMap.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {

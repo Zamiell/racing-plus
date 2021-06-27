@@ -93,9 +93,7 @@ export default class GlobalsRun {
   };
 
   maxFamiliars = false;
-
   pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
-
   /** We track all identified pills so that we can display them. */
   pills: PillDescription[] = [];
   pillsPHD = false;
@@ -175,7 +173,7 @@ export function initPlayerVariables(
   log(`Initialized variables for player: ${index}`);
 }
 
-// This represents the special case of a pointer hash converted to a string;
+// This represents the special case of an integer seed converted to a string;
 // see the explanation below
 type PlayerLuaTableIndex = string;
 
@@ -184,10 +182,11 @@ export function getPlayerLuaTableIndex(
 ): PlayerLuaTableIndex {
   // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
   // or Tainted Forgotten
-  // The PtrHash of the player will correctly persist after saving and quitting and continuing,
-  // but it will be different after completely closing and re-opening the game
-  // We explicitly don't handle this case since the code complexity isn't worth the tradeoff
-  // We convert the pointer hash to a string to avoid null element creation when saving the table as
-  // JSON (which is done to handle save & quit)
-  return GetPtrHash(player).toString();
+  // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
+  // reopens the game
+  // Instead, we "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
+  // This works even if the player does not have any Sad Onions
+  // We convert the seed to a string to avoid null element creation when saving the table as JSON
+  // (which is done to handle save & quit)
+  return player.GetCollectibleRNG(1).GetSeed().toString();
 }

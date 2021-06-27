@@ -12,7 +12,8 @@ import {
   GRAPHIC_CHANGES,
   MAJOR_CHANGES,
   OTHER_FEATURES,
-  QUALITY_OF_LIFE_CHANGES,
+  QUALITY_OF_LIFE_CHANGES_1,
+  QUALITY_OF_LIFE_CHANGES_2,
   SOUND_CHANGES,
 } from "./configDescription";
 import g from "./globals";
@@ -37,7 +38,8 @@ export function register(): void {
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
   registerSubMenuConfig("Bosses", BOSS_CHANGES);
   registerSubMenuConfig("Enemies", ENEMY_CHANGES);
-  registerSubMenuConfig("QoL", QUALITY_OF_LIFE_CHANGES);
+  registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
+  registerSubMenuConfig("QoL (2)", QUALITY_OF_LIFE_CHANGES_2);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);
   registerSubMenuConfig("Bug Fixes", BUG_FIXES);

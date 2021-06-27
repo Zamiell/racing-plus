@@ -10,28 +10,19 @@ export function main(
   player: EntityPlayer,
   inputHook: InputHook,
   buttonAction: ButtonAction,
-): number | boolean | null {
+): number | boolean | void {
   const inputHookFunction = inputHookFunctionMap.get(inputHook);
   if (inputHookFunction !== undefined) {
     return inputHookFunction(player, buttonAction);
   }
 
-  return null;
+  return undefined;
 }
 
 const inputHookFunctionMap = new Map<
   InputHook,
-  (player: EntityPlayer, buttonAction: ButtonAction) => number | boolean | null
+  (player: EntityPlayer, buttonAction: ButtonAction) => number | boolean | void
 >();
-
-// 0
-inputHookFunctionMap.set(
-  InputHook.IS_ACTION_PRESSED,
-  (_player: EntityPlayer, _buttonAction: ButtonAction) => {
-    // Currently unused
-    return null;
-  },
-);
 
 // 1
 inputHookFunctionMap.set(
@@ -43,7 +34,7 @@ inputHookFunctionMap.set(
       return isActionTriggeredFunction(player);
     }
 
-    return null;
+    return undefined;
   },
 );
 
@@ -56,6 +47,6 @@ inputHookFunctionMap.set(
       return getActionValueFunction(player);
     }
 
-    return null;
+    return undefined;
   },
 );

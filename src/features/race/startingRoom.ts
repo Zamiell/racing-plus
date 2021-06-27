@@ -1,6 +1,7 @@
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../misc";
 
+const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
 
 const sprites = {
@@ -193,6 +194,7 @@ function initDiversitySprites() {
   sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
   sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
   sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
+
   sprites.diversityItem1 = initGlowingItemSprite(
     g.race.startingItems[0] as CollectibleType,
   );
@@ -205,7 +207,17 @@ function initDiversitySprites() {
   sprites.diversityItem4 = initGlowingItemSprite(
     g.race.startingItems[3] as CollectibleType,
   );
-  sprites.diversityItem5 = initGlowingItemSprite(
-    g.race.startingItems[4] as CollectibleType,
-  );
+
+  let modifiedTrinketID = tonumber(g.race.startingItems[4]);
+  if (modifiedTrinketID === undefined) {
+    error(
+      `Failed to convert the diversity trinket to a number: ${g.race.startingItems[4]}`,
+    );
+  }
+  if (modifiedTrinketID < FIRST_GOLDEN_TRINKET_ID) {
+    // Trinkets are represented in the "items.json" file as items with IDs past 2000
+    // (but golden trinkets retain their vanilla ID)
+    modifiedTrinketID += 2000;
+  }
+  sprites.diversityItem5 = initGlowingItemSprite(modifiedTrinketID);
 }

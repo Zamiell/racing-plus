@@ -16,6 +16,9 @@ declare interface ModConfigMenuInterface {
   GetCategoryIDByName(categoryName: string): int | null;
 
   Config: {
+    General: {
+      HudOffset: int;
+    };
     LastBackPressed: Keyboard;
   };
   /**

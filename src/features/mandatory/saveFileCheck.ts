@@ -17,10 +17,6 @@ export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES;
 // This function returns true if the PostGameStarted callback should halt
 export function isFullyUnlocked(): boolean {
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return false;
-  }
-
   const character = player.GetPlayerType();
   const activeItem = player.GetActiveItem();
   const startSeedString = g.seeds.GetStartSeedString();
@@ -114,10 +110,7 @@ export function isFullyUnlocked(): boolean {
 }
 
 export function checkRestart(): boolean {
-  const player = Isaac.GetPlayer(0);
-  if (player === null) {
-    return false;
-  }
+  const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const startSeedString = g.seeds.GetStartSeedString();
   const challenge = Isaac.GetChallenge();

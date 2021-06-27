@@ -16,9 +16,6 @@ export function checkRestartWrongCharacter(): boolean {
   }
 
   const player = Isaac.GetPlayer();
-  if (player === null) {
-    return false;
-  }
   const character = player.GetPlayerType();
   const characterForThisSpeedrun = getCurrentCharacter();
 

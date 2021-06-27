@@ -47024,7 +47024,7 @@
 			<entity type="5001" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3" name="Angel (1 item + 2 eternal chests)" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="3" name="Angel (1 item + 1 eternal chests)" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { gridToPos } from "../../misc";
+import { getPlayers, gridToPos } from "../../misc";
 
 export function postUpdate(): void {
   makeFireworksQuieter();
@@ -32,21 +32,18 @@ function makeFireworksQuieter() {
 }
 
 function spawnSparkleOnPlayer() {
-  const player = Isaac.GetPlayer();
-  if (player === null) {
-    return;
+  for (const player of getPlayers()) {
+    const randomVector = RandomVector().__mul(10);
+    const blingPosition = player.Position.__add(randomVector);
+    Isaac.Spawn(
+      EntityType.ENTITY_EFFECT,
+      EffectVariant.ULTRA_GREED_BLING,
+      0,
+      blingPosition,
+      Vector.Zero,
+      null,
+    );
   }
-
-  const randomVector = RandomVector().__mul(10);
-  const blingPosition = player.Position.__add(randomVector);
-  Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
-    EffectVariant.ULTRA_GREED_BLING,
-    0,
-    blingPosition,
-    Vector.Zero,
-    null,
-  );
 }
 
 function spawnFireworks() {

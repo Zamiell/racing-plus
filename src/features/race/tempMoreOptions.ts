@@ -4,10 +4,7 @@ import { removeItemFromItemTracker } from "../../misc";
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
-  const player = Isaac.GetPlayer(0);
-  if (player === null) {
-    return;
-  }
+  const player = Isaac.GetPlayer();
 
   // Ensure that the "More Options" buff does not persist beyond Basement 1
   // (it is removed as soon as they enter the first Treasure Room,
@@ -21,10 +18,7 @@ export function postNewLevel(): void {
 // ModCallbacks.MC_POST_NEW_ROOM (18)
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
-  const player = Isaac.GetPlayer(0);
-  if (player === null) {
-    return;
-  }
+  const player = Isaac.GetPlayer();
 
   if (g.run.removeMoreOptions && roomType === RoomType.ROOM_TREASURE) {
     g.run.removeMoreOptions = false;
