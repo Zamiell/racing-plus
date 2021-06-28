@@ -2444,7 +2444,7 @@ ____exports.MAX_NUM_DOORS = 8
 ____exports.RECOMMENDED_SHIFT_IDX = 35
 ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
-____exports.VERSION = "0.58.16"
+____exports.VERSION = "0.58.17"
 return ____exports
  end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]

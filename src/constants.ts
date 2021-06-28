@@ -12,4 +12,4 @@ export const RECOMMENDED_SHIFT_IDX = 35;
 export const SPRITE_CHALLENGE_OFFSET = Vector(-3, 0);
 export const SPRITE_DIFFICULTY_OFFSET = Vector(13, 0);
 // The version is updated automatically by IsaacScript
-export const VERSION = "0.58.16";
+export const VERSION = "0.58.17";
