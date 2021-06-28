@@ -2698,9 +2698,7 @@ function ____exports.getRoomNPCs(self)
     return npcs
 end
 function ____exports.getBottomRightCorner(self)
-    local pos = g.r:WorldToScreenPosition(Vector.Zero):__sub(
-        g.r:GetRenderScrollOffset()
-    ):__sub(g.g.ScreenShakeOffset)
+    local pos = (g.r:WorldToScreenPosition(Vector.Zero) - g.r:GetRenderScrollOffset()) - g.g.ScreenShakeOffset
     local rx = pos.X + 39
     local ry = pos.Y + 91
     return Vector((rx * 2) + 338, (ry * 2) + 182)
@@ -2828,7 +2826,7 @@ function ____exports.moveEsauNextToJacob(self)
         if player ~= nil then
             local jacob = player:GetMainTwin()
             local adjustment = Vector(20, 0)
-            local adjustedPosition = jacob.Position:__add(adjustment)
+            local adjustedPosition = jacob.Position + adjustment
             esau.Position = adjustedPosition
         end
     end
@@ -3262,11 +3260,11 @@ local SPRITE_POSITION
 function ____exports.getPosition(self)
     local challenge = Isaac.GetChallenge()
     local HUDOffsetVector = getHUDOffsetVector(nil)
-    local position = SPRITE_POSITION:__add(HUDOffsetVector)
+    local position = SPRITE_POSITION + HUDOffsetVector
     if challenge ~= Challenge.CHALLENGE_NULL then
-        position = position:__add(SPRITE_CHALLENGE_OFFSET)
+        position = position + SPRITE_CHALLENGE_OFFSET
     elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
-        position = position:__add(SPRITE_DIFFICULTY_OFFSET)
+        position = position + SPRITE_DIFFICULTY_OFFSET
     end
     return position
 end
@@ -3611,7 +3609,7 @@ function drawSprite(self)
     end
 end
 function getPosition(self)
-    return racingPlusSprite:getPosition():__add(SPRITE_OFFSET)
+    return racingPlusSprite:getPosition() + SPRITE_OFFSET
 end
 function ____exports.statusOrMyStatusChanged(self)
     if g.race.status == "open" then
@@ -5267,7 +5265,7 @@ function distributeAround(self, centerPos, distance, numPoints)
         local i = 0
         while i < numPoints do
             local rotatedPosition = leftOfCenter:Rotated((i * 360) / numPoints)
-            local positionFromCenter = centerPos:__add(rotatedPosition)
+            local positionFromCenter = centerPos + rotatedPosition
             __TS__ArrayPush(positions, positionFromCenter)
             i = i + 1
         end
@@ -9914,7 +9912,7 @@ function drawItemSprites(self)
             local renderPosition = Isaac.WorldToRenderPosition(nextToDreamCatcherPosition)
             local numRightShifts = i
             local positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0)
-            local position = renderPosition:__add(positionAdjustment)
+            local position = renderPosition + positionAdjustment
             sprite:RenderLayer(0, position)
             i = i + 1
         end
@@ -9926,7 +9924,7 @@ function drawItemSprites(self)
             local renderPosition = Isaac.WorldToRenderPosition(nextToDreamCatcherPosition)
             local numRightShifts = i + #g.run.level.dreamCatcher.itemSprites
             local positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0)
-            local position = renderPosition:__add(positionAdjustment)
+            local position = renderPosition + positionAdjustment
             sprite:RenderLayer(0, position)
             i = i + 1
         end
@@ -10720,8 +10718,8 @@ function spawnSparkleOnPlayer(self)
     for ____, player in ipairs(
         getPlayers(nil)
     ) do
-        local randomVector = RandomVector():__mul(10)
-        local blingPosition = player.Position:__add(randomVector)
+        local randomVector = RandomVector() * 10
+        local blingPosition = player.Position + randomVector
         Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ULTRA_GREED_BLING, 0, blingPosition, Vector.Zero, nil)
     end
 end

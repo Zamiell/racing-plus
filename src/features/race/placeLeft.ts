@@ -34,7 +34,7 @@ function drawSprite() {
 }
 
 function getPosition() {
-  return racingPlusSprite.getPosition().__add(SPRITE_OFFSET);
+  return racingPlusSprite.getPosition().add(SPRITE_OFFSET);
 }
 
 export function postNewLevel(): void {

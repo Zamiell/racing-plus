@@ -47,7 +47,7 @@ function drawItemSprites() {
     );
     const numRightShifts = i;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
-    const position = renderPosition.__add(positionAdjustment);
+    const position = renderPosition.add(positionAdjustment);
     sprite.RenderLayer(0, position);
   }
 
@@ -58,7 +58,7 @@ function drawItemSprites() {
     );
     const numRightShifts = i + g.run.level.dreamCatcher.itemSprites.length;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
-    const position = renderPosition.__add(positionAdjustment);
+    const position = renderPosition.add(positionAdjustment);
     sprite.RenderLayer(0, position);
   }
 }

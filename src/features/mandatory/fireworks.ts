@@ -33,8 +33,8 @@ function makeFireworksQuieter() {
 
 function spawnSparkleOnPlayer() {
   for (const player of getPlayers()) {
-    const randomVector = RandomVector().__mul(10);
-    const blingPosition = player.Position.__add(randomVector);
+    const randomVector = RandomVector().mul(10);
+    const blingPosition = player.Position.add(randomVector);
     Isaac.Spawn(
       EntityType.ENTITY_EFFECT,
       EffectVariant.ULTRA_GREED_BLING,

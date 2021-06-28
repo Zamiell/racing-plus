@@ -28,14 +28,14 @@ export function getPosition(): Vector {
   const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
 
-  let position = SPRITE_POSITION.__add(HUDOffsetVector);
+  let position = SPRITE_POSITION.add(HUDOffsetVector);
 
   if (challenge !== Challenge.CHALLENGE_NULL) {
     // On vanilla, being in a challenge shifts the "No Achievements" icon to the left
-    position = position.__add(SPRITE_CHALLENGE_OFFSET);
+    position = position.add(SPRITE_CHALLENGE_OFFSET);
   } else if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
     // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
-    position = position.__add(SPRITE_DIFFICULTY_OFFSET);
+    position = position.add(SPRITE_DIFFICULTY_OFFSET);
   }
 
   return position;

@@ -188,8 +188,8 @@ export function getRoomNPCs(): EntityNPC[] {
 export function getBottomRightCorner(): Vector {
   const pos = g.r
     .WorldToScreenPosition(Vector.Zero)
-    .__sub(g.r.GetRenderScrollOffset())
-    .__sub(g.g.ScreenShakeOffset);
+    .sub(g.r.GetRenderScrollOffset())
+    .sub(g.g.ScreenShakeOffset);
 
   const rx = pos.X + 39;
   const ry = pos.Y + 91;
@@ -428,7 +428,7 @@ export function moveEsauNextToJacob(): void {
     if (player !== null) {
       const jacob = player.GetMainTwin();
       const adjustment = Vector(20, 0);
-      const adjustedPosition = jacob.Position.__add(adjustment);
+      const adjustedPosition = jacob.Position.add(adjustment);
       esau.Position = adjustedPosition;
     }
   }

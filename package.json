@@ -12,7 +12,7 @@
   "license": "GPL-3.0",
   "author": "Racing+",
   "dependencies": {
-    "isaacscript": "^1.0.175"
+    "isaacscript": "^1.0.178"
   },
   "devDependencies": {
     "cspell": "^5.6.6"

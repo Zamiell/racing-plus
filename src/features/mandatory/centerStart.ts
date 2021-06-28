@@ -44,7 +44,7 @@ function distributeAround(centerPos: Vector, distance: int, numPoints: int) {
   const leftOfCenter = Vector(-distance, 0);
   for (let i = 0; i < numPoints; i++) {
     const rotatedPosition = leftOfCenter.Rotated((i * 360) / numPoints);
-    const positionFromCenter = centerPos.__add(rotatedPosition);
+    const positionFromCenter = centerPos.add(rotatedPosition);
     positions.push(positionFromCenter);
   }
 
