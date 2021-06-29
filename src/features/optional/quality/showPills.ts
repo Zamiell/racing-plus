@@ -90,9 +90,9 @@ export function postRender(): void {
     return;
   }
 
-  // This feature is disabled if the Single Player Co-op Babies mod is enabled
+  // This feature is disabled if the Babies Mod mod is enabled
   // (the pills text will overlap with the baby descriptions)
-  if (BabiesMod !== null) {
+  if (BabiesModGlobals !== undefined) {
     return;
   }
 

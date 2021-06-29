@@ -11,6 +11,9 @@ export const SAVE_FILE_SEED = "SG3K BG3F"; // cspell:disable-line
 export const EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
 export const EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES;
 
+const EDEN_ACTIVE_ITEM_BABIES_MOD = CollectibleType.COLLECTIBLE_DOCTORS_REMOTE;
+const EDEN_PASSIVE_ITEM_BABIES_MOD = CollectibleType.COLLECTIBLE_BOBS_BRAIN;
+
 // We can verify that the player is playing on a fully unlocked save by file by going to a specific
 // seed on Eden and checking to see if the items are accurate
 // This is called from the PostGameStarted callback
@@ -60,8 +63,12 @@ export function isFullyUnlocked(): boolean {
 
     // We are on the specific Eden seed, so check to see if our items are correct
     // The items will be different depending on whether or we have other mods enabled
-    const neededActiveItem = EDEN_ACTIVE_ITEM;
-    const neededPassiveItem = EDEN_PASSIVE_ITEM;
+    let neededActiveItem = EDEN_ACTIVE_ITEM;
+    let neededPassiveItem = EDEN_PASSIVE_ITEM;
+    if (BabiesModGlobals !== undefined) {
+      neededActiveItem = EDEN_ACTIVE_ITEM_BABIES_MOD;
+      neededPassiveItem = EDEN_PASSIVE_ITEM_BABIES_MOD;
+    }
 
     let text = `Error: On seed "${SAVE_FILE_SEED}", Eden needs `;
     if (activeItem !== neededActiveItem) {

@@ -2444,7 +2444,7 @@ ____exports.MAX_NUM_DOORS = 8
 ____exports.RECOMMENDED_SHIFT_IDX = 35
 ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
-____exports.VERSION = "0.58.17"
+____exports.VERSION = "0.58.18"
 return ____exports
  end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -3109,6 +3109,8 @@ local SaveFileState = ____enums.SaveFileState
 ____exports.SAVE_FILE_SEED = "SG3K BG3F"
 ____exports.EDEN_ACTIVE_ITEM = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
 ____exports.EDEN_PASSIVE_ITEM = CollectibleType.COLLECTIBLE_ARIES
+local EDEN_ACTIVE_ITEM_BABIES_MOD = CollectibleType.COLLECTIBLE_DOCTORS_REMOTE
+local EDEN_PASSIVE_ITEM_BABIES_MOD = CollectibleType.COLLECTIBLE_BOBS_BRAIN
 function ____exports.isFullyUnlocked(self)
     local player = Isaac.GetPlayer()
     local character = player:GetPlayerType()
@@ -3143,6 +3145,10 @@ function ____exports.isFullyUnlocked(self)
         end
         local neededActiveItem = ____exports.EDEN_ACTIVE_ITEM
         local neededPassiveItem = ____exports.EDEN_PASSIVE_ITEM
+        if BabiesModGlobals ~= nil then
+            neededActiveItem = EDEN_ACTIVE_ITEM_BABIES_MOD
+            neededPassiveItem = EDEN_PASSIVE_ITEM_BABIES_MOD
+        end
         local text = ("Error: On seed \"" .. ____exports.SAVE_FILE_SEED) .. "\", Eden needs "
         if activeItem ~= neededActiveItem then
             text = tostring(text) .. (((("an active item of " .. tostring(neededActiveItem)) .. " (they have an active item of ") .. tostring(activeItem)) .. ").")
@@ -3185,14 +3191,14 @@ function ____exports.checkRestart(self)
     local character = player:GetPlayerType()
     local startSeedString = g.seeds:GetStartSeedString()
     local challenge = Isaac.GetChallenge()
-    local ____switch20 = g.saveFile.state
-    if ____switch20 == SaveFileState.GoingToSetSeedWithEden then
-        goto ____switch20_case_0
-    elseif ____switch20 == SaveFileState.GoingBack then
-        goto ____switch20_case_1
+    local ____switch21 = g.saveFile.state
+    if ____switch21 == SaveFileState.GoingToSetSeedWithEden then
+        goto ____switch21_case_0
+    elseif ____switch21 == SaveFileState.GoingBack then
+        goto ____switch21_case_1
     end
-    goto ____switch20_case_default
-    ::____switch20_case_0::
+    goto ____switch21_case_default
+    ::____switch21_case_0::
     do
         do
             if challenge ~= Challenge.CHALLENGE_NULL then
@@ -3210,7 +3216,7 @@ function ____exports.checkRestart(self)
             return true
         end
     end
-    ::____switch20_case_1::
+    ::____switch21_case_1::
     do
         do
             if challenge ~= g.saveFile.oldRun.challenge then
@@ -3232,13 +3238,13 @@ function ____exports.checkRestart(self)
             return true
         end
     end
-    ::____switch20_case_default::
+    ::____switch21_case_default::
     do
         do
             return false
         end
     end
-    ::____switch20_end::
+    ::____switch21_end::
 end
 return ____exports
  end,
@@ -9490,7 +9496,7 @@ local SaveFileState = ____enums.SaveFileState
 local ____speedrun = require("features.speedrun.speedrun")
 local checkValidCharOrder = ____speedrun.checkValidCharOrder
 local inSpeedrun = ____speedrun.inSpeedrun
-local STARTING_X, STARTING_Y, drawNoRepentance, drawCorrupted, drawNotFullyUnlocked, drawSetCharOrder
+local STARTING_X, STARTING_Y, drawNoRepentance, drawCorrupted, drawNotFullyUnlocked, drawSetCharOrder, drawTurnOffBabies
 function drawNoRepentance(self)
     local x = STARTING_X
     local y = STARTING_Y
@@ -9550,6 +9556,14 @@ function drawSetCharOrder(self)
     y = y + 10
     Isaac.RenderText("challenge.", x, y, 2, 2, 2, 2)
 end
+function drawTurnOffBabies(self)
+    local x = STARTING_X
+    local y = STARTING_Y
+    Isaac.RenderText("Error: You must turn off The Babies Mod when playing", x, y, 2, 2, 2, 2)
+    x = x + 42
+    y = y + 10
+    Isaac.RenderText("characters other than Random Baby.", x, y, 2, 2, 2, 2)
+end
 STARTING_X = 115
 STARTING_Y = 70
 function ____exports.postRender(self)
@@ -9568,6 +9582,15 @@ function ____exports.postRender(self)
     if inSpeedrun(nil) and (not checkValidCharOrder(nil)) then
         drawSetCharOrder(nil)
         return true
+    end
+    if BabiesModGlobals ~= nil then
+        local player = Isaac.GetPlayer()
+        local character = player:GetPlayerType()
+        local randomBabyID = Isaac.GetPlayerTypeByName("Random Baby")
+        if character ~= randomBabyID then
+            drawTurnOffBabies(nil)
+            return true
+        end
     end
     return false
 end
@@ -10074,7 +10097,7 @@ function ____exports.postRender(self)
     if not g.config.showPills then
         return
     end
-    if BabiesMod ~= nil then
+    if BabiesModGlobals ~= nil then
         return
     end
     if not isActionPressedOnAnyInput(nil, ButtonAction.ACTION_MAP) then

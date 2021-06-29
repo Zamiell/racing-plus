@@ -31,6 +31,16 @@ export function postRender(): boolean {
     return true;
   }
 
+  if (BabiesModGlobals !== undefined) {
+    const player = Isaac.GetPlayer();
+    const character = player.GetPlayerType();
+    const randomBabyID = Isaac.GetPlayerTypeByName("Random Baby");
+    if (character !== randomBabyID) {
+      drawTurnOffBabies();
+      return true;
+    }
+  }
+
   return false;
 }
 
@@ -183,4 +193,21 @@ function drawSetCharOrder() {
   Isaac.RenderText('by using the "Change Char Order" custom', x, y, 2, 2, 2, 2);
   y += 10;
   Isaac.RenderText("challenge.", x, y, 2, 2, 2, 2);
+}
+
+function drawTurnOffBabies() {
+  let x = STARTING_X;
+  let y = STARTING_Y;
+  Isaac.RenderText(
+    "Error: You must turn off The Babies Mod when playing",
+    x,
+    y,
+    2,
+    2,
+    2,
+    2,
+  );
+  x += 42;
+  y += 10;
+  Isaac.RenderText("characters other than Random Baby.", x, y, 2, 2, 2, 2);
 }
