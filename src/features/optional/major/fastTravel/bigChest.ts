@@ -3,6 +3,7 @@ import {
   anyPlayerHasCollectible,
   ensureAllCases,
   getRoomIndex,
+  isAntibirthStage,
 } from "../../../../misc";
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import * as trophy from "../../../mandatory/trophy";
@@ -77,6 +78,10 @@ function getReplacementAction() {
 
     if (g.race.goal === "Delirium") {
       return delirium();
+    }
+
+    if (g.race.goal === "Mother") {
+      return mother();
     }
 
     if (g.race.goal === "Boss Rush") {
@@ -230,6 +235,17 @@ function delirium() {
   const stage = g.l.GetStage();
 
   if (stage === 12) {
+    return ReplacementAction.Trophy;
+  }
+
+  return DEFAULT_REPLACEMENT_ACTION;
+}
+
+function mother() {
+  const stage = g.l.GetStage();
+  const antibirthStage = isAntibirthStage();
+
+  if (stage === 8 && antibirthStage) {
     return ReplacementAction.Trophy;
   }
 

@@ -17,6 +17,7 @@ type RaceGoal =
   | "Mega Satan"
   | "Hush"
   | "Delirium"
+  | "Mother"
   | "Boss Rush"
   | "custom";
 
