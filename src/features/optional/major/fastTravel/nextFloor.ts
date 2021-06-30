@@ -48,6 +48,10 @@ function getNextStage() {
       return 13;
     }
 
+    if (stage === 6 && antibirthStage) {
+      return stage;
+    }
+
     return stage - 1;
   }
 
