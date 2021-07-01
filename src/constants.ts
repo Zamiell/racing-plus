@@ -11,5 +11,7 @@ export const MAX_NUM_DOORS = 8; // In a 2x2 room, there can be 8 doors
 export const RECOMMENDED_SHIFT_IDX = 35;
 export const SPRITE_CHALLENGE_OFFSET = Vector(-3, 0);
 export const SPRITE_DIFFICULTY_OFFSET = Vector(13, 0);
+export const SPRITE_BETHANY_OFFSET = Vector(0, 8);
+export const SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6);
 // The version is updated automatically by IsaacScript
 export const VERSION = "0.58.18";
