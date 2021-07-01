@@ -114,9 +114,24 @@ export function display(
     startingY = RACE_TIMER_POSITION.Y;
   }
 
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
   const HUDOffsetVector = getHUDOffsetVector();
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;
+
+  if (
+    character === PlayerType.PLAYER_BETHANY ||
+    character === PlayerType.PLAYER_JACOB
+  ) {
+    startingY += 8;
+  } else if (character === PlayerType.PLAYER_BETHANY_B) {
+    startingY -= 5;
+  }
+
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_DUALITY)) {
+    startingY -= 10;
+  }
 
   const hourAdjustment = 2;
   let hourAdjustment2 = 0;

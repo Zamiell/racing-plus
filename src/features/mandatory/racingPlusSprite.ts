@@ -2,8 +2,10 @@
 // For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
 
 import {
+  SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
   SPRITE_DIFFICULTY_OFFSET,
+  SPRITE_TAINTED_BETHANY_OFFSET,
 } from "../../constants";
 import g from "../../globals";
 import { getHUDOffsetVector, initSprite } from "../../misc";
@@ -27,6 +29,8 @@ export function postRender(): void {
 export function getPosition(): Vector {
   const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
@@ -36,6 +40,13 @@ export function getPosition(): Vector {
   } else if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
     // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
+  } else if (
+    character === PlayerType.PLAYER_BETHANY ||
+    character === PlayerType.PLAYER_JACOB
+  ) {
+    position = position.add(SPRITE_BETHANY_OFFSET);
+  } else if (character === PlayerType.PLAYER_BETHANY_B) {
+    position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);
   }
 
   return position;
