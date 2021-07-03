@@ -56,12 +56,14 @@ export function postGameStarted(): void {
 
 function shouldGetPocketActiveD6(player: EntityPlayer) {
   const character = player.GetPlayerType();
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
 
   return (
     // The original characters, minus Jacob & Esau
     (character >= PlayerType.PLAYER_ISAAC &&
       character <= PlayerType.PLAYER_BETHANY) ||
-    TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES.includes(character)
+    TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES.includes(character) ||
+    character === randomBaby
   );
 }
 
