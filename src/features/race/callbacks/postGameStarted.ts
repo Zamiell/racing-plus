@@ -295,4 +295,9 @@ export function diversity(player: EntityPlayer): void {
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D4);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D100);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY);
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS);
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
+
+  // Trinket bans for diversity races
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_DICE_BAG);
 }
