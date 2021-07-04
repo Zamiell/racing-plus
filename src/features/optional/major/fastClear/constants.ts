@@ -62,3 +62,7 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_DOGMA, // 950
   EntityType.ENTITY_BEAST, // 951
 ];
+
+export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = [
+  [EntityType.ENTITY_MOTHER, 10],
+];
