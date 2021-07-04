@@ -297,7 +297,11 @@ export function initGlowingItemSprite(itemID: int): Sprite {
   let fileNum: string;
   if (itemID < 1) {
     fileNum = "NEW";
-  } else if (itemID >= 1 && itemID <= 729) {
+  } else if (
+    (itemID >= 1 && itemID <= 729) ||
+    itemID === 800 ||
+    itemID === 801
+  ) {
     // Between Sad Onion and Decap Attack
     const paddedNumber = itemID.toString().padStart(3, "0");
     fileNum = paddedNumber;
