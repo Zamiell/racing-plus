@@ -15,7 +15,10 @@
 
 import g from "../../../../../globals";
 import * as angels from "../angels";
-import { FAST_CLEAR_WHITELIST } from "../constants";
+import {
+  FAST_CLEAR_WHITELIST,
+  FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
+} from "../constants";
 import * as krampus from "../krampus";
 
 export function main(entity: Entity): void {
@@ -30,6 +33,15 @@ export function main(entity: Entity): void {
 
   if (!FAST_CLEAR_WHITELIST.includes(npc.Type)) {
     return;
+  }
+
+  for (const entityWithVariant of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) {
+    if (
+      entityWithVariant[0] === npc.Type &&
+      entityWithVariant[1] !== npc.Variant
+    ) {
+      return;
+    }
   }
 
   // This is the magic that allows Fast-Clear to work
