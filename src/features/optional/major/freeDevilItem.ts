@@ -3,6 +3,7 @@ import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
   getPlayers,
+  isAntibirthStage,
   isSelfDamage,
 } from "../../../misc";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
@@ -36,7 +37,7 @@ export function postNewRoom(): void {
   // reward the player with the trinket prize
   if (
     !g.run.freeDevilItem.granted &&
-    stage === 2 &&
+    (stage === 2 || (stage === 1 && isAntibirthStage())) &&
     roomType === RoomType.ROOM_DEVIL &&
     !enteredRoomViaTeleport()
   ) {
