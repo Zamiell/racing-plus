@@ -53,6 +53,10 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
 
+  // Must be called before major features to avoid starting
+  // items sprites to be overridden by div and seeded starts
+  showEdenStartingItems.postGameStarted();
+
   // Optional features - Major
   racePostGameStarted.main();
   startWithD6.postGameStarted();

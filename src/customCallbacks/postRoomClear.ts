@@ -1,5 +1,6 @@
 import * as fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
 import * as fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
+import * as openAntibirthDoor from "../features/optional/quality/openAntibirthDoor";
 import g from "../globals";
 import log from "../log";
 
@@ -20,4 +21,12 @@ function roomClear() {
 
   fastClearPostRoomClear.main();
   fastTravelPostRoomClear.main();
+
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Mother"
+  ) {
+    openAntibirthDoor.main();
+  }
 }
