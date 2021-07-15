@@ -53,7 +53,7 @@ function resetRaceVars() {
   g.raceVars.finishedTime = 0;
 }
 
-function giveFormatItems(player: EntityPlayer) {
+export function giveFormatItems(player: EntityPlayer): void {
   switch (g.race.format) {
     case "unseeded": {
       if (g.race.ranked && g.race.solo) {
@@ -184,7 +184,10 @@ function unseeded(player: EntityPlayer) {
 
   // Unseeded is like vanilla,
   // but the player will still start with More Options to reduce the resetting time
-  tempMoreOptions.give(player);
+  // Avoid giving more options on Tainted Dead Lazarus
+  if (player.GetPlayerType() !== PlayerType.PLAYER_LAZARUS2_B) {
+    tempMoreOptions.give(player);
+  }
 }
 
 function unseededRankedSolo(player: EntityPlayer) {
@@ -235,7 +238,10 @@ export function diversity(player: EntityPlayer): void {
 
   const trinket1 = player.GetTrinket(0);
 
-  tempMoreOptions.give(player);
+  // Avoid giving more options on Tainted Dead Lazarus
+  if (player.GetPlayerType() !== PlayerType.PLAYER_LAZARUS2_B) {
+    tempMoreOptions.give(player);
+  }
 
   // Give the player their five random diversity starting items
   const startingItems = g.race.startingItems;
