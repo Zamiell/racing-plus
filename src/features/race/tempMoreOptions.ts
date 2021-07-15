@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { removeItemFromItemTracker } from "../../misc";
+import { isAntibirthStage, removeItemFromItemTracker } from "../../misc";
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
@@ -9,7 +9,10 @@ export function postNewLevel(): void {
   // Ensure that the "More Options" buff does not persist beyond Basement 1
   // (it is removed as soon as they enter the first Treasure Room,
   // but they might have skipped the Basement 1 Treasure Room for some reason)
-  if (stage >= 2 && g.run.removeMoreOptions) {
+  if (
+    (stage >= 2 || (stage === 1 && isAntibirthStage())) &&
+    g.run.removeMoreOptions
+  ) {
     g.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
   }
