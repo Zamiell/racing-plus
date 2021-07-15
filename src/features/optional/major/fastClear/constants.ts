@@ -49,7 +49,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_GIDEON, // 907
   EntityType.ENTITY_BABY_PLUM, // 908
   EntityType.ENTITY_SCOURGE, // 909
-  EntityType.ENTITY_ROTGUT, // 911
   EntityType.ENTITY_MOTHER, // 912
   EntityType.ENTITY_MIN_MIN, // 913
   EntityType.ENTITY_CLOG, // 914
@@ -65,4 +64,5 @@ export const FAST_CLEAR_WHITELIST = [
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = [
   [EntityType.ENTITY_MOTHER, 10],
+  [EntityType.ENTITY_ROTGUT, 2],
 ];
