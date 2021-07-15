@@ -92,6 +92,7 @@ export default class GlobalsRun {
     granted: false,
   };
 
+  laz2BGotItems = false;
   maxFamiliars = false;
   pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
   /** We track all identified pills so that we can display them. */
@@ -175,18 +176,10 @@ export function initPlayerVariables(
 
 // This represents the special case of an integer seed converted to a string;
 // see the explanation below
-type PlayerLuaTableIndex = string;
+type PlayerLuaTableIndex = number;
 
 export function getPlayerLuaTableIndex(
   player: EntityPlayer,
 ): PlayerLuaTableIndex {
-  // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
-  // or Tainted Forgotten
-  // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
-  // reopens the game
-  // Instead, we "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
-  // This works even if the player does not have any Sad Onions
-  // We convert the seed to a string to avoid null element creation when saving the table as JSON
-  // (which is done to handle save & quit)
-  return player.GetCollectibleRNG(1).GetSeed().toString();
+  return player.ControllerIndex;
 }
