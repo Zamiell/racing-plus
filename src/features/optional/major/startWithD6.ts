@@ -70,7 +70,7 @@ function shouldGetPocketActiveD6(player: EntityPlayer) {
 function shouldGetActiveD6(player: EntityPlayer) {
   const character = player.GetPlayerType();
   return (
-    character === PlayerType.PLAYER_JACOB ||
+    character === PlayerType.PLAYER_ESAU ||
     TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character)
   );
 }
