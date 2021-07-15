@@ -176,10 +176,28 @@ export function initPlayerVariables(
 
 // This represents the special case of an integer seed converted to a string;
 // see the explanation below
-type PlayerLuaTableIndex = number;
+type PlayerLuaTableIndex = string;
 
 export function getPlayerLuaTableIndex(
   player: EntityPlayer,
 ): PlayerLuaTableIndex {
-  return player.ControllerIndex;
+  // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
+  // or Tainted Forgotten
+  // Only use "player.ControllerIndex" on Tainted Lazarus because they use only one index for transformations
+  // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
+  // reopens the game
+  // Instead, we "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
+  // This works even if the player does not have any Sad Onions
+  // We convert the seed to a string to avoid null element creation when saving the table as JSON
+  // (which is done to handle save & quit)
+  let index = "";
+  if (
+    player.GetPlayerType() === PlayerType.PLAYER_LAZARUS_B ||
+    player.GetPlayerType() === PlayerType.PLAYER_LAZARUS2_B
+  ) {
+    index = player.ControllerIndex.toString();
+  } else {
+    index = player.GetCollectibleRNG(1).GetSeed().toString();
+  }
+  return index;
 }
