@@ -1,5 +1,6 @@
 import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
+import * as openMegaSatanDoor from "../features/optional/quality/openMegaSatanDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
@@ -54,6 +55,13 @@ export function newLevel(): void {
 
   // QoL
   openHushDoor.postNewLevel();
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Mega Satan"
+  ) {
+    openMegaSatanDoor.postNewLevel();
+  }
 
   // Sounds
   silenceMomDad.postNewLevel();
