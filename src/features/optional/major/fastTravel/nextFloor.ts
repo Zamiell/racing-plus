@@ -118,7 +118,7 @@ function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
 
   if (
     antibirthStage &&
-    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
+    (stage === 1 || stage === 3 || stage === 5 || stage === 7 || stage === 8)
   ) {
     return getStageTypeAntibirth(nextStage);
   }
@@ -191,7 +191,7 @@ function getStageType(stage: int) {
 
 function getStageTypeAntibirth(stage: int) {
   // There is no alternate floor for Corpse
-  if (stage === 7) {
+  if (stage === 7 || stage === 8) {
     return StageType.STAGETYPE_REPENTANCE;
   }
 
