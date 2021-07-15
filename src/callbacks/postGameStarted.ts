@@ -54,7 +54,7 @@ export function main(isContinued: boolean): void {
   centerStart.postGameStarted();
 
   // Must be called before major features to avoid starting
-  // items sprites to be overriden by div and seeded starts
+  // items sprites to be overridden by div and seeded starts
   showEdenStartingItems.postGameStarted();
 
   // Optional features - Major

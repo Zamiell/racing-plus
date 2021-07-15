@@ -50,7 +50,7 @@ export function postGameStarted(): void {
     } else if (shouldGetActiveD6(player)) {
       giveActiveD6(player);
     }
-    // Note that modded characters are not given anything
+    // Note that modded characters are not given anything (except Random Baby)
   }
 }
 
