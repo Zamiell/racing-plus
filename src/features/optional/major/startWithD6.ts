@@ -65,7 +65,7 @@ function shouldGetPocketActiveD6(player: EntityPlayer) {
   );
 }
 
-function shouldGetActiveD6(player: EntityPlayer) {
+export function shouldGetActiveD6(player: EntityPlayer) {
   const character = player.GetPlayerType();
   return (
     character === PlayerType.PLAYER_ESAU ||

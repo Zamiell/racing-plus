@@ -2,6 +2,7 @@ import g from "../../../globals";
 import log from "../../../log";
 import { giveItemAndRemoveFromPools, playingOnSetSeed } from "../../../misc";
 import { CollectibleTypeCustom } from "../../../types/enums";
+import { shouldGetActiveD6 } from "../../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
@@ -236,6 +237,13 @@ export function diversity(player: EntityPlayer): void {
   const trinket1 = player.GetTrinket(0);
 
   tempMoreOptions.give(player);
+
+  if (
+    player.GetPlayerType() !== PlayerType.PLAYER_ESAU &&
+    shouldGetActiveD6(player)
+  ) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
+  }
 
   // Give the player their five random diversity starting items
   const startingItems = g.race.startingItems;
