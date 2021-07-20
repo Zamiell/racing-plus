@@ -7,9 +7,9 @@ export function postNewLevel(): void {
   const player = Isaac.GetPlayer();
 
   if (stage === 11) {
-    const MSDoor = g.r.GetDoor(1);
-    if (MSDoor !== null) {
-      MSDoor.TryUnlock(player, true);
+    const topDoor = g.r.GetDoor(1);
+    if (topDoor !== null) {
+      topDoor.TryUnlock(player, true);
     }
   }
 }
