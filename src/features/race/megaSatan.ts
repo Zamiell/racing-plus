@@ -7,9 +7,9 @@ export function postNewLevel(): void {
   const player = Isaac.GetPlayer();
 
   if (
-    g.race.status !== "in progress" &&
-    g.race.myStatus !== "racing" &&
-    g.race.goal !== "Mega Satan" &&
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
+    g.race.goal !== "Mega Satan" ||
     stage !== 11
   ) {
     return;
