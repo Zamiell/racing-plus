@@ -49,8 +49,8 @@ export function postNewRoom(): void {
       const playerType = player.GetPlayerType();
       const amTaintedSoul = playerType === PlayerType.PLAYER_THESOUL_B;
 
-      // Tainted Soul cannot take any damage, so it should be exempt from this feature
-      // (it will still apply to Tainted Forgotten)
+      // Tainted Soul cannot take any damage, so they should be exempt from this feature
+      // (the feature will still apply to Tainted Forgotten as per normal)
       if (!takenDamage && !amTaintedSoul) {
         giveTrinket(player);
       }
