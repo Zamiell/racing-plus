@@ -118,7 +118,7 @@ function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
 
   if (
     antibirthStage &&
-    (stage === 1 || stage === 3 || stage === 5 || stage === 7 || stage === 8)
+    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
   ) {
     return getStageTypeAntibirth(nextStage);
   }
