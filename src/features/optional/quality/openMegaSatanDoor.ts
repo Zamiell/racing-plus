@@ -1,4 +1,4 @@
-// Automatically open Mega Satan door on Mega Satan goal
+// Automatically open the Mega Satan door on races with a Mega Satan goal
 
 import g from "../../../globals";
 
