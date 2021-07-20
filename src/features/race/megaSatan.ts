@@ -9,15 +9,14 @@ export function postNewLevel(): void {
   if (
     g.race.status !== "in progress" &&
     g.race.myStatus !== "racing" &&
-    g.race.goal !== "Mega Satan"
+    g.race.goal !== "Mega Satan" &&
+    stage !== 11
   ) {
     return;
   }
 
-  if (stage === 11) {
-    const topDoor = g.r.GetDoor(1);
-    if (topDoor !== null) {
-      topDoor.TryUnlock(player, true);
-    }
+  const topDoor = g.r.GetDoor(1);
+  if (topDoor !== null) {
+    topDoor.TryUnlock(player, true);
   }
 }
