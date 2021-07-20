@@ -46,7 +46,8 @@ export function postNewRoom(): void {
     for (const player of getPlayers()) {
       const index = getPlayerLuaTableIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
-      if (!takenDamage) {
+      const theSoulB = player.GetPlayerType() === PlayerType.PLAYER_THESOUL_B;
+      if (!takenDamage && !theSoulB) {
         giveTrinket(player);
       }
     }
@@ -56,9 +57,7 @@ export function postNewRoom(): void {
 function giveTrinket(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
-  if (character !== PlayerType.PLAYER_THESOUL_B) {
-    player.AnimateHappy();
-  }
+  player.AnimateHappy();
 
   if (
     character === PlayerType.PLAYER_KEEPER ||
@@ -70,13 +69,10 @@ function giveTrinket(player: EntityPlayer) {
   }
 
   const trinketType = TrinketType.TRINKET_YOUR_SOUL;
-  if (
-    getOpenTrinketSlot(player) !== null &&
-    character !== PlayerType.PLAYER_THESOUL_B
-  ) {
+  if (getOpenTrinketSlot(player) !== null) {
     // By default, put it directly in our inventory
     player.AddTrinket(trinketType);
-  } else if (character !== PlayerType.PLAYER_THESOUL_B) {
+  } else {
     // If we do not have an available trinket slot, then spawn the trinket on the ground
     Isaac.Spawn(
       EntityType.ENTITY_PICKUP,
