@@ -46,7 +46,11 @@ export function postNewRoom(): void {
     for (const player of getPlayers()) {
       const index = getPlayerLuaTableIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
-      const theSoulB = player.GetPlayerType() === PlayerType.PLAYER_THESOUL_B;
+      const playerType = player.GetPlayerType()
+      const amTaintedSoul = playerType === PlayerType.PLAYER_THESOUL_B;
+
+      // Tainted Soul cannot take any damage, so it should be exempt from this feature
+      // (it will still apply to Tainted Forgotten)
       if (!takenDamage && !theSoulB) {
         giveTrinket(player);
       }
