@@ -24,7 +24,7 @@ export function commands(
 ): void {
   // Compile a list of the commands && sort them
   const commandNames: string[] = [];
-  for (const [commandName] of functionMap.entries()) {
+  for (const commandName of functionMap.keys()) {
     commandNames.push(commandName);
   }
   table.sort(commandNames);
