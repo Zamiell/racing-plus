@@ -51,7 +51,7 @@ export function postNewRoom(): void {
 
       // Tainted Soul cannot take any damage, so it should be exempt from this feature
       // (it will still apply to Tainted Forgotten)
-      if (!takenDamage && !theSoulB) {
+      if (!takenDamage && !amTaintedSoul) {
         giveTrinket(player);
       }
     }
