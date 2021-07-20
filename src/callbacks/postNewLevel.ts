@@ -55,13 +55,7 @@ export function newLevel(): void {
 
   // QoL
   openHushDoor.postNewLevel();
-  if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Mega Satan"
-  ) {
-    openMegaSatanDoor.postNewLevel();
-  }
+  openMegaSatanDoor.postNewLevel();
 
   // Sounds
   silenceMomDad.postNewLevel();
