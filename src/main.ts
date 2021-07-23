@@ -10,6 +10,7 @@ import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
+import * as postItemUse from "./callbacks/postItemUse";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCRender from "./callbacks/postNPCRender";
@@ -61,6 +62,7 @@ function registerCallbacks(racingPlus: Mod) {
 
   // Register callbacks that take a 3rd argument for a specific entity
   registerNPCUpdateCallbacks(racingPlus); // 0
+  registerPostItemUseCallbacks(racingPlus); // 3
   registerPostFamiliarInitCallbacks(racingPlus); // 7
   registerEntityTakeDmgCallbacks(racingPlus); // 11
   registerPostPickupInitCallbacks(racingPlus); // 34
@@ -142,6 +144,15 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
     ModCallbacks.MC_NPC_UPDATE,
     postNPCUpdate.momsDeadHand,
     EntityType.ENTITY_MOMS_DEAD_HAND, // 287
+  );
+}
+
+// 3
+function registerPostItemUseCallbacks(racingPlus: Mod) {
+  racingPlus.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    postItemUse.fortuneCookie,
+    CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
   );
 }
 
