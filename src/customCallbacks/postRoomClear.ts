@@ -21,12 +21,5 @@ function roomClear() {
 
   fastClearPostRoomClear.main();
   fastTravelPostRoomClear.main();
-
-  if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Mother"
-  ) {
-    openAntibirthDoor.main();
-  }
+  openAntibirthDoor.main();
 }
