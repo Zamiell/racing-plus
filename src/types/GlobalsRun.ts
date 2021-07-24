@@ -183,22 +183,23 @@ export function getPlayerLuaTableIndex(
 ): PlayerLuaTableIndex {
   // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
   // or Tainted Forgotten
-  // Only use "player.ControllerIndex" on Tainted Lazarus because they use only one index for transformations
   // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
   // reopens the game
   // Instead, we "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
   // This works even if the player does not have any Sad Onions
-  // We convert the seed to a string to avoid null element creation when saving the table as JSON
-  // (which is done to handle save & quit)
+  // We convert the numerical seed to a string to avoid null element creation when saving the table
+  // as JSON (which is done to handle save & quit)
+  // Finally, this index fails in the case of Tainted Lazarus,
+  // since the RNG will be the same for both Tainted Lazarus and Dead Tainted Lazarus
+  // We revert to using "GetPtrHash()" for this case
   const character = player.GetPlayerType();
-  let index = "";
+
   if (
     character === PlayerType.PLAYER_LAZARUS_B ||
     character === PlayerType.PLAYER_LAZARUS2_B
   ) {
-    index = player.ControllerIndex.toString();
-  } else {
-    index = player.GetCollectibleRNG(1).GetSeed().toString();
+    return GetPtrHash(player).toString();
   }
-  return index;
+  
+  return player.GetCollectibleRNG(1).GetSeed().toString();
 }
