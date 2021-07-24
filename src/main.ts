@@ -10,7 +10,6 @@ import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
-import * as postItemUse from "./callbacks/postItemUse";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCRender from "./callbacks/postNPCRender";
@@ -27,6 +26,7 @@ import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as useCard from "./callbacks/useCard";
+import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
 import log from "./log";
@@ -151,7 +151,7 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
 function registerPostItemUseCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(
     ModCallbacks.MC_USE_ITEM,
-    postItemUse.fortuneCookie,
+    useItem.fortuneCookie,
     CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
   );
 }
