@@ -118,5 +118,9 @@ export function postPlayerChange(player: EntityPlayer): void {
     givePocketActiveD6(player, charge);
 
     log("Awarded another pocket D6 (due to character change).");
+  } else if (shouldGetActiveD6(player)) {
+    giveActiveD6(player);
+
+    log("Awarded another active D6 (due to character change).");
   }
 }

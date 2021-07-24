@@ -29,7 +29,6 @@ function postPlayerChange(player: EntityPlayer) {
     !g.run.laz2BGotStartingRaceItems
   ) {
     giveFormatItems(player);
-    player.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
     g.run.laz2BGotStartingRaceItems = true;
   }
 }
