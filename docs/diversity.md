@@ -31,6 +31,16 @@ The following items are also removed from all item pools, because they allow you
 - D4
 - D100
 - D Infinity
+- Genesis
+- Esau Jr.
+
+<br />
+
+## Trinket Bans
+
+The following trinkets are removed, because they allow you to re-roll your build, which spoils the fun.
+
+- Dice Bag
 
 <br />
 
@@ -58,7 +68,6 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 29 - Moms Underwear
 - 30 - Moms Heels
 - 31 - Moms Lipstick
-- 46 - Lucky Foot
 - 92 - Super Bandage
 - 176 - Stem Cells
 - 194 - Magic 8 Ball
@@ -74,7 +83,10 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 355 - Mom's Pearls
 - 428 - PJs
 - 455 - Dad's Lost Coin
-- 456 - Moldy Bread
-- 707 - Supper - TODO SET SERVER ITEMS
+- 456 - Midnight Snack
+- 626 - Knife Piece #1
+- 627 - Knife Piece #2
+- 668 - Dad's Note
+- 707 - Supper
 
 <br />

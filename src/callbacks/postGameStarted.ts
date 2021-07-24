@@ -65,7 +65,6 @@ export function main(isContinued: boolean): void {
   samsonDropHeart.postGameStarted();
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
-  showEdenStartingItems.postGameStarted();
 
   // Remove the 3 placeholder items if this is not a diversity race
   if (

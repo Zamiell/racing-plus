@@ -2444,6 +2444,8 @@ ____exports.MAX_NUM_DOORS = 8
 ____exports.RECOMMENDED_SHIFT_IDX = 35
 ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
+____exports.SPRITE_BETHANY_OFFSET = Vector(0, 8)
+____exports.SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6)
 ____exports.VERSION = "0.58.18"
 return ____exports
  end,
@@ -3255,8 +3257,10 @@ return ____exports
 ["features.mandatory.racingPlusSprite"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____constants = require("constants")
+local SPRITE_BETHANY_OFFSET = ____constants.SPRITE_BETHANY_OFFSET
 local SPRITE_CHALLENGE_OFFSET = ____constants.SPRITE_CHALLENGE_OFFSET
 local SPRITE_DIFFICULTY_OFFSET = ____constants.SPRITE_DIFFICULTY_OFFSET
+local SPRITE_TAINTED_BETHANY_OFFSET = ____constants.SPRITE_TAINTED_BETHANY_OFFSET
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
@@ -3266,11 +3270,17 @@ local SPRITE_POSITION
 function ____exports.getPosition(self)
     local challenge = Isaac.GetChallenge()
     local HUDOffsetVector = getHUDOffsetVector(nil)
+    local player = Isaac.GetPlayer()
+    local character = player:GetPlayerType()
     local position = SPRITE_POSITION + HUDOffsetVector
     if challenge ~= Challenge.CHALLENGE_NULL then
         position = position + SPRITE_CHALLENGE_OFFSET
     elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
         position = position + SPRITE_DIFFICULTY_OFFSET
+    elseif (character == PlayerType.PLAYER_BETHANY) or (character == PlayerType.PLAYER_JACOB) then
+        position = position + SPRITE_BETHANY_OFFSET
+    elseif character == PlayerType.PLAYER_BETHANY_B then
+        position = position + SPRITE_TAINTED_BETHANY_OFFSET
     end
     return position
 end
@@ -5692,6 +5702,9 @@ function getNextStage(self)
     if g.g:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) then
         if stage == 1 then
             return 13
+        end
+        if (stage == 6) and antibirthStage then
+            return stage
         end
         return stage - 1
     end
@@ -9185,6 +9198,7 @@ local ____misc = require("misc")
 local anyPlayerHasCollectible = ____misc.anyPlayerHasCollectible
 local ensureAllCases = ____misc.ensureAllCases
 local getRoomIndex = ____misc.getRoomIndex
+local isAntibirthStage = ____misc.isAntibirthStage
 local ____enums = require("types.enums")
 local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
 local trophy = require("features.mandatory.trophy")
@@ -9193,7 +9207,7 @@ local ChallengeCustom = ____enums.ChallengeCustom
 local ____enums = require("features.optional.major.fastTravel.enums")
 local FastTravelEntityType = ____enums.FastTravelEntityType
 local fastTravel = require("features.optional.major.fastTravel.fastTravel")
-local ReplacementAction, DEFAULT_REPLACEMENT_ACTION, getReplacementAction, season1, blueBaby, theLamb, megaSatan, hush, delirium, bossRush, replace
+local ReplacementAction, DEFAULT_REPLACEMENT_ACTION, getReplacementAction, season1, blueBaby, theLamb, megaSatan, hush, delirium, mother, bossRush, replace
 function getReplacementAction(self)
     local stage = g.l:GetStage()
     local stageType = g.l:GetStageType()
@@ -9225,6 +9239,9 @@ function getReplacementAction(self)
         end
         if g.race.goal == "Delirium" then
             return delirium(nil)
+        end
+        if g.race.goal == "Mother" then
+            return mother(nil)
         end
         if g.race.goal == "Boss Rush" then
             return bossRush(nil)
@@ -9286,6 +9303,14 @@ function delirium(self)
     end
     return DEFAULT_REPLACEMENT_ACTION
 end
+function mother(self)
+    local stage = g.l:GetStage()
+    local antibirthStage = isAntibirthStage(nil)
+    if (stage == 8) and antibirthStage then
+        return ReplacementAction.Trophy
+    end
+    return DEFAULT_REPLACEMENT_ACTION
+end
 function bossRush(self)
     local stage = g.l:GetStage()
     if stage == 6 then
@@ -9298,38 +9323,38 @@ function replace(self, pickup, replacementAction)
     if replacementAction ~= ReplacementAction.LeaveAlone then
         pickup:Remove()
     end
-    local ____switch33 = replacementAction
-    if ____switch33 == ReplacementAction.LeaveAlone then
-        goto ____switch33_case_0
-    elseif ____switch33 == ReplacementAction.TrapdoorDown then
-        goto ____switch33_case_1
-    elseif ____switch33 == ReplacementAction.BeamOfLightUp then
-        goto ____switch33_case_2
-    elseif ____switch33 == ReplacementAction.Checkpoint then
-        goto ____switch33_case_3
-    elseif ____switch33 == ReplacementAction.Trophy then
-        goto ____switch33_case_4
-    elseif ____switch33 == ReplacementAction.VictoryLap then
-        goto ____switch33_case_5
-    elseif ____switch33 == ReplacementAction.Remove then
-        goto ____switch33_case_6
+    local ____switch36 = replacementAction
+    if ____switch36 == ReplacementAction.LeaveAlone then
+        goto ____switch36_case_0
+    elseif ____switch36 == ReplacementAction.TrapdoorDown then
+        goto ____switch36_case_1
+    elseif ____switch36 == ReplacementAction.BeamOfLightUp then
+        goto ____switch36_case_2
+    elseif ____switch36 == ReplacementAction.Checkpoint then
+        goto ____switch36_case_3
+    elseif ____switch36 == ReplacementAction.Trophy then
+        goto ____switch36_case_4
+    elseif ____switch36 == ReplacementAction.VictoryLap then
+        goto ____switch36_case_5
+    elseif ____switch36 == ReplacementAction.Remove then
+        goto ____switch36_case_6
     end
-    goto ____switch33_case_default
-    ::____switch33_case_0::
+    goto ____switch36_case_default
+    ::____switch36_case_0::
     do
         do
             pickup.Touched = true
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_1::
+    ::____switch36_case_1::
     do
         do
             Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_2::
+    ::____switch36_case_2::
     do
         do
             local heavenDoor = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, position, Vector.Zero, nil):ToEffect()
@@ -9340,43 +9365,43 @@ function replace(self, pickup, replacementAction)
                     function() return true end
                 )
             end
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_3::
+    ::____switch36_case_3::
     do
         do
             Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT, position, Vector.Zero, nil)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_4::
+    ::____switch36_case_4::
     do
         do
             trophy:spawn(position)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_5::
+    ::____switch36_case_5::
     do
         do
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_6::
+    ::____switch36_case_6::
     do
         do
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_default::
+    ::____switch36_case_default::
     do
         do
             ensureAllCases(nil, replacementAction)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_end::
+    ::____switch36_end::
 end
 ReplacementAction = ReplacementAction or ({})
 ReplacementAction.LeaveAlone = 0
@@ -9692,9 +9717,19 @@ function ____exports.display(self, timerType, seconds, startingX, startingY)
     if startingY == nil then
         startingY = RACE_TIMER_POSITION.Y
     end
+    local player = Isaac.GetPlayer()
+    local character = player:GetPlayerType()
     local HUDOffsetVector = getHUDOffsetVector(nil)
     startingX = startingX + HUDOffsetVector.X
     startingY = startingY + HUDOffsetVector.Y
+    if (character == PlayerType.PLAYER_BETHANY) or (character == PlayerType.PLAYER_JACOB) then
+        startingY = startingY + 8
+    elseif character == PlayerType.PLAYER_BETHANY_B then
+        startingY = startingY - 5
+    end
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_DUALITY) then
+        startingY = startingY - 10
+    end
     local hourAdjustment = 2
     local hourAdjustment2 = 0
     local sprites = spriteCollectionMap:get(timerType)
