@@ -235,13 +235,11 @@ export function diversity(player: EntityPlayer): void {
   }
 
   const trinket1 = player.GetTrinket(0);
+  const character = player.GetPlayerType();
 
   tempMoreOptions.give(player);
 
-  if (
-    player.GetPlayerType() !== PlayerType.PLAYER_ESAU &&
-    shouldGetActiveD6(player)
-  ) {
+  if (character !== PlayerType.PLAYER_ESAU && shouldGetActiveD6(player)) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
   }
 
