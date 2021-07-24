@@ -20,8 +20,8 @@ export function postUpdate(): void {
 }
 
 function postPlayerChange(player: EntityPlayer) {
-  startWithD6.postPlayerChange(player);
   const character = player.GetPlayerType();
+  startWithD6.postPlayerChange(player);
 
   if (character === PlayerType.PLAYER_LAZARUS2_B && !g.run.laz2BGotItems) {
     giveFormatItems(player);
