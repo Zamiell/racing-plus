@@ -76,7 +76,7 @@ function shouldShowLevelText() {
 function showLevelText(stage: int) {
   // Show what the new floor is
   // (the game will not show this naturally after doing a "stage" console command)
-  if (VanillaStreakText && !(stage === 1 && !isAntibirthStage())) {
+  if (VanillaStreakText && (stage !== 1 || isAntibirthStage())) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
     const text = getLevelText();
