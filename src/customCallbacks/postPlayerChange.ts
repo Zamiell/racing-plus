@@ -21,6 +21,7 @@ export function postUpdate(): void {
 
 function postPlayerChange(player: EntityPlayer) {
   const character = player.GetPlayerType();
+
   startWithD6.postPlayerChange(player);
 
   if (
