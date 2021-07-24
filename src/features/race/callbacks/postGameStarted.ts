@@ -216,6 +216,14 @@ function seeded(player: EntityPlayer) {
     giveItemAndRemoveFromPools(player, itemID);
   }
 
+  if (
+    player.GetPlayerType() === PlayerType.PLAYER_EDEN_B ||
+    (player.GetPlayerType() === PlayerType.PLAYER_ISAAC_B &&
+      g.race.startingItems.length >= 2)
+  ) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
+
   // Remove Sol from pools, since it is mostly useless
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
 
@@ -288,6 +296,13 @@ export function diversity(player: EntityPlayer): void {
       // Remove it from the trinket pool
       g.itemPool.RemoveTrinket(itemOrTrinketID);
     }
+  }
+
+  if (
+    player.GetPlayerType() === PlayerType.PLAYER_EDEN_B ||
+    player.GetPlayerType() === PlayerType.PLAYER_ISAAC_B
+  ) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
   // Add item bans for diversity races
