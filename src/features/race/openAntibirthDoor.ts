@@ -3,7 +3,7 @@
 import g from "../../globals";
 import { getAllDoors } from "../../misc";
 
-export function main(): void {
+export default function openAntibirthDoor(): void {
   if (
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||

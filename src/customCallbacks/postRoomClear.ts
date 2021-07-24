@@ -1,6 +1,6 @@
 import * as fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
 import * as fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
-import * as openAntibirthDoor from "../features/race/openAntibirthDoor";
+import openAntibirthDoor from "../features/race/openAntibirthDoor";
 import g from "../globals";
 import log from "../log";
 
@@ -21,5 +21,5 @@ function roomClear() {
 
   fastClearPostRoomClear.main();
   fastTravelPostRoomClear.main();
-  openAntibirthDoor.main();
+  openAntibirthDoor();
 }
