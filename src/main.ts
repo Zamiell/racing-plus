@@ -62,7 +62,7 @@ function registerCallbacks(racingPlus: Mod) {
 
   // Register callbacks that take a 3rd argument for a specific entity
   registerNPCUpdateCallbacks(racingPlus); // 0
-  registerPostItemUseCallbacks(racingPlus); // 3
+  registerUseItemCallbacks(racingPlus); // 3
   registerPostFamiliarInitCallbacks(racingPlus); // 7
   registerEntityTakeDmgCallbacks(racingPlus); // 11
   registerPostPickupInitCallbacks(racingPlus); // 34
@@ -148,7 +148,7 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
 }
 
 // 3
-function registerPostItemUseCallbacks(racingPlus: Mod) {
+function registerUseItemCallbacks(racingPlus: Mod) {
   racingPlus.AddCallback(
     ModCallbacks.MC_USE_ITEM,
     useItem.fortuneCookie,
