@@ -1268,6 +1268,34 @@ function __TS__ObjectValues(obj)
     return result
 end
 
+function __TS__OptionalChainAccess(____table, key)
+    if ____table then
+        return ____table[key]
+    end
+    return nil
+end
+
+function __TS__OptionalFunctionCall(f, ...)
+    if f then
+        return f(...)
+    end
+    return nil
+end
+
+function __TS__OptionalMethodCall(____table, methodName, ...)
+    local args = {...}
+    if ____table then
+        local method = ____table[methodName]
+        if method then
+            return method(
+                ____table,
+                __TS__Unpack(args)
+            )
+        end
+    end
+    return nil
+end
+
 function __TS__ParseFloat(numberString)
     local infinityMatch = string.match(numberString, "^%s*(-?Infinity)")
     if infinityMatch then
@@ -2758,7 +2786,7 @@ function ____exports.initGlowingItemSprite(self, itemID)
     local fileNum
     if itemID < 1 then
         fileNum = "NEW"
-    elseif (itemID >= 1) and (itemID <= 729) then
+    elseif (((itemID >= 1) and (itemID <= 729)) or (itemID == 800)) or (itemID == 801) then
         local paddedNumber = __TS__StringPadStart(
             tostring(itemID),
             3,
@@ -2913,6 +2941,7 @@ local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
 local getPlayers = ____misc.getPlayers
+local isAntibirthStage = ____misc.isAntibirthStage
 local isSelfDamage = ____misc.isSelfDamage
 local ____GlobalsRun = require("types.GlobalsRun")
 local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
@@ -2947,14 +2976,16 @@ function ____exports.postNewRoom(self)
     end
     local stage = g.l:GetStage()
     local roomType = g.r:GetType()
-    if (((not g.run.freeDevilItem.granted) and (stage == 2)) and (roomType == RoomType.ROOM_DEVIL)) and (not enteredRoomViaTeleport(nil)) then
+    if (((not g.run.freeDevilItem.granted) and ((stage == 2) or ((stage == 1) and isAntibirthStage(nil)))) and (roomType == RoomType.ROOM_DEVIL)) and (not enteredRoomViaTeleport(nil)) then
         g.run.freeDevilItem.granted = true
         for ____, player in ipairs(
             getPlayers(nil)
         ) do
             local index = getPlayerLuaTableIndex(nil, player)
             local takenDamage = g.run.freeDevilItem.tookDamage[index]
-            if not takenDamage then
+            local playerType = player:GetPlayerType()
+            local amTaintedSoul = playerType == PlayerType.PLAYER_THESOUL_B
+            if (not takenDamage) and (not amTaintedSoul) then
                 giveTrinket(nil, player)
             end
         end
@@ -4492,12 +4523,11 @@ function ____exports.crawlspace(self)
     end
 end
 function ____exports.commands(self, functionMap)
-    local commandNames = {}
-    for ____, ____value in __TS__Iterator(functionMap) do
-        local commandName
-        commandName = ____value[1]
-        __TS__ArrayPush(commandNames, commandName)
-    end
+    local commandNames = {
+        __TS__Spread(
+            functionMap:keys()
+        )
+    }
     table.sort(commandNames)
     print("List of Racing+ commands:")
     local text = table.concat(commandNames, " " or ",")
@@ -5328,6 +5358,7 @@ end
 return ____exports
  end,
 ["features.optional.major.fastTravel.state"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
@@ -5401,7 +5432,7 @@ function ____exports.getDescription(self, entity, fastTravelEntityType)
     end
     ::____switch15_end::
     if description == nil then
-        g.sandbox:traceback()
+        __TS__OptionalMethodCall(g.sandbox, "traceback")
         error(
             (("Failed to get a " .. FastTravelEntityType[fastTravelEntityType]) .. " fast-travel entity description for index: ") .. tostring(index)
         )
@@ -6585,6 +6616,10 @@ local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
 function shouldGetPocketActiveD6(self, player)
     local character = player:GetPlayerType()
+    local randomBaby = Isaac.GetPlayerTypeByName("Random Baby")
+    if character == randomBaby then
+        return true
+    end
     return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_BETHANY)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
 end
 function shouldGetActiveD6(self, player)
@@ -6818,11 +6853,12 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local isAntibirthStage = ____misc.isAntibirthStage
 local removeItemFromItemTracker = ____misc.removeItemFromItemTracker
 function ____exports.postNewLevel(self)
     local stage = g.l:GetStage()
     local player = Isaac.GetPlayer()
-    if (stage >= 2) and g.run.removeMoreOptions then
+    if ((stage >= 2) or ((stage == 1) and isAntibirthStage(nil))) and g.run.removeMoreOptions then
         g.run.removeMoreOptions = false
         player:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
     end
@@ -7042,6 +7078,9 @@ function ____exports.diversity(self, player)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D100)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR)
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_DICE_BAG)
 end
 function ____exports.main(self)
     if not g.config.clientCommunication then
@@ -7259,10 +7298,29 @@ function ____exports.postNewLevel(self)
 end
 return ____exports
  end,
+["features.race.megaSatan"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.postNewLevel(self)
+    local stage = g.l:GetStage()
+    local player = Isaac.GetPlayer()
+    if (((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.goal ~= "Mega Satan")) or (stage ~= 11) then
+        return
+    end
+    local topDoor = g.r:GetDoor(1)
+    if topDoor ~= nil then
+        topDoor:TryUnlock(player, true)
+        g.sfx:Stop(SoundEffect.SOUND_UNLOCK00)
+    end
+end
+return ____exports
+ end,
 ["features.race.callbacks.postNewLevel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local megaSatan = require("features.race.megaSatan")
 local placeLeft = require("features.race.placeLeft")
 local socket = require("features.race.socket")
 local tempMoreOptions = require("features.race.tempMoreOptions")
@@ -7273,6 +7331,7 @@ function ____exports.main(self)
     socket:postNewLevel()
     tempMoreOptions:postNewLevel()
     placeLeft:postNewLevel()
+    megaSatan:postNewLevel()
 end
 return ____exports
  end,
@@ -8503,10 +8562,12 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____log = require("log")
 local log = ____log.default
+local ____misc = require("misc")
+local isAntibirthStage = ____misc.isAntibirthStage
 local shouldBanB1TreasureRoom
 function shouldBanB1TreasureRoom(self)
     local stage = g.l:GetStage()
-    return (((stage == 1) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.format == "seeded")
+    return ((((stage == 1) and (not isAntibirthStage(nil))) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.format == "seeded")
 end
 function ____exports.postNewRoom(self)
     if not shouldBanB1TreasureRoom(nil) then
@@ -8807,12 +8868,12 @@ function ____exports.main(self, isContinued)
     seededDrops:postGameStarted()
     seededFloors:postGameStarted()
     centerStart:postGameStarted()
+    showEdenStartingItems:postGameStarted()
     racePostGameStarted:main()
     startWithD6:postGameStarted()
     samsonDropHeart:postGameStarted()
     judasAddBomb:postGameStarted()
     taintedKeeperMoney:postGameStarted()
-    showEdenStartingItems:postGameStarted()
     if ((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.format ~= "diversity") then
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
