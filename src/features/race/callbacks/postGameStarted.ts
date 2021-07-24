@@ -182,10 +182,12 @@ function unseeded(player: EntityPlayer) {
     return;
   }
 
+  const character = player.GetPlayerType();
+
   // Unseeded is like vanilla,
   // but the player will still start with More Options to reduce the resetting time
   // Avoid giving more options on Tainted Dead Lazarus
-  if (player.GetPlayerType() !== PlayerType.PLAYER_LAZARUS2_B) {
+  if (character !== PlayerType.PLAYER_LAZARUS2_B) {
     tempMoreOptions.give(player);
   }
 }
@@ -237,9 +239,10 @@ export function diversity(player: EntityPlayer): void {
   }
 
   const trinket1 = player.GetTrinket(0);
+  const character = player.GetPlayerType();
 
   // Avoid giving more options on Tainted Dead Lazarus
-  if (player.GetPlayerType() !== PlayerType.PLAYER_LAZARUS2_B) {
+  if (character !== PlayerType.PLAYER_LAZARUS2_B) {
     tempMoreOptions.give(player);
   }
 

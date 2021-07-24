@@ -21,11 +21,9 @@ export function postUpdate(): void {
 
 function postPlayerChange(player: EntityPlayer) {
   startWithD6.postPlayerChange(player);
+  const character = player.GetPlayerType();
 
-  if (
-    player.GetPlayerType() === PlayerType.PLAYER_LAZARUS2_B &&
-    !g.run.laz2BGotItems
-  ) {
+  if (character === PlayerType.PLAYER_LAZARUS2_B && !g.run.laz2BGotItems) {
     giveFormatItems(player);
     player.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
     g.run.laz2BGotItems = true;

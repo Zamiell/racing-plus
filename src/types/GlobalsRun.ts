@@ -190,10 +190,11 @@ export function getPlayerLuaTableIndex(
   // This works even if the player does not have any Sad Onions
   // We convert the seed to a string to avoid null element creation when saving the table as JSON
   // (which is done to handle save & quit)
+  const character = player.GetPlayerType();
   let index = "";
   if (
-    player.GetPlayerType() === PlayerType.PLAYER_LAZARUS_B ||
-    player.GetPlayerType() === PlayerType.PLAYER_LAZARUS2_B
+    character === PlayerType.PLAYER_LAZARUS_B ||
+    character === PlayerType.PLAYER_LAZARUS2_B
   ) {
     index = player.ControllerIndex.toString();
   } else {
