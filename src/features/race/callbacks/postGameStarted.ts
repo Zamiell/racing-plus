@@ -2,6 +2,7 @@ import g from "../../../globals";
 import log from "../../../log";
 import { giveItemAndRemoveFromPools, playingOnSetSeed } from "../../../misc";
 import { CollectibleTypeCustom } from "../../../types/enums";
+import { shouldGetActiveD6 } from "../../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
@@ -250,6 +251,15 @@ export function diversity(player: EntityPlayer): void {
   }
 
   tempMoreOptions.give(player);
+
+  // In Diversity, the player is given a random active item
+  // If this particular character receives the D6 as an active,
+  // then the Diversity item would overwrite it
+  // If this is the case, give the Schoolbag so that they can hold both items
+  // (except for Esau, since he is not given any Diversity items)
+  if (shouldGetActiveD6(player) && character !== PlayerType.PLAYER_ESAU) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
+  }
 
   // Give the player their five random diversity starting items
   const startingItems = g.race.startingItems;
