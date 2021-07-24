@@ -13,7 +13,10 @@ export function main(): void {
   }
 
   const player = Isaac.GetPlayer();
-  if (g.r.GetType() === RoomType.ROOM_BOSS && g.r.IsClear()) {
+  const roomType = g.r.GetType();
+  const isRoomCleared = g.r.IsClear();
+
+  if (roomType === RoomType.ROOM_BOSS && isRoomCleared) {
     for (const door of getAllDoors()) {
       if (door !== null && door.IsLocked()) {
         door.TryUnlock(player, true);
