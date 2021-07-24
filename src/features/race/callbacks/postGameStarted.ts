@@ -177,12 +177,12 @@ function validateCharacter(player: EntityPlayer) {
 }
 
 function unseeded(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
   // If the race has not started yet, don't give the items
   if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
-
-  const character = player.GetPlayerType();
 
   // Unseeded is like vanilla,
   // but the player will still start with More Options to reduce the resetting time
@@ -233,13 +233,13 @@ function seeded(player: EntityPlayer) {
 }
 
 export function diversity(player: EntityPlayer): void {
+  const character = player.GetPlayerType();
+  const trinket1 = player.GetTrinket(0);
+
   // If the race has not started yet, don't give the items
   if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
-
-  const trinket1 = player.GetTrinket(0);
-  const character = player.GetPlayerType();
 
   // Avoid giving more options on Tainted Dead Lazarus
   if (character !== PlayerType.PLAYER_LAZARUS2_B) {
