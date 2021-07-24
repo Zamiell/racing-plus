@@ -2,7 +2,6 @@ import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
-import * as megaSatan from "../features/race/megaSatan";
 import g from "../globals";
 import log from "../log";
 import { getPlayers } from "../misc";
@@ -55,7 +54,6 @@ export function newLevel(): void {
 
   // QoL
   openHushDoor.postNewLevel();
-  megaSatan.postNewLevel();
 
   // Sounds
   silenceMomDad.postNewLevel();
