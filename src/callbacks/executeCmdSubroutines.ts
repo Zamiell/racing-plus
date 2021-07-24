@@ -23,7 +23,7 @@ export function commands(
   functionMap: Map<string, (params: string) => void>,
 ): void {
   // Compile a list of the commands and sort them alphabetically
-  const commandNames = functionMap.keys()
+  const commandNames = [...functionMap.keys()];
   table.sort(commandNames);
 
   print("List of Racing+ commands:");
