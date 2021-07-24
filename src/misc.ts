@@ -302,7 +302,7 @@ export function initGlowingItemSprite(itemID: int): Sprite {
     itemID === 800 ||
     itemID === 801
   ) {
-    // Between Sad Onion and Decap Attack
+    // Between Sad Onion and Decap Attack (or the custom luck items)
     const paddedNumber = itemID.toString().padStart(3, "0");
     fileNum = paddedNumber;
   } else if (itemID > 729 && itemID < 2001) {
