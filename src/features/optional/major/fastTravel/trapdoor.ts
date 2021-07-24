@@ -80,17 +80,23 @@ function shouldRemove() {
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
-    ((stage === 6 && g.race.goal === "Boss Rush") ||
-      (!(
-        (stage === 1 ||
-          stage === 3 ||
-          stage === 5 ||
-          stage === 6 ||
-          stage === 7) &&
-        isAntibirthStage()
-      ) &&
-        g.race.goal === "Mother" &&
-        g.r.GetType() === RoomType.ROOM_BOSS))
+    g.race.goal === "Boss Rush" &&
+    stage === 6
+  ) {
+    return true;
+  }
+
+  if (
+    !(
+      (stage === 1 ||
+        stage === 3 ||
+        stage === 5 ||
+        stage === 6 ||
+        stage === 7) &&
+      isAntibirthStage()
+    ) &&
+    g.race.goal === "Mother" &&
+    g.r.GetType() === RoomType.ROOM_BOSS
   ) {
     return true;
   }
