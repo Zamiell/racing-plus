@@ -73,10 +73,16 @@ function shouldGetPocketActiveD6(player: EntityPlayer) {
 
 export function shouldGetActiveD6(player: EntityPlayer): boolean {
   const character = player.GetPlayerType();
+
   return (
+    // Since some tainted characters start with a pocket active item,
+    // we give them the D6 as an active item
+    TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character) ||
+    // Jacob & Esau cannot use pocket active items, so we give the active D6 to both of them
+    // (we could give the D6 to just Esau, but since the Jacob & Esau are so weak,
+    // it makes more sense to give it to both of them)
     character === PlayerType.PLAYER_JACOB ||
-    character === PlayerType.PLAYER_ESAU ||
-    TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character)
+    character === PlayerType.PLAYER_ESAU
   );
 }
 
