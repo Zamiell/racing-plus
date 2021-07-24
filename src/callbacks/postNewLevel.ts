@@ -4,7 +4,7 @@ import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import log from "../log";
-import { getPlayers } from "../misc";
+import { getPlayers, isAntibirthStage } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
@@ -46,7 +46,7 @@ export function newLevel(): void {
 
   // Other miscellaneous things
   if (shouldShowLevelText()) {
-    showLevelText();
+    showLevelText(stage);
   }
 
   // Major
@@ -73,10 +73,10 @@ function shouldShowLevelText() {
   );
 }
 
-function showLevelText() {
+function showLevelText(stage: int) {
   // Show what the new floor is
   // (the game will not show this naturally after doing a "stage" console command)
-  if (VanillaStreakText) {
+  if (VanillaStreakText && !(stage === 1 && !isAntibirthStage())) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
     const text = getLevelText();
