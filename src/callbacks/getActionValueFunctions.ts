@@ -2,7 +2,7 @@ import * as fastTravelInputAction from "../features/optional/major/fastTravel/ca
 
 const functionMap = new Map<
   ButtonAction,
-  (player: EntityPlayer) => float | void
+  (entity: Entity | null) => float | void
 >();
 export default functionMap;
 

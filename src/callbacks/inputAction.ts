@@ -7,13 +7,13 @@ import getActionValueFunctions from "./getActionValueFunctions";
 import isActionTriggeredFunctions from "./isActionTriggeredFunctions";
 
 export function main(
-  player: EntityPlayer,
+  entity: Entity | null,
   inputHook: InputHook,
   buttonAction: ButtonAction,
 ): number | boolean | void {
   const inputHookFunction = inputHookFunctionMap.get(inputHook);
   if (inputHookFunction !== undefined) {
-    return inputHookFunction(player, buttonAction);
+    return inputHookFunction(entity, buttonAction);
   }
 
   return undefined;
@@ -21,17 +21,17 @@ export function main(
 
 const inputHookFunctionMap = new Map<
   InputHook,
-  (player: EntityPlayer, buttonAction: ButtonAction) => number | boolean | void
+  (entity: Entity | null, buttonAction: ButtonAction) => number | boolean | void
 >();
 
 // 1
 inputHookFunctionMap.set(
   InputHook.IS_ACTION_TRIGGERED,
-  (player: EntityPlayer, buttonAction: ButtonAction) => {
+  (entity: Entity | null, buttonAction: ButtonAction) => {
     const isActionTriggeredFunction =
       isActionTriggeredFunctions.get(buttonAction);
     if (isActionTriggeredFunction !== undefined) {
-      return isActionTriggeredFunction(player);
+      return isActionTriggeredFunction(entity);
     }
 
     return undefined;
@@ -41,10 +41,10 @@ inputHookFunctionMap.set(
 // 2
 inputHookFunctionMap.set(
   InputHook.GET_ACTION_VALUE,
-  (player: EntityPlayer, buttonAction: ButtonAction) => {
+  (entity: Entity | null, buttonAction: ButtonAction) => {
     const getActionValueFunction = getActionValueFunctions.get(buttonAction);
     if (getActionValueFunction !== undefined) {
-      return getActionValueFunction(player);
+      return getActionValueFunction(entity);
     }
 
     return undefined;

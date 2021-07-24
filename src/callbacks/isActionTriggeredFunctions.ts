@@ -2,7 +2,7 @@ import * as switchForgotten from "../features/mandatory/switchForgotten";
 
 const functionMap = new Map<
   ButtonAction,
-  (player: EntityPlayer) => boolean | void
+  (entity: Entity | null) => boolean | void
 >();
 export default functionMap;
 

@@ -5220,30 +5220,30 @@ local getActionValueFunctions = ____getActionValueFunctions.default
 local ____isActionTriggeredFunctions = require("callbacks.isActionTriggeredFunctions")
 local isActionTriggeredFunctions = ____isActionTriggeredFunctions.default
 local inputHookFunctionMap
-function ____exports.main(self, player, inputHook, buttonAction)
+function ____exports.main(self, entity, inputHook, buttonAction)
     local inputHookFunction = inputHookFunctionMap:get(inputHook)
     if inputHookFunction ~= nil then
-        return inputHookFunction(nil, player, buttonAction)
+        return inputHookFunction(nil, entity, buttonAction)
     end
     return nil
 end
 inputHookFunctionMap = __TS__New(Map)
 inputHookFunctionMap:set(
     InputHook.IS_ACTION_TRIGGERED,
-    function(____, player, buttonAction)
+    function(____, entity, buttonAction)
         local isActionTriggeredFunction = isActionTriggeredFunctions:get(buttonAction)
         if isActionTriggeredFunction ~= nil then
-            return isActionTriggeredFunction(nil, player)
+            return isActionTriggeredFunction(nil, entity)
         end
         return nil
     end
 )
 inputHookFunctionMap:set(
     InputHook.GET_ACTION_VALUE,
-    function(____, player, buttonAction)
+    function(____, entity, buttonAction)
         local getActionValueFunction = getActionValueFunctions:get(buttonAction)
         if getActionValueFunction ~= nil then
-            return getActionValueFunction(nil, player)
+            return getActionValueFunction(nil, entity)
         end
         return nil
     end
