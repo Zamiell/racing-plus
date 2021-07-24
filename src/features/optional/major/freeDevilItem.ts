@@ -3,6 +3,7 @@ import {
   enteredRoomViaTeleport,
   getOpenTrinketSlot,
   getPlayers,
+  isAntibirthStage,
   isSelfDamage,
 } from "../../../misc";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
@@ -36,7 +37,7 @@ export function postNewRoom(): void {
   // reward the player with the trinket prize
   if (
     !g.run.freeDevilItem.granted &&
-    stage === 2 &&
+    (stage === 2 || (stage === 1 && isAntibirthStage())) &&
     roomType === RoomType.ROOM_DEVIL &&
     !enteredRoomViaTeleport()
   ) {
@@ -45,7 +46,12 @@ export function postNewRoom(): void {
     for (const player of getPlayers()) {
       const index = getPlayerLuaTableIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
-      if (!takenDamage) {
+      const playerType = player.GetPlayerType();
+      const amTaintedSoul = playerType === PlayerType.PLAYER_THESOUL_B;
+
+      // Tainted Soul cannot take any damage, so they should be exempt from this feature
+      // (the feature will still apply to Tainted Forgotten as per normal)
+      if (!takenDamage && !amTaintedSoul) {
         giveTrinket(player);
       }
     }

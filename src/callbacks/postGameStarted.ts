@@ -53,6 +53,11 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
 
+  // Showing Eden starting items is a Quality of Life feature, but it must be performed before
+  // race initialization because we need to find out what the passive item is before other items are
+  // added on top
+  showEdenStartingItems.postGameStarted();
+
   // Optional features - Major
   racePostGameStarted.main();
   startWithD6.postGameStarted();
@@ -61,7 +66,6 @@ export function main(isContinued: boolean): void {
   samsonDropHeart.postGameStarted();
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
-  showEdenStartingItems.postGameStarted();
 
   // Remove the 3 placeholder items if this is not a diversity race
   if (

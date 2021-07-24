@@ -71,29 +71,6 @@ export function threeDollarBill(): void {
   g.run.threeDollarBillItem = 0;
 }
 
-function checkOpenMegaSatanDoor() {
-  const roomIndex = misc.getRoomIndex();
-  const stage = g.l.GetStage();
-
-  // Check to see if we need to open the Mega Satan Door
-  if (
-    stage === 11 && // The Chest or Dark Room
-    roomIndex === g.l.GetStartingRoomIndex() &&
-    (g.race.goal === "Mega Satan" ||
-      g.raceVars.finished ||
-      (g.race.goal === "Everything" && g.run.killedLamb))
-  ) {
-    const door = g.r.GetDoor(1); // The top door is always 1
-    if (door !== null) {
-      door.TryUnlock(true);
-      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
-      // door.IsOpen() is always equal to false here for some reason,
-      // so just open it every time we enter the room and silence the sound effect
-      Isaac.DebugString("Opened the Mega Satan door.");
-    }
-  }
-}
-
 function checkVictoryLapBossReplace() {
   const roomDesc = g.l.GetCurrentRoomDesc();
   const roomData = roomDesc.Data;

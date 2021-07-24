@@ -22,11 +22,8 @@ export function crawlspace(): void {
 export function commands(
   functionMap: Map<string, (params: string) => void>,
 ): void {
-  // Compile a list of the commands && sort them
-  const commandNames: string[] = [];
-  for (const [commandName] of functionMap) {
-    commandNames.push(commandName);
-  }
+  // Compile a list of the commands and sort them alphabetically
+  const commandNames = [...functionMap.keys()];
   table.sort(commandNames);
 
   print("List of Racing+ commands:");
