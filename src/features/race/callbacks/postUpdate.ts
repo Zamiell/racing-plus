@@ -1,5 +1,8 @@
+import * as postRoomClear from "./postRoomClear";
+
 export function main(): void {
-  // checkFinalRoom();
+  // Custom callbacks
+  postRoomClear.postUpdate();
 }
 
 /*
