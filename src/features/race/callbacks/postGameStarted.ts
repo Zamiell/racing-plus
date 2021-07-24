@@ -196,6 +196,8 @@ function unseededRankedSolo(player: EntityPlayer) {
 }
 
 function seeded(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
   // All seeded races start with the Compass to reduce mapping RNG
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
     // Eden can start with The Compass
@@ -217,8 +219,8 @@ function seeded(player: EntityPlayer) {
   }
 
   if (
-    player.GetPlayerType() === PlayerType.PLAYER_EDEN_B ||
-    (player.GetPlayerType() === PlayerType.PLAYER_ISAAC_B &&
+    character === PlayerType.PLAYER_EDEN_B ||
+    (character === PlayerType.PLAYER_ISAAC_B &&
       g.race.startingItems.length >= 2) // Only give birthright on Tainted Isaac if we play a custom build
   ) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
@@ -242,6 +244,7 @@ export function diversity(player: EntityPlayer): void {
   }
 
   const trinket1 = player.GetTrinket(0);
+  const character = player.GetPlayerType();
 
   tempMoreOptions.give(player);
 
@@ -299,8 +302,8 @@ export function diversity(player: EntityPlayer): void {
   }
 
   if (
-    player.GetPlayerType() === PlayerType.PLAYER_EDEN_B ||
-    player.GetPlayerType() === PlayerType.PLAYER_ISAAC_B
+    character === PlayerType.PLAYER_EDEN_B ||
+    character === PlayerType.PLAYER_ISAAC_B
   ) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
