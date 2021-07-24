@@ -75,17 +75,17 @@ function shouldRemove() {
   const stage = g.l.GetStage();
 
   // Delete the Womb trapdoor that spawns after Mom if the goal of the run is the Boss Rush
-  // Also close all trapdoors that leads to a normal floor if the goal of the run is Mother
-  // TODO: Close Womb trapdoor on Mother goal only before killing Alt Mom's Heart
   if (
+    stage === 6 &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
-    g.race.goal === "Boss Rush" &&
-    stage === 6
+    g.race.goal === "Boss Rush"
   ) {
     return true;
   }
 
+  // Also close all trapdoors that leads to a normal floor if the goal of the run is Mother
+  // TODO: Close Womb trapdoor on Mother goal only before killing Alt Mom's Heart
   if (
     !(
       (stage === 1 ||
