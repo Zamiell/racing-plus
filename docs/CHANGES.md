@@ -211,7 +211,7 @@ Post-flip actions:
 - `059` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 - `060` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 - `061` The Hush door will be automatically opened.
-- `062` Fortune Cookie banners are removed.
+- `062` Fortune Cookie text is removed.
 
 ### 6) Gameplay Changes
 
