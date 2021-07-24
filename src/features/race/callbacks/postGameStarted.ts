@@ -219,7 +219,7 @@ function seeded(player: EntityPlayer) {
   if (
     player.GetPlayerType() === PlayerType.PLAYER_EDEN_B ||
     (player.GetPlayerType() === PlayerType.PLAYER_ISAAC_B &&
-      g.race.startingItems.length >= 2)
+      g.race.startingItems.length >= 2) // Only give birthright on Tainted Isaac if we play a custom build
   ) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
