@@ -241,13 +241,13 @@ function seeded(player: EntityPlayer) {
 }
 
 export function diversity(player: EntityPlayer): void {
+  const character = player.GetPlayerType();
+  const trinket1 = player.GetTrinket(0);
+
   // If the race has not started yet, don't give the items
   if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
-
-  const trinket1 = player.GetTrinket(0);
-  const character = player.GetPlayerType();
 
   tempMoreOptions.give(player);
 
@@ -304,10 +304,9 @@ export function diversity(player: EntityPlayer): void {
     }
   }
 
-  if (
-    character === PlayerType.PLAYER_EDEN_B ||
-    character === PlayerType.PLAYER_ISAAC_B
-  ) {
+  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
+  // If we are Tainted Isaac, give Birthright so that we have more room for other items
+  if (character === PlayerType.PLAYER_EDEN_B || character === PlayerType.PLAYER_ISAAC_B) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
