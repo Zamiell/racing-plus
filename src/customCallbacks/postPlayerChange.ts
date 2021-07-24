@@ -23,9 +23,12 @@ function postPlayerChange(player: EntityPlayer) {
   const character = player.GetPlayerType();
   startWithD6.postPlayerChange(player);
 
-  if (character === PlayerType.PLAYER_LAZARUS2_B && !g.run.laz2BGotItems) {
+  if (
+    character === PlayerType.PLAYER_LAZARUS2_B &&
+    !g.run.laz2BGotStartingRaceItems
+  ) {
     giveFormatItems(player);
     player.AddCollectible(CollectibleType.COLLECTIBLE_D6, 6);
-    g.run.laz2BGotItems = true;
+    g.run.laz2BGotStartingRaceItems = true;
   }
 }
