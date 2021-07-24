@@ -252,7 +252,12 @@ export function diversity(player: EntityPlayer): void {
 
   tempMoreOptions.give(player);
 
-  if (character !== PlayerType.PLAYER_ESAU && shouldGetActiveD6(player)) {
+  // In Diversity, the player is given a random active item
+  // If this particular character receives the D6 as an active,
+  // then the Diversity item would overwrite it
+  // If this is the case, give the Schoolbag so that they can hold both items
+  // (except for Esau, since he is not given any Diversity items)
+  if (shouldGetActiveD6(player) && character !== PlayerType.PLAYER_ESAU) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
   }
 
