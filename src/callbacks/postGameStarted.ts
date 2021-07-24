@@ -53,8 +53,9 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
 
-  // Must be called before major features to avoid starting
-  // items sprites to be overriden by div and seeded starts
+  // Showing Eden starting items is a Quality of Life feature, but it must be performed before
+  // race initialization because we need to find out what the passive item is before other items are
+  // added on top
   showEdenStartingItems.postGameStarted();
 
   // Optional features - Major
