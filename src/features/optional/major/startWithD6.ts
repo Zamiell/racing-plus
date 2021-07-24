@@ -57,6 +57,12 @@ export function postGameStarted(): void {
 function shouldGetPocketActiveD6(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
+  // First, handle the special case of "Random Baby" from The Babies Mod
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+  if (character === randomBaby) {
+    return true;
+  }
+
   return (
     // The original characters, minus Jacob & Esau
     (character >= PlayerType.PLAYER_ISAAC &&

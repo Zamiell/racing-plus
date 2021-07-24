@@ -1268,6 +1268,34 @@ function __TS__ObjectValues(obj)
     return result
 end
 
+function __TS__OptionalChainAccess(____table, key)
+    if ____table then
+        return ____table[key]
+    end
+    return nil
+end
+
+function __TS__OptionalFunctionCall(f, ...)
+    if f then
+        return f(...)
+    end
+    return nil
+end
+
+function __TS__OptionalMethodCall(____table, methodName, ...)
+    local args = {...}
+    if ____table then
+        local method = ____table[methodName]
+        if method then
+            return method(
+                ____table,
+                __TS__Unpack(args)
+            )
+        end
+    end
+    return nil
+end
+
 function __TS__ParseFloat(numberString)
     local infinityMatch = string.match(numberString, "^%s*(-?Infinity)")
     if infinityMatch then
@@ -2444,6 +2472,8 @@ ____exports.MAX_NUM_DOORS = 8
 ____exports.RECOMMENDED_SHIFT_IDX = 35
 ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
+____exports.SPRITE_BETHANY_OFFSET = Vector(0, 8)
+____exports.SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6)
 ____exports.VERSION = "0.58.18"
 return ____exports
  end,
@@ -2756,7 +2786,7 @@ function ____exports.initGlowingItemSprite(self, itemID)
     local fileNum
     if itemID < 1 then
         fileNum = "NEW"
-    elseif (itemID >= 1) and (itemID <= 729) then
+    elseif (((itemID >= 1) and (itemID <= 729)) or (itemID == 800)) or (itemID == 801) then
         local paddedNumber = __TS__StringPadStart(
             tostring(itemID),
             3,
@@ -2911,6 +2941,7 @@ local ____misc = require("misc")
 local enteredRoomViaTeleport = ____misc.enteredRoomViaTeleport
 local getOpenTrinketSlot = ____misc.getOpenTrinketSlot
 local getPlayers = ____misc.getPlayers
+local isAntibirthStage = ____misc.isAntibirthStage
 local isSelfDamage = ____misc.isSelfDamage
 local ____GlobalsRun = require("types.GlobalsRun")
 local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
@@ -2945,14 +2976,16 @@ function ____exports.postNewRoom(self)
     end
     local stage = g.l:GetStage()
     local roomType = g.r:GetType()
-    if (((not g.run.freeDevilItem.granted) and (stage == 2)) and (roomType == RoomType.ROOM_DEVIL)) and (not enteredRoomViaTeleport(nil)) then
+    if (((not g.run.freeDevilItem.granted) and ((stage == 2) or ((stage == 1) and isAntibirthStage(nil)))) and (roomType == RoomType.ROOM_DEVIL)) and (not enteredRoomViaTeleport(nil)) then
         g.run.freeDevilItem.granted = true
         for ____, player in ipairs(
             getPlayers(nil)
         ) do
             local index = getPlayerLuaTableIndex(nil, player)
             local takenDamage = g.run.freeDevilItem.tookDamage[index]
-            if not takenDamage then
+            local playerType = player:GetPlayerType()
+            local amTaintedSoul = playerType == PlayerType.PLAYER_THESOUL_B
+            if (not takenDamage) and (not amTaintedSoul) then
                 giveTrinket(nil, player)
             end
         end
@@ -3255,8 +3288,10 @@ return ____exports
 ["features.mandatory.racingPlusSprite"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____constants = require("constants")
+local SPRITE_BETHANY_OFFSET = ____constants.SPRITE_BETHANY_OFFSET
 local SPRITE_CHALLENGE_OFFSET = ____constants.SPRITE_CHALLENGE_OFFSET
 local SPRITE_DIFFICULTY_OFFSET = ____constants.SPRITE_DIFFICULTY_OFFSET
+local SPRITE_TAINTED_BETHANY_OFFSET = ____constants.SPRITE_TAINTED_BETHANY_OFFSET
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
@@ -3266,11 +3301,17 @@ local SPRITE_POSITION
 function ____exports.getPosition(self)
     local challenge = Isaac.GetChallenge()
     local HUDOffsetVector = getHUDOffsetVector(nil)
+    local player = Isaac.GetPlayer()
+    local character = player:GetPlayerType()
     local position = SPRITE_POSITION + HUDOffsetVector
     if challenge ~= Challenge.CHALLENGE_NULL then
         position = position + SPRITE_CHALLENGE_OFFSET
     elseif g.g.Difficulty ~= Difficulty.DIFFICULTY_NORMAL then
         position = position + SPRITE_DIFFICULTY_OFFSET
+    elseif (character == PlayerType.PLAYER_BETHANY) or (character == PlayerType.PLAYER_JACOB) then
+        position = position + SPRITE_BETHANY_OFFSET
+    elseif character == PlayerType.PLAYER_BETHANY_B then
+        position = position + SPRITE_TAINTED_BETHANY_OFFSET
     end
     return position
 end
@@ -4482,12 +4523,11 @@ function ____exports.crawlspace(self)
     end
 end
 function ____exports.commands(self, functionMap)
-    local commandNames = {}
-    for ____, ____value in __TS__Iterator(functionMap) do
-        local commandName
-        commandName = ____value[1]
-        __TS__ArrayPush(commandNames, commandName)
-    end
+    local commandNames = {
+        __TS__Spread(
+            functionMap:keys()
+        )
+    }
     table.sort(commandNames)
     print("List of Racing+ commands:")
     local text = table.concat(commandNames, " " or ",")
@@ -5180,30 +5220,30 @@ local getActionValueFunctions = ____getActionValueFunctions.default
 local ____isActionTriggeredFunctions = require("callbacks.isActionTriggeredFunctions")
 local isActionTriggeredFunctions = ____isActionTriggeredFunctions.default
 local inputHookFunctionMap
-function ____exports.main(self, player, inputHook, buttonAction)
+function ____exports.main(self, entity, inputHook, buttonAction)
     local inputHookFunction = inputHookFunctionMap:get(inputHook)
     if inputHookFunction ~= nil then
-        return inputHookFunction(nil, player, buttonAction)
+        return inputHookFunction(nil, entity, buttonAction)
     end
     return nil
 end
 inputHookFunctionMap = __TS__New(Map)
 inputHookFunctionMap:set(
     InputHook.IS_ACTION_TRIGGERED,
-    function(____, player, buttonAction)
+    function(____, entity, buttonAction)
         local isActionTriggeredFunction = isActionTriggeredFunctions:get(buttonAction)
         if isActionTriggeredFunction ~= nil then
-            return isActionTriggeredFunction(nil, player)
+            return isActionTriggeredFunction(nil, entity)
         end
         return nil
     end
 )
 inputHookFunctionMap:set(
     InputHook.GET_ACTION_VALUE,
-    function(____, player, buttonAction)
+    function(____, entity, buttonAction)
         local getActionValueFunction = getActionValueFunctions:get(buttonAction)
         if getActionValueFunction ~= nil then
-            return getActionValueFunction(nil, player)
+            return getActionValueFunction(nil, entity)
         end
         return nil
     end
@@ -5318,6 +5358,7 @@ end
 return ____exports
  end,
 ["features.optional.major.fastTravel.state"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+require("lualib_bundle");
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
@@ -5391,7 +5432,7 @@ function ____exports.getDescription(self, entity, fastTravelEntityType)
     end
     ::____switch15_end::
     if description == nil then
-        g.sandbox:traceback()
+        __TS__OptionalMethodCall(g.sandbox, "traceback")
         error(
             (("Failed to get a " .. FastTravelEntityType[fastTravelEntityType]) .. " fast-travel entity description for index: ") .. tostring(index)
         )
@@ -5692,6 +5733,9 @@ function getNextStage(self)
     if g.g:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) then
         if stage == 1 then
             return 13
+        end
+        if (stage == 6) and antibirthStage then
+            return stage
         end
         return stage - 1
     end
@@ -6572,6 +6616,10 @@ local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
 local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
 function shouldGetPocketActiveD6(self, player)
     local character = player:GetPlayerType()
+    local randomBaby = Isaac.GetPlayerTypeByName("Random Baby")
+    if character == randomBaby then
+        return true
+    end
     return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_BETHANY)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
 end
 function shouldGetActiveD6(self, player)
@@ -6805,11 +6853,12 @@ local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
 local ____misc = require("misc")
+local isAntibirthStage = ____misc.isAntibirthStage
 local removeItemFromItemTracker = ____misc.removeItemFromItemTracker
 function ____exports.postNewLevel(self)
     local stage = g.l:GetStage()
     local player = Isaac.GetPlayer()
-    if (stage >= 2) and g.run.removeMoreOptions then
+    if ((stage >= 2) or ((stage == 1) and isAntibirthStage(nil))) and g.run.removeMoreOptions then
         g.run.removeMoreOptions = false
         player:RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS)
     end
@@ -7029,6 +7078,9 @@ function ____exports.diversity(self, player)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D100)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR)
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_DICE_BAG)
 end
 function ____exports.main(self)
     if not g.config.clientCommunication then
@@ -7246,10 +7298,29 @@ function ____exports.postNewLevel(self)
 end
 return ____exports
  end,
+["features.race.megaSatan"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.postNewLevel(self)
+    local stage = g.l:GetStage()
+    local player = Isaac.GetPlayer()
+    if (((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.goal ~= "Mega Satan")) or (stage ~= 11) then
+        return
+    end
+    local topDoor = g.r:GetDoor(1)
+    if topDoor ~= nil then
+        topDoor:TryUnlock(player, true)
+        g.sfx:Stop(SoundEffect.SOUND_UNLOCK00)
+    end
+end
+return ____exports
+ end,
 ["features.race.callbacks.postNewLevel"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
+local megaSatan = require("features.race.megaSatan")
 local placeLeft = require("features.race.placeLeft")
 local socket = require("features.race.socket")
 local tempMoreOptions = require("features.race.tempMoreOptions")
@@ -7260,6 +7331,7 @@ function ____exports.main(self)
     socket:postNewLevel()
     tempMoreOptions:postNewLevel()
     placeLeft:postNewLevel()
+    megaSatan:postNewLevel()
 end
 return ____exports
  end,
@@ -8490,10 +8562,12 @@ local ____globals = require("globals")
 local g = ____globals.default
 local ____log = require("log")
 local log = ____log.default
+local ____misc = require("misc")
+local isAntibirthStage = ____misc.isAntibirthStage
 local shouldBanB1TreasureRoom
 function shouldBanB1TreasureRoom(self)
     local stage = g.l:GetStage()
-    return (((stage == 1) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.format == "seeded")
+    return ((((stage == 1) and (not isAntibirthStage(nil))) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.format == "seeded")
 end
 function ____exports.postNewRoom(self)
     if not shouldBanB1TreasureRoom(nil) then
@@ -8794,12 +8868,12 @@ function ____exports.main(self, isContinued)
     seededDrops:postGameStarted()
     seededFloors:postGameStarted()
     centerStart:postGameStarted()
+    showEdenStartingItems:postGameStarted()
     racePostGameStarted:main()
     startWithD6:postGameStarted()
     samsonDropHeart:postGameStarted()
     judasAddBomb:postGameStarted()
     taintedKeeperMoney:postGameStarted()
-    showEdenStartingItems:postGameStarted()
     if ((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.format ~= "diversity") then
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
         g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
@@ -9185,6 +9259,7 @@ local ____misc = require("misc")
 local anyPlayerHasCollectible = ____misc.anyPlayerHasCollectible
 local ensureAllCases = ____misc.ensureAllCases
 local getRoomIndex = ____misc.getRoomIndex
+local isAntibirthStage = ____misc.isAntibirthStage
 local ____enums = require("types.enums")
 local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
 local trophy = require("features.mandatory.trophy")
@@ -9193,7 +9268,7 @@ local ChallengeCustom = ____enums.ChallengeCustom
 local ____enums = require("features.optional.major.fastTravel.enums")
 local FastTravelEntityType = ____enums.FastTravelEntityType
 local fastTravel = require("features.optional.major.fastTravel.fastTravel")
-local ReplacementAction, DEFAULT_REPLACEMENT_ACTION, getReplacementAction, season1, blueBaby, theLamb, megaSatan, hush, delirium, bossRush, replace
+local ReplacementAction, DEFAULT_REPLACEMENT_ACTION, getReplacementAction, season1, blueBaby, theLamb, megaSatan, hush, delirium, mother, bossRush, replace
 function getReplacementAction(self)
     local stage = g.l:GetStage()
     local stageType = g.l:GetStageType()
@@ -9225,6 +9300,9 @@ function getReplacementAction(self)
         end
         if g.race.goal == "Delirium" then
             return delirium(nil)
+        end
+        if g.race.goal == "Mother" then
+            return mother(nil)
         end
         if g.race.goal == "Boss Rush" then
             return bossRush(nil)
@@ -9286,6 +9364,14 @@ function delirium(self)
     end
     return DEFAULT_REPLACEMENT_ACTION
 end
+function mother(self)
+    local stage = g.l:GetStage()
+    local antibirthStage = isAntibirthStage(nil)
+    if (stage == 8) and antibirthStage then
+        return ReplacementAction.Trophy
+    end
+    return DEFAULT_REPLACEMENT_ACTION
+end
 function bossRush(self)
     local stage = g.l:GetStage()
     if stage == 6 then
@@ -9298,38 +9384,38 @@ function replace(self, pickup, replacementAction)
     if replacementAction ~= ReplacementAction.LeaveAlone then
         pickup:Remove()
     end
-    local ____switch33 = replacementAction
-    if ____switch33 == ReplacementAction.LeaveAlone then
-        goto ____switch33_case_0
-    elseif ____switch33 == ReplacementAction.TrapdoorDown then
-        goto ____switch33_case_1
-    elseif ____switch33 == ReplacementAction.BeamOfLightUp then
-        goto ____switch33_case_2
-    elseif ____switch33 == ReplacementAction.Checkpoint then
-        goto ____switch33_case_3
-    elseif ____switch33 == ReplacementAction.Trophy then
-        goto ____switch33_case_4
-    elseif ____switch33 == ReplacementAction.VictoryLap then
-        goto ____switch33_case_5
-    elseif ____switch33 == ReplacementAction.Remove then
-        goto ____switch33_case_6
+    local ____switch36 = replacementAction
+    if ____switch36 == ReplacementAction.LeaveAlone then
+        goto ____switch36_case_0
+    elseif ____switch36 == ReplacementAction.TrapdoorDown then
+        goto ____switch36_case_1
+    elseif ____switch36 == ReplacementAction.BeamOfLightUp then
+        goto ____switch36_case_2
+    elseif ____switch36 == ReplacementAction.Checkpoint then
+        goto ____switch36_case_3
+    elseif ____switch36 == ReplacementAction.Trophy then
+        goto ____switch36_case_4
+    elseif ____switch36 == ReplacementAction.VictoryLap then
+        goto ____switch36_case_5
+    elseif ____switch36 == ReplacementAction.Remove then
+        goto ____switch36_case_6
     end
-    goto ____switch33_case_default
-    ::____switch33_case_0::
+    goto ____switch36_case_default
+    ::____switch36_case_0::
     do
         do
             pickup.Touched = true
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_1::
+    ::____switch36_case_1::
     do
         do
             Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_2::
+    ::____switch36_case_2::
     do
         do
             local heavenDoor = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, position, Vector.Zero, nil):ToEffect()
@@ -9340,43 +9426,43 @@ function replace(self, pickup, replacementAction)
                     function() return true end
                 )
             end
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_3::
+    ::____switch36_case_3::
     do
         do
             Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT, position, Vector.Zero, nil)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_4::
+    ::____switch36_case_4::
     do
         do
             trophy:spawn(position)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_5::
+    ::____switch36_case_5::
     do
         do
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_6::
+    ::____switch36_case_6::
     do
         do
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_case_default::
+    ::____switch36_case_default::
     do
         do
             ensureAllCases(nil, replacementAction)
-            goto ____switch33_end
+            goto ____switch36_end
         end
     end
-    ::____switch33_end::
+    ::____switch36_end::
 end
 ReplacementAction = ReplacementAction or ({})
 ReplacementAction.LeaveAlone = 0
@@ -9692,9 +9778,19 @@ function ____exports.display(self, timerType, seconds, startingX, startingY)
     if startingY == nil then
         startingY = RACE_TIMER_POSITION.Y
     end
+    local player = Isaac.GetPlayer()
+    local character = player:GetPlayerType()
     local HUDOffsetVector = getHUDOffsetVector(nil)
     startingX = startingX + HUDOffsetVector.X
     startingY = startingY + HUDOffsetVector.Y
+    if (character == PlayerType.PLAYER_BETHANY) or (character == PlayerType.PLAYER_JACOB) then
+        startingY = startingY + 8
+    elseif character == PlayerType.PLAYER_BETHANY_B then
+        startingY = startingY - 5
+    end
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_DUALITY) then
+        startingY = startingY - 10
+    end
     local hourAdjustment = 2
     local hourAdjustment2 = 0
     local sprites = spriteCollectionMap:get(timerType)

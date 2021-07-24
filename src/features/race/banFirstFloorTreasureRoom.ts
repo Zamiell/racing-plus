@@ -1,6 +1,7 @@
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
 import log from "../../log";
+import { isAntibirthStage } from "../../misc";
 
 export function postNewRoom(): void {
   if (!shouldBanB1TreasureRoom()) {
@@ -43,6 +44,7 @@ function shouldBanB1TreasureRoom() {
 
   return (
     stage === 1 &&
+    !isAntibirthStage() &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.format === "seeded"

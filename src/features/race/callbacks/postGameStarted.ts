@@ -197,6 +197,8 @@ function unseededRankedSolo(player: EntityPlayer) {
 }
 
 function seeded(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
   // All seeded races start with the Compass to reduce mapping RNG
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
     // Eden can start with The Compass
@@ -216,6 +218,17 @@ function seeded(player: EntityPlayer) {
 
     giveItemAndRemoveFromPools(player, itemID);
   }
+  
+  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
+  if (character === PlayerType.PLAYER_EDEN_B) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
+
+  // If we are Tainted Isaac and there are multiple starting items for the race,
+  // give Birthright so that we have more room for other items
+  if (character === PlayerType.PLAYER_ISAAC_B && g.race.startingItems.length >= 2) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
 
   // Remove Sol from pools, since it is mostly useless
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
@@ -229,13 +242,13 @@ function seeded(player: EntityPlayer) {
 }
 
 export function diversity(player: EntityPlayer): void {
+  const character = player.GetPlayerType();
+  const trinket1 = player.GetTrinket(0);
+
   // If the race has not started yet, don't give the items
   if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
     return;
   }
-
-  const trinket1 = player.GetTrinket(0);
-  const character = player.GetPlayerType();
 
   tempMoreOptions.give(player);
 
@@ -296,9 +309,20 @@ export function diversity(player: EntityPlayer): void {
     }
   }
 
+  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
+  // If we are Tainted Isaac, give Birthright so that we have more room for other items
+  if (character === PlayerType.PLAYER_EDEN_B || character === PlayerType.PLAYER_ISAAC_B) {
+    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
+
   // Add item bans for diversity races
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D4);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D100);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY);
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS);
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
+
+  // Trinket bans for diversity races
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_DICE_BAG);
 }

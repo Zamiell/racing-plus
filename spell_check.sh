@@ -6,5 +6,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd "$DIR"
 
-npx cspell --no-progress "src/**/*.ts"
-npx cspell --no-progress "docs/**/*.md"
+npx cspell --no-progress --no-summary "src/**/*.ts"
+npx cspell --no-progress --no-summary "docs/**/*.md"
