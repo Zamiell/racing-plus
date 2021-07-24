@@ -1,3 +1,11 @@
+<!--
+
+	Notes:
+
+	- Set all RootAnimation Frame Alphatint to 40
+
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="Unknown" CreatedOn="10.01.2015 01:18:22" Version="12" Fps="30"/>
 	<Content>
