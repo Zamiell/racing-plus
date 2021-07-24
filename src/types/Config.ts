@@ -41,6 +41,7 @@ export default class Config {
   showPills = true;
   showMaxFamiliars = true;
   openHushDoor = true;
+  removeFortuneCookieBanners = true;
 
   // Cutscenes & Animations
   fastTeleports = true;

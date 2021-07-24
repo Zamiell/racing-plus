@@ -411,6 +411,15 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
   ],
+  [
+    "removeFortuneCookieBanners",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "062",
+      "Remove Fortune Cookie banners",
+      "Remove Fortune Cookie banners when don't get any pickups.",
+    ],
+  ],
 ];
 
 // n/a
