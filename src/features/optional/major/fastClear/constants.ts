@@ -63,6 +63,6 @@ export const FAST_CLEAR_WHITELIST = [
 ];
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = [
-  [EntityType.ENTITY_MOTHER, 10],
-  [EntityType.ENTITY_ROTGUT, 2],
+  [EntityType.ENTITY_MOTHER, 0],
+  [EntityType.ENTITY_ROTGUT, 0],
 ];

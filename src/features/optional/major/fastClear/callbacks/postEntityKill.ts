@@ -35,11 +35,11 @@ export function main(entity: Entity): void {
     return;
   }
 
-  for (const [entityType, entityVariant] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) {
-    if (
-      entityType === npc.Type &&
-      entityVariant !== npc.Variant
-    ) {
+  for (const [
+    entityType,
+    entityVariant,
+  ] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) {
+    if (entityType === npc.Type && entityVariant === npc.Variant) {
       return;
     }
   }
