@@ -200,6 +200,6 @@ export function getPlayerLuaTableIndex(
   ) {
     return GetPtrHash(player).toString();
   }
-  
+
   return player.GetCollectibleRNG(1).GetSeed().toString();
 }
