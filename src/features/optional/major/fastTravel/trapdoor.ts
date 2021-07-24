@@ -74,7 +74,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 function shouldRemove() {
   const stage = g.l.GetStage();
 
-  // Delete the Womb trapdoor that spawns after Mom if the goal of the run is the Boss Rush
+  // If the goal of the race is the Boss Rush, delete the Womb trapdoor that spawns after Mom
   if (
     stage === 6 &&
     g.race.status === "in progress" &&
@@ -84,8 +84,8 @@ function shouldRemove() {
     return true;
   }
 
-  // Also close all trapdoors that leads to a normal floor if the goal of the run is Mother
-  // TODO: Close Womb trapdoor on Mother goal only before killing Alt Mom's Heart
+  // If the goal of the race is Mother, delete trapdoors that leads to normal floors 
+  // TODO: Delete Womb trapdoor on Mother goal only before killing Alt Mom's Heart
   if (
     !(
       (stage === 1 ||
