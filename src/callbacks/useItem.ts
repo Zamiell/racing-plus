@@ -31,7 +31,8 @@ function fortuneCookie(): void {
 function esauJr(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
-  // Used to give the pocket D6 only one frame after using Esau Jr.
+  // Because the player number changes on the exact frame as using Esau Jr.,
+  // we need a variable that takes the frame after
   g.run.usedEsauJrFrame = gameFrameCount + 1;
 }
 
