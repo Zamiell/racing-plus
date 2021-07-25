@@ -15,7 +15,10 @@
 
 import g from "../../../../../globals";
 import * as angels from "../angels";
-import { FAST_CLEAR_WHITELIST } from "../constants";
+import {
+  FAST_CLEAR_WHITELIST,
+  FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
+} from "../constants";
 import * as krampus from "../krampus";
 
 export function main(entity: Entity): void {
@@ -28,7 +31,7 @@ export function main(entity: Entity): void {
     return;
   }
 
-  if (!FAST_CLEAR_WHITELIST.includes(npc.Type)) {
+  if (isWhitelistedNPC(npc)) {
     return;
   }
 
@@ -58,6 +61,25 @@ export function main(entity: Entity): void {
   ) {
     angels.postEntityKill(npc);
   }
+}
+
+function isWhitelistedNPC(npc: EntityNPC) {
+  // The main fast-clear whitelist just includes NPC types
+  if (FAST_CLEAR_WHITELIST.includes(npc.Type)) {
+    return true;
+  }
+
+  // Some NPCs are only whitelisted that have specific variants
+  for (const [
+    entityType,
+    entityVariant,
+  ] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) {
+    if (entityType === npc.Type && entityVariant === npc.Variant) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function getFinalFrame(sprite: Sprite) {

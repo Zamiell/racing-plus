@@ -3,6 +3,14 @@ import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import g from "../globals";
 import { hasFlag } from "../misc";
 
+export function init(mod: Mod): void {
+  mod.AddCallback(
+    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    player,
+    EntityType.ENTITY_PLAYER, // 1
+  );
+}
+
 export function player(
   tookDamage: Entity,
   _damageAmount: float,

@@ -2011,6 +2011,7 @@ ____exports.default = (function()
         self.showPills = true
         self.showMaxFamiliars = true
         self.openHushDoor = true
+        self.removeFortuneCookieBanners = true
         self.fastTeleports = true
         self.teleportInvalidEntrance = true
         self.flyItemSprites = true
@@ -2243,6 +2244,7 @@ ____exports.default = (function()
         self.fastResetFrame = 0
         self.fastTravel = {state = FastTravelState.Disabled, framesPassed = 0, playerIndexTouchedTrapdoor = -1, upwards = false, blueWomb = false, theVoid = false, antibirthSecretExit = false, reseed = false}
         self.fireworksSpawned = 0
+        self.flippedAtLeastOnce = false
         self.freeDevilItem = {tookDamage = {}, granted = false}
         self.maxFamiliars = false
         self.pickingUpItem = {}
@@ -2396,7 +2398,7 @@ return ____exports
 ["characterMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"eve2", 26}, {"teve", 26}, {"samson2", 27}, {"tsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"tlaz", 29}, {"eden2", 30}, {"teden", 30}, {"lost2", 31}, {"tlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"jacob2", 37}, {"tjacob", 37}})
+local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"taintedisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"taintedmagdalene", 22}, {"taintedmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"taintedcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"taintedjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"taintedbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"taintedbb", 25}, {"eve2", 26}, {"teve", 26}, {"taintedeve", 26}, {"samson2", 27}, {"tsamson", 27}, {"taintedsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"taintedazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"taintedlazarus", 29}, {"tlaz", 29}, {"taintedlaz", 29}, {"eden2", 30}, {"teden", 30}, {"taintededen", 30}, {"lost2", 31}, {"tlost", 31}, {"taintedlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"taintedlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"taintedkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"taintedapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"taintedforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"taintedbethany", 36}, {"jacob2", 37}, {"tjacob", 37}, {"taintedjacob", 37}})
 ____exports.default = CHARACTER_MAP
 return ____exports
  end,
@@ -2409,7 +2411,7 @@ ____exports.CHARACTER_CHANGES = {{"judasAddBomb", {4, "021", "Add a bomb to Juda
 ____exports.BOSS_CHANGES = {{"fadeBosses", {4, "031", "Fade dead bosses", "Make bosses faded during their death animation so that you can see the dropped item."}}, {"stopDeathSlow", {4, "034", "Stop Death's slow attack", "Stop Death from performing the attack that reduces your speed by a factor of 2."}}, {"fastHaunt", {4, "032", "Fast The Haunt", "Some animations in The Haunt fight are sped up."}}, {"fastSatan", {4, "033", "Fast Satan", "All of the waiting during the Satan Fight is removed."}}}
 ____exports.ENEMY_CHANGES = {{"replaceCodWorms", {4, "041", "Replace Cod Worms", "Cod Worms are replaced with Para-Bites."}}, {"disableInvulnerability", {4, "042", "Disable invulnerability", "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning."}}, {"fastGhosts", {4, "043", "Fast ghosts", "Wizoobs and Red Ghosts have faster attack patterns."}}, {"fastHands", {4, "044", "Fast hands", "Mom's Hands and Mom's Dead Hands have faster attack patterns."}}, {"appearHands", {4, "045", "Reveal hands", "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation."}}, {"globinSoftlock", {4, "046", "Fix Globin softlocks", "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks."}}}
 ____exports.QUALITY_OF_LIFE_CHANGES_1 = {{nil, {1, "", "Start in the center", "On a new run, start in the center of the room (instead of at the bottom)."}}, {"speedUpFadeIn", {4, "051", "Speed-up new run fade-ins", "Speed-up the fade-in that occurs at the beginning of a new run."}}, {"easyFirstFloorItems", {4, "052", "Easier first floor items", "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes."}}, {"changeCreepColor", {4, "053", "Consistent creep color", "Change enemy red creep to green and change friendly green creep to red."}}, {"subvertTeleport", {4, "054", "Subvert disruptive teleports", "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!"}}, {"deleteVoidPortals", {4, "055", "Delete Void portals", "Automatically delete the Void portals that spawn after bosses."}}, {"showNumSacrifices", {4, "056", "Show the number of sacrifices", "Show the number of sacrifices in the top-left when in a Sacrifice Room."}}, {"showDreamCatcherItem", {4, "057", "Show the Dream Catcher item", "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor."}}, {"fadeVasculitisTears", {4, "058", "Fade Vasculitis tears", "Fade the tears that explode out of enemies when you have Vasculitis."}}, {"showPills", {4, "059", "Remember pills", "Hold the map button to see a list of identified pills for easy reference."}}}
-____exports.QUALITY_OF_LIFE_CHANGES_2 = {{"showMaxFamiliars", {4, "060", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}, {"openHushDoor", {4, "061", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}}
+____exports.QUALITY_OF_LIFE_CHANGES_2 = {{"showMaxFamiliars", {4, "060", "Show max familiars", "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64)."}}, {"openHushDoor", {4, "061", "Open the Hush door", "Automatically open the big door to Hush when you arrive on the Blue womb."}}, {"removeFortuneCookieBanners", {4, "062", "Remove Fortune Cookie banners", "Remove Fortune Cookie banners when don't get any pickups."}}}
 ____exports.GAMEPLAY_CHANGES = {{nil, {1, "", "Remove Mercurius", "It is incredibly powerful and not very skill-based. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Karma trinket", "Since all Donation Machines are removed, it has no effect. This cannot be disabled for seeding reasons."}}, {nil, {1, "", "Remove Amnesia and ??? pills", "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons."}}}
 ____exports.CUTSCENE_CHANGES = {{nil, {1, "", "Remove intro cutscene", "Remove the intro cutscene so that you go straight to the main menu upon launching the game."}}, {nil, {1, "", "Remove ending cutscenes", "Remove the cutscenes that play upon completing a run."}}, {nil, {1, "", "Remove boss cutscenes", "Remove the cutscenes that play upon entering a boss room."}}, {nil, {1, "", "Remove \"giantbook\" animations", "Remove all \"giantbook\" style animations (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop)."}}, {"fastTeleports", {4, "071", "Fast teleports", "Teleport animations are sped up by a factor of 2."}}, {nil, {1, "", "Remove pausing/unpausing animations", "Pause and unpause the game instantaneously."}}}
 ____exports.BUG_FIXES = {{"teleportInvalidEntrance", {4, "081", "Fix bad teleports", "Never teleport to a non-existent entrance."}}, {nil, {1, "", "Fix shop Restock Machines", "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla."}}, {nil, {1, "", "Fix Duality not giving both rooms", "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors."}}, {nil, {1, "", "Fix Black Market entrances", "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)"}}, {nil, {1, "", "Fix crawlspace exits", "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)"}}, {nil, {1, "", "Fix I AM ERROR exits", "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)"}}}
@@ -3002,6 +3004,11 @@ local g = ____globals.default
 local ____misc = require("misc")
 local hasFlag = ____misc.hasFlag
 local sacrificeRoom
+function ____exports.player(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
+    sacrificeRoom(nil, damageFlags)
+    freeDevilItem:entityTakeDmgPlayer(tookDamage, damageFlags)
+    fastTravelEntityTakeDmg:entityTakeDmgPlayer(tookDamage, damageFlags)
+end
 function sacrificeRoom(self, damageFlags)
     local roomType = g.r:GetType()
     if roomType ~= RoomType.ROOM_SACRIFICE then
@@ -3012,10 +3019,8 @@ function sacrificeRoom(self, damageFlags)
         ____obj[____index] = ____obj[____index] + 1
     end
 end
-function ____exports.player(self, tookDamage, _damageAmount, damageFlags, _damageSource, _damageCountdownFrames)
-    sacrificeRoom(nil, damageFlags)
-    freeDevilItem:entityTakeDmgPlayer(tookDamage, damageFlags)
-    fastTravelEntityTakeDmg:entityTakeDmgPlayer(tookDamage, damageFlags)
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, ____exports.player, EntityType.ENTITY_PLAYER)
 end
 return ____exports
  end,
@@ -5355,6 +5360,11 @@ end
 function ____exports.playerCreepGreen(self, effect)
     changeCreepColor:postEffectInitPlayerCreepGreen(effect)
 end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, ____exports.poof01, EffectVariant.POOF01)
+    mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, ____exports.creepRed, EffectVariant.CREEP_RED)
+    mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, ____exports.playerCreepGreen, EffectVariant.PLAYER_CREEP_GREEN)
+end
 return ____exports
  end,
 ["features.optional.major.fastTravel.state"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -5808,7 +5818,7 @@ function getStageType(self, stage)
     return StageType.STAGETYPE_ORIGINAL
 end
 function getStageTypeAntibirth(self, stage)
-    if stage == 7 then
+    if (stage == 7) or (stage == 8) then
         return StageType.STAGETYPE_REPENTANCE
     end
     local stageSeed = g.seeds:GetStageSeed(stage + 1)
@@ -6124,6 +6134,9 @@ local fastTravelPostEffectUpdate = require("features.optional.major.fastTravel.c
 function ____exports.heavenLightDoor(self, effect)
     fastTravelPostEffectUpdate:heavenLightDoor(effect)
 end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, ____exports.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
+end
 return ____exports
  end,
 ["features.optional.bosses.fadeBosses"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -6237,7 +6250,8 @@ return ____exports
  end,
 ["features.optional.major.fastClear.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
-____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_CHUB, EntityType.ENTITY_HOPPER, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_STAIN, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_ROTGUT, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
+____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_CHUB, EntityType.ENTITY_HOPPER, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_STAIN, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
+____exports.FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = {{EntityType.ENTITY_MOTHER, 0}, {EntityType.ENTITY_ROTGUT, 0}}
 return ____exports
  end,
 ["features.optional.major.fastClear.krampus"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -6327,8 +6341,24 @@ local g = ____globals.default
 local angels = require("features.optional.major.fastClear.angels")
 local ____constants = require("features.optional.major.fastClear.constants")
 local FAST_CLEAR_WHITELIST = ____constants.FAST_CLEAR_WHITELIST
+local FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = ____constants.FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT
 local krampus = require("features.optional.major.fastClear.krampus")
-local getFinalFrame
+local isWhitelistedNPC, getFinalFrame
+function isWhitelistedNPC(self, npc)
+    if __TS__ArrayIncludes(FAST_CLEAR_WHITELIST, npc.Type) then
+        return true
+    end
+    for ____, ____value in ipairs(FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) do
+        local entityType
+        entityType = ____value[1]
+        local entityVariant
+        entityVariant = ____value[2]
+        if (entityType == npc.Type) and (entityVariant == npc.Variant) then
+            return true
+        end
+    end
+    return false
+end
 function getFinalFrame(self, sprite)
     local currentFrame = sprite:GetFrame()
     sprite:SetLastFrame()
@@ -6344,7 +6374,7 @@ function ____exports.main(self, entity)
     if npc == nil then
         return
     end
-    if not __TS__ArrayIncludes(FAST_CLEAR_WHITELIST, npc.Type) then
+    if isWhitelistedNPC(nil, npc) then
         return
     end
     npc.CanShutDoors = false
@@ -6393,6 +6423,9 @@ local ____exports = {}
 local pc = require("features.optional.graphics.paschalCandle")
 function ____exports.paschalCandle(self, familiar)
     pc:postFamiliarInit(familiar)
+end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, ____exports.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
 end
 return ____exports
  end,
@@ -6613,7 +6646,7 @@ local getPlayers = ____misc.getPlayers
 local giveItemAndRemoveFromPools = ____misc.giveItemAndRemoveFromPools
 local ____GlobalsRun = require("types.GlobalsRun")
 local getPlayerLuaTableIndex = ____GlobalsRun.getPlayerLuaTableIndex
-local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, shouldGetActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
+local TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, shouldGetPocketActiveD6, givePocketActiveD6, giveActiveD6, checkGenesisRoom
 function shouldGetPocketActiveD6(self, player)
     local character = player:GetPlayerType()
     local randomBaby = Isaac.GetPlayerTypeByName("Random Baby")
@@ -6622,9 +6655,9 @@ function shouldGetPocketActiveD6(self, player)
     end
     return ((character >= PlayerType.PLAYER_ISAAC) and (character <= PlayerType.PLAYER_BETHANY)) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES, character)
 end
-function shouldGetActiveD6(self, player)
+function ____exports.shouldGetActiveD6(self, player)
     local character = player:GetPlayerType()
-    return (character == PlayerType.PLAYER_JACOB) or __TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character)
+    return (__TS__ArrayIncludes(TAINTED_CHARACTERS_WITH_POCKET_ACTIVES, character) or (character == PlayerType.PLAYER_JACOB)) or (character == PlayerType.PLAYER_ESAU)
 end
 function givePocketActiveD6(self, player, charge)
     player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_D6, ActiveSlot.SLOT_POCKET)
@@ -6668,7 +6701,7 @@ function ____exports.postGameStarted(self)
     ) do
         if shouldGetPocketActiveD6(nil, player) then
             givePocketActiveD6(nil, player)
-        elseif shouldGetActiveD6(nil, player) then
+        elseif ____exports.shouldGetActiveD6(nil, player) then
             giveActiveD6(nil, player)
         end
     end
@@ -6895,6 +6928,8 @@ local giveItemAndRemoveFromPools = ____misc.giveItemAndRemoveFromPools
 local playingOnSetSeed = ____misc.playingOnSetSeed
 local ____enums = require("types.enums")
 local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
+local ____startWithD6 = require("features.optional.major.startWithD6")
+local shouldGetActiveD6 = ____startWithD6.shouldGetActiveD6
 local ____constants = require("features.race.constants")
 local COLLECTIBLE_13_LUCK_SERVER_ID = ____constants.COLLECTIBLE_13_LUCK_SERVER_ID
 local COLLECTIBLE_15_LUCK_SERVER_ID = ____constants.COLLECTIBLE_15_LUCK_SERVER_ID
@@ -7024,6 +7059,7 @@ function unseededRankedSolo(self, player)
     end
 end
 function seeded(self, player)
+    local character = player:GetPlayerType()
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_COMPASS) then
         giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_COMPASS)
     end
@@ -7035,15 +7071,25 @@ function seeded(self, player)
         end
         giveItemAndRemoveFromPools(nil, player, itemID)
     end
+    if character == PlayerType.PLAYER_EDEN_B then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+    end
+    if (character == PlayerType.PLAYER_ISAAC_B) and (#g.race.startingItems >= 2) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+    end
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_SOL)
     g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
 end
 function ____exports.diversity(self, player)
+    local character = player:GetPlayerType()
+    local trinket1 = player:GetTrinket(0)
     if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
         return
     end
-    local trinket1 = player:GetTrinket(0)
     tempMoreOptions:give(player)
+    if shouldGetActiveD6(nil, player) and (character ~= PlayerType.PLAYER_ESAU) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_SCHOOLBAG)
+    end
     local startingItems = g.race.startingItems
     do
         local i = 0
@@ -7073,6 +7119,9 @@ function ____exports.diversity(self, player)
             end
             i = i + 1
         end
+    end
+    if (character == PlayerType.PLAYER_EDEN_B) or (character == PlayerType.PLAYER_ISAAC_B) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
     end
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
     g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
@@ -8144,7 +8193,11 @@ function shouldIgnore(self, gridEntity)
 end
 function shouldRemove(self)
     local stage = g.l:GetStage()
+    local roomType = g.r:GetType()
     if (((stage == 6) and (g.race.status == "in progress")) and (g.race.myStatus == "racing")) and (g.race.goal == "Boss Rush") then
+        return true
+    end
+    if ((not ((((((stage == 1) or (stage == 3)) or (stage == 5)) or (stage == 6)) or (stage == 7)) and isAntibirthStage(nil))) and (g.race.goal == "Mother")) and (roomType == RoomType.ROOM_BOSS) then
         return true
     end
     return false
@@ -8713,6 +8766,7 @@ local ____log = require("log")
 local log = ____log.default
 local ____misc = require("misc")
 local getPlayers = ____misc.getPlayers
+local isAntibirthStage = ____misc.isAntibirthStage
 local saveDat = require("saveDat")
 local ____GlobalsRunLevel = require("types.GlobalsRunLevel")
 local GlobalsRunLevel = ____GlobalsRunLevel.default
@@ -8729,7 +8783,7 @@ function ____exports.newLevel(self)
     g.run.level = __TS__New(GlobalsRunLevel, stage, stageType)
     saveDat:save()
     if shouldShowLevelText(nil) then
-        showLevelText(nil)
+        showLevelText(nil, stage)
     end
     racePostNewLevel:main()
     openHushDoor:postNewLevel()
@@ -8739,8 +8793,8 @@ end
 function shouldShowLevelText(self)
     return (not g.raceVars.finished) and (not oneOrMorePlayersIsRandomBaby(nil))
 end
-function showLevelText(self)
-    if VanillaStreakText then
+function showLevelText(self, stage)
+    if VanillaStreakText and ((stage ~= 1) or isAntibirthStage(nil)) then
         g.l:ShowName(false)
     elseif not goingToRaceRoom(nil) then
         local text = getLevelText(nil)
@@ -9189,6 +9243,15 @@ function ____exports.momsDeadHand(self, npc)
     appearHands:postNPCUpdate(npc)
     fastHands:postNPCUpdate(npc)
 end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.globin, EntityType.ENTITY_GLOBIN)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.death, EntityType.ENTITY_DEATH)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.momsHand, EntityType.ENTITY_MOMS_HAND)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.wizoob, EntityType.ENTITY_WIZOOB)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.haunt, EntityType.ENTITY_THE_HAUNT)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.redGhost, EntityType.ENTITY_RED_GHOST)
+    mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, ____exports.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+end
 return ____exports
  end,
 ["features.optional.graphics.flyItemSprites"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -9507,6 +9570,10 @@ function ____exports.collectible(self, pickup)
 end
 function ____exports.bigChest(self, pickup)
     fastTravelPostPickupInit:bigChest(pickup)
+end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, ____exports.collectible, PickupVariant.PICKUP_COLLECTIBLE)
+    mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, ____exports.bigChest, PickupVariant.PICKUP_BIGCHEST)
 end
 return ____exports
  end,
@@ -10528,6 +10595,9 @@ local fadeVasculitisTears = require("features.optional.quality.fadeVasculitisTea
 function ____exports.blood(self, tear)
     fadeVasculitisTears:postTearUpdateBloodParticle(tear)
 end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, ____exports.blood, TearVariant.BLOOD)
+end
 return ____exports
  end,
 ["features.race.callbacks.postItemPickup"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -10558,6 +10628,9 @@ local queueEmpty, queueNotEmpty, preItemPickup, postItemPickup
 function queueEmpty(self, player)
     local index = getPlayerLuaTableIndex(nil, player)
     local pickingUpItemDescription = g.run.pickingUpItem[index]
+    if pickingUpItemDescription == nil then
+        error("Failed to get the item description for player: " .. index)
+    end
     if pickingUpItemDescription.id ~= CollectibleType.COLLECTIBLE_NULL then
         postItemPickup(nil, player, pickingUpItemDescription)
         pickingUpItemDescription.id = CollectibleType.COLLECTIBLE_NULL
@@ -10747,10 +10820,50 @@ function ____exports.main(self)
 end
 return ____exports
  end,
+["features.race.openAntibirthDoor"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____misc = require("misc")
+local getAllDoors = ____misc.getAllDoors
+function ____exports.default(self)
+    if ((g.race.status ~= "in progress") or (g.race.myStatus ~= "racing")) or (g.race.goal ~= "Mother") then
+        return
+    end
+    local player = Isaac.GetPlayer()
+    local roomType = g.r:GetType()
+    local isRoomCleared = g.r:IsClear()
+    if (roomType == RoomType.ROOM_BOSS) and isRoomCleared then
+        for ____, door in ipairs(
+            getAllDoors(nil)
+        ) do
+            if (door ~= nil) and door:IsLocked() then
+                door:TryUnlock(player, true)
+            end
+        end
+    end
+end
+return ____exports
+ end,
+["features.race.callbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____openAntibirthDoor = require("features.race.openAntibirthDoor")
+local openAntibirthDoor = ____openAntibirthDoor.default
+function ____exports.main(self)
+    if not g.config.clientCommunication then
+        return
+    end
+    openAntibirthDoor(nil)
+end
+return ____exports
+ end,
 ["customCallbacks.postRoomClear"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local fastClearPostRoomClear = require("features.optional.major.fastClear.callbacks.postRoomClear")
 local fastTravelPostRoomClear = require("features.optional.major.fastTravel.callbacks.postRoomClear")
+local racePostRoomClear = require("features.race.callbacks.postRoomClear")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____log = require("log")
@@ -10764,6 +10877,7 @@ function roomClear(self)
     )
     fastClearPostRoomClear:main()
     fastTravelPostRoomClear:main()
+    racePostRoomClear:main()
 end
 function ____exports.postUpdate(self)
     local gameFrameCount = g.g:GetFrameCount()
@@ -10800,14 +10914,19 @@ function ____exports.postUpdate(self)
     ) do
         local index = getPlayerLuaTableIndex(nil, player)
         local transformations = g.run.transformations[index]
+        if transformations == nil then
+            error("Failed to get the transformation array for player index: " .. index)
+        end
         do
             local i = 0
             while i < PlayerForm.NUM_PLAYER_FORMS do
                 local hasForm = player:HasPlayerForm(i)
                 local storedForm = transformations[i + 1]
-                if hasForm and (not storedForm) then
-                    transformations[i + 1] = true
-                    postTransformation(nil, i)
+                if storedForm == nil then
+                    if hasForm and (not storedForm) then
+                        transformations[i + 1] = true
+                        postTransformation(nil, i)
+                    end
                 end
                 i = i + 1
             end
@@ -11106,6 +11225,10 @@ end
 function ____exports.momsDeadHand(self, npc)
     return appearHands:preNPCUpdate(npc)
 end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, ____exports.momsHand, EntityType.ENTITY_MOMS_HAND)
+    mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, ____exports.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+end
 return ____exports
  end,
 ["features.optional.quality.easyFirstFloorItems"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -11233,6 +11356,61 @@ function showStreakText(self, card)
 end
 function ____exports.main(self, card)
     showStreakText(nil, card)
+end
+return ____exports
+ end,
+["customCallbacks.postFlip"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____GlobalsRun = require("types.GlobalsRun")
+local initPlayerVariables = ____GlobalsRun.initPlayerVariables
+local postFirstFlip, postFlip
+function postFirstFlip(self)
+    local player = Isaac.GetPlayer()
+    initPlayerVariables(nil, player, g.run)
+end
+function postFlip(self)
+end
+function ____exports.useItem(self)
+    if not g.run.flippedAtLeastOnce then
+        g.run.flippedAtLeastOnce = true
+        postFirstFlip(nil)
+    end
+    postFlip(nil)
+end
+return ____exports
+ end,
+["features.optional.quality.removeFortuneCookieBanners"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.useItem(self)
+    local HUD = g.g:GetHUD()
+    if not g.config.removeFortuneCookieBanners then
+        return
+    end
+    if VanillaStreakText then
+        return
+    end
+    HUD:ShowItemText("")
+end
+return ____exports
+ end,
+["callbacks.useItem"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local postFlip = require("customCallbacks.postFlip")
+local removeFortuneCookieBanners = require("features.optional.quality.removeFortuneCookieBanners")
+local fortuneCookie, flip
+function fortuneCookie(self)
+    removeFortuneCookieBanners:useItem()
+end
+function flip(self)
+    postFlip:useItem()
+end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_USE_ITEM, fortuneCookie, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
+    mod:AddCallback(ModCallbacks.MC_USE_ITEM, flip, CollectibleType.COLLECTIBLE_FLIP)
 end
 return ____exports
  end,
@@ -11701,6 +11879,7 @@ local preGameExit = require("callbacks.preGameExit")
 local preNPCUpdate = require("callbacks.preNPCUpdate")
 local preRoomEntitySpawn = require("callbacks.preRoomEntitySpawn")
 local useCard = require("callbacks.useCard")
+local useItem = require("callbacks.useItem")
 local usePill = require("callbacks.usePill")
 local ____constants = require("constants")
 local VERSION = ____constants.VERSION
@@ -11708,7 +11887,7 @@ local ____log = require("log")
 local log = ____log.default
 local modConfigMenu = require("modConfigMenu")
 local saveDat = require("saveDat")
-local main, welcomeBanner, registerCallbacks, registerMiscCallbacks, registerNPCUpdateCallbacks, registerPostFamiliarInitCallbacks, registerEntityTakeDmgCallbacks, registerPostPickupInitCallbacks, registerPostTearUpdateCallbacks, registerPostEffectInitCallbacks, registerPostEffectUpdateCallbacks, registerPreNPCUpdateCallbacks
+local main, welcomeBanner, registerCallbacks, registerMainCallbacks
 function main(self)
     local racingPlus = RegisterMod("Racing+", 1)
     welcomeBanner(nil)
@@ -11729,73 +11908,40 @@ function welcomeBanner(self)
     log(nil, ("| " .. welcomeText) .. " |")
     log(nil, welcomeTextBorder)
 end
-function registerCallbacks(self, racingPlus)
-    registerMiscCallbacks(nil, racingPlus)
-    registerNPCUpdateCallbacks(nil, racingPlus)
-    registerPostFamiliarInitCallbacks(nil, racingPlus)
-    registerEntityTakeDmgCallbacks(nil, racingPlus)
-    registerPostPickupInitCallbacks(nil, racingPlus)
-    registerPostTearUpdateCallbacks(nil, racingPlus)
-    registerPostEffectInitCallbacks(nil, racingPlus)
-    registerPostEffectUpdateCallbacks(nil, racingPlus)
-    registerPreNPCUpdateCallbacks(nil, racingPlus)
+function registerCallbacks(self, mod)
+    registerMainCallbacks(nil, mod)
+    postNPCUpdate:init(mod)
+    useItem:init(mod)
+    postFamiliarInit:init(mod)
+    entityTakeDmg:init(mod)
+    postPickupInit:init(mod)
+    postTearUpdate:init(mod)
+    postEffectInit:init(mod)
+    postEffectUpdate:init(mod)
+    preNPCUpdate:init(mod)
 end
-function registerMiscCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
-    racingPlus:AddCallback(ModCallbacks.MC_USE_CARD, useCard.main)
-    racingPlus:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main)
-    racingPlus:AddCallback(ModCallbacks.MC_USE_PILL, usePill.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
-    racingPlus:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
-    racingPlus:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
-    racingPlus:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
-    racingPlus:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
-    racingPlus:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
-    racingPlus:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, preRoomEntitySpawn.main)
-end
-function registerNPCUpdateCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.globin, EntityType.ENTITY_GLOBIN)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.death, EntityType.ENTITY_DEATH)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.wizoob, EntityType.ENTITY_WIZOOB)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.haunt, EntityType.ENTITY_THE_HAUNT)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.redGhost, EntityType.ENTITY_RED_GHOST)
-    racingPlus:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
-end
-function registerPostFamiliarInitCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postFamiliarInit.paschalCandle, FamiliarVariant.PASCHAL_CANDLE)
-end
-function registerEntityTakeDmgCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, entityTakeDmg.player, EntityType.ENTITY_PLAYER)
-end
-function registerPostPickupInitCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.collectible, PickupVariant.PICKUP_COLLECTIBLE)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.bigChest, PickupVariant.PICKUP_BIGCHEST)
-end
-function registerPostTearUpdateCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postTearUpdate.blood, TearVariant.BLOOD)
-end
-function registerPostEffectInitCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.poof01, EffectVariant.POOF01)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.creepRed, EffectVariant.CREEP_RED)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit.playerCreepGreen, EffectVariant.PLAYER_CREEP_GREEN)
-end
-function registerPostEffectUpdateCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate.heavenLightDoor, EffectVariant.HEAVEN_LIGHT_DOOR)
-end
-function registerPreNPCUpdateCallbacks(self, racingPlus)
-    racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsHand, EntityType.ENTITY_MOMS_HAND)
-    racingPlus:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preNPCUpdate.momsDeadHand, EntityType.ENTITY_MOMS_DEAD_HAND)
+function registerMainCallbacks(self, mod)
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main)
+    mod:AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main)
+    mod:AddCallback(ModCallbacks.MC_USE_CARD, useCard.main)
+    mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main)
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main)
+    mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill.main)
+    mod:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main)
+    mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main)
+    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main)
+    mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main)
+    mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main)
+    mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main)
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main)
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main)
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main)
+    mod:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main)
+    mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main)
+    mod:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, preRoomEntitySpawn.main)
 end
 main(nil)
 return ____exports

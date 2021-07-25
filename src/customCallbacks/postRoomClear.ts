@@ -1,5 +1,6 @@
 import * as fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
 import * as fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
+import * as racePostRoomClear from "../features/race/callbacks/postRoomClear";
 import g from "../globals";
 import log from "../log";
 
@@ -20,4 +21,5 @@ function roomClear() {
 
   fastClearPostRoomClear.main();
   fastTravelPostRoomClear.main();
+  racePostRoomClear.main();
 }

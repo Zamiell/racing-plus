@@ -49,7 +49,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_GIDEON, // 907
   EntityType.ENTITY_BABY_PLUM, // 908
   EntityType.ENTITY_SCOURGE, // 909
-  EntityType.ENTITY_ROTGUT, // 911
   EntityType.ENTITY_MOTHER, // 912
   EntityType.ENTITY_MIN_MIN, // 913
   EntityType.ENTITY_CLOG, // 914
@@ -61,4 +60,9 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_CLUTCH, // 921
   EntityType.ENTITY_DOGMA, // 950
   EntityType.ENTITY_BEAST, // 951
+];
+
+export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
+  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_1],
+  [EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_1_HEAD],
 ];

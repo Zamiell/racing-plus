@@ -20,6 +20,9 @@ export function postUpdate(): void {
 function queueEmpty(player: EntityPlayer) {
   const index = getPlayerLuaTableIndex(player);
   const pickingUpItemDescription = g.run.pickingUpItem.get(index);
+  if (pickingUpItemDescription === undefined) {
+    error(`Failed to get the item description for player: ${index}`);
+  }
 
   // Check to see if we were picking up something on the previous frame
   if (pickingUpItemDescription.id !== CollectibleType.COLLECTIBLE_NULL) {

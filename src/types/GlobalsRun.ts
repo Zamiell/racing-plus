@@ -86,6 +86,8 @@ export default class GlobalsRun {
   };
 
   fireworksSpawned = 0;
+  /** If we have used Tainted Lazarus' Flip item yet on this run. */
+  flippedAtLeastOnce = false;
 
   freeDevilItem = {
     tookDamage: new LuaTable<PlayerLuaTableIndex, boolean>(),
