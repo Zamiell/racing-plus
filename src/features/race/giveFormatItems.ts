@@ -235,6 +235,8 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
     // (we could manually replace these items, but it is simpler to just have one item on Eden
     // instead of two)
     character !== PlayerType.PLAYER_EDEN &&
-    character !== PlayerType.PLAYER_EDEN_B
+    character !== PlayerType.PLAYER_EDEN_B &&
+    // Esau isn't granted any items in diversity, no need to give him schoolbag
+    character !== PlayerType.PLAYER_ESAU
   );
 }
