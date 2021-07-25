@@ -135,6 +135,7 @@ export default class GlobalsRun {
 
   switchForgotten = false;
   transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
+  usedEsauJrFrame = 0;
   victoryLaps = 0;
 
   // Initialize variables that are tracked per player
