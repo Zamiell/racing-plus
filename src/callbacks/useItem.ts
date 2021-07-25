@@ -1,6 +1,5 @@
+import * as postFlip from "../customCallbacks/postFlip";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
-import g from "../globals";
-import { initPlayerVariables } from "../types/GlobalsRun";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -23,12 +22,5 @@ function fortuneCookie(): void {
 
 // CollectibleType.COLLECTIBLE_FLIP (711)
 function flip(): void {
-  const player = Isaac.GetPlayer();
-
-  // The first time that Tainted Lazarus switches to Dead Tainted Lazarus,
-  // we need to initialize all of the relevant player variables in the globals object
-  if (!g.run.flippedAtLeastOnce) {
-    g.run.flippedAtLeastOnce = true;
-    initPlayerVariables(player, g.run);
-  }
+  postFlip.useItem();
 }

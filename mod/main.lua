@@ -11359,6 +11359,28 @@ function ____exports.main(self, card)
 end
 return ____exports
  end,
+["customCallbacks.postFlip"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____GlobalsRun = require("types.GlobalsRun")
+local initPlayerVariables = ____GlobalsRun.initPlayerVariables
+local postFirstFlip, postFlip
+function postFirstFlip(self)
+    local player = Isaac.GetPlayer()
+    initPlayerVariables(nil, player, g.run)
+end
+function postFlip(self)
+end
+function ____exports.useItem(self)
+    if not g.run.flippedAtLeastOnce then
+        g.run.flippedAtLeastOnce = true
+        postFirstFlip(nil)
+    end
+    postFlip(nil)
+end
+return ____exports
+ end,
 ["features.optional.quality.removeFortuneCookieBanners"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
@@ -11377,21 +11399,14 @@ return ____exports
  end,
 ["callbacks.useItem"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local postFlip = require("customCallbacks.postFlip")
 local removeFortuneCookieBanners = require("features.optional.quality.removeFortuneCookieBanners")
-local ____globals = require("globals")
-local g = ____globals.default
-local ____GlobalsRun = require("types.GlobalsRun")
-local initPlayerVariables = ____GlobalsRun.initPlayerVariables
 local fortuneCookie, flip
 function fortuneCookie(self)
     removeFortuneCookieBanners:useItem()
 end
 function flip(self)
-    local player = Isaac.GetPlayer()
-    if not g.run.flippedAtLeastOnce then
-        g.run.flippedAtLeastOnce = true
-        initPlayerVariables(nil, player, g.run)
-    end
+    postFlip:useItem()
 end
 function ____exports.init(self, mod)
     mod:AddCallback(ModCallbacks.MC_USE_ITEM, fortuneCookie, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
