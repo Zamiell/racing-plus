@@ -31,7 +31,7 @@ export function main(entity: Entity): void {
     return;
   }
 
-  if (isWhitelistedNPC(npc)) {
+  if (!isWhitelistedNPC(npc)) {
     return;
   }
 

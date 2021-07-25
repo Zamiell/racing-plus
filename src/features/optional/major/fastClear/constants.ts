@@ -64,5 +64,7 @@ export const FAST_CLEAR_WHITELIST = [
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
   [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_1],
+  [EntityType.ENTITY_MOTHER, MotherVariant.BALL],
   [EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_1_HEAD],
+  [EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_2_MAGGOT],
 ];
