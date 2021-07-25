@@ -2482,7 +2482,7 @@ ____exports.SPRITE_CHALLENGE_OFFSET = Vector(-3, 0)
 ____exports.SPRITE_DIFFICULTY_OFFSET = Vector(13, 0)
 ____exports.SPRITE_BETHANY_OFFSET = Vector(0, 8)
 ____exports.SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6)
-____exports.VERSION = "0.58.18"
+____exports.VERSION = "0.58.19"
 return ____exports
  end,
 ["debugFunction"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
