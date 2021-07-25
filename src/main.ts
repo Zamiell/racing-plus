@@ -26,6 +26,7 @@ import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as useCard from "./callbacks/useCard";
+import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
 import log from "./log";
@@ -61,6 +62,7 @@ function registerCallbacks(racingPlus: Mod) {
 
   // Register callbacks that take a 3rd argument for a specific entity
   registerNPCUpdateCallbacks(racingPlus); // 0
+  registerUseItemCallbacks(racingPlus); // 3
   registerPostFamiliarInitCallbacks(racingPlus); // 7
   registerEntityTakeDmgCallbacks(racingPlus); // 11
   registerPostPickupInitCallbacks(racingPlus); // 34
@@ -142,6 +144,15 @@ function registerNPCUpdateCallbacks(racingPlus: Mod) {
     ModCallbacks.MC_NPC_UPDATE,
     postNPCUpdate.momsDeadHand,
     EntityType.ENTITY_MOMS_DEAD_HAND, // 287
+  );
+}
+
+// 3
+function registerUseItemCallbacks(racingPlus: Mod) {
+  racingPlus.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    useItem.fortuneCookie,
+    CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
   );
 }
 
