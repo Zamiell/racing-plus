@@ -1,4 +1,4 @@
-import   * as entityTakeDmg from "./callbacks/entityTakeDmg";
+import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
