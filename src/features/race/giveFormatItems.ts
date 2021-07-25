@@ -239,6 +239,6 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden
     // instead of two)
-    (character === PlayerType.PLAYER_EDEN || character === PlayerType.TAINTED_EDEN)
+    (character === PlayerType.PLAYER_EDEN || character === PlayerType.PLAYER_EDEN_B)
   );
 }
