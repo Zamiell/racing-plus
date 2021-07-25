@@ -14,6 +14,7 @@
 // new function ourselves
 
 import g from "../../../../../globals";
+import log from "../../../../../log";
 import * as angels from "../angels";
 import {
   FAST_CLEAR_WHITELIST,
@@ -36,6 +37,9 @@ export function main(entity: Entity): void {
   }
 
   // This is the magic that allows Fast-Clear to work
+  log(
+    `Applying Fast-Clear to entity: ${npc.Type}.${npc.Variant}.${npc.SubType}`,
+  );
   npc.CanShutDoors = false;
 
   // We are not currently playing the death animation
