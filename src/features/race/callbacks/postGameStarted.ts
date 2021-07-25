@@ -1,7 +1,7 @@
 import g from "../../../globals";
 import log from "../../../log";
 import { playingOnSetSeed } from "../../../misc";
-import raceGiveFormatItems from "../giveFormatItems";
+import giveFormatItems from "../giveFormatItems";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
@@ -27,8 +27,7 @@ export function main(): void {
   }
   socket.send("runMatchesRuleset");
 
-  raceGiveFormatItems(player);
-
+  giveFormatItems(player);
   raceRoom.initSprites();
   startingRoom.initSprites();
   topSprite.postGameStarted();
