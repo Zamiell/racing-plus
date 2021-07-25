@@ -27,8 +27,8 @@ jobs:
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Test to see if the project compiles
-        run: ./build.sh
+      - name: Test to see if the project compiles and that the compiled output matches the source code
+        run: ./test-build.sh
 
       - name: Perform automated checks
         run: ./lint.sh

@@ -271,6 +271,9 @@ Post-flip actions:
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - The controls graphic in the start room is changed to be speedrunning-themed.
+- The graphics for fortunes and custom seeds are set to 15% opacity.
+
+> Why? So that gameplay is not blocked when you use Rules card.
 
 ### 10) Sound Fixes
 
