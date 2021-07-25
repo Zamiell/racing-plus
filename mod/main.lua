@@ -2223,6 +2223,12 @@ function ____exports.initPlayerVariables(self, player, run)
     log(nil, "Initialized variables for player: " .. index)
 end
 function ____exports.getPlayerLuaTableIndex(self, player)
+    local character = player:GetPlayerType()
+    if (character == PlayerType.PLAYER_LAZARUS_B) or (character == PlayerType.PLAYER_LAZARUS2_B) then
+        return tostring(
+            GetPtrHash(player)
+        )
+    end
     return tostring(
         player:GetCollectibleRNG(1):GetSeed()
     )
@@ -6715,6 +6721,9 @@ function ____exports.postPlayerChange(self, player)
         local charge = g.run.pocketActiveD6Charge[index]
         givePocketActiveD6(nil, player, charge)
         log(nil, "Awarded another pocket D6 (due to character change).")
+    elseif ____exports.shouldGetActiveD6(nil, player) then
+        giveActiveD6(nil, player)
+        log(nil, "Awarded another active D6 (due to character change).")
     end
 end
 return ____exports
@@ -6917,49 +6926,120 @@ function ____exports.give(self, player)
 end
 return ____exports
  end,
-["features.race.callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+["features.race.giveFormatItems"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local ____globals = require("globals")
 local g = ____globals.default
-local ____log = require("log")
-local log = ____log.default
 local ____misc = require("misc")
 local giveItemAndRemoveFromPools = ____misc.giveItemAndRemoveFromPools
-local playingOnSetSeed = ____misc.playingOnSetSeed
 local ____enums = require("types.enums")
 local CollectibleTypeCustom = ____enums.CollectibleTypeCustom
-local ____startWithD6 = require("features.optional.major.startWithD6")
-local shouldGetActiveD6 = ____startWithD6.shouldGetActiveD6
+local startWithD6 = require("features.optional.major.startWithD6")
 local ____constants = require("features.race.constants")
 local COLLECTIBLE_13_LUCK_SERVER_ID = ____constants.COLLECTIBLE_13_LUCK_SERVER_ID
 local COLLECTIBLE_15_LUCK_SERVER_ID = ____constants.COLLECTIBLE_15_LUCK_SERVER_ID
-local placeLeft = require("features.race.placeLeft")
-local raceRoom = require("features.race.raceRoom")
-local socket = require("features.race.socket")
-local socketFunctions = require("features.race.socketFunctions")
-local sprites = require("features.race.sprites")
-local startingRoom = require("features.race.startingRoom")
 local tempMoreOptions = require("features.race.tempMoreOptions")
-local topSprite = require("features.race.topSprite")
-local resetRaceVars, giveFormatItems, validateRace, validateInRace, validateChallenge, validateDifficulty, validateSeed, validateCharacter, unseeded, unseededRankedSolo, seeded
-function resetRaceVars(self)
-    if g.raceVars.finished then
-        socketFunctions:reset()
+local unseeded, unseededRankedSolo, seeded, diversity
+function unseeded(self, player)
+    local character = player:GetPlayerType()
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
+        return
     end
-    g.raceVars.finished = false
-    g.raceVars.finishedTime = 0
+    if character ~= PlayerType.PLAYER_LAZARUS2_B then
+        tempMoreOptions:give(player)
+    end
 end
-function giveFormatItems(self, player)
-    local ____switch8 = g.race.format
-    if ____switch8 == "unseeded" then
-        goto ____switch8_case_0
-    elseif ____switch8 == "seeded" then
-        goto ____switch8_case_1
-    elseif ____switch8 == "diversity" then
-        goto ____switch8_case_2
+function unseededRankedSolo(self, player)
+    for ____, itemID in ipairs(g.race.startingItems) do
+        giveItemAndRemoveFromPools(nil, player, itemID)
     end
-    goto ____switch8_case_default
-    ::____switch8_case_0::
+end
+function seeded(self, player)
+    local character = player:GetPlayerType()
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_COMPASS) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_COMPASS)
+    end
+    for ____, itemID in ipairs(g.race.startingItems) do
+        if itemID == COLLECTIBLE_13_LUCK_SERVER_ID then
+            itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK
+        elseif itemID == COLLECTIBLE_15_LUCK_SERVER_ID then
+            itemID = CollectibleTypeCustom.COLLECTIBLE_15_LUCK
+        end
+        giveItemAndRemoveFromPools(nil, player, itemID)
+    end
+    if character == PlayerType.PLAYER_EDEN_B then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+    end
+    if (character == PlayerType.PLAYER_ISAAC_B) and (#g.race.startingItems >= 2) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+    end
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_SOL)
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
+end
+function diversity(self, player)
+    local character = player:GetPlayerType()
+    local trinket1 = player:GetTrinket(0)
+    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
+        return
+    end
+    if character ~= PlayerType.PLAYER_LAZARUS2_B then
+        tempMoreOptions:give(player)
+    end
+    if startWithD6:shouldGetActiveD6(player) and (character ~= PlayerType.PLAYER_ESAU) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_SCHOOLBAG)
+    end
+    local startingItems = g.race.startingItems
+    do
+        local i = 0
+        while i < #startingItems do
+            local itemOrTrinketID = startingItems[i + 1]
+            if i == 0 then
+                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
+            elseif ((i == 1) or (i == 2)) or (i == 3) then
+                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
+                if itemOrTrinketID == CollectibleType.COLLECTIBLE_INCUBUS then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
+                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_SACRED_HEART then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
+                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT then
+                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
+                end
+            elseif i == 4 then
+                if trinket1 ~= 0 then
+                    player:TryRemoveTrinket(trinket1)
+                end
+                player:AddTrinket(itemOrTrinketID)
+                player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false, false, false, false)
+                if trinket1 ~= 0 then
+                    player:AddTrinket(trinket1)
+                end
+                g.itemPool:RemoveTrinket(itemOrTrinketID)
+            end
+            i = i + 1
+        end
+    end
+    if (character == PlayerType.PLAYER_EDEN_B) or (character == PlayerType.PLAYER_ISAAC_B) then
+        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+    end
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D100)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS)
+    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR)
+    g.itemPool:RemoveTrinket(TrinketType.TRINKET_DICE_BAG)
+end
+function ____exports.default(self, player)
+    local ____switch3 = g.race.format
+    if ____switch3 == "unseeded" then
+        goto ____switch3_case_0
+    elseif ____switch3 == "seeded" then
+        goto ____switch3_case_1
+    elseif ____switch3 == "diversity" then
+        goto ____switch3_case_2
+    end
+    goto ____switch3_case_default
+    ::____switch3_case_0::
     do
         do
             if g.race.ranked and g.race.solo then
@@ -6967,30 +7047,57 @@ function giveFormatItems(self, player)
             else
                 unseeded(nil, player)
             end
-            goto ____switch8_end
+            goto ____switch3_end
         end
     end
-    ::____switch8_case_1::
+    ::____switch3_case_1::
     do
         do
             seeded(nil, player)
-            goto ____switch8_end
+            goto ____switch3_end
         end
     end
-    ::____switch8_case_2::
+    ::____switch3_case_2::
     do
         do
-            ____exports.diversity(nil, player)
-            goto ____switch8_end
+            diversity(nil, player)
+            goto ____switch3_end
         end
     end
-    ::____switch8_case_default::
+    ::____switch3_case_default::
     do
         do
-            goto ____switch8_end
+            goto ____switch3_end
         end
     end
-    ::____switch8_end::
+    ::____switch3_end::
+end
+return ____exports
+ end,
+["features.race.callbacks.postGameStarted"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____log = require("log")
+local log = ____log.default
+local ____misc = require("misc")
+local playingOnSetSeed = ____misc.playingOnSetSeed
+local ____giveFormatItems = require("features.race.giveFormatItems")
+local giveFormatItems = ____giveFormatItems.default
+local placeLeft = require("features.race.placeLeft")
+local raceRoom = require("features.race.raceRoom")
+local socket = require("features.race.socket")
+local socketFunctions = require("features.race.socketFunctions")
+local sprites = require("features.race.sprites")
+local startingRoom = require("features.race.startingRoom")
+local topSprite = require("features.race.topSprite")
+local resetRaceVars, validateRace, validateInRace, validateChallenge, validateDifficulty, validateSeed, validateCharacter
+function resetRaceVars(self)
+    if g.raceVars.finished then
+        socketFunctions:reset()
+    end
+    g.raceVars.finished = false
+    g.raceVars.finishedTime = 0
 end
 function validateRace(self, player)
     return (((validateInRace(nil) and validateChallenge(nil)) and validateDifficulty(nil)) and validateSeed(nil)) and validateCharacter(nil, player)
@@ -7046,90 +7153,6 @@ function validateCharacter(self, player)
         return false
     end
     return true
-end
-function unseeded(self, player)
-    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
-        return
-    end
-    tempMoreOptions:give(player)
-end
-function unseededRankedSolo(self, player)
-    for ____, itemID in ipairs(g.race.startingItems) do
-        giveItemAndRemoveFromPools(nil, player, itemID)
-    end
-end
-function seeded(self, player)
-    local character = player:GetPlayerType()
-    if not player:HasCollectible(CollectibleType.COLLECTIBLE_COMPASS) then
-        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_COMPASS)
-    end
-    for ____, itemID in ipairs(g.race.startingItems) do
-        if itemID == COLLECTIBLE_13_LUCK_SERVER_ID then
-            itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK
-        elseif itemID == COLLECTIBLE_15_LUCK_SERVER_ID then
-            itemID = CollectibleTypeCustom.COLLECTIBLE_15_LUCK
-        end
-        giveItemAndRemoveFromPools(nil, player, itemID)
-    end
-    if character == PlayerType.PLAYER_EDEN_B then
-        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-    end
-    if (character == PlayerType.PLAYER_ISAAC_B) and (#g.race.startingItems >= 2) then
-        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-    end
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_SOL)
-    g.itemPool:RemoveTrinket(TrinketType.TRINKET_CAINS_EYE)
-end
-function ____exports.diversity(self, player)
-    local character = player:GetPlayerType()
-    local trinket1 = player:GetTrinket(0)
-    if (g.race.status ~= "in progress") or (g.race.myStatus ~= "racing") then
-        return
-    end
-    tempMoreOptions:give(player)
-    if shouldGetActiveD6(nil, player) and (character ~= PlayerType.PLAYER_ESAU) then
-        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_SCHOOLBAG)
-    end
-    local startingItems = g.race.startingItems
-    do
-        local i = 0
-        while i < #startingItems do
-            local itemOrTrinketID = startingItems[i + 1]
-            if i == 0 then
-                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
-            elseif ((i == 1) or (i == 2)) or (i == 3) then
-                giveItemAndRemoveFromPools(nil, player, itemOrTrinketID)
-                if itemOrTrinketID == CollectibleType.COLLECTIBLE_INCUBUS then
-                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1)
-                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_SACRED_HEART then
-                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2)
-                elseif itemOrTrinketID == CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT then
-                    g.itemPool:RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3)
-                end
-            elseif i == 4 then
-                if trinket1 ~= 0 then
-                    player:TryRemoveTrinket(trinket1)
-                end
-                player:AddTrinket(itemOrTrinketID)
-                player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false, false, false, false)
-                if trinket1 ~= 0 then
-                    player:AddTrinket(trinket1)
-                end
-                g.itemPool:RemoveTrinket(itemOrTrinketID)
-            end
-            i = i + 1
-        end
-    end
-    if (character == PlayerType.PLAYER_EDEN_B) or (character == PlayerType.PLAYER_ISAAC_B) then
-        giveItemAndRemoveFromPools(nil, player, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-    end
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D4)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D100)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS)
-    g.itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR)
-    g.itemPool:RemoveTrinket(TrinketType.TRINKET_DICE_BAG)
 end
 function ____exports.main(self)
     if not g.config.clientCommunication then
@@ -11359,8 +11382,27 @@ function ____exports.main(self, card)
 end
 return ____exports
  end,
+["features.race.callbacks.postFlip"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+local ____giveFormatItems = require("features.race.giveFormatItems")
+local giveFormatItems = ____giveFormatItems.default
+function ____exports.postFirstFlip(self)
+    local player = Isaac.GetPlayer()
+    if not g.config.clientCommunication then
+        return
+    end
+    giveFormatItems(nil, player)
+end
+function ____exports.postFlip(self)
+end
+return ____exports
+ end,
 ["customCallbacks.postFlip"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
+local startWithD6 = require("features.optional.major.startWithD6")
+local racePostFlip = require("features.race.callbacks.postFlip")
 local ____globals = require("globals")
 local g = ____globals.default
 local ____GlobalsRun = require("types.GlobalsRun")
@@ -11369,6 +11411,8 @@ local postFirstFlip, postFlip
 function postFirstFlip(self)
     local player = Isaac.GetPlayer()
     initPlayerVariables(nil, player, g.run)
+    startWithD6:postPlayerChange(player)
+    racePostFlip:postFirstFlip()
 end
 function postFlip(self)
 end
