@@ -1,6 +1,7 @@
 import g from "../../globals";
 import { giveItemAndRemoveFromPools } from "../../misc";
 import { CollectibleTypeCustom } from "../../types/enums";
+import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
@@ -19,17 +20,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_KEEPER, // 14
   PlayerType.PLAYER_APOLLYON, // 15
   PlayerType.PLAYER_JACOB, // 19
-  PlayerType.PLAYER_MAGDALENA_B, // 22
-  PlayerType.PLAYER_CAIN_B, // 23
-  PlayerType.PLAYER_JUDAS_B, // 24
-  PlayerType.PLAYER_XXX_B, // 25
-  PlayerType.PLAYER_EVE_B, // 26
-  PlayerType.PLAYER_LAZARUS_B, // 29
   PlayerType.PLAYER_EDEN_B, // 30
-  PlayerType.PLAYER_APOLLYON_B, // 34
-  PlayerType.PLAYER_BETHANY_B, // 36
-  PlayerType.PLAYER_JACOB_B, // 37
-  PlayerType.PLAYER_LAZARUS2_B, // 38
 ];
 
 export default function giveFormatItems(player: EntityPlayer): void {
@@ -235,11 +226,15 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character) &&
-    // However, this does not apply to Eden and Tainted Eden because they can start with an item
+    (CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character) ||
+      // Racing+ gives the D6 as an active item to some characters, so these characters should get
+      // the Schoolbag too for the same reason
+      startsWithD6.shouldGetActiveD6(player)) &&
+    // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden
     // instead of two)
-    (character === PlayerType.PLAYER_EDEN || character === PlayerType.PLAYER_EDEN_B)
+    character !== PlayerType.PLAYER_EDEN &&
+    character !== PlayerType.PLAYER_EDEN_B
   );
 }
