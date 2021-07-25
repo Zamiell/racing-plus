@@ -1,12 +1,35 @@
 import g from "../../globals";
 import { giveItemAndRemoveFromPools } from "../../misc";
 import { CollectibleTypeCustom } from "../../types/enums";
-import * as startWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
 } from "./constants";
 import * as tempMoreOptions from "./tempMoreOptions";
+
+const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
+  PlayerType.PLAYER_ISAAC,
+  PlayerType.PLAYER_MAGDALENA,
+  PlayerType.PLAYER_JUDAS,
+  PlayerType.PLAYER_XXX,
+  PlayerType.PLAYER_EVE,
+  PlayerType.PLAYER_THELOST,
+  PlayerType.PLAYER_LILITH,
+  PlayerType.PLAYER_KEEPER,
+  PlayerType.PLAYER_APOLLYON,
+  PlayerType.PLAYER_JACOB,
+  PlayerType.PLAYER_MAGDALENA_B,
+  PlayerType.PLAYER_CAIN_B,
+  PlayerType.PLAYER_JUDAS_B,
+  PlayerType.PLAYER_XXX_B,
+  PlayerType.PLAYER_EVE_B,
+  PlayerType.PLAYER_LAZARUS_B,
+  PlayerType.PLAYER_APOLLYON_B,
+  PlayerType.PLAYER_BETHANY_B,
+  PlayerType.PLAYER_JACOB_B,
+  PlayerType.PLAYER_LAZARUS2_B,
+  PlayerType.PLAYER_JACOB2_B,
+];
 
 export default function giveFormatItems(player: EntityPlayer): void {
   switch (g.race.format) {
@@ -127,10 +150,7 @@ function diversity(player: EntityPlayer) {
   // then the Diversity item would overwrite it
   // If this is the case, give the Schoolbag so that they can hold both items
   // (except for Esau, since he is not given any Diversity items)
-  if (
-    startWithD6.shouldGetActiveD6(player) &&
-    character !== PlayerType.PLAYER_ESAU
-  ) {
+  if (shouldGetSchoolbagInDiversity(player)) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
   }
 
@@ -206,4 +226,17 @@ function diversity(player: EntityPlayer) {
 
   // Trinket bans for diversity races
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_DICE_BAG);
+}
+
+function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  return (
+    // All characters with an active item.
+    // This includes tainted chars with an active D6.
+    // Eden and tainted Eden are exempted because they can have
+    // active items that rerolls your build so the Diversity active
+    // item need to replace it.
+    CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character)
+  );
 }

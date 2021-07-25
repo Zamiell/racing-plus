@@ -9,6 +9,8 @@ In diversity races, each racer starts with the same 5 items:
 - 1 random smelted trinket
 
 This is in addition to the character's original passive items and resources. These items are hidden from the player until the race starts.
+Characters with an active item are given Schoolbag to avoid the active diversity item to be removed.
+Eden and Tainted Eden are exempted from this rule because they can have an active item that can reroll you build so we want the active diversity item to replace it.
 
 In general, the extra power level increase from these 5 items is a fun boost at the beginning of a run. However, you don't always start with "good" items! One of the most interesting things about diversity races is that it forces players to use the items in the game that they would not normally pick up. This puts players in unique situations that they would never otherwise be in.
 
