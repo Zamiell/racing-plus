@@ -86,6 +86,7 @@ export default class GlobalsRun {
   };
 
   fireworksSpawned = 0;
+  flippedAtLeastOnce = false;
 
   freeDevilItem = {
     tookDamage: new LuaTable<PlayerLuaTableIndex, boolean>(),
