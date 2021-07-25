@@ -32,7 +32,7 @@ export function main(entity: Entity): void {
   }
 
   if (isWhitelistedNPC(npc)) {
-    return; 
+    return;
   }
 
   // This is the magic that allows Fast-Clear to work

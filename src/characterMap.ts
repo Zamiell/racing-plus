@@ -36,42 +36,62 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["esau", 20],
   ["isaac2", 21],
   ["tisaac", 21], // cspell:disable-line
+  ["taintedisaac", 21], // cspell:disable-line
   ["magdalene2", 22],
   ["maggy2", 22], // cspell:disable-line
   ["tmagdalene", 22], // cspell:disable-line
   ["tmaggy", 22], // cspell:disable-line
+  ["taintedmagdalene", 22], // cspell:disable-line
+  ["taintedmaggy", 22], // cspell:disable-line
   ["cain2", 23],
   ["tcain", 23], // cspell:disable-line
+  ["taintedcain", 23], // cspell:disable-line
   ["judas2", 24],
   ["tjudas", 24], // cspell:disable-line
+  ["taintedjudas", 24], // cspell:disable-line
   ["bluebaby2", 25], // cspell:disable-line
   ["tbluebaby", 25], // cspell:disable-line
+  ["taintedbluebaby", 25], // cspell:disable-line
   ["bb2", 25],
   ["tbb", 25],
+  ["taintedbb", 25], // cspell:disable-line
   ["eve2", 26],
   ["teve", 26], // cspell:disable-line
+  ["taintedeve", 26], // cspell:disable-line
   ["samson2", 27],
   ["tsamson", 27], // cspell:disable-line
+  ["taintedsamson", 27], // cspell:disable-line
   ["azazel2", 28],
   ["tazazel", 28], // cspell:disable-line
+  ["taintedazazel", 28], // cspell:disable-line
   ["lazarus2", 29],
   ["tlazarus", 29], // cspell:disable-line
+  ["taintedlazarus", 29], // cspell:disable-line
   ["tlaz", 29], // cspell:disable-line
+  ["taintedlaz", 29], // cspell:disable-line
   ["eden2", 30],
   ["teden", 30], // cspell:disable-line
+  ["taintededen", 30], // cspell:disable-line
   ["lost2", 31],
   ["tlost", 31], // cspell:disable-line
+  ["taintedlost", 31], // cspell:disable-line
   ["lilith2", 32],
   ["tlilith", 32], // cspell:disable-line
+  ["taintedlilith", 32], // cspell:disable-line
   ["keeper2", 33],
   ["tkeeper", 33], // cspell:disable-line
+  ["taintedkeeper", 33], // cspell:disable-line
   ["apollyon2", 34],
   ["tapollyon", 34], // cspell:disable-line
+  ["taintedapollyon", 34], // cspell:disable-line
   ["forgotten2", 35],
   ["tforgotten", 35], // cspell:disable-line
+  ["taintedforgotten", 35], // cspell:disable-line
   ["bethany2", 36],
   ["tbethany", 36], // cspell:disable-line
+  ["taintedbethany", 36], // cspell:disable-line
   ["jacob2", 37],
   ["tjacob", 37], // cspell:disable-line
+  ["taintedjacob", 37], // cspell:disable-line
 ]);
 export default CHARACTER_MAP;

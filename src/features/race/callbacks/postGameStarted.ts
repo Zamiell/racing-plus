@@ -218,7 +218,7 @@ function seeded(player: EntityPlayer) {
 
     giveItemAndRemoveFromPools(player, itemID);
   }
-  
+
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
   if (character === PlayerType.PLAYER_EDEN_B) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
@@ -226,7 +226,10 @@ function seeded(player: EntityPlayer) {
 
   // If we are Tainted Isaac and there are multiple starting items for the race,
   // give Birthright so that we have more room for other items
-  if (character === PlayerType.PLAYER_ISAAC_B && g.race.startingItems.length >= 2) {
+  if (
+    character === PlayerType.PLAYER_ISAAC_B &&
+    g.race.startingItems.length >= 2
+  ) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
@@ -316,7 +319,10 @@ export function diversity(player: EntityPlayer): void {
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
   // If we are Tainted Isaac, give Birthright so that we have more room for other items
-  if (character === PlayerType.PLAYER_EDEN_B || character === PlayerType.PLAYER_ISAAC_B) {
+  if (
+    character === PlayerType.PLAYER_EDEN_B ||
+    character === PlayerType.PLAYER_ISAAC_B
+  ) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 

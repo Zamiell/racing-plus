@@ -62,7 +62,7 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_BEAST, // 951
 ];
 
-export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = [
+export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
   [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_1],
   [EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_1_HEAD],
 ];

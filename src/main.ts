@@ -26,6 +26,7 @@ import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as useCard from "./callbacks/useCard";
+import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
 import log from "./log";
@@ -61,6 +62,7 @@ function registerCallbacks(mod: Mod) {
 
   // Register callbacks that take a 3rd argument for a specific entity
   postNPCUpdate.init(mod); // 0
+  useItem.init(mod); // 3
   postFamiliarInit.init(mod); // 7
   entityTakeDmg.init(mod); // 11
   postPickupInit.init(mod); // 34

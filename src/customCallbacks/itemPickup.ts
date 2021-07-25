@@ -21,7 +21,6 @@ function queueEmpty(player: EntityPlayer) {
   const index = getPlayerLuaTableIndex(player);
   const pickingUpItemDescription = g.run.pickingUpItem.get(index);
   if (pickingUpItemDescription === undefined) {
-    return;
     error(`Failed to get the item description for player: ${index}`);
   }
 

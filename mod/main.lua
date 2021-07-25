@@ -2398,7 +2398,7 @@ return ____exports
 ["characterMap"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"eve2", 26}, {"teve", 26}, {"samson2", 27}, {"tsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"tlaz", 29}, {"eden2", 30}, {"teden", 30}, {"lost2", 31}, {"tlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"jacob2", 37}, {"tjacob", 37}})
+local CHARACTER_MAP = __TS__New(Map, {{"isaac", 0}, {"magdalene", 1}, {"maggy", 1}, {"cain", 2}, {"judas", 3}, {"blue baby", 4}, {"bluebaby", 4}, {"bb", 4}, {"eve", 5}, {"samson", 6}, {"azazel", 7}, {"lazarus", 8}, {"laz", 8}, {"eden", 9}, {"the lost", 10}, {"thelost", 10}, {"lost", 10}, {"lazarus2", 11}, {"laz2", 11}, {"dark judas", 12}, {"darkjudas", 12}, {"black judas", 12}, {"blackjudas", 12}, {"lilith", 13}, {"keeper", 14}, {"apollyon", 15}, {"the forgotten", 16}, {"theforgotten", 16}, {"forgotten", 16}, {"the soul", 17}, {"thesoul", 17}, {"soul", 17}, {"bethany", 18}, {"jacob", 19}, {"esau", 20}, {"isaac2", 21}, {"tisaac", 21}, {"taintedisaac", 21}, {"magdalene2", 22}, {"maggy2", 22}, {"tmagdalene", 22}, {"tmaggy", 22}, {"taintedmagdalene", 22}, {"taintedmaggy", 22}, {"cain2", 23}, {"tcain", 23}, {"taintedcain", 23}, {"judas2", 24}, {"tjudas", 24}, {"taintedjudas", 24}, {"bluebaby2", 25}, {"tbluebaby", 25}, {"taintedbluebaby", 25}, {"bb2", 25}, {"tbb", 25}, {"taintedbb", 25}, {"eve2", 26}, {"teve", 26}, {"taintedeve", 26}, {"samson2", 27}, {"tsamson", 27}, {"taintedsamson", 27}, {"azazel2", 28}, {"tazazel", 28}, {"taintedazazel", 28}, {"lazarus2", 29}, {"tlazarus", 29}, {"taintedlazarus", 29}, {"tlaz", 29}, {"taintedlaz", 29}, {"eden2", 30}, {"teden", 30}, {"taintededen", 30}, {"lost2", 31}, {"tlost", 31}, {"taintedlost", 31}, {"lilith2", 32}, {"tlilith", 32}, {"taintedlilith", 32}, {"keeper2", 33}, {"tkeeper", 33}, {"taintedkeeper", 33}, {"apollyon2", 34}, {"tapollyon", 34}, {"taintedapollyon", 34}, {"forgotten2", 35}, {"tforgotten", 35}, {"taintedforgotten", 35}, {"bethany2", 36}, {"tbethany", 36}, {"taintedbethany", 36}, {"jacob2", 37}, {"tjacob", 37}, {"taintedjacob", 37}})
 ____exports.default = CHARACTER_MAP
 return ____exports
  end,
@@ -6251,7 +6251,7 @@ return ____exports
 ["features.optional.major.fastClear.constants"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 ____exports.FAST_CLEAR_WHITELIST = {EntityType.ENTITY_MONSTRO, EntityType.ENTITY_CHUB, EntityType.ENTITY_HOPPER, EntityType.ENTITY_GURDY, EntityType.ENTITY_MONSTRO2, EntityType.ENTITY_PEEP, EntityType.ENTITY_MOMS_HEART, EntityType.ENTITY_FALLEN, EntityType.ENTITY_SATAN, EntityType.ENTITY_MASK_OF_INFAMY, EntityType.ENTITY_HEART_OF_INFAMY, EntityType.ENTITY_GURDY_JR, EntityType.ENTITY_WIDOW, EntityType.ENTITY_DADDYLONGLEGS, EntityType.ENTITY_ISAAC, EntityType.ENTITY_GURGLING, EntityType.ENTITY_THE_HAUNT, EntityType.ENTITY_DINGLE, EntityType.ENTITY_MEGA_MAW, EntityType.ENTITY_GATE, EntityType.ENTITY_MEGA_FATTY, EntityType.ENTITY_CAGE, EntityType.ENTITY_MAMA_GURDY, EntityType.ENTITY_DARK_ONE, EntityType.ENTITY_ADVERSARY, EntityType.ENTITY_POLYCEPHALUS, EntityType.ENTITY_MR_FRED, EntityType.ENTITY_URIEL, EntityType.ENTITY_GABRIEL, EntityType.ENTITY_THE_LAMB, EntityType.ENTITY_MEGA_SATAN, EntityType.ENTITY_MEGA_SATAN_2, EntityType.ENTITY_STAIN, EntityType.ENTITY_FORSAKEN, EntityType.ENTITY_LITTLE_HORN, EntityType.ENTITY_RAG_MAN, EntityType.ENTITY_ULTRA_GREED, EntityType.ENTITY_HUSH, EntityType.ENTITY_SISTERS_VIS, EntityType.ENTITY_BIG_HORN, EntityType.ENTITY_REAP_CREEP, EntityType.ENTITY_RAINMAKER, EntityType.ENTITY_VISAGE, EntityType.ENTITY_SIREN, EntityType.ENTITY_HERETIC, EntityType.ENTITY_GIDEON, EntityType.ENTITY_BABY_PLUM, EntityType.ENTITY_SCOURGE, EntityType.ENTITY_MOTHER, EntityType.ENTITY_MIN_MIN, EntityType.ENTITY_CLOG, EntityType.ENTITY_SINGE, EntityType.ENTITY_BUMBINO, EntityType.ENTITY_COLOSTOMIA, EntityType.ENTITY_RAGLICH, EntityType.ENTITY_HORNY_BOYS, EntityType.ENTITY_CLUTCH, EntityType.ENTITY_DOGMA, EntityType.ENTITY_BEAST}
-____exports.FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = {{EntityType.ENTITY_MOTHER, MotherVariant.PHASE_1}, {EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_1_HEAD}}
+____exports.FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = {{EntityType.ENTITY_MOTHER, 0}, {EntityType.ENTITY_ROTGUT, 0}}
 return ____exports
  end,
 ["features.optional.major.fastClear.krampus"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
@@ -10629,7 +10629,7 @@ function queueEmpty(self, player)
     local index = getPlayerLuaTableIndex(nil, player)
     local pickingUpItemDescription = g.run.pickingUpItem[index]
     if pickingUpItemDescription == nil then
-        return
+        error("Failed to get the item description for player: " .. index)
     end
     if pickingUpItemDescription.id ~= CollectibleType.COLLECTIBLE_NULL then
         postItemPickup(nil, player, pickingUpItemDescription)
@@ -10915,7 +10915,7 @@ function ____exports.postUpdate(self)
         local index = getPlayerLuaTableIndex(nil, player)
         local transformations = g.run.transformations[index]
         if transformations == nil then
-            return
+            error("Failed to get the transformation array for player index: " .. index)
         end
         do
             local i = 0
@@ -11356,6 +11356,46 @@ function showStreakText(self, card)
 end
 function ____exports.main(self, card)
     showStreakText(nil, card)
+end
+return ____exports
+ end,
+["features.optional.quality.removeFortuneCookieBanners"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local ____globals = require("globals")
+local g = ____globals.default
+function ____exports.useItem(self)
+    local HUD = g.g:GetHUD()
+    if not g.config.removeFortuneCookieBanners then
+        return
+    end
+    if VanillaStreakText then
+        return
+    end
+    HUD:ShowItemText("")
+end
+return ____exports
+ end,
+["callbacks.useItem"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+local ____exports = {}
+local removeFortuneCookieBanners = require("features.optional.quality.removeFortuneCookieBanners")
+local ____globals = require("globals")
+local g = ____globals.default
+local ____GlobalsRun = require("types.GlobalsRun")
+local initPlayerVariables = ____GlobalsRun.initPlayerVariables
+local fortuneCookie, flip
+function fortuneCookie(self)
+    removeFortuneCookieBanners:useItem()
+end
+function flip(self)
+    local player = Isaac.GetPlayer()
+    if not g.run.flippedAtLeastOnce then
+        g.run.flippedAtLeastOnce = true
+        initPlayerVariables(nil, player, g.run)
+    end
+end
+function ____exports.init(self, mod)
+    mod:AddCallback(ModCallbacks.MC_USE_ITEM, fortuneCookie, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
+    mod:AddCallback(ModCallbacks.MC_USE_ITEM, flip, CollectibleType.COLLECTIBLE_FLIP)
 end
 return ____exports
  end,
@@ -11824,6 +11864,7 @@ local preGameExit = require("callbacks.preGameExit")
 local preNPCUpdate = require("callbacks.preNPCUpdate")
 local preRoomEntitySpawn = require("callbacks.preRoomEntitySpawn")
 local useCard = require("callbacks.useCard")
+local useItem = require("callbacks.useItem")
 local usePill = require("callbacks.usePill")
 local ____constants = require("constants")
 local VERSION = ____constants.VERSION
@@ -11855,6 +11896,7 @@ end
 function registerCallbacks(self, mod)
     registerMainCallbacks(nil, mod)
     postNPCUpdate:init(mod)
+    useItem:init(mod)
     postFamiliarInit:init(mod)
     entityTakeDmg:init(mod)
     postPickupInit:init(mod)
@@ -11887,30 +11929,6 @@ function registerMainCallbacks(self, mod)
     mod:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, preRoomEntitySpawn.main)
 end
 main(nil)
-return ____exports
- end,
-["features.optional.quality.removeFortuneCookieBanners"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local ____globals = require("globals")
-local g = ____globals.default
-function ____exports.useItem(self)
-    local HUD = g.g:GetHUD()
-    if not g.config.removeFortuneCookieBanners then
-        return
-    end
-    if VanillaStreakText then
-        return
-    end
-    HUD:ShowItemText("")
-end
-return ____exports
- end,
-["callbacks.useItem"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-local ____exports = {}
-local removeFortuneCookieBanners = require("features.optional.quality.removeFortuneCookieBanners")
-function ____exports.fortuneCookie(self)
-    removeFortuneCookieBanners:useItem()
-end
 return ____exports
  end,
 }

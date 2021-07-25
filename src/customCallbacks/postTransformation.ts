@@ -26,7 +26,6 @@ export function postUpdate(): void {
     const index = getPlayerLuaTableIndex(player);
     const transformations = g.run.transformations.get(index);
     if (transformations === undefined) {
-      return;
       error(
         `Failed to get the transformation array for player index: ${index}`,
       );
