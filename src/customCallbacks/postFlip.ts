@@ -1,7 +1,7 @@
 // This custom callback provides postFlip and postFirstFlip
 
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import { giveFormatItems } from "../features/race/callbacks/postGameStarted";
+import giveFormatItems from "../features/race/giveFormatItems";
 import g from "../globals";
 import { initPlayerVariables } from "../types/GlobalsRun";
 
