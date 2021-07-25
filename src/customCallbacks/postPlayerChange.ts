@@ -1,5 +1,4 @@
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import { giveFormatItems } from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import log from "../log";
 import { getPlayers } from "../misc";
@@ -20,15 +19,5 @@ export function postUpdate(): void {
 }
 
 function postPlayerChange(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
   startWithD6.postPlayerChange(player);
-
-  if (
-    character === PlayerType.PLAYER_LAZARUS2_B &&
-    !g.run.laz2BGotStartingRaceItems
-  ) {
-    giveFormatItems(player);
-    g.run.laz2BGotStartingRaceItems = true;
-  }
 }

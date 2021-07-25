@@ -1,5 +1,7 @@
 // This custom callback provides postFlip and postFirstFlip
 
+import * as startWithD6 from "../features/optional/major/startWithD6";
+import { giveFormatItems } from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import { initPlayerVariables } from "../types/GlobalsRun";
 
@@ -18,6 +20,8 @@ function postFirstFlip() {
   const player = Isaac.GetPlayer();
 
   initPlayerVariables(player, g.run);
+  startWithD6.postPlayerChange(player);
+  giveFormatItems(player);
 }
 
 function postFlip() {}

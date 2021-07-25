@@ -94,7 +94,6 @@ export default class GlobalsRun {
     granted: false,
   };
 
-  laz2BGotStartingRaceItems = false;
   maxFamiliars = false;
   pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
   /** We track all identified pills so that we can display them. */
