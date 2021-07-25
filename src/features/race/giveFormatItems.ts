@@ -28,7 +28,6 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_BETHANY_B,
   PlayerType.PLAYER_JACOB_B,
   PlayerType.PLAYER_LAZARUS2_B,
-  PlayerType.PLAYER_JACOB2_B,
 ];
 
 export default function giveFormatItems(player: EntityPlayer): void {
