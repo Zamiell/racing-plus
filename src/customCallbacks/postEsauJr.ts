@@ -4,15 +4,13 @@ import g from "../globals";
 export function postUpdate(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
-  // Give the pocket D6 to Esau Jr. only one frame after using it because of the player change.
-  // Set g.run.usedEsauJrFrame to 0 again to avoid being in a softlock loop where we can't
-  // take any item.
+  // The player only changes to Esau Jr. on the frame after the item is used
   if (
-    gameFrameCount >= g.run.usedEsauJrFrame + 1 &&
-    g.run.usedEsauJrFrame !== 0
+    g.run.usedEsauJrFrame !== 0 &&
+    gameFrameCount >= g.run.usedEsauJrFrame + 1
   ) {
-    postPlayerChange();
     g.run.usedEsauJrFrame = 0;
+    postPlayerChange();
   }
 }
 
