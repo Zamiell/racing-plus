@@ -1,12 +1,27 @@
 import g from "../../globals";
 import { giveItemAndRemoveFromPools } from "../../misc";
 import { CollectibleTypeCustom } from "../../types/enums";
-import * as startWithD6 from "../optional/major/startWithD6";
+import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
 } from "./constants";
 import * as tempMoreOptions from "./tempMoreOptions";
+
+const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
+  PlayerType.PLAYER_ISAAC, // 0
+  PlayerType.PLAYER_MAGDALENA, // 1
+  PlayerType.PLAYER_JUDAS, // 3
+  PlayerType.PLAYER_XXX, // 4
+  PlayerType.PLAYER_EVE, // 5
+  PlayerType.PLAYER_EDEN, // 9
+  PlayerType.PLAYER_THELOST, // 10
+  PlayerType.PLAYER_LILITH, // 13
+  PlayerType.PLAYER_KEEPER, // 14
+  PlayerType.PLAYER_APOLLYON, // 15
+  PlayerType.PLAYER_JACOB, // 19
+  PlayerType.PLAYER_EDEN_B, // 30
+];
 
 export default function giveFormatItems(player: EntityPlayer): void {
   switch (g.race.format) {
@@ -127,10 +142,7 @@ function diversity(player: EntityPlayer) {
   // then the Diversity item would overwrite it
   // If this is the case, give the Schoolbag so that they can hold both items
   // (except for Esau, since he is not given any Diversity items)
-  if (
-    startWithD6.shouldGetActiveD6(player) &&
-    character !== PlayerType.PLAYER_ESAU
-  ) {
+  if (shouldGetSchoolbagInDiversity(player)) {
     giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
   }
 
@@ -206,4 +218,26 @@ function diversity(player: EntityPlayer) {
 
   // Trinket bans for diversity races
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_DICE_BAG);
+}
+
+function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  return (
+    // Characters that already start with an active item should be given the Schoolbag so that they
+    // can hold both their both their normal active item and the new diversity active item
+    (CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character) ||
+      // Racing+ gives the D6 as an active item to some characters, so these characters should get
+      // the Schoolbag too for the same reason
+      startsWithD6.shouldGetActiveD6(player)) &&
+    // However, this should not apply to Eden and Tainted Eden because they can start with an item
+    // that rerolls the build (e.g. D4, D100, etc.)
+    // (we could manually replace these items, but it is simpler to just have one item on Eden
+    // instead of two)
+    character !== PlayerType.PLAYER_EDEN &&
+    character !== PlayerType.PLAYER_EDEN_B &&
+    // Esau is not granted any items in diversity races,
+    // so there is no need to give him the Schoolbag
+    character !== PlayerType.PLAYER_ESAU
+  );
 }
