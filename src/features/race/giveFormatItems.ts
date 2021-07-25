@@ -8,26 +8,27 @@ import {
 import * as tempMoreOptions from "./tempMoreOptions";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
-  PlayerType.PLAYER_ISAAC,
-  PlayerType.PLAYER_MAGDALENA,
-  PlayerType.PLAYER_JUDAS,
-  PlayerType.PLAYER_XXX,
-  PlayerType.PLAYER_EVE,
-  PlayerType.PLAYER_THELOST,
-  PlayerType.PLAYER_LILITH,
-  PlayerType.PLAYER_KEEPER,
-  PlayerType.PLAYER_APOLLYON,
-  PlayerType.PLAYER_JACOB,
-  PlayerType.PLAYER_MAGDALENA_B,
-  PlayerType.PLAYER_CAIN_B,
-  PlayerType.PLAYER_JUDAS_B,
-  PlayerType.PLAYER_XXX_B,
-  PlayerType.PLAYER_EVE_B,
-  PlayerType.PLAYER_LAZARUS_B,
-  PlayerType.PLAYER_APOLLYON_B,
-  PlayerType.PLAYER_BETHANY_B,
-  PlayerType.PLAYER_JACOB_B,
-  PlayerType.PLAYER_LAZARUS2_B,
+  PlayerType.PLAYER_ISAAC, // 0
+  PlayerType.PLAYER_MAGDALENA, // 1
+  PlayerType.PLAYER_JUDAS, // 3
+  PlayerType.PLAYER_XXX, // 4
+  PlayerType.PLAYER_EVE, // 5
+  PlayerType.PLAYER_EDEN, // 9
+  PlayerType.PLAYER_THELOST, // 10
+  PlayerType.PLAYER_LILITH, // 13
+  PlayerType.PLAYER_KEEPER, // 14
+  PlayerType.PLAYER_APOLLYON, // 15
+  PlayerType.PLAYER_JACOB, // 19
+  PlayerType.PLAYER_MAGDALENA_B, // 22
+  PlayerType.PLAYER_CAIN_B, // 23
+  PlayerType.PLAYER_JUDAS_B, // 24
+  PlayerType.PLAYER_XXX_B, // 25
+  PlayerType.PLAYER_EVE_B, // 26
+  PlayerType.PLAYER_LAZARUS_B, // 29
+  PlayerType.PLAYER_APOLLYON_B, // 34
+  PlayerType.PLAYER_BETHANY_B, // 36
+  PlayerType.PLAYER_JACOB_B, // 37
+  PlayerType.PLAYER_LAZARUS2_B, // 38
 ];
 
 export default function giveFormatItems(player: EntityPlayer): void {
@@ -231,11 +232,13 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   return (
-    // All characters with an active item.
-    // This includes tainted chars with an active D6.
-    // Eden and tainted Eden are exempted because they can have
-    // active items that rerolls your build so the Diversity active
-    // item need to replace it.
-    CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character)
+    // Characters that already start with an active item should be given the Schoolbag so that they
+    // can hold both their both their normal active item and the new diversity active item
+    CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character) &&
+    // However, this does not apply to Eden and Tainted Eden because they can start with an item
+    // that rerolls the build (e.g. D4, D100, etc.)
+    // (we could manually replace these items, but it is simpler to just have one item on Eden
+    // instead of two)
+    (character === PlayerType.PLAYER_EDEN || character === PlayerType.TAINTED_EDEN)
   );
 }
