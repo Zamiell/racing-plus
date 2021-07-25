@@ -25,12 +25,13 @@
     "**/*.wav": true,
   },
 
-  // By default, VSCode will not automatically fill-in function arguments
-  "typescript.suggest.completeFunctionCalls": true,
-
   // -----------------
   // Language settings
   // -----------------
+
+  // By default, VSCode will not automatically fill-in function arguments
+  "javascript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.completeFunctionCalls": true,
 
   // Automatically run the formatter when a TypeScript or JavaScript file is saved
   "[typescript]": {
