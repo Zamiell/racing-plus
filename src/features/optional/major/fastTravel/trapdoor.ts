@@ -1,6 +1,7 @@
 import g from "../../../../globals";
 import {
   getGridEntities,
+  getRoomIndex,
   isAntibirthStage,
   isPostBossVoidPortal,
   removeGridEntity,
@@ -73,33 +74,58 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 
 function shouldRemove() {
   const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
+  const roomIndex = getRoomIndex();
+  const antibirthHeartKilled = g.g.GetStateFlag(
+    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+  );
 
   // If the goal of the race is the Boss Rush, delete the Womb trapdoor that spawns after Mom
   if (
-    stage === 6 &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
-    g.race.goal === "Boss Rush"
+    g.race.goal === "Boss Rush" &&
+    stage === 6
   ) {
     return true;
   }
 
   // If the goal of the race is Mother, delete trapdoors that leads to normal floors
-  // TODO: Delete Womb trapdoor on Mother goal only before killing Alt Mom's Heart
   if (
-    !(
-      (stage === 1 ||
-        stage === 3 ||
-        stage === 5 ||
-        stage === 6 ||
-        stage === 7) &&
-      isAntibirthStage()
-    ) &&
-    g.race.goal === "Mother" &&
-    roomType === RoomType.ROOM_BOSS
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Mother"
   ) {
-    return true;
+    // Basement 1 --> Downpour 1
+    if (
+      stage === 1 &&
+      !isAntibirthStage() &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      return true;
+    }
+
+    // Downpour 2 --> Mines 1
+    if (
+      stage === 2 &&
+      isAntibirthStage() &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      return true;
+    }
+
+    // Mines 2 --> Mausoleum 1
+    if (
+      stage === 4 &&
+      isAntibirthStage() &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      return true;
+    }
+
+    // Mausoleum 2 --> Corpse 1
+    if (stage === 6 && isAntibirthStage() && !antibirthHeartKilled) {
+      return true;
+    }
   }
 
   return false;

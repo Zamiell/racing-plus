@@ -89,6 +89,8 @@ export default class GlobalsRun {
   };
 
   slideAnimationHappening = false;
+  /** Used in races to Mother. */
+  spawnedCorpseTrapdoor = false;
   spedUpFadeIn = false;
   startedTime = 0;
 
