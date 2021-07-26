@@ -1,4 +1,5 @@
 import * as itemPickup from "../customCallbacks/itemPickup";
+import * as postEsauJr from "../customCallbacks/postEsauJr";
 import * as postGridEntityUpdate from "../customCallbacks/postGridEntityUpdate";
 import * as postPlayerChange from "../customCallbacks/postPlayerChange";
 import * as postRoomClear from "../customCallbacks/postRoomClear";
@@ -21,6 +22,7 @@ export function main(): void {
   postPlayerChange.postUpdate();
   postTransformation.postUpdate();
   itemPickup.postUpdate();
+  postEsauJr.postUpdate();
 
   // Mandatory features
   trophy.postUpdate();

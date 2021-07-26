@@ -123,7 +123,7 @@ function checkGenesisRoom() {
 }
 
 // The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
-// Give another pocket D6 if needed
+// Give another D6 if needed
 export function postPlayerChange(player: EntityPlayer): void {
   if (shouldGetPocketActiveD6(player)) {
     const index = getPlayerLuaTableIndex(player);
@@ -135,5 +135,15 @@ export function postPlayerChange(player: EntityPlayer): void {
     giveActiveD6(player);
 
     log("Awarded another active D6 (due to character change).");
+  }
+}
+
+export function postFirstEsauJr(): void {
+  const player = Isaac.GetPlayer();
+  const index = getPlayerLuaTableIndex(player);
+  const charge = g.run.pocketActiveD6Charge.get(index);
+
+  if (shouldGetPocketActiveD6(player)) {
+    givePocketActiveD6(player, charge);
   }
 }
