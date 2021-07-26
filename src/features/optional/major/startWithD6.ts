@@ -138,7 +138,7 @@ export function postPlayerChange(player: EntityPlayer): void {
   }
 }
 
-export function esauJr(): void {
+export function postEsauJr(): void {
   const player = Isaac.GetPlayer();
   const index = getPlayerLuaTableIndex(player);
   const charge = g.run.pocketActiveD6Charge.get(index);

@@ -10,10 +10,18 @@ export function postUpdate(): void {
     gameFrameCount >= g.run.usedEsauJrFrame + 1
   ) {
     g.run.usedEsauJrFrame = 0;
-    postPlayerChange();
+    postEsauJr();
   }
 }
 
-function postPlayerChange() {
-  startWithD6.esauJr();
+function postEsauJr() {
+  startWithD6.postEsauJr();
+}
+
+export function postEsauJrFrame(): void {
+  const gameFrameCount = Isaac.GetFrameCount();
+
+  // Because the player number changes on the exact frame as using Esau Jr.,
+  // we need a variable that takes the frame after
+  g.run.usedEsauJrFrame = gameFrameCount + 1;
 }

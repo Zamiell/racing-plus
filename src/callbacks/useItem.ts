@@ -1,6 +1,6 @@
+import * as postEsauJr from "../customCallbacks/postEsauJr";
 import * as postFlip from "../customCallbacks/postFlip";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
-import g from "../globals";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -29,11 +29,7 @@ function fortuneCookie(): void {
 
 // CollectibleType.COLLECTIBLE_ESAU_JR (703)
 function esauJr(): void {
-  const gameFrameCount = Isaac.GetFrameCount();
-
-  // Because the player number changes on the exact frame as using Esau Jr.,
-  // we need a variable that takes the frame after
-  g.run.usedEsauJrFrame = gameFrameCount + 1;
+  postEsauJr.postEsauJrFrame();
 }
 
 // CollectibleType.COLLECTIBLE_FLIP (711)
