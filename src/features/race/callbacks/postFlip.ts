@@ -1,9 +1,7 @@
 import g from "../../../globals";
 import giveFormatItems from "../giveFormatItems";
 
-export function postFirstFlip(): void {
-  const player = Isaac.GetPlayer();
-
+export function postFirstFlip(player: EntityPlayer): void {
   if (!g.config.clientCommunication) {
     return;
   }

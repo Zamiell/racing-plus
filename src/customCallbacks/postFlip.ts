@@ -20,8 +20,8 @@ function postFirstFlip() {
   const player = Isaac.GetPlayer();
 
   initPlayerVariables(player, g.run);
-  startWithD6.postPlayerChange(player);
-  racePostFlip.postFirstFlip();
+  startWithD6.postFirstFlip(player);
+  racePostFlip.postFirstFlip(player);
 }
 
 function postFlip() {}

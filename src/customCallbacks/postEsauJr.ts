@@ -32,5 +32,8 @@ export function useItem(): void {
 function postEsauJr() {}
 
 function postFirstEsauJr() {
-  startWithD6.postFirstEsauJr();
+  // Assume that the first player is the one who used Esau Jr. a frame ago
+  const player = Isaac.GetPlayer();
+
+  startWithD6.postFirstEsauJr(player);
 }
