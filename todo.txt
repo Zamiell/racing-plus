@@ -4,6 +4,8 @@
 - Fixed the save file check when Eden starts with Chaos
 - Fixed the run timer with Tainted Isaac
 - Fixed Krampus/angels dropping two things
+- Fixed Quake Grimaces not being flipped correctly
+- Fixed the error after defeating It Lives!
 
 
 - off limits is not spawning in b1 seeded treasure room

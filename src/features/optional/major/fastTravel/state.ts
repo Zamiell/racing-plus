@@ -49,8 +49,12 @@ function setOpenClose(
 export function get(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-): FastTravelEntityState {
+): FastTravelEntityState | null {
   const entityDescription = getDescription(entity, fastTravelEntityType);
+  if (entityDescription === null) {
+    return null;
+  }
+
   return entityDescription.state;
 }
 
@@ -60,6 +64,10 @@ function set(
   state: FastTravelEntityState,
 ): void {
   const entityDescription = getDescription(entity, fastTravelEntityType);
+  if (entityDescription === null) {
+    error(`Failed to set a new fast-travel entity state: ${state}`);
+  }
+
   entityDescription.state = state;
 }
 
@@ -99,7 +107,7 @@ export function initDescription(
 export function getDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-): FastTravelEntityDescription {
+): FastTravelEntityDescription | null {
   const index = getIndex(entity, fastTravelEntityType);
 
   let description: FastTravelEntityDescription | undefined;
@@ -125,10 +133,7 @@ export function getDescription(
   }
 
   if (description === undefined) {
-    g.sandbox?.traceback();
-    error(
-      `Failed to get a ${FastTravelEntityType[fastTravelEntityType]} fast-travel entity description for index: ${index}`,
-    );
+    return null;
   }
 
   return description;
@@ -167,6 +172,9 @@ export function shouldOpen(
   fastTravelEntityType: FastTravelEntityType,
 ): boolean {
   const entityDescription = getDescription(entity, fastTravelEntityType);
+  if (entityDescription === null) {
+    return false;
+  }
 
   return (
     !anyPlayerCloserThan(entity.Position, TRAPDOOR_OPEN_DISTANCE) &&

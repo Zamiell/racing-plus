@@ -29,12 +29,16 @@ function shouldSpawnOpen() {
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
+  const effect = entity as EntityEffect;
+
   // Perform some extra checks before we consider the player to have activated the heaven door
   const entityDescription = state.getDescription(
     entity,
     FAST_TRAVEL_ENTITY_TYPE,
   );
-  const effect = entity as EntityEffect;
+  if (entityDescription === null) {
+    return;
+  }
 
   if (!entityDescription.initial && effect.FrameCount < 40) {
     // We want the player to be forced to dodge the final wave of tears from It Lives!
