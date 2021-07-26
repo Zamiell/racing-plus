@@ -1,7 +1,7 @@
 import g from "../../../../../globals";
 import * as heavenDoor from "../heavenDoor";
 
-export function main(): void {
+export default function fastTravelPostRoomClear(): void {
   if (!g.config.fastTravel) {
     return;
   }

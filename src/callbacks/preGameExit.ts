@@ -1,4 +1,4 @@
-import * as racePreGameExit from "../features/race/callbacks/preGameExit";
+import racePreGameExit from "../features/race/callbacks/preGameExit";
 import g from "../globals";
 import log from "../log";
 import * as saveDat from "../saveDat";
@@ -14,5 +14,5 @@ export function main(shouldSave: boolean): void {
     g.run = new GlobalsRun([]);
   }
 
-  racePreGameExit.main();
+  racePreGameExit();
 }

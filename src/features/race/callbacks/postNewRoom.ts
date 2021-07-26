@@ -6,7 +6,7 @@ import * as startingRoom from "../startingRoom";
 import * as tempMoreOptions from "../tempMoreOptions";
 import * as topSprite from "../topSprite";
 
-export function main(): void {
+export default function racePostNewRoom(): void {
   if (!g.config.clientCommunication) {
     return;
   }

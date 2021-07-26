@@ -52,7 +52,7 @@ function open() {
   isConsoleOpen = true;
   consoleText = "";
   consoleTextIndex = 0;
-  // Isaac.DebugString("Console opened.");
+  // log("Console opened.");
 }
 
 function close() {
@@ -65,5 +65,5 @@ function close() {
     // TODO
   }
 
-  // Isaac.DebugString("Console closed.");
+  // log("Console closed.");
 }

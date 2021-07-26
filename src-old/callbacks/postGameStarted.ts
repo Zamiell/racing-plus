@@ -27,6 +27,6 @@ export function main(): void {
   timer.spriteSetMap.clear();
 
   // Do more run initialization things specifically pertaining to speedruns
-  speedrunPostGameStarted.main();
+  speedrunPostGameStarted();
 }
 */

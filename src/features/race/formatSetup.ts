@@ -49,6 +49,9 @@ export default function formatSetup(player: EntityPlayer): void {
       break;
     }
   }
+
+  // Mute the transformation sound, if present
+  g.sfx.Stop(SoundEffect.SOUND_POWERUP_SPEWER);
 }
 
 function unseeded(player: EntityPlayer) {

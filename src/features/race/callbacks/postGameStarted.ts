@@ -10,7 +10,7 @@ import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
-export function main(): void {
+export default function racePostGameStarted(): void {
   if (!g.config.clientCommunication) {
     return;
   }

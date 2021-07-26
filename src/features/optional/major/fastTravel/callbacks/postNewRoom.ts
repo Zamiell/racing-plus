@@ -3,7 +3,7 @@ import * as checkStateComplete from "../checkStateComplete";
 import * as crawlspace from "../crawlspace";
 import * as trapdoor from "../trapdoor";
 
-export function main(): void {
+export default function fastTravelPostNewRoom(): void {
   if (!g.config.fastTravel) {
     return;
   }

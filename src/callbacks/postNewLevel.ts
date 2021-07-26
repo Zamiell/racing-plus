@@ -1,7 +1,7 @@
 import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
-import * as racePostNewLevel from "../features/race/callbacks/postNewLevel";
+import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import log from "../log";
 import { getPlayers, isAntibirthStage } from "../misc";
@@ -50,7 +50,7 @@ export function newLevel(): void {
   }
 
   // Major
-  racePostNewLevel.main();
+  racePostNewLevel();
 
   // QoL
   openHushDoor.postNewLevel();

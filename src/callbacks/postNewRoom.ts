@@ -6,13 +6,13 @@ import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
-import * as fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
+import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
+import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
-import * as racePostNewRoom from "../features/race/callbacks/postNewRoom";
+import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import g from "../globals";
 import log from "../log";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
@@ -71,11 +71,11 @@ export function newRoom(): void {
   controlsGraphic.postNewRoom();
 
   // Major features
-  racePostNewRoom.main();
+  racePostNewRoom();
   trophy.postNewRoom();
   startWithD6.postNewRoom();
   freeDevilItem.postNewRoom();
-  fastTravelPostNewRoom.main();
+  fastTravelPostNewRoom();
 
   // Character changes
   showEdenStartingItems.postNewRoom();
@@ -85,7 +85,7 @@ export function newRoom(): void {
   appearHands.postNewRoom();
 
   // Quality of life
-  showDreamCatcherItemPostNewRoom.main();
+  showDreamCatcherItemPostNewRoom();
   subvertTeleport.postNewRoom();
 
   // Bux fixes

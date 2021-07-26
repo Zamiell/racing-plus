@@ -1,7 +1,7 @@
 import g from "../../../globals";
 import openAntibirthDoor from "../openAntibirthDoor";
 
-export function main(): void {
+export default function racePostRoomClear(): void {
   if (!g.config.clientCommunication) {
     return;
   }

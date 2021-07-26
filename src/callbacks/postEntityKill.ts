@@ -1,5 +1,5 @@
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
-import * as fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
+import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
 
 export function main(entity: Entity): void {
   /*
@@ -10,6 +10,6 @@ export function main(entity: Entity): void {
   );
   */
 
-  fastClearPostEntityKill.main(entity);
+  fastClearPostEntityKill(entity);
   fadeBosses.postEntityKill(entity);
 }

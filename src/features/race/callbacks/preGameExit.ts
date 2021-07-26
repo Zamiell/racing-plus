@@ -1,7 +1,7 @@
 import g from "../../../globals";
 import * as socket from "../socket";
 
-export function main(): void {
+export default function racePreGameExit(): void {
   if (!g.config.clientCommunication) {
     return;
   }

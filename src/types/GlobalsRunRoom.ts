@@ -1,9 +1,12 @@
 import { FastTravelEntityDescription } from "../features/optional/major/fastTravel/constants";
+import FastClearNPCDescription from "./FastClearNPCDescription";
 
 export default class GlobalsRunRoom {
   clear: boolean;
   /** Equal to the game frame count that the room was cleared. */
   clearFrame = -1;
+
+  fastClearNPCQueue: FastClearNPCDescription[] = [];
 
   fastTravel = {
     trapdoors: new LuaTable<int, FastTravelEntityDescription>(),

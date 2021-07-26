@@ -1,9 +1,15 @@
-export function main(): void {
-  // checkFinalRoom();
+import g from "../../../globals";
+
+export default function racePostUpdate(): void {
+  if (!g.config.clientCommunication) {
+    return;
+  }
+
+  checkFinalRoom();
 }
 
-/*
 function checkFinalRoom() {
+  /*
   if (!g.raceVars.finished) {
     return;
   }
@@ -24,8 +30,10 @@ function checkFinalRoom() {
       openAllDoors();
     }
   }
+  */
 }
 
+/*
 export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
   if (!g.raceVars.finished) {
     return;

@@ -28,44 +28,6 @@ export default class GlobalsRun {
     passiveSprite: null as Sprite | null,
   };
 
-  fastClear = {
-    /**
-     * Keys are NPC pointer hashes, the value is whether or not the NPC is a boss.
-     * Note that we cannot use "npc.Index" as an index for the map because it is always set to 0 in
-     * the PostNPCInit callback (even in Repentance).
-     * We have to use a LuaTable instead of a Map because Maps don't get converted to JSON properly.
-     * This cannot be on the "g.run.room" table because NPCs initialize before PostNewRoom fires.
-     */
-    aliveEnemies: new LuaTable<int, boolean | null>(),
-    /**
-     * We need to track the count separately from the hash map because there is no method in Lua to
-     * get the number of entries in a table.
-     */
-    aliveEnemiesCount: 0,
-    aliveBossesCount: 0,
-
-    /** Reset to false in the PostNewRoom callback. */
-    buttonsAllPushed: false,
-
-    /** Reset to false in the PostNewRoom callback. */
-    roomInitializing: false,
-    delayFrame: 0,
-
-    /** Used to prevent the vanilla photos from spawning. */
-    vanillaPhotosSpawning: false,
-
-    /**
-     * If we are in ghost form after touching a white fire, then we need to allow the vanilla room
-     * clear to happen at least once so that the game can turn us back from the ghost form.
-     */
-    deferClearForGhost: false,
-
-    /**
-     * After picking up the Paschal Candle, it automatically grants one rooms worth of tear-rate.
-     */
-    paschalCandleCounters: new LuaTable<PlayerLuaTableIndex, int>(),
-  };
-
   /** Needed for speedruns to return to the same character. */
   fastResetFrame = 0;
 
@@ -158,7 +120,6 @@ export function initPlayerVariables(
   const index = getPlayerLuaTableIndex(player);
 
   run.currentCharacters.set(index, character);
-  run.fastClear.paschalCandleCounters.set(index, 1);
   run.freeDevilItem.tookDamage.set(index, false);
 
   run.pickingUpItem.set(index, {

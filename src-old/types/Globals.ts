@@ -1,26 +1,5 @@
 /*
 export default class Globals {
-  luaDebug = false; // Whether or not they are running the game with the "--luadebug" flag
-  socket: LuaSocket | null = null;
-
-  // These are things that pertain to the race but are ! read from the "save.dat" file
-  raceVars = {
-    loadOnNextFrame: false,
-    started: false,
-    startedTime: 0,
-    startedFrame: 0,
-    finished: false,
-    finishedTime: 0,
-    finishedFrames: 0,
-    fireworks: 0,
-    shadowEnabled: false,
-  };
-
-  shadowClient = {
-    connected: false, // Represents connection to mod server (mostly for shadow render)
-    maxBufferSize: 1024,
-  };
-
   speedrun = {
     sprites: [] as Sprite[], // Reset at the beginning of a new run (in the PostGameStarted callback)
     characterNum: 1, // Reset explicitly from a long-reset and on the first reset after a finish
@@ -56,60 +35,6 @@ export default class Globals {
     },
   };
 
-  changeKeybindings = {
-    challengePhase: 0,
-    challengeFramePressed: 0,
-  };
-
-  season5 = {
-    remainingStartingItems: [] as Array<
-      CollectibleType | CollectibleTypeCustom
-    >,
-    selectedStartingItems: [] as Array<CollectibleType | CollectibleTypeCustom>,
-  };
-
-  season6 = {
-    remainingStartingBuilds: [] as Array<
-      Array<CollectibleType | CollectibleTypeCustom>
-    >,
-    selectedStartingBuilds: [] as Array<
-      Array<CollectibleType | CollectibleTypeCustom>
-    >,
-    timeItemAssigned: 0, // Reset when the time limit elapses
-    lastBuildItem: 0 as CollectibleType | CollectibleTypeCustom, // Set when a new build is assigned
-    // Set when a new build is assigned on the first character
-    lastBuildItemOnFirstChar: 0 as CollectibleType | CollectibleTypeCustom,
-    vetoList: [] as Array<CollectibleType | CollectibleTypeCustom>,
-    vetoSprites: [] as Sprite[],
-    vetoTimer: 0,
-  };
-
-  season7 = {
-    remainingGoals: [] as string[],
-  };
-
-  season8 = {
-    touchedItems: [] as CollectibleType[], // Reset at the beginning of a new run on the first character
-    touchedTrinkets: [] as TrinketType[], // Reset at the beginning of a new run on the first character
-    remainingCards: [] as Card[], // Reset at the beginning of a new run on the first character
-    runPillEffects: [] as PillEffect[], // Reset at the beginning of a new run on the first character
-    identifiedPills: [] as PillDescription[], // Reset at the beginning of a new run on the first character
-    starterSprites: [] as Sprite[], // Reset whenever a new item is touched
-    devilSprites: [] as Sprite[], // Reset whenever a new item is touched
-    angelSprites: [] as Sprite[], // Reset whenever a new item is touched
-  };
-
-  season9 = {
-    remainingStartingBuilds: [] as Array<
-      Array<CollectibleType | CollectibleTypeCustom>
-    >,
-    selectedStartingBuildIndexes: [] as int[],
-    timeBuildAssigned: 0, // Reset when the time limit elapses
-    loadedSaveDat: false,
-    historicalBuildIndexes: [] as int[],
-    setBuild: null as null | int, // For debugging a specific build
-  };
-
   RNGCounter = {
     // Seeded at the beginning of the run
     bookOfSin: 0, // 97
@@ -132,26 +57,5 @@ export default class Globals {
     undefined: 0, // 324
     telepills: 0, // 19
   };
-
-  // The contents of the "Racing+ Data" mod save.dat file is cached in memory
-  saveData = {};
-
-  constructor() {
-    // Load the font
-    this.font.Load("font/teammeatfont10.fnt");
-
-    // Check for the "--luadebug" flag and the socket library
-    const [ok, socket] = pcall(require, "socket");
-    if (ok && socket) {
-      this.luaDebug = true;
-      this.socket = socket as LuaSocket;
-      // eslint-disable-next-line no-underscore-dangle
-      Isaac.DebugString(`Initialized socket: ${this.socket._VERSION}`);
-    } else {
-      Isaac.DebugString(
-        'Importing socket failed: The "--luadebug" flag is not turned on in the Steam launch options.',
-      );
-    }
-  }
 }
 */

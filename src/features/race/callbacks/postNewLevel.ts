@@ -4,7 +4,7 @@ import * as placeLeft from "../placeLeft";
 import * as socket from "../socket";
 import * as tempMoreOptions from "../tempMoreOptions";
 
-export function main(): void {
+export default function racePostNewLevel(): void {
   if (!g.config.clientCommunication) {
     return;
   }

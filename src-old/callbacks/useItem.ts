@@ -237,11 +237,4 @@ function UseItem.PlayerGeneratedPedestal() {
   g.run.playerGenPedFrame = gameFrameCount + 1
 }
 
-function debugItem() {
-  debug.main()
-
-  // Display the "use" animation
-  return true
-}
-
 */

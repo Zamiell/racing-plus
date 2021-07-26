@@ -1,4 +1,5 @@
 import g from "../../../../globals";
+import log from "../../../../log";
 import { consoleCommand, isAntibirthStage } from "../../../../misc";
 
 export function goto(upwards: boolean): void {
@@ -22,9 +23,9 @@ export function goto(upwards: boolean): void {
   // floor
   if (!g.run.level.fastTravel.tookDamage) {
     g.g.AddStageWithoutDamage();
-    Isaac.DebugString("Finished this floor without taking any damage.");
+    log("Finished this floor without taking any damage.");
   } else {
-    Isaac.DebugString("Finished this floor with damage taken.");
+    log("Finished this floor with damage taken.");
   }
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health

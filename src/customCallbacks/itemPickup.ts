@@ -1,7 +1,7 @@
 // This custom callback provides preItemPickup and postItemPickup
 
 import * as streakText from "../features/mandatory/streakText";
-import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
+import racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import g from "../globals";
 import { getPlayers, getRoomIndex } from "../misc";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
@@ -57,5 +57,5 @@ function postItemPickup(
   _player: EntityPlayer,
   pickingUpItemDescription: PickingUpItemDescription,
 ) {
-  racePostItemPickup.main(pickingUpItemDescription);
+  racePostItemPickup(pickingUpItemDescription);
 }

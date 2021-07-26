@@ -7,15 +7,18 @@ import * as runTimer from "../features/mandatory/runTimer";
 import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
-import * as fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
+import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/quality/customConsole";
-import * as showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
+import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
-import * as racePostRender from "../features/race/callbacks/postRender";
-import * as speedrunPostRender from "../features/speedrun/callbacks/postRender";
+import racePostRender, {
+  checkRestartWrongRaceCharacter,
+  checkRestartWrongRaceSeed,
+} from "../features/race/callbacks/postRender";
+import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
 import { consoleCommand } from "../misc";
@@ -42,13 +45,13 @@ export function main(): void {
 
   // Optional features - Major
   drawTopLeftText();
-  racePostRender.main();
-  fastTravelPostRender.main();
+  racePostRender();
+  fastTravelPostRender();
   fastReset.postRender();
 
   // Optional features - Quality of Life
   showEdenStartingItems.postRender();
-  showDreamCatcherItemPostRender.main();
+  showDreamCatcherItemPostRender();
   showPills.postRender();
   showMaxFamiliars.postRender();
   customConsole.postRender();
@@ -68,15 +71,15 @@ function checkRestart() {
     return true;
   }
 
-  if (racePostRender.checkRestartWrongCharacter()) {
+  if (checkRestartWrongRaceCharacter()) {
     return true;
   }
 
-  if (racePostRender.checkRestartWrongSeed()) {
+  if (checkRestartWrongRaceSeed()) {
     return true;
   }
 
-  if (speedrunPostRender.checkRestartWrongCharacter()) {
+  if (checkRestartWrongSpeedrunCharacter()) {
     return true;
   }
 

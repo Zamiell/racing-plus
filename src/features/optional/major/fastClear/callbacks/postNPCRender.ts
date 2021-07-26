@@ -1,6 +1,6 @@
 import g from "../../../../../globals";
 
-export function main(npc: EntityNPC): void {
+export default function fastClearPostNPCRender(npc: EntityNPC): void {
   if (!g.config.fastClear) {
     return;
   }

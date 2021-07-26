@@ -25,9 +25,6 @@ export function save(): void {
   // be opened when the room is already clear
   g.run.room = new GlobalsRunRoom(isClear);
 
-  // Scrub some specific data that cannot be represented in JSON
-  g.run.fastClear.aliveEnemies = new LuaTable();
-
   // We don't want to write everything in the globals table to disk,
   // as it contains things like cached API functions
   // Only explicitly save the sub-tables that cannot be regenerated

@@ -9,7 +9,7 @@ import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
-export function main(): void {
+export default function racePostRender(): void {
   if (!g.config.clientCommunication) {
     return;
   }
@@ -42,7 +42,7 @@ function checkGameOpenedInMiddleOfRace() {
   }
 }
 
-export function checkRestartWrongCharacter(): boolean {
+export function checkRestartWrongRaceCharacter(): boolean {
   if (
     !g.config.clientCommunication ||
     g.race.status === "none" ||
@@ -62,7 +62,7 @@ export function checkRestartWrongCharacter(): boolean {
   return true;
 }
 
-export function checkRestartWrongSeed(): boolean {
+export function checkRestartWrongRaceSeed(): boolean {
   if (
     !g.config.clientCommunication ||
     g.race.format !== "seeded" ||

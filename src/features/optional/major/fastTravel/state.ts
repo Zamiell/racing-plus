@@ -151,7 +151,7 @@ function getIndex(
 
     case FastTravelEntityType.HeavenDoor: {
       // "effect.Index" is not yet initialized in the PostEffectInit callback
-      // Use the grid index as the index for conformity with the other Fast-Travel entities
+      // Use the grid index as the index for conformity with the other fast-travel entities
       return g.r.GetGridIndex(entity.Position);
     }
 

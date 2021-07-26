@@ -7,22 +7,19 @@
 // the room state is actually set to being cleared
 // This method has the side effect of making lots of hearts spawn,
 // since the game thinks that each boss that dies is the last boss present in the room
-// To combat this, we only apply Fast-Clear to entities that have a death animation longer than 1
+// To combat this, we only apply fast-clear to entities that have a death animation longer than 1
 // frame, and reset their CanShutDoors status on the last frame of the death animation
 // In the future, if a function is added to the API to set the room to being cleared,
 // then we can remove this 10 frame delay by tracking all of the NPCs manually and then invoking the
 // new function ourselves
 
 import g from "../../../../../globals";
-import log from "../../../../../log";
-import * as angels from "../angels";
 import {
   FAST_CLEAR_WHITELIST,
   FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
 } from "../constants";
-import * as krampus from "../krampus";
 
-export function main(entity: Entity): void {
+export default function fastClearPostEntityKill(entity: Entity): void {
   if (!g.config.fastClear) {
     return;
   }
@@ -36,35 +33,16 @@ export function main(entity: Entity): void {
     return;
   }
 
-  // This is the magic that allows Fast-Clear to work
-  log(
-    `Applying Fast-Clear to entity: ${npc.Type}.${npc.Variant}.${npc.SubType}`,
-  );
-  npc.CanShutDoors = false;
+  const gameFrameCount = g.g.GetFrameCount();
 
-  // We are not currently playing the death animation
-  // (that will naturally start on the next frame)
-  // Manually set the death animation now the purposes of finding out how long it is
-  const sprite = npc.GetSprite();
-  sprite.Play("Death", true);
-  const finalFrame = getFinalFrame(sprite);
-
-  // Mark the final frame of the death animation on the entity's data so that we can revert the
-  // CanShutDoors attribute later
-  const data = npc.GetData();
-  data.resetAttributeFrame = finalFrame;
-
-  // Perform some additional steps for specific entities
-  if (npc.Type === EntityType.ENTITY_FALLEN && npc.Variant === 1) {
-    krampus.postEntityKill(npc);
-  } else if (
-    (npc.Type === EntityType.ENTITY_URIEL ||
-      npc.Type === EntityType.ENTITY_GABRIEL) &&
-    // Fallen Angels do not drop items
-    entity.Variant === 0
-  ) {
-    angels.postEntityKill(npc);
-  }
+  // Mark to modify the NPC on the next frame
+  // We can't set the CanShutDoors property now because it will prevent the NPC from dropping a
+  // heart (in the case of Tainted Magdalene) or a coin (in the case of Tainted Keeper)
+  // (the heart/coin will drop on the next frame)
+  g.run.room.fastClearNPCQueue.push({
+    gameFrameToModify: gameFrameCount + 1,
+    entityPtr: EntityPtr(npc),
+  });
 }
 
 function isWhitelistedNPC(npc: EntityNPC) {
@@ -84,12 +62,4 @@ function isWhitelistedNPC(npc: EntityNPC) {
   }
 
   return false;
-}
-
-function getFinalFrame(sprite: Sprite) {
-  const currentFrame = sprite.GetFrame();
-  sprite.SetLastFrame();
-  const finalFrame = sprite.GetFrame();
-  sprite.SetFrame(currentFrame);
-  return finalFrame;
 }

@@ -6,7 +6,7 @@ import { WarpState } from "./enums";
 // Near the top-left of the room
 const SPRITE_SPACING = 30;
 
-export function main(): void {
+export default function showDreamCatcherItemPostRender(): void {
   if (!g.config.showDreamCatcherItem) {
     return;
   }

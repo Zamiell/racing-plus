@@ -416,7 +416,7 @@ function logAllFlags(flags: int, maxShift: int) {
 
 // eslint-disable-next-line import/no-unused-modules
 export function logColor(color: Color): void {
-  Isaac.DebugString(
+  log(
     `${color.R} ${color.G} ${color.B} ${color.A} ${color.RO} ${color.GO} ${color.BO}`,
   );
 }

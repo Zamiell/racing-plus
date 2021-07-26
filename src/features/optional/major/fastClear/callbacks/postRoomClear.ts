@@ -1,7 +1,7 @@
 import g from "../../../../../globals";
 import { getRoomNPCs } from "../../../../../misc";
 
-export function main(): void {
+export default function fastClearPostRoomClear(): void {
   if (!g.config.fastClear) {
     return;
   }
@@ -10,7 +10,7 @@ export function main(): void {
 }
 
 function resetAllDyingNPCs() {
-  // The main bug with Fast-Clear is that by setting CanShutDoors equal to true,
+  // The main bug with fast-clear is that by setting CanShutDoors equal to true,
   // bosses will drop hearts at inappropriate times
   // We fix this by resetting CanShutDoors on the last frame of the death animation
   // But in addition to this, we also need to account for the fact that a room can be cleared with

@@ -5,7 +5,7 @@ import {
   inSpeedrun,
 } from "../speedrun";
 
-export function checkRestartWrongCharacter(): boolean {
+export function checkRestartWrongSpeedrunCharacter(): boolean {
   if (!inSpeedrun()) {
     return false;
   }

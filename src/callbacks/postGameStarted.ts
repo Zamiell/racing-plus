@@ -9,7 +9,7 @@ import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
-import * as racePostGameStarted from "../features/race/callbacks/postGameStarted";
+import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import log from "../log";
 import { getPlayers } from "../misc";
@@ -59,7 +59,7 @@ export function main(isContinued: boolean): void {
   showEdenStartingItems.postGameStarted();
 
   // Optional features - Major
-  racePostGameStarted.main();
+  racePostGameStarted();
   startWithD6.postGameStarted();
 
   // Optional features - Quality of Life

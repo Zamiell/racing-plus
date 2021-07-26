@@ -9,11 +9,11 @@ import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
-import * as fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
+import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
-import * as racePostUpdate from "../features/race/callbacks/postUpdate";
+import racePostUpdate from "../features/race/callbacks/postUpdate";
 
 export function main(): void {
   // Custom callbacks
@@ -31,9 +31,9 @@ export function main(): void {
   runTimer.postUpdate();
 
   // Major features
-  racePostUpdate.main();
+  racePostUpdate();
   startWithD6.postUpdate();
-  fastClearPostUpdate.main();
+  fastClearPostUpdate();
   fastDrop.postUpdate();
 
   // QoL

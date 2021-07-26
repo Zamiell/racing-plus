@@ -1,5 +1,5 @@
 // We use a script to find every NPC in the game that has a death animation longer than 1 frame
-// This is used as a whitelist to know which entities should be affected by Fast-Clear
+// This is used as a whitelist to know which entities should be affected by fast-clear
 export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_MONSTRO, // 20
   EntityType.ENTITY_CHUB, // 28

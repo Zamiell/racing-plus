@@ -11,7 +11,7 @@ import { PickupPriceCustom } from "../../../../types/enums";
 import { bossPNGMap } from "./bossPNGMap";
 import { WarpState } from "./enums";
 
-export function main(): void {
+export default function showDreamCatcherItemPostNewRoom(): void {
   if (!g.config.showDreamCatcherItem) {
     return;
   }
