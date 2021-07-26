@@ -5,6 +5,8 @@ import * as disableInvulnerability from "../features/optional/enemies/disableInv
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
+import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
+import * as fastBigHorn from "../features/optional/quality/fastBigHorn";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -39,6 +41,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
+    dingle,
+    EntityType.ENTITY_DINGLE, // 261
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
     redGhost,
     EntityType.ENTITY_RED_GHOST, // 285
   );
@@ -48,44 +56,59 @@ export function init(mod: Mod): void {
     momsDeadHand,
     EntityType.ENTITY_MOMS_DEAD_HAND, // 287
   );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
+    bigHorn,
+    EntityType.ENTITY_BIG_HORN, // 411
+  );
 }
 
 // EntityType.ENTITY_GLOBIN (24)
-export function globin(npc: EntityNPC): void {
+function globin(npc: EntityNPC) {
   globinSoftlock.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_DEATH (66)
-export function death(npc: EntityNPC): void {
+function death(npc: EntityNPC) {
   stopDeathSlow.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_MOMS_HAND (213)
-export function momsHand(npc: EntityNPC): void {
+function momsHand(npc: EntityNPC) {
   appearHands.postNPCUpdate(npc);
   fastHands.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_WIZOOB (219)
-export function wizoob(npc: EntityNPC): void {
+function wizoob(npc: EntityNPC) {
   disableInvulnerability.setGhostCollisionClass(npc);
   fastGhosts.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_THE_HAUNT (260)
-export function haunt(npc: EntityNPC): void {
+function haunt(npc: EntityNPC) {
   disableInvulnerability.setGhostCollisionClass(npc);
   fastHaunt.postNPCUpdate(npc);
 }
 
+// EntityType.ENTITY_DINGLE (261)
+function dingle(npc: EntityNPC) {
+  fastClearPostNPCUpdate.dingle(npc);
+}
+
 // EntityType.ENTITY_RED_GHOST (285)
-export function redGhost(npc: EntityNPC): void {
+function redGhost(npc: EntityNPC) {
   disableInvulnerability.setGhostCollisionClass(npc);
   fastGhosts.postNPCUpdate(npc);
 }
 
 // EntityType.ENTITY_MOMS_DEAD_HAND (287)
-export function momsDeadHand(npc: EntityNPC): void {
+function momsDeadHand(npc: EntityNPC) {
   appearHands.postNPCUpdate(npc);
   fastHands.postNPCUpdate(npc);
+}
+
+function bigHorn(npc: EntityNPC) {
+  fastBigHorn.postNPCUpdate(npc);
 }

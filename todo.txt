@@ -1,5 +1,9 @@
 Patch notes:
-- Deleted all of the dumb Mega Satan and Mega Satan 2 animations
+- New feature: Fast Big Horn
+- New feature: Removed all of the dumb Mega Satan and Mega Satan 2 animations
+- New feature: Mega Satan will no longer automatically end the run
+- Fixed the bug where you would be locked to a seeded run if you played in a seeded race
+- Fixed the bug where Dangle was incorrectly faded after killing Brownie
 
 
 - off limits is not spawning in b1 seeded treasure room

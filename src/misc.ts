@@ -178,7 +178,7 @@ function getItemInitCharges(
   return itemConfigItem.InitCharge;
 }
 
-function getItemMaxCharges(
+export function getItemMaxCharges(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): int {
   const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
@@ -522,7 +522,9 @@ export function removeItemFromItemTracker(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
   const itemConfig = g.itemConfig.GetCollectible(collectibleType);
-  log(`Removing collectible ${collectibleType} (${itemConfig.Name})`);
+  log(
+    `Removing voided collectible ${collectibleType} (${itemConfig.Name}) from player 0 (Player)`,
+  );
 }
 
 export function restartAsCharacter(character: PlayerType): void {

@@ -1,3 +1,4 @@
+import g from "./globals";
 import { EntityTypeCustom } from "./types/enums";
 
 export function postEntityKill(_entity: Entity): void {
@@ -6,10 +7,10 @@ export function postEntityKill(_entity: Entity): void {
   Isaac.DebugString(
     "Room Clear Delay NPC death detected - spawning a new one.",
   );
-  spawn();
+  // spawn();
 }
 
-function spawn() {
+export function spawn(): void {
   const npc = Isaac.Spawn(
     EntityTypeCustom.ENTITY_ROOM_CLEAR_DELAY_NPC,
     0,
@@ -20,4 +21,5 @@ function spawn() {
   );
   npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
   npc.ClearEntityFlags(EntityFlag.FLAG_APPEAR);
+  g.sfx.Stop(SoundEffect.SOUND_SUMMON_POOF);
 }

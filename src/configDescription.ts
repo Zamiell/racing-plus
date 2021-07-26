@@ -288,10 +288,19 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "globinSoftlock",
+    "fastBigHorn",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "046",
+      "Fast Big Horn",
+      "Make Big horn spend less time underground.",
+    ],
+  ],
+  [
+    "globinSoftlock",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "047",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
     ],

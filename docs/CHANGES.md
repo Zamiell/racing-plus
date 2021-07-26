@@ -175,9 +175,21 @@ Post-flip actions:
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `046` Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `046` Big Horn will spend less time underground.
+
+> Why? Big Horn can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `047` Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
+
+- Defeating Mega Satan no longer has a chance to immediately end the run.
+
+> Why? This gives players a chance to touch a trophy, use a Fool card, etc.
+
+- Some of the animations in the Mega Satan fight have been removed.
+
+> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
 
 ### 5) Quality of Life Changes
 
@@ -304,12 +316,8 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 <br />
 
 <!--
-  - various animations during the Mega Satan fight
-  - various animations during the Big Horn fight
-  - Hush's appear animation
+- Hush's appear animation is sped up
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
--->
-<!--
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
 - The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
 - Some things that are unseeded are now seeded:
@@ -328,12 +336,9 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - All pills can now be used to cancel pedestal pickup animations.
 - The devil statue will be faded if there is an item pedestal hiding behind it.
 - There is now a sound effect when a Walnut or a Wishbone breaks.
--->
-<!--
 - Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - 9 Volt now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
-- Defeating Mega Satan no longer has a chance to immediately end the run.
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
 -->
 <!--

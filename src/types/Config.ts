@@ -27,6 +27,7 @@ export default class Config {
   fastGhosts = true;
   fastHands = true;
   appearHands = true;
+  fastBigHorn = true;
   globinSoftlock = true;
 
   // Quality of Life Changes

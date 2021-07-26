@@ -1,9 +1,16 @@
+import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as RCDNPC from "../roomClearDelayNPC";
 import { EntityTypeCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    megaSatan2,
+    EntityType.ENTITY_MEGA_SATAN_2, // 275
+  );
+
   mod.AddCallback(
     ModCallbacks.MC_POST_ENTITY_KILL,
     roomClearDelayNPC,
@@ -24,6 +31,10 @@ export function main(entity: Entity): void {
   fadeBosses.postEntityKill(entity);
 }
 
-export function roomClearDelayNPC(entity: Entity): void {
+function megaSatan2(entity: Entity) {
+  megaSatanPreventEnd.postEntityKill(entity);
+}
+
+function roomClearDelayNPC(entity: Entity) {
   RCDNPC.postEntityKill(entity);
 }
