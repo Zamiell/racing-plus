@@ -150,7 +150,7 @@ export function initPlayerVariables(
 
 // This represents the special case of an integer seed converted to a string;
 // see the explanation below
-type PlayerLuaTableIndex = string;
+export type PlayerLuaTableIndex = string;
 
 export function getPlayerLuaTableIndex(
   player: EntityPlayer,

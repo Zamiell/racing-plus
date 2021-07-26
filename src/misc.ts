@@ -40,6 +40,17 @@ export function anyPlayerHasTrinket(trinketType: TrinketType): boolean {
   return false;
 }
 
+export function anyPlayerIs(matchingCharacter: PlayerType): boolean {
+  for (const player of getPlayers()) {
+    const character = player.GetPlayerType();
+    if (character === matchingCharacter) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export function arrayEquals<T>(array1: T[], array2: T[]): boolean {
   if (array1.length !== array2.length) {
     return false;

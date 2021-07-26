@@ -1,6 +1,10 @@
 import g from "../../globals";
 import log from "../../log";
-import { anyPlayerHasCollectible, getPlayers } from "../../misc";
+import { anyPlayerHasCollectible, anyPlayerIs, getPlayers } from "../../misc";
+import {
+  getPlayerLuaTableIndex,
+  PlayerLuaTableIndex,
+} from "../../types/GlobalsRun";
 
 const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
 const NUM_RACING_PLUS_ITEMS = 9;
@@ -36,38 +40,71 @@ function isCorruptMod() {
 
 // Check to see if Death Certificate is unlocked
 function isIncompleteSave() {
+  const itemToCheckFor = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
+  const itemPoolToCheck = ItemPoolType.POOL_SECRET;
+
   // If Eden is holding Death Certificate, then it is obviously unlocked
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)) {
+  // (and it will also be removed from pools so the below check won't work)
+  if (anyPlayerHasCollectible(itemToCheckFor)) {
     return false;
   }
 
   // Consider the save file complete if the any player is Tainted Lost
-  // (since Tainted Lost cannot get Death Certificate)
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === PlayerType.PLAYER_THELOST_B) {
-      return false;
-    }
-  }
-
-  // Consider the save file complete if any player has Chaos
-  // (since pool checking will not work in this case)
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_CHAOS)) {
+  // (since Tainted Lost cannot get Death Certificate in item pools)
+  if (anyPlayerIs(PlayerType.PLAYER_THELOST_B)) {
     return false;
   }
 
-  // Get an item from Pool 24 and see if it is Death Certificate
-  // (we manually added Death Certificate to that pool in "mod/content/itempools.xml")
-  const collectibleType = g.itemPool.GetCollectible(
-    ItemPoolType.POOL_24,
-    false,
-    1,
-  );
-  if (collectibleType !== CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE) {
+  // Before checking item pools, we must remove Chaos and TMTRAINER
+  const removedItemsMap: Map<PlayerLuaTableIndex, CollectibleType[]> =
+    new Map();
+  for (const player of getPlayers()) {
+    const removedItems: CollectibleType[] = [];
+    for (const itemToRemove of [
+      CollectibleType.COLLECTIBLE_CHAOS,
+      CollectibleType.COLLECTIBLE_TMTRAINER,
+    ]) {
+      if (player.HasCollectible(itemToRemove)) {
+        const numCollectibles = player.GetCollectibleNum(itemToRemove);
+        for (let i = 0; i < numCollectibles; i++) {
+          player.RemoveCollectible(itemToRemove);
+          removedItems.push(itemToRemove);
+        }
+      }
+    }
+
+    const playerIndex = getPlayerLuaTableIndex(player);
+    removedItemsMap.set(playerIndex, removedItems);
+  }
+
+  // Add every item in the game to the blacklist
+  for (let i = 1; i < getMaxCollectibleID(); i++) {
+    if (g.itemConfig.GetCollectible(i) !== null && i !== itemToCheckFor) {
+      g.itemPool.AddRoomBlacklist(i);
+    }
+  }
+
+  // Get an item from the pool and see if it is the intended item
+  const itemPoolItem = g.itemPool.GetCollectible(itemPoolToCheck, false, 1);
+  if (itemPoolItem !== itemToCheckFor) {
     log(
-      `Error: Incomplete save file detected. (Failed to get Death Certificate from Pool 24; got ${collectibleType} instead.)`,
+      `Error: Incomplete save file detected. (Failed to get item ${itemToCheckFor} from pool ${itemPoolToCheck}; got item ${itemPoolItem} instead.)`,
     );
     g.run.errors.incompleteSave = true;
+  }
+
+  // Reset the blacklist
+  g.itemPool.ResetRoomBlacklist();
+
+  // Give back Chaos and TMTRAINER, if necessary
+  for (const player of getPlayers()) {
+    const playerIndex = getPlayerLuaTableIndex(player);
+    const removedItems = removedItemsMap.get(playerIndex);
+    if (removedItems !== undefined) {
+      for (const collectibleType of removedItems) {
+        player.AddCollectible(collectibleType, 0, false); // Prevent Chaos from spawning pickups
+      }
+    }
   }
 
   return g.run.errors.incompleteSave;

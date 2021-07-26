@@ -1,3 +1,4 @@
+- Reworked the fully unlocked save file checking logic, so some old bugs should be fixed
 - Fixed the bug where the trophy would not spawn in races to the Boss Rush
 - Fixed some item sprites not showing
 - Fixed the save file check when Eden starts with Chaos
