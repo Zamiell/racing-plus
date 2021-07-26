@@ -49,7 +49,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_GIDEON, // 907
   EntityType.ENTITY_BABY_PLUM, // 908
   EntityType.ENTITY_SCOURGE, // 909
-  EntityType.ENTITY_MOTHER, // 912
   EntityType.ENTITY_MIN_MIN, // 913
   EntityType.ENTITY_CLOG, // 914
   EntityType.ENTITY_SINGE, // 915
@@ -63,6 +62,6 @@ export const FAST_CLEAR_WHITELIST = [
 ];
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
-  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_1],
-  [EntityType.ENTITY_ROTGUT, RotgutVariant.PHASE_1_HEAD],
+  // We only want Fast-Clear to apply to the final phase of Mother
+  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2],
 ];
