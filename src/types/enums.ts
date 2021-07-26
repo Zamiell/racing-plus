@@ -41,13 +41,3 @@ export enum EffectSubTypeCustom {
 export enum SoundEffectCustom {
   SOUND_SPEEDRUN_FINISH = Isaac.GetSoundIdByName("Speedrun Finish"),
 }
-
-// Needs to be here to avoid a dependency cycle
-export enum SaveFileState {
-  NotChecked,
-  DeferredUntilNewRunBegins,
-  GoingToSetSeedWithEden,
-  /** Going back to the old challenge/character/seed. */
-  GoingBack,
-  Finished,
-}

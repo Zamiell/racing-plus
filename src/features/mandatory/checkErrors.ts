@@ -6,19 +6,7 @@ const NUM_RACING_PLUS_ITEMS = 9;
 const NUM_BABIES_MOD_ITEMS = 15;
 
 export default function checkErrors(): boolean {
-  if (isCorruptMod()) {
-    return true;
-  }
-
-  if (isIncompleteSave()) {
-    return true;
-  }
-
-  if (areOtherModsEnabled()) {
-    return true;
-  }
-
-  return false;
+  return isCorruptMod() || isIncompleteSave() || areOtherModsEnabled();
 }
 
 // If Racing+ is turned on from the mod menu and then the user immediately tries to play,
