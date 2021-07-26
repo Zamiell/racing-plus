@@ -22,16 +22,16 @@ export function init(mod: Mod): void {
 }
 
 // EffectVariant.POOF01 (15)
-export function poof01(effect: EntityEffect): void {
+function poof01(effect: EntityEffect) {
   centerStart.poof01(effect);
 }
 
 // EffectVariant.CREEP_RED (22)
-export function creepRed(effect: EntityEffect): void {
+function creepRed(effect: EntityEffect) {
   changeCreepColor.postEffectInitCreepRed(effect);
 }
 
 // EffectVariant.PLAYER_CREEP_GREEN (53)
-export function playerCreepGreen(effect: EntityEffect): void {
+function playerCreepGreen(effect: EntityEffect) {
   changeCreepColor.postEffectInitPlayerCreepGreen(effect);
 }

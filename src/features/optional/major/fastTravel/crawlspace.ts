@@ -139,7 +139,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   checkExitSoftlock(player);
 }
 
-export function checkTopOfCrawlspaceLadder(player: EntityPlayer): void {
+function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
   if (
     g.r.GetType() === RoomType.ROOM_DUNGEON &&
     g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
@@ -149,7 +149,7 @@ export function checkTopOfCrawlspaceLadder(player: EntityPlayer): void {
   }
 }
 
-export function checkExitSoftlock(player: EntityPlayer): void {
+function checkExitSoftlock(player: EntityPlayer) {
   // By default, if you return from a crawlspace to a room outside of the grid (e.g. the Boss Rush),
   // then leaving the room will cause you to go back to the crawlspace again
   // (because the game is programmed to send you to the previous room)

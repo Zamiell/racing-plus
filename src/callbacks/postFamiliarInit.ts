@@ -8,6 +8,6 @@ export function init(mod: Mod): void {
   );
 }
 
-export function paschalCandle(familiar: EntityFamiliar): void {
+function paschalCandle(familiar: EntityFamiliar) {
   pc.postFamiliarInit(familiar);
 }

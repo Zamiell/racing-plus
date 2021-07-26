@@ -11,13 +11,13 @@ export function init(mod: Mod): void {
   );
 }
 
-export function player(
+function player(
   tookDamage: Entity,
   _damageAmount: float,
   damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
-): boolean | void {
+) {
   sacrificeRoom(damageFlags);
 
   // Major features

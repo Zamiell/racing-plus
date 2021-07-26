@@ -131,7 +131,7 @@ function shouldRemove() {
   return false;
 }
 
-export function shouldSpawnOpen(entity: GridEntity | EntityEffect): boolean {
+function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   if (g.r.GetFrameCount() === 0) {
     // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the
     // player has to defeat the enemies first before using the trapdoor

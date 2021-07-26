@@ -201,21 +201,6 @@ export function getRoomNPCs(): EntityNPC[] {
   return npcs;
 }
 
-// Kilburn's function (pinned in the Isaac Discord server)
-// (originally called "GetScreenSize()")
-// eslint-disable-next-line import/no-unused-modules
-export function getBottomRightCorner(): Vector {
-  const pos = g.r
-    .WorldToScreenPosition(Vector.Zero)
-    .sub(g.r.GetRenderScrollOffset())
-    .sub(g.g.ScreenShakeOffset);
-
-  const rx = pos.X + 39;
-  const ry = pos.Y + 91;
-
-  return Vector(rx * 2 + 338, ry * 2 + 182);
-}
-
 export function getTotalCollectibles(collectibleType: CollectibleType): int {
   let numCollectibles = 0;
   for (const player of getPlayers()) {
@@ -456,13 +441,6 @@ function logAllFlags(flags: int, maxShift: int) {
       log(`Has flag: ${i}`);
     }
   }
-}
-
-// eslint-disable-next-line import/no-unused-modules
-export function logColor(color: Color): void {
-  log(
-    `${color.R} ${color.G} ${color.B} ${color.A} ${color.RO} ${color.GO} ${color.BO}`,
-  );
 }
 
 export function moveEsauNextToJacob(): void {

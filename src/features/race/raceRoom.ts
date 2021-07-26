@@ -267,17 +267,17 @@ export function initSprites(): void {
   sprites.goalIcon = initSprite(`${GFX_PATH}/goals/${g.race.goal}.anm2`);
 }
 
-export function initMyStatusSprite(): void {
+function initMyStatusSprite(): void {
   sprites.myStatus = initSprite(
     `${GFX_PATH}/my-status/${g.race.myStatus}.anm2`,
   );
 }
 
-export function initNumReadySprite(): void {
+function initNumReadySprite(): void {
   sprites.numReady = initNumSprite(g.race.numReady);
 }
 
-export function initNumEntrantsSprite(): void {
+function initNumEntrantsSprite(): void {
   sprites.numEntrants = initNumSprite(g.race.numEntrants);
 }
 

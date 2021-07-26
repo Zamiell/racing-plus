@@ -8,5 +8,3 @@ export function postFirstFlip(player: EntityPlayer): void {
 
   formatSetup(player);
 }
-
-export function postFlip(): void {}

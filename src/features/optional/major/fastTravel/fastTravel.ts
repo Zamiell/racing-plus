@@ -169,7 +169,7 @@ export function checkPlayerTouched(
   }
 }
 
-export function canInteractWith(player: EntityPlayer): boolean {
+function canInteractWith(player: EntityPlayer) {
   // Players cannot interact with crawlspaces while playing certain animations
   const sprite = player.GetSprite();
   return (

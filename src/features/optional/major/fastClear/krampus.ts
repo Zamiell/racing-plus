@@ -25,7 +25,7 @@ function markDeathFrame(npc: EntityNPC) {
   data.killedFrame = gameFrameCount;
 }
 
-export function spawnKrampusDrop(npc: EntityNPC): void {
+function spawnKrampusDrop(npc: EntityNPC) {
   // The game only spawns Krampus' drop after his death animation is over
   // This takes too long, so manually spawn the drop as soon as Krampus dies
   // This also prevents the situation where a player can leave the room before the death animation

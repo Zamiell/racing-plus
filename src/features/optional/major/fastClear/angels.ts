@@ -26,7 +26,7 @@ function markDeathFrame(npc: EntityNPC) {
   data.killedFrame = gameFrameCount;
 }
 
-export function spawnKeyPiece(npc: EntityNPC): void {
+function spawnKeyPiece(npc: EntityNPC) {
   // The game only spawns key pieces from angels after the death animation is over
   // This takes too long, so manually spawn the key pieces as soon as the angel dies
   // This also prevents the situation where a player can leave the room before the death animation

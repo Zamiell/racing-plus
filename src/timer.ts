@@ -228,7 +228,7 @@ function getNewTimerSprites() {
   return sprites;
 }
 
-export function convertSecondsToTimerValues(
+function convertSecondsToTimerValues(
   totalSeconds: int,
 ): [int, int, int, int, int, int] {
   // Calculate the hours digit

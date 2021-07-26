@@ -1,7 +1,7 @@
 import g from "../../../globals";
 import { getPlayers } from "../../../misc";
 
-export enum FastDropTarget {
+enum FastDropTarget {
   All,
   Trinkets,
   Pocket,

@@ -174,7 +174,7 @@ function packSocketMsg(command: string, data: string) {
 }
 
 // e.g. "floor 1" or "finish"
-export function unpackSocketMsg(rawData: string): [SocketCommandIn, string] {
+function unpackSocketMsg(rawData: string): [SocketCommandIn, string] {
   const separator = " ";
   const [command, ...dataArray] = rawData.trim().split(separator);
   const data = dataArray.join(separator);

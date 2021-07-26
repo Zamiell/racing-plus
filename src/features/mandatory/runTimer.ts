@@ -29,7 +29,7 @@ export function postRender(): void {
   checkDisplay();
 }
 
-export function checkDisplay(): void {
+function checkDisplay() {
   if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
     return;
   }

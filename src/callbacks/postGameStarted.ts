@@ -106,6 +106,6 @@ function setSeeds() {
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
 }
 
-export function continued(): void {
+function continued() {
   saveDat.load();
 }

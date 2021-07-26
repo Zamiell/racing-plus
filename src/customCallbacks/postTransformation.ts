@@ -3,7 +3,7 @@ import g from "../globals";
 import { getPlayers } from "../misc";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
-export const TRANSFORMATION_NAMES = [
+const TRANSFORMATION_NAMES = [
   "Guppy",
   "Beelzebub",
   "Fun Guy",

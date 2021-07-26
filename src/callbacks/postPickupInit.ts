@@ -18,13 +18,13 @@ export function init(mod: Mod): void {
 }
 
 // PickupVariant.PICKUP_COLLECTIBLE (100)
-export function collectible(pickup: EntityPickup): void {
+function collectible(pickup: EntityPickup) {
   flyItemSprites.postPickupInit(pickup);
   twentyTwenty.postPickupInit(pickup);
   starOfBethlehem.postPickupInit(pickup);
 }
 
 // PickupVariant.PICKUP_BIGCHEST (340)
-export function bigChest(pickup: EntityPickup): void {
+function bigChest(pickup: EntityPickup) {
   fastTravelPostPickupInit.bigChest(pickup);
 }

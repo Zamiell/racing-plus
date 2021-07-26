@@ -8,6 +8,6 @@ export function init(mod: Mod): void {
   );
 }
 
-export function blood(tear: EntityTear): void {
+function blood(tear: EntityTear) {
   fadeVasculitisTears.postTearUpdateBloodParticle(tear);
 }

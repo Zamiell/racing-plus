@@ -8,6 +8,6 @@ export function init(mod: Mod): void {
   );
 }
 
-export function heavenLightDoor(effect: EntityEffect): void {
+function heavenLightDoor(effect: EntityEffect) {
   fastTravelPostEffectUpdate.heavenLightDoor(effect);
 }
