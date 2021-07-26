@@ -1,3 +1,4 @@
+- Items in the Boss Rush are now free if you are playing as Tainted Keeper on a race with a goal of the Boss Rush
 - Reworked the fully unlocked save file checking logic, so some old bugs should be fixed
 - Fixed the bug where the trophy would not spawn in races to the Boss Rush
 - Fixed some item sprites not showing

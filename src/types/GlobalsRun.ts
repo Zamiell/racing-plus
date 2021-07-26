@@ -61,6 +61,8 @@ export default class GlobalsRun {
     granted: false,
   };
 
+  /** Used for Tainted Keeper when racing to the Boss Rush. */
+  madeBossRushItemsFree = false;
   maxFamiliars = false;
   pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
   /** We track all identified pills so that we can display them. */
