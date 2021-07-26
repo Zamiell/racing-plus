@@ -32,5 +32,5 @@ export function useItem(): void {
 function postEsauJr() {}
 
 function postFirstEsauJr() {
-  startWithD6.postEsauJr();
+  startWithD6.postFirstEsauJr();
 }
