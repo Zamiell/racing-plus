@@ -8,15 +8,16 @@ export function postUpdate(): void {
   // Check to see if it is the frame after the player has used Esau Jr.
   if (
     g.run.usedEsauJrFrame !== 0 &&
-    gameFrameCount >= g.run.usedEsauJrFrame + 1 &&
-    !g.run.usedEsauJrAtLeastOnce
+    gameFrameCount >= g.run.usedEsauJrFrame + 1
   ) {
     g.run.usedEsauJrFrame = 0;
-    g.run.usedEsauJrAtLeastOnce = true;
-    postFirstEsauJr();
-  }
+    postEsauJr();
 
-  postEsauJr();
+    if (!g.run.usedEsauJrAtLeastOnce) {
+      g.run.usedEsauJrAtLeastOnce = true;
+      postFirstEsauJr();
+    }
+  }
 }
 
 // ModCallbacks.USE_ITEM (3)
