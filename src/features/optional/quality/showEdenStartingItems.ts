@@ -1,5 +1,9 @@
 import g from "../../../globals";
-import { getRoomIndex, initGlowingItemSprite } from "../../../misc";
+import {
+  getRoomIndex,
+  initGlowingItemSprite,
+  isAntibirthStage,
+} from "../../../misc";
 
 // Near the top-left
 const SPRITE_X = 123;
@@ -72,6 +76,7 @@ function shouldShowSprites() {
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
     stage === 1 &&
+    !isAntibirthStage() &&
     roomIndex === startingRoomIndex
   );
 }
