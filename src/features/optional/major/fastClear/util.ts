@@ -1,6 +1,3 @@
-// cspell:disable-next-line
-// For testing, a seed with Monstro on Basement 1 is: WZVC T7V1
-
 import g from "../../../../globals";
 
 export function deleteDyingEntity(
@@ -9,7 +6,8 @@ export function deleteDyingEntity(
   deathAnimationLength: int,
 ): void {
   // This is for deleting entities that drop items
-  // We want to delete the entity on the frame before they drop the item
+  // Entities drop after their death animation is completed,
+  // so we want to delete them on the frame before that
   // (this cannot be in the PostNPCUpdate callback because that does not fire when an NPC is in the
   // death animation)
   const gameFrameCount = g.g.GetFrameCount();

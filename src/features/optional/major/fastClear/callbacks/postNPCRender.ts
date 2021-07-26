@@ -5,10 +5,11 @@ export default function fastClearPostNPCRender(npc: EntityNPC): void {
     return;
   }
 
-  checkFinalFrameOfDeathAnimation(npc);
+  checkResetAttributeFrame(npc);
 }
 
-function checkFinalFrameOfDeathAnimation(npc: EntityNPC) {
+// Remove the fast-clear attribute from the NPC on the final frame of its death animation
+function checkResetAttributeFrame(npc: EntityNPC) {
   const data = npc.GetData();
   if (data.resetAttributeFrame === undefined) {
     return;

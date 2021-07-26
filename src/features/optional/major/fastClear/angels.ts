@@ -10,7 +10,7 @@ export function postUpdate(): void {
     EntityType.ENTITY_GABRIEL,
     EntityType.ENTITY_URIEL,
   ]) {
-    deleteDyingEntity(entityType, 0, DEATH_ANIMATION_LENGTH);
+    deleteDyingEntity(entityType, AngelVariant.NORMAL, DEATH_ANIMATION_LENGTH);
   }
 }
 

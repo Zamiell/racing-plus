@@ -61,7 +61,7 @@ export const FAST_CLEAR_WHITELIST = [
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
   // We do not want fast-clear to apply to Lil' Haunts
-  [EntityType.ENTITY_THE_HAUNT, HauntVariant.BOSS], // 260
+  [EntityType.ENTITY_THE_HAUNT, HauntVariant.HAUNT], // 260
   // We only want fast-clear to apply to the final phase of Mother
   [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2], // 912
 ];

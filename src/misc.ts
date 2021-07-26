@@ -113,6 +113,14 @@ export function getAllDoors(): GridEntityDoor[] {
   return doors;
 }
 
+export function getFinalFrameOfAnimation(sprite: Sprite): int {
+  const currentFrame = sprite.GetFrame();
+  sprite.SetLastFrame();
+  const finalFrame = sprite.GetFrame();
+  sprite.SetFrame(currentFrame);
+  return finalFrame;
+}
+
 export function getGridEntities(): GridEntity[] {
   const gridEntities: GridEntity[] = [];
   for (let gridIndex = 0; gridIndex < g.r.GetGridSize(); gridIndex++) {

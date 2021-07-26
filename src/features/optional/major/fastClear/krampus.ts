@@ -6,7 +6,11 @@ const DEATH_ANIMATION_LENGTH = 29;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
-  deleteDyingEntity(EntityType.ENTITY_FALLEN, 1, DEATH_ANIMATION_LENGTH);
+  deleteDyingEntity(
+    EntityType.ENTITY_FALLEN,
+    FallenVariant.KRAMPUS,
+    DEATH_ANIMATION_LENGTH,
+  );
 }
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)

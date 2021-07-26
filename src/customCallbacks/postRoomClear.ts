@@ -17,7 +17,7 @@ export function postUpdate(): void {
 
 function roomClear() {
   const gameFrameCount = g.g.GetFrameCount();
-  log(`Room clear detected on frame: ${gameFrameCount}`);
+  log(`Room clear detected on game frame: ${gameFrameCount}`);
 
   fastClearPostRoomClear();
   fastTravelPostRoomClear();

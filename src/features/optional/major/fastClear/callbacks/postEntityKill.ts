@@ -14,10 +14,12 @@
 // new function ourselves
 
 import g from "../../../../../globals";
+import * as angels from "../angels";
 import {
   FAST_CLEAR_WHITELIST,
   FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
 } from "../constants";
+import * as krampus from "../krampus";
 
 export default function fastClearPostEntityKill(entity: Entity): void {
   if (!g.config.fastClear) {
@@ -43,6 +45,20 @@ export default function fastClearPostEntityKill(entity: Entity): void {
     gameFrameToModify: gameFrameCount + 1,
     entityPtr: EntityPtr(npc),
   });
+
+  // Perform some additional steps for specific entities
+  if (
+    npc.Type === EntityType.ENTITY_FALLEN &&
+    npc.Variant === FallenVariant.KRAMPUS
+  ) {
+    krampus.postEntityKill(npc);
+  } else if (
+    (npc.Type === EntityType.ENTITY_URIEL ||
+      npc.Type === EntityType.ENTITY_GABRIEL) &&
+    npc.Variant === AngelVariant.NORMAL // Fallen Angels do not drop items
+  ) {
+    angels.postEntityKill(npc);
+  }
 }
 
 function isWhitelistedNPC(npc: EntityNPC) {
