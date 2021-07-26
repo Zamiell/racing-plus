@@ -271,6 +271,10 @@ Post-flip actions:
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - The controls graphic in the start room is changed to be speedrunning-themed.
+- The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
+
+> Why? The text blocks gameplay.
+
 - The graphics for fortunes and custom seeds are set to 15% opacity.
 
 > Why? So that gameplay is not blocked when you use Rules card.
@@ -333,6 +337,5 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
 -->
 <!--
-- The annoying vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 - Scared Hearts and Sticky Nickels now have unique sprites.
 - There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.) <!-- cspell:disable-line -->
