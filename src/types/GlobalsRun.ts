@@ -86,8 +86,6 @@ export default class GlobalsRun {
   };
 
   fireworksSpawned = 0;
-  /** If we have used Tainted Lazarus' Flip item yet on this run. */
-  flippedAtLeastOnce = false;
 
   freeDevilItem = {
     tookDamage: new LuaTable<PlayerLuaTableIndex, boolean>(),
@@ -135,6 +133,8 @@ export default class GlobalsRun {
 
   switchForgotten = false;
   transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
+  /** If we have used Tainted Lazarus' Flip item yet on this run. */
+  usedFlipAtLeastOnce = false;
   victoryLaps = 0;
 
   // Initialize variables that are tracked per player
