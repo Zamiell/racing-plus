@@ -7,11 +7,16 @@ export function postRender(): void {
 }
 
 function checkDisplay() {
-  if (g.race.myStatus !== "racing") {
+  if (g.race.myStatus !== "racing" && g.race.myStatus !== "finished") {
     return;
   }
 
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+    return;
+  }
+
+  if (g.race.myStatus === "finished" && !g.raceVars.finished) {
+    // We booted the game after a race was finished
     return;
   }
 

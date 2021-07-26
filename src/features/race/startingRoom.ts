@@ -28,6 +28,10 @@ export function postRender(): void {
 }
 
 function drawSprites() {
+  if (g.race.myStatus === "finished") {
+    return;
+  }
+
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
       const spriteName = key as keyof typeof sprites;

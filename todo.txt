@@ -1,9 +1,11 @@
 Patch notes:
-- Fixed the trapdoor incorrectly appearing after Mom in races to Mother
+- Fixed the bug where the trapdoor was incorrectly appearing after Mom in races to Mother
+- Fixed the bug where the final race time would not stay on the screen after a race was finished
+- Fixed the bug where the save file check would fail if you were Tainted Lost
+- Fixed the bug where the save file check would fail if you were Eden with Death Certificate
 
 
 - off limits is not spawning in b1 seeded treasure room
-- test to see if the place stays at the end of a race
 - test fireworks
 - test resetting during fireworks to see what happens
 

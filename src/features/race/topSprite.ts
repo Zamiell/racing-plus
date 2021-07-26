@@ -37,15 +37,24 @@ function hideGoSprite() {
   if (
     sprite !== null &&
     sprite.GetFilename() === GO_GFX_PATH &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing"
+    shouldHideGoSprite()
   ) {
-    const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
-    const elapsedSeconds = elapsedMilliseconds / 1000;
-    if (elapsedSeconds >= 3) {
-      sprite = null;
-    }
+    sprite = null;
   }
+}
+
+function shouldHideGoSprite() {
+  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+    return true;
+  }
+
+  const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
+  const elapsedSeconds = elapsedMilliseconds / 1000;
+  if (elapsedSeconds >= 3) {
+    return true;
+  }
+
+  return false;
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)

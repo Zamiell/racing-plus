@@ -15,14 +15,14 @@ export default function racePostRender(): void {
   }
 
   socket.postRender();
+  raceTimer.postRender();
+  placeLeft.postRender();
 
   if (g.race.status !== "none") {
     checkGameOpenedInMiddleOfRace();
     raceRoom.postRender();
     startingRoom.postRender();
-    placeLeft.postRender();
     topSprite.postRender();
-    raceTimer.postRender();
   }
 }
 
