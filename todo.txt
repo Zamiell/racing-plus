@@ -1,13 +1,4 @@
-- The circle will no longer spin in the Mega Satan fight
-- Items in the Boss Rush are now free if you are playing as Tainted Keeper on a race with a goal of the Boss Rush
-- Reworked the fully unlocked save file checking logic, so some old bugs should be fixed
-- Fixed the bug where the trophy would not spawn in races to the Boss Rush
-- Fixed some item sprites not showing
-- Fixed the save file check when Eden starts with Chaos
-- Fixed the run timer with Tainted Isaac
-- Fixed Krampus/angels dropping two things
-- Fixed Quake Grimaces not being flipped correctly
-- Fixed the error after defeating It Lives!
+
 
 
 - off limits is not spawning in b1 seeded treasure room

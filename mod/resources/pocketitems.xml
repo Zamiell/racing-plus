@@ -67,7 +67,7 @@ Notes:
 	<card type="special" pickup="8"  announcer="733" achievement="362" description="Draw 3 cards" name="Ancient Recall" id="53" mimiccharge="12" />
 	<card type="special" pickup="8"  announcer="734" achievement="363" description="Savor the moment" name="Era Walk" id="54" mimiccharge="3" />
 	<rune type="rune"    pickup="13" announcer="736" description="It still glows faintly" id="55" name="Rune Shard" mimiccharge="1" />
-	
+
 	<!-- Reverse tarot cards -->
 	<card type="tarot_reverse" pickup="14" achievement="524" announcer="512" announcerdelay="60" description="Let go and move on" id="56" name="0 - The Fool?" mimiccharge="12" />
 	<card type="tarot_reverse" pickup="14" achievement="525" announcer="513" announcerdelay="0" description="May no harm come to you" id="57" name="I - The Magician?" mimiccharge="4" />
@@ -91,12 +91,12 @@ Notes:
 	<card type="tarot_reverse" pickup="14" achievement="542" announcer="531" announcerdelay="0" description="May the darkness swallow all around you" id="75" name="XIX - The Sun?" mimiccharge="6" />
 	<card type="tarot_reverse" pickup="14" achievement="543" announcer="532" announcerdelay="30" description="May you redeem those found wanting" id="76" name="XX - Judgement?" mimiccharge="12" />
 	<card type="tarot_reverse" pickup="14" achievement="544" announcer="533" announcerdelay="30" description="Step into the abyss" id="77" name="XXI - The World?" mimiccharge="2" />
-	
+
 	<!-- Misc cards -->
 	<card type="object"  announcer="740" announcerdelay="60" pickup="15" achievement="415" description="???" name="Cracked Key" id="78" mimiccharge="4" />
 	<card type="suit"    announcer="741" announcerdelay="80" pickup="2" achievement="602" description="<3" id="79" name="Queen of Hearts" mimiccharge="12" />
 	<card type="special" announcer="742" announcerdelay="70" pickup="17" achievement="610" description="Again" id="80" name="Wild Card" mimiccharge="6" />
-	
+
 	<!-- Soul stones -->
 	<card type="rune" pickup="18" achievement="618" announcer="743" description="Reroll... or not" id="81" name="Soul of Isaac" mimiccharge="4" />
 	<card type="rune" pickup="19" achievement="619" announcer="744" description="Give me your love!" id="82" name="Soul of Magdalene" mimiccharge="3" />
@@ -115,17 +115,17 @@ Notes:
 	<card type="rune" pickup="32" achievement="632" announcer="757" description="Skeletal protector" id="95" name="Soul of the Forgotten" mimiccharge="4" />
 	<card type="rune" pickup="33" achievement="633" announcer="758" description="Friends from beyond" id="96" name="Soul of Bethany" mimiccharge="6" />
 	<card type="rune" pickup="34" achievement="634" announcer="759" description="Bound by blood" id="97" name="Soul of Jacob and Esau" mimiccharge="4" />
-	
+
 	<!--
 	Pill classes:
 		3: Major (a permanent effect, usually a stat modifier)
 		2: Medium (an effect with a significant impact, i.e. health or damage)
 		1: Minor (an effect which is only situationally useful)
 		0: Joke (an effect which is nigh useless)
-		
+
 	Append a + or - at the end to denote a positive or negative effect, no suffix means a neutral effect
 	-->
-	
+
 	<pilleffect announcer2="760" id="0" name="Bad Gas" announcer="328" class="1+" mimiccharge="1" />
 	<pilleffect announcer2="761" id="1" name="Bad Trip" announcer="329" announcerdelay="60" class="2-" mimiccharge="1" />
 	<pilleffect announcer2="762" id="2" name="Balls of Steel" announcer="330" announcerdelay="70" class="2+" mimiccharge="12" />
