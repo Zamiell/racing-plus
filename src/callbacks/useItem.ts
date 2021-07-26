@@ -29,7 +29,7 @@ function fortuneCookie(): void {
 
 // CollectibleType.COLLECTIBLE_ESAU_JR (703)
 function esauJr(): void {
-  postEsauJr.postEsauJrFrame();
+  postEsauJr.useItem();
 }
 
 // CollectibleType.COLLECTIBLE_FLIP (711)

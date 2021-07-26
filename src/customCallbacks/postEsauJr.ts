@@ -18,7 +18,7 @@ function postEsauJr() {
   startWithD6.postEsauJr();
 }
 
-export function postEsauJrFrame(): void {
+export function useItem(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
   // The player only changes to Esau Jr. on the frame after the item is used
