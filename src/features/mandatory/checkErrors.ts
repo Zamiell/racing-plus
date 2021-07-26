@@ -38,7 +38,7 @@ function isIncompleteSave() {
   const collectibleType = g.itemPool.GetCollectible(
     ItemPoolType.POOL_24,
     false,
-    0,
+    1,
   );
   if (collectibleType !== CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE) {
     log(

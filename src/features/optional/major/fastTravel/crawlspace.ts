@@ -211,10 +211,22 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  if (g.r.GetFrameCount() === 0) {
+  const roomFrameCount = g.r.GetFrameCount();
+  const roomClear = g.r.IsClear();
+  const roomIndex = getRoomIndex();
+
+  if (roomFrameCount === 0) {
     // If we just entered a new room with enemies in it, spawn the crawlspace closed so that the
     // player has to defeat the enemies first before using the crawlspace
-    if (!g.r.IsClear()) {
+    if (!roomClear) {
+      return false;
+    }
+
+    // Always spawn crawlspaces closed in off-grid rooms to prevent softlocks
+    // (the below distance check will fail and the crawlspace will be spawned open,
+    // but then the player will be teleported away from the entrance of the room back on top of the
+    // crawlspace, which will cause them to immediately re-enter it again)
+    if (roomIndex < 0) {
       return false;
     }
 

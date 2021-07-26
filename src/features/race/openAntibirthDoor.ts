@@ -14,9 +14,9 @@ export default function openAntibirthDoor(): void {
 
   const player = Isaac.GetPlayer();
   const roomType = g.r.GetType();
-  const isRoomCleared = g.r.IsClear();
+  const roomClear = g.r.IsClear();
 
-  if (roomType === RoomType.ROOM_BOSS && isRoomCleared) {
+  if (roomType === RoomType.ROOM_BOSS && roomClear) {
     for (const door of getAllDoors()) {
       if (door !== null && door.IsLocked()) {
         door.TryUnlock(player, true);

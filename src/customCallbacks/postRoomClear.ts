@@ -6,10 +6,10 @@ import log from "../log";
 
 export function postUpdate(): void {
   const gameFrameCount = g.g.GetFrameCount();
-  const isClear = g.r.IsClear();
+  const isRoomClear = g.r.IsClear();
 
-  if (isClear !== g.run.room.clear) {
-    g.run.room.clear = isClear;
+  if (isRoomClear !== g.run.room.clear) {
+    g.run.room.clear = isRoomClear;
     g.run.room.clearFrame = gameFrameCount;
     roomClear();
   }

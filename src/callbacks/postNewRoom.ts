@@ -55,14 +55,14 @@ export function newRoom(): void {
   const roomData = roomDesc.Data;
   const roomStageID = roomData.StageID;
   const roomVariant = roomData.Variant;
-  const isClear = g.r.IsClear();
+  const roomClear = g.r.IsClear();
 
   log(
     `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
   );
 
   // Set variables
-  g.run.room = new GlobalsRunRoom(isClear);
+  g.run.room = new GlobalsRunRoom(roomClear);
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
   // Mandatory features

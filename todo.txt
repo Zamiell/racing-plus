@@ -1,5 +1,6 @@
 Patch notes:
--
+- fix for crawlspace in off-grid rooms
+
 
 - off limits is not spawning in b1 seeded treasure room
 - test to see if the place stays at the end of a race
