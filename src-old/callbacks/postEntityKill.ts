@@ -105,24 +105,6 @@ export function ultraGreed(entity: Entity): void {
   entity.Remove();
 }
 
-export function roomClearDelayNPC(_entity: Entity): void {
-  // The room clear delay NPC may accidentally die if Lua code kills all NPCs in a room
-  // If this occurs, just spawn a new one
-  Isaac.DebugString(
-    "Room Clear Delay NPC death detected - spawning a new one.",
-  );
-  const npc = Isaac.Spawn(
-    EntityTypeCustom.ENTITY_ROOM_CLEAR_DELAY_NPC,
-    0,
-    0,
-    Vector.Zero,
-    Vector.Zero,
-    null,
-  );
-  npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-  npc.ClearEntityFlags(EntityFlag.FLAG_APPEAR);
-}
-
 // After killing Mom, Mom's Heart, or It Lives!, all entities in the room are killed
 // However, the developers did not consider that Globins need to be killed twice
 // (to kill their flesh pile forms)

@@ -1,6 +1,6 @@
 <!--
 
-Notes:
+Changes from vanilla:
 - Changed "Appear" and "Dissapear" to have 0 frames
 - You cannot delete the actual frames or else the game will crash upon pausing
 

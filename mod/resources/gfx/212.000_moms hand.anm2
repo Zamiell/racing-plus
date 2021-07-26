@@ -1,4 +1,10 @@
-<!-- Added a custom "Appear" animation -->
+<!--
+
+Changes from vanilla:
+- Added a custom "Appear" animation
+
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="Unknown" CreatedOn="4/9/2020 4:25:18 PM" Version="7" Fps="30"/>
 	<Content>

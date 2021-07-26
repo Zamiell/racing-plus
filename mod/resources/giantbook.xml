@@ -1,3 +1,10 @@
+<!--
+
+Changes from vanilla:
+- Commented out most animations
+
+-->
+
 <giantbook anm2root="gfx/ui/giantbook/">
 	<!--<entry id="1" anm2="GiantBook.anm2" anim="Shake" gfx="GiantBook_001_Necronomicon.png">
 		<layer name="poof" r="5" g="5" b="5" a="255" />

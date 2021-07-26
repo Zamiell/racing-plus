@@ -110,7 +110,13 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
 functionMap.set(
   "myStatus",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
+  (oldValue: RaceDataType, _newValue: RaceDataType) => {
+    if (oldValue === "in progress") {
+      // If the run started with a set seed,
+      // this will change the reset behavior to that of an unseeded run
+      g.seeds.Reset();
+    }
+
     raceRoom.myStatusChanged();
     placeLeft.statusOrMyStatusChanged();
   },

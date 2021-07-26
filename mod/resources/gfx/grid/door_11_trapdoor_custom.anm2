@@ -1,7 +1,9 @@
 <!--
-	Since the game will change the state of trapdoors on every frame, we need to rename all of the
-	vanilla animations so that the state change will no have visual effect.
-	(This has the side effect of making warning messages in the log.txt.)
+
+Since the game will change the state of trapdoors on every frame, we need to rename all of the
+vanilla animations so that the state change will no have visual effect.
+(This has the side effect of making warning messages in the log.txt.)
+
 -->
 
 <AnimatedActor>

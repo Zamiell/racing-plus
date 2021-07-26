@@ -3,7 +3,6 @@
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="black.png" Id="0"/>
-			<!--<Spritesheet Path="characters/costumes/Character_001_Isaac.png" Id="0"/>-->
 		</Spritesheets>
 		<Layers>
 			<Layer Name="Layer 0" Id="0" SpritesheetId="0"/>

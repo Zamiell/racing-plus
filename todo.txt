@@ -1,4 +1,5 @@
-
+Patch notes:
+- Deleted all of the dumb Mega Satan and Mega Satan 2 animations
 
 
 - off limits is not spawning in b1 seeded treasure room

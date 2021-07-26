@@ -69,6 +69,7 @@ function registerCallbacks(mod: Mod) {
   postTearUpdate.init(mod); // 40
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
+  postEntityKill.init(mod); // 68
   preNPCUpdate.init(mod); // 69
 }
 

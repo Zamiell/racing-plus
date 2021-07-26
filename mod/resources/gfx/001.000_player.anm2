@@ -1,6 +1,6 @@
 <!--
 
-Notes:
+Changes from vanilla:
 - Set the "Appear" animation to have 0 frames
 - Made a "TrapdoorCustom" animation that is 40 frames long instead of 16
 - Made a "LightTravelCustom" animation that is 40 frames long instead of 36

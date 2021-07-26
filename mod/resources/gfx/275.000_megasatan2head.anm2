@@ -1,3 +1,10 @@
+<!--
+
+Changes from vanilla:
+- Modified the "Appear" animation
+
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="Unknown" CreatedOn="2/12/2015 1:55:41 PM" Version="14" Fps="30"/>
 	<Content>
