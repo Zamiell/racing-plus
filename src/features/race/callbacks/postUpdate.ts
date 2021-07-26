@@ -1,11 +1,33 @@
 import g from "../../../globals";
+import { getRoomIndex } from "../../../misc";
+import * as trophy from "../../mandatory/trophy";
 
 export default function racePostUpdate(): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
+  spawnBossRushTrophy();
   checkFinalRoom();
+}
+
+function spawnBossRushTrophy() {
+  const roomIndex = getRoomIndex();
+  const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
+
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Boss Rush" &&
+    roomIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
+    !g.raceVars.finished &&
+    g.run.level.trophy === null &&
+    bossRushDone
+  ) {
+    const centerPos = g.r.GetCenterPos();
+    const pos = g.r.FindFreePickupSpawnPosition(centerPos);
+    trophy.spawn(pos);
+  }
 }
 
 function checkFinalRoom() {

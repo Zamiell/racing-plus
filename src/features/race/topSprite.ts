@@ -5,7 +5,7 @@
 // 4) Once we have finished a race, the final place
 
 import g from "../../globals";
-import { initSprite } from "../../misc";
+import { getScreenCenterPosition, initSprite } from "../../misc";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;
@@ -27,10 +27,8 @@ function drawSprite() {
 }
 
 function getPosition() {
-  const centerPos = g.r.GetCenterPos();
-  const renderPos = Isaac.WorldToRenderPosition(centerPos);
-
-  return Vector(renderPos.X, renderPos.Y - 80);
+  const centerPos = getScreenCenterPosition();
+  return Vector(centerPos.X, centerPos.Y - 80);
 }
 
 function hideGoSprite() {

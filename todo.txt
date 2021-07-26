@@ -1,8 +1,7 @@
-Patch notes:
-- Fixed the bug where the trapdoor was incorrectly appearing after Mom in races to Mother
-- Fixed the bug where the final race time would not stay on the screen after a race was finished
-- Fixed the bug where the save file check would fail if you were Tainted Lost
-- Fixed the bug where the save file check would fail if you were Eden with Death Certificate
+- Fixed the bug where the trophy would not spawn in races to the Boss Rush
+- Fixed some item sprites not showing
+- Fixed the save file check when Eden starts with Chaos
+
 
 
 - off limits is not spawning in b1 seeded treasure room

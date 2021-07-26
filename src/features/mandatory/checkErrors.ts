@@ -36,12 +36,12 @@ function isCorruptMod() {
 
 // Check to see if Death Certificate is unlocked
 function isIncompleteSave() {
-  // First, if Eden is holding Death Certificate, then it is obviously unlocked
+  // If Eden is holding Death Certificate, then it is obviously unlocked
   if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)) {
     return false;
   }
 
-  // Second, consider the save file complete if the any player is Tainted Lost
+  // Consider the save file complete if the any player is Tainted Lost
   // (since Tainted Lost cannot get Death Certificate)
   for (const player of getPlayers()) {
     const character = player.GetPlayerType();
@@ -50,7 +50,13 @@ function isIncompleteSave() {
     }
   }
 
-  // Third, get an item from Pool 24 and see if it is Death Certificate
+  // Consider the save file complete if any player has Chaos
+  // (since pool checking will not work in this case)
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_CHAOS)) {
+    return false;
+  }
+
+  // Get an item from Pool 24 and see if it is Death Certificate
   // (we manually added Death Certificate to that pool in "mod/content/itempools.xml")
   const collectibleType = g.itemPool.GetCollectible(
     ItemPoolType.POOL_24,
