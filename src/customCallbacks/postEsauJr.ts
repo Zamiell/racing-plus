@@ -21,7 +21,6 @@ function postEsauJr() {
 export function postEsauJrFrame(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
-  // Because the player number changes on the exact frame as using Esau Jr.,
-  // we need a variable that takes the frame after
+  // The player only changes to Esau Jr. on the frame after the item is used
   g.run.usedEsauJrFrame = gameFrameCount + 1;
 }
