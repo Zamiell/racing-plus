@@ -2,7 +2,7 @@
 - Fixed the bug where the trophy would not spawn in races to the Boss Rush
 - Fixed some item sprites not showing
 - Fixed the save file check when Eden starts with Chaos
-
+- Fix timer with Tainted Isaac
 
 
 - off limits is not spawning in b1 seeded treasure room

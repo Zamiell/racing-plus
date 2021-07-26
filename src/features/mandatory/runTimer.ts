@@ -5,12 +5,13 @@
 // Unlike the normal run timer, this uses real time instead of game frame count
 
 import g from "../../globals";
-import { isActionPressedOnAnyInput } from "../../misc";
+import { anyPlayerIs, isActionPressedOnAnyInput } from "../../misc";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
 
 const RUN_TIMER_X = 52;
 const RUN_TIMER_Y = 49;
+const RUN_TIMER_Y_TAINTED_ISAAC_MOD = 18;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -52,5 +53,11 @@ export function checkDisplay(): void {
   }
   const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
 
-  timer.display(TimerType.RunRealTime, seconds, RUN_TIMER_X, RUN_TIMER_Y);
+  const x = RUN_TIMER_X;
+  let y = RUN_TIMER_Y;
+  if (anyPlayerIs(PlayerType.PLAYER_ISAAC_B)) {
+    y += RUN_TIMER_Y_TAINTED_ISAAC_MOD;
+  }
+
+  timer.display(TimerType.RunRealTime, seconds, x, y);
 }
