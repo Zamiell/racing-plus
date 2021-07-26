@@ -133,6 +133,8 @@ export default class GlobalsRun {
 
   switchForgotten = false;
   transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
+  /** If we have used Esau Jr. item yet on this run. */
+  usedEsauJrAtLeastOnce = false;
   usedEsauJrFrame = 0;
   /** If we have used Tainted Lazarus' Flip item yet on this run. */
   usedFlipAtLeastOnce = false;
