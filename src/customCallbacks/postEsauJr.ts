@@ -5,7 +5,7 @@ import g from "../globals";
 export function postUpdate(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
-  // The player only changes to Esau Jr. on the frame after the item is used
+  // Check to see if it is the frame after the player has used Esau Jr.
   if (
     g.run.usedEsauJrFrame !== 0 &&
     gameFrameCount >= g.run.usedEsauJrFrame + 1 &&
@@ -21,10 +21,6 @@ export function postUpdate(): void {
 
 // ModCallbacks.USE_ITEM (3)
 // CollectibleType.COLLECTIBLE_ESAU_JR (703)
-function postFirstEsauJr() {
-  startWithD6.postEsauJr();
-}
-
 export function useItem(): void {
   const gameFrameCount = Isaac.GetFrameCount();
 
@@ -33,3 +29,7 @@ export function useItem(): void {
 }
 
 function postEsauJr() {}
+
+function postFirstEsauJr() {
+  startWithD6.postEsauJr();
+}
