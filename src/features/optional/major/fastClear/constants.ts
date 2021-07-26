@@ -17,7 +17,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_DADDYLONGLEGS, // 101 // cspell:disable-line
   EntityType.ENTITY_ISAAC, // 102
   EntityType.ENTITY_GURGLING, // 237
-  EntityType.ENTITY_THE_HAUNT, // 260
   EntityType.ENTITY_DINGLE, // 261
   EntityType.ENTITY_MEGA_MAW, // 262
   EntityType.ENTITY_GATE, // 263
@@ -57,11 +56,12 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_RAGLICH, // 919
   EntityType.ENTITY_HORNY_BOYS, // 920
   EntityType.ENTITY_CLUTCH, // 921
-  EntityType.ENTITY_DOGMA, // 950
   EntityType.ENTITY_BEAST, // 951
 ];
 
 export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
-  // We only want Fast-Clear to apply to the final phase of Mother
-  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2],
+  // We do not want fast-clear to apply to Lil' Haunts
+  [EntityType.ENTITY_THE_HAUNT, HauntVariant.BOSS], // 260
+  // We only want fast-clear to apply to the final phase of Mother
+  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2], // 912
 ];

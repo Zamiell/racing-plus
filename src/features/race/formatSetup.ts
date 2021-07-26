@@ -23,7 +23,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_EDEN_B, // 30
 ];
 
-export default function giveFormatItems(player: EntityPlayer): void {
+export default function formatSetup(player: EntityPlayer): void {
   switch (g.race.format) {
     case "unseeded": {
       if (g.race.ranked && g.race.solo) {
@@ -120,7 +120,7 @@ function seeded(player: EntityPlayer) {
 
   // Since this race type has a custom death mechanic, we also want to remove the Broken Ankh
   // (since we need the custom revival to always take priority over random revivals)
-  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
 }
 
 function diversity(player: EntityPlayer) {

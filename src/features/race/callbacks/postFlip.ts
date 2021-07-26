@@ -1,12 +1,12 @@
 import g from "../../../globals";
-import giveFormatItems from "../giveFormatItems";
+import formatSetup from "../formatSetup";
 
 export function postFirstFlip(player: EntityPlayer): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
-  giveFormatItems(player);
+  formatSetup(player);
 }
 
 export function postFlip(): void {}

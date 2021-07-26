@@ -1,6 +1,7 @@
 import * as cache from "../cache";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as removeMercurius from "../features/mandatory/removeMercurius";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
@@ -65,6 +66,7 @@ export function newRoom(): void {
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
   // Mandatory features
+  removeMercurius.postNewRoom();
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
 

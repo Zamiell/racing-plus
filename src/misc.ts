@@ -270,7 +270,7 @@ export function giveItemAndRemoveFromPools(
   const maxCharges = getItemMaxCharges(collectibleType);
   const charges = initCharges === -1 ? maxCharges : initCharges;
 
-  player.AddCollectible(collectibleType, charges, false);
+  player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
 }
 

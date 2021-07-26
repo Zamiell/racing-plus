@@ -10,7 +10,7 @@ import Sandbox from "./Sandbox";
 import SocketClient from "./SocketClient";
 
 export default class Globals {
-  debug = false;
+  debug = true;
   corrupted = false;
 
   // Cached API functions

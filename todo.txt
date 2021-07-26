@@ -1,12 +1,19 @@
+Patch notes:
+- Fixed Mercurius being gettable via Death Certificate.
+- You can no longer use the console while in races
+- Fixed the bug where fast-clear was bugged with Lil' Haunts
+- Fixed the bug where Dogma was affected by fast-clear
+- Fixed the bug where seeded builds and diversity starts would not grant transformations
+
+
 - off limits is not spawning in b1 seeded treasure room
 - test to see if the place stays at the end of a race
 - test fireworks
 - test resetting during fireworks to see what happens
 
+Racing+ new features:
 - chat system
 - custom console
-
-Racing+ new features:
 - Charge bars for all of the charge items
 	- Azazel's Rage
 - automatically open door after going to 2x1 room in mines with completed knife

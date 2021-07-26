@@ -38,18 +38,6 @@ function InputAction.IsActionTriggeredDrop() {
   }
 }
 
-// Prevent opening the console during a race
-function InputAction.IsActionTriggeredConsole() {
-  if ( g.debug === true ) {
-    return
-  }
-
-  // Allow usage of the console in custom races
-  if ( g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.format !== "custom" ) {
-    return false
-  }
-}
-
 function InputAction.IsActionTriggeredItem() {
   if ( g.run.spamButtons ) {
     g.sfx.Stop(SoundEffect.SOUND_ISAAC_HURT_GRUNT) // 55
