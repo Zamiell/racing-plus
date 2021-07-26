@@ -2,11 +2,6 @@ import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
-import {
-  EDEN_ACTIVE_ITEM,
-  EDEN_PASSIVE_ITEM,
-  SAVE_FILE_SEED,
-} from "../features/mandatory/saveFileCheck";
 import * as socket from "../features/race/socket";
 import g from "../globals";
 import log from "../log";
@@ -231,18 +226,6 @@ functionMap.set("effects", (_params: string) => {
 
 functionMap.set("error", (_params: string) => {
   IAMERROR();
-});
-
-// Used in: https://pastebin.com/1YY4jb4P
-// cspell:disable-next-line
-functionMap.set("getedenseed", (_params: string) => {
-  print(
-    `The seed to check for a fully-unlocked save file is: ${SAVE_FILE_SEED}`,
-  );
-  const activeItemName = g.itemConfig.GetCollectible(EDEN_ACTIVE_ITEM).Name;
-  print(`Eden should start with an active item of: ${activeItemName}`);
-  const passiveItemName = g.itemConfig.GetCollectible(EDEN_PASSIVE_ITEM).Name;
-  print(`Eden should start with a passive item of: ${passiveItemName}`);
 });
 
 functionMap.set("help", (_params: string) => {

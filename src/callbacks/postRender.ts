@@ -4,7 +4,6 @@ import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimatio
 import * as errors from "../features/mandatory/errors";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
-import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
@@ -66,10 +65,6 @@ function checkRestart() {
     return false;
   }
   g.run.restart = false;
-
-  if (saveFileCheck.checkRestart()) {
-    return true;
-  }
 
   if (checkRestartWrongRaceCharacter()) {
     return true;

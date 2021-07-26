@@ -13,6 +13,7 @@ export default class GlobalsRun {
   level = new GlobalsRunLevel(0, 0);
   /** Used to go to a new floor on game frame 0. */
   forceNextLevel = false; //
+
   room = new GlobalsRunRoom(true);
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;
@@ -26,6 +27,12 @@ export default class GlobalsRun {
     passive: 0 as CollectibleType,
     activeSprite: null as Sprite | null,
     passiveSprite: null as Sprite | null,
+  };
+
+  errors = {
+    corrupted: false,
+    incompleteSave: false,
+    otherModsEnabled: false,
   };
 
   /** Needed for speedruns to return to the same character. */

@@ -3,7 +3,6 @@ import RaceVars from "../features/race/types/RaceVars";
 import SpeedrunData from "../features/speedrun/types/SpeedrunData";
 import log from "../log";
 import Config from "./Config";
-import { SaveFileState } from "./enums";
 import GlobalsRun from "./GlobalsRun";
 import Hotkeys from "./Hotkeys";
 import Sandbox from "./Sandbox";
@@ -11,7 +10,6 @@ import SocketClient from "./SocketClient";
 
 export default class Globals {
   debug = true;
-  corrupted = false;
 
   // Cached API functions
   g = Game();
@@ -37,18 +35,6 @@ export default class Globals {
   speedrun = new SpeedrunData();
 
   sandbox: Sandbox | null = null;
-
-  // Checked in the PostGameStarted callback
-  saveFile = {
-    state: SaveFileState.NotChecked,
-    fullyUnlocked: false,
-    oldRun: {
-      challenge: 0,
-      character: 0,
-      seededRun: false,
-      seed: "",
-    },
-  };
 
   socket = {
     enabled: false,

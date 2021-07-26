@@ -4,4 +4,7 @@
 		<Item Name="Diversity Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Diversity Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
+	<Pool Name="unused24">
+		<Item Name="Death Certificate" Weight="2000000000" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
 </ItemPools>

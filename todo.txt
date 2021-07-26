@@ -1,13 +1,5 @@
 Patch notes:
-- Fixed Mercurius being gettable via Death Certificate.
-- You can no longer use the console while in races
-- Fixed the bug where fast-clear was bugged with Lil' Haunts
-- Fixed the bug where Dogma was affected by fast-clear
-- Fixed the bug where seeded builds and diversity starts would not grant transformations
-- Muted the transformation sound when resetting since it is obnoxious
-- Fixed the bug where Tainted Magdalene / Tainted Keeper would not get drops from fast-clear NPCs
-- Fixed the bug where the number of frames that display after a race would be bugged if you left the race
-
+-
 
 - off limits is not spawning in b1 seeded treasure room
 - test to see if the place stays at the end of a race

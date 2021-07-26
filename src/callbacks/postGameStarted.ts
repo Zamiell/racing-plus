@@ -1,7 +1,7 @@
 import * as centerStart from "../features/mandatory/centerStart";
+import checkErrors from "../features/mandatory/checkErrors";
 import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
-import * as saveFileCheck from "../features/mandatory/saveFileCheck";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -14,7 +14,7 @@ import g from "../globals";
 import log from "../log";
 import { getPlayers } from "../misc";
 import * as saveDat from "../saveDat";
-import { CollectibleTypeCustom, SaveFileState } from "../types/enums";
+import { CollectibleTypeCustom } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
 import * as postNewLevel from "./postNewLevel";
 
@@ -42,7 +42,7 @@ export function main(isContinued: boolean): void {
   g.run = new GlobalsRun(getPlayers());
 
   // Check for errors that should prevent the Racing+ mod from doing anything
-  if (isCorruptMod() || !saveFileCheck.isFullyUnlocked()) {
+  if (checkErrors()) {
     return;
   }
 
@@ -108,34 +108,4 @@ function setSeeds() {
 
 export function continued(): void {
   saveDat.load();
-
-  if (g.saveFile.state === SaveFileState.NotChecked) {
-    // In order to determine if the user has a fully-unlocked save file, we need to restart the game
-    // Since we are continuing a run, that would destroy their current progress
-    // Defer the check until the next new run starts
-    g.saveFile.state = SaveFileState.DeferredUntilNewRunBegins;
-  }
-}
-
-// If Racing+ is turned on from the mod menu and then the user immediately tries to play,
-// it won't work properly; some things like boss cutscenes will still be enabled
-// In order to fix this, the game needs to be completely restarted
-// One way to detect this corrupted state is to get how many frames there are in the currently
-// loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2")
-// Racing+ removes boss cutscenes, so this value should be 0
-// This function returns true if the PostGameStarted callback should halt
-function isCorruptMod() {
-  const sprite = Sprite();
-  sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
-  sprite.SetFrame("Scene", 0);
-  sprite.SetLastFrame();
-  const lastFrame = sprite.GetFrame();
-  if (lastFrame !== 0) {
-    log(
-      `Error: Corrupted Racing+ instantiation detected. (The last frame of the "Scene" animation is frame ${lastFrame}.)`,
-    );
-    g.corrupted = true;
-  }
-
-  return g.corrupted;
 }

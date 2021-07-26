@@ -1,5 +1,4 @@
 import g from "../../globals";
-import { SaveFileState } from "../../types/enums";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const STARTING_X = 115;
@@ -13,16 +12,18 @@ export function postRender(): boolean {
     return true;
   }
 
-  if (g.corrupted) {
+  if (g.run.errors.corrupted) {
     drawCorrupted();
     return true;
   }
 
-  if (
-    g.saveFile.state === SaveFileState.Finished &&
-    !g.saveFile.fullyUnlocked
-  ) {
-    drawNotFullyUnlocked();
+  if (g.run.errors.incompleteSave) {
+    drawSaveFileNotFullyUnlocked();
+    return true;
+  }
+
+  if (g.run.errors.otherModsEnabled) {
+    drawOtherModsEnabled();
     return true;
   }
 
@@ -114,7 +115,7 @@ function drawCorrupted() {
   Isaac.RenderText("redownloaded/reinstalled.", x, y, 2, 2, 2, 2);
 }
 
-function drawNotFullyUnlocked() {
+function drawSaveFileNotFullyUnlocked() {
   let x = STARTING_X;
   let y = STARTING_Y;
   Isaac.RenderText(
@@ -162,9 +163,16 @@ function drawNotFullyUnlocked() {
     2,
     2,
   );
+}
+
+function drawOtherModsEnabled() {
+  let x = STARTING_X;
+  let y = STARTING_Y;
+  Isaac.RenderText("Error: You have illegal mods enabled.", x, y, 2, 2, 2, 2);
+  x += 42;
   y += 20;
   Isaac.RenderText(
-    "If you have problems, please read this guide:",
+    "Make sure that Racing+ is the only mod enabled",
     x,
     y,
     2,
@@ -172,8 +180,8 @@ function drawNotFullyUnlocked() {
     2,
     2,
   );
-  y += 20;
-  Isaac.RenderText("https://pastebin.com/1YY4jb4P", x, y, 2, 2, 2, 2);
+  y += 10;
+  Isaac.RenderText(" in your mod list and try again.", x, y, 2, 2, 2, 2);
 }
 
 function drawSetCharOrder() {
