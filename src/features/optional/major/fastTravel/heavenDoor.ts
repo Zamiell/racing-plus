@@ -8,6 +8,12 @@ const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
+  // In some situations, heaven doors should be removed entirely
+  if (shouldRemove()) {
+    effect.Remove();
+    return;
+  }
+
   // Beams of light start at state 0 and get incremented by 1 on every frame
   // Players can only get taken up by heaven doors if the state is at a high enough value
   // Thus, we can disable the vanilla functionality by setting the state to 0 on every frame
@@ -17,6 +23,23 @@ export function postEffectUpdate(effect: EntityEffect): void {
   // PostNewRoom callback
   fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
+
+function shouldRemove() {
+  const stage = g.l.GetStage();
+
+  // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
+  // If the goal of the race is Hush, delete the heaven door that spawns after Hush
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Hush" &&
+    (stage === 8 || stage === 9)
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 function shouldSpawnOpen() {

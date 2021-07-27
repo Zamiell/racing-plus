@@ -1,12 +1,17 @@
 import * as charge from "../../charge";
 import g from "../../globals";
-import * as roomClearDelayNPC from "../../roomClearDelayNPC";
 
+// There is a 50% chance after defeating Mega Satan that the game will trigger a cutscene and force
+// the player to leave the run
+// By simply setting the room to be cleared when Mega Satan 2 dies,
+// the game will never go on to make the 50% roll
 export function postEntityKill(_entity: Entity): void {
-  // Stop the room from being cleared, which has a chance to take us back to the menu
-  roomClearDelayNPC.spawn();
+  emulateRoomClear();
+}
 
+function emulateRoomClear() {
   // Emulate the room being cleared
+  g.r.SetClear(true);
   charge.checkAdd();
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
@@ -19,8 +24,4 @@ export function postEntityKill(_entity: Entity): void {
     Vector.Zero,
     null,
   );
-
-  // Set the room status to clear so that the player cannot fight Mega Satan a second time
-  // (e.g. if they use a Fool Card)
-  g.r.SetClear(true);
 }

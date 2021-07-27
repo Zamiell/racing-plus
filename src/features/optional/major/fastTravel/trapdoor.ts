@@ -89,6 +89,28 @@ function shouldRemove() {
     return true;
   }
 
+  // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Hush" &&
+    stage === 8 &&
+    roomIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
+  ) {
+    return true;
+  }
+
+  // If the goal of the race is Hush, delete the trapdoor that spawns after Hush
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "Hush" &&
+    stage === 9 &&
+    roomIndex !== GridRooms.ROOM_THE_VOID_IDX
+  ) {
+    return true;
+  }
+
   // If the goal of the race is Mother, delete trapdoors that leads to normal floors
   if (
     g.race.status === "in progress" &&

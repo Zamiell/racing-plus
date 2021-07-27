@@ -1,4 +1,4 @@
-import g from "../../../globals"
+import g from "../../../globals";
 
 export function postNPCUpdate(npc: EntityNPC): void {
   if (!g.config.fastBigHorn) {

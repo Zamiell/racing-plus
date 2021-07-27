@@ -1,10 +1,16 @@
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
+import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
-import * as RCDNPC from "../roomClearDelayNPC";
-import { EntityTypeCustom } from "../types/enums";
+import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    lamb,
+    EntityType.ENTITY_THE_LAMB, // 273
+  );
+
   mod.AddCallback(
     ModCallbacks.MC_POST_ENTITY_KILL,
     megaSatan2,
@@ -13,8 +19,8 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_POST_ENTITY_KILL,
-    roomClearDelayNPC,
-    EntityTypeCustom.ENTITY_ROOM_CLEAR_DELAY_NPC,
+    hush,
+    EntityType.ENTITY_HUSH, // 407
   );
 }
 
@@ -31,10 +37,17 @@ export function main(entity: Entity): void {
   fadeBosses.postEntityKill(entity);
 }
 
+// EntityType.ENTITY_THE_LAMB (273)
+function lamb(entity: Entity) {
+  stopVictoryLapPopup.postEntityKill(entity);
+}
+
+// EntityType.ENTITY_MEGA_SATAN_2 (275)
 function megaSatan2(entity: Entity) {
   megaSatanPreventEnd.postEntityKill(entity);
 }
 
-function roomClearDelayNPC(entity: Entity) {
-  RCDNPC.postEntityKill(entity);
+// EntityType.ENTITY_HUSH (407)
+function hush(entity: Entity) {
+  racePostEntityKill.hush(entity);
 }

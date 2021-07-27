@@ -7,7 +7,6 @@ export default class GlobalsRun {
   edenStartingItems: CollectibleType[] = [];
   metKrampus = false;
   movingBoxOpen = true;
-  killedLamb = false; // Used for the "Everything" race goal
   PHDPills = false; // Used to determine when to change the pill text
   haveWishbone = false;
   haveWalnut = false;

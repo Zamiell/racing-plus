@@ -153,6 +153,30 @@ Post-flip actions:
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
+- `035` Big Horn will spend less time underground.
+
+> Why? Big Horn can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `036` The Lamb body is removed upon death.
+
+> Why? It can interfere with touching a trophy / chest.
+
+- `037` The Victory Lap popup will no longer appear after defeating The Lamb.
+
+> Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
+
+- Defeating Mega Satan no longer has a chance to immediately end the run.
+
+> Why? This gives players a chance to touch a trophy, use a Fool card, etc.
+
+- Some of the animations in the Mega Satan fight have been removed.
+
+> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
+
+- Hush no longer plays an appear animation.
+
+> Why? The animation is very long, resulting in the player being forced to wait without performing any inputs.
+
 ### 4) Enemy Changes
 
 - `041` Cod Worms are replaced with Para-Bites.
@@ -175,21 +199,9 @@ Post-flip actions:
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `046` Big Horn will spend less time underground.
-
-> Why? Big Horn can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
-- `047` Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `046` Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
-
-- Defeating Mega Satan no longer has a chance to immediately end the run.
-
-> Why? This gives players a chance to touch a trophy, use a Fool card, etc.
-
-- Some of the animations in the Mega Satan fight have been removed.
-
-> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
 
 ### 5) Quality of Life Changes
 

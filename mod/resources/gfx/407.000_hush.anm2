@@ -1,3 +1,10 @@
+<!--
+
+Changes from vanilla:
+- Set the "Appear" animation to X frames
+
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="Unknown" CreatedOn="26.10.2015 16:54:18" Version="63" Fps="30"/>
 	<Content>

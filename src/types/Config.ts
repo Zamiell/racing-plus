@@ -20,6 +20,9 @@ export default class Config {
   stopDeathSlow = true;
   fastHaunt = true;
   fastSatan = true;
+  fastBigHorn = true;
+  removeLambBody = true;
+  stopVictoryLapPopup = true;
 
   // Enemy Changes
   replaceCodWorms = true;
@@ -27,7 +30,6 @@ export default class Config {
   fastGhosts = true;
   fastHands = true;
   appearHands = true;
-  fastBigHorn = true;
   globinSoftlock = true;
 
   // Quality of Life Changes

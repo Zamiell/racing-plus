@@ -215,7 +215,7 @@ export const BOSS_CHANGES: ConfigDescriptionArray = [
     "stopDeathSlow",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "034",
+      "032",
       "Stop Death's slow attack",
       "Stop Death from performing the attack that reduces your speed by a factor of 2.",
     ],
@@ -224,7 +224,7 @@ export const BOSS_CHANGES: ConfigDescriptionArray = [
     "fastHaunt",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "032",
+      "033",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
     ],
@@ -233,9 +233,36 @@ export const BOSS_CHANGES: ConfigDescriptionArray = [
     "fastSatan",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "033",
+      "034",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
+    ],
+  ],
+  [
+    "fastBigHorn",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "035",
+      "Fast Big Horn",
+      "Make Big horn spend less time underground.",
+    ],
+  ],
+  [
+    "removeLambBody",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "036",
+      "Remove The Lamb body",
+      "Remove The Lamb body entirely once it dies.",
+    ],
+  ],
+  [
+    "stopVictoryLapPopup",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "037",
+      "Stop the Victory Lap popup",
+      "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
   ],
 ];
@@ -288,19 +315,10 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastBigHorn",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "046",
-      "Fast Big Horn",
-      "Make Big horn spend less time underground.",
-    ],
-  ],
-  [
     "globinSoftlock",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "047",
+      "046",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
     ],

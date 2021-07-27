@@ -30,8 +30,6 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_URIEL, // 271
   EntityType.ENTITY_GABRIEL, // 272
   EntityType.ENTITY_THE_LAMB, // 273
-  EntityType.ENTITY_MEGA_SATAN, // 274
-  EntityType.ENTITY_MEGA_SATAN_2, // 275
   EntityType.ENTITY_STAIN, // 401
   EntityType.ENTITY_FORSAKEN, // 403
   EntityType.ENTITY_LITTLE_HORN, // 404

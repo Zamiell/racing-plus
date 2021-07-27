@@ -1,4 +1,7 @@
+import * as fixHushCollision from "../features/mandatory/fixHushCollision";
+import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
+import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as stopDeathSlow from "../features/optional/bosses/stopDeathSlow";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
@@ -6,7 +9,6 @@ import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
-import * as fastBigHorn from "../features/optional/quality/fastBigHorn";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -47,6 +49,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
+    lamb,
+    EntityType.ENTITY_THE_LAMB, // 273
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
     redGhost,
     EntityType.ENTITY_RED_GHOST, // 285
   );
@@ -55,6 +63,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_NPC_UPDATE,
     momsDeadHand,
     EntityType.ENTITY_MOMS_DEAD_HAND, // 287
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
+    hush,
+    EntityType.ENTITY_HUSH, // 407
   );
 
   mod.AddCallback(
@@ -97,6 +111,11 @@ function dingle(npc: EntityNPC) {
   fastClearPostNPCUpdate.dingle(npc);
 }
 
+// EntityType.ENTITY_THE_LAMB (273)
+function lamb(npc: EntityNPC) {
+  removeLambBody.postNPCUpdate(npc);
+}
+
 // EntityType.ENTITY_RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
   disableInvulnerability.setGhostCollisionClass(npc);
@@ -109,6 +128,12 @@ function momsDeadHand(npc: EntityNPC) {
   fastHands.postNPCUpdate(npc);
 }
 
+// EntityType.ENTITY_HUSH (407)
+function hush(npc: EntityNPC) {
+  fixHushCollision.postNPCUpdate(npc);
+}
+
+// EntityType.ENTITY_BIG_HORN (411)
 function bigHorn(npc: EntityNPC) {
   fastBigHorn.postNPCUpdate(npc);
 }
