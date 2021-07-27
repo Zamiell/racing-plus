@@ -36,7 +36,7 @@ export function main(): void {
   fastClearPostUpdate();
   fastDrop.postUpdate();
 
-  // QoL
+  // Quality of life
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
 }

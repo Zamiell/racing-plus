@@ -5,6 +5,9 @@ Patch notes:
 - New feature: The Lamb's body is removed upon death
 - New feature: Stop the Victory Lap popup after defeating The Lamb
 - New feature: Hush no longer plays an Appear animation.
+- Photos will now be replaced properly again
+- The path after It Lives! will now be replaced properly again
+- The path after Hush will now be replaced properly again
 - Trapdoors / heaven doors will no longer spawn after It Lives! or Hush while doing races to Hush
 - Fixed the bug where you would be locked to a seeded run if you played in a seeded race
 - Fixed the bug where Dangle was incorrectly faded after killing Brownie

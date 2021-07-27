@@ -5,11 +5,13 @@ import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
+const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 12;
+const FRAME_DELAY_AFTER_KILLING_HUSH = 13;
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
   // In some situations, heaven doors should be removed entirely
-  if (shouldRemove()) {
+  if (shouldRemove(effect)) {
     effect.Remove();
     return;
   }
@@ -25,8 +27,35 @@ export function postEffectUpdate(effect: EntityEffect): void {
   fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
-function shouldRemove() {
+function shouldRemove(effect: EntityEffect) {
+  if (effect.FrameCount > 1) {
+    return false;
+  }
+
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
+
+  // If a specific amount of frames have passed since killing It Lives!,
+  // then delete the vanilla heaven door (since we manually spawned one already)
+  if (
+    g.run.room.deletePaths &&
+    g.run.room.itLivesKilledFrame !== 0 &&
+    gameFrameCount ===
+      g.run.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
+  ) {
+    return true;
+  }
+
+  // If a specific amount of frames have passed since killing Hush,
+  // then delete the vanilla heaven door (since we manually spawned one already)
+  if (
+    g.run.room.deletePaths &&
+    g.run.room.hushKilledFrame !== 0 &&
+    gameFrameCount ===
+      g.run.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
+  ) {
+    return true;
+  }
 
   // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
   // If the goal of the race is Hush, delete the heaven door that spawns after Hush
@@ -43,12 +72,22 @@ function shouldRemove() {
 }
 
 function shouldSpawnOpen() {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
+
   // In almost all cases, beams of light are spawned after defeating a boss
   // This means that the room will be clear and they should spawn in an open state
   // Rarely, players can also encounter beams of light in an I AM ERROR room with enemies
   // If this is the case, spawn the heaven door in a closed state so that the player must defeat
   // all of the enemies in the room before going up
-  return g.r.IsClear();
+  // However, the room will not be clear yet if this is a manually spawned heaven door after killing
+  // It Lives! or Hush, so account for that first
+  if ((stage === 8 || stage === 9) && roomType === RoomType.ROOM_BOSS) {
+    return true;
+  }
+
+  return roomClear;
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {

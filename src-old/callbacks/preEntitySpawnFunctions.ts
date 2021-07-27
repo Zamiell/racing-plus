@@ -3,7 +3,7 @@
 functionMap.set(
   EntityType.ENTITY_EFFECT,
   (
-    variant: EntityVariantForAC,
+    variant: int,
     subType: int,
     _position: Vector,
     spawner: Entity,

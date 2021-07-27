@@ -5,6 +5,11 @@ export enum EntityTypeCustom {
   ),
 }
 
+// EntityType.ENTITY_PICKUP (5)
+export enum PickupVariantCustom {
+  INVISIBLE_PICKUP = Isaac.GetEntityVariantByName("Invisible Pickup"),
+}
+
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
   PITFALL_CUSTOM = Isaac.GetEntityVariantByName("Pitfall (Custom)"),

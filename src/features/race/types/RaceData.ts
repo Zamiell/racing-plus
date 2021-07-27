@@ -11,7 +11,7 @@ type RacerStatus =
   | "disqualified";
 type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom";
 type RaceDifficulty = "normal" | "hard";
-type RaceGoal =
+export type RaceGoal =
   | "Blue Baby"
   | "The Lamb"
   | "Mega Satan"

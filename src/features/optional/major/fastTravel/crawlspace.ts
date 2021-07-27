@@ -3,7 +3,6 @@
 import g from "../../../../globals";
 import log from "../../../../log";
 import {
-  getGridEntities,
   getRoomIndex,
   movePlayersAndFamiliars,
   teleport,
@@ -42,20 +41,10 @@ const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Crawlspace;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  initAll();
   repositionPlayer();
   checkBlackMarket(); // This must be after the "repositionPlayer()" function
   checkReturningToRoomOutsideTheGrid();
   checkPostRoomTransitionSubvert();
-}
-
-function initAll() {
-  for (const gridEntity of getGridEntities()) {
-    const saveState = gridEntity.GetSaveState();
-    if (saveState.Type === GridEntityType.GRID_STAIRS) {
-      fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-    }
-  }
 }
 
 function repositionPlayer() {
@@ -199,13 +188,18 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
   }
 }
 
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
+// GridEntityType.GRID_STAIRS
+export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
+  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+}
+
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
 // GridEntityType.GRID_STAIRS
 export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   // Keep it closed on every frame so that we can implement our own custom functionality
   gridEntity.State = TrapdoorState.CLOSED;
 
-  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }

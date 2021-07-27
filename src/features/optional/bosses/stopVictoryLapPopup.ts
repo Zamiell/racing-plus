@@ -2,7 +2,7 @@ import * as charge from "../../../charge";
 import g from "../../../globals";
 import { EffectVariantCustom } from "../../../types/enums";
 
-export function postEntityKill(_entity: Entity): void {
+export function postEntityKillLamb(_entity: Entity): void {
   if (!g.config.stopVictoryLapPopup) {
     return;
   }
@@ -57,21 +57,3 @@ function emulateRoomClear() {
     null,
   );
 }
-
-/*
-// Subvert the "Would you like to do a Victory Lap!?" popup that happens after defeating The Lamb
-export function subvertVictoryLapPopup() {
-  const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomType = g.r.GetType();
-
-  if (
-    stage === 11 &&
-    stageType === 0 &&
-    roomType === RoomType.ROOM_BOSS &&
-    roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX
-  ) {
-  }
-}
-*/

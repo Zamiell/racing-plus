@@ -2,7 +2,7 @@ import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloo
 
 export function main(
   _entityType: EntityType | int,
-  _variant: EntityVariantForAC,
+  _variant: int,
   _subType: int,
   gridIndex: int,
   _seed: int,

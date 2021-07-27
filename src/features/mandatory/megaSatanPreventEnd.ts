@@ -5,7 +5,7 @@ import g from "../../globals";
 // the player to leave the run
 // By simply setting the room to be cleared when Mega Satan 2 dies,
 // the game will never go on to make the 50% roll
-export function postEntityKill(_entity: Entity): void {
+export function postEntityKillMegaSatan2(_entity: Entity): void {
   emulateRoomClear();
 }
 

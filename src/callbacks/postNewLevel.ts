@@ -52,7 +52,7 @@ export function newLevel(): void {
   // Major
   racePostNewLevel();
 
-  // QoL
+  // Quality of life
   openHushDoor.postNewLevel();
 
   // Sounds

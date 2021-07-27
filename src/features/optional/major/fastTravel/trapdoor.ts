@@ -1,6 +1,5 @@
 import g from "../../../../globals";
 import {
-  getGridEntities,
   getRoomIndex,
   isAntibirthStage,
   isPostBossVoidPortal,
@@ -12,22 +11,35 @@ import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Trapdoor;
+const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
+const FRAME_DELAY_AFTER_KILLING_HUSH = 12;
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  initAll();
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
+// GridEntityType.GRID_TRAPDOOR
+export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
+  // In some situations, trapdoors should be removed entirely
+  if (shouldRemove()) {
+    removeGridEntity(gridEntity);
+    return;
+  }
+
+  if (!shouldIgnore(gridEntity)) {
+    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  }
 }
 
-function initAll() {
-  for (const gridEntity of getGridEntities()) {
-    const saveState = gridEntity.GetSaveState();
-    if (
-      saveState.Type === GridEntityType.GRID_TRAPDOOR &&
-      !shouldIgnore(gridEntity)
-    ) {
-      fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-    }
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// GridEntityType.GRID_TRAPDOOR
+export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
+  if (shouldIgnore(gridEntity)) {
+    return;
   }
+
+  // Keep it closed on every frame so that we can implement our own custom functionality
+  gridEntity.State = TrapdoorState.CLOSED;
+
+  fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
@@ -51,33 +63,35 @@ function shouldIgnore(gridEntity: GridEntity) {
   return false;
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_TRAPDOOR
-export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
-  if (shouldIgnore(gridEntity)) {
-    return;
-  }
-
-  // In some situations, trapdoors should be removed entirely
-  if (shouldRemove()) {
-    removeGridEntity(gridEntity);
-    return;
-  }
-
-  // Keep it closed on every frame so that we can implement our own custom functionality
-  gridEntity.State = TrapdoorState.CLOSED;
-
-  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-  fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
-}
-
 function shouldRemove() {
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
   const antibirthHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
+
+  // If a specific amount of frames have passed since killing It Lives!,
+  // then delete the vanilla trapdoor (since we manually spawned one already)
+  if (
+    g.run.room.deletePaths &&
+    g.run.room.itLivesKilledFrame !== 0 &&
+    gameFrameCount ===
+      g.run.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
+  ) {
+    return true;
+  }
+
+  // If a specific amount of frames have passed since killing Hush,
+  // then delete the vanilla trapdoor (since we manually spawned one already)
+  if (
+    g.run.room.deletePaths &&
+    g.run.room.hushKilledFrame !== 0 &&
+    gameFrameCount ===
+      g.run.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
+  ) {
+    return true;
+  }
 
   // If the goal of the race is the Boss Rush, delete the Womb trapdoor that spawns after Mom
   if (

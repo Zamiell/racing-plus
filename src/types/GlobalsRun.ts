@@ -11,10 +11,12 @@ export default class GlobalsRun {
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
+
   /** Used to go to a new floor on game frame 0. */
   forceNextLevel = false; //
 
   room = new GlobalsRunRoom(true);
+
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;
 
@@ -40,17 +42,21 @@ export default class GlobalsRun {
 
   fastTravel = {
     state: FastTravelState.Disabled,
+
     /** These are Isaac frames, not game frames. */
     framesPassed: 0,
+
     playerIndexTouchedTrapdoor: -1,
     upwards: false,
     blueWomb: false,
     theVoid: false,
+
     /**
      * Antibirth secret exits are located in the room outside the grid.
      * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
      */
     antibirthSecretExit: false,
+
     reseed: false,
   };
 
@@ -63,22 +69,27 @@ export default class GlobalsRun {
 
   /** Used for Tainted Keeper when racing to the Boss Rush. */
   madeBossRushItemsFree = false;
+
   maxFamiliars = false;
   pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
+
   /** We track all identified pills so that we can display them. */
   pills: PillDescription[] = [];
+
   pillsPHD = false;
   pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<PlayerLuaTableIndex, int>();
 
   /** Used to give only one double item Treasure Room. */
   removeMoreOptions = false;
+
   /**
    * Whether or not to restart the run on the next frame.
    * This variable is used because the game prevents you from executing a "restart" console command
    * while in the PostGameStarted callback.
    */
   restart = false;
+
   roomsEntered = 0;
 
   seededDeath = {
@@ -91,8 +102,10 @@ export default class GlobalsRun {
   };
 
   slideAnimationHappening = false;
+
   /** Used in races to Mother. */
   spawnedCorpseTrapdoor = false;
+
   spedUpFadeIn = false;
   startedTime = 0;
 
@@ -106,11 +119,16 @@ export default class GlobalsRun {
 
   switchForgotten = false;
   transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
+
   /** If we have used the Esau Jr. item yet on this run. */
   usedEsauJrAtLeastOnce = false;
+
+  /** Needed because the player does not change until one frame after Esau Jr. is activated. */
   usedEsauJrFrame = 0;
+
   /** If we have used Tainted Lazarus' Flip item yet on this run. */
   usedFlipAtLeastOnce = false;
+
   victoryLaps = 0;
 
   // Initialize variables that are tracked per player

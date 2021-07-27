@@ -315,6 +315,23 @@ export function hasFlag(flags: int, flag: int): boolean {
   return (flags & flag) === flag;
 }
 
+export function hasPolaroidOrNegative(): [boolean, boolean] {
+  let hasPolaroid = false;
+  let hasNegative = false;
+  for (const player of getPlayers()) {
+    // We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true
+    // if they are holding the Mysterious Paper trinket
+    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_POLAROID) > 0) {
+      hasPolaroid = true;
+    }
+    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_NEGATIVE) > 0) {
+      hasNegative = true;
+    }
+  }
+
+  return [hasPolaroid, hasNegative];
+}
+
 export function incrementRNG(seed: int): int {
   const rng = initRNG(seed);
   rng.Next();
@@ -492,6 +509,13 @@ export function openAllDoors(): void {
 }
 
 export function removeGridEntity(gridEntity: GridEntity): void {
+  // In some cases, the grid entity will show on screen for a frame before it is removed
+  // (like for the trapdoor spawned after killing It Lives!)
+  // We can replace the graphics to fix this
+  const sprite = gridEntity.GetSprite();
+  sprite.ReplaceSpritesheet(0, "gfx/none.png");
+  sprite.LoadGraphics();
+
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
 }
