@@ -18,6 +18,7 @@ export type RaceGoal =
   | "Hush"
   | "Delirium"
   | "Mother"
+  | "The Beast"
   | "Boss Rush"
   | "custom";
 

@@ -84,6 +84,10 @@ function getReplacementAction() {
       return mother();
     }
 
+    if (g.race.goal === "The Beast") {
+      return theBeast();
+    }
+
     if (g.race.goal === "Boss Rush") {
       return bossRush();
     }
@@ -246,6 +250,16 @@ function mother() {
   const antibirthStage = isAntibirthStage();
 
   if (stage === 8 && antibirthStage) {
+    return ReplacementAction.Trophy;
+  }
+
+  return DEFAULT_REPLACEMENT_ACTION;
+}
+
+function theBeast() {
+  const stage = g.l.GetStage();
+
+  if (stage === 13) {
     return ReplacementAction.Trophy;
   }
 

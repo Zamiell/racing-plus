@@ -36,6 +36,12 @@ export function init(mod: Mod): void {
     hush,
     EntityType.ENTITY_HUSH, // 407
   );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    theBeast,
+    EntityType.ENTITY_BEAST, // 951
+  );
 }
 
 export function main(entity: Entity): void {
@@ -75,4 +81,9 @@ function megaSatan2(entity: Entity) {
 function hush(entity: Entity) {
   postWombPath.postEntityKillHush(entity);
   racePostEntityKill.hush(entity);
+}
+
+// EntityType.ENTITY_BEAST (951)
+function theBeast(entity: Entity) {
+  racePostEntityKill.theBeast(entity);
 }
