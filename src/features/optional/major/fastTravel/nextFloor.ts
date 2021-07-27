@@ -157,6 +157,18 @@ function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
     return 1;
   }
 
+  // In races to The Beast, spawn the player directly in dark Home
+  // since going to Mom's Bed and going back to Dogma is pointless
+  if (nextStage === 13) {
+    if (
+      g.race.status === "in progress" &&
+      g.race.myStatus === "racing" &&
+      g.race.goal === "The Beast"
+    ) {
+      return 1;
+    }
+  }
+
   return getStageType(nextStage);
 }
 
