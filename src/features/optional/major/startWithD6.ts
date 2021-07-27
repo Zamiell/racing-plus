@@ -72,7 +72,20 @@ function shouldGetPocketActiveD6(player: EntityPlayer) {
 }
 
 export function shouldGetActiveD6(player: EntityPlayer): boolean {
+  const gameFrameCount = g.g.GetFrameCount();
   const character = player.GetPlayerType();
+
+  // When Tainted Jacob changes from his ghost form to his normal form
+  // (i.e. at the beginning of a floor), he should not be re-given a D6
+  if (character === PlayerType.PLAYER_JACOB_B && gameFrameCount !== 0) {
+    return false;
+  }
+
+  // When Tainted Jacob changes into his ghost form, the character will change
+  // However, the ghost form does not need to be re-given the D6, because he will still have it
+  if (character === PlayerType.PLAYER_JACOB2_B) {
+    return false;
+  }
 
   return (
     // Since some tainted characters start with a pocket active item,

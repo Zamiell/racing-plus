@@ -1,17 +1,5 @@
 Patch notes:
-- New feature: Fast Big Horn
-- New feature: Removed all of the dumb Mega Satan and Mega Satan 2 animations
-- New feature: Mega Satan will no longer automatically end the run
-- New feature: The Lamb's body is removed upon death
-- New feature: Stop the Victory Lap popup after defeating The Lamb
-- New feature: Hush no longer plays an Appear animation.
-- Photos will now be replaced properly again
-- The path after It Lives! will now be replaced properly again
-- The path after Hush will now be replaced properly again
-- Trapdoors / heaven doors will no longer spawn after It Lives! or Hush while doing races to Hush
-- Fixed the bug where you would be locked to a seeded run if you played in a seeded race
-- Fixed the bug where Dangle was incorrectly faded after killing Brownie
-- Fixed the bug where the trophy would not spawn in races to Hush
+- Fix for Tainted Jacob getting the D6 at inappropriate times
 
 
 - off limits is not spawning in b1 seeded treasure room
