@@ -19,7 +19,7 @@ export function postEntityKillMom(entity: Entity): void {
   }
 
   // Add a check on Mom's foot only, otherwise the player would be granted 5 bombs
-  if (variant === 10) {
+  if (variant === MomVariant.STOMP) {
     player.AddBombs(1);
 
     room.SpawnGridEntity(
