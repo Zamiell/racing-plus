@@ -237,7 +237,9 @@ export function getPlayers(performExclusions = false): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
-    if (player !== null) {
+    // Exclude players with a non-null parent, since they are not real players
+    // (e.g. the Strawman Keeper)
+    if (player !== null && player.Parent === null) {
       // We might only want to make a list of players that are fully-functioning and controlled by
       // humans
       // Thus, we need to exclude certain characters
