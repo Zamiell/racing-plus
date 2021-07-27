@@ -20,12 +20,16 @@ import racePostRender, {
 import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
+import { debugLog } from "../log";
 import { consoleCommand } from "../misc";
 
 export function main(): void {
+  debugLog("MC_POST_RENDER", true);
+
   cache.updateAPIFunctions();
 
   if (checkRestart()) {
+    debugLog("MC_POST_RENDER", false);
     return;
   }
 
@@ -33,6 +37,7 @@ export function main(): void {
 
   // If there are any errors, we can skip the remainder of this function
   if (errors.postRender()) {
+    debugLog("MC_POST_RENDER", false);
     return;
   }
 
@@ -54,6 +59,8 @@ export function main(): void {
   showPills.postRender();
   showMaxFamiliars.postRender();
   customConsole.postRender();
+
+  debugLog("MC_POST_RENDER", false);
 }
 
 // Conditionally restart the game

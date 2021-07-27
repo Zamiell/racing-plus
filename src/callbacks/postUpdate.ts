@@ -14,8 +14,11 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import racePostUpdate from "../features/race/callbacks/postUpdate";
+import { debugLog } from "../log";
 
 export function main(): void {
+  debugLog("MC_POST_UPDATE", true);
+
   // Custom callbacks
   postRoomClear.postUpdate(); // This must be before postGridEntityUpdate
   postGridEntityUpdate.postUpdate();
@@ -39,4 +42,6 @@ export function main(): void {
   // Quality of life
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
+
+  debugLog("MC_POST_UPDATE", false);
 }

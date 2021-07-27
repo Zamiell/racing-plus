@@ -1,6 +1,6 @@
 import racePreGameExit from "../features/race/callbacks/preGameExit";
 import g from "../globals";
-import log from "../log";
+import log, { debugLog } from "../log";
 import * as saveDat from "../saveDat";
 import GlobalsRun from "../types/GlobalsRun";
 
@@ -15,4 +15,6 @@ export function main(shouldSave: boolean): void {
   }
 
   racePreGameExit();
+
+  debugLog("MC_PRE_GAME_EXIT", false);
 }

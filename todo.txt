@@ -1,5 +1,5 @@
 Patch notes:
-- Fix for Tainted Jacob getting the D6 at inappropriate times
+
 
 
 - off limits is not spawning in b1 seeded treasure room

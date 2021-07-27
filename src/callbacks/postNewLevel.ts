@@ -3,13 +3,15 @@ import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
-import log from "../log";
+import log, { debugLog } from "../log";
 import { getPlayers, isAntibirthStage } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
+  debugLog("MC_POST_NEW_LEVEL", true);
+
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -21,14 +23,19 @@ export function main(): void {
   // Make sure the callbacks run in the right order
   // (naturally, PostNewLevel gets called before the PostGameStarted callbacks)
   if (gameFrameCount === 0 && !g.run.forceNextLevel) {
+    debugLog("MC_POST_NEW_LEVEL", false);
     return;
   }
   g.run.forceNextLevel = false;
 
   newLevel();
+
+  debugLog("MC_POST_NEW_LEVEL", false);
 }
 
 export function newLevel(): void {
+  debugLog("MC_POST_NEW_LEVEL2", true);
+
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -60,6 +67,8 @@ export function newLevel(): void {
 
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();
+
+  debugLog("MC_POST_NEW_LEVEL2", false);
 }
 
 function shouldShowLevelText() {

@@ -1,4 +1,5 @@
 import {
+  BEAST_ROOM_SUB_TYPE,
   EXCLUDED_CHARACTERS,
   MAX_NUM_DOORS,
   RECOMMENDED_SHIFT_IDX,
@@ -89,14 +90,13 @@ export function enteredRoomViaTeleport(): boolean {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
   const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
-  const inCrawlspace = roomIndex === GridRooms.ROOM_DUNGEON_IDX;
   const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
 
   return (
     g.run.fastTravel.state === FastTravelState.Disabled &&
     g.l.LeaveDoor === -1 &&
     !justReachedThisFloor &&
-    !inCrawlspace &&
+    !inCrawlspace() &&
     !cameFromCrawlspace
   );
 }
@@ -237,7 +237,9 @@ export function getPlayers(performExclusions = false): EntityPlayer[] {
   const players: EntityPlayer[] = [];
   for (let i = 0; i < g.g.GetNumPlayers(); i++) {
     const player = Isaac.GetPlayer(i);
-    if (player !== null) {
+    // Exclude players with a non-null parent, since they are not real players
+    // (e.g. the Strawman Keeper)
+    if (player !== null && player.Parent === null) {
       // We might only want to make a list of players that are fully-functioning and controlled by
       // humans
       // Thus, we need to exclude certain characters
@@ -330,6 +332,18 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   }
 
   return [hasPolaroid, hasNegative];
+}
+
+export function inCrawlspace(): boolean {
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomData = roomDesc.Data;
+  const roomSubType = roomData.Subtype;
+
+  return (
+    roomIndex === GridRooms.ROOM_DUNGEON_IDX &&
+    roomSubType !== BEAST_ROOM_SUB_TYPE
+  );
 }
 
 export function incrementRNG(seed: int): int {

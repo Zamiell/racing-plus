@@ -64,11 +64,10 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["azazel2", 28],
   ["tazazel", 28], // cspell:disable-line
   ["taintedazazel", 28], // cspell:disable-line
-  ["lazarus2", 29],
-  ["tlazarus", 29], // cspell:disable-line
-  ["taintedlazarus", 29], // cspell:disable-line
   ["tlaz", 29], // cspell:disable-line
+  ["tlazarus", 29], // cspell:disable-line
   ["taintedlaz", 29], // cspell:disable-line
+  ["taintedlazarus", 29], // cspell:disable-line
   ["eden2", 30],
   ["teden", 30], // cspell:disable-line
   ["taintededen", 30], // cspell:disable-line
@@ -93,5 +92,22 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["jacob2", 37],
   ["tjacob", 37], // cspell:disable-line
   ["taintedjacob", 37], // cspell:disable-line
+  ["tlazdead", 38], // cspell:disable-line
+  ["tlazarusdead", 38], // cspell:disable-line
+  ["taintedlazdead", 38], // cspell:disable-line
+  ["taintedlazarusdead", 38], // cspell:disable-line
+  ["deadtlaz", 38], // cspell:disable-line
+  ["deadtlazarus", 38], // cspell:disable-line
+  ["deadtaintedlaz", 38], // cspell:disable-line
+  ["deadtaintedlazarus", 38], // cspell:disable-line
+  ["jacob2ghost", 39],
+  ["tjacobghost", 39], // cspell:disable-line
+  ["taintedjacobghost", 39], // cspell:disable-line
+  ["ghostjacob2", 39], // cspell:disable-line
+  ["ghosttjacob", 39], // cspell:disable-line
+  ["ghosttaintedjacob", 39], // cspell:disable-line
+  // 40 is Tainted Soul, which is the same as Tainted Forgotten
+  ["baby", 41],
+  ["randombaby", 41], // cspell:disable-line
 ]);
 export default CHARACTER_MAP;

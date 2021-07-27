@@ -145,6 +145,12 @@ export function initPlayerVariables(
   player: EntityPlayer,
   run: GlobalsRun,
 ): void {
+  // Exclude players with a non-null parent, since they are not real players
+  // (e.g. the Strawman Keeper)
+  if (player.Parent !== null) {
+    return;
+  }
+
   const character = player.GetPlayerType();
   const index = getPlayerLuaTableIndex(player);
 

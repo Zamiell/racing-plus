@@ -11,7 +11,7 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
-import log from "../log";
+import log, { debugLog } from "../log";
 import { getPlayers } from "../misc";
 import * as saveDat from "../saveDat";
 import { CollectibleTypeCustom } from "../types/enums";
@@ -19,6 +19,8 @@ import GlobalsRun from "../types/GlobalsRun";
 import * as postNewLevel from "./postNewLevel";
 
 export function main(isContinued: boolean): void {
+  debugLog("MC_POST_GAME_STARTED", true);
+
   const startSeedString = g.seeds.GetStartSeedString();
   const isaacFrameCount = Isaac.GetFrameCount();
 
@@ -35,6 +37,7 @@ export function main(isContinued: boolean): void {
 
   if (isContinued) {
     continued();
+    debugLog("MC_POST_GAME_STARTED", false);
     return;
   }
 
@@ -43,6 +46,7 @@ export function main(isContinued: boolean): void {
 
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (checkErrors()) {
+    debugLog("MC_POST_GAME_STARTED", false);
     return;
   }
 
@@ -91,6 +95,8 @@ export function main(isContinued: boolean): void {
 
   // Call PostNewLevel manually (they get naturally called out of order)
   postNewLevel.newLevel();
+
+  debugLog("MC_POST_GAME_STARTED", false);
 }
 
 function setSeeds() {
