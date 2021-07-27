@@ -189,6 +189,7 @@ functionMap.set("dd", (_params: string) => {
 });
 
 functionMap.set("debug", (_params: string) => {
+  print("Executing debug function.");
   debugFunction();
 });
 
@@ -370,9 +371,12 @@ functionMap.set("speed", (_params: string) => {
   print(`${enabled} max speed.`);
 
   // Also, give the player flight
-  player.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
-  // (adding this will trigger the speed stat modification, so we don't have to explicitly call
-  // "EvaluateItems()")
+  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)) {
+    player.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
+  }
+
+  player.AddCacheFlags(CacheFlag.CACHE_SPEED);
+  player.EvaluateItems();
 });
 
 functionMap.set("trap", (_params: string) => {

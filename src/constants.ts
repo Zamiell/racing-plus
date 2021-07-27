@@ -1,10 +1,12 @@
 export const COLLECTIBLE_SPRITE_LAYER = 1;
+export const DEBUG_LOGGING = false;
 
 export const EXCLUDED_CHARACTERS = [
   PlayerType.PLAYER_ESAU, // 20
   PlayerType.PLAYER_THESOUL_B, // 40
 ];
 
+export const BEAST_ROOM_SUB_TYPE = 4;
 export const KCOLOR_DEFAULT = KColor(1, 1, 1, 1);
 export const MAX_NUM_DOORS = 8; // In a 2x2 room, there can be 8 doors
 export const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door

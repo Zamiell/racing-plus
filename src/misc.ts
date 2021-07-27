@@ -1,4 +1,5 @@
 import {
+  BEAST_ROOM_SUB_TYPE,
   EXCLUDED_CHARACTERS,
   MAX_NUM_DOORS,
   RECOMMENDED_SHIFT_IDX,
@@ -89,14 +90,13 @@ export function enteredRoomViaTeleport(): boolean {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
   const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
-  const inCrawlspace = roomIndex === GridRooms.ROOM_DUNGEON_IDX;
   const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
 
   return (
     g.run.fastTravel.state === FastTravelState.Disabled &&
     g.l.LeaveDoor === -1 &&
     !justReachedThisFloor &&
-    !inCrawlspace &&
+    !inCrawlspace() &&
     !cameFromCrawlspace
   );
 }
@@ -330,6 +330,18 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   }
 
   return [hasPolaroid, hasNegative];
+}
+
+export function inCrawlspace(): boolean {
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomData = roomDesc.Data;
+  const roomSubType = roomData.Subtype;
+
+  return (
+    roomIndex === GridRooms.ROOM_DUNGEON_IDX &&
+    roomSubType !== BEAST_ROOM_SUB_TYPE
+  );
 }
 
 export function incrementRNG(seed: int): int {

@@ -4,6 +4,7 @@ import g from "../../../../globals";
 import log from "../../../../log";
 import {
   getRoomIndex,
+  inCrawlspace,
   movePlayersAndFamiliars,
   teleport,
 } from "../../../../misc";
@@ -54,10 +55,8 @@ function repositionPlayer() {
   // - Enter the crawlspace again
   // Fix this bug by simply manually moving the player to the top of the ladder every time they
   // enter a crawlspace
-  const roomIndex = getRoomIndex();
-
   if (
-    roomIndex === GridRooms.ROOM_DUNGEON_IDX &&
+    inCrawlspace() &&
     // If we are returning from a Black Market, then being at the right-most door is the correct
     // position and we should not do anything further
     !g.run.level.fastTravel.blackMarket
@@ -130,7 +129,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 
 function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
   if (
-    g.r.GetType() === RoomType.ROOM_DUNGEON &&
+    inCrawlspace() &&
     g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
   ) {
     g.run.room.fastTravel.amChangingRooms = true;
