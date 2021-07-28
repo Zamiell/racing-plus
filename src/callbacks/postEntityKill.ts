@@ -1,7 +1,7 @@
+import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as postWombPath from "../features/mandatory/postWombPath";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as theBeastPreventEnd from "../features/mandatory/theBeastPreventEnd";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
@@ -87,5 +87,5 @@ function hush(entity: Entity) {
 
 // EntityType.ENTITY_BEAST (951)
 function theBeast(entity: Entity) {
-  theBeastPreventEnd.postEntityKillTheBeast(entity);
+  beastPreventEnd.postEntityKillTheBeast(entity);
 }
