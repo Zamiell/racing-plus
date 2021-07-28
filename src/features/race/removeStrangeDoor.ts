@@ -7,13 +7,15 @@ export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const antibirthStage = isAntibirthStage();
   const strangeDoor = GridRooms.ROOM_SECRET_EXIT_IDX;
+  const startingRoomIndex = g.l.GetStartingRoomIndex();
 
   if (
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||
     g.race.goal !== "The Beast" ||
     antibirthStage ||
-    stage !== 6
+    stage !== 6 ||
+    strangeDoor !== startingRoomIndex
   ) {
     return;
   }
