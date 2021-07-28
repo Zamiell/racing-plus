@@ -1,7 +1,7 @@
+Patch notes:
+- Fixed fireworks
+- Items are now removed from the first floor treasure room in seeded races
 
-- off limits is not spawning in b1 seeded treasure room
-- test fireworks
-- test resetting during fireworks to see what happens
 
 Racing+ new features:
 - chat system

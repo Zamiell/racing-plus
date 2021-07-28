@@ -24,7 +24,7 @@ export function postUpdate(): void {
       // This item has switched, so restore it back to the way it was
       collectible.SubType = stuckCollectibleType;
 
-      // Changing the sub-type will not affect the existing sprite
+      // Changing the subtype will not affect the existing sprite
       const sprite = collectible.GetSprite();
       const itemConfigItem = g.itemConfig.GetCollectible(stuckCollectibleType);
       const gfxFileName = itemConfigItem.GfxFileName;

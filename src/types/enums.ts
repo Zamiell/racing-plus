@@ -23,7 +23,7 @@ export enum CollectibleTypeCustom {
   // Utility items
   COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),
   COLLECTIBLE_CHECKPOINT = Isaac.GetItemIdByName("Checkpoint"),
-  COLLECTIBLE_OFF_LIMITS = Isaac.GetItemIdByName("Off Limits"),
+  COLLECTIBLE_RESET = Isaac.GetItemIdByName("Reset"),
   COLLECTIBLE_DIVERSITY_PLACEHOLDER_1 = Isaac.GetItemIdByName(
     "Diversity Placeholder 1",
   ),
