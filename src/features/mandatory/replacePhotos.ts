@@ -150,116 +150,73 @@ function doPhotoSituation(situation: PhotoSituation) {
 
   switch (situation) {
     case PhotoSituation.Polaroid: {
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COLLECTIBLE,
-        PEDESTAL_POSITION_CENTER,
-        Vector.Zero,
-        null,
+      spawnItem(
         CollectibleType.COLLECTIBLE_POLAROID,
+        PEDESTAL_POSITION_CENTER,
         roomSeed,
+        false,
       );
       break;
     }
 
     case PhotoSituation.Negative: {
-      g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COLLECTIBLE,
-        PEDESTAL_POSITION_CENTER,
-        Vector.Zero,
-        null,
+      spawnItem(
         CollectibleType.COLLECTIBLE_NEGATIVE,
+        PEDESTAL_POSITION_CENTER,
         roomSeed,
+        false,
       );
       break;
     }
 
     case PhotoSituation.Both: {
-      const polaroid = g.g
-        .Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_COLLECTIBLE,
-          PEDESTAL_POSITION_LEFT,
-          Vector.Zero,
-          null,
-          CollectibleType.COLLECTIBLE_POLAROID,
-          roomSeed,
-        )
-        .ToPickup();
-      if (polaroid !== null) {
-        polaroid.OptionsPickupIndex = 1;
-      }
+      spawnItem(
+        CollectibleType.COLLECTIBLE_POLAROID,
+        PEDESTAL_POSITION_LEFT,
+        roomSeed,
+        true,
+      );
 
       // We don't want both of the collectibles to have the same RNG
       const newSeed = incrementRNG(roomSeed);
 
-      const negative = g.g
-        .Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_COLLECTIBLE,
-          PEDESTAL_POSITION_RIGHT,
-          Vector.Zero,
-          null,
-          CollectibleType.COLLECTIBLE_NEGATIVE,
-          newSeed,
-        )
-        .ToPickup();
-      if (negative !== null) {
-        negative.OptionsPickupIndex = 1;
-      }
+      spawnItem(
+        CollectibleType.COLLECTIBLE_NEGATIVE,
+        PEDESTAL_POSITION_RIGHT,
+        newSeed,
+        true,
+      );
 
       break;
     }
 
     case PhotoSituation.RandomBossItem: {
-      // If we spawn a boss item using an InitSeed of 0, the item will always be Magic Mushroom,
+      // If we spawn a boss item using an InitSeed of 0, the item will always be the same,
       // so use the room seed instead
-      // Spawning an item with a SubType of 0 will make a random item of the pool according to the
-      // room type
       if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1
-        const item1 = g.g
-          .Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_COLLECTIBLE,
-            PEDESTAL_POSITION_LEFT,
-            Vector.Zero,
-            null,
-            0,
-            roomSeed,
-          )
-          .ToPickup();
-        if (item1 !== null) {
-          item1.OptionsPickupIndex = 1;
-        }
+        spawnItem(
+          CollectibleType.COLLECTIBLE_NULL,
+          PEDESTAL_POSITION_LEFT,
+          roomSeed,
+          true,
+        );
 
         // We don't want both of the collectibles to have the same RNG
         const newSeed = incrementRNG(roomSeed);
 
-        const item2 = g.g
-          .Spawn(
-            EntityType.ENTITY_PICKUP,
-            PickupVariant.PICKUP_COLLECTIBLE,
-            PEDESTAL_POSITION_RIGHT,
-            Vector.Zero,
-            null,
-            0,
-            newSeed,
-          )
-          .ToPickup();
-        if (item2 !== null) {
-          item2.OptionsPickupIndex = 1;
-        }
+        spawnItem(
+          CollectibleType.COLLECTIBLE_NULL,
+          PEDESTAL_POSITION_RIGHT,
+          newSeed,
+          true,
+        );
       } else {
-        g.g.Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_COLLECTIBLE,
+        spawnItem(
+          CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_CENTER,
-          Vector.Zero,
-          null,
-          0,
           roomSeed,
+          false,
         );
       }
 
@@ -269,5 +226,35 @@ function doPhotoSituation(situation: PhotoSituation) {
     default: {
       ensureAllCases(situation);
     }
+  }
+}
+
+function spawnItem(
+  collectibleType: CollectibleType,
+  position: Vector,
+  seed: int,
+  options: boolean,
+) {
+  const collectible = g.g
+    .Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_COLLECTIBLE,
+      position,
+      Vector.Zero,
+      null,
+      collectibleType,
+      seed,
+    )
+    .ToPickup();
+  if (collectible !== null && options) {
+    collectible.OptionsPickupIndex = 1;
+  }
+
+  // Prevent a photo from switching to another item on Tainted Isaac
+  if (
+    collectibleType === CollectibleType.COLLECTIBLE_POLAROID ||
+    collectibleType === CollectibleType.COLLECTIBLE_NEGATIVE
+  ) {
+    g.run.level.stuckItems.set(seed, collectibleType);
   }
 }

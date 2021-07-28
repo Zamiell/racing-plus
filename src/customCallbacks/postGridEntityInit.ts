@@ -18,6 +18,7 @@ function checkNewGridEntity(gridEntity: GridEntity) {
   const storedType = g.run.room.initializedGridEntities.get(gridIndex);
   if (storedType !== saveState.Type) {
     g.run.room.initializedGridEntities.set(gridIndex, saveState.Type);
+    Isaac.DebugString(`INIT FOR: ${gridIndex}`);
     postGridEntityInit(gridEntity);
   }
 }

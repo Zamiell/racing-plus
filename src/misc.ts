@@ -532,6 +532,8 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+
+  g.run.room.initializedGridEntities.delete(gridIndex);
 }
 
 export function removeItemFromItemTracker(
