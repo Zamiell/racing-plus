@@ -24,14 +24,14 @@ export function postNewRoom(): void {
   const position = g.r.GetCenterPos();
 
   if (stage !== 13 || !g.run.beastDefeated) {
-    return;
   }
 
-  // Spawning another Beast prevent the fight to trigger again and we
-  // don't want to kill The Beast manually or it will trigger the credits
-  consoleCommand("spawn 951.0");
+  // Spawning another Beast prevent the fight to trigger again
+  // (we can't kill The Beast manually or it will trigger the credits)
+  // Isaac.Spawn(EntityType.ENTITY_BEAST, 0, 0, Vector.Zero, Vector.Zero, null)
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
+  /*
   Isaac.Spawn(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_BIGCHEST,
@@ -40,4 +40,5 @@ export function postNewRoom(): void {
     Vector.Zero,
     null,
   );
+  */
 }
