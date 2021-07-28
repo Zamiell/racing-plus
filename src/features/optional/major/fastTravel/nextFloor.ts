@@ -45,7 +45,6 @@ export function goto(upwards: boolean): void {
 function getNextStage() {
   const stage = g.l.GetStage();
   const antibirthStage = isAntibirthStage();
-  const roomType = g.r.GetType();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
     return getNextStageBackwardsPath(stage, antibirthStage);
@@ -56,8 +55,7 @@ function getNextStage() {
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     !antibirthStage &&
-    stage === 6 &&
-    roomType === RoomType.ROOM_BOSS
+    stage === 6
   ) {
     return stage;
   }
@@ -173,7 +171,6 @@ function getNextStageType(
   upwards: boolean,
 ) {
   const antibirthStage = isAntibirthStage();
-  const roomType = g.r.GetType();
 
   if (
     g.race.status === "in progress" &&
@@ -181,8 +178,7 @@ function getNextStageType(
     g.race.goal === "The Beast" &&
     !antibirthStage &&
     stage === 6 &&
-    nextStage === 6 &&
-    roomType === RoomType.ROOM_BOSS
+    nextStage === 6
   ) {
     return getStageTypeAntibirth(nextStage);
   }
