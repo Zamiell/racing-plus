@@ -173,7 +173,7 @@ function shouldRemove() {
     }
   }
 
-  // If the goal of the race is The Beast, delete trapdoors spawned with We Need To Go Deeper !
+  // If the goal of the race is The Beast, delete trapdoors spawned with We Need To Go Deeper!
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
