@@ -15,7 +15,7 @@ export function postEntityKillTheBeast(entity: Entity): void {
 
   g.run.beastDefeated = true;
 
-  // Reload the Beast Room again
+  // Reload the Beast room again
   consoleCommand("goto x.itemdungeon.666");
 }
 
