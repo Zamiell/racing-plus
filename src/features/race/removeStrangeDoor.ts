@@ -20,10 +20,7 @@ export function postNewRoom(): void {
   }
 
   for (const door of getAllDoors()) {
-    if (
-      door !== null &&
-      door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
+    if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
       g.r.RemoveDoor(door.Slot);
       log("Manually removed the strange door (for races going to The Beast).");
     }
