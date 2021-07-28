@@ -3,6 +3,7 @@ import * as postGridEntityInit from "../customCallbacks/postGridEntityInit";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
+import * as theBeastPreventEnd from "../features/mandatory/theBeastPreventEnd";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
@@ -82,6 +83,7 @@ export function newRoom(): void {
   controlsGraphic.postNewRoom();
 
   // Major features
+  theBeastPreventEnd.postNewRoom();
   racePostNewRoom();
   trophy.postNewRoom();
   startWithD6.postNewRoom();

@@ -11,14 +11,15 @@ export function postEntityKillMom(entity: Entity): void {
   }
 
   if (
-    g.race.status !== "in progress" &&
-    g.race.myStatus !== "racing" &&
-    g.race.goal !== "custom"
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
+    g.race.goal !== "The Beast"
   ) {
     return;
   }
 
   // Add a check on Mom's foot only, otherwise the player would be granted 5 bombs
+  // Vector(120, 400) is an empty spot on every Mom layout, the skull will always spawn
   if (variant === MomVariant.STOMP) {
     player.AddBombs(1);
 
