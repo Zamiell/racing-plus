@@ -1,5 +1,5 @@
 Patch notes:
-
+- Quest items will no longer switch when playing as Tainted Isaac
 
 
 - off limits is not spawning in b1 seeded treasure room
