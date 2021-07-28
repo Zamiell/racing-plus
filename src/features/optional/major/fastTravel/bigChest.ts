@@ -26,6 +26,9 @@ const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LeaveAlone;
 export function postPickupInit(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
+  Isaac.DebugString(
+    `Big Chest detected, doing action: ${ReplacementAction[replacementAction]}`,
+  );
 }
 
 function getReplacementAction() {
@@ -82,6 +85,10 @@ function getReplacementAction() {
 
     if (g.race.goal === "Mother") {
       return mother();
+    }
+
+    if (g.race.goal === "The Beast") {
+      return theBeast();
     }
 
     if (g.race.goal === "Boss Rush") {
@@ -246,6 +253,16 @@ function mother() {
   const antibirthStage = isAntibirthStage();
 
   if (stage === 8 && antibirthStage) {
+    return ReplacementAction.Trophy;
+  }
+
+  return DEFAULT_REPLACEMENT_ACTION;
+}
+
+function theBeast() {
+  const stage = g.l.GetStage();
+
+  if (stage === 13) {
     return ReplacementAction.Trophy;
   }
 

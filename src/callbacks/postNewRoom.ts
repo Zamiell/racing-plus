@@ -1,5 +1,6 @@
 import * as cache from "../cache";
 import * as postGridEntityInit from "../customCallbacks/postGridEntityInit";
+import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
@@ -82,6 +83,7 @@ export function newRoom(): void {
   controlsGraphic.postNewRoom();
 
   // Major features
+  beastPreventEnd.postNewRoom();
   racePostNewRoom();
   trophy.postNewRoom();
   startWithD6.postNewRoom();

@@ -12,4 +12,4 @@ export const TRAPDOOR_TOUCH_DISTANCE = 16.5; // Determined through trial and err
 // (it is slightly smaller than vanilla)
 
 export const FADE_TO_BLACK_FRAMES = 40;
-export const FAMES_BEFORE_JUMP = 13;
+export const FRAMES_BEFORE_JUMP = 13;

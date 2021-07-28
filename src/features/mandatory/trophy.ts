@@ -98,6 +98,16 @@ function checkRespawn() {
     return;
   }
 
+  // Don't do anything if a trophy already exists in the room
+  // (this can happen if code earlier on in the PostNewRoom callback spawned a Big Chest or a
+  // trophy)
+  const existingTrophies = Isaac.FindByType(
+    EntityTypeCustom.ENTITY_RACE_TROPHY,
+  );
+  if (existingTrophies.length > 0) {
+    return;
+  }
+
   // We are re-entering a room where a trophy spawned (which is a custom entity),
   // so we need to respawn it
   Isaac.Spawn(
@@ -108,4 +118,5 @@ function checkRespawn() {
     Vector.Zero,
     null,
   );
+  Isaac.DebugString("Respawned a Race Trophy since we re-entered the room.");
 }

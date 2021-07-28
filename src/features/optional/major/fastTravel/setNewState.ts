@@ -53,6 +53,7 @@ export function setFadingToBlack(
 ): void {
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
+  const roomType = g.r.GetType();
   const antibirthStage = isAntibirthStage();
 
   // Begin the process of moving the player to the next floor
@@ -72,6 +73,17 @@ export function setFadingToBlack(
     !antibirthStage &&
     stage === 6 &&
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+  ) {
+    g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
+  }
+
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    !antibirthStage &&
+    stage === 6 &&
+    roomType === RoomType.ROOM_BOSS
   ) {
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
   }

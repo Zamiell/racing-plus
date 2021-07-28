@@ -98,6 +98,7 @@ function getItLivesSituationRace(goal: RaceGoal) {
     case "Mega Satan":
     case "Boss Rush":
     case "Mother":
+    case "The Beast":
     case "custom": {
       // Give the player a choice between the photos for races to alternate objectives
       return ItLivesSituation.Both;

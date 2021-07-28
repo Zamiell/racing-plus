@@ -20,6 +20,19 @@ export default class GlobalsRun {
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;
 
+  /** Remember the alt floors we traveled to respawn them in Backwards path. */
+  altFloorsTraveled = {
+    downpour1: false,
+    dross1: false,
+    downpour2: false,
+    dross2: false,
+    mines1: false,
+    ashpit1: false,
+    mines2: false,
+    ashpit2: false,
+  };
+
+  beastDefeated = false;
   currentCharacters = new LuaTable<PlayerLuaTableIndex, PlayerType>();
   debugChaosCard = false;
   debugSpeed = false;

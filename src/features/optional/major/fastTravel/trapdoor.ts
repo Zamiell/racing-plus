@@ -74,9 +74,11 @@ function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
+  const roomType = g.r.GetType();
   const antibirthHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
+  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -169,6 +171,27 @@ function shouldRemove() {
     if (stage === 6 && isAntibirthStage() && !antibirthHeartKilled) {
       return true;
     }
+  }
+
+  // If the goal of the race is The Beast, delete trapdoors spawned with We Need To Go Deeper!
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    stage === 6 &&
+    roomType !== RoomType.ROOM_BOSS
+  ) {
+    return true;
+  }
+
+  // Delete the trapdoors on backward path
+  // There are some cases when trapdoors still appear, like double troubles
+  if (
+    stage < 7 &&
+    isBackwardPath &&
+    roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+  ) {
+    return true;
   }
 
   return false;

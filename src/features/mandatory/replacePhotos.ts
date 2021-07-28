@@ -134,6 +134,7 @@ function getPhotoSituationRace(goal: RaceGoal) {
     case "Delirium":
     case "Boss Rush":
     case "Mother":
+    case "The Beast":
     case "custom": {
       // Give the player a choice between the photos for races to alternate objectives
       return PhotoSituation.Both;

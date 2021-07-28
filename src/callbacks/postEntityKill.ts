@@ -1,6 +1,8 @@
+import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as postWombPath from "../features/mandatory/postWombPath";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
+import * as skipBeastIntroCutscene from "../features/mandatory/skipBeastIntroCutscene";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
@@ -35,6 +37,18 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_POST_ENTITY_KILL,
     hush,
     EntityType.ENTITY_HUSH, // 407
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    dogma,
+    EntityType.ENTITY_DOGMA, // 950
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    theBeast,
+    EntityType.ENTITY_BEAST, // 951
   );
 }
 
@@ -75,4 +89,14 @@ function megaSatan2(entity: Entity) {
 function hush(entity: Entity) {
   postWombPath.postEntityKillHush(entity);
   racePostEntityKill.hush(entity);
+}
+
+// EntityType.ENTITY_DOGMA (950)
+function dogma(entity: Entity) {
+  skipBeastIntroCutscene.postEntityKillDogma(entity);
+}
+
+// EntityType.ENTITY_BEAST (951)
+function theBeast(entity: Entity) {
+  beastPreventEnd.postEntityKillTheBeast(entity);
 }

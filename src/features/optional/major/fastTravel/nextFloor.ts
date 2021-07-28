@@ -5,8 +5,9 @@ import { consoleCommand, isAntibirthStage } from "../../../../misc";
 export function goto(upwards: boolean): void {
   // Get the number and type of the next floor
   const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const nextStage = getNextStage();
-  const nextStageType = getNextStageType(stage, nextStage, upwards);
+  const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
 
   // If we do a "stage" command to go to the same floor that we are already on,
   // it will use the same floor layout as the previous floor
@@ -32,6 +33,8 @@ export function goto(upwards: boolean): void {
   // and inventory modifications
   // seededFloors.before(nextStage); // TODO
 
+  setFloorVariables(stage, stageType);
+
   // Use the console to manually travel to the floor
   travelStage(nextStage, nextStageType);
 
@@ -44,16 +47,17 @@ function getNextStage() {
   const antibirthStage = isAntibirthStage();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
-    if (stage === 1) {
-      // e.g. From Basement 1 to Home
-      return 13;
-    }
+    return getNextStageBackwardsPath(stage, antibirthStage);
+  }
 
-    if (stage === 6 && antibirthStage) {
-      return stage;
-    }
-
-    return stage - 1;
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    !antibirthStage &&
+    stage === 6
+  ) {
+    return stage;
   }
 
   if (g.run.fastTravel.blueWomb) {
@@ -106,12 +110,82 @@ function getNextStage() {
   }
 
   // By default, go to the next floor
-  return (stage as int) + 1;
+  return stage + 1;
 }
 
-function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
-  const stageType = g.l.GetStageType();
+function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
+  if (stage === 1) {
+    if (antibirthStage) {
+      return stage;
+    }
+
+    // e.g. From Basement 1 to Home
+    return 13;
+  }
+
+  if (stage === 6 && antibirthStage) {
+    return stage;
+  }
+
+  if (
+    stage === 6 &&
+    !antibirthStage &&
+    (g.run.altFloorsTraveled.ashpit2 || g.run.altFloorsTraveled.mines2)
+  ) {
+    return stage - 2;
+  }
+
+  if (
+    stage === 4 &&
+    antibirthStage &&
+    !g.run.altFloorsTraveled.ashpit1 &&
+    !g.run.altFloorsTraveled.mines1
+  ) {
+    return stage;
+  }
+
+  if (
+    stage === 4 &&
+    !antibirthStage &&
+    (g.run.altFloorsTraveled.dross2 || g.run.altFloorsTraveled.downpour2)
+  ) {
+    return stage - 2;
+  }
+
+  if (
+    stage === 2 &&
+    antibirthStage &&
+    !g.run.altFloorsTraveled.dross1 &&
+    !g.run.altFloorsTraveled.downpour1
+  ) {
+    return stage;
+  }
+
+  return stage - 1;
+}
+
+function getNextStageType(
+  stage: int,
+  stageType: int,
+  nextStage: int,
+  upwards: boolean,
+) {
   const antibirthStage = isAntibirthStage();
+
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    !antibirthStage &&
+    stage === 6 &&
+    nextStage === 6
+  ) {
+    return getStageTypeAntibirth(nextStage);
+  }
+
+  if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
+    return getStageTypeBackwardsPath(stage, nextStage, antibirthStage);
+  }
 
   if (g.run.fastTravel.antibirthSecretExit) {
     return getStageTypeAntibirth(nextStage);
@@ -157,7 +231,88 @@ function getNextStageType(stage: int, nextStage: int, upwards: boolean) {
     return 1;
   }
 
+  // In races to The Beast, spawn the player directly in dark Home
+  // since going to Mom's Bed and going back to Dogma is pointless
+  if (nextStage === 13) {
+    if (
+      g.race.status === "in progress" &&
+      g.race.myStatus === "racing" &&
+      g.race.goal === "The Beast"
+    ) {
+      return 1;
+    }
+
+    return 0;
+  }
+
   return getStageType(nextStage);
+}
+
+function getStageTypeBackwardsPath(
+  stage: int,
+  nextStage: int,
+  antibirthStage: boolean,
+): int {
+  if (stage === 6 && !antibirthStage) {
+    if (g.run.altFloorsTraveled.ashpit2) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.mines2) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 4 && antibirthStage) {
+    if (g.run.altFloorsTraveled.ashpit1) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.mines1) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 4 && !antibirthStage) {
+    if (g.run.altFloorsTraveled.dross2) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.downpour2) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 2 && antibirthStage) {
+    if (g.run.altFloorsTraveled.dross1) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.downpour1) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  return getStageType(nextStage);
+}
+
+function getStageTypeAntibirth(stage: int) {
+  // There is no alternate floor for Corpse
+  if (stage === 7 || stage === 8) {
+    return StageType.STAGETYPE_REPENTANCE;
+  }
+
+  // This algorithm is from Kilburn
+  // We add one because the alt path is offset by 1 relative to the normal path
+  const stageSeed = g.seeds.GetStageSeed(stage + 1);
+
+  // Kilburn does not know why he divided the stage seed by 2 first
+  const halfStageSeed = Math.floor(stageSeed / 2);
+  if (halfStageSeed % 2 === 0) {
+    return StageType.STAGETYPE_REPENTANCE_B;
+  }
+
+  return StageType.STAGETYPE_REPENTANCE;
 }
 
 function getStageType(stage: int) {
@@ -190,25 +345,6 @@ function getStageType(stage: int) {
   return StageType.STAGETYPE_ORIGINAL;
 }
 
-function getStageTypeAntibirth(stage: int) {
-  // There is no alternate floor for Corpse
-  if (stage === 7 || stage === 8) {
-    return StageType.STAGETYPE_REPENTANCE;
-  }
-
-  // This algorithm is from Kilburn
-  // We add one because the alt path is offset by 1 relative to the normal path
-  const stageSeed = g.seeds.GetStageSeed(stage + 1);
-
-  // Kilburn does not know why he divided the stage seed by 2 first
-  const halfStageSeed = Math.floor(stageSeed / 2);
-  if (halfStageSeed % 2 === 0) {
-    return StageType.STAGETYPE_REPENTANCE_B;
-  }
-
-  return StageType.STAGETYPE_REPENTANCE;
-}
-
 function travelStage(stage: int, stageType: int) {
   // Build the command that will take us to the next floor
   let command = `stage ${stage}`;
@@ -229,5 +365,49 @@ function travelStage(stage: int, stageType: int) {
 
     // Doing a "reseed" immediately after a "stage" command won't mess anything up
     consoleCommand("reseed");
+  }
+}
+
+function setFloorVariables(stage: int, stageType: int) {
+  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+
+  if (isBackwardPath) {
+    return;
+  }
+
+  if (stageType === 4) {
+    if (stage === 1) {
+      g.run.altFloorsTraveled.downpour1 = true;
+    }
+
+    if (stage === 2) {
+      g.run.altFloorsTraveled.downpour2 = true;
+    }
+
+    if (stage === 3) {
+      g.run.altFloorsTraveled.mines1 = true;
+    }
+
+    if (stage === 4) {
+      g.run.altFloorsTraveled.mines2 = true;
+    }
+  }
+
+  if (stageType === 5) {
+    if (stage === 1) {
+      g.run.altFloorsTraveled.dross1 = true;
+    }
+
+    if (stage === 2) {
+      g.run.altFloorsTraveled.dross2 = true;
+    }
+
+    if (stage === 3) {
+      g.run.altFloorsTraveled.ashpit1 = true;
+    }
+
+    if (stage === 4) {
+      g.run.altFloorsTraveled.ashpit2 = true;
+    }
   }
 }

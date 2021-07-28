@@ -16,16 +16,17 @@ function spawnBossRushTrophy() {
   const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
 
   if (
+    g.run.level.trophy === null &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Boss Rush" &&
-    roomIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
     !g.raceVars.finished &&
-    g.run.level.trophy === null &&
+    roomIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
     bossRushDone
   ) {
     const centerPos = g.r.GetCenterPos();
     const pos = g.r.FindFreePickupSpawnPosition(centerPos);
+    Isaac.DebugString("Spawning a trophy for the Boss Rush goal.");
     trophy.spawn(pos);
   }
 }
