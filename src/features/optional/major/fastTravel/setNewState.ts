@@ -51,10 +51,7 @@ export function setFadingToBlack(
   player: EntityPlayer,
   upwards: boolean,
 ): void {
-  const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
-  const roomType = g.r.GetType();
-  const antibirthStage = isAntibirthStage();
 
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
@@ -67,16 +64,30 @@ export function setFadingToBlack(
   g.run.fastTravel.antibirthSecretExit =
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  // Before we change rooms, handle setting the flag for when the player goes past the photo door on
-  // the way to the backwards path
+  setGameStateFlags();
+  setPlayerAttributes(player, entity.Position);
+  warpForgottenBody(player);
+  dropTaintedForgotten(player);
+  playTravellingAnimation(player, upwards);
+}
+
+function setGameStateFlags() {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+  const antibirthStage = isAntibirthStage();
+  const roomIndex = getRoomIndex();
+
+  // If the player has gone through the trapdoor past the strange door
   if (
     !antibirthStage &&
     stage === 6 &&
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
+    // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
   }
 
+  // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
@@ -85,13 +96,14 @@ export function setFadingToBlack(
     stage === 6 &&
     roomType === RoomType.ROOM_BOSS
   ) {
+    // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
-  }
 
-  setPlayerAttributes(player, entity.Position);
-  warpForgottenBody(player);
-  dropTaintedForgotten(player);
-  playTravellingAnimation(player, upwards);
+    // Furthermore, we want to prevent the new floor from being reseeded,
+    // so pretend that the boss room with Mom in it is an Antibirth secret exit
+    // (even though Antibirth floors are on the same stage, they do not need to be reseeded)
+    g.run.fastTravel.antibirthSecretExit = true;
+  }
 }
 
 function setPlayerAttributes(
