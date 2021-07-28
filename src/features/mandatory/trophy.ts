@@ -108,4 +108,5 @@ function checkRespawn() {
     Vector.Zero,
     null,
   );
+  Isaac.DebugString("Respawned a Race Trophy since we re-entered the room.");
 }

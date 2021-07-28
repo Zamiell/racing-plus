@@ -26,6 +26,9 @@ const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LeaveAlone;
 export function postPickupInit(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
+  Isaac.DebugString(
+    `Big Chest detected, doing action: ${ReplacementAction[replacementAction]}`,
+  );
 }
 
 function getReplacementAction() {
