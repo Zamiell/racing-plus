@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import log from "../../../log";
 import { getRoomIndex } from "../../../misc";
 import * as trophy from "../../mandatory/trophy";
 
@@ -26,7 +27,7 @@ function spawnBossRushTrophy() {
   ) {
     const centerPos = g.r.GetCenterPos();
     const pos = g.r.FindFreePickupSpawnPosition(centerPos);
-    Isaac.DebugString("Spawning a trophy for the Boss Rush goal.");
+    log("Spawning a trophy for the Boss Rush goal.");
     trophy.spawn(pos);
   }
 }

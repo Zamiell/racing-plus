@@ -1,4 +1,5 @@
 import g from "../../globals";
+import log from "../../log";
 import { ensureAllCases, hasPolaroidOrNegative } from "../../misc";
 import { RaceGoal } from "../race/types/RaceData";
 import { ChallengeCustom } from "../speedrun/enums";
@@ -128,7 +129,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
 
   switch (situation) {
     case ItLivesSituation.Neither: {
-      Isaac.DebugString("It Lives! or Hush killed; no paths will be spawned.");
+      log("It Lives! or Hush killed; no paths will be spawned.");
       break;
     }
 
@@ -143,19 +144,19 @@ function doItLivesSituation(situation: ItLivesSituation) {
         Vector.Zero,
         null,
       );
-      Isaac.DebugString("It Lives! or Hush killed; going up.");
+      log("It Lives! or Hush killed; going up.");
       break;
     }
 
     case ItLivesSituation.Trapdoor: {
       // Spawn a trapdoor (it will get replaced with the fast-travel version on this frame)
       Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, posCenter, true);
-      Isaac.DebugString("It Lives! or Hush killed; going down.");
+      log("It Lives! or Hush killed; going down.");
       break;
     }
 
     case ItLivesSituation.Both: {
-      Isaac.DebugString(
+      log(
         "It Lives! or Hush killed; letting the vanilla paths spawn (since we need to go both up and down).",
       );
       break;

@@ -1,4 +1,5 @@
 import g from "../../../../globals";
+import log from "../../../../log";
 import {
   anyPlayerHasCollectible,
   ensureAllCases,
@@ -26,7 +27,7 @@ const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LeaveAlone;
 export function postPickupInit(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
-  Isaac.DebugString(
+  log(
     `Big Chest detected, doing action: ${ReplacementAction[replacementAction]}`,
   );
 }

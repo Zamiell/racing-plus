@@ -1,5 +1,6 @@
 import * as charge from "../../../charge";
 import g from "../../../globals";
+import log from "../../../log";
 import { EffectVariantCustom } from "../../../types/enums";
 
 export function postEntityKillLamb(_entity: Entity): void {
@@ -16,9 +17,7 @@ export function postEntityKillLamb(_entity: Entity): void {
       Vector.Zero,
       null,
     );
-    Isaac.DebugString(
-      'Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).',
-    );
+    log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
     // (this will not work to delay the room clearing if "debug 10" is turned on)
 
     emulateRoomClear();

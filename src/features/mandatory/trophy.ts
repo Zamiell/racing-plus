@@ -1,4 +1,5 @@
 import g from "../../globals";
+import log from "../../log";
 import { getRoomIndex } from "../../misc";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
 import raceFinish from "../race/raceFinish";
@@ -118,5 +119,5 @@ function checkRespawn() {
     Vector.Zero,
     null,
   );
-  Isaac.DebugString("Respawned a Race Trophy since we re-entered the room.");
+  log("Respawned a Race Trophy since we re-entered the room.");
 }
