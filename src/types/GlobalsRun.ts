@@ -32,6 +32,7 @@ export default class GlobalsRun {
     ashpit2: false,
   };
 
+  beastDefeated = false;
   currentCharacters = new LuaTable<PlayerLuaTableIndex, PlayerType>();
   debugChaosCard = false;
   debugSpeed = false;
@@ -130,7 +131,6 @@ export default class GlobalsRun {
   };
 
   switchForgotten = false;
-  theBeastDefeated = false;
   transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
 
   /** If we have used the Esau Jr. item yet on this run. */

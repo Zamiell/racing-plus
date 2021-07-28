@@ -1,12 +1,8 @@
 import g from "../../globals";
-import log from "../../log";
 import { consoleCommand } from "../../misc";
 
-// The game will always trigger a cutscene and force the player to leave the run
-// By simply setting the room to be cleared when The Beast dies,
-// the game will never trigger the cutscene and we will spawn a big chest
-export function postEntityKillTheBeast(_entity: Entity): void {
-  const variant = _entity.Variant;
+export function postEntityKillTheBeast(entity: Entity): void {
+  const variant = entity.Variant;
   const stage = g.l.GetStage();
 
   if (variant !== BeastVariant.BEAST) {
@@ -17,7 +13,7 @@ export function postEntityKillTheBeast(_entity: Entity): void {
     return;
   }
 
-  g.run.theBeastDefeated = true;
+  g.run.beastDefeated = true;
 
   // Go back to Hell
   consoleCommand("goto x.itemdungeon.666");
@@ -27,12 +23,7 @@ export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const position = g.r.GetCenterPos();
 
-  if (stage === 13) {
-    log(stage.toString());
-    log(g.run.theBeastDefeated.toString());
-  }
-
-  if (stage !== 13 || !g.run.theBeastDefeated) {
+  if (stage !== 13 || !g.run.beastDefeated) {
     return;
   }
 
