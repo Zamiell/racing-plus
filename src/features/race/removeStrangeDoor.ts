@@ -24,7 +24,7 @@ export function postNewRoom(): void {
     const door = g.r.GetDoor(i);
     if (door !== null && door.TargetRoomIndex === strangeDoor) {
       g.r.RemoveDoor(i);
-      log("Removed the Strange door on D2.");
+      log("Manually removed the strange door (for races going to The Beast).");
     }
   }
 }
