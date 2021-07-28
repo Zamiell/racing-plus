@@ -196,6 +196,13 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
 // GridEntityType.GRID_STAIRS
 export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
+  // Ensure that the fast-travel entity has been initialized
+  const gridIndex = gridEntity.GetGridIndex();
+  const entry = g.run.room.fastTravel.crawlspaces.get(gridIndex);
+  if (entry === undefined) {
+    return;
+  }
+
   // Keep it closed on every frame so that we can implement our own custom functionality
   gridEntity.State = TrapdoorState.CLOSED;
 

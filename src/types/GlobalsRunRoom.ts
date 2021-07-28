@@ -13,8 +13,13 @@ export default class GlobalsRunRoom {
   fastClearNPCQueue: FastClearNPCDescription[] = [];
 
   fastTravel = {
+    /** Indexed by grid index. */
     trapdoors: new LuaTable<int, FastTravelEntityDescription>(),
+
+    /** Indexed by grid index. */
     crawlspaces: new LuaTable<int, FastTravelEntityDescription>(),
+
+    /** Indexed by grid index. */
     heavenDoors: new LuaTable<int, FastTravelEntityDescription>(),
 
     /**
