@@ -1,7 +1,6 @@
-import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
 import log from "../../log";
-import { getRoomIndex, isAntibirthStage } from "../../misc";
+import { getAllDoors, getRoomIndex, isAntibirthStage } from "../../misc";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
@@ -20,10 +19,12 @@ export function postNewRoom(): void {
     return;
   }
 
-  for (let i = 0; i < MAX_NUM_DOORS; i++) {
-    const door = g.r.GetDoor(i);
-    if (door !== null && door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
-      g.r.RemoveDoor(i);
+  for (const door of getAllDoors()) {
+    if (
+      door !== null &&
+      door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      g.r.RemoveDoor(door.Slot);
       log("Manually removed the strange door (for races going to The Beast).");
     }
   }
