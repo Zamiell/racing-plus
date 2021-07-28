@@ -74,6 +74,7 @@ function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
+  const roomType = g.r.GetType();
   const antibirthHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
@@ -170,6 +171,17 @@ function shouldRemove() {
     if (stage === 6 && isAntibirthStage() && !antibirthHeartKilled) {
       return true;
     }
+  }
+
+  // If the goal of the race is The Beast, delete trapdoors spawned with We Need To Go Deeper !
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    stage === 6 &&
+    roomType !== RoomType.ROOM_BOSS
+  ) {
+    return true;
   }
 
   // Delete the trapdoors on backward path

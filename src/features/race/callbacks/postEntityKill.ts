@@ -1,6 +1,5 @@
 import g from "../../../globals";
 import * as trophy from "../../mandatory/trophy";
-import * as spawnMarkedSkull from "../spawnMarkedSkull";
 
 export function hush(_entity: Entity): void {
   if (
@@ -10,10 +9,6 @@ export function hush(_entity: Entity): void {
   ) {
     spawnTrophy();
   }
-}
-
-export function mom(entity: Entity): void {
-  spawnMarkedSkull.postEntityKillMom(entity);
 }
 
 function spawnTrophy() {
