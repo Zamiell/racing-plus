@@ -1,7 +1,6 @@
 import g from "../../globals";
 
 export function postEntityKillMom(entity: Entity): void {
-  const room = g.r;
   const startSeed = g.seeds.GetStartSeed();
   const player = Isaac.GetPlayer();
   const variant = entity.Variant;
@@ -23,8 +22,8 @@ export function postEntityKillMom(entity: Entity): void {
   if (variant === MomVariant.STOMP) {
     player.AddBombs(1);
 
-    room.SpawnGridEntity(
-      room.GetGridIndex(Vector(120, 400)),
+    g.r.SpawnGridEntity(
+      g.r.GetGridIndex(Vector(120, 400)),
       GridEntityType.GRID_ROCK_ALT2,
       0,
       startSeed,

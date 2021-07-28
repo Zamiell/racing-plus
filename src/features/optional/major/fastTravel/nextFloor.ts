@@ -47,54 +47,7 @@ function getNextStage() {
   const antibirthStage = isAntibirthStage();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
-    if (stage === 1) {
-      if (antibirthStage) {
-        return stage;
-      }
-
-      // e.g. From Basement 1 to Home
-      return 13;
-    }
-
-    if (stage === 6 && antibirthStage) {
-      return stage;
-    }
-
-    if (
-      stage === 6 &&
-      !antibirthStage &&
-      (g.run.altFloorsTraveled.ashpit2 || g.run.altFloorsTraveled.mines2)
-    ) {
-      return stage - 2;
-    }
-
-    if (
-      stage === 4 &&
-      antibirthStage &&
-      !g.run.altFloorsTraveled.ashpit1 &&
-      !g.run.altFloorsTraveled.mines1
-    ) {
-      return stage;
-    }
-
-    if (
-      stage === 4 &&
-      !antibirthStage &&
-      (g.run.altFloorsTraveled.dross2 || g.run.altFloorsTraveled.downpour2)
-    ) {
-      return stage - 2;
-    }
-
-    if (
-      stage === 2 &&
-      antibirthStage &&
-      !g.run.altFloorsTraveled.dross1 &&
-      !g.run.altFloorsTraveled.downpour1
-    ) {
-      return stage;
-    }
-
-    return stage - 1;
+    return getNextStageBackwardsPath(stage, antibirthStage);
   }
 
   if (g.run.fastTravel.blueWomb) {
@@ -159,49 +112,7 @@ function getNextStageType(
   const antibirthStage = isAntibirthStage();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
-    if (stage === 6 && !antibirthStage) {
-      if (g.run.altFloorsTraveled.ashpit2) {
-        return StageType.STAGETYPE_REPENTANCE_B;
-      }
-
-      if (g.run.altFloorsTraveled.mines2) {
-        return StageType.STAGETYPE_REPENTANCE;
-      }
-    }
-
-    if (stage === 4 && antibirthStage) {
-      if (g.run.altFloorsTraveled.ashpit1) {
-        return StageType.STAGETYPE_REPENTANCE_B;
-      }
-
-      if (g.run.altFloorsTraveled.mines1) {
-        return StageType.STAGETYPE_REPENTANCE;
-      }
-    }
-
-    if (stage === 4 && !antibirthStage) {
-      if (g.run.altFloorsTraveled.dross2) {
-        return StageType.STAGETYPE_REPENTANCE_B;
-      }
-
-      if (g.run.altFloorsTraveled.downpour2) {
-        return StageType.STAGETYPE_REPENTANCE;
-      }
-    }
-
-    if (stage === 2 && antibirthStage) {
-      if (g.run.altFloorsTraveled.dross1) {
-        return StageType.STAGETYPE_REPENTANCE_B;
-      }
-
-      if (g.run.altFloorsTraveled.downpour1) {
-        return StageType.STAGETYPE_REPENTANCE;
-      }
-    }
-
-    if (stage === 1 && antibirthStage) {
-      return getStageType(nextStage);
-    }
+    return getNextStageTypeBackwardsPath(stage, nextStage, antibirthStage);
   }
 
   if (g.run.fastTravel.antibirthSecretExit) {
@@ -379,4 +290,103 @@ function setFloorVariables(stage: int, stageType: int) {
       g.run.altFloorsTraveled.ashpit2 = true;
     }
   }
+}
+
+function getNextStageTypeBackwardsPath(
+  stage: int,
+  nextStage: int,
+  antibirthStage: boolean,
+): int {
+  if (stage === 6 && !antibirthStage) {
+    if (g.run.altFloorsTraveled.ashpit2) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.mines2) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 4 && antibirthStage) {
+    if (g.run.altFloorsTraveled.ashpit1) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.mines1) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 4 && !antibirthStage) {
+    if (g.run.altFloorsTraveled.dross2) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.downpour2) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 2 && antibirthStage) {
+    if (g.run.altFloorsTraveled.dross1) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.downpour1) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  return getStageType(nextStage);
+}
+
+function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
+  if (stage === 1) {
+    if (antibirthStage) {
+      return stage;
+    }
+
+    // e.g. From Basement 1 to Home
+    return 13;
+  }
+
+  if (stage === 6 && antibirthStage) {
+    return stage;
+  }
+
+  if (
+    stage === 6 &&
+    !antibirthStage &&
+    (g.run.altFloorsTraveled.ashpit2 || g.run.altFloorsTraveled.mines2)
+  ) {
+    return stage - 2;
+  }
+
+  if (
+    stage === 4 &&
+    antibirthStage &&
+    !g.run.altFloorsTraveled.ashpit1 &&
+    !g.run.altFloorsTraveled.mines1
+  ) {
+    return stage;
+  }
+
+  if (
+    stage === 4 &&
+    !antibirthStage &&
+    (g.run.altFloorsTraveled.dross2 || g.run.altFloorsTraveled.downpour2)
+  ) {
+    return stage - 2;
+  }
+
+  if (
+    stage === 2 &&
+    antibirthStage &&
+    !g.run.altFloorsTraveled.dross1 &&
+    !g.run.altFloorsTraveled.downpour1
+  ) {
+    return stage;
+  }
+
+  return stage - 1;
 }

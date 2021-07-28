@@ -27,7 +27,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  // Spawning another beast prevent the fight to trigger again and we
+  // Spawning another Beast prevent the fight to trigger again and we
   // don't want to kill The Beast manually or it will trigger the credits
   consoleCommand("spawn 951.0");
 
