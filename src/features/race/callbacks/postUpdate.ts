@@ -8,7 +8,6 @@ export default function racePostUpdate(): void {
   }
 
   spawnBossRushTrophy();
-  spawnBeastTrophy();
   checkFinalRoom();
 }
 
@@ -28,25 +27,6 @@ function spawnBossRushTrophy() {
     const centerPos = g.r.GetCenterPos();
     const pos = g.r.FindFreePickupSpawnPosition(centerPos);
     Isaac.DebugString("Spawning a trophy for the Boss Rush goal.");
-    trophy.spawn(pos);
-  }
-}
-
-function spawnBeastTrophy() {
-  const roomIndex = getRoomIndex();
-
-  if (
-    g.run.level.trophy === null &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
-    !g.raceVars.finished &&
-    roomIndex === GridRooms.ROOM_DEBUG_IDX &&
-    g.run.beastDefeated
-  ) {
-    const centerPos = g.r.GetCenterPos();
-    const pos = g.r.FindFreePickupSpawnPosition(centerPos);
-    Isaac.DebugString("Spawning a trophy for The Beast goal.");
     trophy.spawn(pos);
   }
 }
