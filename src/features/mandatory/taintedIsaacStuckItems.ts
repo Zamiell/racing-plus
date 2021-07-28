@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { anyPlayerIs } from "../../misc";
+import { anyPlayerIs } from "../../utilGlobals";
 
 const ITEM_SPRITESHEET_ID = 1;
 

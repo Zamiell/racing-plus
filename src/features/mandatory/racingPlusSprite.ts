@@ -8,7 +8,7 @@ import {
   SPRITE_TAINTED_BETHANY_OFFSET,
 } from "../../constants";
 import g from "../../globals";
-import { getHUDOffsetVector, initSprite } from "../../misc";
+import { getHUDOffsetVector, initSprite } from "../../util";
 
 enum SpriteLayer {
   Blue,

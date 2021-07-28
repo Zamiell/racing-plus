@@ -1,32 +1,33 @@
-/*
+import g from "../../globals";
+
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // We only want to manually create certain rooms in seeded races
-  if (g.race.format !== "seeded" || g.race.status !== "in progress" || g.race.myStatus !== "racing") {
-    return;
-  }
-
   const roomType = g.r.GetType();
+  const isFirstVisit = g.r.IsFirstVisit();
 
-  // We only want to replace things on the first visit, or else everything will get duplicated
-  if (!g.r.IsFirstVisit()) {
+  if (
+    // We only want to manually create certain rooms in seeded races
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
+    g.race.format !== "seeded" ||
+    // We only want to replace things on the first visit, or else everything will get duplicated
+    !isFirstVisit
+  ) {
     return;
   }
 
   if (roomType === RoomType.ROOM_DEVIL) {
-    devilRoom();
+    // devilRoom();
   } else if (roomType === RoomType.ROOM_ANGEL) {
-    angelRoom();
+    // angelRoom();
   }
 }
 
+/*
 function devilRoom() {
   // First, find out if we should encounter Krampus instead of getting a normal Devil Room
-  if (!g.run.metKrampus) {
-    g.RNGCounter.devilRoomKrampus = misc.incrementRNG(
-      g.RNGCounter.devilRoomKrampus,
-    );
-    math.randomseed(g.RNGCounter.devilRoomKrampus);
+  if (!g.run.seededRooms.metKrampus) {
+    g.run.seededRooms.rng.krampus.Next();
     const krampusRoll = math.random(1, 100);
 
     let krampusChance;
@@ -142,7 +143,7 @@ function devilRoom() {
     for (let x = 3; x <= 9; x++) {
       for (let y = 4; y <= 5; y++) {
         if (x % 2 !== 0) {
-          const pos = misc.gridToPos(x, y);
+          const pos = gridToPos(x, y);
           Isaac.Spawn(EntityType.ENTITY_PITFALL, 0, 0, pos, Vector.Zero, null);
         }
       }
@@ -187,6 +188,8 @@ function spawnPedestalDevilRoom(x: int, y: int) {
   );
   // (we do not care about the seed because it will be replaced on the next frame)
 }
+
+/*
 
 function angelRoom() {
   // Find out how many item pedestals we should spawn

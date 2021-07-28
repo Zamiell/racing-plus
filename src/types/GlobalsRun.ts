@@ -1,6 +1,7 @@
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
 import log from "../log";
+import { initRNG } from "../util";
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
 import PickingUpItemDescription from "./PickingUpItemDescription";
@@ -114,6 +115,14 @@ export default class GlobalsRun {
     roomClearAwardSeedDevilAngel: 0,
   };
 
+  /** Used for the seeded rooms feature of seeded races. */
+  seededRooms = {
+    metKrampus: false,
+    rng: {
+      krampus: RNG(),
+    },
+  };
+
   slideAnimationHappening = false;
 
   /** Used in races to Mother. */
@@ -147,7 +156,9 @@ export default class GlobalsRun {
   // Initialize variables that are tracked per player
   // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
   // yet at that point)
-  constructor(players: EntityPlayer[]) {
+  constructor(startSeed: int, players: EntityPlayer[]) {
+    this.seededRooms.rng.krampus = initRNG(startSeed);
+
     for (const player of players) {
       initPlayerVariables(player, this);
     }

@@ -1,6 +1,6 @@
 import g from "../../../globals";
 import log from "../../../log";
-import { playingOnSetSeed } from "../../../misc";
+import { playingOnSetSeed } from "../../../utilGlobals";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";

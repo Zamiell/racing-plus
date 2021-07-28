@@ -27,7 +27,7 @@ export default class Globals {
   hotkeys = new Hotkeys();
 
   /** Variables that are reset at the beginning of every run. */
-  run = new GlobalsRun([]);
+  run = new GlobalsRun(0, []);
   /** Race variables that are set via the client communicating with us over a socket. */
   race = new RaceData();
   /** Extra variables for races that are separate from what the client knows about. */

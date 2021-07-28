@@ -1,5 +1,5 @@
 import g from "../globals";
-import { getGridEntities } from "../misc";
+import { getGridEntities } from "../utilGlobals";
 import postGridEntityInitFunctions from "./postGridEntityInitFunctions";
 
 export function postNewRoom(): void {

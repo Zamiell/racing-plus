@@ -1,10 +1,14 @@
 import g from "../../globals";
 import log from "../../log";
-import { anyPlayerHasCollectible, anyPlayerIs, getPlayers } from "../../misc";
 import {
   getPlayerLuaTableIndex,
   PlayerLuaTableIndex,
 } from "../../types/GlobalsRun";
+import {
+  anyPlayerHasCollectible,
+  anyPlayerIs,
+  getPlayers,
+} from "../../utilGlobals";
 
 const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
 const NUM_RACING_PLUS_ITEMS = 9;

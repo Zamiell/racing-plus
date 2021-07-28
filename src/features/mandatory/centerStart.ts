@@ -3,7 +3,7 @@
 // This feature is not configurable because it could grant an advantage to turn off
 
 import g from "../../globals";
-import { getPlayers, movePlayersAndFamiliars } from "../../misc";
+import { getPlayers, movePlayersAndFamiliars } from "../../utilGlobals";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

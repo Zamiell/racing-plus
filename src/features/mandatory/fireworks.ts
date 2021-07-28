@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { getPlayers, gridToPos } from "../../misc";
+import { getPlayers, gridToPos } from "../../utilGlobals";
 
 export function postUpdate(): void {
   makeFireworksQuieter();

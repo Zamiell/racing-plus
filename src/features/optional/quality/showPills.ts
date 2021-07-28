@@ -1,11 +1,8 @@
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
 import log from "../../../log";
-import {
-  anyPlayerHasCollectible,
-  initSprite,
-  isActionPressedOnAnyInput,
-} from "../../../misc";
+import { initSprite, isActionPressedOnAnyInput } from "../../../util";
+import { anyPlayerHasCollectible } from "../../../utilGlobals";
 
 const NUM_PILLS_IN_POOL = 13;
 

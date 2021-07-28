@@ -3,7 +3,8 @@
 
 import g from "../../../globals";
 import log from "../../../log";
-import { getPlayers, moveEsauNextToJacob } from "../../../misc";
+import { moveEsauNextToJacob } from "../../../util";
+import { getPlayers } from "../../../utilGlobals";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
   EntityType.ENTITY_GURDY, // 36

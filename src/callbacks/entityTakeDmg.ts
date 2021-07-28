@@ -1,7 +1,7 @@
 import * as fastTravelEntityTakeDmg from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import g from "../globals";
-import { hasFlag } from "../misc";
+import { hasFlag } from "../util";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

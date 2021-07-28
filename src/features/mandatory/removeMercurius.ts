@@ -2,7 +2,7 @@
 // different
 
 import g from "../../globals";
-import { getPlayers } from "../../misc";
+import { getPlayers } from "../../utilGlobals";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

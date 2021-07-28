@@ -5,12 +5,8 @@ import debugFunction, { debugFunction2 } from "../debugFunction";
 import * as socket from "../features/race/socket";
 import g from "../globals";
 import log from "../log";
-import {
-  consoleCommand,
-  getPlayers,
-  gridToPos,
-  restartAsCharacter,
-} from "../misc";
+import { consoleCommand, restartAsCharacter } from "../util";
+import { getPlayers, gridToPos } from "../utilGlobals";
 import {
   blackMarket,
   chaosCardTears,

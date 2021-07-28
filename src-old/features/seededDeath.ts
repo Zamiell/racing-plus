@@ -307,7 +307,7 @@ export function postNewRoomCheckSacrificeRoom(): void {
   }
 
   g.p.AnimateSad();
-  for (let i = 0; i < g.r.GetGridSize(); i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) { // change to getGridEntities
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();

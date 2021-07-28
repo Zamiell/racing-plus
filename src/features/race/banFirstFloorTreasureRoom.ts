@@ -1,7 +1,7 @@
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
 import log from "../../log";
-import { getPlayers, isAntibirthStage } from "../../misc";
+import { getPlayers, isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();

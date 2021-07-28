@@ -241,7 +241,7 @@ function removeSClassButtons(indexChosen: int) {
     error("itemPositions does not exist in the season.");
   }
 
-  for (let i = 0; i < g.r.GetGridSize(); i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) { // change to getGridEntities
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
@@ -886,7 +886,7 @@ export function postNewRoom(): void {
 }
 
 function removeAllRoomButtons() {
-  for (let i = 0; i < g.r.GetGridSize(); i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) { // change to getGridEntities
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();

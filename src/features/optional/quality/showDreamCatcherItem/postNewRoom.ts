@@ -1,13 +1,15 @@
 import g from "../../../../globals";
+import { PickupPriceCustom } from "../../../../types/enums";
+import {
+  getRoomNPCs,
+  initGlowingItemSprite,
+  initSprite,
+} from "../../../../util";
 import {
   anyPlayerHasCollectible,
   changeRoom,
   getRoomIndex,
-  getRoomNPCs,
-  initGlowingItemSprite,
-  initSprite,
-} from "../../../../misc";
-import { PickupPriceCustom } from "../../../../types/enums";
+} from "../../../../utilGlobals";
 import { bossPNGMap } from "./bossPNGMap";
 import { WarpState } from "./enums";
 

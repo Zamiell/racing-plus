@@ -1,6 +1,6 @@
 import g from "../../globals";
-import { giveItemAndRemoveFromPools } from "../../misc";
 import { CollectibleTypeCustom } from "../../types/enums";
+import { giveItemAndRemoveFromPools } from "../../utilGlobals";
 import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,

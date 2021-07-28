@@ -1,6 +1,6 @@
 import g from "../../globals";
 import log from "../../log";
-import { getAllDoors, getRoomIndex, isAntibirthStage } from "../../misc";
+import { getAllDoors, getRoomIndex, isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();

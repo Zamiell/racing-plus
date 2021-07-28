@@ -1,6 +1,6 @@
 import g from "../../../../globals";
-import { getPlayers } from "../../../../misc";
 import { EffectVariantCustom } from "../../../../types/enums";
+import { getPlayers } from "../../../../utilGlobals";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import setNewState, { setPlayersVisible } from "./setNewState";

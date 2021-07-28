@@ -1,6 +1,6 @@
 import g from "../../../globals";
 import log from "../../../log";
-import { getRoomIndex } from "../../../misc";
+import { getRoomIndex } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 
 export default function racePostUpdate(): void {
@@ -58,6 +58,7 @@ function checkFinalRoom() {
 }
 
 /*
+// Change to get here from the gridEntityUpdate function maybe?
 export function checkFinalButtons(gridEntity: GridEntity, i: int): void {
   if (!g.raceVars.finished) {
     return;

@@ -3,9 +3,9 @@
 import * as streakText from "../features/mandatory/streakText";
 import racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import g from "../globals";
-import { getPlayers, getRoomIndex } from "../misc";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 import PickingUpItemDescription from "../types/PickingUpItemDescription";
+import { getPlayers, getRoomIndex } from "../utilGlobals";
 
 export function postUpdate(): void {
   for (const player of getPlayers()) {

@@ -5,7 +5,8 @@
 // 4) Once we have finished a race, the final place
 
 import g from "../../globals";
-import { getScreenCenterPosition, initSprite } from "../../misc";
+import { initSprite } from "../../util";
+import { getScreenCenterPosition } from "../../utilGlobals";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;

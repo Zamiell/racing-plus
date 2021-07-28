@@ -1,12 +1,12 @@
 import g from "../../../../globals";
+import { EffectVariantCustom } from "../../../../types/enums";
+import { moveEsauNextToJacob } from "../../../../util";
 import {
   changeRoom,
   getPlayers,
   getRoomIndex,
   isAntibirthStage,
-  moveEsauNextToJacob,
-} from "../../../../misc";
-import { EffectVariantCustom } from "../../../../types/enums";
+} from "../../../../utilGlobals";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";

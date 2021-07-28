@@ -1,7 +1,7 @@
 import g from "../../globals";
 import log from "../../log";
-import { getRoomIndex } from "../../misc";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
+import { getRoomIndex } from "../../utilGlobals";
 import raceFinish from "../race/raceFinish";
 import SeededDeathState from "../race/types/SeededDeathState";
 import * as speedrun from "../speedrun/speedrun";

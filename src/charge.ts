@@ -1,5 +1,5 @@
 import g from "./globals";
-import { getItemMaxCharges, getPlayers } from "./misc";
+import { getItemMaxCharges, getPlayers } from "./utilGlobals";
 
 // Give a charge to the active items of all players
 export function checkAdd(): void {

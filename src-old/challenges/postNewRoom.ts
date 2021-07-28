@@ -44,7 +44,7 @@ function stage8IAMERROR() {
   // Find any existing trapdoors
   let trapdoor: GridEntity | undefined;
   let trapdoorIndex: int | undefined;
-  for (let i = 0; i < g.r.GetGridSize(); i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) { // change to getGridEntities
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();
@@ -165,7 +165,7 @@ function checkSacrificeRoom() {
     g.p.AnimateSad();
   }
 
-  for (let i = 0; i < g.r.GetGridSize(); i++) {
+  for (let i = 0; i < g.r.GetGridSize(); i++) { // change to getGridEntities
     const gridEntity = g.r.GetGridEntity(i);
     if (gridEntity !== null) {
       const saveState = gridEntity.GetSaveState();

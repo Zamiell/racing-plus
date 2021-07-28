@@ -1,5 +1,6 @@
 import g from "../../../../globals";
-import { anyPlayerCloserThan, ensureAllCases } from "../../../../misc";
+import { ensureAllCases } from "../../../../util";
+import { anyPlayerCloserThan } from "../../../../utilGlobals";
 import {
   FastTravelEntityDescription,
   TRAPDOOR_BOSS_REACTION_FRAMES,

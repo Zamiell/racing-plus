@@ -5,9 +5,10 @@
 // Unlike the normal run timer, this uses real time instead of game frame count
 
 import g from "../../globals";
-import { anyPlayerIs, isActionPressedOnAnyInput } from "../../misc";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
+import { isActionPressedOnAnyInput } from "../../util";
+import { anyPlayerIs } from "../../utilGlobals";
 
 const RUN_TIMER_X = 52;
 const RUN_TIMER_Y = 49;

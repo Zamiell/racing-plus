@@ -1,6 +1,6 @@
 import g from "../../../../../globals";
 import log from "../../../../../log";
-import { getFinalFrameOfAnimation } from "../../../../../misc";
+import { getFinalFrameOfAnimation } from "../../../../../util";
 import * as angels from "../angels";
 import * as krampus from "../krampus";
 

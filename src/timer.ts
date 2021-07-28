@@ -1,5 +1,5 @@
-import { getHUDOffsetVector, initSprite } from "./misc";
 import TimerType from "./types/TimerType";
+import { getHUDOffsetVector, initSprite } from "./util";
 
 interface Sprites {
   clock: Sprite;

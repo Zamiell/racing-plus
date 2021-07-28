@@ -2,11 +2,8 @@
 
 import g from "../../../../globals";
 import log from "../../../../log";
-import {
-  ensureAllCases,
-  getRoomIndex,
-  isAntibirthStage,
-} from "../../../../misc";
+import { ensureAllCases } from "../../../../util";
+import { getRoomIndex, isAntibirthStage } from "../../../../utilGlobals";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
 import {
   FastTravelEntityState,

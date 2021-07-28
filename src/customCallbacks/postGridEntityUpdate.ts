@@ -1,4 +1,4 @@
-import { getGridEntities } from "../misc";
+import { getGridEntities } from "../utilGlobals";
 import * as postGridEntityInit from "./postGridEntityInit";
 import postGridEntityUpdateFunctions from "./postGridEntityUpdateFunctions";
 

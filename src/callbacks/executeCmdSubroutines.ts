@@ -1,5 +1,5 @@
 import g from "../globals";
-import { teleport } from "../misc";
+import { teleport } from "../utilGlobals";
 
 export function blackMarket(): void {
   teleport(GridRooms.ROOM_BLACK_MARKET_IDX);

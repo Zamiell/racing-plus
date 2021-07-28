@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { isAntibirthStage, removeItemFromItemTracker } from "../../misc";
+import { isAntibirthStage, removeItemFromItemTracker } from "../../utilGlobals";
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {

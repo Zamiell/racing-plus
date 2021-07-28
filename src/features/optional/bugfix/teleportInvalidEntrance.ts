@@ -1,13 +1,13 @@
 import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
 import log from "../../../log";
+import { moveEsauNextToJacob } from "../../../util";
 import {
   anyPlayerCloserThan,
   enteredRoomViaTeleport,
   getAllDoors,
   getPlayers,
-  moveEsauNextToJacob,
-} from "../../../misc";
+} from "../../../utilGlobals";
 
 export function postNewRoom(): void {
   if (!g.config.teleportInvalidEntrance) {

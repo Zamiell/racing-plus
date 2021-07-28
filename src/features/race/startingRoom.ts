@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { initGlowingItemSprite, initSprite } from "../../misc";
+import { initGlowingItemSprite, initSprite } from "../../util";
 
 const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";

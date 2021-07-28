@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayers } from "../../../misc";
+import { getPlayers } from "../../../utilGlobals";
 
 export function postGameStarted(): void {
   if (!g.config.judasAddBomb) {

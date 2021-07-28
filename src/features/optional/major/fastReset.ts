@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { consoleCommand, isActionTriggeredOnAnyInput } from "../../../misc";
+import { consoleCommand, isActionTriggeredOnAnyInput } from "../../../util";
 
 export function postRender(): void {
   if (!g.config.fastReset) {

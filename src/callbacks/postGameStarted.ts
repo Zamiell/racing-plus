@@ -12,15 +12,16 @@ import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperM
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import log, { debugLog } from "../log";
-import { getPlayers } from "../misc";
 import * as saveDat from "../saveDat";
 import { CollectibleTypeCustom } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
+import { getPlayers } from "../utilGlobals";
 import * as postNewLevel from "./postNewLevel";
 
 export function main(isContinued: boolean): void {
   debugLog("MC_POST_GAME_STARTED", true);
 
+  const startSeed = g.seeds.GetStartSeed();
   const startSeedString = g.seeds.GetStartSeedString();
   const isaacFrameCount = Isaac.GetFrameCount();
 
@@ -42,7 +43,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Initialize run-based variables
-  g.run = new GlobalsRun(getPlayers());
+  g.run = new GlobalsRun(startSeed, getPlayers());
 
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (checkErrors()) {

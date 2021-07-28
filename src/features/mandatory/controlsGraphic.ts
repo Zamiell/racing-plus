@@ -4,8 +4,8 @@
 // This feature is not configurable because we destroy the original starting room graphic file
 
 import g from "../../globals";
-import { getRoomIndex, isAntibirthStage } from "../../misc";
 import { EffectSubTypeCustom } from "../../types/enums";
+import { getRoomIndex, isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   drawControlsGraphic();

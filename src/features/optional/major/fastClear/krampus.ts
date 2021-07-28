@@ -1,9 +1,9 @@
 import g from "../../../../globals";
+import { getRandom } from "../../../../util";
 import {
   anyPlayerHasCollectible,
-  getRandom,
   spawnCollectible,
-} from "../../../../misc";
+} from "../../../../utilGlobals";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;

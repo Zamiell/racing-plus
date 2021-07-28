@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { isActionPressedOnAnyInput } from "../../misc";
+import { isActionPressedOnAnyInput } from "../../util";
 
 export function postUpdate(): void {
   // Players who prefer the vanilla streak text will have a separate mod enabled

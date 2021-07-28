@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayers } from "../../../misc";
+import { getPlayers } from "../../../utilGlobals";
 
 enum FastDropTarget {
   All,

@@ -2,7 +2,7 @@
 // - add feature where you can press escape to exit, and the text will remain
 
 import g from "../../../globals";
-import { consoleCommand } from "../../../misc";
+import { consoleCommand } from "../../../util";
 
 let isConsoleOpen = false;
 let consoleText = "";

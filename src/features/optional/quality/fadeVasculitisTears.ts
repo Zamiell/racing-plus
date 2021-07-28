@@ -3,7 +3,7 @@
 // Fade all tears of this nature so that they are easy to distinguish
 
 import g from "../../../globals";
-import { anyPlayerHasCollectible } from "../../../misc";
+import { anyPlayerHasCollectible } from "../../../utilGlobals";
 
 const FADE_AMOUNT = 0.15;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);

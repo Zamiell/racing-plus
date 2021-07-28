@@ -1,5 +1,6 @@
 import g from "../../../globals";
-import { gridToPos, incrementRNG } from "../../../misc";
+import { incrementRNG } from "../../../util";
+import { gridToPos } from "../../../utilGlobals";
 
 export function postNewRoom(): void {
   if (!g.config.fastSatan) {

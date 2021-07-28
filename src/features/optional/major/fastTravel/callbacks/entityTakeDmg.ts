@@ -1,5 +1,5 @@
 import g from "../../../../../globals";
-import { isSelfDamage } from "../../../../../misc";
+import { isSelfDamage } from "../../../../../util";
 
 export function entityTakeDmgPlayer(
   tookDamage: Entity,

@@ -1,9 +1,6 @@
 import g from "../../../globals";
-import {
-  getRoomIndex,
-  initGlowingItemSprite,
-  isAntibirthStage,
-} from "../../../misc";
+import { initGlowingItemSprite } from "../../../util";
+import { getRoomIndex, isAntibirthStage } from "../../../utilGlobals";
 
 // Near the top-left
 const SPRITE_X = 123;

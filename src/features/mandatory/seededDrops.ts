@@ -2,13 +2,12 @@
 // causing a seed to be different
 
 import g from "../../globals";
+import { incrementRNG, initRNG } from "../../util";
 import {
   anyPlayerHasCollectible,
-  getTotalCollectibles,
-  incrementRNG,
-  initRNG,
+  getTotalPlayerCollectibles,
   playingOnSetSeed,
-} from "../../misc";
+} from "../../utilGlobals";
 
 export function shouldSpawnSeededDrop(): boolean {
   const roomType = g.r.GetType();
@@ -117,7 +116,9 @@ export function spawn(): void {
     pickupVariant !== PickupVariant.PICKUP_TRINKET
   ) {
     pickupCount =
-      getTotalCollectibles(CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW) + 1;
+      getTotalPlayerCollectibles(
+        CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW,
+      ) + 1;
 
     // Nothing chance with:
     // 1 contract / 2 pickups: 0.44
@@ -142,7 +143,7 @@ export function spawn(): void {
 
   // Broken Modem has a chance to increase the amount of pickups that drop
   if (pickupCount >= 1) {
-    const numBrokenModems = getTotalCollectibles(
+    const numBrokenModems = getTotalPlayerCollectibles(
       CollectibleType.COLLECTIBLE_BROKEN_MODEM,
     );
     for (let i = 0; i < numBrokenModems; i++) {

@@ -1,7 +1,7 @@
 // Automatically open Antibirth doors in races to Mother
 
 import g from "../../globals";
-import { getAllDoors } from "../../misc";
+import { getAllDoors } from "../../utilGlobals";
 
 export default function openAntibirthDoor(): void {
   if (

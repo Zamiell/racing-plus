@@ -1,4 +1,4 @@
-import { getPlayers } from "../../../misc";
+import { getPlayers } from "../../../utilGlobals";
 
 export function postGameStarted(): void {
   for (const player of getPlayers()) {

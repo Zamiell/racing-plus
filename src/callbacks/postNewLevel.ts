@@ -4,9 +4,9 @@ import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import log, { debugLog } from "../log";
-import { getPlayers, isAntibirthStage } from "../misc";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
+import { anyPlayerIs, isAntibirthStage } from "../utilGlobals";
 import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
@@ -72,13 +72,15 @@ export function newLevel(): void {
 }
 
 function shouldShowLevelText() {
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+
   return (
     // If the race is finished, the "Victory Lap" text will overlap with the stage text,
     // so don't bother showing it
     !g.raceVars.finished &&
     // If one or more players are playing as "Random Baby", the baby descriptions will slightly
     // overlap with the stage text, so don't bother showing it
-    !oneOrMorePlayersIsRandomBaby()
+    !anyPlayerIs(randomBaby)
   );
 }
 
@@ -112,16 +114,4 @@ function goingToRaceRoom() {
     stage === 1 &&
     (g.run.roomsEntered === 0 || g.run.roomsEntered === 1)
   );
-}
-
-function oneOrMorePlayersIsRandomBaby() {
-  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === randomBaby) {
-      return true;
-    }
-  }
-
-  return false;
 }

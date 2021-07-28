@@ -1,5 +1,5 @@
 import g from "../../globals";
-import { consoleCommand } from "../../misc";
+import { consoleCommand } from "../../util";
 
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;

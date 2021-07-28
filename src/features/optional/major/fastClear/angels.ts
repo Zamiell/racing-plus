@@ -3,7 +3,7 @@ import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   spawnCollectible,
-} from "../../../../misc";
+} from "../../../../utilGlobals";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 24;

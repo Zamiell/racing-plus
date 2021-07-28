@@ -1,6 +1,7 @@
 import g from "../../globals";
 import log from "../../log";
-import { ensureAllCases, hasPolaroidOrNegative } from "../../misc";
+import { ensureAllCases } from "../../util";
+import { hasPolaroidOrNegative } from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceData";
 import { ChallengeCustom } from "../speedrun/enums";
 

@@ -1,7 +1,7 @@
 // This feature is not configurable because it could change floors, causing a seed to be different
 
 import g from "../../globals";
-import { playingOnSetSeed } from "../../misc";
+import { playingOnSetSeed } from "../../utilGlobals";
 
 export function postGameStarted(): void {
   if (playingOnSetSeed()) {

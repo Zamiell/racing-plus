@@ -2,7 +2,7 @@
 // different
 
 import g from "../../globals";
-import { getPlayers } from "../../misc";
+import { getPlayers } from "../../utilGlobals";
 
 export function postGameStarted(): void {
   // Racing+ removes the Karma trinket from the game

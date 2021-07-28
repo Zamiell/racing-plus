@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { getPlayers, gridToPos } from "../../../misc";
+import { getPlayers, gridToPos } from "../../../utilGlobals";
 
 export function postGameStarted(): void {
   if (!g.config.samsonDropHeart) {

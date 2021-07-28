@@ -1,5 +1,5 @@
 import g from "../../../globals";
-import { initSprite } from "../../../misc";
+import { initSprite } from "../../../util";
 
 const MAX_FAMILIARS = 64;
 const SPRITE_POSITION = Vector(35, 33); // To the right of the coin count

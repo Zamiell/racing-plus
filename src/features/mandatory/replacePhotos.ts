@@ -1,13 +1,12 @@
 import g from "../../globals";
 import log from "../../log";
+import { PickupVariantCustom } from "../../types/enums";
+import { ensureAllCases, incrementRNG } from "../../util";
 import {
   anyPlayerHasCollectible,
-  ensureAllCases,
   hasPolaroidOrNegative,
-  incrementRNG,
   spawnCollectible,
-} from "../../misc";
-import { PickupVariantCustom } from "../../types/enums";
+} from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceData";
 import { ChallengeCustom } from "../speedrun/enums";
 

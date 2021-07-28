@@ -1,6 +1,7 @@
 import g from "../../../../globals";
 import log from "../../../../log";
-import { consoleCommand, isAntibirthStage } from "../../../../misc";
+import { consoleCommand } from "../../../../util";
+import { isAntibirthStage } from "../../../../utilGlobals";
 
 export function goto(upwards: boolean): void {
   // Get the number and type of the next floor

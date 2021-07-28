@@ -1,7 +1,7 @@
 import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
-import { getPlayers } from "../misc";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
+import { getPlayers } from "../utilGlobals";
 
 const TRANSFORMATION_NAMES = [
   "Guppy",

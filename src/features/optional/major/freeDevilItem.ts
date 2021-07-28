@@ -1,12 +1,11 @@
 import g from "../../../globals";
+import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
+import { getOpenTrinketSlot, isSelfDamage } from "../../../util";
 import {
   enteredRoomViaTeleport,
-  getOpenTrinketSlot,
   getPlayers,
   isAntibirthStage,
-  isSelfDamage,
-} from "../../../misc";
-import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
+} from "../../../utilGlobals";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(

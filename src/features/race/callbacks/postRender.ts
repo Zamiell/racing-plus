@@ -1,6 +1,6 @@
 import g from "../../../globals";
 import log from "../../../log";
-import { consoleCommand, restartAsCharacter } from "../../../misc";
+import { consoleCommand, restartAsCharacter } from "../../../util";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import raceStart from "../raceStart";

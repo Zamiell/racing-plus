@@ -22,7 +22,7 @@ import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbac
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
 import { debugLog } from "../log";
-import { consoleCommand } from "../misc";
+import { consoleCommand } from "../util";
 
 export function main(): void {
   debugLog("MC_POST_RENDER", true);

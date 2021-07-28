@@ -1,6 +1,7 @@
 import g from "../../globals";
 import log from "../../log";
-import { arrayEquals, ensureAllCases, getRoomIndex } from "../../misc";
+import { arrayEquals, ensureAllCases } from "../../util";
+import { getRoomIndex } from "../../utilGlobals";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import raceStart from "./raceStart";

@@ -1,7 +1,7 @@
 // We draw a black sprite on top of the screen in order to fade everything to black
 
 import g from "../../../../globals";
-import { initSprite } from "../../../../misc";
+import { initSprite } from "../../../../util";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
 import { FastTravelState } from "./enums";
 

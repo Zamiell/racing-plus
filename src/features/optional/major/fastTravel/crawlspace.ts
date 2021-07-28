@@ -7,7 +7,7 @@ import {
   inCrawlspace,
   movePlayersAndFamiliars,
   teleport,
-} from "../../../../misc";
+} from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";

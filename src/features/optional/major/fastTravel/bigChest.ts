@@ -1,12 +1,12 @@
 import g from "../../../../globals";
 import log from "../../../../log";
+import { CollectibleTypeCustom } from "../../../../types/enums";
+import { ensureAllCases } from "../../../../util";
 import {
   anyPlayerHasCollectible,
-  ensureAllCases,
   getRoomIndex,
   isAntibirthStage,
-} from "../../../../misc";
-import { CollectibleTypeCustom } from "../../../../types/enums";
+} from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import { FastTravelEntityType } from "./enums";
@@ -155,7 +155,9 @@ function speedrunAlternate() {
 
   return DEFAULT_REPLACEMENT_ACTION;
 }
+*/
 
+/*
 function speedrunUp() {
   // Most speedruns go to The Chest and do not require The Polaroid
   const stage = g.l.GetStage();

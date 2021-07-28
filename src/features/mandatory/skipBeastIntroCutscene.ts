@@ -1,4 +1,4 @@
-import { consoleCommand } from "../../misc";
+import { consoleCommand } from "../../util";
 
 export function postEntityKillDogma(entity: Entity): void {
   // As soon as the player kills the second phase of Dogma,

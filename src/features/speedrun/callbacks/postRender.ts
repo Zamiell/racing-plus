@@ -1,4 +1,4 @@
-import { restartAsCharacter } from "../../../misc";
+import { restartAsCharacter } from "../../../util";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
