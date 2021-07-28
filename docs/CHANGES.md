@@ -165,10 +165,6 @@ Post-flip actions:
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- Defeating Mega Satan no longer has a chance to immediately end the run.
-
-> Why? This gives players a chance to touch a trophy, use a Fool card, etc.
-
 - Some of the animations in the Mega Satan fight have been removed.
 
 > Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
@@ -176,6 +172,14 @@ Post-flip actions:
 - Hush no longer plays an appear animation.
 
 > Why? The animation is very long, resulting in the player being forced to wait without performing any inputs.
+
+- Defeating Mega Satan no longer has a chance to immediately end the run.
+
+> Why? This gives players a chance to touch a trophy, use a Fool card, etc.
+
+- Defeating The Beast no longer immediately ends the run.
+
+> Why? This gives players a chance to touch a trophy.
 
 ### 4) Enemy Changes
 
