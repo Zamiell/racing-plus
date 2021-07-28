@@ -3,13 +3,8 @@ import { consoleCommand } from "../../misc";
 
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;
-  const stage = g.l.GetStage();
 
   if (variant !== BeastVariant.BEAST) {
-    return;
-  }
-
-  if (stage !== 13) {
     return;
   }
 
