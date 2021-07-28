@@ -15,6 +15,10 @@ let sprite: null | Sprite = null;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
+  if (g.race.myStatus === "quit" || g.race.myStatus === "disqualified") {
+    return;
+  }
+
   drawSprite();
   hideGoSprite();
 }

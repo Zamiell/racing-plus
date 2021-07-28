@@ -17,6 +17,7 @@ import racePostRender, {
   checkRestartWrongRaceCharacter,
   checkRestartWrongRaceSeed,
 } from "../features/race/callbacks/postRender";
+import { inRaceRoom } from "../features/race/raceRoom";
 import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
@@ -139,6 +140,7 @@ function drawTopLeftText() {
     g.race.raceID !== -1 &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
+    !inRaceRoom() &&
     Isaac.GetTime() - g.raceVars.startedTime <= 2000
   ) {
     // Only show it in the first two seconds of the race

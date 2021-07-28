@@ -532,6 +532,10 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+
+  g.run.room.initializedGridEntities.delete(gridIndex);
+  g.run.room.fastTravel.trapdoors.delete(gridIndex);
+  g.run.room.fastTravel.crawlspaces.delete(gridIndex);
 }
 
 export function removeItemFromItemTracker(
@@ -550,6 +554,35 @@ export function restartAsCharacter(character: PlayerType): void {
   }
 
   consoleCommand(`restart ${character}`);
+}
+
+export function spawnCollectible(
+  collectibleType: CollectibleType,
+  position: Vector,
+  seed: int,
+  options: boolean,
+): void {
+  const collectible = g.g
+    .Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_COLLECTIBLE,
+      position,
+      Vector.Zero,
+      null,
+      collectibleType,
+      seed,
+    )
+    .ToPickup();
+  if (collectible !== null && options) {
+    collectible.OptionsPickupIndex = 1;
+  }
+
+  // Prevent quest items from switching to another item on Tainted Isaac
+  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
+  const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
+  if (isQuestItem) {
+    g.run.level.stuckItems.set(seed, collectibleType);
+  }
 }
 
 export function teleport(

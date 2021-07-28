@@ -6,7 +6,7 @@ export function postUpdate(): void {
 
   if (
     (g.raceVars.finished &&
-      g.race.status === "none" &&
+      g.race.status === "in progress" &&
       g.race.place === 1 &&
       g.race.numEntrants >= 3) ||
     g.speedrun.finished

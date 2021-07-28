@@ -1,5 +1,9 @@
 import g from "../../../../globals";
-import { anyPlayerHasCollectible, anyPlayerHasTrinket } from "../../../../misc";
+import {
+  anyPlayerHasCollectible,
+  anyPlayerHasTrinket,
+  spawnCollectible,
+} from "../../../../misc";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 24;
@@ -54,14 +58,11 @@ function spawnKeyPiece(npc: EntityNPC) {
   }
 
   // Spawn the item
-  g.g.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-    getItemDropPosition(npc),
-    Vector.Zero,
-    null,
+  spawnCollectible(
     getKeySubType(npc),
+    getItemDropPosition(npc),
     npc.InitSeed,
+    false,
   );
 }
 

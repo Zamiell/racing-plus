@@ -1,10 +1,25 @@
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
 import log from "../../log";
-import { isAntibirthStage } from "../../misc";
+import { getPlayers, isAntibirthStage } from "../../misc";
 
 export function postNewRoom(): void {
-  if (!shouldBanB1TreasureRoom()) {
+  const roomType = g.r.GetType();
+
+  if (!shouldBanFirstFloorTreasureRoom()) {
+    return;
+  }
+
+  if (roomType === RoomType.ROOM_TREASURE) {
+    deleteAllItems();
+
+    // Signal that we are not supposed to get the items in this room
+    // If they are teleporting into the Treasure Room, the animation will not actually play,
+    // but they will still be able to hear the sound effect
+    for (const player of getPlayers()) {
+      player.AnimateSad();
+    }
+
     return;
   }
 
@@ -39,7 +54,7 @@ export function postNewRoom(): void {
   }
 }
 
-function shouldBanB1TreasureRoom() {
+function shouldBanFirstFloorTreasureRoom() {
   const stage = g.l.GetStage();
 
   return (
@@ -49,4 +64,14 @@ function shouldBanB1TreasureRoom() {
     g.race.myStatus === "racing" &&
     g.race.format === "seeded"
   );
+}
+
+function deleteAllItems() {
+  const collectibles = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+  );
+  for (const collectible of collectibles) {
+    collectible.Remove();
+  }
 }

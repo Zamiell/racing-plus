@@ -24,6 +24,14 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
 ];
 
 export default function formatSetup(player: EntityPlayer): void {
+  if (
+    g.race.myStatus === "finished" ||
+    g.race.myStatus === "quit" ||
+    g.race.myStatus === "disqualified"
+  ) {
+    return;
+  }
+
   switch (g.race.format) {
     case "unseeded": {
       if (g.race.ranked && g.race.solo) {

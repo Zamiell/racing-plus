@@ -1,11 +1,3 @@
-Patch notes:
-
-
-
-- off limits is not spawning in b1 seeded treasure room
-- test fireworks
-- test resetting during fireworks to see what happens
-
 Racing+ new features:
 - chat system
 - custom console

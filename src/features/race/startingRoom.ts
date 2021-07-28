@@ -28,7 +28,11 @@ export function postRender(): void {
 }
 
 function drawSprites() {
-  if (g.race.myStatus === "finished") {
+  if (
+    g.race.myStatus === "finished" ||
+    g.race.myStatus === "quit" ||
+    g.race.myStatus === "disqualified"
+  ) {
     return;
   }
 
