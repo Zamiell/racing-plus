@@ -1,6 +1,6 @@
 import g from "../../../globals";
 import * as trophy from "../../mandatory/trophy";
-import * as giveTheFool from "../spawnMarkedSkull";
+import * as spawnMarkedSkull from "../spawnMarkedSkull";
 
 export function hush(_entity: Entity): void {
   if (
@@ -13,7 +13,7 @@ export function hush(_entity: Entity): void {
 }
 
 export function mom(entity: Entity): void {
-  giveTheFool.postEntityKillMom(entity);
+  spawnMarkedSkull.postEntityKillMom(entity);
 }
 
 function spawnTrophy() {

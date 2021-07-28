@@ -56,6 +56,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
   const isGreedMode = g.g.IsGreedMode();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
+  const roomType = g.r.GetType();
   const antibirthStage = isAntibirthStage();
 
   switch (fastTravelEntityType) {
@@ -86,6 +87,18 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
         if (
           (antibirthStage && stage === 4) ||
           (!antibirthStage && stage === 6)
+        ) {
+          return "gfx/grid/trapdoor_mausoleum_custom.anm2";
+        }
+      }
+
+      if (roomType === RoomType.ROOM_BOSS) {
+        if (
+          g.race.status === "in progress" &&
+          g.race.myStatus === "racing" &&
+          g.race.goal === "The Beast" &&
+          !antibirthStage &&
+          stage === 6
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }

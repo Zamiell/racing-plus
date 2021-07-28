@@ -172,17 +172,6 @@ function shouldRemove() {
     }
   }
 
-  // If the goal of the race is The Beast, delete the Womb trapdoor that spawns after Mom
-  if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
-    stage === 6 &&
-    roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-  ) {
-    return true;
-  }
-
   // Delete the trapdoors on backward path
   // There are some cases when trapdoors still appear, like double troubles
   if (

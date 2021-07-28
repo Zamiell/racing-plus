@@ -50,6 +50,16 @@ function getNextStage() {
     return getNextStageBackwardsPath(stage, antibirthStage);
   }
 
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    !antibirthStage &&
+    stage === 6
+  ) {
+    return stage;
+  }
+
   if (g.run.fastTravel.blueWomb) {
     return 9;
   }
@@ -110,6 +120,17 @@ function getNextStageType(
   upwards: boolean,
 ) {
   const antibirthStage = isAntibirthStage();
+
+  if (
+    g.race.status === "in progress" &&
+    g.race.myStatus === "racing" &&
+    g.race.goal === "The Beast" &&
+    !antibirthStage &&
+    stage === 6 &&
+    nextStage === 6
+  ) {
+    return getStageTypeAntibirth(nextStage);
+  }
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
     return getNextStageTypeBackwardsPath(stage, nextStage, antibirthStage);
