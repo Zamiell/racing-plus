@@ -5,6 +5,7 @@ import {
   ensureAllCases,
   hasPolaroidOrNegative,
   incrementRNG,
+  spawnCollectible,
 } from "../../misc";
 import { PickupVariantCustom } from "../../types/enums";
 import { RaceGoal } from "../race/types/RaceData";
@@ -150,7 +151,7 @@ function doPhotoSituation(situation: PhotoSituation) {
 
   switch (situation) {
     case PhotoSituation.Polaroid: {
-      spawnItem(
+      spawnCollectible(
         CollectibleType.COLLECTIBLE_POLAROID,
         PEDESTAL_POSITION_CENTER,
         roomSeed,
@@ -160,7 +161,7 @@ function doPhotoSituation(situation: PhotoSituation) {
     }
 
     case PhotoSituation.Negative: {
-      spawnItem(
+      spawnCollectible(
         CollectibleType.COLLECTIBLE_NEGATIVE,
         PEDESTAL_POSITION_CENTER,
         roomSeed,
@@ -170,7 +171,7 @@ function doPhotoSituation(situation: PhotoSituation) {
     }
 
     case PhotoSituation.Both: {
-      spawnItem(
+      spawnCollectible(
         CollectibleType.COLLECTIBLE_POLAROID,
         PEDESTAL_POSITION_LEFT,
         roomSeed,
@@ -180,7 +181,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       // We don't want both of the collectibles to have the same RNG
       const newSeed = incrementRNG(roomSeed);
 
-      spawnItem(
+      spawnCollectible(
         CollectibleType.COLLECTIBLE_NEGATIVE,
         PEDESTAL_POSITION_RIGHT,
         newSeed,
@@ -195,7 +196,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       // so use the room seed instead
       if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1
-        spawnItem(
+        spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_LEFT,
           roomSeed,
@@ -205,14 +206,14 @@ function doPhotoSituation(situation: PhotoSituation) {
         // We don't want both of the collectibles to have the same RNG
         const newSeed = incrementRNG(roomSeed);
 
-        spawnItem(
+        spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_RIGHT,
           newSeed,
           true,
         );
       } else {
-        spawnItem(
+        spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_CENTER,
           roomSeed,
@@ -226,35 +227,5 @@ function doPhotoSituation(situation: PhotoSituation) {
     default: {
       ensureAllCases(situation);
     }
-  }
-}
-
-function spawnItem(
-  collectibleType: CollectibleType,
-  position: Vector,
-  seed: int,
-  options: boolean,
-) {
-  const collectible = g.g
-    .Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_COLLECTIBLE,
-      position,
-      Vector.Zero,
-      null,
-      collectibleType,
-      seed,
-    )
-    .ToPickup();
-  if (collectible !== null && options) {
-    collectible.OptionsPickupIndex = 1;
-  }
-
-  // Prevent a photo from switching to another item on Tainted Isaac
-  if (
-    collectibleType === CollectibleType.COLLECTIBLE_POLAROID ||
-    collectibleType === CollectibleType.COLLECTIBLE_NEGATIVE
-  ) {
-    g.run.level.stuckItems.set(seed, collectibleType);
   }
 }

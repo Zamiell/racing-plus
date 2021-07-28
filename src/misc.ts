@@ -554,6 +554,35 @@ export function restartAsCharacter(character: PlayerType): void {
   consoleCommand(`restart ${character}`);
 }
 
+export function spawnCollectible(
+  collectibleType: CollectibleType,
+  position: Vector,
+  seed: int,
+  options: boolean,
+): void {
+  const collectible = g.g
+    .Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_COLLECTIBLE,
+      position,
+      Vector.Zero,
+      null,
+      collectibleType,
+      seed,
+    )
+    .ToPickup();
+  if (collectible !== null && options) {
+    collectible.OptionsPickupIndex = 1;
+  }
+
+  // Prevent quest items from switching to another item on Tainted Isaac
+  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
+  const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
+  if (isQuestItem) {
+    g.run.level.stuckItems.set(seed, collectibleType);
+  }
+}
+
 export function teleport(
   roomIndex: int,
   direction = Direction.NO_DIRECTION,

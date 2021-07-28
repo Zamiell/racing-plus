@@ -59,6 +59,7 @@ export function postNewRoom(): void {
 }
 
 function giveTrinket(player: EntityPlayer) {
+  const roomSeed = g.r.GetSpawnSeed();
   const character = player.GetPlayerType();
 
   player.AnimateHappy();
@@ -78,13 +79,14 @@ function giveTrinket(player: EntityPlayer) {
     player.AddTrinket(trinketType);
   } else {
     // If we do not have an available trinket slot, then spawn the trinket on the ground
-    Isaac.Spawn(
+    g.g.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_TRINKET,
-      trinketType,
       player.Position,
       Vector.Zero,
       null,
+      trinketType,
+      roomSeed,
     );
   }
 }

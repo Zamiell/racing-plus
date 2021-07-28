@@ -1,5 +1,9 @@
 import g from "../../../../globals";
-import { anyPlayerHasCollectible, getRandom } from "../../../../misc";
+import {
+  anyPlayerHasCollectible,
+  getRandom,
+  spawnCollectible,
+} from "../../../../misc";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;
@@ -32,14 +36,11 @@ function spawnKrampusDrop(npc: EntityNPC) {
   // is finished and miss out on a drop
 
   // Spawn the item
-  g.g.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-    getItemDropPosition(npc),
-    Vector.Zero,
-    null,
+  spawnCollectible(
     getKrampusItemSubType(),
+    getItemDropPosition(npc),
     npc.InitSeed,
+    false,
   );
 }
 
