@@ -1,8 +1,3 @@
-Patch notes:
-- Fixed fireworks
-- Items are now removed from the first floor treasure room in seeded races
-
-
 Racing+ new features:
 - chat system
 - custom console

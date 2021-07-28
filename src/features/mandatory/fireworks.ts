@@ -8,7 +8,7 @@ export function postUpdate(): void {
     (g.raceVars.finished &&
       g.race.status === "in progress" &&
       g.race.place === 1 &&
-      g.race.numEntrants >= 1) ||
+      g.race.numEntrants >= 3) ||
     g.speedrun.finished
   ) {
     spawnSparkleOnPlayer();
