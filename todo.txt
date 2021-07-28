@@ -1,6 +1,7 @@
 Patch notes:
 - Quest items will no longer switch when playing as Tainted Isaac
 - Fixed the bug where removed trapdoors would still exist for a frame
+- Fixed the bug where you would get race items after quitting the race
 
 
 - off limits is not spawning in b1 seeded treasure room
