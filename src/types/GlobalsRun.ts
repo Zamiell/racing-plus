@@ -20,7 +20,7 @@ export default class GlobalsRun {
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;
 
-  /** Remember the alt floors we traveled to respawn them in Backwards path */
+  /** Remember the alt floors we traveled to respawn them in Backwards path. */
   altFloorsTraveled = {
     downpour1: false,
     dross1: false,
