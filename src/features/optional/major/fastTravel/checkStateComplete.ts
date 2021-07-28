@@ -1,7 +1,7 @@
 import g from "../../../../globals";
 import { getPlayers } from "../../../../misc";
 import { EffectVariantCustom } from "../../../../types/enums";
-import { FADE_TO_BLACK_FRAMES, FAMES_BEFORE_JUMP } from "./constants";
+import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import setNewState, { setPlayersVisible } from "./setNewState";
 
@@ -38,7 +38,7 @@ function postRenderFadingToBlack() {
 function postRenderFadingIn() {
   incrementFramesPassed();
 
-  if (g.run.fastTravel.framesPassed === FAMES_BEFORE_JUMP) {
+  if (g.run.fastTravel.framesPassed === FRAMES_BEFORE_JUMP) {
     resetPlayerCollision();
     setPlayersVisible(getPlayers(), true);
     makePlayersJump();
