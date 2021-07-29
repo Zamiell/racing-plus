@@ -1,3 +1,4 @@
+import { hasFlag } from "isaacscript-common";
 import { RECOMMENDED_SHIFT_IDX } from "./constants";
 import log from "./log";
 
@@ -102,10 +103,6 @@ export function getOpenTrinketSlot(player: EntityPlayer): int | null {
 export function getRandom(x: int, y: int, seed: int): int {
   const rng = initRNG(seed);
   return rng.RandomInt(y - x + 1) + x;
-}
-
-export function hasFlag(flags: int, flag: int): boolean {
-  return (flags & flag) === flag;
 }
 
 export function incrementRNG(seed: int): int {
