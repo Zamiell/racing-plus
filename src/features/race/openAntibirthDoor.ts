@@ -3,7 +3,11 @@
 import g from "../../globals";
 import { getAllDoors } from "../../utilGlobals";
 
-export default function openAntibirthDoor(): void {
+export function postRoomClear(): void {
+  openAntibirthDoor();
+}
+
+function openAntibirthDoor() {
   if (
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||
