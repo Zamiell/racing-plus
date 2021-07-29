@@ -25,7 +25,6 @@ export default function removeAntibirthDoor(): void {
       EntityType.ENTITY_EFFECT,
       EffectVariant.DUST_CLOUD,
     );
-
     for (const dust of dustClouds) {
       dust.Remove();
       log("Manually removed the dust clouds (for races going to The Beast).");
