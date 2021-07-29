@@ -154,6 +154,15 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
   }
 
   if (
+    stage === 3 &&
+    antibirthStage &&
+    !g.run.altFloorsTraveled.dross2 &&
+    !g.run.altFloorsTraveled.downpour2
+  ) {
+    return stage;
+  }
+
+  if (
     stage === 2 &&
     antibirthStage &&
     !g.run.altFloorsTraveled.dross1 &&
@@ -182,6 +191,20 @@ function getNextStageType(
     nextStage === 6
   ) {
     return getStageTypeAntibirth(nextStage);
+  }
+
+  // In races to The Beast, spawn the player directly in dark Home
+  // since going to Mom's Bed and going back to Dogma is pointless
+  if (nextStage === 13) {
+    if (
+      g.race.status === "in progress" &&
+      g.race.myStatus === "racing" &&
+      g.race.goal === "The Beast"
+    ) {
+      return 1;
+    }
+
+    return 0;
   }
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
@@ -232,20 +255,6 @@ function getNextStageType(
     return 1;
   }
 
-  // In races to The Beast, spawn the player directly in dark Home
-  // since going to Mom's Bed and going back to Dogma is pointless
-  if (nextStage === 13) {
-    if (
-      g.race.status === "in progress" &&
-      g.race.myStatus === "racing" &&
-      g.race.goal === "The Beast"
-    ) {
-      return 1;
-    }
-
-    return 0;
-  }
-
   return getStageType(nextStage);
 }
 
@@ -275,6 +284,16 @@ function getStageTypeBackwardsPath(
   }
 
   if (stage === 4 && !antibirthStage) {
+    if (g.run.altFloorsTraveled.dross2) {
+      return StageType.STAGETYPE_REPENTANCE_B;
+    }
+
+    if (g.run.altFloorsTraveled.downpour2) {
+      return StageType.STAGETYPE_REPENTANCE;
+    }
+  }
+
+  if (stage === 3 && antibirthStage) {
     if (g.run.altFloorsTraveled.dross2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
