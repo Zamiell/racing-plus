@@ -1,6 +1,7 @@
+import { log } from "isaacscript-common";
+import { debugLog } from "../debugLog";
 import racePreGameExit from "../features/race/callbacks/preGameExit";
 import g from "../globals";
-import log, { debugLog } from "../log";
 import * as saveDat from "../saveDat";
 import GlobalsRun from "../types/GlobalsRun";
 

@@ -1,6 +1,6 @@
+import { log } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
-import log from "../../../log";
 import { moveEsauNextToJacob } from "../../../util";
 import {
   anyPlayerCloserThan,

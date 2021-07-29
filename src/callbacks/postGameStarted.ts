@@ -11,12 +11,13 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
-import log, { debugLog } from "../log";
+import { debugLog } from "../debugLog";
 import * as saveDat from "../saveDat";
 import { CollectibleTypeCustom } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
 import { getPlayers } from "../utilGlobals";
 import * as postNewLevel from "./postNewLevel";
+import { log } from "isaacscript-common";
 
 export function main(isContinued: boolean): void {
   debugLog("MC_POST_GAME_STARTED", true);

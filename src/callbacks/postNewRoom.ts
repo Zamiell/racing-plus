@@ -16,8 +16,9 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import g from "../globals";
-import log, { debugLog } from "../log";
+import { debugLog } from "../debugLog";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
+import { log } from "isaacscript-common";
 
 export function main(): void {
   debugLog("MC_POST_NEW_ROOM", true);

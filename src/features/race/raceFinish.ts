@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../globals";
-import log from "../../log";
 import * as socket from "./socket";
 
 export default function raceFinish(): void {

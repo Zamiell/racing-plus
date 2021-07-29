@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../../../globals";
-import log from "../../../../../log";
 import { getFinalFrameOfAnimation } from "../../../../../util";
 import * as angels from "../angels";
 import * as krampus from "../krampus";

@@ -1,7 +1,6 @@
+import { ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
-import log from "../../../../log";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { ensureAllCases } from "../../../../util";
 import {
   anyPlayerHasCollectible,
   getRoomIndex,

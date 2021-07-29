@@ -1,7 +1,7 @@
+import { ensureAllCases, log } from "isaacscript-common";
 import g from "../../globals";
-import log from "../../log";
 import { PickupVariantCustom } from "../../types/enums";
-import { ensureAllCases, incrementRNG } from "../../util";
+import { incrementRNG } from "../../util";
 import {
   anyPlayerHasCollectible,
   hasPolaroidOrNegative,

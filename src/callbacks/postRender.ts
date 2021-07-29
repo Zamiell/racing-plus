@@ -21,7 +21,7 @@ import { inRaceRoom } from "../features/race/raceRoom";
 import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
-import { debugLog } from "../log";
+import { debugLog } from "../debugLog";
 import { consoleCommand } from "../util";
 
 export function main(): void {

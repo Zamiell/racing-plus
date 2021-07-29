@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 
 const ANIMATION_SPEED_MULTIPLIER = 1.66;
 

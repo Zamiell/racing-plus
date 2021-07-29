@@ -4,10 +4,10 @@
 // this specific run
 // Unlike the normal run timer, this uses real time instead of game frame count
 
+import { isActionPressedOnAnyInput } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
-import { isActionPressedOnAnyInput } from "../../util";
 import { anyPlayerIs } from "../../utilGlobals";
 
 const RUN_TIMER_X = 52;

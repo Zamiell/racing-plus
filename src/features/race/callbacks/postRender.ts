@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 import { consoleCommand, restartAsCharacter } from "../../../util";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";

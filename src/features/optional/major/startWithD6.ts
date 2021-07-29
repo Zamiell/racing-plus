@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 import { getPlayers, giveItemAndRemoveFromPools } from "../../../utilGlobals";
 

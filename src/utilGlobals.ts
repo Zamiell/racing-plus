@@ -1,3 +1,4 @@
+import { log } from "isaacscript-common";
 import {
   BEAST_ROOM_SUB_TYPE,
   EXCLUDED_CHARACTERS,
@@ -5,7 +6,6 @@ import {
 } from "./constants";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
-import log from "./log";
 import { CollectibleTypeCustom } from "./types/enums";
 import { moveEsauNextToJacob } from "./util";
 

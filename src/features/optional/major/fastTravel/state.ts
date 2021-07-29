@@ -1,5 +1,5 @@
+import { ensureAllCases } from "isaacscript-common";
 import g from "../../../../globals";
-import { ensureAllCases } from "../../../../util";
 import { anyPlayerCloserThan } from "../../../../utilGlobals";
 import {
   FastTravelEntityDescription,

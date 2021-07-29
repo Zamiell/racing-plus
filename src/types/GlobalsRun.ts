@@ -1,7 +1,6 @@
+import { initRNG, log } from "isaacscript-common";
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
-import log from "../log";
-import { initRNG } from "../util";
 import GlobalsRunLevel from "./GlobalsRunLevel";
 import GlobalsRunRoom from "./GlobalsRunRoom";
 import PickingUpItemDescription from "./PickingUpItemDescription";

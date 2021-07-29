@@ -1,5 +1,6 @@
+import { getHUDOffsetVector } from "isaacscript-common";
 import TimerType from "./types/TimerType";
-import { getHUDOffsetVector, initSprite } from "./util";
+import { initSprite } from "./util";
 
 interface Sprites {
   clock: Sprite;

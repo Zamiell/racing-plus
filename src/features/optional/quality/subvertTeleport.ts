@@ -1,8 +1,8 @@
 // Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart,
 // or It Lives!
 
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 import { moveEsauNextToJacob } from "../../../util";
 import { getPlayers } from "../../../utilGlobals";
 

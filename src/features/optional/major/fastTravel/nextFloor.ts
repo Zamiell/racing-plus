@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../../globals";
-import log from "../../../../log";
 import { consoleCommand } from "../../../../util";
 import { isAntibirthStage } from "../../../../utilGlobals";
 

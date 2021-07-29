@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 import { getRoomIndex } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 

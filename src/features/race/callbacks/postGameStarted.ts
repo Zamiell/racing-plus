@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
-import log from "../../../log";
 import { playingOnSetSeed } from "../../../utilGlobals";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";

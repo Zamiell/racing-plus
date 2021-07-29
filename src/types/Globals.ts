@@ -1,7 +1,7 @@
+import { log } from "isaacscript-common";
 import RaceData from "../features/race/types/RaceData";
 import RaceVars from "../features/race/types/RaceVars";
 import SpeedrunData from "../features/speedrun/types/SpeedrunData";
-import log from "../log";
 import Config from "./Config";
 import GlobalsRun from "./GlobalsRun";
 import Hotkeys from "./Hotkeys";

@@ -1,8 +1,8 @@
 // The "json" module can only be imported from a file at the root of the project,
 // so use this helper as a workaround
 
+import { log } from "isaacscript-common";
 import * as json from "json";
-import log from "./log";
 
 export function encode(table: unknown): string {
   const [ok, jsonStringOrErrMsg] = pcall(tryEncode, table);

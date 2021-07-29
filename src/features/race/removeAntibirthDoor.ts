@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../globals";
-import log from "../../log";
 import { getAllDoors, isAntibirthStage } from "../../utilGlobals";
 
 // For races to The Beast, the player must go to Depths 2

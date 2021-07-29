@@ -1,6 +1,7 @@
+import { getOpenTrinketSlot } from "isaacscript-common";
 import g from "../../../globals";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
-import { getOpenTrinketSlot, isSelfDamage } from "../../../util";
+import { isSelfDamage } from "../../../util";
 import {
   enteredRoomViaTeleport,
   getPlayers,

@@ -1,5 +1,5 @@
+import { getRoomNPCs } from "isaacscript-common";
 import g from "../../../../../globals";
-import { getRoomNPCs } from "../../../../../util";
 
 export default function fastClearPostRoomClear(): void {
   if (!g.config.fastClear) {

@@ -1,8 +1,10 @@
+// TODO: redo this function to use Pre Spawn Clear award callback
+
+import { log } from "isaacscript-common";
 import fastClearPostRoomClear from "../features/optional/major/fastClear/callbacks/postRoomClear";
 import fastTravelPostRoomClear from "../features/optional/major/fastTravel/callbacks/postRoomClear";
 import racePostRoomClear from "../features/race/callbacks/postRoomClear";
 import g from "../globals";
-import log from "../log";
 
 export function postUpdate(): void {
   const gameFrameCount = g.g.GetFrameCount();

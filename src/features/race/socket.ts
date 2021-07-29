@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../globals";
-import log from "../../log";
 import PickingUpItemDescription from "../../types/PickingUpItemDescription";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";

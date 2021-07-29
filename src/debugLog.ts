@@ -1,8 +1,5 @@
+import { log } from "isaacscript-common";
 import { DEBUG_LOGGING } from "./constants";
-
-export default function log(msg: string): void {
-  Isaac.DebugString(msg);
-}
 
 export function debugLog(callbackName: string, begin: boolean): void {
   if (!DEBUG_LOGGING) {

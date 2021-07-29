@@ -1,3 +1,4 @@
+import { log } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
@@ -29,7 +30,6 @@ import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import { VERSION } from "./constants";
-import log from "./log";
 import * as modConfigMenu from "./modConfigMenu";
 import * as saveDat from "./saveDat";
 

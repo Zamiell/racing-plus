@@ -1,6 +1,7 @@
 // In the "hudpickups.png" file, we blank out the "No Achievements" icon
 // For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
 
+import { getHUDOffsetVector } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
@@ -8,7 +9,7 @@ import {
   SPRITE_TAINTED_BETHANY_OFFSET,
 } from "../../constants";
 import g from "../../globals";
-import { getHUDOffsetVector, initSprite } from "../../util";
+import { initSprite } from "../../util";
 
 enum SpriteLayer {
   Blue,

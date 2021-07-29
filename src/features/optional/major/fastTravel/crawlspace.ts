@@ -1,7 +1,7 @@
 // For testing, a seed with a black market is: 2SB2 M4R6
 
+import { log } from "isaacscript-common";
 import g from "../../../../globals";
-import log from "../../../../log";
 import {
   getRoomIndex,
   inCrawlspace,

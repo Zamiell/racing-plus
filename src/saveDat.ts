@@ -1,6 +1,6 @@
+import { log } from "isaacscript-common";
 import g from "./globals";
 import * as jsonHelper from "./jsonHelper";
-import log from "./log";
 import * as tableUtils from "./tableUtils";
 import GlobalsRunRoom from "./types/GlobalsRunRoom";
 import GlobalsToSave from "./types/GlobalsToSave";

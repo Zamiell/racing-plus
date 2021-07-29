@@ -1,6 +1,6 @@
+import { log } from "isaacscript-common";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import g from "../globals";
-import log from "../log";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 import { getPlayers } from "../utilGlobals";
 

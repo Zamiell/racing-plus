@@ -1,10 +1,7 @@
+import { getRoomNPCs } from "isaacscript-common";
 import g from "../../../../globals";
 import { PickupPriceCustom } from "../../../../types/enums";
-import {
-  getRoomNPCs,
-  initGlowingItemSprite,
-  initSprite,
-} from "../../../../util";
+import { initGlowingItemSprite, initSprite } from "../../../../util";
 import {
   anyPlayerHasCollectible,
   changeRoom,

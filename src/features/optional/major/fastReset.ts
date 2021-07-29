@@ -1,5 +1,6 @@
+import { isActionTriggeredOnAnyInput } from "isaacscript-common";
 import g from "../../../globals";
-import { consoleCommand, isActionTriggeredOnAnyInput } from "../../../util";
+import { consoleCommand } from "../../../util";
 
 export function postRender(): void {
   if (!g.config.fastReset) {

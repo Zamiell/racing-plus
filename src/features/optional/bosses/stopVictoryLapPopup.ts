@@ -1,6 +1,6 @@
+import { log } from "isaacscript-common";
 import * as charge from "../../../charge";
 import g from "../../../globals";
-import log from "../../../log";
 import { EffectVariantCustom } from "../../../types/enums";
 
 export function postEntityKillLamb(_entity: Entity): void {

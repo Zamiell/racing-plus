@@ -1,5 +1,5 @@
+import { log } from "isaacscript-common";
 import g from "../../globals";
-import log from "../../log";
 import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 
