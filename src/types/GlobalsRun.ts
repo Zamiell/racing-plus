@@ -214,7 +214,7 @@ export function getPlayerLuaTableIndex(
   // or Tainted Forgotten
   // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
   // reopens the game
-  // Instead, we "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
+  // Instead, we use "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
   // This works even if the player does not have any Sad Onions
   // We convert the numerical seed to a string to avoid null element creation when saving the table
   // as JSON (which is done to handle save & quit)
