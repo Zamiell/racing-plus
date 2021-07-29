@@ -3,7 +3,7 @@ import log from "../../log";
 import { getAllDoors, isAntibirthStage } from "../../utilGlobals";
 
 // For races to The Beast, the player must go to Depths 2
-// Thus, we must prevent them from going to the Masoleum floors by deleting the doors
+// Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 export function postRoomClear(): void {
   removeAntibirthDoor();
 }
