@@ -1,6 +1,7 @@
+import { getPlayers, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand, initSprite } from "../../util";
-import { getPlayers, getRoomIndex, gridToPos } from "../../utilGlobals";
+import { gridToPos } from "../../utilGlobals";
 import {
   RACE_ROOM_POSITION,
   RACE_ROOM_STAGE_ID,

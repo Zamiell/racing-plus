@@ -1,6 +1,6 @@
+import { getPlayers } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
-import { getPlayers } from "../../../../utilGlobals";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import setNewState, { setPlayersVisible } from "./setNewState";
@@ -39,9 +39,11 @@ function postRenderFadingIn() {
   incrementFramesPassed();
 
   if (g.run.fastTravel.framesPassed === FRAMES_BEFORE_JUMP) {
-    resetPlayerCollision();
-    setPlayersVisible(getPlayers(), true);
-    makePlayersJump();
+    const players = getPlayers();
+
+    resetPlayerCollision(players);
+    setPlayersVisible(players, true);
+    makePlayersJump(players);
   }
 
   if (g.run.fastTravel.framesPassed < FADE_TO_BLACK_FRAMES) {
@@ -61,15 +63,15 @@ function incrementFramesPassed() {
   }
 }
 
-function resetPlayerCollision() {
+function resetPlayerCollision(players: EntityPlayer[]) {
   // Set the collision for all players back to normal
-  for (const player of getPlayers()) {
+  for (const player of players) {
     player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
   }
 }
 
-function makePlayersJump() {
-  for (const player of getPlayers()) {
+function makePlayersJump(players: EntityPlayer[]) {
+  for (const player of players) {
     // Play the jumping out of the hole animation
     player.PlayExtraAnimation("Jump");
   }

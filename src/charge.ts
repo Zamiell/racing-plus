@@ -1,5 +1,6 @@
+import { getPlayers } from "isaacscript-common";
 import g from "./globals";
-import { getItemMaxCharges, getPlayers } from "./utilGlobals";
+import { getItemMaxCharges } from "./utilGlobals";
 
 // Give a charge to the active items of all players
 export function checkAdd(): void {

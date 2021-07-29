@@ -1,7 +1,7 @@
-import { log } from "isaacscript-common";
+import { getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
-import { getPlayers, giveItemAndRemoveFromPools } from "../../../utilGlobals";
+import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,

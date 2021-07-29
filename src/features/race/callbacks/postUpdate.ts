@@ -1,6 +1,5 @@
-import { log } from "isaacscript-common";
+import { getRoomIndex, log } from "isaacscript-common";
 import g from "../../../globals";
-import { getRoomIndex } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 
 export default function racePostUpdate(): void {

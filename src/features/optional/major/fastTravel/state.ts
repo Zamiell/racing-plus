@@ -1,6 +1,5 @@
-import { ensureAllCases } from "isaacscript-common";
+import { anyPlayerCloserThan, ensureAllCases } from "isaacscript-common";
 import g from "../../../../globals";
-import { anyPlayerCloserThan } from "../../../../utilGlobals";
 import {
   FastTravelEntityDescription,
   TRAPDOOR_BOSS_REACTION_FRAMES,

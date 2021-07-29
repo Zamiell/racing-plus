@@ -1,6 +1,10 @@
-import { arrayEquals, ensureAllCases, log } from "isaacscript-common";
+import {
+  arrayEquals,
+  ensureAllCases,
+  getRoomIndex,
+  log,
+} from "isaacscript-common";
 import g from "../../globals";
-import { getRoomIndex } from "../../utilGlobals";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import raceStart from "./raceStart";

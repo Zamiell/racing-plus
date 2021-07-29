@@ -1,4 +1,4 @@
-import { getPlayers } from "../../../utilGlobals";
+import { getPlayers } from "isaacscript-common";
 
 export function postGameStarted(): void {
   for (const player of getPlayers()) {

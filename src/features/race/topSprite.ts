@@ -4,9 +4,9 @@
 // 3) "Go!"
 // 4) Once we have finished a race, the final place
 
+import { getScreenCenterPosition } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../util";
-import { getScreenCenterPosition } from "../../utilGlobals";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;

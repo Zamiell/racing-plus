@@ -1,11 +1,10 @@
 // This feature is not configurable because it could change item pools and trinket pools,
 // causing a seed to be different
 
-import { initRNG } from "isaacscript-common";
+import { anyPlayerHasCollectible, initRNG } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
 import {
-  anyPlayerHasCollectible,
   getTotalPlayerCollectibles,
   playingOnSetSeed,
 } from "../../utilGlobals";

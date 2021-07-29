@@ -1,12 +1,8 @@
-import { getOpenTrinketSlot } from "isaacscript-common";
+import { getOpenTrinketSlot, getPlayers } from "isaacscript-common";
 import g from "../../../globals";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 import { isSelfDamage } from "../../../util";
-import {
-  enteredRoomViaTeleport,
-  getPlayers,
-  isAntibirthStage,
-} from "../../../utilGlobals";
+import { enteredRoomViaTeleport, isAntibirthStage } from "../../../utilGlobals";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(

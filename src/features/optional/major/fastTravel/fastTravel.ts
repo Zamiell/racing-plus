@@ -1,8 +1,8 @@
 // These are shared functions for fast-travel entities
 
-import { ensureAllCases, log } from "isaacscript-common";
+import { ensureAllCases, getRoomIndex, log } from "isaacscript-common";
 import g from "../../../../globals";
-import { getRoomIndex, isAntibirthStage } from "../../../../utilGlobals";
+import { isAntibirthStage } from "../../../../utilGlobals";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
 import {
   FastTravelEntityState,

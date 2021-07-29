@@ -1,5 +1,5 @@
+import { anyPlayerIs } from "isaacscript-common";
 import g from "../../globals";
-import { anyPlayerIs } from "../../utilGlobals";
 
 const ITEM_SPRITESHEET_ID = 1;
 

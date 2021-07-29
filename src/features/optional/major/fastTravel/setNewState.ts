@@ -1,12 +1,8 @@
+import { changeRoom, getPlayers, getRoomIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
-import {
-  changeRoom,
-  getPlayers,
-  getRoomIndex,
-  isAntibirthStage,
-} from "../../../../utilGlobals";
+import { isAntibirthStage } from "../../../../utilGlobals";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";

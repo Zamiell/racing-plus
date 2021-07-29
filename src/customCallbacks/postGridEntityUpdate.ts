@@ -1,4 +1,4 @@
-import { getGridEntities } from "../utilGlobals";
+import { getGridEntities } from "isaacscript-common";
 import * as postGridEntityInit from "./postGridEntityInit";
 import postGridEntityUpdateFunctions from "./postGridEntityUpdateFunctions";
 

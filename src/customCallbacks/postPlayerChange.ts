@@ -1,8 +1,7 @@
-import { log } from "isaacscript-common";
+import { getPlayers, log } from "isaacscript-common";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import g from "../globals";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
-import { getPlayers } from "../utilGlobals";
 
 export function postUpdate(): void {
   // We must perform exclusions in the "getPlayers()" function because we don't want to have two

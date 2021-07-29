@@ -1,64 +1,9 @@
-import { log } from "isaacscript-common";
-import {
-  BEAST_ROOM_SUB_TYPE,
-  EXCLUDED_CHARACTERS,
-  MAX_NUM_DOORS,
-} from "./constants";
+import { getDoors, getPlayers, getRoomIndex, log } from "isaacscript-common";
+import { BEAST_ROOM_SUB_TYPE } from "./constants";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 import { moveEsauNextToJacob } from "./util";
-
-export function anyPlayerCloserThan(position: Vector, distance: int): boolean {
-  for (const player of getPlayers()) {
-    if (player.Position.Distance(position) <= distance) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-export function anyPlayerHasCollectible(
-  collectibleType: CollectibleType,
-): boolean {
-  for (const player of getPlayers()) {
-    if (player.HasCollectible(collectibleType)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-export function anyPlayerHasTrinket(trinketType: TrinketType): boolean {
-  for (const player of getPlayers()) {
-    if (player.HasTrinket(trinketType)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-export function anyPlayerIs(matchingCharacter: PlayerType): boolean {
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === matchingCharacter) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-export function changeRoom(roomIndex: int): void {
-  // This must be set before every ChangeRoom() invocation or else the function can send
-  // you to the wrong room
-  g.l.LeaveDoor = -1;
-
-  g.g.ChangeRoom(roomIndex);
-}
 
 export function enteredRoomViaTeleport(): boolean {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
@@ -75,30 +20,6 @@ export function enteredRoomViaTeleport(): boolean {
     !inCrawlspace() &&
     !cameFromCrawlspace
   );
-}
-
-export function getAllDoors(): GridEntityDoor[] {
-  const doors: GridEntityDoor[] = [];
-  for (let i = 0; i < MAX_NUM_DOORS; i++) {
-    const door = g.r.GetDoor(i);
-    if (door !== null) {
-      doors.push(door);
-    }
-  }
-
-  return doors;
-}
-
-export function getGridEntities(): GridEntity[] {
-  const gridEntities: GridEntity[] = [];
-  for (let gridIndex = 0; gridIndex < g.r.GetGridSize(); gridIndex++) {
-    const gridEntity = g.r.GetGridEntity(gridIndex);
-    if (gridEntity !== null) {
-      gridEntities.push(gridEntity);
-    }
-  }
-
-  return gridEntities;
 }
 
 function getItemInitCharges(
@@ -121,64 +42,6 @@ export function getItemMaxCharges(
   }
 
   return itemConfigItem.MaxCharges;
-}
-
-/**
- * By default, this returns characters that are not directly controlled by the player (like Esau).
- */
-export function getPlayers(performExclusions = false): EntityPlayer[] {
-  const players: EntityPlayer[] = [];
-  for (let i = 0; i < g.g.GetNumPlayers(); i++) {
-    const player = Isaac.GetPlayer(i);
-    // Exclude players with a non-null parent, since they are not real players
-    // (e.g. the Strawman Keeper)
-    if (player !== null && player.Parent === null) {
-      // We might only want to make a list of players that are fully-functioning and controlled by
-      // humans
-      // Thus, we need to exclude certain characters
-      const character = player.GetPlayerType();
-      if (!performExclusions || !EXCLUDED_CHARACTERS.includes(character)) {
-        players.push(player);
-      }
-    }
-  }
-
-  return players;
-}
-
-export function getRoomIndex(): int {
-  const roomIndex = g.l.GetCurrentRoomDesc().SafeGridIndex;
-  if (roomIndex < 0) {
-    // SafeGridIndex is always -1 for rooms outside the grid
-    return g.l.GetCurrentRoomIndex();
-  }
-
-  return roomIndex;
-}
-
-// Taken from Alphabirth
-// https://steamcommunity.com/sharedfiles/filedetails/?id=848056541
-export function getScreenCenterPosition(): Vector {
-  const shape = g.r.GetRoomShape();
-  const centerPos = g.r.GetCenterPos();
-  const topLeftPos = g.r.GetTopLeftPos();
-  const centerOffset = centerPos.sub(topLeftPos);
-  const pos = centerPos;
-
-  if (centerOffset.X > 260) {
-    pos.X -= 260;
-  }
-  if (shape === RoomShape.ROOMSHAPE_LBL || shape === RoomShape.ROOMSHAPE_LTL) {
-    pos.X -= 260;
-  }
-  if (centerOffset.Y > 140) {
-    pos.Y -= 140;
-  }
-  if (shape === RoomShape.ROOMSHAPE_LTR || shape === RoomShape.ROOMSHAPE_LTL) {
-    pos.Y -= 140;
-  }
-
-  return Isaac.WorldToRenderPosition(pos);
 }
 
 export function getTotalPlayerCollectibles(
@@ -272,7 +135,7 @@ export function playingOnSetSeed(): boolean {
 
 // eslint-disable-next-line import/no-unused-modules
 export function openAllDoors(): void {
-  for (const door of getAllDoors()) {
+  for (const door of getDoors()) {
     // If we try to open a hidden secret room door (or super secret room door),
     // then nothing will happen
     door.Open();

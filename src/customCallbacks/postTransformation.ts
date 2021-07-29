@@ -1,7 +1,7 @@
+import { getPlayers } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
 import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
-import { getPlayers } from "../utilGlobals";
 
 const TRANSFORMATION_NAMES = [
   "Guppy",

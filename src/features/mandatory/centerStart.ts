@@ -2,8 +2,9 @@
 // Instead, put the player in the middle of the room so that they have equal access to all 4 doors
 // This feature is not configurable because it could grant an advantage to turn off
 
+import { getPlayers } from "isaacscript-common";
 import g from "../../globals";
-import { getPlayers, movePlayersAndFamiliars } from "../../utilGlobals";
+import { movePlayersAndFamiliars } from "../../utilGlobals";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

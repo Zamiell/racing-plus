@@ -1,5 +1,6 @@
+import { getPlayers } from "isaacscript-common";
 import g from "../../globals";
-import { getPlayers, gridToPos } from "../../utilGlobals";
+import { gridToPos } from "../../utilGlobals";
 
 export function postUpdate(): void {
   makeFireworksQuieter();

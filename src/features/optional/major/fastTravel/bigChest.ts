@@ -1,11 +1,12 @@
-import { ensureAllCases, log } from "isaacscript-common";
-import g from "../../../../globals";
-import { CollectibleTypeCustom } from "../../../../types/enums";
 import {
   anyPlayerHasCollectible,
+  ensureAllCases,
   getRoomIndex,
-  isAntibirthStage,
-} from "../../../../utilGlobals";
+  log,
+} from "isaacscript-common";
+import g from "../../../../globals";
+import { CollectibleTypeCustom } from "../../../../types/enums";
+import { isAntibirthStage } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import { FastTravelEntityType } from "./enums";

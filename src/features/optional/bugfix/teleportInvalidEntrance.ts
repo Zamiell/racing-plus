@@ -1,13 +1,13 @@
-import { log } from "isaacscript-common";
+import {
+  anyPlayerCloserThan,
+  getDoors,
+  getPlayers,
+  log,
+} from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
 import { moveEsauNextToJacob } from "../../../util";
-import {
-  anyPlayerCloserThan,
-  enteredRoomViaTeleport,
-  getAllDoors,
-  getPlayers,
-} from "../../../utilGlobals";
+import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
 export function postNewRoom(): void {
   if (!g.config.teleportInvalidEntrance) {
@@ -64,7 +64,7 @@ export function postNewRoom(): void {
 }
 
 function isPlayerNextToADoor() {
-  for (const door of getAllDoors()) {
+  for (const door of getDoors()) {
     if (
       door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
       door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8

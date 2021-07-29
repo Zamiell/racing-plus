@@ -1,8 +1,11 @@
-import { isActionPressedOnAnyInput, log } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  isActionPressedOnAnyInput,
+  log,
+} from "isaacscript-common";
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
 import { initSprite } from "../../../util";
-import { anyPlayerHasCollectible } from "../../../utilGlobals";
 
 const NUM_PILLS_IN_POOL = 13;
 

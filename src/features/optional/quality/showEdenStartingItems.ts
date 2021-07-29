@@ -1,6 +1,7 @@
+import { getRoomIndex } from "isaacscript-common";
 import g from "../../../globals";
 import { initGlowingItemSprite } from "../../../util";
-import { getRoomIndex, isAntibirthStage } from "../../../utilGlobals";
+import { isAntibirthStage } from "../../../utilGlobals";
 
 // Near the top-left
 const SPRITE_X = 123;

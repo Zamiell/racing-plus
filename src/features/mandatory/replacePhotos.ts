@@ -1,12 +1,12 @@
-import { ensureAllCases, log } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  ensureAllCases,
+  log,
+} from "isaacscript-common";
 import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
 import { incrementRNG } from "../../util";
-import {
-  anyPlayerHasCollectible,
-  hasPolaroidOrNegative,
-  spawnCollectible,
-} from "../../utilGlobals";
+import { hasPolaroidOrNegative, spawnCollectible } from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceData";
 import { ChallengeCustom } from "../speedrun/enums";
 

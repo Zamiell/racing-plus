@@ -1,8 +1,8 @@
 // This feature is not configurable because it could change trinket pools and cause a seed to be
 // different
 
+import { getPlayers } from "isaacscript-common";
 import g from "../../globals";
-import { getPlayers } from "../../utilGlobals";
 
 export function postGameStarted(): void {
   // Racing+ removes the Karma trinket from the game

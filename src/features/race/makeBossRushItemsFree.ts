@@ -1,5 +1,5 @@
+import { anyPlayerIs, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
-import { anyPlayerIs, getRoomIndex } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   if (!anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {

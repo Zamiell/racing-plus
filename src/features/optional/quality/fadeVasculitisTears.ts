@@ -2,8 +2,8 @@
 // This is very confusing and makes it hard to see real projectiles
 // Fade all tears of this nature so that they are easy to distinguish
 
+import { anyPlayerHasCollectible } from "isaacscript-common";
 import g from "../../../globals";
-import { anyPlayerHasCollectible } from "../../../utilGlobals";
 
 const FADE_AMOUNT = 0.15;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);

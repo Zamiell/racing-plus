@@ -1,6 +1,6 @@
-import { log } from "isaacscript-common";
+import { getDoors, getRoomIndex, log } from "isaacscript-common";
 import g from "../../globals";
-import { getAllDoors, getRoomIndex, isAntibirthStage } from "../../utilGlobals";
+import { isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
@@ -19,7 +19,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  for (const door of getAllDoors()) {
+  for (const door of getDoors()) {
     if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
       g.r.RemoveDoor(door.Slot);
       log("Manually removed the strange door (for races going to The Beast).");

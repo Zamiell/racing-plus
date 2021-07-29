@@ -1,5 +1,7 @@
+import { log } from "isaacscript-common";
 import * as cache from "../cache";
 import * as postGridEntityInit from "../customCallbacks/postGridEntityInit";
+import { debugLog } from "../debugLog";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
@@ -16,9 +18,7 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import g from "../globals";
-import { debugLog } from "../debugLog";
 import GlobalsRunRoom from "../types/GlobalsRunRoom";
-import { log } from "isaacscript-common";
 
 export function main(): void {
   debugLog("MC_POST_NEW_ROOM", true);

@@ -1,7 +1,7 @@
-import { log } from "isaacscript-common";
+import { getPlayers, log } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
-import { getPlayers, isAntibirthStage } from "../../utilGlobals";
+import { isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();

@@ -1,10 +1,7 @@
+import { getRoomIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
-import {
-  getRoomIndex,
-  isAntibirthStage,
-  removeGridEntity,
-} from "../../../../utilGlobals";
+import { isAntibirthStage, removeGridEntity } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";

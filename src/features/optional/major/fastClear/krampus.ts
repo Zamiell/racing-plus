@@ -1,9 +1,7 @@
+import { anyPlayerHasCollectible } from "isaacscript-common";
 import g from "../../../../globals";
 import { getRandom } from "../../../../util";
-import {
-  anyPlayerHasCollectible,
-  spawnCollectible,
-} from "../../../../utilGlobals";
+import { spawnCollectible } from "../../../../utilGlobals";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;

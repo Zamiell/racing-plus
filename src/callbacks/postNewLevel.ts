@@ -1,14 +1,14 @@
+import { anyPlayerIs, log } from "isaacscript-common";
+import { debugLog } from "../debugLog";
 import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
-import { debugLog } from "../debugLog";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
-import { anyPlayerIs, isAntibirthStage } from "../utilGlobals";
+import { isAntibirthStage } from "../utilGlobals";
 import * as postNewRoom from "./postNewRoom";
-import { log } from "isaacscript-common";
 
 export function main(): void {
   debugLog("MC_POST_NEW_LEVEL", true);

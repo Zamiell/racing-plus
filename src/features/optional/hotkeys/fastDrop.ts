@@ -1,5 +1,5 @@
+import { getPlayers } from "isaacscript-common";
 import g from "../../../globals";
-import { getPlayers } from "../../../utilGlobals";
 
 enum FastDropTarget {
   All,

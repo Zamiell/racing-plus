@@ -1,14 +1,14 @@
-import { log } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  anyPlayerIs,
+  getPlayers,
+  log,
+} from "isaacscript-common";
 import g from "../../globals";
 import {
   getPlayerLuaTableIndex,
   PlayerLuaTableIndex,
 } from "../../types/GlobalsRun";
-import {
-  anyPlayerHasCollectible,
-  anyPlayerIs,
-  getPlayers,
-} from "../../utilGlobals";
 
 const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
 const NUM_RACING_PLUS_ITEMS = 9;

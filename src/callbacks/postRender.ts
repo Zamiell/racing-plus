@@ -1,5 +1,6 @@
 import * as cache from "../cache";
 import { VERSION } from "../constants";
+import { debugLog } from "../debugLog";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
@@ -21,7 +22,6 @@ import { inRaceRoom } from "../features/race/raceRoom";
 import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
-import { debugLog } from "../debugLog";
 import { consoleCommand } from "../util";
 
 export function main(): void {

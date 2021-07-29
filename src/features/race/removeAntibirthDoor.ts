@@ -1,6 +1,6 @@
-import { log } from "isaacscript-common";
+import { getDoors, log } from "isaacscript-common";
 import g from "../../globals";
-import { getAllDoors, isAntibirthStage } from "../../utilGlobals";
+import { isAntibirthStage } from "../../utilGlobals";
 
 // For races to The Beast, the player must go to Depths 2
 // Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
@@ -38,7 +38,7 @@ function removeAntibirthDoor() {
       log("Manually removed the dust clouds (for races going to The Beast).");
     }
 
-    for (const door of getAllDoors()) {
+    for (const door of getDoors()) {
       if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
         g.r.RemoveDoor(door.Slot);
         log(

@@ -1,5 +1,5 @@
+import { getGridEntities } from "isaacscript-common";
 import g from "../globals";
-import { getGridEntities } from "../utilGlobals";
 import postGridEntityInitFunctions from "./postGridEntityInitFunctions";
 
 export function postNewRoom(): void {
