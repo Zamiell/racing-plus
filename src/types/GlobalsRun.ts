@@ -118,8 +118,9 @@ export default class GlobalsRun {
   /** Used for the seeded rooms feature of seeded races. */
   seededRooms = {
     metKrampus: false,
-    rng: {
+    RNG: {
       krampus: RNG(),
+      devilRoomChoice: RNG(),
     },
   };
 
@@ -157,7 +158,11 @@ export default class GlobalsRun {
   // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
   // yet at that point)
   constructor(startSeed: int, players: EntityPlayer[]) {
-    this.seededRooms.rng.krampus = initRNG(startSeed);
+    const RNGObject = this.seededRooms.RNG;
+    for (const key of Object.keys(RNGObject)) {
+      const property = key as keyof typeof RNGObject;
+      this.seededRooms.RNG[property] = initRNG(startSeed);
+    }
 
     for (const player of players) {
       initPlayerVariables(player, this);

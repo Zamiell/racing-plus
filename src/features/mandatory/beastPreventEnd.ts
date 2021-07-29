@@ -16,7 +16,7 @@ export function postEntityKillTheBeast(entity: Entity): void {
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
-  const centerPosition = g.r.GetCenterPos();
+  const centerPos = g.r.GetCenterPos();
 
   if (stage !== 13 || !g.run.beastDefeated) {
     return;
@@ -32,7 +32,7 @@ export function postNewRoom(): void {
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_BIGCHEST,
     0,
-    centerPosition,
+    centerPos,
     Vector.Zero,
     null,
   );

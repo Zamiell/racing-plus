@@ -26,43 +26,18 @@ export function postNewRoom(): void {
 /*
 function devilRoom() {
   // First, find out if we should encounter Krampus instead of getting a normal Devil Room
-  if (!g.run.seededRooms.metKrampus) {
-    g.run.seededRooms.rng.krampus.Next();
-    const krampusRoll = math.random(1, 100);
-
-    let krampusChance;
-    if (g.g.GetDevilRoomDeals() > 0) {
-      krampusChance = 40;
-    } else {
-      krampusChance = 10;
-    }
-    if (RacingPlusRebalancedVersion !== null) {
-      krampusChance = 0;
-    }
-
-    if (krampusRoll <= krampusChance) {
-      // Spawn Krampus
-      g.run.metKrampus = true;
-      Isaac.Spawn(
-        EntityType.ENTITY_FALLEN,
-        1,
-        0,
-        g.r.GetCenterPos(),
-        Vector.Zero,
-        null,
-      );
-      g.r.SetClear(false); // If we don't do this, we won't get a charge after Krampus is killed
-      return;
-    }
+  if (checkSpawnKrampus()) {
+    return;
   }
 
   // Second, find out how many item pedestals we should spawn
   // We remove the 1x 10 red chests room (0.1 weight) because it can cause different items to spawn
   // on the same seed
+
   g.RNGCounter.devilRoomChoice = misc.incrementRNG(
     g.RNGCounter.devilRoomChoice,
   );
-  math.randomseed(g.RNGCounter.devilRoomChoice);
+  math.random_seed(g.RNGCounter.devilRoomChoice);
   // The total weight of all of the rooms is 17.05 - 0.1 = 16.95
   const roomRoll = math.random(1, 1695);
 
@@ -175,6 +150,44 @@ function devilRoom() {
   }
 }
 
+function checkSpawnKrampus() {
+  const centerPos = g.r.GetCenterPos();
+
+  if (g.run.seededRooms.metKrampus) {
+    return false;
+  }
+
+  g.run.seededRooms.rng.krampus.Next();
+  const krampusRoll = math.random(1, 100);
+
+  let krampusChance;
+  if (g.g.GetDevilRoomDeals() > 0) {
+    krampusChance = 40;
+  } else {
+    krampusChance = 10;
+  }
+
+  if (krampusRoll > krampusChance) {
+    return false;
+  }
+
+  g.run.seededRooms.metKrampus = true;
+
+  Isaac.Spawn(
+    EntityType.ENTITY_FALLEN,
+    FallenVariant.KRAMPUS,
+    0,
+    centerPos,
+    Vector.Zero,
+    null,
+  );
+
+  // If we don't set the room clear state, we won't get a charge after Krampus is killed
+  g.r.SetClear(false);
+
+  return true;
+}
+
 function spawnPedestalDevilRoom(x: int, y: int) {
   // The collectible will be manually chosen in the PreGetCollectible callback
   const pos = misc.gridToPos(x, y);
@@ -196,7 +209,7 @@ function angelRoom() {
   g.RNGCounter.angelRoomChoice = misc.incrementRNG(
     g.RNGCounter.angelRoomChoice,
   );
-  math.randomseed(g.RNGCounter.angelRoomChoice);
+  math.random_seed(g.RNGCounter.angelRoomChoice);
   const roomRoll = math.random(1, 16); // The total weight of all of the rooms is 16
 
   if (roomRoll <= 12) {
@@ -213,9 +226,9 @@ function angelRoom() {
     spawnPedestalAngelRoom(0, 6);
 
     // Spawn 3x blocks
-    g.r.SpawnGridEntity(31, GridEntityType.GRID_ROCKB, 0, 0, 0);
-    g.r.SpawnGridEntity(43, GridEntityType.GRID_ROCKB, 0, 0, 0);
-    g.r.SpawnGridEntity(91, GridEntityType.GRID_ROCKB, 0, 0, 0);
+    g.r.SpawnGridEntity(31, GridEntityType.GRID_ROCK_B, 0, 0, 0);
+    g.r.SpawnGridEntity(43, GridEntityType.GRID_ROCK_B, 0, 0, 0);
+    g.r.SpawnGridEntity(91, GridEntityType.GRID_ROCK_B, 0, 0, 0);
 
     // Spawn 3x lock blocks
     g.r.SpawnGridEntity(17, GridEntityType.GRID_LOCK, 0, 0, 0);
@@ -243,7 +256,7 @@ function angelRoom() {
       }
       g.g.Spawn(
         EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_ETERNALCHEST,
+        PickupVariant.PICKUP_ETERNAL_CHEST,
         pos,
         Vector.Zero,
         null,
