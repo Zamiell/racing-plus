@@ -1,3 +1,8 @@
+Patch notes:
+- Dark Judas will now start with a bomb like normal Judas does
+- Fixed the bug where the save file check would fail if Eden or Tainted Eden had the No! trinket
+-
+
 Racing+ new features:
 - chat system
 - custom console

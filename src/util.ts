@@ -14,11 +14,6 @@ export function getFinalFrameOfAnimation(sprite: Sprite): int {
   return finalFrame;
 }
 
-export function getRandom(x: int, y: int, seed: int): int {
-  const rng = initRNG(seed);
-  return rng.RandomInt(y - x + 1) + x;
-}
-
 export function incrementRNG(seed: int): int {
   const rng = initRNG(seed);
   rng.Next();

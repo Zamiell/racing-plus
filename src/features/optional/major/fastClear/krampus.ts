@@ -1,6 +1,5 @@
-import { anyPlayerHasCollectible } from "isaacscript-common";
+import { anyPlayerHasCollectible, getRandom } from "isaacscript-common";
 import g from "../../../../globals";
-import { getRandom } from "../../../../util";
 import { spawnCollectible } from "../../../../utilGlobals";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
 

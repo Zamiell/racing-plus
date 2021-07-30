@@ -59,10 +59,13 @@ function isIncompleteSave() {
     return false;
   }
 
-  // Before checking item pools, we must remove Chaos and TMTRAINER
+  // Before checking item pools, we must remove Chaos, TMTRAINER, and the No! trinket
   const removedItemsMap: Map<PlayerLuaTableIndex, CollectibleType[]> =
     new Map();
+  const removedTrinketsMap: Map<PlayerLuaTableIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
+    const playerIndex = getPlayerLuaTableIndex(player);
+
     const removedItems: CollectibleType[] = [];
     for (const itemToRemove of [
       CollectibleType.COLLECTIBLE_CHAOS,
@@ -77,8 +80,16 @@ function isIncompleteSave() {
       }
     }
 
-    const playerIndex = getPlayerLuaTableIndex(player);
     removedItemsMap.set(playerIndex, removedItems);
+
+    const removedTrinkets: TrinketType[] = [];
+    const trinketToRemove = TrinketType.TRINKET_NO;
+    if (player.HasTrinket(trinketToRemove)) {
+      player.TryRemoveTrinket(trinketToRemove);
+      removedTrinkets.push(trinketToRemove);
+    }
+
+    removedTrinketsMap.set(playerIndex, removedTrinkets);
   }
 
   // Add every item in the game to the blacklist
@@ -100,13 +111,21 @@ function isIncompleteSave() {
   // Reset the blacklist
   g.itemPool.ResetRoomBlacklist();
 
-  // Give back Chaos and TMTRAINER, if necessary
+  // Give back items/trinkets, if necessary
   for (const player of getPlayers()) {
     const playerIndex = getPlayerLuaTableIndex(player);
+
     const removedItems = removedItemsMap.get(playerIndex);
     if (removedItems !== undefined) {
       for (const collectibleType of removedItems) {
         player.AddCollectible(collectibleType, 0, false); // Prevent Chaos from spawning pickups
+      }
+    }
+
+    const removedTrinkets = removedTrinketsMap.get(playerIndex);
+    if (removedTrinkets !== undefined) {
+      for (const trinketType of removedTrinkets) {
+        player.AddTrinket(trinketType, false);
       }
     }
   }
