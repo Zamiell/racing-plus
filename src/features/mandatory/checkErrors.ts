@@ -1,14 +1,12 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  getPlayerIndex,
   getPlayers,
   log,
+  PlayerIndex,
 } from "isaacscript-common";
 import g from "../../globals";
-import {
-  getPlayerLuaTableIndex,
-  PlayerLuaTableIndex,
-} from "../../types/GlobalsRun";
 
 const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
 const NUM_RACING_PLUS_ITEMS = 9;
@@ -60,11 +58,10 @@ function isIncompleteSave() {
   }
 
   // Before checking item pools, we must remove Chaos, TMTRAINER, and the No! trinket
-  const removedItemsMap: Map<PlayerLuaTableIndex, CollectibleType[]> =
-    new Map();
-  const removedTrinketsMap: Map<PlayerLuaTableIndex, TrinketType[]> = new Map();
+  const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
+  const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
-    const playerIndex = getPlayerLuaTableIndex(player);
+    const playerIndex = getPlayerIndex(player);
 
     const removedItems: CollectibleType[] = [];
     for (const itemToRemove of [
@@ -113,7 +110,7 @@ function isIncompleteSave() {
 
   // Give back items/trinkets, if necessary
   for (const player of getPlayers()) {
-    const playerIndex = getPlayerLuaTableIndex(player);
+    const playerIndex = getPlayerIndex(player);
 
     const removedItems = removedItemsMap.get(playerIndex);
     if (removedItems !== undefined) {

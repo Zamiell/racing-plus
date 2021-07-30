@@ -1,6 +1,5 @@
-import { getPlayers, log } from "isaacscript-common";
+import { getPlayerIndex, getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
-import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
@@ -32,7 +31,7 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   for (const player of getPlayers()) {
-    const index = getPlayerLuaTableIndex(player);
+    const index = getPlayerIndex(player);
     const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
     g.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
   }
@@ -156,7 +155,7 @@ export function postFirstEsauJr(player: EntityPlayer): void {
 
 function giveD6(player: EntityPlayer) {
   if (shouldGetPocketActiveD6(player)) {
-    const index = getPlayerLuaTableIndex(player);
+    const index = getPlayerIndex(player);
     const charge = g.run.pocketActiveD6Charge.get(index);
     givePocketActiveD6(player, charge);
     log("Awarded another pocket D6 (due to character change).");

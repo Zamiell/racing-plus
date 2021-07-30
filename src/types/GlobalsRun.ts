@@ -1,4 +1,4 @@
-import { initRNG, log } from "isaacscript-common";
+import { getPlayerIndex, initRNG, log, PlayerIndex } from "isaacscript-common";
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
 import GlobalsRunLevel from "./GlobalsRunLevel";
@@ -33,7 +33,7 @@ export default class GlobalsRun {
   };
 
   beastDefeated = false;
-  currentCharacters = new LuaTable<PlayerLuaTableIndex, PlayerType>();
+  currentCharacters = new LuaTable<PlayerIndex, PlayerType>();
   debugChaosCard = false;
   debugSpeed = false;
 
@@ -76,7 +76,7 @@ export default class GlobalsRun {
   fireworksSpawned = 0;
 
   freeDevilItem = {
-    tookDamage: new LuaTable<PlayerLuaTableIndex, boolean>(),
+    tookDamage: new LuaTable<PlayerIndex, boolean>(),
     granted: false,
   };
 
@@ -84,14 +84,14 @@ export default class GlobalsRun {
   madeBossRushItemsFree = false;
 
   maxFamiliars = false;
-  pickingUpItem = new LuaTable<PlayerLuaTableIndex, PickingUpItemDescription>();
+  pickingUpItem = new LuaTable<PlayerIndex, PickingUpItemDescription>();
 
   /** We track all identified pills so that we can display them. */
   pills: PillDescription[] = [];
 
   pillsPHD = false;
   pillsFalsePHD = false;
-  pocketActiveD6Charge = new LuaTable<PlayerLuaTableIndex, int>();
+  pocketActiveD6Charge = new LuaTable<PlayerIndex, int>();
 
   /** Used to give only one double item Treasure Room. */
   removeMoreOptions = false;
@@ -140,7 +140,7 @@ export default class GlobalsRun {
   };
 
   switchForgotten = false;
-  transformations = new LuaTable<PlayerLuaTableIndex, boolean[]>();
+  transformations = new LuaTable<PlayerIndex, boolean[]>();
 
   /** If we have used the Esau Jr. item yet on this run. */
   usedEsauJrAtLeastOnce = false;
@@ -180,7 +180,7 @@ export function initPlayerVariables(
   }
 
   const character = player.GetPlayerType();
-  const index = getPlayerLuaTableIndex(player);
+  const index = getPlayerIndex(player);
 
   run.currentCharacters.set(index, character);
   run.freeDevilItem.tookDamage.set(index, false);
@@ -200,34 +200,4 @@ export function initPlayerVariables(
   run.transformations.set(index, transformationArray);
 
   log(`Initialized variables for player: ${index}`);
-}
-
-// This represents the special case of an integer seed converted to a string;
-// see the explanation below
-export type PlayerLuaTableIndex = string;
-
-export function getPlayerLuaTableIndex(
-  player: EntityPlayer,
-): PlayerLuaTableIndex {
-  // We cannot use "player.ControllerIndex" as an index because it fails in the case of Jacob & Esau
-  // or Tainted Forgotten
-  // We cannot use "GetPtrHash()" as an index because it will be different if the player closes and
-  // reopens the game
-  // Instead, we use "EntityPlayer.GetCollectibleRNG()" with an arbitrary value of 1 (i.e. Sad Onion)
-  // This works even if the player does not have any Sad Onions
-  // We convert the numerical seed to a string to avoid null element creation when saving the table
-  // as JSON (which is done to handle save & quit)
-  // Finally, this index fails in the case of Tainted Lazarus,
-  // since the RNG will be the same for both Tainted Lazarus and Dead Tainted Lazarus
-  // We revert to using "GetPtrHash()" for this case
-  const character = player.GetPlayerType();
-
-  if (
-    character === PlayerType.PLAYER_LAZARUS_B ||
-    character === PlayerType.PLAYER_LAZARUS2_B
-  ) {
-    return GetPtrHash(player).toString();
-  }
-
-  return player.GetCollectibleRNG(1).GetSeed().toString();
 }

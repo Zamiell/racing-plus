@@ -1,10 +1,10 @@
 import {
   getOpenTrinketSlot,
+  getPlayerIndex,
   getPlayers,
   isRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 import { isSelfDamage } from "../../../util";
 import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
@@ -19,7 +19,7 @@ export function entityTakeDmgPlayer(
 
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
-    const index = getPlayerLuaTableIndex(player);
+    const index = getPlayerIndex(player);
     g.run.freeDevilItem.tookDamage.set(index, true);
   }
 }
@@ -44,7 +44,7 @@ export function postNewRoom(): void {
     g.run.freeDevilItem.granted = true;
 
     for (const player of getPlayers()) {
-      const index = getPlayerLuaTableIndex(player);
+      const index = getPlayerIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
       const playerType = player.GetPlayerType();
       const amTaintedSoul = playerType === PlayerType.PLAYER_THESOUL_B;

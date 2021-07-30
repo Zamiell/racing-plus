@@ -1,10 +1,9 @@
 // This custom callback provides preItemPickup and postItemPickup
 
-import { getPlayers, getRoomIndex } from "isaacscript-common";
+import { getPlayerIndex, getPlayers, getRoomIndex } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import g from "../globals";
-import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 import PickingUpItemDescription from "../types/PickingUpItemDescription";
 
 export function postUpdate(): void {
@@ -18,7 +17,7 @@ export function postUpdate(): void {
 }
 
 function queueEmpty(player: EntityPlayer) {
-  const index = getPlayerLuaTableIndex(player);
+  const index = getPlayerIndex(player);
   const pickingUpItemDescription = g.run.pickingUpItem.get(index);
   if (pickingUpItemDescription === undefined) {
     error(`Failed to get the item description for player: ${index}`);
@@ -35,7 +34,7 @@ function queueEmpty(player: EntityPlayer) {
 
 function queueNotEmpty(player: EntityPlayer) {
   const roomIndex = getRoomIndex();
-  const index = getPlayerLuaTableIndex(player);
+  const index = getPlayerIndex(player);
   const pickingUpItem = g.run.pickingUpItem.get(index);
   const queuedItem = player.QueuedItem.Item;
 

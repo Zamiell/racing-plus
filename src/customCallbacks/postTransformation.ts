@@ -1,7 +1,6 @@
-import { getPlayers } from "isaacscript-common";
+import { getPlayerIndex, getPlayers } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import g from "../globals";
-import { getPlayerLuaTableIndex } from "../types/GlobalsRun";
 
 const TRANSFORMATION_NAMES = [
   "Guppy",
@@ -23,7 +22,7 @@ const TRANSFORMATION_NAMES = [
 
 export function postUpdate(): void {
   for (const player of getPlayers()) {
-    const index = getPlayerLuaTableIndex(player);
+    const index = getPlayerIndex(player);
     const transformations = g.run.transformations.get(index);
     if (transformations === undefined) {
       error(
