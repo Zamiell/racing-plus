@@ -1,4 +1,4 @@
-import { anyPlayerIs, log } from "isaacscript-common";
+import { anyPlayerIs, isRepentanceStage, log } from "isaacscript-common";
 import { debugLog } from "../debugLog";
 import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
@@ -7,7 +7,6 @@ import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
-import { isAntibirthStage } from "../utilGlobals";
 import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
@@ -88,7 +87,7 @@ function shouldShowLevelText() {
 function showLevelText(stage: int) {
   // Show what the new floor is
   // (the game will not show this naturally after doing a "stage" console command)
-  if (VanillaStreakText && (stage !== 1 || isAntibirthStage())) {
+  if (VanillaStreakText && (stage !== 1 || isRepentanceStage())) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
     const text = getLevelText();

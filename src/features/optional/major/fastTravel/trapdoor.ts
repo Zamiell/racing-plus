@@ -1,7 +1,7 @@
-import { getRoomIndex } from "isaacscript-common";
+import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
-import { isAntibirthStage, removeGridEntity } from "../../../../utilGlobals";
+import { removeGridEntity } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -60,7 +60,7 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // Don't replace the trap door that leads to Mother
-  if (stage === 8 && isAntibirthStage()) {
+  if (stage === 8 && isRepentanceStage()) {
     return true;
   }
 
@@ -72,7 +72,7 @@ function shouldRemove() {
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
   const roomType = g.r.GetType();
-  const antibirthHeartKilled = g.g.GetStateFlag(
+  const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
@@ -140,7 +140,7 @@ function shouldRemove() {
     // Basement 1 --> Downpour 1
     if (
       stage === 1 &&
-      !isAntibirthStage() &&
+      !isRepentanceStage() &&
       roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
     ) {
       return true;
@@ -149,7 +149,7 @@ function shouldRemove() {
     // Downpour 2 --> Mines 1
     if (
       stage === 2 &&
-      isAntibirthStage() &&
+      isRepentanceStage() &&
       roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
     ) {
       return true;
@@ -158,14 +158,14 @@ function shouldRemove() {
     // Mines 2 --> Mausoleum 1
     if (
       stage === 4 &&
-      isAntibirthStage() &&
+      isRepentanceStage() &&
       roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
     ) {
       return true;
     }
 
     // Mausoleum 2 --> Corpse 1
-    if (stage === 6 && isAntibirthStage() && !antibirthHeartKilled) {
+    if (stage === 6 && isRepentanceStage() && !mausoleumHeartKilled) {
       return true;
     }
   }

@@ -1,19 +1,20 @@
 // This feature is not configurable because it could change item pools and trinket pools,
 // causing a seed to be different
 
-import { anyPlayerHasCollectible, initRNG } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  getTotalPlayerCollectibles,
+  initRNG,
+  onSetSeed,
+} from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
-import {
-  getTotalPlayerCollectibles,
-  playingOnSetSeed,
-} from "../../utilGlobals";
 
 export function shouldSpawnSeededDrop(): boolean {
   const roomType = g.r.GetType();
 
   return (
-    playingOnSetSeed() &&
+    onSetSeed() &&
     // Boss rooms will drop a pedestal item instead of a random pickup
     roomType !== RoomType.ROOM_BOSS &&
     // Room drops are not supposed to happen in crawlspaces
@@ -201,7 +202,7 @@ function initVariables() {
 }
 
 function removeSeededItemsTrinkets() {
-  if (playingOnSetSeed()) {
+  if (onSetSeed()) {
     // Remove certain items and trinkets that change room drop calculation
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT); // 46
     g.itemPool.RemoveTrinket(TrinketType.TRINKET_DAEMONS_TAIL); // 22

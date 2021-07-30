@@ -1,12 +1,12 @@
 import g from "../../../globals";
-import * as openAntibirthDoor from "../openAntibirthDoor";
-import * as removeAntibirthDoor from "../removeAntibirthDoor";
+import * as openRepentanceDoor from "../openRepentanceDoor";
+import * as removeRepentanceDoor from "../removeRepentanceDoor";
 
 export default function racePostRoomClear(): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
-  openAntibirthDoor.postRoomClear();
-  removeAntibirthDoor.postRoomClear();
+  openRepentanceDoor.postRoomClear();
+  removeRepentanceDoor.postRoomClear();
 }

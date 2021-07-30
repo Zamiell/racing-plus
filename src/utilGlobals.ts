@@ -1,5 +1,9 @@
-import { getDoors, getPlayers, getRoomIndex, log } from "isaacscript-common";
-import { BEAST_ROOM_SUB_TYPE } from "./constants";
+import {
+  getPlayers,
+  getRoomIndex,
+  inCrawlspace,
+  log,
+} from "isaacscript-common";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -44,16 +48,6 @@ export function getItemMaxCharges(
   return itemConfigItem.MaxCharges;
 }
 
-export function getTotalPlayerCollectibles(
-  collectibleType: CollectibleType,
-): int {
-  let numCollectibles = 0;
-  for (const player of getPlayers()) {
-    numCollectibles += player.GetCollectibleNum(collectibleType);
-  }
-
-  return numCollectibles;
-}
 export function giveItemAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType | CollectibleTypeCustom,
@@ -64,14 +58,6 @@ export function giveItemAndRemoveFromPools(
 
   player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
-}
-
-export function gridToPos(x: int, y: int): Vector {
-  x += 1;
-  y += 1;
-
-  const gridIndex = y * g.r.GetGridWidth() + x;
-  return g.r.GetGridPosition(gridIndex);
 }
 
 export function hasPolaroidOrNegative(): [boolean, boolean] {
@@ -91,26 +77,6 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   return [hasPolaroid, hasNegative];
 }
 
-export function inCrawlspace(): boolean {
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomData = roomDesc.Data;
-  const roomSubType = roomData.Subtype;
-
-  return (
-    roomIndex === GridRooms.ROOM_DUNGEON_IDX &&
-    roomSubType !== BEAST_ROOM_SUB_TYPE
-  );
-}
-
-export function isAntibirthStage(): boolean {
-  const stageType = g.l.GetStageType();
-  return (
-    stageType === StageType.STAGETYPE_REPENTANCE ||
-    stageType === StageType.STAGETYPE_REPENTANCE_B
-  );
-}
-
 export function movePlayersAndFamiliars(position: Vector): void {
   const players = getPlayers();
   for (const player of players) {
@@ -123,22 +89,6 @@ export function movePlayersAndFamiliars(position: Vector): void {
   const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   for (const familiar of familiars) {
     familiar.Position = position;
-  }
-}
-
-export function playingOnSetSeed(): boolean {
-  const customRun = g.seeds.IsCustomRun();
-  const challenge = Isaac.GetChallenge();
-
-  return challenge === Challenge.CHALLENGE_NULL && customRun;
-}
-
-// eslint-disable-next-line import/no-unused-modules
-export function openAllDoors(): void {
-  for (const door of getDoors()) {
-    // If we try to open a hidden secret room door (or super secret room door),
-    // then nothing will happen
-    door.Open();
   }
 }
 

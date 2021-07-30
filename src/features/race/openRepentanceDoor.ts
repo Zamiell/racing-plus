@@ -1,13 +1,13 @@
-// Automatically open Antibirth doors in races to Mother
+// Automatically open Repentance doors in races to Mother
 
 import { getDoors } from "isaacscript-common";
 import g from "../../globals";
 
 export function postRoomClear(): void {
-  openAntibirthDoor();
+  openRepentanceDoor();
 }
 
-function openAntibirthDoor() {
+function openRepentanceDoor() {
   if (
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||

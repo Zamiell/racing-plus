@@ -2,7 +2,7 @@ import g from "../../../globals";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
-import * as removeAntibirthDoor from "../removeAntibirthDoor";
+import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
 import * as seededRooms from "../seededRooms";
 import * as socket from "../socket";
@@ -25,6 +25,6 @@ export default function racePostNewRoom(): void {
   spawnCorpseTrapdoor.postNewRoom();
   makeBossRushItemsFree.postNewRoom();
   removeStrangeDoor.postNewRoom();
-  removeAntibirthDoor.postNewRoom();
+  removeRepentanceDoor.postNewRoom();
   seededRooms.postNewRoom();
 }

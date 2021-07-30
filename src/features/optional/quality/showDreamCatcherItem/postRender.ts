@@ -1,5 +1,5 @@
+import { gridToPos } from "isaacscript-common";
 import g from "../../../../globals";
-import { gridToPos } from "../../../../utilGlobals";
 import { centerPlayers } from "../../../mandatory/centerStart";
 import { WarpState } from "./enums";
 

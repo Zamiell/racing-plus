@@ -1,8 +1,12 @@
 // These are shared functions for fast-travel entities
 
-import { ensureAllCases, getRoomIndex, log } from "isaacscript-common";
+import {
+  ensureAllCases,
+  getRoomIndex,
+  isRepentanceStage,
+  log,
+} from "isaacscript-common";
 import g from "../../../../globals";
-import { isAntibirthStage } from "../../../../utilGlobals";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
 import {
   FastTravelEntityState,
@@ -53,7 +57,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
   const roomType = g.r.GetType();
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
@@ -69,20 +73,20 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
 
       // -10
       if (roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
-        if (!antibirthStage && (stage === 1 || stage === 2)) {
+        if (!repentanceStage && (stage === 1 || stage === 2)) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
 
         if (
-          (antibirthStage && stage === 2) ||
-          (!antibirthStage && (stage === 3 || stage === 4))
+          (repentanceStage && stage === 2) ||
+          (!repentanceStage && (stage === 3 || stage === 4))
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          (antibirthStage && stage === 4) ||
-          (!antibirthStage && stage === 6)
+          (repentanceStage && stage === 4) ||
+          (!repentanceStage && stage === 6)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
@@ -93,7 +97,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
           g.race.status === "in progress" &&
           g.race.myStatus === "racing" &&
           g.race.goal === "The Beast" &&
-          !antibirthStage &&
+          !repentanceStage &&
           stage === 6
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
@@ -101,10 +105,10 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
       }
 
       if (
-        (antibirthStage &&
+        (repentanceStage &&
           stage === 6 &&
           g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)) ||
-        (antibirthStage && stage === 7)
+        (repentanceStage && stage === 7)
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }

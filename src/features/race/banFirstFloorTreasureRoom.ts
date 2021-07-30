@@ -1,7 +1,6 @@
-import { getPlayers, log } from "isaacscript-common";
+import { getPlayers, isRepentanceStage, log } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
-import { isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
@@ -59,7 +58,7 @@ function shouldBanFirstFloorTreasureRoom() {
 
   return (
     stage === 1 &&
-    !isAntibirthStage() &&
+    !isRepentanceStage() &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.format === "seeded"

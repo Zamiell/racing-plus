@@ -1,7 +1,7 @@
 // We replace the vanilla streak text because it blocks the map occasionally
 
+import { gridToPos } from "isaacscript-common";
 import g from "../../globals";
-import { gridToPos } from "../../utilGlobals";
 
 const FRAMES_BEFORE_FADE = 50;
 

@@ -1,7 +1,6 @@
-import { getRoomIndex } from "isaacscript-common";
+import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
 import { initGlowingItemSprite } from "../../../util";
-import { isAntibirthStage } from "../../../utilGlobals";
 
 // Near the top-left
 const SPRITE_X = 123;
@@ -74,7 +73,7 @@ function shouldShowSprites() {
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
     stage === 1 &&
-    !isAntibirthStage() &&
+    !isRepentanceStage() &&
     roomIndex === startingRoomIndex
   );
 }

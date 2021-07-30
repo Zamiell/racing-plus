@@ -1,6 +1,6 @@
+import { gridToPos } from "isaacscript-common";
 import g from "../../../globals";
 import { incrementRNG } from "../../../util";
-import { gridToPos } from "../../../utilGlobals";
 
 export function postNewRoom(): void {
   if (!g.config.fastSatan) {
@@ -37,7 +37,8 @@ function spawnEnemies() {
   const roomSeed = g.r.GetSpawnSeed();
 
   let seed = roomSeed;
-  for (const position of [gridToPos(5, 3), gridToPos(7, 3)]) {
+  const positions = [gridToPos(5, 3), gridToPos(7, 3)];
+  for (const position of positions) {
     seed = incrementRNG(seed);
     g.g.Spawn(EntityType.ENTITY_LEECH, 1, position, Vector.Zero, null, 0, seed);
   }

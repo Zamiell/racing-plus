@@ -1,8 +1,12 @@
-import { getOpenTrinketSlot, getPlayers } from "isaacscript-common";
+import {
+  getOpenTrinketSlot,
+  getPlayers,
+  isRepentanceStage,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { getPlayerLuaTableIndex } from "../../../types/GlobalsRun";
 import { isSelfDamage } from "../../../util";
-import { enteredRoomViaTeleport, isAntibirthStage } from "../../../utilGlobals";
+import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
@@ -33,7 +37,7 @@ export function postNewRoom(): void {
   // reward the player with the trinket prize
   if (
     !g.run.freeDevilItem.granted &&
-    (stage === 2 || (stage === 1 && isAntibirthStage())) &&
+    (stage === 2 || (stage === 1 && isRepentanceStage())) &&
     roomType === RoomType.ROOM_DEVIL &&
     !enteredRoomViaTeleport()
   ) {

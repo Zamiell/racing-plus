@@ -1,8 +1,12 @@
-import { changeRoom, getPlayers, getRoomIndex } from "isaacscript-common";
+import {
+  changeRoom,
+  getPlayers,
+  getRoomIndex,
+  isRepentanceStage,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
-import { isAntibirthStage } from "../../../../utilGlobals";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -57,7 +61,7 @@ export function setFadingToBlack(
   g.run.fastTravel.upwards = upwards;
   g.run.fastTravel.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
-  g.run.fastTravel.antibirthSecretExit =
+  g.run.fastTravel.repentanceSecretExit =
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   setGameStateFlags();
@@ -70,12 +74,12 @@ export function setFadingToBlack(
 function setGameStateFlags() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
   const roomIndex = getRoomIndex();
 
   // If the player has gone through the trapdoor past the strange door
   if (
-    !antibirthStage &&
+    !repentanceStage &&
     stage === 6 &&
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
@@ -88,7 +92,7 @@ function setGameStateFlags() {
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
-    !antibirthStage &&
+    !repentanceStage &&
     stage === 6 &&
     roomType === RoomType.ROOM_BOSS
   ) {
@@ -96,9 +100,9 @@ function setGameStateFlags() {
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
 
     // Furthermore, we want to prevent the new floor from being reseeded,
-    // so pretend that the boss room with Mom in it is an Antibirth secret exit
-    // (even though Antibirth floors are on the same stage, they do not need to be reseeded)
-    g.run.fastTravel.antibirthSecretExit = true;
+    // so pretend that the boss room with Mom in it is an Repentance secret exit
+    // (even though Repentance floors are on the same stage, they do not need to be reseeded)
+    g.run.fastTravel.repentanceSecretExit = true;
   }
 }
 

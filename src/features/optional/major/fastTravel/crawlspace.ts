@@ -1,12 +1,8 @@
 // For testing, a seed with a black market is: 2SB2 M4R6
 
-import { getRoomIndex, log } from "isaacscript-common";
+import { getRoomIndex, inCrawlspace, log } from "isaacscript-common";
 import g from "../../../../globals";
-import {
-  inCrawlspace,
-  movePlayersAndFamiliars,
-  teleport,
-} from "../../../../utilGlobals";
+import { movePlayersAndFamiliars, teleport } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";

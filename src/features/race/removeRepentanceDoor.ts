@@ -1,20 +1,19 @@
-import { getDoors, log } from "isaacscript-common";
+import { getDoors, isRepentanceStage, log } from "isaacscript-common";
 import g from "../../globals";
-import { isAntibirthStage } from "../../utilGlobals";
 
 // For races to The Beast, the player must go to Depths 2
 // Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 export function postRoomClear(): void {
-  removeAntibirthDoor();
+  removeRepentanceDoor();
 }
 
 export function postNewRoom(): void {
-  removeAntibirthDoor();
+  removeRepentanceDoor();
 }
 
-function removeAntibirthDoor() {
+function removeRepentanceDoor() {
   const stage = g.l.GetStage();
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
 
@@ -23,7 +22,7 @@ function removeAntibirthDoor() {
     g.race.myStatus !== "racing" ||
     g.race.goal !== "The Beast" ||
     roomType !== RoomType.ROOM_BOSS ||
-    ((!antibirthStage || stage !== 4) && (antibirthStage || stage !== 5))
+    ((!repentanceStage || stage !== 4) && (repentanceStage || stage !== 5))
   ) {
     return;
   }

@@ -4,7 +4,7 @@ import g from "../../globals";
 // If the goal of the race is Mother, we need to explicitly spawn a trapdoor after Mom's Heart is
 // defeated (because it was manually removed earlier to avoid the player taking the wrong path)
 export function postNewRoom(): void {
-  const antibirthHeartKilled = g.g.GetStateFlag(
+  const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
 
@@ -13,7 +13,7 @@ export function postNewRoom(): void {
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Mother" &&
-    antibirthHeartKilled
+    mausoleumHeartKilled
   ) {
     g.run.spawnedCorpseTrapdoor = true;
     Isaac.GridSpawn(

@@ -1,10 +1,14 @@
-import { getDoors, getRoomIndex, log } from "isaacscript-common";
+import {
+  getDoors,
+  getRoomIndex,
+  isRepentanceStage,
+  log,
+} from "isaacscript-common";
 import g from "../../globals";
-import { isAntibirthStage } from "../../utilGlobals";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const roomIndex = getRoomIndex();
 
@@ -12,7 +16,7 @@ export function postNewRoom(): void {
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||
     g.race.goal !== "The Beast" ||
-    antibirthStage ||
+    repentanceStage ||
     stage !== 6 ||
     roomIndex !== startingRoomIndex
   ) {

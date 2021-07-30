@@ -1,6 +1,5 @@
-import { log } from "isaacscript-common";
+import { log, onSetSeed } from "isaacscript-common";
 import g from "../../../globals";
-import { playingOnSetSeed } from "../../../utilGlobals";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -120,7 +119,7 @@ function validateSeed() {
 
   if (
     (g.race.format === "unseeded" || g.race.format === "diversity") &&
-    playingOnSetSeed()
+    onSetSeed()
   ) {
     // If the run started with a set seed,
     // this will change the reset behavior to that of an unseeded run

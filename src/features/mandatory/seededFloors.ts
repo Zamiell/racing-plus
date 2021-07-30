@@ -1,10 +1,10 @@
 // This feature is not configurable because it could change floors, causing a seed to be different
 
+import { onSetSeed } from "isaacscript-common";
 import g from "../../globals";
-import { playingOnSetSeed } from "../../utilGlobals";
 
 export function postGameStarted(): void {
-  if (playingOnSetSeed()) {
+  if (onSetSeed()) {
     // Remove certain trinkets that mess up floor generation
     g.itemPool.RemoveTrinket(TrinketType.TRINKET_SILVER_DOLLAR); // 110
     g.itemPool.RemoveTrinket(TrinketType.TRINKET_BLOODY_CROWN); // 111

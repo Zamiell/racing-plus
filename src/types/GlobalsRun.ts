@@ -65,10 +65,10 @@ export default class GlobalsRun {
     theVoid: false,
 
     /**
-     * Antibirth secret exits are located in the room outside the grid.
+     * Repentance secret exits are located in the room outside the grid.
      * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
      */
-    antibirthSecretExit: false,
+    repentanceSecretExit: false,
 
     reseed: false,
   };

@@ -1,4 +1,4 @@
-import { getPlayers, log } from "isaacscript-common";
+import { getPlayers, gridToPos, log } from "isaacscript-common";
 import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
@@ -6,7 +6,6 @@ import debugFunction, { debugFunction2 } from "../debugFunction";
 import * as socket from "../features/race/socket";
 import g from "../globals";
 import { consoleCommand, restartAsCharacter } from "../util";
-import { gridToPos } from "../utilGlobals";
 import {
   blackMarket,
   chaosCardTears,

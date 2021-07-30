@@ -1,7 +1,6 @@
-import { log } from "isaacscript-common";
+import { isRepentanceStage, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
-import { isAntibirthStage } from "../../../../utilGlobals";
 
 export function goto(upwards: boolean): void {
   // Get the number and type of the next floor
@@ -14,10 +13,10 @@ export function goto(upwards: boolean): void {
   // it will use the same floor layout as the previous floor
   // Thus, in these cases, we need to mark to perform a "reseed" command before doing the "stage"
   // command
-  // However, when we travel to the same floor layout from an Antibirth exit,
+  // However, when we travel to the same floor layout from an Repentance exit,
   // floors do not need to be reseeded for some reason
   g.run.fastTravel.reseed =
-    stage === nextStage && !g.run.fastTravel.antibirthSecretExit;
+    stage === nextStage && !g.run.fastTravel.repentanceSecretExit;
 
   // Executing a console command to change floors will not increment the "GetStagesWithoutDamage()"
   // variable
@@ -45,17 +44,17 @@ export function goto(upwards: boolean): void {
 
 function getNextStage() {
   const stage = g.l.GetStage();
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
-    return getNextStageBackwardsPath(stage, antibirthStage);
+    return getNextStageBackwardsPath(stage, repentanceStage);
   }
 
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
-    !antibirthStage &&
+    !repentanceStage &&
     stage === 6
   ) {
     return stage;
@@ -69,8 +68,8 @@ function getNextStage() {
     return 12;
   }
 
-  if (g.run.fastTravel.antibirthSecretExit) {
-    if (antibirthStage) {
+  if (g.run.fastTravel.repentanceSecretExit) {
+    if (repentanceStage) {
       // e.g. From Downpour 2 to Mines 1
       return stage + 1;
     }
@@ -80,7 +79,7 @@ function getNextStage() {
   }
 
   if (
-    antibirthStage &&
+    repentanceStage &&
     stage === 6 &&
     g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
   ) {
@@ -88,7 +87,7 @@ function getNextStage() {
     return stage + 1;
   }
 
-  if (antibirthStage && (stage === 2 || stage === 4 || stage === 6)) {
+  if (repentanceStage && (stage === 2 || stage === 4 || stage === 6)) {
     // e.g. Downpour 2 goes to Caves 2
     return stage + 2;
   }
@@ -114,9 +113,9 @@ function getNextStage() {
   return stage + 1;
 }
 
-function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
+function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (stage === 1) {
-    if (antibirthStage) {
+    if (repentanceStage) {
       return stage;
     }
 
@@ -124,13 +123,13 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
     return 13;
   }
 
-  if (stage === 6 && antibirthStage) {
+  if (stage === 6 && repentanceStage) {
     return stage;
   }
 
   if (
     stage === 6 &&
-    !antibirthStage &&
+    !repentanceStage &&
     (g.run.altFloorsTraveled.ashpit2 || g.run.altFloorsTraveled.mines2)
   ) {
     return stage - 2;
@@ -138,7 +137,7 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
 
   if (
     stage === 4 &&
-    antibirthStage &&
+    repentanceStage &&
     !g.run.altFloorsTraveled.ashpit1 &&
     !g.run.altFloorsTraveled.mines1
   ) {
@@ -147,7 +146,7 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
 
   if (
     stage === 4 &&
-    !antibirthStage &&
+    !repentanceStage &&
     (g.run.altFloorsTraveled.dross2 || g.run.altFloorsTraveled.downpour2)
   ) {
     return stage - 2;
@@ -155,7 +154,7 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
 
   if (
     stage === 3 &&
-    antibirthStage &&
+    repentanceStage &&
     !g.run.altFloorsTraveled.dross2 &&
     !g.run.altFloorsTraveled.downpour2
   ) {
@@ -164,7 +163,7 @@ function getNextStageBackwardsPath(stage: int, antibirthStage: boolean): int {
 
   if (
     stage === 2 &&
-    antibirthStage &&
+    repentanceStage &&
     !g.run.altFloorsTraveled.dross1 &&
     !g.run.altFloorsTraveled.downpour1
   ) {
@@ -180,17 +179,17 @@ function getNextStageType(
   nextStage: int,
   upwards: boolean,
 ) {
-  const antibirthStage = isAntibirthStage();
+  const repentanceStage = isRepentanceStage();
 
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
-    !antibirthStage &&
+    !repentanceStage &&
     stage === 6 &&
     nextStage === 6
   ) {
-    return getStageTypeAntibirth(nextStage);
+    return getStageTypeRepentance(nextStage);
   }
 
   // In races to The Beast, spawn the player directly in dark Home
@@ -208,26 +207,26 @@ function getNextStageType(
   }
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
-    return getStageTypeBackwardsPath(stage, nextStage, antibirthStage);
+    return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
-  if (g.run.fastTravel.antibirthSecretExit) {
-    return getStageTypeAntibirth(nextStage);
+  if (g.run.fastTravel.repentanceSecretExit) {
+    return getStageTypeRepentance(nextStage);
   }
 
   if (
-    antibirthStage &&
+    repentanceStage &&
     (stage === 1 || stage === 3 || stage === 5 || stage === 7)
   ) {
-    return getStageTypeAntibirth(nextStage);
+    return getStageTypeRepentance(nextStage);
   }
 
   if (
-    antibirthStage &&
+    repentanceStage &&
     stage === 6 &&
     g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
   ) {
-    return getStageTypeAntibirth(nextStage);
+    return getStageTypeRepentance(nextStage);
   }
 
   if (nextStage === 9) {
@@ -261,9 +260,9 @@ function getNextStageType(
 function getStageTypeBackwardsPath(
   stage: int,
   nextStage: int,
-  antibirthStage: boolean,
+  repentanceStage: boolean,
 ): int {
-  if (stage === 6 && !antibirthStage) {
+  if (stage === 6 && !repentanceStage) {
     if (g.run.altFloorsTraveled.ashpit2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
@@ -273,7 +272,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 4 && antibirthStage) {
+  if (stage === 4 && repentanceStage) {
     if (g.run.altFloorsTraveled.ashpit1) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
@@ -283,7 +282,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 4 && !antibirthStage) {
+  if (stage === 4 && !repentanceStage) {
     if (g.run.altFloorsTraveled.dross2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
@@ -293,7 +292,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 3 && antibirthStage) {
+  if (stage === 3 && repentanceStage) {
     if (g.run.altFloorsTraveled.dross2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
@@ -303,7 +302,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 2 && antibirthStage) {
+  if (stage === 2 && repentanceStage) {
     if (g.run.altFloorsTraveled.dross1) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
@@ -316,7 +315,7 @@ function getStageTypeBackwardsPath(
   return getStageType(nextStage);
 }
 
-function getStageTypeAntibirth(stage: int) {
+function getStageTypeRepentance(stage: int) {
   // There is no alternate floor for Corpse
   if (stage === 7 || stage === 8) {
     return StageType.STAGETYPE_REPENTANCE;
