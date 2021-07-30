@@ -26,6 +26,7 @@ import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
+import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
@@ -36,15 +37,18 @@ import * as saveDat from "./saveDat";
 main();
 
 function main() {
-  const racingPlus = RegisterMod("Racing+", 1);
+  const mod = RegisterMod("Racing+", 1);
+  // const modUpgraded = upgradeMod(mod);
+
   welcomeBanner();
 
-  saveDat.setMod(racingPlus); // Give a copy of the mod object to the code in charge of saving
+  saveDat.setMod(mod); // Give a copy of the mod object to the code in charge of saving
   saveDat.load(); // Load the "save1.dat" file
 
   modConfigMenu.register(); // Integrate with Mod Config Menu
 
-  registerCallbacks(racingPlus);
+  registerCallbacks(mod);
+  // registerCallbacksCustom(modUpgraded);
 }
 
 function welcomeBanner() {
@@ -95,7 +99,20 @@ function registerMainCallbacks(mod: Mod) {
   mod.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
   mod.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
   mod.AddCallback(
+    ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD,
+    preSpawnClearAward.main,
+  ); // 70
+  mod.AddCallback(
     ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN,
     preRoomEntitySpawn.main,
   ); // 71
 }
+
+/*
+function registerCallbacksCustom(mod: ModUpgraded) {
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    postItemPickup.main,
+  );
+}
+*/

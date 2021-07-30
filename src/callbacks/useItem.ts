@@ -1,5 +1,5 @@
-import * as postEsauJr from "../customCallbacks/postEsauJr";
-import * as postFlip from "../customCallbacks/postFlip";
+import * as postEsauJr from "../callbacksCustom/postEsauJr";
+import * as postFlip from "../callbacksCustom/postFlip";
 import debugFunction from "../debugFunction";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import { CollectibleTypeCustom } from "../types/enums";

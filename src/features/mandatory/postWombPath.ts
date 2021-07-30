@@ -45,7 +45,7 @@ export function postEntityKillHush(_entity: Entity): void {
   manuallySpawn();
 }
 
-export function manuallySpawn(): void {
+function manuallySpawn(): void {
   const situation = getItLivesSituation();
   doItLivesSituation(situation);
 }

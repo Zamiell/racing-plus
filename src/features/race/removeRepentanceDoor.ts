@@ -1,13 +1,16 @@
+// For races to The Beast, the player must go to Depths 2
+// Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
+
 import { getDoors, isRepentanceStage, log } from "isaacscript-common";
 import g from "../../globals";
 
-// For races to The Beast, the player must go to Depths 2
-// Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
-export function postRoomClear(): void {
+// MC_POST_NEW_ROOM (18)
+export function postNewRoom(): void {
   removeRepentanceDoor();
 }
 
-export function postNewRoom(): void {
+// MC_PRE_SPAWN_CLEAN_AWARD (70)
+export function preSpawnClearAward(): void {
   removeRepentanceDoor();
 }
 

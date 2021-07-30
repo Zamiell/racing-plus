@@ -15,7 +15,7 @@ export default class GlobalsRun {
   /** Used to go to a new floor on game frame 0. */
   forceNextLevel = false; //
 
-  room = new GlobalsRunRoom(true);
+  room = new GlobalsRunRoom();
 
   /** Used to go to a new room on game frame 0. */
   forceNextRoom = false;

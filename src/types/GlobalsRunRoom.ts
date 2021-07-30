@@ -2,7 +2,7 @@ import { FastTravelEntityDescription } from "../features/optional/major/fastTrav
 import FastClearNPCDescription from "./FastClearNPCDescription";
 
 export default class GlobalsRunRoom {
-  clear: boolean;
+  // clear: boolean;
 
   /** Equal to the game frame count that the room was cleared. */
   clearFrame = -1;
@@ -54,8 +54,4 @@ export default class GlobalsRunRoom {
   manuallySpawnedPhotos = false;
   showEndOfRunText = false;
   vanillaPhotosLeftToSpawn = 0;
-
-  constructor(clear: boolean) {
-    this.clear = clear;
-  }
 }

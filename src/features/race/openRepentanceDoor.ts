@@ -3,7 +3,7 @@
 import { getDoors } from "isaacscript-common";
 import g from "../../globals";
 
-export function postRoomClear(): void {
+export function preSpawnClearAward(): void {
   openRepentanceDoor();
 }
 

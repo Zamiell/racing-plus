@@ -2,11 +2,11 @@ import g from "../../../globals";
 import * as openRepentanceDoor from "../openRepentanceDoor";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 
-export default function racePostRoomClear(): void {
+export default function preSpawnClearAward(): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
-  openRepentanceDoor.postRoomClear();
-  removeRepentanceDoor.postRoomClear();
+  openRepentanceDoor.preSpawnClearAward();
+  removeRepentanceDoor.preSpawnClearAward();
 }

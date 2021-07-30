@@ -8,15 +8,28 @@ import g from "../../../globals";
 import { isSelfDamage } from "../../../util";
 import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
+const EXCLUDED_CHARACTERS = [
+  // The Lost and Tainted Lost get free devil deals, so they do not need the trinket
+  PlayerType.PLAYER_THELOST, // 10
+  PlayerType.PLAYER_THELOST_B, // 31
+  // If Tainted Soul is given a trinket, it will just be applied to Tainted Forgotten
+  // (even if we ignore Tainted Soul, the feature will still apply to Tainted Forgotten normally)
+  PlayerType.PLAYER_THESOUL_B, // 40
+];
+
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
   tookDamage: Entity,
-  damageFlags: DamageFlag,
+  damageFlags: int,
 ): void {
   if (!g.config.freeDevilItem) {
     return;
   }
 
+  checkForSelfDamage(tookDamage, damageFlags);
+}
+
+function checkForSelfDamage(tookDamage: Entity, damageFlags: int) {
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
     const index = getPlayerIndex(player);
@@ -30,6 +43,10 @@ export function postNewRoom(): void {
     return;
   }
 
+  checkGiveTrinket();
+}
+
+function checkGiveTrinket() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
@@ -47,11 +64,8 @@ export function postNewRoom(): void {
       const index = getPlayerIndex(player);
       const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
       const playerType = player.GetPlayerType();
-      const amTaintedSoul = playerType === PlayerType.PLAYER_THESOUL_B;
 
-      // Tainted Soul cannot take any damage, so they should be exempt from this feature
-      // (the feature will still apply to Tainted Forgotten as per normal)
-      if (!takenDamage && !amTaintedSoul) {
+      if (!takenDamage && !EXCLUDED_CHARACTERS.includes(playerType)) {
         giveTrinket(player);
       }
     }

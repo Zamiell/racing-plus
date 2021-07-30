@@ -74,7 +74,7 @@ export function postEntityKillMom(_entity: Entity): void {
   }
 }
 
-export function manuallySpawn(): void {
+function manuallySpawn(): void {
   const situation = getPhotoSituation();
   doPhotoSituation(situation);
 }

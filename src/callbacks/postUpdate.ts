@@ -1,9 +1,8 @@
-import * as itemPickup from "../customCallbacks/itemPickup";
-import * as postEsauJr from "../customCallbacks/postEsauJr";
-import * as postGridEntityUpdate from "../customCallbacks/postGridEntityUpdate";
-import * as postPlayerChange from "../customCallbacks/postPlayerChange";
-import * as postRoomClear from "../customCallbacks/postRoomClear";
-import * as postTransformation from "../customCallbacks/postTransformation";
+import * as itemPickup from "../callbacksCustom/itemPickup";
+import * as postEsauJr from "../callbacksCustom/postEsauJr";
+import * as postGridEntityUpdate from "../callbacksCustom/postGridEntityUpdate";
+import * as postPlayerChange from "../callbacksCustom/postPlayerChange";
+import * as postTransformation from "../callbacksCustom/postTransformation";
 import { debugLog } from "../debugLog";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
@@ -21,7 +20,6 @@ export function main(): void {
   debugLog("MC_POST_UPDATE", true);
 
   // Custom callbacks
-  postRoomClear.postUpdate(); // This must be before postGridEntityUpdate
   postGridEntityUpdate.postUpdate();
   postPlayerChange.postUpdate();
   postTransformation.postUpdate();

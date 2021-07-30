@@ -12,8 +12,6 @@ export function setMod(newMod: Mod): void {
 }
 
 export function save(): void {
-  const roomClear = g.r.IsClear();
-
   if (mod === null) {
     error('"saveDat.save()" was called without the mod being initialized.');
   }
@@ -23,7 +21,7 @@ export function save(): void {
   // Wiping this now should be safe, since the only time that a user can save the state in the
   // middle of a room is by changing a setting using Mod Config Menu, and Mod Config Menu can only
   // be opened when the room is already clear
-  g.run.room = new GlobalsRunRoom(roomClear);
+  g.run.room = new GlobalsRunRoom();
 
   // We don't want to write everything in the globals table to disk,
   // as it contains things like cached API functions
