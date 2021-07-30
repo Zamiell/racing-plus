@@ -1,4 +1,4 @@
-import { anyPlayerHasCollectible, getRandom } from "isaacscript-common";
+import { anyPlayerHasCollectible, getRandomInt } from "isaacscript-common";
 import g from "../../../../globals";
 import { spawnCollectible } from "../../../../utilGlobals";
 import { deleteDyingEntity, getItemDropPosition } from "./util";
@@ -62,7 +62,7 @@ function getKrampusItemSubType() {
     return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
   }
 
-  getRandom(1, 2, startSeed);
+  getRandomInt(1, 2, startSeed);
   const seededChoice = math.random(1, 2);
   const coal = seededChoice === 1;
   if (coal) {
