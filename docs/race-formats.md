@@ -25,17 +25,19 @@ On Racing+, players have the option to choose from different kinds of races.
 - Each player will start with a pre-defined starting item that is chosen before the match, such as Cricket's Head or Mom's Knife.
 - The Basement 1 Treasure Room is removed. (This is to prevent players from starting with 2 items instead of 1.)
 - All characters start with The Compass in addition to their other items.
-<!--
 - Some additional things are guaranteed to be seeded:
   - Room drops (given in order)
+  <!--
   - Level generation (consistent special rooms)
   - Devil Room rewards (given in order)
   - Angel Room rewards (given in order)
+  -->
 - The following things no longer affect room drops:
   - Luck (always uses a value of 0 luck)
   - Rib of Greed
   - Smelter
   - Guppy's Tail
+<!--
 - There is a custom death mechanic:
   - Instead of dying, players will respawn in the previous room with 1.5 soul hearts.
   - They will have a "debuff" effect that removes all of the items. The debuff will last 45 seconds.

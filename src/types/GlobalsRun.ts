@@ -110,8 +110,8 @@ export default class GlobalsRun {
   };
 
   seededDrops = {
-    roomClearAwardSeed: 0,
-    roomClearAwardSeedDevilAngel: 0,
+    seed: 0,
+    seedDevilAngel: 0,
   };
 
   /** Used for the seeded rooms feature of seeded races. */

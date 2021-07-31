@@ -20,8 +20,12 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["laz2", 11],
   ["dark judas", 12],
   ["darkjudas", 12], // cspell:disable-line
+  ["djudas", 12], // cspell:disable-line
+  ["dj", 12],
   ["black judas", 12],
   ["blackjudas", 12], // cspell:disable-line
+  ["bjudas", 12], // cspell:disable-line
+  ["bj", 12],
   ["lilith", 13],
   ["keeper", 14],
   ["apollyon", 15],

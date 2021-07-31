@@ -24,6 +24,9 @@ import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
 import { consoleCommand } from "../util";
 
+const sprite = Sprite();
+sprite.Load("gfx/characters/058_book of shadows.anm2", true);
+
 export function main(): void {
   debugLog("MC_POST_RENDER", true);
 
@@ -33,8 +36,6 @@ export function main(): void {
     debugLog("MC_POST_RENDER", false);
     return;
   }
-
-  speedUpFadeIn.postRender();
 
   // If there are any errors, we can skip the remainder of this function
   if (errors.postRender()) {
@@ -55,6 +56,7 @@ export function main(): void {
   fastReset.postRender();
 
   // Optional features - Quality of Life
+  speedUpFadeIn.postRender();
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender();
   showPills.postRender();

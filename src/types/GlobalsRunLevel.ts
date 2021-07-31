@@ -45,9 +45,6 @@ export default class GlobalsRunLevel {
 
   numSacrifices = 0;
 
-  /** Used to keep an item static on Tainted Isaac. Index is the InitSeed of the collectible. */
-  stuckItems: LuaTable<int, CollectibleType> = new LuaTable();
-
   trophy = null as EntityLocation | null;
 
   constructor(stage: int, stageType: int) {

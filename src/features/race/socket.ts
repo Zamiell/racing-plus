@@ -119,8 +119,11 @@ export function preGameExit(): void {
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
+  const backwards = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+    ? "true"
+    : "false";
 
-  send("level", `${stage}-${stageType}`);
+  send("level", `${stage}-${stageType}-${backwards}`);
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

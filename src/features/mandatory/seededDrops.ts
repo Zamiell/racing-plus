@@ -5,10 +5,58 @@ import {
   anyPlayerHasCollectible,
   getTotalPlayerCollectibles,
   initRNG,
+  log,
   onSetSeed,
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+
+// MC_POST_GAME_STARTED (14)
+export function postGameStarted(): void {
+  initVariables();
+  removeSeededItemsTrinkets();
+}
+
+function initVariables() {
+  const startSeed = g.seeds.GetStartSeed();
+
+  g.run.seededDrops.seed = startSeed;
+
+  // We want to ensure that the second RNG counter does not overlap with the first one
+  // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
+  const rng = initRNG(startSeed);
+  for (let i = 0; i < 500; i++) {
+    rng.Next();
+  }
+  g.run.seededDrops.seedDevilAngel = rng.GetSeed();
+}
+
+function removeSeededItemsTrinkets() {
+  if (onSetSeed()) {
+    // Remove certain items and trinkets that change room drop calculation
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT); // 46
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_DAEMONS_TAIL); // 22
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_CHILDS_HEART); // 34
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_RUSTED_KEY); // 36
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_MATCH_STICK); // 41
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_LUCKY_TOE); // 42
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_SAFETY_CAP); // 44
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_ACE_SPADES); // 45
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_WATCH_BATTERY); // 72
+    g.itemPool.RemoveTrinket(TrinketType.TRINKET_NUH_UH); // 165
+  }
+}
+
+// MC_PRE_SPAWN_CLEAN_AWARD (70)
+export function preSpawnClearAward(): boolean | void {
+  if (shouldSpawnSeededDrop()) {
+    spawnSeededDrop();
+    log("Manually spawned a seeded drop.");
+    return true;
+  }
+
+  return undefined;
+}
 
 export function shouldSpawnSeededDrop(): boolean {
   const roomType = g.r.GetType();
@@ -38,75 +86,12 @@ export function shouldSpawnSeededDrop(): boolean {
 // Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, and Nuh Uh!
 // (Old Capacitor does not need to be removed, since the Lil Battery chance is independent of the
 // room drop)
-export function spawn(): void {
-  const roomType = g.r.GetType();
+export function spawnSeededDrop(): void {
   const centerPos = g.r.GetCenterPos();
+  const seed = getSeed();
+  const rng = initRNG(seed);
 
-  // Find out which seed we should use
-  // (Devil Rooms and Angel Rooms use a separate RNG counter so that players cannot get a lucky
-  // battery after killing an angel)
-  let seed: int;
-  if (
-    roomType === RoomType.ROOM_DEVIL || // 14
-    roomType === RoomType.ROOM_ANGEL // 15
-  ) {
-    g.run.seededDrops.roomClearAwardSeedDevilAngel = incrementRNG(
-      g.run.seededDrops.roomClearAwardSeedDevilAngel,
-    );
-    seed = g.run.seededDrops.roomClearAwardSeedDevilAngel;
-  } else {
-    g.run.seededDrops.roomClearAwardSeed = incrementRNG(
-      g.run.seededDrops.roomClearAwardSeed,
-    );
-    seed = g.run.seededDrops.roomClearAwardSeed;
-  }
-
-  // Get a random value between 0 and 1 that will determine what kind of reward we get
-  const rng = RNG();
-  rng.SetSeed(seed, 35);
-  const pickupPercent = rng.RandomFloat();
-
-  // Determine the kind of pickup
-  let pickupVariant = PickupVariant.PICKUP_NULL;
-  if (pickupPercent > 0.22) {
-    // 22% chance for nothing to drop
-    if (pickupPercent < 0.3) {
-      // 7% chance for a card / trinket / pill
-      if (rng.RandomInt(3) === 0) {
-        // 7% * 33% = 2.3% chance
-        pickupVariant = PickupVariant.PICKUP_TAROTCARD; // 300
-      } else if (rng.RandomInt(2) === 0) {
-        // 7% * 66% * 50% = 2.3% chance
-        pickupVariant = PickupVariant.PICKUP_TRINKET; // 350
-      } else {
-        // 7% * 66% * 50% = 2.3% chance
-        pickupVariant = PickupVariant.PICKUP_PILL; // 70
-      }
-    } else if (pickupPercent < 0.45) {
-      // 15% for a coin
-      pickupVariant = PickupVariant.PICKUP_COIN; // 20
-    } else if (pickupPercent < 0.6) {
-      // 15% for a heart
-      pickupVariant = PickupVariant.PICKUP_HEART; // 10
-    } else if (pickupPercent < 0.8) {
-      // 20% for a key
-      pickupVariant = PickupVariant.PICKUP_KEY; // 30
-    } else if (pickupPercent < 0.95) {
-      // 15% for a bomb
-      pickupVariant = PickupVariant.PICKUP_BOMB; // 40
-    } else {
-      // 5% for a chest
-      pickupVariant = PickupVariant.PICKUP_CHEST; // 50
-    }
-
-    if (rng.RandomInt(20) === 0) {
-      pickupVariant = PickupVariant.PICKUP_LIL_BATTERY; // 90
-    }
-
-    if (rng.RandomInt(50) === 0) {
-      pickupVariant = PickupVariant.PICKUP_GRAB_BAG; // 69
-    }
-  }
+  let pickupVariant = getPickupVariant(rng);
 
   // Contract From Below has a chance to either:
   // 1) increase the amount of pickups that drop
@@ -182,37 +167,70 @@ export function spawn(): void {
   }
 }
 
-export function postGameStarted(): void {
-  initVariables();
-  removeSeededItemsTrinkets();
+function getPickupVariant(rng: RNG) {
+  // Get a random value between 0 and 1 that will determine what kind of reward we get
+  const pickupPercent = rng.RandomFloat();
+
+  // 22% chance for nothing to drop
+  let pickupVariant = PickupVariant.PICKUP_NULL;
+  if (pickupPercent > 0.22) {
+    if (pickupPercent < 0.3) {
+      // 7% chance for a card / trinket / pill
+      if (rng.RandomInt(3) === 0) {
+        // 7% * 33% = 2.3% chance
+        pickupVariant = PickupVariant.PICKUP_TAROTCARD; // 300
+      } else if (rng.RandomInt(2) === 0) {
+        // 7% * 66% * 50% = 2.3% chance
+        pickupVariant = PickupVariant.PICKUP_TRINKET; // 350
+      } else {
+        // 7% * 66% * 50% = 2.3% chance
+        pickupVariant = PickupVariant.PICKUP_PILL; // 70
+      }
+    } else if (pickupPercent < 0.45) {
+      // 15% for a coin
+      pickupVariant = PickupVariant.PICKUP_COIN; // 20
+    } else if (pickupPercent < 0.6) {
+      // 15% for a heart
+      pickupVariant = PickupVariant.PICKUP_HEART; // 10
+    } else if (pickupPercent < 0.8) {
+      // 20% for a key
+      pickupVariant = PickupVariant.PICKUP_KEY; // 30
+    } else if (pickupPercent < 0.95) {
+      // 15% for a bomb
+      pickupVariant = PickupVariant.PICKUP_BOMB; // 40
+    } else {
+      // 5% for a chest
+      pickupVariant = PickupVariant.PICKUP_CHEST; // 50
+    }
+
+    if (rng.RandomInt(20) === 0) {
+      pickupVariant = PickupVariant.PICKUP_LIL_BATTERY; // 90
+    }
+
+    if (rng.RandomInt(50) === 0) {
+      pickupVariant = PickupVariant.PICKUP_GRAB_BAG; // 69
+    }
+  }
+
+  return pickupVariant;
 }
 
-function initVariables() {
-  const startSeed = g.seeds.GetStartSeed();
+// Find out which seed we should use
+// (Devil Rooms and Angel Rooms use a separate RNG counter so that players cannot get a lucky
+// battery after killing an angel)
+function getSeed() {
+  const roomType = g.r.GetType();
 
-  g.run.seededDrops.roomClearAwardSeed = startSeed;
-
-  // We want to insure that the second RNG counter does not overlap with the first one
-  // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
-  const rng = initRNG(startSeed);
-  for (let i = 0; i < 500; i++) {
-    rng.Next();
+  if (
+    roomType === RoomType.ROOM_DEVIL || // 14
+    roomType === RoomType.ROOM_ANGEL // 15
+  ) {
+    g.run.seededDrops.seedDevilAngel = incrementRNG(
+      g.run.seededDrops.seedDevilAngel,
+    );
+    return g.run.seededDrops.seedDevilAngel;
   }
-  g.run.seededDrops.roomClearAwardSeedDevilAngel = rng.GetSeed();
-}
 
-function removeSeededItemsTrinkets() {
-  if (onSetSeed()) {
-    // Remove certain items and trinkets that change room drop calculation
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT); // 46
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_DAEMONS_TAIL); // 22
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_CHILDS_HEART); // 34
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_RUSTED_KEY); // 36
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_MATCH_STICK); // 41
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_LUCKY_TOE); // 42
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_SAFETY_CAP); // 44
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_ACE_SPADES); // 45
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_WATCH_BATTERY); // 72
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_NUH_UH); // 165
-  }
+  g.run.seededDrops.seed = incrementRNG(g.run.seededDrops.seed);
+  return g.run.seededDrops.seed;
 }

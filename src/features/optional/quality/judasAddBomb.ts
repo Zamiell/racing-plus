@@ -11,10 +11,7 @@ export function postGameStarted(): void {
 
   for (const player of getPlayers()) {
     const character = player.GetPlayerType();
-    if (
-      character === PlayerType.PLAYER_JUDAS ||
-      character === PlayerType.PLAYER_BLACKJUDAS
-    ) {
+    if (character === PlayerType.PLAYER_JUDAS) {
       player.AddBombs(1);
     }
   }

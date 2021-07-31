@@ -142,7 +142,7 @@ export function spawnCollectible(
   const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
   const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
   if (isQuestItem) {
-    g.run.level.stuckItems.set(seed, collectibleType);
+    g.run.room.stuckItems.set(seed, collectibleType);
   }
 }
 

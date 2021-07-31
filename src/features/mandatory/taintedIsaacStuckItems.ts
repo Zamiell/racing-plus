@@ -1,4 +1,4 @@
-import { anyPlayerIs } from "isaacscript-common";
+import { anyPlayerIs, log } from "isaacscript-common";
 import g from "../../globals";
 
 const ITEM_SPRITESHEET_ID = 1;
@@ -14,7 +14,7 @@ export function postUpdate(): void {
     PickupVariant.PICKUP_COLLECTIBLE,
   );
   for (const collectible of collectibles) {
-    const stuckCollectibleType = g.run.level.stuckItems.get(
+    const stuckCollectibleType = g.run.room.stuckItems.get(
       collectible.InitSeed,
     );
     if (
@@ -30,6 +30,8 @@ export function postUpdate(): void {
       const gfxFileName = itemConfigItem.GfxFileName;
       sprite.ReplaceSpritesheet(ITEM_SPRITESHEET_ID, gfxFileName);
       sprite.LoadGraphics();
+
+      log("Reset a quest item on Tainted Isaac.");
     }
   }
 }
