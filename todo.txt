@@ -1,9 +1,5 @@
 Patch notes:
-- Removed Judas' Shadow as a possible starting item in seeded races
-- New feature: room drops are now in order on set seeds
-- Fixed the bug where The Lost & Tainted Lost would get the free Your Soul trinket
-- Fixed the bug where the photos would come back when playing as Tainted Isaac
-- Fixed the bug where people ahead of you on the backwards path would show in the wrong place
+-
 
 Racing+ new features:
 - chat system
