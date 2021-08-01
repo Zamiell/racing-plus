@@ -4,7 +4,6 @@ import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
-import * as seededRooms from "../seededRooms";
 import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
@@ -26,5 +25,4 @@ export default function racePostNewRoom(): void {
   makeBossRushItemsFree.postNewRoom();
   removeStrangeDoor.postNewRoom();
   removeRepentanceDoor.postNewRoom();
-  seededRooms.postNewRoom();
 }

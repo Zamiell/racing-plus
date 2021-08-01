@@ -66,8 +66,7 @@ def write_version(version):
 
     title_image.save(TITLE_MENU_OUTPUT_1)
     title_image.save(TITLE_MENU_OUTPUT_2)
-    print("Title screen image updated to version: {}".format(version))
-    print(TITLE_MENU_OUTPUT_1)
+    printf("Title screen image updated to version: {}".format(version))
 
 
 def error(msg):

@@ -4,6 +4,7 @@ export default class Config {
   clientCommunication = true;
   startWithD6 = true;
   disableCurses = true;
+  betterDevilAngelRooms = true;
   freeDevilItem = true;
   fastReset = true;
   fastClear = true;

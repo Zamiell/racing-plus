@@ -5,9 +5,9 @@ import g from "../../../globals";
 
 export function preRoomEntitySpawn(
   gridIndex: int,
-): [EntityType, int, int] | null {
+): [EntityType, int, int] | void {
   if (!g.config.easyFirstFloorItems) {
-    return null;
+    return undefined;
   }
 
   const stage = g.l.GetStage();
@@ -19,15 +19,15 @@ export function preRoomEntitySpawn(
 
   // We only care about replacing things when the room is first loading
   if (roomFrameCount !== -1) {
-    return null;
+    return undefined;
   }
 
   if (stage !== 1) {
-    return null;
+    return undefined;
   }
 
   if (roomType !== RoomType.ROOM_TREASURE) {
-    return null;
+    return undefined;
   }
 
   switch (roomVariant) {
@@ -93,5 +93,5 @@ export function preRoomEntitySpawn(
     }
   }
 
-  return null;
+  return undefined;
 }

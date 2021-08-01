@@ -1,5 +1,6 @@
 import * as centerStart from "../features/mandatory/centerStart";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
+import { EffectVariantCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -19,6 +20,12 @@ export function init(mod: Mod): void {
     playerCreepGreen,
     EffectVariant.PLAYER_CREEP_GREEN, // 53
   );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
+    invisibleEffect,
+    EffectVariantCustom.INVISIBLE_EFFECT,
+  );
 }
 
 // EffectVariant.POOF01 (15)
@@ -34,4 +41,9 @@ function creepRed(effect: EntityEffect) {
 // EffectVariant.PLAYER_CREEP_GREEN (53)
 function playerCreepGreen(effect: EntityEffect) {
   changeCreepColor.postEffectInitPlayerCreepGreen(effect);
+}
+
+// EffectVariantCustom.INVISIBLE_EFFECT
+function invisibleEffect(effect: EntityEffect) {
+  effect.Remove();
 }

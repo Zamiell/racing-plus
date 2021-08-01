@@ -1,4 +1,4 @@
-import { getPlayerIndex, initRNG, log, PlayerIndex } from "isaacscript-common";
+import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
 import GlobalsRunLevel from "./GlobalsRunLevel";
@@ -118,8 +118,11 @@ export default class GlobalsRun {
   seededRooms = {
     metKrampus: false,
     RNG: {
-      krampus: RNG(),
-      devilRoomChoice: RNG(),
+      krampus: 0,
+      devilSelection: 0,
+      devilEntities: 0,
+      angelSelection: 0,
+      angelEntities: 0,
     },
   };
 
@@ -160,7 +163,7 @@ export default class GlobalsRun {
     const RNGObject = this.seededRooms.RNG;
     for (const key of Object.keys(RNGObject)) {
       const property = key as keyof typeof RNGObject;
-      this.seededRooms.RNG[property] = initRNG(startSeed);
+      this.seededRooms.RNG[property] = startSeed;
     }
 
     for (const player of players) {

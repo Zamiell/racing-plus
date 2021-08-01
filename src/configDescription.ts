@@ -38,19 +38,19 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    null,
+    "betterDevilAngelRooms",
     [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      ModConfigMenuOptionType.BOOLEAN,
+      "003",
       "Customized Devil/Angel Rooms",
-      "Improves the quality and variety of Devil Rooms & Angel Rooms. This cannot be disabled because it affects the STB files.",
+      "Improves the quality and variety of Devil Rooms & Angel Rooms.",
     ],
   ],
   [
     "freeDevilItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "003",
+      "004",
       "Free devil item",
       "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage.",
     ],
@@ -59,7 +59,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "004",
+      "005",
       "Fast reset",
       "Instantaneously restart the game as soon as you press the R key.",
     ],
@@ -68,7 +68,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastClear",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "005",
+      "006",
       "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
@@ -77,7 +77,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastTravel",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "006",
+      "007",
       "Fast floor travel",
       "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation.",
     ],

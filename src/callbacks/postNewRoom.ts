@@ -10,6 +10,7 @@ import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
+import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -81,12 +82,13 @@ export function newRoom(): void {
   removeMercurius.postNewRoom();
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
+  trophy.postNewRoom();
+  beastPreventEnd.postNewRoom();
 
   // Major features
-  beastPreventEnd.postNewRoom();
   racePostNewRoom();
-  trophy.postNewRoom();
   startWithD6.postNewRoom();
+  betterDevilAngelRoomsPostNewRoom();
   freeDevilItem.postNewRoom();
   fastTravelPostNewRoom();
 

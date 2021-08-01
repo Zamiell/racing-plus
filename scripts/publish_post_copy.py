@@ -35,16 +35,16 @@ PRE_FLIPPING_DIRECTORY = os.path.join(
 
 def main():
     # Remove the "pre-flipping" directory, since it isn't necessary to send this to the end-user
-    print("Removing the pre-flipping directory...")
+    printf("Removing the pre-flipping directory...")
     removePreFlippingDirectory()
 
     # Make SHA1 hashes of every file so that the client can validate the mod's integrity
-    print("Getting SHA1 hashes of every file...")
+    printf("Getting SHA1 hashes of every file...")
     sha1_hashes = get_sha1_hashes()
-    print('Writing the hashes to "SHA1_FILE_PATH"...')
+    printf('Writing the hashes to "SHA1_FILE_PATH"...')
     write_hashes_to_json_file(sha1_hashes)
 
-    print("Complete!")
+    printf("Complete!")
 
 
 def removePreFlippingDirectory():
@@ -83,6 +83,10 @@ def get_file_hash(file_path):
             sha.update(data)
 
     return sha.hexdigest()
+
+
+def printf(msg):
+    print(msg, flush=True)
 
 
 if __name__ == "__main__":
