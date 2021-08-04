@@ -76,7 +76,7 @@ function readSaveDatFile(modObject: Mod) {
   const [ok, jsonStringOrErrMsg] = pcall(tryLoadModData, modObject);
   if (!ok) {
     log(
-      `Racing+ failed to read from the "save#.dat" file on Isaac frame ${isaacFrameCount}: ${jsonStringOrErrMsg}`,
+      `Failed to read from the "save#.dat" file on Isaac frame ${isaacFrameCount}: ${jsonStringOrErrMsg}`,
     );
     return defaultModData;
   }

@@ -10,22 +10,24 @@ import {
   log,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import LuaRoom, { LuaSpawn } from "../../../../types/LuaRoom";
+import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
 import { incrementRNG } from "../../../../util";
-import * as angelRooms from "./angelRooms";
+import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import convertXMLGridEntityType from "./convertXMLGridEntityType";
-import * as devilRooms from "./devilRooms";
+import * as devilRooms from "./devilRooms.json";
 
 export function getRoomSelection(
   devil: boolean,
   seed: int,
   subType = NORMAL_ROOM_SUBTYPE,
-): LuaRoom {
-  // We cannot import Lua arrays in TSTL,
-  // so we instead craft the Lua file to return a table with a single attribute of "room"
-  const luaRooms = devil ? devilRooms.room : angelRooms.room;
-  const luaRoomsWithSubType = getRoomsWithSubType(luaRooms, subType);
+): JSONRoom {
+  // ESLint gets confused here and thinks that roomsJSON/rooms is an any type
+  // eslint-disable-next-line
+  const roomsJSON = devil ? devilRooms : angelRooms;
+  // eslint-disable-next-line
+  const rooms = roomsJSON.rooms.room;
+  const luaRoomsWithSubType = getRoomsWithSubType(rooms, subType);
 
   // Since each room has an individual weight, we need to get a random weighted selection
   // Algorithm from: https://stackoverflow.com/questions/1761626/weighted-random-numbers
@@ -34,11 +36,28 @@ export function getRoomSelection(
   return getRoomWithChosenWeight(luaRoomsWithSubType, chosenWeight);
 }
 
-function getTotalWeight(luaRooms: LuaRoom[]) {
+function getRoomsWithSubType(rooms: JSONRoom[], subType: int) {
+  const matchingRooms: JSONRoom[] = [];
+
+  for (const room of rooms) {
+    const roomSubTypeString = room["@subtype"];
+    const roomSubType = tonumber(roomSubTypeString);
+    if (roomSubType === undefined) {
+      error(`Failed to parse the subtype of a room: ${roomSubTypeString}`);
+    }
+
+    if (roomSubType === subType) {
+      matchingRooms.push(room);
+    }
+  }
+
+  return matchingRooms;
+}
+
+function getTotalWeight(luaRooms: JSONRoom[]) {
   let totalWeight = 0;
   for (const luaRoom of luaRooms) {
-    // eslint-disable-next-line no-underscore-dangle
-    const roomWeightString = luaRoom._attr.weight;
+    const roomWeightString = luaRoom["@weight"];
     const roomWeight = tonumber(roomWeightString);
     if (roomWeight === undefined) {
       error(`Failed to parse the weight of a room: ${roomWeightString}.`);
@@ -50,10 +69,9 @@ function getTotalWeight(luaRooms: LuaRoom[]) {
   return totalWeight;
 }
 
-function getRoomWithChosenWeight(luaRooms: LuaRoom[], chosenWeight: float) {
+function getRoomWithChosenWeight(luaRooms: JSONRoom[], chosenWeight: float) {
   for (const luaRoom of luaRooms) {
-    // eslint-disable-next-line no-underscore-dangle
-    const roomWeightString = luaRoom._attr.weight;
+    const roomWeightString = luaRoom["@weight"];
     const roomWeight = tonumber(roomWeightString);
     if (roomWeight === undefined) {
       error(`Failed to parse the weight of a room: ${roomWeightString}`);
@@ -70,28 +88,9 @@ function getRoomWithChosenWeight(luaRooms: LuaRoom[], chosenWeight: float) {
   return luaRooms[0];
 }
 
-function getRoomsWithSubType(luaRooms: LuaRoom[], subType: int) {
-  const matchingRooms: LuaRoom[] = [];
-
-  for (const room of luaRooms) {
-    // eslint-disable-next-line no-underscore-dangle
-    const roomSubTypeString = room._attr.subtype;
-    const roomSubType = tonumber(roomSubTypeString);
-    if (roomSubType === undefined) {
-      error(`Failed to parse the subtype of a room: ${roomSubTypeString}`);
-    }
-
-    if (roomSubType === subType) {
-      matchingRooms.push(room);
-    }
-  }
-
-  return matchingRooms;
-}
-
-export function spawnLuaRoom(luaRoom: LuaRoom, devil: boolean): void {
-  const roomName = luaRoom._attr.name; // eslint-disable-line no-underscore-dangle
-  const roomVariant = luaRoom._attr.variant; // eslint-disable-line no-underscore-dangle
+export function spawnLuaRoom(luaRoom: JSONRoom, devil: boolean): void {
+  const roomName = luaRoom["@name"];
+  const roomVariant = luaRoom["@variant"];
   const roomType = devil ? "Devil" : "Angel";
   const spawns = luaRoom.spawn;
 
@@ -100,10 +99,9 @@ export function spawnLuaRoom(luaRoom: LuaRoom, devil: boolean): void {
   fixPitGraphics();
 }
 
-function spawnAllEntities(spawns: LuaSpawn[], devil: boolean) {
+function spawnAllEntities(spawns: JSONSpawn[], devil: boolean) {
   for (const spawn of spawns) {
-    // eslint-disable-next-line no-underscore-dangle
-    const xString = spawn._attr.x;
+    const xString = spawn["@x"];
     const x = tonumber(xString);
     if (x === undefined) {
       error(
@@ -111,8 +109,7 @@ function spawnAllEntities(spawns: LuaSpawn[], devil: boolean) {
       );
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    const yString = spawn._attr.y;
+    const yString = spawn["@y"];
     const y = tonumber(yString);
     if (y === undefined) {
       error(
@@ -120,8 +117,7 @@ function spawnAllEntities(spawns: LuaSpawn[], devil: boolean) {
       );
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    const entityTypeString = spawn.entity._attr.type;
+    const entityTypeString = spawn.entity["@type"];
     const entityType = tonumber(entityTypeString);
     if (entityType === undefined) {
       error(
@@ -129,15 +125,13 @@ function spawnAllEntities(spawns: LuaSpawn[], devil: boolean) {
       );
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    const variantString = spawn.entity._attr.variant;
+    const variantString = spawn.entity["@variant"];
     const variant = tonumber(variantString);
     if (variant === undefined) {
       error(`Failed to convert the entity variant to a number: ${variant}`);
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    const subtypeString = spawn.entity._attr.subtype;
+    const subtypeString = spawn.entity["@subtype"];
     const subtype = tonumber(subtypeString);
     if (subtype === undefined) {
       error(`Failed to convert the entity subtype to a number: ${subtype}`);
@@ -203,7 +197,7 @@ function getEntitySeed(devil: boolean) {
 // room and manually fix their sprites, if necessary
 function fixPitGraphics() {
   // TODO
-  // const getPitMap
+  const pitMap = getPitMap();
 
   for (const gridEntity of getGridEntities()) {
     const saveState = gridEntity.GetSaveState();
@@ -211,3 +205,5 @@ function fixPitGraphics() {
     }
   }
 }
+
+function getPitMap() {}

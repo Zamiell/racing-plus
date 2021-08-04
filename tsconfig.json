@@ -11,6 +11,9 @@
 
     // Specifies the directory of the output
     "outDir": "./mod",
+
+    // Necessary since we import JSON files
+    "resolveJsonModule": true,
   },
 
   // A list of the TypeScript files to compile

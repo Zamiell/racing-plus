@@ -7,33 +7,62 @@ which python  >/dev/null 2>&1 && exec python  "$0" "$@"
 exec echo "Error: requires python"
 ":"""
 
+import json
 import os
-import subprocess
 import sys
 import write_version
+import xmltodict
 
 SCRIPT_PATH = os.path.realpath(__file__)
 SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
-CONVERT_SCRIPT_PATH = os.path.join(SCRIPT_DIRECTORY, "convert_xml_to_lua.lua")
+ROOMS_DIRECTORY = os.path.join(
+    SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipping/"
+)
+XML_FILES_TO_CONVERT = [
+    "angelRooms",
+    "devilRooms",
+]
+JSON_OUTPUT_DIRECTORY = os.path.join(
+    SCRIPT_DIRECTORY,
+    "..",
+    "src",
+    "features",
+    "optional",
+    "major",
+    "betterDevilAngelRooms",
+)
 
 
 def main():
     # Draw the version on the title screen
     write_version.main()
 
-    # Convert the Devil and Angel XML files to Lua tables
-    convertXMLToLua()
+    # Convert some room XML files to JSON so that they can be directly imported by the mod
+    convertXMLToJSON()
 
 
-def convertXMLToLua():
-    if not os.path.exists(CONVERT_SCRIPT_PATH):
-        error(
-            'The Lua script located at "{}" does not exist.'.format(CONVERT_SCRIPT_PATH)
-        )
+def convertXMLToJSON():
+    for file_to_convert in XML_FILES_TO_CONVERT:
+        # Read the file into a string
+        file_name = file_to_convert + ".xml"
+        file_path = os.path.join(ROOMS_DIRECTORY, file_name)
+        with open(file_path, "r") as file_handle:
+            file_contents = file_handle.read()
 
-    completed_process = subprocess.run(["lua.exe", CONVERT_SCRIPT_PATH])
-    if completed_process.returncode != 0:
-        error('Failed to run the "{}" script.'.format(CONVERT_SCRIPT_PATH))
+        # Convert the XML string to a Python dictionary
+        dict = xmltodict.parse(file_contents)
+
+        # Convert the Python dictionary to a JSON string
+        # (we specify the separators to remove all extra whitespace)
+        jsonString = json.dumps(dict, separators=(",", ":"))
+
+        # Write the JSON to disk
+        output_file_name = file_to_convert + ".json"
+        output_file_path = os.path.join(JSON_OUTPUT_DIRECTORY, output_file_name)
+        with open(output_file_path, "w") as file_handle:
+            file_handle.write(jsonString)
+
+        print("Created: {}".format(output_file_path))
 
 
 def error(msg):

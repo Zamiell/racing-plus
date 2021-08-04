@@ -1,4 +1,9 @@
-import { log } from "isaacscript-common";
+import {
+  log,
+  ModCallbacksCustom,
+  ModUpgraded,
+  upgradeMod,
+} from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
@@ -38,7 +43,7 @@ main();
 
 function main() {
   const mod = RegisterMod("Racing+", 1);
-  // const modUpgraded = upgradeMod(mod);
+  const modUpgraded = upgradeMod(mod);
 
   welcomeBanner();
 
@@ -48,7 +53,7 @@ function main() {
   modConfigMenu.register(); // Integrate with Mod Config Menu
 
   registerCallbacks(mod);
-  // registerCallbacksCustom(modUpgraded);
+  registerCallbacksCustom(modUpgraded);
 }
 
 function welcomeBanner() {
@@ -108,11 +113,8 @@ function registerMainCallbacks(mod: Mod) {
   ); // 71
 }
 
-/*
 function registerCallbacksCustom(mod: ModUpgraded) {
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
-    postItemPickup.main,
-  );
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_ITEM_PICKUP, () => {
+    Isaac.DebugString("MC_POST_ITEM_PICKUP - GETTING HERE");
+  });
 }
-*/
