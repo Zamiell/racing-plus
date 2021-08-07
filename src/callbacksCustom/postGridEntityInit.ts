@@ -1,33 +1,26 @@
-import { getGridEntities } from "isaacscript-common";
-import g from "../globals";
-import postGridEntityInitFunctions from "./postGridEntityInitFunctions";
+import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import * as fastTravelPostGridEntityInit from "../features/optional/major/fastTravel/callbacks/postGridEntityInit";
 
-export function postNewRoom(): void {
-  for (const gridEntity of getGridEntities()) {
-    checkNewGridEntity(gridEntity);
-  }
-}
-
-export function postGridEntityUpdate(gridEntity: GridEntity): void {
-  checkNewGridEntity(gridEntity);
-}
-
-function checkNewGridEntity(gridEntity: GridEntity) {
-  const gridIndex = gridEntity.GetGridIndex();
-  const saveState = gridEntity.GetSaveState();
-  const storedType = g.run.room.initializedGridEntities.get(gridIndex);
-  if (storedType !== saveState.Type) {
-    g.run.room.initializedGridEntities.set(gridIndex, saveState.Type);
-    postGridEntityInit(gridEntity);
-  }
-}
-
-function postGridEntityInit(gridEntity: GridEntity) {
-  const saveState = gridEntity.GetSaveState();
-  const postGridEntityInitFunction = postGridEntityInitFunctions.get(
-    saveState.Type,
+export function init(mod: ModUpgraded): void {
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT,
+    trapdoor,
+    GridEntityType.GRID_TRAPDOOR,
   );
-  if (postGridEntityInitFunction !== undefined) {
-    postGridEntityInitFunction(gridEntity);
-  }
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT,
+    crawlspace,
+    GridEntityType.GRID_STAIRS,
+  );
+}
+
+// GridEntityType.GRID_TRAPDOOR (17)
+function trapdoor(gridEntity: GridEntity) {
+  fastTravelPostGridEntityInit.trapdoor(gridEntity);
+}
+
+// GridEntityType.GRID_STAIRS (18)
+function crawlspace(gridEntity: GridEntity) {
+  fastTravelPostGridEntityInit.crawlspace(gridEntity);
 }

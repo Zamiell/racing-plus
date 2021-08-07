@@ -1,4 +1,3 @@
-import * as postGridEntityUpdate from "../callbacksCustom/postGridEntityUpdate";
 import { debugLog } from "../debugLog";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
@@ -14,9 +13,6 @@ import racePostUpdate from "../features/race/callbacks/postUpdate";
 
 export function main(): void {
   debugLog("MC_POST_UPDATE", true);
-
-  // Custom callbacks
-  postGridEntityUpdate.postUpdate();
 
   // Mandatory features
   trophy.postUpdate();

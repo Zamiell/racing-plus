@@ -1,6 +1,5 @@
 import { log } from "isaacscript-common";
 import * as cache from "../cache";
-import * as postGridEntityInit from "../callbacksCustom/postGridEntityInit";
 import { debugLog } from "../debugLog";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
@@ -74,9 +73,6 @@ export function newRoom(): void {
   // Set variables
   g.run.room = new GlobalsRunRoom();
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
-
-  // Custom callbacks
-  postGridEntityInit.postNewRoom();
 
   // Mandatory features
   removeMercurius.postNewRoom();

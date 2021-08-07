@@ -37,6 +37,8 @@ import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
+import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
+import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postTransformation from "./callbacksCustom/postTransformation";
@@ -48,8 +50,8 @@ import * as saveDat from "./saveDat";
 main();
 
 function main() {
-  const mod = RegisterMod("Racing+", 1);
-  const modUpgraded = upgradeMod(mod);
+  const modVanilla = RegisterMod("Racing+", 1);
+  const mod = upgradeMod(modVanilla);
 
   welcomeBanner();
 
@@ -59,7 +61,6 @@ function main() {
   modConfigMenu.register(); // Integrate with Mod Config Menu
 
   registerCallbacks(mod);
-  registerCallbacksCustom(modUpgraded);
 }
 
 function welcomeBanner() {
@@ -72,23 +73,14 @@ function welcomeBanner() {
   log(welcomeTextBorder);
 }
 
-function registerCallbacks(mod: Mod) {
-  registerMainCallbacks(mod);
-
-  // Register callbacks that take a 3rd argument for a specific entity
-  postNPCUpdate.init(mod); // 0
-  useItem.init(mod); // 3
-  postFamiliarInit.init(mod); // 7
-  entityTakeDmg.init(mod); // 11
-  postPickupInit.init(mod); // 34
-  postTearUpdate.init(mod); // 40
-  postEffectInit.init(mod); // 54
-  postEffectUpdate.init(mod); // 55
-  postEntityKill.init(mod); // 68
-  preNPCUpdate.init(mod); // 69
+function registerCallbacks(mod: ModUpgraded) {
+  registerCallbacksMain(mod);
+  registerCallbacksWithExtraArgument(mod);
+  registerCallbacksCustom(mod);
+  registerCallbacksCustomWithExtraArgument(mod);
 }
 
-function registerMainCallbacks(mod: Mod) {
+function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   mod.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
@@ -117,6 +109,19 @@ function registerMainCallbacks(mod: Mod) {
     ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN,
     preRoomEntitySpawn.main,
   ); // 71
+}
+
+function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
+  postNPCUpdate.init(mod); // 0
+  useItem.init(mod); // 3
+  postFamiliarInit.init(mod); // 7
+  entityTakeDmg.init(mod); // 11
+  postPickupInit.init(mod); // 34
+  postTearUpdate.init(mod); // 40
+  postEffectInit.init(mod); // 54
+  postEffectUpdate.init(mod); // 55
+  postEntityKill.init(mod); // 68
+  preNPCUpdate.init(mod); // 69
 }
 
 function registerCallbacksCustom(mod: ModUpgraded) {
@@ -149,4 +154,9 @@ function registerCallbacksCustom(mod: ModUpgraded) {
     ModCallbacksCustom.MC_POST_TRANSFORMATION,
     postTransformation.main,
   );
+}
+
+function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
+  postGridEntityInit.init(mod);
+  postGridEntityUpdate.init(mod);
 }
