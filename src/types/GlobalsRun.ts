@@ -12,13 +12,7 @@ export default class GlobalsRun {
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
 
-  /** Used to go to a new floor on game frame 0. */
-  forceNextLevel = false; //
-
   room = new GlobalsRunRoom();
-
-  /** Used to go to a new room on game frame 0. */
-  forceNextRoom = false;
 
   /** Remember the alt floors we traveled to respawn them in Backwards path. */
   altFloorsTraveled = {

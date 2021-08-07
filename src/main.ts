@@ -98,10 +98,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
   mod.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
   mod.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
-  mod.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted.main); // 15
   mod.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main); // 17
-  mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, postNewLevel.main); // 18
-  mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom.main); // 19
   mod.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
   mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main); // 24
   mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
@@ -134,6 +131,18 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustom(mod: ModUpgraded) {
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_GAME_STARTED,
+    postGameStarted.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_NEW_LEVEL,
+    postNewLevel.main,
+  );
+
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_ROOM, postNewRoom.main);
+
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_PRE_ITEM_PICKUP,
     preItemPickup.main,

@@ -34,34 +34,6 @@ export function main(): void {
     `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
   );
 
-  // Make sure the callbacks run in the right order
-  // (naturally, PostNewRoom gets called before the PostNewLevel and PostGameStarted callbacks)
-  if (
-    (gameFrameCount === 0 ||
-      g.run.level.stage !== stage ||
-      g.run.level.stageType !== stageType) &&
-    !g.run.forceNextRoom
-  ) {
-    return;
-  }
-  g.run.forceNextRoom = false;
-
-  newRoom();
-}
-
-export function newRoom(): void {
-  const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
-
-  log(
-    `MC_POST_NEW_ROOM_2 - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
-  );
-
   // Set variables
   g.run.room = new GlobalsRunRoom();
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run

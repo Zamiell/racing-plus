@@ -24,9 +24,6 @@ import g from "../globals";
 import { config } from "../modConfigMenu";
 import { consoleCommand } from "../util";
 
-const sprite = Sprite();
-sprite.Load("gfx/characters/058_book of shadows.anm2", true);
-
 export function main(): void {
   cache.updateAPIFunctions();
 

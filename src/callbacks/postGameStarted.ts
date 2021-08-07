@@ -14,7 +14,6 @@ import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import { CollectibleTypeCustom } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
-import * as postNewLevel from "./postNewLevel";
 
 export function main(isContinued: boolean): void {
   const startSeed = g.seeds.GetStartSeed();
@@ -86,9 +85,6 @@ export function main(isContinued: boolean): void {
   // (commented out if it is not currently a holiday)
   // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
   // (this corresponds to "n016_Christmas.anm2" in the "costumes2.xml" file)
-
-  // Call PostNewLevel manually (they get naturally called out of order)
-  postNewLevel.newLevel();
 }
 
 function setSeeds() {

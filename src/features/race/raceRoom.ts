@@ -1,4 +1,10 @@
-import { getPlayers, getRoomIndex, gridToPos } from "isaacscript-common";
+import {
+  forceNewLevelCallback,
+  forceNewRoomCallback,
+  getPlayers,
+  getRoomIndex,
+  gridToPos,
+} from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand, initSprite } from "../../util";
 import {
@@ -137,15 +143,15 @@ function gotoRaceRoom() {
   // We use the Cellar because it is the cleanest floor
   if (stage !== 1 || stageType !== StageType.STAGETYPE_WOTL) {
     // Since we might be going to a new floor on frame 0,
-    // we have to specify that the "newLevel()" function should run
-    g.run.forceNextLevel = true;
+    // we have to specify that the PostNewLevel callback should fire
+    forceNewLevelCallback();
     consoleCommand("stage 1a");
   }
 
   // For the race room, we use a room with no grid entities and a single Gaper
   // Since we might be going to a new room on frame 0,
-  // we have to specify that the "newRoom()" function should run
-  g.run.forceNextRoom = true;
+  // we have to specify that the PostNewRoom callback should fire
+  forceNewRoomCallback();
   consoleCommand("goto d.5");
   // We will not actually be sent to the room until a frame passes,
   // so wait until the next PostNewRoom fires

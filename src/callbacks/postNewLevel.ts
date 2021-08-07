@@ -5,7 +5,6 @@ import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
-import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
   const gameFrameCount = g.g.GetFrameCount();
@@ -14,25 +13,6 @@ export function main(): void {
 
   log(
     `MC_POST_NEW_LEVEL - ${stage}.${stageType} (game frame ${gameFrameCount})`,
-  );
-
-  // Make sure the callbacks run in the right order
-  // (naturally, PostNewLevel gets called before the PostGameStarted callbacks)
-  if (gameFrameCount === 0 && !g.run.forceNextLevel) {
-    return;
-  }
-  g.run.forceNextLevel = false;
-
-  newLevel();
-}
-
-export function newLevel(): void {
-  const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  log(
-    `MC_POST_NEW_LEVEL_2 - ${stage}.${stageType} (game frame ${gameFrameCount})`,
   );
 
   // Clear variables that track things per level
@@ -51,9 +31,6 @@ export function newLevel(): void {
 
   // Sounds
   silenceMomDad.postNewLevel();
-
-  // Call PostNewRoom manually (they get naturally called out of order)
-  postNewRoom.newRoom();
 }
 
 function shouldShowLevelText() {
