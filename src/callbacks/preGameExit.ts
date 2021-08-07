@@ -11,9 +11,9 @@ export function main(shouldSave: boolean): void {
   if (shouldSave) {
     saveDat.save();
     log("Saved variables.");
-  } else {
-    g.run = new GlobalsRun(0, []);
   }
+
+  g.run = new GlobalsRun(0, []);
 
   racePreGameExit();
 

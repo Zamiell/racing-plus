@@ -1,4 +1,5 @@
 import {
+  getItemName,
   getPlayers,
   getRoomIndex,
   inCrawlspace,
@@ -111,9 +112,9 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 export function removeItemFromItemTracker(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
-  const itemConfig = g.itemConfig.GetCollectible(collectibleType);
+  const itemName = getItemName(collectibleType);
   log(
-    `Removing voided collectible ${collectibleType} (${itemConfig.Name}) from player 0 (Player)`,
+    `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
   );
 }
 
@@ -140,9 +141,11 @@ export function spawnCollectible(
 
   // Prevent quest items from switching to another item on Tainted Isaac
   const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
-  if (isQuestItem) {
-    g.run.room.stuckItems.set(seed, collectibleType);
+  if (itemConfigItem !== null) {
+    const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
+    if (isQuestItem) {
+      g.run.room.stuckItems.set(seed, collectibleType);
+    }
   }
 }
 

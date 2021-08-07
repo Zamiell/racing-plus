@@ -22,10 +22,7 @@ export function getRoomSelection(
   seed: int,
   subType = NORMAL_ROOM_SUBTYPE,
 ): JSONRoom {
-  // ESLint gets confused here and thinks that roomsJSON/rooms is an any type
-  // eslint-disable-next-line
   const roomsJSON = devil ? devilRooms : angelRooms;
-  // eslint-disable-next-line
   const rooms = roomsJSON.rooms.room;
   const luaRoomsWithSubType = getRoomsWithSubType(rooms, subType);
 

@@ -134,22 +134,22 @@ function checkGenesisRoom() {
   }
 }
 
-// The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
-// Give another D6 if needed
-export function postPlayerChange(player: EntityPlayer): void {
+// ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
+export function postPlayerChangeType(player: EntityPlayer): void {
+  // The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
+  // Give another D6 if needed
   giveD6(player);
 }
 
+// ModCallbacksCustom.MC_POST_FIRST_FLIP
 export function postFirstFlip(player: EntityPlayer): void {
   giveD6(player);
 }
 
+// ModCallbacksCustom.MC_POST_FIRST_ESAU_JR
 export function postFirstEsauJr(player: EntityPlayer): void {
   if (shouldGetPocketActiveD6(player)) {
     givePocketActiveD6(player, 6); // Always start the Esau Jr. character with a full D6
-    log(
-      "Awarded another pocket D6 (due to using Esau Jr. for the first time).",
-    );
   }
 }
 

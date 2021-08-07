@@ -132,7 +132,11 @@ function drawTextAndSprite() {
     pillEntry.sprite.RenderLayer(0, pos);
 
     // Show the pill effect as text
-    let effectName = g.itemConfig.GetPillEffect(pillEntry.effect).Name;
+    const pillConfig = g.itemConfig.GetPillEffect(pillEntry.effect);
+    if (pillConfig === null) {
+      error(`Failed to get the pill config for effect: ${pillEntry.effect}`);
+    }
+    let effectName = pillConfig.Name;
     if (text === "Feels like I'm walking on sunshine!") {
       effectName = "Walking on sunshine!";
     }

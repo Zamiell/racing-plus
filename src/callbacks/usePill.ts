@@ -40,6 +40,10 @@ function newPill(pillColor: PillColor, pillEffect: PillEffect) {
 }
 
 function showStreakText(pillEffect: PillEffect) {
-  const pillEffectName = g.itemConfig.GetPillEffect(pillEffect).Name;
+  const pillConfig = g.itemConfig.GetPillEffect(pillEffect);
+  if (pillConfig === null) {
+    error(`Failed to get the pill config for effect: ${pillEffect}`);
+  }
+  const pillEffectName = pillConfig.Name;
   streakText.set(pillEffectName);
 }

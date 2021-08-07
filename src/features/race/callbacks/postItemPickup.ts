@@ -1,13 +1,11 @@
+import { PickingUpItem } from "isaacscript-common";
 import g from "../../../globals";
-import PickingUpItemDescription from "../../../types/PickingUpItemDescription";
 import * as socket from "../socket";
 
-export default function racePostItemPickup(
-  pickingUpItemDescription: PickingUpItemDescription,
-): void {
+export default function racePostItemPickup(pickingUpItem: PickingUpItem): void {
   if (!g.config.clientCommunication) {
     return;
   }
 
-  socket.postItemPickup(pickingUpItemDescription);
+  socket.postItemPickup(pickingUpItem);
 }

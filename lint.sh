@@ -30,4 +30,8 @@ npx eslint --max-warnings 0 src
 npx cspell --no-progress --no-summary "src/**/*.ts"
 npx cspell --no-progress --no-summary "docs/**/*.md"
 
+# Step 4 - Check for unused imports
+# The "--error" flag makes it return an error code of 1 if unused exports are found
+npx ts-prune --error
+
 echo "Success!"

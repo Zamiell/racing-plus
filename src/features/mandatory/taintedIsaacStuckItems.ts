@@ -27,6 +27,9 @@ export function postUpdate(): void {
       // Changing the subtype will not affect the existing sprite
       const sprite = collectible.GetSprite();
       const itemConfigItem = g.itemConfig.GetCollectible(stuckCollectibleType);
+      if (itemConfigItem === null) {
+        error(`Failed to get the item config for: ${stuckCollectibleType}`);
+      }
       const gfxFileName = itemConfigItem.GfxFileName;
       sprite.ReplaceSpritesheet(ITEM_SPRITESHEET_ID, gfxFileName);
       sprite.LoadGraphics();

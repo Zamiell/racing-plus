@@ -35,6 +35,12 @@ import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
+import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
+import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
+import * as postItemPickup from "./callbacksCustom/postItemPickup";
+import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
+import * as postTransformation from "./callbacksCustom/postTransformation";
+import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { VERSION } from "./constants";
 import * as modConfigMenu from "./modConfigMenu";
 import * as saveDat from "./saveDat";
@@ -114,7 +120,33 @@ function registerMainCallbacks(mod: Mod) {
 }
 
 function registerCallbacksCustom(mod: ModUpgraded) {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_ITEM_PICKUP, () => {
-    Isaac.DebugString("MC_POST_ITEM_PICKUP - GETTING HERE");
-  });
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_PRE_ITEM_PICKUP,
+    preItemPickup.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    postItemPickup.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE,
+    postPlayerChangeType.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_FIRST_FLIP,
+    postFirstFlip.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_FIRST_ESAU_JR,
+    postFirstEsauJr.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_TRANSFORMATION,
+    postTransformation.main,
+  );
 }

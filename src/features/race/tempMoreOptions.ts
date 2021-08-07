@@ -40,9 +40,15 @@ export function give(player: EntityPlayer): void {
   removeItemFromItemTracker(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
 
   // We don't want the costume to show
-  player.RemoveCostume(
-    g.itemConfig.GetCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS),
+  const itemConfigItem = g.itemConfig.GetCollectible(
+    CollectibleType.COLLECTIBLE_MORE_OPTIONS,
   );
+  if (itemConfigItem === null) {
+    error(
+      `Failed to get the item config for: ${CollectibleType.COLLECTIBLE_MORE_OPTIONS}`,
+    );
+  }
+  player.RemoveCostume(itemConfigItem);
 
   // More Options will be removed upon entering the first Treasure Room
   g.run.removeMoreOptions = true;

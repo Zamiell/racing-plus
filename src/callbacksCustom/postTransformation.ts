@@ -1,6 +1,4 @@
-import { getPlayerIndex, getPlayers } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
-import g from "../globals";
 
 const TRANSFORMATION_NAMES = [
   "Guppy",
@@ -20,34 +18,17 @@ const TRANSFORMATION_NAMES = [
   "Flight", // Unused
 ];
 
-export function postUpdate(): void {
-  for (const player of getPlayers()) {
-    const index = getPlayerIndex(player);
-    const transformations = g.run.transformations.get(index);
-    if (transformations === undefined) {
-      error(
-        `Failed to get the transformation array for player index: ${index}`,
-      );
-    }
-
-    for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {
-      const hasForm = player.HasPlayerForm(i);
-      const storedForm = transformations[i];
-      if (storedForm === undefined)
-        if (hasForm && !storedForm) {
-          // We have gotten a new transformation that has not been recorded yet
-          transformations[i] = true;
-          postTransformation(i);
-        }
-    }
+export function main(
+  _player: EntityPlayer,
+  playerForm: PlayerForm,
+  hasForm: boolean,
+): void {
+  if (hasForm) {
+    showStreakText(playerForm);
   }
 }
 
-function postTransformation(transformation: PlayerForm) {
-  showStreakText(transformation);
-}
-
-function showStreakText(transformation: PlayerForm) {
-  const transformationName = TRANSFORMATION_NAMES[transformation];
+function showStreakText(playerForm: PlayerForm) {
+  const transformationName = TRANSFORMATION_NAMES[playerForm];
   streakText.set(transformationName);
 }

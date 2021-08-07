@@ -1,6 +1,5 @@
-import { log } from "isaacscript-common";
+import { log, PickingUpItem } from "isaacscript-common";
 import g from "../../globals";
-import PickingUpItemDescription from "../../types/PickingUpItemDescription";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import socketFunctions, { reset } from "./socketFunctions";
@@ -137,15 +136,13 @@ export function postNewRoom(): void {
   send("room", `${roomType}-${roomVariant}`);
 }
 
-export function postItemPickup(
-  pickingUpItemDescription: PickingUpItemDescription,
-): void {
+export function postItemPickup(pickingUpItem: PickingUpItem): void {
   if (
-    pickingUpItemDescription.type === ItemType.ITEM_ACTIVE ||
-    pickingUpItemDescription.type === ItemType.ITEM_PASSIVE ||
-    pickingUpItemDescription.type === ItemType.ITEM_FAMILIAR
+    pickingUpItem.type === ItemType.ITEM_ACTIVE ||
+    pickingUpItem.type === ItemType.ITEM_PASSIVE ||
+    pickingUpItem.type === ItemType.ITEM_FAMILIAR
   ) {
-    send("item", pickingUpItemDescription.id.toString());
+    send("item", pickingUpItem.id.toString());
   }
 }
 

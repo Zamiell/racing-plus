@@ -1,8 +1,4 @@
-import * as itemPickup from "../callbacksCustom/itemPickup";
-import * as postEsauJr from "../callbacksCustom/postEsauJr";
 import * as postGridEntityUpdate from "../callbacksCustom/postGridEntityUpdate";
-import * as postPlayerChange from "../callbacksCustom/postPlayerChange";
-import * as postTransformation from "../callbacksCustom/postTransformation";
 import { debugLog } from "../debugLog";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
@@ -21,10 +17,6 @@ export function main(): void {
 
   // Custom callbacks
   postGridEntityUpdate.postUpdate();
-  postPlayerChange.postUpdate();
-  postTransformation.postUpdate();
-  itemPickup.postUpdate();
-  postEsauJr.postUpdate();
 
   // Mandatory features
   trophy.postUpdate();
