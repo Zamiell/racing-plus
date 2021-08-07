@@ -1,9 +1,9 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as blackSprite from "../blackSprite";
 import * as checkStateComplete from "../checkStateComplete";
 
 export default function fastTravelPostRender(): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 

@@ -1,4 +1,3 @@
-import { debugLog } from "../debugLog";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
@@ -12,8 +11,6 @@ import * as showPills from "../features/optional/quality/showPills";
 import racePostUpdate from "../features/race/callbacks/postUpdate";
 
 export function main(): void {
-  debugLog("MC_POST_UPDATE", true);
-
   // Mandatory features
   trophy.postUpdate();
   fireworks.postUpdate();
@@ -30,6 +27,4 @@ export function main(): void {
   // Quality of life
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
-
-  debugLog("MC_POST_UPDATE", false);
 }

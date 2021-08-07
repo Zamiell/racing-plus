@@ -1,4 +1,5 @@
 import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import angel from "../angel";
 import devil from "../devil";
 
@@ -6,7 +7,7 @@ const MIN_GRID_INDEX = 0;
 const MAX_GRID_INDEX = 134;
 
 export default function betterDevilAngelRoomsPostNewRoom(): void {
-  if (!g.config.betterDevilAngelRooms) {
+  if (!config.betterDevilAngelRooms) {
     return;
   }
 

@@ -1,11 +1,12 @@
 import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import { isSelfDamage } from "../../../../../util";
 
-export function entityTakeDmgPlayer(
+export default function fastTravelEntityTakeDmgPlayer(
   tookDamage: Entity,
   damageFlags: DamageFlag,
 ): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 

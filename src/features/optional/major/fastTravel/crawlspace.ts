@@ -6,6 +6,7 @@ import { movePlayersAndFamiliars, teleport } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
+import v from "./v";
 
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
@@ -114,7 +115,7 @@ function checkPostRoomTransitionSubvert() {
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
-  if (g.run.room.fastTravel.amChangingRooms) {
+  if (v.room.amChangingRooms) {
     return;
   }
 
@@ -127,7 +128,7 @@ function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
     inCrawlspace() &&
     g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
   ) {
-    g.run.room.fastTravel.amChangingRooms = true;
+    v.room.amChangingRooms = true;
     teleport(g.l.DungeonReturnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
   }
 }
@@ -151,7 +152,7 @@ function checkExitSoftlock(player: EntityPlayer) {
   const direction = getExitDirection(roomType, player);
   if (direction !== undefined) {
     g.run.level.fastTravel.subvertedRoomTransitionDirection = direction;
-    g.run.room.fastTravel.amChangingRooms = true;
+    v.room.amChangingRooms = true;
     teleport(
       g.run.level.fastTravel.previousRoomIndex,
       direction,
@@ -193,7 +194,7 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
 export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   // Ensure that the fast-travel entity has been initialized
   const gridIndex = gridEntity.GetGridIndex();
-  const entry = g.run.room.fastTravel.crawlspaces.get(gridIndex);
+  const entry = v.room.crawlspaces.get(gridIndex);
   if (entry === undefined) {
     return;
   }
@@ -203,6 +204,12 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
 
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
+
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
+// GridEntityType.GRID_STAIRS
+export function postGridEntityRemoveCrawlspace(gridIndex: int): void {
+  state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {

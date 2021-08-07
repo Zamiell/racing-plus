@@ -1,9 +1,10 @@
 import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import { FastTravelState } from "../enums";
 
 // Used to disable InputHook.GET_ACTION_VALUE inputs
 export function disableInput(): float | void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return undefined;
   }
 

@@ -1,9 +1,9 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { isPostBossVoidPortal } from "../../../util";
 import { removeGridEntity } from "../../../utilGlobals";
 
 export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
-  if (!g.config.deleteVoidPortals) {
+  if (!config.deleteVoidPortals) {
     return;
   }
 

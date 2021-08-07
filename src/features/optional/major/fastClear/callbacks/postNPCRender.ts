@@ -1,7 +1,7 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 
 export default function fastClearPostNPCRender(npc: EntityNPC): void {
-  if (!g.config.fastClear) {
+  if (!config.fastClear) {
     return;
   }
 

@@ -4,14 +4,15 @@ import {
   getRoomIndex,
   getRoomNPCs,
 } from "isaacscript-common";
-import g from "../../../../globals";
-import { PickupPriceCustom } from "../../../../types/enums";
-import { initGlowingItemSprite, initSprite } from "../../../../util";
-import { bossPNGMap } from "./bossPNGMap";
-import { WarpState } from "./enums";
+import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
+import { PickupPriceCustom } from "../../../../../types/enums";
+import { initGlowingItemSprite, initSprite } from "../../../../../util";
+import { bossPNGMap } from "../bossPNGMap";
+import { WarpState } from "../enums";
 
 export default function showDreamCatcherItemPostNewRoom(): void {
-  if (!g.config.showDreamCatcherItem) {
+  if (!config.showDreamCatcherItem) {
     return;
   }
 

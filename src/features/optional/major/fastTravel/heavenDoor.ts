@@ -3,6 +3,7 @@ import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
+import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
 const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 12;
@@ -38,10 +39,10 @@ function shouldRemove(effect: EntityEffect) {
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla heaven door (since we manually spawned one already)
   if (
-    g.run.room.deletePaths &&
-    g.run.room.itLivesKilledFrame !== 0 &&
+    v.room.deletePaths &&
+    v.room.itLivesKilledFrame !== 0 &&
     gameFrameCount ===
-      g.run.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
+      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
   ) {
     return true;
   }
@@ -49,10 +50,9 @@ function shouldRemove(effect: EntityEffect) {
   // If a specific amount of frames have passed since killing Hush,
   // then delete the vanilla heaven door (since we manually spawned one already)
   if (
-    g.run.room.deletePaths &&
-    g.run.room.hushKilledFrame !== 0 &&
-    gameFrameCount ===
-      g.run.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
+    v.room.deletePaths &&
+    v.room.hushKilledFrame !== 0 &&
+    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
     return true;
   }

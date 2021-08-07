@@ -1,11 +1,11 @@
 import { COLLECTIBLE_SPRITE_LAYER } from "../../../constants";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const CUSTOM_PNG_PATH =
   "gfx/items/collectibles/collectibles_651_starofbethlehem_custom.png"; // cspell:disable-line
 
 export function postPickupInit(pickup: EntityPickup): void {
-  if (!g.config.starOfBethlehem) {
+  if (!config.starOfBethlehem) {
     return;
   }
 

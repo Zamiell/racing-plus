@@ -1,9 +1,9 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_EVALUATE_CACHE (8)
 // CacheFlag.CACHE_TEARCOLOR (1 << 6)
 export function evaluateCacheTearColor(player: EntityPlayer): void {
-  if (!g.config.changeCreepColor) {
+  if (!config.changeCreepColor) {
     return;
   }
 
@@ -29,7 +29,7 @@ export function evaluateCacheTearColor(player: EntityPlayer): void {
 // ModCallbacks.MC_POST_EFFECT_INIT (54)
 // EffectVariant.CREEP_RED (22)
 export function postEffectInitCreepRed(effect: EntityEffect): void {
-  if (g.config.changeCreepColor) {
+  if (!config.changeCreepColor) {
     return;
   }
 
@@ -57,7 +57,7 @@ export function postEffectInitCreepRed(effect: EntityEffect): void {
 // ModCallbacks.MC_POST_EFFECT_INIT (54)
 // EffectVariant.PLAYER_CREEP_GREEN (53)
 export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
-  if (!g.config.changeCreepColor) {
+  if (!config.changeCreepColor) {
     return;
   }
 

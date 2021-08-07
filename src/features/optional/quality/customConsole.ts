@@ -2,6 +2,7 @@
 // - add feature where you can press escape to exit, and the text will remain
 
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
 
 let isConsoleOpen = false;
@@ -10,7 +11,7 @@ let consoleTextIndex = 0;
 const keysPressed = new Map<Keyboard, boolean>();
 
 export function postRender(): void {
-  if (!g.config.customConsole) {
+  if (!config.customConsole) {
     return;
   }
 

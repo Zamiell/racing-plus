@@ -6,6 +6,7 @@ import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
+import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Trapdoor;
 const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
@@ -34,7 +35,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 
   // Ensure that the fast-travel entity has been initialized
   const gridIndex = gridEntity.GetGridIndex();
-  const entry = g.run.room.fastTravel.trapdoors.get(gridIndex);
+  const entry = v.room.trapdoors.get(gridIndex);
   if (entry === undefined) {
     return;
   }
@@ -44,6 +45,12 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
+
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
+// GridEntityType.GRID_TRAPDOOR
+export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
+  state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
@@ -80,10 +87,10 @@ function shouldRemove() {
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
   if (
-    g.run.room.deletePaths &&
-    g.run.room.itLivesKilledFrame !== 0 &&
+    v.room.deletePaths &&
+    v.room.itLivesKilledFrame !== 0 &&
     gameFrameCount ===
-      g.run.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
+      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
   ) {
     return true;
   }
@@ -91,10 +98,9 @@ function shouldRemove() {
   // If a specific amount of frames have passed since killing Hush,
   // then delete the vanilla trapdoor (since we manually spawned one already)
   if (
-    g.run.room.deletePaths &&
-    g.run.room.hushKilledFrame !== 0 &&
-    gameFrameCount ===
-      g.run.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
+    v.room.deletePaths &&
+    v.room.hushKilledFrame !== 0 &&
+    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
     return true;
   }

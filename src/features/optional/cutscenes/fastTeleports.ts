@@ -1,10 +1,10 @@
 import { log } from "isaacscript-common";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const ANIMATION_SPEED_MULTIPLIER = 1.66;
 
 export function postPlayerRender(player: EntityPlayer): void {
-  if (!g.config.fastTeleports) {
+  if (!config.fastTeleports) {
     return;
   }
 

@@ -1,9 +1,9 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as cs from "../crawlspace";
 import * as td from "../trapdoor";
 
 export function trapdoor(gridEntity: GridEntity): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 
@@ -11,7 +11,7 @@ export function trapdoor(gridEntity: GridEntity): void {
 }
 
 export function crawlspace(gridEntity: GridEntity): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 

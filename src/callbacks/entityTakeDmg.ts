@@ -1,5 +1,5 @@
 import { hasFlag } from "isaacscript-common";
-import * as fastTravelEntityTakeDmg from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
+import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import g from "../globals";
 
@@ -22,7 +22,7 @@ function player(
 
   // Major features
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
-  fastTravelEntityTakeDmg.entityTakeDmgPlayer(tookDamage, damageFlags);
+  fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
 }
 
 function sacrificeRoom(damageFlags: int) {

@@ -1,10 +1,11 @@
 import { log } from "isaacscript-common";
 import * as charge from "../../../charge";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/enums";
 
 export function postEntityKillLamb(_entity: Entity): void {
-  if (!g.config.stopVictoryLapPopup) {
+  if (!config.stopVictoryLapPopup) {
     return;
   }
 

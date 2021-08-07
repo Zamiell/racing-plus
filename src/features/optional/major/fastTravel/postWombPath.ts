@@ -1,8 +1,9 @@
 import { ensureAllCases, log } from "isaacscript-common";
-import g from "../../globals";
-import { hasPolaroidOrNegative } from "../../utilGlobals";
-import { RaceGoal } from "../race/types/RaceData";
-import { ChallengeCustom } from "../speedrun/enums";
+import g from "../../../../globals";
+import { hasPolaroidOrNegative } from "../../../../utilGlobals";
+import { RaceGoal } from "../../../race/types/RaceData";
+import { ChallengeCustom } from "../../../speedrun/enums";
+import v from "./v";
 
 enum ItLivesSituation {
   Neither,
@@ -22,15 +23,15 @@ export function postEntityKillMomsHeart(_entity: Entity): void {
 
   // Defeating It Lives! triggers the PostEntityKill callback twice for some reason,
   // so we need to keep track of whether this is the first or second trigger
-  if (!g.run.room.itLivesKilled) {
+  if (!v.room.itLivesKilled) {
     // This is the first trigger; wait for the second one
-    g.run.room.itLivesKilled = true;
+    v.room.itLivesKilled = true;
     return;
   }
 
   // First, record the frame that It Lives! died so that we can delete the vanilla trapdoor and
   // heaven door on the specific frame that they spawn
-  g.run.room.itLivesKilledFrame = gameFrameCount;
+  v.room.itLivesKilledFrame = gameFrameCount;
 
   manuallySpawn();
 }
@@ -40,7 +41,7 @@ export function postEntityKillHush(_entity: Entity): void {
 
   // First, record the frame that It Lives! died so that we can delete the vanilla trapdoor and
   // heaven door on the specific frame that they spawn
-  g.run.room.hushKilledFrame = gameFrameCount;
+  v.room.hushKilledFrame = gameFrameCount;
 
   manuallySpawn();
 }
@@ -120,11 +121,20 @@ function getItLivesSituationRace(goal: RaceGoal) {
 function doItLivesSituation(situation: ItLivesSituation) {
   const stage = g.l.GetStage();
 
-  // Define positions for the trapdoor and heaven door (recorded from vanilla)
-  let posCenter = Vector(320, 280);
+  // Mark to delete the vanilla paths
+  v.room.deletePaths = true;
+
+  let centerGridIndex = 67;
+  let positionCenter = g.r.GetGridPosition(centerGridIndex);
+  let positionLeft = g.r.GetGridPosition(centerGridIndex - 1);
+  let positionRight = g.r.GetGridPosition(centerGridIndex + 1);
   if (stage === 9) {
-    // The positions are different for the Blue Womb; they are more near the top wall
-    posCenter = Vector(600, 280);
+    // The trapdoor / heaven door positions after Hush are not in the center of the room;
+    // they are near the top wall
+    centerGridIndex = 126;
+    positionCenter = g.r.GetGridPosition(centerGridIndex);
+    positionLeft = g.r.GetGridPosition(centerGridIndex - 1);
+    positionRight = g.r.GetGridPosition(centerGridIndex + 1);
   }
 
   switch (situation) {
@@ -134,31 +144,21 @@ function doItLivesSituation(situation: ItLivesSituation) {
     }
 
     case ItLivesSituation.HeavenDoor: {
-      // Spawn a heaven door (1000.39)
-      // It will get replaced with the fast-travel version on this frame
-      Isaac.Spawn(
-        EntityType.ENTITY_EFFECT,
-        EffectVariant.HEAVEN_LIGHT_DOOR,
-        0,
-        posCenter,
-        Vector.Zero,
-        null,
-      );
+      spawnHeavenDoor(positionCenter);
       log("It Lives! or Hush killed; going up.");
       break;
     }
 
     case ItLivesSituation.Trapdoor: {
-      // Spawn a trapdoor (it will get replaced with the fast-travel version on this frame)
-      Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, posCenter, true);
+      spawnTrapdoor(positionCenter);
       log("It Lives! or Hush killed; going down.");
       break;
     }
 
     case ItLivesSituation.Both: {
-      log(
-        "It Lives! or Hush killed; letting the vanilla paths spawn (since we need to go both up and down).",
-      );
+      spawnTrapdoor(positionLeft);
+      spawnHeavenDoor(positionRight);
+      log("It Lives! or Hush killed; spawning both paths.");
       break;
     }
 
@@ -166,8 +166,19 @@ function doItLivesSituation(situation: ItLivesSituation) {
       ensureAllCases(situation);
     }
   }
+}
 
-  if (situation !== ItLivesSituation.Both) {
-    g.run.room.deletePaths = true;
-  }
+function spawnHeavenDoor(position: Vector) {
+  Isaac.Spawn(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+    0,
+    position,
+    Vector.Zero,
+    null,
+  );
+}
+
+function spawnTrapdoor(position: Vector) {
+  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
 }

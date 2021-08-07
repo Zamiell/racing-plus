@@ -1,9 +1,10 @@
 import { isActionTriggeredOnAnyInput } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
 
 export function postRender(): void {
-  if (!g.config.fastReset) {
+  if (!config.fastReset) {
     return;
   }
 

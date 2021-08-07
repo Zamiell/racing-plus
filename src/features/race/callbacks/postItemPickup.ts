@@ -1,9 +1,9 @@
 import { PickingUpItem } from "isaacscript-common";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import * as socket from "../socket";
 
 export default function racePostItemPickup(pickingUpItem: PickingUpItem): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

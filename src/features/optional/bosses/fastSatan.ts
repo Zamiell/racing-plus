@@ -1,9 +1,10 @@
 import { gridToPos } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { incrementRNG } from "../../../util";
 
 export function postNewRoom(): void {
-  if (!g.config.fastSatan) {
+  if (!config.fastSatan) {
     return;
   }
 

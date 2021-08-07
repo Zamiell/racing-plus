@@ -3,6 +3,7 @@
 
 import { getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
@@ -17,7 +18,7 @@ const RIGHT_DOOR_POSITION = Vector(560, 280);
 const BOTTOM_DOOR_POSITION = Vector(320, 400);
 
 export function postNewRoom(): void {
-  if (!g.config.subvertTeleport) {
+  if (!config.subvertTeleport) {
     return;
   }
 

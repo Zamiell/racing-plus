@@ -199,6 +199,7 @@ function fixPitGraphics() {
   for (const gridEntity of getGridEntities()) {
     const saveState = gridEntity.GetSaveState();
     if (saveState.Type === GridEntityType.GRID_PIT) {
+      print(pitMap);
     }
   }
 }

@@ -7,6 +7,7 @@ import {
   TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS,
 } from "./constants";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
+import v from "./v";
 
 export function open(
   entity: GridEntity | EntityEffect,
@@ -84,17 +85,17 @@ export function initDescription(
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
-      g.run.room.fastTravel.trapdoors.set(index, description);
+      v.room.trapdoors.set(index, description);
       break;
     }
 
     case FastTravelEntityType.Crawlspace: {
-      g.run.room.fastTravel.crawlspaces.set(index, description);
+      v.room.crawlspaces.set(index, description);
       break;
     }
 
     case FastTravelEntityType.HeavenDoor: {
-      g.run.room.fastTravel.heavenDoors.set(index, description);
+      v.room.heavenDoors.set(index, description);
       break;
     }
 
@@ -113,17 +114,17 @@ export function getDescription(
   let description: FastTravelEntityDescription | undefined;
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
-      description = g.run.room.fastTravel.trapdoors.get(index);
+      description = v.room.trapdoors.get(index);
       break;
     }
 
     case FastTravelEntityType.Crawlspace: {
-      description = g.run.room.fastTravel.crawlspaces.get(index);
+      description = v.room.crawlspaces.get(index);
       break;
     }
 
     case FastTravelEntityType.HeavenDoor: {
-      description = g.run.room.fastTravel.heavenDoors.get(index);
+      description = v.room.heavenDoors.get(index);
       break;
     }
 
@@ -137,6 +138,32 @@ export function getDescription(
   }
 
   return description;
+}
+
+export function deleteDescription(
+  index: int,
+  fastTravelEntityType: FastTravelEntityType,
+): void {
+  switch (fastTravelEntityType) {
+    case FastTravelEntityType.Trapdoor: {
+      v.room.trapdoors.delete(index);
+      break;
+    }
+
+    case FastTravelEntityType.Crawlspace: {
+      v.room.crawlspaces.delete(index);
+      break;
+    }
+
+    case FastTravelEntityType.HeavenDoor: {
+      v.room.heavenDoors.delete(index);
+      break;
+    }
+
+    default: {
+      ensureAllCases(fastTravelEntityType);
+    }
+  }
 }
 
 function getIndex(
@@ -188,12 +215,15 @@ function shouldBeClosedFromStartingInRoomWithEnemies(initial: boolean) {
 }
 
 function playerCloseAfterBoss(position: Vector) {
+  const gameFrameCount = g.g.GetFrameCount();
+  const roomType = g.r.GetType();
+
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
   // killing the boss of the floor, we use a wider open distance for X frames
   if (
-    g.r.GetType() !== RoomType.ROOM_BOSS ||
-    g.run.room.clearFrame === -1 ||
-    g.g.GetFrameCount() >= g.run.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
+    roomType !== RoomType.ROOM_BOSS ||
+    v.room.clearFrame === -1 ||
+    gameFrameCount >= v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
   ) {
     return false;
   }

@@ -1,6 +1,6 @@
 // When beginning a death animation, make bosses faded so that it makes it easier to see
 
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const FADE_AMOUNT = 0.4;
 const FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
@@ -13,7 +13,7 @@ const MULTI_SEGMENT_BOSSES = [
 ];
 
 export function postEntityKill(entity: Entity): void {
-  if (!g.config.fadeBosses) {
+  if (!config.fadeBosses) {
     return;
   }
 

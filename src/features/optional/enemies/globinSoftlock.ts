@@ -1,10 +1,10 @@
 import { log } from "isaacscript-common";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
 
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.globinSoftlock) {
+  if (!config.globinSoftlock) {
     return;
   }
 

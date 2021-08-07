@@ -1,12 +1,12 @@
 // Speed up the first Lil' Haunt (260.10) attached to a Haunt (260.0)
 
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
 const BLACK_CHAMPION_COLOR_IDX = 17;
 
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.fastHaunt) {
+  if (!config.fastHaunt) {
     return;
   }
 

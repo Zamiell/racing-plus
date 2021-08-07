@@ -1,7 +1,7 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.fastBigHorn) {
+  if (!config.fastBigHorn) {
     return;
   }
 

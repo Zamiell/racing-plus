@@ -5,6 +5,7 @@ import {
 } from "isaacscript-common";
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../util";
 
 const NUM_PILLS_IN_POOL = 13;
@@ -71,22 +72,24 @@ const FALSE_PHD_PILL_CONVERSIONS = new Map([
 ]);
 
 const sprites: Sprite[] = [];
-initSprites();
 
-export function getSprite(pillColor: PillColor): Sprite {
-  return sprites[pillColor];
-}
+export function init(): void {
+  // For convenience, make a null sprite on index 0
+  const nullSprite = Sprite();
+  sprites.push(nullSprite);
 
-function initSprites() {
-  sprites.push(Sprite()); // For convenience, make a null sprite on index 0
   for (let i = 1; i < PillColor.NUM_STANDARD_PILLS; i++) {
     const sprite = initSprite("gfx/pills/pill.anm2", `gfx/pills/${i}.png`);
     sprites.push(sprite);
   }
 }
 
+export function getSprite(pillColor: PillColor): Sprite {
+  return sprites[pillColor];
+}
+
 export function postRender(): void {
-  if (!g.config.showPills) {
+  if (!config.showPills) {
     return;
   }
 
@@ -145,7 +148,7 @@ function drawTextAndSprite() {
 }
 
 export function postUpdate(): void {
-  if (!g.config.showPills) {
+  if (!config.showPills) {
     return;
   }
 

@@ -183,7 +183,7 @@ export function checkPlayerTouched(
 }
 
 function canInteractWith(player: EntityPlayer) {
-  // Players cannot interact with crawlspaces while playing certain animations
+  // Players cannot interact with fast travel entities while playing certain animations
   const sprite = player.GetSprite();
   return (
     !player.IsHoldingItem() &&

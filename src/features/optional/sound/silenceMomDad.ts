@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const MOM_AND_DAD_SOUND_EFFECTS = [
   SoundEffect.SOUND_MOM_AND_DAD_1,
@@ -8,6 +9,10 @@ const MOM_AND_DAD_SOUND_EFFECTS = [
 ];
 
 export function postNewLevel(): void {
+  if (!config.silenceMomDad) {
+    return;
+  }
+
   for (const soundEffect of MOM_AND_DAD_SOUND_EFFECTS) {
     g.sfx.Stop(soundEffect);
   }

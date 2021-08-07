@@ -334,8 +334,6 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 <!--
 - Hush's appear animation is sped up
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
-- The Polaroid or The Negative will be automatically removed depending on your run goal.
-- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have.
 - Some things that are unseeded are now seeded:
   - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
   - Dead Sea Scrolls item selection

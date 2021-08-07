@@ -1,9 +1,9 @@
 import { log } from "isaacscript-common";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 // Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.removeLambBody) {
+  if (!config.removeLambBody) {
     return;
   }
 

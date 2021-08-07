@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../util";
 
 const MAX_FAMILIARS = 64;
@@ -8,13 +9,17 @@ const sprite = initSprite("gfx/ui/max_familiars.anm2");
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
+  if (!config.showMaxFamiliars) {
+    return;
+  }
+
   const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
   g.run.maxFamiliars = familiars.length >= MAX_FAMILIARS;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!g.config.showMaxFamiliars) {
+  if (!config.showMaxFamiliars) {
     return;
   }
 

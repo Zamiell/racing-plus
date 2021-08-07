@@ -1,7 +1,7 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export default function disableCurses(): LevelCurse | null {
-  if (!g.config.disableCurses) {
+  if (!config.disableCurses) {
     return null;
   }
 

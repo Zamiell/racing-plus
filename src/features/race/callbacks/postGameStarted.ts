@@ -1,5 +1,6 @@
 import { log, onSetSeed } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -10,7 +11,7 @@ import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
 export default function racePostGameStarted(): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

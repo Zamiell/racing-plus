@@ -14,15 +14,17 @@
 // new function ourselves
 
 import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as angels from "../angels";
 import {
   FAST_CLEAR_WHITELIST,
   FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
 } from "../constants";
 import * as krampus from "../krampus";
+import v from "../v";
 
 export default function fastClearPostEntityKill(entity: Entity): void {
-  if (!g.config.fastClear) {
+  if (!config.fastClear) {
     return;
   }
 
@@ -41,7 +43,7 @@ export default function fastClearPostEntityKill(entity: Entity): void {
   // We can't set the CanShutDoors property now because it will prevent the NPC from dropping a
   // heart (in the case of Tainted Magdalene) or a coin (in the case of Tainted Keeper)
   // (the heart/coin will drop on the next frame)
-  g.run.room.fastClearNPCQueue.push({
+  v.room.NPCQueue.push({
     gameFrameToModify: gameFrameCount + 1,
     entityPtr: EntityPtr(npc),
   });

@@ -1,8 +1,8 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as crawlspace from "../crawlspace";
 
 export default function fastTravelPostPlayerUpdate(player: EntityPlayer): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 

@@ -1,9 +1,10 @@
 // Automatically open the Hush door to speed things up
 
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export function postNewLevel(): void {
-  if (!g.config.openHushDoor) {
+  if (!config.openHushDoor) {
     return;
   }
 
@@ -11,7 +12,7 @@ export function postNewLevel(): void {
   const player = Isaac.GetPlayer();
 
   if (stage === 9) {
-    const hushDoor = g.r.GetDoor(1);
+    const hushDoor = g.r.GetDoor(DoorSlot.UP0);
     if (hushDoor !== null) {
       hushDoor.TryUnlock(player, true);
     }

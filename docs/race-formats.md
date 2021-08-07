@@ -2,6 +2,10 @@
 
 On Racing+, players have the option to choose from different kinds of races.
 
+Regardless of the format:
+- The Polaroid or The Negative will be automatically removed depending on your run goal.
+- The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have (if you have the Fast-Travel feature enabled).
+
 <br />
 
 ## Unseeded
@@ -43,11 +47,11 @@ On Racing+, players have the option to choose from different kinds of races.
   - They will have a "debuff" effect that removes all of the items. The debuff will last 45 seconds.
   - This mechanic does not apply to deaths in Devil Rooms, Sacrifice Rooms, or the Boss Rush. (Deaths in those rooms will be permanent.)
 -->
-- Sol is removed from all pools.
-- Cain's Eye is removed.
-<!--
-- Cain's Eye, Broken Ankh, Silver Dollar, Bloody Crown, Daemon's Tail, Child's Heart, Rusted Key, Match Stick, Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, Holy Crown, Wicked Crown, and Nuh Uh! trinkets are removed from the trinket pool (since they change floor-generation or drop-generation).
--->
+- Sol is removed from all pools (since it is practically useless with the Compass).
+- Cain's Eye is removed from the trinket pool (since it is useless with the Compass).
+- Broken Ankh is removed from the trinket pool (since the custom death mechanic has priority over random revivals).
+- Daemon's Tail, Child's Heart, Rusted Key, Match Stick, Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, and Nuh Uh! are removed from the trinket pool (since they change drop-generation).
+- Silver Dollar, Bloody Crown, Telescope Lens, Holy Crown, and Wicked Crown are removed from the trinket pool (since they change floor-generation).
 
 <br />
 

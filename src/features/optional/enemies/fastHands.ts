@@ -1,11 +1,11 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const SHADOW_APPEAR_FRAME = 40;
 const START_FRAME = SHADOW_APPEAR_FRAME - 15;
 const DELAY_FRAMES = 4;
 
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.fastHands) {
+  if (!config.fastHands) {
     return;
   }
 

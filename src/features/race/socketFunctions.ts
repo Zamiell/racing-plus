@@ -1,5 +1,5 @@
+import { jsonDecode } from "isaacscript-common";
 import g from "../../globals";
-import * as jsonHelper from "../../jsonHelper";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import RaceData, { cloneRaceData } from "./types/RaceData";
@@ -61,7 +61,7 @@ functionMap.set("set", (rawData: string) => {
 
     case "table": {
       // "startingItems" is the only property that is a table
-      const newArray = jsonHelper.decode(data) as unknown as int[];
+      const newArray = jsonDecode(data) as unknown as int[];
       g.race.startingItems = newArray;
       break;
     }

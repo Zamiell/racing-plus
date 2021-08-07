@@ -38,29 +38,27 @@ import * as usePill from "./callbacks/usePill";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
+import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { VERSION } from "./constants";
+import * as fastClearVars from "./features/optional/major/fastClear/v";
+import * as fastTravelVars from "./features/optional/major/fastTravel/v";
+import * as showPills from "./features/optional/quality/showPills";
 import * as modConfigMenu from "./modConfigMenu";
-import * as saveDat from "./saveDat";
 
 main();
 
 function main() {
-  const modVanilla = RegisterMod("Racing+", 1);
-  const mod = upgradeMod(modVanilla);
+  const mod = RegisterMod("Racing+", 1);
+  const modUpgraded = upgradeMod(mod);
 
   welcomeBanner();
-
-  saveDat.setMod(mod); // Give a copy of the mod object to the code in charge of saving
-  saveDat.load(); // Load the "save1.dat" file
-
-  modConfigMenu.register(); // Integrate with Mod Config Menu
-
-  registerCallbacks(mod);
+  initFeatureVariables();
+  registerCallbacks(modUpgraded);
 }
 
 function welcomeBanner() {
@@ -71,6 +69,17 @@ function welcomeBanner() {
   log(welcomeTextBorder);
   log(`| ${welcomeText} |`);
   log(welcomeTextBorder);
+}
+
+function initFeatureVariables() {
+  modConfigMenu.init();
+
+  // Major features
+  fastClearVars.init();
+  fastTravelVars.init();
+
+  // QoL
+  showPills.init();
 }
 
 function registerCallbacks(mod: ModUpgraded) {
@@ -159,4 +168,5 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
+  postGridEntityRemove.init(mod);
 }

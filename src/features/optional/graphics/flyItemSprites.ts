@@ -1,5 +1,5 @@
 import { COLLECTIBLE_SPRITE_LAYER } from "../../../constants";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const PNG_DIRECTORY = "gfx/items/collectibles";
 const CUSTOM_PNG_MAP = new Map<CollectibleType, string>([
@@ -18,7 +18,7 @@ const CUSTOM_PNG_MAP = new Map<CollectibleType, string>([
 ]);
 
 export function postPickupInit(pickup: EntityPickup): void {
-  if (!g.config.flyItemSprites) {
+  if (!config.flyItemSprites) {
     return;
   }
 

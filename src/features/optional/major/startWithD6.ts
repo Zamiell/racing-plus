@@ -1,5 +1,6 @@
 import { getPlayerIndex, getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
@@ -30,6 +31,10 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
+  if (!config.startWithD6) {
+    return;
+  }
+
   for (const player of getPlayers()) {
     const index = getPlayerIndex(player);
     const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
@@ -39,7 +44,7 @@ export function postUpdate(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!g.config.startWithD6) {
+  if (!config.startWithD6) {
     return;
   }
 
@@ -116,6 +121,10 @@ function giveActiveD6(player: EntityPlayer) {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  if (!config.startWithD6) {
+    return;
+  }
+
   checkGenesisRoom();
 }
 

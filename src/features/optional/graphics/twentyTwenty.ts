@@ -1,11 +1,11 @@
 import { COLLECTIBLE_SPRITE_LAYER } from "../../../constants";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const CUSTOM_PNG_PATH =
   "gfx/items/collectibles/collectibles_245_2020_custom.png";
 
 export function postPickupInit(pickup: EntityPickup): void {
-  if (!g.config.twentyTwenty) {
+  if (!config.twentyTwenty) {
     return;
   }
 

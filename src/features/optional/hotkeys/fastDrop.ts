@@ -1,5 +1,6 @@
 import { getPlayers } from "isaacscript-common";
 import g from "../../../globals";
+import { hotkeys } from "../../../modConfigMenu";
 
 enum FastDropTarget {
   All,
@@ -22,18 +23,15 @@ function checkInput() {
 
 function checkInputAll(player: EntityPlayer) {
   if (
-    g.hotkeys.fastDropAllKeyboard !== -1 &&
-    isKeyboardPressed(g.hotkeys.fastDropAllKeyboard, player.ControllerIndex)
+    hotkeys.fastDropAllKeyboard !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropAllKeyboard, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.All);
   }
 
   if (
-    g.hotkeys.fastDropAllController !== -1 &&
-    Input.IsButtonPressed(
-      g.hotkeys.fastDropAllController,
-      player.ControllerIndex,
-    )
+    hotkeys.fastDropAllController !== -1 &&
+    Input.IsButtonPressed(hotkeys.fastDropAllController, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.All);
   }
@@ -41,19 +39,16 @@ function checkInputAll(player: EntityPlayer) {
 
 function checkInputTrinkets(player: EntityPlayer) {
   if (
-    g.hotkeys.fastDropTrinketsKeyboard !== -1 &&
-    isKeyboardPressed(
-      g.hotkeys.fastDropTrinketsKeyboard,
-      player.ControllerIndex,
-    )
+    hotkeys.fastDropTrinketsKeyboard !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.Trinkets);
   }
 
   if (
-    g.hotkeys.fastDropTrinketsController !== -1 &&
+    hotkeys.fastDropTrinketsController !== -1 &&
     Input.IsButtonPressed(
-      g.hotkeys.fastDropTrinketsController,
+      hotkeys.fastDropTrinketsController,
       player.ControllerIndex,
     )
   ) {
@@ -63,16 +58,16 @@ function checkInputTrinkets(player: EntityPlayer) {
 
 function checkInputPocket(player: EntityPlayer) {
   if (
-    g.hotkeys.fastDropPocketKeyboard !== -1 &&
-    isKeyboardPressed(g.hotkeys.fastDropPocketKeyboard, player.ControllerIndex)
+    hotkeys.fastDropPocketKeyboard !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropPocketKeyboard, player.ControllerIndex)
   ) {
     fastDrop(player, FastDropTarget.Pocket);
   }
 
   if (
-    g.hotkeys.fastDropPocketController !== -1 &&
+    hotkeys.fastDropPocketController !== -1 &&
     Input.IsButtonPressed(
-      g.hotkeys.fastDropPocketController,
+      hotkeys.fastDropPocketController,
       player.ControllerIndex,
     )
   ) {

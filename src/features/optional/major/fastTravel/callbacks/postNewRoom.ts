@@ -1,9 +1,9 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as checkStateComplete from "../checkStateComplete";
 import * as crawlspace from "../crawlspace";
 
 export default function fastTravelPostNewRoom(): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 

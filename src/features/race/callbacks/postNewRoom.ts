@@ -1,4 +1,4 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
@@ -11,7 +11,7 @@ import * as tempMoreOptions from "../tempMoreOptions";
 import * as topSprite from "../topSprite";
 
 export default function racePostNewRoom(): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

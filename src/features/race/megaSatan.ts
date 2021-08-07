@@ -15,7 +15,7 @@ export function postNewLevel(): void {
     return;
   }
 
-  const topDoor = g.r.GetDoor(1);
+  const topDoor = g.r.GetDoor(DoorSlot.UP0);
   if (topDoor !== null) {
     topDoor.TryUnlock(player, true);
     g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);

@@ -1,9 +1,10 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export function useItem(): void {
   const HUD = g.g.GetHUD();
 
-  if (!g.config.removeFortuneCookieBanners) {
+  if (!config.removeFortuneCookieBanners) {
     return;
   }
 

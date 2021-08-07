@@ -1,5 +1,6 @@
 import { log } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { consoleCommand, restartAsCharacter } from "../../../util";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -10,7 +11,7 @@ import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
 export default function racePostRender(): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 
@@ -44,7 +45,7 @@ function checkGameOpenedInMiddleOfRace() {
 
 export function checkRestartWrongRaceCharacter(): boolean {
   if (
-    !g.config.clientCommunication ||
+    !config.clientCommunication ||
     g.race.status === "none" ||
     g.race.format === "custom"
   ) {
@@ -64,7 +65,7 @@ export function checkRestartWrongRaceCharacter(): boolean {
 
 export function checkRestartWrongRaceSeed(): boolean {
   if (
-    !g.config.clientCommunication ||
+    !config.clientCommunication ||
     g.race.format !== "seeded" ||
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing"

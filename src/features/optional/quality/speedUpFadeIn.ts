@@ -1,10 +1,11 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 // This is fine tuned from trial and error to be a good speed
 const FADE_IN_SPEED = 0.15;
 
 export function postRender(): void {
-  if (!g.config.speedUpFadeIn) {
+  if (!config.speedUpFadeIn) {
     return;
   }
 

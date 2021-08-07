@@ -1,13 +1,14 @@
 import { gridToPos } from "isaacscript-common";
-import g from "../../../../globals";
-import { centerPlayers } from "../../../mandatory/centerStart";
-import { WarpState } from "./enums";
+import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
+import { centerPlayers } from "../../../../mandatory/centerStart";
+import { WarpState } from "../enums";
 
 // Near the top-left of the room
 const SPRITE_SPACING = 30;
 
 export default function showDreamCatcherItemPostRender(): void {
-  if (!g.config.showDreamCatcherItem) {
+  if (!config.showDreamCatcherItem) {
     return;
   }
 

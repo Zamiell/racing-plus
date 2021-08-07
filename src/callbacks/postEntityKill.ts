@@ -1,11 +1,11 @@
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
-import * as postWombPath from "../features/mandatory/postWombPath";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as skipBeastIntroCutscene from "../features/mandatory/skipBeastIntroCutscene";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
+import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 
 export function init(mod: Mod): void {
@@ -72,7 +72,7 @@ function mom(entity: Entity) {
 
 // EntityType.ENTITY_MOMS_HEART (78)
 function momsHeart(entity: Entity) {
-  postWombPath.postEntityKillMomsHeart(entity);
+  fastTravelPostEntityKill.momsHeart(entity);
 }
 
 // EntityType.ENTITY_THE_LAMB (273)
@@ -87,7 +87,7 @@ function megaSatan2(entity: Entity) {
 
 // EntityType.ENTITY_HUSH (407)
 function hush(entity: Entity) {
-  postWombPath.postEntityKillHush(entity);
+  fastTravelPostEntityKill.hush(entity);
   racePostEntityKill.hush(entity);
 }
 

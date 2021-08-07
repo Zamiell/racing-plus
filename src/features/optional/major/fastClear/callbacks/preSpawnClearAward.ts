@@ -1,8 +1,8 @@
 import { getRoomNPCs } from "isaacscript-common";
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 
 export default function fastClearPreSpawnClearAward(): void {
-  if (!g.config.fastClear) {
+  if (!config.fastClear) {
     return;
   }
 

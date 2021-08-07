@@ -1,9 +1,10 @@
 import { getRoomIndex, log } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import * as trophy from "../../mandatory/trophy";
 
 export default function racePostUpdate(): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

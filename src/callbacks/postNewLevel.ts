@@ -1,17 +1,13 @@
 import { anyPlayerIs, isRepentanceStage, log } from "isaacscript-common";
-import { debugLog } from "../debugLog";
 import * as streakText from "../features/mandatory/streakText";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
-import * as saveDat from "../saveDat";
 import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
 
 export function main(): void {
-  debugLog("MC_POST_NEW_LEVEL", true);
-
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -23,19 +19,14 @@ export function main(): void {
   // Make sure the callbacks run in the right order
   // (naturally, PostNewLevel gets called before the PostGameStarted callbacks)
   if (gameFrameCount === 0 && !g.run.forceNextLevel) {
-    debugLog("MC_POST_NEW_LEVEL", false);
     return;
   }
   g.run.forceNextLevel = false;
 
   newLevel();
-
-  debugLog("MC_POST_NEW_LEVEL", false);
 }
 
 export function newLevel(): void {
-  debugLog("MC_POST_NEW_LEVEL2", true);
-
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
@@ -46,10 +37,6 @@ export function newLevel(): void {
 
   // Clear variables that track things per level
   g.run.level = new GlobalsRunLevel(stage, stageType);
-
-  // Internally, the game saves the run state at the beginning of every floor
-  // Mimic this functionality with our own mod data
-  saveDat.save();
 
   // Other miscellaneous things
   if (shouldShowLevelText()) {
@@ -67,8 +54,6 @@ export function newLevel(): void {
 
   // Call PostNewRoom manually (they get naturally called out of order)
   postNewRoom.newRoom();
-
-  debugLog("MC_POST_NEW_LEVEL2", false);
 }
 
 function shouldShowLevelText() {

@@ -2,9 +2,7 @@ import { log } from "isaacscript-common";
 import RaceData from "../features/race/types/RaceData";
 import RaceVars from "../features/race/types/RaceVars";
 import SpeedrunData from "../features/speedrun/types/SpeedrunData";
-import Config from "./Config";
 import GlobalsRun from "./GlobalsRun";
-import Hotkeys from "./Hotkeys";
 import Sandbox from "./Sandbox";
 import SocketClient from "./SocketClient";
 
@@ -21,10 +19,6 @@ export default class Globals {
   sfx = SFXManager();
   music = MusicManager();
   font = Font();
-
-  // Variables configurable from Mod Config Menu
-  config = new Config();
-  hotkeys = new Hotkeys();
 
   /** Variables that are reset at the beginning of every run. */
   run = new GlobalsRun(0, []);

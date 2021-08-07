@@ -1,6 +1,5 @@
 import * as cache from "../cache";
 import { VERSION } from "../constants";
-import { debugLog } from "../debugLog";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
@@ -9,7 +8,7 @@ import * as streakText from "../features/mandatory/streakText";
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/quality/customConsole";
-import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/postRender";
+import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
@@ -22,24 +21,21 @@ import { inRaceRoom } from "../features/race/raceRoom";
 import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
 import * as speedrun from "../features/speedrun/speedrun";
 import g from "../globals";
+import { config } from "../modConfigMenu";
 import { consoleCommand } from "../util";
 
 const sprite = Sprite();
 sprite.Load("gfx/characters/058_book of shadows.anm2", true);
 
 export function main(): void {
-  debugLog("MC_POST_RENDER", true);
-
   cache.updateAPIFunctions();
 
   if (checkRestart()) {
-    debugLog("MC_POST_RENDER", false);
     return;
   }
 
   // If there are any errors, we can skip the remainder of this function
   if (errors.postRender()) {
-    debugLog("MC_POST_RENDER", false);
     return;
   }
 
@@ -62,8 +58,6 @@ export function main(): void {
   showPills.postRender();
   showMaxFamiliars.postRender();
   customConsole.postRender();
-
-  debugLog("MC_POST_RENDER", false);
 }
 
 // Conditionally restart the game
@@ -104,7 +98,7 @@ function drawTopLeftText() {
   let y = 10;
   const lineLength = 15;
 
-  if (g.config.clientCommunication && g.run.victoryLaps > 0) {
+  if (config.clientCommunication && g.run.victoryLaps > 0) {
     // Display the number of victory laps
     // (this should have priority over showing the seed)
     const text = `Victory Lap #${g.run.victoryLaps}`;
@@ -138,7 +132,7 @@ function drawTopLeftText() {
       Isaac.RenderText(thirdLine, x, y, 2, 2, 2, 2);
     }
   } else if (
-    g.config.clientCommunication &&
+    config.clientCommunication &&
     g.race.raceID !== -1 &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
@@ -149,7 +143,7 @@ function drawTopLeftText() {
     const text = `Race ID: ${g.race.raceID}`;
     Isaac.RenderText(text, x, y, 2, 2, 2, 2);
   } else if (
-    g.config.showNumSacrifices &&
+    config.showNumSacrifices &&
     roomType === RoomType.ROOM_SACRIFICE &&
     roomFrameCount > 0
   ) {

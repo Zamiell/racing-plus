@@ -1,5 +1,6 @@
 import { log, PickingUpItem } from "isaacscript-common";
 import g from "../../globals";
+import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import socketFunctions, { reset } from "./socketFunctions";
@@ -11,7 +12,7 @@ const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

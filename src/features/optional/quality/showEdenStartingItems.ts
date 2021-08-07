@@ -1,5 +1,6 @@
 import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../util";
 
 // Near the top-left
@@ -9,7 +10,7 @@ const SPRITE_SPACING = 30;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!g.config.showEdenStartingItems) {
+  if (!config.showEdenStartingItems) {
     return;
   }
 
@@ -33,9 +34,7 @@ function drawItemSprites() {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!g.config.showEdenStartingItems) {
-    g.run.edenStartingItems.activeSprite = null;
-    g.run.edenStartingItems.passiveSprite = null;
+  if (!config.showEdenStartingItems) {
     return;
   }
 
@@ -80,7 +79,7 @@ function shouldShowSprites() {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!g.config.showEdenStartingItems) {
+  if (!config.showEdenStartingItems) {
     return;
   }
 

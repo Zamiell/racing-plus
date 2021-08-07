@@ -1,11 +1,13 @@
 import { log } from "isaacscript-common";
 import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import { getFinalFrameOfAnimation } from "../../../../../util";
 import * as angels from "../angels";
 import * as krampus from "../krampus";
+import v from "../v";
 
 export default function fastClearPostUpdate(): void {
-  if (!g.config.fastClear) {
+  if (!config.fastClear) {
     return;
   }
 
@@ -17,10 +19,10 @@ export default function fastClearPostUpdate(): void {
 function checkQueue() {
   const gameFrameCount = g.g.GetFrameCount();
 
-  for (let i = g.run.room.fastClearNPCQueue.length - 1; i >= 0; i--) {
-    const fastClearNPCDescription = g.run.room.fastClearNPCQueue[i];
+  for (let i = v.room.NPCQueue.length - 1; i >= 0; i--) {
+    const fastClearNPCDescription = v.room.NPCQueue[i];
     if (gameFrameCount >= fastClearNPCDescription.gameFrameToModify) {
-      g.run.room.fastClearNPCQueue.splice(i, 1);
+      v.room.NPCQueue.splice(i, 1);
       const entity = fastClearNPCDescription.entityPtr.Ref;
       if (entity !== null) {
         const npc = entity.ToNPC();

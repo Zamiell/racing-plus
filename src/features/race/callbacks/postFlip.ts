@@ -1,8 +1,8 @@
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import formatSetup from "../formatSetup";
 
 export function postFirstFlip(player: EntityPlayer): void {
-  if (!g.config.clientCommunication) {
+  if (!config.clientCommunication) {
     return;
   }
 

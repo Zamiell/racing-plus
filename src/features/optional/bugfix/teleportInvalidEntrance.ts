@@ -6,11 +6,12 @@ import {
 } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
 import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
 export function postNewRoom(): void {
-  if (!g.config.teleportInvalidEntrance) {
+  if (!config.teleportInvalidEntrance) {
     return;
   }
 

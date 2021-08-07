@@ -1,8 +1,9 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {
-  if (!g.config.appearHands) {
+  if (!config.appearHands) {
     return;
   }
 
@@ -18,7 +19,7 @@ export function postNPCUpdate(npc: EntityNPC): void {
 
 // ModCallbacks.MC_PRE_NPC_UPDATE (69)
 export function preNPCUpdate(npc: EntityNPC): boolean | void {
-  if (!g.config.appearHands) {
+  if (!config.appearHands) {
     return undefined;
   }
 
@@ -34,7 +35,7 @@ export function preNPCUpdate(npc: EntityNPC): boolean | void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!g.config.appearHands) {
+  if (!config.appearHands) {
     return;
   }
 

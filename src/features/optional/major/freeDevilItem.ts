@@ -5,6 +5,7 @@ import {
   isRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { isSelfDamage } from "../../../util";
 import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
@@ -22,7 +23,7 @@ export function entityTakeDmgPlayer(
   tookDamage: Entity,
   damageFlags: int,
 ): void {
-  if (!g.config.freeDevilItem) {
+  if (!config.freeDevilItem) {
     return;
   }
 
@@ -39,7 +40,7 @@ function checkForSelfDamage(tookDamage: Entity, damageFlags: int) {
 
 // ModCallbacks.MC_POST_NEW_ROOM (18)
 export function postNewRoom(): void {
-  if (!g.config.freeDevilItem) {
+  if (!config.freeDevilItem) {
     return;
   }
 

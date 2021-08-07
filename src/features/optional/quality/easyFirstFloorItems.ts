@@ -3,11 +3,12 @@
 
 import { isRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export function preRoomEntitySpawn(
   gridIndex: int,
 ): [EntityType, int, int] | void {
-  if (!g.config.easyFirstFloorItems) {
+  if (!config.easyFirstFloorItems) {
     return undefined;
   }
 

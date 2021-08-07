@@ -2,10 +2,10 @@
 // The same mechanic also applies to Dark Judas
 
 import { getPlayers } from "isaacscript-common";
-import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 export function postGameStarted(): void {
-  if (!g.config.judasAddBomb) {
+  if (!config.judasAddBomb) {
     return;
   }
 

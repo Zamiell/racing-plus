@@ -1,8 +1,8 @@
-import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
 import * as heavenDoor from "../heavenDoor";
 
 export function heavenLightDoor(effect: EntityEffect): void {
-  if (!g.config.fastTravel) {
+  if (!config.fastTravel) {
     return;
   }
 
