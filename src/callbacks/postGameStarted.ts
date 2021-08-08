@@ -8,6 +8,7 @@ import * as seededFloors from "../features/mandatory/seededFloors";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
+import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
@@ -55,31 +56,18 @@ export function main(isContinued: boolean): void {
   // added on top
   showEdenStartingItems.postGameStarted();
 
-  // Optional features - Major
+  // Major features
   racePostGameStarted();
   startWithD6.postGameStarted();
 
-  // Optional features - Quality of Life
+  // Quality of life
   samsonDropHeart.postGameStarted();
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
+  showDreamCatcherItemPostGameStarted();
 
-  // Remove the 3 placeholder items if this is not a diversity race
-  if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.format !== "diversity"
-  ) {
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
-    );
-  }
+  // Miscellaneous
+  removePlaceholderItems();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)
@@ -98,4 +86,23 @@ function setSeeds() {
   // a curse from appearing
   // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
+}
+
+function removePlaceholderItems() {
+  // Remove the 3 placeholder items if this is not a diversity race
+  if (
+    g.race.status !== "in progress" ||
+    g.race.myStatus !== "racing" ||
+    g.race.format !== "diversity"
+  ) {
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
+    );
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
+    );
+    g.itemPool.RemoveCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
+    );
+  }
 }

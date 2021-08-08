@@ -6,10 +6,9 @@ import {
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
+import DreamCatcherWarpState from "../../../../../types/DreamCatcherWarpState";
 import { PickupPriceCustom } from "../../../../../types/enums";
-import { initGlowingItemSprite, initSprite } from "../../../../../util";
-import { bossPNGMap } from "../bossPNGMap";
-import { WarpState } from "../enums";
+import * as sprites from "../sprites";
 import v from "../v";
 
 export default function showDreamCatcherItemPostNewRoom(): void {
@@ -19,7 +18,7 @@ export default function showDreamCatcherItemPostNewRoom(): void {
 
   revertItemPrices(); // This must be before the "warp()" function
   warp();
-  setItemSprites();
+  sprites.set();
 }
 
 // When we initially visited the room, we set the prices of the items to an arbitrary value
@@ -51,7 +50,7 @@ function warp() {
     return;
   }
 
-  v.level.warpState = WarpState.Warping;
+  v.level.warpState = DreamCatcherWarpState.Warping;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
@@ -85,7 +84,7 @@ function warp() {
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
-  v.level.warpState = WarpState.RepositioningPlayer;
+  v.level.warpState = DreamCatcherWarpState.RepositioningPlayer;
 }
 
 function shouldWarp() {
@@ -95,7 +94,7 @@ function shouldWarp() {
 
   return (
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    v.level.warpState === WarpState.Initial &&
+    v.level.warpState === DreamCatcherWarpState.Initial &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
     roomIndex === startingRoomIndex &&
@@ -201,58 +200,4 @@ function restoreMinimapDisplayFlags(displayFlagsMap: LuaTable<int, int>) {
     room.DisplayFlags = displayFlags;
   }
   g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
-}
-
-function setItemSprites() {
-  if (!shouldShowSprites()) {
-    v.level.dreamCatcherSprite = null;
-    v.level.itemSprites = [];
-    v.level.bossSprites = [];
-    return;
-  }
-
-  v.level.dreamCatcherSprite = initGlowingItemSprite(
-    CollectibleType.COLLECTIBLE_DREAM_CATCHER,
-  );
-
-  for (let i = 0; i < v.level.items.length; i++) {
-    if (v.level.itemSprites[i] === null) {
-      const collectibleType = v.level.items[i];
-      v.level.itemSprites[i] = initGlowingItemSprite(collectibleType);
-    }
-  }
-
-  for (let i = 0; i < v.level.bosses.length; i++) {
-    if (v.level.bossSprites[i] === null) {
-      const [entityType, variant] = v.level.bosses[i];
-      v.level.bossSprites[i] = initBossSprite(entityType, variant);
-    }
-  }
-}
-
-// Only show the sprites in the starting room
-function shouldShowSprites() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const roomIndex = getRoomIndex();
-  return (
-    v.level.items.length > 0 &&
-    roomIndex === startingRoomIndex &&
-    // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
-    !g.g.IsGreedMode()
-  );
-}
-
-function initBossSprite(entityType: EntityType, variant: int) {
-  const pngArray = bossPNGMap.get(entityType);
-  if (pngArray === undefined) {
-    error(`Failed to find the boss of ${entityType} in the boss PNG map.`);
-  }
-  const pngFileName = pngArray[variant];
-  if (pngFileName === undefined) {
-    error(
-      `Failed to find the boss of ${entityType}.${variant} in the boss PNG map.`,
-    );
-  }
-  const pngPath = `gfx/ui/boss/${pngFileName}`;
-  return initSprite("gfx/boss.anm2", pngPath);
 }

@@ -186,6 +186,7 @@ export function preItemPickup(pickingUpItem: PickingUpItem): void {
   const trinket = pickingUpItem.type === ItemType.ITEM_TRINKET;
   const itemName = getItemName(pickingUpItem.id, trinket);
 
+  Isaac.DebugString("GETTING HERE 1");
   set(itemName);
 }
 
@@ -208,11 +209,6 @@ function set(text: string) {
   v.run.frameSet = Isaac.GetFrameCount();
 }
 
-export function setTab(text: string | null): void {
-  v.run.tabText = text;
-  if (text === null) {
-    v.run.frameSet = null;
-  } else {
-    v.run.frameSet = Isaac.GetFrameCount();
-  }
+export function setTab(value: string | null): void {
+  v.run.tabText = value;
 }

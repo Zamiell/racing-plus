@@ -64,8 +64,7 @@ export function postNewRoom(): void {
 
 function setItemSprites() {
   if (!shouldShowSprites()) {
-    v.run.activeSprite = null;
-    v.run.passiveSprite = null;
+    resetItemSprites();
     return;
   }
 
@@ -75,6 +74,11 @@ function setItemSprites() {
   if (v.run.passiveSprite === null) {
     v.run.passiveSprite = initGlowingItemSprite(v.run.passive);
   }
+}
+
+function resetItemSprites() {
+  v.run.activeSprite = null;
+  v.run.passiveSprite = null;
 }
 
 // Only show the sprites in the starting room of the first floor
@@ -100,9 +104,7 @@ export function postGameStarted(): void {
     return;
   }
 
-  v.run.activeSprite = null;
-  v.run.passiveSprite = null;
-
+  resetItemSprites();
   storeItemIdentities();
 }
 

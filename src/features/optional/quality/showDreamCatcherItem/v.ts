@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { WarpState } from "./enums";
+import DreamCatcherWarpState from "../../../../types/DreamCatcherWarpState";
 
 const v = {
   level: {
@@ -12,7 +12,7 @@ const v = {
     dreamCatcherSprite: null as Sprite | null,
     itemSprites: [] as Sprite[],
     bossSprites: [] as Sprite[],
-    warpState: WarpState.Initial,
+    warpState: DreamCatcherWarpState.Initial,
   },
 };
 export default v;

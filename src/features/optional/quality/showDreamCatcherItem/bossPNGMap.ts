@@ -106,7 +106,11 @@ export const bossPNGMap = new Map([
   // The file name for Gurglings appears to be incorrectly labeled
   [
     EntityType.ENTITY_GURGLING,
-    ["portrait_276.0_gurglings.png", "portrait_turdlings.png"], // cspell:disable-line
+    [
+      "portrait_276.0_gurglings.png",
+      "portrait_276.0_gurglings.png",
+      "portrait_turdlings.png", // cspell:disable-line
+    ],
   ],
   [EntityType.ENTITY_STAIN, ["portrait_401.0_thestain.png"]], // cspell:disable-line
   [EntityType.ENTITY_BROWNIE, ["portrait_402.0_brownie.png"]],
