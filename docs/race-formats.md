@@ -104,8 +104,14 @@ On Racing+, players have the option for races to end at different places.
 ## Hush
 
 - Hush is the boss in the Blue Womb.
+- Trapdoors and beams of light will be deleted on floor 8.
+- After killing Hush, the door to The Void will be deleted.
+
+<br />
 
 ## Mother
+
+
 
 ## Custom
 
