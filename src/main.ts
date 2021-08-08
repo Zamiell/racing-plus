@@ -42,6 +42,7 @@ import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
+import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { VERSION } from "./constants";
@@ -157,6 +158,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_TRANSFORMATION,
     postTransformation.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_SACRIFICE,
+    postSacrifice.main,
   );
 }
 

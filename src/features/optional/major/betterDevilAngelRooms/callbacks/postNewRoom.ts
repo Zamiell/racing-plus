@@ -76,7 +76,7 @@ function setCleared() {
     return;
   }
 
-  // If there is an enemy in the room, then the doors will start closed
+  // If the vanilla version of the room had an enemy in it, then the doors will start closed
   // Manually fix this
   g.r.SetClear(true);
   for (const door of getDoors()) {

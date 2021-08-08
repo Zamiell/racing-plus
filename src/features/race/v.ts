@@ -8,6 +8,11 @@ const v = {
 
     numVictoryLaps: 0,
   },
+
+  level: {
+    numSacrifices: 0,
+  },
+
   room: {
     showEndOfRunText: false,
   },

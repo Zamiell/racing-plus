@@ -1,6 +1,5 @@
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
-import * as showNumSacrifices from "../features/optional/quality/showNumSacrifices";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -20,7 +19,4 @@ function player(
   // Major features
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
-
-  // Quality of life
-  showNumSacrifices.entityTakeDmgPlayer(damageFlags);
 }

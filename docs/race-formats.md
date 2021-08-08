@@ -89,8 +89,7 @@ On Racing+, players have the option for races to end at different places.
 ## The Lamb
 
 - The Lamb is the boss at the end of the Dark Room.
-- In Racing+, 4 gold chests will always spawn at the beginning of the Dark Room (instead of 4 red chests).
-- Teleporting to the Dark Room via a Sacrifice Room on floors 1 through 8 will send you to the next floor instead.
+- The spikes in a Sacrifice Room will be deleted after the 11th sacrifice.
 
 <br />
 
@@ -98,23 +97,15 @@ On Racing+, players have the option for races to end at different places.
 
 - Mega Satan is the boss behind the giant locked door. Players are allowed to take either path to get to Mega Satan.
 - The door to Mega Satan will automatically open upon reaching The Chest or the Dark Room.
-- Teleporting to the Dark Room via a Sacrifice Room on floors 1 through 8 will send you to the next floor instead.
+- The spikes in a Sacrifice Room will be deleted after the 11th sacrifice.
 
 <br />
 
-## Everything
+## Hush
 
-- This goal requires you to kill Isaac, Satan, Blue Baby, The Lamb, and Mega Satan, in order.
-- Both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to complete the run.
-- After defeating It Lives!, the beam of light will always spawn to take you to The Cathedral.
-- After defeating Isaac, a trapdoor will spawn to take you to Sheol.
-- After defeating Satan, a beam of light will spawn to take you to The Chest.
-- After defeating Blue Baby, a trapdoor will spawn to take you to the Dark Room.
-- After defeating The Lamb, backtrack to the starting room and the Mega Satan door will automatically open.
-- Defeat Mega Satan to complete the run.
-- Teleporting to the Dark Room via a Sacrifice Room on floors 1 through 8 will send you to the next floor instead.
+- Hush is the boss in the Blue Womb.
 
-<br />
+## Mother
 
 ## Custom
 

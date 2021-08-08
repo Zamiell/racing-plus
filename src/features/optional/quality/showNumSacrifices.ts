@@ -1,4 +1,4 @@
-import { hasFlag, saveDataManager } from "isaacscript-common";
+import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -16,16 +16,9 @@ function featureEnabled() {
   return config.showNumSacrifices;
 }
 
-export function entityTakeDmgPlayer(damageFlags: int): void {
-  const roomType = g.r.GetType();
-
-  if (roomType !== RoomType.ROOM_SACRIFICE) {
-    return;
-  }
-
-  if (hasFlag(damageFlags, DamageFlag.DAMAGE_SPIKES)) {
-    v.level.numSacrifices += 1;
-  }
+// ModCallbacksCustom.MC_POST_SACRIFICE
+export function postSacrifice(_player: EntityPlayer, numSacrifices: int): void {
+  v.level.numSacrifices = numSacrifices;
 }
 
 export function shouldShowNumSacrifices(): boolean {

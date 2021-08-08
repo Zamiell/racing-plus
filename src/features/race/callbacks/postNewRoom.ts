@@ -1,6 +1,7 @@
 import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
+import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
@@ -23,4 +24,5 @@ export default function racePostNewRoom(): void {
   makeBossRushItemsFree.postNewRoom();
   removeStrangeDoor.postNewRoom();
   removeRepentanceDoor.postNewRoom();
+  preventSacrificeRoomTeleport.postNewRoom();
 }
