@@ -14,6 +14,7 @@ import {
   FastTravelState,
 } from "./enums";
 import * as state from "./state";
+import v from "./v";
 
 export function init(
   entity: GridEntity | EntityEffect,
@@ -159,7 +160,7 @@ export function checkPlayerTouched(
     player: EntityPlayer,
   ) => void,
 ): void {
-  if (g.run.fastTravel.state !== FastTravelState.Disabled) {
+  if (v.run.state !== FastTravelState.Disabled) {
     return;
   }
 

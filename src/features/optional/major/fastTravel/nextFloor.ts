@@ -16,8 +16,7 @@ export function goto(upwards: boolean): void {
   // command
   // However, when we travel to the same floor layout from an Repentance exit,
   // floors do not need to be reseeded for some reason
-  g.run.fastTravel.reseed =
-    stage === nextStage && !g.run.fastTravel.repentanceSecretExit;
+  v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
 
   // Executing a console command to change floors will not increment the "GetStagesWithoutDamage()"
   // variable
@@ -61,15 +60,15 @@ function getNextStage() {
     return stage;
   }
 
-  if (g.run.fastTravel.blueWomb) {
+  if (v.run.blueWomb) {
     return 9;
   }
 
-  if (g.run.fastTravel.theVoid) {
+  if (v.run.theVoid) {
     return 12;
   }
 
-  if (g.run.fastTravel.repentanceSecretExit) {
+  if (v.run.repentanceSecretExit) {
     if (repentanceStage) {
       // e.g. From Downpour 2 to Mines 1
       return stage + 1;
@@ -213,7 +212,7 @@ function getNextStageType(
     return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
-  if (g.run.fastTravel.repentanceSecretExit) {
+  if (v.run.repentanceSecretExit) {
     return getStageTypeRepentance(nextStage);
   }
 
@@ -382,8 +381,8 @@ function travelStage(stage: int, stageType: int) {
 
   consoleCommand(command);
 
-  if (g.run.fastTravel.reseed) {
-    g.run.fastTravel.reseed = false;
+  if (v.run.reseed) {
+    v.run.reseed = false;
 
     // Doing a "reseed" immediately after a "stage" command won't mess anything up
     consoleCommand("reseed");

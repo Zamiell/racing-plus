@@ -1,34 +1,10 @@
 import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
-import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
 import PickingUpItemDescription from "./PickingUpItemDescription";
 import PillDescription from "./PillDescription";
 
 // Per-run variables
 export default class GlobalsRun {
-  /** Needed for speedruns to return to the same character. */
-  fastResetFrame = 0;
-
-  fastTravel = {
-    state: FastTravelState.Disabled,
-
-    /** These are Isaac frames, not game frames. */
-    framesPassed: 0,
-
-    playerIndexTouchedTrapdoor: -1,
-    upwards: false,
-    blueWomb: false,
-    theVoid: false,
-
-    /**
-     * Repentance secret exits are located in the room outside the grid.
-     * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
-     */
-    repentanceSecretExit: false,
-
-    reseed: false,
-  };
-
   fireworksSpawned = 0;
 
   freeDevilItem = {
@@ -39,7 +15,6 @@ export default class GlobalsRun {
   /** Used for Tainted Keeper when racing to the Boss Rush. */
   madeBossRushItemsFree = false;
 
-  maxFamiliars = false;
   pickingUpItem = new LuaTable<PlayerIndex, PickingUpItemDescription>();
 
   /** We track all identified pills so that we can display them. */
@@ -48,9 +23,6 @@ export default class GlobalsRun {
   pillsPHD = false;
   pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<PlayerIndex, int>();
-
-  /** Used to give only one double item Treasure Room. */
-  removeMoreOptions = false;
 
   /**
    * Whether or not to restart the run on the next frame.

@@ -4,6 +4,7 @@ import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
+import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
@@ -42,6 +43,7 @@ export function main(): void {
   controlsGraphic.postNewRoom();
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
+  tempMoreOptions.postNewRoom();
 
   // Major features
   racePostNewRoom();

@@ -1,4 +1,4 @@
-import g from "../../../globals";
+import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../util";
 
@@ -7,6 +7,20 @@ const SPRITE_POSITION = Vector(35, 33); // To the right of the coin count
 
 const sprite = initSprite("gfx/ui/max_familiars.anm2");
 
+const v = {
+  run: {
+    haveMaxFamiliars: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("showMaxFamiliars", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.showMaxFamiliars;
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.showMaxFamiliars) {
@@ -14,7 +28,7 @@ export function postUpdate(): void {
   }
 
   const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  g.run.maxFamiliars = familiars.length >= MAX_FAMILIARS;
+  v.run.haveMaxFamiliars = familiars.length >= MAX_FAMILIARS;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -27,7 +41,7 @@ export function postRender(): void {
 }
 
 function drawSprite() {
-  if (g.run.maxFamiliars) {
+  if (v.run.haveMaxFamiliars) {
     sprite.RenderLayer(0, SPRITE_POSITION);
   }
 }

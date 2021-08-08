@@ -1,7 +1,25 @@
-import { isActionTriggeredOnAnyInput } from "isaacscript-common";
+import {
+  isActionTriggeredOnAnyInput,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
+
+const v = {
+  run: {
+    /** Needed for speedruns to return to the same character. */
+    lastResetFrame: 0,
+  },
+};
+
+export function init(): void {
+  saveDataManager("fastReset", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.fastReset;
+}
 
 export function postRender(): void {
   if (!config.fastReset) {
@@ -44,7 +62,7 @@ function checkResetInput() {
 
 function reset() {
   const isaacFrameCount = Isaac.GetFrameCount();
-  if (g.run.roomsEntered <= 3 || isaacFrameCount <= g.run.fastResetFrame + 60) {
+  if (g.run.roomsEntered <= 3 || isaacFrameCount <= v.run.lastResetFrame + 60) {
     // A fast reset means to reset the current character,
     // a slow/normal reset means to go back to the first character
     g.speedrun.fastReset = true;
@@ -52,6 +70,6 @@ function reset() {
     consoleCommand("restart");
   } else {
     // In speedruns, we want to double tap R to return reset to the same character
-    g.run.fastResetFrame = isaacFrameCount;
+    v.run.lastResetFrame = isaacFrameCount;
   }
 }

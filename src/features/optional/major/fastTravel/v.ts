@@ -2,9 +2,20 @@ import { saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { FastTravelEntityDescription } from "./constants";
+import { FastTravelState } from "./enums";
 
 const v = {
   run: {
+    /** These are Isaac frames, not game frames. */
+    framesPassed: 0,
+
+    state: FastTravelState.Disabled,
+
+    playerIndexTouchedTrapdoor: -1,
+    upwards: false,
+    blueWomb: false,
+    theVoid: false,
+
     /**
      * We need to track the Repentance floors that we visited so that we can return to them during
      * the Backwards path.
@@ -19,6 +30,14 @@ const v = {
       mines2: false,
       ashpit2: false,
     },
+
+    /**
+     * Repentance secret exits are located in the room outside the grid.
+     * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
+     */
+    repentanceSecretExit: false,
+
+    reseed: false,
   },
 
   level: {

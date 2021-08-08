@@ -21,6 +21,6 @@ function player(
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
 
-  // QoL
+  // Quality of life
   showNumSacrifices.entityTakeDmgPlayer(damageFlags);
 }

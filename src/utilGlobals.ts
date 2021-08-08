@@ -1,6 +1,5 @@
 import { getRoomIndex, inCrawlspace } from "isaacscript-common";
 import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
-import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
@@ -13,7 +12,6 @@ export function enteredRoomViaTeleport(): boolean {
   const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
 
   return (
-    g.run.fastTravel.state === FastTravelState.Disabled &&
     g.l.LeaveDoor === -1 &&
     !justReachedThisFloor &&
     !inCrawlspace() &&

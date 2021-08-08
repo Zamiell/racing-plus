@@ -1,6 +1,18 @@
-import { isRepentanceStage } from "isaacscript-common";
+// In some situations, we force the first Treasure Room to have two items
+
+import { isRepentanceStage, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 import { removeItemFromItemTracker } from "../../util";
+
+const v = {
+  run: {
+    removeMoreOptions: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("tempMoreOptions", v);
+}
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
@@ -12,9 +24,9 @@ export function postNewLevel(): void {
   // but they might have skipped the Basement 1 Treasure Room for some reason)
   if (
     (stage >= 2 || (stage === 1 && isRepentanceStage())) &&
-    g.run.removeMoreOptions
+    v.run.removeMoreOptions
   ) {
-    g.run.removeMoreOptions = false;
+    v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
   }
 }
@@ -24,8 +36,8 @@ export function postNewRoom(): void {
   const roomType = g.r.GetType();
   const player = Isaac.GetPlayer();
 
-  if (g.run.removeMoreOptions && roomType === RoomType.ROOM_TREASURE) {
-    g.run.removeMoreOptions = false;
+  if (v.run.removeMoreOptions && roomType === RoomType.ROOM_TREASURE) {
+    v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
   }
 }
@@ -50,6 +62,7 @@ export function give(player: EntityPlayer): void {
   }
   player.RemoveCostume(itemConfigItem);
 
-  // More Options will be removed upon entering the first Treasure Room
-  g.run.removeMoreOptions = true;
+  // Mark to remove more Options upon entering the first Treasure Room or upon reaching the next
+  // floor
+  v.run.removeMoreOptions = true;
 }

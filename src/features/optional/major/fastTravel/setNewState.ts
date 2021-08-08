@@ -10,9 +10,10 @@ import { moveEsauNextToJacob } from "../../../../util";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
+import v from "./v";
 
 export default function setNewState(fastTravelState: FastTravelState): void {
-  g.run.fastTravel.state = fastTravelState;
+  v.run.state = fastTravelState;
 
   switch (fastTravelState) {
     case FastTravelState.FadingToBlack: {
@@ -56,13 +57,12 @@ export function setFadingToBlack(
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
   // the travelling animation
-  g.run.fastTravel.state = FastTravelState.FadingToBlack;
-  g.run.fastTravel.framesPassed = 0;
-  g.run.fastTravel.upwards = upwards;
-  g.run.fastTravel.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
-  g.run.fastTravel.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
-  g.run.fastTravel.repentanceSecretExit =
-    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+  v.run.state = FastTravelState.FadingToBlack;
+  v.run.framesPassed = 0;
+  v.run.upwards = upwards;
+  v.run.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
+  v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
+  v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);
@@ -102,7 +102,7 @@ function setGameStateFlags() {
     // Furthermore, we want to prevent the new floor from being reseeded,
     // so pretend that the boss room with Mom in it is an Repentance secret exit
     // (even though Repentance floors are on the same stage, they do not need to be reseeded)
-    g.run.fastTravel.repentanceSecretExit = true;
+    v.run.repentanceSecretExit = true;
   }
 }
 
@@ -222,13 +222,13 @@ function setChangingToNewRoom() {
 }
 
 function setGoingToNewFloor() {
-  nextFloor.goto(g.run.fastTravel.upwards);
+  nextFloor.goto(v.run.upwards);
 }
 
 function setFadingIn() {
   const players = getPlayers();
 
-  g.run.fastTravel.framesPassed = 0;
+  v.run.framesPassed = 0;
 
   adjustJacobAndEsau(players);
   adjustTaintedForgotten(players);

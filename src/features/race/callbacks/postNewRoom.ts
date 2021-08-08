@@ -7,7 +7,6 @@ import * as removeStrangeDoor from "../removeStrangeDoor";
 import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
-import * as tempMoreOptions from "../tempMoreOptions";
 import * as topSprite from "../topSprite";
 
 export default function racePostNewRoom(): void {
@@ -16,7 +15,6 @@ export default function racePostNewRoom(): void {
   }
 
   socket.postNewRoom();
-  tempMoreOptions.postNewRoom();
   raceRoom.postNewRoom();
   startingRoom.postNewRoom();
   topSprite.postNewRoom();

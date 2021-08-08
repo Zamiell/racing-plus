@@ -4,10 +4,11 @@ import { EffectVariantCustom } from "../../../../types/enums";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import setNewState, { setPlayersVisible } from "./setNewState";
+import v from "./v";
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  switch (g.run.fastTravel.state) {
+  switch (v.run.state) {
     case FastTravelState.FadingToBlack: {
       postRenderFadingToBlack();
       break;
@@ -27,7 +28,7 @@ export function postRender(): void {
 function postRenderFadingToBlack() {
   incrementFramesPassed();
 
-  if (g.run.fastTravel.framesPassed < FADE_TO_BLACK_FRAMES) {
+  if (v.run.framesPassed < FADE_TO_BLACK_FRAMES) {
     return;
   }
 
@@ -38,7 +39,7 @@ function postRenderFadingToBlack() {
 function postRenderFadingIn() {
   incrementFramesPassed();
 
-  if (g.run.fastTravel.framesPassed === FRAMES_BEFORE_JUMP) {
+  if (v.run.framesPassed === FRAMES_BEFORE_JUMP) {
     const players = getPlayers();
 
     resetPlayerCollision(players);
@@ -46,7 +47,7 @@ function postRenderFadingIn() {
     makePlayersJump(players);
   }
 
-  if (g.run.fastTravel.framesPassed < FADE_TO_BLACK_FRAMES) {
+  if (v.run.framesPassed < FADE_TO_BLACK_FRAMES) {
     return;
   }
 
@@ -59,7 +60,7 @@ function incrementFramesPassed() {
   // To avoid this, we could base the timer on game frames, but that does not result in a smooth
   // enough fade out (because it is only updated on every other render frame)
   if (!g.g.IsPaused()) {
-    g.run.fastTravel.framesPassed += 1;
+    v.run.framesPassed += 1;
   }
 }
 
@@ -89,7 +90,7 @@ function makePlayersJump(players: EntityPlayer[]) {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  switch (g.run.fastTravel.state) {
+  switch (v.run.state) {
     case FastTravelState.ChangingToSameRoom: {
       postNewRoomChangingToSameRoom();
       break;

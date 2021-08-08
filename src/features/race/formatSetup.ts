@@ -1,12 +1,12 @@
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { giveItemAndRemoveFromPools } from "../../utilGlobals";
+import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
 } from "./constants";
-import * as tempMoreOptions from "./tempMoreOptions";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_ISAAC, // 0

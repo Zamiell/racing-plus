@@ -1,5 +1,6 @@
 import { anyPlayerIs, isRepentanceStage, log } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
+import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
@@ -19,7 +20,10 @@ export function main(): void {
     showLevelText(stage);
   }
 
-  // Major
+  // Mandatory features
+  tempMoreOptions.postNewLevel();
+
+  // Major features
   racePostNewLevel();
 
   // Quality of life
