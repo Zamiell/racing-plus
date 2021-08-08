@@ -5,7 +5,8 @@ export function main(
   _player: EntityPlayer,
   pickingUpItem: PickingUpItem,
 ): void {
-  const itemName = getItemName(pickingUpItem.id);
+  const trinket = pickingUpItem.type === ItemType.ITEM_TRINKET;
+  const itemName = getItemName(pickingUpItem.id, trinket);
 
   streakText.set(itemName);
 }

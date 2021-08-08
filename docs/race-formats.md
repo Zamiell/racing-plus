@@ -48,6 +48,7 @@ Regardless of the format:
   - This mechanic does not apply to deaths in Devil Rooms, Sacrifice Rooms, or the Boss Rush. (Deaths in those rooms will be permanent.)
 -->
 - Sol is removed from all pools (since it is practically useless with the Compass).
+- Glyph of Balance is removed from all pools (since it changes drop-generation).
 - Cain's Eye is removed from the trinket pool (since it is useless with the Compass).
 - Broken Ankh is removed from the trinket pool (since the custom death mechanic has priority over random revivals).
 - Daemon's Tail, Child's Heart, Rusted Key, Match Stick, Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, and Nuh Uh! are removed from the trinket pool (since they change drop-generation).

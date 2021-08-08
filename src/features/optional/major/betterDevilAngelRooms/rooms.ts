@@ -170,9 +170,31 @@ function spawnNormalEntity(
   y: int,
   devil: boolean,
 ) {
+  const roomType = g.r.GetType();
+
   const position = gridToPos(x, y);
   const seed = getEntitySeed(devil);
-  g.g.Spawn(entityType, variant, position, Vector.Zero, null, subtype, seed);
+  const entity = g.g.Spawn(
+    entityType,
+    variant,
+    position,
+    Vector.Zero,
+    null,
+    subtype,
+    seed,
+  );
+
+  // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
+  if (
+    entity.Type === EntityType.ENTITY_PICKUP &&
+    entity.Variant === PickupVariant.PICKUP_COLLECTIBLE &&
+    roomType === RoomType.ROOM_ANGEL
+  ) {
+    const pickup = entity.ToPickup();
+    if (pickup !== null) {
+      pickup.OptionsPickupIndex = 1;
+    }
+  }
 }
 
 function getEntitySeed(devil: boolean) {
@@ -199,9 +221,11 @@ function fixPitGraphics() {
   for (const gridEntity of getGridEntities()) {
     const saveState = gridEntity.GetSaveState();
     if (saveState.Type === GridEntityType.GRID_PIT) {
-      print(pitMap);
+      Isaac.DebugString(pitMap);
     }
   }
 }
 
-function getPitMap() {}
+function getPitMap() {
+  return "1";
+}
