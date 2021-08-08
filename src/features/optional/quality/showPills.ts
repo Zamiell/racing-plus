@@ -2,10 +2,12 @@ import {
   anyPlayerHasCollectible,
   isActionPressedOnAnyInput,
   log,
+  saveDataManager,
 } from "isaacscript-common";
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import PillDescription from "../../../types/PillDescription";
 import { initSprite } from "../../../util";
 
 const NUM_PILLS_IN_POOL = 13;
@@ -73,7 +75,18 @@ const FALSE_PHD_PILL_CONVERSIONS = new Map([
 
 const sprites: Sprite[] = [];
 
+const v = {
+  run: {
+    pillsIdentified: [] as PillDescription[],
+
+    PHD: false,
+    falsePHD: false,
+  },
+};
+
 export function init(): void {
+  saveDataManager("showPills", v, featureEnabled);
+
   // For convenience, make a null sprite on index 0
   const nullSprite = Sprite();
   sprites.push(nullSprite);
@@ -84,10 +97,68 @@ export function init(): void {
   }
 }
 
-export function getSprite(pillColor: PillColor): Sprite {
-  return sprites[pillColor];
+function featureEnabled() {
+  return config.showPills;
 }
 
+// ModCallbacks.MC_POST_UPDATE (1)
+export function postUpdate(): void {
+  if (!config.showPills) {
+    return;
+  }
+
+  checkPHD();
+  checkFalsePHD();
+}
+
+function checkPHD() {
+  if (v.run.PHD) {
+    // We have already converted bad pill effects this run
+    return;
+  }
+
+  if (
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PHD) &&
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+  ) {
+    return;
+  }
+
+  v.run.PHD = true;
+  log("Converting bad pill effects.");
+
+  // Change the text for any identified pills
+  for (const pillEntry of v.run.pillsIdentified) {
+    const newEffect = PHD_PILL_CONVERSIONS.get(pillEntry.effect);
+    if (newEffect !== undefined) {
+      pillEntry.effect = newEffect;
+    }
+  }
+}
+
+function checkFalsePHD() {
+  if (v.run.falsePHD) {
+    // We have already converted good pill effects this run
+    return;
+  }
+
+  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) {
+    return;
+  }
+
+  v.run.falsePHD = true;
+  log("Converting good pill effects.");
+
+  // Change the text for any identified pills
+  for (const pillEntry of v.run.pillsIdentified) {
+    const newEffect = FALSE_PHD_PILL_CONVERSIONS.get(pillEntry.effect);
+    if (newEffect !== undefined) {
+      pillEntry.effect = newEffect;
+    }
+  }
+}
+
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!config.showPills) {
     return;
@@ -105,7 +176,7 @@ export function postRender(): void {
   }
 
   // Don't do anything if we have not taken any pills yet
-  if (g.run.pills.length === 0) {
+  if (v.run.pillsIdentified.length === 0) {
     return;
   }
 
@@ -117,17 +188,17 @@ function drawTextAndSprite() {
   let baseY = 97;
   for (let i = 9; i <= 12; i++) {
     // Avoid overflow on the bottom if we identify a lot of pills
-    if (g.run.pills.length >= i) {
+    if (v.run.pillsIdentified.length >= i) {
       baseY -= 20;
     }
   }
 
-  const text = `Pills identified: ${g.run.pills.length} / ${NUM_PILLS_IN_POOL}`;
+  const text = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
   g.font.DrawString(text, x - 10, baseY - 9 + 20, KCOLOR_DEFAULT, 0, true);
 
   baseY += 20;
-  for (let i = 0; i < g.run.pills.length; i++) {
-    const pillEntry = g.run.pills[i];
+  for (let i = 0; i < v.run.pillsIdentified.length; i++) {
+    const pillEntry = v.run.pillsIdentified[i];
 
     // Show the pill sprite
     const y = baseY + 20 * (i + 1);
@@ -147,58 +218,44 @@ function drawTextAndSprite() {
   }
 }
 
-export function postUpdate(): void {
-  if (!config.showPills) {
-    return;
-  }
-
-  checkPHD();
-  checkFalsePHD();
+// ModCallbacks.MC_USE_PILL (10)
+export function usePill(player: EntityPlayer, pillEffect: PillEffect): void {
+  checkNewPill(player, pillEffect);
 }
 
-function checkPHD() {
-  if (g.run.pillsPHD) {
-    // We have already converted bad pill effects this run
+function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
+  // This callback fires before the pill is consumed, so we can still get the color of the pill
+  const pillColor = player.GetPill(0);
+
+  // A mod may have manually used a pill with a null color
+  if (pillColor === PillColor.PILL_NULL) {
     return;
   }
 
-  if (
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PHD) &&
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
-  ) {
-    return;
-  }
-
-  g.run.pillsPHD = true;
-  log("Converting bad pill effects.");
-
-  // Change the text for any identified pills
-  for (const pillEntry of g.run.pills) {
-    const newEffect = PHD_PILL_CONVERSIONS.get(pillEntry.effect);
-    if (newEffect !== undefined) {
-      pillEntry.effect = newEffect;
+  // See if we have already used this particular pill color on this run
+  for (const pill of v.run.pillsIdentified) {
+    if (pill.color === pillColor) {
+      return;
     }
   }
+
+  newPill(pillColor, pillEffect);
 }
 
-function checkFalsePHD() {
-  if (g.run.pillsFalsePHD) {
-    // We have already converted good pill effects this run
-    return;
-  }
+function newPill(pillColor: PillColor, pillEffect: PillEffect) {
+  // This is the first time we have used this pill, so keep track of the pill color and effect
+  const pillDescription = {
+    color: pillColor,
+    effect: pillEffect,
+    sprite: getSprite(pillColor),
+  };
+  v.run.pillsIdentified.push(pillDescription);
+}
 
-  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) {
-    return;
-  }
+function getSprite(pillColor: PillColor) {
+  return sprites[pillColor];
+}
 
-  g.run.pillsFalsePHD = true;
-  log("Converting good pill effects.");
-
-  // Change the text for any identified pills
-  for (const pillEntry of g.run.pills) {
-    const newEffect = FALSE_PHD_PILL_CONVERSIONS.get(pillEntry.effect);
-    if (newEffect !== undefined) {
-      pillEntry.effect = newEffect;
-    }
-  }
+export function getNumIdentifiedPills(): int {
+  return v.run.pillsIdentified.length;
 }

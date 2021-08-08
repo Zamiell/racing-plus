@@ -1,5 +1,6 @@
 import { anyPlayerIs, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
+import v from "./v";
 
 export function postNewRoom(): void {
   if (!anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
@@ -9,13 +10,13 @@ export function postNewRoom(): void {
   const roomIndex = getRoomIndex();
 
   if (
-    !g.run.madeBossRushItemsFree &&
+    !v.run.madeBossRushItemsFree &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Boss Rush" &&
     roomIndex === GridRooms.ROOM_BOSSRUSH_IDX
   ) {
-    g.run.madeBossRushItemsFree = true;
+    v.run.madeBossRushItemsFree = true;
     makeBossRushItemsFree();
   }
 }

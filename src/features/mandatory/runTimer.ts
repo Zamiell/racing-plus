@@ -8,6 +8,7 @@ import { anyPlayerIs, isActionPressedOnAnyInput } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
+import { getNumIdentifiedPills } from "../optional/quality/showPills";
 
 const RUN_TIMER_X = 52;
 const RUN_TIMER_Y = 49;
@@ -39,7 +40,7 @@ function checkDisplay() {
   }
 
   // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI
-  if (g.run.pills.length >= 11) {
+  if (getNumIdentifiedPills() >= 11) {
     return;
   }
 

@@ -1,20 +1,8 @@
 import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
 import SeededDeathState from "../features/race/types/SeededDeathState";
-import PickingUpItemDescription from "./PickingUpItemDescription";
-import PillDescription from "./PillDescription";
 
 // Per-run variables
 export default class GlobalsRun {
-  /** Used for Tainted Keeper when racing to the Boss Rush. */
-  madeBossRushItemsFree = false;
-
-  pickingUpItem = new LuaTable<PlayerIndex, PickingUpItemDescription>();
-
-  /** We track all identified pills so that we can display them. */
-  pills: PillDescription[] = [];
-
-  pillsPHD = false;
-  pillsFalsePHD = false;
   pocketActiveD6Charge = new LuaTable<PlayerIndex, int>();
 
   /**
@@ -54,14 +42,6 @@ export default class GlobalsRun {
 
   spedUpFadeIn = false;
   startedTime = 0;
-
-  /** Text that appears after players touch an item, reach a new level, etc. */
-  streakText = {
-    text: "",
-    /** Text of less importance that is only shown if there is no main text. */
-    tabText: "",
-    frame: 0,
-  };
 
   switchForgotten = false;
   transformations = new LuaTable<PlayerIndex, boolean[]>();
@@ -104,12 +84,6 @@ export function initPlayerVariables(
   }
 
   const index = getPlayerIndex(player);
-
-  run.pickingUpItem.set(index, {
-    id: CollectibleType.COLLECTIBLE_NULL,
-    type: ItemType.ITEM_NULL,
-    roomIndex: -1,
-  });
 
   run.pocketActiveD6Charge.set(index, 6);
 

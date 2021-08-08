@@ -3,7 +3,10 @@ import { config } from "../../modConfigMenu";
 
 const v = {
   run: {
-    victoryLaps: 0,
+    /** Used for Tainted Keeper when racing to the Boss Rush. */
+    madeBossRushItemsFree: false,
+
+    numVictoryLaps: 0,
   },
   room: {
     showEndOfRunText: false,

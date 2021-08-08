@@ -1,18 +1,8 @@
 import * as streakText from "../features/mandatory/streakText";
-import g from "../globals";
 
 export function main(card: Card): void {
-  showStreakText(card);
-}
+  // This callback does not pass the player, so we have to assume player 0 ate the pill
+  const player = Isaac.GetPlayer();
 
-function showStreakText(card: Card) {
-  // We ignore Blank Runes because we want to show the streak text of the actual random effect
-  if (card !== Card.RUNE_BLANK) {
-    const cardConfig = g.itemConfig.GetCard(card);
-    if (cardConfig === null) {
-      error(`Failed to get the card config for: ${card}`);
-    }
-    const cardName = cardConfig.Name;
-    streakText.set(cardName);
-  }
+  streakText.useCard(player, card);
 }

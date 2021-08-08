@@ -4,6 +4,7 @@ import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
+import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
@@ -25,6 +26,7 @@ export default function initFeatureVariables(): void {
   speedrunVars.init();
 
   // Mandatory features
+  streakText.init();
   replacePhotos.init();
   preventItemRotate.init();
   beastPreventEnd.init();
