@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { saveDataManager, saveDataManagerSave } from "isaacscript-common";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
@@ -141,6 +141,8 @@ function setAllSettings(newValue: boolean) {
     const assertedKey = key as keyof Config;
     config[assertedKey] = newValue;
   }
+
+  saveDataManagerSave();
 }
 
 function registerSubMenuConfig(
@@ -161,6 +163,7 @@ function registerSubMenuConfig(
         ),
       OnChange: (newValue: number | boolean) => {
         config[configName as keyof Config] = newValue as boolean;
+        saveDataManagerSave();
       },
       Info: [longDescription],
     });

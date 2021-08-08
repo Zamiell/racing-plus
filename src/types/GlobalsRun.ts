@@ -3,8 +3,6 @@ import SeededDeathState from "../features/race/types/SeededDeathState";
 
 // Per-run variables
 export default class GlobalsRun {
-  pocketActiveD6Charge = new LuaTable<PlayerIndex, int>();
-
   /**
    * Whether or not to restart the run on the next frame.
    * This variable is used because the game prevents you from executing a "restart" console command
@@ -84,8 +82,6 @@ export function initPlayerVariables(
   }
 
   const index = getPlayerIndex(player);
-
-  run.pocketActiveD6Charge.set(index, 6);
 
   const transformationArray = [];
   for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {

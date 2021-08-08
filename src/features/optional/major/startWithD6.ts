@@ -1,7 +1,15 @@
-import { getPlayerIndex, getPlayers, log } from "isaacscript-common";
+import {
+  getPlayerIndex,
+  getPlayers,
+  log,
+  PlayerIndex,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
+
+const D6_STARTING_CHARGE = 6;
 
 const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_MAGDALENA_B,
@@ -29,6 +37,20 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_THESOUL_B,
 ];
 
+const v = {
+  run: {
+    pocketActiveD6Charge: new LuaTable<PlayerIndex, int>(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("startWithD6", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.startWithD6;
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.startWithD6) {
@@ -38,8 +60,14 @@ export function postUpdate(): void {
   for (const player of getPlayers()) {
     const index = getPlayerIndex(player);
     const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-    g.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
+    v.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
   }
+}
+
+// ModCallbacks.MC_POST_PLAYER_INIT (9)
+export function postPlayerInit(player: EntityPlayer): void {
+  const index = getPlayerIndex(player);
+  v.run.pocketActiveD6Charge.set(index, D6_STARTING_CHARGE);
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -158,14 +186,14 @@ export function postFirstFlip(player: EntityPlayer): void {
 // ModCallbacksCustom.MC_POST_FIRST_ESAU_JR
 export function postFirstEsauJr(player: EntityPlayer): void {
   if (shouldGetPocketActiveD6(player)) {
-    givePocketActiveD6(player, 6); // Always start the Esau Jr. character with a full D6
+    givePocketActiveD6(player, D6_STARTING_CHARGE);
   }
 }
 
 function giveD6(player: EntityPlayer) {
   if (shouldGetPocketActiveD6(player)) {
     const index = getPlayerIndex(player);
-    const charge = g.run.pocketActiveD6Charge.get(index);
+    const charge = v.run.pocketActiveD6Charge.get(index);
     givePocketActiveD6(player, charge);
     log("Awarded another pocket D6 (due to character change).");
   } else if (shouldGetActiveD6(player)) {

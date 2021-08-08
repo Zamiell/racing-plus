@@ -1,3 +1,4 @@
+import { getDoors } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import angel from "../angel";
@@ -30,7 +31,8 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     return;
   }
 
-  removePickupsAndNPCs();
+  removePickupsAndSlotsAndNPCs();
+  setCleared();
   fillRoomWithPressurePlates();
 
   if (roomType === RoomType.ROOM_DEVIL) {
@@ -42,11 +44,12 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
 
 // We do this here instead of in the PreRoomEntitySpawn callback so that they will not re-appear
 // when we re-enter the room
-function removePickupsAndNPCs() {
+function removePickupsAndSlotsAndNPCs() {
   for (const entity of Isaac.GetRoomEntities()) {
     const npc = entity.ToNPC();
     if (
       entity.Type === EntityType.ENTITY_PICKUP ||
+      entity.Type === EntityType.ENTITY_SLOT ||
       (npc !== null &&
         !npc.HasEntityFlags(EntityFlag.FLAG_CHARM) &&
         !npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY) &&
@@ -64,6 +67,25 @@ function removePickupsAndNPCs() {
       }
     }
   }
+}
+
+function setCleared() {
+  const roomClear = g.r.IsClear();
+
+  if (roomClear) {
+    return;
+  }
+
+  // If there is an enemy in the room, then the doors will start closed
+  // Manually fix this
+  g.r.SetClear(true);
+  for (const door of getDoors()) {
+    door.State = DoorState.STATE_OPEN;
+    const sprite = door.GetSprite();
+    Isaac.DebugString(sprite.GetFilename());
+    sprite.Play("Opened", true);
+  }
+  g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 }
 
 function fillRoomWithPressurePlates() {

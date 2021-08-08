@@ -1,5 +1,7 @@
-Patch notes v0.58.38:
-- Fixed the bug where the Dream Catcher sprites would stay on the screen after resetting.
+Patch notes v0.58.40:
+- Fixed the bug where DDs would give you a free drop if it replaced a vanilla room with an enemy
+- Fixed the bug where DDs would have a Devil Beggar in them if it replaced a vanilla room with a Devil Beggar
+
 
 Racing+ new features:
 - chat system
