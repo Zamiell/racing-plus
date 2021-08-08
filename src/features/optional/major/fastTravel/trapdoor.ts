@@ -137,8 +137,8 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, delete trapdoors that leads to normal floors
-  // Only delete the boss room trapdoor since it will lead to softlocks in error rooms
+  // If the goal of the race is Mother, delete the trapdoor after the boss that normally leads to the next floor
+  // (we don't want to delete all trapdoors since that will cause softlocks in I AM ERROR rooms)
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
