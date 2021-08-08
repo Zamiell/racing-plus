@@ -9,6 +9,7 @@ import * as trophy from "./features/mandatory/trophy";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
+import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showEdenStartingItems from "./features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
@@ -37,6 +38,7 @@ export default function initFeatureVariables(): void {
   fastClearVars.init();
   fastTravelVars.init();
   fastReset.init();
+  freeDevilItem.init();
 
   // Quality of life
   showPills.init();
