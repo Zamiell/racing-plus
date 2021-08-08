@@ -138,6 +138,7 @@ function shouldRemove() {
   }
 
   // If the goal of the race is Mother, delete trapdoors that leads to normal floors
+  // Only delete the boss room trapdoor since it will lead to softlocks in error rooms
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
@@ -147,26 +148,18 @@ function shouldRemove() {
     if (
       stage === 1 &&
       !isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+      roomType === RoomType.ROOM_BOSS
     ) {
       return true;
     }
 
     // Downpour 2 --> Mines 1
-    if (
-      stage === 2 &&
-      isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
+    if (stage === 2 && isRepentanceStage() && roomType === RoomType.ROOM_BOSS) {
       return true;
     }
 
     // Mines 2 --> Mausoleum 1
-    if (
-      stage === 4 &&
-      isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
+    if (stage === 4 && isRepentanceStage() && roomType === RoomType.ROOM_BOSS) {
       return true;
     }
 
