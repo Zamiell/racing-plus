@@ -3,6 +3,7 @@ import * as debugPowers from "./features/mandatory/debugPowers";
 import * as errors from "./features/mandatory/errors";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
+import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
@@ -25,6 +26,7 @@ export default function initFeatureVariables(): void {
   replacePhotos.init();
   taintedIsaacStuckItems.init();
   beastPreventEnd.init();
+  tempMoreOptions.init();
   trophy.init();
   debugPowers.init();
   errors.init();
