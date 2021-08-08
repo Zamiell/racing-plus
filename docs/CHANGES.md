@@ -243,6 +243,10 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
+- `071` Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
+
+> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble.
+
 - Mercurius is removed.
 
 > Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.
@@ -261,12 +265,12 @@ Post-flip actions:
 - The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
 - All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
-- `071` Teleport animations are sped up by a factor of 2.
+- `081` Teleport animations are sped up by a factor of 2.
 - The pause and unpause animations are removed.
 
 ### 8) Bug Fixes
 
-- `081` All forms of teleport will no longer send you to an invalid entrance.
+- `091` All forms of teleport will no longer send you to an invalid entrance.
 - Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
@@ -285,12 +289,12 @@ Post-flip actions:
 
 ### 9) Graphics Fixes
 
-- `091` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
-- `092` The 20/20 sprite is now easier to see.
-- `093` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
+- `101` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
+- `102` The 20/20 sprite is now easier to see.
+- `103` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
-- `094` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- `104` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
   - White-dotted / Red --> Full red
@@ -309,11 +313,11 @@ Post-flip actions:
 
 ### 10) Sound Fixes
 
-- `101` The audio clips of mom and dad on the Ascent are silenced.
+- `111` The audio clips of mom and dad on the Ascent are silenced.
 
 ### 11) Other
 
-- `111` A custom console is provided that is better than the vanilla console.
+- `121` A custom console is provided that is better than the vanilla console.
 
 > Why? The vanilla console has an annoying animation and is inconvenient to use.
 
@@ -339,7 +343,6 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
   - cards from Sloth, Super Sloth, Pride, and Super Pride
   - Guppy's Head fly count
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
-- Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
 - Death will no longer perform his slow attack.

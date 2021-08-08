@@ -9,6 +9,7 @@ import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
 import * as inputAction from "./callbacks/inputAction";
+import * as postBombInit from "./callbacks/postBombInit";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
@@ -113,6 +114,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postTearUpdate.init(mod); // 40
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
+  postBombInit.init(mod); // 57
   postEntityKill.init(mod); // 68
   preNPCUpdate.init(mod); // 69
 }

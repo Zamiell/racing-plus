@@ -325,7 +325,7 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 05X
+// 05X / 06X
 export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
   [
     null,
@@ -449,8 +449,17 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   ],
 ];
 
-// n/a
+// 07X
 export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
+  [
+    "consistentTrollBombs",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "071",
+      "Consistent troll bombs",
+      "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
+    ],
+  ],
   [
     null,
     [
@@ -480,7 +489,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 07X
+// 08X
 export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   [
     null,
@@ -522,7 +531,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
     "fastTeleports",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "071",
+      "081",
       "Fast teleports",
       "Teleport animations are sped up by a factor of 2.",
     ],
@@ -538,13 +547,13 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 08X
+// 09X
 export const BUG_FIXES: ConfigDescriptionArray = [
   [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "081",
+      "091",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -596,13 +605,13 @@ export const BUG_FIXES: ConfigDescriptionArray = [
   ],
 ];
 
-// 09X
+// 10X
 export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
   [
     "flyItemSprites",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "091",
+      "101",
       "Fix fly colors",
       "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
     ],
@@ -611,7 +620,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     "twentyTwenty",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "092",
+      "102",
       "Better 20/20",
       "Make the 20/20 sprite easier to see.",
     ],
@@ -620,7 +629,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     "starOfBethlehem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "093",
+      "103",
       "Better Star of Bethlehem",
       "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
     ],
@@ -647,7 +656,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     "paschalCandle",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "094",
+      "104",
       "Better Paschal Candle",
       'Paschal Candle now "fills up" so that you can easily tell at a glance if it is maxed out.',
     ],
@@ -690,26 +699,26 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 10X
+// 11X
 export const SOUND_CHANGES: ConfigDescriptionArray = [
   [
     "silenceMomDad",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "101",
+      "111",
       "Silence mom & dad",
       "The audio clips of mom and dad on the Ascent are silenced.",
     ],
   ],
 ];
 
-// 11X
+// 12X
 export const OTHER_FEATURES: ConfigDescriptionArray = [
   [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "111",
+      "121",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
     ],

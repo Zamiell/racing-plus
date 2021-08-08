@@ -47,6 +47,9 @@ export default class Config {
   openHushDoor = true;
   removeFortuneCookieBanners = true;
 
+  // Gameplay changes
+  consistentTrollBombs = true;
+
   // Cutscenes & Animations
   fastTeleports = true;
 
