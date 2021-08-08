@@ -186,7 +186,6 @@ export function preItemPickup(pickingUpItem: PickingUpItem): void {
   const trinket = pickingUpItem.type === ItemType.ITEM_TRINKET;
   const itemName = getItemName(pickingUpItem.id, trinket);
 
-  Isaac.DebugString("GETTING HERE 1");
   set(itemName);
 }
 

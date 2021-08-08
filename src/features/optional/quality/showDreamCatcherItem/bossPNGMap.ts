@@ -107,8 +107,8 @@ export const bossPNGMap = new Map([
   [
     EntityType.ENTITY_GURGLING,
     [
-      "portrait_276.0_gurglings.png",
-      "portrait_276.0_gurglings.png",
+      "portrait_276.0_gurglings.png", // The normal version
+      "portrait_276.0_gurglings.png", // The boss version
       "portrait_turdlings.png", // cspell:disable-line
     ],
   ],
