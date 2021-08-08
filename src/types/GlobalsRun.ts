@@ -2,7 +2,6 @@ import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
 import GlobalsRunLevel from "./GlobalsRunLevel";
-import GlobalsRunRoom from "./GlobalsRunRoom";
 import PickingUpItemDescription from "./PickingUpItemDescription";
 import PillDescription from "./PillDescription";
 
@@ -11,8 +10,6 @@ export default class GlobalsRun {
   // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
   // the PostNewLevel callback
   level = new GlobalsRunLevel(0, 0);
-
-  room = new GlobalsRunRoom();
 
   /** Remember the alt floors we traveled to respawn them in Backwards path. */
   altFloorsTraveled = {

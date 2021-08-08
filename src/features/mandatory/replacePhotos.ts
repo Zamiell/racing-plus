@@ -2,11 +2,12 @@ import {
   anyPlayerHasCollectible,
   ensureAllCases,
   log,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
-import { incrementRNG } from "../../util";
-import { hasPolaroidOrNegative, spawnCollectible } from "../../utilGlobals";
+import { hasPolaroidOrNegative, incrementRNG } from "../../util";
+import { spawnCollectible } from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceData";
 import { ChallengeCustom } from "../speedrun/enums";
 
@@ -20,6 +21,17 @@ enum PhotoSituation {
 const PEDESTAL_POSITION_CENTER = Vector(320, 360);
 const PEDESTAL_POSITION_LEFT = Vector(280, 360);
 const PEDESTAL_POSITION_RIGHT = Vector(360, 360);
+
+const v = {
+  room: {
+    manuallySpawnedPhotos: false,
+    vanillaPhotosLeftToSpawn: 0,
+  },
+};
+
+export function init(): void {
+  saveDataManager("replacePhotos", v);
+}
 
 // ModCallbacks.MC_PRE_ENTITY_SPAWN (24)
 export function preEntitySpawnCollectible(
@@ -39,11 +51,11 @@ function preventVanillaPhotos(
   subType: int,
 ): [EntityType | int, int, int, int] | void {
   if (
-    g.run.room.vanillaPhotosLeftToSpawn > 0 &&
+    v.room.vanillaPhotosLeftToSpawn > 0 &&
     (subType === CollectibleType.COLLECTIBLE_POLAROID ||
       subType === CollectibleType.COLLECTIBLE_NEGATIVE)
   ) {
-    g.run.room.vanillaPhotosLeftToSpawn -= 1;
+    v.room.vanillaPhotosLeftToSpawn -= 1;
 
     const photoName =
       subType === CollectibleType.COLLECTIBLE_POLAROID
@@ -65,12 +77,12 @@ function preventVanillaPhotos(
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKillMom(_entity: Entity): void {
-  if (!g.run.room.manuallySpawnedPhotos) {
-    g.run.room.manuallySpawnedPhotos = true;
+  if (!v.room.manuallySpawnedPhotos) {
+    v.room.manuallySpawnedPhotos = true;
     manuallySpawn();
 
     // Mark to delete two vanilla photos when they spawn a few frames from now
-    g.run.room.vanillaPhotosLeftToSpawn = 2;
+    v.room.vanillaPhotosLeftToSpawn = 2;
   }
 }
 

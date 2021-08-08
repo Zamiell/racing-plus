@@ -1,7 +1,6 @@
-import { hasFlag } from "isaacscript-common";
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
-import g from "../globals";
+import * as showNumSacrifices from "../features/optional/quality/showNumSacrifices";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -18,21 +17,10 @@ function player(
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
-  sacrificeRoom(damageFlags);
-
   // Major features
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
-}
 
-function sacrificeRoom(damageFlags: int) {
-  const roomType = g.r.GetType();
-
-  if (roomType !== RoomType.ROOM_SACRIFICE) {
-    return;
-  }
-
-  if (hasFlag(damageFlags, DamageFlag.DAMAGE_SPIKES)) {
-    g.run.level.numSacrifices += 1;
-  }
+  // QoL
+  showNumSacrifices.entityTakeDmgPlayer(damageFlags);
 }

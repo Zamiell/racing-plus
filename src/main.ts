@@ -45,10 +45,7 @@ import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { VERSION } from "./constants";
-import * as fastClearVars from "./features/optional/major/fastClear/v";
-import * as fastTravelVars from "./features/optional/major/fastTravel/v";
-import * as showPills from "./features/optional/quality/showPills";
-import * as modConfigMenu from "./modConfigMenu";
+import initFeatureVariables from "./initFeatureVariables";
 
 main();
 
@@ -69,17 +66,6 @@ function welcomeBanner() {
   log(welcomeTextBorder);
   log(`| ${welcomeText} |`);
   log(welcomeTextBorder);
-}
-
-function initFeatureVariables() {
-  modConfigMenu.init();
-
-  // Major features
-  fastClearVars.init();
-  fastTravelVars.init();
-
-  // QoL
-  showPills.init();
 }
 
 function registerCallbacks(mod: ModUpgraded) {

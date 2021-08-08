@@ -2,6 +2,7 @@ import { log } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
 import { CHALLENGE_DEFINITIONS } from "./constants";
+import v from "./v";
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
@@ -119,7 +120,7 @@ export function finish(player: EntityPlayer): void {
   g.speedrun.characterRunTimes.push(elapsedTime);
 
   // Show the run summary (including the average time per character)
-  g.run.room.showEndOfRunText = true;
+  v.room.showEndOfRunText = true;
 
   // Finish the speedrun
   g.speedrun.finished = true;
@@ -130,4 +131,8 @@ export function finish(player: EntityPlayer): void {
   g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
 
   // Fireworks will play on the next frame (from the PostUpdate callback)
+}
+
+export function shouldShowEndOfRunTextSpeedrun(): boolean {
+  return v.room.showEndOfRunText;
 }

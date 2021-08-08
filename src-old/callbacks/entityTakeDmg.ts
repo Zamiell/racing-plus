@@ -15,7 +15,6 @@ export function player(
 
   sacrificeRoom(damageFlag);
   recordDamageFrame(damageFlag); // This must be after the "sacrificeRoom()" function
-  soulJar.entityTakeDmgPlayer(damageFlag);
   return seededDeath.entityTakeDmgPlayer(damageAmount);
 }
 

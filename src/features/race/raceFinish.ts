@@ -1,6 +1,7 @@
 import { log } from "isaacscript-common";
 import g from "../../globals";
 import * as socket from "./socket";
+import v from "./v";
 
 export default function raceFinish(): void {
   // const roomIndex = getRoomIndex();
@@ -9,7 +10,7 @@ export default function raceFinish(): void {
   g.raceVars.finished = true;
   g.raceVars.finishedTime = Isaac.GetTime() - g.raceVars.startedTime;
   g.raceVars.finishedFrames = Isaac.GetFrameCount() - g.raceVars.startedFrame;
-  g.run.room.showEndOfRunText = true;
+  v.room.showEndOfRunText = true;
 
   // Tell the client that the goal was achieved (and the race length)
   socket.send("finish", g.raceVars.finishedTime.toString());
@@ -47,4 +48,8 @@ export default function raceFinish(): void {
     sprites.init("victory-lap-button", "victory-lap-button");
   */
   }
+}
+
+export function shouldShowEndOfRunTextRace(): boolean {
+  return v.room.showEndOfRunText;
 }

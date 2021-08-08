@@ -263,37 +263,6 @@ function checkCursedEye() {
   useItem.teleport();
 }
 
-// Check to see if we are subverting a teleport from Gurdy, Mom, Mom's Heart, or It Lives
-function checkSubvertTeleport() {
-  const stage = g.l.GetStage();
-
-  if (!g.run.room.teleportSubverted) {
-    return;
-  }
-  g.run.room.teleportSubverted = false;
-
-  // Find the correct position to teleport to, depending on which door we entered from
-  let pos: Vector;
-  if (stage === 6) {
-    pos = getEnterPosForMom();
-  } else {
-    pos = getEnterPosForGurdyOrItLives();
-  }
-
-  // Teleport them and make them visible again
-  g.p.Position = pos;
-  g.p.SpriteScale = g.run.room.teleportSubvertScale;
-
-  // Also, teleport all of the familiars (and make them visible again)
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
-    familiar.Position = pos;
-    familiar.Visible = true;
-  }
-
-  Isaac.DebugString("Subverted a position teleport (2/2).");
-}
-
 function drawVersion() {
   const gameFrameCount = g.g.GetFrameCount();
 

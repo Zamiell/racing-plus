@@ -17,7 +17,6 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import g from "../globals";
-import GlobalsRunRoom from "../types/GlobalsRunRoom";
 
 export function main(): void {
   cache.updateAPIFunctions();
@@ -35,7 +34,6 @@ export function main(): void {
   );
 
   // Set variables
-  g.run.room = new GlobalsRunRoom();
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
   // Mandatory features

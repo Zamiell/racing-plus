@@ -2,7 +2,8 @@
 
 import { getRoomIndex, inCrawlspace, log } from "isaacscript-common";
 import g from "../../../../globals";
-import { movePlayersAndFamiliars, teleport } from "../../../../utilGlobals";
+import { movePlayersAndFamiliars } from "../../../../util";
+import { teleport } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";

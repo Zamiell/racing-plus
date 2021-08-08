@@ -4,7 +4,7 @@
 
 import { getPlayers } from "isaacscript-common";
 import g from "../../globals";
-import { movePlayersAndFamiliars } from "../../utilGlobals";
+import { movePlayersAndFamiliars } from "../../util";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

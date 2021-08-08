@@ -43,8 +43,6 @@ export default class GlobalsRunLevel {
     subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
   };
 
-  numSacrifices = 0;
-
   trophy = null as EntityLocation | null;
 
   constructor(stage: int, stageType: int) {

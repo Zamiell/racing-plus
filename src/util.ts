@@ -1,4 +1,11 @@
-import { hasFlag, initRNG, log } from "isaacscript-common";
+import {
+  getItemName,
+  getPlayers,
+  hasFlag,
+  initRNG,
+  log,
+} from "isaacscript-common";
+import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -12,6 +19,23 @@ export function getFinalFrameOfAnimation(sprite: Sprite): int {
   const finalFrame = sprite.GetFrame();
   sprite.SetFrame(currentFrame);
   return finalFrame;
+}
+
+export function hasPolaroidOrNegative(): [boolean, boolean] {
+  let hasPolaroid = false;
+  let hasNegative = false;
+  for (const player of getPlayers()) {
+    // We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true
+    // if they are holding the Mysterious Paper trinket
+    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_POLAROID) > 0) {
+      hasPolaroid = true;
+    }
+    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_NEGATIVE) > 0) {
+      hasNegative = true;
+    }
+  }
+
+  return [hasPolaroid, hasNegative];
 }
 
 export function incrementRNG(seed: int): int {
@@ -103,6 +127,30 @@ export function moveEsauNextToJacob(): void {
       esau.Position = adjustedPosition;
     }
   }
+}
+
+export function movePlayersAndFamiliars(position: Vector): void {
+  const players = getPlayers();
+  for (const player of players) {
+    player.Position = position;
+  }
+
+  moveEsauNextToJacob();
+
+  // Put familiars next to the players
+  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
+  for (const familiar of familiars) {
+    familiar.Position = position;
+  }
+}
+
+export function removeItemFromItemTracker(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): void {
+  const itemName = getItemName(collectibleType);
+  log(
+    `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
+  );
 }
 
 export function restartAsCharacter(character: PlayerType): void {

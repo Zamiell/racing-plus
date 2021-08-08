@@ -1,14 +1,8 @@
-import {
-  getItemName,
-  getPlayers,
-  getRoomIndex,
-  inCrawlspace,
-  log,
-} from "isaacscript-common";
+import { getRoomIndex, inCrawlspace } from "isaacscript-common";
+import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
 import { FastTravelState } from "./features/optional/major/fastTravel/enums";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
-import { moveEsauNextToJacob } from "./util";
 
 export function enteredRoomViaTeleport(): boolean {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
@@ -61,38 +55,6 @@ export function giveItemAndRemoveFromPools(
   g.itemPool.RemoveCollectible(collectibleType);
 }
 
-export function hasPolaroidOrNegative(): [boolean, boolean] {
-  let hasPolaroid = false;
-  let hasNegative = false;
-  for (const player of getPlayers()) {
-    // We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true
-    // if they are holding the Mysterious Paper trinket
-    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_POLAROID) > 0) {
-      hasPolaroid = true;
-    }
-    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_NEGATIVE) > 0) {
-      hasNegative = true;
-    }
-  }
-
-  return [hasPolaroid, hasNegative];
-}
-
-export function movePlayersAndFamiliars(position: Vector): void {
-  const players = getPlayers();
-  for (const player of players) {
-    player.Position = position;
-  }
-
-  moveEsauNextToJacob();
-
-  // Put familiars next to the players
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
-    familiar.Position = position;
-  }
-}
-
 export function removeGridEntity(gridEntity: GridEntity): void {
   // In some cases, the grid entity will show on screen for a frame before it is removed
   // (like for the trapdoor spawned after killing It Lives!)
@@ -103,15 +65,6 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
-}
-
-export function removeItemFromItemTracker(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): void {
-  const itemName = getItemName(collectibleType);
-  log(
-    `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
-  );
 }
 
 export function spawnCollectible(
@@ -135,14 +88,7 @@ export function spawnCollectible(
     collectible.OptionsPickupIndex = 1;
   }
 
-  // Prevent quest items from switching to another item on Tainted Isaac
-  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem !== null) {
-    const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
-    if (isQuestItem) {
-      g.run.room.stuckItems.set(seed, collectibleType);
-    }
-  }
+  taintedIsaacStuckItems.checkQuestItem(collectibleType, seed);
 }
 
 export function teleport(

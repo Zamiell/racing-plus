@@ -1,6 +1,6 @@
 import { ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
-import { hasPolaroidOrNegative } from "../../../../utilGlobals";
+import { hasPolaroidOrNegative } from "../../../../util";
 import { RaceGoal } from "../../../race/types/RaceData";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import v from "./v";

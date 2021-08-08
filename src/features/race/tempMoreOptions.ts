@@ -1,6 +1,6 @@
 import { isRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
-import { removeItemFromItemTracker } from "../../utilGlobals";
+import { removeItemFromItemTracker } from "../../util";
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
