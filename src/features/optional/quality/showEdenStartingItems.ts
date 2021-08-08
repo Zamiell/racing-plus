@@ -1,4 +1,8 @@
-import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
+import {
+  getRoomIndex,
+  isRepentanceStage,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../util";
@@ -7,6 +11,23 @@ import { initGlowingItemSprite } from "../../../util";
 const SPRITE_X = 123;
 const SPRITE_Y = 17;
 const SPRITE_SPACING = 30;
+
+const v = {
+  run: {
+    active: 0 as CollectibleType,
+    passive: 0 as CollectibleType,
+    activeSprite: null as Sprite | null,
+    passiveSprite: null as Sprite | null,
+  },
+};
+
+export function init(): void {
+  saveDataManager("showEdenStartingItems", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.showEdenStartingItems;
+}
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -22,13 +43,13 @@ function drawItemSprites() {
     return;
   }
 
-  if (g.run.edenStartingItems.activeSprite !== null) {
+  if (v.run.activeSprite !== null) {
     const position = Vector(SPRITE_X, SPRITE_Y);
-    g.run.edenStartingItems.activeSprite.RenderLayer(0, position);
+    v.run.activeSprite.RenderLayer(0, position);
   }
-  if (g.run.edenStartingItems.passiveSprite !== null) {
+  if (v.run.passiveSprite !== null) {
     const position = Vector(SPRITE_X + SPRITE_SPACING, SPRITE_Y);
-    g.run.edenStartingItems.passiveSprite.RenderLayer(0, position);
+    v.run.passiveSprite.RenderLayer(0, position);
   }
 }
 
@@ -43,20 +64,16 @@ export function postNewRoom(): void {
 
 function setItemSprites() {
   if (!shouldShowSprites()) {
-    g.run.edenStartingItems.activeSprite = null;
-    g.run.edenStartingItems.passiveSprite = null;
+    v.run.activeSprite = null;
+    v.run.passiveSprite = null;
     return;
   }
 
-  if (g.run.edenStartingItems.activeSprite === null) {
-    g.run.edenStartingItems.activeSprite = initGlowingItemSprite(
-      g.run.edenStartingItems.active,
-    );
+  if (v.run.activeSprite === null) {
+    v.run.activeSprite = initGlowingItemSprite(v.run.active);
   }
-  if (g.run.edenStartingItems.passiveSprite === null) {
-    g.run.edenStartingItems.passiveSprite = initGlowingItemSprite(
-      g.run.edenStartingItems.passive,
-    );
+  if (v.run.passiveSprite === null) {
+    v.run.passiveSprite = initGlowingItemSprite(v.run.passive);
   }
 }
 
@@ -97,14 +114,12 @@ function storeItemIdentities() {
     return;
   }
 
-  g.run.edenStartingItems.active = player.GetActiveItem(
-    ActiveSlot.SLOT_PRIMARY,
-  );
+  v.run.active = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
   const passive = getEdenPassiveItem(player);
   if (passive === null) {
     error("Failed to find Eden's passive item.");
   }
-  g.run.edenStartingItems.passive = passive;
+  v.run.passive = passive;
 }
 
 function getEdenPassiveItem(player: EntityPlayer) {

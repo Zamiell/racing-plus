@@ -1,6 +1,7 @@
 import { isRepentanceStage, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
+import v from "./v";
 
 export function goto(upwards: boolean): void {
   // Get the number and type of the next floor
@@ -22,7 +23,7 @@ export function goto(upwards: boolean): void {
   // variable
   // Thus, we have to set it increment it manually if the player did not take any damage on this
   // floor
-  if (!g.run.level.fastTravel.tookDamage) {
+  if (!v.level.tookDamage) {
     g.g.AddStageWithoutDamage();
     log("Finished this floor without taking any damage.");
   } else {
@@ -130,7 +131,8 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (
     stage === 6 &&
     !repentanceStage &&
-    (g.run.altFloorsTraveled.ashpit2 || g.run.altFloorsTraveled.mines2)
+    (v.run.repentanceFloorsVisited.ashpit2 ||
+      v.run.repentanceFloorsVisited.mines2)
   ) {
     return stage - 2;
   }
@@ -138,8 +140,8 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (
     stage === 4 &&
     repentanceStage &&
-    !g.run.altFloorsTraveled.ashpit1 &&
-    !g.run.altFloorsTraveled.mines1
+    !v.run.repentanceFloorsVisited.ashpit1 &&
+    !v.run.repentanceFloorsVisited.mines1
   ) {
     return stage;
   }
@@ -147,7 +149,8 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (
     stage === 4 &&
     !repentanceStage &&
-    (g.run.altFloorsTraveled.dross2 || g.run.altFloorsTraveled.downpour2)
+    (v.run.repentanceFloorsVisited.dross2 ||
+      v.run.repentanceFloorsVisited.downpour2)
   ) {
     return stage - 2;
   }
@@ -155,8 +158,8 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (
     stage === 3 &&
     repentanceStage &&
-    !g.run.altFloorsTraveled.dross2 &&
-    !g.run.altFloorsTraveled.downpour2
+    !v.run.repentanceFloorsVisited.dross2 &&
+    !v.run.repentanceFloorsVisited.downpour2
   ) {
     return stage;
   }
@@ -164,8 +167,8 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   if (
     stage === 2 &&
     repentanceStage &&
-    !g.run.altFloorsTraveled.dross1 &&
-    !g.run.altFloorsTraveled.downpour1
+    !v.run.repentanceFloorsVisited.dross1 &&
+    !v.run.repentanceFloorsVisited.downpour1
   ) {
     return stage;
   }
@@ -263,51 +266,51 @@ function getStageTypeBackwardsPath(
   repentanceStage: boolean,
 ): int {
   if (stage === 6 && !repentanceStage) {
-    if (g.run.altFloorsTraveled.ashpit2) {
+    if (v.run.repentanceFloorsVisited.ashpit2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
 
-    if (g.run.altFloorsTraveled.mines2) {
+    if (v.run.repentanceFloorsVisited.mines2) {
       return StageType.STAGETYPE_REPENTANCE;
     }
   }
 
   if (stage === 4 && repentanceStage) {
-    if (g.run.altFloorsTraveled.ashpit1) {
+    if (v.run.repentanceFloorsVisited.ashpit1) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
 
-    if (g.run.altFloorsTraveled.mines1) {
+    if (v.run.repentanceFloorsVisited.mines1) {
       return StageType.STAGETYPE_REPENTANCE;
     }
   }
 
   if (stage === 4 && !repentanceStage) {
-    if (g.run.altFloorsTraveled.dross2) {
+    if (v.run.repentanceFloorsVisited.dross2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
 
-    if (g.run.altFloorsTraveled.downpour2) {
+    if (v.run.repentanceFloorsVisited.downpour2) {
       return StageType.STAGETYPE_REPENTANCE;
     }
   }
 
   if (stage === 3 && repentanceStage) {
-    if (g.run.altFloorsTraveled.dross2) {
+    if (v.run.repentanceFloorsVisited.dross2) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
 
-    if (g.run.altFloorsTraveled.downpour2) {
+    if (v.run.repentanceFloorsVisited.downpour2) {
       return StageType.STAGETYPE_REPENTANCE;
     }
   }
 
   if (stage === 2 && repentanceStage) {
-    if (g.run.altFloorsTraveled.dross1) {
+    if (v.run.repentanceFloorsVisited.dross1) {
       return StageType.STAGETYPE_REPENTANCE_B;
     }
 
-    if (g.run.altFloorsTraveled.downpour1) {
+    if (v.run.repentanceFloorsVisited.downpour1) {
       return StageType.STAGETYPE_REPENTANCE;
     }
   }
@@ -396,37 +399,37 @@ function setFloorVariables(stage: int, stageType: int) {
 
   if (stageType === 4) {
     if (stage === 1) {
-      g.run.altFloorsTraveled.downpour1 = true;
+      v.run.repentanceFloorsVisited.downpour1 = true;
     }
 
     if (stage === 2) {
-      g.run.altFloorsTraveled.downpour2 = true;
+      v.run.repentanceFloorsVisited.downpour2 = true;
     }
 
     if (stage === 3) {
-      g.run.altFloorsTraveled.mines1 = true;
+      v.run.repentanceFloorsVisited.mines1 = true;
     }
 
     if (stage === 4) {
-      g.run.altFloorsTraveled.mines2 = true;
+      v.run.repentanceFloorsVisited.mines2 = true;
     }
   }
 
   if (stageType === 5) {
     if (stage === 1) {
-      g.run.altFloorsTraveled.dross1 = true;
+      v.run.repentanceFloorsVisited.dross1 = true;
     }
 
     if (stage === 2) {
-      g.run.altFloorsTraveled.dross2 = true;
+      v.run.repentanceFloorsVisited.dross2 = true;
     }
 
     if (stage === 3) {
-      g.run.altFloorsTraveled.ashpit1 = true;
+      v.run.repentanceFloorsVisited.ashpit1 = true;
     }
 
     if (stage === 4) {
-      g.run.altFloorsTraveled.ashpit2 = true;
+      v.run.repentanceFloorsVisited.ashpit2 = true;
     }
   }
 }

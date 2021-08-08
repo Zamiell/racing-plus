@@ -1,46 +1,11 @@
 import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
 import { FastTravelState } from "../features/optional/major/fastTravel/enums";
 import SeededDeathState from "../features/race/types/SeededDeathState";
-import GlobalsRunLevel from "./GlobalsRunLevel";
 import PickingUpItemDescription from "./PickingUpItemDescription";
 import PillDescription from "./PillDescription";
 
 // Per-run variables
 export default class GlobalsRun {
-  // We start at stage 0 instead of stage 1 so that we can trigger the PostNewRoom callback after
-  // the PostNewLevel callback
-  level = new GlobalsRunLevel(0, 0);
-
-  /** Remember the alt floors we traveled to respawn them in Backwards path. */
-  altFloorsTraveled = {
-    downpour1: false,
-    dross1: false,
-    downpour2: false,
-    dross2: false,
-    mines1: false,
-    ashpit1: false,
-    mines2: false,
-    ashpit2: false,
-  };
-
-  beastDefeated = false;
-  currentCharacters = new LuaTable<PlayerIndex, PlayerType>();
-  debugChaosCard = false;
-  debugSpeed = false;
-
-  edenStartingItems = {
-    active: 0 as CollectibleType,
-    passive: 0 as CollectibleType,
-    activeSprite: null as Sprite | null,
-    passiveSprite: null as Sprite | null,
-  };
-
-  errors = {
-    corrupted: false,
-    incompleteSave: false,
-    otherModsEnabled: false,
-  };
-
   /** Needed for speedruns to return to the same character. */
   fastResetFrame = 0;
 
@@ -173,10 +138,8 @@ export function initPlayerVariables(
     return;
   }
 
-  const character = player.GetPlayerType();
   const index = getPlayerIndex(player);
 
-  run.currentCharacters.set(index, character);
   run.freeDevilItem.tookDamage.set(index, false);
 
   run.pickingUpItem.set(index, {

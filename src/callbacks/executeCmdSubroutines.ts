@@ -1,3 +1,4 @@
+import * as debugPowers from "../features/mandatory/debugPowers";
 import g from "../globals";
 import { teleport } from "../utilGlobals";
 
@@ -6,9 +7,7 @@ export function blackMarket(): void {
 }
 
 export function chaosCardTears(): void {
-  g.run.debugChaosCard = !g.run.debugChaosCard;
-  const enabled = g.run.debugChaosCard ? "Enabled" : "Disabled";
-  print(`${enabled} Chaos Card tears.`);
+  debugPowers.toggleChaosCard();
 }
 
 export function crawlspace(): void {

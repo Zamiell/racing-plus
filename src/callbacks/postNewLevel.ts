@@ -4,7 +4,6 @@ import * as openHushDoor from "../features/optional/quality/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
-import GlobalsRunLevel from "../types/GlobalsRunLevel";
 
 export function main(): void {
   const gameFrameCount = g.g.GetFrameCount();
@@ -14,9 +13,6 @@ export function main(): void {
   log(
     `MC_POST_NEW_LEVEL - ${stage}.${stageType} (game frame ${gameFrameCount})`,
   );
-
-  // Clear variables that track things per level
-  g.run.level = new GlobalsRunLevel(stage, stageType);
 
   // Other miscellaneous things
   if (shouldShowLevelText()) {

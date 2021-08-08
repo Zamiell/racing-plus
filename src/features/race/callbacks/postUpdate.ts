@@ -17,7 +17,7 @@ function spawnBossRushTrophy() {
   const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
 
   if (
-    g.run.level.trophy === null &&
+    !trophy.trophyHasSpawned() &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Boss Rush" &&

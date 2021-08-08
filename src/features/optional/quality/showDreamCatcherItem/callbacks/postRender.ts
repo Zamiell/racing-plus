@@ -3,6 +3,7 @@ import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { centerPlayers } from "../../../../mandatory/centerStart";
 import { WarpState } from "../enums";
+import v from "../v";
 
 // Near the top-left of the room
 const SPRITE_SPACING = 30;
@@ -17,8 +18,8 @@ export default function showDreamCatcherItemPostRender(): void {
 }
 
 function repositionPlayer() {
-  if (g.run.level.dreamCatcher.warpState === WarpState.RepositioningPlayer) {
-    g.run.level.dreamCatcher.warpState = WarpState.Finished;
+  if (v.level.warpState === WarpState.RepositioningPlayer) {
+    v.level.warpState = WarpState.Finished;
     centerPlayers();
   }
 }
@@ -35,14 +36,14 @@ function drawItemSprites() {
   const topLeftRoomPosition = gridToPos(1, 1);
   const nextToDreamCatcherPosition = gridToPos(2, 1);
 
-  if (g.run.level.dreamCatcher.dreamCatcherSprite !== null) {
-    const sprite = g.run.level.dreamCatcher.dreamCatcherSprite;
+  if (v.level.dreamCatcherSprite !== null) {
+    const sprite = v.level.dreamCatcherSprite;
     const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);
     sprite.RenderLayer(0, renderPosition);
   }
 
-  for (let i = 0; i < g.run.level.dreamCatcher.itemSprites.length; i++) {
-    const sprite = g.run.level.dreamCatcher.itemSprites[i];
+  for (let i = 0; i < v.level.itemSprites.length; i++) {
+    const sprite = v.level.itemSprites[i];
     const renderPosition = Isaac.WorldToRenderPosition(
       nextToDreamCatcherPosition,
     );
@@ -52,12 +53,12 @@ function drawItemSprites() {
     sprite.RenderLayer(0, position);
   }
 
-  for (let i = 0; i < g.run.level.dreamCatcher.bossSprites.length; i++) {
-    const sprite = g.run.level.dreamCatcher.bossSprites[i];
+  for (let i = 0; i < v.level.bossSprites.length; i++) {
+    const sprite = v.level.bossSprites[i];
     const renderPosition = Isaac.WorldToRenderPosition(
       nextToDreamCatcherPosition,
     );
-    const numRightShifts = i + g.run.level.dreamCatcher.itemSprites.length;
+    const numRightShifts = i + v.level.itemSprites.length;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
     sprite.RenderLayer(0, position);

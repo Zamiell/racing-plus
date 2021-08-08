@@ -10,6 +10,7 @@ import { PickupPriceCustom } from "../../../../../types/enums";
 import { initGlowingItemSprite, initSprite } from "../../../../../util";
 import { bossPNGMap } from "../bossPNGMap";
 import { WarpState } from "../enums";
+import v from "../v";
 
 export default function showDreamCatcherItemPostNewRoom(): void {
   if (!config.showDreamCatcherItem) {
@@ -50,7 +51,7 @@ function warp() {
     return;
   }
 
-  g.run.level.dreamCatcher.warpState = WarpState.Warping;
+  v.level.warpState = WarpState.Warping;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
@@ -62,12 +63,12 @@ function warp() {
 
   if (treasureRoomIndex !== null) {
     changeRoom(treasureRoomIndex);
-    g.run.level.dreamCatcher.items = getRoomItemsAndSetPrice();
+    v.level.items = getRoomItemsAndSetPrice();
   }
 
   if (bossRoomIndex !== null) {
     changeRoom(bossRoomIndex);
-    g.run.level.dreamCatcher.bosses = getRoomBosses();
+    v.level.bosses = getRoomBosses();
   }
 
   changeRoom(startingRoomIndex);
@@ -84,7 +85,7 @@ function warp() {
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
-  g.run.level.dreamCatcher.warpState = WarpState.RepositioningPlayer;
+  v.level.warpState = WarpState.RepositioningPlayer;
 }
 
 function shouldWarp() {
@@ -94,7 +95,7 @@ function shouldWarp() {
 
   return (
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    g.run.level.dreamCatcher.warpState === WarpState.Initial &&
+    v.level.warpState === WarpState.Initial &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
     roomIndex === startingRoomIndex &&
@@ -204,31 +205,27 @@ function restoreMinimapDisplayFlags(displayFlagsMap: LuaTable<int, int>) {
 
 function setItemSprites() {
   if (!shouldShowSprites()) {
-    g.run.level.dreamCatcher.dreamCatcherSprite = null;
-    g.run.level.dreamCatcher.itemSprites = [];
-    g.run.level.dreamCatcher.bossSprites = [];
+    v.level.dreamCatcherSprite = null;
+    v.level.itemSprites = [];
+    v.level.bossSprites = [];
     return;
   }
 
-  g.run.level.dreamCatcher.dreamCatcherSprite = initGlowingItemSprite(
+  v.level.dreamCatcherSprite = initGlowingItemSprite(
     CollectibleType.COLLECTIBLE_DREAM_CATCHER,
   );
 
-  for (let i = 0; i < g.run.level.dreamCatcher.items.length; i++) {
-    if (g.run.level.dreamCatcher.itemSprites[i] === null) {
-      const collectibleType = g.run.level.dreamCatcher.items[i];
-      g.run.level.dreamCatcher.itemSprites[i] =
-        initGlowingItemSprite(collectibleType);
+  for (let i = 0; i < v.level.items.length; i++) {
+    if (v.level.itemSprites[i] === null) {
+      const collectibleType = v.level.items[i];
+      v.level.itemSprites[i] = initGlowingItemSprite(collectibleType);
     }
   }
 
-  for (let i = 0; i < g.run.level.dreamCatcher.bosses.length; i++) {
-    if (g.run.level.dreamCatcher.bossSprites[i] === null) {
-      const [entityType, variant] = g.run.level.dreamCatcher.bosses[i];
-      g.run.level.dreamCatcher.bossSprites[i] = initBossSprite(
-        entityType,
-        variant,
-      );
+  for (let i = 0; i < v.level.bosses.length; i++) {
+    if (v.level.bossSprites[i] === null) {
+      const [entityType, variant] = v.level.bosses[i];
+      v.level.bossSprites[i] = initBossSprite(entityType, variant);
     }
   }
 }
@@ -238,7 +235,7 @@ function shouldShowSprites() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const roomIndex = getRoomIndex();
   return (
-    g.run.level.dreamCatcher.items.length > 0 &&
+    v.level.items.length > 0 &&
     roomIndex === startingRoomIndex &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode()

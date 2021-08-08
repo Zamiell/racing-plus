@@ -1,11 +1,5 @@
-import g from "../globals";
+import * as debugPowers from "../features/mandatory/debugPowers";
 
 export function main(tear: EntityTear): void {
-  chaosCardTears(tear);
-}
-
-function chaosCardTears(tear: EntityTear) {
-  if (g.run.debugChaosCard) {
-    tear.ChangeVariant(TearVariant.CHAOS_CARD);
-  }
+  debugPowers.postFireTear(tear);
 }

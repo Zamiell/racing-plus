@@ -1,6 +1,6 @@
-import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { isSelfDamage } from "../../../../../util";
+import v from "../v";
 
 export default function fastTravelEntityTakeDmgPlayer(
   tookDamage: Entity,
@@ -12,6 +12,6 @@ export default function fastTravelEntityTakeDmgPlayer(
 
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
-    g.run.level.fastTravel.tookDamage = true;
+    v.level.tookDamage = true;
   }
 }

@@ -1,5 +1,5 @@
+import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
-import g from "../globals";
 import { CollectibleTypeCustom } from "../types/enums";
 
 const functionMap = new Map<CacheFlag, (player: EntityPlayer) => void>();
@@ -7,14 +7,8 @@ export default functionMap;
 
 // 1 << 4
 functionMap.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
-  debugSpeed(player);
+  debugPowers.evaluateCacheSpeed(player);
 });
-
-function debugSpeed(player: EntityPlayer) {
-  if (g.run.debugSpeed) {
-    player.MoveSpeed = 2;
-  }
-}
 
 // 1 << 6
 functionMap.set(CacheFlag.CACHE_TEARCOLOR, (player: EntityPlayer) => {

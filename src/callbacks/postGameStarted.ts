@@ -1,6 +1,6 @@
 import { getPlayers, log } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
-import checkErrors from "../features/mandatory/checkErrors";
+import * as errors from "../features/mandatory/errors";
 import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
 import * as seededDrops from "../features/mandatory/seededDrops";
@@ -39,7 +39,7 @@ export function main(isContinued: boolean): void {
   g.run = new GlobalsRun(startSeed, getPlayers());
 
   // Check for errors that should prevent the Racing+ mod from doing anything
-  if (checkErrors()) {
+  if (errors.check()) {
     return;
   }
 

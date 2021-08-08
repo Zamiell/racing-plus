@@ -1,11 +1,22 @@
-import { getRoomIndex, log } from "isaacscript-common";
+import { getRoomIndex, log, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import EntityLocation from "../../types/EntityLocation";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
 import raceFinish from "../race/raceFinish";
 import SeededDeathState from "../race/types/SeededDeathState";
 import * as speedrun from "../speedrun/speedrun";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
+
+const v = {
+  level: {
+    trophy: null as EntityLocation | null,
+  },
+};
+
+export function init(): void {
+  saveDataManager("trophy", v);
+}
 
 export function spawn(position: Vector): void {
   const roomIndex = getRoomIndex();
@@ -20,7 +31,7 @@ export function spawn(position: Vector): void {
   );
 
   // Keep track that we spawned it so that we can respawn it if the player re-enters the room
-  g.run.level.trophy = {
+  v.level.trophy = {
     roomIndex,
     position,
   };
@@ -65,7 +76,7 @@ function checkTouch() {
 
 function touch(trophy: Entity, player: EntityPlayer) {
   trophy.Remove();
-  g.run.level.trophy = null;
+  v.level.trophy = null;
 
   // Make the player pick it up and have it sparkle
   player.AnimateCollectible(
@@ -91,10 +102,7 @@ export function postNewRoom(): void {
 function checkRespawn() {
   const roomIndex = getRoomIndex();
 
-  if (
-    g.run.level.trophy === null ||
-    roomIndex !== g.run.level.trophy.roomIndex
-  ) {
+  if (v.level.trophy === null || roomIndex !== v.level.trophy.roomIndex) {
     return;
   }
 
@@ -114,9 +122,13 @@ function checkRespawn() {
     EntityTypeCustom.ENTITY_RACE_TROPHY,
     0,
     0,
-    g.run.level.trophy.position,
+    v.level.trophy.position,
     Vector.Zero,
     null,
   );
   log("Respawned a Race Trophy since we re-entered the room.");
+}
+
+export function trophyHasSpawned(): boolean {
+  return v.level.trophy !== null;
 }

@@ -3,6 +3,7 @@ import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
+import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socket from "../features/race/socket";
 import g from "../globals";
 import { consoleCommand, restartAsCharacter } from "../util";
@@ -359,19 +360,7 @@ functionMap.set("sounds", (_params: string) => {
 });
 
 functionMap.set("speed", (_params: string) => {
-  const player = Isaac.GetPlayer();
-
-  g.run.debugSpeed = !g.run.debugSpeed;
-  const enabled = g.run.debugSpeed ? "Enabled" : "Disabled";
-  print(`${enabled} max speed.`);
-
-  // Also, give the player flight
-  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT);
-  }
-
-  player.AddCacheFlags(CacheFlag.CACHE_SPEED);
-  player.EvaluateItems();
+  debugPowers.toggleSpeed();
 });
 
 functionMap.set("trap", (_params: string) => {
@@ -389,7 +378,6 @@ functionMap.set("treasure", (_params: string) => {
   }
 });
 
-// cspell:disable-next-line
 functionMap.set("unseed", (_params: string) => {
   g.seeds.Reset();
   consoleCommand("restart");

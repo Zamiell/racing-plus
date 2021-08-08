@@ -1,11 +1,12 @@
+// cspell:disable
 const CHARACTER_MAP = new Map<string, PlayerType>([
   ["isaac", 0],
   ["magdalene", 1],
-  ["maggy", 1], // cspell:disable-line
+  ["maggy", 1],
   ["cain", 2],
   ["judas", 3],
   ["blue baby", 4],
-  ["bluebaby", 4], // cspell:disable-line
+  ["bluebaby", 4],
   ["bb", 4],
   ["eve", 5],
   ["samson", 6],
@@ -19,12 +20,12 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["lazarus2", 11],
   ["laz2", 11],
   ["dark judas", 12],
-  ["darkjudas", 12], // cspell:disable-line
-  ["djudas", 12], // cspell:disable-line
+  ["darkjudas", 12],
+  ["djudas", 12],
   ["dj", 12],
   ["black judas", 12],
-  ["blackjudas", 12], // cspell:disable-line
-  ["bjudas", 12], // cspell:disable-line
+  ["blackjudas", 12],
+  ["bjudas", 12],
   ["bj", 12],
   ["lilith", 13],
   ["keeper", 14],
@@ -39,79 +40,79 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["jacob", 19],
   ["esau", 20],
   ["isaac2", 21],
-  ["tisaac", 21], // cspell:disable-line
-  ["taintedisaac", 21], // cspell:disable-line
+  ["tisaac", 21],
+  ["taintedisaac", 21],
   ["magdalene2", 22],
-  ["maggy2", 22], // cspell:disable-line
-  ["tmagdalene", 22], // cspell:disable-line
-  ["tmaggy", 22], // cspell:disable-line
-  ["taintedmagdalene", 22], // cspell:disable-line
-  ["taintedmaggy", 22], // cspell:disable-line
+  ["maggy2", 22],
+  ["tmagdalene", 22],
+  ["tmaggy", 22],
+  ["taintedmagdalene", 22],
+  ["taintedmaggy", 22],
   ["cain2", 23],
-  ["tcain", 23], // cspell:disable-line
-  ["taintedcain", 23], // cspell:disable-line
+  ["tcain", 23],
+  ["taintedcain", 23],
   ["judas2", 24],
-  ["tjudas", 24], // cspell:disable-line
-  ["taintedjudas", 24], // cspell:disable-line
-  ["bluebaby2", 25], // cspell:disable-line
-  ["tbluebaby", 25], // cspell:disable-line
-  ["taintedbluebaby", 25], // cspell:disable-line
+  ["tjudas", 24],
+  ["taintedjudas", 24],
+  ["bluebaby2", 25],
+  ["tbluebaby", 25],
+  ["taintedbluebaby", 25],
   ["bb2", 25],
   ["tbb", 25],
-  ["taintedbb", 25], // cspell:disable-line
+  ["taintedbb", 25],
   ["eve2", 26],
-  ["teve", 26], // cspell:disable-line
-  ["taintedeve", 26], // cspell:disable-line
+  ["teve", 26],
+  ["taintedeve", 26],
   ["samson2", 27],
-  ["tsamson", 27], // cspell:disable-line
-  ["taintedsamson", 27], // cspell:disable-line
+  ["tsamson", 27],
+  ["taintedsamson", 27],
   ["azazel2", 28],
-  ["tazazel", 28], // cspell:disable-line
-  ["taintedazazel", 28], // cspell:disable-line
-  ["tlaz", 29], // cspell:disable-line
-  ["tlazarus", 29], // cspell:disable-line
-  ["taintedlaz", 29], // cspell:disable-line
-  ["taintedlazarus", 29], // cspell:disable-line
+  ["tazazel", 28],
+  ["taintedazazel", 28],
+  ["tlaz", 29],
+  ["tlazarus", 29],
+  ["taintedlaz", 29],
+  ["taintedlazarus", 29],
   ["eden2", 30],
-  ["teden", 30], // cspell:disable-line
-  ["taintededen", 30], // cspell:disable-line
+  ["teden", 30],
+  ["taintededen", 30],
   ["lost2", 31],
-  ["tlost", 31], // cspell:disable-line
-  ["taintedlost", 31], // cspell:disable-line
+  ["tlost", 31],
+  ["taintedlost", 31],
   ["lilith2", 32],
-  ["tlilith", 32], // cspell:disable-line
-  ["taintedlilith", 32], // cspell:disable-line
+  ["tlilith", 32],
+  ["taintedlilith", 32],
   ["keeper2", 33],
-  ["tkeeper", 33], // cspell:disable-line
-  ["taintedkeeper", 33], // cspell:disable-line
+  ["tkeeper", 33],
+  ["taintedkeeper", 33],
   ["apollyon2", 34],
-  ["tapollyon", 34], // cspell:disable-line
-  ["taintedapollyon", 34], // cspell:disable-line
+  ["tapollyon", 34],
+  ["taintedapollyon", 34],
   ["forgotten2", 35],
-  ["tforgotten", 35], // cspell:disable-line
-  ["taintedforgotten", 35], // cspell:disable-line
+  ["tforgotten", 35],
+  ["taintedforgotten", 35],
   ["bethany2", 36],
-  ["tbethany", 36], // cspell:disable-line
-  ["taintedbethany", 36], // cspell:disable-line
+  ["tbethany", 36],
+  ["taintedbethany", 36],
   ["jacob2", 37],
-  ["tjacob", 37], // cspell:disable-line
-  ["taintedjacob", 37], // cspell:disable-line
-  ["tlazdead", 38], // cspell:disable-line
-  ["tlazarusdead", 38], // cspell:disable-line
-  ["taintedlazdead", 38], // cspell:disable-line
-  ["taintedlazarusdead", 38], // cspell:disable-line
-  ["deadtlaz", 38], // cspell:disable-line
-  ["deadtlazarus", 38], // cspell:disable-line
-  ["deadtaintedlaz", 38], // cspell:disable-line
-  ["deadtaintedlazarus", 38], // cspell:disable-line
+  ["tjacob", 37],
+  ["taintedjacob", 37],
+  ["tlazdead", 38],
+  ["tlazarusdead", 38],
+  ["taintedlazdead", 38],
+  ["taintedlazarusdead", 38],
+  ["deadtlaz", 38],
+  ["deadtlazarus", 38],
+  ["deadtaintedlaz", 38],
+  ["deadtaintedlazarus", 38],
   ["jacob2ghost", 39],
-  ["tjacobghost", 39], // cspell:disable-line
-  ["taintedjacobghost", 39], // cspell:disable-line
-  ["ghostjacob2", 39], // cspell:disable-line
-  ["ghosttjacob", 39], // cspell:disable-line
-  ["ghosttaintedjacob", 39], // cspell:disable-line
+  ["tjacobghost", 39],
+  ["taintedjacobghost", 39],
+  ["ghostjacob2", 39],
+  ["ghosttjacob", 39],
+  ["ghosttaintedjacob", 39],
   // 40 is Tainted Soul, which is the same as Tainted Forgotten
   ["baby", 41],
-  ["randombaby", 41], // cspell:disable-line
+  ["randombaby", 41],
 ]);
 export default CHARACTER_MAP;

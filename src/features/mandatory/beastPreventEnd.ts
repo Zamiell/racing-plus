@@ -1,5 +1,16 @@
+import { saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand } from "../../util";
+
+const v = {
+  run: {
+    beastDefeated: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("beastPreventEnd", v);
+}
 
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;
@@ -8,7 +19,7 @@ export function postEntityKillTheBeast(entity: Entity): void {
     return;
   }
 
-  g.run.beastDefeated = true;
+  v.run.beastDefeated = true;
 
   // Reload the Beast room again
   consoleCommand("goto x.itemdungeon.666");
@@ -18,7 +29,7 @@ export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
 
-  if (stage !== 13 || !g.run.beastDefeated) {
+  if (stage !== 13 || !v.run.beastDefeated) {
     return;
   }
 

@@ -56,7 +56,7 @@ function repositionPlayer() {
     inCrawlspace() &&
     // If we are returning from a Black Market, then being at the right-most door is the correct
     // position and we should not do anything further
-    !g.run.level.fastTravel.blackMarket
+    !v.level.blackMarket
   ) {
     movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
   }
@@ -64,8 +64,7 @@ function repositionPlayer() {
 
 function checkBlackMarket() {
   const roomIndex = getRoomIndex();
-  g.run.level.fastTravel.blackMarket =
-    roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
+  v.level.blackMarket = roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
 }
 
 function checkReturningToRoomOutsideTheGrid() {
@@ -97,15 +96,14 @@ function checkPostRoomTransitionSubvert() {
   // If we subverted the room transition for a room outside of the grid,
   // we might not end up in a spot where the player expects
   // So, move to the most logical position
-  const direction = g.run.level.fastTravel.subvertedRoomTransitionDirection;
+  const direction = v.level.subvertedRoomTransitionDirection;
   if (direction !== Direction.NO_DIRECTION) {
     const gridPosition = BOSS_ROOM_ENTER_MAP.get(direction);
     if (gridPosition !== undefined) {
       const player = Isaac.GetPlayer();
       if (player !== null) {
         player.Position = g.r.GetGridPosition(gridPosition);
-        g.run.level.fastTravel.subvertedRoomTransitionDirection =
-          Direction.NO_DIRECTION;
+        v.level.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
         log(
           "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
         );
@@ -145,20 +143,16 @@ function checkExitSoftlock(player: EntityPlayer) {
 
   if (
     previousRoomIndex !== GridRooms.ROOM_DUNGEON_IDX ||
-    g.run.level.fastTravel.previousRoomIndex === null
+    v.level.previousRoomIndex === null
   ) {
     return;
   }
 
   const direction = getExitDirection(roomType, player);
   if (direction !== undefined) {
-    g.run.level.fastTravel.subvertedRoomTransitionDirection = direction;
+    v.level.subvertedRoomTransitionDirection = direction;
     v.room.amChangingRooms = true;
-    teleport(
-      g.run.level.fastTravel.previousRoomIndex,
-      direction,
-      RoomTransitionAnim.WALK,
-    );
+    teleport(v.level.previousRoomIndex, direction, RoomTransitionAnim.WALK);
     log(
       "Subverted exiting a room outside of the grid to avoid a crawlspace-related softlock.",
     );
@@ -252,13 +246,13 @@ function touched(entity: GridEntity | EntityEffect) {
   // the previous room index will be the crawlspace
   // We need to preserve the room index of the last non-negative room
   const previousRoomIndexToUse =
-    g.run.level.fastTravel.previousRoomIndex === null
+    v.level.previousRoomIndex === null
       ? previousRoomIndex
-      : g.run.level.fastTravel.previousRoomIndex;
+      : v.level.previousRoomIndex;
 
   // Save the previous room information so that we can return there after exiting the crawlspace
   // (for the special case where we return to a room outside of the grid)
-  g.run.level.fastTravel.previousRoomIndex = previousRoomIndexToUse;
+  v.level.previousRoomIndex = previousRoomIndexToUse;
 
   // Vanilla crawlspaces uses these variables to return the player to the previous room
   // Even though we are re-implementing crawlspaces, we will use the same variables
