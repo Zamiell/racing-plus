@@ -22,6 +22,11 @@ export function postUpdate(): void {
     PickupVariant.PICKUP_COLLECTIBLE,
   );
   for (const collectible of collectibles) {
+    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+      // Ignore empty pedestals (i.e. items that have already been taken by the player)
+      continue;
+    }
+
     const trackedCollectibleType = v.room.trackedItems.get(
       collectible.InitSeed,
     );
