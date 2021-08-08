@@ -81,7 +81,7 @@ function getNextStage() {
       return stage + 1;
     }
 
-    // e.g. From Basement 1 to Downpour 1
+    // e.g. From Basement 1 to Downpour 1 or from Basement 2 to Downpour 2
     return stage;
   }
 
