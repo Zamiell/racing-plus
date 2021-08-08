@@ -1,8 +1,8 @@
 import {
   getOpenTrinketSlot,
-  getPlayerIndex,
   getPlayers,
   isRepentanceStage,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -17,6 +17,21 @@ const EXCLUDED_CHARACTERS = [
   // (even if we ignore Tainted Soul, the feature will still apply to Tainted Forgotten normally)
   PlayerType.PLAYER_THESOUL_B, // 40
 ];
+
+const v = {
+  run: {
+    tookDamage: false,
+    granted: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("freeDevilItem", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.freeDevilItem;
+}
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
@@ -33,8 +48,7 @@ export function entityTakeDmgPlayer(
 function checkForSelfDamage(tookDamage: Entity, damageFlags: int) {
   const player = tookDamage.ToPlayer();
   if (player !== null && !isSelfDamage(damageFlags)) {
-    const index = getPlayerIndex(player);
-    g.run.freeDevilItem.tookDamage.set(index, true);
+    v.run.tookDamage = true;
   }
 }
 
@@ -51,22 +65,22 @@ function checkGiveTrinket() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
-  // If we have made it to our first Devil Room without taking any damage,
-  // reward the player with the trinket prize
   if (
-    !g.run.freeDevilItem.granted &&
+    !v.run.granted &&
+    !v.run.tookDamage &&
     (stage === 2 || (stage === 1 && isRepentanceStage())) &&
     roomType === RoomType.ROOM_DEVIL &&
     !enteredRoomViaTeleport()
   ) {
-    g.run.freeDevilItem.granted = true;
+    // We have arrived at the first Devil Room (without teleporting in) and no player has taken any
+    // damage
+    // Award all players with a trinket prize
+    v.run.granted = true;
 
     for (const player of getPlayers()) {
-      const index = getPlayerIndex(player);
-      const takenDamage = g.run.freeDevilItem.tookDamage.get(index);
       const playerType = player.GetPlayerType();
 
-      if (!takenDamage && !EXCLUDED_CHARACTERS.includes(playerType)) {
+      if (!EXCLUDED_CHARACTERS.includes(playerType)) {
         giveTrinket(player);
       }
     }

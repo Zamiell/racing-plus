@@ -24,9 +24,6 @@ export function postNewRoom(): void {
 
   if (shouldSubvertTeleport()) {
     subvertTeleport();
-    if (shouldForceMomStomp()) {
-      forceMomStomp();
-    }
   }
 }
 
@@ -123,13 +120,4 @@ function getNormalRoomEnterPosition() {
       return BOTTOM_DOOR_POSITION;
     }
   }
-}
-
-function shouldForceMomStomp() {
-  const moms = Isaac.FindByType(EntityType.ENTITY_MOM, -1, -1, false, true);
-  return moms.length > 0;
-}
-
-function forceMomStomp() {
-  // TODO
 }

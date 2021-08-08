@@ -1,7 +1,5 @@
 Patch notes:
-- Glyph of Balance is now removed from pools in seeded races
-- Fixed the bug where Angel Rooms pedestal items would not disappear after taking one of them
-- Fixed the bug where picking up trinkets would show the name of the item of the same ID
+- The free devil deal item will now only be awarded if no players have taken damage (rather than looking at the individual players)
 
 Racing+ new features:
 - chat system

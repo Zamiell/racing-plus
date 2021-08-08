@@ -1,6 +1,7 @@
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as errors from "./features/mandatory/errors";
+import * as fireworks from "./features/mandatory/fireworks";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
@@ -28,6 +29,7 @@ export default function initFeatureVariables(): void {
   beastPreventEnd.init();
   tempMoreOptions.init();
   trophy.init();
+  fireworks.init();
   debugPowers.init();
   errors.init();
 

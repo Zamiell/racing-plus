@@ -1,5 +1,15 @@
-import { getPlayers, gridToPos } from "isaacscript-common";
+import { getPlayers, gridToPos, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+
+const v = {
+  run: {
+    numFireworksSpawned: 0,
+  },
+};
+
+export function init(): void {
+  saveDataManager("fireworks", v);
+}
 
 export function postUpdate(): void {
   makeFireworksQuieter();
@@ -51,9 +61,9 @@ function spawnFireworks() {
 
   // Spawn 30 fireworks (1000.104.0)
   // (some can be duds randomly)
-  if (g.run.fireworksSpawned < 40 && gameFrameCount % 20 === 0) {
+  if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     for (let i = 0; i < 5; i++) {
-      g.run.fireworksSpawned += 1;
+      v.run.numFireworksSpawned += 1;
       const fireworkPos = gridToPos(math.random(1, 11), math.random(2, 8));
       const firework = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,

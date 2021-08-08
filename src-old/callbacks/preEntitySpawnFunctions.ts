@@ -19,20 +19,6 @@ functionMap.set(
       ];
     }
 
-    // We only remove blood explosions on specific laggy bosses
-    if (
-      g.run.room.preventBloodExplosion &&
-      (variant === EffectVariant.BLOOD_EXPLOSION || // 2
-        variant === EffectVariant.BLOOD_PARTICLE) // 5
-    ) {
-      return [
-        EntityType.ENTITY_EFFECT,
-        EffectVariantCustom.INVISIBLE_EFFECT,
-        0,
-        0,
-      ];
-    }
-
     const preEntitySpawnEffectFunction =
       preEntitySpawnEffectFunctions.get(variant);
     if (preEntitySpawnEffectFunction !== undefined) {

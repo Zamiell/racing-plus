@@ -6,7 +6,6 @@ export function main(): void {
   checkKeeperHearts();
   checkItemPickup();
   checkCharacter();
-  checkMomStomp();
   checkManualRechargeActive();
   checkMutantSpiderInnerEye();
   crownOfLight();
@@ -87,25 +86,12 @@ function checkRoomCleared() {
 
   // Give a charge to the player's Schoolbag item
   schoolbag.AddCharge();
-
-  // Handle speedrun tasks
-  season7.RoomCleared();
 }
 
 function checkDDItems() {
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
-
-  // Check to see if the player is taking a devil deal
-  if (
-    // In Racing+ Rebalanced, there are DD items in a Curse Room
-    roomType !== RoomType.ROOM_CURSE && // 10
-    roomType !== RoomType.ROOM_DEVIL && // 14
-    roomType !== RoomType.ROOM_BLACK_MARKET // 22
-  ) {
-    return;
-  }
 
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
@@ -253,89 +239,6 @@ function checkCharacter() {
           effect.GetSprite().Play("Closed", true);
         }
       }
-    }
-  }
-}
-
-// Subverting the teleport on the Mom fight can result in a buggy interaction where Mom does not
-// stomp
-// Force Mom to stomp by teleporting the player to the middle of the room for one frame
-function checkMomStomp() {
-  if (!g.run.room.forceMomStomp) {
-    return;
-  }
-
-  const roomFrameCount = g.r.GetFrameCount();
-  const centerPos = g.r.GetCenterPos();
-
-  switch (roomFrameCount) {
-    case 19: {
-      g.run.room.forceMomStompPos = g.p.Position;
-      g.p.Position = centerPos;
-      g.p.Visible = false;
-
-      const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-      for (const familiar of familiars) {
-        familiar.Visible = false;
-      }
-
-      const knives = Isaac.FindByType(
-        EntityType.ENTITY_KNIFE,
-        -1,
-        -1,
-        false,
-        false,
-      );
-      for (const knife of knives) {
-        knife.Visible = false;
-      }
-
-      const scythes = Isaac.FindByType(
-        EntityTypeCustom.ENTITY_SAMAEL_SCYTHE,
-        -1,
-        -1,
-        false,
-        false,
-      );
-      for (const scythe of scythes) {
-        scythe.Visible = false;
-      }
-
-      break;
-    }
-
-    case 20: {
-      g.p.Position = g.run.room.forceMomStompPos;
-      g.p.Visible = true;
-      break;
-    }
-
-    case 21: {
-      // We have to delay a frame before making familiars and knives visible,
-      // since they lag behind the position of the player by a frame
-
-      const familiars = Isaac.FindByType(
-        EntityType.ENTITY_FAMILIAR,
-        -1,
-        -1,
-        false,
-        false,
-      );
-      for (const familiar of familiars) {
-        familiar.Visible = true;
-      }
-
-      const knives = Isaac.FindByType(EntityType.ENTITY_KNIFE);
-      for (const knife of knives) {
-        knife.Visible = true;
-      }
-
-      g.run.room.forceMomStomp = false;
-      break;
-    }
-
-    default: {
-      break;
     }
   }
 }

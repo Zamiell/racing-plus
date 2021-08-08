@@ -8,10 +8,6 @@ export function mom(_entity: Entity): void {
   }
   g.run.momDied = true;
 
-  // Prevent effects from spawning to fix lag
-  g.run.room.preventBloodExplosion = true;
-  Isaac.DebugString("Preventing blood explosions.");
-
   // Fix the (vanilla) bug with Globins, Sacks, etc.
   killExtraEnemies();
 }
@@ -47,10 +43,6 @@ export function momsHeart(entity: Entity): void {
   );
 
   stage8paths.spawn(entity);
-
-  // Prevent effects from spawning to fix lag
-  g.run.room.preventBloodExplosion = true;
-  Isaac.DebugString("Preventing blood explosions.");
 
   // Fix the (vanilla) bug with Globins, Sacks, etc.
   killExtraEnemies();

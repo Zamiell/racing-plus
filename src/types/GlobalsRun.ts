@@ -5,13 +5,6 @@ import PillDescription from "./PillDescription";
 
 // Per-run variables
 export default class GlobalsRun {
-  fireworksSpawned = 0;
-
-  freeDevilItem = {
-    tookDamage: new LuaTable<PlayerIndex, boolean>(),
-    granted: false,
-  };
-
   /** Used for Tainted Keeper when racing to the Boss Rush. */
   madeBossRushItemsFree = false;
 
@@ -111,8 +104,6 @@ export function initPlayerVariables(
   }
 
   const index = getPlayerIndex(player);
-
-  run.freeDevilItem.tookDamage.set(index, false);
 
   run.pickingUpItem.set(index, {
     id: CollectibleType.COLLECTIBLE_NULL,

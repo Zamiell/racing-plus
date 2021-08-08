@@ -33,20 +33,6 @@ export function heavenLightDoor(effect: EntityEffect): void {
   fastTravel.heavenDoor.replace(effect);
 }
 
-// EffectVariant.DICE_FLOOR (76)
-export function diceFloor(effect: EntityEffect): void {
-  // We need to keep track of when the player uses a 5-pip Dice Room so that we can seed the floor
-  // appropriately
-  if (
-    !g.run.room.diceRoomActivated &&
-    effect.SubType === 4 && // 5-pip Dice Room
-    g.p.Position.Distance(effect.Position) <= 75 // Determined through trial && error
-  ) {
-    g.run.room.diceRoomActivated = true;
-    useItem.forgetMeNow();
-  }
-}
-
 export function tearPoof(effect: EntityEffect): void {
   // Change the green splash of Mysterious Liquid tears to blue
   // (changing the color does not work in the PostEffectInit callback)
