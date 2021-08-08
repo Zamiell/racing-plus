@@ -1,3 +1,4 @@
+import * as debugPowers from "../features/mandatory/debugPowers";
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
@@ -16,7 +17,15 @@ function player(
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
+  // Mandatory features
+  const returnValue = debugPowers.entityTakeDmgPlayer();
+  if (returnValue !== undefined) {
+    return false;
+  }
+
   // Major features
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
+
+  return undefined;
 }

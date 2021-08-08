@@ -1,3 +1,4 @@
+import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as preventItemRotate from "../features/mandatory/preventItemRotate";
 import * as runTimer from "../features/mandatory/runTimer";
@@ -17,6 +18,7 @@ export function main(): void {
   showLevelText.postUpdate();
   runTimer.postUpdate();
   preventItemRotate.postUpdate();
+  debugPowers.postUpdate();
 
   // Major features
   racePostUpdate();

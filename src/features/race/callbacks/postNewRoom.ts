@@ -5,6 +5,7 @@ import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
+import * as removeVoidDoor from "../removeVoidDoor";
 import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
@@ -25,4 +26,5 @@ export default function racePostNewRoom(): void {
   removeStrangeDoor.postNewRoom();
   removeRepentanceDoor.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
+  removeVoidDoor.postNewRoom();
 }

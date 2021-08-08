@@ -359,6 +359,10 @@ functionMap.set("sounds", (_params: string) => {
   }
 });
 
+functionMap.set("spam", (_params: string) => {
+  debugPowers.toggleSpam();
+});
+
 functionMap.set("speed", (_params: string) => {
   debugPowers.toggleSpeed();
 });

@@ -109,9 +109,34 @@ On Racing+, players have the option for races to end at different places.
 
 <br />
 
+## Delirium
+
+- Delirium is the boss in The Void.
+- Trapdoors and beams of light will be deleted on floor 8.
+
+<br />
+
 ## Mother
 
+- Mother is the boss at the end of Corpse 2.
+- Normal trapdoors will not spawn. The doors to the Repentance alternate floors will be automatically opened.
+- We Need to Go Deeper! will only work on odd numbered floors (because you are supposed to go to the secret passage on even numbered floors).
 
+<br />
+
+## The Beast
+
+- The Beast is the boss at the end of the Ascent.
+- The trapdoor after defeating Mom take you to Mausoleum 2 instead of Womb 1. (There is no need to use a Fool card.)
+
+<br />
+
+## Boss Rush
+
+- Boss Rush is a special encounter at the end of floor 6.
+- Trapdoors will be deleted on floor 6.
+
+<br />
 
 ## Custom
 
