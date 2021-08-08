@@ -2,8 +2,8 @@ import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
+import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
-import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
@@ -26,7 +26,7 @@ export default function initFeatureVariables(): void {
 
   // Mandatory features
   replacePhotos.init();
-  taintedIsaacStuckItems.init();
+  preventItemRotate.init();
   beastPreventEnd.init();
   tempMoreOptions.init();
   trophy.init();

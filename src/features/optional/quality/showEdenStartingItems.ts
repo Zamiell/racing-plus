@@ -14,8 +14,8 @@ const SPRITE_SPACING = 30;
 
 const v = {
   run: {
-    active: 0 as CollectibleType,
-    passive: 0 as CollectibleType,
+    active: CollectibleType.COLLECTIBLE_NULL,
+    passive: CollectibleType.COLLECTIBLE_NULL,
     activeSprite: null as Sprite | null,
     passiveSprite: null as Sprite | null,
   },
@@ -99,6 +99,9 @@ export function postGameStarted(): void {
   if (!config.showEdenStartingItems) {
     return;
   }
+
+  v.run.activeSprite = null;
+  v.run.passiveSprite = null;
 
   storeItemIdentities();
 }

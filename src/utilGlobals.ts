@@ -1,5 +1,5 @@
 import { getRoomIndex, inCrawlspace } from "isaacscript-common";
-import * as taintedIsaacStuckItems from "./features/mandatory/taintedIsaacStuckItems";
+import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
@@ -86,7 +86,7 @@ export function spawnCollectible(
     collectible.OptionsPickupIndex = 1;
   }
 
-  taintedIsaacStuckItems.checkQuestItem(collectibleType, seed);
+  preventItemRotate.checkQuestItem(collectibleType, seed);
 }
 
 export function teleport(

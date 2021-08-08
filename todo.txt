@@ -1,5 +1,7 @@
 Patch notes:
-- The free devil deal item will now only be awarded if no players have taken damage (rather than looking at the individual players)
+- The free devil deal item will now only be awarded if no players have taken damage (rather than looking at the individual players).
+- Fixed the bug where the Eden items would not show correctly.
+- Fixed the bug where Glitched Crown and Binge Eater would rotate quest items.
 
 Racing+ new features:
 - chat system

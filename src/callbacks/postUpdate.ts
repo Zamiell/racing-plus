@@ -1,7 +1,7 @@
 import * as fireworks from "../features/mandatory/fireworks";
+import * as preventItemRotate from "../features/mandatory/preventItemRotate";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
-import * as taintedIsaacStuckItems from "../features/mandatory/taintedIsaacStuckItems";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
@@ -16,7 +16,7 @@ export function main(): void {
   fireworks.postUpdate();
   showLevelText.postUpdate();
   runTimer.postUpdate();
-  taintedIsaacStuckItems.postUpdate();
+  preventItemRotate.postUpdate();
 
   // Major features
   racePostUpdate();
