@@ -68,10 +68,10 @@ function getNextStage() {
     return 12;
   }
 
-  // Additional conditions for Mother goal when you go to the next floor
-  // with another trapdoor than the secret exit one or the boss room one
   if (
     v.run.repentanceSecretExit ||
+    // All trapdoors should lead to the correct floor on races with a goal of Mother
+    // (e.g. from an I AM ERROR room)
     (g.race.status === "in progress" &&
       g.race.myStatus === "racing" &&
       g.race.goal === "Mother")
@@ -219,10 +219,10 @@ function getNextStageType(
     return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
-  // Additional conditions for Mother goal when you go to the next floor
-  // with another trapdoor than the secret exit one or the boss room one
   if (
     v.run.repentanceSecretExit ||
+    // All trapdoors should lead to the correct floor on races with a goal of Mother
+    // (e.g. from an I AM ERROR room)
     (g.race.status === "in progress" &&
       g.race.myStatus === "racing" &&
       g.race.goal === "Mother")
