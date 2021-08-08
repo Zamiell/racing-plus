@@ -1,4 +1,4 @@
-import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
+import { getRoomIndex, isRepentanceStage, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
@@ -21,9 +21,11 @@ export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
     return;
   }
 
-  if (!shouldIgnore(gridEntity)) {
-    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  if (shouldIgnore(gridEntity)) {
+    return;
   }
+
+  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
@@ -43,6 +45,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   // Keep it closed on every frame so that we can implement our own custom functionality
   gridEntity.State = TrapdoorState.CLOSED;
 
+  checkDoubleTrapdoorOverlapBug(gridEntity);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
@@ -88,10 +91,11 @@ function shouldRemove() {
   // then delete the vanilla trapdoor (since we manually spawned one already)
   if (
     v.room.deletePaths &&
-    v.room.itLivesKilledFrame !== 0 &&
+    v.room.itLivesKilledFrame !== null &&
     gameFrameCount ===
       v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
   ) {
+    log("Removed a vanilla trapdoor after It Lives!");
     return true;
   }
 
@@ -102,6 +106,7 @@ function shouldRemove() {
     v.room.hushKilledFrame !== 0 &&
     gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
+    log("Removed a vanilla trapdoor after Hush.");
     return true;
   }
 
@@ -112,6 +117,7 @@ function shouldRemove() {
     g.race.goal === "Boss Rush" &&
     stage === 6
   ) {
+    log("Removed a vanilla trapdoor after Mom.");
     return true;
   }
 
@@ -123,6 +129,7 @@ function shouldRemove() {
     stage === 8 &&
     roomIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
   ) {
+    log("Removed a vanilla trapdoor after Mom.");
     return true;
   }
 
@@ -134,6 +141,7 @@ function shouldRemove() {
     stage === 9 &&
     roomIndex !== GridRooms.ROOM_THE_VOID_IDX
   ) {
+    log("Removed a vanilla trapdoor after It Lives! (for a Hush goal).");
     return true;
   }
 
@@ -152,6 +160,7 @@ function shouldRemove() {
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
+      log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
       return true;
     }
 
@@ -162,6 +171,7 @@ function shouldRemove() {
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
+      log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
       return true;
     }
 
@@ -172,11 +182,13 @@ function shouldRemove() {
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
+      log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
 
     // Mausoleum 2 --> Corpse 1
     if (stage === 6 && isRepentanceStage() && !mausoleumHeartKilled) {
+      log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
       return true;
     }
   }
@@ -189,16 +201,18 @@ function shouldRemove() {
     stage === 6 &&
     roomType !== RoomType.ROOM_BOSS
   ) {
+    log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
     return true;
   }
 
-  // Delete the trapdoors on backward path
+  // Delete the trapdoors on the Ascent
   // There are some cases when trapdoors still appear, like double troubles
   if (
     stage < 7 &&
     isBackwardPath &&
     roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
+    log("Removed a vanilla trapdoor on the Ascent.");
     return true;
   }
 
@@ -234,4 +248,36 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   setFadingToBlack(entity, player, false);
+}
+
+// If we manually spawn a trapdoor on the same square that a vanilla trapdoor spawns after defeating
+// It Lives! or Hush, then the manually spawned trapdoor will get overwritten by the vanilla one
+// In this case, the PostGridEntityInit callback will never fire (because the same grid entity type
+// continually exists on every frame), so the trapdoor will never be initialized
+// Manually initialize the grid entity if this is the case
+function checkDoubleTrapdoorOverlapBug(gridEntity: GridEntity) {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  if (
+    v.room.deletePaths &&
+    v.room.itLivesKilledFrame !== null &&
+    gameFrameCount ===
+      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
+  ) {
+    log(
+      `Re-initializing a ${FastTravelEntityType[FAST_TRAVEL_ENTITY_TYPE]} after killing It Lives!`,
+    );
+    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  }
+
+  if (
+    v.room.deletePaths &&
+    v.room.hushKilledFrame !== 0 &&
+    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
+  ) {
+    log(
+      `Re-initializing a ${FastTravelEntityType[FAST_TRAVEL_ENTITY_TYPE]} after killing Hush.`,
+    );
+    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  }
 }

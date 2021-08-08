@@ -64,6 +64,14 @@ function validateInRace() {
 }
 
 function validateChallenge() {
+  if (
+    g.race.myStatus !== "not ready" &&
+    g.race.myStatus !== "ready" &&
+    g.race.myStatus !== "racing"
+  ) {
+    return true;
+  }
+
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== Challenge.CHALLENGE_NULL && g.race.format !== "custom") {
@@ -78,6 +86,14 @@ function validateChallenge() {
 }
 
 function validateDifficulty() {
+  if (
+    g.race.myStatus !== "not ready" &&
+    g.race.myStatus !== "ready" &&
+    g.race.myStatus !== "racing"
+  ) {
+    return true;
+  }
+
   if (
     g.race.difficulty === "normal" &&
     g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
@@ -106,6 +122,14 @@ function validateDifficulty() {
 }
 
 function validateSeed() {
+  if (
+    g.race.myStatus !== "not ready" &&
+    g.race.myStatus !== "ready" &&
+    g.race.myStatus !== "racing"
+  ) {
+    return true;
+  }
+
   const startSeedString = g.seeds.GetStartSeedString();
 
   if (
@@ -134,6 +158,14 @@ function validateSeed() {
 }
 
 function validateCharacter(player: EntityPlayer) {
+  if (
+    g.race.myStatus !== "not ready" &&
+    g.race.myStatus !== "ready" &&
+    g.race.myStatus !== "racing"
+  ) {
+    return true;
+  }
+
   const character = player.GetPlayerType();
 
   if (character !== g.race.character && g.race.format !== "custom") {

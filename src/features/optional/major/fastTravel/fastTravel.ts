@@ -34,7 +34,7 @@ export function init(
   }
 
   log(
-    `Initializing a type ${fastTravelEntityType} Fast-Travel entity on frame: ${gameFrameCount}`,
+    `Initializing a ${FastTravelEntityType[fastTravelEntityType]} fast-travel entity on frame: ${gameFrameCount}`,
   );
 
   sprite.Load(customFileName, true);

@@ -12,8 +12,6 @@ import GlobalsRunLevel from "../types/GlobalsRunLevel";
 import * as postNewRoom from "./postNewRoom";
 
 function newLevel() {
-  const challenge = Isaac.GetChallenge();
-
   // Reset the RNG of some items that should be seeded per floor
   const stageSeed = g.seeds.GetStageSeed(stage);
   g.RNGCounter.teleport = stageSeed;
@@ -24,65 +22,6 @@ function newLevel() {
     // to determine where the Telepills destination will be
     g.RNGCounter.telepills = misc.incrementRNG(g.RNGCounter.telepills);
   }
-
-  // Make sure that the diversity placeholder items are removed
-  if (stage >= 2) {
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
-    );
-  }
-
-  // Seed floors that are generated when a player uses a Forget Me Now or a 5-pip Dice Room
-  if (g.run.forgetMeNow) {
-    g.run.forgetMeNow = false;
-    seededFloors.after();
-  }
-
-  // Call PostNewRoom manually (they get naturally called out of order)
-  postNewRoom.newRoom();
-}
-
-// Reseed the floor if we have Duality and there is a narrow boss room
-function checkDualityNarrowRoom() {
-  if (!g.p.HasCollectible(CollectibleType.COLLECTIBLE_DUALITY)) {
-    return false;
-  }
-
-  // It is only possible to get a Devil Deal on floors 2 through 8
-  // Furthermore, it is not possible to get a narrow room on floor 8
-  const stage = g.l.GetStage();
-  if (stage <= 1 || stage >= 8) {
-    return false;
-  }
-
-  // Check to see if the boss room is narrow
-  const rooms = g.l.GetRooms();
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i); // This is 0 indexed
-    if (room === null) {
-      continue;
-    }
-
-    if (room.Data.Type === RoomType.ROOM_BOSS) {
-      if (
-        room.Data.Shape === RoomShape.ROOMSHAPE_IH || // 2
-        room.Data.Shape === RoomShape.ROOMSHAPE_IV // 3
-      ) {
-        Isaac.DebugString(
-          "Narrow boss room detected with Duality - reseeding.",
-        );
-        return true;
-      }
-    }
-  }
-
-  return false;
 }
 
 // If the Forgotten has Chocolate Milk or Brimstone, and then spends all of his soul hearts in a
@@ -169,87 +108,6 @@ function checkForgottenSoftlock() {
         return true;
       }
     }
-  }
-
-  return false;
-}
-
-// Reseed the floor if there are duplicate rooms
-function checkDupeRooms() {
-  const stage = g.l.GetStage();
-  const rooms = g.l.GetRooms();
-
-  // Disable this feature if the "Infinite Basements" Easter Egg is enabled,
-  // because the player will run out of rooms after around 40-50 floors
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_INFINITE_BASEMENT)) {
-    return false;
-  }
-
-  // Don't bother checking on Blue Womb, The Chest / Dark Room, or The Void
-  if (stage === 9 || stage === 11 || stage === 12) {
-    return false;
-  }
-
-  // Reset the room IDs if ( we are arriving at a level with a new stage type
-  if (
-    stage === 3 ||
-    stage === 5 ||
-    stage === 7 ||
-    stage === 10 ||
-    stage === 11
-  ) {
-    g.run.roomIDs = [];
-  }
-
-  const roomIDs: int[] = [];
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i); // This is 0 indexed
-    if (room === null) {
-      continue;
-    }
-    if (
-      room.Data.Type === RoomType.ROOM_DEFAULT && // 1
-      room.Data.Variant !== 2 && // This is the starting room
-      room.Data.Variant !== 0 // This is the starting room on The Chest / Dark Room
-    ) {
-      // Normalize the room ID (to account for flipped rooms)
-      let roomID = room.Data.Variant;
-      while (roomID >= 10000) {
-        // The 3 flipped versions of room #1 would be #10001, #20001, and #30001
-        roomID -= 10000;
-      }
-
-      // Make Basement 1 exempt from duplication checking so that resetting is faster on bad
-      // computers
-      if (stage !== 1) {
-        // Check to see if this room ID has appeared on previous floors
-        if (g.run.roomIDs.includes(roomID)) {
-          Isaac.DebugString(
-            `Duplicate room ${roomID} found (on previous floor) - reseeding.`,
-          );
-          return true;
-        }
-
-        // Also check to see if this room ID appears multiple times on this floor
-        for (let j = 0; j < roomIDs.length; j++) {
-          if ( roomID === roomIDs[j] ) {
-            Isaac.DebugString(
-              "Duplicate room " + roomID + " found (on same floor) - reseeding."
-            )
-            return true
-          }
-        }
-      }
-
-      // Keep track of this room ID
-      roomIDs.push(roomID);
-    }
-  }
-
-  // We have gone through all of the rooms and none are duplicated,
-  // so permanently store them as rooms already seen
-  for (const roomID of roomIDs) {
-    g.run.roomIDs.push(roomID);
   }
 
   return false;

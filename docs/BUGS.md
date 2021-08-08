@@ -7,13 +7,10 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 ## Miscellaneous Bugs
 
 - When returning to the Boss Rush from a crawlspace, the camera will jerk from the door to the location of the crawlspace.
-- Bosses with long death animations will not drop hearts on Tainted Magdalene and will not drop coins on Tainted Keeper.
+- Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
 
 <br />
 
-<!--
-- Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
--->
 <!--
 ## Bugs with Seeded Death
 

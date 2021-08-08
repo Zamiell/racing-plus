@@ -1,7 +1,9 @@
 Patch notes v0.58.41:
 - The Void door will now be automatically removed on races to Hush.
+- Bugfix for getting softlocked in an I AM ERROR room on races to Mother. (Gamon did this)
 
 - prevent poop from spawning in on seed Z2ZD NEZA, stage 4, angel room
+- prevent pitfalls from playing appear animation
 
 Racing+ new features:
 - chat system

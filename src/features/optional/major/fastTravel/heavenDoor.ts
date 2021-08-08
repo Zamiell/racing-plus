@@ -40,7 +40,7 @@ function shouldRemove(effect: EntityEffect) {
   // then delete the vanilla heaven door (since we manually spawned one already)
   if (
     v.room.deletePaths &&
-    v.room.itLivesKilledFrame !== 0 &&
+    v.room.itLivesKilledFrame !== null &&
     gameFrameCount ===
       v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
   ) {

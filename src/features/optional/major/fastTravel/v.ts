@@ -18,7 +18,7 @@ const v = {
 
     /**
      * We need to track the Repentance floors that we visited so that we can return to them during
-     * the Backwards path.
+     * the Ascent.
      */
     repentanceFloorsVisited: {
       downpour1: false,
@@ -97,7 +97,7 @@ const v = {
     /**
      * Used so that we can delete the vanilla paths on the appropriate frame.
      */
-    itLivesKilledFrame: 0,
+    itLivesKilledFrame: null as number | null,
 
     /** Indexed by grid index. */
     trapdoors: new LuaTable<int, FastTravelEntityDescription>(),

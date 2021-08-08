@@ -219,8 +219,8 @@ function fixPitGraphics() {
   const pitMap = getPitMap();
 
   for (const gridEntity of getGridEntities()) {
-    const saveState = gridEntity.GetSaveState();
-    if (saveState.Type === GridEntityType.GRID_PIT) {
+    const gridEntityType = gridEntity.GetType();
+    if (gridEntityType === GridEntityType.GRID_PIT) {
       Isaac.DebugString(pitMap);
     }
   }

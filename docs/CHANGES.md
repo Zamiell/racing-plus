@@ -332,14 +332,12 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 <br />
 
 <!--
-- Hush's appear animation is sped up
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
 - Some things that are unseeded are now seeded:
   - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
   - Dead Sea Scrolls item selection
   - cards from Sloth, Super Sloth, Pride, and Super Pride
   - Guppy's Head fly count
-- Void Portals are automatically deleted.
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
@@ -349,7 +347,6 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
 - All pills can now be used to cancel pedestal pickup animations.
 - The devil statue will be faded if there is an item pedestal hiding behind it.
-- There is now a sound effect when a Walnut or a Wishbone breaks.
 - Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - 9 Volt now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.

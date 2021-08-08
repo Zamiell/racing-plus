@@ -119,16 +119,19 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
 
 function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GAME_STARTED,
+    ModCallbacksCustom.MC_POST_GAME_STARTED_REORDERED,
     postGameStarted.main,
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_NEW_LEVEL,
+    ModCallbacksCustom.MC_POST_NEW_LEVEL_REORDERED,
     postNewLevel.main,
   );
 
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_ROOM, postNewRoom.main);
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_NEW_ROOM_REORDERED,
+    postNewRoom.main,
+  );
 
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_PRE_ITEM_PICKUP,

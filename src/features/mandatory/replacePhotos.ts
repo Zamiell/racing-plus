@@ -153,7 +153,7 @@ function getPhotoSituationRace(goal: RaceGoal) {
 
     default: {
       ensureAllCases(goal);
-      return PhotoSituation.RandomBossItem;
+      return PhotoSituation.Both;
     }
   }
 }

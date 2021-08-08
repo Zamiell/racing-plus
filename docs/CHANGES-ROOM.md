@@ -431,7 +431,7 @@ The deleted rooms are as follows:
 - Downpour: #226, #227, #228, #229, #230, #231, #232, #234, #238, #249, #253, #256, #358, #412, #419, #463, #529, #532, #533, #534, #557, #580, #634, #5005
 - Mausoleum: #370, #376, #388, #414, #418, #441, #468, #469, #515, #575
 - Cathedral: #330, #332, #334, #336, #348, #372, #421, #422, #426, #435, #459, #511, #558
-- Backwards: #310, #319, #439, #463, #476
+- Ascent: #310, #319, #439, #463, #476
 
 <br />
 
@@ -441,7 +441,7 @@ Some rooms have only Dusts in them, which forces the player to wait and do nothi
 
 The deleted rooms are as follows:
 - Ashpit: #373, #374, #375, #376, #377, #378, #380, #381, #388, #389, #394, #395, #396, #434, #545, #565, #600, #601, #5001, #5030, #10003, #9 (Ambush), #1014 (Gideon Wave), #1021 (Gideon Wave), #1028 (Gideon Wave)
-- Backwards: #370
+- Ascent: #370
 
 <br />
 
@@ -460,7 +460,7 @@ The deleted rooms are as follows:
 - Cathedral: #54, #87
 - Sheol: #87
 - Chest: #42
-- Backwards: #104, #105, #106, #139
+- Ascent: #104, #105, #106, #139
 
 <br />
 
