@@ -137,7 +137,9 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, delete trapdoors that leads to normal floors
+  // If the goal of the race is Mother, remove trapdoors on odd floors
+  // (i.e. trapdoors that go to non-Repentance floors)
+  // But make an exception for I AM ERROR rooms to prevent softlocks
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
@@ -147,7 +149,8 @@ function shouldRemove() {
     if (
       stage === 1 &&
       !isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
+        roomType !== RoomType.ROOM_ERROR)
     ) {
       return true;
     }
@@ -156,7 +159,8 @@ function shouldRemove() {
     if (
       stage === 2 &&
       isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
+        roomType !== RoomType.ROOM_ERROR)
     ) {
       return true;
     }
@@ -165,7 +169,8 @@ function shouldRemove() {
     if (
       stage === 4 &&
       isRepentanceStage() &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
+        roomType !== RoomType.ROOM_ERROR)
     ) {
       return true;
     }

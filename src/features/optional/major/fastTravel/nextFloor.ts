@@ -68,13 +68,20 @@ function getNextStage() {
     return 12;
   }
 
-  if (v.run.repentanceSecretExit) {
+  if (
+    v.run.repentanceSecretExit ||
+    // All trapdoors should lead to the correct floor on races with a goal of Mother
+    // (e.g. from an I AM ERROR room)
+    (g.race.status === "in progress" &&
+      g.race.myStatus === "racing" &&
+      g.race.goal === "Mother")
+  ) {
     if (repentanceStage) {
       // e.g. From Downpour 2 to Mines 1
       return stage + 1;
     }
 
-    // e.g. From Basement 2 to Downpour 2
+    // e.g. From Basement 1 to Downpour 1 or from Basement 2 to Downpour 2
     return stage;
   }
 
@@ -212,7 +219,14 @@ function getNextStageType(
     return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
-  if (v.run.repentanceSecretExit) {
+  if (
+    v.run.repentanceSecretExit ||
+    // All trapdoors should lead to the correct floor on races with a goal of Mother
+    // (e.g. from an I AM ERROR room)
+    (g.race.status === "in progress" &&
+      g.race.myStatus === "racing" &&
+      g.race.goal === "Mother")
+  ) {
     return getStageTypeRepentance(nextStage);
   }
 
