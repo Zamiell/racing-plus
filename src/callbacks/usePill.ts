@@ -6,5 +6,5 @@ export function main(pillEffect: PillEffect): void {
   const player = Isaac.GetPlayer();
 
   showPills.usePill(player, pillEffect);
-  streakText.usePill(player, pillEffect);
+  streakText.usePill(pillEffect);
 }

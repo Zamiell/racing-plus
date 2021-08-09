@@ -1,9 +1,9 @@
 import * as streakText from "../features/mandatory/streakText";
 
 export function main(
-  player: EntityPlayer,
+  _player: EntityPlayer,
   playerForm: PlayerForm,
   hasForm: boolean,
 ): void {
-  streakText.postTransformation(player, playerForm, hasForm);
+  streakText.postTransformation(playerForm, hasForm);
 }

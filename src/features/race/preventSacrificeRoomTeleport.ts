@@ -11,7 +11,7 @@ export function postNewRoom(): void {
 }
 
 // ModCallbacksCustom.MC_POST_SACRIFICE
-export function postSacrifice(_player: EntityPlayer, numSacrifices: int): void {
+export function postSacrifice(numSacrifices: int): void {
   v.level.numSacrifices = numSacrifices;
   checkDeleteSpikes();
 }

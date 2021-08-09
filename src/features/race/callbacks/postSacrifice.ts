@@ -4,8 +4,8 @@
 import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 
 export default function racePostSacrifice(
-  player: EntityPlayer,
+  _player: EntityPlayer,
   numSacrifices: int,
 ): void {
-  preventSacrificeRoomTeleport.postSacrifice(player, numSacrifices);
+  preventSacrificeRoomTeleport.postSacrifice(numSacrifices);
 }

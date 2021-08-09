@@ -142,8 +142,32 @@ function draw(text: string, fade: float) {
   );
 }
 
+// ModCallbacks.MC_USE_ITEM (3)
+// CollectibleType.COLLECTIBLE_LEMEGETON (712)
+export function useItemLemegeton(): void {
+  const wisp = getItemWispThatJustSpawned();
+  if (wisp !== null) {
+    const itemName = getItemName(wisp.SubType);
+    set(itemName);
+  }
+}
+
+function getItemWispThatJustSpawned() {
+  const wisps = Isaac.FindByType(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariant.ITEM_WISP,
+  );
+  for (const wisp of wisps) {
+    if (wisp.FrameCount === 0) {
+      return wisp;
+    }
+  }
+
+  return null;
+}
+
 // ModCallbacks.MC_USE_CARD (5)
-export function useCard(_player: EntityPlayer, card: Card): void {
+export function useCard(card: Card): void {
   // We ignore Blank Runes because we want to show the streak text of the actual random effect
   if (card === Card.RUNE_BLANK) {
     return;
@@ -158,7 +182,7 @@ export function useCard(_player: EntityPlayer, card: Card): void {
 }
 
 // ModCallbacks.MC_USE_PILL (10)
-export function usePill(_player: EntityPlayer, pillEffect: PillEffect): void {
+export function usePill(pillEffect: PillEffect): void {
   const pillConfig = g.itemConfig.GetPillEffect(pillEffect);
   if (pillConfig === null) {
     error(`Failed to get the pill config for effect: ${pillEffect}`);
@@ -227,6 +251,8 @@ function goingToRaceRoom() {
   );
 }
 
+// ModCallbacks.MC_PRE_USE_ITEM (23)
+// CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS (124)
 export function preUseItemDeadSeaScrolls(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
@@ -260,7 +286,6 @@ export function preItemPickup(pickingUpItem: PickingUpItem): void {
 
 // ModCallbacksCustom.MC_POST_TRANSFORMATION
 export function postTransformation(
-  _player: EntityPlayer,
   playerForm: PlayerForm,
   hasForm: boolean,
 ): void {
