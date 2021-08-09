@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { log, onDarkRoom } from "isaacscript-common";
 import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -6,6 +6,11 @@ import { EffectVariantCustom } from "../../../types/enums";
 
 export function postEntityKillLamb(_entity: Entity): void {
   if (!config.stopVictoryLapPopup) {
+    return;
+  }
+
+  // The Lamb only makes a popup on the Dark Room
+  if (!onDarkRoom()) {
     return;
   }
 

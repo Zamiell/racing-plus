@@ -1,4 +1,9 @@
-import { getRoomIndex, isRepentanceStage, log } from "isaacscript-common";
+import {
+  getRoomIndex,
+  log,
+  onRepentanceStage,
+  onSheol,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
@@ -70,7 +75,7 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // Don't replace the trap door that leads to Mother
-  if (stage === 8 && isRepentanceStage()) {
+  if (stage === 8 && onRepentanceStage()) {
     return true;
   }
 
@@ -156,7 +161,7 @@ function shouldRemove() {
     // Basement 1 --> Downpour 1
     if (
       stage === 1 &&
-      !isRepentanceStage() &&
+      !onRepentanceStage() &&
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
@@ -167,7 +172,7 @@ function shouldRemove() {
     // Downpour 2 --> Mines 1
     if (
       stage === 2 &&
-      isRepentanceStage() &&
+      onRepentanceStage() &&
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
@@ -178,7 +183,7 @@ function shouldRemove() {
     // Mines 2 --> Mausoleum 1
     if (
       stage === 4 &&
-      isRepentanceStage() &&
+      onRepentanceStage() &&
       (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
         roomType !== RoomType.ROOM_ERROR)
     ) {
@@ -187,7 +192,7 @@ function shouldRemove() {
     }
 
     // Mausoleum 2 --> Corpse 1
-    if (stage === 6 && isRepentanceStage() && !mausoleumHeartKilled) {
+    if (stage === 6 && onRepentanceStage() && !mausoleumHeartKilled) {
       log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
       return true;
     }
@@ -220,10 +225,13 @@ function shouldRemove() {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  if (g.r.GetFrameCount() === 0) {
+  const roomFrameCount = g.r.GetFrameCount();
+  const roomClear = g.r.IsClear();
+
+  if (roomFrameCount === 0) {
     // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the
     // player has to defeat the enemies first before using the trapdoor
-    if (!g.r.IsClear()) {
+    if (!roomClear) {
       return false;
     }
 
@@ -234,7 +242,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
   // After defeating Satan, the trapdoor should always spawn open
   // (because there is no reason to remain in Sheol)
-  if (g.l.GetStage() === 10) {
+  if (onSheol()) {
     return true;
   }
 

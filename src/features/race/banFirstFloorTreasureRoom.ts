@@ -1,4 +1,4 @@
-import { getPlayers, isRepentanceStage, log } from "isaacscript-common";
+import { getPlayers, log, onRepentanceStage } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
 
@@ -58,7 +58,7 @@ function shouldBanFirstFloorTreasureRoom() {
 
   return (
     stage === 1 &&
-    !isRepentanceStage() &&
+    !onRepentanceStage() &&
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.format === "seeded"

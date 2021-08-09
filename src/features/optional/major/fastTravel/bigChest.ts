@@ -2,8 +2,12 @@ import {
   anyPlayerHasCollectible,
   ensureAllCases,
   getRoomIndex,
-  isRepentanceStage,
   log,
+  onCathedral,
+  onChest,
+  onDarkRoom,
+  onRepentanceStage,
+  onSheol,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
@@ -33,26 +37,23 @@ export function postPickupInit(pickup: EntityPickup): void {
 }
 
 function getReplacementAction() {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
   const challenge = Isaac.GetChallenge();
 
-  // First, handle the common case of Sheol and Cathedral
+  // First, handle the common case of Cathedral and Sheol
   // (this avoids lots of duplication below)
-  if (
-    stage === 10 &&
-    stageType === 0 &&
-    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
-  ) {
-    return ReplacementAction.TrapdoorDown;
-  }
 
   if (
-    stage === 10 &&
-    stageType === 1 &&
+    onCathedral() &&
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
   ) {
     return ReplacementAction.BeamOfLightUp;
+  }
+
+  if (
+    onSheol() &&
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
+  ) {
+    return ReplacementAction.TrapdoorDown;
   }
 
   if (challenge === ChallengeCustom.SEASON_1) {
@@ -102,10 +103,7 @@ function getReplacementAction() {
 
 function season1() {
   // Season 1 goes to The Chest and requires The Polaroid to get there
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  if (stage === 11 && stageType === 1) {
+  if (onChest()) {
     // The Chest (11.1)
     if (g.speedrun.characterNum === 7) {
       return ReplacementAction.Trophy;
@@ -130,17 +128,17 @@ function speedrunAlternate() {
   }
 
   // The Polaroid / The Negative is optional in seasons that alternate direction
-  if (stage === 10 && stageType === 1 && direction === 1) {
+  if (onCathedral() && direction === 1) {
     return ReplacementAction.BeamOfLightUp;
   }
 
-  if (stage === 10 && stageType === 0 && direction === 2) {
+  if (onSheol() && direction === 2) {
     return ReplacementAction.TrapdoorDown;
   }
 
   if (
-    (stage === 11 && stageType === 1 && direction === 1) || // The Chest
-    (stage === 11 && stageType === 0 && direction === 2) // Dark Room
+    (onChest() && direction === 1) || // The Chest
+    (onDarkRoom() && direction === 2) // Dark Room
   ) {
     // Sometimes the vanilla end of challenge trophy does not appear
     // Thus, we need to handle replacing both the trophy and the big chest
@@ -163,11 +161,11 @@ function speedrunUp() {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  if (stage === 10 && stageType === 1) {
+  if (onCathedral()) {
     return ReplacementAction.BeamOfLightUp;
   }
 
-  if (stage === 11 && stageType === 1) {
+  if (onChest()) {
     if (g.speedrun.characterNum === 7) {
       return ReplacementAction.Trophy;
     }
@@ -181,14 +179,8 @@ function speedrunUp() {
 
 function blueBaby() {
   const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
 
-  if (
-    stage === 11 &&
-    stageType === 1 &&
-    roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX
-  ) {
+  if (onChest() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.Trophy;
   }
 
@@ -197,14 +189,8 @@ function blueBaby() {
 
 function theLamb() {
   const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
 
-  if (
-    stage === 11 &&
-    stageType === 0 &&
-    roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX
-  ) {
+  if (onDarkRoom() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.Trophy;
   }
 
@@ -216,15 +202,12 @@ function megaSatan() {
   const stage = g.l.GetStage();
 
   if (stage === 11 && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
-    // We want to delete the Big Chest after Blue Baby or The Lamb
-    // to remind the player that they have to go to Mega Satan
+    // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
+    // have to go to Mega Satan
     return ReplacementAction.Remove;
   }
 
-  if (
-    stage === 11 && // The Chest or the Dark Room
-    roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX
-  ) {
+  if (stage === 11 && roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.Trophy;
   }
 
@@ -253,9 +236,8 @@ function delirium() {
 
 function mother() {
   const stage = g.l.GetStage();
-  const repentanceStage = isRepentanceStage();
 
-  if (stage === 8 && repentanceStage) {
+  if (stage === 8 && onRepentanceStage()) {
     return ReplacementAction.Trophy;
   }
 

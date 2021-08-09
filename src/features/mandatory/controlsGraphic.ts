@@ -3,7 +3,7 @@
 // Some code is borrowed from Revelations / StageAPI
 // This feature is not configurable because we destroy the original starting room graphic file
 
-import { getRoomIndex, isRepentanceStage } from "isaacscript-common";
+import { getRoomIndex, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
 import { EffectSubTypeCustom } from "../../types/enums";
 
@@ -60,7 +60,7 @@ function shouldDrawControlsGraphic() {
     !g.g.IsGreedMode() &&
     stage === 1 &&
     roomIndex === startingRoomIndex &&
-    !isRepentanceStage() &&
+    !onRepentanceStage() &&
     !inSeededOrDiversityRace()
   );
 }

@@ -1,7 +1,7 @@
 import {
   getOpenTrinketSlot,
   getPlayers,
-  isRepentanceStage,
+  onRepentanceStage,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -68,7 +68,7 @@ function checkGiveTrinket() {
   if (
     !v.run.granted &&
     !v.run.tookDamage &&
-    (stage === 2 || (stage === 1 && isRepentanceStage())) &&
+    (stage === 2 || (stage === 1 && onRepentanceStage())) &&
     roomType === RoomType.ROOM_DEVIL &&
     !enteredRoomViaTeleport()
   ) {

@@ -2,7 +2,7 @@ import {
   changeRoom,
   getPlayers,
   getRoomIndex,
-  isRepentanceStage,
+  onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
@@ -74,7 +74,7 @@ export function setFadingToBlack(
 function setGameStateFlags() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const repentanceStage = isRepentanceStage();
+  const repentanceStage = onRepentanceStage();
   const roomIndex = getRoomIndex();
 
   // If the player has gone through the trapdoor past the strange door

@@ -1,7 +1,7 @@
 // We want the player to always be able to take an item on the first floor Treasure Room without
 // spending a bomb or being forced to walk on spikes
 
-import { isRepentanceStage } from "isaacscript-common";
+import { onRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -24,7 +24,7 @@ export function preRoomEntitySpawn(
     return undefined;
   }
 
-  if (stage !== 1 || isRepentanceStage()) {
+  if (stage !== 1 || onRepentanceStage()) {
     return undefined;
   }
 

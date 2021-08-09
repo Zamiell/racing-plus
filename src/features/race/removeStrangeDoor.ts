@@ -1,16 +1,16 @@
 import {
   getDoors,
   getRoomIndex,
-  isRepentanceStage,
   log,
+  onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../globals";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
-  const repentanceStage = isRepentanceStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const roomIndex = getRoomIndex();
+  const repentanceStage = onRepentanceStage();
 
   if (
     g.race.status !== "in progress" ||

@@ -1,4 +1,4 @@
-import { isRepentanceStage, log } from "isaacscript-common";
+import { log, onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
 import v from "./v";
@@ -44,7 +44,7 @@ export function goto(upwards: boolean): void {
 
 function getNextStage() {
   const stage = g.l.GetStage();
-  const repentanceStage = isRepentanceStage();
+  const repentanceStage = onRepentanceStage();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
     return getNextStageBackwardsPath(stage, repentanceStage);
@@ -188,7 +188,7 @@ function getNextStageType(
   nextStage: int,
   upwards: boolean,
 ) {
-  const repentanceStage = isRepentanceStage();
+  const repentanceStage = onRepentanceStage();
 
   if (
     g.race.status === "in progress" &&

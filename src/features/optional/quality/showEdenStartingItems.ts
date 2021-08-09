@@ -1,6 +1,6 @@
 import {
   getRoomIndex,
-  isRepentanceStage,
+  onRepentanceStage,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -93,7 +93,7 @@ function shouldShowSprites() {
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
     stage === 1 &&
-    !isRepentanceStage() &&
+    !onRepentanceStage() &&
     roomIndex === startingRoomIndex
   );
 }

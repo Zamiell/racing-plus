@@ -3,8 +3,8 @@
 import {
   ensureAllCases,
   getRoomIndex,
-  isRepentanceStage,
   log,
+  onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
@@ -58,7 +58,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
   const roomType = g.r.GetType();
-  const repentanceStage = isRepentanceStage();
+  const repentanceStage = onRepentanceStage();
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.Trapdoor: {
