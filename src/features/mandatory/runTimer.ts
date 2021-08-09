@@ -4,7 +4,11 @@
 // this specific run
 // Unlike the normal run timer, this uses real time instead of game frame count
 
-import { anyPlayerIs, isActionPressedOnAnyInput } from "isaacscript-common";
+import {
+  anyPlayerIs,
+  isActionPressedOnAnyInput,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
@@ -14,14 +18,24 @@ const RUN_TIMER_X = 52;
 const RUN_TIMER_Y = 49;
 const RUN_TIMER_Y_TAINTED_ISAAC_MOD = 18;
 
+const v = {
+  run: {
+    startedTime: null as int | null,
+  },
+};
+
+export function init(): void {
+  saveDataManager("runTimer", v);
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   checkStartTimer();
 }
 
 function checkStartTimer() {
-  if (g.run.startedTime === 0) {
-    g.run.startedTime = Isaac.GetTime();
+  if (v.run.startedTime === null) {
+    v.run.startedTime = Isaac.GetTime();
   }
 }
 
@@ -46,11 +60,11 @@ function checkDisplay() {
 
   // Find out how much time has passed since the run started
   let elapsedTime: float;
-  if (g.run.startedTime === 0) {
+  if (v.run.startedTime === null) {
     // We are currently fading in at the beginning of a run
     elapsedTime = 0;
   } else {
-    elapsedTime = Isaac.GetTime() - g.run.startedTime;
+    elapsedTime = Isaac.GetTime() - v.run.startedTime;
   }
   const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
 

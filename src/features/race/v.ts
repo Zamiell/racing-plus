@@ -1,5 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
+import SeededDeathState from "./types/SeededDeathState";
 
 const v = {
   run: {
@@ -7,6 +8,12 @@ const v = {
     madeBossRushItemsFree: false,
 
     numVictoryLaps: 0,
+
+    seededDeath: {
+      state: SeededDeathState.Disabled,
+    },
+
+    spawnedCorpseTrapdoor: false,
   },
 
   level: {

@@ -7,6 +7,7 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
+import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -158,7 +159,7 @@ function warpForgottenBody(player: EntityPlayer) {
   // If we change the position of the Forgotten Body manually,
   // it will warp back to the same spot on the next frame
   // Instead, manually switch to the Forgotten to avoid this bug
-  g.run.switchForgotten = true;
+  forceSwitchToForgotten();
 
   // Also warp the body to where The Soul is so that The Forgotten won't jump down through a normal
   // floor

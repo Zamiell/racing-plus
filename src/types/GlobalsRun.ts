@@ -1,6 +1,3 @@
-import { getPlayerIndex, log, PlayerIndex } from "isaacscript-common";
-import SeededDeathState from "../features/race/types/SeededDeathState";
-
 // Per-run variables
 export default class GlobalsRun {
   /**
@@ -12,38 +9,6 @@ export default class GlobalsRun {
 
   roomsEntered = 0;
 
-  seededDeath = {
-    state: SeededDeathState.Disabled,
-  };
-
-  seededDrops = {
-    seed: 0,
-    seedDevilAngel: 0,
-  };
-
-  /** Used for the seeded rooms feature of seeded races. */
-  seededRooms = {
-    metKrampus: false,
-    RNG: {
-      krampus: 0,
-      devilSelection: 0,
-      devilEntities: 0,
-      angelSelection: 0,
-      angelEntities: 0,
-    },
-  };
-
-  slideAnimationHappening = false;
-
-  /** Used in races to Mother. */
-  spawnedCorpseTrapdoor = false;
-
-  spedUpFadeIn = false;
-  startedTime = 0;
-
-  switchForgotten = false;
-  transformations = new LuaTable<PlayerIndex, boolean[]>();
-
   /** If we have used the Esau Jr. item yet on this run. */
   usedEsauJrAtLeastOnce = false;
 
@@ -54,40 +19,4 @@ export default class GlobalsRun {
   usedFlipAtLeastOnce = false;
 
   victoryLaps = 0;
-
-  // Initialize variables that are tracked per player
-  // (this cannot be done in the PostPlayerInit callback since the "g.run" table is not initialized
-  // yet at that point)
-  constructor(startSeed: int, players: EntityPlayer[]) {
-    const RNGObject = this.seededRooms.RNG;
-    for (const key of Object.keys(RNGObject)) {
-      const property = key as keyof typeof RNGObject;
-      this.seededRooms.RNG[property] = startSeed;
-    }
-
-    for (const player of players) {
-      initPlayerVariables(player, this);
-    }
-  }
-}
-
-export function initPlayerVariables(
-  player: EntityPlayer,
-  run: GlobalsRun,
-): void {
-  // Exclude players with a non-null parent, since they are not real players
-  // (e.g. the Strawman Keeper)
-  if (player.Parent !== null) {
-    return;
-  }
-
-  const index = getPlayerIndex(player);
-
-  const transformationArray = [];
-  for (let i = 0; i < PlayerForm.NUM_PLAYER_FORMS; i++) {
-    transformationArray.push(false);
-  }
-  run.transformations.set(index, transformationArray);
-
-  log(`Initialized variables for player: ${index}`);
 }

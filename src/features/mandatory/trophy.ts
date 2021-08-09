@@ -3,7 +3,7 @@ import g from "../../globals";
 import EntityLocation from "../../types/EntityLocation";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
 import raceFinish from "../race/raceFinish";
-import SeededDeathState from "../race/types/SeededDeathState";
+import { isSeededDeathActive } from "../race/seededDeath";
 import * as speedrun from "../speedrun/speedrun";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
@@ -62,11 +62,7 @@ function checkTouch() {
 
       // Players should not be able to finish the race if they died at the same time as defeating
       // the boss
-      if (
-        player !== null &&
-        !player.IsDead() &&
-        g.run.seededDeath.state === SeededDeathState.Disabled
-      ) {
+      if (player !== null && !player.IsDead() && !isSeededDeathActive()) {
         touch(trophy, player);
         return;
       }

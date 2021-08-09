@@ -16,6 +16,7 @@ import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import convertXMLGridEntityType from "./convertXMLGridEntityType";
 import * as devilRooms from "./devilRooms.json";
+import v from "./v";
 
 export function getRoomSelection(
   devil: boolean,
@@ -195,16 +196,12 @@ function spawnNormalEntity(
 
 function getEntitySeed(devil: boolean) {
   if (devil) {
-    g.run.seededRooms.RNG.devilEntities = incrementRNG(
-      g.run.seededRooms.RNG.devilEntities,
-    );
-    return g.run.seededRooms.RNG.devilEntities;
+    v.run.seeds.devilEntities = incrementRNG(v.run.seeds.devilEntities);
+    return v.run.seeds.devilEntities;
   }
 
-  g.run.seededRooms.RNG.angelEntities = incrementRNG(
-    g.run.seededRooms.RNG.angelEntities,
-  );
-  return g.run.seededRooms.RNG.angelEntities;
+  v.run.seeds.angelEntities = incrementRNG(v.run.seeds.angelEntities);
+  return v.run.seeds.angelEntities;
 }
 
 function setAngelItemOptions(entity: Entity) {

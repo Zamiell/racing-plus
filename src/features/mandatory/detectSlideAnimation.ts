@@ -1,4 +1,15 @@
+import { saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+
+const v = {
+  run: {
+    slideAnimationHappening: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("detectSlideAnimation", v);
+}
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -9,7 +20,7 @@ function checkSlideAnimationFinished() {
   const isPaused = g.g.IsPaused();
   if (!isPaused) {
     // The game is paused when the slide animation is happening
-    g.run.slideAnimationHappening = false;
+    v.run.slideAnimationHappening = false;
   }
 }
 
@@ -19,5 +30,9 @@ export function postNewRoom(): void {
 }
 
 function recordSlideAnimationStarted() {
-  g.run.slideAnimationHappening = true;
+  v.run.slideAnimationHappening = true;
+}
+
+export function isSlideAnimationActive(): boolean {
+  return v.run.slideAnimationHappening;
 }

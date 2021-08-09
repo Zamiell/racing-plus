@@ -4,10 +4,13 @@ import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
+import * as runTimer from "./features/mandatory/runTimer";
+import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
+import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
@@ -18,6 +21,7 @@ import * as showEdenStartingItems from "./features/optional/quality/showEdenStar
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
+import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
 import * as raceVars from "./features/race/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as modConfigMenu from "./modConfigMenu";
@@ -33,7 +37,9 @@ export default function initFeatureVariables(): void {
   preventItemRotate.init();
   beastPreventEnd.init();
   tempMoreOptions.init();
+  seededDrops.init();
   seededTeleports.init();
+  runTimer.init();
   trophy.init();
   fireworks.init();
   debugPowers.init();
@@ -44,6 +50,7 @@ export default function initFeatureVariables(): void {
   fastClearVars.init();
   fastTravelVars.init();
   fastReset.init();
+  betterDevilAngelRoomsVars.init();
   freeDevilItem.init();
 
   // Quality of life
@@ -52,4 +59,5 @@ export default function initFeatureVariables(): void {
   showEdenStartingItems.init();
   showDreamCatcherItemVars.init();
   showMaxFamiliars.init();
+  speedUpFadeIn.init();
 }

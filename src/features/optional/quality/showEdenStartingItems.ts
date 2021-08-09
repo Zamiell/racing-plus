@@ -6,6 +6,7 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../util";
+import { isSlideAnimationActive } from "../../mandatory/detectSlideAnimation";
 
 // Near the top-left
 const SPRITE_X = 123;
@@ -39,7 +40,7 @@ export function postRender(): void {
 }
 
 function drawItemSprites() {
-  if (g.run.slideAnimationHappening) {
+  if (isSlideAnimationActive()) {
     return;
   }
 

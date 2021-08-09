@@ -5,6 +5,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../util";
+import { isSlideAnimationActive } from "../../../mandatory/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 
@@ -78,7 +79,7 @@ export function draw(): void {
   const playerSprite = player.GetSprite();
   const playerAnimation = playerSprite.GetAnimation();
 
-  if (g.run.slideAnimationHappening && playerAnimation !== "Appear") {
+  if (isSlideAnimationActive() && playerAnimation !== "Appear") {
     return;
   }
 

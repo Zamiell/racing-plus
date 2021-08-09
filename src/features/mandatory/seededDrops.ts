@@ -7,9 +7,21 @@ import {
   initRNG,
   log,
   onSetSeed,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+
+const v = {
+  run: {
+    seed: 0,
+    seedDevilAngel: 0,
+  },
+};
+
+export function init(): void {
+  saveDataManager("seededDrops", v);
+}
 
 // MC_POST_GAME_STARTED (14)
 export function postGameStarted(): void {
@@ -20,7 +32,7 @@ export function postGameStarted(): void {
 function initVariables() {
   const startSeed = g.seeds.GetStartSeed();
 
-  g.run.seededDrops.seed = startSeed;
+  v.run.seed = startSeed;
 
   // We want to ensure that the second RNG counter does not overlap with the first one
   // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
@@ -28,7 +40,7 @@ function initVariables() {
   for (let i = 0; i < 500; i++) {
     rng.Next();
   }
-  g.run.seededDrops.seedDevilAngel = rng.GetSeed();
+  v.run.seedDevilAngel = rng.GetSeed();
 }
 
 function removeSeededItemsTrinkets() {
@@ -225,12 +237,10 @@ function getSeed() {
     roomType === RoomType.ROOM_DEVIL || // 14
     roomType === RoomType.ROOM_ANGEL // 15
   ) {
-    g.run.seededDrops.seedDevilAngel = incrementRNG(
-      g.run.seededDrops.seedDevilAngel,
-    );
-    return g.run.seededDrops.seedDevilAngel;
+    v.run.seedDevilAngel = incrementRNG(v.run.seedDevilAngel);
+    return v.run.seedDevilAngel;
   }
 
-  g.run.seededDrops.seed = incrementRNG(g.run.seededDrops.seed);
-  return g.run.seededDrops.seed;
+  v.run.seed = incrementRNG(v.run.seed);
+  return v.run.seed;
 }

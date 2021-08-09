@@ -1,4 +1,4 @@
-import { getPlayers, log } from "isaacscript-common";
+import { log } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
 import * as removeKarma from "../features/mandatory/removeKarma";
@@ -6,6 +6,7 @@ import * as removeMercurius from "../features/mandatory/removeMercurius";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
+import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
@@ -19,7 +20,6 @@ import { CollectibleTypeCustom } from "../types/enums";
 import GlobalsRun from "../types/GlobalsRun";
 
 export function main(isContinued: boolean): void {
-  const startSeed = g.seeds.GetStartSeed();
   const startSeedString = g.seeds.GetStartSeedString();
   const isaacFrameCount = Isaac.GetFrameCount();
 
@@ -39,7 +39,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Initialize run-based variables
-  g.run = new GlobalsRun(startSeed, getPlayers());
+  g.run = new GlobalsRun();
 
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (errors.check()) {
@@ -62,6 +62,7 @@ export function main(isContinued: boolean): void {
   // Major features
   racePostGameStarted();
   startWithD6.postGameStarted();
+  betterDevilAngelRoomsPostGameStarted();
 
   // Quality of life
   samsonDropHeart.postGameStarted();

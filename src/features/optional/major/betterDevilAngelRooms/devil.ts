@@ -3,6 +3,7 @@ import g from "../../../../globals";
 import { incrementRNG } from "../../../../util";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import { getRoomSelection, spawnLuaRoom } from "./rooms";
+import v from "./v";
 
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
 const KRAMPUS_CHANCE = 0.4;
@@ -17,15 +18,13 @@ export default function devil(): void {
     return;
   }
 
-  g.run.seededRooms.RNG.devilSelection = incrementRNG(
-    g.run.seededRooms.RNG.devilSelection,
-  );
+  v.run.seeds.devilSelection = incrementRNG(v.run.seeds.devilSelection);
   const roomSubType = hasNumberMagnet
     ? NUMBER_MAGNET_ROOM_SUBTYPE
     : NORMAL_ROOM_SUBTYPE;
   const luaRoom = getRoomSelection(
     true,
-    g.run.seededRooms.RNG.devilSelection,
+    v.run.seeds.devilSelection,
     roomSubType,
   );
   spawnLuaRoom(luaRoom, true);
@@ -35,17 +34,17 @@ function checkSpawnKrampus() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
   const centerPos = g.r.GetCenterPos();
 
-  if (g.run.seededRooms.metKrampus || devilRoomDeals === 0) {
+  if (v.run.metKrampus || devilRoomDeals === 0) {
     return false;
   }
 
-  g.run.seededRooms.RNG.krampus = incrementRNG(g.run.seededRooms.RNG.krampus);
-  const krampusRoll = getRandom(g.run.seededRooms.RNG.krampus);
+  v.run.seeds.krampus = incrementRNG(v.run.seeds.krampus);
+  const krampusRoll = getRandom(v.run.seeds.krampus);
   if (krampusRoll > KRAMPUS_CHANCE) {
     return false;
   }
 
-  g.run.seededRooms.metKrampus = true;
+  v.run.metKrampus = true;
   Isaac.Spawn(
     EntityType.ENTITY_FALLEN,
     FallenVariant.KRAMPUS,

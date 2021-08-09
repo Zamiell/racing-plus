@@ -5,6 +5,7 @@ import { getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
+import { forceSwitchToForgotten } from "../../mandatory/switchForgotten";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
   EntityType.ENTITY_GURDY, // 36
@@ -57,7 +58,7 @@ function subvertTeleport() {
     // Thus, just manually switch to the Forgotten to avoid this bug
     const character = player.GetPlayerType();
     if (character === PlayerType.PLAYER_THESOUL) {
-      g.run.switchForgotten = true;
+      forceSwitchToForgotten();
     }
   }
 
