@@ -3,14 +3,53 @@
 import {
   anyPlayerIs,
   getItemName,
+  getRandomArrayElement,
   gridToPos,
   isRepentanceStage,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+import { incrementRNG } from "../../util";
 
 const FRAMES_BEFORE_FADE = 50;
+
+// Listed in order of the wiki (32 in total)
+// https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
+const DEAD_SEA_SCROLL_EFFECTS = [
+  CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK,
+  CollectibleType.COLLECTIBLE_BEST_FRIEND,
+  CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD,
+  CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL,
+  CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS,
+  CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS,
+  CollectibleType.COLLECTIBLE_BOOK_OF_SIN,
+  CollectibleType.COLLECTIBLE_CRACK_THE_SKY,
+  CollectibleType.COLLECTIBLE_CRYSTAL_BALL,
+  CollectibleType.COLLECTIBLE_DECK_OF_CARDS,
+  CollectibleType.COLLECTIBLE_DOCTORS_REMOTE,
+  CollectibleType.COLLECTIBLE_GAMEKID,
+  CollectibleType.COLLECTIBLE_HOURGLASS,
+  CollectibleType.COLLECTIBLE_LEMON_MISHAP,
+  CollectibleType.COLLECTIBLE_MOMS_BOTTLE_OF_PILLS,
+  CollectibleType.COLLECTIBLE_MOMS_BRA,
+  CollectibleType.COLLECTIBLE_MOMS_PAD,
+  CollectibleType.COLLECTIBLE_MONSTER_MANUAL,
+  CollectibleType.COLLECTIBLE_MONSTROS_TOOTH,
+  CollectibleType.COLLECTIBLE_MR_BOOM,
+  CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN,
+  CollectibleType.COLLECTIBLE_THE_NAIL,
+  CollectibleType.COLLECTIBLE_NECRONOMICON,
+  CollectibleType.COLLECTIBLE_PINKING_SHEARS,
+  CollectibleType.COLLECTIBLE_PRAYER_CARD,
+  CollectibleType.COLLECTIBLE_SHOOP_DA_WHOOP,
+  CollectibleType.COLLECTIBLE_SPIDER_BUTT,
+  CollectibleType.COLLECTIBLE_TAMMYS_HEAD,
+  CollectibleType.COLLECTIBLE_TELEPATHY_BOOK,
+  CollectibleType.COLLECTIBLE_TELEPORT,
+  CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
+  CollectibleType.COLLECTIBLE_YUM_HEART,
+];
 
 const TRANSFORMATION_NAMES = [
   "Guppy",
@@ -32,6 +71,7 @@ const TRANSFORMATION_NAMES = [
 
 const v = {
   run: {
+    deadSeaScrollsSeed: 0,
     text: null as string | null,
 
     /** Text of less importance that is only shown if there is no main text. */
@@ -127,6 +167,12 @@ export function usePill(_player: EntityPlayer, pillEffect: PillEffect): void {
   set(pillEffectName);
 }
 
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  const startSeed = g.seeds.GetStartSeed();
+  v.run.deadSeaScrollsSeed = startSeed;
+}
+
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
@@ -179,6 +225,29 @@ function goingToRaceRoom() {
     stage === 1 &&
     (g.run.roomsEntered === 0 || g.run.roomsEntered === 1)
   );
+}
+
+export function preUseItemDeadSeaScrolls(
+  player: EntityPlayer,
+  activeSlot: ActiveSlot,
+): boolean | void {
+  const hud = g.g.GetHUD();
+
+  v.run.deadSeaScrollsSeed = incrementRNG(v.run.deadSeaScrollsSeed);
+  const randomCollectible = getRandomArrayElement(
+    DEAD_SEA_SCROLL_EFFECTS,
+    v.run.deadSeaScrollsSeed,
+  );
+  player.UseActiveItem(randomCollectible, UseFlag.USE_OWNED, activeSlot);
+
+  const itemName = getItemName(randomCollectible);
+  if (VanillaStreakText) {
+    hud.ShowItemText(itemName);
+  } else {
+    set(itemName);
+  }
+
+  return true;
 }
 
 // ModCallbacksCustom.MC_PRE_ITEM_PICKUP

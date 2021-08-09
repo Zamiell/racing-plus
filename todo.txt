@@ -1,12 +1,8 @@
-Patch notes v0.58.41:
-- Troll Bombs and Mega Troll Bombs now have consistent fuse timers (exactly 2 seconds).
-- The Void door will now be automatically removed on races to Hush.
-- Poops will no longer play an appear animation in Devil/Angel rooms.
-- Pitfalls will no longer play an appear animation in Devil/Angel rooms.
-- Fixed the bug where you got softlocked in an I AM ERROR room on races to Mother. (Gamon did this)
-- Fixed the bug where the trapdoor was weird after It Lives / Hush.
-- Fixed the bug where extra photos would spawn if you exited and re-entered the boss room.
-- Fixed the bug where the retracting spikes would not work properly in in Devil/Angel rooms.
+Patch notes v0.58.42:
+- Golden Troll Bombs now have consistent timers.
+- Dead Sea Scrolls will now show streak text.
+- Fixed the bug where Pitfalls would still play an "Appear" animation in a Devil Room if you re-entered it.
+
 
 Racing+ new features:
 - chat system

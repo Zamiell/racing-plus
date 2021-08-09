@@ -21,6 +21,7 @@ function fortuneCookie(): void {
   removeFortuneCookieBanners.useItem();
 }
 
+// CollectibleTypeCustom.COLLECTIBLE_DEBUG
 function debugItem(): boolean {
   debugFunction();
   return true; // Display the "use" animation

@@ -6,7 +6,7 @@ import { config } from "../../../modConfigMenu";
 
 const TWO_SECONDS_IN_GAME_FRAMES = 2 * 30;
 
-export function postBombInitTrollBomb(bomb: EntityBomb): void {
+export function postBombInitTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;
   }
@@ -14,7 +14,15 @@ export function postBombInitTrollBomb(bomb: EntityBomb): void {
   setFuse(bomb);
 }
 
-export function postBombInitMegaTrollBomb(bomb: EntityBomb): void {
+export function postBombInitMegaTroll(bomb: EntityBomb): void {
+  if (!config.consistentTrollBombs) {
+    return;
+  }
+
+  setFuse(bomb);
+}
+
+export function postBombInitGoldenTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;
   }

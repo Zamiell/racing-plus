@@ -3,21 +3,31 @@ import * as consistentTrollBombs from "../features/optional/gameplay/consistentT
 export function init(mod: Mod): void {
   mod.AddCallback(
     ModCallbacks.MC_POST_BOMB_INIT,
-    trollBomb,
+    troll,
     BombVariant.BOMB_TROLL, // 3
   );
 
   mod.AddCallback(
     ModCallbacks.MC_POST_BOMB_INIT,
-    megaTrollBomb,
+    megaTroll,
     BombVariant.BOMB_SUPERTROLL, // 4
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_BOMB_INIT,
+    goldenTroll,
+    BombVariant.BOMB_GOLDENTROLL, // 18
   );
 }
 
-function trollBomb(bomb: EntityBomb) {
-  consistentTrollBombs.postBombInitTrollBomb(bomb);
+function troll(bomb: EntityBomb) {
+  consistentTrollBombs.postBombInitTroll(bomb);
 }
 
-function megaTrollBomb(bomb: EntityBomb) {
-  consistentTrollBombs.postBombInitMegaTrollBomb(bomb);
+function megaTroll(bomb: EntityBomb) {
+  consistentTrollBombs.postBombInitMegaTroll(bomb);
+}
+
+function goldenTroll(bomb: EntityBomb) {
+  consistentTrollBombs.postBombInitGoldenTroll(bomb);
 }

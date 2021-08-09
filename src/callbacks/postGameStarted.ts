@@ -5,6 +5,7 @@ import * as removeKarma from "../features/mandatory/removeKarma";
 import * as removeMercurius from "../features/mandatory/removeMercurius";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
+import * as streakText from "../features/mandatory/streakText";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
@@ -50,6 +51,7 @@ export function main(isContinued: boolean): void {
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
+  streakText.postGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before
   // race initialization because we need to find out what the passive item is before other items are

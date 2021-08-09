@@ -19,6 +19,7 @@ import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
+import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
@@ -33,6 +34,7 @@ import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
+import * as preUseItem from "./callbacks/preUseItem";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
@@ -110,6 +112,8 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   useItem.init(mod); // 3
   postFamiliarInit.init(mod); // 7
   entityTakeDmg.init(mod); // 11
+  preUseItem.init(mod); // 23
+  postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
   postTearUpdate.init(mod); // 40
   postEffectInit.init(mod); // 54
