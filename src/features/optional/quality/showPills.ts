@@ -1,5 +1,6 @@
 import {
   anyPlayerHasCollectible,
+  arrayEmpty,
   isActionPressedOnAnyInput,
   log,
   saveDataManager,
@@ -258,4 +259,13 @@ function getSprite(pillColor: PillColor) {
 
 export function getNumIdentifiedPills(): int {
   return v.run.pillsIdentified.length;
+}
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  resetSprites();
+}
+
+function resetSprites() {
+  arrayEmpty(sprites);
 }
