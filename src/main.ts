@@ -2,6 +2,7 @@ import {
   log,
   ModCallbacksCustom,
   ModUpgraded,
+  saveDataManagerSetGlobal,
   upgradeMod,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
@@ -38,6 +39,7 @@ import * as preUseItem from "./callbacks/preUseItem";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
+import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
@@ -59,6 +61,7 @@ function main() {
 
   welcomeBanner();
   initFeatureVariables();
+  saveDataManagerSetGlobal();
   registerCallbacks(modUpgraded);
 }
 
@@ -111,6 +114,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCUpdate.init(mod); // 0
   useItem.init(mod); // 3
   postFamiliarInit.init(mod); // 7
+  usePill.init(mod); // 10
   entityTakeDmg.init(mod); // 11
   preUseItem.init(mod); // 23
   postNPCInit.init(mod); // 27
@@ -172,6 +176,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_SACRIFICE,
     postSacrifice.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_CURSED_TELEPORT,
+    postCursedTeleport.main,
   );
 }
 

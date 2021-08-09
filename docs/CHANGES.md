@@ -243,7 +243,7 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `071` Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
+- `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
@@ -285,7 +285,7 @@ Post-flip actions:
 
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
-
+- Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
 
 ### 9) Graphics Fixes
 
@@ -338,10 +338,7 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 <!--
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
 - Some things that are unseeded are now seeded:
-  - Teleport!, Undefined, Cursed Eye, Broken Remote, and Telepills teleports
-  - Dead Sea Scrolls item selection
   - cards from Sloth, Super Sloth, Pride, and Super Pride
-  - Guppy's Head fly count
 - Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).

@@ -6,6 +6,7 @@ import debugFunction, { debugFunction2 } from "../debugFunction";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socket from "../features/race/socket";
 import g from "../globals";
+import PILL_MAP from "../pillMap";
 import { consoleCommand, restartAsCharacter } from "../util";
 import {
   blackMarket,
@@ -67,7 +68,7 @@ functionMap.set("bm", (_params: string) => {
 
 functionMap.set("card", (params: string) => {
   if (params === "") {
-    print("You must specify a card name.");
+    print("You must specify a card name or number.");
     return;
   }
 
@@ -268,6 +269,36 @@ functionMap.set("list", (_params: string) => {
 
 functionMap.set("luck", (_params: string) => {
   consoleCommand("debug 9");
+});
+
+functionMap.set("pill", (params: string) => {
+  if (params === "") {
+    print("You must specify a pill name or number.");
+    return;
+  }
+
+  const num = tonumber(params);
+  if (num !== undefined) {
+    // Validate the pill ID
+    if (num < 1 || num >= PillEffect.NUM_PILL_EFFECTS) {
+      print("That is an invalid pill effect ID.");
+      return;
+    }
+
+    // They entered a number instead of a name, so just give the pill corresponding to this number
+    consoleCommand(`g p${num}`);
+    print(`Gave pill: #${num}`);
+    return;
+  }
+
+  const word = params.toLowerCase();
+  const pillEffect = PILL_MAP.get(word);
+  if (pillEffect === undefined) {
+    print("Unknown pill.");
+    return;
+  }
+  consoleCommand(`g p${pillEffect}`);
+  print(`Gave pill: #${pillEffect}`);
 });
 
 functionMap.set("pills", (_params: string) => {

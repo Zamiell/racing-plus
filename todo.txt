@@ -1,5 +1,9 @@
 Patch notes mod v0.58.43:
--
+- Teleport!, Broken Remote, Telepills, and Cursed Eye teleports are now properly seeded.
+  - All teleports are seeded per level.
+	- All forms of teleport share the same seed, with the exception of Telepills, since it can also send you to the I AM ERROR room and the Black Market.
+- Fixed the bug where Lemegeton did not show the streak text.
+- Fixed the bug where crawlspaces were still using the vanilla animation.
 
 Racing+ new features:
 - chat system

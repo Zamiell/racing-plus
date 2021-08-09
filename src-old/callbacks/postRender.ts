@@ -17,9 +17,6 @@ export function main(): void {
   // Check for inputs
   checkDirection();
 
-  // Make Cursed Eye seeded
-  checkCursedEye();
-
   // Check for trapdoor related things
   fastTravel.trapdoor.checkState();
 
@@ -227,40 +224,6 @@ function checkDirection() {
     // We want there to be a 3-frame window instead of a 1-frame window
     g.run.directions.splice(0, 1);
   }
-}
-
-// Make Cursed Eye seeded
-// (this has to be in the PostRender callback because game frames do not tick when the teleport
-// animation is happening)
-function checkCursedEye() {
-  const gameFrameCount = g.g.GetFrameCount();
-  const playerSprite = g.p.GetSprite();
-  const hearts = g.p.GetHearts();
-  const soulHearts = g.p.GetSoulHearts();
-
-  if (
-    !g.p.HasCollectible(CollectibleType.COLLECTIBLE_CURSED_EYE) ||
-    !playerSprite.IsPlaying("TeleportUp") ||
-    g.run.lastDamageFrame === 0 ||
-    // If we were not damaged on this frame, we can assume it is not a Cursed Eye teleport
-    gameFrameCount !== g.run.lastDamageFrame ||
-    g.run.usedTeleport
-  ) {
-    return;
-  }
-
-  // Account for the Cursed Skull trinket
-  if (
-    g.p.HasTrinket(TrinketType.TRINKET_CURSED_SKULL) &&
-    // 1/2 of a heart remaining
-    ((hearts === 1 && soulHearts === 0) || (hearts === 0 && soulHearts === 1))
-  ) {
-    Isaac.DebugString("Cursed Skull teleport detected.");
-    return;
-  }
-
-  Isaac.DebugString("Cursed Eye teleport detected.");
-  useItem.teleport();
 }
 
 function drawVersion() {

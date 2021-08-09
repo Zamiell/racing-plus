@@ -16,56 +16,6 @@ export function main(collectibleType: CollectibleType): void {
   ) {
     g.run.giveExtraCharge = true;
   }
-
-  // Fix the Schoolbag + Butter! bug
-  if (g.p.HasTrinket(TrinketType.TRINKET_BUTTER)) {
-    g.run.droppedButterItem = collectibleType; // (the pedestal will appear on the next game frame)
-    Isaac.DebugString(
-      `The Butter! trinket dropped item ${collectibleType} (on frame ${gameFrameCount}).`,
-    );
-    // We will check this variable later in the PostUpdate callback
-    // (the "schoolbag.checkSecondItem()" function)
-  }
-}
-
-// CollectibleType.COLLECTIBLE_TELEPORT (44)
-// This callback is used naturally by Broken Remote
-// This callback is manually called for Cursed Eye
-export function teleport(): void {
-  const rooms = g.l.GetRooms();
-
-  // Get a random room index
-  // We could adjust this so that our current room is exempt from the list of available rooms,
-  // but this would cause problems in seeded races,
-  // so seeded races would have to be exempt from this exemption
-  // Thus, don't bother with this in order to keep the behavior consistent through the different
-  // types of races
-  g.RNGCounter.teleport = misc.incrementRNG(g.RNGCounter.teleport);
-  math.randomseed(g.RNGCounter.teleport);
-  const roomNum = math.random(0, rooms.Size - 1);
-
-  // We need to use SafeGridIndex instead of GridIndex because we will crash when teleporting to
-  // L rooms otherwise
-  const room = rooms.Get(roomNum);
-  if (room === null) {
-    error("Failed to get the room while teleporting.");
-  }
-  const gridIndexSafe = room.SafeGridIndex;
-
-  // You have to set LeaveDoor before every teleport or else it will send you to the wrong room
-  g.l.LeaveDoor = -1;
-
-  teleport(
-    gridIndexSafe,
-    Direction.NO_DIRECTION,
-    RoomTransition.TRANSITION_TELEPORT,
-  );
-  Isaac.DebugString(
-    `Teleport! / Broken Remote / Cursed Eye to room: ${gridIndexSafe}`,
-  );
-
-  // This will override the existing Teleport! / Broken Remote effect because
-  // we have already locked in a room transition
 }
 
 // CollectibleType.COLLECTIBLE_D6 (105)

@@ -1,4 +1,5 @@
 import { log } from "isaacscript-common";
+import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as openHushDoor from "../features/optional/quality/openHushDoor";
@@ -18,6 +19,7 @@ export function main(): void {
   // Mandatory features
   streakText.postNewLevel();
   tempMoreOptions.postNewLevel();
+  seededTeleports.postNewLevel();
 
   // Major features
   racePostNewLevel();

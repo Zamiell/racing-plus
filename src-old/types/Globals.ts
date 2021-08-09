@@ -38,24 +38,8 @@ export default class Globals {
   RNGCounter = {
     // Seeded at the beginning of the run
     bookOfSin: 0, // 97
-    deadSeaScrolls: 0, // 124
-    guppysHead: 0, // 145
     guppysCollar: 0, // 212
     butterBean: 0, // 294
-
-    // Devil Rooms and Angel Rooms go in order on seeded races
-    devilRoomKrampus: 0,
-    devilRoomChoice: 0,
-    devilRoomItem: 0,
-    devilRoomBeggar: 0,
-    angelRoomChoice: 0,
-    angelRoomItem: 0,
-    angelRoomMisc: 0,
-
-    // Seeded at the beginning of the floor
-    teleport: 0, // 44 (Broken Remote also uses this)
-    undefined: 0, // 324
-    telepills: 0, // 19
   };
 }
 */

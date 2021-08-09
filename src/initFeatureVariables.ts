@@ -4,6 +4,7 @@ import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
+import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
@@ -32,6 +33,7 @@ export default function initFeatureVariables(): void {
   preventItemRotate.init();
   beastPreventEnd.init();
   tempMoreOptions.init();
+  seededTeleports.init();
   trophy.init();
   fireworks.init();
   debugPowers.init();

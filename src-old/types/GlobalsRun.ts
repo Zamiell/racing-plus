@@ -56,8 +56,6 @@ export default class GlobalsRun {
   customBossRoomIndex = -1000; // Used in Season 7
   pencilCounter = 0; // Used for tracking the number of tears fired (for Lead Pencil)
   spamButtons = false; // Used to spam Blood Rights
-  // Used to reposition the player (if they appear at a non-existent entrance)
-  usedTeleport = false;
   spawnedUltraGreed = false; // Used in Season 7
   frameOfLastDD = -1000;
   threeDollarBillItem = 0;
