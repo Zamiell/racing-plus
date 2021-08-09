@@ -3,6 +3,7 @@ Patch notes v0.58.42:
 - Dead Sea Scrolls will now show streak text.
 - Fixed the bug where Pitfalls would still play an "Appear" animation in a Devil Room if you re-entered it.
 - Fixed the bug where The Lamb would spawn a text/trophy on floors other than the Dark Room.
+- Fixed the bug where pill sprites would not reset upon starting a new run.
 
 Racing+ new features:
 - chat system
