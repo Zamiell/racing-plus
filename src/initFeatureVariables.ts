@@ -1,5 +1,6 @@
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
+import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
@@ -8,6 +9,7 @@ import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
+import * as switchForgotten from "./features/mandatory/switchForgotten";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
@@ -40,6 +42,8 @@ export default function initFeatureVariables(): void {
   seededDrops.init();
   seededTeleports.init();
   runTimer.init();
+  switchForgotten.init();
+  detectSlideAnimation.init();
   trophy.init();
   fireworks.init();
   debugPowers.init();
