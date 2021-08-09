@@ -160,6 +160,13 @@ function spawnGridEntity(
   if (entityType === GridEntityType.GRID_PIT) {
     gridEntity.CollisionClass = GridCollisionClass.COLLISION_PIT;
   }
+
+  // Prevent poops from playing an appear animation, since it is distracting
+  if (entityType === GridEntityType.GRID_POOP) {
+    const sprite = gridEntity.GetSprite();
+    sprite.Play("State1", true);
+    sprite.SetLastFrame();
+  }
 }
 
 function spawnNormalEntity(
@@ -170,8 +177,6 @@ function spawnNormalEntity(
   y: int,
   devil: boolean,
 ) {
-  const roomType = g.r.GetType();
-
   const position = gridToPos(x, y);
   const seed = getEntitySeed(devil);
   const entity = g.g.Spawn(
@@ -184,17 +189,11 @@ function spawnNormalEntity(
     seed,
   );
 
-  // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
-  if (
-    entity.Type === EntityType.ENTITY_PICKUP &&
-    entity.Variant === PickupVariant.PICKUP_COLLECTIBLE &&
-    roomType === RoomType.ROOM_ANGEL
-  ) {
-    const pickup = entity.ToPickup();
-    if (pickup !== null) {
-      pickup.OptionsPickupIndex = 1;
-    }
-  }
+  // Prevent new entities from playing generating the puff of smoke effect
+  entity.ClearEntityFlags(EntityFlag.FLAG_APPEAR);
+
+  removePitfallAnimationPostSpawn(entity);
+  setAngelItemOptions(entity);
 }
 
 function getEntitySeed(devil: boolean) {
@@ -209,6 +208,37 @@ function getEntitySeed(devil: boolean) {
     g.run.seededRooms.RNG.angelEntities,
   );
   return g.run.seededRooms.RNG.angelEntities;
+}
+
+function removePitfallAnimationPostSpawn(entity: Entity) {
+  if (entity.Type !== EntityType.ENTITY_PITFALL) {
+    return;
+  }
+
+  // Pitfalls should not play an appear animation, since it is distracting
+  // Note that the appear animation will return when reloading the room, but modifying the state or
+  // removing the appear flag both result in the Pitfall becoming invisible, so we forgo dealing
+  // with this case
+  const npc = entity.ToNPC();
+  if (npc !== null) {
+    npc.State = NpcState.STATE_IDLE;
+  }
+}
+
+function setAngelItemOptions(entity: Entity) {
+  const roomType = g.r.GetType();
+
+  // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
+  if (
+    entity.Type === EntityType.ENTITY_PICKUP &&
+    entity.Variant === PickupVariant.PICKUP_COLLECTIBLE &&
+    roomType === RoomType.ROOM_ANGEL
+  ) {
+    const pickup = entity.ToPickup();
+    if (pickup !== null) {
+      pickup.OptionsPickupIndex = 1;
+    }
+  }
 }
 
 // By default, when spawning multiple pits next to each other, the graphics will not "meld" together

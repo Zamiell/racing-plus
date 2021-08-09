@@ -49,7 +49,10 @@ export default function convertXMLGridEntityType(
 
   // For some specific grid entities, the variant defined in the XML is what is used by the actual
   // game (which is not the case for e.g. poops)
-  if (gridEntityType === GridEntityType.GRID_TELEPORTER) {
+  if (
+    gridEntityType === GridEntityType.GRID_SPIKES_ONOFF || // 9
+    gridEntityType === GridEntityType.GRID_TELEPORTER // 23
+  ) {
     gridEntityVariant = xmlGridEntityVariant;
   }
 

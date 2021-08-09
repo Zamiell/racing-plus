@@ -245,7 +245,7 @@ Post-flip actions:
 
 - `071` Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.
 
-> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble.
+> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
 - Mercurius is removed.
 
