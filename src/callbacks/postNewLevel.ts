@@ -2,7 +2,7 @@ import { log } from "isaacscript-common";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as openHushDoor from "../features/optional/quality/openHushDoor";
+import * as openHushDoor from "../features/optional/bosses/openHushDoor";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
 import g from "../globals";

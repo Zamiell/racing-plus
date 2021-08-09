@@ -265,6 +265,15 @@ export const BOSS_CHANGES: ConfigDescriptionArray = [
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
   ],
+  [
+    "openHushDoor",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "038",
+      "Open the Hush door",
+      "Automatically open the big door to Hush when you arrive on the Blue womb.",
+    ],
+  ],
 ];
 
 // 04X
@@ -391,10 +400,19 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     ],
   ],
   [
-    "showDreamCatcherItem",
+    "removeFortuneCookieBanners",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "057",
+      "Remove Fortune Cookie banners",
+      "Remove Fortune Cookie banners when don't get any pickups.",
+    ],
+  ],
+  [
+    "showDreamCatcherItem",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "058",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -403,48 +421,39 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "fadeVasculitisTears",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "059",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
-    ],
-  ],
-  [
-    "showPills",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "059",
-      "Remember pills",
-      "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
 ];
 
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   [
-    "showMaxFamiliars",
+    "removePerfectionVelocity",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "060",
-      "Show max familiars",
-      "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
+      "Remove Perfection velocity",
+      "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
   ],
   [
-    "openHushDoor",
+    "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "061",
-      "Open the Hush door",
-      "Automatically open the big door to Hush when you arrive on the Blue womb.",
+      "Remember pills",
+      "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
   [
-    "removeFortuneCookieBanners",
+    "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "062",
-      "Remove Fortune Cookie banners",
-      "Remove Fortune Cookie banners when don't get any pickups.",
+      "Show max familiars",
+      "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
   ],
 ];

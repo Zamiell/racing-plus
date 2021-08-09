@@ -8,40 +8,40 @@ export default functionMap;
 
 // 0
 functionMap.set(ButtonAction.ACTION_LEFT, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 1
 functionMap.set(ButtonAction.ACTION_RIGHT, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 2
 functionMap.set(ButtonAction.ACTION_UP, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 3
 functionMap.set(ButtonAction.ACTION_DOWN, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 4
 functionMap.set(ButtonAction.ACTION_SHOOTLEFT, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 5
 functionMap.set(ButtonAction.ACTION_SHOOTRIGHT, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 6
 functionMap.set(ButtonAction.ACTION_SHOOTUP, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });
 
 // 7
 functionMap.set(ButtonAction.ACTION_SHOOTDOWN, () => {
-  return fastTravelInputAction.disableInput();
+  return fastTravelInputAction.disableInputFloat();
 });

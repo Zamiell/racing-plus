@@ -169,9 +169,13 @@ Post-flip actions:
 
 > Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
 
+- `038` The Hush door will be automatically opened.
+
+> Why? The door opening animation very long, resulting in the player being forced to wait without performing any inputs.
+
 - Hush no longer plays an appear animation.
 
-> Why? The animation is very long, resulting in the player being forced to wait without performing any inputs.
+> Why? The appear animation is very long, resulting in the player being forced to wait without performing any inputs.
 
 - Defeating Mega Satan no longer has a chance to immediately end the run.
 
@@ -228,18 +232,24 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `056` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `057` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `057` Fortune Cookie banner text is removed.
+
+> Why? The large banner text blocks gameplay.
+
+- `058` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `058` The tears that explode out of enemies when you have Vasculitis are faded.
+- `059` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `059` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
-- `060` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `061` The Hush door will be automatically opened.
-- `062` Fortune Cookie text is removed.
+- `060` The Perfection trinket will no longer have velocity.
+
+> Why? This can prevent the trinket from being stuck over a pit.
+
+- `061` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 
 ### 6) Gameplay Changes
 

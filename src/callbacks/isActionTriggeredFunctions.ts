@@ -1,4 +1,5 @@
 import * as switchForgotten from "../features/mandatory/switchForgotten";
+import * as fastTravelInputAction from "../features/optional/major/fastTravel/callbacks/inputAction";
 import * as raceInputAction from "../features/race/callbacks/inputAction";
 
 const functionMap = new Map<
@@ -6,6 +7,21 @@ const functionMap = new Map<
   (entity: Entity | null) => boolean | void
 >();
 export default functionMap;
+
+// 8
+functionMap.set(ButtonAction.ACTION_BOMB, () => {
+  return fastTravelInputAction.disableInputBoolean();
+});
+
+// 9
+functionMap.set(ButtonAction.ACTION_ITEM, () => {
+  return fastTravelInputAction.disableInputBoolean();
+});
+
+// 10
+functionMap.set(ButtonAction.ACTION_PILLCARD, () => {
+  return fastTravelInputAction.disableInputBoolean();
+});
 
 // 11
 functionMap.set(ButtonAction.ACTION_DROP, () => {

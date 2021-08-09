@@ -24,6 +24,7 @@ export default class Config {
   fastBigHorn = true;
   removeLambBody = true;
   stopVictoryLapPopup = true;
+  openHushDoor = true;
 
   // Enemy Changes
   replaceCodWorms = true;
@@ -40,12 +41,12 @@ export default class Config {
   subvertTeleport = true;
   deleteVoidPortals = true;
   showNumSacrifices = true;
+  removeFortuneCookieBanners = true; // 557
   showDreamCatcherItem = true; // 566
   fadeVasculitisTears = true; // 657
+  removePerfectionVelocity = true; // 145
   showPills = true;
   showMaxFamiliars = true;
-  openHushDoor = true;
-  removeFortuneCookieBanners = true;
 
   // Gameplay changes
   consistentTrollBombs = true;
