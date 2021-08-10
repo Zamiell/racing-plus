@@ -1,4 +1,4 @@
-import { getDoors } from "isaacscript-common";
+import { getDoors, log } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import angel from "../angel";
@@ -69,21 +69,30 @@ function removePickupsAndSlotsAndNPCs() {
   }
 }
 
+// If the vanilla version of the room had an enemy in it, then the doors will start closed
+// Manually fix this
 function setCleared() {
   const roomClear = g.r.IsClear();
 
+  // There were no vanilla enemies in the room
   if (roomClear) {
     return;
   }
 
-  // If the vanilla version of the room had an enemy in it, then the doors will start closed
-  // Manually fix this
   g.r.SetClear(true);
   for (const door of getDoors()) {
     door.State = DoorState.STATE_OPEN;
     const sprite = door.GetSprite();
-    Isaac.DebugString(sprite.GetFilename());
     sprite.Play("Opened", true);
+
+    // If there was a vanilla Krampus in the room,
+    // then the door would be barred in addition to being closed
+    // Ensure that the bar is not visible
+    door.ExtraVisible = false;
+
+    log(
+      "Manually opened a Devil Room or Angel Room door (since there are not supposed to be enemies in the room).",
+    );
   }
   g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 }

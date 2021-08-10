@@ -1,4 +1,4 @@
-import { anyPlayerHasTrinket, getRandom } from "isaacscript-common";
+import { anyPlayerHasTrinket, getDoors, getRandom } from "isaacscript-common";
 import g from "../../../../globals";
 import { incrementRNG } from "../../../../util";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
@@ -28,6 +28,10 @@ export default function devil(): void {
     roomSubType,
   );
   spawnLuaRoom(luaRoom, true);
+
+  if (hasNumberMagnet) {
+    prepareRoomSinceEnemiesSpawned();
+  }
 }
 
 function checkSpawnKrampus() {
@@ -54,8 +58,19 @@ function checkSpawnKrampus() {
     null,
   );
 
-  // If we don't set the room clear state, we won't get a charge after Krampus is killed
-  g.r.SetClear(false);
+  prepareRoomSinceEnemiesSpawned();
 
   return true;
+}
+
+function prepareRoomSinceEnemiesSpawned() {
+  // If we don't set the room clear state, we won't get a charge after the enemies are killed
+  g.r.SetClear(false);
+
+  // We manually opened the doors earlier, so manually set them back to being closed
+  for (const door of getDoors()) {
+    door.State = DoorState.STATE_CLOSED;
+    const sprite = door.GetSprite();
+    sprite.Play("Close", true);
+  }
 }

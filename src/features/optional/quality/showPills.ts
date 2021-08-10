@@ -1,6 +1,5 @@
 import {
   anyPlayerHasCollectible,
-  arrayEmpty,
   isActionPressedOnAnyInput,
   log,
   saveDataManager,
@@ -74,7 +73,8 @@ const FALSE_PHD_PILL_CONVERSIONS = new Map([
   [PillEffect.PILLEFFECT_SHOT_SPEED_UP, PillEffect.PILLEFFECT_SHOT_SPEED_DOWN], // 48
 ]);
 
-const sprites: Sprite[] = [];
+/** These are not meant to ever be reset. */
+const pillSprites: Sprite[] = [];
 
 const v = {
   run: {
@@ -90,11 +90,11 @@ export function init(): void {
 
   // For convenience, make a null sprite on index 0
   const nullSprite = Sprite();
-  sprites.push(nullSprite);
+  pillSprites.push(nullSprite);
 
   for (let i = 1; i < PillColor.NUM_STANDARD_PILLS; i++) {
     const sprite = initSprite("gfx/pills/pill.anm2", `gfx/pills/${i}.png`);
-    sprites.push(sprite);
+    pillSprites.push(sprite);
   }
 }
 
@@ -248,24 +248,15 @@ function newPill(pillColor: PillColor, pillEffect: PillEffect) {
   const pillDescription = {
     color: pillColor,
     effect: pillEffect,
-    sprite: getSprite(pillColor),
+    sprite: getPillSprite(pillColor),
   };
   v.run.pillsIdentified.push(pillDescription);
 }
 
-function getSprite(pillColor: PillColor) {
-  return sprites[pillColor];
+function getPillSprite(pillColor: PillColor) {
+  return pillSprites[pillColor];
 }
 
 export function getNumIdentifiedPills(): int {
   return v.run.pillsIdentified.length;
-}
-
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  resetSprites();
-}
-
-function resetSprites() {
-  arrayEmpty(sprites);
 }

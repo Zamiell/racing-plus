@@ -12,7 +12,6 @@ import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
-import * as showPills from "../features/optional/quality/showPills";
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
@@ -64,7 +63,6 @@ export function main(isContinued: boolean): void {
   samsonDropHeart.postGameStarted();
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
-  showPills.postGameStarted();
   showDreamCatcherItemPostGameStarted();
 
   // Miscellaneous
