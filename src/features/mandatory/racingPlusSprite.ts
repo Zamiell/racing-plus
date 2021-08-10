@@ -10,6 +10,7 @@ import {
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../util";
+import * as socketClient from "../race/socketClient";
 
 enum SpriteLayer {
   Blue,
@@ -21,8 +22,9 @@ const SPRITE_POSITION = Vector(4, 72); // On top of where the "No Achievements" 
 const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 export function postRender(): void {
-  const spriteLayer =
-    g.socket.client === null ? SpriteLayer.Blue : SpriteLayer.Green;
+  const spriteLayer = socketClient.isActive()
+    ? SpriteLayer.Green
+    : SpriteLayer.Blue;
   const position = getPosition();
   sprite.RenderLayer(spriteLayer, position);
 }

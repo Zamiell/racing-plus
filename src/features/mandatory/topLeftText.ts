@@ -6,7 +6,7 @@ import {
 } from "../optional/quality/showNumSacrifices";
 import { shouldShowEndOfRunTextRace } from "../race/raceFinish";
 import { shouldShowRaceID } from "../race/raceStart";
-import { shouldShowVictoryLaps } from "../race/victoryLap";
+import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
 import {
   inSpeedrun,
   isOnFinalCharacter,
@@ -26,7 +26,7 @@ export function postRender(): void {
   if (shouldShowVictoryLaps()) {
     // Display the number of victory laps
     // (this should have priority over showing the seed)
-    lines.push(`Victory Lap #${g.run.victoryLaps}`);
+    lines.push(`Victory Lap #${getNumVictoryLaps()}`);
   } else if (shouldShowEndOfRunTextSpeedrun() || shouldShowEndOfRunTextRace()) {
     // Show some run summary information
     // (it will be removed if they exit the room)

@@ -4,7 +4,7 @@ import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
 import * as debugPowers from "../features/mandatory/debugPowers";
-import * as socket from "../features/race/socket";
+import * as socketClient from "../features/race/socketClient";
 import g from "../globals";
 import PILL_MAP from "../pillMap";
 import { consoleCommand, restartAsCharacter } from "../util";
@@ -162,7 +162,7 @@ functionMap.set("coins", (_params: string) => {
 });
 
 functionMap.set("connect", (_params: string) => {
-  if (socket.connect()) {
+  if (socketClient.connect()) {
     print("Successfully connected.");
   } else {
     print("Failed to connect.");

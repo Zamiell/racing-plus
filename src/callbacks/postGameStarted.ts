@@ -17,7 +17,6 @@ import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperM
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import g from "../globals";
 import { CollectibleTypeCustom } from "../types/enums";
-import GlobalsRun from "../types/GlobalsRun";
 
 export function main(isContinued: boolean): void {
   const startSeedString = g.seeds.GetStartSeedString();
@@ -37,9 +36,6 @@ export function main(isContinued: boolean): void {
   if (isContinued) {
     return;
   }
-
-  // Initialize run-based variables
-  g.run = new GlobalsRun();
 
   // Check for errors that should prevent the Racing+ mod from doing anything
   if (errors.check()) {

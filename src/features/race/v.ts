@@ -14,6 +14,8 @@ const v = {
     },
 
     spawnedCorpseTrapdoor: false,
+
+    victoryLaps: 0,
   },
 
   level: {

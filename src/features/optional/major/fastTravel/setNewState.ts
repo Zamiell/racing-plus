@@ -220,6 +220,7 @@ function setChangingToNewRoom() {
   // card is properly decremented
   // We arbitrarily use the starting room for this
   changeRoom(startingRoomIndex);
+  g.run.roomsEntered -= 1; // This should not count as entering a room
 }
 
 function setGoingToNewFloor() {

@@ -3,12 +3,11 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
+import * as socketClient from "./socketClient";
 import socketFunctions, { reset } from "./socketFunctions";
 import RaceData, { cloneRaceData } from "./types/RaceData";
 
 const DEBUG = false;
-const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
-const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -16,7 +15,7 @@ export function postRender(): void {
     return;
   }
 
-  if (g.socket.client === null) {
+  if (!socketClient.isActive()) {
     return;
   }
 
@@ -24,7 +23,7 @@ export function postRender(): void {
   send("ping");
 
   // Do nothing further if the ping failed
-  if (g.socket.client === null) {
+  if (!socketClient.isActive()) {
     return;
   }
 
@@ -34,80 +33,17 @@ export function postRender(): void {
   checkRaceChanged(oldRaceData, g.race);
 }
 
-function read() {
-  if (g.socket.client === null) {
-    return false;
-  }
-
-  const [rawData, errMsg] = g.socket.client.receive();
-  if (rawData === null) {
-    if (errMsg !== "timeout") {
-      log(`Failed to read data: ${errMsg}`);
-      disconnect();
-    }
-    return false;
-  }
-
-  const [command, data] = unpackSocketMsg(rawData);
-  if (DEBUG) {
-    log(`Got socket data: ${rawData}`);
-  }
-
-  const socketFunction = socketFunctions.get(command);
-  if (socketFunction !== undefined) {
-    socketFunction(data);
-  } else {
-    log(`Error: Received an unknown socket command: ${command}`);
-  }
-
-  return true;
-}
-
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeedString = g.seeds.GetStartSeedString();
 
-  if (g.socket.client === null) {
-    if (!connect()) {
+  if (!socketClient.isActive()) {
+    if (!socketClient.connect()) {
       g.race = new RaceData();
     }
   }
 
   send("seed", startSeedString);
-}
-
-export function connect(): boolean {
-  // Do nothing if the sandbox is not present
-  if (!g.socket.enabled || g.sandbox === null) {
-    return false;
-  }
-
-  // To minimize lag,
-  // don't attempt to connect if we have recently tried to connect and it has failed
-  const isaacFrameCount = Isaac.GetFrameCount();
-  if (
-    g.socket.connectionAttemptFrame !== 0 &&
-    isaacFrameCount <
-      g.socket.connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
-  ) {
-    // Reset the connection attempt frame to this one so that resetting over and over never triggers
-    // a connection attempt
-    g.socket.connectionAttemptFrame = isaacFrameCount;
-    return false;
-  }
-
-  g.socket.connectionAttemptFrame = isaacFrameCount;
-  g.socket.client = g.sandbox.connectLocalhost(PORT);
-  if (g.socket.client === null) {
-    return false;
-  }
-
-  // We check for new socket data on every PostRender frame
-  // However, the remote socket might not necessarily have any new data for us
-  // Thus, we set the timeout to 0 in order to prevent lag
-  g.socket.client.settimeout(0);
-
-  return true;
 }
 
 // ModCallbacks.MC_PRE_GAME_EXIT (17)
@@ -137,6 +73,7 @@ export function postNewRoom(): void {
   send("room", `${roomType}-${roomVariant}`);
 }
 
+// ModCallbacksCustom.MC_POST_ITEM_PICKUP
 export function postItemPickup(pickingUpItem: PickingUpItem): void {
   if (
     pickingUpItem.type === ItemType.ITEM_ACTIVE ||
@@ -148,8 +85,38 @@ export function postItemPickup(pickingUpItem: PickingUpItem): void {
 }
 
 // Subroutines
+function read() {
+  if (!socketClient.isActive()) {
+    return false;
+  }
+
+  const [rawData, errMsg] = socketClient.receive();
+  if (rawData === null) {
+    if (errMsg !== "timeout") {
+      log(`Failed to read data: ${errMsg}`);
+      socketClient.disconnect();
+      reset();
+    }
+    return false;
+  }
+
+  const [command, data] = unpackSocketMsg(rawData);
+  if (DEBUG) {
+    log(`Got socket data: ${rawData}`);
+  }
+
+  const socketFunction = socketFunctions.get(command);
+  if (socketFunction !== undefined) {
+    socketFunction(data);
+  } else {
+    log(`Error: Received an unknown socket command: ${command}`);
+  }
+
+  return true;
+}
+
 export function send(command: SocketCommandOut, data = ""): void {
-  if (g.socket.client === null) {
+  if (!socketClient.isActive()) {
     return;
   }
 
@@ -158,10 +125,11 @@ export function send(command: SocketCommandOut, data = ""): void {
   }
 
   const packedMsg = packSocketMsg(command, data);
-  const [sentBytes, errMsg] = g.socket.client.send(packedMsg);
+  const [sentBytes, errMsg] = socketClient.send(packedMsg);
   if (sentBytes === null) {
     log(`Failed to send data over the socket: ${errMsg}`);
-    disconnect();
+    socketClient.disconnect();
+    reset();
   }
 }
 
@@ -181,10 +149,4 @@ function unpackSocketMsg(rawData: string): [SocketCommandIn, string] {
   const data = dataArray.join(separator);
 
   return [command as SocketCommandIn, data];
-}
-
-function disconnect() {
-  g.socket.client = null;
-
-  reset();
 }

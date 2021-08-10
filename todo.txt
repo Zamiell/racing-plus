@@ -1,6 +1,5 @@
-Patch notes for mod v0.58.44:
-- The Perfection trinket will now always spawn in the center of the room (to prevent it from being trapped on top of a pit).
-- Fixed the bug where you could use items, pills, cards, and bombs while in a fast-travel animation.
+Patch notes for mod v0.58.45:
+-
 
 TODO Racing+ new features:
 - chat system

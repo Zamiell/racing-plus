@@ -24,14 +24,18 @@ import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars"
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
+import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as speedrunVars from "./features/speedrun/v";
+import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
 
 export default function initFeatureVariables(): void {
   modConfigMenu.init();
+  globals.init();
   raceVars.init();
   speedrunVars.init();
+  socketClient.init();
 
   // Mandatory features
   streakText.init();
