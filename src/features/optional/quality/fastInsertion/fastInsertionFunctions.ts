@@ -20,7 +20,6 @@ export function insertNearestPill(): void {
 }
 
 export function insertNearestCard(): void {
-  Isaac.DebugString("test");
   const player = Isaac.GetPlayer();
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_LITTLE_BAGGY)) {
     insertNearestPickup(PickupVariant.PICKUP_PILL);
@@ -45,7 +44,6 @@ export function removeNearestTrinket(): void {
 }
 
 export function insertNearestPickup(variant: PickupVariant): boolean {
-  Isaac.DebugString("test4");
   const nearestPickup = getNearestPickup(variant);
   if (nearestPickup !== null) {
     Isaac.DebugString(nearestPickup.Variant.toString());
@@ -180,12 +178,13 @@ function insertCoin(coin: EntityPickup) {
     // 5
     case CoinSubType.COIN_LUCKYPENNY: {
       player.AddCoins(1);
-      // (just ignore the luck component for simplicity)
+      player.DonateLuck(1);
       break;
     }
 
     default: {
       // Don't put Sticky Nickels in our inventory automatically
+      // Don't put Golden Pennies in our inventory automatically
       // Don't put unknown types in our inventory automatically
       return false;
     }
@@ -299,8 +298,6 @@ function insertPill(pill: EntityPickup) {
 // PickupVariant.PICKUP_TAROTCARD (300)
 function insertCard(card: EntityPickup) {
   const player = Isaac.GetPlayer();
-  Isaac.DebugString("test2");
-
   if (!checkPocketSlotOpen()) {
     return false;
   }
@@ -324,13 +321,6 @@ function checkPocketSlotOpen() {
   const slot2Open = card2 === 0 && pill2 === 0;
 
   const slots = player.GetMaxPocketItems();
-  Isaac.DebugString(card1.toString());
-  Isaac.DebugString(card2.toString());
-  Isaac.DebugString(pill1.toString());
-  Isaac.DebugString(pill2.toString());
-  Isaac.DebugString(slot1Open.toString());
-  Isaac.DebugString(slot2Open.toString());
-  Isaac.DebugString(slots.toString());
   if (slots === 1) {
     return slot1Open;
   }
