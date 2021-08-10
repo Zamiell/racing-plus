@@ -97,7 +97,7 @@ function getPhotoSituation() {
 
   // Speedrun seasons have set goals
   if (challenge === ChallengeCustom.SEASON_1) {
-    return PhotoSituation.Polaroid;
+    return PhotoSituation.Both;
   }
 
   const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();

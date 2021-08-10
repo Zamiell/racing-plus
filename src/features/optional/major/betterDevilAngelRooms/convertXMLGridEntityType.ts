@@ -22,6 +22,10 @@ const GRID_ENTITY_MAP = new Map<int, [GridEntityType, int]>([
   [1940, [GridEntityType.GRID_SPIDERWEB, 0]],
   [1999, [GridEntityType.GRID_WALL, 0]],
   [3000, [GridEntityType.GRID_PIT, 0]],
+  // Pit events are bugged; there is no way to tell this apart from a normal pit once it is spawned
+  // by the game
+  // In this case, we implement them as a normal pit
+  [3009, [GridEntityType.GRID_PIT, 0]],
   [4000, [GridEntityType.GRID_LOCK, 0]],
   [4500, [GridEntityType.GRID_PRESSURE_PLATE, 0]],
   [5000, [GridEntityType.GRID_STATUE, StatueVariant.DEVIL]],
@@ -35,7 +39,13 @@ const GRID_ENTITY_MAP = new Map<int, [GridEntityType, int]>([
 export default function convertXMLGridEntityType(
   xmlGridEntityType: int,
   xmlGridEntityVariant: int,
-): [int, int] {
+): [int, int] | null {
+  // Triggers are bugged; spawning one will immediately crash the game
+  // In this case, just skip this grid square
+  if (xmlGridEntityType === EntityType.ENTITY_TRIGGER_OUTPUT) {
+    return null;
+  }
+
   // Grid entity types/variants are represented in XML files as different numbers than what they are
   // in the real game, so we have to look up the real type/variant using a map
   const gridEntityArray = GRID_ENTITY_MAP.get(xmlGridEntityType);
@@ -51,6 +61,7 @@ export default function convertXMLGridEntityType(
   // game (which is not the case for e.g. poops)
   if (
     gridEntityType === GridEntityType.GRID_SPIKES_ONOFF || // 9
+    // gridEntityType === GridEntityType.GRID_PRESSURE_PLATE || // 20
     gridEntityType === GridEntityType.GRID_TELEPORTER // 23
   ) {
     gridEntityVariant = xmlGridEntityVariant;

@@ -151,10 +151,14 @@ function spawnGridEntity(
   x: int,
   y: int,
 ) {
-  const [entityType, variant] = convertXMLGridEntityType(
+  const gridEntityArray = convertXMLGridEntityType(
     xmlEntityType,
     xmlEntityVariant,
   );
+  if (gridEntityArray === null) {
+    return;
+  }
+  const [entityType, variant] = gridEntityArray;
   const position = gridToPos(x, y);
   const gridEntity = Isaac.GridSpawn(entityType, variant, position, true);
 
