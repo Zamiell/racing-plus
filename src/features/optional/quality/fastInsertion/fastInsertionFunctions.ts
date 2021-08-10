@@ -45,9 +45,6 @@ export function removeNearestTrinket(): void {
 
 export function insertNearestPickup(variant: PickupVariant): boolean {
   const nearestPickup = getNearestPickup(variant);
-  if (nearestPickup !== null) {
-    Isaac.DebugString(nearestPickup.Variant.toString());
-  }
 
   if (nearestPickup === null) {
     return false;
