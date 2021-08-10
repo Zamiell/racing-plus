@@ -18,6 +18,8 @@ import convertXMLGridEntityType from "./convertXMLGridEntityType";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 
+const GRID_SQUARES_PER_ROW = 15;
+
 export function getRoomSelection(
   devil: boolean,
   seed: int,
@@ -224,17 +226,122 @@ function setAngelItemOptions(entity: Entity) {
 // Thus, now that all of the entities in the room are spawned, we must iterate over the pits in the
 // room and manually fix their sprites, if necessary
 function fixPitGraphics() {
-  // TODO
   const pitMap = getPitMap();
 
-  for (const gridEntity of getGridEntities()) {
-    const gridEntityType = gridEntity.GetType();
-    if (gridEntityType === GridEntityType.GRID_PIT) {
-      Isaac.DebugString(pitMap);
-    }
+  for (const [gridIndex, gridEntity] of pitMap) {
+    const gridIndexLeft = gridIndex - 1;
+    const L = pitMap.has(gridIndexLeft);
+    const gridIndexRight = gridIndex + 1;
+    const R = pitMap.has(gridIndexRight);
+    const gridIndexUp = gridIndex - GRID_SQUARES_PER_ROW;
+    const U = pitMap.has(gridIndexUp);
+    const gridIndexDown = gridIndex + GRID_SQUARES_PER_ROW;
+    const D = pitMap.has(gridIndexDown);
+    const gridIndexUpLeft = gridIndex - GRID_SQUARES_PER_ROW - 1;
+    const UL = pitMap.has(gridIndexUpLeft);
+    const gridIndexUpRight = gridIndex - GRID_SQUARES_PER_ROW + 1;
+    const UR = pitMap.has(gridIndexUpRight);
+    const gridIndexDownLeft = gridIndex + GRID_SQUARES_PER_ROW - 1;
+    const DL = pitMap.has(gridIndexDownLeft);
+    const gridIndexDownRight = gridIndex + GRID_SQUARES_PER_ROW + 1;
+    const DR = pitMap.has(gridIndexDownRight);
+
+    const pitFrame = getPitFrame(L, R, U, D, UL, UR, DL, DR);
+    const sprite = gridEntity.GetSprite();
+    sprite.SetFrame(pitFrame);
   }
 }
 
 function getPitMap() {
-  return "1";
+  const pitMap = new Map<int, GridEntity>();
+  for (const gridEntity of getGridEntities()) {
+    const gridEntityType = gridEntity.GetType();
+    if (gridEntityType === GridEntityType.GRID_PIT) {
+      const gridIndex = gridEntity.GetGridIndex();
+      pitMap.set(gridIndex, gridEntity);
+    }
+  }
+
+  return pitMap;
+}
+
+// Copied from Basement Renovator
+function getPitFrame(
+  L: boolean,
+  R: boolean,
+  U: boolean,
+  D: boolean,
+  UL: boolean,
+  UR: boolean,
+  DL: boolean,
+  DR: boolean,
+) {
+  let F = 0;
+
+  // First bitwise frames (works for all combinations of just left up right and down)
+  if (L) {
+    F |= 1;
+  }
+  if (U) {
+    F |= 2;
+  }
+  if (R) {
+    F |= 4;
+  }
+  if (D) {
+    F |= 8;
+  }
+
+  // Then a bunch of other combinations
+  if (U && L && !UL && !R && !D) {
+    F = 17;
+  }
+  if (U && R && !UR && !L && !D) {
+    F = 18;
+  }
+  if (L && D && !DL && !U && !R) {
+    F = 19;
+  }
+  if (R && D && !DR && !L && !U) {
+    F = 20;
+  }
+  if (L && U && R && D && !UL) {
+    F = 21;
+  }
+  if (L && U && R && D && !UR) {
+    F = 22;
+  }
+  if (U && R && D && !L && !UR) {
+    F = 25;
+  }
+  if (L && U && D && !R && !UL) {
+    F = 26;
+  }
+
+  if (L && U && R && D && !DL && !DR) {
+    F = 24;
+  }
+  if (L && U && R && D && !UR && !UL) {
+    F = 23;
+  }
+  if (L && U && R && UL && !UR && !D) {
+    F = 27;
+  }
+  if (L && U && R && UR && !UL && !D) {
+    F = 28;
+  }
+  if (L && U && R && !D && !UR && !UL) {
+    F = 29;
+  }
+  if (L && R && D && DL && !U && !DR) {
+    F = 30;
+  }
+  if (L && R && D && DR && !U && !DL) {
+    F = 31;
+  }
+  if (L && R && D && !U && !DL && !DR) {
+    F = 32;
+  }
+
+  return F;
 }
