@@ -50,6 +50,7 @@ export default class Config {
 
   // Gameplay changes
   consistentTrollBombs = true;
+  pillsCancelAnimations = true;
 
   // Cutscenes & Animations
   fastTeleports = true;

@@ -188,7 +188,8 @@ function canInteractWith(player: EntityPlayer) {
   const sprite = player.GetSprite();
   return (
     !player.IsHoldingItem() &&
-    !sprite.IsPlaying("Happy") && // Account for lucky pennies
+    !sprite.IsPlaying("Happy") &&
+    !sprite.IsPlaying("Sad") &&
     !sprite.IsPlaying("Jump") // Account for How to Jump
   );
 }

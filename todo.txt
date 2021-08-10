@@ -1,5 +1,5 @@
 Patch notes for mod v0.58.45:
--
+- Feature: Power Pill and Horf! now have the ability to cancel animations.
 
 TODO Racing+ new features:
 - chat system

@@ -251,11 +251,9 @@ Post-flip actions:
 - `061` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 - `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 
+> Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
+
 ### 6) Gameplay Changes
-
-- `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
-
-> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
 - Mercurius is removed.
 
@@ -268,6 +266,14 @@ Post-flip actions:
 - The Amnesia and ??? pills are removed.
 
 > Why? Since curses are automatically removed, these pills have no effect.
+
+- `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+
+> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
+
+- `072` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+
+> Why? This allows skilled players to gain time by canceling more animations.
 
 ### 7) Cutscenes & Animations
 

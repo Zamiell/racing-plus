@@ -461,15 +461,6 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
 // 07X
 export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   [
-    "consistentTrollBombs",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "071",
-      "Consistent troll bombs",
-      "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
-    ],
-  ],
-  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -494,6 +485,24 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
       "",
       "Remove Amnesia and ??? pills",
       "Since curses are automatically removed, these pills have no effect. This cannot be disabled for seeding reasons.",
+    ],
+  ],
+  [
+    "consistentTrollBombs",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "071",
+      "Consistent troll bombs",
+      "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
+    ],
+  ],
+  [
+    "pillsCancelAnimations",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "072",
+      "Pills cancel animations",
+      "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],
   ],
 ];
