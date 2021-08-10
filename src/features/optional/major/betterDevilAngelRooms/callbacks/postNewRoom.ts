@@ -4,6 +4,7 @@ import { config } from "../../../../../modConfigMenu";
 import angel from "../angel";
 import devil from "../devil";
 
+const ENTITIES_TO_NOT_REMOVE = [EntityType.ENTITY_DARK_ESAU];
 const MIN_GRID_INDEX = 0;
 const MAX_GRID_INDEX = 134;
 
@@ -46,6 +47,10 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
 // when we re-enter the room
 function removePickupsAndSlotsAndNPCs() {
   for (const entity of Isaac.GetRoomEntities()) {
+    if (ENTITIES_TO_NOT_REMOVE.includes(entity.Type)) {
+      continue;
+    }
+
     const npc = entity.ToNPC();
     if (
       entity.Type === EntityType.ENTITY_PICKUP ||

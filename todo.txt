@@ -1,13 +1,7 @@
-Patch notes for mod v0.58.45:
-- Feature: Power Pill and Horf! now have the ability to cancel animations.
-- Deleted the Devil Room with the retracting spikes and pillars.
-- Deleted the two Angel Rooms with the pit events.
-- Fixed the bug where pits would not display properly in Devil Rooms & Angel Rooms.
-- Fixed the bug where some Angel Rooms would not finish being placed.
-- Fixed the bug where the pill remembering feature would not work properly.
-- Fixed the bug where the door would be open when fighting Krampus under certain conditions.
-- Fixed the bug where the doors in Devil Rooms would appear barred under certain conditions.
-- Fixed the bug where Number Magnet Devil Rooms did not work properly.
+Patch notes for mod v0.58.46:
+-
+
+CUBE OF MEAT SLOW
 
 TODO Racing+ new features:
 - chat system
