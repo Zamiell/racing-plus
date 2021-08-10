@@ -27,16 +27,16 @@
   - Bethany
 - For each character, you can choose to play as either the normal version or the tainted version.
 - In order to help players get starts faster, the Treasure Room pool has the following changes:
-  - + Magic Mushroom (to 1.0 weight from 0.5 weight)
-  - + Death's Touch (to 1.0 weight from 0.2 weight)
-  - + Judas Shadow
-  - + Incubus
-  - + Twisted Pair
-  - + Maw of the Void
-  - + Sacred Heart
-  - + Godhead
-  - + Crown of Light
-  - - Mom's Knife (to 0 weight from 0.2 weight)
+  - ➕ Magic Mushroom (to 1.0 weight from 0.5 weight)
+  - ➕ Death's Touch (to 1.0 weight from 0.2 weight)
+  - ➕ Judas Shadow
+  - ➕ Incubus
+  - ➕ Twisted Pair
+  - ➕ Maw of the Void
+  - ➕ Sacred Heart
+  - ➕ Godhead
+  - ➕ Crown of Light
+  - ➖ Mom's Knife (to 0 weight from 0.2 weight)
 
 <br />
 
