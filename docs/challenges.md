@@ -8,9 +8,35 @@
 
 <br />
 
-## R+7 Season 1 (???)
+## Shared Speedrun Mechanics
 
-- [coming soon]
+* In all seasons, the first character will get More Options to speed up the process of finding an item and getting a run going. After the Treasure Room is entered, More Options will be removed.
+* In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. This is to increase strategy and decision making.
+
+<br />
+
+## R+7 Season 1 (Normal vs Tainted)
+
+- You must defeat Blue Baby on the following 7 characters:
+  - Isaac
+  - Magdalene
+  - Judas
+  - Lost
+  - Keeper
+  - Apollyon
+  - Bethany
+- For each character, you can choose to play as either the normal version or the tainted version.
+- In order to help players get starts faster, the Treasure Room pool has the following changes:
+  - + Magic Mushroom (to 1.0 weight from 0.5 weight)
+  - + Death's Touch (to 1.0 weight from 0.2 weight)
+  - + Judas Shadow
+  - + Incubus
+  - + Twisted Pair
+  - + Maw of the Void
+  - + Sacred Heart
+  - + Godhead
+  - + Crown of Light
+  - - Mom's Knife (to 0 weight from 0.2 weight)
 
 <br />
 
