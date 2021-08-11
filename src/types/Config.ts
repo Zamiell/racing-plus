@@ -50,6 +50,7 @@ export default class Config {
   showPills = true;
 
   // Gameplay changes
+  sawblade = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
 

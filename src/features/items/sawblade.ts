@@ -1,4 +1,9 @@
-import { FamiliarVariantCustom } from "../../types/enums";
+import g from "../../globals";
+import { config } from "../../modConfigMenu";
+import {
+  CollectibleTypeCustom,
+  FamiliarVariantCustom,
+} from "../../types/enums";
 
 const OFFSET = Vector(0, -16);
 const DISTANCE_AWAY_FROM_PLAYER = 35;
@@ -33,6 +38,13 @@ function getPosition(familiar: EntityFamiliar) {
     familiar.FrameCount * SPEED_MULTIPLIER * -1,
   );
   return player.Position.add(rotatedVector);
+}
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  if (!config.sawblade) {
+    g.itemPool.RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_SAWBLADE);
+  }
 }
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)

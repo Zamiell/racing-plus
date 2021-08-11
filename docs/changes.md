@@ -256,6 +256,10 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
+- `072` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+
+> Why? Historically, orbitals have been a big part of speedrunning at the highest level. Since orbitals got nerfed in Repentance and Sacrificial Dagger got removed from the Treasure Room pool, orbital play is infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
+
 - Mercurius is removed.
 
 > Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.

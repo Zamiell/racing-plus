@@ -1,4 +1,5 @@
 import { log } from "isaacscript-common";
+import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
 import * as removeKarma from "../features/mandatory/removeKarma";
@@ -65,6 +66,9 @@ export function main(isContinued: boolean): void {
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
   showDreamCatcherItemPostGameStarted();
+
+  // Items
+  sawblade.postGameStarted();
 
   // Miscellaneous
   removePlaceholderItems();
