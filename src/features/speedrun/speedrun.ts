@@ -1,6 +1,7 @@
 import { log } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
+import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
 
@@ -16,13 +17,15 @@ export function checkValidCharOrder(): boolean {
   const [abbreviation, numElements] = challengeDefinition;
   if (abbreviation === undefined || numElements === undefined) {
     error(
-      `Failed to find parse the challenge definition for challenge: ${challenge}`,
+      `Failed to parse the challenge definition for challenge: ${challenge}`,
     );
   }
 
-  const characterOrder = g.speedrun.characterOrder.get(challenge);
+  const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
-    return false;
+    error(
+      "Failed to find our character order in the changeCharOrder save data.",
+    );
   }
 
   if (type(characterOrder) !== "table") {
@@ -103,7 +106,13 @@ export function getCurrentCharacter(): int {
 
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();
-  return Object.keys(CHALLENGE_DEFINITIONS).includes(challenge.toString());
+  for (const key of CHALLENGE_DEFINITIONS.keys()) {
+    if (key === challenge) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function isOnFinalCharacter(): boolean {

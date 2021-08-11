@@ -65,10 +65,10 @@ function getTextForCurrentActivity(phase: ChangeCharOrderPhase) {
 }
 
 function drawCharacterSprites() {
-  if (v.room.seasonChosen === null) {
+  if (v.room.seasonChosenAbbreviation === null) {
     return;
   }
-  const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosen];
+  const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
 
   // Render the character sprites
   for (let i = 0; i < v.room.sprites.characters.length; i++) {

@@ -8,6 +8,6 @@ Notes:
 -->
 
 <challenges version="1">
-	<challenge name="R+7 (Coming Soon)" endstage="12" />
+	<challenge name="R+7 Season 1 Beta" endstage="11" altpath="true" />
 	<challenge name="Change Char Order" endstage="11" canshoot="false" />
 </challenges>

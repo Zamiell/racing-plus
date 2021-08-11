@@ -203,7 +203,7 @@ export function main(): void {
     }
 
     default: {
-      Isaac.DebugString("Error: Unknown challenge.");
+      error("Unknown challenge.");
       break;
     }
   }

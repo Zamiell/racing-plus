@@ -1,4 +1,4 @@
-const SEASON_1_NAME = "R+7 (Season 1)";
+const SEASON_1_NAME = "R+7 Season 1 Beta";
 const CHANGE_CHAR_ORDER_NAME = "Change Char Order";
 
 export enum ChallengeCustom {

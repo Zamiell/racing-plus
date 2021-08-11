@@ -11,6 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+import { ChallengeCustom } from "../speedrun/enums";
 
 const FRAMES_BEFORE_FADE = 50;
 
@@ -207,9 +208,12 @@ export function postNewLevel(): void {
 }
 
 function shouldShowLevelText() {
+  const challenge = Isaac.GetChallenge();
   const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
 
   return (
+    // There is no need to show the level text in the Change Char Order custom challenge
+    challenge !== ChallengeCustom.CHANGE_CHAR_ORDER &&
     // If the race is finished, the "Victory Lap" text will overlap with the stage text,
     // so don't bother showing it
     !g.raceVars.finished &&
