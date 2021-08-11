@@ -195,7 +195,7 @@ function drawTextAndSprite() {
   }
 
   const text = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
-  g.font.DrawString(text, x - 10, baseY - 9 + 20, KCOLOR_DEFAULT, 0, true);
+  g.fontDroid.DrawString(text, x - 10, baseY - 9 + 20, KCOLOR_DEFAULT, 0, true);
 
   baseY += 20;
   for (let i = 0; i < v.run.pillsIdentified.length; i++) {
@@ -215,7 +215,7 @@ function drawTextAndSprite() {
     if (text === "Feels like I'm walking on sunshine!") {
       effectName = "Walking on sunshine!";
     }
-    g.font.DrawString(effectName, x + 15, y - 9, KCOLOR_DEFAULT, 0, true);
+    g.fontDroid.DrawString(effectName, x + 15, y - 9, KCOLOR_DEFAULT, 0, true);
   }
 }
 

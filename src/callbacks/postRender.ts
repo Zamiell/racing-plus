@@ -8,6 +8,7 @@ import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
+import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as customConsole from "../features/optional/quality/customConsole";
 import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
@@ -51,8 +52,9 @@ export function main(): void {
   speedUpFadeIn.postRender();
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender();
-  showPills.postRender();
+  automaticItemInsertion.postRender();
   showMaxFamiliars.postRender();
+  showPills.postRender();
   customConsole.postRender();
 }
 

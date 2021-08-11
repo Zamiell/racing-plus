@@ -130,8 +130,8 @@ function draw(text: string, fade: float) {
   const position = Isaac.WorldToRenderPosition(positionGame);
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
-  const length = g.font.GetStringWidthUTF8(text) * scale;
-  g.font.DrawStringScaled(
+  const length = g.fontDroid.GetStringWidthUTF8(text) * scale;
+  g.fontDroid.DrawStringScaled(
     text,
     position.X - length / 2,
     position.Y,

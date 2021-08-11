@@ -1,16 +1,9 @@
-const DETRIMENTAL_TRINKETS = [
-  TrinketType.TRINKET_PURPLE_HEART, // 5
-  TrinketType.TRINKET_MOMS_TOENAIL, // 16
-  TrinketType.TRINKET_TICK, // 53
-  TrinketType.TRINKET_FADED_POLAROID, // 69
-  TrinketType.TRINKET_OUROBOROS_WORM, // 96
-  TrinketType.TRINKET_M, // 138
-];
+import { DETRIMENTAL_TRINKETS } from "./constants";
 
 export default function insertPickup(
   pickup: EntityPickup,
   player: EntityPlayer,
-): boolean {
+): [PickupVariant, int] | null {
   switch (pickup.Variant) {
     // 20
     case PickupVariant.PICKUP_COIN: {
@@ -46,192 +39,222 @@ export default function insertPickup(
       error(
         `The automatic item insertion feature encountered an unknown pickup of variant: ${pickup.Variant}`,
       );
-      return false;
+      return null;
     }
   }
 }
 
 // PickupVariant.PICKUP_COIN (20)
-function insertCoin(coin: EntityPickup, player: EntityPlayer) {
+function insertCoin(
+  coin: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   switch (coin.SubType) {
     // 1
     case CoinSubType.COIN_PENNY: {
-      player.AddCoins(1);
-      return true;
+      const value = 1;
+      player.AddCoins(value);
+      return [PickupVariant.PICKUP_COIN, value];
     }
 
     // 2
     case CoinSubType.COIN_NICKEL: {
-      player.AddCoins(5);
-      return true;
+      const value = 5;
+      player.AddCoins(value);
+      return [PickupVariant.PICKUP_COIN, value];
     }
 
     // 3
     case CoinSubType.COIN_DIME: {
-      player.AddCoins(10);
-      return true;
+      const value = 10;
+      player.AddCoins(value);
+      return [PickupVariant.PICKUP_COIN, value];
     }
 
     // 4
     case CoinSubType.COIN_DOUBLEPACK: {
-      player.AddCoins(2);
-      return true;
+      const value = 2;
+      player.AddCoins(value);
+      return [PickupVariant.PICKUP_COIN, value];
     }
 
     // 5
     case CoinSubType.COIN_LUCKYPENNY: {
-      player.AddCoins(1);
+      const value = 1;
+      player.AddCoins(value);
       player.DonateLuck(1);
-      return true;
+      return [PickupVariant.PICKUP_COIN, value];
     }
 
     // 6
     case CoinSubType.COIN_STICKYNICKEL: {
       // Don't put Sticky Nickels in our inventory automatically
-      return false;
+      return null;
     }
 
     case CoinSubType.COIN_GOLDEN: {
       // Don't put Golden Coins in our inventory automatically
-      return false;
+      return null;
     }
 
     default: {
       error(
         `The automatic item insertion feature encountered an unknown coin subtype of: ${coin.SubType}`,
       );
-      return false;
+      return null;
     }
   }
 }
 
 // PickupVariant.PICKUP_KEY (30)
-function insertKey(key: EntityPickup, player: EntityPlayer) {
+function insertKey(
+  key: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   switch (key.SubType) {
     // 1
     case KeySubType.KEY_NORMAL: {
-      player.AddKeys(1);
-      return true;
+      const value = 1;
+      player.AddKeys(value);
+      return [PickupVariant.PICKUP_KEY, value];
     }
 
     // 2
     case KeySubType.KEY_GOLDEN: {
+      const value = 0;
       player.AddGoldenKey();
-      return true;
+      return [PickupVariant.PICKUP_KEY, value];
     }
 
     // 3
     case KeySubType.KEY_DOUBLEPACK: {
-      player.AddKeys(2);
-      return true;
+      const value = 2;
+      player.AddKeys(value);
+      return [PickupVariant.PICKUP_KEY, value];
     }
 
     // 4
     case KeySubType.KEY_CHARGED: {
-      player.AddKeys(1);
+      const value = 1;
+      player.AddKeys(value);
       player.FullCharge();
-      return true;
+      return [PickupVariant.PICKUP_KEY, value];
     }
 
     default: {
       error(
         `The automatic item insertion feature encountered an unknown key subtype of: ${key.SubType}`,
       );
-      return false;
+      return null;
     }
   }
 }
 
 // PickupVariant.PICKUP_BOMB (40)
-function insertBomb(bomb: EntityPickup, player: EntityPlayer) {
+function insertBomb(
+  bomb: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   switch (bomb.SubType) {
     // 1
     case BombSubType.BOMB_NORMAL: {
-      player.AddBombs(1);
-      return true;
+      const value = 1;
+      player.AddBombs(value);
+      return [PickupVariant.PICKUP_BOMB, value];
     }
 
     // 2
     case BombSubType.BOMB_DOUBLEPACK: {
-      player.AddBombs(2);
-      return true;
+      const value = 2;
+      player.AddBombs(value);
+      return [PickupVariant.PICKUP_BOMB, value];
     }
 
     // 3
     case BombSubType.BOMB_TROLL: {
       // Don't put Troll Bombs in our inventory automatically
-      return false;
+      return null;
     }
 
     // 4
     case BombSubType.BOMB_GOLDEN: {
+      const value = 0;
       player.AddGoldenBomb();
-      return true;
+      return [PickupVariant.PICKUP_BOMB, value];
     }
 
     // 5
     case BombSubType.BOMB_SUPERTROLL: {
       // Don't put Mega Troll Bombs in our inventory automatically
-      return false;
+      return null;
     }
 
     // 6
     case BombSubType.BOMB_GOLDENTROLL: {
       // Don't put Golden Troll Bombs in our inventory automatically
-      return false;
+      return null;
     }
 
     // 7
     case BombSubType.BOMB_GIGA: {
       // Don't put Giga Bombs in our inventory automatically
-      return false;
+      return null;
     }
 
     default: {
       error(
         `The automatic item insertion feature encountered an unknown key subtype of: ${bomb.SubType}`,
       );
-      return false;
+      return null;
     }
   }
 }
 
 // PickupVariant.PICKUP_PILL (70)
-function insertPill(pill: EntityPickup, player: EntityPlayer) {
+function insertPill(
+  pill: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   if (!checkPocketSlotOpen(player)) {
-    return false;
+    return null;
   }
 
   player.AddPill(pill.SubType);
-  return true;
+  return [PickupVariant.PICKUP_PILL, 1];
 }
 
 // PickupVariant.PICKUP_TAROTCARD (300)
-function insertCard(card: EntityPickup, player: EntityPlayer) {
+function insertCard(
+  card: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   if (!checkPocketSlotOpen(player)) {
-    return false;
+    return null;
   }
 
   player.AddCard(card.SubType);
-  return true;
+  return [PickupVariant.PICKUP_TAROTCARD, 1];
 }
 
 // PickupVariant.PICKUP_TRINKET (350)
-function insertTrinket(trinket: EntityPickup, player: EntityPlayer) {
+function insertTrinket(
+  trinket: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | null {
   if (!checkTrinketSlotOpen(player)) {
-    return false;
+    return null;
   }
 
   // Do not automatically insert trinkets that are detrimental (or potentially detrimental)
   if (DETRIMENTAL_TRINKETS.includes(trinket.SubType)) {
-    return false;
+    return null;
   }
 
   player.AddTrinket(trinket.SubType);
-  return true;
+  return [PickupVariant.PICKUP_TRINKET, 1];
 }
 
-function checkPocketSlotOpen(player: EntityPlayer) {
+function checkPocketSlotOpen(player: EntityPlayer): boolean {
   const card1 = player.GetCard(0); // Returns 0 if no card
   const card2 = player.GetCard(1); // Returns 0 if no card
   const pill1 = player.GetPill(0); // Returns 0 if no pill
@@ -250,7 +273,7 @@ function checkPocketSlotOpen(player: EntityPlayer) {
   return false;
 }
 
-function checkTrinketSlotOpen(player: EntityPlayer) {
+function checkTrinketSlotOpen(player: EntityPlayer): boolean {
   const trinket1 = player.GetTrinket(0); // Returns 0 if no trinket
   const trinket2 = player.GetTrinket(1); // Returns 0 if no trinket
   const slot1Open = trinket1 === 0;

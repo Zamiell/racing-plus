@@ -248,7 +248,7 @@ Post-flip actions:
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `061` Pickups that spawn after taking an item will be automatically inserted into your inventory.
+- `061` Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
 - `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 - `063` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
@@ -360,7 +360,6 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
 - Some things that are unseeded are now seeded:
   - cards from Sloth, Super Sloth, Pride, and Super Pride
-- Items that drop pickups on the ground will now automatically insert them into your inventory instead, if there is room. (However, Purple Heart, Mom's Toenail, The Tick, Faded Polaroid, and Ouroboros Worm are never inserted automatically.) This effect also applies to the Spun! transformation. Players can disable automatic insertion by holding down the drop button (or one of the fast-drop buttons).
 - Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
 - Death will no longer perform his slow attack.

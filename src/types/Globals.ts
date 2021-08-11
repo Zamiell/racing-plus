@@ -14,7 +14,8 @@ export default class Globals {
   itemConfig = Isaac.GetItemConfig();
   sfx = SFXManager();
   music = MusicManager();
-  font = Font();
+  fontDroid = Font();
+  fontPF = Font();
 
   /** Variables that are reset at the beginning of every run. */
   run = {
@@ -37,6 +38,7 @@ export default class Globals {
   speedrun = new SpeedrunData();
 
   constructor() {
-    this.font.Load("font/droid.fnt");
+    this.fontDroid.Load("font/droid.fnt");
+    this.fontPF.Load("font/pftempestasevencondensed.fnt");
   }
 }

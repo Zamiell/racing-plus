@@ -50,6 +50,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
     ],
   ], // 344
   [CollectibleType.COLLECTIBLE_CRACK_JACKS, [PickupVariant.PICKUP_TRINKET]], // 354
+  // CollectibleType.COLLECTIBLE_CHAOS (402)
   // Do not automatically insert items for Chaos so that the player gets a visual on what the
   // randomly chosen pickups were (it spawns between 1-6 random pickups)
   [CollectibleType.COLLECTIBLE_TAROT_CLOTH, [PickupVariant.PICKUP_TAROTCARD]], // 451
@@ -57,12 +58,19 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   [CollectibleType.COLLECTIBLE_DADS_LOST_COIN, [PickupVariant.PICKUP_COIN]], // 455
   [CollectibleType.COLLECTIBLE_BELLY_BUTTON, [PickupVariant.PICKUP_TRINKET]], // 458
   [CollectibleType.COLLECTIBLE_LIL_SPEWER, [PickupVariant.PICKUP_PILL]], // 537
+  // CollectibleType.COLLECTIBLE_MARBLES (538)
+  // Do not automatically insert trinkets for Marbles so that the player can pick between what they
+  // want
   [CollectibleType.COLLECTIBLE_DIVORCE_PAPERS, [PickupVariant.PICKUP_TRINKET]], // 547
-  // Booster pack drops 5 cards. We can insert up to 2 cards if the player has starter deck
+  // Booster pack drops 5 cards; we can insert 1 or 2
   [
     CollectibleType.COLLECTIBLE_BOOSTER_PACK,
     [PickupVariant.PICKUP_TAROTCARD, PickupVariant.PICKUP_TAROTCARD],
   ], // 624
+  // Consolation Prize drops either 3 coins, 1 key, or 1 bomb,
+  // depending on what the player has the least of
+  // However, if there is a tie, it will randomly choose an outcome,
+  // so we must manually check for all 5 drops
   [
     CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE,
     [
@@ -83,3 +91,12 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
     ],
   ], // 716
 ]);
+
+export const DETRIMENTAL_TRINKETS = [
+  TrinketType.TRINKET_PURPLE_HEART, // 5
+  TrinketType.TRINKET_MOMS_TOENAIL, // 16
+  TrinketType.TRINKET_TICK, // 53
+  TrinketType.TRINKET_FADED_POLAROID, // 69
+  TrinketType.TRINKET_OUROBOROS_WORM, // 96
+  TrinketType.TRINKET_M, // 138
+];

@@ -1,8 +1,12 @@
+// TODO Spun
+// f.DrawString("01", 60, 50, KCOLOR_DEFAULT, 0, true);
+
 import {
   anyPlayerHasCollectible,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import {
   COLLECTIBLE_TO_PICKUP_DROPS_MAP,
@@ -10,7 +14,26 @@ import {
 } from "./constants";
 import insertPickup from "./insertPickup";
 
-const v = {
+export const v = {
+  run: {
+    /**
+     * Track which pickups that we are automatically inserting so that we can display it to the
+     * player on the UI.
+     */
+    delta: {
+      coins: null as int | null,
+      coinsFrame: null as int | null,
+      bombs: null as int | null,
+      bombsFrame: null as int | null,
+      keys: null as int | null,
+      keysFrame: null as int | null,
+      pocketItem: null as int | null,
+      pocketItemFrame: null as int | null,
+      trinket: null as int | null,
+      trinketFrame: null as int | null,
+    },
+  },
+
   room: {
     pickupQueue: [] as Array<[PickupVariant, EntityPtr]>,
   },
@@ -23,6 +46,9 @@ export function init(): void {
 function featureEnabled() {
   return config.automaticItemInsertion;
 }
+
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender(): void {}
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 export function postPickupInit(pickup: EntityPickup): void {
@@ -50,10 +76,14 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
       continue;
     }
 
-    // Some pickups cannot be automatically inserted;
-    // only remove the pickup if it has been successfully inserted
-    if (insertPickup(pickup, player)) {
+    // Some pickups cannot be automatically inserted
+    const pickupInserted = insertPickup(pickup, player);
+    if (pickupInserted !== null) {
+      // Only remove the pickup if it has been successfully inserted
       pickup.Remove();
+
+      // Track what it inserted so that we can display it on the UI
+      updateDelta(pickupInserted);
     }
 
     v.room.pickupQueue.splice(i, 1);
@@ -71,10 +101,10 @@ function getEffectivePickupVariant(
 ) {
   const hasStarterDeck = anyPlayerHasCollectible(
     CollectibleType.COLLECTIBLE_STARTER_DECK,
-  );
+  ); // Other players can change the drops
   const hasLittleBaggy = anyPlayerHasCollectible(
     CollectibleType.COLLECTIBLE_LITTLE_BAGGY,
-  );
+  ); // Other players can change the drops
 
   if (
     lookingForPickupVariant ===
@@ -102,6 +132,68 @@ function getEffectivePickupVariant(
   }
 
   return lookingForPickupVariant;
+}
+
+function updateDelta(pickupInserted: [PickupVariant, int]) {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  const [pickupType, value] = pickupInserted;
+  switch (pickupType) {
+    case PickupVariant.PICKUP_COIN: {
+      if (v.run.delta.coins === null) {
+        v.run.delta.coins = 0;
+      }
+      v.run.delta.coins += value;
+      v.run.delta.coinsFrame = gameFrameCount;
+
+      return;
+    }
+
+    case PickupVariant.PICKUP_BOMB: {
+      if (v.run.delta.bombs === null) {
+        v.run.delta.bombs = 0;
+      }
+      v.run.delta.bombs += value;
+      v.run.delta.bombsFrame = gameFrameCount;
+
+      return;
+    }
+
+    case PickupVariant.PICKUP_KEY: {
+      if (v.run.delta.keys === null) {
+        v.run.delta.keys = 0;
+      }
+      v.run.delta.keys += value;
+      v.run.delta.keysFrame = gameFrameCount;
+
+      return;
+    }
+
+    case PickupVariant.PICKUP_TAROTCARD:
+    case PickupVariant.PICKUP_PILL: {
+      if (v.run.delta.pocketItem === null) {
+        v.run.delta.pocketItem = 0;
+      }
+      v.run.delta.pocketItem += value;
+      v.run.delta.pocketItemFrame = gameFrameCount;
+
+      return;
+    }
+
+    case PickupVariant.PICKUP_TRINKET: {
+      if (v.run.delta.trinket === null) {
+        v.run.delta.trinket = 0;
+      }
+      v.run.delta.trinket += value;
+      v.run.delta.trinketFrame = gameFrameCount;
+
+      return;
+    }
+
+    default: {
+      error("Unknown pickup variant in the updateDelta");
+    }
+  }
 }
 
 // ModCallbacksCustom.MC_PRE_ITEM_PICKUP
