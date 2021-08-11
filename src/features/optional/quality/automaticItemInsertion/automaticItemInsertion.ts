@@ -14,7 +14,7 @@ import {
 } from "./constants";
 import insertPickup from "./insertPickup";
 
-export const v = {
+const v = {
   run: {
     /**
      * Track which pickups that we are automatically inserting so that we can display it to the
