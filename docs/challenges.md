@@ -20,11 +20,11 @@
 - You must defeat Blue Baby on the following 7 characters:
   - Isaac (0)
   - Judas (3)
+  - Azazel (7)
   - Lost (10)
   - Keeper (12)
   - Apollyon (13)
   - Bethany (15)
-  - Jacob (16)
 - For each character, you can choose to play as either the normal version or the tainted version.
 - Bethany & Tainted Bethany start with Duality in addition to their other items.
 - In order to help players get starts faster, the Treasure Room pool has the following changes:
@@ -37,6 +37,7 @@
   - ➕ Sacred Heart
   - ➕ Godhead
   - ➕ Crown of Light
+  - ➕ Sawblade (custom orbital with the same speed as AB+ orbitals & 11 contact damage)
   - ➖ Mom's Knife (to 0 weight from 0.2 weight)
 - On the first character, Devil Rooms will have nothing in them if you teleport to one from a Curse Room on Basement 1. (This prevents resetting for a Devil Room item.)
 

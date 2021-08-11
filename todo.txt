@@ -1,7 +1,6 @@
 Patch notes for mod v0.58.47:
--
-
-CUBE OF MEAT SLOW
+- New feature: Automatic item insertion for items that drop pickups. (Chaos is deliberately not affected so that you can see what the randomly generated pickups are.)
+- New feature: Sawblade in the Treasure Room pool
 
 TODO Racing+ new features:
 - chat system

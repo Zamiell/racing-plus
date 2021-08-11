@@ -16,6 +16,8 @@ import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
+import * as postFamiliarRender from "./callbacks/postFamiliarRender";
+import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
 import * as postNewLevel from "./callbacks/postNewLevel";
@@ -31,6 +33,7 @@ import * as postRender from "./callbacks/postRender";
 import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
+import * as preFamiliarCollision from "./callbacks/preFamiliarCollision";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
@@ -114,10 +117,13 @@ function registerCallbacksMain(mod: ModUpgraded) {
 function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCUpdate.init(mod); // 0
   useItem.init(mod); // 3
+  postFamiliarUpdate.init(mod); // 6
   postFamiliarInit.init(mod); // 7
   usePill.init(mod); // 10
   entityTakeDmg.init(mod); // 11
   preUseItem.init(mod); // 23
+  postFamiliarRender.init(mod); // 25
+  preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
   postTearUpdate.init(mod); // 40
@@ -186,6 +192,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
+  postItemPickup.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);

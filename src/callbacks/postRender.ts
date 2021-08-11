@@ -1,4 +1,5 @@
 import * as cache from "../cache";
+import changeCharOrderPostRender from "../features/changeCharOrder/callbacks/postRender";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
@@ -40,12 +41,13 @@ export function main(): void {
   runTimer.postRender();
   topLeftText.postRender();
 
-  // Optional features - Major
+  // Major features
   racePostRender();
+  changeCharOrderPostRender();
   fastTravelPostRender();
   fastReset.postRender();
 
-  // Optional features - Quality of Life
+  // Quality of life
   speedUpFadeIn.postRender();
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender();

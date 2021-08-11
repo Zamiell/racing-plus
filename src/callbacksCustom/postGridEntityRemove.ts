@@ -5,13 +5,13 @@ export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE,
     trapdoor,
-    GridEntityType.GRID_TRAPDOOR,
+    GridEntityType.GRID_TRAPDOOR, // 17
   );
 
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE,
     crawlspace,
-    GridEntityType.GRID_STAIRS,
+    GridEntityType.GRID_STAIRS, // 18
   );
 }
 

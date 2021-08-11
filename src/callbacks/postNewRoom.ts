@@ -1,5 +1,6 @@
 import { log } from "isaacscript-common";
 import * as cache from "../cache";
+import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
@@ -47,6 +48,7 @@ export function main(): void {
 
   // Major features
   racePostNewRoom();
+  charCharOrderPostNewRoom();
   startWithD6.postNewRoom();
   betterDevilAngelRoomsPostNewRoom();
   freeDevilItem.postNewRoom();

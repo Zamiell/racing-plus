@@ -1,3 +1,4 @@
+import changeCharOrderPostUpdate from "../features/changeCharOrder/callbacks/postUpdate";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as preventItemRotate from "../features/mandatory/preventItemRotate";
@@ -10,7 +11,6 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import racePostUpdate from "../features/race/callbacks/postUpdate";
-import speedrunPostUpdate from "../features/speedrun/callbacks/postUpdate";
 
 export function main(): void {
   // Mandatory features
@@ -23,7 +23,7 @@ export function main(): void {
 
   // Major features
   racePostUpdate();
-  speedrunPostUpdate();
+  changeCharOrderPostUpdate();
   startWithD6.postUpdate();
   fastClearPostUpdate();
   fastDrop.postUpdate();

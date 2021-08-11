@@ -1,4 +1,5 @@
 <items gfxroot="gfx/items/" version="1">
+	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" />
 	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" />
 	<passive description="A horny amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
 
@@ -6,8 +7,19 @@
 	<passive description="" gfx="Trophy.png" name="Trophy" hidden="true" />
 	<passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" />
 	<passive description="Reset to the first character" name="Reset" hidden="true" />
+	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
+
+	<!-- Placeholders -->
 	<passive description="" name="Diversity Placeholder 1" hidden="true" />
 	<passive description="" name="Diversity Placeholder 2" hidden="true" />
 	<passive description="" name="Diversity Placeholder 3" hidden="true" />
-	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 1" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 2" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 3" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 4" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 5" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 6" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 7" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 8" hidden="true" />
+	<passive description="" name="Speedrun Placeholder 9" hidden="true" />
 </items>

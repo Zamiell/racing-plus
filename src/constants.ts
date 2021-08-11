@@ -1,4 +1,5 @@
 export const COLLECTIBLE_SPRITE_LAYER = 1;
+export const COLOR_DEFAULT = Color(1, 1, 1, 1);
 export const KCOLOR_DEFAULT = KColor(1, 1, 1, 1);
 
 /** In a 2x2 room, there can be 8 doors. */

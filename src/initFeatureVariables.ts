@@ -1,3 +1,4 @@
+import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
@@ -35,8 +36,9 @@ export default function initFeatureVariables(): void {
   modConfigMenu.init();
   globals.init();
   raceVars.init();
-  speedrunVars.init();
   socketClient.init();
+  speedrunVars.init();
+  changeCharOrderVars.init();
 
   // Mandatory features
   streakText.init();

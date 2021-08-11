@@ -11,7 +11,7 @@ import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
-const NUM_RACING_PLUS_ITEMS = 9;
+const NUM_RACING_PLUS_ITEMS = 19;
 const NUM_BABIES_MOD_ITEMS = 15;
 const STARTING_X = 115;
 const STARTING_Y = 70;
@@ -346,7 +346,7 @@ function drawOtherModsEnabled() {
     2,
   );
   y += 10;
-  Isaac.RenderText(" in your mod list and try again.", x, y, 2, 2, 2, 2);
+  Isaac.RenderText("in your mod list and try again.", x, y, 2, 2, 2, 2);
 }
 
 function drawSetCharOrder() {

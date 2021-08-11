@@ -5,10 +5,3 @@ export enum ChallengeCustom {
   SEASON_1 = Isaac.GetChallengeIdByName(SEASON_1_NAME),
   CHANGE_CHAR_ORDER = Isaac.GetChallengeIdByName(CHANGE_CHAR_ORDER_NAME),
 }
-
-/*
-export enum ChangeCharOrderPhase {
-  SeasonSelect,
-  CharacterSelect,
-}
-*/
