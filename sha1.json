@@ -6,9 +6,9 @@
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
     "features\\optional\\major\\betterDevilAngelRooms\\angelRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
     "features\\optional\\major\\betterDevilAngelRooms\\devilRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    "main.lua": "7cd58b21d47802470a59db126be820779de5ea0a",
+    "main.lua": "42091a3807eeb793a76fec2b2b7260609465f458",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "0bf42b0454ea8012396a3634826ed43bdbd4802b",
+    "metadata.xml": "bf1e093d4c6599f87177e2618e0dc7705a359b6e",
     "readme.txt": "9444eb5b9175cd01eece655520beffcf83dd797a",
     "resources\\cutscenes.xml": "dbe41fdde8a53ac0d430f1756d85656b06d3f6a1",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -1624,8 +1624,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "2acfe33133f0d6a1d6c5dfc05a6f5bafffaf5504",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "2acfe33133f0d6a1d6c5dfc05a6f5bafffaf5504",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "34a93d4eacea0d13b8d0e0a9700ef1ed976bf985",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "34a93d4eacea0d13b8d0e0a9700ef1ed976bf985",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\minimap_icons.png": "b59fc4878f3d62ebde6059009e3329a052f866bb",
@@ -1665,5 +1665,5 @@
     "resources\\rooms\\36.backwards.stb": "83f7e4327ea7b209f055ae76d7e8db982e83a9b5",
     "resources\\rules.txt": "9c726f9e970de6bcff78aec5526665597156b730",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "f9d6a9f603fb07ee612263ee4c6696fefa839ee5"
+    "version.txt": "ddcdc66f4b80e63711baa331653788810ceae124"
 }
