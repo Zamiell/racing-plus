@@ -248,8 +248,9 @@ Post-flip actions:
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `061` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `061` Pickups that spawn after taking an item will be automatically inserted into your inventory.
 - `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `063` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 

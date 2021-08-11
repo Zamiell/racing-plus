@@ -45,8 +45,9 @@ export default class Config {
   showDreamCatcherItem = true; // 566
   fadeVasculitisTears = true; // 657
   removePerfectionVelocity = true; // 145
-  showPills = true;
+  automaticItemInsertion = true;
   showMaxFamiliars = true;
+  showPills = true;
 
   // Gameplay changes
   consistentTrollBombs = true;

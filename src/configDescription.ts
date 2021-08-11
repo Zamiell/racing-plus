@@ -439,12 +439,12 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
     ],
   ],
   [
-    "showPills",
+    "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "061",
-      "Remember pills",
-      "Hold the map button to see a list of identified pills for easy reference.",
+      "Automatically insert pickups",
+      "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
   ],
   [
@@ -454,6 +454,15 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
       "062",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
+    ],
+  ],
+  [
+    "showPills",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "063",
+      "Remember pills",
+      "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
 ];

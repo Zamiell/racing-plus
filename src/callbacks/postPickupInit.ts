@@ -2,6 +2,7 @@ import * as flyItemSprites from "../features/optional/graphics/flyItemSprites";
 import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem";
 import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
+import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 
 export function init(mod: Mod): void {
@@ -22,6 +23,10 @@ export function init(mod: Mod): void {
     trinket,
     PickupVariant.PICKUP_TRINKET, // 350
   );
+}
+
+export function main(pickup: EntityPickup): void {
+  automaticItemInsertion.postPickupInit(pickup);
 }
 
 // PickupVariant.PICKUP_COLLECTIBLE (100)

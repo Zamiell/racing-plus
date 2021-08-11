@@ -18,6 +18,7 @@ import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
+import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showEdenStartingItems from "./features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
@@ -68,4 +69,5 @@ export default function initFeatureVariables(): void {
   showDreamCatcherItemVars.init();
   showMaxFamiliars.init();
   speedUpFadeIn.init();
+  automaticItemInsertion.init();
 }
