@@ -35,6 +35,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   ], // 198
   [CollectibleType.COLLECTIBLE_STARTER_DECK, [PickupVariant.PICKUP_TAROTCARD]], // 251
   [CollectibleType.COLLECTIBLE_LITTLE_BAGGY, [PickupVariant.PICKUP_PILL]], // 252
+  [CollectibleType.COLLECTIBLE_CLEAR_RUNE, [PickupVariant.PICKUP_TAROTCARD]], // 263
   [CollectibleType.COLLECTIBLE_CAFFEINE_PILL, [PickupVariant.PICKUP_PILL]], // 340
   [
     CollectibleType.COLLECTIBLE_LATCH_KEY,
@@ -57,4 +58,28 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   [CollectibleType.COLLECTIBLE_BELLY_BUTTON, [PickupVariant.PICKUP_TRINKET]], // 458
   [CollectibleType.COLLECTIBLE_LIL_SPEWER, [PickupVariant.PICKUP_PILL]], // 537
   [CollectibleType.COLLECTIBLE_DIVORCE_PAPERS, [PickupVariant.PICKUP_TRINKET]], // 547
+  // Booster pack drops 5 cards. We can insert up to 2 cards if the player has starter deck
+  [
+    CollectibleType.COLLECTIBLE_BOOSTER_PACK,
+    [PickupVariant.PICKUP_TAROTCARD, PickupVariant.PICKUP_TAROTCARD],
+  ], // 624
+  [
+    CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE,
+    [
+      PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_BOMB,
+      PickupVariant.PICKUP_KEY,
+    ],
+  ], // 644
+  [CollectibleType.COLLECTIBLE_FALSE_PHD, [PickupVariant.PICKUP_PILL]], // 654
+  [
+    CollectibleType.COLLECTIBLE_KEEPERS_SACK,
+    [
+      PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_COIN,
+    ],
+  ], // 716
 ]);
