@@ -5,6 +5,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   PickupVariant[]
 >([
   [CollectibleType.COLLECTIBLE_PHD, [PickupVariant.PICKUP_PILL]], // 75
+  [CollectibleType.COLLECTIBLE_MOMS_PURSE, [PickupVariant.PICKUP_TRINKET]], // 139
   [
     CollectibleType.COLLECTIBLE_PAGEANT_BOY,
     [
@@ -95,8 +96,18 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
 export const DETRIMENTAL_TRINKETS = [
   TrinketType.TRINKET_PURPLE_HEART, // 5
   TrinketType.TRINKET_MOMS_TOENAIL, // 16
+  TrinketType.TRINKET_MATCH_STICK, // 41
   TrinketType.TRINKET_TICK, // 53
   TrinketType.TRINKET_FADED_POLAROID, // 69
   TrinketType.TRINKET_OUROBOROS_WORM, // 96
   TrinketType.TRINKET_M, // 138
 ];
+
+export const UI_X = 35;
+export const COINS_X_OFFSET = 10; // For Deep Pockets
+export const COINS_Y = 33;
+const yOffset = 12;
+export const BOMBS_Y = COINS_Y + yOffset;
+export const KEYS_Y = BOMBS_Y + yOffset;
+export const FRAMES_BEFORE_FADE = 100;
+export const BOTTOM_CORNER_OFFSET = 40;

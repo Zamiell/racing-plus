@@ -52,8 +52,9 @@ export function main(): void {
   speedUpFadeIn.postRender();
   showEdenStartingItems.postRender();
   showDreamCatcherItemPostRender();
-  automaticItemInsertion.postRender();
   showMaxFamiliars.postRender();
+  // Should be after the "Show Max Familiars" feature so that the text has priority
+  automaticItemInsertion.postRender();
   showPills.postRender();
   customConsole.postRender();
 }

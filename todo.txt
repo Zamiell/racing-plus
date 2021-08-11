@@ -1,6 +1,9 @@
-Patch notes for mod v0.58.47:
-- New feature: Automatic item insertion for items that drop pickups. (Chaos is deliberately not affected so that you can see what the randomly generated pickups are.)
-- New feature: Sawblade in the Treasure Room pool
+Patch notes for mod v0.58.48:
+- There is no a visual indication on the UI when something is automatically inserted into your inventory.
+- Trinkets from Mom's Purse are now automatically inserted.
+- Match Stick trinkets are no longer automatically inserted.
+- Fixed the bug where cards and pills were not automatically inserted under certain circumstances.
+
 
 TODO Racing+ new features:
 - chat system

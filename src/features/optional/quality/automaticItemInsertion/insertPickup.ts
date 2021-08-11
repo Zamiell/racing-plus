@@ -261,16 +261,30 @@ function checkPocketSlotOpen(player: EntityPlayer): boolean {
   const pill2 = player.GetPill(1); // Returns 0 if no pill
   const slot1Open = card1 === 0 && pill1 === 0;
   const slot2Open = card2 === 0 && pill2 === 0;
+  const slots = getPlayerNumPocketSlots(player);
 
-  const slots = player.GetMaxPocketItems();
   if (slots === 1) {
     return slot1Open;
   }
+
   if (slots === 2) {
     return slot1Open || slot2Open;
   }
+
   error(`The player has an unknown number of pocket item slots: ${slots}`);
   return false;
+}
+
+function getPlayerNumPocketSlots(player: EntityPlayer) {
+  let numSlots = player.GetMaxPocketItems();
+  const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
+  const hasPocketItem = pocketItem !== CollectibleType.COLLECTIBLE_NULL;
+
+  if (hasPocketItem) {
+    numSlots -= 1;
+  }
+
+  return numSlots;
 }
 
 function checkTrinketSlotOpen(player: EntityPlayer): boolean {

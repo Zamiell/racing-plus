@@ -107,14 +107,7 @@ function checkDraw() {
   }
 
   // The streak text will slowly fade out
-  const elapsedFrames = Isaac.GetFrameCount() - v.run.frameSet;
-  let fade: float;
-  if (elapsedFrames <= FRAMES_BEFORE_FADE) {
-    fade = 1;
-  } else {
-    const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
-    fade = 1 - 0.02 * fadeFrames;
-  }
+  const fade = getFade(v.run.frameSet);
   if (fade <= 0) {
     v.run.frameSet = null;
     return;
@@ -123,6 +116,18 @@ function checkDraw() {
   if (v.run.text !== null) {
     draw(v.run.text, fade);
   }
+}
+
+function getFade(frame: int) {
+  const isaacFrameCount = Isaac.GetFrameCount();
+  const elapsedFrames = isaacFrameCount - frame;
+
+  if (elapsedFrames <= FRAMES_BEFORE_FADE) {
+    return 1;
+  }
+
+  const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
+  return 1 - 0.02 * fadeFrames;
 }
 
 function draw(text: string, fade: float) {

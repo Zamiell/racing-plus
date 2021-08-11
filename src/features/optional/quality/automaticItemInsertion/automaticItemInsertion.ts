@@ -1,16 +1,25 @@
 // TODO Spun
-// f.DrawString("01", 60, 50, KCOLOR_DEFAULT, 0, true);
 
 import {
   anyPlayerHasCollectible,
+  getScreenBottomLeft,
+  getScreenBottomRight,
+  isFirstPlayer,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import {
+  BOMBS_Y,
+  BOTTOM_CORNER_OFFSET,
+  COINS_X_OFFSET,
+  COINS_Y,
   COLLECTIBLE_TO_PICKUP_DROPS_MAP,
+  FRAMES_BEFORE_FADE,
+  KEYS_Y,
   PICKUP_VARIANT_CARD_OR_PILL,
+  UI_X,
 } from "./constants";
 import insertPickup from "./insertPickup";
 
@@ -48,7 +57,126 @@ function featureEnabled() {
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
-export function postRender(): void {}
+export function postRender(): void {
+  drawCoinsDelta();
+  drawBombsDelta();
+  drawKeysDelta();
+  drawPocketItemsDelta();
+  drawTrinketsDelta();
+}
+
+function drawCoinsDelta() {
+  if (v.run.delta.coins !== null && v.run.delta.coinsFrame !== null) {
+    const string = v.run.delta.coins.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.coinsFrame);
+    if (fade <= 0) {
+      v.run.delta.coins = null;
+      v.run.delta.coinsFrame = null;
+      return;
+    }
+
+    const player = Isaac.GetPlayer();
+    const hasDeepPockets = player.HasCollectible(
+      CollectibleType.COLLECTIBLE_DEEP_POCKETS,
+    );
+    const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
+
+    const color = getTextColor(fade);
+    g.fontPF.DrawString(text, x, COINS_Y, color, 0, true);
+  }
+}
+
+function drawKeysDelta() {
+  if (v.run.delta.keys !== null && v.run.delta.keysFrame !== null) {
+    const string = v.run.delta.keys.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.keysFrame);
+    if (fade <= 0) {
+      v.run.delta.keys = null;
+      v.run.delta.keysFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    g.fontPF.DrawString(text, UI_X, KEYS_Y, color, 0, true);
+  }
+}
+
+function drawBombsDelta() {
+  if (v.run.delta.bombs !== null && v.run.delta.bombsFrame !== null) {
+    const string = v.run.delta.bombs.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.bombsFrame);
+    if (fade <= 0) {
+      v.run.delta.bombs = null;
+      v.run.delta.bombsFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    g.fontPF.DrawString(text, UI_X, BOMBS_Y, color, 0, true);
+  }
+}
+
+function drawPocketItemsDelta() {
+  if (v.run.delta.pocketItem !== null && v.run.delta.pocketItemFrame !== null) {
+    const string = v.run.delta.pocketItem.toString();
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.pocketItemFrame);
+    if (fade <= 0) {
+      v.run.delta.pocketItem = null;
+      v.run.delta.pocketItemFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    const bottomRightCorner = getScreenBottomRight();
+    const x = bottomRightCorner.X - BOTTOM_CORNER_OFFSET;
+    const y = bottomRightCorner.Y - BOTTOM_CORNER_OFFSET;
+    g.fontPF.DrawString(text, x, y, color, 0, true);
+  }
+}
+
+function drawTrinketsDelta() {
+  if (v.run.delta.trinket !== null && v.run.delta.trinketFrame !== null) {
+    const string = v.run.delta.trinket.toString();
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.trinketFrame);
+    if (fade <= 0) {
+      v.run.delta.trinket = null;
+      v.run.delta.trinketFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    const bottomLeftCorner = getScreenBottomLeft();
+    const x = bottomLeftCorner.X + BOTTOM_CORNER_OFFSET;
+    const y = bottomLeftCorner.Y - BOTTOM_CORNER_OFFSET;
+    g.fontPF.DrawString(text, x, y, color, 0, true);
+  }
+}
+
+function getFade(frame: int) {
+  const gameFrameCount = g.g.GetFrameCount();
+  const elapsedFrames = gameFrameCount - frame;
+
+  if (elapsedFrames <= FRAMES_BEFORE_FADE) {
+    return 1;
+  }
+
+  const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
+  return 1 - 0.02 * fadeFrames;
+}
+
+function getTextColor(fade: float) {
+  return KColor(0, 0.75, 0, fade);
+}
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 export function postPickupInit(pickup: EntityPickup): void {
@@ -83,7 +211,7 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
       pickup.Remove();
 
       // Track what it inserted so that we can display it on the UI
-      updateDelta(pickupInserted);
+      updateDelta(player, pickupInserted);
     }
 
     v.room.pickupQueue.splice(i, 1);
@@ -134,8 +262,17 @@ function getEffectivePickupVariant(
   return lookingForPickupVariant;
 }
 
-function updateDelta(pickupInserted: [PickupVariant, int]) {
+function updateDelta(
+  player: EntityPlayer,
+  pickupInserted: [PickupVariant, int],
+) {
   const gameFrameCount = g.g.GetFrameCount();
+
+  // Determining where to draw the UI indicators for players other than the first player is too
+  // difficult, so ignore this case
+  if (!isFirstPlayer(player)) {
+    return;
+  }
 
   const [pickupType, value] = pickupInserted;
   switch (pickupType) {
