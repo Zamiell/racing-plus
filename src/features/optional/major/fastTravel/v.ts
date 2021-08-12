@@ -77,13 +77,13 @@ const v = {
     clearFrame: -1,
 
     /** Indexed by grid index. */
-    crawlspaces: new LuaTable<int, FastTravelEntityDescription>(),
+    crawlspaces: new Map<int, FastTravelEntityDescription>(),
 
     /** Used to prevent the vanilla paths from spawning after defeating It Lives! or Hush. */
     deletePaths: false,
 
     /** Indexed by grid index. */
-    heavenDoors: new LuaTable<int, FastTravelEntityDescription>(),
+    heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
     /** Used so that we can delete the vanilla paths on the appropriate frame. */
     hushKilledFrame: 0,
@@ -100,7 +100,7 @@ const v = {
     itLivesKilledFrame: null as number | null,
 
     /** Indexed by grid index. */
-    trapdoors: new LuaTable<int, FastTravelEntityDescription>(),
+    trapdoors: new Map<int, FastTravelEntityDescription>(),
   },
 };
 export default v;

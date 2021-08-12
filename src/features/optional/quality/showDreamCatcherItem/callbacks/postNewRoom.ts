@@ -103,7 +103,7 @@ function shouldWarp() {
 }
 
 function getMinimapDisplayFlagsMap() {
-  const displayFlags = new LuaTable<int, int>();
+  const displayFlags = new Map<int, int>();
   const rooms = g.l.GetRooms();
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
@@ -194,8 +194,8 @@ function resetRoomState(roomIndex: int) {
   room.ClearCount = 0;
 }
 
-function restoreMinimapDisplayFlags(displayFlagsMap: LuaTable<int, int>) {
-  for (const [gridIndex, displayFlags] of pairs(displayFlagsMap)) {
+function restoreMinimapDisplayFlags(displayFlagsMap: Map<int, int>) {
+  for (const [gridIndex, displayFlags] of displayFlagsMap) {
     const room = g.l.GetRoomByIdx(gridIndex);
     room.DisplayFlags = displayFlags;
   }

@@ -18,9 +18,7 @@ export function postRender(): void {
 }
 
 function drawButtonSprites() {
-  for (const [seasonAbbreviation, seasonSprite] of pairs(
-    v.room.sprites.seasons,
-  )) {
+  for (const [seasonAbbreviation, seasonSprite] of v.room.sprites.seasons) {
     const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
     const posButton = gridToPos(position.X, position.Y - 1);
     const posRender = Isaac.WorldToRenderPosition(posButton);
@@ -143,7 +141,7 @@ function seasonButtonPressed(seasonChosenAbbreviation: string) {
   removeAllRoomButtons();
 
   // Delete all of the season sprites
-  v.room.sprites.seasons = new LuaTable();
+  v.room.sprites.seasons.clear();
 
   // Mark to create new buttons (for the characters) on the next frame
   v.room.createButtonsFrame = gameFrameCount + 1;

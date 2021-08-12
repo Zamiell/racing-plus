@@ -2,7 +2,7 @@ import { ChallengeCustom } from "../enums";
 
 export default class SpeedrunData {
   characterNum = 1;
-  characterOrder = new LuaTable<ChallengeCustom, int[]>();
+  characterOrder = new Map<ChallengeCustom, int[]>();
   fastReset = false;
 
   startedTime = -1;

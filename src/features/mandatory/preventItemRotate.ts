@@ -11,7 +11,7 @@ const ITEM_SPRITESHEET_ID = 1;
 const v = {
   room: {
     /** Index is the InitSeed of the collectible. */
-    trackedItems: new LuaTable<int, CollectibleType>(),
+    trackedItems: new Map<int, CollectibleType>(),
   },
 };
 

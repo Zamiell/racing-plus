@@ -5,7 +5,7 @@ import ChangeCharOrderPhase from "./types/ChangeCharOrderPhase";
 const v = {
   persistent: {
     /** Indexed by speedrun abbreviation. */
-    charOrders: new LuaTable<string, int[]>(),
+    charOrders: new Map<string, int[]>(),
   },
 
   room: {
@@ -17,7 +17,7 @@ const v = {
     charOrder: [] as PlayerType[],
     // itemOrder: [] as CollectibleType[],
     sprites: {
-      seasons: new LuaTable<string, Sprite>(),
+      seasons: new Map<string, Sprite>(),
       characters: [] as Sprite[],
       items: [] as Sprite[],
     },

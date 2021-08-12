@@ -19,7 +19,7 @@ const ROTATION_SPEED = 12;
 
 const v = {
   run: {
-    sawblades: new LuaTable<PlayerIndex, int>(),
+    sawblades: new Map<PlayerIndex, int>(),
   },
 };
 

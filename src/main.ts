@@ -90,7 +90,6 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   mod.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
   mod.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
-  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
   mod.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
   mod.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
   mod.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
@@ -98,7 +97,6 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
   mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main); // 24
   mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
-  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate.main); // 31
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main); // 32
   mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.main); // 34
   mod.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
@@ -148,6 +146,16 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_NEW_ROOM_REORDERED,
     postNewRoom.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PLAYER_INIT_REORDERED,
+    postPlayerInit.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PLAYER_UPDATE_REORDERED,
+    postPlayerUpdate.main,
   );
 
   mod.AddCallbackCustom(

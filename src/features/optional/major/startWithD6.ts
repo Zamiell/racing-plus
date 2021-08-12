@@ -39,7 +39,7 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
 
 const v = {
   run: {
-    pocketActiveD6Charge: new LuaTable<PlayerIndex, int>(),
+    pocketActiveD6Charge: new Map<PlayerIndex, int>(),
   },
 };
 
