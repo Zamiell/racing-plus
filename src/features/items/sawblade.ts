@@ -1,3 +1,8 @@
+import {
+  getPlayerIndex,
+  PlayerIndex,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import {
@@ -11,6 +16,16 @@ const DISTANCE_AWAY_FROM_PLAYER = 35;
 // The value in Afterbirth+ is around 4.05
 const SPEED_MULTIPLIER = 2.7;
 const ROTATION_SPEED = 12;
+
+const v = {
+  run: {
+    sawblades: new LuaTable<PlayerIndex, int>(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("sawblade", v);
+}
 
 // ModCallbacks.MC_FAMILIAR_UPDATE (6)
 // FamiliarVariantCustom.SAWBLADE
@@ -40,6 +55,12 @@ function getPosition(familiar: EntityFamiliar) {
   return player.Position.add(rotatedVector);
 }
 
+// ModCallbacks.MC_POST_PLAYER_INIT (9)
+export function postPlayerInit(player: EntityPlayer): void {
+  const playerIndex = getPlayerIndex(player);
+  v.run.sawblades.set(playerIndex, 0);
+}
+
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.sawblade) {
@@ -67,9 +88,28 @@ export function preFamiliarCollisionSawblade(collider: Entity): void {
   }
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
-// CollectibleTypeCustom.COLLECTIBLE_SAWBLADE
-export function postItemPickupSawblade(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
+export function postPlayerUpdate(player: EntityPlayer): void {
+  const numSawblades = player.GetCollectibleNum(
+    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
+  );
+
+  const playerIndex = getPlayerIndex(player);
+  const numOldSawblades = v.run.sawblades.get(playerIndex);
+  if (numOldSawblades === undefined) {
+    error(`Failed to get the number of sawblades for player: ${playerIndex}`);
+  }
+
+  if (numSawblades > numOldSawblades) {
+    spawnNewSawblade(player);
+    v.run.sawblades.set(playerIndex, numOldSawblades + 1);
+  } else if (numSawblades < numOldSawblades) {
+    removeSawblade(player);
+    v.run.sawblades.set(playerIndex, numOldSawblades - 1);
+  }
+}
+
+function spawnNewSawblade(player: EntityPlayer) {
   const sawblade = Isaac.Spawn(
     EntityType.ENTITY_FAMILIAR,
     FamiliarVariantCustom.SAWBLADE,
@@ -84,4 +124,23 @@ export function postItemPickupSawblade(player: EntityPlayer): void {
   // (we must set the sprite offset via code since we are rotating the sprite on every frame)
   const sprite = sawblade.GetSprite();
   sprite.Offset = OFFSET;
+}
+
+function removeSawblade(player: EntityPlayer) {
+  const sawblades = Isaac.FindByType(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariantCustom.SAWBLADE,
+  );
+  for (const sawblade of sawblades) {
+    if (sawblade.Parent === null) {
+      continue;
+    }
+
+    const playerHash = GetPtrHash(player);
+    const parentHash = GetPtrHash(sawblade.Parent);
+    if (playerHash === parentHash) {
+      sawblade.Remove();
+      return;
+    }
+  }
 }

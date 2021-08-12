@@ -1,5 +1,6 @@
 import { initTransformationTracking } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
+import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
@@ -44,6 +45,7 @@ export default function initFeatureVariables(): void {
   socketClient.init();
   speedrunVars.init();
   changeCharOrderVars.init();
+  sawblade.init();
 
   // Mandatory features
   streakText.init();

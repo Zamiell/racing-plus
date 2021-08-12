@@ -1,4 +1,4 @@
-export {}; // eslint-disable-line import/no-unused-modules
+export {};
 
 declare global {
   function traceback(): void;

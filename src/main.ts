@@ -192,7 +192,6 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
-  postItemPickup.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);
