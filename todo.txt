@@ -1,9 +1,7 @@
 ```
-### *v0.58.50* - August ?th, 2021
+### *v0.58.51* - August ?th, 2021
 
-- Sawblade damage has been increased to 12 (from 11).
-- Sawblade will now work properly if you give it using the debug console.
-- Sawblade will now be removed properly if you lose the collectible (e.g. roll it with D4, etc.).
+-
 ```
 
 TODO Racing+ new features:
