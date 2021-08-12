@@ -6,9 +6,9 @@
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
     "features\\optional\\major\\betterDevilAngelRooms\\angelRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
     "features\\optional\\major\\betterDevilAngelRooms\\devilRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    "main.lua": "fad185d743e300852e59210e0bd4a204deaba52a",
+    "main.lua": "b40a1ae472ff75cd90cb73f520dbdd2304433d35",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "749d0a0ec5de4d153549279e0e389722cde89b85",
+    "metadata.xml": "0a4478a4072b0c0033691ac31e1e85eb46635d85",
     "readme.txt": "9444eb5b9175cd01eece655520beffcf83dd797a",
     "resources\\cutscenes.xml": "dbe41fdde8a53ac0d430f1756d85656b06d3f6a1",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -1545,7 +1545,7 @@
     "resources\\gfx\\race\\starting-room\\seeded-starting-build.png": "afe377505bc92a4103c142d8fc98cc84c6753306",
     "resources\\gfx\\race\\starting-room\\seeded-starting-item.anm2": "6557597650195a3e1facd89c368e20efe4e70034",
     "resources\\gfx\\race\\starting-room\\seeded-starting-item.png": "2f8539b50f6ca6c469db286688cbb8d681a93442",
-    "resources\\gfx\\sawblade.anm2": "cb5e15c752cda103c14f0fbbab7591309542c5c8",
+    "resources\\gfx\\sawblade.anm2": "bd44925a81e51bb8aab738b2a033f30920121065",
     "resources\\gfx\\sawblade.png": "e76aeae6975214d5a0b7b07ca72270a98861f78b",
     "resources\\gfx\\sawblade_old.anm2": "9cc703085cfaa432a89ad279244b0ffd75c3b7e5",
     "resources\\gfx\\sawblade_old.png": "b08a6074e6234d3702fd8304a4227a0b40aa3797",
@@ -1626,8 +1626,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "9e98272c412582f72ad300431835ec909d4b9ca2",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "9e98272c412582f72ad300431835ec909d4b9ca2",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "3aa194cab4fa74846e1d8de6e20dae0984ee621b",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "3aa194cab4fa74846e1d8de6e20dae0984ee621b",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\minimap_icons.png": "b59fc4878f3d62ebde6059009e3329a052f866bb",
@@ -1667,5 +1667,5 @@
     "resources\\rooms\\36.backwards.stb": "83f7e4327ea7b209f055ae76d7e8db982e83a9b5",
     "resources\\rules.txt": "9c726f9e970de6bcff78aec5526665597156b730",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "2b8eea389254217badfc31bc910a730d1819a91f"
+    "version.txt": "3d1b0e7a1fcab3258e383cdcc2d1114f8e92fffb"
 }
