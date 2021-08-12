@@ -1,14 +1,14 @@
 {
     "content\\challenges.xml": "ff8eb37cf00f3eea4e2f50b925616cf3c0616c8c",
-    "content\\entities2.xml": "1bcebc2f241d9f18737965dadeb8feeb6ec48c2a",
+    "content\\entities2.xml": "582b13b7a780b7940fdb203e00d179ee3e766fce",
     "content\\itempools.xml": "e9b8c187a8665a5d1357d48ec37b2eba74abd74c",
     "content\\items.xml": "13838a579f435b5a9b3d04a79f11a35028d0ae3a",
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
     "features\\optional\\major\\betterDevilAngelRooms\\angelRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
     "features\\optional\\major\\betterDevilAngelRooms\\devilRooms.json": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    "main.lua": "d648abb856f25f43f5c965310f8c429a73115d54",
+    "main.lua": "a1a6fb8b961eca5095d2ab6656e923d0cbe4303f",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "ac8affa317e39aaa041b67a077292d88a62e3379",
+    "metadata.xml": "63cfd146d1be2a3acce3037a0414910bee3ad3ec",
     "readme.txt": "9444eb5b9175cd01eece655520beffcf83dd797a",
     "resources\\cutscenes.xml": "dbe41fdde8a53ac0d430f1756d85656b06d3f6a1",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -1626,8 +1626,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "6907cf7b5c384a4eff0286136c305f274f1cc447",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "6907cf7b5c384a4eff0286136c305f274f1cc447",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "c6de69e3019d2c0300eff465ee5fc21eed03352d",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "c6de69e3019d2c0300eff465ee5fc21eed03352d",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\minimap_icons.png": "b59fc4878f3d62ebde6059009e3329a052f866bb",
@@ -1667,5 +1667,5 @@
     "resources\\rooms\\36.backwards.stb": "83f7e4327ea7b209f055ae76d7e8db982e83a9b5",
     "resources\\rules.txt": "9c726f9e970de6bcff78aec5526665597156b730",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "f09d229b045f59458a8472027122fedf4e9007f8"
+    "version.txt": "557f43f0273c5a6c2c6b12ac831ba0cf699656b3"
 }
