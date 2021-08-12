@@ -1,3 +1,4 @@
+import { initTransformationTracking } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
@@ -33,6 +34,10 @@ import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
 
 export default function initFeatureVariables(): void {
+  // IsaacScript features
+  initTransformationTracking();
+
+  // Core
   modConfigMenu.init();
   globals.init();
   raceVars.init();

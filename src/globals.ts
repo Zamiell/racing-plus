@@ -5,6 +5,10 @@ const globals = new Globals();
 export default globals;
 
 const v = {
+  persistent: {
+    foo: false,
+  },
+
   run: globals.run,
 };
 

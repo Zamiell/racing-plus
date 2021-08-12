@@ -1,9 +1,12 @@
 Patch notes for mod v0.58.48:
+- The sprite for Sawblade is different.
 - There is no a visual indication on the UI when something is automatically inserted into your inventory.
+- The pill from Spun is now automatically inserted.
 - Trinkets from Mom's Purse are now automatically inserted.
-- Match Stick trinkets are no longer automatically inserted.
+- Pickups from Mom's Purse, Clear Rune, Booster Pack, Consolation Prize, False PHD, and Keeper's Sack are now included. (Thanks to Gamonymous for this.)
+- The Match Stick trinket will no longer automatically inserted.
+- The 'M trinket will no longer automatically inserted.
 - Fixed the bug where cards and pills were not automatically inserted under certain circumstances.
-
 
 TODO Racing+ new features:
 - chat system

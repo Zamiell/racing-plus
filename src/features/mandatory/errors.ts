@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  getMaxCollectibleID,
   getPlayerIndex,
   getPlayers,
   log,
@@ -164,10 +165,6 @@ function areOtherModsEnabled() {
   }
 
   return v.run.otherModsEnabled;
-}
-
-function getMaxCollectibleID() {
-  return g.itemConfig.GetCollectibles().Size - 1;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)

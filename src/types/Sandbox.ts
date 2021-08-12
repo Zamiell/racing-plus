@@ -1,7 +1,9 @@
 import SocketClient from "./SocketClient";
 
+/** @noSelf */
 export default interface Sandbox {
   isSocketInitialized(): boolean;
-  connectLocalhost(this: void, port: int): SocketClient;
+  connectLocalhost(port: int): SocketClient;
   traceback(): void;
+  getParentFunctionDescription(levels: int): string;
 }

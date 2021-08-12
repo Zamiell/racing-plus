@@ -1,4 +1,9 @@
-import { getItemName, log, saveDataManager } from "isaacscript-common";
+import {
+  collectibleHasTag,
+  getItemName,
+  log,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 
 const ITEM_SPRITESHEET_ID = 1;
@@ -63,11 +68,7 @@ export function checkQuestItem(
   collectibleType: CollectibleType,
   seed: int,
 ): void {
-  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem !== null) {
-    const isQuestItem = itemConfigItem.HasTags(ItemConfigTag.QUEST);
-    if (isQuestItem) {
-      v.room.trackedItems.set(seed, collectibleType);
-    }
+  if (collectibleHasTag(collectibleType, ItemConfigTag.QUEST)) {
+    v.room.trackedItems.set(seed, collectibleType);
   }
 }

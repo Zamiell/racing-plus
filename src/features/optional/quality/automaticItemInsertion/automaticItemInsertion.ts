@@ -2,6 +2,8 @@
 
 import {
   anyPlayerHasCollectible,
+  collectibleHasTag,
+  getPlayerNumTransformationCollectibles,
   getScreenBottomLeft,
   getScreenBottomRight,
   isFirstPlayer,
@@ -357,6 +359,11 @@ function checkIfItemDropsPickups(
   }
 
   const collectibleType = pickingUpItem.id as CollectibleType;
+
+  // First, check to see if this is our 3rd Spun item so that we can insert the pill
+  checkIfThirdSpunItem(collectibleType, player);
+
+  // Check to see if this pickup drops anything
   const pickupVariants = COLLECTIBLE_TO_PICKUP_DROPS_MAP.get(collectibleType);
   if (pickupVariants === undefined) {
     return;
@@ -366,6 +373,36 @@ function checkIfItemDropsPickups(
   for (const pickupVariant of pickupVariants) {
     const queueArray: [PickupVariant, EntityPtr] = [
       pickupVariant,
+      EntityPtr(player),
+    ];
+    v.room.pickupQueue.push(queueArray);
+  }
+}
+
+function checkIfThirdSpunItem(
+  collectibleType: CollectibleType,
+  player: EntityPlayer,
+) {
+  const isSpunItem = collectibleHasTag(collectibleType, ItemConfigTag.SYRINGE);
+  if (!isSpunItem) {
+    return;
+  }
+
+  const hasSpunTransformation = player.HasPlayerForm(
+    PlayerForm.PLAYERFORM_DRUGS,
+  );
+  if (hasSpunTransformation) {
+    return;
+  }
+
+  const numSpunCollectibles = getPlayerNumTransformationCollectibles(
+    player,
+    PlayerForm.PLAYERFORM_DRUGS,
+  );
+  if (numSpunCollectibles === 2) {
+    // We already have two Spun items and we are picking up a third one
+    const queueArray: [PickupVariant, EntityPtr] = [
+      PickupVariant.PICKUP_PILL,
       EntityPtr(player),
     ];
     v.room.pickupQueue.push(queueArray);
