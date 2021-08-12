@@ -2,7 +2,7 @@
 	<!-- Custom familiars -->
 	<!-- Choosing variant 2010 because that is when Super Meat Boy was released -->
 	<!-- collisionInterval is tick rate in game frames -->
-	<entity anm2path="sawblade.anm2" baseHP="0" boss="0" champion="0" collisionDamage="10" collisionInterval="2" collisionMass="3" collisionRadius="10" friction="1" id="3" name="Sawblade" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant="2010">
+	<entity anm2path="sawblade.anm2" baseHP="0" boss="0" champion="0" collisionDamage="10" collisionInterval="2" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Sawblade" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant="2010">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
 
