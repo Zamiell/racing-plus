@@ -160,19 +160,19 @@ function shouldRemove() {
     g.race.goal === "Mother"
   ) {
     // Basement 1 --> Downpour 1
-    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom) {
+    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
       return true;
     }
 
     // Downpour 2 --> Mines 1
-    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalRoom) {
+    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
       return true;
     }
 
     // Mines 2 --> Mausoleum 1
-    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom) {
+    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
