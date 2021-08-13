@@ -1,4 +1,4 @@
-import { getDoors, log } from "isaacscript-common";
+import { getDoors, inAngelShop, log } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import angel from "../angel";
@@ -21,6 +21,11 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     roomType !== RoomType.ROOM_DEVIL && // 14
     roomType !== RoomType.ROOM_ANGEL // 15
   ) {
+    return;
+  }
+
+  // Angel shops do not need to be seeded
+  if (inAngelShop()) {
     return;
   }
 
