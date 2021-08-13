@@ -1,8 +1,10 @@
 ```
 ### *v0.58.56* - August 13th, 2021
 
-- TMTRAINER is removed from the game.
-- Glitched items will now be rerolled into normal items.
+- TMTRAINER is removed from the game. (Thanks Hispa)
+- Glitched items will now be rerolled into normal items. (Thanks Hispa)
+- The Sawblade sprite will now spin slower so that it is less distracting. (Thanks KiraKeepKool)
+- Your race place will now always show on the first floor (instead of being hidden). (Thanks Gamonymous)
 - Fixed the client bug where your place would be "-" at the beginning of a race. (Thanks Gamonymous)
 - Fixed the client bug where your floor would be "-" at the beginning of a race. (Thanks Gamonymous)
 - Fixed the bug where some custom Racing+ items would not have associated icons on the death screen. (Thanks to Gamonymous for implementing this.)

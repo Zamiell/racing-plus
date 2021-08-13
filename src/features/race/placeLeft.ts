@@ -38,14 +38,14 @@ function getPosition() {
 }
 
 export function postGameStarted(): void {
+  resetSprite();
   statusOrMyStatusChanged();
+  placeChanged();
 }
 
 export function statusOrMyStatusChanged(): void {
   if (g.race.status === "open") {
     sprite = initSprite(`${GFX_PATH}/pre-${g.race.myStatus}.anm2`);
-  } else if (g.race.status === "starting") {
-    sprite = null;
   }
 }
 

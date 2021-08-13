@@ -164,20 +164,33 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 
 // ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
 export function postPlayerChangeType(player: EntityPlayer): void {
-  // The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
-  // Give another D6 if needed
-  giveD6(player);
+  changedCharacterInSomeWay(player);
 }
 
 // ModCallbacksCustom.MC_POST_FIRST_FLIP
 export function postFirstFlip(player: EntityPlayer): void {
-  giveD6(player);
+  changedCharacterInSomeWay(player);
 }
 
 // ModCallbacksCustom.MC_POST_FIRST_ESAU_JR
 export function postFirstEsauJr(player: EntityPlayer): void {
-  if (shouldGetPocketActiveD6(player)) {
-    givePocketActiveD6(player, D6_STARTING_CHARGE);
+  changedCharacterInSomeWay(player);
+}
+
+function changedCharacterInSomeWay(player: EntityPlayer) {
+  // In some cases, switching the character will delete the D6, so we may need to give another one
+  const activeItem = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
+  const hasActiveItem = activeItem !== CollectibleType.COLLECTIBLE_NULL;
+  const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
+  const hasPocketD6 = pocketItem === CollectibleType.COLLECTIBLE_D6;
+
+  if (shouldGetPocketActiveD6(player) && !hasPocketD6) {
+    givePocketActiveD6(player);
+  }
+
+  // Give another D6 if needed
+  if (shouldGetActiveD6(player) && !hasActiveItem) {
+    giveActiveD6(player);
   }
 }
 
