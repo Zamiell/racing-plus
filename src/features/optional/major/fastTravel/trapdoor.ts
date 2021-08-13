@@ -91,6 +91,10 @@ function shouldRemove() {
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const isValidMotherGoalTrapdoor =
+    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX ||
+    roomType === RoomType.ROOM_ERROR ||
+    roomType === RoomType.ROOM_BLACK_MARKET;
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -159,40 +163,31 @@ function shouldRemove() {
     g.race.goal === "Mother"
   ) {
     // Basement 1 --> Downpour 1
-    if (
-      stage === 1 &&
-      !onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalTrapdoor) {
       log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
       return true;
     }
 
     // Downpour 2 --> Mines 1
-    if (
-      stage === 2 &&
-      onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalTrapdoor) {
       log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
       return true;
     }
 
     // Mines 2 --> Mausoleum 1
-    if (
-      stage === 4 &&
-      onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalTrapdoor) {
       log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
 
     // Mausoleum 2 --> Corpse 1
-    if (stage === 6 && onRepentanceStage() && !mausoleumHeartKilled) {
+    if (
+      stage === 6 &&
+      onRepentanceStage() &&
+      !mausoleumHeartKilled &&
+      roomType !== RoomType.ROOM_ERROR &&
+      roomType !== RoomType.ROOM_BLACK_MARKET
+    ) {
       log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
       return true;
     }
