@@ -16,8 +16,6 @@ const BANNED_TRINKETS = [
 
 const EDEN_REPLACEMENT_ITEM = CollectibleType.COLLECTIBLE_SAD_ONION;
 
-const GLITCH_ITEM_THRESHOLD = 100000;
-
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   for (const bannedCollectible of BANNED_COLLECTIBLES) {
@@ -51,16 +49,10 @@ export function postNewRoom(): void {
     PickupVariant.PICKUP_COLLECTIBLE,
   );
 
+  // Prevent getting banned items on the Death Certificate floor
   for (const collectible of collectibles) {
-    // Prevent getting banned items on the Death Certificate floor
     if (BANNED_COLLECTIBLES.includes(collectible.SubType)) {
       collectible.Remove();
-    }
-
-    // Prevent glitched items from appearing in secret rooms and I AM ERROR rooms
-    // (which happens from the "Corrupted Data" achievement)
-    if (collectible.SubType > GLITCH_ITEM_THRESHOLD) {
-      // TODO
     }
   }
 }

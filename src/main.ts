@@ -25,6 +25,7 @@ import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
+import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -121,6 +122,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
+  postPickupUpdate.init(mod); // 35
   postTearUpdate.init(mod); // 40
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55

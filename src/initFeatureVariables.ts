@@ -7,6 +7,7 @@ import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
+import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
@@ -49,6 +50,7 @@ export default function initFeatureVariables(): void {
 
   // Mandatory features
   streakText.init();
+  removeGlitchedItems.init();
   replacePhotos.init();
   preventItemRotate.init();
   beastPreventEnd.init();

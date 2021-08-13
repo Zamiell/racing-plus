@@ -4,9 +4,7 @@ import {
   log,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../globals";
-
-const ITEM_SPRITESHEET_ID = 1;
+import { changeCollectibleSubType } from "../../utilCollectible";
 
 const v = {
   room: {
@@ -41,19 +39,7 @@ export function postUpdate(): void {
     ) {
       // This item has switched, so restore it back to the way it was
       const oldSubType = collectible.SubType;
-      collectible.SubType = trackedCollectibleType;
-
-      // Changing the subtype will not affect the existing sprite
-      const sprite = collectible.GetSprite();
-      const itemConfigItem = g.itemConfig.GetCollectible(
-        trackedCollectibleType,
-      );
-      if (itemConfigItem === null) {
-        error(`Failed to get the item config for: ${trackedCollectibleType}`);
-      }
-      const gfxFileName = itemConfigItem.GfxFileName;
-      sprite.ReplaceSpritesheet(ITEM_SPRITESHEET_ID, gfxFileName);
-      sprite.LoadGraphics();
+      changeCollectibleSubType(collectible, trackedCollectibleType);
 
       log(
         `Prevented pedestal item ${getItemName(

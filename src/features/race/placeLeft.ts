@@ -37,18 +37,6 @@ function getPosition() {
   return racingPlusSprite.getPosition().add(SPRITE_OFFSET);
 }
 
-export function postNewLevel(): void {
-  const stage = g.l.GetStage();
-
-  if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    stage === 2
-  ) {
-    placeMidChanged();
-  }
-}
-
 export function postGameStarted(): void {
   statusOrMyStatusChanged();
 }
