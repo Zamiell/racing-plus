@@ -1,7 +1,7 @@
 ```
-### *v0.58.54* - August 12th, 2021
+### *v0.58.55* - August 13th, 2021
 
-- Fixed the bug where Sawblade would not display properly on floors with reflections. (Thanks KiraKeepKool)
+- Sawblade now works in seeded races.
 ```
 
 TODO Racing+ new features:

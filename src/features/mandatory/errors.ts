@@ -5,13 +5,13 @@ import {
   getPlayerIndex,
   getPlayers,
   log,
+  MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
-const MAX_VANILLA_COLLECTIBLE_ID = CollectibleType.COLLECTIBLE_DECAP_ATTACK;
 const NUM_RACING_PLUS_ITEMS = 19;
 const NUM_BABIES_MOD_ITEMS = 15;
 const STARTING_X = 115;
@@ -152,7 +152,7 @@ function isIncompleteSave() {
 function areOtherModsEnabled() {
   const maxCollectibleID = getMaxCollectibleID();
   let correctMaxCollectibleID =
-    MAX_VANILLA_COLLECTIBLE_ID + NUM_RACING_PLUS_ITEMS;
+    MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
   if (BabiesModGlobals !== undefined) {
     correctMaxCollectibleID += NUM_BABIES_MOD_ITEMS;
   }

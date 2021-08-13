@@ -6,6 +6,7 @@ import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
+  COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./constants";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
@@ -104,6 +105,8 @@ function seeded(player: EntityPlayer) {
       itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK;
     } else if (itemID === COLLECTIBLE_15_LUCK_SERVER_ID) {
       itemID = CollectibleTypeCustom.COLLECTIBLE_15_LUCK;
+    } else if (itemID === COLLECTIBLE_SAWBLADE_SERVER_ID) {
+      itemID = CollectibleTypeCustom.COLLECTIBLE_SAWBLADE;
     }
 
     giveItemAndRemoveFromPools(player, itemID);

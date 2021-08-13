@@ -4,7 +4,13 @@ import {
   hasFlag,
   initRNG,
   log,
+  MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
+import {
+  COLLECTIBLE_13_LUCK_SERVER_ID,
+  COLLECTIBLE_15_LUCK_SERVER_ID,
+  COLLECTIBLE_SAWBLADE_SERVER_ID,
+} from "./features/race/constants";
 import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
@@ -50,14 +56,19 @@ export function initGlowingItemSprite(itemID: int): Sprite {
   if (itemID < 1) {
     fileNum = "NEW";
   } else if (
-    (itemID >= 1 && itemID <= 729) ||
-    itemID === 800 ||
-    itemID === 801
+    (itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
+      itemID <= MAX_VANILLA_COLLECTIBLE_TYPE) ||
+    itemID === COLLECTIBLE_13_LUCK_SERVER_ID ||
+    itemID === COLLECTIBLE_15_LUCK_SERVER_ID ||
+    itemID === COLLECTIBLE_SAWBLADE_SERVER_ID
   ) {
-    // Between Sad Onion and Decap Attack (or the custom luck items)
+    // Between Sad Onion and Decap Attack (or a custom modded items)
     const paddedNumber = itemID.toString().padStart(3, "0");
     fileNum = paddedNumber;
-  } else if (itemID > 729 && itemID < 2001) {
+  } else if (
+    itemID > CollectibleType.COLLECTIBLE_DECAP_ATTACK &&
+    itemID < 2001
+  ) {
     // Between Decap Attack and Swallowed Penny
     fileNum = "NEW";
   } else if (itemID >= 2001 && itemID <= 2189) {
