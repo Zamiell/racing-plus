@@ -40,7 +40,7 @@ function getPosition() {
 export function postGameStarted(): void {
   resetSprite();
   statusOrMyStatusChanged();
-  placeChanged();
+  placeMidChanged();
 }
 
 export function statusOrMyStatusChanged(): void {
