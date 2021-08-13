@@ -4,7 +4,7 @@ import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/post
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
-import * as removeMercurius from "../features/mandatory/removeMercurius";
+import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
@@ -39,7 +39,7 @@ export function main(): void {
   g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
 
   // Mandatory features
-  removeMercurius.postNewRoom();
+  removeGloballyBannedItems.postNewRoom();
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
   trophy.postNewRoom();

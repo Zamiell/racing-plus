@@ -2,8 +2,7 @@ import { log } from "isaacscript-common";
 import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
-import * as removeKarma from "../features/mandatory/removeKarma";
-import * as removeMercurius from "../features/mandatory/removeMercurius";
+import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
@@ -44,8 +43,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
-  removeMercurius.postGameStarted();
-  removeKarma.postGameStarted();
+  removeGloballyBannedItems.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();

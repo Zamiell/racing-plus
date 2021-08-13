@@ -264,6 +264,14 @@ Post-flip actions:
 
 > Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.
 
+- TMTRAINER is removed.
+
+> Why? This item has several problems. First, it can completely trivialize a run by taking you to the end. Second, it can cause softlocks or crashes. Third, it greatly increases the RNG in any particular run.
+
+- Glitched items are replaced by normal items.
+
+> Why? The same reasoning as for removing TMTRAINER.
+
 - The Karma trinket is removed.
 
 > Why? Since all Donation Machines are removed, it has no effect.

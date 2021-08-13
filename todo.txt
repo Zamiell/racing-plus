@@ -1,7 +1,12 @@
 ```
 ### *v0.58.56* - August 13th, 2021
 
-- Fixed the client bug where your place would be "-" at the beginning of a race.
+- TMTRAINER is removed from the game.
+- Glitched items will now be rerolled into normal items.
+- Fixed the client bug where your place would be "-" at the beginning of a race. (Thanks Gamonymous)
+- Fixed the client bug where your floor would be "-" at the beginning of a race. (Thanks Gamonymous)
+- Fixed the bug where some custom Racing+ items would not have associated icons on the death screen. (Thanks to Gamonymous for implementing this.)
+- Fixed the bug where the I AM ERROR room and the Black Market would softlock you under certain conditions. (Thanks to Gamonymous for implementing this.)
 ```
 
 TODO Racing+ new features:
