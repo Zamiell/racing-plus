@@ -95,6 +95,10 @@ function shouldRemove() {
     roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX ||
     roomType === RoomType.ROOM_ERROR ||
     roomType === RoomType.ROOM_BLACK_MARKET;
+  const isValidBeastGoalTrapdoor =
+    roomType === RoomType.ROOM_BOSS ||
+    roomType === RoomType.ROOM_ERROR ||
+    roomType === RoomType.ROOM_BLACK_MARKET;
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -199,7 +203,7 @@ function shouldRemove() {
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     stage === 6 &&
-    roomType !== RoomType.ROOM_BOSS
+    !isValidBeastGoalTrapdoor
   ) {
     log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
     return true;
