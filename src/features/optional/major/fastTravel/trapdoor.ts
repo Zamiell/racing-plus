@@ -7,7 +7,7 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
-import * as raceGoalConditions from "../../../race/goalConditions";
+import { isValidBeastGoalRoom, isValidMotherGoalRoom } from "../../../race/goalConditions";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -92,8 +92,6 @@ function shouldRemove() {
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
-  const isValidMotherGoalRoom = raceGoalConditions.isValidMotherGoalRoom();
-  const isValidBeastGoalRoom = raceGoalConditions.isValidBeastGoalRoom();
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -198,7 +196,7 @@ function shouldRemove() {
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     stage === 6 &&
-    !isValidBeastGoalRoom
+    !isValidBeastGoalRoom()
   ) {
     log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
     return true;
