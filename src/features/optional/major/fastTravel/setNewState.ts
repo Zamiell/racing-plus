@@ -8,6 +8,7 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
 import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
+import { isValidBeastGoalRoom } from "../../../race/goalConditions";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -74,7 +75,6 @@ export function setFadingToBlack(
 
 function setGameStateFlags() {
   const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
   const roomIndex = getRoomIndex();
 
@@ -95,7 +95,7 @@ function setGameStateFlags() {
     g.race.goal === "The Beast" &&
     !repentanceStage &&
     stage === 6 &&
-    roomType === RoomType.ROOM_BOSS
+    isValidBeastGoalRoom()
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);

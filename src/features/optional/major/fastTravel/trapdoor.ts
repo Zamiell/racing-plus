@@ -7,6 +7,10 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
+import {
+  isValidBeastGoalRoom,
+  isValidMotherGoalRoom,
+} from "../../../race/goalConditions";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -159,40 +163,31 @@ function shouldRemove() {
     g.race.goal === "Mother"
   ) {
     // Basement 1 --> Downpour 1
-    if (
-      stage === 1 &&
-      !onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
       return true;
     }
 
     // Downpour 2 --> Mines 1
-    if (
-      stage === 2 &&
-      onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
       return true;
     }
 
     // Mines 2 --> Mausoleum 1
-    if (
-      stage === 4 &&
-      onRepentanceStage() &&
-      (roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX ||
-        roomType !== RoomType.ROOM_ERROR)
-    ) {
+    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
 
     // Mausoleum 2 --> Corpse 1
-    if (stage === 6 && onRepentanceStage() && !mausoleumHeartKilled) {
+    if (
+      stage === 6 &&
+      onRepentanceStage() &&
+      !mausoleumHeartKilled &&
+      roomType !== RoomType.ROOM_ERROR &&
+      roomType !== RoomType.ROOM_BLACK_MARKET
+    ) {
       log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
       return true;
     }
@@ -204,7 +199,7 @@ function shouldRemove() {
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     stage === 6 &&
-    roomType !== RoomType.ROOM_BOSS
+    !isValidBeastGoalRoom()
   ) {
     log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
     return true;
