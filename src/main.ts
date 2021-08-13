@@ -16,7 +16,6 @@ import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
-import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameStarted from "./callbacks/postGameStarted";
@@ -26,7 +25,6 @@ import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
-import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -59,7 +57,7 @@ import initFeatureVariables from "./initFeatureVariables";
 main();
 
 function main() {
-  const mod = RegisterMod("Racing+", 1);
+  const mod = RegisterMod("racing-plus", 1);
   const modUpgraded = upgradeMod(mod);
 
   welcomeBanner();
@@ -120,7 +118,6 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   usePill.init(mod); // 10
   entityTakeDmg.init(mod); // 11
   preUseItem.init(mod); // 23
-  postFamiliarRender.init(mod); // 25
   preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
@@ -146,11 +143,6 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_NEW_ROOM_REORDERED,
     postNewRoom.main,
-  );
-
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_PLAYER_INIT_REORDERED,
-    postPlayerInit.main,
   );
 
   mod.AddCallbackCustom(

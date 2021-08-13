@@ -1,7 +1,6 @@
 import {
   getPlayerIndex,
   getPlayers,
-  log,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -51,25 +50,6 @@ function featureEnabled() {
   return config.startWithD6;
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
-export function postUpdate(): void {
-  if (!config.startWithD6) {
-    return;
-  }
-
-  for (const player of getPlayers()) {
-    const index = getPlayerIndex(player);
-    const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-    v.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
-  }
-}
-
-// ModCallbacks.MC_POST_PLAYER_INIT (9)
-export function postPlayerInit(player: EntityPlayer): void {
-  const index = getPlayerIndex(player);
-  v.run.pocketActiveD6Charge.set(index, D6_STARTING_CHARGE);
-}
-
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.startWithD6) {
@@ -77,12 +57,8 @@ export function postGameStarted(): void {
   }
 
   for (const player of getPlayers()) {
-    if (shouldGetPocketActiveD6(player)) {
-      givePocketActiveD6(player);
-    } else if (shouldGetActiveD6(player)) {
-      giveActiveD6(player);
-    }
     // Note that modded characters are not given anything (except Random Baby)
+    giveD6(player);
   }
 }
 
@@ -171,6 +147,17 @@ function checkGenesisRoom() {
   }
 }
 
+// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
+export function postPlayerUpdate(player: EntityPlayer): void {
+  if (!config.startWithD6) {
+    return;
+  }
+
+  const index = getPlayerIndex(player);
+  const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
+  v.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
+}
+
 // ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
 export function postPlayerChangeType(player: EntityPlayer): void {
   // The game will remove the pocket D6 if they switch characters (e.g. with Judas' Shadow)
@@ -193,13 +180,12 @@ export function postFirstEsauJr(player: EntityPlayer): void {
 function giveD6(player: EntityPlayer) {
   if (shouldGetPocketActiveD6(player)) {
     const index = getPlayerIndex(player);
-    const charge = v.run.pocketActiveD6Charge.get(index);
+    let charge = v.run.pocketActiveD6Charge.get(index);
+    if (charge === undefined) {
+      charge = D6_STARTING_CHARGE;
+    }
     givePocketActiveD6(player, charge);
-    log("Awarded another pocket D6 (due to character change).");
   } else if (shouldGetActiveD6(player)) {
     giveActiveD6(player);
-    log("Awarded another active D6 (due to character change).");
-  } else {
-    log("Not awarding the D6.");
   }
 }

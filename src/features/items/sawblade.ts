@@ -66,11 +66,9 @@ import {
   FamiliarVariantCustom,
 } from "../../types/enums";
 
-const OFFSET = Vector(0, -16);
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
-const SPRITE_ROTATION_SPEED = 11;
 
 const v = {
   run: {
@@ -99,9 +97,9 @@ function setPosition(familiar: EntityFamiliar) {
 }
 
 function getPosition(familiar: EntityFamiliar) {
-  const player = familiar.Parent;
+  const player = familiar.SpawnerEntity;
   if (player === null) {
-    error("A sawblade was spawned without a parent.");
+    error("A sawblade was spawned without a SpawnerEntity.");
   }
   const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
   const rotatedVector = baseVector.Rotated(
@@ -110,28 +108,11 @@ function getPosition(familiar: EntityFamiliar) {
   return player.Position.add(rotatedVector);
 }
 
-// ModCallbacks.MC_POST_PLAYER_INIT (9)
-export function postPlayerInit(player: EntityPlayer): void {
-  const playerIndex = getPlayerIndex(player);
-  v.run.sawblades.set(playerIndex, 0);
-}
-
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.sawblade) {
     g.itemPool.RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_SAWBLADE);
   }
-}
-
-// ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
-// FamiliarVariantCustom.SAWBLADE
-export function postFamiliarRenderSawblade(familiar: EntityFamiliar): void {
-  rotateSprite(familiar);
-}
-
-function rotateSprite(familiar: EntityFamiliar) {
-  const sprite = familiar.GetSprite();
-  sprite.Rotation += SPRITE_ROTATION_SPEED;
 }
 
 // ModCallbacks.MC_PRE_FAMILIAR_COLLISION (26)
@@ -145,14 +126,19 @@ export function preFamiliarCollisionSawblade(collider: Entity): void {
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
+  if (!config.sawblade) {
+    return;
+  }
+
   const numSawblades = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
 
   const playerIndex = getPlayerIndex(player);
-  const numOldSawblades = v.run.sawblades.get(playerIndex);
+  let numOldSawblades = v.run.sawblades.get(playerIndex);
   if (numOldSawblades === undefined) {
-    error(`Failed to get the number of sawblades for player: ${playerIndex}`);
+    numOldSawblades = 0;
+    v.run.sawblades.set(playerIndex, numOldSawblades);
   }
 
   if (numSawblades > numOldSawblades) {
@@ -165,7 +151,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 }
 
 function spawnNewSawblade(player: EntityPlayer) {
-  const sawblade = Isaac.Spawn(
+  Isaac.Spawn(
     EntityType.ENTITY_FAMILIAR,
     FamiliarVariantCustom.SAWBLADE,
     0,
@@ -173,12 +159,6 @@ function spawnNewSawblade(player: EntityPlayer) {
     Vector.Zero,
     player,
   );
-  sawblade.Parent = player;
-
-  // Initialize the sprite offset
-  // (we must set the sprite offset via code since we are rotating the sprite on every frame)
-  const sprite = sawblade.GetSprite();
-  sprite.Offset = OFFSET;
 }
 
 function removeSawblade(player: EntityPlayer) {
@@ -187,13 +167,13 @@ function removeSawblade(player: EntityPlayer) {
     FamiliarVariantCustom.SAWBLADE,
   );
   for (const sawblade of sawblades) {
-    if (sawblade.Parent === null) {
+    if (sawblade.SpawnerEntity === null) {
       continue;
     }
 
     const playerHash = GetPtrHash(player);
-    const parentHash = GetPtrHash(sawblade.Parent);
-    if (playerHash === parentHash) {
+    const spawnerEntityHash = GetPtrHash(sawblade.SpawnerEntity);
+    if (playerHash === spawnerEntityHash) {
       sawblade.Remove();
       return;
     }
