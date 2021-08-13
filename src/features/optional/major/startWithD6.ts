@@ -1,6 +1,7 @@
 import {
   getPlayerIndex,
   getPlayers,
+  log,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -117,10 +118,13 @@ function givePocketActiveD6(player: EntityPlayer, charge?: int) {
   if (charge !== undefined) {
     player.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
   }
+
+  log("Awarded a pocket active D6.");
 }
 
 function giveActiveD6(player: EntityPlayer) {
   giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
+  log("Awarded an active D6.");
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
