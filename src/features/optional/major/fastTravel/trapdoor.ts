@@ -7,6 +7,7 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
+import * as raceGoalConditions from "../../../race/goalConditions";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -91,14 +92,8 @@ function shouldRemove() {
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
-  const isValidMotherGoalTrapdoor =
-    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX ||
-    roomType === RoomType.ROOM_ERROR ||
-    roomType === RoomType.ROOM_BLACK_MARKET;
-  const isValidBeastGoalTrapdoor =
-    roomType === RoomType.ROOM_BOSS ||
-    roomType === RoomType.ROOM_ERROR ||
-    roomType === RoomType.ROOM_BLACK_MARKET;
+  const isValidMotherGoalRoom = raceGoalConditions.isValidMotherGoalRoom();
+  const isValidBeastGoalRoom = raceGoalConditions.isValidBeastGoalRoom();
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -167,19 +162,19 @@ function shouldRemove() {
     g.race.goal === "Mother"
   ) {
     // Basement 1 --> Downpour 1
-    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalTrapdoor) {
+    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom) {
       log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
       return true;
     }
 
     // Downpour 2 --> Mines 1
-    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalTrapdoor) {
+    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalRoom) {
       log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
       return true;
     }
 
     // Mines 2 --> Mausoleum 1
-    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalTrapdoor) {
+    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom) {
       log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
@@ -203,7 +198,7 @@ function shouldRemove() {
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     stage === 6 &&
-    !isValidBeastGoalTrapdoor
+    !isValidBeastGoalRoom
   ) {
     log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
     return true;
