@@ -16,6 +16,7 @@ const v = {
     blueWomb: false,
     theVoid: false,
 
+    inBlackMarket: false,
     inErrorRoom: false,
 
     /**
