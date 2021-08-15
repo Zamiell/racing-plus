@@ -154,7 +154,7 @@ function shouldRemove() {
   }
 
   // If the goal of the race is Mother, remove trapdoors on odd alt floors and even normal floors
-  // Remove also
+  // Remove also Depths 1, Mausoleum 1 and Mausoleum 2 I AM ERROR room trapdoors
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
