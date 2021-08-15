@@ -262,12 +262,14 @@ export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
     return;
   }
 
+  const startingRoomIndex = g.l.GetStartingRoomIndex();
+
   const playerTouching = getPlayerCloserThan(
     gridEntity.Position,
     TELEPORTER_ACTIVATION_DISTANCE,
   );
   if (playerTouching !== null) {
-    playerTouching.UseCard(Card.CARD_FOOL);
+    teleport(startingRoomIndex);
   }
 }
 

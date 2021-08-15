@@ -1,7 +1,7 @@
 ```
-### *v0.58.58* - August ?th, 2021
+### *v0.58.58* - August 15th, 2021
 
--
+- Fixed the bug where crawlspaces in Genesis rooms on end-floors would softlock you. (They are now represented as a teleporter instead of a crawlspace to make it more clear that they are not a real crawlspace.) (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

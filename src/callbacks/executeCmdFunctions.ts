@@ -226,11 +226,6 @@ functionMap.set("error", (_params: string) => {
   IAMERROR();
 });
 
-functionMap.set("gridindex", (_params: string) => {
-  const roomIndex = getRoomIndex();
-  print(roomIndex);
-});
-
 functionMap.set("help", (_params: string) => {
   commands(functionMap);
 });
@@ -330,6 +325,11 @@ functionMap.set("pos", (_params: string) => {
   for (const player of getPlayers()) {
     print(`Player position: (${player.Position.X}, ${player.Position.Y})`);
   }
+});
+
+functionMap.set("roomindex", (_params: string) => {
+  const roomIndex = getRoomIndex();
+  print(roomIndex);
 });
 
 functionMap.set("s", (params: string) => {
