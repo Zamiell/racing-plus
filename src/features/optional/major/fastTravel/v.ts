@@ -94,10 +94,15 @@ const v = {
      */
     itLivesKilled: false,
 
-    /**
-     * Used so that we can delete the vanilla paths on the appropriate frame.
-     */
+    /** Used so that we can delete the vanilla paths on the appropriate frame. */
     itLivesKilledFrame: null as number | null,
+
+    /** Used to replace a crawlspace with a teleporter under certain conditions. */
+    teleporter: {
+      frame: null as number | null,
+      position: Vector.Zero,
+      spawned: false,
+    },
 
     /** Indexed by grid index. */
     trapdoors: new Map<int, FastTravelEntityDescription>(),

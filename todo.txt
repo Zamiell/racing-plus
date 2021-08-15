@@ -1,7 +1,7 @@
 ```
-### *v0.58.57* - August ?th, 2021
+### *v0.58.58* - August ?th, 2021
 
-- Fixed the bug where Angel shops were getting overwritten by normal Angel Rooms. (Thanks Hispa)
+-
 ```
 
 TODO Racing+ new features:

@@ -22,7 +22,7 @@ const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
 const FRAME_DELAY_AFTER_KILLING_HUSH = 12;
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
-// GridEntityType.GRID_TRAPDOOR
+// GridEntityType.GRID_TRAPDOOR (17)
 export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
   // In some situations, trapdoors should be removed entirely
   if (shouldRemove()) {
@@ -38,7 +38,7 @@ export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_TRAPDOOR
+// GridEntityType.GRID_TRAPDOOR (17)
 export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   if (shouldIgnore(gridEntity)) {
     return;
@@ -60,7 +60,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
-// GridEntityType.GRID_TRAPDOOR
+// GridEntityType.GRID_TRAPDOOR (17)
 export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }

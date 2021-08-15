@@ -21,6 +21,12 @@ export function init(mod: ModUpgraded): void {
     pressurePlate,
     GridEntityType.GRID_PRESSURE_PLATE, // 20
   );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
+    teleporter,
+    GridEntityType.GRID_TELEPORTER, // 23
+  );
 }
 
 // GridEntityType.GRID_TRAPDOOR (17)
@@ -37,4 +43,9 @@ function crawlspace(gridEntity: GridEntity) {
 // GridEntityType.GRID_PRESSURE_PLATE (20)
 function pressurePlate(gridEntity: GridEntity) {
   changeCharOrderPostGridEntityUpdate.pressurePlate(gridEntity);
+}
+
+// GridEntityType.GRID_TELEPORTER (23)
+function teleporter(gridEntity: GridEntity) {
+  fastTravelPostGridEntityUpdate.teleporter(gridEntity);
 }

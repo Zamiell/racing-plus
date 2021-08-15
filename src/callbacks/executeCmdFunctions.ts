@@ -1,4 +1,4 @@
-import { getPlayers, gridToPos, log } from "isaacscript-common";
+import { getPlayers, getRoomIndex, gridToPos, log } from "isaacscript-common";
 import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
@@ -224,6 +224,11 @@ functionMap.set("effects", (_params: string) => {
 
 functionMap.set("error", (_params: string) => {
   IAMERROR();
+});
+
+functionMap.set("gridindex", (_params: string) => {
+  const roomIndex = getRoomIndex();
+  print(roomIndex);
 });
 
 functionMap.set("help", (_params: string) => {

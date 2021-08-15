@@ -7,6 +7,7 @@ import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
+import fastTravelPostUpdate from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import racePostUpdate from "../features/race/callbacks/postUpdate";
@@ -24,6 +25,7 @@ export function main(): void {
   racePostUpdate();
   changeCharOrderPostUpdate();
   fastClearPostUpdate();
+  fastTravelPostUpdate();
   fastDrop.postUpdate();
 
   // Quality of life

@@ -1,9 +1,15 @@
 // For testing, a seed with a black market is: 2SB2 M4R6
 
-import { getRoomIndex, inCrawlspace, log } from "isaacscript-common";
+import {
+  getPlayerCloserThan,
+  getRoomIndex,
+  inCrawlspace,
+  log,
+  onFinalFloor,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { movePlayersAndFamiliars } from "../../../../util";
-import { teleport } from "../../../../utilGlobals";
+import { removeGridEntity, teleport } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
@@ -11,6 +17,8 @@ import v from "./v";
 
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
+
+const TELEPORTER_ACTIVATION_DISTANCE = 20; // Exactly the same as a vanilla teleporter
 
 const DEVIL_ANGEL_EXIT_MAP = new Map<int, Direction>([
   [7, Direction.UP], // Top door
@@ -36,6 +44,30 @@ const BOSS_ROOM_ENTER_MAP = new Map<Direction, int>([
 ]);
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Crawlspace;
+
+// ModCallbacks.MC_POST_UPDATE (1)
+export function postUpdate(): void {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  if (
+    v.room.teleporter.frame !== null &&
+    gameFrameCount >= v.room.teleporter.frame
+  ) {
+    spawnTeleporter();
+    v.room.teleporter.frame = null;
+    v.room.teleporter.position = Vector.Zero;
+    v.room.teleporter.spawned = true;
+  }
+}
+
+function spawnTeleporter() {
+  Isaac.GridSpawn(
+    GridEntityType.GRID_TELEPORTER,
+    0,
+    v.room.teleporter.position,
+    true,
+  );
+}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -179,13 +211,35 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
-// GridEntityType.GRID_STAIRS
+// GridEntityType.GRID_STAIRS (18)
 export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
+  // In some situations, crawlspaces should be replaced with a teleport pad
+  if (shouldReplaceWithTeleportPad()) {
+    replaceWithTeleportPad(gridEntity);
+    return;
+  }
+
   fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
+function shouldReplaceWithTeleportPad() {
+  return onFinalFloor();
+}
+
+function replaceWithTeleportPad(gridEntity: GridEntity) {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  removeGridEntity(gridEntity);
+
+  // If we remove a crawlspace and spawn a teleporter on the same square on the same frame,
+  // the teleporter will immediately despawn for some reason
+  // Work around this by simply spawning it on the next game frame
+  v.room.teleporter.frame = gameFrameCount + 1;
+  v.room.teleporter.position = gridEntity.Position;
+}
+
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_STAIRS
+// GridEntityType.GRID_STAIRS (18)
 export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   // Ensure that the fast-travel entity has been initialized
   const gridIndex = gridEntity.GetGridIndex();
@@ -201,8 +255,24 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// GridEntityType.GRID_TELEPORTER (23)
+export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
+  if (!v.room.teleporter.spawned) {
+    return;
+  }
+
+  const playerTouching = getPlayerCloserThan(
+    gridEntity.Position,
+    TELEPORTER_ACTIVATION_DISTANCE,
+  );
+  if (playerTouching !== null) {
+    playerTouching.UseCard(Card.CARD_FOOL);
+  }
+}
+
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
-// GridEntityType.GRID_STAIRS
+// GridEntityType.GRID_STAIRS (18)
 export function postGridEntityRemoveCrawlspace(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
