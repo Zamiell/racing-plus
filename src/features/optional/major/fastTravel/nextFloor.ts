@@ -95,7 +95,7 @@ function getNextStage() {
   if (
     repentanceStage &&
     (stage === 1 || stage === 3 || stage === 5) &&
-    v.run.inErrorRoom
+    (v.run.inErrorRoom || v.run.inBlackMarket)
   ) {
     // e.g. Downpour 1 goes to Caves 1 with an I AM ERROR room trapdoor
     return stage + 2;
@@ -228,7 +228,8 @@ function getNextStageType(
   if (
     repentanceStage &&
     (stage === 1 || stage === 3 || stage === 5) &&
-    !v.run.inErrorRoom
+    !v.run.inErrorRoom &&
+    !v.run.inBlackMarket
   ) {
     return getStageTypeRepentance(nextStage);
   }
