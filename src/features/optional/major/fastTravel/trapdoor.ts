@@ -90,7 +90,6 @@ function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
-  const roomType = g.r.GetType();
   const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
@@ -154,9 +153,8 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, remove trapdoors on odd floors
-  // (i.e. trapdoors that go to non-Repentance floors)
-  // But make an exception for I AM ERROR rooms to prevent softlocks
+  // If the goal of the race is Mother, remove trapdoors on odd alt floors and even normal floors
+  // Remove also Depths 1, Mausoleum 1 and Mausoleum 2 I AM ERROR room trapdoors
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
@@ -174,20 +172,48 @@ function shouldRemove() {
       return true;
     }
 
+    // Basement 2 --> Downpour 2
+    if (stage === 2 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
+      log("Removed a vanilla trapdoor on Basement 2 (for a Mother goal).");
+      return true;
+    }
+
+    // Caves 1 --> Mines 1
+    if (stage === 3 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
+      log("Removed a vanilla trapdoor on Caves 1 (for a Mother goal).");
+      return true;
+    }
+
+    // Caves 2 --> Mines 2
+    if (stage === 4 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
+      log("Removed a vanilla trapdoor on Caves 2 (for a Mother goal).");
+      return true;
+    }
+
     // Mines 2 --> Mausoleum 1
     if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
       return true;
     }
 
-    // Mausoleum 2 --> Corpse 1
+    // Depths 1 --> Mausoleum 1
     if (
-      stage === 6 &&
-      onRepentanceStage() &&
-      !mausoleumHeartKilled &&
-      roomType !== RoomType.ROOM_ERROR &&
-      roomType !== RoomType.ROOM_BLACK_MARKET
+      stage === 5 &&
+      !onRepentanceStage() &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
     ) {
+      log("Removed a vanilla trapdoor on Depths 1 (for a Mother goal).");
+      return true;
+    }
+
+    // Mausoleum 1 --> Mausoleum 2
+    if (stage === 5 && onRepentanceStage() && isValidMotherGoalRoom()) {
+      log("Removed a vanilla trapdoor on Mausoleum 1 (for a Mother goal).");
+      return true;
+    }
+
+    // Mausoleum 2 --> Corpse 1
+    if (stage === 6 && onRepentanceStage() && !mausoleumHeartKilled) {
       log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
       return true;
     }

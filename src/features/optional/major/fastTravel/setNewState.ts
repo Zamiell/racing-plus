@@ -101,7 +101,7 @@ function setGameStateFlags() {
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
 
     // Furthermore, we want to prevent the new floor from being reseeded,
-    // so pretend that the boss room with Mom in it is an Repentance secret exit
+    // so pretend that the boss room with Mom in it is a Repentance secret exit
     // (even though Repentance floors are on the same stage, they do not need to be reseeded)
     v.run.repentanceSecretExit = true;
   }
