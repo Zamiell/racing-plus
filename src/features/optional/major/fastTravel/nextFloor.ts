@@ -45,7 +45,6 @@ export function goto(upwards: boolean): void {
 function getNextStage() {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
-  const roomType = g.r.GetType();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
     return getNextStageBackwardsPath(stage, repentanceStage);

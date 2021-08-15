@@ -90,7 +90,6 @@ function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
-  const roomType = g.r.GetType();
   const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
@@ -161,8 +160,6 @@ function shouldRemove() {
     g.race.myStatus === "racing" &&
     g.race.goal === "Mother"
   ) {
-    const roomIndex = getRoomIndex();
-
     // Basement 1 --> Downpour 1
     if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
       log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
