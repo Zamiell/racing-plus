@@ -97,7 +97,7 @@ function getNextStage() {
     (stage === 1 || stage === 3 || stage === 5) &&
     v.run.inErrorRoom
   ) {
-    // e.g. Downpour 1 goes to Caves 1 with a I AM ERROR! trapdoor
+    // e.g. Downpour 1 goes to Caves 1 with an I AM ERROR! trapdoor
     return stage + 2;
   }
 
