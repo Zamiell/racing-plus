@@ -45,8 +45,15 @@ export function goto(upwards: boolean): void {
 function getNextStage() {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
+  const backwardsPathInit = g.g.GetStateFlag(
+    GameStateFlag.STATE_BACKWARDS_PATH_INIT,
+  );
+  const backwardsPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const mausoleumHeartKilled = g.g.GetStateFlag(
+    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+  );
 
-  if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
+  if (backwardsPath) {
     return getNextStageBackwardsPath(stage, repentanceStage);
   }
 
@@ -54,8 +61,9 @@ function getNextStage() {
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
+    stage === 6 &&
     !repentanceStage &&
-    stage === 6
+    backwardsPathInit
   ) {
     return stage;
   }
@@ -78,16 +86,12 @@ function getNextStage() {
     return stage;
   }
 
-  if (
-    repentanceStage &&
-    stage === 6 &&
-    g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
-  ) {
+  if (stage === 6 && repentanceStage && mausoleumHeartKilled) {
     // e.g. From Mausoleum 2 to Corpse 1
     return stage + 1;
   }
 
-  if (repentanceStage && (stage === 2 || stage === 4 || stage === 6)) {
+  if ((stage === 2 || stage === 4 || stage === 6) && repentanceStage) {
     // e.g. Downpour 2 goes to Caves 2
     return stage + 2;
   }

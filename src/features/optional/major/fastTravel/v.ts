@@ -11,7 +11,6 @@ const v = {
 
     state: FastTravelState.Disabled,
 
-    playerIndexTouchedTrapdoor: -1,
     upwards: false,
     blueWomb: false,
     theVoid: false,
@@ -42,12 +41,6 @@ const v = {
 
   level: {
     /**
-     * We need to manually keep track if the player takes damage for the purposes of the Perfection
-     * trinket.
-     */
-    tookDamage: false,
-
-    /**
      * Used for keeping track of whether or not we are in a Black Market so that we can position
      * the player properly.
      */
@@ -64,6 +57,12 @@ const v = {
      * manually teleport them to the right room.
      */
     subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
+
+    /**
+     * We need to manually keep track if the player takes damage for the purposes of the Perfection
+     * trinket.
+     */
+    tookDamage: false,
   },
 
   room: {
@@ -86,7 +85,7 @@ const v = {
     heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
     /** Used so that we can delete the vanilla paths on the appropriate frame. */
-    hushKilledFrame: 0,
+    hushKilledFrame: null as null | number,
 
     /**
      * Defeating It Lives! triggers the PostEntityKill callback twice for some reason,
@@ -96,6 +95,12 @@ const v = {
 
     /** Used so that we can delete the vanilla paths on the appropriate frame. */
     itLivesKilledFrame: null as number | null,
+
+    /**
+     * Used so that we can spawned a Mausoleum trapdoor for on the appropriate frame (for races to
+     * The Beast).
+     */
+    momKilledFrame: null as number | null,
 
     /** Used to replace a crawlspace with a teleporter under certain conditions. */
     teleporter: {

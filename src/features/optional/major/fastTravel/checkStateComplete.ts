@@ -33,7 +33,7 @@ function postRenderFadingToBlack() {
   }
 
   // The FadingToBlack state is completed when the screen is completely black
-  setNewState(FastTravelState.ChangingToSameRoom);
+  setNewState(FastTravelState.ChangingToStartingRoom);
 }
 
 function postRenderFadingIn() {
@@ -91,8 +91,8 @@ function makePlayersJump(players: EntityPlayer[]) {
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   switch (v.run.state) {
-    case FastTravelState.ChangingToSameRoom: {
-      postNewRoomChangingToSameRoom();
+    case FastTravelState.ChangingToStartingRoom: {
+      postNewRoomChangingToStartingRoom();
       break;
     }
 
@@ -107,8 +107,8 @@ export function postNewRoom(): void {
   }
 }
 
-function postNewRoomChangingToSameRoom() {
-  // The ChangingToSameRoom state is completed once we arrive in the new room
+function postNewRoomChangingToStartingRoom() {
+  // The ChangingToStartingRoom state is completed once we arrive in the new room
   setNewState(FastTravelState.GoingToNewFloor);
 }
 

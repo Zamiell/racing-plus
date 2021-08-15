@@ -7,10 +7,6 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
-import {
-  isValidBeastGoalRoom,
-  isValidMotherGoalRoom,
-} from "../../../race/goalConditions";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -20,6 +16,7 @@ import v from "./v";
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Trapdoor;
 const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
 const FRAME_DELAY_AFTER_KILLING_HUSH = 12;
+const FRAME_DELAY_AFTER_KILLING_MOM = 11;
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
 // GridEntityType.GRID_TRAPDOOR (17)
@@ -67,6 +64,7 @@ export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
 
 function shouldIgnore(gridEntity: GridEntity) {
   const stage = g.l.GetStage();
+  const repentanceStage = onRepentanceStage();
 
   if (isPostBossVoidPortal(gridEntity)) {
     return true;
@@ -79,7 +77,7 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // Don't replace the trap door that leads to Mother
-  if (stage === 8 && onRepentanceStage()) {
+  if (stage === 8 && repentanceStage) {
     return true;
   }
 
@@ -88,12 +86,14 @@ function shouldIgnore(gridEntity: GridEntity) {
 
 function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-  const roomIndex = getRoomIndex();
   const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
-  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+  const roomIndex = getRoomIndex();
+  const repentanceStage = onRepentanceStage();
 
   // If a specific amount of frames have passed since killing It Lives!,
   // then delete the vanilla trapdoor (since we manually spawned one already)
@@ -103,7 +103,9 @@ function shouldRemove() {
     gameFrameCount ===
       v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
   ) {
-    log("Removed a vanilla trapdoor after It Lives!");
+    log(
+      `Removed a vanilla trapdoor after It Lives! on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
@@ -111,21 +113,25 @@ function shouldRemove() {
   // then delete the vanilla trapdoor (since we manually spawned one already)
   if (
     v.room.deletePaths &&
-    v.room.hushKilledFrame !== 0 &&
+    v.room.hushKilledFrame !== null &&
     gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
-    log("Removed a vanilla trapdoor after Hush.");
+    log(
+      `Removed a vanilla trapdoor after Hush on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
-  // If the goal of the race is the Boss Rush, delete the Womb trapdoor that spawns after Mom
+  // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Boss Rush" &&
     stage === 6
   ) {
-    log("Removed a vanilla trapdoor after Mom.");
+    log(
+      `Removed a vanilla trapdoor on Depths 2 (for a Boss Rush goal) on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
@@ -137,7 +143,9 @@ function shouldRemove() {
     stage === 8 &&
     roomIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
   ) {
-    log("Removed a vanilla trapdoor after Mom.");
+    log(
+      `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
@@ -149,96 +157,96 @@ function shouldRemove() {
     stage === 9 &&
     roomIndex !== GridRooms.ROOM_THE_VOID_IDX
   ) {
-    log("Removed a vanilla trapdoor after It Lives! (for a Hush goal).");
+    log(
+      `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
-  // If the goal of the race is Mother, remove trapdoors on odd alt floors and even normal floors
-  // Remove also Depths 1, Mausoleum 1 and Mausoleum 2 I AM ERROR room trapdoors
+  // If the goal of the race is Mother, remove trapdoors on normal floors + odd numbered alt floors
+  // (but allow players to softlock themselves with Undefined)
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
-    g.race.goal === "Mother"
+    g.race.goal === "Mother" &&
+    roomIndex !== GridRooms.ROOM_ERROR_IDX &&
+    roomIndex !== GridRooms.ROOM_BLACK_MARKET_IDX
   ) {
-    // Basement 1 --> Downpour 1
-    if (stage === 1 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Basement 1 (for a Mother goal).");
-      return true;
-    }
-
-    // Downpour 2 --> Mines 1
-    if (stage === 2 && onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Downpour 2 (for a Mother goal).");
-      return true;
-    }
-
-    // Basement 2 --> Downpour 2
-    if (stage === 2 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Basement 2 (for a Mother goal).");
-      return true;
-    }
-
-    // Caves 1 --> Mines 1
-    if (stage === 3 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Caves 1 (for a Mother goal).");
-      return true;
-    }
-
-    // Caves 2 --> Mines 2
-    if (stage === 4 && !onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Caves 2 (for a Mother goal).");
-      return true;
-    }
-
-    // Mines 2 --> Mausoleum 1
-    if (stage === 4 && onRepentanceStage() && !isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Mines 2 (for a Mother goal).");
-      return true;
-    }
-
-    // Depths 1 --> Mausoleum 1
     if (
-      stage === 5 &&
-      !onRepentanceStage() &&
+      (stage === 1 ||
+        stage === 2 ||
+        stage === 3 ||
+        stage === 4 ||
+        stage === 5) &&
+      !repentanceStage &&
       roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
     ) {
-      log("Removed a vanilla trapdoor on Depths 1 (for a Mother goal).");
+      log(
+        `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a Mother goal) on game frame: ${gameFrameCount}`,
+      );
       return true;
     }
 
-    // Mausoleum 1 --> Mausoleum 2
-    if (stage === 5 && onRepentanceStage() && isValidMotherGoalRoom()) {
-      log("Removed a vanilla trapdoor on Mausoleum 1 (for a Mother goal).");
+    if (
+      stage === 2 &&
+      repentanceStage &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      log(
+        `Removed a vanilla trapdoor on Downpour 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
+      );
       return true;
     }
 
-    // Mausoleum 2 --> Corpse 1
-    if (stage === 6 && onRepentanceStage() && !mausoleumHeartKilled) {
-      log("Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal).");
+    if (
+      stage === 4 &&
+      repentanceStage &&
+      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      log(
+        `Removed a vanilla trapdoor on Mines 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
+      );
+      return true;
+    }
+
+    if (stage === 6 && repentanceStage && !mausoleumHeartKilled) {
+      log(
+        `Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
+      );
       return true;
     }
   }
 
-  // If the goal of the race is The Beast, delete trapdoors spawned with We Need To Go Deeper!
+  // If the goal of the race is The Beast, delete any Womb trapdoors on Depths 2 that are not
+  // spawned naturally after defeating Mom
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "The Beast" &&
     stage === 6 &&
-    !isValidBeastGoalRoom()
+    !(
+      roomType === RoomType.ROOM_BOSS &&
+      v.room.momKilledFrame !== null &&
+      gameFrameCount === v.room.momKilledFrame + FRAME_DELAY_AFTER_KILLING_MOM
+    )
   ) {
-    log("Removed a vanilla trapdoor on Depths 2 (for The Beast goal).");
+    log(
+      `Removed a vanilla trapdoor on Depths 2 (for The Beast goal) on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
   // Delete the trapdoors on the Ascent
-  // There are some cases when trapdoors still appear, like double troubles
+  // (in vanilla, they stay closed, but instead of emulating this functionality it is simpler to
+  // delete them)
   if (
     stage < 7 &&
-    isBackwardPath &&
+    backwardPath &&
     roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
-    log("Removed a vanilla trapdoor on the Ascent.");
+    log(
+      `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
+    );
     return true;
   }
 
@@ -301,7 +309,7 @@ function checkDoubleTrapdoorOverlapBug(gridEntity: GridEntity) {
 
   if (
     v.room.deletePaths &&
-    v.room.hushKilledFrame !== 0 &&
+    v.room.hushKilledFrame !== null &&
     gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
     log(

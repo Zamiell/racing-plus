@@ -61,7 +61,8 @@ function preventVanillaPhotos(
       subType === CollectibleType.COLLECTIBLE_POLAROID
         ? "Polaroid"
         : "Negative";
-    const text = `Preventing a vanilla ${photoName} from spawning.`;
+    const gameFrameCount = g.g.GetFrameCount();
+    const text = `Preventing a vanilla ${photoName} from spawning on game frame: ${gameFrameCount}`;
     log(text);
 
     return [

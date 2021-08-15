@@ -79,15 +79,15 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
         }
 
         if (
-          (repentanceStage && stage === 2) ||
-          (!repentanceStage && (stage === 3 || stage === 4))
+          (!repentanceStage && (stage === 3 || stage === 4)) ||
+          (repentanceStage && stage === 2)
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          (repentanceStage && stage === 4) ||
-          (!repentanceStage && stage === 5)
+          (!repentanceStage && (stage === 5 || stage === 6)) ||
+          (repentanceStage && stage === 4)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }

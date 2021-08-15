@@ -8,7 +8,6 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
 import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
-import { isValidBeastGoalRoom } from "../../../race/goalConditions";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -23,8 +22,8 @@ export default function setNewState(fastTravelState: FastTravelState): void {
       break;
     }
 
-    case FastTravelState.ChangingToSameRoom: {
-      setChangingToNewRoom();
+    case FastTravelState.ChangingToStartingRoom: {
+      setChangingToStartingRoom();
       break;
     }
 
@@ -75,6 +74,7 @@ export function setFadingToBlack(
 
 function setGameStateFlags() {
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
   const roomIndex = getRoomIndex();
 
@@ -95,7 +95,8 @@ function setGameStateFlags() {
     g.race.goal === "The Beast" &&
     !repentanceStage &&
     stage === 6 &&
-    isValidBeastGoalRoom()
+    roomType === RoomType.ROOM_BOSS &&
+    v.room.momKilledFrame !== null
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
@@ -211,7 +212,7 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
   }
 }
 
-function setChangingToNewRoom() {
+function setChangingToStartingRoom() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
   blackSprite.setFullyOpaque();

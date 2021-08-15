@@ -51,7 +51,7 @@ function shouldRemove(effect: EntityEffect) {
   // then delete the vanilla heaven door (since we manually spawned one already)
   if (
     v.room.deletePaths &&
-    v.room.hushKilledFrame !== 0 &&
+    v.room.hushKilledFrame !== null &&
     gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
   ) {
     return true;

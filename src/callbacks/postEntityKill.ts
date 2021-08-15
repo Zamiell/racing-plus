@@ -68,6 +68,7 @@ export function main(entity: Entity): void {
 // EntityType.ENTITY_MOM (45)
 function mom(entity: Entity) {
   replacePhotos.postEntityKillMom(entity);
+  fastTravelPostEntityKill.mom(entity);
 }
 
 // EntityType.ENTITY_MOMS_HEART (78)

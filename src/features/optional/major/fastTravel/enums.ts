@@ -7,7 +7,7 @@ export enum FastTravelEntityType {
 export enum FastTravelState {
   Disabled,
   FadingToBlack,
-  ChangingToSameRoom,
+  ChangingToStartingRoom,
   GoingToNewFloor,
   FadingIn,
 }
