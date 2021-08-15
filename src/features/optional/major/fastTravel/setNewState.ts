@@ -65,6 +65,7 @@ export function setFadingToBlack(
   v.run.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+  v.run.inErrorRoom = roomIndex === GridRooms.ROOM_ERROR_IDX;
 
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);
@@ -101,7 +102,7 @@ function setGameStateFlags() {
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
 
     // Furthermore, we want to prevent the new floor from being reseeded,
-    // so pretend that the boss room with Mom in it is an Repentance secret exit
+    // so pretend that the boss room with Mom in it is a Repentance secret exit
     // (even though Repentance floors are on the same stage, they do not need to be reseeded)
     v.run.repentanceSecretExit = true;
   }

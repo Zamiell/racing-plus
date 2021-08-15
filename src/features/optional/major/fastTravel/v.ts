@@ -16,6 +16,8 @@ const v = {
     blueWomb: false,
     theVoid: false,
 
+    inErrorRoom: false,
+
     /**
      * We need to track the Repentance floors that we visited so that we can return to them during
      * the Ascent.

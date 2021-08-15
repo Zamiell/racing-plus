@@ -45,6 +45,7 @@ export function goto(upwards: boolean): void {
 function getNextStage() {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
+  const roomType = g.r.GetType();
 
   if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
     return getNextStageBackwardsPath(stage, repentanceStage);
@@ -68,14 +69,7 @@ function getNextStage() {
     return 12;
   }
 
-  if (
-    v.run.repentanceSecretExit ||
-    // All trapdoors should lead to the correct floor on races with a goal of Mother
-    // (e.g. from an I AM ERROR room)
-    (g.race.status === "in progress" &&
-      g.race.myStatus === "racing" &&
-      g.race.goal === "Mother")
-  ) {
+  if (v.run.repentanceSecretExit) {
     if (repentanceStage) {
       // e.g. From Downpour 2 to Mines 1
       return stage + 1;
@@ -96,6 +90,15 @@ function getNextStage() {
 
   if (repentanceStage && (stage === 2 || stage === 4 || stage === 6)) {
     // e.g. Downpour 2 goes to Caves 2
+    return stage + 2;
+  }
+
+  if (
+    repentanceStage &&
+    (stage === 1 || stage === 3 || stage === 5) &&
+    v.run.inErrorRoom
+  ) {
+    // e.g. Downpour 1 goes to Caves 1 with a I AM ERROR! trapdoor
     return stage + 2;
   }
 
@@ -219,20 +222,14 @@ function getNextStageType(
     return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
-  if (
-    v.run.repentanceSecretExit ||
-    // All trapdoors should lead to the correct floor on races with a goal of Mother
-    // (e.g. from an I AM ERROR room)
-    (g.race.status === "in progress" &&
-      g.race.myStatus === "racing" &&
-      g.race.goal === "Mother")
-  ) {
+  if (v.run.repentanceSecretExit) {
     return getStageTypeRepentance(nextStage);
   }
 
   if (
     repentanceStage &&
-    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
+    (stage === 1 || stage === 3 || stage === 5 || stage === 7) &&
+    !v.run.inErrorRoom
   ) {
     return getStageTypeRepentance(nextStage);
   }

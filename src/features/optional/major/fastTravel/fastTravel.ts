@@ -87,38 +87,13 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
 
         if (
           (repentanceStage && stage === 4) ||
-          (!repentanceStage && stage === 6)
+          (!repentanceStage && stage === 5)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
       }
 
       if (roomType === RoomType.ROOM_BOSS) {
-        if (
-          g.race.status === "in progress" &&
-          g.race.myStatus === "racing" &&
-          g.race.goal === "The Beast" &&
-          !repentanceStage &&
-          stage === 6
-        ) {
-          return "gfx/grid/trapdoor_mausoleum_custom.anm2";
-        }
-      }
-
-      if (
-        roomType === RoomType.ROOM_ERROR ||
-        roomType === RoomType.ROOM_BLACK_MARKET
-      ) {
-        if (
-          g.race.status === "in progress" &&
-          g.race.myStatus === "racing" &&
-          g.race.goal === "Mother" &&
-          repentanceStage &&
-          stage === 6
-        ) {
-          return "gfx/grid/door_11_corpsehole_custom.anm2";
-        }
-
         if (
           g.race.status === "in progress" &&
           g.race.myStatus === "racing" &&
