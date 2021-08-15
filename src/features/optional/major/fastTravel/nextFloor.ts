@@ -227,9 +227,13 @@ function getNextStageType(
 
   if (
     repentanceStage &&
-    (stage === 1 || stage === 3 || stage === 5 || stage === 7) &&
+    (stage === 1 || stage === 3 || stage === 5) &&
     !v.run.inErrorRoom
   ) {
+    return getStageTypeRepentance(nextStage);
+  }
+
+  if (repentanceStage && stage === 7) {
     return getStageTypeRepentance(nextStage);
   }
 
