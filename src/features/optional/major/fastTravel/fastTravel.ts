@@ -55,6 +55,9 @@ export function init(
 
 function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
   const isGreedMode = g.g.IsGreedMode();
+  const mausoleumHeartKilled = g.g.GetStateFlag(
+    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+  );
   const stage = g.l.GetStage();
   const roomIndex = getRoomIndex();
   const roomType = g.r.GetType();
@@ -106,9 +109,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
       }
 
       if (
-        (repentanceStage &&
-          stage === 6 &&
-          g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)) ||
+        (repentanceStage && stage === 6 && mausoleumHeartKilled) ||
         (repentanceStage && stage === 7)
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";

@@ -86,9 +86,6 @@ function shouldIgnore(gridEntity: GridEntity) {
 
 function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
-  const mausoleumHeartKilled = g.g.GetStateFlag(
-    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
-  );
   const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
@@ -163,14 +160,13 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, remove trapdoors on normal floors + odd numbered alt floors
-  // (but allow players to softlock themselves with Undefined)
+  // If the goal of the race is Mother, remove trapdoors after bosses on most floors
+  // (but leave trapdoors created by shovels and in I AM ERROR rooms)
   if (
     g.race.status === "in progress" &&
     g.race.myStatus === "racing" &&
     g.race.goal === "Mother" &&
-    roomIndex !== GridRooms.ROOM_ERROR_IDX &&
-    roomIndex !== GridRooms.ROOM_BLACK_MARKET_IDX
+    roomType === RoomType.ROOM_BOSS
   ) {
     if (
       (stage === 1 ||
@@ -178,40 +174,17 @@ function shouldRemove() {
         stage === 3 ||
         stage === 4 ||
         stage === 5) &&
-      !repentanceStage &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+      !repentanceStage
     ) {
       log(
-        `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a Mother goal) on game frame: ${gameFrameCount}`,
+        `Removed a vanilla trapdoor after a boss on non-Repentance stage ${stage} (for a Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
 
-    if (
-      stage === 2 &&
-      repentanceStage &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
+    if ((stage === 2 || stage === 4 || stage === 6) && repentanceStage) {
       log(
-        `Removed a vanilla trapdoor on Downpour 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
-      );
-      return true;
-    }
-
-    if (
-      stage === 4 &&
-      repentanceStage &&
-      roomIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
-      log(
-        `Removed a vanilla trapdoor on Mines 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
-      );
-      return true;
-    }
-
-    if (stage === 6 && repentanceStage && !mausoleumHeartKilled) {
-      log(
-        `Removed a vanilla trapdoor on Mausoleum 2 (for a Mother goal) on game frame: ${gameFrameCount}`,
+        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
