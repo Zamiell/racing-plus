@@ -65,8 +65,6 @@ export function setFadingToBlack(
   v.run.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
-  v.run.inErrorRoom = roomIndex === GridRooms.ROOM_ERROR_IDX;
-  v.run.inBlackMarket = roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
 
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);

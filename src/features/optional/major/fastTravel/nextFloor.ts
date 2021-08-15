@@ -92,15 +92,6 @@ function getNextStage() {
     return stage + 2;
   }
 
-  if (
-    repentanceStage &&
-    (stage === 1 || stage === 3 || stage === 5) &&
-    (v.run.inErrorRoom || v.run.inBlackMarket)
-  ) {
-    // e.g. Downpour 1 goes to Caves 1 with an I AM ERROR room trapdoor
-    return stage + 2;
-  }
-
   if (stage === 8) {
     // If we are not in the Blue Womb entrance room, then we need to skip a floor
     // (since the Blue Womb is floor 9)
@@ -227,14 +218,8 @@ function getNextStageType(
 
   if (
     repentanceStage &&
-    (stage === 1 || stage === 3 || stage === 5) &&
-    !v.run.inErrorRoom &&
-    !v.run.inBlackMarket
+    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
   ) {
-    return getStageTypeRepentance(nextStage);
-  }
-
-  if (repentanceStage && stage === 7) {
     return getStageTypeRepentance(nextStage);
   }
 
