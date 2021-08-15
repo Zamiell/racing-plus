@@ -78,7 +78,7 @@ const v = {
     /** Text of less importance that is only shown if there is no main text. */
     tabText: null as string | null,
 
-    frameSet: null as number | null,
+    frameSet: null as int | null,
   },
 };
 

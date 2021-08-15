@@ -36,7 +36,7 @@ const BOSS_RUSH_EXIT_MAP = new Map<int, Direction>([
   [427, Direction.DOWN], // Bottom left door
 ]);
 
-const BOSS_ROOM_ENTER_MAP = new Map<Direction, int>([
+const ONE_BY_ONE_ROOM_ENTER_MAP = new Map<Direction, int>([
   [Direction.LEFT, 73], // 0 (returning from the right door)
   [Direction.UP, 112], // 1 (returning from the bottom door)
   [Direction.RIGHT, 61], // 2 (returning from the left door)
@@ -71,56 +71,34 @@ function spawnTeleporter() {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  repositionPlayer();
-  checkBlackMarket(); // This must be after the "repositionPlayer()" function
-  checkReturningToRoomOutsideTheGrid();
+  checkEnteringCrawlspace();
+  checkExitingCrawlspace();
   checkPostRoomTransitionSubvert();
 }
 
-function repositionPlayer() {
-  // The player will be placed at the right-most door if we perform the following steps:
-  // - Enter a crawlspace from outside of the grid
-  // - Exit the crawlspace
-  // - Enter the crawlspace again
-  // Fix this bug by simply manually moving the player to the top of the ladder every time they
-  // enter a crawlspace
-  if (
-    inCrawlspace() &&
-    // If we are returning from a Black Market, then being at the right-most door is the correct
-    // position and we should not do anything further
-    !v.level.blackMarket
-  ) {
+function checkEnteringCrawlspace() {
+  if (inCrawlspace() && v.level.crawlspace.amEntering) {
+    v.level.crawlspace.amEntering = false;
+
+    // When a player manually teleports into a crawlspace, they will not consistently be placed at the
+    // top of the ladder
+    // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
     movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
+    log(
+      "Manually repositioned a player to the top of the ladder after returning to a crawlspace after a Black Market.",
+    );
   }
 }
 
-function checkBlackMarket() {
-  const roomIndex = getRoomIndex();
-  v.level.blackMarket = roomIndex === GridRooms.ROOM_BLACK_MARKET_IDX;
-}
+function checkExitingCrawlspace() {
+  if (v.level.crawlspace.amExiting) {
+    v.level.crawlspace.amExiting = false;
 
-function checkReturningToRoomOutsideTheGrid() {
-  const roomIndex = getRoomIndex();
-  const prevRoomIndex = g.l.GetPreviousRoomIndex(); // We need the unsafe version here
+    if (v.level.crawlspace.returnRoomPosition === null) {
+      return;
+    }
 
-  // Normally, when returning from a crawlspace,
-  // the game automatically moves the player to the "Level.DungeonReturnPosition" variable
-  // However, for some reason, this will not occur when returning from a crawlspace to a room
-  // outside of the grid
-  // If this is the case, move the player manually
-  // Furthermore, in the Boss Rush, this will look glitchy because the game originally places us
-  // next to a Boss Rush door, but there is no way around this;
-  // even if we change player.Position on every frame in the PostRender callback,
-  // the glitchy warp will still occur
-  if (
-    prevRoomIndex === GridRooms.ROOM_DUNGEON_IDX &&
-    roomIndex < 0 &&
-    // We don't want to teleport if we are returning to a crawlspace from a Black Market
-    roomIndex !== GridRooms.ROOM_DUNGEON_IDX &&
-    // We don't want to teleport in a Black Market
-    roomIndex !== GridRooms.ROOM_BLACK_MARKET_IDX
-  ) {
-    movePlayersAndFamiliars(g.l.DungeonReturnPosition);
+    movePlayersAndFamiliars(v.level.crawlspace.returnRoomPosition);
   }
 }
 
@@ -128,18 +106,21 @@ function checkPostRoomTransitionSubvert() {
   // If we subverted the room transition for a room outside of the grid,
   // we might not end up in a spot where the player expects
   // So, move to the most logical position
-  const direction = v.level.subvertedRoomTransitionDirection;
-  if (direction !== Direction.NO_DIRECTION) {
-    const gridPosition = BOSS_ROOM_ENTER_MAP.get(direction);
-    if (gridPosition !== undefined) {
-      const player = Isaac.GetPlayer();
-      if (player !== null) {
-        player.Position = g.r.GetGridPosition(gridPosition);
-        v.level.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
-        log(
-          "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
-        );
-      }
+  const direction = v.level.crawlspace.subvertedRoomTransitionDirection;
+  if (direction === Direction.NO_DIRECTION) {
+    return;
+  }
+
+  const gridPosition = ONE_BY_ONE_ROOM_ENTER_MAP.get(direction);
+  if (gridPosition !== undefined) {
+    const player = Isaac.GetPlayer();
+    if (player !== null) {
+      player.Position = g.r.GetGridPosition(gridPosition);
+      v.level.crawlspace.subvertedRoomTransitionDirection =
+        Direction.NO_DIRECTION;
+      log(
+        "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
+      );
     }
   }
 }
@@ -155,12 +136,21 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 }
 
 function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
+  const startingRoomIndex = g.l.GetStartingRoomIndex();
+
   if (
     inCrawlspace() &&
     g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
   ) {
     v.room.amChangingRooms = true;
-    teleport(g.l.DungeonReturnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
+    v.level.crawlspace.amExiting = true;
+
+    const returnRoomIndex =
+      v.level.crawlspace.returnRoomIndex === null
+        ? startingRoomIndex
+        : v.level.crawlspace.returnRoomIndex;
+
+    teleport(returnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
   }
 }
 
@@ -175,16 +165,20 @@ function checkExitSoftlock(player: EntityPlayer) {
 
   if (
     previousRoomIndex !== GridRooms.ROOM_DUNGEON_IDX ||
-    v.level.previousRoomIndex === null
+    v.level.crawlspace.previousReturnRoomIndex === null
   ) {
     return;
   }
 
   const direction = getExitDirection(roomType, player);
   if (direction !== undefined) {
-    v.level.subvertedRoomTransitionDirection = direction;
+    v.level.crawlspace.subvertedRoomTransitionDirection = direction;
     v.room.amChangingRooms = true;
-    teleport(v.level.previousRoomIndex, direction, RoomTransitionAnim.WALK);
+    teleport(
+      v.level.crawlspace.previousReturnRoomIndex,
+      direction,
+      RoomTransitionAnim.WALK,
+    );
     log(
       "Subverted exiting a room outside of the grid to avoid a crawlspace-related softlock.",
     );
@@ -314,22 +308,19 @@ function touched(entity: GridEntity | EntityEffect) {
   const roomIndex = getRoomIndex();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
 
-  // If we return to a room outside of the grid from a crawlspace,
-  // the previous room index will be the crawlspace
-  // We need to preserve the room index of the last non-negative room
-  const previousRoomIndexToUse =
-    v.level.previousRoomIndex === null
-      ? previousRoomIndex
-      : v.level.previousRoomIndex;
+  // Save the current room information so that we can return here once we exit the top of the
+  // crawlspace ladder
+  v.level.crawlspace.returnRoomIndex = roomIndex;
+  v.level.crawlspace.returnRoomPosition = entity.Position;
 
-  // Save the previous room information so that we can return there after exiting the crawlspace
-  // (for the special case where we return to a room outside of the grid)
-  v.level.previousRoomIndex = previousRoomIndexToUse;
-
-  // Vanilla crawlspaces uses these variables to return the player to the previous room
-  // Even though we are re-implementing crawlspaces, we will use the same variables
-  g.l.DungeonReturnRoomIndex = roomIndex;
-  g.l.DungeonReturnPosition = entity.Position;
+  // Additionally, save the previous room information so that we can avoid a softlock when returning
+  // to a room outside the grid
+  if (roomIndex < 0 && v.level.crawlspace.previousReturnRoomIndex === null) {
+    v.level.crawlspace.previousReturnRoomIndex = previousRoomIndex;
+    Isaac.DebugString(
+      `Since we are entering a crawlspace from a room outside of the grid, storing the previous room index: ${v.level.crawlspace.previousReturnRoomIndex}`,
+    );
+  }
 
   // Go to the crawlspace
   teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);

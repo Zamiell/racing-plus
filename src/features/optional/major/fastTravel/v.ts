@@ -40,23 +40,24 @@ const v = {
   },
 
   level: {
-    /**
-     * Used for keeping track of whether or not we are in a Black Market so that we can position
-     * the player properly.
-     */
-    blackMarket: false,
+    crawlspace: {
+      amEntering: false,
 
-    /**
-     * Used for the purposes of fixing the softlock when a player returns from a crawlspace to a
-     * room outside of the grid.
-     */
-    previousRoomIndex: null as int | null,
+      /**
+       * If the player is returning from the top of the crawlspace ladder back to the previous room.
+       */
+      amExiting: false,
 
-    /**
-     * Used to reposition the player after we subvert their touching of a loading zone and
-     * manually teleport them to the right room.
-     */
-    subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
+      returnRoomIndex: null as int | null,
+      returnRoomPosition: null as Vector | null,
+      previousReturnRoomIndex: null as int | null,
+
+      /**
+       * Used to reposition the player after we subvert their touching of a loading zone and
+       * manually teleport them to the right room.
+       */
+      subvertedRoomTransitionDirection: Direction.NO_DIRECTION,
+    },
 
     /**
      * We need to manually keep track if the player takes damage for the purposes of the Perfection
@@ -67,7 +68,7 @@ const v = {
 
   room: {
     /**
-     * Used to prevent double teleporting, since it takes a frame for the "StartRoomTransition"
+     * Used to prevent changing rooms twice, since it takes a frame for the "StartRoomTransition"
      * method to take effect.
      */
     amChangingRooms: false,
@@ -94,17 +95,17 @@ const v = {
     itLivesKilled: false,
 
     /** Used so that we can delete the vanilla paths on the appropriate frame. */
-    itLivesKilledFrame: null as number | null,
+    itLivesKilledFrame: null as int | null,
 
     /**
      * Used so that we can spawned a Mausoleum trapdoor for on the appropriate frame (for races to
      * The Beast).
      */
-    momKilledFrame: null as number | null,
+    momKilledFrame: null as int | null,
 
     /** Used to replace a crawlspace with a teleporter under certain conditions. */
     teleporter: {
-      frame: null as number | null,
+      frame: null as int | null,
       position: Vector.Zero,
       spawned: false,
     },
