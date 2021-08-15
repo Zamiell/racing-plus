@@ -86,6 +86,9 @@ function shouldIgnore(gridEntity: GridEntity) {
 
 function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
+  const mausoleumHeartKilled = g.g.GetStateFlag(
+    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+  );
   const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
@@ -182,7 +185,14 @@ function shouldRemove() {
       return true;
     }
 
-    if ((stage === 2 || stage === 4 || stage === 6) && repentanceStage) {
+    if ((stage === 2 || stage === 4) && repentanceStage) {
+      log(
+        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
+      );
+      return true;
+    }
+
+    if (stage === 6 && repentanceStage && !mausoleumHeartKilled) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
       );
