@@ -12,5 +12,4 @@ export default function speedrunPostGameEnd(isGameOver: boolean): void {
 
   // Don't move to the first character of the speedrun if we die
   v.persistent.performedFastReset = true;
-  Isaac.DebugString("Game over detected in a speedrun.");
 }

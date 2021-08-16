@@ -1,9 +1,11 @@
+import { log } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import { removeItemFromItemTracker } from "../../../util";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import * as characterProgress from "../characterProgress";
 import * as season1 from "../season1";
 import {
+  checkValidCharOrder,
   goBackToFirstCharacter,
   inSpeedrun,
   setCorrectCharacter,
@@ -17,6 +19,10 @@ export default function speedrunPostGameStarted(): void {
   }
 
   liveSplitReset();
+
+  if (!checkValidCharOrder()) {
+    return;
+  }
 
   if (setCorrectCharacter()) {
     return;
@@ -38,7 +44,7 @@ function liveSplitReset() {
   if (v.persistent.liveSplitReset) {
     v.persistent.liveSplitReset = false;
     player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_RESET);
-    Isaac.DebugString(
+    log(
       `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.COLLECTIBLE_RESET}.`,
     );
     removeItemFromItemTracker(CollectibleTypeCustom.COLLECTIBLE_RESET);
@@ -50,7 +56,7 @@ function giveMoreOptionsBuff() {
 
   // The first character of the speedrun always gets More Options to speed up the process of getting
   // a run going
-  if (v.persistent.characterNum > 1) {
+  if (v.persistent.characterNum === 1) {
     tempMoreOptions.give(player);
   }
 }

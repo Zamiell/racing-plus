@@ -1,3 +1,7 @@
+import {
+  SPRITE_BETHANY_OFFSET,
+  SPRITE_TAINTED_BETHANY_OFFSET,
+} from "../../constants";
 import g from "../../globals";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
@@ -33,13 +37,24 @@ function displayCharacterProgress() {
   }
 
   const digitLength = 7.25;
-  const startingX = 23;
-  const startingY = 79;
+  let position = Vector(23, 79);
   let adjustment1 = 0;
   let adjustment2 = 0;
   if (v.persistent.characterNum > 9) {
     adjustment1 = digitLength - 2;
     adjustment2 = adjustment1 - 1;
+  }
+
+  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+  if (
+    character === PlayerType.PLAYER_BETHANY ||
+    character === PlayerType.PLAYER_JACOB
+  ) {
+    position = position.add(SPRITE_BETHANY_OFFSET);
+  } else if (character === PlayerType.PLAYER_BETHANY_B) {
+    position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);
   }
 
   // Display the sprites
@@ -53,45 +68,40 @@ function displayCharacterProgress() {
   const digit4 = -1;
 
   const digit1Sprite = sprites.digit[0];
-  const posDigit1 = Vector(startingX, startingY);
   digit1Sprite.SetFrame("Default", digit1);
-  digit1Sprite.RenderLayer(0, posDigit1);
+  digit1Sprite.RenderLayer(0, position);
 
   if (digit2 !== -1) {
     const digit2Sprite = sprites.digit[1];
-    const posDigit2 = Vector(startingX + digitLength - 1, startingY);
     digit2Sprite.SetFrame("Default", digit2);
-    digit2Sprite.RenderLayer(0, posDigit2);
+    const digit2Position = position.add(Vector(digitLength - 1, 0));
+    digit2Sprite.RenderLayer(0, digit2Position);
   }
 
-  const posSlash = Vector(startingX + digitLength - 1 + adjustment1, startingY);
-  sprites.slash.RenderLayer(0, posSlash);
+  const slashPosition = position.add(Vector(digitLength - 1 + adjustment1, 0));
+  sprites.slash.RenderLayer(0, slashPosition);
 
   const digit3Sprite = sprites.digit[2];
-  const posDigit3 = Vector(
-    startingX + digitLength + adjustment2 + 5,
-    startingY,
-  );
   digit3Sprite.SetFrame("Default", digit3);
-  digit3Sprite.RenderLayer(0, posDigit3);
+  const digit3Position = position.add(Vector(digitLength + adjustment2 + 5, 0));
+  digit3Sprite.RenderLayer(0, digit3Position);
 
-  let posDigit4 = null;
+  let digit4Position = null;
   if (digit4 !== -1) {
     const digit4Sprite = sprites.digit[3];
-    posDigit4 = Vector(
-      startingX + digitLength + adjustment2 + 3 + digitLength,
-      startingY,
-    );
     digit4Sprite.SetFrame("Default", digit4);
-    digit4Sprite.RenderLayer(0, posDigit4);
+    digit4Position = position.add(
+      Vector(digitLength + adjustment2 + 3 + digitLength, 0),
+    );
+    digit4Sprite.RenderLayer(0, digit4Position);
   }
 
   let posSeason;
   const spacing = 17;
-  if (posDigit4 !== null) {
-    posSeason = Vector(posDigit4.X + spacing, posDigit4.Y);
+  if (digit4Position === null) {
+    posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
   } else {
-    posSeason = Vector(posDigit3.X + spacing, posDigit3.Y);
+    posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
   }
   sprites.season.SetFrame("Default", 0);
   sprites.season.RenderLayer(0, posSeason);

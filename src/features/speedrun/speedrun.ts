@@ -10,40 +10,24 @@ export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
   if (challengeDefinition === undefined) {
-    error(
-      `Failed to find challenge ${challenge} in the challenge definitions.`,
-    );
+    return false;
   }
 
   const [abbreviation, numElements] = challengeDefinition;
   if (abbreviation === undefined || numElements === undefined) {
-    error(
-      `Failed to parse the challenge definition for challenge: ${challenge}`,
-    );
+    return false;
   }
 
   const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
-    error(
-      "Failed to find our character order in the changeCharOrder save data.",
-    );
+    return false;
   }
 
   if (type(characterOrder) !== "table") {
-    log(
-      `Error: The character order for challenge ${challenge} was not a table.`,
-    );
     return false;
   }
 
-  if (characterOrder.length !== numElements) {
-    log(
-      `Error: The character order for challenge ${challenge} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
-    );
-    return false;
-  }
-
-  return true;
+  return characterOrder.length === numElements;
 }
 
 export function finish(player: EntityPlayer): void {
@@ -126,6 +110,7 @@ export function getCurrentCharacter(): int {
   }
 
   if (characterOrder.length !== numElements) {
+    traceback();
     error(
       `The character order for challenge ${abbreviation} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
     );
@@ -168,9 +153,7 @@ export function goBackToFirstCharacter(): boolean {
   // so they want to restart from the first character
   v.persistent.characterNum = 1;
   g.run.restart = true;
-  Isaac.DebugString(
-    "Restarting because we want to start from the first character again.",
-  );
+  log("Restarting because we want to start from the first character again.");
 
   // Tell the LiveSplit AutoSplitter to reset
   v.persistent.liveSplitReset = true;
@@ -201,7 +184,7 @@ export function setCorrectCharacter(): boolean {
   if (character !== currentCharacter) {
     v.persistent.performedFastReset = true;
     g.run.restart = true;
-    Isaac.DebugString(
+    log(
       `Restarting because we are on character ${character} and we need to be on character ${currentCharacter}.`,
     );
 

@@ -1,3 +1,4 @@
+import { log } from "isaacscript-common";
 import g from "../../../globals";
 import { restartAsCharacter } from "../../../util";
 import * as characterProgress from "../characterProgress";
@@ -15,34 +16,44 @@ export default function speedrunPostRender(): void {
     return;
   }
 
-  checkRestartForNextCharacter();
+  checkBeginFadeOutAfterCheckpoint();
+  checkManualResetAtEndOfFadeout();
+
   characterProgress.postRender();
 }
 
-function checkRestartForNextCharacter() {
+function checkBeginFadeOutAfterCheckpoint() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
+  if (v.run.fadeFrame === null || isaacFrameCount < v.run.fadeFrame) {
+    return;
+  }
+
   // We grabbed the checkpoint, so fade out the screen before we reset
-  if (v.run.fadeFrame !== null && isaacFrameCount >= v.run.fadeFrame) {
-    v.run.fadeFrame = 0;
-    g.g.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
+  v.run.fadeFrame = null;
+  g.g.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
 
-    // 72 restarts as the current character and we want a frame of leeway
-    v.run.resetFrame = isaacFrameCount + 70;
-    // (this is necessary because we don't want the player to be able to reset to skip having to
-    // watch the fade out)
+  // 72 restarts as the current character and we want a frame of leeway
+  v.run.resetFrame = isaacFrameCount + 70;
+  // (this is necessary because we don't want the player to be able to reset to skip having to
+  // watch the fade out)
+}
 
+function checkManualResetAtEndOfFadeout() {
+  const isaacFrameCount = Isaac.GetFrameCount();
+
+  if (v.run.resetFrame === null || isaacFrameCount < v.run.resetFrame) {
     return;
   }
 
   // The screen is now black, so move us to the next character for the speedrun
-  if (v.run.resetFrame !== null && isaacFrameCount >= v.run.resetFrame) {
-    v.run.resetFrame = 0;
-    v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
-    v.persistent.characterNum += 1;
-    g.run.restart = true;
-    Isaac.DebugString("Switching to the next character for the speedrun.");
-  }
+  v.run.resetFrame = null;
+  v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
+  v.persistent.characterNum += 1;
+  g.run.restart = true;
+  log(
+    `Switching to the next character for the speedrun: ${v.persistent.characterNum}`,
+  );
 }
 
 export function checkRestartWrongSpeedrunCharacter(): boolean {

@@ -83,6 +83,8 @@ export enum EffectSubTypeCustom {
   FLOOR_EFFECT_CREEP = 12345, // There is no "Isaac.GetEntitySubTypeByName()" function
 }
 
+/*
 export enum SoundEffectCustom {
   SOUND_SPEEDRUN_FINISH = Isaac.GetSoundIdByName("Speedrun Finish"),
 }
+*/

@@ -41,13 +41,18 @@ export function getPosition(): Vector {
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
+  // On vanilla, being in a challenge shifts the "No Achievements" icon to the left
   if (challenge !== Challenge.CHALLENGE_NULL) {
-    // On vanilla, being in a challenge shifts the "No Achievements" icon to the left
     position = position.add(SPRITE_CHALLENGE_OFFSET);
-  } else if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
-    // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
+  }
+
+  // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
+  if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
-  } else if (
+  }
+
+  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
+  if (
     character === PlayerType.PLAYER_BETHANY ||
     character === PlayerType.PLAYER_JACOB
   ) {

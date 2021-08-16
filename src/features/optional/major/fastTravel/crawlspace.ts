@@ -330,7 +330,7 @@ function touched(entity: GridEntity | EntityEffect) {
   // to a room outside the grid
   if (roomIndex < 0 && v.level.crawlspace.previousReturnRoomIndex === null) {
     v.level.crawlspace.previousReturnRoomIndex = previousRoomIndex;
-    Isaac.DebugString(
+    log(
       `Since we are entering a crawlspace from a room outside of the grid, storing the previous room index: ${v.level.crawlspace.previousReturnRoomIndex}`,
     );
   }

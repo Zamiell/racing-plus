@@ -10,8 +10,6 @@ export function postGameStarted(): void {
     return;
   }
 
-  Isaac.DebugString("In the R+7 (Season 1) challenge.");
-
   // Give extra items to some characters
   if (
     character === PlayerType.PLAYER_BETHANY ||

@@ -2,6 +2,8 @@ import { PickingUpItem } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import v from "../v";
 
+const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30; // In Isaac frames
+
 export function speedrunPreItemPickup(
   player: EntityPlayer,
   pickingUpItem: PickingUpItem,
@@ -30,7 +32,7 @@ function checkCheckpointTouched(
   player.ControlsEnabled = false;
 
   // Mark to fade out after the "Checkpoint" text has displayed on the screen for a little bit
-  v.run.fadeFrame = isaacFrameCount + 30;
+  v.run.fadeFrame = isaacFrameCount + DELAY_FRAMES_BEFORE_STARTING_FADEOUT;
 
   // Record how long this run took
   if (v.persistent.startedCharTime !== null) {

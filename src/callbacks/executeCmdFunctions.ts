@@ -5,6 +5,7 @@ import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
+import { speedrunSetNext } from "../features/speedrun/v";
 import g from "../globals";
 import PILL_MAP from "../pillMap";
 import { consoleCommand, restartAsCharacter } from "../util";
@@ -271,6 +272,10 @@ functionMap.set("luck", (_params: string) => {
   consoleCommand("debug 9");
 });
 
+functionMap.set("next", (_params: string) => {
+  speedrunSetNext();
+});
+
 functionMap.set("pill", (params: string) => {
   if (params === "") {
     print("You must specify a pill name or number.");
@@ -325,6 +330,10 @@ functionMap.set("pos", (_params: string) => {
   for (const player of getPlayers()) {
     print(`Player position: (${player.Position.X}, ${player.Position.Y})`);
   }
+});
+
+functionMap.set("previous", (_params: string) => {
+  speedrunSetNext(true);
 });
 
 functionMap.set("roomindex", (_params: string) => {
