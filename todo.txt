@@ -7,6 +7,9 @@
 - Fixed the bug where crawlspaces in Genesis rooms on end-floors would softlock you. (They are now represented as a teleporter instead of a crawlspace to make it more clear that they are not a real crawlspace.) (Thanks Gamonymous)
 - Fixed the bug where teleporting to a Devil Room or Angel Room from a crawlspace would not work properly. (Thanks Gamonymous)
 - Fixed the bug where Great Gideon crawlspaces would not work properly with fast-travel. (They now just use the vanilla system by default.) (Thanks Gamonymous)
+- Fixed the bug where the automatic-insertion feature was not working properly. (Thanks Cyber_1)
+- Fixed the bug where Sawblade was not showing properly in the client as the starting item. (Thanks Gamonymous)
+- Fixed the bug where Suplex was not working properly. (Thanks Cyber_1)
 ```
 
 TODO Racing+ new features:

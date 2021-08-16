@@ -9,7 +9,7 @@ import fastClearPostEntityKill from "../features/optional/major/fastClear/callba
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 
-const DEBUG = true;
+const DEBUG = false;
 
 export function init(mod: Mod): void {
   mod.AddCallback(
