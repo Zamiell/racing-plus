@@ -14,6 +14,7 @@ import showDreamCatcherItemPostGameStarted from "../features/optional/quality/sh
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
+import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
 import { ChallengeCustom } from "../features/speedrun/enums";
 import g from "../globals";
 import { CollectibleTypeCustom } from "../types/enums";
@@ -56,6 +57,7 @@ export function main(isContinued: boolean): void {
 
   // Major features
   racePostGameStarted();
+  speedrunPostGameStarted();
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 

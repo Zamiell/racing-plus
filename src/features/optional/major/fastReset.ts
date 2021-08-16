@@ -5,6 +5,7 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
+import { speedrunSetFastReset } from "../../speedrun/v";
 
 const v = {
   run: {
@@ -63,9 +64,8 @@ function checkResetInput() {
 function reset() {
   const isaacFrameCount = Isaac.GetFrameCount();
   if (g.run.roomsEntered <= 3 || isaacFrameCount <= v.run.lastResetFrame + 60) {
-    // A fast reset means to reset the current character,
-    // a slow/normal reset means to go back to the first character
-    g.speedrun.fastReset = true;
+    // Speedrun functionality relies on knowing whether or not a fast-reset occurred
+    speedrunSetFastReset();
 
     consoleCommand("restart");
   } else {

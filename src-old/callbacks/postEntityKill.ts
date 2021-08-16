@@ -1,12 +1,13 @@
 /*
+
 // EntityType.ENTITY_MOM (45)
 export function mom(_entity: Entity): void {
   // There can be up to 5 Mom entities in the room,
   // so don't do anything if we have already spawned the photos
-  if (g.run.momDied) {
+  if (g.room.momDied) {
     return;
   }
-  g.run.momDied = true;
+  g.room.momDied = true;
 
   // Fix the (vanilla) bug with Globins, Sacks, etc.
   killExtraEnemies();
@@ -18,83 +19,8 @@ export function momsHeart(entity: Entity): void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
-  // Don't do anything if we are fighting Mom's Heart / It Lives on The Void
-  if (stage === 12) {
-    return;
-  }
-
-  // For some reason, Mom's Heart / It Lives! will die twice in a row on two subsequent frames
-  // (this does not happen on Hush)
-  // We do not want to do anything if this is the first time it died
-  if (stage !== 9 && gameFrameCount - g.run.itLivesKillFrame > 1) {
-    g.run.itLivesKillFrame = gameFrameCount;
-    Isaac.DebugString(
-      `Killed Mom's Heart / It Lives! / Hush (fake first death) on frame: ${gameFrameCount}`,
-    );
-    return;
-  }
-
-  // Record when we killed It Lives! or Hush;
-  // a trapdoor and/or heaven door will spawn 1 frame from now, and we will delete it in the
-  // fastTravel functions
-  g.run.itLivesKillFrame = gameFrameCount;
-  Isaac.DebugString(
-    `Killed Mom's Heart / It Lives! / Hush on frame. ${gameFrameCount}`,
-  );
-
-  stage8paths.spawn(entity);
-
   // Fix the (vanilla) bug with Globins, Sacks, etc.
   killExtraEnemies();
-
-  // Finally, perform extra activities if we killed Hush
-  if (entity.Type === EntityType.ENTITY_HUSH) {
-    hushKilled();
-  }
-}
-
-function hushKilled() {
-  const centerPos = g.r.GetCenterPos();
-  const challenge = Isaac.GetChallenge();
-
-  // Season 7 speedruns end at Hush
-  if (challenge === ChallengeCustom.R7_SEASON_7) {
-    // Spawn a big chest
-    // (which will get replaced with either a checkpoint or a trophy on the next frame)
-    Isaac.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_BIGCHEST,
-      0,
-      centerPos,
-      Vector.Zero,
-      null,
-    );
-    return;
-  }
-
-  // Manually open the Void door
-  g.r.TrySpawnTheVoidDoor();
-
-  if (g.race.status === "in progress" && g.race.myStatus === "racing" && g.race.goal === "Hush") {
-    // Spawn a big chest (which will get replaced with a trophy on the next frame)
-    Isaac.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_BIGCHEST,
-      0,
-      centerPos,
-      Vector.Zero,
-      null,
-    );
-  }
-}
-
-// EntityType.ENTITY_ULTRA_GREED (406)
-export function ultraGreed(entity: Entity): void {
-  // In vanilla, he will turn into a gold statue and block movement,
-  // which can block access to the Checkpoint
-  // Instead, simply remove Ultra Greed as soon as he dies
-  // (this also has the benefit of not forcing the player to watch the long death animation)
-  entity.Remove();
 }
 
 // After killing Mom, Mom's Heart, or It Lives!, all entities in the room are killed
@@ -126,4 +52,5 @@ function killExtraEnemies() {
     }
   }
 }
+
 */

@@ -9,7 +9,7 @@ import { PickupVariantCustom } from "../../types/enums";
 import { hasPolaroidOrNegative, incrementRNG } from "../../util";
 import { spawnCollectible } from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceData";
-import { ChallengeCustom } from "../speedrun/enums";
+import { inSpeedrun } from "../speedrun/speedrun";
 
 enum PhotoSituation {
   Polaroid,
@@ -94,10 +94,8 @@ function manuallySpawn(): void {
 
 // Figure out if we need to spawn The Polaroid, The Negative, or both
 function getPhotoSituation() {
-  const challenge = Isaac.GetChallenge();
-
-  // Speedrun seasons have set goals
-  if (challenge === ChallengeCustom.SEASON_1) {
+  // By default, custom speedrun challenges award both photos
+  if (inSpeedrun()) {
     return PhotoSituation.Both;
   }
 

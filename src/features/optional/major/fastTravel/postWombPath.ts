@@ -16,7 +16,8 @@ export function postEntityKillMomsHeart(_entity: Entity): void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
-  // Don't do anything if we just killed the Mom's Heart on Mausoleum / Gehenna
+  // Don't do anything if we just killed the Mom's Heart or It Lives! on Mausoleum, Gehenna,
+  // or The Void
   if (stage !== 8) {
     return;
   }

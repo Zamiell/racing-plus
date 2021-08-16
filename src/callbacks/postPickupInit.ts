@@ -4,6 +4,7 @@ import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
+import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -22,6 +23,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_POST_PICKUP_INIT,
     trinket,
     PickupVariant.PICKUP_TRINKET, // 350
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_PICKUP_INIT,
+    trophy,
+    PickupVariant.PICKUP_TROPHY, // 370
   );
 }
 
@@ -44,4 +51,9 @@ function bigChest(pickup: EntityPickup) {
 // PickupVariant.PICKUP_TRINKET (350)
 function trinket(pickup: EntityPickup) {
   removePerfectionVelocity.postPickupInitTrinket(pickup);
+}
+
+// PickupVariant.PICKUP_TROPHY (370)
+function trophy(pickup: EntityPickup) {
+  speedrunPostPickupInit.trophy(pickup);
 }

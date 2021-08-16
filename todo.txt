@@ -1,7 +1,7 @@
 ```
-### *v0.58.59* - August 1?th, 2021
+### *v0.58.60* - August 1?th, 2021
 
-- Krampus drops and angel drops will now always spawn on the nearest empty tile (instead of exactly where the entity dies). This prevents items from sometimes spawning on pits. (Thanks Finalkids)
+-
 ```
 
 TODO Racing+ new features:

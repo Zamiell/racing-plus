@@ -1,9 +1,49 @@
+import g from "../../../globals";
 import { restartAsCharacter } from "../../../util";
+import * as characterProgress from "../characterProgress";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
   inSpeedrun,
 } from "../speedrun";
+import v from "../v";
+
+const FADEOUT_SPEED = 0.0275;
+
+export default function speedrunPostRender(): void {
+  if (!inSpeedrun()) {
+    return;
+  }
+
+  checkRestartForNextCharacter();
+  characterProgress.postRender();
+}
+
+function checkRestartForNextCharacter() {
+  const isaacFrameCount = Isaac.GetFrameCount();
+
+  // We grabbed the checkpoint, so fade out the screen before we reset
+  if (v.run.fadeFrame !== null && isaacFrameCount >= v.run.fadeFrame) {
+    v.run.fadeFrame = 0;
+    g.g.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
+
+    // 72 restarts as the current character and we want a frame of leeway
+    v.run.resetFrame = isaacFrameCount + 70;
+    // (this is necessary because we don't want the player to be able to reset to skip having to
+    // watch the fade out)
+
+    return;
+  }
+
+  // The screen is now black, so move us to the next character for the speedrun
+  if (v.run.resetFrame !== null && isaacFrameCount >= v.run.resetFrame) {
+    v.run.resetFrame = 0;
+    v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
+    v.persistent.characterNum += 1;
+    g.run.restart = true;
+    Isaac.DebugString("Switching to the next character for the speedrun.");
+  }
+}
 
 export function checkRestartWrongSpeedrunCharacter(): boolean {
   if (!inSpeedrun()) {

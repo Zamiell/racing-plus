@@ -11,6 +11,7 @@ import fastTravelPostUpdate from "../features/optional/major/fastTravel/callback
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import racePostUpdate from "../features/race/callbacks/postUpdate";
+import speedrunPostUpdate from "../features/speedrun/callbacks/postUpdate";
 
 export function main(): void {
   // Mandatory features
@@ -23,6 +24,7 @@ export function main(): void {
 
   // Major features
   racePostUpdate();
+  speedrunPostUpdate();
   changeCharOrderPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();

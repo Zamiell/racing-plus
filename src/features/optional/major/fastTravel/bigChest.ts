@@ -13,6 +13,7 @@ import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
+import { isOnFinalCharacter } from "../../../speedrun/speedrun";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 
@@ -105,7 +106,7 @@ function season1() {
   // Season 1 goes to The Chest and requires The Polaroid to get there
   if (onChest()) {
     // The Chest (11.1)
-    if (g.speedrun.characterNum === 7) {
+    if (isOnFinalCharacter()) {
       return ReplacementAction.Trophy;
     }
 

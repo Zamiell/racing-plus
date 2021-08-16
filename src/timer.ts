@@ -64,17 +64,6 @@ export function checkDisplaySeededDeath(): void {
       // The timer needs to be moved to the right to account for the "(S6)" icon
       adjustTimerRight = true;
     }
-  } else if (
-    challenge === ChallengeCustom.R7_SEASON_6 &&
-    g.speedrun.characterNum === 1 &&
-    g.run.roomsEntered === 1
-  ) {
-    // If seeded death is not active,
-    // display the time until the next starting build will be rotated in
-    const timeStartingBuildExpires =
-      g.season6.timeItemAssigned + SEASON_6_ITEM_LOCK_MILLISECONDS;
-    remainingTimeMilliseconds = timeStartingBuildExpires - Isaac.GetTime();
-    moveTimerToBottomRight = true;
   }
   if (
     remainingTimeMilliseconds === undefined ||
@@ -229,7 +218,7 @@ function getNewTimerSprites() {
   return sprites;
 }
 
-function convertSecondsToTimerValues(
+export function convertSecondsToTimerValues(
   totalSeconds: int,
 ): [int, int, int, int, int, int] {
   // Calculate the hours digit

@@ -22,6 +22,10 @@ const SPRITE_POSITION = Vector(4, 72); // On top of where the "No Achievements" 
 const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 export function postRender(): void {
+  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+    return;
+  }
+
   const spriteLayer = socketClient.isActive()
     ? SpriteLayer.Green
     : SpriteLayer.Blue;

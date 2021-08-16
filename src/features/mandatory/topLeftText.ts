@@ -12,6 +12,7 @@ import {
   isOnFinalCharacter,
   shouldShowEndOfRunTextSpeedrun,
 } from "../speedrun/speedrun";
+import { speedrunGetFinishedFrames } from "../speedrun/v";
 
 export function postRender(): void {
   const seedString = g.seeds.GetStartSeedString();
@@ -42,7 +43,7 @@ export function postRender(): void {
     if (!inSpeedrun() || isOnFinalCharacter()) {
       let frames: int;
       if (inSpeedrun()) {
-        frames = g.speedrun.finishedFrames;
+        frames = speedrunGetFinishedFrames();
       } else {
         frames = g.raceVars.finishedFrames;
       }

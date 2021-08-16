@@ -1,6 +1,5 @@
 import RaceData from "../features/race/types/RaceData";
 import RaceVars from "../features/race/types/RaceVars";
-import SpeedrunData from "../features/speedrun/types/SpeedrunData";
 
 export default class Globals {
   debug = true;
@@ -34,8 +33,6 @@ export default class Globals {
 
   /** Extra variables for races that are separate from what the client knows about. */
   raceVars = new RaceVars();
-
-  speedrun = new SpeedrunData();
 
   constructor() {
     this.fontDroid.Load("font/droid.fnt");

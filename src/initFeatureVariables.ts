@@ -31,6 +31,7 @@ import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
+import * as characterProgress from "./features/speedrun/characterProgress";
 import * as speedrunVars from "./features/speedrun/v";
 import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
@@ -46,6 +47,7 @@ export default function initFeatureVariables(): void {
   socketClient.init();
   speedrunVars.init();
   changeCharOrderVars.init();
+  characterProgress.init();
   sawblade.init();
 
   // Mandatory features

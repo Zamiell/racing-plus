@@ -14,20 +14,7 @@ export default class GlobalsRun {
   // Temporary tracking
   currentRoomClearState = true;
   lastDamageFrame = 0;
-  diversity = false; // Whether or not this is a diversity race
-  forgetMeNow = false;
-  usedD6Frame = 0; // Set when the D6 is used; used to prevent bugs with The Void + D6
-  usedVoidFrame = 0; // Set when Void is used; used to prevent bugs with The Void + D6
-  usedTelepills = false; // Used to replace the "use" animation
-  usedBlankCard = false; // Used to replace the "use" animation
   giveExtraCharge = false; // Used to fix The Battery + 9 Volt synergy
-  droppedButterItem = 0; // Needed to fix a bug with the Schoolbag and the Butter! trinket
-  fastResetFrame = 0; // Set when the user presses the reset button on the keyboard
-  dualityCheckFrame = 0;
-  momDied = false; // Used to fix bugs with fast-clear and killing Mom
-  vanillaPhotosSpawning = false; // Used when replacing The Polaroid and The Negative
-  playerGeneratedPedestalSeeds = [] as int[]; // Used so that we properly seed player-generated pedestals (1/2)
-  playerGeneratedPedestalFrame = 0; // Used so that we properly seed player-generated pedestals (2/2)
   // Used to delete the trapdoor and heaven door after It Lives! and Hush
   itLivesKillFrame = 0;
   rechargeItemFrame = 0; // Used to recharge a D6 or a Void after a failed attempt

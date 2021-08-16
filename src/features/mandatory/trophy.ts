@@ -5,6 +5,7 @@ import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
 import raceFinish from "../race/raceFinish";
 import { isSeededDeathActive } from "../race/seededDeath";
 import * as speedrun from "../speedrun/speedrun";
+import { speedrunIsFinished } from "../speedrun/v";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
 
@@ -43,8 +44,8 @@ export function postUpdate(): void {
 }
 
 function checkTouch() {
-  // Don't check anything if ( we have already finished the race / speedrun
-  if (g.raceVars.finished || g.speedrun.finished) {
+  // Don't check anything if we have already finished the race / speedrun
+  if (g.raceVars.finished || speedrunIsFinished()) {
     return;
   }
 

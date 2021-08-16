@@ -19,7 +19,9 @@ import racePostRender, {
   checkRestartWrongRaceCharacter,
   checkRestartWrongRaceSeed,
 } from "../features/race/callbacks/postRender";
-import { checkRestartWrongSpeedrunCharacter } from "../features/speedrun/callbacks/postRender";
+import speedrunPostRender, {
+  checkRestartWrongSpeedrunCharacter,
+} from "../features/speedrun/callbacks/postRender";
 import g from "../globals";
 import { consoleCommand } from "../util";
 
@@ -44,6 +46,7 @@ export function main(): void {
 
   // Major features
   racePostRender();
+  speedrunPostRender();
   changeCharOrderPostRender();
   fastTravelPostRender();
   fastReset.postRender();

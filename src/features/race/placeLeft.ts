@@ -16,6 +16,10 @@ export function postRender(): void {
 }
 
 function drawSprite() {
+  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+    return;
+  }
+
   // In the pre-race room, we have full graphics for "ready" and "not ready",
   // so the indicator on the left side of the screen is not necessary
   if (inRaceRoom()) {

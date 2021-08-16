@@ -1,6 +1,7 @@
 import { log } from "isaacscript-common";
 import g from "../../globals";
-import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
+import * as timer from "../../timer";
+import { CollectibleTypeCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
@@ -45,6 +46,58 @@ export function checkValidCharOrder(): boolean {
   return true;
 }
 
+export function finish(player: EntityPlayer): void {
+  // Play a sound effect
+  // (custom sounds do not function properly in the current patch)
+  // g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
+
+  // Give them the Checkpoint custom item
+  // (this is used by the AutoSplitter to know when to split)
+  player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT);
+
+  // Record how long this run took
+  if (v.persistent.startedCharTime !== null) {
+    const elapsedTime = Isaac.GetTime() - v.persistent.startedCharTime;
+    v.persistent.characterRunTimes.push(elapsedTime);
+  }
+
+  // Show the run summary (including the average time per character)
+  v.room.showEndOfRunText = true;
+
+  // Finish the speedrun
+  v.run.finished = true;
+  v.persistent.characterNum = 1;
+
+  if (v.persistent.startedTime !== null) {
+    v.run.finishedTime = Isaac.GetTime() - v.persistent.startedTime;
+  }
+
+  if (v.persistent.startedFrame !== null) {
+    v.run.finishedFrames = Isaac.GetFrameCount() - v.persistent.startedFrame;
+  }
+
+  // Fireworks will play on the next frame (from the PostUpdate callback)
+}
+
+export function getAverageTimePerCharacter(): string {
+  let totalMilliseconds = 0;
+  for (const milliseconds of v.persistent.characterRunTimes) {
+    totalMilliseconds += milliseconds;
+  }
+  const averageMilliseconds =
+    totalMilliseconds / v.persistent.characterRunTimes.length;
+  const averageSeconds = averageMilliseconds / 1000;
+
+  const [hours, minute1, minute2, second1, second2] =
+    timer.convertSecondsToTimerValues(averageSeconds);
+
+  if (hours > 0) {
+    return "too long";
+  }
+
+  return `${minute1}${minute2}.${second1}${second2}`;
+}
+
 export function getCurrentCharacter(): int {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
@@ -61,47 +114,68 @@ export function getCurrentCharacter(): int {
     );
   }
 
-  const characterOrder = g.speedrun.characterOrder.get(challenge);
+  const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
-    return 0;
+    error(`Failed to get the character order for challenge: ${abbreviation}`);
   }
 
   if (type(characterOrder) !== "table") {
-    log(
-      `Error: The character order for challenge ${challenge} was not a table.`,
+    error(
+      `The character order for was not a table for challenge: ${abbreviation}`,
     );
-    return 0;
   }
 
   if (characterOrder.length !== numElements) {
-    log(
-      `Error: The character order for challenge ${challenge} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
+    error(
+      `The character order for challenge ${abbreviation} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
     );
-    return 0;
   }
 
-  if (g.speedrun.characterNum < 1) {
-    log("Error: The character number is less than 1.");
-    return 0;
-  }
-
-  if (g.speedrun.characterNum > characterOrder.length) {
-    log(
-      `Error: The character number is greater than ${characterOrder.length} (i.e. the amount of characters in this speedrun).`,
+  if (v.persistent.characterNum < 1) {
+    error(
+      `The character number of "${v.persistent.characterNum}" is less than 1.`,
     );
-    return 0;
   }
 
-  const arrayIndex = g.speedrun.characterNum - 1;
+  if (v.persistent.characterNum > characterOrder.length) {
+    error(
+      `The character number of "${v.persistent.characterNum}" is greater than ${characterOrder.length} (i.e. the amount of characters in this speedrun).`,
+    );
+  }
+
+  const arrayIndex = v.persistent.characterNum - 1;
   const character = characterOrder[arrayIndex];
   if (character === undefined) {
-    log(
-      `Error: Failed to find the character at array index ${arrayIndex} for the character order of challenge ${challenge}.`,
+    error(
+      `Failed to find the character at array index ${arrayIndex} for the character order of challenge: ${abbreviation}`,
     );
-    return 0;
   }
 
   return character;
+}
+
+export function goBackToFirstCharacter(): boolean {
+  if (v.persistent.performedFastReset) {
+    v.persistent.performedFastReset = false;
+    return false;
+  }
+
+  if (v.persistent.characterNum === 1) {
+    return false;
+  }
+
+  // They held R for a slow reset, and they are not on the first character,
+  // so they want to restart from the first character
+  v.persistent.characterNum = 1;
+  g.run.restart = true;
+  Isaac.DebugString(
+    "Restarting because we want to start from the first character again.",
+  );
+
+  // Tell the LiveSplit AutoSplitter to reset
+  v.persistent.liveSplitReset = true;
+
+  return true;
 }
 
 export function inSpeedrun(): boolean {
@@ -116,30 +190,25 @@ export function inSpeedrun(): boolean {
 }
 
 export function isOnFinalCharacter(): boolean {
-  return g.speedrun.characterNum === 7;
+  return v.persistent.characterNum === 7;
 }
 
-export function finish(player: EntityPlayer): void {
-  // Give them the Checkpoint custom item
-  // (this is used by the AutoSplitter to know when to split)
-  player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT);
+export function setCorrectCharacter(): boolean {
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+  const currentCharacter = getCurrentCharacter();
 
-  // Record how long this run took
-  const elapsedTime = Isaac.GetTime() - g.speedrun.startedCharTime;
-  g.speedrun.characterRunTimes.push(elapsedTime);
+  if (character !== currentCharacter) {
+    v.persistent.performedFastReset = true;
+    g.run.restart = true;
+    Isaac.DebugString(
+      `Restarting because we are on character ${character} and we need to be on character ${currentCharacter}.`,
+    );
 
-  // Show the run summary (including the average time per character)
-  v.room.showEndOfRunText = true;
+    return true;
+  }
 
-  // Finish the speedrun
-  g.speedrun.finished = true;
-  g.speedrun.finishedTime = Isaac.GetTime() - g.speedrun.startedTime;
-  g.speedrun.finishedFrames = Isaac.GetFrameCount() - g.speedrun.startedFrame;
-
-  // Play a sound effect
-  g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
-
-  // Fireworks will play on the next frame (from the PostUpdate callback)
+  return false;
 }
 
 export function shouldShowEndOfRunTextSpeedrun(): boolean {

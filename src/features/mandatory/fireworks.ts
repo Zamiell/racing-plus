@@ -1,5 +1,6 @@
 import { getPlayers, gridToPos, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import { speedrunIsFinished } from "../speedrun/v";
 
 const v = {
   run: {
@@ -19,7 +20,7 @@ export function postUpdate(): void {
       g.race.status === "in progress" &&
       g.race.place === 1 &&
       g.race.numEntrants >= 3) ||
-    g.speedrun.finished
+    speedrunIsFinished()
   ) {
     spawnSparkleOnPlayer();
     spawnFireworks();

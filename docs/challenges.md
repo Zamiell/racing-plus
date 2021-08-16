@@ -11,7 +11,7 @@
 ## Shared Speedrun Mechanics
 
 * In all seasons, the first character will get More Options to speed up the process of finding an item and getting a run going. After the Treasure Room is entered, More Options will be removed.
-* In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. This is to increase strategy and decision making.
+* In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
 
 <br />
 
