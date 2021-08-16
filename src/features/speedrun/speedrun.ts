@@ -1,10 +1,12 @@
-import { log } from "isaacscript-common";
+import { arraySum, log } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
+
+const ISAAC_FRAMES_PER_SECOND = 60;
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
@@ -31,6 +33,8 @@ export function checkValidCharOrder(): boolean {
 }
 
 export function finish(player: EntityPlayer): void {
+  const isaacFrameCount = Isaac.GetFrameCount();
+
   // Play a sound effect
   // (custom sounds do not function properly in the current patch)
   // g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
@@ -40,9 +44,9 @@ export function finish(player: EntityPlayer): void {
   player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT);
 
   // Record how long this run took
-  if (v.persistent.startedCharTime !== null) {
-    const elapsedTime = Isaac.GetTime() - v.persistent.startedCharTime;
-    v.persistent.characterRunTimes.push(elapsedTime);
+  if (v.persistent.startedCharFrame !== null) {
+    const elapsedFrames = isaacFrameCount - v.persistent.startedCharFrame;
+    v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
   // Show the run summary (including the average time per character)
@@ -52,25 +56,17 @@ export function finish(player: EntityPlayer): void {
   v.run.finished = true;
   v.persistent.characterNum = 1;
 
-  if (v.persistent.startedTime !== null) {
-    v.run.finishedTime = Isaac.GetTime() - v.persistent.startedTime;
-  }
-
   if (v.persistent.startedFrame !== null) {
-    v.run.finishedFrames = Isaac.GetFrameCount() - v.persistent.startedFrame;
+    v.run.finishedFrames = isaacFrameCount - v.persistent.startedFrame;
   }
 
   // Fireworks will play on the next frame (from the PostUpdate callback)
 }
 
 export function getAverageTimePerCharacter(): string {
-  let totalMilliseconds = 0;
-  for (const milliseconds of v.persistent.characterRunTimes) {
-    totalMilliseconds += milliseconds;
-  }
-  const averageMilliseconds =
-    totalMilliseconds / v.persistent.characterRunTimes.length;
-  const averageSeconds = averageMilliseconds / 1000;
+  const totalFrames = arraySum(v.persistent.characterRunFrames);
+  const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
+  const averageSeconds = averageFrames / ISAAC_FRAMES_PER_SECOND;
 
   const [hours, minute1, minute2, second1, second2] =
     timer.convertSecondsToTimerValues(averageSeconds);

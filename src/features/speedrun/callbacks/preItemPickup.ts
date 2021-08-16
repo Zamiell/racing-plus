@@ -35,13 +35,13 @@ function checkCheckpointTouched(
   v.run.fadeFrame = isaacFrameCount + DELAY_FRAMES_BEFORE_STARTING_FADEOUT;
 
   // Record how long this run took
-  if (v.persistent.startedCharTime !== null) {
-    const elapsedMilliseconds = Isaac.GetTime() - v.persistent.startedCharTime;
-    v.persistent.characterRunTimes.push(elapsedMilliseconds);
+  if (v.persistent.startedCharFrame !== null) {
+    const elapsedFrames = isaacFrameCount - v.persistent.startedCharFrame;
+    v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
-  // Mark our current time as the starting time for the next character
-  v.persistent.startedCharTime = Isaac.GetTime();
+  // Mark our current frame as the starting time for the next character
+  v.persistent.startedCharFrame = isaacFrameCount;
 
   // Show the run summary (including the average time per character for the run so far)
   v.room.showEndOfRunText = true;

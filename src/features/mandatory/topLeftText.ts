@@ -8,6 +8,7 @@ import { shouldShowEndOfRunTextRace } from "../race/raceFinish";
 import { shouldShowRaceID } from "../race/raceStart";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
 import {
+  getAverageTimePerCharacter,
   inSpeedrun,
   isOnFinalCharacter,
   shouldShowEndOfRunTextSpeedrun,
@@ -34,7 +35,7 @@ export function postRender(): void {
     lines.push(`R+ ${VERSION} - ${seedString}`);
 
     if (shouldShowEndOfRunTextSpeedrun()) {
-      lines.push("Avg. time per char: unknown"); // ${speedrun.getAverageTimePerCharacter()}`; // TODO CHANGE TO FRAMES
+      lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
       lines.push(`Rooms entered: ${g.run.roomsEntered}`);
     }

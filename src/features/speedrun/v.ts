@@ -9,10 +9,9 @@ const v = {
     /** Used to tell the difference between a normal reset and a fast-reset. */
     performedFastReset: false,
 
-    startedTime: null as null | int,
     startedFrame: null as null | int,
-    startedCharTime: null as null | int,
-    characterRunTimes: [] as int[],
+    startedCharFrame: null as null | int,
+    characterRunFrames: [] as int[],
   },
 
   run: {
@@ -20,7 +19,6 @@ const v = {
     resetFrame: null as null | int,
 
     finished: false,
-    finishedTime: null as null | int,
     finishedFrames: null as null | int,
   },
 
@@ -46,10 +44,10 @@ export function resetPersistentVars(): void {
   v.persistent.characterNum = 1;
   v.persistent.liveSplitReset = false;
   v.persistent.performedFastReset = false;
-  v.persistent.startedTime = null;
+
   v.persistent.startedFrame = null;
-  v.persistent.startedCharTime = null;
-  v.persistent.characterRunTimes = [];
+  v.persistent.startedCharFrame = null;
+  v.persistent.characterRunFrames = [];
 }
 
 export function resetFirstCharacterVars(): void {
@@ -57,10 +55,9 @@ export function resetFirstCharacterVars(): void {
     return;
   }
 
-  v.persistent.startedTime = 0;
-  v.persistent.startedFrame = 0;
-  v.persistent.startedCharTime = 0;
-  v.persistent.characterRunTimes = [];
+  v.persistent.startedFrame = null;
+  v.persistent.startedCharFrame = null;
+  v.persistent.characterRunFrames = [];
 }
 
 export function speedrunGetFinishedFrames(): number {
