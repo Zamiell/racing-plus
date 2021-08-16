@@ -23,14 +23,3 @@ export function deleteDyingEntity(
     }
   }
 }
-
-export function getItemDropPosition(npc: EntityNPC): Vector {
-  // By default, spawn the item drop exactly where the NPC dies
-  // But account for if it would overlap with a grid entity
-  const gridIndex = g.r.GetGridIndex(npc.Position);
-  const gridEntity = g.r.GetGridEntity(gridIndex);
-
-  return gridEntity === null
-    ? npc.Position
-    : g.r.FindFreePickupSpawnPosition(npc.Position);
-}

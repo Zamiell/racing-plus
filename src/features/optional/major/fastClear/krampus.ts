@@ -1,7 +1,7 @@
 import { anyPlayerHasCollectible, getRandomInt } from "isaacscript-common";
 import g from "../../../../globals";
 import { spawnCollectible } from "../../../../utilGlobals";
-import { deleteDyingEntity, getItemDropPosition } from "./util";
+import { deleteDyingEntity } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;
 
@@ -35,7 +35,7 @@ function spawnKrampusDrop(npc: EntityNPC) {
   // Spawn the item
   spawnCollectible(
     getKrampusItemSubType(),
-    getItemDropPosition(npc),
+    g.r.FindFreePickupSpawnPosition(npc.Position),
     npc.InitSeed,
     false,
   );

@@ -1,15 +1,7 @@
 ```
-### *v0.58.58* - August 15th, 2021
+### *v0.58.59* - August 1?th, 2021
 
-- Satan's "Change" and "Death" animations are now sped up. (Thanks Hispa)
-- On races to Mother, you can now become softlocked if you intentionally try to skip Depths 2 with Undefined.
-- On races to The Beast, you can now become softlocked if you intentionally try to skip Depths 2 with Undefined.
-- Fixed the bug where crawlspaces in Genesis rooms on end-floors would softlock you. (They are now represented as a teleporter instead of a crawlspace to make it more clear that they are not a real crawlspace.) (Thanks Gamonymous)
-- Fixed the bug where teleporting to a Devil Room or Angel Room from a crawlspace would not work properly. (Thanks Gamonymous)
-- Fixed the bug where Great Gideon crawlspaces would not work properly with fast-travel. (They now just use the vanilla system by default.) (Thanks Gamonymous)
-- Fixed the bug where the automatic-insertion feature was not working properly. (Thanks Cyber_1)
-- Fixed the bug where Sawblade was not showing properly in the client as the starting item. (Thanks Gamonymous)
-- Fixed the bug where Suplex was not working properly. (Thanks Cyber_1)
+- Krampus drops and angel drops will now always spawn on the nearest empty tile (instead of exactly where the entity dies). This prevents items from sometimes spawning on pits. (Thanks Finalkids)
 ```
 
 TODO Racing+ new features:
