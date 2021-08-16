@@ -12,4 +12,4 @@ export const SPRITE_BETHANY_OFFSET = Vector(0, 8);
 export const SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6);
 
 /** The version is updated automatically by the IsaacScript publisher. */
-export const VERSION = "0.58.58";
+export const VERSION = "0.58.59";
