@@ -30,7 +30,9 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
       PickupVariant.PICKUP_KEY,
       PickupVariant.PICKUP_BOMB,
       PickupVariant.PICKUP_TAROTCARD,
-      PickupVariant.PICKUP_PILL,
+      // The Box also drops a pill, but since the pill spawns before the card does,
+      // the pill will always be inserted into the players inventory over the card
+      // To work around this and prioritize the card, we deliberately skip specifying the pill here
       PickupVariant.PICKUP_TRINKET,
     ],
   ], // 198

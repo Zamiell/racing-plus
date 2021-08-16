@@ -2,7 +2,9 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_NPC_UPDATE (0)
-export function postNPCUpdate(npc: EntityNPC): void {
+// EntityType.ENTITY_MOMS_HAND (213)
+// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+export function postNPCUpdateHands(npc: EntityNPC): void {
   if (!config.appearHands) {
     return;
   }

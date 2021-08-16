@@ -1,6 +1,9 @@
 import { config } from "../../../modConfigMenu";
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_WIZOOB (219)
+// EntityType.ENTITY_RED_GHOST (285)
+export function postNPCUpdateGhosts(npc: EntityNPC): void {
   if (!config.fastGhosts) {
     return;
   }

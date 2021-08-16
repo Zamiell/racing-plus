@@ -5,7 +5,9 @@ import { config } from "../../../modConfigMenu";
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
 const BLACK_CHAMPION_COLOR_IDX = 17;
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_THE_HAUNT (260)
+export function postNPCUpdateHaunt(npc: EntityNPC): void {
   if (!config.fastHaunt) {
     return;
   }

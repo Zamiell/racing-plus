@@ -3,6 +3,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { incrementRNG } from "../../../util";
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.fastSatan) {
     return;

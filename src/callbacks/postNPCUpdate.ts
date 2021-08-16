@@ -80,30 +80,30 @@ export function init(mod: Mod): void {
 
 // EntityType.ENTITY_GLOBIN (24)
 function globin(npc: EntityNPC) {
-  globinSoftlock.postNPCUpdate(npc);
+  globinSoftlock.postNPCUpdateGlobin(npc);
 }
 
 // EntityType.ENTITY_DEATH (66)
 function death(npc: EntityNPC) {
-  stopDeathSlow.postNPCUpdate(npc);
+  stopDeathSlow.postNPCUpdateDeath(npc);
 }
 
 // EntityType.ENTITY_MOMS_HAND (213)
 function momsHand(npc: EntityNPC) {
-  appearHands.postNPCUpdate(npc);
-  fastHands.postNPCUpdate(npc);
+  appearHands.postNPCUpdateHands(npc);
+  fastHands.postNPCUpdateHands(npc);
 }
 
 // EntityType.ENTITY_WIZOOB (219)
 function wizoob(npc: EntityNPC) {
-  disableInvulnerability.setGhostCollisionClass(npc);
-  fastGhosts.postNPCUpdate(npc);
+  disableInvulnerability.postNPCUpdateGhosts(npc);
+  fastGhosts.postNPCUpdateGhosts(npc);
 }
 
 // EntityType.ENTITY_THE_HAUNT (260)
 function haunt(npc: EntityNPC) {
-  disableInvulnerability.setGhostCollisionClass(npc);
-  fastHaunt.postNPCUpdate(npc);
+  disableInvulnerability.postNPCUpdateGhosts(npc);
+  fastHaunt.postNPCUpdateHaunt(npc);
 }
 
 // EntityType.ENTITY_DINGLE (261)
@@ -113,27 +113,27 @@ function dingle(npc: EntityNPC) {
 
 // EntityType.ENTITY_THE_LAMB (273)
 function lamb(npc: EntityNPC) {
-  removeLambBody.postNPCUpdate(npc);
+  removeLambBody.postNPCUpdateLamb(npc);
 }
 
 // EntityType.ENTITY_RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
-  disableInvulnerability.setGhostCollisionClass(npc);
-  fastGhosts.postNPCUpdate(npc);
+  disableInvulnerability.postNPCUpdateGhosts(npc);
+  fastGhosts.postNPCUpdateGhosts(npc);
 }
 
 // EntityType.ENTITY_MOMS_DEAD_HAND (287)
 function momsDeadHand(npc: EntityNPC) {
-  appearHands.postNPCUpdate(npc);
-  fastHands.postNPCUpdate(npc);
+  appearHands.postNPCUpdateHands(npc);
+  fastHands.postNPCUpdateHands(npc);
 }
 
 // EntityType.ENTITY_HUSH (407)
 function hush(npc: EntityNPC) {
-  fixHushCollision.postNPCUpdate(npc);
+  fixHushCollision.postNPCUpdateHush(npc);
 }
 
 // EntityType.ENTITY_BIG_HORN (411)
 function bigHorn(npc: EntityNPC) {
-  fastBigHorn.postNPCUpdate(npc);
+  fastBigHorn.postNPCUpdateBigHorn(npc);
 }

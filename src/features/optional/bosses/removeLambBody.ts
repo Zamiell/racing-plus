@@ -1,12 +1,14 @@
 import { log } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-// Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_THE_LAMB (273)
+export function postNPCUpdateLamb(npc: EntityNPC): void {
   if (!config.removeLambBody) {
     return;
   }
 
+  // Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy
   if (
     npc.Variant === LambVariant.BODY &&
     npc.IsInvincible() && // It turns invincible once it is defeated

@@ -1,5 +1,3 @@
-// TODO Spun
-
 import {
   anyPlayerHasCollectible,
   collectibleHasTag,

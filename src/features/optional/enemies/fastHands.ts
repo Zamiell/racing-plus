@@ -4,7 +4,10 @@ const SHADOW_APPEAR_FRAME = 40;
 const START_FRAME = SHADOW_APPEAR_FRAME - 15;
 const DELAY_FRAMES = 4;
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_MOMS_HAND (213)
+// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+export function postNPCUpdateHands(npc: EntityNPC): void {
   if (!config.fastHands) {
     return;
   }

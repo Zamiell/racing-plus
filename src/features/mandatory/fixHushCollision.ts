@@ -3,7 +3,9 @@
 // We can fix this by manually setting the EntityCollisionClass on the 0th frame
 // (this cannot be done in the PostNPCInit callback)
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_HUSH (407)
+export function postNPCUpdateHush(npc: EntityNPC): void {
   fixHushCollision(npc);
 }
 

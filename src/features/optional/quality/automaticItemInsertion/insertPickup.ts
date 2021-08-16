@@ -1,3 +1,4 @@
+import { hasOpenPocketItemSlot, hasOpenTrinketSlot } from "isaacscript-common";
 import { DETRIMENTAL_TRINKETS } from "./constants";
 
 export default function insertPickup(
@@ -215,7 +216,7 @@ function insertPill(
   pill: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | null {
-  if (!checkPocketSlotOpen(player)) {
+  if (!hasOpenPocketItemSlot(player)) {
     return null;
   }
 
@@ -228,7 +229,7 @@ function insertCard(
   card: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | null {
-  if (!checkPocketSlotOpen(player)) {
+  if (!hasOpenPocketItemSlot(player)) {
     return null;
   }
 
@@ -241,7 +242,7 @@ function insertTrinket(
   trinket: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | null {
-  if (!checkTrinketSlotOpen(player)) {
+  if (!hasOpenTrinketSlot(player)) {
     return null;
   }
 
@@ -252,54 +253,4 @@ function insertTrinket(
 
   player.AddTrinket(trinket.SubType);
   return [PickupVariant.PICKUP_TRINKET, 1];
-}
-
-function checkPocketSlotOpen(player: EntityPlayer): boolean {
-  const card1 = player.GetCard(0); // Returns 0 if no card
-  const card2 = player.GetCard(1); // Returns 0 if no card
-  const pill1 = player.GetPill(0); // Returns 0 if no pill
-  const pill2 = player.GetPill(1); // Returns 0 if no pill
-  const slot1Open = card1 === 0 && pill1 === 0;
-  const slot2Open = card2 === 0 && pill2 === 0;
-  const slots = getPlayerNumPocketSlots(player);
-
-  if (slots === 1) {
-    return slot1Open;
-  }
-
-  if (slots === 2) {
-    return slot1Open || slot2Open;
-  }
-
-  error(`The player has an unknown number of pocket item slots: ${slots}`);
-  return false;
-}
-
-function getPlayerNumPocketSlots(player: EntityPlayer) {
-  let numSlots = player.GetMaxPocketItems();
-  const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
-  const hasPocketItem = pocketItem !== CollectibleType.COLLECTIBLE_NULL;
-
-  if (hasPocketItem) {
-    numSlots -= 1;
-  }
-
-  return numSlots;
-}
-
-function checkTrinketSlotOpen(player: EntityPlayer): boolean {
-  const trinket1 = player.GetTrinket(0); // Returns 0 if no trinket
-  const trinket2 = player.GetTrinket(1); // Returns 0 if no trinket
-  const slot1Open = trinket1 === 0;
-  const slot2Open = trinket2 === 0;
-
-  const slots = player.GetMaxTrinkets();
-  if (slots === 1) {
-    return slot1Open;
-  }
-  if (slots === 2) {
-    return slot1Open || slot2Open;
-  }
-  error(`The player has an unknown number of trinket slots: ${slots}`);
-  return false;
 }

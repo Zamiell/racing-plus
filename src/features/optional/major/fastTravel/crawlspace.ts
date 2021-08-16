@@ -15,6 +15,10 @@ import * as fastTravel from "./fastTravel";
 import * as state from "./state";
 import v from "./v";
 
+const GRID_INDEX_OF_GREAT_GIDEON_CRAWLSPACE = 37;
+
+const GREAT_GIDEON_ROOM_VARIANTS = [5210, 5211, 5212, 5213, 5214];
+
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
 
@@ -305,6 +309,15 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect) {
+  const gridEntity = entity as GridEntity;
+
+  // First, do nothing in the special case of this being a Great Gideon crawlspace
+  // (we don't want to handle this because it would require a lot more detection-based code)
+  // The crawlspace will still work, it will just
+  if (isGreatGideonCrawlspace(gridEntity)) {
+    return;
+  }
+
   const roomIndex = getRoomIndex();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
 
@@ -324,4 +337,21 @@ function touched(entity: GridEntity | EntityEffect) {
 
   // Go to the crawlspace
   teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
+}
+
+function isGreatGideonCrawlspace(gridEntity: GridEntity) {
+  const gridIndex = gridEntity.GetGridIndex();
+
+  return (
+    isGreatGideonRoom() && gridIndex === GRID_INDEX_OF_GREAT_GIDEON_CRAWLSPACE
+  );
+}
+
+function isGreatGideonRoom() {
+  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomData = roomDesc.Data;
+  const roomStageID = roomData.StageID;
+  const roomVariant = roomData.Variant;
+
+  return roomStageID === 0 && GREAT_GIDEON_ROOM_VARIANTS.includes(roomVariant);
 }

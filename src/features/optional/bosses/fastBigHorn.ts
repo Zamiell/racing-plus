@@ -1,6 +1,8 @@
 import { config } from "../../../modConfigMenu";
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_BIG_HORN (411)
+export function postNPCUpdateBigHorn(npc: EntityNPC): void {
   if (!config.fastBigHorn) {
     return;
   }

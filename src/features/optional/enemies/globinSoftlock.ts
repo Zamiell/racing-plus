@@ -3,7 +3,9 @@ import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
 
-export function postNPCUpdate(npc: EntityNPC): void {
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_GLOBIN (24)
+export function postNPCUpdateGlobin(npc: EntityNPC): void {
   if (!config.globinSoftlock) {
     return;
   }
