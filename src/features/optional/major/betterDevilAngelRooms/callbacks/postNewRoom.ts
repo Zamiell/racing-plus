@@ -1,8 +1,10 @@
-import { getDoors, inAngelShop, log } from "isaacscript-common";
+import { inAngelShop } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
+import { setRoomCleared } from "../../../../../utilGlobals";
 import angel from "../angel";
 import devil from "../devil";
+import v from "../v";
 
 const ENTITIES_TO_NOT_REMOVE = [EntityType.ENTITY_DARK_ESAU];
 const MIN_GRID_INDEX = 0;
@@ -38,8 +40,13 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
   }
 
   removePickupsAndSlotsAndNPCs();
-  setCleared();
+  setRoomCleared();
   fillRoomWithPressurePlates();
+
+  if (v.run.intentionallyLeaveEmpty) {
+    v.run.intentionallyLeaveEmpty = false;
+    return;
+  }
 
   if (roomType === RoomType.ROOM_DEVIL) {
     devil();
@@ -77,34 +84,6 @@ function removePickupsAndSlotsAndNPCs() {
       }
     }
   }
-}
-
-// If the vanilla version of the room had an enemy in it, then the doors will start closed
-// Manually fix this
-function setCleared() {
-  const roomClear = g.r.IsClear();
-
-  // There were no vanilla enemies in the room
-  if (roomClear) {
-    return;
-  }
-
-  g.r.SetClear(true);
-  for (const door of getDoors()) {
-    door.State = DoorState.STATE_OPEN;
-    const sprite = door.GetSprite();
-    sprite.Play("Opened", true);
-
-    // If there was a vanilla Krampus in the room,
-    // then the door would be barred in addition to being closed
-    // Ensure that the bar is not visible
-    door.ExtraVisible = false;
-
-    log(
-      "Manually opened a Devil Room or Angel Room door (since there are not supposed to be enemies in the room).",
-    );
-  }
-  g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 }
 
 function fillRoomWithPressurePlates() {

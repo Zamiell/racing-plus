@@ -1,6 +1,15 @@
 <ItemPools>
 	<Pool Name="treasure">
-		<Item Name="Sawblade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sacred Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 182 -->
+		<Item Name="Judas' Shadow" Weight="1" DecreaseBy="1" RemoveOn="0.1"/><!-- 311 -->
+		<Item Name="Godhead" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 331 -->
+		<Item Name="Incubus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 360 -->
+		<Item Name="Maw of the Void" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 399 -->
+		<Item Name="Crown of Light" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 415 -->
+		<Item Name="Twisted Pair" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 698 -->
+
+		<Item Name="Sawblade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/><!-- 730 -->
+
 		<Item Name="Diversity Placeholder 1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Diversity Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Diversity Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

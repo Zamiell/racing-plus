@@ -25,7 +25,19 @@ functionMap.set(ButtonAction.ACTION_PILLCARD, () => {
 
 // 11
 functionMap.set(ButtonAction.ACTION_DROP, () => {
-  return switchForgotten.actionDrop();
+  let value: boolean | void;
+
+  value = switchForgotten.actionDrop();
+  if (value !== undefined) {
+    return value;
+  }
+
+  value = fastTravelInputAction.disableInputBoolean();
+  if (value !== undefined) {
+    return value;
+  }
+
+  return undefined;
 });
 
 // 28

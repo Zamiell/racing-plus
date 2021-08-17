@@ -155,11 +155,21 @@ export function movePlayersAndFamiliars(position: Vector): void {
   }
 }
 
+export function removeAllCollectibles(): void {
+  const collectibles = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+  );
+  for (const collectible of collectibles) {
+    collectible.Remove();
+  }
+}
+
 export function removeItemFromItemTracker(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
   const itemName = getItemName(collectibleType);
-  log(
+  Isaac.DebugString(
     `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
   );
 }

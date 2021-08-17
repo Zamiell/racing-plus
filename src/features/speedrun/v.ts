@@ -14,6 +14,10 @@ const v = {
     characterRunFrames: [] as int[],
   },
 
+  level: {
+    previousRoomType: RoomType.ROOM_DEFAULT,
+  },
+
   run: {
     fadeFrame: null as null | int,
     resetFrame: null as null | int,

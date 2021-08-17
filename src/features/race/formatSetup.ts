@@ -174,23 +174,6 @@ function diversity(player: EntityPlayer) {
     } else if (i === 1 || i === 2 || i === 3) {
       // The second, third, and fourth items are the passives
       giveItemAndRemoveFromPools(player, itemOrTrinketID);
-
-      // Also remove the corresponding diversity placeholder items
-      if (itemOrTrinketID === CollectibleType.COLLECTIBLE_INCUBUS) {
-        g.itemPool.RemoveCollectible(
-          CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
-        );
-      } else if (itemOrTrinketID === CollectibleType.COLLECTIBLE_SACRED_HEART) {
-        g.itemPool.RemoveCollectible(
-          CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
-        );
-      } else if (
-        itemOrTrinketID === CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT
-      ) {
-        g.itemPool.RemoveCollectible(
-          CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
-        );
-      }
     } else if (i === 4) {
       // The fifth item is the trinket
       if (trinket1 !== 0) {

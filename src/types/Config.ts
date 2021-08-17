@@ -33,6 +33,7 @@ export default class Config {
   fastHands = true;
   appearHands = true;
   globinSoftlock = true;
+  removeTreasureRoomEnemies = true;
 
   // Quality of Life Changes
   speedUpFadeIn = true;

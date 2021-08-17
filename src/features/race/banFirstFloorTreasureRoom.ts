@@ -1,6 +1,7 @@
 import { getPlayers, log, onRepentanceStage } from "isaacscript-common";
 import { MAX_NUM_DOORS } from "../../constants";
 import g from "../../globals";
+import { removeAllCollectibles } from "../../util";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
@@ -10,7 +11,7 @@ export function postNewRoom(): void {
   }
 
   if (roomType === RoomType.ROOM_TREASURE) {
-    deleteAllItems();
+    removeAllCollectibles();
 
     // Signal that we are not supposed to get the items in this room
     // If they are teleporting into the Treasure Room, the animation will not actually play,
@@ -63,14 +64,4 @@ function shouldBanFirstFloorTreasureRoom() {
     g.race.myStatus === "racing" &&
     g.race.format === "seeded"
   );
-}
-
-function deleteAllItems() {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-  for (const collectible of collectibles) {
-    collectible.Remove();
-  }
 }

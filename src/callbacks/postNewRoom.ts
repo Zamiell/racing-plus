@@ -10,6 +10,7 @@ import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
+import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
@@ -18,6 +19,7 @@ import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDr
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
+import speedrunPostNewRoom from "../features/speedrun/callbacks/postNewRoom";
 import g from "../globals";
 
 export function main(): void {
@@ -48,6 +50,7 @@ export function main(): void {
 
   // Major features
   racePostNewRoom();
+  speedrunPostNewRoom();
   charCharOrderPostNewRoom();
   startWithD6.postNewRoom();
   betterDevilAngelRoomsPostNewRoom();
@@ -60,6 +63,7 @@ export function main(): void {
   // Enemy changes
   fastSatan.postNewRoom();
   appearHands.postNewRoom();
+  removeTreasureRoomEnemies.postNewRoom();
 
   // Quality of life
   showDreamCatcherItemPostNewRoom();

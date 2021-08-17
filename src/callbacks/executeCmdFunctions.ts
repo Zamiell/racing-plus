@@ -3,6 +3,7 @@ import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
 import debugFunction, { debugFunction2 } from "../debugFunction";
+import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
 import { speedrunSetNext } from "../features/speedrun/v";
@@ -378,6 +379,11 @@ functionMap.set("s", (params: string) => {
   }
 
   consoleCommand(`stage ${stage}${stageType}`);
+});
+
+functionMap.set("setcharorder", (_params: string) => {
+  setCharacterOrderDebug();
+  g.run.restart = true;
 });
 
 functionMap.set("shop", (_params: string) => {

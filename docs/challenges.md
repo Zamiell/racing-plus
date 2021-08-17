@@ -10,36 +10,36 @@
 
 ## Shared Speedrun Mechanics
 
-* In all seasons, the first character will get More Options to speed up the process of finding an item and getting a run going. After the Treasure Room is entered, More Options will be removed.
-* In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
+- In all seasons, the first character will get More Options. After the Treasure Room is entered, More Options will be removed. (This is to speed up the process of finding an item and getting a run going.)
+- In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
+- In all seasons, on the first character, Devil Rooms and Angel Rooms will have nothing in them if you teleport to one from a Curse Room on Basement 1. (This prevents resetting for a Devil Room item.)
 
 <br />
 
 ## R+7 Season 1 (Normal vs Tainted)
 
 - You must defeat Blue Baby on the following 7 characters:
-  - Isaac (0)
-  - Judas (3)
-  - Azazel (7)
-  - Lost (10)
-  - Keeper (12)
-  - Apollyon (13)
-  - Bethany (15)
+  - 0 - Isaac
+  - 3 - Judas
+  - 7 - Azazel
+  - 10 - Lost
+  - 12 - Keeper
+  - 13 - Apollyon
+  - 15 - Bethany
 - For each character, you can choose to play as either the normal version or the tainted version.
 - Bethany & Tainted Bethany start with Duality in addition to their other items.
 - In order to help players get starts faster, the Treasure Room pool has the following changes:
-  - ➕ Magic Mushroom (to 1.0 weight from 0.5 weight)
-  - ➕ Death's Touch (to 1.0 weight from 0.2 weight)
-  - ➕ Judas Shadow
-  - ➕ Incubus
-  - ➕ Twisted Pair
-  - ➕ Maw of the Void
-  - ➕ Sacred Heart
-  - ➕ Godhead
-  - ➕ Crown of Light
-  - ➕ Sawblade (custom orbital with the same speed as AB+ orbitals & 11 contact damage)
-  - ➖ Mom's Knife (to 0 weight from 0.2 weight)
-- On the first character, Devil Rooms will have nothing in them if you teleport to one from a Curse Room on Basement 1. (This prevents resetting for a Devil Room item.)
+  - ➕ 12 - Magic Mushroom (to 1.0 weight from 0.5 weight)
+  - ➕ 182 - Sacred Heart
+  - ➕ 237 - Death's Touch (to 1.0 weight from 0.2 weight)
+  - ➕ 311 - Judas Shadow
+  - ➕ 331 - Godhead
+  - ➕ 360 - Incubus
+  - ➕ 399 - Maw of the Void
+  - ➕ 415 - Crown of Light
+  - ➕ 698 - Twisted Pair
+  - ➕ 730 - Sawblade (a custom orbital with the same speed as AB+ orbitals & 11 contact damage)
+  - ➖ 114 - Mom's Knife (to 0 weight from 0.2 weight)
 
 <br />
 

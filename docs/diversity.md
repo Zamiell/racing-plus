@@ -46,16 +46,6 @@ The following trinkets are removed, because they allow you to re-roll your build
 
 <br />
 
-## Extra Treasure Room Starting Items
-
-To add to the diversity, several extra starting items are added to the Treasure Room Pool, but only for Basement 1. From Basement 2 onwards, these items will not appear in the Treasure Room item pool.
-
-- Incubus
-- Crown of Light
-- Sacred Heart
-
-<br />
-
 ## Excluded Starting Items
 
 Some items hardly have an effect on the playstyle of the run. Thus, the following items are excluded from the pool of random passives given:

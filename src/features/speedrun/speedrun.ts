@@ -141,7 +141,7 @@ export function goBackToFirstCharacter(): boolean {
     return false;
   }
 
-  if (v.persistent.characterNum === 1) {
+  if (isOnFirstCharacter()) {
     return false;
   }
 
@@ -170,6 +170,10 @@ export function inSpeedrun(): boolean {
 
 export function isOnFinalCharacter(): boolean {
   return v.persistent.characterNum === 7;
+}
+
+export function isOnFirstCharacter(): boolean {
+  return v.persistent.characterNum === 1;
 }
 
 export function setCorrectCharacter(): boolean {

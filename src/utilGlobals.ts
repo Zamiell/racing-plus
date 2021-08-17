@@ -1,4 +1,4 @@
-import { getRoomIndex, inCrawlspace } from "isaacscript-common";
+import { getDoors, getRoomIndex, inCrawlspace } from "isaacscript-common";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -63,6 +63,39 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+}
+
+/**
+ * If a room had enemies in it that were removed in a PostGameStarted callback, then a room drop
+ * will be awarded and the doors will start closed and then open. Manually fix this.
+ */
+export function setRoomCleared(): void {
+  const roomClear = g.r.IsClear();
+
+  // There were no vanilla enemies in the room
+  if (roomClear) {
+    return;
+  }
+
+  g.r.SetClear(true);
+  for (const door of getDoors()) {
+    if (
+      door.TargetRoomType === RoomType.ROOM_SECRET ||
+      door.TargetRoomType === RoomType.ROOM_SUPERSECRET
+    ) {
+      continue;
+    }
+
+    door.State = DoorState.STATE_OPEN;
+    const sprite = door.GetSprite();
+    sprite.Play("Opened", true);
+
+    // If there was a vanilla Krampus in the room,
+    // then the door would be barred in addition to being closed
+    // Ensure that the bar is not visible
+    door.ExtraVisible = false;
+  }
+  g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 }
 
 export function spawnCollectible(

@@ -39,3 +39,7 @@ export function init(): void {
 export function getCharacterOrder(key: string): int[] | undefined {
   return v.persistent.charOrders.get(key);
 }
+
+export function setCharacterOrderDebug(): void {
+  v.persistent.charOrders.set("R7S1", [18, 14, 7, 24, 21, 31, 34]);
+}

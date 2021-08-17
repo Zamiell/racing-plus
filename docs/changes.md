@@ -45,53 +45,57 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 1) The D6 for Everyone
 
-`001` All characters now start with the D6, either as a pocket item or an active item.
+- `001` All characters now start with the D6, either as a pocket item or an active item.
 
 > Why? Much of the strategy in the game is centered around having this item. The best players win races more consistently when having the D6 because it mitigates run disparity.
 
 ### 2) No Curses
 
-`002` All curses are automatically disabled.
+- `002` All curses are automatically disabled.
 
 > Why? Curses make the game less-skilled based, robbing the player of meaningful decision-making and strategy.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+- `003` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from [TODO] to [TODO].
   - Average items per angel room are increased from [TODO] to [TODO].
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
-- `003` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
+- `004` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
   - Keeper and Tainted Keeper will be awarded 15 cents instead of a Your Soul trinket.
 
 > Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
 
-### 4) Fast-Reset
+### 4) Extra Items in the Treasure Room Pool
 
-`004` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
+- This is a probationary change. See the documentation for [Season 1](challenges.md#r7-season-1-normal-vs-tainted).
+
+### 5) Fast-Reset
+
+- `005` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
 > Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for this. Speeding this up makes resetting for a starting item less tedious.
 
-### 5) Fast-Clear
+### 6) Fast-Clear
 
-- `005` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
+- `006` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
 > Why? It is obnoxious to have to sit and wait for a long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
-### 6) Fast-Travel
+### 7) Fast-Travel
 
-- `006` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
-- `006` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
+- `007` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+- `007` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
 
-### 7) Room Fixes
+### 8) Room Fixes
 
-Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](changes-room.md).
+- Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](changes-room.md).
 
-### 8) Room Flipping
+### 9) Room Flipping
 
-While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
+- While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
 
 <!--
 
@@ -210,6 +214,10 @@ Post-flip actions:
 - `046` Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
+
+- `047` All enemies are removed from Treasure Rooms.
+
+> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
 ### 5) Quality of Life Changes
 

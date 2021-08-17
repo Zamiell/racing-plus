@@ -56,6 +56,15 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Extra Treasure Room Items",
+      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
+    ],
+  ],
+  [
     "fastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
@@ -330,6 +339,15 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
       "046",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
+    ],
+  ],
+  [
+    "removeTreasureRoomEnemies",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "047",
+      "Remove Treasure Room enemies",
+      "Remove all enemies from Treasure Rooms.",
     ],
   ],
 ];

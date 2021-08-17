@@ -8,6 +8,7 @@ import {
   checkValidCharOrder,
   goBackToFirstCharacter,
   inSpeedrun,
+  isOnFirstCharacter,
   setCorrectCharacter,
 } from "../speedrun";
 import v, { resetFirstCharacterVars, resetPersistentVars } from "../v";
@@ -56,7 +57,7 @@ function giveMoreOptionsBuff() {
 
   // The first character of the speedrun always gets More Options to speed up the process of getting
   // a run going
-  if (v.persistent.characterNum === 1) {
+  if (isOnFirstCharacter()) {
     tempMoreOptions.give(player);
   }
 }

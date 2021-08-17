@@ -24,13 +24,4 @@ if (
   );
 }
 
-// Cancel fast-travel if we save & quit in the middle of the jumping animation
-if (g.run.trapdoor.state === FastTravelState.PLAYER_ANIMATION) {
-  g.run.trapdoor.state = FastTravelState.DISABLED;
-}
-
-// We don't need to do the long series of checks if they quit and continued in the middle of a
-// run
-return;
-
-    */
+*/
