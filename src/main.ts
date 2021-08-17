@@ -116,6 +116,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
 function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCUpdate.init(mod); // 0
   useItem.init(mod); // 3
+  useCard.init(mod); // 5
   postFamiliarUpdate.init(mod); // 6
   postFamiliarInit.init(mod); // 7
   usePill.init(mod); // 10

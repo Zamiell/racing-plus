@@ -1,11 +1,9 @@
 ```
-### *v0.59.1* - August 17th, 2021
+### *v0.59.2* - August 17th, 2021
 
-- Removed some pits in Angel Room #11. (Thanks Gamonymous)
-- Fixed the bug in Season 1 where the timer was not showing. (Thanks Gamonymous)
-- Fixed the bug in season 1 where extra items were not removed from pools. (Thanks mgln)
-- Fixed the bug where a Big Chest would spawn on the Cathedral if you did not have the Polaroid. (Thanks Gamonymous)
-- Fixed the bug where the Checkpoint was affected by rerolling mechanics. (Thanks Gamonymous)
+- 1-item Angel Rooms are now as equally likely as 2-item Angel Rooms. (Previously, it was more likely to get a 1-item Angel Room.)
+- Both 3 item Angel Rooms have been deleted so that you can more consistently get items with a low pickup-count.
+- The coin, bomb, and key from a Justice card will now be automatically inserted. (Automatic insertion will not happen for a Hermit? card or an Ace card because that would save too much time.) (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

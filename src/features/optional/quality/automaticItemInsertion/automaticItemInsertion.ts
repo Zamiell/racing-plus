@@ -58,6 +58,10 @@ function featureEnabled() {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
   drawCoinsDelta();
   drawBombsDelta();
   drawKeysDelta();
@@ -178,8 +182,62 @@ function getTextColor(fade: float) {
   return KColor(0, 0.75, 0, fade);
 }
 
+// ModCallbacks.MC_USE_CARD (5)
+// Card.CARD_JUSTICE (9)
+export function useCardJustice(player: EntityPlayer): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
+  // The PostPickupInit callback fires before getting here, so we cannot use the existing queue
+  // system to automatically insert items
+  // Instead, find the nearest coin, bomb, and key to the player
+  const pickupVariants = [
+    PickupVariant.PICKUP_COIN,
+    PickupVariant.PICKUP_BOMB,
+    PickupVariant.PICKUP_KEY,
+  ];
+  for (const pickupVariant of pickupVariants) {
+    const pickup = getClosestPickup(player, pickupVariant);
+    if (pickup !== null) {
+      insertPickupAndUpdateDelta(pickup, player);
+    }
+  }
+}
+
+function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
+  const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP, pickupVariant);
+
+  let closestPickup: EntityPickup | null = null;
+  for (const pickupEntity of pickups) {
+    const pickup = pickupEntity.ToPickup();
+    if (pickup === null) {
+      continue;
+    }
+
+    if (closestPickup === null) {
+      closestPickup = pickup;
+      continue;
+    }
+
+    const distanceToThisPickup = entity.Position.Distance(pickup.Position);
+    const distanceToClosestPickup = entity.Position.Distance(
+      closestPickup.Position,
+    );
+    if (distanceToThisPickup < distanceToClosestPickup) {
+      closestPickup = pickup;
+    }
+  }
+
+  return closestPickup;
+}
+
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 export function postPickupInit(pickup: EntityPickup): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
   checkIfExpectingPickupDrop(pickup);
 }
 
@@ -204,15 +262,7 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
       continue;
     }
 
-    // Some pickups cannot be automatically inserted
-    const pickupInserted = insertPickup(pickup, player);
-    if (pickupInserted !== null) {
-      // Only remove the pickup if it has been successfully inserted
-      pickup.Remove();
-
-      // Track what it inserted so that we can display it on the UI
-      updateDelta(player, pickupInserted);
-    }
+    insertPickupAndUpdateDelta(pickup, player);
 
     v.room.pickupQueue.splice(i, 1);
 
@@ -260,6 +310,21 @@ function getEffectivePickupVariant(
   }
 
   return lookingForPickupVariant;
+}
+
+function insertPickupAndUpdateDelta(
+  pickup: EntityPickup,
+  player: EntityPlayer,
+) {
+  // Some pickups cannot be automatically inserted
+  const pickupInserted = insertPickup(pickup, player);
+  if (pickupInserted !== null) {
+    // Only remove the pickup if it has been successfully inserted
+    pickup.Remove();
+
+    // Track what it inserted so that we can display it on the UI
+    updateDelta(player, pickupInserted);
+  }
 }
 
 function updateDelta(
