@@ -67,12 +67,10 @@ export function main(isContinued: boolean): void {
   judasAddBomb.postGameStarted();
   taintedKeeperMoney.postGameStarted();
   showDreamCatcherItemPostGameStarted();
+  moreStartingItems.postGameStarted();
 
   // Items
   sawblade.postGameStarted();
-
-  // Miscellaneous
-  moreStartingItems.postGameStarted();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)
