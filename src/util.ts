@@ -169,6 +169,9 @@ export function removeItemFromItemTracker(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
   const itemName = getItemName(collectibleType);
+
+  // This cannot use the "log()" function since the prefix will prevent the Item Tracker from
+  // recognizing the message
   Isaac.DebugString(
     `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
   );

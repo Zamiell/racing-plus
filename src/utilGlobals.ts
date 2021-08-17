@@ -1,4 +1,9 @@
-import { getDoors, getRoomIndex, inCrawlspace } from "isaacscript-common";
+import {
+  getDoors,
+  getRoomIndex,
+  inCrawlspace,
+  isHiddenSecretRoomDoor,
+} from "isaacscript-common";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -79,14 +84,12 @@ export function setRoomCleared(): void {
 
   g.r.SetClear(true);
   for (const door of getDoors()) {
-    if (
-      door.TargetRoomType === RoomType.ROOM_SECRET ||
-      door.TargetRoomType === RoomType.ROOM_SUPERSECRET
-    ) {
+    if (isHiddenSecretRoomDoor(door)) {
       continue;
     }
 
     door.State = DoorState.STATE_OPEN;
+
     const sprite = door.GetSprite();
     sprite.Play("Opened", true);
 
