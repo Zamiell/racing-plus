@@ -11,6 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
+import { spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import { isOnFinalCharacter } from "../../../speedrun/speedrun";
@@ -58,7 +59,7 @@ function getReplacementAction() {
   }
 
   if (challenge === ChallengeCustom.SEASON_1) {
-    return season1();
+    return speedrunUp();
   }
 
   if (g.raceVars.finished) {
@@ -102,10 +103,13 @@ function getReplacementAction() {
   return DEFAULT_REPLACEMENT_ACTION;
 }
 
-function season1() {
-  // Season 1 goes to The Chest and requires The Polaroid to get there
+function speedrunUp() {
+  // Speedruns go to The Chest and do not require The Polaroid
+  if (onCathedral()) {
+    return ReplacementAction.BeamOfLightUp;
+  }
+
   if (onChest()) {
-    // The Chest (11.1)
     if (isOnFinalCharacter()) {
       return ReplacementAction.Trophy;
     }
@@ -145,29 +149,7 @@ function speedrunAlternate() {
     // Thus, we need to handle replacing both the trophy and the big chest
     // So replace the big chest with either a checkpoint flag or a custom trophy,
     // depending on if we are on the last character or not
-    if (g.speedrun.characterNum === 7) {
-      return ReplacementAction.Trophy;
-    }
-
-    return ReplacementAction.Checkpoint;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
-}
-*/
-
-/*
-function speedrunUp() {
-  // Most speedruns go to The Chest and do not require The Polaroid
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  if (onCathedral()) {
-    return ReplacementAction.BeamOfLightUp;
-  }
-
-  if (onChest()) {
-    if (g.speedrun.characterNum === 7) {
+    if (isOnFinalCharacter()) {
       return ReplacementAction.Trophy;
     }
 
@@ -310,13 +292,12 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.Checkpoint: {
-      Isaac.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COLLECTIBLE,
+      const seed = g.r.GetAwardSeed();
+      spawnCollectible(
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
         position,
-        Vector.Zero,
-        null,
+        seed,
+        false,
       );
       break;
     }

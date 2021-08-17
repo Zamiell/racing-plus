@@ -1,6 +1,9 @@
 export const COLLECTIBLE_SPRITE_LAYER = 1;
+
 export const COLOR_DEFAULT = Color(1, 1, 1, 1);
 export const KCOLOR_DEFAULT = KColor(1, 1, 1, 1);
+
+export const ISAAC_FRAMES_PER_SECOND = 60;
 
 /** In a 2x2 room, there can be 8 doors. */
 export const MAX_NUM_DOORS = 8;

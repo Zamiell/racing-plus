@@ -1,3 +1,4 @@
+import { giveItemAndRemoveFromPools } from "../../utilGlobals";
 import { ChallengeCustom } from "./enums";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -19,19 +20,22 @@ function giveStartingItems() {
   switch (character) {
     case PlayerType.PLAYER_ISAAC: {
       // Isaac does not get the D6 in challenges
-      player.AddCollectible(CollectibleType.COLLECTIBLE_D6);
+      giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
       break;
     }
 
     case PlayerType.PLAYER_KEEPER: {
       // Keeper does not get the Wooden Nickel in challenges
-      player.AddCollectible(CollectibleType.COLLECTIBLE_WOODEN_NICKEL);
+      giveItemAndRemoveFromPools(
+        player,
+        CollectibleType.COLLECTIBLE_WOODEN_NICKEL,
+      );
       break;
     }
 
     case PlayerType.PLAYER_BETHANY:
     case PlayerType.PLAYER_BETHANY_B: {
-      player.AddCollectible(CollectibleType.COLLECTIBLE_DUALITY);
+      giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_DUALITY);
       break;
     }
 

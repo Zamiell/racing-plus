@@ -102,7 +102,7 @@ export function setRoomCleared(): void {
 }
 
 export function spawnCollectible(
-  collectibleType: CollectibleType,
+  collectibleType: CollectibleType | CollectibleTypeCustom,
   position: Vector,
   seed: int,
   options: boolean,

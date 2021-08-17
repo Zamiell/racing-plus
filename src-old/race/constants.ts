@@ -1,26 +1,4 @@
 /*
-// From: https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill
-// 18 effects in total
-export const THREE_DOLLAR_BILL_EFFECTS = [
-  CollectibleType.COLLECTIBLE_20_20,
-  CollectibleType.COLLECTIBLE_BALL_OF_TAR,
-  CollectibleType.COLLECTIBLE_DARK_MATTER,
-  CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
-  CollectibleType.COLLECTIBLE_FIRE_MIND,
-  CollectibleType.COLLECTIBLE_IRON_BAR,
-  CollectibleType.COLLECTIBLE_MOMS_CONTACTS,
-  CollectibleType.COLLECTIBLE_MY_REFLECTION,
-  CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID,
-  CollectibleType.COLLECTIBLE_NUMBER_ONE,
-  CollectibleType.COLLECTIBLE_OUIJA_BOARD,
-  CollectibleType.COLLECTIBLE_PROPTOSIS,
-  CollectibleType.COLLECTIBLE_SAGITTARIUS,
-  CollectibleType.COLLECTIBLE_SCORPIO,
-  CollectibleType.COLLECTIBLE_SPEED_BALL,
-  CollectibleType.COLLECTIBLE_SPOON_BENDER,
-  CollectibleType.COLLECTIBLE_INNER_EYE,
-  CollectibleType.COLLECTIBLE_TOUGH_LOVE,
-];
 
 // This is used for the Victory Lap feature that spawns multiple bosses
 export const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
@@ -174,11 +152,12 @@ export const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
   [915, 0, 0], // Singe
   [916, 0, 0], // Bumbino
   [917, 0, 0], // Colostomia
-   [918, 0, 0], // Turdlet
+  [918, 0, 0], // Turdlet
   // Don't include Raglich (919) since it is a cut boss from Repentance
   [920, 0, 0], // Horny Boys
   // Don't include Clutch (921) since it is a cut boss from Repentance
   // Don't include Dogma (950.0) since it is a story boss
   // Don't include The Beast (951.0) since it is a story boss
 ];
+
 */

@@ -7,6 +7,7 @@ import {
   getCurrentCharacter,
   inSpeedrun,
 } from "../speedrun";
+import * as speedrunTimer from "../speedrunTimer";
 import v from "../v";
 
 const FADEOUT_SPEED = 0.0275;
@@ -19,6 +20,7 @@ export default function speedrunPostRender(): void {
   checkBeginFadeOutAfterCheckpoint();
   checkManualResetAtEndOfFadeout();
 
+  speedrunTimer.postRender();
   characterProgress.postRender();
 }
 

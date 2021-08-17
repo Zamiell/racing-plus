@@ -15,38 +15,6 @@ const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 const spriteCollectionMap = new Map<int, Sprites>();
 
 /*
-// Copy this into "speedrunTimer.ts" when it exists
-export function checkDisplayRaceSpeedrun(): void {
-  // Always show the timer in a speedrun
-  // Don't show the timer if the race has not started yet or they quit in the middle of the race
-  if (inSpeedrun() || g.raceVars.started || g.raceVars.finished) {
-    return;
-  }
-
-  // Find out how much time has passed since the race started
-  // (or what the race finish time was)
-  const challenge = Isaac.GetChallenge();
-  let elapsedTime;
-  if (challenge !== 0) {
-    if (g.speedrun.finished) {
-      elapsedTime = g.speedrun.finishedTime;
-    } else if (g.speedrun.startedTime === 0) {
-      elapsedTime = 0;
-    } else {
-      elapsedTime = Isaac.GetTime() - g.speedrun.startedTime;
-    }
-  } else if (g.raceVars.finished) {
-    elapsedTime = g.raceVars.finishedTime;
-  } else {
-    elapsedTime = Isaac.GetTime() - g.raceVars.startedTime;
-  }
-  const seconds = elapsedTime / 1000; // This will be in milliseconds, so we divide by 1000
-
-  display(TimerType.RaceOrSpeedrun, seconds, startingX, startingY);
-}
-*/
-
-/*
 export function checkDisplaySeededDeath(): void {
   const challenge = Isaac.GetChallenge();
 

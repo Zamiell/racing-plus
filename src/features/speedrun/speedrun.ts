@@ -1,12 +1,11 @@
 import { arraySum, log } from "isaacscript-common";
+import { ISAAC_FRAMES_PER_SECOND } from "../../constants";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
-
-const ISAAC_FRAMES_PER_SECOND = 60;
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();

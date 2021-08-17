@@ -1,4 +1,5 @@
 /*
+
 import * as seededDeath from "../features/seededDeath";
 import * as seededRooms from "../features/seededRooms";
 import g from "../globals";
@@ -13,7 +14,6 @@ export function main(): void {
   sprites.init("dps-button", "");
   sprites.init("victory-lap-button", "");
 
-  threeDollarBill();
   checkOpenMegaSatanDoor();
   checkVictoryLapBossReplace();
 
@@ -23,52 +23,6 @@ export function main(): void {
 
   // Check for rooms that should be manually seeded during seeded races
   seededRooms.postNewRoom();
-}
-
-export function threeDollarBill(): void {
-  if (
-    !g.p.HasCollectible(CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED)
-  ) {
-    return;
-  }
-
-  const roomSeed = g.r.GetSpawnSeed();
-
-  // Remove the old item
-  if (g.run.threeDollarBillItem !== 0) {
-    g.p.RemoveCollectible(g.run.threeDollarBillItem);
-    misc.removeItemFromItemTracker(g.run.threeDollarBillItem);
-  }
-
-  // Get the new item effect
-  math.randomseed(roomSeed);
-  let effectIndex = math.random(0, THREE_DOLLAR_BILL_EFFECTS.length - 1);
-  const itemID = THREE_DOLLAR_BILL_EFFECTS[effectIndex];
-  if (!g.p.HasCollectible(itemID)) {
-    g.run.threeDollarBillItem = itemID;
-    g.p.AddCollectible(itemID, 0, false);
-    return;
-  }
-
-  // We already have this item
-  // Keep iterating over the effect table until we find an item that we do not have yet
-  const originalIndex = effectIndex;
-  do {
-    effectIndex += 1;
-    if (effectIndex > THREE_DOLLAR_BILL_EFFECTS.length - 1) {
-      effectIndex = 0;
-    }
-
-    const newItemID = THREE_DOLLAR_BILL_EFFECTS[effectIndex];
-    if (!g.p.HasCollectible(newItemID)) {
-      g.run.threeDollarBillItem = newItemID;
-      g.p.AddCollectible(newItemID, 0, false);
-      return;
-    }
-  } while (effectIndex !== originalIndex);
-
-  // We have every single item in the list, so do nothing
-  g.run.threeDollarBillItem = 0;
 }
 
 function checkVictoryLapBossReplace() {
@@ -106,7 +60,7 @@ function checkVictoryLapBossReplace() {
     const numBosses = g.raceVars.victoryLaps + 1;
     for (let i = 1; i <= numBosses; i++) {
       randomBossSeed = misc.incrementRNG(randomBossSeed);
-      math.randomseed(randomBossSeed);
+      math.randomSeed(randomBossSeed);
       const randomBossIndex = math.random(0, VICTORY_LAP_BOSSES.length - 1);
       const randomBoss = VICTORY_LAP_BOSSES[randomBossIndex];
       if (randomBoss[0] === EntityType.ENTITY_LARRYJR) {
@@ -135,4 +89,5 @@ function spawnBoss(bossArray: [int, int, int]) {
     null,
   );
 }
+
 */

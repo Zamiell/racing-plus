@@ -1,10 +1,11 @@
 import g from "./globals";
+import { CollectibleTypeCustom } from "./types/enums";
 
 const ITEM_SPRITESHEET_ID = 1;
 
 export function changeCollectibleSubType(
   collectible: Entity,
-  newCollectibleType: CollectibleType,
+  newCollectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
   collectible.SubType = newCollectibleType;
 
