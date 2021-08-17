@@ -2,6 +2,7 @@
 ### *v0.59.3* - August 17th, 2021
 
 - The Cross Stone Shooters in Devil Room #67 have been replaced by Wall Huggers.
+- Fixed the bug where items from Krampus & angels could spawn over pits (for real this time). (Thanks Finalkids)
 ```
 
 TODO Racing+ new features:
