@@ -10,7 +10,11 @@ export function postGameStarted(): void {
 
   const challenge = Isaac.GetChallenge();
 
-  // Remove the 3 diversity placeholder items if this is not a diversity race
+  removePlaceholdersExceptInDiv();
+  removePlaceholdersExceptInSeason1(challenge);
+}
+
+function removePlaceholdersExceptInDiv() {
   if (
     g.race.status !== "in progress" ||
     g.race.myStatus !== "racing" ||
@@ -26,8 +30,9 @@ export function postGameStarted(): void {
       CollectibleTypeCustom.COLLECTIBLE_SACRED_HEART_PLACEHOLDER,
     );
   }
+}
 
-  // Remove the 9 speedrun placeholder items if this is not a Season 1 speedrun
+function removePlaceholdersExceptInSeason1(challenge: number) {
   if (challenge !== ChallengeCustom.SEASON_1) {
     g.itemPool.RemoveCollectible(
       CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,
