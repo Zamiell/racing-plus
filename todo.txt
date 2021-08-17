@@ -1,6 +1,7 @@
 ```
 ### *v0.59.1* - August 17th, 2021
 
+- Removed some pits in Angel Room #11. (Thanks Gamonymous)
 - Fixed the bug in Season 1 where the timer was not showing. (Thanks Gamonymous)
 - Fixed the bug in season 1 where extra items were not removed from pools. (Thanks mgln)
 - Fixed the bug where a Big Chest would spawn on the Cathedral if you did not have the Polaroid. (Thanks Gamonymous)

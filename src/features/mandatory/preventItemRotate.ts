@@ -1,4 +1,9 @@
-import { getItemName, log, saveDataManager } from "isaacscript-common";
+import {
+  collectibleHasTag,
+  getItemName,
+  log,
+  saveDataManager,
+} from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { changeCollectibleSubType } from "../../utilCollectible";
 
@@ -50,24 +55,7 @@ export function checkQuestItem(
   collectibleType: CollectibleType | CollectibleTypeCustom,
   seed: int,
 ): void {
-  Isaac.DebugString("GETTING HERE 1");
-  if (collectibleHasTagZ(collectibleType, ItemConfigTag.QUEST)) {
-    Isaac.DebugString("GETTING HERE 2");
+  if (collectibleHasTag(collectibleType, ItemConfigTag.QUEST)) {
     v.room.trackedItems.set(seed, collectibleType);
   }
-}
-
-export function collectibleHasTagZ(
-  collectibleType: CollectibleType | int,
-  tag: ItemConfigTag,
-): boolean {
-  const itemConfig = Isaac.GetItemConfig();
-
-  const itemConfigItem = itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem === null) {
-    Isaac.DebugString("GETTING HERE 3");
-    return false;
-  }
-
-  return itemConfigItem.HasTags(tag);
 }
