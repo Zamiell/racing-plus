@@ -12,44 +12,44 @@ function removePlaceholderItems() {
     g.race.format !== "diversity"
   ) {
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_1,
+      CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_2,
+      CollectibleTypeCustom.COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_3,
+      CollectibleTypeCustom.COLLECTIBLE_SACRED_HEART_PLACEHOLDER,
     );
   }
 
   // Remove the 9 speedrun placeholder items if this is not a Season 1 speedrun
   if (challenge !== ChallengeCustom.SEASON_1) {
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_1,
+      CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_2,
+      CollectibleTypeCustom.COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_3,
+      CollectibleTypeCustom.COLLECTIBLE_SACRED_HEART_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_4,
+      CollectibleTypeCustom.COLLECTIBLE_MAW_OF_THE_VOID_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_5,
+      CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_6,
+      CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_7,
+      CollectibleTypeCustom.COLLECTIBLE_JUDAS_SHADOW_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_8,
+      CollectibleTypeCustom.COLLECTIBLE_GODHEAD_PLACEHOLDER,
     );
     g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_ITEM_PLACEHOLDER_9,
+      CollectibleTypeCustom.COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER,
     );
   }
 }
