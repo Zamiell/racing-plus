@@ -1,9 +1,7 @@
 ```
-### *v0.59.2* - August 17th, 2021
+### *v0.59.3* - August 17th, 2021
 
-- 1-item Angel Rooms are now as equally likely as 2-item Angel Rooms. (Previously, it was more likely to get a 1-item Angel Room.)
-- Both 3 item Angel Rooms have been deleted so that you can more consistently get items with a low pickup-count.
-- The coin, bomb, and key from a Justice card will now be automatically inserted. (Automatic insertion will not happen for a Hermit? card or an Ace card because that would save too much time.) (Thanks Gamonymous)
+- The Cross Stone Shooters in Devil Room #67 have been replaced by Wall Huggers.
 ```
 
 TODO Racing+ new features:

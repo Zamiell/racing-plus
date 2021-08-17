@@ -1,5 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
+import PersistentEntity from "../../../../types/PersistentEntity";
 
 const v = {
   run: {
@@ -12,8 +13,14 @@ const v = {
       angelEntities: 0,
     },
 
+    debugRoomNum: null as int | null,
+
     /** Other mod features can request that a Devil Room or Angel Room is kept completely empty. */
     intentionallyLeaveEmpty: false,
+  },
+
+  level: {
+    persistentEntities: [] as PersistentEntity[],
   },
 };
 export default v;
@@ -28,4 +35,8 @@ function featureEnabled() {
 
 export function setDevilAngelEmpty(): void {
   v.run.intentionallyLeaveEmpty = true;
+}
+
+export function setDevilAngelDebugRoom(num: int): void {
+  v.run.debugRoomNum = num;
 }

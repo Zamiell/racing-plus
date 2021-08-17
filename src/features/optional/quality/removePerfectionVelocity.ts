@@ -19,6 +19,6 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   // Instead, set it to be a free tile near the center of the room
   // This is guaranteed to be accessible because there are no boss rooms that have divided islands
   const centerPos = g.r.GetCenterPos();
-  pickup.Position = g.r.FindFreePickupSpawnPosition(centerPos);
+  pickup.Position = g.r.FindFreeTilePosition(centerPos, 0);
   pickup.Velocity = Vector.Zero;
 }

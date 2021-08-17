@@ -33,12 +33,8 @@ function spawnKrampusDrop(npc: EntityNPC) {
   // is finished and miss out on a drop
 
   // Spawn the item
-  spawnCollectible(
-    getKrampusItemSubType(),
-    g.r.FindFreePickupSpawnPosition(npc.Position),
-    npc.InitSeed,
-    false,
-  );
+  const position = g.r.FindFreeTilePosition(npc.Position, 0);
+  spawnCollectible(getKrampusItemSubType(), position, npc.InitSeed, false);
 }
 
 function getKrampusItemSubType() {

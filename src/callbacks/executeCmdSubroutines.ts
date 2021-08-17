@@ -1,6 +1,31 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
+import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import g from "../globals";
 import { teleport } from "../utilGlobals";
+
+export function angel(params: string): void {
+  const player = Isaac.GetPlayer();
+  const hasEucharist = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_EUCHARIST,
+  );
+  if (!hasEucharist) {
+    player.AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false);
+  }
+  player.UseCard(Card.CARD_JOKER);
+  if (!hasEucharist) {
+    player.RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST);
+  }
+
+  if (params !== "") {
+    const num = tonumber(params);
+    if (num === undefined) {
+      print("That is an invalid Angel Room number.");
+      return;
+    }
+
+    setDevilAngelDebugRoom(num);
+  }
+}
 
 export function blackMarket(): void {
   teleport(GridRooms.ROOM_BLACK_MARKET_IDX);
@@ -13,7 +38,7 @@ export function chaosCardTears(): void {
 export function crawlspace(): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    const position = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const position = g.r.FindFreeTilePosition(player.Position, 0);
     Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
   }
 }
@@ -30,10 +55,20 @@ export function commands(
   print(text);
 }
 
-export function devil(): void {
+export function devil(params: string): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {
     player.UseCard(Card.CARD_JOKER);
+  }
+
+  if (params !== "") {
+    const num = tonumber(params);
+    if (num === undefined) {
+      print("That is an invalid Devil Room number.");
+      return;
+    }
+
+    setDevilAngelDebugRoom(num);
   }
 }
 
@@ -44,7 +79,7 @@ export function IAMERROR(): void {
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    const position = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const position = g.r.FindFreeTilePosition(player.Position, 0);
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
   }
 }

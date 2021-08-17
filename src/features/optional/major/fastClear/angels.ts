@@ -58,12 +58,8 @@ function spawnKeyPiece(npc: EntityNPC) {
   }
 
   // Spawn the item
-  spawnCollectible(
-    getKeySubType(npc),
-    g.r.FindFreePickupSpawnPosition(npc.Position),
-    npc.InitSeed,
-    false,
-  );
+  const position = g.r.FindFreeTilePosition(npc.Position, 0);
+  spawnCollectible(getKeySubType(npc), position, npc.InitSeed, false);
 }
 
 function getKeySubType(npc: EntityNPC) {

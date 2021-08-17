@@ -20,6 +20,8 @@ import v from "./v";
 
 const GRID_SQUARES_PER_ROW = 15;
 
+const PERSISTENT_ENTITY_TYPES = [EntityType.ENTITY_WALL_HUGGER];
+
 export function getRoomSelection(
   devil: boolean,
   seed: int,
@@ -196,8 +198,8 @@ function spawnNormalEntity(
     seed,
   );
 
-  // removePitfallAnimationPostSpawn(entity);
   setAngelItemOptions(entity);
+  storePersistentEntity(entity);
 }
 
 function getEntitySeed(devil: boolean) {
@@ -223,6 +225,19 @@ function setAngelItemOptions(entity: Entity) {
     if (pickup !== null) {
       pickup.OptionsPickupIndex = 1;
     }
+  }
+}
+
+function storePersistentEntity(entity: Entity) {
+  if (PERSISTENT_ENTITY_TYPES.includes(entity.Type)) {
+    const gridIndex = g.r.GetGridIndex(entity.Position);
+    const persistentEntity = {
+      gridIndex,
+      type: entity.Type,
+      variant: entity.Variant,
+      subType: entity.SubType,
+    };
+    v.level.persistentEntities.push(persistentEntity);
   }
 }
 
@@ -348,4 +363,29 @@ function getPitFrame(
   }
 
   return F;
+}
+
+export function getRoomDebug(
+  devil: boolean,
+  specificRoomVariant: int,
+  subType = NORMAL_ROOM_SUBTYPE,
+): JSONRoom {
+  const roomsJSON = devil ? devilRooms : angelRooms;
+  const rooms = roomsJSON.rooms.room;
+  const luaRooms = getRoomsWithSubType(rooms, subType);
+
+  for (const luaRoom of luaRooms) {
+    const roomVariantString = luaRoom["@variant"];
+    const roomVariant = tonumber(roomVariantString);
+    if (roomVariant === undefined) {
+      error(`Failed to parse the variant of a room: ${roomVariantString}`);
+    }
+
+    if (roomVariant === specificRoomVariant) {
+      return luaRoom;
+    }
+  }
+
+  error(`Failed to get a room with specific variant: ${specificRoomVariant}`);
+  return luaRooms[0];
 }

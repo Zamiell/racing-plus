@@ -2,7 +2,7 @@ import { anyPlayerHasTrinket, getDoors, getRandom } from "isaacscript-common";
 import g from "../../../../globals";
 import { incrementRNG } from "../../../../util";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
-import { getRoomSelection, spawnLuaRoom } from "./rooms";
+import { getRoomDebug, getRoomSelection, spawnLuaRoom } from "./rooms";
 import v from "./v";
 
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
@@ -22,11 +22,13 @@ export default function devil(): void {
   const roomSubType = hasNumberMagnet
     ? NUMBER_MAGNET_ROOM_SUBTYPE
     : NORMAL_ROOM_SUBTYPE;
-  const luaRoom = getRoomSelection(
-    true,
-    v.run.seeds.devilSelection,
-    roomSubType,
-  );
+  let luaRoom = getRoomSelection(true, v.run.seeds.devilSelection, roomSubType);
+
+  if (v.run.debugRoomNum !== null) {
+    luaRoom = getRoomDebug(true, v.run.debugRoomNum, roomSubType);
+    v.run.debugRoomNum = null;
+  }
+
   spawnLuaRoom(luaRoom, true);
 
   if (hasNumberMagnet) {

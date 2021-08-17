@@ -248,7 +248,7 @@ function bossRush() {
 }
 
 function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
-  const position = g.r.FindFreePickupSpawnPosition(pickup.Position);
+  const position = g.r.FindFreeTilePosition(pickup.Position, 0);
 
   if (replacementAction !== ReplacementAction.LeaveAlone) {
     pickup.Remove();

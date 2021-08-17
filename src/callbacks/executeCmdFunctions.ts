@@ -11,6 +11,7 @@ import g from "../globals";
 import PILL_MAP from "../pillMap";
 import { consoleCommand, restartAsCharacter } from "../util";
 import {
+  angel,
   blackMarket,
   chaosCardTears,
   commands,
@@ -24,18 +25,8 @@ import {
 const functionMap = new Map<string, (params: string) => void>();
 export default functionMap;
 
-functionMap.set("angel", (_params: string) => {
-  const player = Isaac.GetPlayer();
-  const hasEucharist = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_EUCHARIST,
-  );
-  if (!hasEucharist) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false);
-  }
-  player.UseCard(Card.CARD_JOKER);
-  if (!hasEucharist) {
-    player.RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST);
-  }
+functionMap.set("angel", (params: string) => {
+  angel(params);
 });
 
 // cspell:disable-next-line
@@ -183,8 +174,8 @@ functionMap.set("crawlspace", (_params: string) => {
   crawlspace();
 });
 
-functionMap.set("dd", (_params: string) => {
-  devil();
+functionMap.set("dd", (params: string) => {
+  devil(params);
 });
 
 functionMap.set("debug", (_params: string) => {
@@ -196,8 +187,8 @@ functionMap.set("debug2", (_params: string) => {
   debugFunction2();
 });
 
-functionMap.set("devil", (_params: string) => {
-  devil();
+functionMap.set("devil", (params: string) => {
+  devil(params);
 });
 
 functionMap.set("fool", (_params: string) => {
