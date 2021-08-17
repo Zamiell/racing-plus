@@ -7,6 +7,7 @@ import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
 import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
+import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
@@ -33,6 +34,7 @@ export function main(isContinued: boolean): void {
   }
 
   if (isContinued) {
+    postGameStartedContinued();
     return;
   }
 
@@ -85,4 +87,8 @@ function setSeeds() {
   // a curse from appearing
   // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
+}
+
+function postGameStartedContinued() {
+  fastTravelPostGameStartedContinued();
 }

@@ -16,8 +16,7 @@ MAIN_MENU_DIRECTORY = os.path.join(
     SCRIPT_DIRECTORY, "..", "mod", "resources", "gfx", "ui", "main menu"
 )
 TITLE_MENU_TEMPLATE_PATH = os.path.join(MAIN_MENU_DIRECTORY, "titlemenu-template.png")
-TITLE_MENU_OUTPUT_1 = os.path.join(MAIN_MENU_DIRECTORY, "titlemenu.png")
-TITLE_MENU_OUTPUT_2 = os.path.join(MAIN_MENU_DIRECTORY, "titlemenu_2.png")
+TITLE_MENU_OUTPUT = os.path.join(MAIN_MENU_DIRECTORY, "titlemenu.png")
 PACKAGE_JSON_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "package.json")
 
 LARGE_FONT = ImageFont.truetype(TITLE_FONT_PATH, 9)
@@ -59,13 +58,7 @@ def write_version(version):
     width, height = title_draw.textsize(URL, font=URL_FONT)
     title_draw.text((420 - width / 2, 250), URL, COLOR, font=URL_FONT)
 
-    # Draw the alpha warning
-    alpha_text = "ALPHA"
-    width, height = title_draw.textsize("Alpha", font=ALPHA_FONT)
-    title_draw.text((412 - width / 2, 210), alpha_text, COLOR, font=ALPHA_FONT)
-
-    title_image.save(TITLE_MENU_OUTPUT_1)
-    title_image.save(TITLE_MENU_OUTPUT_2)
+    title_image.save(TITLE_MENU_OUTPUT)
     printf("Title screen image updated to version: {}".format(version))
 
 

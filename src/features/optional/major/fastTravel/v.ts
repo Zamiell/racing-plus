@@ -124,7 +124,7 @@ function featureEnabled() {
   return config.fastTravel;
 }
 
-export function setClearFrame(): void {
+export function fastTravelSetClearFrame(): void {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.clearFrame = gameFrameCount;

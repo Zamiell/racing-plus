@@ -1,15 +1,16 @@
 ```
-### *v0.58.60* - August 1?th, 2021
+### *v0.59.0* - August 16th, 2021
 
+- The Racing+ mod is no longer in alpha.
+- R+7 Season 1 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-1-normal-vs-tainted
 - The Treasure Room changes for Season 1 are now applied globally to the mod because it is too complicated to make complex item pool modifications only apply to a specific challenge (due to modding API limitations). With that said, these changes are probably a good idea for all general purpose runs. Since this is a significant change from vanilla, this change is probationary. You can share your feedback in Discord.
-- An optional feature is added that removes all enemies from Treasure Rooms.
+- All enemies are now removed from Treasure Rooms.
+- You are now able to cancel a fast-travel animation by saving and quitting while the screen is fading to black.
 - Fixed the bug where you could switch to The Soul during a trapdoor animation.
 ```
 
-- charge ability
-- test death's fast travel cancel
-
 TODO Racing+ new features:
+- charge ability
 - chat system
 - custom console
 - Charge bars for all of the charge items
