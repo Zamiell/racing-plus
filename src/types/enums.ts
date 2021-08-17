@@ -32,6 +32,17 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_CHECKPOINT = Isaac.GetItemIdByName("Checkpoint"),
   COLLECTIBLE_RESET = Isaac.GetItemIdByName("Reset"),
   COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
+
+  // Placeholders
+  COLLECTIBLE_ITEM_PLACEHOLDER_1 = Isaac.GetItemIdByName("Item Placeholder 1"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_2 = Isaac.GetItemIdByName("Item Placeholder 2"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_3 = Isaac.GetItemIdByName("Item Placeholder 3"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_4 = Isaac.GetItemIdByName("Item Placeholder 4"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_5 = Isaac.GetItemIdByName("Item Placeholder 5"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_6 = Isaac.GetItemIdByName("Item Placeholder 6"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_7 = Isaac.GetItemIdByName("Item Placeholder 7"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_8 = Isaac.GetItemIdByName("Item Placeholder 8"),
+  COLLECTIBLE_ITEM_PLACEHOLDER_9 = Isaac.GetItemIdByName("Item Placeholder 9"),
 }
 
 export enum PickupPriceCustom {

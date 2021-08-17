@@ -10,16 +10,13 @@
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
 
 	<!-- Placeholders -->
-	<passive description="" name="Diversity Placeholder 1" hidden="true" />
-	<passive description="" name="Diversity Placeholder 2" hidden="true" />
-	<passive description="" name="Diversity Placeholder 3" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 1" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 2" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 3" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 4" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 5" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 6" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 7" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 8" hidden="true" />
-	<passive description="" name="Speedrun Placeholder 9" hidden="true" />
+	<passive description="" name="Item Placeholder 1" hidden="true" />
+	<passive description="" name="Item Placeholder 2" hidden="true" />
+	<passive description="" name="Item Placeholder 3" hidden="true" />
+	<passive description="" name="Item Placeholder 4" hidden="true" />
+	<passive description="" name="Item Placeholder 5" hidden="true" />
+	<passive description="" name="Item Placeholder 6" hidden="true" />
+	<passive description="" name="Item Placeholder 7" hidden="true" />
+	<passive description="" name="Item Placeholder 8" hidden="true" />
+	<passive description="" name="Item Placeholder 9" hidden="true" />
 </items>

@@ -10,17 +10,14 @@
 
 		<Item Name="Sawblade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/><!-- 730 -->
 
-		<Item Name="Diversity Placeholder 1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Diversity Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Diversity Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 4" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 5" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 6" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 7" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 8" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Speedrun Placeholder 9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 4" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 5" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 6" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 7" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 8" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Item Placeholder 9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>
