@@ -16,9 +16,7 @@ import * as showEdenStartingItems from "../features/optional/quality/showEdenSta
 import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
-import { ChallengeCustom } from "../features/speedrun/enums";
 import g from "../globals";
-import { CollectibleTypeCustom } from "../types/enums";
 
 export function main(isContinued: boolean): void {
   const startSeedString = g.seeds.GetStartSeedString();
@@ -72,9 +70,6 @@ export function main(isContinued: boolean): void {
   // Items
   sawblade.postGameStarted();
 
-  // Miscellaneous
-  removePlaceholderItems();
-
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)
   // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
@@ -96,56 +91,4 @@ function setSeeds() {
 
 function postGameStartedContinued() {
   fastTravelPostGameStartedContinued();
-}
-
-function removePlaceholderItems() {
-  const challenge = Isaac.GetChallenge();
-
-  // Remove the 3 diversity placeholder items if this is not a diversity race
-  if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.format !== "diversity"
-  ) {
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_1,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_2,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_DIVERSITY_PLACEHOLDER_3,
-    );
-  }
-
-  // Remove the 9 speedrun placeholder items if this is not a Season 1 speedrun
-  if (challenge !== ChallengeCustom.SEASON_1) {
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_1,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_2,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_3,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_4,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_5,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_6,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_7,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_8,
-    );
-    g.itemPool.RemoveCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_SPEEDRUN_PLACEHOLDER_9,
-    );
-  }
 }
