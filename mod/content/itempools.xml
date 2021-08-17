@@ -10,14 +10,14 @@
 
 		<Item Name="Sawblade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/><!-- 730 -->
 
-		<Item Name="Item Placeholder 1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 3" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 4" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 5" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 6" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 7" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 8" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Item Placeholder 9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Incubus Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crown of Light Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sacred Heart Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maw of the Void Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Death's Touch Placeholder" Weight="0.8" DecreaseBy="0.8" RemoveOn="0.08"/>
+		<Item Name="Magic Mushroom Placeholder" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Judas' Shadow Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Godhead Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Twisted Pair Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>
