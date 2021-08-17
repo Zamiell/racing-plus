@@ -1,8 +1,13 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import { ChallengeCustom } from "../../speedrun/enums";
 
-function removePlaceholderItems() {
+export function postGameStarted(): void {
+  if (!config.extraStartingItems) {
+    return;
+  }
+
   const challenge = Isaac.GetChallenge();
 
   // Remove the 3 diversity placeholder items if this is not a diversity race

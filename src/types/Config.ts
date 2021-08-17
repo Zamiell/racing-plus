@@ -38,6 +38,7 @@ export default class Config {
   // Quality of Life Changes
   speedUpFadeIn = true;
   easyFirstFloorItems = true;
+  extraStartingItems = true;
   changeCreepColor = true;
   subvertTeleport = true;
   deleteVoidPortals = true;

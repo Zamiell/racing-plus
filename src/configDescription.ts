@@ -56,7 +56,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    null,
+    "extraStartingItems",
     [
       ModConfigMenuOptionType.TEXT,
       "",

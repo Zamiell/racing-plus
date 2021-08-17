@@ -10,6 +10,7 @@ import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/bet
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
+import * as moreStartingItems from "../features/optional/quality/moreStartingItems";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
@@ -69,6 +70,9 @@ export function main(isContinued: boolean): void {
 
   // Items
   sawblade.postGameStarted();
+
+  // Miscellaneous
+  moreStartingItems.postGameStarted();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)
