@@ -11,14 +11,15 @@ export function spawnTrapdoor(rng: RNG): void {
       ? GridEntityType.GRID_STAIRS
       : GridEntityType.GRID_TRAPDOOR;
 
+  player.AnimateCollectible(
+    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
+    "UseItem",
+  );
+
   // Only spawn crawlspaces above stage 8
   if (stage > 8 && trapdoorPercent > 0.1) {
     return;
   }
 
-  player.AnimateCollectible(
-    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
-    "UseItem",
-  );
   Isaac.GridSpawn(trapDoorType, 0, playerPosition, true);
 }
