@@ -1,9 +1,11 @@
 import {
+  anyPlayerIs,
   getDoors,
   getRoomIndex,
   inCrawlspace,
   isHiddenSecretRoomDoor,
 } from "isaacscript-common";
+import { TAINTED_KEEPER_ITEM_PRICE } from "./constants";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -107,6 +109,8 @@ export function spawnCollectible(
   seed: int,
   options: boolean,
 ): void {
+  const roomType = g.r.GetType();
+
   const collectible = g.g
     .Spawn(
       EntityType.ENTITY_PICKUP,
@@ -118,8 +122,19 @@ export function spawnCollectible(
       seed,
     )
     .ToPickup();
-  if (collectible !== null && options) {
+  if (collectible === null) {
+    return;
+  }
+
+  if (options) {
     collectible.OptionsPickupIndex = 1;
+  }
+
+  if (
+    roomType === RoomType.ROOM_ANGEL &&
+    anyPlayerIs(PlayerType.PLAYER_KEEPER_B)
+  ) {
+    collectible.Price = TAINTED_KEEPER_ITEM_PRICE;
   }
 
   preventItemRotate.checkQuestItem(collectibleType, seed);

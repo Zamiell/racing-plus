@@ -1,4 +1,4 @@
-import { log, PickingUpItem } from "isaacscript-common";
+import { getRoomIndex, log, PickingUpItem } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
@@ -64,7 +64,8 @@ export function postNewLevel(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetRoomByIdx(roomIndex);
   const roomData = roomDesc.Data;
   const roomType = roomData.Type;
   const roomVariant = roomData.Variant;

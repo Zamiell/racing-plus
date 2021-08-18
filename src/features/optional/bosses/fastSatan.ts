@@ -1,4 +1,4 @@
-import { gridToPos } from "isaacscript-common";
+import { getRoomIndex, gridToPos } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { incrementRNG } from "../../../util";
@@ -15,7 +15,8 @@ export function postNewRoom(): void {
 // There is an annoying delay before The Fallen and the leeches spawn
 // To fix this, we manually spawn it as soon as the room is entered
 function instantlySpawnSatan() {
-  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetRoomByIdx(roomIndex);
   const roomData = roomDesc.Data;
   const roomStageID = roomData.StageID;
   const roomVariant = roomData.Variant;

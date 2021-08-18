@@ -4,11 +4,13 @@
 // imported as a module
 
 import {
+  anyPlayerIs,
   getGridEntities,
   getRandomFloat,
   gridToPos,
   log,
 } from "isaacscript-common";
+import { TAINTED_KEEPER_ITEM_PRICE } from "../../../../constants";
 import g from "../../../../globals";
 import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
 import { incrementRNG } from "../../../../util";
@@ -198,7 +200,7 @@ function spawnNormalEntity(
     seed,
   );
 
-  setAngelItemOptions(entity);
+  setAngelItemAttributes(entity);
   storePersistentEntity(entity);
 }
 
@@ -212,7 +214,7 @@ function getEntitySeed(devil: boolean) {
   return v.run.seeds.angelEntities;
 }
 
-function setAngelItemOptions(entity: Entity) {
+function setAngelItemAttributes(entity: Entity) {
   const roomType = g.r.GetType();
 
   // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
@@ -222,8 +224,14 @@ function setAngelItemOptions(entity: Entity) {
     roomType === RoomType.ROOM_ANGEL
   ) {
     const pickup = entity.ToPickup();
-    if (pickup !== null) {
-      pickup.OptionsPickupIndex = 1;
+    if (pickup === null) {
+      return;
+    }
+
+    pickup.OptionsPickupIndex = 1;
+
+    if (anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
+      pickup.Price = TAINTED_KEEPER_ITEM_PRICE;
     }
   }
 }

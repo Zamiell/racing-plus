@@ -3,8 +3,8 @@ import {
   getDoors,
   getPlayers,
   log,
+  MAX_NUM_DOORS,
 } from "isaacscript-common";
-import { MAX_NUM_DOORS } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";

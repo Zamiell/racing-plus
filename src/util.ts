@@ -156,12 +156,20 @@ export function movePlayersAndFamiliars(position: Vector): void {
 }
 
 export function removeAllCollectibles(): void {
-  const collectibles = Isaac.FindByType(
+  removeAllMatchingEntities(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
   );
-  for (const collectible of collectibles) {
-    collectible.Remove();
+}
+
+function removeAllMatchingEntities(
+  entityType: int,
+  entityVariant = -1,
+  entitySubType = -1,
+): void {
+  const entities = Isaac.FindByType(entityType, entityVariant, entitySubType);
+  for (const entity of entities) {
+    entity.Remove();
   }
 }
 
