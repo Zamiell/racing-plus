@@ -218,7 +218,7 @@ export function spawnTrapdoorOnBossRooms(): void {
   Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, trapdoorPosition, true);
 }
 
-export function getTrapdoorPosition(): Vector {
+function getTrapdoorPosition(): Vector {
   const roomShape = g.r.GetRoomShape();
 
   let trapDoorPosition = NORMAL_TRAPDOOR_POSITION;
