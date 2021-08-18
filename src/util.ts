@@ -1,16 +1,23 @@
 import {
   getItemName,
   getPlayers,
+  getRoomIndex,
   hasFlag,
   initRNG,
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import {
+  NORMAL_TRAPDOOR_POSITION,
+  ONE_BY_TWO_TRAPDOOR_POSITION,
+  TWO_BY_ONE_TRAPDOOR_POSITION,
+} from "./constants";
+import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
   COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./features/race/constants";
+import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
@@ -192,4 +199,51 @@ export function restartAsCharacter(character: PlayerType): void {
   }
 
   consoleCommand(`restart ${character}`);
+}
+
+export function spawnTrapdoorOnBossRooms(): void {
+  const trapdoorPosition = getTrapdoorPosition();
+  const gridIndex = g.r.GetGridIndex(trapdoorPosition);
+  const gridEntity = g.r.GetGridEntity(gridIndex);
+  const roomIndex = getRoomIndex();
+
+  if (roomIndex < 0) {
+    return;
+  }
+
+  if (gridEntity !== null) {
+    gridEntity.Destroy(true);
+  }
+
+  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, trapdoorPosition, true);
+}
+
+export function getTrapdoorPosition(): Vector {
+  const roomShape = g.r.GetRoomShape();
+
+  let trapDoorPosition = NORMAL_TRAPDOOR_POSITION;
+  if (roomShape === RoomShape.ROOMSHAPE_2x1) {
+    trapDoorPosition = TWO_BY_ONE_TRAPDOOR_POSITION;
+  } else if (roomShape === RoomShape.ROOMSHAPE_1x2) {
+    trapDoorPosition = ONE_BY_TWO_TRAPDOOR_POSITION;
+  }
+
+  return trapDoorPosition;
+}
+
+export function spawnTrapdoorWeNeedToGoDeeper(rng: RNG): void {
+  // Get a random value between 0 and 1 that will determine what kind of trapdoor we'll get
+  const trapdoorPercent = rng.RandomFloat();
+  const player = Isaac.GetPlayer();
+  const playerPosition = player.Position;
+  const trapDoorType =
+    trapdoorPercent <= 0.1
+      ? GridEntityType.GRID_STAIRS
+      : GridEntityType.GRID_TRAPDOOR;
+
+  player.AnimateCollectible(
+    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
+    "UseItem",
+  );
+  Isaac.GridSpawn(trapDoorType, 0, playerPosition, true);
 }

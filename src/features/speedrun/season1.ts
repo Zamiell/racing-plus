@@ -1,7 +1,7 @@
 import { getDoors, getRandomInt, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
+import * as util from "../../util";
 import { giveItemAndRemoveFromPools } from "../../utilGlobals";
-import * as trapdoor from "../optional/major/fastTravel/trapdoor";
 import { ChallengeCustom } from "./enums";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -128,7 +128,7 @@ function spawnTrapdoor() {
     return;
   }
 
-  trapdoor.spawnTrapdoorOnBossRooms();
+  util.spawnTrapdoorOnBossRooms();
 }
 
 export function preUseWeNeedToGoDeeper(rng: RNG): boolean | void {
@@ -143,6 +143,6 @@ export function preUseWeNeedToGoDeeper(rng: RNG): boolean | void {
     return undefined;
   }
 
-  trapdoor.spawnTrapdoorWeNeedToGoDeeper(rng);
+  util.spawnTrapdoorWeNeedToGoDeeper(rng);
   return true;
 }
