@@ -311,6 +311,11 @@ export function spawnTrapdoorOnBossRooms(): void {
   const trapdoorPosition = getTrapdoorPosition();
   const gridIndex = g.r.GetGridIndex(trapdoorPosition);
   const gridEntity = g.r.GetGridEntity(gridIndex);
+  const roomIndex = getRoomIndex();
+
+  if (roomIndex < 0) {
+    return;
+  }
 
   if (gridEntity !== null) {
     gridEntity.Destroy(true);
