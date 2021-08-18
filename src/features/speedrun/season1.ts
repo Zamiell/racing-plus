@@ -128,5 +128,21 @@ function spawnTrapdoor() {
     return;
   }
 
-  trapdoor.spawnTrapdoor();
+  trapdoor.spawnTrapdoorOnBossRooms();
+}
+
+export function preUseWeNeedToGoDeeper(rng: RNG): boolean | void {
+  const stage = g.l.GetStage();
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_1) {
+    return undefined;
+  }
+
+  if (stage >= 8) {
+    return undefined;
+  }
+
+  trapdoor.spawnTrapdoorWeNeedToGoDeeper(rng);
+  return true;
 }

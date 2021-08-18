@@ -4,7 +4,11 @@ import {
   onRepentanceStage,
   onSheol,
 } from "isaacscript-common";
-import { NORMAL_TRAPDOOR_POSITION } from "../../../../constants";
+import {
+  NORMAL_TRAPDOOR_POSITION,
+  ONE_BY_TWO_TRAPDOOR_POSITION,
+  TWO_BY_ONE_TRAPDOOR_POSITION,
+} from "../../../../constants";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
@@ -303,11 +307,41 @@ function checkDoubleTrapdoorOverlapBug(gridEntity: GridEntity) {
   }
 }
 
-export function spawnTrapdoor(): void {
-  Isaac.GridSpawn(
-    GridEntityType.GRID_TRAPDOOR,
-    0,
-    NORMAL_TRAPDOOR_POSITION,
-    true,
-  );
+export function spawnTrapdoorOnBossRooms(): void {
+  const trapdoorPosition = getTrapdoorPosition();
+  const gridIndex = g.r.GetGridIndex(trapdoorPosition);
+  const gridEntity = g.r.GetGridEntity(gridIndex);
+
+  if (gridEntity !== null) {
+    gridEntity.Destroy(true);
+  }
+
+  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, trapdoorPosition, true);
+}
+
+function getTrapdoorPosition(): Vector {
+  const roomShape = g.r.GetRoomShape();
+
+  let trapDoorPosition = NORMAL_TRAPDOOR_POSITION;
+  if (roomShape === RoomShape.ROOMSHAPE_2x1) {
+    trapDoorPosition = TWO_BY_ONE_TRAPDOOR_POSITION;
+  } else if (roomShape === RoomShape.ROOMSHAPE_1x2) {
+    trapDoorPosition = ONE_BY_TWO_TRAPDOOR_POSITION;
+  }
+
+  return trapDoorPosition;
+}
+
+export function spawnTrapdoorWeNeedToGoDeeper(rng: RNG): void {
+  // Get a random value between 0 and 1 that will determine what kind of trapdoor we'll get
+  const trapdoorPercent = rng.RandomFloat();
+  const player = Isaac.GetPlayer();
+  const playerPosition = player.Position;
+  const trapDoorType =
+    trapdoorPercent <= 0.1
+      ? GridEntityType.GRID_STAIRS
+      : GridEntityType.GRID_TRAPDOOR;
+
+  player.AnimateCollectible(CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER);
+  Isaac.GridSpawn(trapDoorType, 0, playerPosition, true);
 }
