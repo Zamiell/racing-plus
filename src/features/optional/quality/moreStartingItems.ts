@@ -8,10 +8,8 @@ export function postGameStarted(): void {
     return;
   }
 
-  const challenge = Isaac.GetChallenge();
-
   removePlaceholdersExceptInDiv();
-  removePlaceholdersExceptInSeason1(challenge);
+  removePlaceholdersExceptInSeason1();
 }
 
 function removePlaceholdersExceptInDiv() {
@@ -32,7 +30,9 @@ function removePlaceholdersExceptInDiv() {
   }
 }
 
-function removePlaceholdersExceptInSeason1(challenge: number) {
+function removePlaceholdersExceptInSeason1() {
+  const challenge = Isaac.GetChallenge();
+
   if (challenge !== ChallengeCustom.SEASON_1) {
     g.itemPool.RemoveCollectible(
       CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,

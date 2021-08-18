@@ -230,35 +230,39 @@ Post-flip actions:
 
 > Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `053` Enemy red creep is changed to green and friendly green creep is changed to red.
+- `053` Diversity ruleset and some seasons are granted extra starting items.
+
+> Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
+
+- `054` Enemy red creep is changed to green and friendly green creep is changed to red.
 
 > Why? So that player creep will never be mistaken for enemy creep and vice versa. Furthermore, it is very difficult to see red enemy creep on the Womb floors.
 
-- `054` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `055` Void portals that spawn after bosses are automatically deleted.
+- `055` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `056` Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `056` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `057` Fortune Cookie banner text is removed.
+- `057` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
+- `058` Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `058` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `059` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `059` The tears that explode out of enemies when you have Vasculitis are faded.
+- `060` The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `060` The Perfection trinket will no longer have velocity.
+- `061` The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `061` Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `063` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `062` Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `063` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `064` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
