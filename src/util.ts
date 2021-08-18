@@ -221,12 +221,13 @@ export function spawnTrapdoorOnBossRooms(): void {
 function getTrapdoorPosition(): Vector {
   const roomShape = g.r.GetRoomShape();
 
-  let trapDoorPosition = NORMAL_TRAPDOOR_POSITION;
   if (roomShape === RoomShape.ROOMSHAPE_2x1) {
-    trapDoorPosition = TWO_BY_ONE_TRAPDOOR_POSITION;
-  } else if (roomShape === RoomShape.ROOMSHAPE_1x2) {
-    trapDoorPosition = ONE_BY_TWO_TRAPDOOR_POSITION;
+    return TWO_BY_ONE_TRAPDOOR_POSITION;
   }
 
-  return trapDoorPosition;
+  if (roomShape === RoomShape.ROOMSHAPE_1x2) {
+    return ONE_BY_TWO_TRAPDOOR_POSITION;
+  }
+
+  return NORMAL_TRAPDOOR_POSITION;
 }
