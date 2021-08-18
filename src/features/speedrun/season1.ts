@@ -1,6 +1,6 @@
 import { getDoors, getRandomInt, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
-import * as util from "../../util";
+import { spawnTrapdoorOnBossRooms } from "../../util";
 import { giveItemAndRemoveFromPools } from "../../utilGlobals";
 import { ChallengeCustom } from "./enums";
 import * as reimplementShovel from "./reimplementShovel";
@@ -129,10 +129,10 @@ function spawnTrapdoor() {
     return;
   }
 
-  util.spawnTrapdoorOnBossRooms();
+  spawnTrapdoorOnBossRooms();
 }
 
-export function preUseWeNeedToGoDeeper(rng: RNG): boolean | void {
+export function preUseItemWeNeedToGoDeeper(rng: RNG): boolean | void {
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 
