@@ -342,6 +342,9 @@ export function spawnTrapdoorWeNeedToGoDeeper(rng: RNG): void {
       ? GridEntityType.GRID_STAIRS
       : GridEntityType.GRID_TRAPDOOR;
 
-  player.AnimateCollectible(CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER);
+  player.AnimateCollectible(
+    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
+    "UseItem",
+  );
   Isaac.GridSpawn(trapDoorType, 0, playerPosition, true);
 }
