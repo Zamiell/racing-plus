@@ -3,6 +3,7 @@ import g from "../../globals";
 import * as util from "../../util";
 import { giveItemAndRemoveFromPools } from "../../utilGlobals";
 import { ChallengeCustom } from "./enums";
+import * as reimplementShovel from "./reimplementShovel";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -143,6 +144,6 @@ export function preUseWeNeedToGoDeeper(rng: RNG): boolean | void {
     return undefined;
   }
 
-  util.spawnTrapdoorWeNeedToGoDeeper(rng);
+  reimplementShovel.spawnTrapdoor(rng);
   return true;
 }
