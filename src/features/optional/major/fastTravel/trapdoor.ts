@@ -4,6 +4,7 @@ import {
   onRepentanceStage,
   onSheol,
 } from "isaacscript-common";
+import { NORMAL_TRAPDOOR_POSITION } from "../../../../constants";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
@@ -300,4 +301,13 @@ function checkDoubleTrapdoorOverlapBug(gridEntity: GridEntity) {
     );
     fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   }
+}
+
+export function spawnTrapdoor(): void {
+  Isaac.GridSpawn(
+    GridEntityType.GRID_TRAPDOOR,
+    0,
+    NORMAL_TRAPDOOR_POSITION,
+    true,
+  );
 }
