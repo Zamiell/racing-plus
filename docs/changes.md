@@ -230,9 +230,9 @@ Post-flip actions:
 
 > Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `053` Diversity ruleset and some seasons are granted extra starting items.
+- `053` All runs are granted extra starting items.
 
-> Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
+> Why? This slightly decreases the RNG for the resetting phase, which everyone agrees is not very fun.
 
 - `054` Enemy red creep is changed to green and friendly green creep is changed to red.
 
