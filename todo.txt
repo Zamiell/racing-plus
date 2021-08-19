@@ -1,10 +1,7 @@
 ```
-### *v0.59.3* - August 17th, 2021
+### *v0.59.4* - August 18th, 2021
 
-- The Cross Stone Shooters in Devil Room #67 have been replaced by Wall Huggers.
-- Fixed the bug in Season 1 where the beam of light would always spawn on Womb 2 (instead of only having a 50% chance fo spawn). (Thanks Gamonymous)
-- Fixed the bug where items from Krampus & angels could spawn over pits (for real this time). (Thanks Finalkids)
-- Fixed the bug where Angel Room items would not cost money while playing as Tainted Keeper. (Thanks Gamonymous)
+-
 ```
 
 TODO Racing+ new features:

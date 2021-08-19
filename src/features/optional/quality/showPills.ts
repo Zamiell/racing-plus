@@ -73,7 +73,7 @@ const FALSE_PHD_PILL_CONVERSIONS = new Map([
   [PillEffect.PILLEFFECT_SHOT_SPEED_UP, PillEffect.PILLEFFECT_SHOT_SPEED_DOWN], // 48
 ]);
 
-/** These are not meant to ever be reset. */
+/** Indexed by PillEffect. These are not meant to ever be reset. */
 const pillSprites: Sprite[] = [];
 
 const v = {
@@ -204,7 +204,8 @@ function drawTextAndSprite() {
     // Show the pill sprite
     const y = baseY + 20 * (i + 1);
     const pos = Vector(x, y);
-    pillEntry.sprite.RenderLayer(0, pos);
+    const sprite = pillSprites[pillEntry.effect];
+    sprite.RenderLayer(0, pos);
 
     // Show the pill effect as text
     const pillConfig = g.itemConfig.GetPillEffect(pillEntry.effect);
@@ -245,16 +246,11 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
 
 function newPill(pillColor: PillColor, pillEffect: PillEffect) {
   // This is the first time we have used this pill, so keep track of the pill color and effect
-  const pillDescription = {
+  const pillDescription: PillDescription = {
     color: pillColor,
     effect: pillEffect,
-    sprite: getPillSprite(pillColor),
   };
   v.run.pillsIdentified.push(pillDescription);
-}
-
-function getPillSprite(pillColor: PillColor) {
-  return pillSprites[pillColor];
 }
 
 export function getNumIdentifiedPills(): int {
