@@ -13,4 +13,4 @@ export const SPRITE_TAINTED_BETHANY_OFFSET = Vector(0, 6);
 export const TAINTED_KEEPER_ITEM_PRICE = 15;
 
 /** The version is updated automatically by the IsaacScript publisher. */
-export const VERSION = "0.59.3";
+export const VERSION = "0.59.4";
