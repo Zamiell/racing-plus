@@ -1,6 +1,7 @@
 import { getRoomIndex, log } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 
 export default function racePostUpdate(): void {
@@ -26,7 +27,7 @@ function spawnBossRushTrophy() {
     bossRushDone
   ) {
     const centerPos = g.r.GetCenterPos();
-    const position = g.r.FindFreeTilePosition(centerPos, 0);
+    const position = findFreePosition(centerPos);
     log("Spawning a trophy for the Boss Rush goal.");
     trophy.spawn(position);
   }

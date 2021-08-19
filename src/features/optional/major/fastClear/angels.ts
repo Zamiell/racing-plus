@@ -3,7 +3,7 @@ import {
   anyPlayerHasTrinket,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { spawnCollectible } from "../../../../utilGlobals";
+import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import { deleteDyingEntity } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 24;
@@ -58,7 +58,7 @@ function spawnKeyPiece(npc: EntityNPC) {
   }
 
   // Spawn the item
-  const position = g.r.FindFreeTilePosition(npc.Position, 0);
+  const position = findFreePosition(npc.Position);
   spawnCollectible(getKeySubType(npc), position, npc.InitSeed, false);
 }
 

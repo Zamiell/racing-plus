@@ -28,6 +28,22 @@ export function enteredRoomViaTeleport(): boolean {
   );
 }
 
+export function findFreePosition(startingPosition: Vector): Vector {
+  const position = g.r.FindFreePickupSpawnPosition(startingPosition);
+  const gridEntity = g.r.GetGridEntityFromPos(position);
+  if (gridEntity === null) {
+    return position;
+  }
+
+  // The "FindFreePickupSpawnPosition()" function failed,
+  // because the position that it chose overlaps with a grid entity
+  const position2 = g.r.FindFreeTilePosition(startingPosition, 0);
+
+  // The results of the "FindFreeTilePosition()" function can overlap with existing entities,
+  // so now call "FindFreePickupSpawnPosition()" again to prevent entity overlap
+  return g.r.FindFreePickupSpawnPosition(position2);
+}
+
 function getItemInitCharges(
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): int {

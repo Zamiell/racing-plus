@@ -168,7 +168,12 @@ function spawnGridEntity(
   // For some reason, spawned pits start with a collision class of COLLISION_NONE,
   // so we have to manually set it
   if (entityType === GridEntityType.GRID_PIT) {
-    gridEntity.CollisionClass = GridCollisionClass.COLLISION_PIT;
+    // const gridIndex = g.r.GetGridIndex(gridEntity.Position);
+    // g.r.SetGridPath(gridIndex, GridPath.PIT);
+    const pit = gridEntity.ToPit();
+    if (pit !== null) {
+      pit.UpdateCollision();
+    }
   }
 
   // Prevent poops from playing an appear animation, since it is distracting
