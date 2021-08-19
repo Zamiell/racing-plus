@@ -1,7 +1,7 @@
 {
   "name": "racing-plus",
-  "version": "0.59.4",
-  "description": "A mod for The Binding of Isaac: Afterbirth+",
+  "version": "0.59.5",
+  "description": "A mod for The Binding of Isaac: Repentance+",
   "keywords": [
     "isaac",
     "mod",
@@ -14,7 +14,7 @@
   "dependencies": {
     "isaac-typescript-definitions": "^1.0.129",
     "isaacscript": "^1.1.10",
-    "isaacscript-common": "^1.0.178",
+    "isaacscript-common": "^1.0.180",
     "isaacscript-lint": "^1.0.51"
   },
   "devDependencies": {
