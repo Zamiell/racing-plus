@@ -1,12 +1,11 @@
 import { getDoors, getRandomInt, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
-import { spawnTrapdoorOnBossRooms } from "../../util";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../utilGlobals";
+import * as allowVanillaPathsInRepentanceChallenge from "./allowVanillaPathsInRepentanceChallenge";
 import { ChallengeCustom } from "./enums";
-import * as reimplementShovel from "./reimplementShovel";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -136,7 +135,7 @@ function spawnTrapdoor() {
     return;
   }
 
-  spawnTrapdoorOnBossRooms();
+  allowVanillaPathsInRepentanceChallenge.spawnTrapdoorOnBossRooms();
 }
 
 export function preUseItemWeNeedToGoDeeper(
@@ -149,6 +148,9 @@ export function preUseItemWeNeedToGoDeeper(
     return undefined;
   }
 
-  reimplementShovel.spawnTrapdoor(rng, player);
+  allowVanillaPathsInRepentanceChallenge.spawnTrapdoorWeNeedToGoDeeper(
+    rng,
+    player,
+  );
   return true;
 }

@@ -1,23 +1,16 @@
 import {
   getItemName,
   getPlayers,
-  getRoomIndex,
   hasFlag,
   initRNG,
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import {
-  NORMAL_TRAPDOOR_POSITION,
-  ONE_BY_TWO_TRAPDOOR_POSITION,
-  TWO_BY_ONE_TRAPDOOR_POSITION,
-} from "./constants";
-import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
   COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./features/race/constants";
-import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
@@ -199,36 +192,4 @@ export function restartAsCharacter(character: PlayerType): void {
   }
 
   consoleCommand(`restart ${character}`);
-}
-
-export function spawnTrapdoorOnBossRooms(): void {
-  const trapdoorPosition = getTrapdoorPosition();
-  const gridIndex = g.r.GetGridIndex(trapdoorPosition);
-  const gridEntity = g.r.GetGridEntity(gridIndex);
-  const roomIndex = getRoomIndex();
-
-  // Avoid opening trapdoors on negative boss room index (from The emperor? card)
-  if (roomIndex < 0) {
-    return;
-  }
-
-  if (gridEntity !== null) {
-    gridEntity.Destroy(true);
-  }
-
-  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, trapdoorPosition, true);
-}
-
-function getTrapdoorPosition(): Vector {
-  const roomShape = g.r.GetRoomShape();
-
-  if (roomShape === RoomShape.ROOMSHAPE_2x1) {
-    return TWO_BY_ONE_TRAPDOOR_POSITION;
-  }
-
-  if (roomShape === RoomShape.ROOMSHAPE_1x2) {
-    return ONE_BY_TWO_TRAPDOOR_POSITION;
-  }
-
-  return NORMAL_TRAPDOOR_POSITION;
 }
