@@ -44,7 +44,6 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
-  removeGloballyBannedItems.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
@@ -74,6 +73,10 @@ export function main(isContinued: boolean): void {
   // (commented out if it is not currently a holiday)
   // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
   // (this corresponds to "n016_Christmas.anm2" in the "costumes2.xml" file)
+
+  // Features that need to be last
+  // (this checks for items, so it has to be after all features that grant items)
+  removeGloballyBannedItems.postGameStarted();
 }
 
 function setSeeds() {

@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { spawnCollectible } from "../../../../utilGlobals";
+import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import { isOnFinalCharacter } from "../../../speedrun/speedrun";
@@ -248,7 +248,7 @@ function bossRush() {
 }
 
 function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
-  const position = g.r.FindFreeTilePosition(pickup.Position, 0);
+  const position = findFreePosition(pickup.Position);
 
   if (replacementAction !== ReplacementAction.LeaveAlone) {
     pickup.Remove();

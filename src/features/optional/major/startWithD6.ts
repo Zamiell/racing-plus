@@ -8,7 +8,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
+import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
@@ -124,7 +124,7 @@ function givePocketActiveD6(player: EntityPlayer, charge?: int) {
 }
 
 function giveActiveD6(player: EntityPlayer) {
-  giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
+  giveCollectibleAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
   log("Awarded an active D6.");
 }
 

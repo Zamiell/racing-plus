@@ -138,6 +138,7 @@ functionMap.set("char", (params: string) => {
   }
 
   restartAsCharacter(character);
+  print(`Restarting as character: ${character}`);
 });
 
 functionMap.set("coin", (_params: string) => {

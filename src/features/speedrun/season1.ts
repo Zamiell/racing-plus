@@ -1,7 +1,10 @@
 import { getDoors, getRandomInt, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
 import { spawnTrapdoorOnBossRooms } from "../../util";
-import { giveItemAndRemoveFromPools } from "../../utilGlobals";
+import {
+  giveCollectibleAndRemoveFromPools,
+  giveTrinketAndRemoveFromPools,
+} from "../../utilGlobals";
 import { ChallengeCustom } from "./enums";
 import * as reimplementShovel from "./reimplementShovel";
 
@@ -24,22 +27,26 @@ function giveStartingItems() {
   switch (character) {
     case PlayerType.PLAYER_ISAAC: {
       // Isaac does not get the D6 in challenges
-      giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
       break;
     }
 
     case PlayerType.PLAYER_KEEPER: {
       // Keeper does not get the Wooden Nickel in challenges
-      giveItemAndRemoveFromPools(
+      giveCollectibleAndRemoveFromPools(
         player,
         CollectibleType.COLLECTIBLE_WOODEN_NICKEL,
       );
+      giveTrinketAndRemoveFromPools(player, TrinketType.TRINKET_STORE_KEY);
       break;
     }
 
     case PlayerType.PLAYER_BETHANY:
     case PlayerType.PLAYER_BETHANY_B: {
-      giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_DUALITY);
+      giveCollectibleAndRemoveFromPools(
+        player,
+        CollectibleType.COLLECTIBLE_DUALITY,
+      );
       break;
     }
 

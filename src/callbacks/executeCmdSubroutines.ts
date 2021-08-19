@@ -1,7 +1,6 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
-import g from "../globals";
-import { teleport } from "../utilGlobals";
+import { findFreePosition, teleport } from "../utilGlobals";
 
 export function angel(params: string): void {
   const player = Isaac.GetPlayer();
@@ -38,7 +37,7 @@ export function chaosCardTears(): void {
 export function crawlspace(): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    const position = g.r.FindFreeTilePosition(player.Position, 0);
+    const position = findFreePosition(player.Position);
     Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
   }
 }
@@ -79,7 +78,7 @@ export function IAMERROR(): void {
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    const position = g.r.FindFreeTilePosition(player.Position, 0);
+    const position = findFreePosition(player.Position);
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
   }
 }

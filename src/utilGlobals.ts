@@ -4,6 +4,8 @@ import {
   getRoomIndex,
   inCrawlspace,
   isHiddenSecretRoomDoor,
+  isQuestItem,
+  log,
 } from "isaacscript-common";
 import { TAINTED_KEEPER_ITEM_PRICE } from "./constants";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
@@ -24,6 +26,22 @@ export function enteredRoomViaTeleport(): boolean {
     !inCrawlspace() &&
     !cameFromCrawlspace
   );
+}
+
+export function findFreePosition(startingPosition: Vector): Vector {
+  const position = g.r.FindFreePickupSpawnPosition(startingPosition);
+  const gridEntity = g.r.GetGridEntityFromPos(position);
+  if (gridEntity === null) {
+    return position;
+  }
+
+  // The "FindFreePickupSpawnPosition()" function failed,
+  // because the position that it chose overlaps with a grid entity
+  const position2 = g.r.FindFreeTilePosition(startingPosition, 0);
+
+  // The results of the "FindFreeTilePosition()" function can overlap with existing entities,
+  // so now call "FindFreePickupSpawnPosition()" again to prevent entity overlap
+  return g.r.FindFreePickupSpawnPosition(position2);
 }
 
 function getItemInitCharges(
@@ -48,7 +66,7 @@ export function getItemMaxCharges(
   return itemConfigItem.MaxCharges;
 }
 
-export function giveItemAndRemoveFromPools(
+export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
@@ -58,6 +76,14 @@ export function giveItemAndRemoveFromPools(
 
   player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
+}
+
+export function giveTrinketAndRemoveFromPools(
+  player: EntityPlayer,
+  trinketType: TrinketType,
+): void {
+  player.AddTrinket(trinketType);
+  g.itemPool.RemoveTrinket(trinketType);
 }
 
 export function removeGridEntity(gridEntity: GridEntity): void {
@@ -108,7 +134,7 @@ export function spawnCollectible(
   position: Vector,
   seed: int,
   options: boolean,
-): void {
+): EntityPickup | null {
   const roomType = g.r.GetType();
 
   const collectible = g.g
@@ -123,7 +149,7 @@ export function spawnCollectible(
     )
     .ToPickup();
   if (collectible === null) {
-    return;
+    return null;
   }
 
   if (options) {
@@ -132,12 +158,18 @@ export function spawnCollectible(
 
   if (
     roomType === RoomType.ROOM_ANGEL &&
-    anyPlayerIs(PlayerType.PLAYER_KEEPER_B)
+    anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&
+    !isQuestItem(collectibleType)
   ) {
     collectible.Price = TAINTED_KEEPER_ITEM_PRICE;
+    log(
+      `Set an item in an Angel Room to a price of ${collectible.Price} for Tainted Keeper.`,
+    );
   }
 
   preventItemRotate.checkQuestItem(collectibleType, seed);
+
+  return collectible;
 }
 
 export function teleport(

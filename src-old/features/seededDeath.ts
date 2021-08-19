@@ -278,11 +278,11 @@ export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
 
   // Drop all trinkets and pocket items
   if (!g.run.seededDeath.guppysCollar) {
-    const pos1 = g.r.FindFreeTilePosition(g.p.Position, 0);
+    const pos1 = findFreePosition(g.p.Position);
     g.p.DropTrinket(pos1, false);
-    const pos2 = g.r.FindFreeTilePosition(g.p.Position, 0);
+    const pos2 = findFreePosition(g.p.Position);
     g.p.DropPocketItem(0, pos2);
-    const pos3 = g.r.FindFreeTilePosition(g.p.Position, 0);
+    const pos3 = findFreePosition(g.p.Position);
     g.p.DropPocketItem(1, pos3);
   }
 

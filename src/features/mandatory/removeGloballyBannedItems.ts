@@ -2,12 +2,17 @@
 // This feature is not configurable because it could change trinket pools and cause a seed to be
 // different
 
-import { getPlayers } from "isaacscript-common";
+import { anyPlayerHasCollectible, getPlayers } from "isaacscript-common";
 import g from "../../globals";
 
 const BANNED_COLLECTIBLES = [
-  CollectibleType.COLLECTIBLE_MERCURIUS, // It is too powerful
-  CollectibleType.COLLECTIBLE_TMTRAINER, // It is too powerful
+  CollectibleType.COLLECTIBLE_MERCURIUS,
+  CollectibleType.COLLECTIBLE_TMTRAINER,
+];
+
+const BANNED_COLLECTIBLES_WITH_VOID = [
+  CollectibleType.COLLECTIBLE_MEGA_BLAST,
+  CollectibleType.COLLECTIBLE_MEGA_MUSH,
 ];
 
 const BANNED_TRINKETS = [
@@ -38,6 +43,12 @@ export function postGameStarted(): void {
       if (player.HasTrinket(bannedTrinket)) {
         player.TryRemoveTrinket(bannedTrinket);
       }
+    }
+  }
+
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VOID)) {
+    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
+      g.itemPool.RemoveCollectible(bannedCollectible);
     }
   }
 }
