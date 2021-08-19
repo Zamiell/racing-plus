@@ -11,6 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+import { findFreePosition } from "../../utilGlobals";
 
 const v = {
   run: {
@@ -161,11 +162,11 @@ function spawnSeededDrop(): void {
   if (pickupCount > 0 && pickupVariant !== PickupVariant.PICKUP_NULL) {
     let subType = 0;
     for (let i = 1; i <= pickupCount; i++) {
-      const pos = g.r.FindFreePickupSpawnPosition(centerPos, 0, true);
+      const position = findFreePosition(centerPos);
       const pickup = g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         pickupVariant,
-        pos,
+        position,
         Vector.Zero,
         null,
         subType,

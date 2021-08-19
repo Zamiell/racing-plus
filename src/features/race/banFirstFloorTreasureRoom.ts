@@ -1,5 +1,9 @@
-import { getPlayers, log, onRepentanceStage } from "isaacscript-common";
-import { MAX_NUM_DOORS } from "../../constants";
+import {
+  getPlayers,
+  log,
+  MAX_NUM_DOORS,
+  onRepentanceStage,
+} from "isaacscript-common";
 import g from "../../globals";
 import { removeAllCollectibles } from "../../util";
 

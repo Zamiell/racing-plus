@@ -1,3 +1,4 @@
+import { getHUDOffsetVector } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_TAINTED_BETHANY_OFFSET,
@@ -5,6 +6,8 @@ import {
 import g from "../../globals";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
+
+const STARTING_POSITION = Vector(23, 79);
 
 const sprites = {
   digit: [] as Sprite[],
@@ -36,8 +39,11 @@ function displayCharacterProgress() {
     return;
   }
 
+  let position = STARTING_POSITION;
+  const HUDOffsetVector = getHUDOffsetVector();
+  position = position.add(HUDOffsetVector);
+
   const digitLength = 7.25;
-  let position = Vector(23, 79);
   let adjustment1 = 0;
   let adjustment2 = 0;
   if (v.persistent.characterNum > 9) {

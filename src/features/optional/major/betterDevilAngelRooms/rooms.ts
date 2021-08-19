@@ -12,6 +12,7 @@ import {
 import g from "../../../../globals";
 import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
 import { incrementRNG } from "../../../../util";
+import { spawnCollectible } from "../../../../utilGlobals";
 import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import convertXMLGridEntityType from "./convertXMLGridEntityType";
@@ -19,6 +20,8 @@ import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 
 const GRID_SQUARES_PER_ROW = 15;
+
+const PERSISTENT_ENTITY_TYPES = [EntityType.ENTITY_WALL_HUGGER];
 
 export function getRoomSelection(
   devil: boolean,
@@ -165,7 +168,12 @@ function spawnGridEntity(
   // For some reason, spawned pits start with a collision class of COLLISION_NONE,
   // so we have to manually set it
   if (entityType === GridEntityType.GRID_PIT) {
-    gridEntity.CollisionClass = GridCollisionClass.COLLISION_PIT;
+    // const gridIndex = g.r.GetGridIndex(gridEntity.Position);
+    // g.r.SetGridPath(gridIndex, GridPath.PIT);
+    const pit = gridEntity.ToPit();
+    if (pit !== null) {
+      pit.UpdateCollision();
+    }
   }
 
   // Prevent poops from playing an appear animation, since it is distracting
@@ -186,18 +194,29 @@ function spawnNormalEntity(
 ) {
   const position = gridToPos(x, y);
   const seed = getEntitySeed(devil);
-  const entity = g.g.Spawn(
-    entityType,
-    variant,
-    position,
-    Vector.Zero,
-    null,
-    subtype,
-    seed,
-  );
 
-  // removePitfallAnimationPostSpawn(entity);
-  setAngelItemOptions(entity);
+  let entity;
+  if (
+    entityType === EntityType.ENTITY_PICKUP &&
+    variant === PickupVariant.PICKUP_COLLECTIBLE
+  ) {
+    const shouldBeOptionsItem = !devil;
+    entity = spawnCollectible(subtype, position, seed, shouldBeOptionsItem);
+  } else {
+    entity = g.g.Spawn(
+      entityType,
+      variant,
+      position,
+      Vector.Zero,
+      null,
+      subtype,
+      seed,
+    );
+  }
+
+  if (entity !== null) {
+    storePersistentEntity(entity);
+  }
 }
 
 function getEntitySeed(devil: boolean) {
@@ -210,19 +229,16 @@ function getEntitySeed(devil: boolean) {
   return v.run.seeds.angelEntities;
 }
 
-function setAngelItemOptions(entity: Entity) {
-  const roomType = g.r.GetType();
-
-  // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
-  if (
-    entity.Type === EntityType.ENTITY_PICKUP &&
-    entity.Variant === PickupVariant.PICKUP_COLLECTIBLE &&
-    roomType === RoomType.ROOM_ANGEL
-  ) {
-    const pickup = entity.ToPickup();
-    if (pickup !== null) {
-      pickup.OptionsPickupIndex = 1;
-    }
+function storePersistentEntity(entity: Entity) {
+  if (PERSISTENT_ENTITY_TYPES.includes(entity.Type)) {
+    const gridIndex = g.r.GetGridIndex(entity.Position);
+    const persistentEntity = {
+      gridIndex,
+      type: entity.Type,
+      variant: entity.Variant,
+      subType: entity.SubType,
+    };
+    v.level.persistentEntities.push(persistentEntity);
   }
 }
 
@@ -348,4 +364,29 @@ function getPitFrame(
   }
 
   return F;
+}
+
+export function getRoomDebug(
+  devil: boolean,
+  specificRoomVariant: int,
+  subType = NORMAL_ROOM_SUBTYPE,
+): JSONRoom {
+  const roomsJSON = devil ? devilRooms : angelRooms;
+  const rooms = roomsJSON.rooms.room;
+  const luaRooms = getRoomsWithSubType(rooms, subType);
+
+  for (const luaRoom of luaRooms) {
+    const roomVariantString = luaRoom["@variant"];
+    const roomVariant = tonumber(roomVariantString);
+    if (roomVariant === undefined) {
+      error(`Failed to parse the variant of a room: ${roomVariantString}`);
+    }
+
+    if (roomVariant === specificRoomVariant) {
+      return luaRoom;
+    }
+  }
+
+  error(`Failed to get a room with specific variant: ${specificRoomVariant}`);
+  return luaRooms[0];
 }

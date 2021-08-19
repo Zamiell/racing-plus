@@ -251,7 +251,7 @@ export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
   g.run.seededDeath.guppysCollar = false;
   if (g.p.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
     g.RNGCounter.guppysCollar = misc.incrementRNG(g.RNGCounter.guppysCollar);
-    math.randomseed(g.RNGCounter.guppysCollar);
+    math.randomSeed(g.RNGCounter.guppysCollar);
     const reviveChance = math.random(1, 2);
     if (reviveChance === 1) {
       g.run.seededDeath.guppysCollar = true;
@@ -278,12 +278,12 @@ export function entityTakeDmgPlayer(damageAmount: int): boolean | null {
 
   // Drop all trinkets and pocket items
   if (!g.run.seededDeath.guppysCollar) {
-    const pos1 = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
+    const pos1 = findFreePosition(g.p.Position);
     g.p.DropTrinket(pos1, false);
-    const pos2 = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
-    g.p.DropPoketItem(0, pos2);
-    const pos3 = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
-    g.p.DropPoketItem(1, pos3);
+    const pos2 = findFreePosition(g.p.Position);
+    g.p.DropPocketItem(0, pos2);
+    const pos3 = findFreePosition(g.p.Position);
+    g.p.DropPocketItem(1, pos3);
   }
 
   // If we are The Soul, the death animation will not work properly
@@ -466,43 +466,6 @@ function debuffOff() {
 
   // Set the charge to the way it was before the debuff was applied
   g.p.SetActiveCharge(g.run.seededDeath.charge);
-
-  // Restore the Schoolbag item, if ( any
-  g.run.schoolbag.item = g.run.seededDeath.sbItem;
-  g.run.schoolbag.charge = g.run.seededDeath.sbCharge;
-  g.run.schoolbag.chargeBattery = g.run.seededDeath.sbChargeBattery;
-  g.run.seededDeath.sbItem = 0;
-  g.run.seededDeath.sbCharge = 0;
-  g.run.seededDeath.sbChargeBattery = 0;
-
-  // Check to see if the active item changed
-  // (meaning that the player picked up a new active item during their ghost state)
-  const newActiveItem = g.p.GetActiveItem();
-  if (activeItem !== 0 && newActiveItem !== activeItem) {
-    if (
-      g.p.HasCollectible(CollectibleTypeCustom.COLLECTIBLE_SCHOOLBAG_CUSTOM) &&
-      g.run.schoolbag.item === 0
-    ) {
-      // There is room in the Schoolbag, so put it in the Schoolbag
-      schoolbag.put(activeItem, activeCharge);
-    } else {
-      // There is no room in the Schoolbag, so spawn it on the ground
-      const position = g.r.FindFreePickupSpawnPosition(g.p.Position, 0, true);
-      const pedestal = Isaac.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COLLECTIBLE,
-        activeItem,
-        position,
-        Vector.Zero,
-        null,
-      ).ToPickup();
-      // (we do not care about the seed because it will be replaced on the next frame)
-      if (pedestal !== null) {
-        pedestal.Charge = activeCharge;
-        pedestal.Touched = true;
-      }
-    }
-  }
 
   // Set their size to the way it was before the debuff was applied
   g.p.SpriteScale = g.run.seededDeath.spriteScale;

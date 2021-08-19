@@ -35,6 +35,8 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     error("Seeding non-1x1 rooms is not supported.");
   }
 
+  respawnPersistentEntities();
+
   if (!isFirstVisit) {
     return;
   }
@@ -52,6 +54,21 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     devil();
   } else if (roomType === RoomType.ROOM_ANGEL) {
     angel();
+  }
+}
+
+// Some entities do not properly respawn when the room is re-entered
+function respawnPersistentEntities() {
+  for (const persistentEntity of v.level.persistentEntities) {
+    const position = g.r.GetGridPosition(persistentEntity.gridIndex);
+    Isaac.Spawn(
+      persistentEntity.type,
+      persistentEntity.variant,
+      persistentEntity.subType,
+      position,
+      Vector.Zero,
+      null,
+    );
   }
 }
 

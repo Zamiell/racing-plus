@@ -1,3 +1,4 @@
+import { getHUDOffsetVector } from "isaacscript-common";
 import { VERSION } from "../../constants";
 import g from "../../globals";
 import {
@@ -15,13 +16,18 @@ import {
 } from "../speedrun/speedrun";
 import { speedrunGetFinishedFrames } from "../speedrun/v";
 
+const STARTING_X = 55;
+const STARTING_Y = 10;
+
 export function postRender(): void {
   const seedString = g.seeds.GetStartSeedString();
 
+  const HUDOffsetVector = getHUDOffsetVector();
+
   // We want to place informational text for the player to the right of the heart containers
   // (which will depend on how many heart containers we have)
-  const x = 55 + getHeartXOffset();
-  let y = 10;
+  const x = STARTING_X + HUDOffsetVector.X + getHeartXOffset();
+  let y = STARTING_Y + HUDOffsetVector.Y;
   const lineLength = 15;
 
   const lines: string[] = [];

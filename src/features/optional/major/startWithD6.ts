@@ -1,13 +1,14 @@
 import {
   getPlayerIndex,
   getPlayers,
+  getRoomIndex,
   log,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { giveItemAndRemoveFromPools } from "../../../utilGlobals";
+import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
@@ -123,7 +124,7 @@ function givePocketActiveD6(player: EntityPlayer, charge?: int) {
 }
 
 function giveActiveD6(player: EntityPlayer) {
-  giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
+  giveCollectibleAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
   log("Awarded an active D6.");
 }
 
@@ -139,7 +140,8 @@ export function postNewRoom(): void {
 // When the player uses Genesis, it will strip the pocket D6 from them
 // Give it back to them if this is the case
 function checkGenesisRoom() {
-  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetRoomByIdx(roomIndex);
   const roomType = g.r.GetType();
 
   if (roomType === RoomType.ROOM_ISAACS && roomDesc.Data.Variant === 1000) {

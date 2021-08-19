@@ -1,4 +1,5 @@
 import g from "../../../globals";
+import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 
 export function hush(_entity: Entity): void {
@@ -12,7 +13,7 @@ function checkSpawnHushRaceTrophy() {
     g.race.goal === "Hush"
   ) {
     const centerPos = g.r.GetCenterPos();
-    const pos = g.r.FindFreePickupSpawnPosition(centerPos);
-    trophy.spawn(pos);
+    const position = findFreePosition(centerPos);
+    trophy.spawn(position);
   }
 }

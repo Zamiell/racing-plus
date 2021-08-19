@@ -1,6 +1,6 @@
 import { getPlayers } from "isaacscript-common";
-import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
+import { findFreePosition } from "../../../utilGlobals";
 
 enum FastDropTarget {
   All,
@@ -84,17 +84,17 @@ function fastDrop(player: EntityPlayer, target: FastDropTarget) {
   // Trinkets
   // (the Tick is handled properly because "DropTrinket()" won't do anything in that case)
   if (target === FastDropTarget.All || target === FastDropTarget.Trinkets) {
-    const pos1 = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const pos1 = findFreePosition(player.Position);
     player.DropTrinket(pos1, false);
-    const pos2 = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const pos2 = findFreePosition(player.Position);
     player.DropTrinket(pos2, false);
   }
 
   // Pocket items (cards, pills, runes, etc.)
   if (target === FastDropTarget.All || target === FastDropTarget.Pocket) {
-    const pos1 = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const pos1 = findFreePosition(player.Position);
     player.DropPocketItem(0, pos1);
-    const pos2 = g.r.FindFreePickupSpawnPosition(player.Position, 0, true);
+    const pos2 = findFreePosition(player.Position);
     player.DropPocketItem(1, pos2);
   }
 }

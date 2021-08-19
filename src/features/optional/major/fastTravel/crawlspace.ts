@@ -348,7 +348,8 @@ function isGreatGideonCrawlspace(gridEntity: GridEntity) {
 }
 
 function isGreatGideonRoom() {
-  const roomDesc = g.l.GetCurrentRoomDesc();
+  const roomIndex = getRoomIndex();
+  const roomDesc = g.l.GetRoomByIdx(roomIndex);
   const roomData = roomDesc.Data;
   const roomStageID = roomData.StageID;
   const roomVariant = roomData.Variant;

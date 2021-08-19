@@ -2,6 +2,7 @@ import { getPlayers } from "isaacscript-common";
 import g from "../../../globals";
 import { removeAllCollectibles } from "../../../util";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
+import * as season1 from "../season1";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
 
@@ -11,6 +12,7 @@ export default function speedrunPostNewRoom(): void {
   }
 
   checkFirstCharacterFirstFloorDevilRoom();
+  season1.postNewRoom();
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {
