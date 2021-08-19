@@ -139,13 +139,16 @@ function spawnTrapdoor() {
   spawnTrapdoorOnBossRooms();
 }
 
-export function preUseItemWeNeedToGoDeeper(rng: RNG): boolean | void {
+export function preUseItemWeNeedToGoDeeper(
+  rng: RNG,
+  player: EntityPlayer,
+): boolean | void {
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_1) {
     return undefined;
   }
 
-  reimplementShovel.spawnTrapdoor(rng);
+  reimplementShovel.spawnTrapdoor(rng, player);
   return true;
 }
