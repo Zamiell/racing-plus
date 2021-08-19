@@ -34,29 +34,29 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
 
   // Placeholders
-  COLLECTIBLE_INCUBUS_PLACEHOLDER = Isaac.GetItemIdByName(
-    "Incubus Placeholder",
-  ),
-  COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER = Isaac.GetItemIdByName(
-    "Crown of Light Placeholder",
+  COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER = Isaac.GetItemIdByName(
+    "Magic Mushroom Placeholder",
   ),
   COLLECTIBLE_SACRED_HEART_PLACEHOLDER = Isaac.GetItemIdByName(
     "Sacred Heart Placeholder",
   ),
-  COLLECTIBLE_MAW_OF_THE_VOID_PLACEHOLDER = Isaac.GetItemIdByName(
-    "Maw of the Void Placeholder",
-  ),
   COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER = Isaac.GetItemIdByName(
     "Death's Touch Placeholder",
-  ),
-  COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER = Isaac.GetItemIdByName(
-    "Magic Mushroom Placeholder",
   ),
   COLLECTIBLE_JUDAS_SHADOW_PLACEHOLDER = Isaac.GetItemIdByName(
     "Judas' Shadow Placeholder",
   ),
   COLLECTIBLE_GODHEAD_PLACEHOLDER = Isaac.GetItemIdByName(
     "Godhead Placeholder",
+  ),
+  COLLECTIBLE_INCUBUS_PLACEHOLDER = Isaac.GetItemIdByName(
+    "Incubus Placeholder",
+  ),
+  COLLECTIBLE_MAW_OF_THE_VOID_PLACEHOLDER = Isaac.GetItemIdByName(
+    "Maw of the Void Placeholder",
+  ),
+  COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER = Isaac.GetItemIdByName(
+    "Crown of Light Placeholder",
   ),
   COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER = Isaac.GetItemIdByName(
     "Twisted Pair Placeholder",
