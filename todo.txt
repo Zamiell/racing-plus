@@ -1,9 +1,7 @@
 ```
-### *v0.59.5* - August 19th, 2021
+### *v0.59.6* - August 19th, 2021
 
-- Fixed the bug where errors would happen if you reset on Eden or Tainted Eden. (Thanks Gamonymous)
-- Fixed the bug where the price of items would be wrong in Angel Rooms when playing as Tainted Keeper under certain conditions. (Thanks Fallenfor).
-- Fixed the bug where Angel Room items would be rerolled into hearts when playing as Tainted Keeper. (Thanks Po4ti)
+-
 ```
 
 - Fixed the bug where Perfection could spawn in a beam of light. (Thanks Gamonymous)
