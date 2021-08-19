@@ -1,6 +1,6 @@
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
-import { giveItemAndRemoveFromPools } from "../../utilGlobals";
+import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import * as startsWithD6 from "../optional/major/startWithD6";
 import {
@@ -83,7 +83,7 @@ function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable
   for (const itemID of g.race.startingItems) {
-    giveItemAndRemoveFromPools(player, itemID);
+    giveCollectibleAndRemoveFromPools(player, itemID);
   }
 }
 
@@ -93,7 +93,10 @@ function seeded(player: EntityPlayer) {
   // All seeded races start with the Compass to reduce mapping RNG
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
     // Eden can start with The Compass
-    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_COMPASS);
+    giveCollectibleAndRemoveFromPools(
+      player,
+      CollectibleType.COLLECTIBLE_COMPASS,
+    );
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item)
@@ -109,12 +112,15 @@ function seeded(player: EntityPlayer) {
       itemID = CollectibleTypeCustom.COLLECTIBLE_SAWBLADE;
     }
 
-    giveItemAndRemoveFromPools(player, itemID);
+    giveCollectibleAndRemoveFromPools(player, itemID);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
   if (character === PlayerType.PLAYER_EDEN_B) {
-    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+    giveCollectibleAndRemoveFromPools(
+      player,
+      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+    );
   }
 
   // If we are Tainted Isaac and there are multiple starting items for the race,
@@ -123,7 +129,10 @@ function seeded(player: EntityPlayer) {
     character === PlayerType.PLAYER_ISAAC_B &&
     g.race.startingItems.length >= 2
   ) {
-    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+    giveCollectibleAndRemoveFromPools(
+      player,
+      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+    );
   }
 
   // Remove Sol from pools, since it is mostly useless
@@ -160,7 +169,10 @@ function diversity(player: EntityPlayer) {
   // If this is the case, give the Schoolbag so that they can hold both items
   // (except for Esau, since he is not given any Diversity items)
   if (shouldGetSchoolbagInDiversity(player)) {
-    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_SCHOOLBAG);
+    giveCollectibleAndRemoveFromPools(
+      player,
+      CollectibleType.COLLECTIBLE_SCHOOLBAG,
+    );
   }
 
   // Give the player their five random diversity starting items
@@ -170,10 +182,10 @@ function diversity(player: EntityPlayer) {
 
     if (i === 0) {
       // The first item is the active
-      giveItemAndRemoveFromPools(player, itemOrTrinketID);
+      giveCollectibleAndRemoveFromPools(player, itemOrTrinketID);
     } else if (i === 1 || i === 2 || i === 3) {
       // The second, third, and fourth items are the passives
-      giveItemAndRemoveFromPools(player, itemOrTrinketID);
+      giveCollectibleAndRemoveFromPools(player, itemOrTrinketID);
     } else if (i === 4) {
       // The fifth item is the trinket
       if (trinket1 !== 0) {
@@ -205,7 +217,10 @@ function diversity(player: EntityPlayer) {
     character === PlayerType.PLAYER_EDEN_B ||
     character === PlayerType.PLAYER_ISAAC_B
   ) {
-    giveItemAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+    giveCollectibleAndRemoveFromPools(
+      player,
+      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+    );
   }
 
   // Add item bans for diversity races

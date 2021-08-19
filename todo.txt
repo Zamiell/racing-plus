@@ -1,7 +1,7 @@
 ```
 ### *v0.59.4* - August 18th, 2021
 
--
+- Fixed the bug where identifying pills would cause errors under certain circumstances. (Thanks Hispa)
 ```
 
 TODO Racing+ new features:

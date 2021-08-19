@@ -48,7 +48,7 @@ export function getItemMaxCharges(
   return itemConfigItem.MaxCharges;
 }
 
-export function giveItemAndRemoveFromPools(
+export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
@@ -58,6 +58,14 @@ export function giveItemAndRemoveFromPools(
 
   player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
+}
+
+export function giveTrinketAndRemoveFromPools(
+  player: EntityPlayer,
+  trinketType: TrinketType,
+): void {
+  player.AddTrinket(trinketType);
+  g.itemPool.RemoveTrinket(trinketType);
 }
 
 export function removeGridEntity(gridEntity: GridEntity): void {
