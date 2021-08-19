@@ -13,12 +13,13 @@ const SPRITE_X = 123;
 const SPRITE_Y = 17;
 const SPRITE_SPACING = 30;
 
+let activeSprite: Sprite | null = null;
+let passiveSprite: Sprite | null = null;
+
 const v = {
   run: {
     active: CollectibleType.COLLECTIBLE_NULL,
     passive: CollectibleType.COLLECTIBLE_NULL,
-    activeSprite: null as Sprite | null,
-    passiveSprite: null as Sprite | null,
   },
 };
 
@@ -44,13 +45,13 @@ function drawItemSprites() {
     return;
   }
 
-  if (v.run.activeSprite !== null) {
+  if (activeSprite !== null) {
     const position = Vector(SPRITE_X, SPRITE_Y);
-    v.run.activeSprite.RenderLayer(0, position);
+    activeSprite.RenderLayer(0, position);
   }
-  if (v.run.passiveSprite !== null) {
+  if (passiveSprite !== null) {
     const position = Vector(SPRITE_X + SPRITE_SPACING, SPRITE_Y);
-    v.run.passiveSprite.RenderLayer(0, position);
+    passiveSprite.RenderLayer(0, position);
   }
 }
 
@@ -60,26 +61,20 @@ export function postNewRoom(): void {
     return;
   }
 
+  resetItemSprites();
   setItemSprites();
 }
 
-function setItemSprites() {
-  if (!shouldShowSprites()) {
-    resetItemSprites();
-    return;
-  }
-
-  if (v.run.activeSprite === null) {
-    v.run.activeSprite = initGlowingItemSprite(v.run.active);
-  }
-  if (v.run.passiveSprite === null) {
-    v.run.passiveSprite = initGlowingItemSprite(v.run.passive);
-  }
+function resetItemSprites() {
+  activeSprite = null;
+  passiveSprite = null;
 }
 
-function resetItemSprites() {
-  v.run.activeSprite = null;
-  v.run.passiveSprite = null;
+function setItemSprites() {
+  if (shouldShowSprites()) {
+    activeSprite = initGlowingItemSprite(v.run.active);
+    passiveSprite = initGlowingItemSprite(v.run.passive);
+  }
 }
 
 // Only show the sprites in the starting room of the first floor
@@ -105,7 +100,6 @@ export function postGameStarted(): void {
     return;
   }
 
-  resetItemSprites();
   storeItemIdentities();
 }
 

@@ -1,13 +1,9 @@
 ```
-### *v0.59.4* - August 18th, 2021
+### *v0.59.5* - August 19th, 2021
 
-- Mega Blast and Mega Mush are now removed from pools if the player starts with Void. (Thanks mgln)
-- Fixed the bug where identifying pills would cause errors under certain circumstances. (Thanks Hispa)
-- Fixed the bug where in Season 1, Keeper would not start with the Store Key. (Thanks sisuka)
-- Fixed the bug where key pieces would cost money on Tainted Keeper. (Thanks Po4ti)
-- Fixed the bug where the offset was not working properly for the graphic that showed the character order.
-- Fixed the bug where the offset was not working properly for text to the right of the hearts.
-- Fixed the bug where items could spawn on top of each other under certain conditions. (Thanks Po4ti)
+- Fixed the bug where errors would happen if you reset on Eden or Tainted Eden. (Thanks Gamonymous)
+- Fixed the bug where the price of items would be wrong in Angel Rooms when playing as Tainted Keeper under certain conditions. (Thanks Fallenfor).
+- Fixed the bug where Angel Room items would be rerolled into hearts when playing as Tainted Keeper. (Thanks Po4ti)
 ```
 
 - Fixed the bug where Perfection could spawn in a beam of light. (Thanks Gamonymous)

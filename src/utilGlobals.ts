@@ -5,9 +5,7 @@ import {
   inCrawlspace,
   isHiddenSecretRoomDoor,
   isQuestItem,
-  log,
 } from "isaacscript-common";
-import { TAINTED_KEEPER_ITEM_PRICE } from "./constants";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -161,10 +159,16 @@ export function spawnCollectible(
     anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&
     !isQuestItem(collectibleType)
   ) {
-    collectible.Price = TAINTED_KEEPER_ITEM_PRICE;
-    log(
-      `Set an item in an Angel Room to a price of ${collectible.Price} for Tainted Keeper.`,
-    );
+    // When playing Tainted Keeper, collectibles are supposed to have a price,
+    // and manually spawned items will not have a price, so we have to set it manually
+
+    // Setting the shop item ID in this way prevents the bug where the item will sometimes change to
+    // 99 cents
+    collectible.ShopItemId = -1;
+
+    // We can set the price to any arbitrary value;
+    // it will auto-update to the true price on the next frame
+    collectible.Price = 15;
   }
 
   preventItemRotate.checkQuestItem(collectibleType, seed);
