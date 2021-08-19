@@ -266,7 +266,7 @@ Post-flip actions:
 
 - `072` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
 
-> Why? Historically, orbitals have been a big part of speedrunning at the highest level. Since orbitals got nerfed in Repentance and Sacrificial Dagger got removed from the Treasure Room pool, orbital play is infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
+> Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
 - Mercurius is removed.
 
@@ -287,6 +287,10 @@ Post-flip actions:
 - The Amnesia and ??? pills are removed.
 
 > Why? Since curses are automatically removed, these pills have no effect.
+
+- Mega Blast and Magic Mush are removed from all pools if the player starts with Void.
+
+> Why? The combination of Void with these items trivializes the game and is too powerful.
 
 - `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 

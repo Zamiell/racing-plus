@@ -1,7 +1,11 @@
 ```
 ### *v0.59.4* - August 18th, 2021
 
+- Mega Blast and Mega Mush are now removed from pools if the player starts with Void. (Thanks mgln)
 - Fixed the bug where identifying pills would cause errors under certain circumstances. (Thanks Hispa)
+- Fixed the bug where in Season 1, Keeper would not start with the Store Key. (Thanks sisuka)
+- Fixed the bug where key pieces would cost money on Tainted Keeper. (Thanks Po4ti)
+- Fixed the bug where the offset was not working properly for the graphic that showed the character order.
 ```
 
 TODO Racing+ new features:

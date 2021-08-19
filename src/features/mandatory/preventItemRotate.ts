@@ -1,6 +1,6 @@
 import {
-  collectibleHasTag,
   getItemName,
+  isQuestItem,
   log,
   saveDataManager,
 } from "isaacscript-common";
@@ -55,7 +55,7 @@ export function checkQuestItem(
   collectibleType: CollectibleType | CollectibleTypeCustom,
   seed: int,
 ): void {
-  if (collectibleHasTag(collectibleType, ItemConfigTag.QUEST)) {
+  if (isQuestItem(collectibleType)) {
     v.room.trackedItems.set(seed, collectibleType);
   }
 }

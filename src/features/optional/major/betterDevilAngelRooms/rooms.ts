@@ -4,16 +4,15 @@
 // imported as a module
 
 import {
-  anyPlayerIs,
   getGridEntities,
   getRandomFloat,
   gridToPos,
   log,
 } from "isaacscript-common";
-import { TAINTED_KEEPER_ITEM_PRICE } from "../../../../constants";
 import g from "../../../../globals";
 import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
 import { incrementRNG } from "../../../../util";
+import { spawnCollectible } from "../../../../utilGlobals";
 import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import convertXMLGridEntityType from "./convertXMLGridEntityType";
@@ -190,18 +189,29 @@ function spawnNormalEntity(
 ) {
   const position = gridToPos(x, y);
   const seed = getEntitySeed(devil);
-  const entity = g.g.Spawn(
-    entityType,
-    variant,
-    position,
-    Vector.Zero,
-    null,
-    subtype,
-    seed,
-  );
 
-  setAngelItemAttributes(entity);
-  storePersistentEntity(entity);
+  let entity;
+  if (
+    entityType === EntityType.ENTITY_PICKUP &&
+    variant === PickupVariant.PICKUP_COLLECTIBLE
+  ) {
+    const shouldBeOptionsItem = !devil;
+    entity = spawnCollectible(subtype, position, seed, shouldBeOptionsItem);
+  } else {
+    entity = g.g.Spawn(
+      entityType,
+      variant,
+      position,
+      Vector.Zero,
+      null,
+      subtype,
+      seed,
+    );
+  }
+
+  if (entity !== null) {
+    storePersistentEntity(entity);
+  }
 }
 
 function getEntitySeed(devil: boolean) {
@@ -212,28 +222,6 @@ function getEntitySeed(devil: boolean) {
 
   v.run.seeds.angelEntities = incrementRNG(v.run.seeds.angelEntities);
   return v.run.seeds.angelEntities;
-}
-
-function setAngelItemAttributes(entity: Entity) {
-  const roomType = g.r.GetType();
-
-  // Pedestal items in Angel Rooms should disappear as soon as one of them is taken
-  if (
-    entity.Type === EntityType.ENTITY_PICKUP &&
-    entity.Variant === PickupVariant.PICKUP_COLLECTIBLE &&
-    roomType === RoomType.ROOM_ANGEL
-  ) {
-    const pickup = entity.ToPickup();
-    if (pickup === null) {
-      return;
-    }
-
-    pickup.OptionsPickupIndex = 1;
-
-    if (anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
-      pickup.Price = TAINTED_KEEPER_ITEM_PRICE;
-    }
-  }
 }
 
 function storePersistentEntity(entity: Entity) {
