@@ -97,7 +97,7 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["tbethany", 36],
   ["tbeth", 36],
   ["taintedbethany", 36],
-  ["taintedbet", 36],
+  ["taintedbeth", 36],
   ["jacob2", 37],
   ["tjacob", 37],
   ["taintedjacob", 37],
