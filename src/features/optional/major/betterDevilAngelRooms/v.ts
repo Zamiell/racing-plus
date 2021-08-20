@@ -21,6 +21,7 @@ const v = {
 
   level: {
     persistentEntities: [] as PersistentEntity[],
+    spawnedDecorationGridIndexes: [] as int[],
   },
 };
 export default v;
