@@ -292,6 +292,10 @@ Post-flip actions:
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
+- Card Reading no longer spawns portals on Womb 2 and beyond.
+
+> Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
+
 - `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.

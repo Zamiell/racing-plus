@@ -99,6 +99,10 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+
+  // It is best practice to call the "Update()" method after removing a grid entity;
+  // otherwise, spawning grid entities on the same tile can fail
+  g.r.Update();
 }
 
 /**

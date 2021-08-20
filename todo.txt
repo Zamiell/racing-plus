@@ -1,7 +1,7 @@
 ```
-### *v0.59.7* - August 12th, 2021
+### *v0.59.7* - August 20th, 2021
 
--
+- Card Reading is now nerfed such that it does not spawn any portals on Womb 2 and beyond. (Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.)
 ```
 
 TODO Racing+ new features:

@@ -1,10 +1,16 @@
-import { getDoors, getRoomIndex, onRepentanceStage } from "isaacscript-common";
+import {
+  getDoors,
+  getRoomIndex,
+  getSurroundingGridEntities,
+  onRepentanceStage,
+} from "isaacscript-common";
 import {
   NORMAL_TRAPDOOR_POSITION,
   ONE_BY_TWO_TRAPDOOR_POSITION,
   TWO_BY_ONE_TRAPDOOR_POSITION,
 } from "../../constants";
 import g from "../../globals";
+import { removeGridEntity } from "../../utilGlobals";
 
 // ModCallbacks.MC_PRE_USE_ITEM (23)
 // CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER (84)
@@ -86,7 +92,7 @@ function isDoorToMines() {
 function spawnTrapdoorInBossRooms() {
   const roomIndex = getRoomIndex();
 
-  if (doesRepentanceChallengeSpawnTrapdoorOnThisFloor()) {
+  if (doesSecretPathChallengeSpawnTrapdoorOnThisFloor()) {
     return;
   }
 
@@ -99,12 +105,22 @@ function spawnTrapdoorInBossRooms() {
   const gridIndex = g.r.GetGridIndex(trapdoorPosition);
   const gridEntity = g.r.GetGridEntity(gridIndex);
   if (gridEntity !== null) {
-    gridEntity.Destroy(true);
+    removeGridEntity(gridEntity);
   }
-  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, trapdoorPosition, true);
+  const trapdoor = Isaac.GridSpawn(
+    GridEntityType.GRID_TRAPDOOR,
+    0,
+    trapdoorPosition,
+    true,
+  );
+
+  // Emulate the feature of vanilla where surrounding rocks will be destroyed and surrounding pits
+  // will be filled
+  clearSurroundingTiles(trapdoor);
 }
 
-function doesRepentanceChallengeSpawnTrapdoorOnThisFloor() {
+// In challenges with 'secretpath="true"', trapdoors will only spawn on certain floors
+function doesSecretPathChallengeSpawnTrapdoorOnThisFloor() {
   const stage = g.l.GetStage();
 
   // On normal stages, a trapdoor will naturally spawn Depths 2, Womb 2, and above
@@ -135,4 +151,19 @@ function getTrapdoorPosition(): Vector {
   }
 
   return NORMAL_TRAPDOOR_POSITION;
+}
+
+function clearSurroundingTiles(centerGridEntity: GridEntity) {
+  const gridEntities = getSurroundingGridEntities(centerGridEntity);
+  for (const gridEntity of gridEntities) {
+    const gridEntityType = gridEntity.GetType();
+    if (gridEntityType === GridEntityType.GRID_ROCK) {
+      gridEntity.Destroy(true);
+    } else if (gridEntityType === GridEntityType.GRID_PIT) {
+      const pit = gridEntity.ToPit();
+      if (pit !== null) {
+        pit.MakeBridge(null);
+      }
+    }
+  }
 }
