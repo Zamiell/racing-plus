@@ -6,6 +6,7 @@ import debugFunction, { debugFunction2 } from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
+import { ChallengeCustom } from "../features/speedrun/enums";
 import { speedrunSetNext } from "../features/speedrun/v";
 import g from "../globals";
 import PILL_MAP from "../pillMap";
@@ -371,6 +372,11 @@ functionMap.set("s", (params: string) => {
   }
 
   consoleCommand(`stage ${stage}${stageType}`);
+});
+
+functionMap.set("s1", (_params: string) => {
+  Isaac.ExecuteCommand(`challenge ${ChallengeCustom.SEASON_1}`);
+  Isaac.ExecuteCommand("setcharorder");
 });
 
 functionMap.set("setcharorder", (_params: string) => {
