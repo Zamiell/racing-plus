@@ -34,7 +34,7 @@ function spawnKrampusDrop(npc: EntityNPC) {
 
   // Spawn the item
   const position = findFreePosition(npc.Position);
-  spawnCollectible(getKrampusItemSubType(), position, npc.InitSeed, false);
+  spawnCollectible(getKrampusItemSubType(), position, npc.InitSeed);
 }
 
 function getKrampusItemSubType() {

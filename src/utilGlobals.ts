@@ -136,7 +136,8 @@ export function spawnCollectible(
   collectibleType: CollectibleType | CollectibleTypeCustom,
   position: Vector,
   seed: int,
-  options: boolean,
+  options = false,
+  forceFreeItem = false,
 ): EntityPickup | null {
   const roomType = g.r.GetType();
 
@@ -162,7 +163,8 @@ export function spawnCollectible(
   if (
     roomType === RoomType.ROOM_ANGEL &&
     anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&
-    !isQuestItem(collectibleType)
+    !isQuestItem(collectibleType) &&
+    !forceFreeItem
   ) {
     // When playing Tainted Keeper, collectibles are supposed to have a price,
     // and manually spawned items will not have a price, so we have to set it manually

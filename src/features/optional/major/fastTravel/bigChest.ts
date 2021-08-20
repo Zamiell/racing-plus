@@ -297,7 +297,6 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
         position,
         seed,
-        false,
       );
       break;
     }

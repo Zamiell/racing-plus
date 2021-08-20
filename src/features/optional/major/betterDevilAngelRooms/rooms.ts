@@ -200,8 +200,8 @@ function spawnNormalEntity(
     entityType === EntityType.ENTITY_PICKUP &&
     variant === PickupVariant.PICKUP_COLLECTIBLE
   ) {
-    const shouldBeOptionsItem = !devil;
-    entity = spawnCollectible(subtype, position, seed, shouldBeOptionsItem);
+    const options = !devil;
+    entity = spawnCollectible(subtype, position, seed, options);
   } else {
     entity = g.g.Spawn(
       entityType,

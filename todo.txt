@@ -3,7 +3,7 @@
 
 - Repentance doors will now spawn in the Season 1 challenge. Thanks to Gamonymous for coding this.
 - Fixed the bug where Diplopia would spawn items on top of each other in Devil Rooms & Angel Rooms. (Thanks Hispa)
-- Fixed the bug where Perfection could spawn in a beam of light. (Thanks Gamonymous)
+- Fixed the bug where pickups could spawn in a beam of light under certain circumstances. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:
