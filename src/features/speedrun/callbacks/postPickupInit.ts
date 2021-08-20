@@ -5,6 +5,10 @@ export function trophy(pickup: EntityPickup): void {
     return;
   }
 
+  removeAndSpawnBigChest(pickup);
+}
+
+function removeAndSpawnBigChest(pickup: EntityPickup) {
   // Funnel all end-of-run decision making through code that runs on PostPickupInit for Big Chests
   pickup.Remove();
   Isaac.Spawn(

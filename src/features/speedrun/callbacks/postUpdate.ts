@@ -2,14 +2,14 @@ import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
 export default function speedrunPostUpdate(): void {
-  checkStartTimer();
-}
-
-function checkStartTimer() {
   if (!inSpeedrun()) {
     return;
   }
 
+  checkStartTimer();
+}
+
+function checkStartTimer() {
   if (v.persistent.startedFrame !== null) {
     return;
   }

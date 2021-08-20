@@ -1,8 +1,16 @@
-import * as season1 from "../season1";
+import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
+import { inSpeedrun } from "../speedrun";
 
 export function preUseItemWeNeedToGoDeeper(
   rng: RNG,
   player: EntityPlayer,
 ): boolean | void {
-  return season1.preUseItemWeNeedToGoDeeper(rng, player);
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  return allowVanillaPathsInRepentanceChallenge.preUseItemWeNeedToGoDeeper(
+    rng,
+    player,
+  );
 }

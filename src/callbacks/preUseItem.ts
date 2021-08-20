@@ -18,10 +18,13 @@ export function init(mod: Mod): void {
 // CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER (84)
 function weNeedToGoDeeper(
   _collectibleType: CollectibleType,
-  _rng: RNG,
+  rng: RNG,
   player: EntityPlayer,
+  _useFlags: int,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
 ) {
-  return speedrunPreUseItem.preUseItemWeNeedToGoDeeper(_rng, player);
+  return speedrunPreUseItem.preUseItemWeNeedToGoDeeper(rng, player);
 }
 
 // CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS (124)

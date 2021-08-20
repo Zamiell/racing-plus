@@ -1,5 +1,10 @@
-import * as season1 from "../season1";
+import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
+import { inSpeedrun } from "../speedrun";
 
 export function speedrunPreSpawnClearAward(): void {
-  season1.preSpawnClearAward();
+  if (!inSpeedrun()) {
+    return;
+  }
+
+  allowVanillaPathsInRepentanceChallenge.preSpawnClearAward();
 }

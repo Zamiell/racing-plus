@@ -2,7 +2,6 @@ import { getPlayers } from "isaacscript-common";
 import g from "../../../globals";
 import { removeAllCollectibles } from "../../../util";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
-import * as season1 from "../season1";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
 
@@ -12,7 +11,7 @@ export default function speedrunPostNewRoom(): void {
   }
 
   checkFirstCharacterFirstFloorDevilRoom();
-  season1.postNewRoom();
+  checkWomb2IAMERROR();
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {
@@ -51,5 +50,33 @@ function emptyDevilAngelRoom() {
   // but they will still be able to hear the sound effect
   for (const player of getPlayers()) {
     player.AnimateSad();
+  }
+}
+
+function checkWomb2IAMERROR() {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+  const seed = g.l.GetDungeonPlacementSeed();
+
+  if (stage !== 8 || roomType !== RoomType.ROOM_ERROR) {
+    return;
+  }
+
+  // Since we are in a challenge that has 'altpath="true"',
+  // the game will always spawn a beam of light going to the Cathedral
+  // In vanilla, there would be a 50% chance to spawn a trapdoor
+  // Emulate the vanilla functionality
+  const trapdoorChance = getRandomInt(1, 2, seed);
+  if (trapdoorChance === 1) {
+    return;
+  }
+
+  const heavenDoors = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+  );
+  for (const heavenDoor of heavenDoors) {
+    heavenDoor.Remove();
+    Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, heavenDoor.Position, true);
   }
 }
