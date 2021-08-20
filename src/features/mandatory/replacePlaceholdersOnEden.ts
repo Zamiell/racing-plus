@@ -8,12 +8,9 @@ import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/quality/moreStartingItems";
 import { BANNED_COLLECTIBLES } from "./removeGloballyBannedItems";
 
-const v = {
-  allowedPassiveItems: [] as number[],
-};
+const passiveItemsArray = [] as number[];
 
 export default function init(): void {
-  const allowedPassiveItemsArray = [];
   for (let i = 1; i <= MAX_VANILLA_COLLECTIBLE_TYPE; i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
@@ -24,11 +21,10 @@ export default function init(): void {
       !isQuestItem(itemConfigItem.ID)
     ) {
       Isaac.DebugString(itemConfigItem.ID.toString());
-      allowedPassiveItemsArray.push(itemConfigItem.ID);
+      passiveItemsArray.push(itemConfigItem.ID);
     }
   }
 
-  v.allowedPassiveItems = allowedPassiveItemsArray;
   removePlaceholdersOnEdenPostGameStarted();
 }
 
@@ -36,8 +32,7 @@ function removePlaceholdersOnEdenPostGameStarted(): void {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const startSeed = g.seeds.GetStartSeed();
-  const allowedPassiveItems = v.allowedPassiveItems;
-  const newCollectible = getRandomArrayElement(allowedPassiveItems, startSeed);
+  const newCollectible = getRandomArrayElement(passiveItemsArray, startSeed);
 
   if (
     character !== PlayerType.PLAYER_EDEN &&
