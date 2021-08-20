@@ -1,7 +1,11 @@
 import {
-  getDoors,
+  getRepentanceDoor,
   getRoomIndex,
   getSurroundingGridEntities,
+  isDoorToDownpour,
+  isDoorToMausoleum,
+  isDoorToMines,
+  isRepentanceDoor,
   onRepentanceStage,
 } from "isaacscript-common";
 import {
@@ -10,7 +14,14 @@ import {
   TWO_BY_ONE_TRAPDOOR_POSITION,
 } from "../../constants";
 import g from "../../globals";
+import RepentanceDoorState from "../../types/RepentanceDoorState";
 import { removeGridEntity } from "../../utilGlobals";
+import v from "./v";
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  setRepentanceDoors();
+}
 
 // ModCallbacks.MC_PRE_USE_ITEM (23)
 // CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER (84)
@@ -53,40 +64,48 @@ function emulateClearingNormalChallengeBossRoom() {
     return;
   }
 
-  lockRepentanceDoors();
-  spawnTrapdoorInBossRooms();
-}
-
-function lockRepentanceDoors() {
   // This challenge is marked as 'secretpath="true"', which means that the Repentance doors will
   // spawn open without the player having to spend resources
   // Revert the doors to how they would be in vanilla
-  for (const door of getDoors()) {
-    if (
-      door !== null &&
-      door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
-    ) {
-      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
-      door.Close(true);
+  setRepentanceDoors();
 
-      if (isDoorToMines()) {
-        // The door that requires 2 bombs is a special case
-        door.Bar();
-        door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
-      } else {
-        door.SetLocked(true);
-      }
-    }
-  }
+  spawnTrapdoorInBossRooms();
 }
 
-function isDoorToMines() {
-  const stage = g.l.GetStage();
+function setRepentanceDoors() {
+  const door = getRepentanceDoor();
+  if (door === null) {
+    return;
+  }
 
-  return (
-    (stage === 2 && onRepentanceStage()) ||
-    ((stage === 3 || stage === 4) && !onRepentanceStage())
-  );
+  if (isDoorToDownpour(door)) {
+    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
+      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+      door.Close(true);
+      door.SetLocked(true);
+    }
+  } else if (isDoorToMines(door)) {
+    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
+      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+      door.Close(true);
+      door.Bar();
+      door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
+    } else if (v.level.repentanceDoorState === RepentanceDoorState.HalfBombed) {
+      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+      door.Close(true);
+      door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
+      door.State = DoorState.STATE_HALF_CRACKED;
+      g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_CLOSE);
+    }
+  } else if (isDoorToMausoleum(door)) {
+    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
+      // TODO
+    } else if (
+      v.level.repentanceDoorState === RepentanceDoorState.HalfHealthDonated
+    ) {
+      // TODO
+    }
+  }
 }
 
 function spawnTrapdoorInBossRooms() {
@@ -164,6 +183,51 @@ function clearSurroundingTiles(centerGridEntity: GridEntity) {
       if (pit !== null) {
         pit.MakeBridge(null);
       }
+    }
+  }
+}
+
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// GridEntityType.GRID_DOOR (16)
+export function postGridEntityUpdateDoor(gridEntity: GridEntity): void {
+  const door = gridEntity.ToDoor();
+  if (door !== null && isRepentanceDoor(door)) {
+    updateRepentanceDoorState(door);
+  }
+}
+
+function updateRepentanceDoorState(door: GridEntityDoor) {
+  Isaac.DebugString(`STATE = ${door.State}`);
+
+  if (isDoorToDownpour(door)) {
+    const doorState = door.IsLocked()
+      ? RepentanceDoorState.Initial
+      : RepentanceDoorState.Unlocked;
+    v.level.repentanceDoorState = doorState;
+  } else if (isDoorToMines(door)) {
+    v.level.repentanceDoorState = getDoorStateForMinesDoor(door);
+  } else if (isDoorToMausoleum(door)) {
+    // TODO
+  }
+}
+
+function getDoorStateForMinesDoor(door: GridEntityDoor) {
+  switch (door.State) {
+    case DoorState.STATE_CLOSED: {
+      return RepentanceDoorState.Initial;
+    }
+
+    case DoorState.STATE_HALF_CRACKED: {
+      return RepentanceDoorState.HalfBombed;
+    }
+
+    case DoorState.STATE_OPEN: {
+      return RepentanceDoorState.Unlocked;
+    }
+
+    default: {
+      error("A Mines door had an unknown state.");
+      return RepentanceDoorState.Initial;
     }
   }
 }

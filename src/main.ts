@@ -111,10 +111,6 @@ function registerCallbacksMain(mod: ModUpgraded) {
     ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN,
     preRoomEntitySpawn.main,
   ); // 71
-
-  mod.AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, () => {
-    Isaac.DebugString("GETTING HERE");
-  });
 }
 
 function registerCallbacksWithExtraArgument(mod: ModUpgraded) {

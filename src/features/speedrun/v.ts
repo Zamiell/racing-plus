@@ -1,5 +1,6 @@
 import { log, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import RepentanceDoorState from "../../types/RepentanceDoorState";
 
 const v = {
   persistent: {
@@ -16,6 +17,7 @@ const v = {
 
   level: {
     previousRoomType: RoomType.ROOM_DEFAULT,
+    repentanceDoorState: RepentanceDoorState.Initial,
   },
 
   run: {

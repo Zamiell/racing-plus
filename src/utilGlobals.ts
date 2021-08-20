@@ -134,6 +134,10 @@ export function setRoomCleared(): void {
     door.ExtraVisible = false;
   }
   g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
+
+  // If the room contained Mom's Hands, then a screen shake will be queued
+  // Override it with a null shake
+  g.g.ShakeScreen(0);
 }
 
 export function spawnCollectible(

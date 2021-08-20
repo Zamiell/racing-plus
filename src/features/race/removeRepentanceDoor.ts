@@ -2,7 +2,7 @@
 // Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 
 import {
-  getDoors,
+  getRepentanceDoor,
   onRepentanceStage,
   removeAllEntities,
 } from "isaacscript-common";
@@ -41,10 +41,9 @@ function removeRepentanceDoor() {
     );
     removeAllEntities(dustClouds);
 
-    for (const door of getDoors()) {
-      if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
-        g.r.RemoveDoor(door.Slot);
-      }
+    const repentanceDoor = getRepentanceDoor();
+    if (repentanceDoor !== null) {
+      g.r.RemoveDoor(repentanceDoor.Slot);
     }
   }
 }
