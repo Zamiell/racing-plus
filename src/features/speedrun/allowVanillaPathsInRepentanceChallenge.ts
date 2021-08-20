@@ -7,10 +7,10 @@ import {
 import g from "../../globals";
 
 export function spawnTrapdoorOnBossRooms(): void {
-  const trapdoorPosition = getTrapdoorPosition();
   const gridIndex = g.r.GetGridIndex(trapdoorPosition);
   const gridEntity = g.r.GetGridEntity(gridIndex);
   const roomIndex = getRoomIndex();
+  const trapdoorPosition = getTrapdoorPosition();
 
   // Avoid opening trapdoors on negative boss room index (from The Emperor? card)
   if (roomIndex < 0) {
