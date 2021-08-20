@@ -28,10 +28,6 @@ export function checkDisplaySeededDeath(): void {
   if (g.run.seededDeath.state >= SeededDeathState.FETAL_POSITION) {
     remainingTimeMilliseconds =
       g.run.seededDeath.debuffEndTime - Isaac.GetTime();
-    if (challenge === ChallengeCustom.R7_SEASON_6) {
-      // The timer needs to be moved to the right to account for the "(S6)" icon
-      adjustTimerRight = true;
-    }
   }
   if (
     remainingTimeMilliseconds === undefined ||
