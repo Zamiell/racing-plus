@@ -1,6 +1,7 @@
 ```
 ### *v0.59.8* - August 20th, 2021
 
+- Fixed the bug where the Dream Catcher sprites would cause errors under certain conditions. (Thanks Gamonymous)
 - Fixed the bug where the screen would shake when entering a Devil Room under certain conditions.
 ```
 

@@ -12,21 +12,19 @@ import v from "./v";
 // Near the top-left of the room
 const SPRITE_SPACING = 30;
 
-let dreamCatcherSprite = Sprite();
+let dreamCatcherSprite: Sprite | null = null;
 let itemSprites: Sprite[] = [];
 let bossSprites: Sprite[] = [];
-
-export function init(): void {
-  dreamCatcherSprite = initGlowingItemSprite(
-    CollectibleType.COLLECTIBLE_DREAM_CATCHER,
-  );
-}
 
 export function set(): void {
   if (!shouldShowSprites()) {
     reset();
     return;
   }
+
+  dreamCatcherSprite = initGlowingItemSprite(
+    CollectibleType.COLLECTIBLE_DREAM_CATCHER,
+  );
 
   for (let i = 0; i < v.level.items.length; i++) {
     if (itemSprites[i] === null) {
@@ -61,6 +59,7 @@ function initBossSprite(entityType: EntityType, variant: int) {
 }
 
 export function reset(): void {
+  dreamCatcherSprite = null;
   itemSprites = [];
   bossSprites = [];
 }
@@ -91,7 +90,7 @@ export function draw(): void {
   const topLeftRoomPosition = gridToPos(1, 1);
   const nextToDreamCatcherPosition = gridToPos(2, 1);
 
-  {
+  if (dreamCatcherSprite !== null) {
     const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);
     dreamCatcherSprite.RenderLayer(0, renderPosition);
   }
