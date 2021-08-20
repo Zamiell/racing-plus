@@ -1,9 +1,10 @@
-import { getRandomInt, MAX_NUM_DOORS } from "isaacscript-common";
+import { getDoors, getRandomInt, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../utilGlobals";
+import * as allowVanillaPathsInRepentanceChallenge from "./allowVanillaPathsInRepentanceChallenge";
 import { ChallengeCustom } from "./enums";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -89,40 +90,67 @@ function checkWomb2IAMERROR() {
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {
-  checkSpawnRepentanceDoorsAfterBoss();
+  lockRepentanceDoorsAndSpawnTrapdoor();
 }
 
-function checkSpawnRepentanceDoorsAfterBoss() {
-  const stage = g.l.GetStage();
+function lockRepentanceDoorsAndSpawnTrapdoor() {
   const roomType = g.r.GetType();
 
   if (roomType !== RoomType.ROOM_BOSS) {
     return;
   }
 
-  if (stage === 1) {
-    spawnRepentanceDoor();
+  lockRepentanceDoors();
+  spawnTrapdoor();
+}
+
+function lockRepentanceDoors() {
+  const stage = g.l.GetStage();
+
+  for (const door of getDoors()) {
+    if (
+      door !== null &&
+      door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+    ) {
+      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+      door.Close(true);
+
+      if (
+        (stage === 2 && onRepentanceStage()) ||
+        ((stage === 3 || stage === 4) && !onRepentanceStage())
+      ) {
+        door.Bar();
+        door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
+      } else {
+        door.SetLocked(true);
+      }
+    }
   }
 }
 
-function spawnRepentanceDoor() {
-  const doorSlotsForNewDoor = getDoorSlotsForNewDoor();
-  if (doorSlotsForNewDoor.length === 0) {
+function spawnTrapdoor() {
+  const stage = g.l.GetStage();
+
+  if (stage >= 8) {
     return;
   }
 
-  const doorSlot = doorSlotsForNewDoor[0];
-  const position = g.r.GetDoorSlotPosition(doorSlot);
-  Isaac.DebugString(`Position: ${position}`);
+  allowVanillaPathsInRepentanceChallenge.spawnTrapdoorOnBossRooms();
 }
 
-function getDoorSlotsForNewDoor() {
-  const openDoorSlots = [];
-  for (let i = 0; i < MAX_NUM_DOORS; i++) {
-    if (g.r.IsDoorSlotAllowed(i)) {
-      openDoorSlots.push(i);
-    }
+export function preUseItemWeNeedToGoDeeper(
+  rng: RNG,
+  player: EntityPlayer,
+): boolean | void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_1) {
+    return undefined;
   }
 
-  return openDoorSlots;
+  allowVanillaPathsInRepentanceChallenge.spawnTrapdoorWeNeedToGoDeeper(
+    rng,
+    player,
+  );
+  return true;
 }
