@@ -58,8 +58,8 @@ In terms of what to change about the game, the mod has several goals, and attemp
 ### 3) Devil Room & Angel Room Rebalancing
 
 - `003` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
-  - Average items per devil room are increased from [TODO] to [TODO].
-  - Average items per angel room are increased from [TODO] to [TODO].
+  - Average items per devil room are increased from 1.64 to 1.96.
+  - Average items per angel room are increased from 1.34 to 1.51.
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
