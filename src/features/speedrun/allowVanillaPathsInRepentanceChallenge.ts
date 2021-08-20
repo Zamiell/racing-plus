@@ -25,8 +25,8 @@ export function preUseItemWeNeedToGoDeeper(
     "UseItem",
   );
 
-  // Only spawn crawlspaces above stage 8
-  if (stage > 8 && gridEntityType === GridEntityType.GRID_STAIRS) {
+  // Do not allow trapdoors on stage 9 and above
+  if (stage >= 9 && gridEntityType === GridEntityType.GRID_TRAPDOOR) {
     return undefined;
   }
 
@@ -83,7 +83,7 @@ function isDoorToMines() {
   );
 }
 
-export function spawnTrapdoorInBossRooms(): void {
+function spawnTrapdoorInBossRooms() {
   const roomIndex = getRoomIndex();
 
   if (doesRepentanceChallengeSpawnTrapdoorOnThisFloor()) {

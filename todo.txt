@@ -1,7 +1,7 @@
 ```
 ### *v0.59.6* - August 19th, 2021
 
--
+- Repentance doors will now spawn in the Season 1 challenge. Thanks to Gamonymous for coding this.
 ```
 
 - Fixed the bug where Perfection could spawn in a beam of light. (Thanks Gamonymous)

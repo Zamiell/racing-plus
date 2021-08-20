@@ -1,4 +1,4 @@
-import { getPlayers } from "isaacscript-common";
+import { getPlayers, getRandomInt } from "isaacscript-common";
 import g from "../../../globals";
 import { removeAllCollectibles } from "../../../util";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
