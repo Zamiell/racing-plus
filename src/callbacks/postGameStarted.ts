@@ -3,6 +3,7 @@ import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
+import replacePlaceholdersOnEdenPostGameStarted from "../features/mandatory/replacePlaceholdersOnEden";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
@@ -49,6 +50,7 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
   streakText.postGameStarted();
+  replacePlaceholdersOnEdenPostGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before
   // race initialization because we need to find out what the passive item is before other items are

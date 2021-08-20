@@ -3,7 +3,7 @@ import { config } from "../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import { changeCollectibleSubType } from "../../../utilCollectible";
 
-const COLLECTIBLE_REPLACEMENT_MAP = new Map<
+export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   CollectibleTypeCustom,
   CollectibleType
 >([

@@ -10,13 +10,13 @@
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
 
 	<!-- Placeholders -->
-	<passive description="" name="Incubus Placeholder" hidden="true" />
-	<passive description="" name="Crown of Light Placeholder" hidden="true" />
-	<passive description="" name="Sacred Heart Placeholder" hidden="true" />
-	<passive description="" name="Maw of the Void Placeholder" hidden="true" />
-	<passive description="" name="Death's Touch Placeholder" hidden="true" />
-	<passive description="" name="Magic Mushroom Placeholder" hidden="true" />
-	<passive description="" name="Judas' Shadow Placeholder" hidden="true" />
-	<passive description="" name="Godhead Placeholder" hidden="true" />
-	<passive description="" name="Twisted Pair Placeholder" hidden="true" />
+	<passive description="" name="Incubus Placeholder" />
+	<passive description="" name="Crown of Light Placeholder" />
+	<passive description="" name="Sacred Heart Placeholder" />
+	<passive description="" name="Maw of the Void Placeholder" />
+	<passive description="" name="Death's Touch Placeholder" />
+	<passive description="" name="Magic Mushroom Placeholder" />
+	<passive description="" name="Judas' Shadow Placeholder" />
+	<passive description="" name="Godhead Placeholder" />
+	<passive description="" name="Twisted Pair Placeholder" />
 </items>
