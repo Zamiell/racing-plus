@@ -68,9 +68,7 @@ function checkScolexRoom() {
       EntityType.ENTITY_PIN,
       1,
     );
-    for (const scolex of scolexes) {
-      scolex.Remove(); // This takes a game frame to actually get removed
-    }
+    removeAllEntities(scolexes); // They take a game frame to actually get removed
 
     let seed = roomSeed;
     for (let i = 0; i < 2; i++) {

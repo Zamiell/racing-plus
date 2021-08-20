@@ -2,6 +2,7 @@ import {
   forceNewRoomCallback,
   getRoomNPCs,
   gridToPos,
+  removeAllEntities,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { consoleCommand, removeItemFromItemTracker } from "../../../util";
@@ -32,10 +33,8 @@ function gotoButtonRoom() {
 function setupButtonRoom() {
   const player = Isaac.GetPlayer();
 
-  // Remove all enemies
-  for (const npc of getRoomNPCs()) {
-    npc.Remove();
-  }
+  const npcs = getRoomNPCs();
+  removeAllEntities(npcs);
   g.r.SetClear(true);
 
   // We want to trap the player in the room, so delete all 4 doors

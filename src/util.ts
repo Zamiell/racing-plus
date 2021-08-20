@@ -5,6 +5,7 @@ import {
   initRNG,
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
+  removeAllMatchingEntities,
 } from "isaacscript-common";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
@@ -160,17 +161,6 @@ export function removeAllCollectibles(): void {
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
   );
-}
-
-function removeAllMatchingEntities(
-  entityType: int,
-  entityVariant = -1,
-  entitySubType = -1,
-): void {
-  const entities = Isaac.FindByType(entityType, entityVariant, entitySubType);
-  for (const entity of entities) {
-    entity.Remove();
-  }
 }
 
 export function removeItemFromItemTracker(

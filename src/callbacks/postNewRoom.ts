@@ -4,6 +4,7 @@ import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/post
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
@@ -43,6 +44,7 @@ export function main(): void {
 
   // Mandatory features
   removeGloballyBannedItems.postNewRoom();
+  nerfCardReading.postNewRoom();
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
   trophy.postNewRoom();

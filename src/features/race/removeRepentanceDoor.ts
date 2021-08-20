@@ -1,7 +1,11 @@
 // For races to The Beast, the player must go to Depths 2
 // Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 
-import { getDoors, log, onRepentanceStage } from "isaacscript-common";
+import {
+  getDoors,
+  onRepentanceStage,
+  removeAllEntities,
+} from "isaacscript-common";
 import g from "../../globals";
 
 // MC_POST_NEW_ROOM (18)
@@ -35,17 +39,11 @@ function removeRepentanceDoor() {
       EntityType.ENTITY_EFFECT,
       EffectVariant.DUST_CLOUD,
     );
-    for (const dust of dustClouds) {
-      dust.Remove();
-      log("Manually removed the dust clouds (for races going to The Beast).");
-    }
+    removeAllEntities(dustClouds);
 
     for (const door of getDoors()) {
       if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
         g.r.RemoveDoor(door.Slot);
-        log(
-          "Manually removed the Mausoleum door (for races going to The Beast).",
-        );
       }
     }
   }

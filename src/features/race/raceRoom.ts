@@ -4,6 +4,7 @@ import {
   getPlayers,
   getRoomIndex,
   gridToPos,
+  removeAllEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand, initSprite } from "../../util";
@@ -172,9 +173,7 @@ function setupRaceRoom() {
   }
 
   const gapers = Isaac.FindByType(EntityType.ENTITY_GAPER);
-  for (const gaper of gapers) {
-    gaper.Remove();
-  }
+  removeAllEntities(gapers);
   g.r.SetClear(true);
 
   // We want to trap the player in the room, so delete all 4 doors
