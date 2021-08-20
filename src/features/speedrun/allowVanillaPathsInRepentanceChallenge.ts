@@ -12,7 +12,7 @@ export function spawnTrapdoorOnBossRooms(): void {
   const gridEntity = g.r.GetGridEntity(gridIndex);
   const roomIndex = getRoomIndex();
 
-  // Avoid opening trapdoors on negative boss room index (from The emperor? card)
+  // Avoid opening trapdoors on negative boss room index (from The Emperor? card)
   if (roomIndex < 0) {
     return;
   }
