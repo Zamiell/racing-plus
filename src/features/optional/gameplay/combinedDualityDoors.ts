@@ -1,6 +1,3 @@
-// TODO Goat head crashes on seed G2PQ 1PPG
-// TODO remove dust from right door on seed G2PQ 1PPG
-
 import {
   anyPlayerHasCollectible,
   DISTANCE_OF_GRID_SQUARE,
