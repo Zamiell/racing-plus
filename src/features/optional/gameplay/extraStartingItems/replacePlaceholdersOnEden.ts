@@ -6,7 +6,7 @@ import {
 import g from "../../../../globals";
 import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
 import { BANNED_COLLECTIBLES } from "../../../mandatory/removeGloballyBannedItems";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "./moreStartingItems";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 const passiveItemsForEden = [] as number[];
 
@@ -38,7 +38,7 @@ export function postGameStarted(): void {
     return;
   }
 
-  for (const [placeholderItem] of COLLECTIBLE_REPLACEMENT_MAP) {
+  for (const placeholderItem of COLLECTIBLE_REPLACEMENT_MAP.keys()) {
     if (player.HasCollectible(placeholderItem)) {
       player.RemoveCollectible(placeholderItem);
       giveCollectibleAndRemoveFromPools(player, newCollectible);

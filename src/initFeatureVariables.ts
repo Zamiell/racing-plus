@@ -17,8 +17,7 @@ import * as switchForgotten from "./features/mandatory/switchForgotten";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as combinedDualityDoors from "./features/optional/gameplay/combinedDualityDoors";
-import * as moreStartingItems from "./features/optional/gameplay/moreStartingItems/moreStartingItems";
-import * as removePlaceholdersOnEden from "./features/optional/gameplay/moreStartingItems/replacePlaceholdersOnEden";
+import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
@@ -80,7 +79,6 @@ export default function initFeatureVariables(): void {
   freeDevilItem.init();
 
   // Quality of life
-  removePlaceholdersOnEden.init();
   showPills.init();
   showNumSacrifices.init();
   showEdenStartingItems.init();
@@ -92,5 +90,5 @@ export default function initFeatureVariables(): void {
 
   // Gameplay changes
   combinedDualityDoors.init();
-  moreStartingItems.init();
+  extraStartingItems.init();
 }

@@ -38,7 +38,6 @@ export default class Config {
   // Quality of Life Changes
   speedUpFadeIn = true;
   easyFirstFloorItems = true;
-  extraStartingItems = true;
   changeCreepColor = true;
   subvertTeleport = true;
   deleteVoidPortals = true;
@@ -53,6 +52,7 @@ export default class Config {
 
   // Gameplay changes
   sawblade = true;
+  extraStartingItems = true;
   combinedDualityDoors = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;

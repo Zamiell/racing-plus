@@ -2,7 +2,8 @@ import { saveDataManager, saveDataManagerSave } from "isaacscript-common";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
-  BOSS_CHANGES,
+  BOSS_CHANGES_1,
+  BOSS_CHANGES_2,
   BUG_FIXES,
   CHARACTER_CHANGES,
   ConfigDescriptionArray,
@@ -15,6 +16,7 @@ import {
   OTHER_FEATURES,
   QUALITY_OF_LIFE_CHANGES_1,
   QUALITY_OF_LIFE_CHANGES_2,
+  REMOVALS,
   SOUND_CHANGES,
 } from "./configDescription";
 import Config from "./types/Config";
@@ -53,11 +55,13 @@ export function init(): void {
   registerSubMenuConfig("Major", MAJOR_CHANGES);
   registerSubMenuHotkeys("Hotkeys", CUSTOM_HOTKEYS);
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
-  registerSubMenuConfig("Bosses", BOSS_CHANGES);
+  registerSubMenuConfig("Boss (1)", BOSS_CHANGES_1);
+  registerSubMenuConfig("Boss (2)", BOSS_CHANGES_2);
   registerSubMenuConfig("Enemies", ENEMY_CHANGES);
   registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
   registerSubMenuConfig("QoL (2)", QUALITY_OF_LIFE_CHANGES_2);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
+  registerSubMenuConfig("Removals", REMOVALS);
   registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);
   registerSubMenuConfig("Bug Fixes", BUG_FIXES);
   registerSubMenuConfig("Graphics", GRAPHIC_CHANGES);

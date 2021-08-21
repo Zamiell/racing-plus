@@ -8,13 +8,13 @@ export type ConfigDescriptionArray = Array<
   ]
 >;
 
-// 01X
+// 001-00X
 export const MAJOR_CHANGES: ConfigDescriptionArray = [
   [
     "clientCommunication",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "000",
+      "001",
       "Enable client support",
       "Allow the mod to talk with the Racing+ client. You can disable this if you are not using the client to very slightly reduce lag.",
     ],
@@ -23,7 +23,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "startWithD6",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "001",
+      "002",
       "Start with the D6",
       "Makes each character start with a D6 or a pocket D6.",
     ],
@@ -32,7 +32,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "disableCurses",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "002",
+      "003",
       "Disable curses",
       "Disables all curses, like Curse of the Maze.",
     ],
@@ -41,7 +41,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "betterDevilAngelRooms",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "003",
+      "004",
       "Customized Devil/Angel Rooms",
       "Improves the quality and variety of Devil Rooms & Angel Rooms.",
     ],
@@ -50,7 +50,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "freeDevilItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "004",
+      "005",
       "Free devil item",
       "Awards a Your Soul trinket upon entering the Basement 2 Devil Room if you have not taken damage.",
     ],
@@ -59,7 +59,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "005",
+      "006",
       "Fast reset",
       "Instantaneously restart the game as soon as you press the R key.",
     ],
@@ -68,7 +68,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastClear",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "006",
+      "007",
       "Fast room clear",
       "Makes doors open at the beginning of the death animation instead of at the end.",
     ],
@@ -77,7 +77,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     "fastTravel",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "007",
+      "008",
       "Fast floor travel",
       "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation.",
     ],
@@ -160,7 +160,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
   ],
 ];
 
-// 02X
+// 021-02X
 export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   [
     "judasAddBomb",
@@ -200,8 +200,8 @@ export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 03X
-export const BOSS_CHANGES: ConfigDescriptionArray = [
+// 031-03X
+export const BOSS_CHANGES_1: ConfigDescriptionArray = [
   [
     "fadeBosses",
     [
@@ -276,7 +276,47 @@ export const BOSS_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 04X
+// n/a
+export const BOSS_CHANGES_2: ConfigDescriptionArray = [
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fast Mega Satan",
+      "Remove some of the animations in the Mega Satan fight.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fast Hush",
+      'Make Hush no longer play an "Appear" animation.',
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Prevent Mega Satan ending",
+      "Defeating Mega Satan no longer has a chance to immediately end the run.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Prevent The Beast ending",
+      "Defeating The Beast no longer has a chance to immediately end the run.",
+    ],
+  ],
+];
+
+// 041-04X
 export const ENEMY_CHANGES: ConfigDescriptionArray = [
   [
     "replaceCodWorms",
@@ -343,17 +383,8 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 05X / 06X
+// 050-060
 export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Start in the center",
-      "On a new run, start in the center of the room (instead of at the bottom).",
-    ],
-  ],
   [
     "speedUpFadeIn",
     [
@@ -435,9 +466,6 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
   ],
-];
-
-export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   [
     "removePerfectionVelocity",
     [
@@ -447,6 +475,10 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
   ],
+];
+
+// 061-06X
+export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   [
     "automaticItemInsertion",
     [
@@ -474,9 +506,18 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Start in the center",
+      "On a new run, start in the center of the room (instead of at the bottom).",
+    ],
+  ],
 ];
 
-// 07X
+// 071-07X
 export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
   [
     "sawblade",
@@ -496,6 +537,46 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
       "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
     ],
   ],
+  [
+    "combinedDualityDoors",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "073",
+      "Duality revamp",
+      "Make Duality combine the Devil Room door and the Angel Room door together.",
+    ],
+  ],
+  [
+    "consistentTrollBombs",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "074",
+      "Consistent troll bombs",
+      "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
+    ],
+  ],
+  [
+    "pillsCancelAnimations",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "075",
+      "Pills cancel animations",
+      "Make Power Pill and Horf! cancel animations like all the other pills do.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Nerf Card Reading",
+      "Make Card Reading no longer spawn portals on Womb 2 and beyond.",
+    ],
+  ],
+];
+
+// n/a
+export const REMOVALS: ConfigDescriptionArray = [
   [
     null,
     [
@@ -555,41 +636,23 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
-      "Nerf Card Reading",
-      "Make Card Reading no longer spawn portals on Womb 2 and beyond.",
-    ],
-  ],
-  [
-    "combinedDualityDoors",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "073",
-      "Duality revamp",
-      "Make Duality combine the Devil Room door and the Angel Room door together.",
-    ],
-  ],
-  [
-    "consistentTrollBombs",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "074",
-      "Consistent troll bombs",
-      "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
-    ],
-  ],
-  [
-    "pillsCancelAnimations",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "075",
-      "Pills cancel animations",
-      "Make Power Pill and Horf! cancel animations like all the other pills do.",
+      "Remove Mom's Knife",
+      "Remove Mom's Knife from the Treasure Room pool specifically.",
     ],
   ],
 ];
 
-// 08X
+// 081-08X
 export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
+  [
+    "fastTeleports",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "081",
+      "Fast teleports",
+      "Teleport animations are sped up by a factor of 2.",
+    ],
+  ],
   [
     null,
     [
@@ -627,15 +690,6 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastTeleports",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "081",
-      "Fast teleports",
-      "Teleport animations are sped up by a factor of 2.",
-    ],
-  ],
-  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -646,7 +700,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 09X
+// 091-09X
 export const BUG_FIXES: ConfigDescriptionArray = [
   [
     "teleportInvalidEntrance",
@@ -664,15 +718,6 @@ export const BUG_FIXES: ConfigDescriptionArray = [
       "",
       "Fix shop Restock Machines",
       "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla.",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fix Duality not giving both rooms",
-      "Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.",
     ],
   ],
   [
@@ -702,9 +747,18 @@ export const BUG_FIXES: ConfigDescriptionArray = [
       "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)",
     ],
   ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Seeded teleports",
+      "Make Teleport!, Cursed Eye, Broken Remote, and Telepills teleports seeded properly.",
+    ],
+  ],
 ];
 
-// 10X
+// 101-10X
 export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
   [
     "flyItemSprites",
@@ -734,6 +788,15 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
+    "paschalCandle",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "104",
+      "Better Paschal Candle",
+      'Paschal Candle now "fills up" so that you can easily tell at a glance if it is maxed out.',
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -749,15 +812,6 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
       "",
       "Fix Error",
       "Make the Error trinket sprite have an outline.",
-    ],
-  ],
-  [
-    "paschalCandle",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "104",
-      "Better Paschal Candle",
-      'Paschal Candle now "fills up" so that you can easily tell at a glance if it is maxed out.',
     ],
   ],
   [
@@ -792,13 +846,40 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
+      "Better Dirty Bedroom icon",
+      "Make the icon for a dirty bedroom a cobweb so that it is more distinct from a clean bedroom.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
       "Speedrunning controls graphic",
       "The controls graphic in the start room is changed to be speedrunning-themed.",
     ],
   ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove the in-game timer",
+      "Hold Tab to see a custom in-game timer.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Reduce opacity of fortunes",
+      "Set the opacity for fortunes and custom seeds to 15%.",
+    ],
+  ],
 ];
 
-// 11X
+// 111-11X
 export const SOUND_CHANGES: ConfigDescriptionArray = [
   [
     "silenceMomDad",
@@ -811,7 +892,7 @@ export const SOUND_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 12X
+// 121-12X
 export const OTHER_FEATURES: ConfigDescriptionArray = [
   [
     "customConsole",
@@ -827,12 +908,14 @@ export const OTHER_FEATURES: ConfigDescriptionArray = [
 export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
   ...CHARACTER_CHANGES,
-  ...BOSS_CHANGES,
+  ...BOSS_CHANGES_1,
+  ...BOSS_CHANGES_2,
   ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES_1,
   ...QUALITY_OF_LIFE_CHANGES_2,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
+  ...REMOVALS,
   ...BUG_FIXES,
   ...GRAPHIC_CHANGES,
   ...SOUND_CHANGES,

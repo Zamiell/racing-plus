@@ -6,7 +6,7 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
-import moreStartingItemsPostGameStarted from "../features/optional/gameplay/moreStartingItems/callbacks/postGameStarted";
+import extraStartingItemsPostGameStarted from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
 import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -62,7 +62,7 @@ export function main(isContinued: boolean): void {
   betterDevilAngelRoomsPostGameStarted();
 
   // Gameplay changes
-  moreStartingItemsPostGameStarted();
+  extraStartingItemsPostGameStarted();
 
   // Quality of life
   samsonDropHeart.postGameStarted();
