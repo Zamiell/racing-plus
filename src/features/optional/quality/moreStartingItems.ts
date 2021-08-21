@@ -60,7 +60,7 @@ export function postNewLevel(): void {
   const stage = g.l.GetStage();
 
   // Ensure that the placeholders are removed beyond Basement 1
-  // (Placeholders are removed as soon as they enter the first Treasure Room,
+  // (placeholders are removed as soon as they enter the first Treasure Room,
   // but they might have skipped the Basement 1 Treasure Room for some reason)
   if (
     (stage >= 2 || (stage === 1 && onRepentanceStage())) &&
