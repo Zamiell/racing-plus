@@ -1,5 +1,4 @@
 import {
-  getDoors,
   getRepentanceDoor,
   getRoomIndex,
   getSurroundingGridEntities,
@@ -18,7 +17,6 @@ import g from "../../globals";
 import RepentanceDoorState from "../../types/RepentanceDoorState";
 import { initSprite } from "../../util";
 import { removeGridEntity } from "../../utilGlobals";
-import { door } from "./callbacks/postGridEntityUpdate";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
