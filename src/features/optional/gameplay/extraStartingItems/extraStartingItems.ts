@@ -4,6 +4,7 @@ import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import { changeCollectibleSubType } from "../../../../utilCollectible";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
+import * as replacePlaceholdersOnEden from "./replacePlaceholdersOnEden";
 
 const v = {
   run: {
@@ -18,6 +19,7 @@ const v = {
 
 export function init(): void {
   saveDataManager("extraStartingItems", v);
+  replacePlaceholdersOnEden.init();
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)
