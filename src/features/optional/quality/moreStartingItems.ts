@@ -110,6 +110,7 @@ function removePlaceholders() {
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
+
   v.level.previouslyInTreasureRoom = v.level.currentlyInTreasureRoom;
   v.level.currentlyInTreasureRoom = roomType === RoomType.ROOM_TREASURE;
 
