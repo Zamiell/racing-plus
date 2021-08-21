@@ -245,17 +245,17 @@ function getWoodenBoardRotation(): number {
 
   if (repentanceDoor !== null) {
     // left slots
-    if (repentanceDoor.Slot % 4 == 0) {
+    if (repentanceDoor.Slot % 4 === 0) {
       return 270;
     }
 
     // right slots
-    if (repentanceDoor.Slot % 4 == 2) {
+    if (repentanceDoor.Slot % 4 === 2) {
       return 90;
     }
 
     // down slots
-    if (repentanceDoor.Slot % 4 == 3) {
+    if (repentanceDoor.Slot % 4 === 3) {
       return 180;
     }
   }
