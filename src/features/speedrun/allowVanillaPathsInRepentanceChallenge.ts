@@ -100,19 +100,19 @@ function setRepentanceDoors() {
 
       const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
       woodenBoardSprite.PlayOverlay("Damaged", true);
+      // TODO set rotation
       woodenBoardSprite.Rotation = 90;
-      door.ExtraSprite = woodenBoardSprite;
+      // door.ExtraSprite = woodenBoardSprite;
       door.ExtraVisible = true;
 
       door.State = DoorState.STATE_HALF_CRACKED;
     }
   } else if (isDoorToMausoleum(door)) {
     if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
-      // TODO
-    } else if (
-      v.level.repentanceDoorState === RepentanceDoorState.HalfHealthDonated
-    ) {
-      // TODO
+      // This also properly handles the case where one health donation has been made
+      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+      door.Close(true);
+      door.SetLocked(true);
     }
   }
 }
