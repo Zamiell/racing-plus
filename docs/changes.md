@@ -296,6 +296,10 @@ Post-flip actions:
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
+- Mom's Knife is removed from the Treasure Room pool.
+
+> Why? The vanilla weight of 0.2 means that powerful runs are more reliant on RNG than skill. Furthermore, it is much more powerful than any other item in the Treasure Room pool, so it can lead to lopsided races.
+
 - Card Reading no longer spawns portals on Womb 2 and beyond.
 
 > Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
