@@ -3,7 +3,7 @@ import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as openHushDoor from "../features/optional/bosses/openHushDoor";
-import * as moreStartingItems from "../features/optional/gameplay/moreStartingItems/moreStartingItems";
+import moreStartingItemsPostNewLevel from "../features/optional/gameplay/moreStartingItems/callbacks/postNewLevel";
 import showDreamCatcherItemPostNewLevel from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewLevel";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import racePostNewLevel from "../features/race/callbacks/postNewLevel";
@@ -26,9 +26,11 @@ export function main(): void {
   // Major features
   racePostNewLevel();
 
+  // Gameplay changes
+  moreStartingItemsPostNewLevel();
+
   // Quality of life
   openHushDoor.postNewLevel();
-  moreStartingItems.postNewLevel();
   showDreamCatcherItemPostNewLevel();
 
   // Sounds

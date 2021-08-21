@@ -13,7 +13,7 @@ import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportIn
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import * as combinedDualityDoors from "../features/optional/gameplay/combinedDualityDoors";
-import * as moreStartingItems from "../features/optional/gameplay/moreStartingItems/moreStartingItems";
+import moreStartingItemsPostNewRoom from "../features/optional/gameplay/moreStartingItems/callbacks/postNewRoom";
 import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
@@ -52,7 +52,6 @@ export function main(): void {
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
-  moreStartingItems.postNewRoom();
 
   // Major features
   racePostNewRoom();
@@ -77,6 +76,7 @@ export function main(): void {
 
   // Gameplay changes
   combinedDualityDoors.postNewRoom();
+  moreStartingItemsPostNewRoom();
 
   // Bux fixes
   teleportInvalidEntrance.postNewRoom();

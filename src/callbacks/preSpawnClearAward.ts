@@ -12,7 +12,7 @@ export function main(_rng: RNG, _spawnPosition: Vector): boolean | void {
   racePreSpawnClearAward();
   speedrunPreSpawnClearAward();
 
-  // Gameplay
+  // Gameplay changes
   combinedDualityDoors.preSpawnClearAward();
 
   return seededDrops.preSpawnClearAward();
