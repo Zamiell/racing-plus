@@ -16,6 +16,7 @@ import * as streakText from "./features/mandatory/streakText";
 import * as switchForgotten from "./features/mandatory/switchForgotten";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
+import * as combinedDualityDoors from "./features/optional/gameplay/combinedDualityDoors";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
@@ -83,4 +84,7 @@ export default function initFeatureVariables(): void {
   showMaxFamiliars.init();
   speedUpFadeIn.init();
   automaticItemInsertion.init();
+
+  // Gameplay changes
+  combinedDualityDoors.init();
 }

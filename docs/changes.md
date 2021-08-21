@@ -264,7 +264,7 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `072` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+- `071` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
 
 > Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
@@ -296,11 +296,15 @@ Post-flip actions:
 
 > Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
 
-- `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+- `072` Duality now combines Devil Room doors and Angel Room doors together.
+
+> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
+
+- `073` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
-- `072` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+- `074` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 
 > Why? This allows skilled players to gain time by canceling more animations.
 
