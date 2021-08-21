@@ -420,6 +420,11 @@ functionMap.set("speed", (_params: string) => {
   debugPowers.toggleSpeed();
 });
 
+functionMap.set("stick", (_params: string) => {
+  const seedString = g.seeds.GetStartSeedString();
+  Isaac.ExecuteCommand(`seed ${seedString}`);
+});
+
 functionMap.set("trap", (_params: string) => {
   trapdoor();
 });
