@@ -1,7 +1,18 @@
+import { onRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import { changeCollectibleSubType } from "../../../utilCollectible";
+
+const v = {
+  run: {
+    placeholdersRemoved: false,
+  },
+  level: {
+    previouslyInTreasureRoom: false,
+    currentlyInTreasureRoom: false,
+  },
+};
 
 export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   CollectibleTypeCustom,
@@ -45,6 +56,20 @@ export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   ],
 ]);
 
+export function postNewLevel(): void {
+  const stage = g.l.GetStage();
+
+  // Ensure that the placeholders are removed beyond Basement 1
+  // (Placeholders are removed as soon as they enter the first Treasure Room,
+  // but they might have skipped the Basement 1 Treasure Room for some reason)
+  if (
+    (stage >= 2 || (stage === 1 && onRepentanceStage())) &&
+    !v.run.placeholdersRemoved
+  ) {
+    removePlaceholders();
+  }
+}
+
 export function postGameStarted(): void {
   if (!config.extraStartingItems) {
     removePlaceholders();
@@ -79,9 +104,27 @@ function removePlaceholders() {
   g.itemPool.RemoveCollectible(
     CollectibleTypeCustom.COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER,
   );
+
+  v.run.placeholdersRemoved = true;
 }
 
 export function postNewRoom(): void {
+  const roomType = g.r.GetType();
+  v.level.previouslyInTreasureRoom = v.level.currentlyInTreasureRoom;
+  v.level.currentlyInTreasureRoom = roomType === RoomType.ROOM_TREASURE;
+
+  if (v.level.previouslyInTreasureRoom && !v.run.placeholdersRemoved) {
+    removePlaceholders();
+  }
+
+  replacePlaceholders();
+}
+
+export function postUpdate(): void {
+  replacePlaceholders();
+}
+
+function replacePlaceholders() {
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,

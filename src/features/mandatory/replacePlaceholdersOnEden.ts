@@ -20,7 +20,6 @@ export default function init(): void {
       !BANNED_COLLECTIBLES.includes(itemConfigItem.ID) &&
       !isQuestItem(itemConfigItem.ID)
     ) {
-      Isaac.DebugString(itemConfigItem.ID.toString());
       passiveItemsArray.push(itemConfigItem.ID);
     }
   }
