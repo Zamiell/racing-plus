@@ -1,8 +1,10 @@
 ```
 ### *v0.59.10* - August 21st, 2021
 
--
+- Fixed the (vanilla) bug where Converter would not work properly on characters that can't have red hearts.
 ```
+
+- add description for knife in descriptions
 
 TODO Racing+ new features:
 - make items in order on devil/angel rooms
