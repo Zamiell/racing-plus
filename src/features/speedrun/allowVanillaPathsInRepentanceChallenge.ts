@@ -99,9 +99,8 @@ function setRepentanceDoors() {
       sprite.Play("Closed", true);
 
       const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
-      const woodenBoardRotation = getWoodenBoardRotation();
       woodenBoardSprite.PlayOverlay("Damaged", true);
-      woodenBoardSprite.Rotation = woodenBoardRotation;
+      woodenBoardSprite.Rotation = getWoodenBoardRotation();
       door.ExtraSprite = woodenBoardSprite;
       door.ExtraVisible = true;
 
