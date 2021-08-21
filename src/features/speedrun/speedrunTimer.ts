@@ -10,9 +10,12 @@ const LIVESPLIT_VARIABLE_SUFFIX = "Polish";
 
 // We write the elapsed frames to a global variable so that LiveSplit can reach into the game's
 // memory and find out what it is
-declare let SpeedrunTimer: string;
+declare let SpeedrunTimerString: string;
 const zeros = "".padStart(MAX_ELAPSED_FRAME_DIGITS, "0");
-SpeedrunTimer = LIVESPLIT_VARIABLE_PREFIX + zeros + LIVESPLIT_VARIABLE_SUFFIX;
+SpeedrunTimerString =
+  LIVESPLIT_VARIABLE_PREFIX + zeros + LIVESPLIT_VARIABLE_SUFFIX;
+declare let SpeedrunTimerNumber: int;
+SpeedrunTimerNumber = 0;
 
 export function postRender(): void {
   checkDisplay();
@@ -40,6 +43,8 @@ function checkDisplay() {
 
   const paddedFrames = elapsedFrames.toString().padStart(6, "0");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  SpeedrunTimer =
+  SpeedrunTimerString =
     LIVESPLIT_VARIABLE_PREFIX + paddedFrames + LIVESPLIT_VARIABLE_SUFFIX;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  SpeedrunTimerNumber = elapsedFrames;
 }
