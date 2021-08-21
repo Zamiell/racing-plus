@@ -5,6 +5,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { CollectibleTypeCustom } from "../../../types/enums";
 import { initGlowingItemSprite } from "../../../util";
 import { isSlideAnimationActive } from "../../mandatory/detectSlideAnimation";
 
@@ -18,8 +19,12 @@ let passiveSprite: Sprite | null = null;
 
 const v = {
   run: {
-    active: CollectibleType.COLLECTIBLE_NULL,
-    passive: CollectibleType.COLLECTIBLE_NULL,
+    active: CollectibleType.COLLECTIBLE_NULL as
+      | CollectibleType
+      | CollectibleTypeCustom,
+    passive: CollectibleType.COLLECTIBLE_NULL as
+      | CollectibleType
+      | CollectibleTypeCustom,
   },
 };
 
@@ -137,4 +142,11 @@ function getEdenPassiveItem(player: EntityPlayer) {
   }
 
   return null;
+}
+
+export function changeStartingPassiveItem(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+): void {
+  v.run.passive = collectibleType;
+  setItemSprites();
 }

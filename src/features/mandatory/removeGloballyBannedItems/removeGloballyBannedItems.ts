@@ -2,24 +2,19 @@
 // This feature is not configurable because it could change trinket pools and cause a seed to be
 // different
 
-import { anyPlayerHasCollectible, getPlayers } from "isaacscript-common";
-import g from "../../globals";
-
-export const BANNED_COLLECTIBLES = [
-  CollectibleType.COLLECTIBLE_MERCURIUS,
-  CollectibleType.COLLECTIBLE_TMTRAINER,
-];
-
-const BANNED_COLLECTIBLES_WITH_VOID = [
-  CollectibleType.COLLECTIBLE_MEGA_BLAST,
-  CollectibleType.COLLECTIBLE_MEGA_MUSH,
-];
-
-const BANNED_TRINKETS = [
-  TrinketType.TRINKET_KARMA, // Since all Donation Machines are removed, it has no purpose
-];
-
-const EDEN_REPLACEMENT_ITEM = CollectibleType.COLLECTIBLE_SAD_ONION;
+import {
+  anyPlayerHasCollectible,
+  getPlayers,
+  getRandomArrayElement,
+} from "isaacscript-common";
+import g from "../../../globals";
+import passiveItemsForEden from "../../../passiveItemsForEden";
+import * as showEdenStartingItems from "../../optional/quality/showEdenStartingItems";
+import {
+  BANNED_COLLECTIBLES,
+  BANNED_COLLECTIBLES_WITH_VOID,
+  BANNED_TRINKETS,
+} from "./constants";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -29,8 +24,14 @@ export function postGameStarted(): void {
     // If Eden started with a banned item, replace it
     for (const player of getPlayers()) {
       if (player.HasCollectible(bannedCollectible)) {
+        const startSeed = g.seeds.GetStartSeed();
+        const edenReplacementItem = getRandomArrayElement(
+          passiveItemsForEden,
+          startSeed,
+        );
         player.RemoveCollectible(bannedCollectible);
-        player.AddCollectible(EDEN_REPLACEMENT_ITEM);
+        player.AddCollectible(edenReplacementItem);
+        showEdenStartingItems.changeStartingPassiveItem(edenReplacementItem);
       }
     }
   }
