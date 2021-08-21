@@ -138,3 +138,10 @@ function getEdenPassiveItem(player: EntityPlayer) {
 
   return null;
 }
+
+export function changeStartingPassiveItem(
+  collectibleType: CollectibleType,
+): void {
+  v.run.passive = collectibleType;
+  setItemSprites();
+}

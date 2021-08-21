@@ -4,6 +4,7 @@
 
 import { anyPlayerHasCollectible, getPlayers } from "isaacscript-common";
 import g from "../../globals";
+import * as showEdenStartingItems from "../optional/quality/showEdenStartingItems";
 
 export const BANNED_COLLECTIBLES = [
   CollectibleType.COLLECTIBLE_MERCURIUS,
@@ -31,6 +32,7 @@ export function postGameStarted(): void {
       if (player.HasCollectible(bannedCollectible)) {
         player.RemoveCollectible(bannedCollectible);
         player.AddCollectible(EDEN_REPLACEMENT_ITEM);
+        showEdenStartingItems.changeStartingPassiveItem(EDEN_REPLACEMENT_ITEM);
       }
     }
   }
