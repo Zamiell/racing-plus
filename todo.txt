@@ -1,6 +1,7 @@
 ```
 ### *v0.59.11* - August 21st, 2021
 
+- Fixed the bug where Dream Catcher would cause The Stairway to not work. (Thanks Po4ti)
 - Fixed the bug where in season 1, the planks on the door to the Mines would show up incorrectly under certain circumstances. Thanks to Gamonymous for coding this.
 ```
 
