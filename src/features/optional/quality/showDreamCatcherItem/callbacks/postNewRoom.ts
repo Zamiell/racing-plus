@@ -11,6 +11,8 @@ import { PickupPriceCustom } from "../../../../../types/enums";
 import * as sprites from "../sprites";
 import v from "../v";
 
+const STAIRWAY_GRID_INDEX = 25;
+
 export default function showDreamCatcherItemPostNewRoom(): void {
   if (!config.showDreamCatcherItem) {
     return;
@@ -81,6 +83,20 @@ function warp() {
   }
 
   restoreMinimapDisplayFlags(displayFlagsMap);
+
+  // If the player has The Stairway, moving away from the room would delete the ladder,
+  // so respawn it if necessary
+  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STAIRWAY)) {
+    const position = g.r.GetGridPosition(STAIRWAY_GRID_INDEX);
+    Isaac.Spawn(
+      EntityType.ENTITY_EFFECT,
+      EffectVariant.TALL_LADDER,
+      LadderSubType.STAIRWAY,
+      position,
+      Vector.Zero,
+      null,
+    );
+  }
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
