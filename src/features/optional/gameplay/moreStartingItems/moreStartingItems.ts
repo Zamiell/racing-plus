@@ -150,16 +150,18 @@ function replacePlaceholders() {
 
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
-  const foundDeathsTouch = Isaac.FindByType(
+  const deathsTouches = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
   );
-  const foundMagicMush = Isaac.FindByType(
+  const foundDeathsTouch = deathsTouches.length > 0;
+  const magicMushes = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
   );
+  const foundMagicMush = magicMushes.length > 0;
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
@@ -172,7 +174,7 @@ function rollDuplicateItems() {
     }
 
     if (
-      foundDeathsTouch.length !== 0 &&
+      foundDeathsTouch &&
       collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
     ) {
@@ -186,7 +188,7 @@ function rollDuplicateItems() {
     }
 
     if (
-      foundMagicMush.length !== 0 &&
+      foundMagicMush &&
       collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
     ) {
