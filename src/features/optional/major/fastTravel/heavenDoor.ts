@@ -36,27 +36,6 @@ function shouldRemove(effect: EntityEffect) {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
-  // If a specific amount of frames have passed since killing It Lives!,
-  // then delete the vanilla heaven door (since we manually spawned one already)
-  if (
-    v.room.deletePaths &&
-    v.room.itLivesKilledFrame !== null &&
-    gameFrameCount ===
-      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
-  ) {
-    return true;
-  }
-
-  // If a specific amount of frames have passed since killing Hush,
-  // then delete the vanilla heaven door (since we manually spawned one already)
-  if (
-    v.room.deletePaths &&
-    v.room.hushKilledFrame !== null &&
-    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
-  ) {
-    return true;
-  }
-
   // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
   // If the goal of the race is Hush, delete the heaven door that spawns after Hush
   if (
@@ -66,6 +45,34 @@ function shouldRemove(effect: EntityEffect) {
     (stage === 8 || stage === 9)
   ) {
     return true;
+  }
+
+  if (!v.room.deletePaths) {
+    return false;
+  }
+
+  // If a specific amount of frames have passed since killing It Lives!,
+  // then delete the vanilla heaven door (since we manually spawned one already)
+  if (v.room.itLivesKilledFrame !== null) {
+    const naturalSpawnFrame =
+      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES;
+    const naturalSpawnFrameForBible = naturalSpawnFrame + 1;
+    if (
+      gameFrameCount === naturalSpawnFrame ||
+      gameFrameCount === naturalSpawnFrameForBible
+    ) {
+      return true;
+    }
+  }
+
+  // If a specific amount of frames have passed since killing Hush,
+  // then delete the vanilla heaven door (since we manually spawned one already)
+  if (v.room.hushKilledFrame !== null) {
+    const naturalSpawnFrame =
+      v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH;
+    if (gameFrameCount === naturalSpawnFrame) {
+      return true;
+    }
   }
 
   return false;
