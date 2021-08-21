@@ -15,6 +15,7 @@ import {
 } from "../../constants";
 import g from "../../globals";
 import RepentanceDoorState from "../../types/RepentanceDoorState";
+import { initSprite } from "../../util";
 import { removeGridEntity } from "../../utilGlobals";
 import v from "./v";
 
@@ -93,9 +94,17 @@ function setRepentanceDoors() {
     } else if (v.level.repentanceDoorState === RepentanceDoorState.HalfBombed) {
       g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
       door.Close(true);
+
+      const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
+      woodenBoardSprite.PlayOverlay("Damaged", true);
+      woodenBoardSprite.Rotation = 90;
+      door.ExtraSprite = woodenBoardSprite;
+      door.ExtraVisible = true;
+
       door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
       door.State = DoorState.STATE_HALF_CRACKED;
       g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_CLOSE);
+      Isaac.DebugString("GETTING HERE");
     }
   } else if (isDoorToMausoleum(door)) {
     if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
@@ -197,7 +206,7 @@ export function postGridEntityUpdateDoor(gridEntity: GridEntity): void {
 }
 
 function updateRepentanceDoorState(door: GridEntityDoor) {
-  Isaac.DebugString(`STATE = ${door.State}`);
+  // Isaac.DebugString(`STATE = ${door.State}`);
 
   if (isDoorToDownpour(door)) {
     const doorState = door.IsLocked()

@@ -189,8 +189,8 @@ export function useCardJustice(player: EntityPlayer): void {
     return;
   }
 
-  // The PostPickupInit callback fires before getting here, so we cannot use the existing queue
-  // system to automatically insert items
+  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
+  // to automatically insert items
   // Instead, find the nearest coin, bomb, and key to the player
   const pickupVariants = [
     PickupVariant.PICKUP_COIN,
