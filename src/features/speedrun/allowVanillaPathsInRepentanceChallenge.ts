@@ -100,9 +100,8 @@ function setRepentanceDoors() {
 
       const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
       woodenBoardSprite.PlayOverlay("Damaged", true);
-      // TODO set rotation
-      woodenBoardSprite.Rotation = 90;
-      // door.ExtraSprite = woodenBoardSprite;
+      woodenBoardSprite.Rotation = getWoodenBoardRotation(door);
+      door.ExtraSprite = woodenBoardSprite;
       door.ExtraVisible = true;
 
       door.State = DoorState.STATE_HALF_CRACKED;
@@ -236,4 +235,28 @@ function getDoorStateForMinesDoor(door: GridEntityDoor) {
       return RepentanceDoorState.Initial;
     }
   }
+}
+
+function getWoodenBoardRotation(door: GridEntityDoor): number {
+  // Left slots
+  if (door.Slot % 4 === 0) {
+    return 270;
+  }
+
+  // Up slots
+  if (door.Slot % 4 === 1) {
+    return 0;
+  }
+
+  // Right slots
+  if (door.Slot % 4 === 2) {
+    return 90;
+  }
+
+  // Down slots
+  if (door.Slot % 4 === 3) {
+    return 180;
+  }
+
+  return 0;
 }
