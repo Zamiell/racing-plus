@@ -93,7 +93,10 @@ function setRepentanceDoors() {
       door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
     } else if (v.level.repentanceDoorState === RepentanceDoorState.HalfBombed) {
       g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
-      door.Close(true);
+      door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
+
+      const sprite = door.GetSprite();
+      sprite.Play("Closed", true);
 
       const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
       woodenBoardSprite.PlayOverlay("Damaged", true);
@@ -101,10 +104,7 @@ function setRepentanceDoors() {
       door.ExtraSprite = woodenBoardSprite;
       door.ExtraVisible = true;
 
-      door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
       door.State = DoorState.STATE_HALF_CRACKED;
-      g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_CLOSE);
-      Isaac.DebugString("GETTING HERE");
     }
   } else if (isDoorToMausoleum(door)) {
     if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
