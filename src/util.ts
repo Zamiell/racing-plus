@@ -3,7 +3,6 @@ import {
   getPlayers,
   hasFlag,
   initRNG,
-  isQuestItem,
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
   removeAllMatchingEntities,
@@ -13,13 +12,7 @@ import {
   COLLECTIBLE_15_LUCK_SERVER_ID,
   COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./features/race/constants";
-import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
-
-export const BANNED_COLLECTIBLES = [
-  CollectibleType.COLLECTIBLE_MERCURIUS,
-  CollectibleType.COLLECTIBLE_TMTRAINER,
-];
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -189,22 +182,4 @@ export function restartAsCharacter(character: PlayerType): void {
   }
 
   consoleCommand(`restart ${character}`);
-}
-
-export function getPassiveItemsForEden(): number[] {
-  const passiveItemsForEden = [];
-  for (let i = 1; i <= MAX_VANILLA_COLLECTIBLE_TYPE; i++) {
-    const itemConfigItem = g.itemConfig.GetCollectible(i);
-    if (
-      itemConfigItem !== null &&
-      (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
-        itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
-      !BANNED_COLLECTIBLES.includes(itemConfigItem.ID) &&
-      !isQuestItem(itemConfigItem.ID)
-    ) {
-      passiveItemsForEden.push(itemConfigItem.ID);
-    }
-  }
-
-  return passiveItemsForEden;
 }

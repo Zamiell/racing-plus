@@ -7,20 +7,10 @@ import {
   getPlayers,
   getRandomArrayElement,
 } from "isaacscript-common";
-import g from "../../globals";
-import { BANNED_COLLECTIBLES, getPassiveItemsForEden } from "../../util";
-import * as showEdenStartingItems from "../optional/quality/showEdenStartingItems";
-
-const BANNED_COLLECTIBLES_WITH_VOID = [
-  CollectibleType.COLLECTIBLE_MEGA_BLAST,
-  CollectibleType.COLLECTIBLE_MEGA_MUSH,
-];
-
-const BANNED_TRINKETS = [
-  TrinketType.TRINKET_KARMA, // Since all Donation Machines are removed, it has no purpose
-];
-
-const passiveItemsForEden = getPassiveItemsForEden();
+import g from "../../../globals";
+import passiveItemsForEden from "../../../passiveItemsForEden";
+import * as showEdenStartingItems from "../../optional/quality/showEdenStartingItems";
+import { BANNED_COLLECTIBLES, BANNED_COLLECTIBLES_WITH_VOID, BANNED_TRINKETS } from "./constants";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -31,13 +21,13 @@ export function postGameStarted(): void {
     for (const player of getPlayers()) {
       if (player.HasCollectible(bannedCollectible)) {
         const startSeed = g.seeds.GetStartSeed();
-        const EDEN_REPLACEMENT_ITEM = getRandomArrayElement(
+        const edenReplacementItem = getRandomArrayElement(
           passiveItemsForEden,
           startSeed,
         );
         player.RemoveCollectible(bannedCollectible);
-        player.AddCollectible(EDEN_REPLACEMENT_ITEM);
-        showEdenStartingItems.changeStartingPassiveItem(EDEN_REPLACEMENT_ITEM);
+        player.AddCollectible(edenReplacementItem);
+        showEdenStartingItems.changeStartingPassiveItem(edenReplacementItem);
       }
     }
   }

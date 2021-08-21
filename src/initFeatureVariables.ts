@@ -38,6 +38,7 @@ import * as characterProgress from "./features/speedrun/characterProgress";
 import * as speedrunVars from "./features/speedrun/v";
 import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
+import * as passiveItemsForEden from "./passiveItemsForEden";
 
 export default function initFeatureVariables(): void {
   // IsaacScript features
@@ -52,6 +53,7 @@ export default function initFeatureVariables(): void {
   changeCharOrderVars.init();
   characterProgress.init();
   sawblade.init();
+  passiveItemsForEden.init();
 
   // Mandatory features
   streakText.init();

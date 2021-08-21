@@ -2,7 +2,7 @@ import { log } from "isaacscript-common";
 import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
-import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
+import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";

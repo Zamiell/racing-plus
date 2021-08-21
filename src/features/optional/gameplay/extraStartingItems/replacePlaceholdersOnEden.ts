@@ -1,14 +1,8 @@
 import { getRandomArrayElement } from "isaacscript-common";
 import g from "../../../../globals";
-import { getPassiveItemsForEden } from "../../../../util";
+import passiveItemsForEden from "../../../../passiveItemsForEden";
 import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
-
-let passiveItemsForEden = [] as number[];
-
-export function init(): void {
-  passiveItemsForEden = getPassiveItemsForEden();
-}
 
 export function postGameStarted(): void {
   const player = Isaac.GetPlayer();
