@@ -13,11 +13,11 @@ import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportIn
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import * as combinedDualityDoors from "../features/optional/gameplay/combinedDualityDoors";
+import * as moreStartingItems from "../features/optional/gameplay/moreStartingItems/moreStartingItems";
 import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as moreStartingItems from "../features/optional/quality/moreStartingItems/moreStartingItems";
 import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";

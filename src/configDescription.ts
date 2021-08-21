@@ -373,19 +373,10 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     ],
   ],
   [
-    "extraStartingItems",
-    [
-      ModConfigMenuOptionType.TEXT,
-      "053",
-      "Extra Treasure Room Items",
-      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
-    ],
-  ],
-  [
     "changeCreepColor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "054",
+      "053",
       "Consistent creep color",
       "Change enemy red creep to green and change friendly green creep to red.",
     ],
@@ -394,7 +385,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "055",
+      "054",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -403,7 +394,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "056",
+      "055",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
     ],
@@ -412,7 +403,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "showNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "057",
+      "056",
       "Show the number of sacrifices",
       "Show the number of sacrifices in the top-left when in a Sacrifice Room.",
     ],
@@ -421,7 +412,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "removeFortuneCookieBanners",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "057",
       "Remove Fortune Cookie banners",
       "Remove Fortune Cookie banners when don't get any pickups.",
     ],
@@ -430,28 +421,28 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
     "showDreamCatcherItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "059",
+      "058",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
+    ],
+  ],
+  [
+    "fadeVasculitisTears",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "059",
+      "Fade Vasculitis tears",
+      "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
   ],
 ];
 
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
   [
-    "fadeVasculitisTears",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "060",
-      "Fade Vasculitis tears",
-      "Fade the tears that explode out of enemies when you have Vasculitis.",
-    ],
-  ],
-  [
     "removePerfectionVelocity",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "061",
+      "060",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -460,7 +451,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "062",
+      "061",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -469,7 +460,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "063",
+      "062",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -478,7 +469,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "064",
+      "063",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -494,6 +485,15 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
       "071",
       "Sawblade",
       "An extra orbital item added to the Treasure Room pool.",
+    ],
+  ],
+  [
+    "extraStartingItems",
+    [
+      ModConfigMenuOptionType.TEXT,
+      "072",
+      "Extra Treasure Room Items",
+      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
     ],
   ],
   [
@@ -563,7 +563,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "combinedDualityDoors",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "072",
+      "073",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -572,7 +572,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "consistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "073",
+      "074",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -581,7 +581,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "074",
+      "075",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],

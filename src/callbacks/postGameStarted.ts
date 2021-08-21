@@ -6,12 +6,12 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
+import * as moreStartingItems from "../features/optional/gameplay/moreStartingItems/moreStartingItems";
+import * as replacePlaceholdersOnEden from "../features/optional/gameplay/moreStartingItems/replacePlaceholdersOnEden";
 import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
-import * as moreStartingItems from "../features/optional/quality/moreStartingItems/moreStartingItems";
-import * as replacePlaceholdersOnEden from "../features/optional/quality/moreStartingItems/replacePlaceholdersOnEden";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
