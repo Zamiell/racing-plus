@@ -169,6 +169,11 @@ function rollDuplicateItems() {
   );
 
   for (const collectible of collectibles) {
+    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+      // Ignore empty pedestals (i.e. items that have already been taken by the player)
+      continue;
+    }
+
     if (
       foundDeathsTouch.length !== 0 &&
       collectible.SubType ===
