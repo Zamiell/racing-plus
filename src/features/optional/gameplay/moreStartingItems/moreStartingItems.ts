@@ -1,4 +1,4 @@
-import { onRepentanceStage } from "isaacscript-common";
+import { onRepentanceStage, saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/enums";
@@ -14,6 +14,10 @@ const v = {
     currentlyInTreasureRoom: false,
   },
 };
+
+export function init(): void {
+  saveDataManager("moreStartingItems", v);
+}
 
 export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   CollectibleTypeCustom,
