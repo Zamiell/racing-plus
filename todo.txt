@@ -1,8 +1,7 @@
 ```
-### *v0.59.10* - August 21st, 2021
+### *v0.59.11* - August 21st, 2021
 
-- Fixed the (vanilla) bug where Converter would not work properly on characters that can't have red hearts.
-- Fixed the bug where Perfection would be moved to the center of the room if you dropped it. (Thanks Moucheron Quipet)
+-
 ```
 
 - add description for knife in descriptions
