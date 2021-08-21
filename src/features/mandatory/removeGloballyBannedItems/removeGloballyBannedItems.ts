@@ -10,7 +10,11 @@ import {
 import g from "../../../globals";
 import passiveItemsForEden from "../../../passiveItemsForEden";
 import * as showEdenStartingItems from "../../optional/quality/showEdenStartingItems";
-import { BANNED_COLLECTIBLES, BANNED_COLLECTIBLES_WITH_VOID, BANNED_TRINKETS } from "./constants";
+import {
+  BANNED_COLLECTIBLES,
+  BANNED_COLLECTIBLES_WITH_VOID,
+  BANNED_TRINKETS,
+} from "./constants";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
