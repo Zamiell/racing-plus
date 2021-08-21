@@ -2,7 +2,7 @@ import { getRandomArrayElement } from "isaacscript-common";
 import g from "../../../../globals";
 import { getPassiveItemsForEden } from "../../../../util";
 import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "./moreStartingItems";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 let passiveItemsForEden = [] as number[];
 
@@ -23,7 +23,7 @@ export function postGameStarted(): void {
     return;
   }
 
-  for (const [placeholderItem] of COLLECTIBLE_REPLACEMENT_MAP) {
+  for (const placeholderItem of COLLECTIBLE_REPLACEMENT_MAP.keys()) {
     if (player.HasCollectible(placeholderItem)) {
       player.RemoveCollectible(placeholderItem);
       giveCollectibleAndRemoveFromPools(player, newCollectible);

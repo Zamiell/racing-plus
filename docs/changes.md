@@ -45,55 +45,53 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 ### 1) The D6 for Everyone
 
-- `001` All characters now start with the D6, either as a pocket item or an active item.
+- `002` All characters now start with the D6, either as a pocket item or an active item.
 
 > Why? Much of the strategy in the game is centered around having this item. The best players win races more consistently when having the D6 because it mitigates run disparity.
 
 ### 2) No Curses
 
-- `002` All curses are automatically disabled.
+- `003` All curses are automatically disabled.
 
 > Why? Curses make the game less-skilled based, robbing the player of meaningful decision-making and strategy.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- `003` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+- `004` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from 1.64 to 1.96.
   - Average items per angel room are increased from 1.34 to 1.51.
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
-- `004` On Basement 2, players receive a Your Soul trinket upon entering a Devil Room if they have not yet taken damage during the run.
+- `005` Players receive a Your Soul trinket upon entering the first Devil Room of the run if they have not yet taken damage.
+  - Self-damage (e.g. from a Curse Room door) does not count.
+  - This only applies for Devil Rooms on Basement 1 or Basement 2.
   - Keeper and Tainted Keeper will be awarded 15 cents instead of a Your Soul trinket.
 
 > Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
 
-### 4) Extra Items in the Treasure Room Pool
+### 4) Fast-Reset
 
-- This is a probationary change. See the documentation for [Season 1](challenges.md#r7-season-1-normal-vs-tainted).
-
-### 5) Fast-Reset
-
-- `005` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
+- `006` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
 > Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for this. Speeding this up makes resetting for a starting item less tedious.
 
-### 6) Fast-Clear
+### 5) Fast-Clear
 
-- `006` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
+- `007` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
 > Why? It is obnoxious to have to sit and wait for a long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
-### 7) Fast-Travel
+### 6) Fast-Travel
 
-- `007` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
-- `007` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
+- `008` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+- `008` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
 
-### 8) Room Fixes
+### 7) Room Fixes
 
 - Rooms with unavoidable damage or bugs have been fixed or deleted. The technical specifics are listed in a [separate page](changes-room.md).
 
-### 9) Room Flipping
+### 8) Room Flipping
 
 - While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
 
@@ -169,13 +167,13 @@ Post-flip actions:
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- Some of the animations in the Mega Satan fight have been removed.
-
-> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
-
 - `038` The Hush door will be automatically opened.
 
 > Why? The door opening animation very long, resulting in the player being forced to wait without performing any inputs.
+
+- Some of the animations in the Mega Satan fight have been removed.
+
+> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
 
 - Hush no longer plays an appear animation.
 
@@ -221,10 +219,6 @@ Post-flip actions:
 
 ### 5) Quality of Life Changes
 
-- Players will start in the center of the room (instead of at the bottom).
-
-> Why? This is convenient because it makes the player equidistant to all of the doors.
-
 - `051` The fade in at the beginning of a run is sped-up.
 - `052` First floor Treasure Rooms are slightly changed so that you never have to spend a bomb or walk on spikes.
 
@@ -262,6 +256,10 @@ Post-flip actions:
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
+- Players will start in the center of the room (instead of at the bottom).
+
+> Why? This is convenient because it makes the player equidistant to all of the doors.
+
 ### 6) Gameplay Changes
 
 - `071` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
@@ -271,6 +269,24 @@ Post-flip actions:
 - `072` Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
 
 > Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
+
+- `073` Duality now combines Devil Room doors and Angel Room doors together.
+
+> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
+
+- `074` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+
+> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
+
+- `075` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+
+> Why? This allows skilled players to gain time by canceling more animations.
+
+- Card Reading no longer spawns portals on Womb 2 and beyond.
+
+> Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
+
+### 7) Gameplay Removals
 
 - Mercurius is removed.
 
@@ -300,41 +316,21 @@ Post-flip actions:
 
 > Why? The vanilla weight of 0.2 means that powerful runs are more reliant on RNG than skill. Furthermore, it is much more powerful than any other item in the Treasure Room pool, so it can lead to lopsided races.
 
-- Card Reading no longer spawns portals on Womb 2 and beyond.
+### 8) Cutscenes & Animations
 
-> Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
-
-- `073` Duality now combines Devil Room doors and Angel Room doors together.
-
-> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
-
-- `074` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
-
-> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
-
-- `075` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
-
-> Why? This allows skilled players to gain time by canceling more animations.
-
-### 7) Cutscenes & Animations
-
+- `081` Teleport animations are sped up by a factor of 2.
 - The intro that occurs when you launch the game is removed.
 - The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
 - All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
-- `081` Teleport animations are sped up by a factor of 2.
 - The pause and unpause animations are removed.
 
-### 8) Bug Fixes
+### 9) Bug Fixes
 
 - `091` All forms of teleport will no longer send you to an invalid entrance.
 - Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
-
-- Having Duality will now always give you both the Devil Room and the Angel Room.
-
-> Why? This does not happen consistently on vanilla like you would expect. Many boss rooms that only have 2 possible doors have been adjusted to have 3 doors.
 
 - Entering a Black Market will no longer send you to the I AM ERROR room.
 
@@ -344,14 +340,14 @@ Post-flip actions:
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
 
-### 9) Graphics Fixes
+### 10) Graphics Fixes
 
 - `101` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - `102` The 20/20 sprite is now easier to see.
 - `103` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
+- `104` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
-- `104` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
   - White-dotted / Red --> Full red
@@ -368,11 +364,11 @@ Post-flip actions:
 
 > Why? So that gameplay is not blocked when you use Rules card.
 
-### 10) Sound Fixes
+### 11) Sound Fixes
 
 - `111` The audio clips of mom and dad on the Ascent are silenced.
 
-### 11) Other
+### 12) Other
 
 - `121` A custom console is provided that is better than the vanilla console.
 

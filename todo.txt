@@ -1,7 +1,7 @@
 ```
 ### *v0.59.12* - August 21st, 2021
 
-- Extra items are no longer added to the Treasure Room pool.
+- Extra items are no longer added to the Treasure Room pool. Instead, extra starting items will appear in the first floor Treasure Room, but not in any other place that items would normally appear. Thanks to Gamonymous for coding this.
 ```
 
 - add description for knife in descriptions

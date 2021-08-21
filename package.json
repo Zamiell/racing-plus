@@ -13,7 +13,7 @@
   "author": "Racing+",
   "dependencies": {
     "isaac-typescript-definitions": "^1.0.138",
-    "isaacscript": "^1.1.10",
+    "isaacscript": "^1.1.11",
     "isaacscript-common": "^1.0.194",
     "isaacscript-lint": "^1.0.54"
   },
