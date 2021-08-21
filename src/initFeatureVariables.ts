@@ -24,6 +24,7 @@ import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import * as removePlaceholdersOnEden from "./features/optional/quality/moreStartingItems/replacePlaceholdersOnEden";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showEdenStartingItems from "./features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
@@ -77,6 +78,7 @@ export default function initFeatureVariables(): void {
   freeDevilItem.init();
 
   // Quality of life
+  removePlaceholdersOnEden.init();
   showPills.init();
   showNumSacrifices.init();
   showEdenStartingItems.init();

@@ -17,7 +17,7 @@ import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterD
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as moreStartingItems from "../features/optional/quality/moreStartingItems";
+import * as moreStartingItems from "../features/optional/quality/moreStartingItems/moreStartingItems";
 import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";

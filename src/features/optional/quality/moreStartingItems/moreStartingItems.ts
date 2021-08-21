@@ -1,13 +1,14 @@
 import { onRepentanceStage } from "isaacscript-common";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
-import { CollectibleTypeCustom } from "../../../types/enums";
-import { changeCollectibleSubType } from "../../../utilCollectible";
+import g from "../../../../globals";
+import { config } from "../../../../modConfigMenu";
+import { CollectibleTypeCustom } from "../../../../types/enums";
+import { changeCollectibleSubType } from "../../../../utilCollectible";
 
 const v = {
   run: {
     placeholdersRemoved: false,
   },
+
   level: {
     previouslyInTreasureRoom: false,
     currentlyInTreasureRoom: false,
@@ -149,11 +150,6 @@ function replacePlaceholders() {
 
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
-  const newCollectible = g.itemPool.GetCollectible(
-    ItemPoolType.POOL_TREASURE,
-    true,
-    startSeed,
-  );
   const foundDeathsTouch = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
@@ -180,6 +176,12 @@ function rollDuplicateItems() {
       collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
     ) {
+      const newCollectible = g.itemPool.GetCollectible(
+        ItemPoolType.POOL_TREASURE,
+        true,
+        startSeed,
+      );
+
       changeCollectibleSubType(collectible, newCollectible);
     }
 
@@ -188,6 +190,12 @@ function rollDuplicateItems() {
       collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
     ) {
+      const newCollectible = g.itemPool.GetCollectible(
+        ItemPoolType.POOL_TREASURE,
+        true,
+        startSeed,
+      );
+
       changeCollectibleSubType(collectible, newCollectible);
     }
   }

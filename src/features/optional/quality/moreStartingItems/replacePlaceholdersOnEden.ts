@@ -3,14 +3,14 @@ import {
   isQuestItem,
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
-import g from "../../globals";
-import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/quality/moreStartingItems";
-import { BANNED_COLLECTIBLES } from "./removeGloballyBannedItems";
+import g from "../../../../globals";
+import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
+import { BANNED_COLLECTIBLES } from "../../../mandatory/removeGloballyBannedItems";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "./moreStartingItems";
 
-const passiveItemsArray = [] as number[];
+const passiveItemsForEden = [] as number[];
 
-export default function init(): void {
+export function init(): void {
   for (let i = 1; i <= MAX_VANILLA_COLLECTIBLE_TYPE; i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
@@ -20,18 +20,16 @@ export default function init(): void {
       !BANNED_COLLECTIBLES.includes(itemConfigItem.ID) &&
       !isQuestItem(itemConfigItem.ID)
     ) {
-      passiveItemsArray.push(itemConfigItem.ID);
+      passiveItemsForEden.push(itemConfigItem.ID);
     }
   }
-
-  removePlaceholdersOnEdenPostGameStarted();
 }
 
-function removePlaceholdersOnEdenPostGameStarted(): void {
+export function postGameStarted(): void {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const startSeed = g.seeds.GetStartSeed();
-  const newCollectible = getRandomArrayElement(passiveItemsArray, startSeed);
+  const newCollectible = getRandomArrayElement(passiveItemsForEden, startSeed);
 
   if (
     character !== PlayerType.PLAYER_EDEN &&

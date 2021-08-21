@@ -3,7 +3,6 @@ import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as errors from "../features/mandatory/errors";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
-import replacePlaceholdersOnEdenPostGameStarted from "../features/mandatory/replacePlaceholdersOnEden";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
@@ -11,7 +10,8 @@ import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/bet
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
-import * as moreStartingItems from "../features/optional/quality/moreStartingItems";
+import * as moreStartingItems from "../features/optional/quality/moreStartingItems/moreStartingItems";
+import * as replacePlaceholdersOnEden from "../features/optional/quality/moreStartingItems/replacePlaceholdersOnEden";
 import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
@@ -50,7 +50,7 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
   streakText.postGameStarted();
-  replacePlaceholdersOnEdenPostGameStarted();
+  replacePlaceholdersOnEden.postGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before
   // race initialization because we need to find out what the passive item is before other items are
