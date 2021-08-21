@@ -56,15 +56,6 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Extra Treasure Room Items",
-      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
-    ],
-  ],
-  [
     "fastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
@@ -497,6 +488,15 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
+    "extraStartingItems",
+    [
+      ModConfigMenuOptionType.TEXT,
+      "072",
+      "Extra Treasure Room Items",
+      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -563,7 +563,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "combinedDualityDoors",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "072",
+      "073",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -572,7 +572,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "consistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "073",
+      "074",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -581,7 +581,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "074",
+      "075",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],

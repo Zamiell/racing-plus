@@ -19,8 +19,7 @@
 		<!--Halo of Flies-->
 		<Item Id="10" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Magic Mushroom-->
-		<!-- Changed from vanilla, originally 0.5 -->
-		<Item Id="12" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="12" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<!--The Virus-->
 		<Item Id="13" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Roid Rage-->
@@ -295,8 +294,7 @@
 		<!--E. Coli-->
 		<Item Id="236" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Death's Touch-->
-    <!-- Changed from vanilla, originally 0.2 -->
-		<Item Id="237" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="237" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>
 		<!--Experimental Treatment-->
 		<Item Id="240" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Infamy-->

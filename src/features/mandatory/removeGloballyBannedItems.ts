@@ -5,7 +5,7 @@
 import { anyPlayerHasCollectible, getPlayers } from "isaacscript-common";
 import g from "../../globals";
 
-const BANNED_COLLECTIBLES = [
+export const BANNED_COLLECTIBLES = [
   CollectibleType.COLLECTIBLE_MERCURIUS,
   CollectibleType.COLLECTIBLE_TMTRAINER,
 ];

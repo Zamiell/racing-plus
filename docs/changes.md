@@ -268,6 +268,10 @@ Post-flip actions:
 
 > Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
+- `072` Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
+
+> Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
+
 - Mercurius is removed.
 
 > Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.
@@ -292,19 +296,23 @@ Post-flip actions:
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
+- Mom's Knife is removed from the Treasure Room pool.
+
+> Why? The vanilla weight of 0.2 means that powerful runs are more reliant on RNG than skill. Furthermore, it is much more powerful than any other item in the Treasure Room pool, so it can lead to lopsided races.
+
 - Card Reading no longer spawns portals on Womb 2 and beyond.
 
 > Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
 
-- `072` Duality now combines Devil Room doors and Angel Room doors together.
+- `073` Duality now combines Devil Room doors and Angel Room doors together.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `073` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+- `074` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
-- `074` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+- `075` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 
 > Why? This allows skilled players to gain time by canceling more animations.
 
