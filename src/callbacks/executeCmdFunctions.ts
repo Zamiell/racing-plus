@@ -374,6 +374,10 @@ functionMap.set("s", (params: string) => {
   consoleCommand(`stage ${stage}${stageType}`);
 });
 
+functionMap.set("s0", (_params: string) => {
+  Isaac.ExecuteCommand("challenge 0");
+});
+
 functionMap.set("s1", (_params: string) => {
   Isaac.ExecuteCommand(`challenge ${ChallengeCustom.SEASON_1}`);
   Isaac.ExecuteCommand("setcharorder");

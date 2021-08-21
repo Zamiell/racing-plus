@@ -1,10 +1,7 @@
 ```
-### *v0.59.8* - August 20th, 2021
+### *v0.59.10* - August 21st, 2021
 
-- The Your Soul trinket will now be awarded on the first Devil Room you encounter, unless it is on Caves 1 or later. (Thanks Hispa)
-- Fixed the bug where in Season 1, Repentance doors would be unlocked if you re-entered the room. (Thanks Fallenfor)
-- Fixed the bug where the Dream Catcher sprites would cause errors under certain conditions. (Thanks Gamonymous)
-- Fixed the bug where the screen would shake when entering a Devil Room under certain conditions.
+-
 ```
 
 TODO Racing+ new features:

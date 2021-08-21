@@ -108,12 +108,12 @@ function setRepentanceDoors() {
       door.State = DoorState.STATE_HALF_CRACKED;
     }
   } else if (isDoorToMausoleum(door)) {
-    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
-      // This also properly handles the case where one health donation has been made
-      g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
-      door.Close(true);
-      door.SetLocked(true);
-    }
+    // The game will remember the donation status of the door,
+    // so the below code will not do anything in the case of the door already being opened,
+    // and handle the other two cases properly
+    g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+    door.Close(true);
+    door.SetLocked(true);
   }
 }
 
@@ -206,8 +206,6 @@ export function postGridEntityUpdateDoor(gridEntity: GridEntity): void {
 }
 
 function updateRepentanceDoorState(door: GridEntityDoor) {
-  // Isaac.DebugString(`STATE = ${door.State}`);
-
   if (isDoorToDownpour(door)) {
     const doorState = door.IsLocked()
       ? RepentanceDoorState.Initial
@@ -215,9 +213,8 @@ function updateRepentanceDoorState(door: GridEntityDoor) {
     v.level.repentanceDoorState = doorState;
   } else if (isDoorToMines(door)) {
     v.level.repentanceDoorState = getDoorStateForMinesDoor(door);
-  } else if (isDoorToMausoleum(door)) {
-    // TODO
   }
+  // (Mausoleum doors are handled automatically)
 }
 
 function getDoorStateForMinesDoor(door: GridEntityDoor) {
