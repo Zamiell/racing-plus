@@ -1,7 +1,6 @@
 import {
-  getDoors,
+  getRepentanceDoor,
   getRoomIndex,
-  log,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -23,10 +22,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  for (const door of getDoors()) {
-    if (door.TargetRoomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
-      g.r.RemoveDoor(door.Slot);
-      log("Manually removed the strange door (for races going to The Beast).");
-    }
+  const repentanceDoor = getRepentanceDoor();
+  if (repentanceDoor !== null) {
+    g.r.RemoveDoor(repentanceDoor.Slot);
   }
 }

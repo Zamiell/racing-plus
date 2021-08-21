@@ -1,5 +1,6 @@
 import { PickingUpItem } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/enums";
+import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
 const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30; // In Isaac frames
@@ -8,6 +9,10 @@ export function speedrunPreItemPickup(
   player: EntityPlayer,
   pickingUpItem: PickingUpItem,
 ): void {
+  if (!inSpeedrun()) {
+    return;
+  }
+
   checkCheckpointTouched(player, pickingUpItem);
 }
 

@@ -4,6 +4,7 @@ import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/post
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
@@ -11,6 +12,7 @@ import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
+import * as combinedDualityDoors from "../features/optional/gameplay/combinedDualityDoors";
 import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
@@ -44,6 +46,7 @@ export function main(): void {
 
   // Mandatory features
   removeGloballyBannedItems.postNewRoom();
+  nerfCardReading.postNewRoom();
   detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
   trophy.postNewRoom();
@@ -71,6 +74,9 @@ export function main(): void {
   // Quality of life
   showDreamCatcherItemPostNewRoom();
   subvertTeleport.postNewRoom();
+
+  // Gameplay changes
+  combinedDualityDoors.postNewRoom();
 
   // Bux fixes
   teleportInvalidEntrance.postNewRoom();

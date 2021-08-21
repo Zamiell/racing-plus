@@ -48,13 +48,9 @@ function checkVictoryLapBossReplace() {
   ) {
     // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps)
     const isaacs = Isaac.FindByType(EntityType.ENTITY_ISAAC);
-    for (const entity of isaacs) {
-      entity.Remove();
-    }
+    removeAllEntities(isaacs);
     const lambs = Isaac.FindByType(EntityType.ENTITY_THE_LAMB);
-    for (const entity of lambs) {
-      entity.Remove();
-    }
+    removeAllEntities(lambs);
 
     let randomBossSeed = roomSeed;
     const numBosses = g.raceVars.victoryLaps + 1;

@@ -1,5 +1,7 @@
 import {
+  anyEntityCloserThan,
   anyPlayerIs,
+  DISTANCE_OF_GRID_SQUARE,
   getDoors,
   getRoomIndex,
   inCrawlspace,
@@ -27,19 +29,20 @@ export function enteredRoomViaTeleport(): boolean {
 }
 
 export function findFreePosition(startingPosition: Vector): Vector {
-  const position = g.r.FindFreePickupSpawnPosition(startingPosition);
-  const gridEntity = g.r.GetGridEntityFromPos(position);
-  if (gridEntity === null) {
-    return position;
+  // The "FindFreePickupSpawnPosition()" function will not account for beams of light
+  const heavenDoors = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+  );
+  for (let i = 0; i < 100; i++) {
+    const position = g.r.FindFreePickupSpawnPosition(startingPosition, i);
+    if (!anyEntityCloserThan(heavenDoors, position, DISTANCE_OF_GRID_SQUARE)) {
+      return position;
+    }
   }
 
-  // The "FindFreePickupSpawnPosition()" function failed,
-  // because the position that it chose overlaps with a grid entity
-  const position2 = g.r.FindFreeTilePosition(startingPosition, 0);
-
-  // The results of the "FindFreeTilePosition()" function can overlap with existing entities,
-  // so now call "FindFreePickupSpawnPosition()" again to prevent entity overlap
-  return g.r.FindFreePickupSpawnPosition(position2);
+  // We failed to find a free position in N iterations
+  return g.r.FindFreePickupSpawnPosition(startingPosition);
 }
 
 function getItemInitCharges(
@@ -94,6 +97,10 @@ export function removeGridEntity(gridEntity: GridEntity): void {
 
   const gridIndex = gridEntity.GetGridIndex();
   g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
+
+  // It is best practice to call the "Update()" method after removing a grid entity;
+  // otherwise, spawning grid entities on the same tile can fail
+  g.r.Update();
 }
 
 /**
@@ -125,13 +132,18 @@ export function setRoomCleared(): void {
     door.ExtraVisible = false;
   }
   g.sfx.Stop(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
+
+  // If the room contained Mom's Hands, then a screen shake will be queued
+  // Override it with a null shake
+  g.g.ShakeScreen(0);
 }
 
 export function spawnCollectible(
   collectibleType: CollectibleType | CollectibleTypeCustom,
   position: Vector,
   seed: int,
-  options: boolean,
+  options = false,
+  forceFreeItem = false,
 ): EntityPickup | null {
   const roomType = g.r.GetType();
 
@@ -157,7 +169,8 @@ export function spawnCollectible(
   if (
     roomType === RoomType.ROOM_ANGEL &&
     anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&
-    !isQuestItem(collectibleType)
+    !isQuestItem(collectibleType) &&
+    !forceFreeItem
   ) {
     // When playing Tainted Keeper, collectibles are supposed to have a price,
     // and manually spawned items will not have a price, so we have to set it manually

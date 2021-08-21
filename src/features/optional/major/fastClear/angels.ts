@@ -58,8 +58,9 @@ function spawnKeyPiece(npc: EntityNPC) {
   }
 
   // Spawn the item
+  // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
   const position = findFreePosition(npc.Position);
-  spawnCollectible(getKeySubType(npc), position, npc.InitSeed, false);
+  spawnCollectible(getKeySubType(npc), position, npc.InitSeed, false, true);
 }
 
 function getKeySubType(npc: EntityNPC) {

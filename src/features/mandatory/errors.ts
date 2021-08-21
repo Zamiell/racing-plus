@@ -107,7 +107,7 @@ function isIncompleteSave() {
   }
 
   // Add every item in the game to the blacklist
-  for (let i = 1; i < getMaxCollectibleID(); i++) {
+  for (let i = 1; i <= getMaxCollectibleID(); i++) {
     if (g.itemConfig.GetCollectible(i) !== null && i !== itemToCheckFor) {
       g.itemPool.AddRoomBlacklist(i);
     }

@@ -550,9 +550,7 @@ function debuffOff() {
       EntityType.ENTITY_FAMILIAR,
       FamiliarVariant.BLUE_FLY,
     );
-    for (const fly of blueFlies) {
-      fly.Remove();
-    }
+    removeAllEntities(blueFlies);
 
     // Keeper will start with one coin container, which can lead to chain deaths
     // Give Keeper a temporary Wooden Cross effect

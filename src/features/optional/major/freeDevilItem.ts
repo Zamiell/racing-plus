@@ -1,13 +1,12 @@
 import {
+  getEffectiveStage,
   getOpenTrinketSlot,
   getPlayers,
-  onRepentanceStage,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSelfDamage } from "../../../util";
-import { enteredRoomViaTeleport } from "../../../utilGlobals";
 
 const EXCLUDED_CHARACTERS = [
   // The Lost and Tainted Lost get free devil deals, so they do not need the trinket
@@ -62,27 +61,27 @@ export function postNewRoom(): void {
 }
 
 function checkGiveTrinket() {
-  const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const effectiveStage = getEffectiveStage();
 
   if (
-    !v.run.granted &&
-    !v.run.tookDamage &&
-    (stage === 2 || (stage === 1 && onRepentanceStage())) &&
-    roomType === RoomType.ROOM_DEVIL &&
-    !enteredRoomViaTeleport()
+    v.run.granted ||
+    v.run.tookDamage ||
+    roomType !== RoomType.ROOM_DEVIL ||
+    effectiveStage > 2
   ) {
-    // We have arrived at the first Devil Room (without teleporting in) and no player has taken any
-    // damage
-    // Award all players with a trinket prize
-    v.run.granted = true;
+    return;
+  }
 
-    for (const player of getPlayers()) {
-      const playerType = player.GetPlayerType();
+  // We have arrived at the first Devil Room and no player has taken any damage
+  // Award all players with a trinket prize
+  v.run.granted = true;
 
-      if (!EXCLUDED_CHARACTERS.includes(playerType)) {
-        giveTrinket(player);
-      }
+  for (const player of getPlayers()) {
+    const playerType = player.GetPlayerType();
+
+    if (!EXCLUDED_CHARACTERS.includes(playerType)) {
+      giveTrinket(player);
     }
   }
 }

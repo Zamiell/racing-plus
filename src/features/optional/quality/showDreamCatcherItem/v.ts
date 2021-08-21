@@ -9,9 +9,6 @@ const v = {
     /** Bosses are stored as an array of: [entityType, variant] */
     bosses: [] as Array<[int, int]>,
 
-    dreamCatcherSprite: null as Sprite | null,
-    itemSprites: [] as Sprite[],
-    bossSprites: [] as Sprite[],
     warpState: DreamCatcherWarpState.Initial,
   },
 };

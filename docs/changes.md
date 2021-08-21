@@ -58,8 +58,8 @@ In terms of what to change about the game, the mod has several goals, and attemp
 ### 3) Devil Room & Angel Room Rebalancing
 
 - `003` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
-  - Average items per devil room are increased from [TODO] to [TODO].
-  - Average items per angel room are increased from [TODO] to [TODO].
+  - Average items per devil room are increased from 1.64 to 1.96.
+  - Average items per angel room are increased from 1.34 to 1.51.
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
@@ -268,7 +268,7 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `072` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+- `071` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
 
 > Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
@@ -296,11 +296,19 @@ Post-flip actions:
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
-- `071` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+- Card Reading no longer spawns portals on Womb 2 and beyond.
+
+> Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
+
+- `072` Duality now combines Devil Room doors and Angel Room doors together.
+
+> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
+
+- `073` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
-- `072` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+- `074` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 
 > Why? This allows skilled players to gain time by canceling more animations.
 

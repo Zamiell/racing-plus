@@ -1,10 +1,8 @@
 ```
-### *v0.59.6* - August 19th, 2021
+### *v0.59.10* - August 21st, 2021
 
 -
 ```
-
-- Fixed the bug where Perfection could spawn in a beam of light. (Thanks Gamonymous)
 
 TODO Racing+ new features:
 - make items in order on devil/angel rooms

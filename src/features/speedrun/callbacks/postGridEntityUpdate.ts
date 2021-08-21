@@ -1,10 +1,10 @@
 import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
 import { inSpeedrun } from "../speedrun";
 
-export function speedrunPreSpawnClearAward(): void {
+export function door(gridEntity: GridEntity): void {
   if (!inSpeedrun()) {
     return;
   }
 
-  allowVanillaPathsInRepentanceChallenge.preSpawnClearAward();
+  allowVanillaPathsInRepentanceChallenge.postGridEntityUpdateDoor(gridEntity);
 }

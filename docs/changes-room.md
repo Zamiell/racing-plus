@@ -33,7 +33,7 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 
 #### Devil Rooms
 
-- The average item per room is increased from [TODO] to [TODO].
+- The average item per room is increased from 1.64 to 1.96.
 - All rooms with 1 item have an additional reward.
 - All rooms with 2 or more item pedestals have no extra rewards.
 - All enemies are removed.
@@ -41,7 +41,7 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 
 #### Angel Rooms
 
-- The average item per room is increased from [TODO] to [TODO].
+- The average item per room is increased from 1.34 to 1.51.
 - All rooms with 1 item pedestal have 2 Angel Statues. In some rooms, there is an additional reward.
 - All rooms with 2 item pedestals have 1 Angel Statue and have no extra rewards.
 

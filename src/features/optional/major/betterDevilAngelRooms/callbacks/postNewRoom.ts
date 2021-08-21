@@ -7,8 +7,6 @@ import devil from "../devil";
 import v from "../v";
 
 const ENTITIES_TO_NOT_REMOVE = [EntityType.ENTITY_DARK_ESAU];
-const MIN_GRID_INDEX = 0;
-const MAX_GRID_INDEX = 134;
 
 export default function betterDevilAngelRoomsPostNewRoom(): void {
   if (!config.betterDevilAngelRooms) {
@@ -35,18 +33,18 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     error("Seeding non-1x1 rooms is not supported.");
   }
 
-  respawnPersistentEntities();
-
   if (!isFirstVisit) {
+    removeDecorationSprites();
+    respawnPersistentEntities();
     return;
   }
 
   removePickupsAndSlotsAndNPCs();
   setRoomCleared();
-  fillRoomWithPressurePlates();
 
   if (v.run.intentionallyLeaveEmpty) {
     v.run.intentionallyLeaveEmpty = false;
+    fillRoomWithDecorations();
     return;
   }
 
@@ -54,6 +52,19 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     devil();
   } else if (roomType === RoomType.ROOM_ANGEL) {
     angel();
+  }
+
+  fillRoomWithDecorations();
+}
+
+// Every time we re-enter the room, the sprites for all of the decorations will come back,
+// so we have to remove them again
+function removeDecorationSprites() {
+  for (const gridIndex of v.level.spawnedDecorationGridIndexes) {
+    const gridEntity = g.r.GetGridEntity(gridIndex);
+    if (gridEntity !== null) {
+      removeSprite(gridEntity);
+    }
   }
 }
 
@@ -103,68 +114,39 @@ function removePickupsAndSlotsAndNPCs() {
   }
 }
 
-function fillRoomWithPressurePlates() {
+function fillRoomWithDecorations() {
   const gridSize = g.r.GetGridSize();
 
   // In the PreRoomEntitySpawn callback, we prevented every entity from spawning
   // However, if we exit and re-enter the room, all the vanilla entities will spawn again
-  // In order to prevent this from happening, we can spawn a grid entity on every square,
-  // which the game will remember
-  // The natural grid entity to choose for this purpose would be a decoration,
-  // since it is non-interacting
-  // After spawning a decoration, we can manually remove the sprite
-  // The problem with this method is that the sprite will have to be re-removed every time the
-  // player re-enters the move, so you must also track the decorations that you spawn
-  // A simpler method is to spawn a pressure plate instead of a decoration, and set its state to 1
-  // (a state of 1 is unused by the game)
-  // The game will remember that the pressure plate is supposed to spawn on the grid,
-  // but it will render it invisible
-  // Thus, fill the room with pressure plates and set their state
+  // In order to prevent this from happening, we can spawn a grid entity on every square that does
+  // not already have a grid entity
+  // The natural grid entity to choose for this purpose is a decoration, since it is non-interacting
+  // Another option besides decorations would be to use a pressure plates with a state of 1,
+  // which is a state that is normally unused by the game and makes it invisible + persistent
+  // However, pickups will not be able to spawn on pressure plates, which lead to various bugs
+  // (e.g. pickups spawning on top of pits)
   for (let gridIndex = 0; gridIndex < gridSize; gridIndex++) {
-    if (!isWall(gridIndex)) {
-      const position = g.r.GetGridPosition(gridIndex);
-      const button = Isaac.GridSpawn(
-        GridEntityType.GRID_PRESSURE_PLATE,
-        PressurePlateVariant.REWARD_PLATE,
-        position,
-        true,
-      );
-
-      // State 2 is unused and will prevent the button from being pressed
-      // (state 1 also has this property,
-      // but state 1 will not be be remembered by the game when re-entering the room)
-      button.State = 2;
-
-      // The sprite has to be manually removed
-      // (but it will not need to be removed upon subsequent visits to the room)
-      const sprite = button.GetSprite();
-      sprite.ReplaceSpritesheet(0, "gfx/none.png");
-      sprite.LoadGraphics();
+    const existingGridEntity = g.r.GetGridEntity(gridIndex);
+    if (existingGridEntity !== null) {
+      continue;
     }
+
+    const position = g.r.GetGridPosition(gridIndex);
+    const decoration = Isaac.GridSpawn(
+      GridEntityType.GRID_DECORATION,
+      0,
+      position,
+      true,
+    );
+
+    removeSprite(decoration);
+    v.level.spawnedDecorationGridIndexes.push(gridIndex);
   }
 }
 
-function isWall(gridIndex: int) {
-  if (gridIndex < MIN_GRID_INDEX) {
-    error(
-      `The isWall function does not support grid indexes below ${MIN_GRID_INDEX}.`,
-    );
-  }
-
-  if (gridIndex > MAX_GRID_INDEX) {
-    error(
-      `The isWall function does not support grid indexes above ${MAX_GRID_INDEX}.`,
-    );
-  }
-
-  return (
-    // Top wall
-    (gridIndex >= 0 && gridIndex <= 14) ||
-    // Bottom wall
-    (gridIndex >= 120 && gridIndex <= 134) ||
-    // Left wall
-    gridIndex % 15 === 0 ||
-    // Right wall
-    (gridIndex + 1) % 15 === 0
-  );
+function removeSprite(gridEntity: GridEntity) {
+  const sprite = gridEntity.GetSprite();
+  sprite.ReplaceSpritesheet(0, "gfx/none.png");
+  sprite.LoadGraphics();
 }

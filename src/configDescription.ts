@@ -542,10 +542,37 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     ],
   ],
   [
-    "consistentTrollBombs",
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove unbalanced Void synergies",
+      "Make Mega Blast and Magic Mush removed from pools if the player starts with Void.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Nerf Card Reading",
+      "Make Card Reading no longer spawn portals on Womb 2 and beyond.",
+    ],
+  ],
+  [
+    "combinedDualityDoors",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "072",
+      "Duality revamp",
+      "Make Duality combine the Devil Room door and the Angel Room door together.",
+    ],
+  ],
+  [
+    "consistentTrollBombs",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "073",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -554,7 +581,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "073",
+      "074",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],

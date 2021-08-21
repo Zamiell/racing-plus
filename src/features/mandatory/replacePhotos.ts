@@ -166,7 +166,6 @@ function doPhotoSituation(situation: PhotoSituation) {
         CollectibleType.COLLECTIBLE_POLAROID,
         PEDESTAL_POSITION_CENTER,
         roomSeed,
-        false,
       );
       break;
     }
@@ -176,7 +175,6 @@ function doPhotoSituation(situation: PhotoSituation) {
         CollectibleType.COLLECTIBLE_NEGATIVE,
         PEDESTAL_POSITION_CENTER,
         roomSeed,
-        false,
       );
       break;
     }
@@ -228,7 +226,6 @@ function doPhotoSituation(situation: PhotoSituation) {
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_CENTER,
           roomSeed,
-          false,
         );
       }
 

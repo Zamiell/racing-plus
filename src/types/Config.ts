@@ -53,6 +53,7 @@ export default class Config {
 
   // Gameplay changes
   sawblade = true;
+  combinedDualityDoors = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
 
