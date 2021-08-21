@@ -3,6 +3,7 @@
 
 import {
   anyPlayerHasCollectible,
+  DISTANCE_OF_GRID_SQUARE,
   getAngelRoomDoor,
   getDevilRoomDoor,
   getRoomIndex,
@@ -10,9 +11,9 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { removeGridEntity } from "../../../utilGlobals";
 
 const FRAME_LAYER = 3;
+const NUM_DOOR_LAYERS = 5;
 
 const v = {
   level: {
@@ -20,12 +21,34 @@ const v = {
   },
 
   room: {
+    /** The combined door will always be the Devil Room door. */
     modifiedDevilDoorSlot: null as DoorSlot | null,
+    /** The Angel Room door is made to be invisible. */
+    hiddenAngelDoorSlot: null as DoorSlot | null,
   },
 };
 
 export function init(): void {
   saveDataManager("combinedDualityDoors", v);
+}
+
+// ModCallbacks.MC_POST_UPDATE (1)
+export function postUpdate(): void {
+  if (!config.combinedDualityDoors) {
+    return;
+  }
+
+  if (v.room.hiddenAngelDoorSlot === null) {
+    return;
+  }
+
+  const door = g.r.GetDoor(v.room.hiddenAngelDoorSlot);
+  if (door === null) {
+    return;
+  }
+
+  // Since the room is cleared, we must keep the door closed on every frame
+  door.State = DoorState.STATE_CLOSED;
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
@@ -79,11 +102,37 @@ function checkModifyDevilRoomDoor() {
 
   v.room.modifiedDevilDoorSlot = devilRoomDoor.Slot;
 
-  // Delete the Angel Room door, if it exists
+  // Make the Angel Room door invisible, if it exists
+  // (we don't delete it because it can cause the game to crash if the player has Goat Head)
   const angelRoomDoor = getAngelRoomDoor();
   if (angelRoomDoor !== null) {
-    removeGridEntity(angelRoomDoor);
-    Isaac.GridSpawn(GridEntityType.GRID_WALL, 0, angelRoomDoor.Position, true);
+    // Delete the sprite
+    const sprite = angelRoomDoor.GetSprite();
+    for (let i = 0; i < NUM_DOOR_LAYERS; i++) {
+      sprite.ReplaceSpritesheet(i, "gfx/none.png");
+    }
+    sprite.LoadGraphics();
+
+    // The player will still be able to walk through the door, so set the state to add collision
+    // Unfortunately, since the room is cleared, the door will attempt to open on every frame,
+    // so we must also set the door state on every frame in the PostGridEntityUpdate callback
+    angelRoomDoor.State = DoorState.STATE_CLOSED;
+    v.room.hiddenAngelDoorSlot = angelRoomDoor.Slot;
+
+    // When an Angel Room spawns, it will also emit a dust cloud
+    const dustClouds = Isaac.FindByType(
+      EntityType.ENTITY_EFFECT,
+      EffectVariant.DUST_CLOUD,
+    );
+    for (const dustCloud of dustClouds) {
+      if (
+        dustCloud.Position.Distance(angelRoomDoor.Position) <
+        DISTANCE_OF_GRID_SQUARE
+      ) {
+        dustCloud.Visible = false; // Necessary because it takes a frame to remove
+        dustCloud.Remove();
+      }
+    }
   }
 
   // Modify the sprite for the Devil Room door so that it looks half Devil and half Angel

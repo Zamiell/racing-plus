@@ -5,6 +5,7 @@ import * as preventItemRotate from "../features/mandatory/preventItemRotate";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
+import * as combinedDualityDoors from "../features/optional/gameplay/combinedDualityDoors";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
 import fastTravelPostUpdate from "../features/optional/major/fastTravel/callbacks/postUpdate";
@@ -33,4 +34,7 @@ export function main(): void {
   // Quality of life
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
+
+  // Gameplay changes
+  combinedDualityDoors.postUpdate();
 }
