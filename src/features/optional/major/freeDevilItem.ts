@@ -1,4 +1,5 @@
 import {
+  getEffectiveStage,
   getOpenTrinketSlot,
   getPlayers,
   saveDataManager,
@@ -61,8 +62,14 @@ export function postNewRoom(): void {
 
 function checkGiveTrinket() {
   const roomType = g.r.GetType();
+  const effectiveStage = getEffectiveStage();
 
-  if (v.run.granted || v.run.tookDamage || roomType !== RoomType.ROOM_DEVIL) {
+  if (
+    v.run.granted ||
+    v.run.tookDamage ||
+    roomType !== RoomType.ROOM_DEVIL ||
+    effectiveStage > 2
+  ) {
     return;
   }
 
