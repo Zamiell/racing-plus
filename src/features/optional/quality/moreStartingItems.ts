@@ -117,10 +117,12 @@ export function postNewRoom(): void {
     removePlaceholders();
   }
 
+  rollDuplicateItems();
   replacePlaceholders();
 }
 
 export function postUpdate(): void {
+  rollDuplicateItems();
   replacePlaceholders();
 }
 
@@ -129,6 +131,7 @@ function replacePlaceholders() {
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
   );
+
   for (const collectible of collectibles) {
     if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
       // Ignore empty pedestals (i.e. items that have already been taken by the player)
@@ -138,6 +141,47 @@ function replacePlaceholders() {
     const newCollectible = COLLECTIBLE_REPLACEMENT_MAP.get(collectible.SubType);
 
     if (newCollectible !== undefined) {
+      changeCollectibleSubType(collectible, newCollectible);
+    }
+  }
+}
+
+function rollDuplicateItems() {
+  const startSeed = g.seeds.GetStartSeed();
+  const newCollectible = g.itemPool.GetCollectible(
+    ItemPoolType.POOL_TREASURE,
+    true,
+    startSeed,
+  );
+  const foundDeathsTouch = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+    CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
+  );
+  const foundMagicMush = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+    CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
+  );
+  const collectibles = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+  );
+
+  for (const collectible of collectibles) {
+    if (
+      foundDeathsTouch.length !== 0 &&
+      collectible.SubType ===
+        CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
+    ) {
+      changeCollectibleSubType(collectible, newCollectible);
+    }
+
+    if (
+      foundMagicMush.length !== 0 &&
+      collectible.SubType ===
+        CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
+    ) {
       changeCollectibleSubType(collectible, newCollectible);
     }
   }
