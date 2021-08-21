@@ -29,13 +29,11 @@ export function enteredRoomViaTeleport(): boolean {
 }
 
 export function findFreePosition(startingPosition: Vector): Vector {
-  // By default, the "FindFreePickupSpawnPosition()" function will not account for beams of light
-
+  // The "FindFreePickupSpawnPosition()" function will not account for beams of light
   const heavenDoors = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
   );
-  Isaac.DebugString("GETTING HERE");
   for (let i = 0; i < 100; i++) {
     const position = g.r.FindFreePickupSpawnPosition(startingPosition, i);
     if (!anyEntityCloserThan(heavenDoors, position, DISTANCE_OF_GRID_SQUARE)) {
