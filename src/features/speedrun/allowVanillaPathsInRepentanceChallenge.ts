@@ -1,4 +1,5 @@
 import {
+  getDoors,
   getRepentanceDoor,
   getRoomIndex,
   getSurroundingGridEntities,
@@ -17,6 +18,7 @@ import g from "../../globals";
 import RepentanceDoorState from "../../types/RepentanceDoorState";
 import { initSprite } from "../../util";
 import { removeGridEntity } from "../../utilGlobals";
+import { door } from "./callbacks/postGridEntityUpdate";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
@@ -99,10 +101,10 @@ function setRepentanceDoors() {
       sprite.Play("Closed", true);
 
       const woodenBoardSprite = initSprite("gfx/grid/door_mines_planks.anm2");
+      const woodenBoardRotation = getWoodenBoardRotation();
       woodenBoardSprite.PlayOverlay("Damaged", true);
-      // TODO set rotation
-      woodenBoardSprite.Rotation = 90;
-      // door.ExtraSprite = woodenBoardSprite;
+      woodenBoardSprite.Rotation = woodenBoardRotation;
+      door.ExtraSprite = woodenBoardSprite;
       door.ExtraVisible = true;
 
       door.State = DoorState.STATE_HALF_CRACKED;
@@ -236,4 +238,28 @@ function getDoorStateForMinesDoor(door: GridEntityDoor) {
       return RepentanceDoorState.Initial;
     }
   }
+}
+
+function getWoodenBoardRotation(): number {
+  const repentanceDoor = getRepentanceDoor();
+
+  if (repentanceDoor !== null) {
+    // left slots
+    if (repentanceDoor.Slot % 4 == 0) {
+      return 270;
+    }
+
+    // right slots
+    if (repentanceDoor.Slot % 4 == 2) {
+      return 90;
+    }
+
+    // down slots
+    if (repentanceDoor.Slot % 4 == 3) {
+      return 180;
+    }
+  }
+
+  // by default, wooden boards sprite is correct on upper door slots
+  return 0;
 }
