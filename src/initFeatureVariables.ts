@@ -11,6 +11,7 @@ import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
+import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as switchForgotten from "./features/mandatory/switchForgotten";
@@ -65,6 +66,7 @@ export default function initFeatureVariables(): void {
   seededDrops.init();
   seededTeleports.init();
   runTimer.init();
+  seededFloors.init();
   switchForgotten.init();
   detectSlideAnimation.init();
   trophy.init();
