@@ -1,7 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import Health from "../../../../types/Health";
 import { FastTravelEntityDescription } from "./constants";
 import { FastTravelState } from "./enums";
 
@@ -38,15 +37,6 @@ const v = {
     repentanceSecretExit: false,
 
     reseed: false,
-
-    seededSwap: {
-      swapping: false,
-      devilVisited: false,
-      bookTouched: false,
-      coins: 0,
-      keys: 0,
-      health: null as Health | null,
-    },
   },
 
   level: {

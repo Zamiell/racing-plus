@@ -1,7 +1,7 @@
 import { log, onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
-import * as seededFloors from "./seededFloors";
+import * as seededFloors from "../../../mandatory/seededFloors";
 import v from "./v";
 
 export function goto(upwards: boolean): void {

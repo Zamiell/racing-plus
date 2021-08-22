@@ -1,4 +1,4 @@
-import { getRoomIndex } from "../../../../../isaacscript-common/dist";
+import { getRoomIndex } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
