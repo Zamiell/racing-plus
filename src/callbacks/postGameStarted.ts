@@ -56,10 +56,14 @@ export function main(isContinued: boolean): void {
   showEdenStartingItems.postGameStarted();
 
   // Major features
-  if (racePostGameStarted()) {
+  racePostGameStarted();
+  if (g.run.restart) {
     return;
   }
   speedrunPostGameStarted();
+  if (g.run.restart) {
+    return;
+  }
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 

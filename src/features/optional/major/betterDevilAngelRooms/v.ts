@@ -1,4 +1,5 @@
 import { saveDataManager } from "isaacscript-common";
+import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import PersistentEntity from "../../../../types/PersistentEntity";
 
@@ -32,6 +33,15 @@ export function init(): void {
 
 function featureEnabled() {
   return config.betterDevilAngelRooms;
+}
+
+export function initializeSeeds(): void {
+  const startSeed = g.seeds.GetStartSeed();
+
+  for (const key of Object.keys(v.run.seeds)) {
+    const property = key as keyof typeof v.run.seeds;
+    v.run.seeds[property] = startSeed;
+  }
 }
 
 export function setDevilAngelEmpty(): void {

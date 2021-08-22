@@ -10,9 +10,9 @@ import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
-export default function racePostGameStarted(): boolean {
+export default function racePostGameStarted(): void {
   if (!config.clientCommunication) {
-    return false;
+    return;
   }
 
   resetRaceVars();
@@ -23,7 +23,7 @@ export default function racePostGameStarted(): boolean {
   const player = Isaac.GetPlayer();
 
   if (!validateRace(player)) {
-    return true;
+    return;
   }
   socket.send("runMatchesRuleset");
 
@@ -32,8 +32,6 @@ export default function racePostGameStarted(): boolean {
   startingRoom.initSprites();
   topSprite.postGameStarted();
   placeLeft.postGameStarted();
-
-  return false;
 }
 
 function resetRaceVars() {
