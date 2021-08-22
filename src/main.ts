@@ -60,7 +60,7 @@ main();
 
 function main() {
   const mod = RegisterMod("racing-plus", 1);
-  const modUpgraded = upgradeMod(mod, true);
+  const modUpgraded = upgradeMod(mod);
 
   welcomeBanner();
   initFeatureVariables();
