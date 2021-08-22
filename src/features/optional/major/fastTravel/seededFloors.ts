@@ -1,5 +1,8 @@
-/*
-const ENABLED = true; // Set to false when debugging
+import { onSetSeed } from "isaacscript-common";
+import g from "../../../../globals";
+import Health from "../../../../types/Health";
+import { incrementRNG } from "../../../../util";
+import v from "./v";
 
 // Different inventory and health conditions can affect special room generation
 // Different special rooms can also sometimes change the actual room selection of non-special rooms
@@ -8,33 +11,21 @@ const ENABLED = true; // Set to false when debugging
 // and then swap them back
 // https://bindingofisaacrebirth.gamepedia.com/Level_Generation
 export function before(stage: int): void {
-  if (!ENABLED) {
-    return;
-  }
-
-  const character = g.p.GetPlayerType();
-  const goldenHearts = g.p.GetGoldenHearts();
-  const coins = g.p.GetNumCoins();
-  const keys = g.p.GetNumKeys();
-  let seed = g.seeds.GetStageSeed(stage);
-  const challenge = Isaac.GetChallenge();
-
   // Only swap things if we are playing a specific seed
-  if (!playingOnSetSeed()) {
+  if (!onSetSeed()) {
     return;
   }
 
-  // Record the current inventory && health values
-  g.run.seededSwap.swapping = true;
-  g.run.seededSwap.devilVisited = g.g.GetStateFlag(
-    GameStateFlag.STATE_DEVILROOM_VISITED,
-  );
-  g.run.seededSwap.bookTouched = g.g.GetStateFlag(
-    GameStateFlag.STATE_BOOK_PICKED_UP,
-  );
-  g.run.seededSwap.coins = coins;
-  g.run.seededSwap.keys = keys;
-  g.run.seededSwap.health = saveHealth();
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+  const goldenHearts = player.GetGoldenHearts();
+  let seed = g.l.GetDungeonPlacementSeed();
+
+  // Record the current inventory and health values
+  v.run.seededSwap.swapping = true;
+  getGameStateFlags();
+  getInventory(player);
+  v.run.seededSwap.health = getHealth(player);
 
   // Modification 1: Devil Room visited
   if (stage < 3) {
@@ -44,7 +35,7 @@ export function before(stage: int): void {
   }
 
   // Modification 2: Book touched
-  seed = misc.incrementRNG(seed);
+  seed = incrementRNG(seed);
   math.randomseed(seed);
   const bookMod = math.random(1, 2);
   if (bookMod === 1) {
@@ -54,57 +45,57 @@ export function before(stage: int): void {
   }
 
   // Modification 3: Coins
-  seed = misc.incrementRNG(seed);
+  seed = incrementRNG(seed);
   math.randomseed(seed);
   const coinMod = math.random(1, 2);
-  g.p.AddCoins(-99);
+  player.AddCoins(-99);
   if (coinMod === 2) {
     // If coinMod is 1, we don't have to do anything (0 coins)
     // If coinMod is 2, we give 20 coins
     // (all we really need is 5 coins but give 20 in case we are on Keeper and have Greed's Gullet
     // and have empty coin containers)
-    g.p.AddCoins(20);
+    player.AddCoins(20);
   }
 
   // Modification 4: Keys
-  seed = misc.incrementRNG(seed);
+  seed = incrementRNG(seed);
   math.randomseed(seed);
   const keyMod = math.random(1, 2);
-  g.p.AddKeys(-99);
+  player.AddKeys(-99);
   if (keyMod === 2) {
     // If keyMod is 1, we don't have to do anything (0 keys)
     // If keyMod is 2, we give 2 keys
-    g.p.AddKeys(2);
+    player.AddKeys(2);
   }
 
   // Remove all health
   g.seeds.AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
   // (we hide the health in case they are using Forget Me Now)
-  g.p.AddGoldenHearts(goldenHearts * -1);
+  player.AddGoldenHearts(goldenHearts * -1);
   // (we have to remove the exact amount of Golden Hearts or else it will bug out)
   // (we remove Golden Hearts first so that they don't break)
-  g.p.AddMaxHearts(-24, false);
-  g.p.AddSoulHearts(-24);
-  g.p.AddBoneHearts(-12);
+  player.AddMaxHearts(-24, false);
+  player.AddSoulHearts(-24);
+  player.AddBoneHearts(-12);
 
   // Modification 5: Full health
-  seed = misc.incrementRNG(seed);
+  seed = incrementRNG(seed);
   math.randomseed(seed);
-  g.p.AddMaxHearts(2, false);
-  g.p.AddHearts(1);
+  player.AddMaxHearts(2, false);
+  player.AddHearts(1);
   const fullHealthMod = math.random(1, 100);
   if (fullHealthMod <= 66) {
     // 66% chance to be full health
-    g.p.AddHearts(1);
+    player.AddHearts(1);
   }
 
   // Modification 6: Critical health
-  seed = misc.incrementRNG(seed);
+  seed = incrementRNG(seed);
   math.randomseed(seed);
   const criticalHealthMod = math.random(1, 100);
   if (criticalHealthMod <= 75) {
     // 75% chance to not be at critical health
-    g.p.AddSoulHearts(2);
+    player.AddSoulHearts(2);
 
     // Keeper will get 3 Blue Flies from this, so manually remove them
     if (character === PlayerType.PLAYER_KEEPER) {
@@ -124,43 +115,68 @@ export function before(stage: int): void {
 }
 
 export function after(): void {
-  if (!ENABLED) {
-    return;
-  }
-
-  const challenge = Isaac.GetChallenge();
-  const devilVisited = g.run.seededSwap.devilVisited;
-  const bookTouched = g.run.seededSwap.bookTouched;
-  const coins = g.run.seededSwap.coins;
-  const keys = g.run.seededSwap.keys;
-
   // Only swap things if we are playing a specific seed
-  if (!playingOnSetSeed()) {
+  if (!onSetSeed()) {
     return;
   }
+
+  const player = Isaac.GetPlayer();
 
   // Set everything back to the way it was before
-  g.run.seededSwap.swapping = false;
-  g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, devilVisited);
-  g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, bookTouched);
-  g.p.AddCoins(-99);
-  g.p.AddCoins(coins);
-  g.p.AddKeys(-99);
-  g.p.AddKeys(keys);
-  loadHealth();
+  v.run.seededSwap.swapping = false;
+  setGameStateFlags();
+  setInventory(player);
+  if (v.run.seededSwap.health !== null) {
+    setHealth(player, v.run.seededSwap.health);
+  }
+}
+
+function getGameStateFlags() {
+  v.run.seededSwap.devilVisited = g.g.GetStateFlag(
+    GameStateFlag.STATE_DEVILROOM_VISITED,
+  );
+  v.run.seededSwap.bookTouched = g.g.GetStateFlag(
+    GameStateFlag.STATE_BOOK_PICKED_UP,
+  );
+}
+
+function setGameStateFlags() {
+  g.g.SetStateFlag(
+    GameStateFlag.STATE_DEVILROOM_VISITED,
+    v.run.seededSwap.devilVisited,
+  );
+  g.g.SetStateFlag(
+    GameStateFlag.STATE_BOOK_PICKED_UP,
+    v.run.seededSwap.bookTouched,
+  );
+}
+
+function getInventory(player: EntityPlayer) {
+  const coins = player.GetNumCoins();
+  const keys = player.GetNumKeys();
+
+  v.run.seededSwap.coins = coins;
+  v.run.seededSwap.keys = keys;
+}
+
+function setInventory(player: EntityPlayer) {
+  player.AddCoins(-99);
+  player.AddCoins(v.run.seededSwap.coins);
+  player.AddKeys(-99);
+  player.AddKeys(v.run.seededSwap.keys);
 }
 
 // Based on the "REVEL.StoreHealth()" function in the Revelations mod
-function saveHealth() {
-  const character = g.p.GetPlayerType();
+function getHealth(player: EntityPlayer): Health {
+  const character = player.GetPlayerType();
   const soulHeartTypes: HeartSubType[] = [];
-  let maxHearts = g.p.GetMaxHearts();
-  let hearts = g.p.GetHearts();
-  let soulHearts = g.p.GetSoulHearts();
-  let boneHearts = g.p.GetBoneHearts();
-  const goldenHearts = g.p.GetGoldenHearts();
-  const eternalHearts = g.p.GetEternalHearts();
-  const subPlayer = g.p.GetSubPlayer();
+  let maxHearts = player.GetMaxHearts();
+  let hearts = player.GetHearts();
+  let soulHearts = player.GetSoulHearts();
+  let boneHearts = player.GetBoneHearts();
+  const goldenHearts = player.GetGoldenHearts();
+  const eternalHearts = player.GetEternalHearts();
+  const subPlayer = player.GetSubPlayer();
 
   // The Forgotten and The Soul has special health, so we need to account for this
   if (character === PlayerType.PLAYER_THEFORGOTTEN) {
@@ -200,7 +216,7 @@ function saveHealth() {
   let currentSoulHeart = 0;
 
   for (let i = 0; i < extraHearts; i++) {
-    let isBoneHeart = g.p.IsBoneHeart(i);
+    let isBoneHeart = player.IsBoneHeart(i);
     if (character === PlayerType.PLAYER_THEFORGOTTEN) {
       // 16
       isBoneHeart = subPlayer.IsBoneHeart(i);
@@ -209,7 +225,7 @@ function saveHealth() {
       soulHeartTypes.push(HeartSubType.HEART_BONE);
     } else {
       // We need to add 1 here because only the second half of a black heart is considered black
-      let isBlackHeart = g.p.IsBlackHeart(currentSoulHeart + 1);
+      let isBlackHeart = player.IsBlackHeart(currentSoulHeart + 1);
       if (character === PlayerType.PLAYER_THEFORGOTTEN) {
         // 16
         isBlackHeart = subPlayer.IsBlackHeart(currentSoulHeart + 1);
@@ -236,23 +252,22 @@ function saveHealth() {
 }
 
 // Based on the "REVEL.LoadHealth()" function in the Revelations mod
-function loadHealth() {
-  const character = g.p.GetPlayerType();
-  const health = g.run.seededSwap.health;
+function setHealth(player: EntityPlayer, health: Health) {
+  const character = player.GetPlayerType();
 
   // Remove all existing health
-  g.p.AddMaxHearts(-24, true);
-  g.p.AddSoulHearts(-24);
-  g.p.AddBoneHearts(-24);
+  player.AddMaxHearts(-24, true);
+  player.AddSoulHearts(-24);
+  player.AddBoneHearts(-24);
 
   // Add the red heart containers
   if (character === PlayerType.PLAYER_THESOUL) {
     // 17
     // Account for The Soul, as adding health to him is a special case
-    const subPlayer = g.p.GetSubPlayer();
+    const subPlayer = player.GetSubPlayer();
     subPlayer.AddMaxHearts(health.maxHearts, false);
   } else {
-    g.p.AddMaxHearts(health.maxHearts, false);
+    player.AddMaxHearts(health.maxHearts, false);
   }
 
   // Add the soul / black / bone hearts
@@ -272,21 +287,20 @@ function loadHealth() {
     }
 
     if (heartType === HeartSubType.HEART_SOUL) {
-      g.p.AddSoulHearts(addAmount);
+      player.AddSoulHearts(addAmount);
       soulHeartsRemaining -= addAmount;
     } else if (heartType === HeartSubType.HEART_BLACK) {
-      g.p.AddBlackHearts(addAmount);
+      player.AddBlackHearts(addAmount);
       soulHeartsRemaining -= addAmount;
     } else if (heartType === HeartSubType.HEART_BONE) {
-      g.p.AddBoneHearts(addAmount);
+      player.AddBoneHearts(addAmount);
     }
   }
 
   // Fill in the red heart containers
-  g.p.AddHearts(health.hearts);
-  g.p.AddGoldenHearts(health.goldenHearts);
+  player.AddHearts(health.hearts);
+  player.AddGoldenHearts(health.goldenHearts);
   // (no matter what kind of heart is added, no sounds effects will play)
 
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }
-*/

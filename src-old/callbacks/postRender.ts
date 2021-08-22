@@ -17,9 +17,6 @@ export function main(): void {
   // Check for inputs
   checkDirection();
 
-  // Check for trapdoor related things
-  fastTravel.trapdoor.checkState();
-
   // Check to see if ( we are subverting a teleport from Gurdy, Mom, Mom's Heart, || It Lives
   checkSubvertTeleport();
 

@@ -1,6 +1,7 @@
 import { log, onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
+import * as seededFloors from "./seededFloors";
 import v from "./v";
 
 export function goto(upwards: boolean): void {
@@ -29,17 +30,17 @@ export function goto(upwards: boolean): void {
     log("Finished this floor with damage taken.");
   }
 
+  setFloorVariables(stage, stageType);
+
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications
-  // seededFloors.before(nextStage); // TODO
-
-  setFloorVariables(stage, stageType);
+  seededFloors.before(nextStage);
 
   // Use the console to manually travel to the floor
   travelStage(nextStage, nextStageType);
 
   // Revert the health and inventory modifications
-  // seededFloors.after(); // TODO
+  seededFloors.after();
 }
 
 function getNextStage() {

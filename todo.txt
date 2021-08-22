@@ -2,6 +2,12 @@
 ### *v0.59.12* - August 21st, 2021
 
 - Extra items are no longer added to the Treasure Room pool. Instead, extra starting items will appear in the first floor Treasure Room, but not in any other place that items would normally appear. Thanks to Gamonymous for coding this.
+- In seeded races, Scolex will now be replaced by two Frails.
+- Fixed the bug where using the Bible on It Lives! would result in duplicate paths spawning. (Thanks Gamonymous)
+- Fixed the bug where the game would crash if you tried to go to the pre-race room on a set seed. (Thanks Gamonymous)
+- Fixed the bug where the game would fade out if you were in a challenge and you needed to go to the pre-race room.
+- Fixed the bug where the game would crash if you saved and continued in the pre-race room.
+- Fixed the bug where the client was not showing "MS" as the floor when you were in the Mega Satan room.
 ```
 
 - add description for knife in descriptions

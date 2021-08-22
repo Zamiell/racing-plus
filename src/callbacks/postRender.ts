@@ -16,6 +16,7 @@ import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import racePostRender, {
+  checkRestartWrongChallenge,
   checkRestartWrongRaceCharacter,
   checkRestartWrongRaceSeed,
 } from "../features/race/callbacks/postRender";
@@ -71,6 +72,10 @@ function checkRestart() {
     return false;
   }
   g.run.restart = false;
+
+  if (checkRestartWrongChallenge()) {
+    return true;
+  }
 
   if (checkRestartWrongRaceCharacter()) {
     return true;

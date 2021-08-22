@@ -24,7 +24,7 @@ export function main(isContinued: boolean): void {
   const isaacFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - IsaacFrame: ${isaacFrameCount}`,
+    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - IsaacFrame: ${isaacFrameCount} - Continued: ${isContinued}`,
   );
 
   setSeeds();
@@ -56,7 +56,9 @@ export function main(isContinued: boolean): void {
   showEdenStartingItems.postGameStarted();
 
   // Major features
-  racePostGameStarted();
+  if (racePostGameStarted()) {
+    return;
+  }
   speedrunPostGameStarted();
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
@@ -77,6 +79,7 @@ export function main(isContinued: boolean): void {
   // (commented out if it is not currently a holiday)
   // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
   // (this corresponds to "n016_Christmas.anm2" in the "costumes2.xml" file)
+  // TODO use sandbox to automatically show it on the week of Christmas
 
   // Features that need to be last
   // (this checks for items, so it has to be after all features that grant items)

@@ -10,9 +10,9 @@ import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
-export default function racePostGameStarted(): void {
+export default function racePostGameStarted(): boolean {
   if (!config.clientCommunication) {
-    return;
+    return false;
   }
 
   resetRaceVars();
@@ -23,7 +23,7 @@ export default function racePostGameStarted(): void {
   const player = Isaac.GetPlayer();
 
   if (!validateRace(player)) {
-    return;
+    return true;
   }
   socket.send("runMatchesRuleset");
 
@@ -32,6 +32,8 @@ export default function racePostGameStarted(): void {
   startingRoom.initSprites();
   topSprite.postGameStarted();
   placeLeft.postGameStarted();
+
+  return false;
 }
 
 function resetRaceVars() {
@@ -75,10 +77,7 @@ function validateChallenge() {
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== Challenge.CHALLENGE_NULL && g.race.format !== "custom") {
-    g.g.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
-    log(
-      "We are in a race but also in a custom challenge; fading out back to the menu.",
-    );
+    g.run.restart = true;
     return false;
   }
 

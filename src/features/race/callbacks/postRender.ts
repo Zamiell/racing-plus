@@ -43,6 +43,25 @@ function checkGameOpenedInMiddleOfRace() {
   }
 }
 
+export function checkRestartWrongChallenge(): boolean {
+  if (
+    !config.clientCommunication ||
+    g.race.status === "none" ||
+    g.race.format === "custom"
+  ) {
+    return false;
+  }
+
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge === Challenge.CHALLENGE_NULL) {
+    return false;
+  }
+
+  consoleCommand("challenge 0");
+  return true;
+}
+
 export function checkRestartWrongRaceCharacter(): boolean {
   if (
     !config.clientCommunication ||
