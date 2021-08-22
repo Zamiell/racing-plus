@@ -2,7 +2,6 @@
 // This feature relies on fast travel to function
 
 import { getRandom, onSetSeed, saveDataManager } from "isaacscript-common";
-import { getRandomInt } from "../../../../isaacscript-common/dist";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { incrementRNG } from "../../util";
@@ -87,8 +86,8 @@ export function before(stage: int): void {
 
   // Modification 2: Book touched
   seed = incrementRNG(seed);
-  const bookMod = getRandomInt(1, 2, seed);
-  if (bookMod === 1) {
+  const bookMod = getRandom(seed);
+  if (bookMod < 0.5) {
     g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, false);
   } else {
     g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, true);

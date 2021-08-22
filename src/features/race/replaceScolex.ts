@@ -1,6 +1,6 @@
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
-import { removeAllEntities } from "../../../../isaacscript-common/dist";
+import { removeAllEntities } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
 
