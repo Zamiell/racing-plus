@@ -6,6 +6,9 @@
 import { getRoomIndex, onRepentanceStage } from "isaacscript-common";
 import g from "../../globals";
 import { EffectSubTypeCustom } from "../../types/enums";
+import RaceFormat from "../race/types/RaceFormat";
+import RacerStatus from "../race/types/RacerStatus";
+import RaceStatus from "../race/types/RaceStatus";
 
 export function postNewRoom(): void {
   drawControlsGraphic();
@@ -67,8 +70,9 @@ function shouldDrawControlsGraphic() {
 
 function inSeededOrDiversityRace() {
   return (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    (g.race.format === "seeded" || g.race.format === "diversity")
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    (g.race.format === RaceFormat.SEEDED ||
+      g.race.format === RaceFormat.DIVERSITY)
   );
 }

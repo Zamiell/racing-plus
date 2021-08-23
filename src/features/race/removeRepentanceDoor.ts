@@ -7,6 +7,9 @@ import {
   removeAllEntities,
 } from "isaacscript-common";
 import g from "../../globals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 // MC_POST_NEW_ROOM (18)
 export function postNewRoom(): void {
@@ -25,9 +28,9 @@ function removeRepentanceDoor() {
   const roomClear = g.r.IsClear();
 
   if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.goal !== "The Beast" ||
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING ||
+    g.race.goal !== RaceGoal.THE_BEAST ||
     roomType !== RoomType.ROOM_BOSS ||
     ((!repentanceStage || stage !== 4) && (repentanceStage || stage !== 5))
   ) {

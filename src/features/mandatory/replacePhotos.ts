@@ -8,7 +8,9 @@ import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
 import { hasPolaroidOrNegative, incrementRNG } from "../../util";
 import { spawnCollectible } from "../../utilGlobals";
-import { RaceGoal } from "../race/types/RaceData";
+import RaceGoal from "../race/types/RaceGoal";
+import RacerStatus from "../race/types/RacerStatus";
+import RaceStatus from "../race/types/RaceStatus";
 import { inSpeedrun } from "../speedrun/speedrun";
 
 enum PhotoSituation {
@@ -121,7 +123,10 @@ function getPhotoSituation() {
     return PhotoSituation.POLAROID;
   }
 
-  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  ) {
     return getPhotoSituationRace(g.race.goal);
   }
 
@@ -131,21 +136,21 @@ function getPhotoSituation() {
 
 function getPhotoSituationRace(goal: RaceGoal) {
   switch (goal) {
-    case "Blue Baby": {
+    case RaceGoal.BLUE_BABY: {
       return PhotoSituation.POLAROID;
     }
 
-    case "The Lamb": {
+    case RaceGoal.THE_LAMB: {
       return PhotoSituation.NEGATIVE;
     }
 
-    case "Mega Satan":
-    case "Hush":
-    case "Delirium":
-    case "Boss Rush":
-    case "Mother":
-    case "The Beast":
-    case "custom": {
+    case RaceGoal.MEGA_SATAN:
+    case RaceGoal.HUSH:
+    case RaceGoal.DELIRIUM:
+    case RaceGoal.BOSS_RUSH:
+    case RaceGoal.MOTHER:
+    case RaceGoal.THE_BEAST:
+    case RaceGoal.CUSTOM: {
       // Give the player a choice between the photos for races to alternate objectives
       return PhotoSituation.BOTH;
     }

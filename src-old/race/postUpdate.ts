@@ -9,9 +9,9 @@ export function main(): void {
 
 function check3DollarBill() {
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.format === "seeded" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED &&
     g.p.HasCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL)
   ) {
     g.p.RemoveCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL);

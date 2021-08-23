@@ -1,4 +1,7 @@
 import g from "../../../globals";
+import RaceFormat from "../types/RaceFormat";
+import RacerStatus from "../types/RacerStatus";
+import RaceStatus from "../types/RaceStatus";
 
 // Prevent opening the console during a race
 export function actionConsole(): boolean | void {
@@ -6,11 +9,10 @@ export function actionConsole(): boolean | void {
     return undefined;
   }
 
-  // Allow usage of the console in custom races
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.format !== "custom"
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format !== RaceFormat.CUSTOM // Allow usage of the console in custom races
   ) {
     return false;
   }

@@ -7,6 +7,8 @@
 import { getScreenCenter } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../util";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;
@@ -16,7 +18,10 @@ let sprite: null | Sprite = null;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (g.race.myStatus === "quit" || g.race.myStatus === "disqualified") {
+  if (
+    g.race.myStatus === RacerStatus.QUIT ||
+    g.race.myStatus === RacerStatus.DISQUALIFIED
+  ) {
     return;
   }
 
@@ -47,7 +52,10 @@ function hideGoSprite() {
 }
 
 function shouldHideGoSprite() {
-  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+  if (
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
+  ) {
     return true;
   }
 
@@ -66,9 +74,12 @@ export function postGameStarted(): void {
 }
 
 export function statusChanged(): void {
-  if (g.race.status === "starting") {
+  if (g.race.status === RaceStatus.STARTING) {
     countdownChanged();
-  } else if (g.race.status === "in progress" && g.race.myStatus === "racing") {
+  } else if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  ) {
     sprite = initSprite(GO_GFX_PATH);
   }
 }
@@ -76,7 +87,7 @@ export function statusChanged(): void {
 export function countdownChanged(): void {
   if (g.race.countdown === -1) {
     sprite = null;
-  } else if (g.race.status === "starting") {
+  } else if (g.race.status === RaceStatus.STARTING) {
     sprite = initSprite(`${GFX_PATH}/countdown/${g.race.countdown}.anm2`);
   }
 }
@@ -84,7 +95,7 @@ export function countdownChanged(): void {
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   // Remove the "1st place!" graphic from the top if we have entered a new room
-  if (g.race.status === "none" || g.raceVars.finished) {
+  if (g.race.status === RaceStatus.NONE || g.raceVars.finished) {
     sprite = null;
   }
 }

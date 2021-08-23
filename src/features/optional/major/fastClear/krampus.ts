@@ -1,6 +1,8 @@
 import { anyPlayerHasCollectible, getRandomInt } from "isaacscript-common";
 import g from "../../../../globals";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { deleteDyingEntity } from "./util";
 
 const DEATH_ANIMATION_LENGTH = 29;
@@ -81,7 +83,10 @@ function getKrampusBans() {
     headBanned = true;
   }
 
-  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  ) {
     if (
       g.race.startingItems.includes(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)
     ) {

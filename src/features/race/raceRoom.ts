@@ -15,6 +15,7 @@ import {
   RACE_ROOM_STAGE_ID,
   RACE_ROOM_VARIANT,
 } from "./constants";
+import RaceStatus from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race/race-room";
 const X_SPACING = 110;
@@ -162,7 +163,8 @@ function gotoRaceRoom() {
 
 function shouldGotoRaceRoom() {
   return (
-    (g.race.status === "open" || g.race.status === "starting") &&
+    (g.race.status === RaceStatus.OPEN ||
+      g.race.status === RaceStatus.STARTING) &&
     // Only bring them to the race room if they are not in the middle of a run
     // e.g. the only room that they have entered is the starting room on Basement 1
     g.run.roomsEntered === 1
@@ -219,7 +221,9 @@ function setupRaceRoom() {
 
 function shouldSetupRaceRoom() {
   return (
-    (g.race.status === "open" || g.race.status === "starting") && inRaceRoom()
+    (g.race.status === RaceStatus.OPEN ||
+      g.race.status === RaceStatus.STARTING) &&
+    inRaceRoom()
   );
 }
 
@@ -243,7 +247,7 @@ export function resetSprites(): void {
 }
 
 export function initSprites(): void {
-  if (g.race.status !== "open") {
+  if (g.race.status !== RaceStatus.OPEN) {
     return;
   }
 
@@ -287,7 +291,7 @@ function initNumSprite(num: int) {
 }
 
 export function statusChanged(): void {
-  if (g.race.status === "starting") {
+  if (g.race.status === RaceStatus.STARTING) {
     sprites.wait = null;
     sprites.myStatus = null;
     sprites.numReady = null;
@@ -297,19 +301,19 @@ export function statusChanged(): void {
 }
 
 export function myStatusChanged(): void {
-  if (g.race.status === "open") {
+  if (g.race.status === RaceStatus.OPEN) {
     initMyStatusSprite();
   }
 }
 
 export function numReadyChanged(): void {
-  if (g.race.status === "open") {
+  if (g.race.status === RaceStatus.OPEN) {
     initNumReadySprite();
   }
 }
 
 export function numEntrantsChanged(): void {
-  if (g.race.status === "open") {
+  if (g.race.status === RaceStatus.OPEN) {
     initNumEntrantsSprite();
   }
 }

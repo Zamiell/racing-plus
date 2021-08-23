@@ -9,6 +9,9 @@ import * as raceTimer from "../raceTimer";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
+import RaceFormat from "../types/RaceFormat";
+import RacerStatus from "../types/RacerStatus";
+import RaceStatus from "../types/RaceStatus";
 
 export default function racePostRender(): void {
   if (!config.clientCommunication) {
@@ -19,7 +22,7 @@ export default function racePostRender(): void {
   raceTimer.postRender();
   placeLeft.postRender();
 
-  if (g.race.status !== "none") {
+  if (g.race.status !== RaceStatus.NONE) {
     checkGameOpenedInMiddleOfRace();
     raceRoom.postRender();
     startingRoom.postRender();
@@ -34,8 +37,8 @@ function checkGameOpenedInMiddleOfRace() {
   // Explicitly check for this
   // (the timer won't be correct, but at least everything else will be functional)
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
     !g.raceVars.started
   ) {
     log("The game was opened in the middle of a race!");
@@ -46,8 +49,8 @@ function checkGameOpenedInMiddleOfRace() {
 export function checkRestartWrongChallenge(): boolean {
   if (
     !config.clientCommunication ||
-    g.race.status === "none" ||
-    g.race.format === "custom"
+    g.race.status === RaceStatus.NONE ||
+    g.race.format === RaceFormat.CUSTOM
   ) {
     return false;
   }
@@ -65,8 +68,8 @@ export function checkRestartWrongChallenge(): boolean {
 export function checkRestartWrongRaceCharacter(): boolean {
   if (
     !config.clientCommunication ||
-    g.race.status === "none" ||
-    g.race.format === "custom"
+    g.race.status === RaceStatus.NONE ||
+    g.race.format === RaceFormat.CUSTOM
   ) {
     return false;
   }
@@ -85,9 +88,9 @@ export function checkRestartWrongRaceCharacter(): boolean {
 export function checkRestartWrongRaceSeed(): boolean {
   if (
     !config.clientCommunication ||
-    g.race.format !== "seeded" ||
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing"
+    g.race.format !== RaceFormat.SEEDED ||
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
   ) {
     return false;
   }

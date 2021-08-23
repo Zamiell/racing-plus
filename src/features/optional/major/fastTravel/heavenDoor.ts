@@ -1,4 +1,7 @@
 import g from "../../../../globals";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -39,9 +42,9 @@ function shouldRemove(effect: EntityEffect) {
   // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
   // If the goal of the race is Hush, delete the heaven door that spawns after Hush
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Hush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.HUSH &&
     (stage === 8 || stage === 9)
   ) {
     return true;

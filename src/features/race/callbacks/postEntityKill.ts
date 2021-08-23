@@ -1,6 +1,9 @@
 import g from "../../../globals";
 import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
+import RaceGoal from "../types/RaceGoal";
+import RacerStatus from "../types/RacerStatus";
+import RaceStatus from "../types/RaceStatus";
 
 export function hush(_entity: Entity): void {
   checkSpawnHushRaceTrophy();
@@ -8,9 +11,9 @@ export function hush(_entity: Entity): void {
 
 function checkSpawnHushRaceTrophy() {
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Hush"
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.HUSH
   ) {
     const centerPos = g.r.GetCenterPos();
     const position = findFreePosition(centerPos);

@@ -1,13 +1,17 @@
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
+import RacerStatus from "./types/RacerStatus";
 
 export function postRender(): void {
   checkDisplay();
 }
 
 function checkDisplay() {
-  if (g.race.myStatus !== "racing" && g.race.myStatus !== "finished") {
+  if (
+    g.race.myStatus !== RacerStatus.RACING &&
+    g.race.myStatus !== RacerStatus.FINISHED
+  ) {
     return;
   }
 
@@ -15,7 +19,7 @@ function checkDisplay() {
     return;
   }
 
-  if (g.race.myStatus === "finished" && !g.raceVars.finished) {
+  if (g.race.myStatus === RacerStatus.FINISHED && !g.raceVars.finished) {
     // We booted the game after a race was finished
     return;
   }

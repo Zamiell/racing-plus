@@ -4,6 +4,9 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../globals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
@@ -12,9 +15,9 @@ export function postNewRoom(): void {
   const repentanceStage = onRepentanceStage();
 
   if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.goal !== "The Beast" ||
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING ||
+    g.race.goal !== RaceGoal.THE_BEAST ||
     repentanceStage ||
     stage !== 6 ||
     roomIndex !== startingRoomIndex

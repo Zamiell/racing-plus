@@ -6,6 +6,9 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { removeAllCollectibles } from "../../util";
+import RaceFormat from "./types/RaceFormat";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
@@ -64,8 +67,8 @@ function shouldBanFirstFloorTreasureRoom() {
   return (
     stage === 1 &&
     !onRepentanceStage() &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.format === "seeded"
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED
   );
 }

@@ -1,5 +1,8 @@
 import { NORMAL_TRAPDOOR_POSITION } from "../../constants";
 import g from "../../globals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 import v from "./v";
 
 // If the goal of the race is Mother, we need to explicitly spawn a trapdoor after Mom's Heart is
@@ -12,9 +15,9 @@ export function postNewRoom(): void {
 
   if (
     !v.run.spawnedCorpseTrapdoor &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Mother" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.MOTHER &&
     mausoleumHeartKilled &&
     roomType === RoomType.ROOM_BOSS
   ) {

@@ -7,6 +7,9 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
 import {
   FastTravelEntityState,
@@ -98,9 +101,9 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
 
       if (roomType === RoomType.ROOM_BOSS) {
         if (
-          g.race.status === "in progress" &&
-          g.race.myStatus === "racing" &&
-          g.race.goal === "The Beast" &&
+          g.race.status === RaceStatus.IN_PROGRESS &&
+          g.race.myStatus === RacerStatus.RACING &&
+          g.race.goal === RaceGoal.THE_BEAST &&
           !repentanceStage &&
           stage === 6
         ) {

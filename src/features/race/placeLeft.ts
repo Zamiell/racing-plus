@@ -4,6 +4,8 @@ import g from "../../globals";
 import { initSprite } from "../../util";
 import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race/place-left";
 const MAX_PLACE = 16; // There are only small sprites created for places up to 16
@@ -48,7 +50,7 @@ export function postGameStarted(): void {
 }
 
 export function statusOrMyStatusChanged(): void {
-  if (g.race.status === "open") {
+  if (g.race.status === RaceStatus.OPEN) {
     sprite = initSprite(`${GFX_PATH}/pre-${g.race.myStatus}.anm2`);
   }
 }
@@ -63,7 +65,10 @@ export function placeChanged(): void {
 }
 
 export function placeMidChanged(): void {
-  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+  if (
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
+  ) {
     return;
   }
 

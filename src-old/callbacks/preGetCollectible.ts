@@ -21,9 +21,9 @@ export function main(
 function seededRace(itemPoolType: ItemPoolType) {
   // Manually generate random items for specific item pools in seeded races
   if (
-    g.race.format !== "seeded" ||
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
+    g.race.format !== RaceStatus.SEEDED ||
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING ||
     (itemPoolType !== ItemPoolType.POOL_DEVIL && // 3
       itemPoolType !== ItemPoolType.POOL_ANGEL && // 4
       itemPoolType !== ItemPoolType.POOL_DEMON_BEGGAR) // 11

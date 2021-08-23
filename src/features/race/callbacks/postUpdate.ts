@@ -3,6 +3,9 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
+import RaceGoal from "../types/RaceGoal";
+import RacerStatus from "../types/RacerStatus";
+import RaceStatus from "../types/RaceStatus";
 
 export default function racePostUpdate(): void {
   if (!config.clientCommunication) {
@@ -19,9 +22,9 @@ function spawnBossRushTrophy() {
 
   if (
     !trophy.trophyHasSpawned() &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Boss Rush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.BOSS_RUSH &&
     !g.raceVars.finished &&
     roomIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
     bossRushDone

@@ -11,6 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+import RaceStatus from "../race/types/RaceStatus";
 import { ChallengeCustom } from "../speedrun/enums";
 
 const FRAMES_BEFORE_FADE = 50;
@@ -254,7 +255,7 @@ function goingToRaceRoom() {
   const stage = g.l.GetStage();
 
   return (
-    g.race.status === "open" &&
+    g.race.status === RaceStatus.OPEN &&
     stage === 1 &&
     (g.run.roomsEntered === 0 || g.run.roomsEntered === 1)
   );

@@ -1,5 +1,8 @@
 import g from "../../globals";
 import { removeGridEntity } from "../../utilGlobals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 import v from "./v";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
@@ -27,9 +30,10 @@ function checkDeleteSpikes() {
 
 function shouldDeleteSpikes() {
   return (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    (g.race.goal === "The Lamb" || g.race.goal === "Mega Satan") &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    (g.race.goal === RaceGoal.THE_LAMB ||
+      g.race.goal === RaceGoal.MEGA_SATAN) &&
     v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL
   );
 }

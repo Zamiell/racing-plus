@@ -1,39 +1,24 @@
+import RaceDifficulty from "./RaceDifficulty";
+import RaceFormat from "./RaceFormat";
+import RaceGoal from "./RaceGoal";
+import RacerStatus from "./RacerStatus";
+import RaceStatus from "./RaceStatus";
+
 // The possible types for values of RaceData
 export type RaceDataType = boolean | number | string | int[];
-
-export type RaceStatus = "none" | "open" | "starting" | "in progress";
-type RacerStatus =
-  | "not ready"
-  | "ready"
-  | "racing"
-  | "finished"
-  | "quit"
-  | "disqualified";
-type RaceFormat = "unseeded" | "seeded" | "diversity" | "custom";
-type RaceDifficulty = "normal" | "hard";
-export type RaceGoal =
-  | "Blue Baby"
-  | "The Lamb"
-  | "Mega Satan"
-  | "Hush"
-  | "Delirium"
-  | "Mother"
-  | "The Beast"
-  | "Boss Rush"
-  | "custom";
 
 /** This must match the "ModSocket" class on the client. */
 export default class RaceData {
   /** -1 if a race is not going on. */
   raceID = -1;
-  status: RaceStatus = "none";
-  myStatus: RacerStatus = "not ready";
+  status = RaceStatus.NONE;
+  myStatus = RacerStatus.NOT_READY;
   ranked = false;
   solo = false;
-  format: RaceFormat = "unseeded";
-  difficulty: RaceDifficulty = "normal";
+  format = RaceFormat.UNSEEDED;
+  difficulty = RaceDifficulty.NORMAL;
   character = PlayerType.PLAYER_JUDAS;
-  goal: RaceGoal = "Blue Baby";
+  goal = RaceGoal.BLUE_BABY;
   /** Corresponds to the seed that is the race goal. */
   seed = "-";
   /** The starting items for this race, if any. */

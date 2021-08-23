@@ -13,6 +13,9 @@ import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import { isOnFinalCharacter } from "../../../speedrun/speedrun";
 import { FastTravelEntityType } from "./enums";
@@ -66,36 +69,39 @@ function getReplacementAction() {
     return ReplacementAction.VICTORY_LAP;
   }
 
-  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
-    if (g.race.goal === "Blue Baby") {
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  ) {
+    if (g.race.goal === RaceGoal.BLUE_BABY) {
       return blueBaby();
     }
 
-    if (g.race.goal === "The Lamb") {
+    if (g.race.goal === RaceGoal.THE_LAMB) {
       return theLamb();
     }
 
-    if (g.race.goal === "Mega Satan") {
+    if (g.race.goal === RaceGoal.MEGA_SATAN) {
       return megaSatan();
     }
 
-    if (g.race.goal === "Hush") {
+    if (g.race.goal === RaceGoal.HUSH) {
       return hush();
     }
 
-    if (g.race.goal === "Delirium") {
+    if (g.race.goal === RaceGoal.DELIRIUM) {
       return delirium();
     }
 
-    if (g.race.goal === "Mother") {
+    if (g.race.goal === RaceGoal.MOTHER) {
       return mother();
     }
 
-    if (g.race.goal === "The Beast") {
+    if (g.race.goal === RaceGoal.THE_BEAST) {
       return theBeast();
     }
 
-    if (g.race.goal === "Boss Rush") {
+    if (g.race.goal === RaceGoal.BOSS_RUSH) {
       return bossRush();
     }
   }

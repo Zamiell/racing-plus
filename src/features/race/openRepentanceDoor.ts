@@ -2,6 +2,9 @@
 
 import { getDoors } from "isaacscript-common";
 import g from "../../globals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 export function preSpawnClearAward(): void {
   openRepentanceDoor();
@@ -9,9 +12,9 @@ export function preSpawnClearAward(): void {
 
 function openRepentanceDoor() {
   if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.goal !== "Mother"
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING ||
+    g.race.goal !== RaceGoal.MOTHER
   ) {
     return;
   }

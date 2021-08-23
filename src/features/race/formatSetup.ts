@@ -1,3 +1,4 @@
+import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
@@ -8,6 +9,9 @@ import {
   COLLECTIBLE_15_LUCK_SERVER_ID,
   COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./constants";
+import RaceFormat from "./types/RaceFormat";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_ISAAC, // 0
@@ -26,15 +30,15 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
 
 export default function formatSetup(player: EntityPlayer): void {
   if (
-    g.race.myStatus === "finished" ||
-    g.race.myStatus === "quit" ||
-    g.race.myStatus === "disqualified"
+    g.race.myStatus === RacerStatus.FINISHED ||
+    g.race.myStatus === RacerStatus.QUIT ||
+    g.race.myStatus === RacerStatus.DISQUALIFIED
   ) {
     return;
   }
 
   switch (g.race.format) {
-    case "unseeded": {
+    case RaceFormat.UNSEEDED: {
       if (g.race.ranked && g.race.solo) {
         unseededRankedSolo(player);
       } else {
@@ -44,17 +48,22 @@ export default function formatSetup(player: EntityPlayer): void {
       break;
     }
 
-    case "seeded": {
+    case RaceFormat.SEEDED: {
       seeded(player);
       break;
     }
 
-    case "diversity": {
+    case RaceFormat.DIVERSITY: {
       diversity(player);
       break;
     }
 
+    case RaceFormat.CUSTOM: {
+      break;
+    }
+
     default: {
+      ensureAllCases(g.race.format);
       break;
     }
   }
@@ -67,7 +76,10 @@ function unseeded(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   // If the race has not started yet, don't give the items
-  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+  if (
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
+  ) {
     return;
   }
 
@@ -154,7 +166,10 @@ function diversity(player: EntityPlayer) {
   const trinket1 = player.GetTrinket(0);
 
   // If the race has not started yet, don't give the items
-  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+  if (
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
+  ) {
     return;
   }
 

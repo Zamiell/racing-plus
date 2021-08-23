@@ -9,6 +9,10 @@ import * as socketFunctions from "../socketFunctions";
 import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
+import RaceDifficulty from "../types/RaceDifficulty";
+import RaceFormat from "../types/RaceFormat";
+import RacerStatus from "../types/RacerStatus";
+import RaceStatus from "../types/RaceStatus";
 
 export default function racePostGameStarted(): void {
   if (!config.clientCommunication) {
@@ -60,21 +64,24 @@ function validateRace(player: EntityPlayer) {
 function validateInRace() {
   // We want to still draw some race-related things even if we have finished or quit the race,
   // so don't check for "g.race.myStatus"
-  return g.race.status !== "none";
+  return g.race.status !== RaceStatus.NONE;
 }
 
 function validateChallenge() {
   if (
-    g.race.myStatus !== "not ready" &&
-    g.race.myStatus !== "ready" &&
-    g.race.myStatus !== "racing"
+    g.race.myStatus !== RacerStatus.NOT_READY &&
+    g.race.myStatus !== RacerStatus.READY &&
+    g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
 
   const challenge = Isaac.GetChallenge();
 
-  if (challenge !== Challenge.CHALLENGE_NULL && g.race.format !== "custom") {
+  if (
+    challenge !== Challenge.CHALLENGE_NULL &&
+    g.race.format !== RaceFormat.CUSTOM
+  ) {
     g.run.restart = true;
     return false;
   }
@@ -84,17 +91,17 @@ function validateChallenge() {
 
 function validateDifficulty() {
   if (
-    g.race.myStatus !== "not ready" &&
-    g.race.myStatus !== "ready" &&
-    g.race.myStatus !== "racing"
+    g.race.myStatus !== RacerStatus.NOT_READY &&
+    g.race.myStatus !== RacerStatus.READY &&
+    g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
 
   if (
-    g.race.difficulty === "normal" &&
+    g.race.difficulty === RaceDifficulty.NORMAL &&
     g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
-    g.race.format !== "custom"
+    g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
       `Error: Supposed to be on normal mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
@@ -104,9 +111,9 @@ function validateDifficulty() {
   }
 
   if (
-    g.race.difficulty === "hard" &&
+    g.race.difficulty === RaceDifficulty.HARD &&
     g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
-    g.race.format !== "custom"
+    g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
       `Error: Supposed to be on hard mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
@@ -120,9 +127,9 @@ function validateDifficulty() {
 
 function validateSeed() {
   if (
-    g.race.myStatus !== "not ready" &&
-    g.race.myStatus !== "ready" &&
-    g.race.myStatus !== "racing"
+    g.race.myStatus !== RacerStatus.NOT_READY &&
+    g.race.myStatus !== RacerStatus.READY &&
+    g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
@@ -130,9 +137,9 @@ function validateSeed() {
   const startSeedString = g.seeds.GetStartSeedString();
 
   if (
-    g.race.format === "seeded" &&
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
+    g.race.format === RaceFormat.SEEDED &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
     startSeedString !== g.race.seed
   ) {
     g.run.restart = true;
@@ -140,7 +147,8 @@ function validateSeed() {
   }
 
   if (
-    (g.race.format === "unseeded" || g.race.format === "diversity") &&
+    (g.race.format === RaceFormat.UNSEEDED ||
+      g.race.format === RaceFormat.DIVERSITY) &&
     onSetSeed()
   ) {
     // If the run started with a set seed,
@@ -156,16 +164,16 @@ function validateSeed() {
 
 function validateCharacter(player: EntityPlayer) {
   if (
-    g.race.myStatus !== "not ready" &&
-    g.race.myStatus !== "ready" &&
-    g.race.myStatus !== "racing"
+    g.race.myStatus !== RacerStatus.NOT_READY &&
+    g.race.myStatus !== RacerStatus.READY &&
+    g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
 
   const character = player.GetPlayerType();
 
-  if (character !== g.race.character && g.race.format !== "custom") {
+  if (character !== g.race.character && g.race.format !== RaceFormat.CUSTOM) {
     g.run.restart = true;
     return false;
   }

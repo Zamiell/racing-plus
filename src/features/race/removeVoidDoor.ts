@@ -1,5 +1,8 @@
 import g from "../../globals";
 import { removeGridEntity } from "../../utilGlobals";
+import RaceGoal from "./types/RaceGoal";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -22,9 +25,9 @@ function shouldDeleteVoidDoor() {
   const roomType = g.r.GetType();
 
   return (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Hush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.HUSH &&
     stage === 9 &&
     roomType === RoomType.ROOM_BOSS
   );

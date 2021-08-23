@@ -2,6 +2,9 @@ import { log, onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
 import * as seededFloors from "../../../mandatory/seededFloors";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import v from "./v";
 
 export function goto(upwards: boolean): void {
@@ -59,9 +62,9 @@ function getNextStage() {
   }
 
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.THE_BEAST &&
     stage === 6 &&
     !repentanceStage &&
     backwardsPathInit
@@ -189,9 +192,9 @@ function getNextStageType(
   const repentanceStage = onRepentanceStage();
 
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
     stage === 6 &&
     nextStage === 6
@@ -199,13 +202,13 @@ function getNextStageType(
     return getStageTypeRepentance(nextStage);
   }
 
-  // In races to The Beast, spawn the player directly in dark Home
-  // since going to Mom's Bed and going back to Dogma is pointless
+  // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
+  // going back to Dogma is pointless
   if (nextStage === 13) {
     if (
-      g.race.status === "in progress" &&
-      g.race.myStatus === "racing" &&
-      g.race.goal === "The Beast"
+      g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.goal === RaceGoal.THE_BEAST
     ) {
       return 1;
     }

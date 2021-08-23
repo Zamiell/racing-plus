@@ -1,5 +1,6 @@
 import { getPlayers, gridToPos, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import RaceStatus from "../race/types/RaceStatus";
 import { speedrunIsFinished } from "../speedrun/v";
 
 const v = {
@@ -17,7 +18,7 @@ export function postUpdate(): void {
 
   if (
     (g.raceVars.finished &&
-      g.race.status === "in progress" &&
+      g.race.status === RaceStatus.IN_PROGRESS &&
       g.race.place === 1 &&
       g.race.numEntrants >= 3) ||
     speedrunIsFinished()

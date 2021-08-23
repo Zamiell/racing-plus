@@ -11,6 +11,7 @@ import { checkRaceChanged } from "./checkRaceChanged";
 import * as socketClient from "./socketClient";
 import socketFunctions, { reset } from "./socketFunctions";
 import RaceData, { cloneRaceData } from "./types/RaceData";
+import RaceStatus from "./types/RaceStatus";
 
 const DEBUG = false;
 
@@ -123,7 +124,7 @@ export function send(command: SocketCommandOut, data = ""): void {
     return;
   }
 
-  if (g.race.status === "none" && command !== "ping") {
+  if (g.race.status === RaceStatus.NONE && command !== "ping") {
     return;
   }
 

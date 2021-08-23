@@ -1,7 +1,9 @@
 import { ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../util";
-import { RaceGoal } from "../../../race/types/RaceData";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import v from "./v";
 
@@ -61,7 +63,10 @@ function getItLivesSituation() {
     return ItLivesSituation.HEAVEN_DOOR;
   }
 
-  if (g.race.status === "in progress" && g.race.myStatus === "racing") {
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  ) {
     return getItLivesSituationRace(g.race.goal);
   }
 
@@ -90,25 +95,25 @@ function getItLivesSituation() {
 
 function getItLivesSituationRace(goal: RaceGoal) {
   switch (goal) {
-    case "Blue Baby": {
+    case RaceGoal.BLUE_BABY: {
       return ItLivesSituation.HEAVEN_DOOR;
     }
 
-    case "The Lamb": {
+    case RaceGoal.THE_LAMB: {
       return ItLivesSituation.TRAPDOOR;
     }
 
-    case "Mega Satan":
-    case "Boss Rush":
-    case "Mother":
-    case "The Beast":
-    case "custom": {
+    case RaceGoal.MEGA_SATAN:
+    case RaceGoal.BOSS_RUSH:
+    case RaceGoal.MOTHER:
+    case RaceGoal.THE_BEAST:
+    case RaceGoal.CUSTOM: {
       // Give the player a choice between the photos for races to alternate objectives
       return ItLivesSituation.BOTH;
     }
 
-    case "Hush":
-    case "Delirium": {
+    case RaceGoal.HUSH:
+    case RaceGoal.DELIRIUM: {
       return ItLivesSituation.NEITHER;
     }
 

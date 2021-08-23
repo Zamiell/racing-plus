@@ -10,7 +10,9 @@ import * as raceRoom from "./raceRoom";
 import raceStart from "./raceStart";
 import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
-import RaceData, { RaceDataType, RaceStatus } from "./types/RaceData";
+import RaceData, { RaceDataType } from "./types/RaceData";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 export function checkRaceChanged(
   oldRaceData: RaceData,
@@ -66,7 +68,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
   switch (newStatus) {
-    case "none": {
+    case RaceStatus.NONE: {
       if (raceRoom.inRaceRoom()) {
         g.run.restart = true;
         log("Restarting because we want to exit the race room.");
@@ -76,7 +78,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       break;
     }
 
-    case "open": {
+    case RaceStatus.OPEN: {
       // If we are in the first room of a run, go to the race room
       if (stage === 1 && roomIndex === startingRoomIndex) {
         g.run.restart = true;
@@ -88,7 +90,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       break;
     }
 
-    case "starting": {
+    case RaceStatus.STARTING: {
       raceRoom.statusChanged();
       placeLeft.statusOrMyStatusChanged();
       topSprite.statusChanged();
@@ -96,7 +98,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       break;
     }
 
-    case "in progress": {
+    case RaceStatus.IN_PROGRESS: {
       g.run.restart = true;
       log("Restarting because the run has now started.");
 
@@ -115,7 +117,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 functionMap.set(
   "myStatus",
   (oldValue: RaceDataType, _newValue: RaceDataType) => {
-    if (oldValue === "racing") {
+    if (oldValue === RacerStatus.RACING) {
       // After racing on a set seed, automatically reset the game state to that of an unseeded run
       g.seeds.Reset();
     }

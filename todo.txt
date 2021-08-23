@@ -15,9 +15,6 @@
 - Fixed the bug where crawlspaces did not work properly on final floors. (Thanks Gamonymous)
 ```
 
-- move race room to normal ID
-- add description for knife in descriptions
-
 TODO Racing+ new features:
 - make items in order on devil/angel rooms
 - charge ability

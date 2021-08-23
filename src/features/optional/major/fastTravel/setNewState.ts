@@ -8,6 +8,9 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
 import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -90,9 +93,9 @@ function setGameStateFlags() {
 
   // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
     stage === 6 &&
     roomType === RoomType.ROOM_BOSS &&

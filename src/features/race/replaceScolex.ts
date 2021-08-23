@@ -3,12 +3,15 @@
 import { removeAllEntities } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
+import RaceFormat from "./types/RaceFormat";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   if (
-    g.race.status !== "in progress" ||
-    g.race.myStatus !== "racing" ||
-    g.race.format !== "seeded"
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING ||
+    g.race.format !== RaceFormat.SEEDED
   ) {
     return;
   }

@@ -1,5 +1,9 @@
+import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../util";
+import RaceFormat from "./types/RaceFormat";
+import RacerStatus from "./types/RacerStatus";
+import RaceStatus from "./types/RaceStatus";
 
 const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
@@ -29,9 +33,9 @@ export function postRender(): void {
 
 function drawSprites() {
   if (
-    g.race.myStatus === "finished" ||
-    g.race.myStatus === "quit" ||
-    g.race.myStatus === "disqualified"
+    g.race.myStatus === RacerStatus.FINISHED ||
+    g.race.myStatus === RacerStatus.QUIT ||
+    g.race.myStatus === RacerStatus.DISQUALIFIED
   ) {
     return;
   }
@@ -134,22 +138,31 @@ export function resetSprites(): void {
 }
 
 export function initSprites(): void {
-  if (g.race.status !== "in progress" || g.race.myStatus !== "racing") {
+  if (
+    g.race.status !== RaceStatus.IN_PROGRESS ||
+    g.race.myStatus !== RacerStatus.RACING
+  ) {
     return;
   }
 
   switch (g.race.format) {
-    case "seeded": {
+    case RaceFormat.SEEDED: {
       initSeededSprites();
       break;
     }
 
-    case "diversity": {
+    case RaceFormat.DIVERSITY: {
       initDiversitySprites();
       break;
     }
 
+    case RaceFormat.UNSEEDED:
+    case RaceFormat.CUSTOM: {
+      break;
+    }
+
     default: {
+      ensureAllCases(g.race.format);
       break;
     }
   }

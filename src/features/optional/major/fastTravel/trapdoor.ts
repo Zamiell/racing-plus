@@ -7,6 +7,9 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
+import RaceGoal from "../../../race/types/RaceGoal";
+import RacerStatus from "../../../race/types/RacerStatus";
+import RaceStatus from "../../../race/types/RaceStatus";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -124,9 +127,9 @@ function shouldRemove() {
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Boss Rush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.BOSS_RUSH &&
     stage === 6
   ) {
     log(
@@ -137,9 +140,9 @@ function shouldRemove() {
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Hush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.HUSH &&
     stage === 8 &&
     roomIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
   ) {
@@ -151,9 +154,9 @@ function shouldRemove() {
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after Hush
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Hush" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.HUSH &&
     stage === 9 &&
     roomIndex !== GridRooms.ROOM_THE_VOID_IDX
   ) {
@@ -166,9 +169,9 @@ function shouldRemove() {
   // If the goal of the race is Mother, remove trapdoors after bosses on most floors
   // (but leave trapdoors created by shovels and in I AM ERROR rooms)
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "Mother" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.MOTHER &&
     roomType === RoomType.ROOM_BOSS
   ) {
     if (
@@ -203,9 +206,9 @@ function shouldRemove() {
   // If the goal of the race is The Beast, delete any Womb trapdoors on Depths 2 that are not
   // spawned naturally after defeating Mom
   if (
-    g.race.status === "in progress" &&
-    g.race.myStatus === "racing" &&
-    g.race.goal === "The Beast" &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.THE_BEAST &&
     stage === 6 &&
     !(
       roomType === RoomType.ROOM_BOSS &&
