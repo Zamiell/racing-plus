@@ -12,6 +12,7 @@
 - Fixed the bug where the game would crash if you saved and continued in the pre-race room.
 - Fixed the bug where the client was not showing "MS" as the floor when you were in the Mega Satan room.
 - Fixed the bug where the seeded floors feature would not handle Rotten Hearts properly.
+- Fixed the bug where crawlspaces did not work properly on final floors. (Thanks Gamonymous)
 ```
 
 - add description for knife in descriptions
