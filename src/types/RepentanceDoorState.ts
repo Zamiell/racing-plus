@@ -1,6 +1,6 @@
 enum RepentanceDoorState {
-  Initial,
-  Unlocked,
-  HalfBombed,
+  INITIAL,
+  UNLOCKED,
+  HALF_BOMBED,
 }
 export default RepentanceDoorState;

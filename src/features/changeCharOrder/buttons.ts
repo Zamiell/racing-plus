@@ -41,7 +41,7 @@ function checkCreateButtons() {
     v.room.createButtonsFrame = null;
 
     switch (v.room.phase) {
-      case ChangeCharOrderPhase.CharacterSelect: {
+      case ChangeCharOrderPhase.CHARACTER_SELECT: {
         createCharacterButtons();
         break;
       }
@@ -102,12 +102,12 @@ export function postGridEntityUpdatePressurePlate(
 
 function checkPressed(gridEntity: GridEntity): void {
   switch (v.room.phase) {
-    case ChangeCharOrderPhase.SeasonSelect: {
+    case ChangeCharOrderPhase.SEASON_SELECT: {
       checkPressedPhaseSeasonSelect(gridEntity);
       break;
     }
 
-    case ChangeCharOrderPhase.CharacterSelect: {
+    case ChangeCharOrderPhase.CHARACTER_SELECT: {
       checkPressedPhaseCharacterSelect(gridEntity);
       break;
     }
@@ -136,7 +136,7 @@ function checkPressedPhaseSeasonSelect(gridEntity: GridEntity) {
 function seasonButtonPressed(seasonChosenAbbreviation: string) {
   const gameFrameCount = g.g.GetFrameCount();
 
-  v.room.phase = ChangeCharOrderPhase.CharacterSelect;
+  v.room.phase = ChangeCharOrderPhase.CHARACTER_SELECT;
   v.room.seasonChosenAbbreviation = seasonChosenAbbreviation;
   removeAllRoomButtons();
 

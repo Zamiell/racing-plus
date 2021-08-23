@@ -19,16 +19,16 @@ import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 
 enum ReplacementAction {
-  LeaveAlone,
-  TrapdoorDown,
-  BeamOfLightUp,
-  Checkpoint,
-  Trophy,
-  VictoryLap,
-  Remove,
+  LEAVE_ALONE,
+  TRAPDOOR,
+  HEAVEN_DOOR,
+  CHECKPOINT,
+  TROPHY,
+  VICTORY_LAP,
+  REMOVE,
 }
 
-const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LeaveAlone;
+const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LEAVE_ALONE;
 
 export function postPickupInit(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
@@ -48,14 +48,14 @@ function getReplacementAction() {
     onCathedral() &&
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
   ) {
-    return ReplacementAction.BeamOfLightUp;
+    return ReplacementAction.HEAVEN_DOOR;
   }
 
   if (
     onSheol() &&
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
   ) {
-    return ReplacementAction.TrapdoorDown;
+    return ReplacementAction.TRAPDOOR;
   }
 
   if (challenge === ChallengeCustom.SEASON_1) {
@@ -63,7 +63,7 @@ function getReplacementAction() {
   }
 
   if (g.raceVars.finished) {
-    return ReplacementAction.VictoryLap;
+    return ReplacementAction.VICTORY_LAP;
   }
 
   if (g.race.status === "in progress" && g.race.myStatus === "racing") {
@@ -106,15 +106,15 @@ function getReplacementAction() {
 function speedrunUp() {
   // Speedruns go to The Chest and do not require The Polaroid
   if (onCathedral()) {
-    return ReplacementAction.BeamOfLightUp;
+    return ReplacementAction.HEAVEN_DOOR;
   }
 
   if (onChest()) {
     if (isOnFinalCharacter()) {
-      return ReplacementAction.Trophy;
+      return ReplacementAction.TROPHY;
     }
 
-    return ReplacementAction.Checkpoint;
+    return ReplacementAction.CHECKPOINT;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -164,7 +164,7 @@ function blueBaby() {
   const roomIndex = getRoomIndex();
 
   if (onChest() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -174,7 +174,7 @@ function theLamb() {
   const roomIndex = getRoomIndex();
 
   if (onDarkRoom() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -187,11 +187,11 @@ function megaSatan() {
   if (stage === 11 && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
     // have to go to Mega Satan
-    return ReplacementAction.Remove;
+    return ReplacementAction.REMOVE;
   }
 
   if (stage === 11 && roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -201,7 +201,7 @@ function hush() {
   const stage = g.l.GetStage();
 
   if (stage === 9) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -211,7 +211,7 @@ function delirium() {
   const stage = g.l.GetStage();
 
   if (stage === 12) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -221,7 +221,7 @@ function mother() {
   const stage = g.l.GetStage();
 
   if (stage === 8 && onRepentanceStage()) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -231,7 +231,7 @@ function theBeast() {
   const stage = g.l.GetStage();
 
   if (stage === 13) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -241,7 +241,7 @@ function bossRush() {
   const stage = g.l.GetStage();
 
   if (stage === 6) {
-    return ReplacementAction.Trophy;
+    return ReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -250,24 +250,24 @@ function bossRush() {
 function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
   const position = findFreePosition(pickup.Position);
 
-  if (replacementAction !== ReplacementAction.LeaveAlone) {
+  if (replacementAction !== ReplacementAction.LEAVE_ALONE) {
     pickup.Remove();
   }
 
   switch (replacementAction) {
-    case ReplacementAction.LeaveAlone: {
+    case ReplacementAction.LEAVE_ALONE: {
       // Hijack the normally-unused "Touched" property to signify that we should leave it here
       // (so that we ignore it on subsequent frames)
       pickup.Touched = true;
       break;
     }
 
-    case ReplacementAction.TrapdoorDown: {
+    case ReplacementAction.TRAPDOOR: {
       Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
       break;
     }
 
-    case ReplacementAction.BeamOfLightUp: {
+    case ReplacementAction.HEAVEN_DOOR: {
       const heavenDoor = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
@@ -283,7 +283,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       if (heavenDoor !== null) {
         fastTravel.init(
           heavenDoor,
-          FastTravelEntityType.HeavenDoor,
+          FastTravelEntityType.HEAVEN_DOOR,
           () => true,
         );
       }
@@ -291,7 +291,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.Checkpoint: {
+    case ReplacementAction.CHECKPOINT: {
       const seed = g.r.GetAwardSeed();
       spawnCollectible(
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
@@ -301,12 +301,12 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.Trophy: {
+    case ReplacementAction.TROPHY: {
       trophy.spawn(position);
       break;
     }
 
-    case ReplacementAction.VictoryLap: {
+    case ReplacementAction.VICTORY_LAP: {
       // TODO
       /*
       // Spawn a button for the Victory Lap feature
@@ -329,7 +329,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.Remove: {
+    case ReplacementAction.REMOVE: {
       break;
     }
 

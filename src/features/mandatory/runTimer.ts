@@ -74,5 +74,5 @@ function checkDisplay() {
     y += RUN_TIMER_Y_TAINTED_ISAAC_MOD;
   }
 
-  timer.display(TimerType.RunRealTime, seconds, x, y);
+  timer.display(TimerType.RUN_REAL_TIME, seconds, x, y);
 }

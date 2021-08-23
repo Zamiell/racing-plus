@@ -9,7 +9,7 @@ const v = {
   },
 
   room: {
-    phase: ChangeCharOrderPhase.SeasonSelect,
+    phase: ChangeCharOrderPhase.SEASON_SELECT,
     seasonChosenAbbreviation: null as
       | keyof typeof CHANGE_CHAR_ORDER_POSITIONS
       | null,

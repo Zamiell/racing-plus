@@ -9,7 +9,7 @@ const v = {
     /** These are Isaac frames, not game frames. */
     framesPassed: 0,
 
-    state: FastTravelState.Disabled,
+    state: FastTravelState.DISABLED,
 
     upwards: false,
     blueWomb: false,

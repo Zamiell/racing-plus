@@ -31,15 +31,15 @@ function setOpenClose(
   initial = false,
 ) {
   const state = isOpen
-    ? FastTravelEntityState.Open
-    : FastTravelEntityState.Closed;
+    ? FastTravelEntityState.OPEN
+    : FastTravelEntityState.CLOSED;
   set(entity, fastTravelEntityType, state);
   const sprite = entity.GetSprite();
   let animationPrefix = isOpen ? "Opened" : "Closed";
   if (
     !initial &&
     animationPrefix === "Opened" &&
-    fastTravelEntityType !== FastTravelEntityType.HeavenDoor
+    fastTravelEntityType !== FastTravelEntityType.HEAVEN_DOOR
   ) {
     animationPrefix = "Open Animation";
   }
@@ -80,21 +80,21 @@ export function initDescription(
   const index = getIndex(entity, fastTravelEntityType);
   const description = {
     initial: roomFrameCount === 0,
-    state: FastTravelEntityState.Open,
+    state: FastTravelEntityState.OPEN,
   };
 
   switch (fastTravelEntityType) {
-    case FastTravelEntityType.Trapdoor: {
+    case FastTravelEntityType.TRAPDOOR: {
       v.room.trapdoors.set(index, description);
       break;
     }
 
-    case FastTravelEntityType.Crawlspace: {
+    case FastTravelEntityType.CRAWLSPACE: {
       v.room.crawlspaces.set(index, description);
       break;
     }
 
-    case FastTravelEntityType.HeavenDoor: {
+    case FastTravelEntityType.HEAVEN_DOOR: {
       v.room.heavenDoors.set(index, description);
       break;
     }
@@ -113,17 +113,17 @@ export function getDescription(
 
   let description: FastTravelEntityDescription | undefined;
   switch (fastTravelEntityType) {
-    case FastTravelEntityType.Trapdoor: {
+    case FastTravelEntityType.TRAPDOOR: {
       description = v.room.trapdoors.get(index);
       break;
     }
 
-    case FastTravelEntityType.Crawlspace: {
+    case FastTravelEntityType.CRAWLSPACE: {
       description = v.room.crawlspaces.get(index);
       break;
     }
 
-    case FastTravelEntityType.HeavenDoor: {
+    case FastTravelEntityType.HEAVEN_DOOR: {
       description = v.room.heavenDoors.get(index);
       break;
     }
@@ -145,17 +145,17 @@ export function deleteDescription(
   fastTravelEntityType: FastTravelEntityType,
 ): void {
   switch (fastTravelEntityType) {
-    case FastTravelEntityType.Trapdoor: {
+    case FastTravelEntityType.TRAPDOOR: {
       v.room.trapdoors.delete(index);
       break;
     }
 
-    case FastTravelEntityType.Crawlspace: {
+    case FastTravelEntityType.CRAWLSPACE: {
       v.room.crawlspaces.delete(index);
       break;
     }
 
-    case FastTravelEntityType.HeavenDoor: {
+    case FastTravelEntityType.HEAVEN_DOOR: {
       v.room.heavenDoors.delete(index);
       break;
     }
@@ -171,17 +171,17 @@ function getIndex(
   fastTravelEntityType: FastTravelEntityType,
 ) {
   switch (fastTravelEntityType) {
-    case FastTravelEntityType.Trapdoor: {
+    case FastTravelEntityType.TRAPDOOR: {
       const gridEntity = entity as GridEntity;
       return gridEntity.GetGridIndex();
     }
 
-    case FastTravelEntityType.Crawlspace: {
+    case FastTravelEntityType.CRAWLSPACE: {
       const gridEntity = entity as GridEntity;
       return gridEntity.GetGridIndex();
     }
 
-    case FastTravelEntityType.HeavenDoor: {
+    case FastTravelEntityType.HEAVEN_DOOR: {
       // "effect.Index" is not yet initialized in the PostEffectInit callback
       // Use the grid index as the index for conformity with the other fast-travel entities
       return g.r.GetGridIndex(entity.Position);

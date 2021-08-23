@@ -6,10 +6,10 @@ import { ChallengeCustom } from "../../../speedrun/enums";
 import v from "./v";
 
 enum ItLivesSituation {
-  Neither,
-  HeavenDoor,
-  Trapdoor,
-  Both,
+  NEITHER,
+  HEAVEN_DOOR,
+  TRAPDOOR,
+  BOTH,
 }
 
 export function postEntityKillMomsHeart(_entity: Entity): void {
@@ -58,7 +58,7 @@ function getItLivesSituation() {
 
   // Speedrun seasons have set goals
   if (challenge === ChallengeCustom.SEASON_1) {
-    return ItLivesSituation.HeavenDoor;
+    return ItLivesSituation.HEAVEN_DOOR;
   }
 
   if (g.race.status === "in progress" && g.race.myStatus === "racing") {
@@ -70,32 +70,32 @@ function getItLivesSituation() {
   if (hasPolaroid && hasNegative) {
     // The player has both photos (which can occur if the player is Eden or is in a diversity race)
     // So, give the player a choice between the directions
-    return ItLivesSituation.Both;
+    return ItLivesSituation.BOTH;
   }
 
   if (hasPolaroid) {
     // The player has The Polaroid, so send them to Cathedral
-    return ItLivesSituation.HeavenDoor;
+    return ItLivesSituation.HEAVEN_DOOR;
   }
 
   if (hasNegative) {
     // The player has The Negative, so send them to Sheol
-    return ItLivesSituation.Trapdoor;
+    return ItLivesSituation.TRAPDOOR;
   }
 
   // The player does not have either The Polaroid or The Negative,
   // so give them a choice between the directions
-  return ItLivesSituation.Both;
+  return ItLivesSituation.BOTH;
 }
 
 function getItLivesSituationRace(goal: RaceGoal) {
   switch (goal) {
     case "Blue Baby": {
-      return ItLivesSituation.HeavenDoor;
+      return ItLivesSituation.HEAVEN_DOOR;
     }
 
     case "The Lamb": {
-      return ItLivesSituation.Trapdoor;
+      return ItLivesSituation.TRAPDOOR;
     }
 
     case "Mega Satan":
@@ -104,17 +104,17 @@ function getItLivesSituationRace(goal: RaceGoal) {
     case "The Beast":
     case "custom": {
       // Give the player a choice between the photos for races to alternate objectives
-      return ItLivesSituation.Both;
+      return ItLivesSituation.BOTH;
     }
 
     case "Hush":
     case "Delirium": {
-      return ItLivesSituation.Neither;
+      return ItLivesSituation.NEITHER;
     }
 
     default: {
       ensureAllCases(goal);
-      return ItLivesSituation.Both;
+      return ItLivesSituation.NEITHER;
     }
   }
 }
@@ -139,24 +139,24 @@ function doItLivesSituation(situation: ItLivesSituation) {
   }
 
   switch (situation) {
-    case ItLivesSituation.Neither: {
+    case ItLivesSituation.NEITHER: {
       log("It Lives! or Hush killed; no paths will be spawned.");
       break;
     }
 
-    case ItLivesSituation.HeavenDoor: {
+    case ItLivesSituation.HEAVEN_DOOR: {
       spawnHeavenDoor(positionCenter);
       log("It Lives! or Hush killed; going up.");
       break;
     }
 
-    case ItLivesSituation.Trapdoor: {
+    case ItLivesSituation.TRAPDOOR: {
       spawnTrapdoor(positionCenter);
       log("It Lives! or Hush killed; going down.");
       break;
     }
 
-    case ItLivesSituation.Both: {
+    case ItLivesSituation.BOTH: {
       spawnTrapdoor(positionLeft);
       spawnHeavenDoor(positionRight);
       log("It Lives! or Hush killed; spawning both paths.");

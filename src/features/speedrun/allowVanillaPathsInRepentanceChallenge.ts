@@ -80,18 +80,20 @@ function setRepentanceDoors() {
   }
 
   if (isDoorToDownpour(door)) {
-    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
+    if (v.level.repentanceDoorState === RepentanceDoorState.INITIAL) {
       g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
       door.Close(true);
       door.SetLocked(true);
     }
   } else if (isDoorToMines(door)) {
-    if (v.level.repentanceDoorState === RepentanceDoorState.Initial) {
+    if (v.level.repentanceDoorState === RepentanceDoorState.INITIAL) {
       g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
       door.Close(true);
       door.Bar();
       door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
-    } else if (v.level.repentanceDoorState === RepentanceDoorState.HalfBombed) {
+    } else if (
+      v.level.repentanceDoorState === RepentanceDoorState.HALF_BOMBED
+    ) {
       g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
       door.SetVariant(DoorVariant.DOOR_LOCKED_CRACKED);
 
@@ -207,8 +209,8 @@ export function postGridEntityUpdateDoor(gridEntity: GridEntity): void {
 function updateRepentanceDoorState(door: GridEntityDoor) {
   if (isDoorToDownpour(door)) {
     const doorState = door.IsLocked()
-      ? RepentanceDoorState.Initial
-      : RepentanceDoorState.Unlocked;
+      ? RepentanceDoorState.INITIAL
+      : RepentanceDoorState.UNLOCKED;
     v.level.repentanceDoorState = doorState;
   } else if (isDoorToMines(door)) {
     v.level.repentanceDoorState = getDoorStateForMinesDoor(door);
@@ -219,20 +221,20 @@ function updateRepentanceDoorState(door: GridEntityDoor) {
 function getDoorStateForMinesDoor(door: GridEntityDoor) {
   switch (door.State) {
     case DoorState.STATE_CLOSED: {
-      return RepentanceDoorState.Initial;
+      return RepentanceDoorState.INITIAL;
     }
 
     case DoorState.STATE_HALF_CRACKED: {
-      return RepentanceDoorState.HalfBombed;
+      return RepentanceDoorState.HALF_BOMBED;
     }
 
     case DoorState.STATE_OPEN: {
-      return RepentanceDoorState.Unlocked;
+      return RepentanceDoorState.UNLOCKED;
     }
 
     default: {
       error("A Mines door had an unknown state.");
-      return RepentanceDoorState.Initial;
+      return RepentanceDoorState.INITIAL;
     }
   }
 }

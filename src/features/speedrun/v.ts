@@ -17,7 +17,7 @@ const v = {
 
   level: {
     previousRoomType: RoomType.ROOM_DEFAULT,
-    repentanceDoorState: RepentanceDoorState.Initial,
+    repentanceDoorState: RepentanceDoorState.INITIAL,
   },
 
   run: {

@@ -14,8 +14,8 @@ export default function showDreamCatcherItemPostRender(): void {
 }
 
 function repositionPlayer() {
-  if (v.level.warpState === DreamCatcherWarpState.RepositioningPlayer) {
-    v.level.warpState = DreamCatcherWarpState.Finished;
+  if (v.level.warpState === DreamCatcherWarpState.REPOSITIONING_PLAYER) {
+    v.level.warpState = DreamCatcherWarpState.FINISHED;
     centerPlayers();
   }
 }

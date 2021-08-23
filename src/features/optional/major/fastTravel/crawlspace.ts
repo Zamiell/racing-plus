@@ -50,7 +50,7 @@ const ONE_BY_ONE_ROOM_ENTER_MAP = new Map<Direction, int>([
   [Direction.DOWN, 22], // 3 (returning from the top door)
 ]);
 
-const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Crawlspace;
+const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.CRAWLSPACE;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {

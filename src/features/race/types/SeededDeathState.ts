@@ -1,8 +1,8 @@
 enum SeededDeathState {
-  Disabled,
-  DeathAnimation,
-  ChangingRooms,
-  FetalPosition,
-  GhostForm,
+  DISABLED,
+  DEATH_ANIMATION,
+  CHANGING_ROOMS,
+  FETAL_POSITION,
+  GHOST_FORM,
 }
 export default SeededDeathState;

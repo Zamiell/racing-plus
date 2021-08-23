@@ -1,5 +1,5 @@
 enum ChangeCharOrderPhase {
-  SeasonSelect,
-  CharacterSelect,
+  SEASON_SELECT,
+  CHARACTER_SELECT,
 }
 export default ChangeCharOrderPhase;

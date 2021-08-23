@@ -17,27 +17,27 @@ export default function setNewState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
 
   switch (fastTravelState) {
-    case FastTravelState.FadingToBlack: {
+    case FastTravelState.FADING_TO_BLACK: {
       // "setFadingToBlack()" is manually called by other functions since it has extra arguments
       break;
     }
 
-    case FastTravelState.ChangingToStartingRoom: {
+    case FastTravelState.CHANGING_TO_STARTING_ROOM: {
       setChangingToStartingRoom();
       break;
     }
 
-    case FastTravelState.GoingToNewFloor: {
+    case FastTravelState.GOING_TO_NEW_FLOOR: {
       setGoingToNewFloor();
       break;
     }
 
-    case FastTravelState.FadingIn: {
+    case FastTravelState.FADING_IN: {
       setFadingIn();
       break;
     }
 
-    case FastTravelState.Disabled: {
+    case FastTravelState.DISABLED: {
       setDisabled();
       break;
     }
@@ -58,7 +58,7 @@ export function setFadingToBlack(
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
   // the travelling animation
-  v.run.state = FastTravelState.FadingToBlack;
+  v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.framesPassed = 0;
   v.run.upwards = upwards;
   v.run.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;

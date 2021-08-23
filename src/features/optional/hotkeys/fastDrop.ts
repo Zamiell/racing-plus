@@ -3,9 +3,9 @@ import { hotkeys } from "../../../modConfigMenu";
 import { findFreePosition } from "../../../utilGlobals";
 
 enum FastDropTarget {
-  All,
-  Trinkets,
-  Pocket,
+  ALL,
+  TRINKETS,
+  POCKET_ITEMS,
 }
 
 export function postUpdate(): void {
@@ -26,14 +26,14 @@ function checkInputAll(player: EntityPlayer) {
     hotkeys.fastDropAllKeyboard !== -1 &&
     isKeyboardPressed(hotkeys.fastDropAllKeyboard, player.ControllerIndex)
   ) {
-    fastDrop(player, FastDropTarget.All);
+    fastDrop(player, FastDropTarget.ALL);
   }
 
   if (
     hotkeys.fastDropAllController !== -1 &&
     Input.IsButtonPressed(hotkeys.fastDropAllController, player.ControllerIndex)
   ) {
-    fastDrop(player, FastDropTarget.All);
+    fastDrop(player, FastDropTarget.ALL);
   }
 }
 
@@ -42,7 +42,7 @@ function checkInputTrinkets(player: EntityPlayer) {
     hotkeys.fastDropTrinketsKeyboard !== -1 &&
     isKeyboardPressed(hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex)
   ) {
-    fastDrop(player, FastDropTarget.Trinkets);
+    fastDrop(player, FastDropTarget.TRINKETS);
   }
 
   if (
@@ -52,7 +52,7 @@ function checkInputTrinkets(player: EntityPlayer) {
       player.ControllerIndex,
     )
   ) {
-    fastDrop(player, FastDropTarget.Trinkets);
+    fastDrop(player, FastDropTarget.TRINKETS);
   }
 }
 
@@ -61,7 +61,7 @@ function checkInputPocket(player: EntityPlayer) {
     hotkeys.fastDropPocketKeyboard !== -1 &&
     isKeyboardPressed(hotkeys.fastDropPocketKeyboard, player.ControllerIndex)
   ) {
-    fastDrop(player, FastDropTarget.Pocket);
+    fastDrop(player, FastDropTarget.POCKET_ITEMS);
   }
 
   if (
@@ -71,7 +71,7 @@ function checkInputPocket(player: EntityPlayer) {
       player.ControllerIndex,
     )
   ) {
-    fastDrop(player, FastDropTarget.Pocket);
+    fastDrop(player, FastDropTarget.POCKET_ITEMS);
   }
 }
 
@@ -83,7 +83,7 @@ function fastDrop(player: EntityPlayer, target: FastDropTarget) {
 
   // Trinkets
   // (the Tick is handled properly because "DropTrinket()" won't do anything in that case)
-  if (target === FastDropTarget.All || target === FastDropTarget.Trinkets) {
+  if (target === FastDropTarget.ALL || target === FastDropTarget.TRINKETS) {
     const pos1 = findFreePosition(player.Position);
     player.DropTrinket(pos1, false);
     const pos2 = findFreePosition(player.Position);
@@ -91,7 +91,7 @@ function fastDrop(player: EntityPlayer, target: FastDropTarget) {
   }
 
   // Pocket items (cards, pills, runes, etc.)
-  if (target === FastDropTarget.All || target === FastDropTarget.Pocket) {
+  if (target === FastDropTarget.ALL || target === FastDropTarget.POCKET_ITEMS) {
     const pos1 = findFreePosition(player.Position);
     player.DropPocketItem(0, pos1);
     const pos2 = findFreePosition(player.Position);

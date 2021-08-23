@@ -29,5 +29,5 @@ function checkDisplay() {
   }
   const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
 
-  timer.display(TimerType.RaceOrSpeedrun, seconds);
+  timer.display(TimerType.RACE_OR_SPEEDRUN, seconds);
 }

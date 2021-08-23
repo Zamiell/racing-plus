@@ -1,7 +1,7 @@
 enum DreamCatcherWarpState {
-  Initial,
-  Warping,
-  RepositioningPlayer,
-  Finished,
+  INITIAL,
+  WARPING,
+  REPOSITIONING_PLAYER,
+  FINISHED,
 }
 export default DreamCatcherWarpState;

@@ -1,5 +1,5 @@
 enum TimerType {
-  RaceOrSpeedrun,
-  RunRealTime,
+  RACE_OR_SPEEDRUN,
+  RUN_REAL_TIME,
 }
 export default TimerType;

@@ -39,7 +39,7 @@ function checkDisplay() {
   }
   const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
 
-  timer.display(TimerType.RaceOrSpeedrun, seconds);
+  timer.display(TimerType.RACE_OR_SPEEDRUN, seconds);
 
   const paddedFrames = elapsedFrames.toString().padStart(6, "0");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

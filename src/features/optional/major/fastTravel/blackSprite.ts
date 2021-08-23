@@ -8,15 +8,15 @@ import v from "./v";
 const sprite = initSprite("gfx/black.anm2");
 
 export function draw(): void {
-  if (v.run.state === FastTravelState.Disabled) {
+  if (v.run.state === FastTravelState.DISABLED) {
     return;
   }
 
   // Conditionally adjust the opacity
-  if (v.run.state === FastTravelState.FadingToBlack) {
+  if (v.run.state === FastTravelState.FADING_TO_BLACK) {
     const opacity = v.run.framesPassed / FADE_TO_BLACK_FRAMES;
     sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
-  } else if (v.run.state === FastTravelState.FadingIn) {
+  } else if (v.run.state === FastTravelState.FADING_IN) {
     const opacity = 1 - v.run.framesPassed / FADE_TO_BLACK_FRAMES;
     sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
   }

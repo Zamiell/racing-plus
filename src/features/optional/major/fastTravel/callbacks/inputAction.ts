@@ -7,7 +7,7 @@ export function disableInputFloat(): float | void {
     return undefined;
   }
 
-  if (v.run.state > FastTravelState.Disabled) {
+  if (v.run.state > FastTravelState.DISABLED) {
     return 0;
   }
 
@@ -19,7 +19,7 @@ export function disableInputBoolean(): boolean | void {
     return undefined;
   }
 
-  if (v.run.state > FastTravelState.Disabled) {
+  if (v.run.state > FastTravelState.DISABLED) {
     return false;
   }
 

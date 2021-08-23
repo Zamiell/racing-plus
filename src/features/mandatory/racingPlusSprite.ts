@@ -13,8 +13,8 @@ import { initSprite } from "../../util";
 import * as socketClient from "../race/socketClient";
 
 enum SpriteLayer {
-  Blue,
-  Green,
+  BLUE,
+  GREEN,
 }
 
 const SPRITE_POSITION = Vector(4, 72); // On top of where the "No Achievements" icon would be
@@ -27,8 +27,8 @@ export function postRender(): void {
   }
 
   const spriteLayer = socketClient.isActive()
-    ? SpriteLayer.Green
-    : SpriteLayer.Blue;
+    ? SpriteLayer.GREEN
+    : SpriteLayer.BLUE;
   const position = getPosition();
   sprite.RenderLayer(spriteLayer, position);
 }

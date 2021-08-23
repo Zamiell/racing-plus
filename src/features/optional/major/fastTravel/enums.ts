@@ -1,18 +1,18 @@
 export enum FastTravelEntityType {
-  Trapdoor,
-  Crawlspace,
-  HeavenDoor,
+  TRAPDOOR,
+  CRAWLSPACE,
+  HEAVEN_DOOR,
 }
 
 export enum FastTravelState {
-  Disabled,
-  FadingToBlack,
-  ChangingToStartingRoom,
-  GoingToNewFloor,
-  FadingIn,
+  DISABLED,
+  FADING_TO_BLACK,
+  CHANGING_TO_STARTING_ROOM,
+  GOING_TO_NEW_FLOOR,
+  FADING_IN,
 }
 
 export enum FastTravelEntityState {
-  Open,
-  Closed,
+  OPEN,
+  CLOSED,
 }

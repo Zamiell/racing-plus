@@ -9,7 +9,7 @@ const v = {
     /** Bosses are stored as an array of: [entityType, variant] */
     bosses: [] as Array<[int, int]>,
 
-    warpState: DreamCatcherWarpState.Initial,
+    warpState: DreamCatcherWarpState.INITIAL,
   },
 };
 export default v;

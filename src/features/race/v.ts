@@ -10,7 +10,7 @@ const v = {
     numVictoryLaps: 0,
 
     seededDeath: {
-      state: SeededDeathState.Disabled,
+      state: SeededDeathState.DISABLED,
     },
 
     spawnedCorpseTrapdoor: false,

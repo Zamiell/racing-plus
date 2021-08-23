@@ -5,7 +5,7 @@ import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 import v from "./v";
 
-const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HeavenDoor;
+const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 12;
 const FRAME_DELAY_AFTER_KILLING_HUSH = 13;
 
@@ -131,7 +131,7 @@ function openClosedHeavenDoors() {
     const effect = entity.ToEffect();
     if (effect !== null) {
       const entityState = state.get(effect, FAST_TRAVEL_ENTITY_TYPE);
-      if (entityState === FastTravelEntityState.Closed) {
+      if (entityState === FastTravelEntityState.CLOSED) {
         state.open(effect, FAST_TRAVEL_ENTITY_TYPE);
       }
     }

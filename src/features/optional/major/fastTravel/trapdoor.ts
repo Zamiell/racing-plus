@@ -13,7 +13,7 @@ import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 import v from "./v";
 
-const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.Trapdoor;
+const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
 const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
 const FRAME_DELAY_AFTER_KILLING_HUSH = 12;
 const FRAME_DELAY_AFTER_KILLING_MOM = 11;

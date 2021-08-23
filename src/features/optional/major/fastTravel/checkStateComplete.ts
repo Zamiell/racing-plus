@@ -9,12 +9,12 @@ import v from "./v";
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   switch (v.run.state) {
-    case FastTravelState.FadingToBlack: {
+    case FastTravelState.FADING_TO_BLACK: {
       postRenderFadingToBlack();
       break;
     }
 
-    case FastTravelState.FadingIn: {
+    case FastTravelState.FADING_IN: {
       postRenderFadingIn();
       break;
     }
@@ -33,7 +33,7 @@ function postRenderFadingToBlack() {
   }
 
   // The FadingToBlack state is completed when the screen is completely black
-  setNewState(FastTravelState.ChangingToStartingRoom);
+  setNewState(FastTravelState.CHANGING_TO_STARTING_ROOM);
 }
 
 function postRenderFadingIn() {
@@ -52,7 +52,7 @@ function postRenderFadingIn() {
   }
 
   // The FadingToBlack state is completed when the screen is completely black
-  setNewState(FastTravelState.Disabled);
+  setNewState(FastTravelState.DISABLED);
 }
 
 function incrementFramesPassed() {
@@ -91,12 +91,12 @@ function makePlayersJump(players: EntityPlayer[]) {
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   switch (v.run.state) {
-    case FastTravelState.ChangingToStartingRoom: {
+    case FastTravelState.CHANGING_TO_STARTING_ROOM: {
       postNewRoomChangingToStartingRoom();
       break;
     }
 
-    case FastTravelState.GoingToNewFloor: {
+    case FastTravelState.GOING_TO_NEW_FLOOR: {
       postNewRoomGoingToNewFloor();
       break;
     }
@@ -109,10 +109,10 @@ export function postNewRoom(): void {
 
 function postNewRoomChangingToStartingRoom() {
   // The ChangingToStartingRoom state is completed once we arrive in the new room
-  setNewState(FastTravelState.GoingToNewFloor);
+  setNewState(FastTravelState.GOING_TO_NEW_FLOOR);
 }
 
 function postNewRoomGoingToNewFloor() {
   // The GoingToNewFloor state is completed once we arrive on the new floor
-  setNewState(FastTravelState.FadingIn);
+  setNewState(FastTravelState.FADING_IN);
 }

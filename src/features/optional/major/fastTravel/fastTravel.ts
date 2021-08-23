@@ -46,7 +46,7 @@ export function init(
     state.close(entity, fastTravelEntityType);
   }
 
-  if (fastTravelEntityType === FastTravelEntityType.HeavenDoor) {
+  if (fastTravelEntityType === FastTravelEntityType.HEAVEN_DOOR) {
     const effect = entity as EntityEffect;
     const data = effect.GetData();
     data.onInitialRoom = roomFrameCount === 0;
@@ -64,7 +64,7 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
   const repentanceStage = onRepentanceStage();
 
   switch (fastTravelEntityType) {
-    case FastTravelEntityType.Trapdoor: {
+    case FastTravelEntityType.TRAPDOOR: {
       // -8
       if (roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
@@ -125,11 +125,11 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
       return "gfx/grid/door_11_trapdoor_custom.anm2";
     }
 
-    case FastTravelEntityType.Crawlspace: {
+    case FastTravelEntityType.CRAWLSPACE: {
       return "gfx/grid/door_20_secrettrapdoor_custom.anm2"; // cspell:disable-line
     }
 
-    case FastTravelEntityType.HeavenDoor: {
+    case FastTravelEntityType.HEAVEN_DOOR: {
       return "gfx/1000.039_heaven door custom.anm2";
     }
 
@@ -146,7 +146,7 @@ export function checkShouldOpen(
 ): void {
   const entityState = state.get(entity, fastTravelEntityType);
   if (
-    entityState === FastTravelEntityState.Closed &&
+    entityState === FastTravelEntityState.CLOSED &&
     state.shouldOpen(entity, fastTravelEntityType)
   ) {
     state.open(entity, fastTravelEntityType);
@@ -161,12 +161,12 @@ export function checkPlayerTouched(
     player: EntityPlayer,
   ) => void,
 ): void {
-  if (v.run.state !== FastTravelState.Disabled) {
+  if (v.run.state !== FastTravelState.DISABLED) {
     return;
   }
 
   const entityState = state.get(entity, fastTravelEntityType);
-  if (entityState === FastTravelEntityState.Closed) {
+  if (entityState === FastTravelEntityState.CLOSED) {
     return;
   }
 

@@ -50,11 +50,11 @@ function drawCurrentChoosingActivity() {
 
 function getTextForCurrentActivity(phase: ChangeCharOrderPhase) {
   switch (phase) {
-    case ChangeCharOrderPhase.SeasonSelect: {
+    case ChangeCharOrderPhase.SEASON_SELECT: {
       return "Choose your season";
     }
 
-    case ChangeCharOrderPhase.CharacterSelect: {
+    case ChangeCharOrderPhase.CHARACTER_SELECT: {
       return "Choose your character order";
     }
 
