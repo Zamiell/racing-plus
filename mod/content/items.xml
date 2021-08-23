@@ -10,13 +10,13 @@
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
 
 	<!-- Placeholders -->
-	<passive description="" name="Magic Mushroom Placeholder" /> <!-- 12 -->
-	<passive description="" name="Sacred Heart Placeholder" /> <!-- 182 -->
-	<passive description="" name="Death's Touch Placeholder" /> <!-- 237 -->
-	<passive description="" name="Judas' Shadow Placeholder" /> <!-- 311 -->
-	<passive description="" name="Godhead Placeholder" /> <!-- 331 -->
-	<passive description="" name="Incubus Placeholder" /> <!-- 360 -->
-	<passive description="" name="Maw of the Void Placeholder" /> <!-- 399 -->
-	<passive description="" name="Crown of Light Placeholder" /> <!-- 415 -->
-	<passive description="" name="Twisted Pair Placeholder" /> <!-- 698 -->
+	<passive description="" name="Magic Mushroom Placeholder" quality="4" tags="offensive" /> <!-- 12 -->
+	<passive description="" name="Sacred Heart Placeholder" quality="4" tags="offensive" /> <!-- 182 -->
+	<passive description="" name="Death's Touch Placeholder" quality="4" tags="offensive" /> <!-- 237 -->
+	<passive description="" name="Judas' Shadow Placeholder" quality="4" tags="offensive" /> <!-- 311 -->
+	<passive description="" name="Godhead Placeholder" quality="4" tags="offensive" /> <!-- 331 -->
+	<passive description="" name="Incubus Placeholder" quality="4" tags="offensive" /> <!-- 360 -->
+	<passive description="" name="Maw of the Void Placeholder" quality="4" tags="offensive" /> <!-- 399 -->
+	<passive description="" name="Crown of Light Placeholder" quality="4" tags="offensive" /> <!-- 415 -->
+	<passive description="" name="Twisted Pair Placeholder" quality="4" tags="offensive" /> <!-- 698 -->
 </items>
