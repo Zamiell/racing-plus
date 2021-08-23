@@ -8,7 +8,7 @@ Please visit [the website for Racing+](https://isaacracing.net/) or [subscribe t
 
 ## Description
 
-This is the Lua mod for Racing+, a Binding of Isaac: Afterbirth+ racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
+This is the Lua mod for Racing+, a Binding of Isaac: Repentance racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
 
 This mod is written using [IsaacScript](https://isaacscript.github.io/).
 
