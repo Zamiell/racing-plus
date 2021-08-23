@@ -6,11 +6,13 @@
     ],
     "words": [
         "algiz",
+        "allusersprofile",
         "alphabirth",
         "altpath",
         "ansuz",
         "apps",
         "ashpit",
+        "autocrlf",
         "autofire",
         "baphomet",
         "batterycharge",
@@ -27,6 +29,7 @@
         "c",
         "cambion",
         "childs",
+        "choco",
         "chubber",
         "colostomia",
         "combineddoor",
@@ -141,6 +144,7 @@
         "powerup",
         "printf",
         "program",
+        "programfiles",
         "questionmark",
         "quipet",
         "raglich",
@@ -148,8 +152,10 @@
         "raglings",
         "rcdnpc",
         "rebalancing",
+        "rebases",
         "rebirth",
         "redownloaded",
+        "refreshenv",
         "reimplement",
         "respawn",
         "respawned",
@@ -232,6 +238,7 @@
         "x",
         "xelnas",
         "xmltodict",
-        "zamiel"
+        "zamiel",
+        "zamiell"
     ]
 }
