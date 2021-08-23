@@ -127,8 +127,8 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
       "",
-      "Fast drop (pocket)",
-      "Drop your pocket items instantaneously.",
+      "Fast drop (trinkets)",
+      "Drop your trinkets instantaneously.",
     ],
   ],
   [
