@@ -1,6 +1,7 @@
 import * as switchForgotten from "../features/mandatory/switchForgotten";
 import * as fastTravelInputAction from "../features/optional/major/fastTravel/callbacks/inputAction";
 import * as raceInputAction from "../features/race/callbacks/inputAction";
+import * as speedrunInputAction from "../features/speedrun/callbacks/inputAction";
 
 const functionMap = new Map<
   ButtonAction,
@@ -50,6 +51,11 @@ functionMap.set(ButtonAction.ACTION_DROP, () => {
   }
 
   return undefined;
+});
+
+// 19
+functionMap.set(ButtonAction.ACTION_JOINMULTIPLAYER, () => {
+  return speedrunInputAction.isActionTriggeredJoinMultiplayer();
 });
 
 // 28

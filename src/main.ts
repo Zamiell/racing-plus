@@ -28,6 +28,7 @@ import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
+import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -92,6 +93,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   mod.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
   mod.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
+  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
   mod.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
   mod.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
   mod.AddCallback(ModCallbacks.MC_POST_GAME_END, postGameEnd.main); // 16

@@ -14,7 +14,7 @@ const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;
 const MAX_PLACE = 32; // There are only big sprites created for places up to 32
 
-let sprite: null | Sprite = null;
+let sprite: Sprite | null = null;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {

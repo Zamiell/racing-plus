@@ -14,9 +14,6 @@ export function main(): void {
   changeKeybindings.postRender();
   drawVersion();
 
-  // Check for inputs
-  checkDirection();
-
   // Check to see if ( we are subverting a teleport from Gurdy, Mom, Mom's Heart, || It Lives
   checkSubvertTeleport();
 
@@ -204,23 +201,6 @@ function leadPencilChargeBar() {
     Vector.Zero,
     Vector.Zero,
   );
-}
-
-// Fix the bug where diagonal knife throws have a 1-frame window when playing on keyboard (1/2)
-function checkDirection() {
-  const directions: boolean[] = [];
-  for (let i = 0; i < 4; i++) {
-    // This corresponds to the "ButtonAction.ACTION_SHOOT" enum
-
-    const directionPushed = Input.IsActionPressed(i + 3, 0);
-    // (e.g. ButtonAction.ACTION_SHOOTLEFT is 4)
-    directions.push(directionPushed);
-  }
-  g.run.directions.push(directions);
-  if (g.run.directions.length > 2) {
-    // We want there to be a 3-frame window instead of a 1-frame window
-    g.run.directions.splice(0, 1);
-  }
 }
 
 function drawVersion() {

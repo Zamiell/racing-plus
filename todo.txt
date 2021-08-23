@@ -1,8 +1,10 @@
 ```
 ### *v0.60.1* - August 23rd, 2021
 
+- The special death mechanic is now added back to seeded races (i.e. "seeded death").
 - Attempts to reroll a Checkpoint will now fail.
 - The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
+- In Season 1, multiplayer is now disabled.
 - Fixed the bug where extra items would not appear on Tainted Lost. (Thanks KiraKeepKool)
 ```
 

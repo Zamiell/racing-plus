@@ -86,7 +86,7 @@ const v = {
     heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
     /** Used so that we can delete the vanilla paths on the appropriate frame. */
-    hushKilledFrame: null as null | number,
+    hushKilledFrame: null as int | null,
 
     /**
      * Defeating It Lives! triggers the PostEntityKill callback twice for some reason,

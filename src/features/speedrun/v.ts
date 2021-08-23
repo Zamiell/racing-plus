@@ -10,8 +10,8 @@ const v = {
     /** Used to tell the difference between a normal reset and a fast-reset. */
     performedFastReset: false,
 
-    startedFrame: null as null | int,
-    startedCharFrame: null as null | int,
+    startedFrame: null as int | null,
+    startedCharFrame: null as int | null,
     characterRunFrames: [] as int[],
   },
 
@@ -21,11 +21,13 @@ const v = {
   },
 
   run: {
-    fadeFrame: null as null | int,
-    resetFrame: null as null | int,
+    fadeFrame: null as int | null,
+    resetFrame: null as int | null,
 
     finished: false,
-    finishedFrames: null as null | int,
+    finishedFrames: null as int | null,
+
+    firstPlayerIndex: null as int | null,
   },
 
   room: {
