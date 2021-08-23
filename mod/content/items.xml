@@ -13,7 +13,8 @@
 	<passive description="" name="Magic Mushroom Placeholder" quality="4" tags="offensive" /> <!-- 12 -->
 	<passive description="" name="Sacred Heart Placeholder" quality="4" tags="offensive" /> <!-- 182 -->
 	<passive description="" name="Death's Touch Placeholder" quality="4" tags="offensive" /> <!-- 237 -->
-	<passive description="" name="Judas' Shadow Placeholder" quality="4" tags="offensive" /> <!-- 311 -->
+	<!-- We do not give the Judas' Shadow Placeholder a "offensive" tag to match how it is in vanilla -->
+	<passive description="" name="Judas' Shadow Placeholder" quality="4" /> <!-- 311 -->
 	<passive description="" name="Godhead Placeholder" quality="4" tags="offensive" /> <!-- 331 -->
 	<passive description="" name="Incubus Placeholder" quality="4" tags="offensive" /> <!-- 360 -->
 	<passive description="" name="Maw of the Void Placeholder" quality="4" tags="offensive" /> <!-- 399 -->
