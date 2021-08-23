@@ -3,6 +3,7 @@
 import {
   ensureAllCases,
   getRoomIndex,
+  isChildPlayer,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -180,7 +181,7 @@ export function checkPlayerTouched(
   );
   for (const playerEntity of playersTouching) {
     const player = playerEntity.ToPlayer();
-    if (player !== null && canInteractWith(player)) {
+    if (player !== null && !isChildPlayer(player) && canInteractWith(player)) {
       touchedFunction(entity, player);
       return; // Prevent two players from touching the same entity
     }

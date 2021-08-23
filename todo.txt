@@ -1,5 +1,5 @@
 ```
-### *v0.59.12* - August 21st, 2021
+### *v0.60.0* - August 21st, 2021
 
 - Extra items are no longer added to the Treasure Room pool. Instead, extra starting items will appear in the first floor Treasure Room, but not in any other place that items would normally appear. Thanks to Gamonymous for coding this.
 - In seeded races, Scolex will now be replaced by two Frails.
@@ -13,6 +13,7 @@
 - Fixed the bug where the client was not showing "MS" as the floor when you were in the Mega Satan room.
 - Fixed the bug where the seeded floors feature would not handle Rotten Hearts properly.
 - Fixed the bug where crawlspaces did not work properly on final floors. (Thanks Gamonymous)
+- Fixed the bug where child players (like Strawman) could enter a trapdoors, crawlspaces, and beams of light. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:
