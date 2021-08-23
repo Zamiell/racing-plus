@@ -3,6 +3,8 @@ import {
   forceNewRoomCallback,
   getPlayers,
   getRoomIndex,
+  getRoomStageID,
+  getRoomVariant,
   gridToPos,
   removeAllEntities,
 } from "isaacscript-common";
@@ -222,11 +224,9 @@ function shouldSetupRaceRoom() {
 }
 
 export function inRaceRoom(): boolean {
+  const roomStageID = getRoomStageID();
+  const roomVariant = getRoomVariant();
   const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
 
   return (
     roomStageID === RACE_ROOM_STAGE_ID &&

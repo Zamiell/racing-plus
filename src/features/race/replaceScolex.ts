@@ -35,12 +35,13 @@ export function postNewRoom(): void {
     // a little glitchy
     // Note that pos.X += 200 causes the hitbox to appear too close to the left/right side,
     // causing damage if the player moves into the room too quickly
-    let position: Vector;
+    let modification: Vector;
     if (i === 0) {
-      position = centerPos.add(Vector(-150, 0));
+      modification = Vector(-150, 0);
     } else {
-      position = centerPos.add(Vector(150, 0));
+      modification = Vector(150, 0);
     }
+    const position = centerPos.add(modification);
     seed = incrementRNG(seed);
     const frail = g.g.Spawn(
       EntityType.ENTITY_PIN,

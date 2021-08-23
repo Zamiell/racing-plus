@@ -1,4 +1,4 @@
-import { getRoomIndex, log } from "isaacscript-common";
+import { getRoomStageID, getRoomVariant, log } from "isaacscript-common";
 import * as cache from "../cache";
 import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
@@ -31,11 +31,8 @@ export function main(): void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
+  const roomStageID = getRoomStageID();
+  const roomVariant = getRoomVariant();
 
   log(
     `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,

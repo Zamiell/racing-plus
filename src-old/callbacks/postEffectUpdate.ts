@@ -2,7 +2,7 @@
 // EffectVariant.DEVIL (6)
 export function devil(effect: EntityEffect): void {
   // Fade the statue if there are any collectibles in range
-  // Squares (5, 2), (6, 2), (7, 2), (5, 3), (6, 3), and (7, 3) are not allowed
+  // Tiles (5, 2), (6, 2), (7, 2), (5, 3), (6, 3), and (7, 3) are not allowed
   let collectibleIsClose = false;
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,

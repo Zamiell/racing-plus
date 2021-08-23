@@ -41,7 +41,7 @@ export default function convertXMLGridEntityType(
   xmlGridEntityVariant: int,
 ): [int, int] | null {
   // Triggers are bugged; spawning one will immediately crash the game
-  // In this case, just skip this grid square
+  // In this case, just skip this grid tile
   if (xmlGridEntityType === EntityType.ENTITY_TRIGGER_OUTPUT) {
     return null;
   }

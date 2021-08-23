@@ -80,25 +80,30 @@ function displayCharacterProgress() {
   if (digit2 !== -1) {
     const digit2Sprite = sprites.digit[1];
     digit2Sprite.SetFrame("Default", digit2);
-    const digit2Position = position.add(Vector(digitLength - 1, 0));
+    const digit2Modification = Vector(digitLength - 1, 0);
+    const digit2Position = position.add(digit2Modification);
     digit2Sprite.RenderLayer(0, digit2Position);
   }
 
-  const slashPosition = position.add(Vector(digitLength - 1 + adjustment1, 0));
+  const slashModification = Vector(digitLength - 1 + adjustment1, 0);
+  const slashPosition = position.add(slashModification);
   sprites.slash.RenderLayer(0, slashPosition);
 
   const digit3Sprite = sprites.digit[2];
   digit3Sprite.SetFrame("Default", digit3);
-  const digit3Position = position.add(Vector(digitLength + adjustment2 + 5, 0));
+  const digit3Modification = Vector(digitLength + adjustment2 + 5, 0);
+  const digit3Position = position.add(digit3Modification);
   digit3Sprite.RenderLayer(0, digit3Position);
 
   let digit4Position = null;
   if (digit4 !== -1) {
     const digit4Sprite = sprites.digit[3];
     digit4Sprite.SetFrame("Default", digit4);
-    digit4Position = position.add(
-      Vector(digitLength + adjustment2 + 3 + digitLength, 0),
+    const digit4Modification = Vector(
+      digitLength + adjustment2 + 3 + digitLength,
+      0,
     );
+    digit4Position = position.add(digit4Modification);
     digit4Sprite.RenderLayer(0, digit4Position);
   }
 

@@ -75,6 +75,51 @@ export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
 
+export function movePlayer(params: string, direction: Direction): void {
+  const player = Isaac.GetPlayer();
+
+  let amount = 0.5;
+  if (params !== "") {
+    const num = validateNumber(params);
+    if (num === undefined) {
+      return;
+    }
+    amount = num;
+  }
+
+  const modification = getModificationVector(amount, direction);
+  player.Position = player.Position.add(modification);
+}
+
+function getModificationVector(amount: float, direction: Direction) {
+  switch (direction) {
+    // 0
+    case Direction.LEFT: {
+      return Vector(amount * -1, 0);
+    }
+
+    // 1
+    case Direction.UP: {
+      return Vector(0, amount * -1);
+    }
+
+    // 2
+    case Direction.RIGHT: {
+      return Vector(amount, 0);
+    }
+
+    // 3
+    case Direction.DOWN: {
+      return Vector(0, amount);
+    }
+
+    default: {
+      error("Invalid direction.");
+      return Vector.Zero;
+    }
+  }
+}
+
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
   if (player !== null) {

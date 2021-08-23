@@ -19,6 +19,7 @@ import {
   crawlspace,
   devil,
   IAMERROR,
+  movePlayer,
   trapdoor,
   validateNumber,
 } from "./executeCmdSubroutines";
@@ -191,6 +192,10 @@ functionMap.set("debug2", (_params: string) => {
 
 functionMap.set("devil", (params: string) => {
   devil(params);
+});
+
+functionMap.set("down", (params: string) => {
+  movePlayer(params, Direction.DOWN);
 });
 
 functionMap.set("fool", (_params: string) => {

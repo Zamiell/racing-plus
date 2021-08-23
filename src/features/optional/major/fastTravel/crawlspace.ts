@@ -3,7 +3,10 @@
 import {
   getPlayerCloserThan,
   getRoomIndex,
+  getRoomStageID,
+  getRoomVariant,
   inCrawlspace,
+  inGenesisRoom,
   log,
   onFinalFloor,
 } from "isaacscript-common";
@@ -221,7 +224,7 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
 }
 
 function shouldReplaceWithTeleportPad() {
-  return onFinalFloor();
+  return onFinalFloor() && inGenesisRoom();
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
@@ -229,7 +232,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
 
   removeGridEntity(gridEntity);
 
-  // If we remove a crawlspace and spawn a teleporter on the same square on the same frame,
+  // If we remove a crawlspace and spawn a teleporter on the same tile on the same frame,
   // the teleporter will immediately despawn for some reason
   // Work around this by simply spawning it on the next game frame
   v.room.teleporter.frame = gameFrameCount + 1;
@@ -348,11 +351,11 @@ function isGreatGideonCrawlspace(gridEntity: GridEntity) {
 }
 
 function isGreatGideonRoom() {
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
+  const roomStageID = getRoomStageID();
+  const roomVariant = getRoomVariant();
 
-  return roomStageID === 0 && GREAT_GIDEON_ROOM_VARIANTS.includes(roomVariant);
+  return (
+    roomStageID === StageID.SPECIAL_ROOMS &&
+    GREAT_GIDEON_ROOM_VARIANTS.includes(roomVariant)
+  );
 }

@@ -9,11 +9,6 @@ const v = {
   run: {
     placeholdersRemoved: false,
   },
-
-  level: {
-    previouslyInTreasureRoom: false,
-    currentlyInTreasureRoom: false,
-  },
 };
 
 export function init(): void {
@@ -47,13 +42,12 @@ export function postNewLevel(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomType = g.r.GetType();
-
-  v.level.previouslyInTreasureRoom = v.level.currentlyInTreasureRoom;
-  v.level.currentlyInTreasureRoom = roomType === RoomType.ROOM_TREASURE;
-
-  if (v.level.previouslyInTreasureRoom && !v.run.placeholdersRemoved) {
-    removePlaceholdersFromPools();
+  if (!v.run.placeholdersRemoved) {
+    const lastRoomDesc = g.l.GetLastRoomDesc();
+    const lastRoomData = lastRoomDesc.Data;
+    if (lastRoomData !== null && lastRoomData.Type === RoomType.ROOM_TREASURE) {
+      removePlaceholdersFromPools();
+    }
   }
 
   rollDuplicateItems();

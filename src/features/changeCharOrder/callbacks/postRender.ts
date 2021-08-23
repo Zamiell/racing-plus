@@ -79,7 +79,7 @@ function drawCharacterSprites() {
     if (v.room.sprites.characters.length === 1) {
       posCharGame = gridToPos(6, 5); // The bottom-center of the room
     } else {
-      posCharGame = gridToPos(x, y - 1); // We want it to be one square above the button
+      posCharGame = gridToPos(x, y - 1); // We want it to be one tile above the button
     }
 
     const posChar = Isaac.WorldToRenderPosition(posCharGame);

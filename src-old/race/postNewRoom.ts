@@ -26,18 +26,16 @@ export function main(): void {
 }
 
 function checkVictoryLapBossReplace() {
-  const roomDesc = g.l.GetCurrentRoomDesc();
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
+  const roomStageID = getRoomStageID();
+  const roomVariant = getRoomVariant();
 
   // Check to see if we need to spawn Victory Lap bosses
   if (
     g.raceVars.finished &&
     !roomClear &&
-    roomStageID === 0 &&
+    roomStageID === StageID.SPECIAL_ROOMS &&
     // Blue Baby
     (roomVariant === 3390 ||
       roomVariant === 3391 ||

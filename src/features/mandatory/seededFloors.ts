@@ -1,7 +1,14 @@
+// TODO ROTTEN HEARTS
+
 // This feature is not configurable because it could change floors, causing a seed to be different
 // This feature relies on fast travel to function
 
-import { getRandom, onSetSeed, saveDataManager } from "isaacscript-common";
+import {
+  CHARACTERS_WITH_NO_RED_HEARTS,
+  getRandom,
+  onSetSeed,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { incrementRNG } from "../../util";
@@ -13,6 +20,7 @@ interface Health {
   soulHearts: int;
   boneHearts: int;
   goldenHearts: int;
+  rottenHearts: int;
 }
 
 interface GameStateFlags {
@@ -228,6 +236,7 @@ function getHealth(player: EntityPlayer): Health {
   let boneHearts = player.GetBoneHearts();
   const goldenHearts = player.GetGoldenHearts();
   const eternalHearts = player.GetEternalHearts();
+  const rottenHearts = player.GetRottenHearts();
   const subPlayer = player.GetSubPlayer();
 
   // The Forgotten and The Soul has special health, so we need to account for this
@@ -250,10 +259,7 @@ function getHealth(player: EntityPlayer): Health {
   // Eternal Hearts will be lost since we are about to change floors,
   // so convert it to other types of health
   // "eternalHearts" will be equal to 1 if we have an Eternal Heart
-  if (
-    character === PlayerType.PLAYER_XXX || // 4
-    character === PlayerType.PLAYER_THESOUL // 17
-  ) {
+  if (CHARACTERS_WITH_NO_RED_HEARTS.includes(character)) {
     soulHearts += eternalHearts * 2;
   } else {
     maxHearts += eternalHearts * 2;
@@ -300,6 +306,7 @@ function getHealth(player: EntityPlayer): Health {
     soulHearts,
     boneHearts,
     goldenHearts,
+    rottenHearts,
   };
 }
 
@@ -353,6 +360,7 @@ function setHealth(player: EntityPlayer, health: Health) {
   player.AddHearts(health.hearts);
   player.AddGoldenHearts(health.goldenHearts);
   // (no matter what kind of heart is added, no sounds effects will play)
+  player.AddRottenHearts(health.rottenHearts);
 
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }

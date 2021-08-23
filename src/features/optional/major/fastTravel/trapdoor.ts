@@ -270,7 +270,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   setFadingToBlack(entity, player, false);
 }
 
-// If we manually spawn a trapdoor on the same square that a vanilla trapdoor spawns after defeating
+// If we manually spawn a trapdoor on the same tile that a vanilla trapdoor spawns after defeating
 // It Lives! or Hush, then the manually spawned trapdoor will get overwritten by the vanilla one
 // In this case, the PostGridEntityInit callback will never fire (because the same grid entity type
 // continually exists on every frame), so the trapdoor will never be initialized

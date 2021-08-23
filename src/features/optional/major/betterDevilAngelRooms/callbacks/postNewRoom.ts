@@ -104,8 +104,8 @@ function removePickupsAndSlotsAndNPCs() {
       entity.Remove();
 
       // When fire places are removed, they will leave behind a "path" that will prevent future grid
-      // entities from being spawned on the same square
-      // Thus, reset the path for this square if this is a fire place
+      // entities from being spawned on the same tile
+      // Thus, reset the path for this tile if this is a fire place
       if (entity.Type === EntityType.ENTITY_FIREPLACE) {
         const gridIndex = g.r.GetGridIndex(entity.Position);
         g.r.SetGridPath(gridIndex, 0);
@@ -119,8 +119,8 @@ function fillRoomWithDecorations() {
 
   // In the PreRoomEntitySpawn callback, we prevented every entity from spawning
   // However, if we exit and re-enter the room, all the vanilla entities will spawn again
-  // In order to prevent this from happening, we can spawn a grid entity on every square that does
-  // not already have a grid entity
+  // In order to prevent this from happening, we can spawn a grid entity on every tile that does not
+  // already have a grid entity
   // The natural grid entity to choose for this purpose is a decoration, since it is non-interacting
   // Another option besides decorations would be to use a pressure plates with a state of 1,
   // which is a state that is normally unused by the game and makes it invisible + persistent

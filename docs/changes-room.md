@@ -327,7 +327,7 @@ The deleted room is as follows:
 
 ### Close Enemies Fix
 
-Due to bug fixes in May 2018, most enemies that spawn near an entrance are no longer completely unavoidable damage. However, enemies that spawn very close to doors are unfair in certain circumstances, and it is more reasonable to have enemies spawn at least 2 squares away from the player.
+Due to bug fixes in May 2018, most enemies that spawn near an entrance are no longer completely unavoidable damage. However, enemies that spawn very close to doors are unfair in certain circumstances, and it is more reasonable to have enemies spawn at least 2 tiles away from the player.
 
 The changed rooms are as follows:
 - Basement: #126 (Mulligan/Mulligoon)

@@ -135,7 +135,7 @@ function getRoomIndexForType(roomType: RoomType) {
   const rooms = g.l.GetRooms();
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
-    if (room !== null && room.Data.Type === roomType) {
+    if (room !== null && room.Data !== null && room.Data.Type === roomType) {
       return room.SafeGridIndex;
     }
   }

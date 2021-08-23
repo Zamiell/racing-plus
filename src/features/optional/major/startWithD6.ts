@@ -1,7 +1,7 @@
 import {
   getPlayerIndex,
   getPlayers,
-  getRoomIndex,
+  inGenesisRoom,
   log,
   PlayerIndex,
   saveDataManager,
@@ -140,15 +140,13 @@ export function postNewRoom(): void {
 // When the player uses Genesis, it will strip the pocket D6 from them
 // Give it back to them if this is the case
 function checkGenesisRoom() {
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomType = g.r.GetType();
+  if (!inGenesisRoom()) {
+    return;
+  }
 
-  if (roomType === RoomType.ROOM_ISAACS && roomDesc.Data.Variant === 1000) {
-    for (const player of getPlayers()) {
-      if (shouldGetPocketActiveD6(player)) {
-        givePocketActiveD6(player);
-      }
+  for (const player of getPlayers()) {
+    if (shouldGetPocketActiveD6(player)) {
+      givePocketActiveD6(player);
     }
   }
 }

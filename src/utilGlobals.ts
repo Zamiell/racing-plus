@@ -1,7 +1,7 @@
 import {
   anyEntityCloserThan,
   anyPlayerIs,
-  DISTANCE_OF_GRID_SQUARE,
+  DISTANCE_OF_GRID_TILE,
   getDoors,
   getRoomIndex,
   inCrawlspace,
@@ -36,7 +36,7 @@ export function findFreePosition(startingPosition: Vector): Vector {
   );
   for (let i = 0; i < 100; i++) {
     const position = g.r.FindFreePickupSpawnPosition(startingPosition, i);
-    if (!anyEntityCloserThan(heavenDoors, position, DISTANCE_OF_GRID_SQUARE)) {
+    if (!anyEntityCloserThan(heavenDoors, position, DISTANCE_OF_GRID_TILE)) {
       return position;
     }
   }

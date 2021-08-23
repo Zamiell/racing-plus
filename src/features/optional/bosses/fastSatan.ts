@@ -1,7 +1,9 @@
-import { getRoomIndex, gridToPos } from "isaacscript-common";
+import { getRoomStageID, getRoomVariant, gridToPos } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { incrementRNG } from "../../../util";
+
+const SATAN_ROOM_VARIANT = 3600;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -15,11 +17,8 @@ export function postNewRoom(): void {
 // There is an annoying delay before The Fallen and the leeches spawn
 // To fix this, we manually spawn it as soon as the room is entered
 function instantlySpawnSatan() {
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomData = roomDesc.Data;
-  const roomStageID = roomData.StageID;
-  const roomVariant = roomData.Variant;
+  const roomStageID = getRoomStageID();
+  const roomVariant = getRoomVariant();
   const roomClear = g.r.IsClear();
 
   if (roomClear) {
@@ -27,7 +26,10 @@ function instantlySpawnSatan() {
   }
 
   // There is only one Satan room
-  if (roomStageID !== 0 || roomVariant !== 3600) {
+  if (
+    roomStageID !== StageID.SPECIAL_ROOMS ||
+    roomVariant !== SATAN_ROOM_VARIANT
+  ) {
     return;
   }
 

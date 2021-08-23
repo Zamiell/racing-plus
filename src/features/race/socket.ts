@@ -1,4 +1,9 @@
-import { getRoomIndex, log, PickingUpItem } from "isaacscript-common";
+import {
+  getRoomDataType,
+  getRoomVariant,
+  log,
+  PickingUpItem,
+} from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
@@ -64,14 +69,11 @@ export function postNewLevel(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomIndex = getRoomIndex();
-  const roomDesc = g.l.GetRoomByIdx(roomIndex);
-  const roomData = roomDesc.Data;
-  const roomType = roomData.Type;
-  const roomVariant = roomData.Variant;
+  const roomDataType = getRoomDataType();
+  const roomVariant = getRoomVariant();
 
   // This roughly emulates a log.txt line of e.g. "[INFO] - Room 13.12(New Room)"
-  send("room", `${roomType}-${roomVariant}`);
+  send("room", `${roomDataType}-${roomVariant}`);
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP

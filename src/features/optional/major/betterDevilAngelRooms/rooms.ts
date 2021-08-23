@@ -19,7 +19,7 @@ import convertXMLGridEntityType from "./convertXMLGridEntityType";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 
-const GRID_SQUARES_PER_ROW = 15;
+const GRID_TILES_PER_ROW = 15;
 
 const PERSISTENT_ENTITY_TYPES = [EntityType.ENTITY_WALL_HUGGER];
 
@@ -253,17 +253,17 @@ function fixPitGraphics() {
     const L = pitMap.has(gridIndexLeft);
     const gridIndexRight = gridIndex + 1;
     const R = pitMap.has(gridIndexRight);
-    const gridIndexUp = gridIndex - GRID_SQUARES_PER_ROW;
+    const gridIndexUp = gridIndex - GRID_TILES_PER_ROW;
     const U = pitMap.has(gridIndexUp);
-    const gridIndexDown = gridIndex + GRID_SQUARES_PER_ROW;
+    const gridIndexDown = gridIndex + GRID_TILES_PER_ROW;
     const D = pitMap.has(gridIndexDown);
-    const gridIndexUpLeft = gridIndex - GRID_SQUARES_PER_ROW - 1;
+    const gridIndexUpLeft = gridIndex - GRID_TILES_PER_ROW - 1;
     const UL = pitMap.has(gridIndexUpLeft);
-    const gridIndexUpRight = gridIndex - GRID_SQUARES_PER_ROW + 1;
+    const gridIndexUpRight = gridIndex - GRID_TILES_PER_ROW + 1;
     const UR = pitMap.has(gridIndexUpRight);
-    const gridIndexDownLeft = gridIndex + GRID_SQUARES_PER_ROW - 1;
+    const gridIndexDownLeft = gridIndex + GRID_TILES_PER_ROW - 1;
     const DL = pitMap.has(gridIndexDownLeft);
-    const gridIndexDownRight = gridIndex + GRID_SQUARES_PER_ROW + 1;
+    const gridIndexDownRight = gridIndex + GRID_TILES_PER_ROW + 1;
     const DR = pitMap.has(gridIndexDownRight);
 
     const pitFrame = getPitFrame(L, R, U, D, UL, UR, DL, DR);
