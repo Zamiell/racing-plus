@@ -9,7 +9,6 @@ import {
   isActionPressedOnAnyInput,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
@@ -46,10 +45,6 @@ export function postRender(): void {
 
 function checkDisplay() {
   if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
-    return;
-  }
-
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
     return;
   }
 

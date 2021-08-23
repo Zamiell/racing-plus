@@ -8,6 +8,7 @@ import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
 import * as removeVoidDoor from "../removeVoidDoor";
 import * as replaceScolex from "../replaceScolex";
+import * as seededDeath from "../seededDeath";
 import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
@@ -33,6 +34,7 @@ export default function racePostNewRoom(): void {
   preventSacrificeRoomTeleport.postNewRoom();
   removeVoidDoor.postNewRoom();
   replaceScolex.postNewRoom();
+  seededDeath.postNewRoom();
   recordMegaSatanRoom();
 }
 

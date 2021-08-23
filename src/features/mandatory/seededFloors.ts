@@ -1,5 +1,3 @@
-// TODO ROTTEN HEARTS
-
 // This feature is not configurable because it could change floors, causing a seed to be different
 // This feature relies on fast travel to function
 

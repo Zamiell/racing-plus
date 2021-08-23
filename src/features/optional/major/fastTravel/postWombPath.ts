@@ -1,4 +1,8 @@
-import { ensureAllCases, log } from "isaacscript-common";
+import {
+  ensureAllCases,
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
+  log,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../util";
 import RaceGoal from "../../../race/types/RaceGoal";
@@ -13,6 +17,10 @@ enum ItLivesSituation {
   TRAPDOOR,
   BOTH,
 }
+
+// The trapdoor / heaven door positions after Hush are not in the center of the room;
+// they are near the top wall
+const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
 export function postEntityKillMomsHeart(_entity: Entity): void {
   const gameFrameCount = g.g.GetFrameCount();
@@ -130,17 +138,13 @@ function doItLivesSituation(situation: ItLivesSituation) {
   // Mark to delete the vanilla paths
   v.room.deletePaths = true;
 
-  let centerGridIndex = 67;
-  let positionCenter = g.r.GetGridPosition(centerGridIndex);
-  let positionLeft = g.r.GetGridPosition(centerGridIndex - 1);
-  let positionRight = g.r.GetGridPosition(centerGridIndex + 1);
+  let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+  let positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
+  let positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
   if (stage === 9) {
-    // The trapdoor / heaven door positions after Hush are not in the center of the room;
-    // they are near the top wall
-    centerGridIndex = 126;
-    positionCenter = g.r.GetGridPosition(centerGridIndex);
-    positionLeft = g.r.GetGridPosition(centerGridIndex - 1);
-    positionRight = g.r.GetGridPosition(centerGridIndex + 1);
+    positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM);
+    positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM - 1);
+    positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM + 1);
   }
 
   switch (situation) {

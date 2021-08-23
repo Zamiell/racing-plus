@@ -203,9 +203,9 @@ function drawTextAndSprite() {
 
     // Show the pill sprite
     const y = baseY + 20 * (i + 1);
-    const pos = Vector(x, y);
+    const position = Vector(x, y);
     const sprite = pillSprites[pillEntry.effect];
-    sprite.RenderLayer(0, pos);
+    sprite.RenderLayer(0, position);
 
     // Show the pill effect as text
     const pillConfig = g.itemConfig.GetPillEffect(pillEntry.effect);

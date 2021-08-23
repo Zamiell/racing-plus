@@ -1,6 +1,7 @@
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
+import { inRaceRoom } from "./raceRoom";
 import RacerStatus from "./types/RacerStatus";
 
 export function postRender(): void {
@@ -15,12 +16,13 @@ function checkDisplay() {
     return;
   }
 
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+  if (g.race.myStatus === RacerStatus.FINISHED && !g.raceVars.finished) {
+    // We booted the game after a race was finished
     return;
   }
 
-  if (g.race.myStatus === RacerStatus.FINISHED && !g.raceVars.finished) {
-    // We booted the game after a race was finished
+  // Prevent the timer from flashing for a brief second before the game resets
+  if (inRaceRoom()) {
     return;
   }
 

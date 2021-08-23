@@ -1,5 +1,4 @@
 import { ISAAC_FRAMES_PER_SECOND } from "../../constants";
-import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
 import v from "./v";
@@ -24,10 +23,6 @@ export function postRender(): void {
 function checkDisplay() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
-    return;
-  }
-
   // Find out how much time has passed since the speedrun started
   let elapsedFrames: int;
   if (v.run.finished && v.run.finishedFrames !== null) {
@@ -40,7 +35,10 @@ function checkDisplay() {
   const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
 
   timer.display(TimerType.RACE_OR_SPEEDRUN, seconds);
+  notifyLiveSplit(elapsedFrames);
+}
 
+function notifyLiveSplit(elapsedFrames: int) {
   const paddedFrames = elapsedFrames.toString().padStart(6, "0");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   SpeedrunTimerString =

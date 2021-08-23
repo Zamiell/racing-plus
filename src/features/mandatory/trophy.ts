@@ -3,7 +3,7 @@ import g from "../../globals";
 import EntityLocation from "../../types/EntityLocation";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
 import raceFinish from "../race/raceFinish";
-import { isSeededDeathActive } from "../race/seededDeath";
+import { isSeededDeathActive } from "../race/v";
 import * as speedrun from "../speedrun/speedrun";
 import { speedrunIsFinished } from "../speedrun/v";
 

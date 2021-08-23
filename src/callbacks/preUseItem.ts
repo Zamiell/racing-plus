@@ -11,6 +11,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_PRE_USE_ITEM,
+    d6,
+    CollectibleType.COLLECTIBLE_D6, // 105
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_PRE_USE_ITEM,
     deadSeaScrolls,
     CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS, // 124
   );
@@ -31,7 +37,19 @@ function weNeedToGoDeeper(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
-  return speedrunPreUseItem.preUseItemWeNeedToGoDeeper(rng, player);
+  return speedrunPreUseItem.weNeedToGoDeeper(rng, player);
+}
+
+// CollectibleType.COLLECTIBLE_D6 (105)
+function d6(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: int,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+) {
+  return speedrunPreUseItem.d6(player);
 }
 
 // CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS (124)

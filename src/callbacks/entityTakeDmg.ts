@@ -1,6 +1,7 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import * as raceEntityTakeDmg from "../features/race/callbacks/entityTakeDmg";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -12,15 +13,21 @@ export function init(mod: Mod): void {
 
 function player(
   tookDamage: Entity,
-  _damageAmount: float,
+  damageAmount: float,
   damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
+  let returnValue: boolean | void;
+
   // Mandatory features
-  const returnValue = debugPowers.entityTakeDmgPlayer();
+  returnValue = debugPowers.entityTakeDmgPlayer();
   if (returnValue !== undefined) {
-    return false;
+    return returnValue;
+  }
+  returnValue = raceEntityTakeDmg.entityTakeDmgPlayer(tookDamage, damageAmount);
+  if (returnValue !== undefined) {
+    return returnValue;
   }
 
   // Major features

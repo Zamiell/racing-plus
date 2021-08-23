@@ -5,7 +5,6 @@ export function main(): void {
   g.RNGCounter.bookOfSin = startSeed;
   g.RNGCounter.deadSeaScrolls = startSeed;
   g.RNGCounter.guppysHead = startSeed;
-  g.RNGCounter.guppysCollar = startSeed;
   g.RNGCounter.butterBean = startSeed;
   g.RNGCounter.devilRoomKrampus = startSeed;
   g.RNGCounter.devilRoomChoice = startSeed;

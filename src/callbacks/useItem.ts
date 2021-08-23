@@ -2,6 +2,7 @@ import debugFunction from "../debugFunction";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
+import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
 import { CollectibleTypeCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
@@ -9,6 +10,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_USE_ITEM,
     teleport,
     CollectibleType.COLLECTIBLE_TELEPORT, // 44
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    voidItem,
+    CollectibleType.COLLECTIBLE_VOID, // 477
   );
 
   mod.AddCallback(
@@ -33,6 +40,11 @@ export function init(mod: Mod): void {
 // CollectibleType.COLLECTIBLE_TELEPORT (44)
 function teleport() {
   seededTeleports.useItemTeleport();
+}
+
+// CollectibleType.COLLECTIBLE_VOID (477)
+function voidItem() {
+  speedrunUseItem.voidItem();
 }
 
 // CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)

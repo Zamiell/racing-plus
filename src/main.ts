@@ -50,6 +50,7 @@ import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
+import * as postPlayerFatalDamage from "./callbacksCustom/postPlayerFatalDamage";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -92,7 +93,6 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
   mod.AddCallback(ModCallbacks.MC_USE_PILL, usePill.main); // 10
   mod.AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, postCurseEval.main); // 12
-  mod.AddCallback(ModCallbacks.MC_INPUT_ACTION, inputAction.main); // 13
   mod.AddCallback(ModCallbacks.MC_POST_GAME_END, postGameEnd.main); // 16
   mod.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main); // 17
   mod.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
@@ -121,6 +121,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postFamiliarInit.init(mod); // 7
   usePill.init(mod); // 10
   entityTakeDmg.init(mod); // 11
+  inputAction.init(mod); // 13
   preUseItem.init(mod); // 23
   preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
@@ -168,6 +169,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE,
     postPlayerChangeType.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PLAYER_FATAL_DAMAGE,
+    postPlayerFatalDamage.main,
   );
 
   mod.AddCallbackCustom(

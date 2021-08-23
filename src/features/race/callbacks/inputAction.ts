@@ -1,10 +1,15 @@
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import RaceFormat from "../types/RaceFormat";
 import RacerStatus from "../types/RacerStatus";
 import RaceStatus from "../types/RaceStatus";
 
 // Prevent opening the console during a race
 export function actionConsole(): boolean | void {
+  if (!config.clientCommunication) {
+    return undefined;
+  }
+
   if (g.debug) {
     return undefined;
   }

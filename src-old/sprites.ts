@@ -37,7 +37,7 @@ function getFileName(spriteType: string, spriteName: string) {
 export function display(): void {
   // Loop through all the sprites and render them
   for (const [spriteType, spriteDescription] of sprites) {
-    const pos = getPosition(spriteType);
+    const position = getPosition(spriteType);
 
     // Draw it
     if (spriteDescription.sprite !== null) {
@@ -52,7 +52,7 @@ function getPosition(spriteType: string) {
   const challenge = Isaac.GetChallenge();
 
   // Start in the center of the screen by default
-  const pos = misc.getScreenCenterPosition();
+  const position = misc.getScreenCenterPosition();
 
   switch (spriteType) {
     case "corrupt1": {

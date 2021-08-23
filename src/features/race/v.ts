@@ -11,6 +11,22 @@ const v = {
 
     seededDeath: {
       state: SeededDeathState.DISABLED,
+      reviveFrame: null as int | null,
+      guppysCollar: false,
+      guppysCollarSeed: 0,
+      debuffEndFrame: null as int | null,
+      fetalPosition: Vector.Zero,
+
+      devilRoomDeals: 0,
+      frameOfLastDevilDeal: null as int | null,
+
+      // TODO check to see if all of these are used
+      items: [] as CollectibleType[],
+      charge: null as int | null,
+      spriteScale: Vector.Zero,
+      goldenBomb: false,
+      goldenKey: false,
+      stage: null as int | null,
     },
 
     spawnedCorpseTrapdoor: false,
@@ -34,4 +50,8 @@ export function init(): void {
 
 function featureEnabled() {
   return config.clientCommunication;
+}
+
+export function isSeededDeathActive(): boolean {
+  return v.run.seededDeath.state !== SeededDeathState.DISABLED;
 }

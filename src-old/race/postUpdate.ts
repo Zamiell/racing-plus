@@ -1,4 +1,5 @@
 /*
+
 export function main(): void {
   // We do not want to return if we are not in a race,
   // as there are also speedrun-related checks in the follow functions
@@ -28,15 +29,4 @@ function check3DollarBill() {
   }
 }
 
-// Check to see if Keeper took damage with his temporary Holy Mantle
-function checkKeeperHolyMantle() {
-  const effects = g.p.GetEffects();
-
-  if (
-    g.run.level.tempHolyMantle &&
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-  ) {
-    g.run.level.tempHolyMantle = false;
-  }
-}
 */

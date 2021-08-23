@@ -1,8 +1,24 @@
 ```
 ### *v0.60.1* - August 23rd, 2021
 
--
+- Attempts to reroll a Checkpoint will now fail.
+- The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
 ```
+
+/*
+
+This code needs to run after a forgotten switch:
+
+    if (g.run.seededDeath.state === SeededDeath.state.DEATH_ANIMATION) {
+      g.p.PlayExtraAnimation("Death");
+    }
+
+- Test to see what happens if Soul dies in seeded death
+
+- Add code to make The Soul switch to Forgotten upon starting the death animation
+
+*/
+Test seeded death mechanic taking golden bomb to next floor
 
 TODO Racing+ new features:
 - make items in order on devil/angel rooms

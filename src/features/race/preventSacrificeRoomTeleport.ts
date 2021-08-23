@@ -1,3 +1,4 @@
+import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import g from "../../globals";
 import { removeGridEntity } from "../../utilGlobals";
 import RaceGoal from "./types/RaceGoal";
@@ -6,7 +7,6 @@ import RaceStatus from "./types/RaceStatus";
 import v from "./v";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
-const INDEX_OF_CENTER_OF_ROOM = 67;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -21,7 +21,7 @@ export function postSacrifice(numSacrifices: int): void {
 
 function checkDeleteSpikes() {
   if (shouldDeleteSpikes()) {
-    const spikes = g.r.GetGridEntity(INDEX_OF_CENTER_OF_ROOM);
+    const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
     if (spikes !== null) {
       removeGridEntity(spikes);
     }

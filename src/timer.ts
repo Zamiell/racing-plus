@@ -1,4 +1,5 @@
 import { getHUDOffsetVector } from "isaacscript-common";
+import g from "./globals";
 import TimerType from "./types/TimerType";
 import { initSprite } from "./util";
 
@@ -14,53 +15,16 @@ const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
 const spriteCollectionMap = new Map<int, Sprites>();
 
-/*
-export function checkDisplaySeededDeath(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
-    return;
-  }
-
-  let remainingTimeMilliseconds: int | undefined;
-  let adjustTimerRight = false;
-  let moveTimerToBottomRight = false;
-  if (g.run.seededDeath.state >= SeededDeathState.FETAL_POSITION) {
-    remainingTimeMilliseconds =
-      g.run.seededDeath.debuffEndTime - Isaac.GetTime();
-  }
-  if (
-    remainingTimeMilliseconds === undefined ||
-    remainingTimeMilliseconds <= 0
-  ) {
-    return;
-  }
-
-  // Convert milliseconds to seconds
-  const seconds = remainingTimeMilliseconds / 1000;
-
-  let startingX = 65;
-  let startingY = 79;
-  if (adjustTimerRight) {
-    startingX += 18;
-  }
-  if (moveTimerToBottomRight) {
-    const posGame = misc.gridToPos(11, 5);
-    const pos = Isaac.WorldToRenderPosition(posGame);
-    startingX = pos.X - 11;
-    startingY = pos.Y - 10;
-  }
-
-  display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
-}
-*/
-
 export function display(
   timerType: TimerType,
   seconds: int,
   startingX?: int,
   startingY?: int,
 ): void {
+  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+    return;
+  }
+
   if (startingX === undefined) {
     startingX = RACE_TIMER_POSITION.X;
   }

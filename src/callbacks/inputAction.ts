@@ -6,47 +6,45 @@
 import getActionValueFunctions from "./getActionValueFunctions";
 import isActionTriggeredFunctions from "./isActionTriggeredFunctions";
 
-export function main(
+export function init(mod: Mod): void {
+  mod.AddCallback(
+    ModCallbacks.MC_INPUT_ACTION,
+    isActionTriggered,
+    InputHook.IS_ACTION_TRIGGERED, // 1
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_INPUT_ACTION,
+    getActionValue,
+    InputHook.GET_ACTION_VALUE, // 2
+  );
+}
+
+// InputHook.IS_ACTION_PRESSED (1)
+function isActionTriggered(
   entity: Entity | null,
-  inputHook: InputHook,
+  _inputHook: InputHook,
   buttonAction: ButtonAction,
-): number | boolean | void {
-  const inputHookFunction = inputHookFunctionMap.get(inputHook);
-  if (inputHookFunction !== undefined) {
-    return inputHookFunction(entity, buttonAction);
+) {
+  const isActionTriggeredFunction =
+    isActionTriggeredFunctions.get(buttonAction);
+  if (isActionTriggeredFunction !== undefined) {
+    return isActionTriggeredFunction(entity);
   }
 
   return undefined;
 }
 
-const inputHookFunctionMap = new Map<
-  InputHook,
-  (entity: Entity | null, buttonAction: ButtonAction) => number | boolean | void
->();
+// InputHook.GET_ACTION_VALUE (2)
+function getActionValue(
+  entity: Entity | null,
+  _inputHook: InputHook,
+  buttonAction: ButtonAction,
+) {
+  const getActionValueFunction = getActionValueFunctions.get(buttonAction);
+  if (getActionValueFunction !== undefined) {
+    return getActionValueFunction(entity);
+  }
 
-// 1
-inputHookFunctionMap.set(
-  InputHook.IS_ACTION_TRIGGERED,
-  (entity: Entity | null, buttonAction: ButtonAction) => {
-    const isActionTriggeredFunction =
-      isActionTriggeredFunctions.get(buttonAction);
-    if (isActionTriggeredFunction !== undefined) {
-      return isActionTriggeredFunction(entity);
-    }
-
-    return undefined;
-  },
-);
-
-// 2
-inputHookFunctionMap.set(
-  InputHook.GET_ACTION_VALUE,
-  (entity: Entity | null, buttonAction: ButtonAction) => {
-    const getActionValueFunction = getActionValueFunctions.get(buttonAction);
-    if (getActionValueFunction !== undefined) {
-      return getActionValueFunction(entity);
-    }
-
-    return undefined;
-  },
-);
+  return undefined;
+}

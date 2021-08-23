@@ -96,12 +96,12 @@ functionMap.set("cards", (_params: string) => {
   for (let y = 0; y <= 6; y++) {
     for (let x = 0; x <= 12; x++) {
       if (cardNum < Card.NUM_CARDS) {
-        const pos = gridToPos(x, y);
+        const position = gridToPos(x, y);
         Isaac.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_TAROTCARD,
           cardNum,
-          pos,
+          position,
           Vector.Zero,
           null,
         );
@@ -310,12 +310,12 @@ functionMap.set("pills", (_params: string) => {
   for (let y = 0; y <= 6; y++) {
     for (let x = 0; x <= 12; x++) {
       if (pillNum < PillColor.NUM_PILLS) {
-        const pos = gridToPos(x, y);
+        const position = gridToPos(x, y);
         Isaac.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_PILL,
           pillNum,
-          pos,
+          position,
           Vector.Zero,
           null,
         );
