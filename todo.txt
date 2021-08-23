@@ -3,6 +3,7 @@
 
 - Attempts to reroll a Checkpoint will now fail.
 - The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
+- Fixed the bug where extra items would not appear on Tainted Lost. (Thanks KiraKeepKool)
 ```
 
 /*

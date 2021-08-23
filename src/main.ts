@@ -20,6 +20,7 @@ import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postGameStarted from "./callbacks/postGameStarted";
+import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNewLevel from "./callbacks/postNewLevel";
 import * as postNewRoom from "./callbacks/postNewRoom";
 import * as postNPCInit from "./callbacks/postNPCInit";
@@ -128,6 +129,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postPickupInit.init(mod); // 34
   postPickupUpdate.init(mod); // 35
   postTearUpdate.init(mod); // 40
+  postLaserInit.init(mod); // 47
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
   postBombInit.init(mod); // 57

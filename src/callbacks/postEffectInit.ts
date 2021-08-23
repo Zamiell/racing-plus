@@ -1,5 +1,6 @@
 import * as centerStart from "../features/mandatory/centerStart";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
+import * as racePostEffectInit from "../features/race/callbacks/postEffectInit";
 import { EffectVariantCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
@@ -23,6 +24,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_POST_EFFECT_INIT,
+    bloodDrop,
+    EffectVariant.BLOOD_DROP, // 70
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_EFFECT_INIT,
     invisibleEffect,
     EffectVariantCustom.INVISIBLE_EFFECT,
   );
@@ -41,6 +48,11 @@ function creepRed(effect: EntityEffect) {
 // EffectVariant.PLAYER_CREEP_GREEN (53)
 function playerCreepGreen(effect: EntityEffect) {
   changeCreepColor.postEffectInitPlayerCreepGreen(effect);
+}
+
+// EffectVariant.BLOOD_DROP (70)
+function bloodDrop(effect: EntityEffect) {
+  racePostEffectInit.bloodDrop(effect);
 }
 
 // EffectVariantCustom.INVISIBLE_EFFECT

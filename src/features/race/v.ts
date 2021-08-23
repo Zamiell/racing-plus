@@ -15,6 +15,7 @@ const v = {
       guppysCollar: false,
       guppysCollarSeed: 0,
       debuffEndFrame: null as int | null,
+      curseSetFrame: 0,
       fetalPosition: Vector.Zero,
 
       devilRoomDeals: 0,

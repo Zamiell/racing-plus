@@ -21,6 +21,10 @@ export function display(
   startingX?: int,
   startingY?: int,
 ): void {
+  if (seconds < 0) {
+    return;
+  }
+
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
     return;
   }

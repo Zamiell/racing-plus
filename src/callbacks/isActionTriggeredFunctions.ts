@@ -10,7 +10,19 @@ export default functionMap;
 
 // 8
 functionMap.set(ButtonAction.ACTION_BOMB, () => {
-  return fastTravelInputAction.disableInputBoolean();
+  let value;
+
+  value = raceInputAction.isActionTriggeredBomb();
+  if (value !== undefined) {
+    return value;
+  }
+
+  value = fastTravelInputAction.disableInputBoolean();
+  if (value !== undefined) {
+    return value;
+  }
+
+  return undefined;
 });
 
 // 9
@@ -42,5 +54,5 @@ functionMap.set(ButtonAction.ACTION_DROP, () => {
 
 // 28
 functionMap.set(ButtonAction.ACTION_CONSOLE, () => {
-  return raceInputAction.actionConsole();
+  return raceInputAction.isActionTriggeredConsole();
 });
