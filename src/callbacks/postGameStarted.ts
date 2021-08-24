@@ -35,6 +35,9 @@ export function main(isContinued: boolean): void {
     MinimapAPI.Config.Disable = false;
   }
 
+  // Features that need to run regardless of whether the run is continued or not
+  disableMultiplayer.postGameStarted();
+
   if (isContinued) {
     postGameStartedContinued();
     return;
@@ -46,7 +49,6 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
-  disableMultiplayer.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
