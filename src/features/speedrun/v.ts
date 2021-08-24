@@ -26,8 +26,6 @@ const v = {
 
     finished: false,
     finishedFrames: null as int | null,
-
-    firstPlayerControllerIndex: null as int | null,
   },
 
   room: {

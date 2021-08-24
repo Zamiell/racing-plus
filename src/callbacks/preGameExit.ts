@@ -1,7 +1,7 @@
+import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import racePreGameExit from "../features/race/callbacks/preGameExit";
-import { speedrunPreGameExit } from "../features/speedrun/callbacks/preGameExit";
 
 export function main(shouldSave: boolean): void {
+  disableMultiplayer.preGameExit(shouldSave);
   racePreGameExit();
-  speedrunPreGameExit(shouldSave);
 }

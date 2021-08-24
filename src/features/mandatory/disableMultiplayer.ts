@@ -1,6 +1,18 @@
-import { isChildPlayer } from "isaacscript-common";
+// Multiplayer is illegal in Racing+ races and custom challenges, so if multiplayer is detected,
+// the run is forcefully ended
+
+import { isChildPlayer, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import v from "./v";
+
+const v = {
+  run: {
+    firstPlayerControllerIndex: null as int | null,
+  },
+};
+
+export function init(): void {
+  saveDataManager("disableMultiplayer", v);
+}
 
 // ModCallbacks.MC_POST_PLAYER_INIT (9)
 export function postPlayerInit(player: EntityPlayer): void {
@@ -25,7 +37,6 @@ export function postPlayerInitLate(player: EntityPlayer): void {
   if (player.ControllerIndex !== v.run.firstPlayerControllerIndex) {
     // A new player has arrived that is not the first player,
     // so they must be trying to initiate a multiplayer game
-    // Prevent this from happening by fading out to an ending
-    g.g.Fadeout(0.5, FadeoutTarget.FILE_SELECT);
+    g.g.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
   }
 }

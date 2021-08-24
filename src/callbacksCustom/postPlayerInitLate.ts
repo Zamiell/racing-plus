@@ -1,5 +1,5 @@
-import { speedrunPostPlayerInitLate } from "../features/speedrun/callbacks/postPlayerInitLate";
+import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 
 export function main(player: EntityPlayer): void {
-  speedrunPostPlayerInitLate(player);
+  disableMultiplayer.postPlayerInitLate(player);
 }
