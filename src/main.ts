@@ -53,6 +53,7 @@ import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerFatalDamage from "./callbacksCustom/postPlayerFatalDamage";
+import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -158,6 +159,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_PLAYER_UPDATE_REORDERED,
     postPlayerUpdate.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PLAYER_INIT_LATE,
+    postPlayerInitLate.main,
   );
 
   mod.AddCallbackCustom(
