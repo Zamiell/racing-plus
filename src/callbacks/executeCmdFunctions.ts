@@ -18,6 +18,8 @@ import {
   commands,
   crawlspace,
   devil,
+  goldenBomb,
+  goldenKey,
   IAMERROR,
   movePlayer,
   trapdoor,
@@ -224,6 +226,22 @@ functionMap.set("effects", (_params: string) => {
 
 functionMap.set("error", (_params: string) => {
   IAMERROR();
+});
+
+functionMap.set("goldbomb", (_params: string) => {
+  goldenBomb();
+});
+
+functionMap.set("goldenbomb", (_params: string) => {
+  goldenBomb();
+});
+
+functionMap.set("goldenkey", (_params: string) => {
+  goldenKey();
+});
+
+functionMap.set("goldkey", (_params: string) => {
+  goldenKey();
 });
 
 functionMap.set("help", (_params: string) => {

@@ -11,19 +11,6 @@
 - Fixed the bug where Dusty Death's Heads were not properly flipped. (Thanks Po4ti)
 ```
 
-/*
-
-This code needs to run after a forgotten switch:
-
-    if (g.run.seededDeath.state === SeededDeath.state.DEATH_ANIMATION) {
-      g.p.PlayExtraAnimation("Death");
-    }
-
-- Test to see what happens if Soul dies in seeded death
-
-- Add code to make The Soul switch to Forgotten upon starting the death animation
-
-*/
 Test seeded death mechanic taking golden bomb to next floor
 
 TODO Racing+ new features:

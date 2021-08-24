@@ -71,6 +71,16 @@ export function devil(params: string): void {
   }
 }
 
+export function goldenBomb(): void {
+  const player = Isaac.GetPlayer();
+  player.AddGoldenBomb();
+}
+
+export function goldenKey(): void {
+  const player = Isaac.GetPlayer();
+  player.AddGoldenKey();
+}
+
 export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
