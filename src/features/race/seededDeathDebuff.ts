@@ -64,12 +64,6 @@ function debuffOnSetHealth(player: EntityPlayer) {
       break;
     }
 
-    // 17
-    case PlayerType.PLAYER_THESOUL: {
-      player.AddHearts(1);
-      break;
-    }
-
     default: {
       player.AddSoulHearts(3);
       break;

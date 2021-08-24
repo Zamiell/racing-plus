@@ -13,8 +13,6 @@ const v = {
     seededDeath: {
       state: SeededDeathState.DISABLED,
       reviveFrame: null as int | null,
-      guppysCollar: false,
-      guppysCollarSeed: 0,
       debuffEndFrame: null as int | null,
       fetalPosition: Vector.Zero,
 

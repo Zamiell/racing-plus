@@ -1,5 +1,4 @@
 import {
-  getRandom,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
@@ -10,7 +9,6 @@ import {
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
-import { incrementRNG } from "../../util";
 import {
   findFreePosition,
   removeGridEntity,
@@ -34,6 +32,7 @@ export function postUpdate(): void {
   postUpdateGhostForm();
   postUpdateDisableControls();
   postUpdateCheckTakingDevilItem();
+  postUpdateWaitingForForgottenSwitch();
 }
 
 function postUpdateDeathAnimation() {
@@ -44,7 +43,6 @@ function postUpdateDeathAnimation() {
   const gameFrameCount = g.g.GetFrameCount();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
   // Check to see if the (fake) death animation is over
   if (
@@ -58,24 +56,10 @@ function postUpdateDeathAnimation() {
   v.run.seededDeath.state = SeededDeathState.CHANGING_ROOMS;
   player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
 
-  if (character === PlayerType.PLAYER_THEFORGOTTEN) {
-    // The "Revive()" function is bugged with The Forgotten;
-    // he will be revived with one soul heart unless he is given a bone heart first
-    player.AddBoneHearts(1);
-  } else if (character === PlayerType.PLAYER_THESOUL) {
-    // If we died on The Soul, we want to remove all of The Forgotten's bone hearts,
-    // emulating what happens if you die with Dead Cat
-    player.AddBoneHearts(-24);
-    player.AddBoneHearts(1);
-  }
-
   const enterDoor = g.l.EnterDoor;
   const door = g.r.GetDoor(enterDoor);
   const direction = (door !== null && door.Direction) || Direction.NO_DIRECTION;
-  const transition = v.run.seededDeath.guppysCollar
-    ? RoomTransitionAnim.COLLAR
-    : RoomTransitionAnim.WALK;
-  teleport(previousRoomIndex, direction, transition);
+  teleport(previousRoomIndex, direction, RoomTransitionAnim.WALK);
   g.l.LeaveDoor = enterDoor;
 }
 
@@ -122,6 +106,24 @@ function postUpdateCheckTakingDevilItem() {
     v.run.seededDeath.devilRoomDeals = devilRoomDeals;
     v.run.seededDeath.frameOfLastDevilDeal = gameFrameCount;
   }
+}
+
+function postUpdateWaitingForForgottenSwitch() {
+  if (!v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
+    return;
+  }
+
+  const forgottenBodies = Isaac.FindByType(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariant.FORGOTTEN_BODY,
+  );
+  if (forgottenBodies.length > 0) {
+    return;
+  }
+
+  v.run.seededDeath.deferringDeathUntilForgottenSwitch = false;
+  const player = Isaac.GetPlayer();
+  invokeCustomDeathMechanic(player);
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -193,15 +195,6 @@ function postNewRoomChangingRooms() {
   const isaacFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
-  // Do not continue on with the custom death mechanic if the 50% roll for Guppy's Collar was
-  // successful
-  if (v.run.seededDeath.guppysCollar) {
-    v.run.seededDeath.guppysCollar = false;
-    v.run.seededDeath.state = SeededDeathState.DISABLED;
-    player.ControlsEnabled = true;
-    return;
-  }
-
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
 
   // Play the animation where Isaac lies in the fetal position
@@ -248,11 +241,6 @@ export function entityTakeDmgPlayer(): boolean | void {
   }
 
   return undefined;
-}
-
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  v.run.seededDeath.guppysCollarSeed = g.seeds.GetStartSeed();
 }
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
@@ -331,14 +319,15 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   // If we are already switching from The Soul to The Forgotten,
   // prevent the death and continue to wait
   if (v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
-    return true;
+    return false;
   }
 
   // If the player is The Soul, switch back to The Forgotten and defer invoking the custom death
   // mechanic until the switch is complete
   if (character === PlayerType.PLAYER_THESOUL) {
+    forceSwitchToForgotten();
     v.run.seededDeath.deferringDeathUntilForgottenSwitch = true;
-    return true;
+    return false;
   }
 
   return invokeCustomDeathMechanic(player);
@@ -355,23 +344,7 @@ function seededDeathShouldApply() {
 
 function invokeCustomDeathMechanic(player: EntityPlayer) {
   const gameFrameCount = g.g.GetFrameCount();
-  const character = player.GetPlayerType();
 
-  // Calculate if Guppy's Collar should work
-  v.run.seededDeath.guppysCollar = false;
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
-    v.run.seededDeath.guppysCollarSeed = incrementRNG(
-      v.run.seededDeath.guppysCollarSeed,
-    );
-    const reviveChance = getRandom(v.run.seededDeath.guppysCollarSeed);
-    if (reviveChance < 0.5) {
-      v.run.seededDeath.guppysCollar = true;
-      // (continue with the custom death animation; later on, we won't apply the debuff)
-    }
-  }
-
-  // The player has taken fatal damage
-  // Invoke the custom death mechanic
   v.run.seededDeath.state = SeededDeathState.DEATH_ANIMATION;
   v.run.seededDeath.reviveFrame = gameFrameCount + DEATH_ANIMATION_FRAMES;
   player.PlayExtraAnimation("Death");
@@ -383,22 +356,14 @@ function invokeCustomDeathMechanic(player: EntityPlayer) {
   g.seeds.AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 
   // Drop all trinkets and pocket items
-  if (!v.run.seededDeath.guppysCollar) {
-    const trinketPosition1 = findFreePosition(player.Position);
-    player.DropTrinket(trinketPosition1, false);
-    const trinketPosition2 = findFreePosition(player.Position);
-    player.DropTrinket(trinketPosition2, false);
-    const pocketPosition1 = findFreePosition(player.Position);
-    player.DropPocketItem(0, pocketPosition1);
-    const pocketPosition2 = findFreePosition(player.Position);
-    player.DropPocketItem(1, pocketPosition2);
-  }
-
-  // If we are The Soul, the death animation will not work properly
-  // Thus, manually switch to the Forgotten to avoid this
-  if (character === PlayerType.PLAYER_THESOUL) {
-    forceSwitchToForgotten();
-  }
+  const trinketPosition1 = findFreePosition(player.Position);
+  player.DropTrinket(trinketPosition1, false);
+  const trinketPosition2 = findFreePosition(player.Position);
+  player.DropTrinket(trinketPosition2, false);
+  const pocketPosition1 = findFreePosition(player.Position);
+  player.DropPocketItem(0, pocketPosition1);
+  const pocketPosition2 = findFreePosition(player.Position);
+  player.DropPocketItem(1, pocketPosition2);
 
   return false;
 }
