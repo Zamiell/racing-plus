@@ -1,3 +1,5 @@
+// TODO DISABLE FIRST PLAYER INDEX TRACKING (?)
+
 import v from "./v";
 
 // ModCallbacks.MC_POST_PLAYER_INIT (9)

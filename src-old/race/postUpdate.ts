@@ -1,13 +1,5 @@
 /*
 
-export function main(): void {
-  // We do not want to return if we are not in a race,
-  // as there are also speedrun-related checks in the follow functions
-  check3DollarBill();
-  checkKeeperHolyMantle();
-  seededDeath.postUpdate();
-}
-
 function check3DollarBill() {
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&

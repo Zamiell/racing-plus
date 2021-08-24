@@ -1,4 +1,3 @@
-import { initTransformationTracking } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
@@ -42,9 +41,6 @@ import * as modConfigMenu from "./modConfigMenu";
 import * as passiveItemsForEden from "./passiveItemsForEden";
 
 export default function initFeatureVariables(): void {
-  // IsaacScript features
-  initTransformationTracking();
-
   // Core
   modConfigMenu.init();
   globals.init();

@@ -1,5 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
+import ActiveItemDescription from "../../types/ActiveItemDescription";
 import SeededDeathState from "./types/SeededDeathState";
 
 const v = {
@@ -15,19 +16,22 @@ const v = {
       guppysCollar: false,
       guppysCollarSeed: 0,
       debuffEndFrame: null as int | null,
-      curseSetFrame: 0,
       fetalPosition: Vector.Zero,
 
       devilRoomDeals: 0,
       frameOfLastDevilDeal: null as int | null,
 
-      // TODO check to see if all of these are used
+      // Variables for tracking player state
+      actives: new Map<ActiveSlot, ActiveItemDescription>(),
+      actives2: new Map<ActiveSlot, ActiveItemDescription>(),
       items: [] as CollectibleType[],
-      charge: null as int | null,
-      spriteScale: Vector.Zero,
+      items2: [] as CollectibleType[],
+      spriteScale: null as Vector | null,
+      spriteScale2: null as Vector | null,
       goldenBomb: false,
       goldenKey: false,
       stage: null as int | null,
+      removedDarkEsau: false,
     },
 
     spawnedCorpseTrapdoor: false,

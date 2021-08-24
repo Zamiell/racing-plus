@@ -1,6 +1,7 @@
 // TODO:
 // - add feature where you can press escape to exit, and the text will remain
 
+import { getEnumValues } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
@@ -26,13 +27,11 @@ function checkKeyboardInput() {
   }
 
   // Record the pressed state of every possible key
-  for (const keyboardValue of Object.values(Keyboard)) {
-    if (
-      Input.IsButtonPressed(keyboardValue as Keyboard, player.ControllerIndex)
-    ) {
-      keysPressed.set(keyboardValue as Keyboard, true);
+  for (const keyboardValue of getEnumValues(Keyboard)) {
+    if (Input.IsButtonPressed(keyboardValue, player.ControllerIndex)) {
+      keysPressed.set(keyboardValue, true);
     } else {
-      keysPressed.delete(keyboardValue as Keyboard);
+      keysPressed.delete(keyboardValue);
     }
   }
 

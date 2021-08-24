@@ -1,6 +1,9 @@
-import { getRandom, GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import {
-  COLOR_DEFAULT,
+  getRandom,
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
+  willReviveFromSpiritShackles,
+} from "isaacscript-common";
+import {
   GAME_FRAMES_PER_SECOND,
   ISAAC_FRAMES_PER_SECOND,
 } from "../../constants";
@@ -14,13 +17,14 @@ import {
   teleport,
 } from "../../utilGlobals";
 import { forceSwitchToForgotten } from "../mandatory/switchForgotten";
+import { debuffOff, debuffOn } from "./seededDeathDebuff";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 import SeededDeathState from "./types/SeededDeathState";
 import v from "./v";
 
-const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+const SEEDED_DEATH_DEBUFF_FRAMES = 5 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 const DEATH_ANIMATION_FRAMES = 46;
 
@@ -53,7 +57,6 @@ function postUpdateDeathAnimation() {
   v.run.seededDeath.reviveFrame = null;
   v.run.seededDeath.state = SeededDeathState.CHANGING_ROOMS;
   player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
-  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 
   if (character === PlayerType.PLAYER_THEFORGOTTEN) {
     // The "Revive()" function is bugged with The Forgotten;
@@ -159,28 +162,6 @@ function postRenderCheckDisplayTimer(): void {
   timer.display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
 }
 
-// ModCallbacks.MC_INPUT_ACTION (13)
-// InputHook.GET_ACTION_VALUE (2)
-// ButtonAction.ACTION_BOMB (8)
-export function inputActionIsActionTriggeredBomb(): void {
-  if (v.run.seededDeath.debuffEndFrame === null) {
-    return;
-  }
-
-  // After setting the mist curse, the game immediately removes it,
-  // presumably because we are not in the alternate dimension
-  // Even if you continually set it on every PostUpdate or PostRender frame,
-  // it will not work properly
-  // However, it does work if we set it on every InputAction fire
-  // Since this callback fires multiple times per frame, we can limit the total amount of function
-  // calls by arbitrarily choosing one kind of button (bomb) and only calling it once a frame
-  const gameFrameCount = g.g.GetFrameCount();
-  if (gameFrameCount !== v.run.seededDeath.curseSetFrame) {
-    const player = Isaac.GetPlayer();
-    player.AddCurseMistEffect();
-  }
-}
-
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   postNewRoomDeathAnimation();
@@ -230,6 +211,7 @@ function postNewRoomChangingRooms() {
   debuffOn(player);
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
+  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }
 
 function postNewRoomGhostForm(): void {
@@ -322,6 +304,11 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   const roomType = g.r.GetType();
   const character = player.GetPlayerType();
 
+  // Do not revive the player if they have Spirit Shackles and it is activated
+  if (willReviveFromSpiritShackles(player)) {
+    return undefined;
+  }
+
   // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
@@ -384,29 +371,11 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   return false;
 }
 
-function debuffOn(player: EntityPlayer) {
-  // Make them take "red heart damage" for the purposes of getting a Devil Deal
-  g.l.SetRedHeartDamage();
-
-  // Fade the player
-  const sprite = player.GetSprite();
-  sprite.Color = Color(1, 1, 1, 0.25, 0, 0, 0);
-
-  // All of the items and so forth will be taken away by the "mist" curse that is applied in the
-  // InputAction callback
-}
-
-function debuffOff(player: EntityPlayer) {
-  // Un-fade the character
-  const sprite = player.GetSprite();
-  sprite.Color = COLOR_DEFAULT;
-}
-
 function seededDeathShouldApply() {
+  return true; // TODO debugging
   return (
-    true || // TODO
-    (g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.format === RaceFormat.SEEDED)
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED
   );
 }

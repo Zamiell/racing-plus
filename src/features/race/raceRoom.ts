@@ -21,7 +21,7 @@ const GFX_PATH = "gfx/race/race-room";
 const X_SPACING = 110;
 const Y_SPACING = 10;
 
-const sprites = {
+const sprites: Record<string, Sprite | null> = {
   // Top half
   wait: null as Sprite | null, // "Wait for the race to begin!"
   myStatus: null as Sprite | null,
@@ -60,7 +60,7 @@ function emulateGapingMaws() {
 function drawSprites() {
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const spriteName = key as keyof typeof sprites;
+      const spriteName = key;
       const position = getPosition(spriteName);
       sprite.RenderLayer(0, position);
     }
@@ -241,7 +241,7 @@ export function inRaceRoom(): boolean {
 
 export function resetSprites(): void {
   for (const key of Object.keys(sprites)) {
-    const property = key as keyof typeof sprites;
+    const property = key;
     sprites[property] = null;
   }
 }

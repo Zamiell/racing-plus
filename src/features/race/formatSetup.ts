@@ -155,10 +155,6 @@ function seeded(player: EntityPlayer) {
 
   // Remove Cain's Eye, since it is useless
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
-
-  // Since this race type has a custom death mechanic, we also want to remove the Broken Ankh
-  // (since we need the custom revival to always take priority over random revivals)
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
 }
 
 function diversity(player: EntityPlayer) {

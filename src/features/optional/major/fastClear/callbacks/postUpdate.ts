@@ -1,7 +1,6 @@
-import { log } from "isaacscript-common";
+import { getFinalFrameOfAnimation, log } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import { getFinalFrameOfAnimation } from "../../../../../util";
 import * as angels from "../angels";
 import * as krampus from "../krampus";
 import v from "../v";

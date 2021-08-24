@@ -20,14 +20,6 @@ export function consoleCommand(command: string): void {
   log(`Finished executing console command: ${command}`);
 }
 
-export function getFinalFrameOfAnimation(sprite: Sprite): int {
-  const currentFrame = sprite.GetFrame();
-  sprite.SetLastFrame();
-  const finalFrame = sprite.GetFrame();
-  sprite.SetFrame(currentFrame);
-  return finalFrame;
-}
-
 export function hasPolaroidOrNegative(): [boolean, boolean] {
   let hasPolaroid = false;
   let hasNegative = false;

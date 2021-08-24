@@ -8,7 +8,7 @@ import RaceStatus from "./types/RaceStatus";
 const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
 
-const sprites = {
+const sprites: Record<string, Sprite | null> = {
   seededStartingTitle: null as Sprite | null, // "Item" or "Build"
   seededItemCenter: null as Sprite | null,
   seededItemLeft: null as Sprite | null,
@@ -42,7 +42,7 @@ function drawSprites() {
 
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const spriteName = key as keyof typeof sprites;
+      const spriteName = key;
       const position = getPosition(spriteName);
       sprite.RenderLayer(0, position);
     }
@@ -132,7 +132,7 @@ export function postNewRoom(): void {
 
 export function resetSprites(): void {
   for (const key of Object.keys(sprites)) {
-    const property = key as keyof typeof sprites;
+    const property = key;
     sprites[property] = null;
   }
 }
