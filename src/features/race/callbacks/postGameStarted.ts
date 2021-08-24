@@ -85,6 +85,9 @@ function validateChallenge() {
     g.race.format !== RaceFormat.CUSTOM
   ) {
     g.run.restart = true;
+    log(
+      "Restarting since we are on a custom challenge and this is not a custom race.",
+    );
     return false;
   }
 

@@ -380,12 +380,12 @@ functionMap.set("s", (params: string) => {
 });
 
 functionMap.set("s0", (_params: string) => {
-  Isaac.ExecuteCommand("challenge 0");
+  consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
 });
 
 functionMap.set("s1", (_params: string) => {
-  Isaac.ExecuteCommand(`challenge ${ChallengeCustom.SEASON_1}`);
-  Isaac.ExecuteCommand("setcharorder");
+  consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
+  consoleCommand("setcharorder");
 });
 
 functionMap.set("setcharorder", (_params: string) => {
@@ -427,7 +427,7 @@ functionMap.set("speed", (_params: string) => {
 
 functionMap.set("stick", (_params: string) => {
   const seedString = g.seeds.GetStartSeedString();
-  Isaac.ExecuteCommand(`seed ${seedString}`);
+  consoleCommand(`seed ${seedString}`);
 });
 
 functionMap.set("trap", (_params: string) => {

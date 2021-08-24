@@ -63,7 +63,7 @@ export function checkRestartWrongChallenge(): boolean {
     return false;
   }
 
-  consoleCommand("challenge 0");
+  consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
   return true;
 }
 

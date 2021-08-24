@@ -73,6 +73,10 @@ function checkRestart() {
   }
   g.run.restart = false;
 
+  if (checkRestartWrongSpeedrunCharacter()) {
+    return true;
+  }
+
   if (checkRestartWrongChallenge()) {
     return true;
   }
@@ -82,10 +86,6 @@ function checkRestart() {
   }
 
   if (checkRestartWrongRaceSeed()) {
-    return true;
-  }
-
-  if (checkRestartWrongSpeedrunCharacter()) {
     return true;
   }
 
