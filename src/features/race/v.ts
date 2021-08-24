@@ -20,6 +20,7 @@ const v = {
 
       devilRoomDeals: 0,
       frameOfLastDevilDeal: null as int | null,
+      deferringDeathUntilForgottenSwitch: false,
 
       // Variables for tracking player state
       actives: new Map<ActiveSlot, ActiveItemDescription>(),

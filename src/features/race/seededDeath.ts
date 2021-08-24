@@ -320,10 +320,42 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
     return undefined;
   }
 
-  // Do not revive the player if they are trying to get a "free" item in the Boss Rush
-  if (roomType === RoomType.ROOM_BOSSRUSH) {
+  // Do not revive the player if they are trying to get a "free" item from a particular special room
+  if (
+    roomType === RoomType.ROOM_SACRIFICE || // 13
+    roomType === RoomType.ROOM_BOSSRUSH // 17
+  ) {
     return undefined;
   }
+
+  // If we are already switching from The Soul to The Forgotten,
+  // prevent the death and continue to wait
+  if (v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
+    return true;
+  }
+
+  // If the player is The Soul, switch back to The Forgotten and defer invoking the custom death
+  // mechanic until the switch is complete
+  if (character === PlayerType.PLAYER_THESOUL) {
+    v.run.seededDeath.deferringDeathUntilForgottenSwitch = true;
+    return true;
+  }
+
+  return invokeCustomDeathMechanic(player);
+}
+
+function seededDeathShouldApply() {
+  return true; // TODO debugging
+  return (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED
+  );
+}
+
+function invokeCustomDeathMechanic(player: EntityPlayer) {
+  const gameFrameCount = g.g.GetFrameCount();
+  const character = player.GetPlayerType();
 
   // Calculate if Guppy's Collar should work
   v.run.seededDeath.guppysCollar = false;
@@ -369,13 +401,4 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   }
 
   return false;
-}
-
-function seededDeathShouldApply() {
-  return true; // TODO debugging
-  return (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED
-  );
 }

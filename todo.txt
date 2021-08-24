@@ -5,7 +5,7 @@
 - Broken Ankh is no longer removed from pools on seeded races (since it works properly now with the seeded death feature).
 - Attempts to reroll a Checkpoint will now fail.
 - The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
-- In Season 1, multiplayer is now disabled.
+- Attempting to make a second player join the run will now forcefully send you back to the title screen. (You can continue the run where you left off, but you will go back to the title screen again if you rejoin with the second player.)
 - Fixed the bug where extra items would not appear on Tainted Lost. (Thanks KiraKeepKool)
 - Fixed the bug where water flows were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where Dusty Death's Heads were not properly flipped. (Thanks Po4ti)
