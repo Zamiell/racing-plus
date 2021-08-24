@@ -238,7 +238,7 @@ function getHealth(player: EntityPlayer): Health {
   const subPlayer = player.GetSubPlayer();
 
   // The Forgotten and The Soul has special health, so we need to account for this
-  if (character === PlayerType.PLAYER_THEFORGOTTEN) {
+  if (character === PlayerType.PLAYER_THEFORGOTTEN && subPlayer !== null) {
     // The Forgotten does not have red heart containers
     maxHearts = boneHearts * 2;
     boneHearts = 0;
@@ -246,7 +246,7 @@ function getHealth(player: EntityPlayer): Health {
     // The Forgotten will always have 0 soul hearts;
     // we need to get the soul heart amount from the sub player
     soulHearts = subPlayer.GetSoulHearts();
-  } else if (character === PlayerType.PLAYER_THESOUL) {
+  } else if (character === PlayerType.PLAYER_THESOUL && subPlayer !== null) {
     // The Soul will always have 0 bone hearts;
     // we need to get the bone heart amount from the sub player
     // We need to store it as "maxHearts" instead of "boneHearts"
@@ -273,7 +273,7 @@ function getHealth(player: EntityPlayer): Health {
 
   for (let i = 0; i < extraHearts; i++) {
     let isBoneHeart = player.IsBoneHeart(i);
-    if (character === PlayerType.PLAYER_THEFORGOTTEN) {
+    if (character === PlayerType.PLAYER_THEFORGOTTEN && subPlayer !== null) {
       // 16
       isBoneHeart = subPlayer.IsBoneHeart(i);
     }
@@ -282,7 +282,7 @@ function getHealth(player: EntityPlayer): Health {
     } else {
       // We need to add 1 here because only the second half of a black heart is considered black
       let isBlackHeart = player.IsBlackHeart(currentSoulHeart + 1);
-      if (character === PlayerType.PLAYER_THEFORGOTTEN) {
+      if (character === PlayerType.PLAYER_THEFORGOTTEN && subPlayer !== null) {
         // 16
         isBlackHeart = subPlayer.IsBlackHeart(currentSoulHeart + 1);
       }
@@ -311,6 +311,7 @@ function getHealth(player: EntityPlayer): Health {
 // Based on the "REVEL.LoadHealth()" function in the Revelations mod
 function setHealth(player: EntityPlayer, health: Health) {
   const character = player.GetPlayerType();
+  const subPlayer = player.GetSubPlayer();
 
   // Remove all existing health
   player.AddMaxHearts(-24, true);
@@ -318,10 +319,8 @@ function setHealth(player: EntityPlayer, health: Health) {
   player.AddBoneHearts(-24);
 
   // Add the red heart containers
-  if (character === PlayerType.PLAYER_THESOUL) {
-    // 17
-    // Account for The Soul, as adding health to him is a special case
-    const subPlayer = player.GetSubPlayer();
+  if (character === PlayerType.PLAYER_THESOUL && subPlayer !== null) {
+    // Adding health to The Soul is a special case
     subPlayer.AddMaxHearts(health.maxHearts, false);
   } else {
     player.AddMaxHearts(health.maxHearts, false);

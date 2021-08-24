@@ -42,6 +42,7 @@ export function debuffOn(player: EntityPlayer): void {
 
 function debuffOnSetHealth(player: EntityPlayer) {
   const character = player.GetPlayerType();
+  // const c = player.GetSubPlayer()
 
   player.AddMaxHearts(-24, true);
   player.AddSoulHearts(-24);
