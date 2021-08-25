@@ -23,10 +23,6 @@ export default function betterDevilAngelRoomsPreGetCollectible(
 
   const roomType = g.r.GetType();
 
-  if (roomType !== RoomType.ROOM_DEVIL && roomType !== RoomType.ROOM_ANGEL) {
-    return undefined;
-  }
-
   if (
     itemPoolType !== ItemPoolType.POOL_DEVIL && // 3
     itemPoolType !== ItemPoolType.POOL_ANGEL // 4
@@ -40,7 +36,10 @@ export default function betterDevilAngelRoomsPreGetCollectible(
   // To counteract this, replace all vanilla items with an arbitrary placeholder item,
   // which should not affect pools
   // The placeholder item will be deleted later on this frame
-  if (!v.level.roomBuilt) {
+  if (
+    !v.level.roomBuilt &&
+    (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL)
+  ) {
     return CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER;
   }
 
