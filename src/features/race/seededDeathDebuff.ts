@@ -55,17 +55,6 @@ function debuffOnSetHealth(player: EntityPlayer) {
       break;
     }
   }
-
-  // Giving the player more health may have activated Spirit Shackles
-  // Disable it if this is the case
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES)) {
-    const effects = player.GetEffects();
-    const spiritShacklesEnabled =
-      effects.GetNullEffectNum(NullItemID.ID_SPIRIT_SHACKLES_DISABLED) === 0;
-    if (spiritShacklesEnabled) {
-      effects.AddNullEffect(NullItemID.ID_SPIRIT_SHACKLES_DISABLED, true);
-    }
-  }
 }
 
 function debuffOnRemoveActiveItems(player: EntityPlayer) {
@@ -218,6 +207,22 @@ function debuffOffAddAllItems(player: EntityPlayer) {
   }
 
   arrayEmpty(items);
+  disableSpiritShackles(player);
+}
+
+function disableSpiritShackles(player: EntityPlayer) {
+  // IF we re-gave Spirit Shackles back to the player, they will get a free revival
+  // Disable it if this is the case
+  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES)) {
+    return;
+  }
+
+  const effects = player.GetEffects();
+  const spiritShacklesEnabled =
+    effects.GetNullEffectNum(NullItemID.ID_SPIRIT_SHACKLES_DISABLED) === 0;
+  if (spiritShacklesEnabled) {
+    effects.AddNullEffect(NullItemID.ID_SPIRIT_SHACKLES_DISABLED, true);
+  }
 }
 
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {

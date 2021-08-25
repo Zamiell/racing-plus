@@ -178,6 +178,7 @@ function postRenderFetalPosition() {
     }
   } else {
     v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
+
     player.ControlsEnabled = true;
     if (isJacobOrEsau(player)) {
       const twin = player.GetOtherTwin();
