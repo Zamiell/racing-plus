@@ -42,7 +42,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "004",
-      "Customized Devil/Angel Rooms",
+      "Better Devil/Angel Rooms",
       "Improves the quality and variety of Devil Rooms & Angel Rooms.",
     ],
   ],

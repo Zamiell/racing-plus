@@ -1,7 +1,7 @@
 import {
   arrayEmpty,
   getEnumValues,
-  getMaxCollectibleID,
+  getPlayerCollectibleMap,
   removeDeadEyeMultiplier,
 } from "isaacscript-common";
 import { COLOR_DEFAULT } from "../../constants";
@@ -93,17 +93,12 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
       ? v.run.seededDeath.items2
       : v.run.seededDeath.items;
 
-  for (let itemID = 1; itemID <= getMaxCollectibleID(); itemID++) {
-    const numItems = player.GetCollectibleNum(itemID);
-
-    // Checking both "GetCollectibleNum()" and "HasCollectible()" prevents bugs such as Lilith
-    // having 1 Incubus
-    if (numItems > 0 && player.HasCollectible(itemID)) {
-      for (let i = 1; i <= numItems; i++) {
-        items.push(itemID);
-        player.RemoveCollectible(itemID);
-        removeItemFromItemTracker(itemID);
-      }
+  const collectibleMap = getPlayerCollectibleMap(player);
+  for (const [collectibleType, collectibleNum] of collectibleMap) {
+    for (let i = 1; i <= collectibleNum; i++) {
+      items.push(collectibleType);
+      player.RemoveCollectible(collectibleType);
+      removeItemFromItemTracker(collectibleType);
     }
   }
 

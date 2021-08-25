@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  getCollectibleList,
   getMaxCollectibleID,
   getPlayerIndex,
   getPlayers,
@@ -59,12 +60,12 @@ function isCorruptMod() {
 
 // Check to see if Death Certificate is unlocked
 function isIncompleteSave() {
-  const itemToCheckFor = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
+  const collectibleToCheckFor = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
   const itemPoolToCheck = ItemPoolType.POOL_SECRET;
 
   // If Eden is holding Death Certificate, then it is obviously unlocked
   // (and it will also be removed from pools so the below check won't work)
-  if (anyPlayerHasCollectible(itemToCheckFor)) {
+  if (anyPlayerHasCollectible(collectibleToCheckFor)) {
     return false;
   }
 
@@ -107,17 +108,21 @@ function isIncompleteSave() {
   }
 
   // Add every item in the game to the blacklist
-  for (let i = 1; i <= getMaxCollectibleID(); i++) {
-    if (g.itemConfig.GetCollectible(i) !== null && i !== itemToCheckFor) {
-      g.itemPool.AddRoomBlacklist(i);
+  for (const collectibleType of getCollectibleList()) {
+    if (collectibleType !== collectibleToCheckFor) {
+      g.itemPool.AddRoomBlacklist(collectibleType);
     }
   }
 
   // Get an item from the pool and see if it is the intended item
-  const itemPoolItem = g.itemPool.GetCollectible(itemPoolToCheck, false, 1);
-  if (itemPoolItem !== itemToCheckFor) {
+  const itemPoolCollectible = g.itemPool.GetCollectible(
+    itemPoolToCheck,
+    false,
+    1,
+  );
+  if (itemPoolCollectible !== collectibleToCheckFor) {
     log(
-      `Error: Incomplete save file detected. (Failed to get item ${itemToCheckFor} from pool ${itemPoolToCheck}; got item ${itemPoolItem} instead.)`,
+      `Error: Incomplete save file detected. (Failed to get item ${collectibleToCheckFor} from pool ${itemPoolToCheck}; got item ${itemPoolCollectible} instead.)`,
     );
     v.run.incompleteSave = true;
   }

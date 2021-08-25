@@ -1,7 +1,7 @@
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 
-// On the first visit to the room, remove all of the everything that spawns in it
+// On the first visit to the room, remove all of the things in it
 export default function betterDevilAngelRoomsPreRoomEntitySpawn(
   entityType: EntityType,
 ): [int, int, int] | void {

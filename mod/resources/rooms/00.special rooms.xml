@@ -46670,6 +46670,12 @@
 			<entity type="9000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
+	<room variant="1000" name="Blank Room" type="14" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+	</room>
 	<room variant="0" name="Angel" type="15" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
@@ -47546,6 +47552,12 @@
 		<spawn x="6" y="4">
 			<entity type="9000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
+	</room>
+	<room variant="1000" name="Blank Room" type="15" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="99.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
 	</room>
 	<room variant="1000" name="Gideon's Grave" type="16" subtype="1" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="True" x="-1" y="3"/>

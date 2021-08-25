@@ -39,6 +39,8 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
     return;
   }
 
+  v.level.roomBuilt = true;
+
   removePickupsAndSlotsAndNPCs();
   setRoomCleared();
 

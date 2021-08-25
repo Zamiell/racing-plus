@@ -1,20 +1,31 @@
 // Racing+ removes some items from the game for various reasons
-// This feature is not configurable because it could change trinket pools and cause a seed to be
-// different
+// This feature is not configurable because it could cause a seed to be different
 
 import {
   anyPlayerHasCollectible,
   getPlayers,
   getRandomArrayElement,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import passiveItemsForEden from "../../../passiveItemsForEden";
+import { changeCollectibleSubType } from "../../../utilCollectible";
 import * as showEdenStartingItems from "../../optional/quality/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,
   BANNED_COLLECTIBLES_WITH_VOID,
   BANNED_TRINKETS,
 } from "./constants";
+
+const v = {
+  run: {
+    startedWithVoid: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("removeGloballyBannedItems", v);
+}
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -48,8 +59,26 @@ export function postGameStarted(): void {
   }
 
   if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VOID)) {
+    v.run.startedWithVoid = true;
+
     for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
       g.itemPool.RemoveCollectible(bannedCollectible);
+    }
+  }
+}
+
+// ModCallbacks.MC_USE_ITEM (3)
+// CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
+export function useItemSpindownDice(): void {
+  const collectibles = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+  );
+
+  // Prevent getting banned items on the Death Certificate floor
+  for (const collectible of collectibles) {
+    if (isBannedCollectible(collectible)) {
+      changeCollectibleSubType(collectible, collectible.SubType - 1);
     }
   }
 }
@@ -63,8 +92,23 @@ export function postNewRoom(): void {
 
   // Prevent getting banned items on the Death Certificate floor
   for (const collectible of collectibles) {
-    if (BANNED_COLLECTIBLES.includes(collectible.SubType)) {
+    if (isBannedCollectible(collectible)) {
       collectible.Remove();
     }
   }
+}
+
+function isBannedCollectible(entity: Entity) {
+  if (BANNED_COLLECTIBLES.includes(entity.SubType)) {
+    return true;
+  }
+
+  if (
+    v.run.startedWithVoid &&
+    BANNED_COLLECTIBLES_WITH_VOID.includes(entity.SubType)
+  ) {
+    return true;
+  }
+
+  return false;
 }

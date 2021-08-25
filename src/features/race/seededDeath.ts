@@ -364,7 +364,6 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
 }
 
 function seededDeathFeatureShouldApply() {
-  return true; // TODO debugging
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&

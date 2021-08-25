@@ -1,23 +1,33 @@
 ```
-### *v0.60.1* - August 23rd, 2021
+### *v0.61.0* - August 23rd, 2021
 
+- All Devil Rooms have at least 2 items now.
 - The Devil Room with Wall Huggers has been deleted.
 - The Devil Room with Constant Stone Shooters has been deleted.
+- The Devil Room with 4 items and Pitfalls has been deleted.
+- The Devil Room with teleporters and spikes has changed to be a 4 item room.
 - The Angel Room buff from v0.59.2 has been reverted.
+- Pots in Angel Rooms have been deleted or replaced with blocks.
+- The Angel Room with the spike rocks has been deleted.
+- The Angel Room with poops has been deleted.
+- The Angel Room with the Eternal Chest has had the Eternal Chest removed.
+- The Angel Room with the bomb has had the bomb removed.
+- Several Angel Rooms with 2 items and 1 statue have been converted to rooms with 1 item and 2 statues.
 - The custom death mechanic is added back to seeded races (i.e. "seeded death").
 - Broken Ankh is no longer removed from pools on seeded races (since it works properly now with the new seeded death feature).
 - Attempts to reroll a Checkpoint will now fail.
 - The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
 - Attempting to make a second player join the run will now forcefully send you back to the title screen. (Thanks Gamonymous)
+- Fixed the bug where items would not reliably be in order on Devil Rooms & Angel Rooms.
 - Fixed the bug where extra items would not appear on Tainted Lost. (Thanks KiraKeepKool)
 - Fixed the bug where water flows were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where Dusty Death's Heads were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where in season 1, the door to the Mines would incorrectly display the planks sprite in certain situations. (Thanks Gamonymous)
 - Fixed the bug where Tainted Lazarus was not properly given his starting items in seeded races and diversity races. (Thanks Gamonymous)
+- Fixed the bug where you could get banned items via using Spindown Dice. In this case, the item will be replaced with the item of the next ID.
 ```
 
 TODO Racing+ new features:
-- make items in order on devil/angel rooms
 - charge ability
 - chat system
 - custom console

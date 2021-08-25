@@ -61,6 +61,7 @@ export function postNewRoom(): void {
 }
 
 function checkGiveTrinket() {
+  const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
 
@@ -68,7 +69,9 @@ function checkGiveTrinket() {
     v.run.granted ||
     v.run.tookDamage ||
     roomType !== RoomType.ROOM_DEVIL ||
-    effectiveStage > 2
+    effectiveStage > 2 ||
+    // We might be travelling to a Devil Room for run-initialization-related tasks
+    gameFrameCount === 0
   ) {
     return;
   }

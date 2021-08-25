@@ -9,6 +9,7 @@ import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
+import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
@@ -56,6 +57,7 @@ export default function initFeatureVariables(): void {
 
   // Mandatory features
   streakText.init();
+  removeGloballyBannedItems.init();
   removeGlitchedItems.init();
   replacePhotos.init();
   preventItemRotate.init();

@@ -1,4 +1,5 @@
 import debugFunction from "../debugFunction";
+import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
@@ -32,6 +33,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_USE_ITEM,
+    spindownDice,
+    CollectibleType.COLLECTIBLE_SPINDOWN_DICE, // 723
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
     debugItem,
     CollectibleTypeCustom.COLLECTIBLE_DEBUG,
   );
@@ -52,8 +59,14 @@ function fortuneCookie() {
   removeFortuneCookieBanners.useItem();
 }
 
+// CollectibleType.COLLECTIBLE_LEMEGETON (712)
 function lemegeton() {
   streakText.useItemLemegeton();
+}
+
+// CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
+function spindownDice() {
+  removeGloballyBannedItems.useItemSpindownDice();
 }
 
 // CollectibleTypeCustom.COLLECTIBLE_DEBUG
