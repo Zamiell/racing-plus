@@ -171,7 +171,8 @@ function postRenderFetalPosition() {
     if (isJacobOrEsau(player)) {
       const twin = player.GetOtherTwin();
       if (twin !== null) {
-        twin.Position = v.run.seededDeath.fetalPosition;
+        const adjustment = Vector(20, 0);
+        twin.Position = v.run.seededDeath.fetalPosition.add(adjustment);
       }
     }
   } else {
