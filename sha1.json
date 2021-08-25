@@ -4,9 +4,9 @@
     "content\\itempools.xml": "f762099418a658f2af6d41d82642388323cdd972",
     "content\\items.xml": "db1acf471590667a99b68bf47106a690a3491a79",
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
-    "main.lua": "cc2894124ca55f231709c3bc061523b77cf38658",
+    "main.lua": "e3eb937a97e406dada161312b6bec1acc8e26461",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "8131ca46380a0d0ec51f0618e77202f27ecb24d9",
+    "metadata.xml": "e1a0b5711ecf0f580603df6c24689af010880d1c",
     "readme.txt": "9444eb5b9175cd01eece655520beffcf83dd797a",
     "resources\\cutscenes.xml": "dbe41fdde8a53ac0d430f1756d85656b06d3f6a1",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -1626,8 +1626,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "017e1339e426b5806c30a41581687ac7e396e4e8",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "017e1339e426b5806c30a41581687ac7e396e4e8",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "6290541a1423265d9099f7832f6dd95a9f138079",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "6290541a1423265d9099f7832f6dd95a9f138079",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\minimap_icons.png": "b59fc4878f3d62ebde6059009e3329a052f866bb",
@@ -1668,5 +1668,5 @@
     "resources\\rooms\\36.backwards.stb": "ad64104b6af39365ab821be424bfa4a2d7dd8e13",
     "resources\\rules.txt": "9c726f9e970de6bcff78aec5526665597156b730",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "f7362f2807fc8e5d554e1efff3b94489854e3335"
+    "version.txt": "7c828d8bbdb775a60654fbd58ba29c313c8e8859"
 }
