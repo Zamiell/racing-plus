@@ -69,6 +69,10 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
 
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const item = player.GetActiveItem(activeSlot);
+    if (item === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+
     const charge = player.GetActiveCharge(activeSlot);
     const batteryCharge = player.GetBatteryCharge(activeSlot);
 
@@ -178,10 +182,6 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const activeItemDescription = activesMap.get(activeSlot);
     if (activeItemDescription !== undefined) {
-      if (activeItemDescription.item === CollectibleType.COLLECTIBLE_NULL) {
-        continue;
-      }
-
       const totalCharge =
         activeItemDescription.charge + activeItemDescription.batteryCharge;
       player.AddCollectible(
