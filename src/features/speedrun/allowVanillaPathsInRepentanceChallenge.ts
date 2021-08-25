@@ -214,6 +214,11 @@ function updateRepentanceDoorState(door: GridEntityDoor) {
     v.level.repentanceDoorState = doorState;
   } else if (isDoorToMines(door)) {
     v.level.repentanceDoorState = getDoorStateForMinesDoor(door);
+
+    // The extra sprite will not be removed properly if the door is opened via Dad's Key
+    if (v.level.repentanceDoorState === RepentanceDoorState.UNLOCKED) {
+      door.ExtraVisible = false;
+    }
   }
   // (Mausoleum doors are handled automatically)
 }

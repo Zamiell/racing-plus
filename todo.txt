@@ -1,14 +1,18 @@
 ```
 ### *v0.60.1* - August 23rd, 2021
 
+- The Devil Room with Wall Huggers has been deleted.
+- The Devil Room with Constant Stone Shooters has been deleted.
+- The Angel Room buff from v0.59.2 has been reverted.
 - The custom death mechanic is added back to seeded races (i.e. "seeded death").
-- Broken Ankh is no longer removed from pools on seeded races (since it works properly now with the seeded death feature).
+- Broken Ankh is no longer removed from pools on seeded races (since it works properly now with the new seeded death feature).
 - Attempts to reroll a Checkpoint will now fail.
 - The Checkpoint will now respawn if it is deleted via a Void or a Black Rune.
-- Attempting to make a second player join the run will now forcefully send you back to the title screen. (You can continue the run where you left off, but you will go back to the title screen again if you rejoin with the second player.)
+- Attempting to make a second player join the run will now forcefully send you back to the title screen. (Thanks Gamonymous)
 - Fixed the bug where extra items would not appear on Tainted Lost. (Thanks KiraKeepKool)
 - Fixed the bug where water flows were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where Dusty Death's Heads were not properly flipped. (Thanks Po4ti)
+- Fixed the bug where in season 1, the door to the Mines would incorrectly display the planks sprite in certain situations. (Thanks Gamonymous)
 ```
 
 Test seeded death mechanic taking golden bomb to next floor

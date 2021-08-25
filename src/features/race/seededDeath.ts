@@ -1,5 +1,6 @@
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  inBeastRoom,
   isJacobOrEsau,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
@@ -336,10 +337,11 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
     v.run.seededDeath.state !== SeededDeathState.DISABLED &&
     v.run.seededDeath.state !== SeededDeathState.GHOST_FORM
   ) {
-    return undefined;
+    // We are already in the process of dying
+    return false;
   }
 
-  if (!seededDeathShouldApply()) {
+  if (!seededDeathFeatureShouldApply()) {
     return undefined;
   }
 
@@ -371,6 +373,13 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
     return undefined;
   }
 
+  // Do not revive the player in The Beast room
+  // Handling this special case would be too complicated and the player would probably lose the race
+  // anyway
+  if (inBeastRoom()) {
+    return undefined;
+  }
+
   // If we are already switching from The Soul to The Forgotten,
   // prevent the death and continue to wait
   if (v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
@@ -388,7 +397,7 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   return invokeCustomDeathMechanic(player);
 }
 
-function seededDeathShouldApply() {
+function seededDeathFeatureShouldApply() {
   return true; // TODO debugging
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
