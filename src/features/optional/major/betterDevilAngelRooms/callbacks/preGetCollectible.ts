@@ -21,6 +21,12 @@ export default function betterDevilAngelRoomsPreGetCollectible(
     return undefined;
   }
 
+  const roomType = g.r.GetType();
+
+  if (roomType !== RoomType.ROOM_DEVIL && roomType !== RoomType.ROOM_ANGEL) {
+    return undefined;
+  }
+
   if (
     itemPoolType !== ItemPoolType.POOL_DEVIL && // 3
     itemPoolType !== ItemPoolType.POOL_ANGEL // 4
