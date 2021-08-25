@@ -18,22 +18,23 @@ export default class Config {
 
   // Boss Changes
   fadeBosses = true;
-  stopDeathSlow = true;
-  fastHaunt = true;
-  fastSatan = true;
-  fastBigHorn = true;
-  removeLambBody = true;
-  stopVictoryLapPopup = true;
-  openHushDoor = true;
+  stopDeathSlow = true; // 66
+  fastSatan = true; // 84
+  fastHaunt = true; // 260
+  removeLambBody = true; // 273
+  stopVictoryLapPopup = true; // 273
+  openHushDoor = true; // 407
+  fastBigHorn = true; // 411
+  fastColostomia = true; // 917
 
   // Enemy Changes
-  replaceCodWorms = true;
-  disableInvulnerability = true;
-  fastGhosts = true;
-  fastHands = true;
-  appearHands = true;
-  globinSoftlock = true;
   removeTreasureRoomEnemies = true;
+  globinSoftlock = true; // 24
+  fastHands = true; // 213, 287
+  appearHands = true; // 213, 287
+  disableInvulnerability = true; // 219, 260, 285
+  fastGhosts = true; // 219, 285
+  replaceCodWorms = true; // 221
 
   // Quality of Life Changes
   speedUpFadeIn = true;

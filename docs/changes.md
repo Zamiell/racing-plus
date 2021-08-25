@@ -39,6 +39,8 @@ In terms of what to change about the game, the mod has several goals, and attemp
 1. to fix bugs and imperfections
 1. to keep the game as "vanilla" as possible
 
+Furthermore, the mod attempts to remove all situations where the placer is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for Wizoobs to appear, etc.).
+
 <br />
 
 ## List of Major Changes
@@ -147,75 +149,64 @@ Post-flip actions:
 
 - `031` Bosses will be faded during their death animation.
 
-> Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item. Furthermore, the death animation obscures other enemies that happen to be behind the dying boss.
+> Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
-- `032` Stop Death from performing his slow attack.
-- `033` The unnecessary waiting during the Haunt fight is removed.
-- `034` The unnecessary waiting during the Satan fight is removed.
+- `032` <!-- 66 --> Stop Death from performing his slow attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `035` Big Horn will spend less time underground.
-
-> Why? Big Horn can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
-- `036` The Lamb body is removed upon death.
+- `033` <!-- 84 --> The unnecessary waiting during the Satan fight is removed.
+- `034` <!-- 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `035` <!-- 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `037` The Victory Lap popup will no longer appear after defeating The Lamb.
+- `036` <!-- 273 --> The Victory Lap popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `038` The Hush door will be automatically opened.
-
-> Why? The door opening animation very long, resulting in the player being forced to wait without performing any inputs.
-
-- Some of the animations in the Mega Satan fight have been removed.
-
-> Why? Several parts of the Mega Satan fight force the player to wait without performing any inputs.
-
-- Hush no longer plays an appear animation.
-
-> Why? The appear animation is very long, resulting in the player being forced to wait without performing any inputs.
-
-- Defeating Mega Satan no longer has a chance to immediately end the run.
+- `037` <!-- 407 --> The Hush door will be automatically opened.
+- `038` <!-- 411 --> Big Horn will spend less time underground.
+- `039` <!-- 917 --> Colostomia will instantly appear.
+- <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
+- <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 
-- Defeating The Beast no longer immediately ends the run.
+- <!-- 407 --> Hush no longer plays an appear animation.
+- <!-- 951 --> Defeating The Beast no longer immediately ends the run.
 
 > Why? This gives players a chance to touch a trophy.
 
 ### 4) Enemy Changes
 
-- `041` Cod Worms are replaced with Para-Bites.
+- `041` All enemies are removed from Treasure Rooms.
 
-> Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
+> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
-- `042` Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.
-
-> Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
-
-- `043` Wizoobs and Red Ghosts have faster attack patterns.
-
-> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
-- `044` Mom's Hands and Mom's Dead Hands have faster attack patterns.
-
-> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
-- `045` Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
-
-> Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
-
-- `046` Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `042` <!-- 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `047` All enemies are removed from Treasure Rooms.
+- `043` <!-- 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
-> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
+> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `044` <!-- 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+
+> Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
+
+- `045` <!-- 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
+
+> Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
+
+- `046` <!-- 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
+
+> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
+
+- `047` <!-- 221 --> Cod Worms are replaced with Para-Bites.
+
+> Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
 ### 5) Quality of Life Changes
 

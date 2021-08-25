@@ -212,7 +212,7 @@ export const BOSS_CHANGES_1: ConfigDescriptionArray = [
     ],
   ],
   [
-    "stopDeathSlow",
+    "stopDeathSlow", // 66
     [
       ModConfigMenuOptionType.BOOLEAN,
       "032",
@@ -221,57 +221,66 @@ export const BOSS_CHANGES_1: ConfigDescriptionArray = [
     ],
   ],
   [
-    "fastHaunt",
+    "fastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
       "033",
-      "Fast The Haunt",
-      "Some animations in The Haunt fight are sped up.",
-    ],
-  ],
-  [
-    "fastSatan",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "034",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
   ],
   [
-    "fastBigHorn",
+    "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "035",
-      "Fast Big Horn",
-      "Make Big horn spend less time underground.",
+      "034",
+      "Fast The Haunt",
+      "Some animations in The Haunt fight are sped up.",
     ],
   ],
   [
-    "removeLambBody",
+    "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "036",
+      "035",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
   ],
   [
-    "stopVictoryLapPopup",
+    "stopVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "037",
+      "036",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
   ],
   [
-    "openHushDoor",
+    "openHushDoor", // 407
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "037",
+      "Open the Hush door",
+      "Automatically open the big door to Hush when you arrive on the Blue womb.",
+    ],
+  ],
+  [
+    "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
       "038",
-      "Open the Hush door",
-      "Automatically open the big door to Hush when you arrive on the Blue womb.",
+      "Fast Big Horn",
+      "Make Big Horn spend less time underground.",
+    ],
+  ],
+  [
+    "fastColostomia", // 917
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "039",
+      "Fast Colostomia",
+      "Make Colostomia appear instantly.",
     ],
   ],
 ];
@@ -279,7 +288,7 @@ export const BOSS_CHANGES_1: ConfigDescriptionArray = [
 // n/a
 export const BOSS_CHANGES_2: ConfigDescriptionArray = [
   [
-    null,
+    null, // 274
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -288,16 +297,7 @@ export const BOSS_CHANGES_2: ConfigDescriptionArray = [
     ],
   ],
   [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fast Hush",
-      'Make Hush no longer play an "Appear" animation.',
-    ],
-  ],
-  [
-    null,
+    null, // 274
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -306,7 +306,16 @@ export const BOSS_CHANGES_2: ConfigDescriptionArray = [
     ],
   ],
   [
-    null,
+    null, // 407
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fast Hush",
+      'Make Hush no longer play an "Appear" animation.',
+    ],
+  ],
+  [
+    null, // 951
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -319,66 +328,66 @@ export const BOSS_CHANGES_2: ConfigDescriptionArray = [
 // 041-04X
 export const ENEMY_CHANGES: ConfigDescriptionArray = [
   [
-    "replaceCodWorms",
+    "removeTreasureRoomEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "041",
-      "Replace Cod Worms",
-      "Cod Worms are replaced with Para-Bites.",
+      "Remove Treasure Room enemies",
+      "Remove all enemies from Treasure Rooms.",
     ],
   ],
   [
-    "disableInvulnerability",
+    "globinSoftlock", // 24
     [
       ModConfigMenuOptionType.BOOLEAN,
       "042",
-      "Disable invulnerability",
-      "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
-    ],
-  ],
-  [
-    "fastGhosts",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "043",
-      "Fast ghosts",
-      "Wizoobs and Red Ghosts have faster attack patterns.",
-    ],
-  ],
-  [
-    "fastHands",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "044",
-      "Fast hands",
-      "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
-    ],
-  ],
-  [
-    "appearHands",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "045",
-      "Reveal hands",
-      "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
-    ],
-  ],
-  [
-    "globinSoftlock",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "046",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
     ],
   ],
   [
-    "removeTreasureRoomEnemies",
+    "fastHands", // 213, 287
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "043",
+      "Fast hands",
+      "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
+    ],
+  ],
+  [
+    "appearHands", // 213, 287
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "044",
+      "Reveal hands",
+      "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
+    ],
+  ],
+  [
+    "disableInvulnerability", // 219, 260, 285
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "045",
+      "Disable invulnerability",
+      "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
+    ],
+  ],
+  [
+    "fastGhosts", // 219, 285
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "046",
+      "Fast ghosts",
+      "Wizoobs and Red Ghosts have faster attack patterns.",
+    ],
+  ],
+  [
+    "replaceCodWorms", // 221
     [
       ModConfigMenuOptionType.BOOLEAN,
       "047",
-      "Remove Treasure Room enemies",
-      "Remove all enemies from Treasure Rooms.",
+      "Replace Cod Worms",
+      "Cod Worms are replaced with Para-Bites.",
     ],
   ],
 ];

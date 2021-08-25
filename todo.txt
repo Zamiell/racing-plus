@@ -1,7 +1,9 @@
 ```
-### *v0.61.1* - August 25th, 2021
+### *v0.61.2* - August 25th, 2021
 
-- Fixed the bug where Krampus always dropped Magic Mushroom. (Thanks Gamonymous)
+- Feature: Colostomia will now instantly appear upon entering its Boss Room.
+- Fixed the bug where you could teleport to the Ultra Secret room when using a teleport item under certain conditions. (Thanks Po4ti)
+- Fixed the bug where seeded death was 5 seconds instead of 45 seconds. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

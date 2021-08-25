@@ -30,29 +30,29 @@ export function useItemTeleport(): void {
 function seededTeleport() {
   const rooms = g.l.GetRooms();
 
-  // Get a random room index
-  // We could adjust this so that our current room is exempt from the list of available rooms,
-  // but this would cause problems in seeded races,
-  // so seeded races would have to be exempt from this exemption
+  // Filter out the Ultra Secret room
+  // We could also filter out our current room, but this would cause problems in seeded races,
+  // so seeded races would have to be exempt
   // Thus, don't bother with this in order to keep the behavior consistent through the different
   // types of races
-  v.level.teleportSeed = incrementRNG(v.level.teleportSeed);
-  const randomRoomsArrayIndex = getRandomInt(
-    0,
-    rooms.Size - 1,
-    v.level.teleportSeed,
-  );
-
-  // We need to use SafeGridIndex instead of GridIndex because we will crash when teleporting to
-  // L rooms otherwise
-  const room = rooms.Get(randomRoomsArrayIndex);
-  if (room === null) {
-    error("Failed to get a room while teleporting.");
+  const roomIndexes: int[] = [];
+  for (let i = 0; i < rooms.Size; i++) {
+    const room = rooms.Get(i);
+    if (
+      room !== null &&
+      room.Data !== null &&
+      room.Data.Type !== RoomType.ROOM_ULTRASECRET
+    ) {
+      // We must use the safe grid index or else teleporting to L rooms will fail
+      roomIndexes.push(room.SafeGridIndex);
+    }
   }
-  const gridIndexSafe = room.SafeGridIndex;
 
-  teleport(gridIndexSafe, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
-  log(`Seeded teleport to room: ${gridIndexSafe}`);
+  v.level.teleportSeed = incrementRNG(v.level.teleportSeed);
+  const roomIndex = getRandomArrayElement(roomIndexes, v.level.teleportSeed);
+
+  teleport(roomIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
+  log(`Seeded teleport to room: ${roomIndex}`);
 
   // Even though the player has already started teleporting to a different room,
   // the above call will override the existing effect
