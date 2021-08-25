@@ -24,4 +24,3 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Reviving with Experimental Treatment will give you different stats. (Reported by sisuka)
 
 <br />
--->
