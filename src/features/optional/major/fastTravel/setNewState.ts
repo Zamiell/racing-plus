@@ -134,24 +134,30 @@ function movePlayerToTrapdoor(player: EntityPlayer, position: Vector) {
   player.Position = position;
   if (shouldMoveOther) {
     const taintedSoul = player.GetOtherTwin();
-    taintedSoul.Position = position;
+    if (taintedSoul !== null) {
+      taintedSoul.Position = position;
+    }
   }
 }
 
 function shouldMoveTaintedSoul(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
-  // If Tainted Soul jumps down a trapdoor or heaven door while holding Tainted Forgotten,
-  // the player object that gets to this function will be The Forgotten
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
-    const taintedSoul = player.GetOtherTwin();
-    return (
-      player.Position.X === taintedSoul.Position.X &&
-      player.Position.Y === taintedSoul.Position.Y
-    );
+  if (character !== PlayerType.PLAYER_THEFORGOTTEN_B) {
+    return false;
   }
 
-  return false;
+  const taintedSoul = player.GetOtherTwin();
+  if (taintedSoul === null) {
+    return false;
+  }
+
+  // If Tainted Soul jumps down a trapdoor or heaven door while holding Tainted Forgotten,
+  // the player object that gets to this function will be The Forgotten
+  return (
+    player.Position.X === taintedSoul.Position.X &&
+    player.Position.Y === taintedSoul.Position.Y
+  );
 }
 
 function warpForgottenBody(player: EntityPlayer) {
@@ -180,7 +186,9 @@ function dropTaintedForgotten(player: EntityPlayer) {
   const character = player.GetPlayerType();
   if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     const taintedSoul = player.GetOtherTwin();
-    taintedSoul.ThrowHeldEntity(Vector.Zero);
+    if (taintedSoul !== null) {
+      taintedSoul.ThrowHeldEntity(Vector.Zero);
+    }
   }
 }
 
@@ -207,8 +215,9 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
   if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     const taintedSoul = player.GetOtherTwin();
     if (
-      player.Position.X === taintedSoul.Position.X &&
-      player.Position.Y === taintedSoul.Position.Y
+      taintedSoul !== null &&
+      taintedSoul.Position.X === player.Position.X &&
+      taintedSoul.Position.Y === player.Position.Y
     ) {
       taintedSoul.Visible = false;
     }
@@ -283,7 +292,9 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
     if (player !== null) {
       taintedForgotten.Position = centerPos;
       const taintedSoul = player.GetOtherTwin();
-      taintedSoul.Position = centerPos;
+      if (taintedSoul !== null) {
+        taintedSoul.Position = centerPos;
+      }
     }
   }
 }

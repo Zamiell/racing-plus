@@ -78,10 +78,10 @@ function touch(trophy: Entity, player: EntityPlayer) {
   // Make the player pick it up and have it sparkle
   player.AnimateCollectible(
     CollectibleTypeCustom.COLLECTIBLE_TROPHY,
-    "Pickup",
+    PlayerItemAnimation.PICKUP,
     // We use a custom "PlayerPickupSparkle" animation so that the sparkle appears higher
     // (the trophy is taller than a normal collectible, so the sparkle is misaligned)
-    "PlayerPickupSparkle2" as CollectibleAnimationName,
+    "PlayerPickupSparkle2" as CollectibleAnimation,
   );
 
   if (speedrun.inSpeedrun()) {

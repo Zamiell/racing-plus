@@ -2,6 +2,7 @@ import {
   getPlayerIndex,
   getPlayers,
   inGenesisRoom,
+  isJacobOrEsau,
   log,
   PlayerIndex,
   saveDataManager,
@@ -104,8 +105,7 @@ export function shouldGetActiveD6(player: EntityPlayer): boolean {
     // Jacob & Esau cannot use pocket active items, so we give the active D6 to both of them
     // (we could give the D6 to just Esau, but since the Jacob & Esau are so weak,
     // it makes more sense to give it to both of them)
-    character === PlayerType.PLAYER_JACOB ||
-    character === PlayerType.PLAYER_ESAU
+    isJacobOrEsau(player)
   );
 }
 

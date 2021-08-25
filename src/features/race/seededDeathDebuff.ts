@@ -1,4 +1,5 @@
 import {
+  arrayEmpty,
   getEnumValues,
   getMaxCollectibleID,
   removeDeadEyeMultiplier,
@@ -22,22 +23,8 @@ export function debuffOn(player: EntityPlayer): void {
   debuffOnRemoveAllItems(player);
   debuffOnRemoveGoldenBombsAndKeys(player);
   removeDeadEyeMultiplier(player);
-
-  // Store their size for later and reset it to default
-  // (in case they had items like Magic Mushroom and so forth)
-  v.run.seededDeath.spriteScale = player.SpriteScale;
-  player.SpriteScale = Vector(1, 1);
-
-  // If Dark Esau is alive, the player can use it to clear rooms while they are dead
-  // Remove Dark Esau to prevent this
-  const darkEsaus = Isaac.FindByType(
-    EntityType.ENTITY_DARK_ESAU,
-    DarkEsauVariant.DARK_ESAU,
-  );
-  for (const darkEsau of darkEsaus) {
-    darkEsau.Remove();
-    v.run.seededDeath.removedDarkEsau = true;
-  }
+  debuffOnRemoveSize(player);
+  debuffOnRemoveDarkEsau();
 }
 
 function debuffOnSetHealth(player: EntityPlayer) {
@@ -72,7 +59,13 @@ function debuffOnSetHealth(player: EntityPlayer) {
 }
 
 function debuffOnRemoveActiveItems(player: EntityPlayer) {
-  v.run.seededDeath.actives.clear();
+  const character = player.GetPlayerType();
+  const activesMap =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.seededDeath.actives2
+      : v.run.seededDeath.actives;
+
+  activesMap.clear();
 
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const item = player.GetActiveItem(activeSlot);
@@ -84,13 +77,19 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
       charge,
       batteryCharge,
     };
-    v.run.seededDeath.actives.set(activeSlot, activeItemDescription);
+    activesMap.set(activeSlot, activeItemDescription);
 
     player.RemoveCollectible(item);
   }
 }
 
 function debuffOnRemoveAllItems(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  const items =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.seededDeath.items2
+      : v.run.seededDeath.items;
+
   for (let itemID = 1; itemID <= getMaxCollectibleID(); itemID++) {
     const numItems = player.GetCollectibleNum(itemID);
 
@@ -98,7 +97,7 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
     // having 1 Incubus
     if (numItems > 0 && player.HasCollectible(itemID)) {
       for (let i = 1; i <= numItems; i++) {
-        v.run.seededDeath.items.push(itemID);
+        items.push(itemID);
         player.RemoveCollectible(itemID);
         removeItemFromItemTracker(itemID);
       }
@@ -112,6 +111,12 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
 
 function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   const stage = g.l.GetStage();
+  const character = player.GetPlayerType();
+
+  if (character === PlayerType.PLAYER_ESAU) {
+    // Esau can not carry bombs and keys
+    return;
+  }
 
   // Store their golden bomb / key status
   v.run.seededDeath.goldenBomb = player.HasGoldenBomb();
@@ -125,39 +130,53 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   player.RemoveGoldenKey();
 }
 
+function debuffOnRemoveSize(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  // Store their size for later and reset it to default
+  // (in case they had items like Magic Mushroom and so forth)
+  if (character === PlayerType.PLAYER_ESAU) {
+    v.run.seededDeath.spriteScale2 = player.SpriteScale;
+  } else {
+    v.run.seededDeath.spriteScale = player.SpriteScale;
+  }
+  player.SpriteScale = Vector(1, 1);
+}
+
+function debuffOnRemoveDarkEsau() {
+  // If Dark Esau is alive, the player can use it to clear rooms while they are dead
+  // Remove Dark Esau to prevent this
+  const darkEsaus = Isaac.FindByType(
+    EntityType.ENTITY_DARK_ESAU,
+    DarkEsauVariant.DARK_ESAU,
+  );
+  for (const darkEsau of darkEsaus) {
+    darkEsau.Remove();
+    v.run.seededDeath.removedDarkEsau = true;
+  }
+}
+
 export function debuffOff(player: EntityPlayer): void {
   // Un-fade the character
   const sprite = player.GetSprite();
   sprite.Color = COLOR_DEFAULT;
 
   debuffOffAddActiveItems(player);
-  debuffOffAddItems(player);
+  debuffOffAddAllItems(player);
   debuffOffAddGoldenBombAndKey(player);
-
-  // Set their size to the way it was before the debuff was applied
-  if (v.run.seededDeath.spriteScale !== null) {
-    player.SpriteScale = v.run.seededDeath.spriteScale;
-  }
-  v.run.seededDeath.spriteScale = null;
-
-  if (v.run.seededDeath.removedDarkEsau) {
-    v.run.seededDeath.removedDarkEsau = false;
-
-    const centerPos = g.r.GetCenterPos();
-    Isaac.Spawn(
-      EntityType.ENTITY_DARK_ESAU,
-      DarkEsauVariant.DARK_ESAU,
-      0,
-      centerPos,
-      Vector.Zero,
-      null,
-    );
-  }
+  debuffOffRestoreSize(player);
+  debuffOffAddDarkEsau();
 }
 
 function debuffOffAddActiveItems(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  const activesMap =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.seededDeath.actives2
+      : v.run.seededDeath.actives;
+
   for (const activeSlot of getEnumValues(ActiveSlot)) {
-    const activeItemDescription = v.run.seededDeath.actives.get(activeSlot);
+    const activeItemDescription = activesMap.get(activeSlot);
     if (activeItemDescription !== undefined) {
       const totalCharge =
         activeItemDescription.charge + activeItemDescription.batteryCharge;
@@ -169,20 +188,32 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
       );
     }
 
-    v.run.seededDeath.actives.delete(activeSlot);
+    activesMap.delete(activeSlot);
   }
 }
 
-function debuffOffAddItems(player: EntityPlayer) {
-  for (const itemID of v.run.seededDeath.items) {
-    player.AddCollectible(itemID, 0, false);
+function debuffOffAddAllItems(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  const items =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.seededDeath.items2
+      : v.run.seededDeath.items;
+
+  for (const collectibleType of items) {
+    player.AddCollectible(collectibleType, 0, false);
   }
 
-  v.run.seededDeath.items = [];
+  arrayEmpty(items);
 }
 
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
   const stage = g.l.GetStage();
+  const character = player.GetPlayerType();
+
+  if (character === PlayerType.PLAYER_ESAU) {
+    // Esau can not carry bombs and keys
+    return;
+  }
 
   if (v.run.seededDeath.goldenBomb) {
     v.run.seededDeath.goldenBomb = false;
@@ -199,4 +230,38 @@ function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
       player.AddGoldenKey();
     }
   }
+}
+
+function debuffOffRestoreSize(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  // Set their size to the way it was before the debuff was applied
+  if (character === PlayerType.PLAYER_ESAU) {
+    if (v.run.seededDeath.spriteScale2 !== null) {
+      player.SpriteScale = v.run.seededDeath.spriteScale2;
+    }
+    v.run.seededDeath.spriteScale2 = null;
+  } else {
+    if (v.run.seededDeath.spriteScale !== null) {
+      player.SpriteScale = v.run.seededDeath.spriteScale;
+    }
+    v.run.seededDeath.spriteScale = null;
+  }
+}
+
+function debuffOffAddDarkEsau() {
+  if (!v.run.seededDeath.removedDarkEsau) {
+    return;
+  }
+  v.run.seededDeath.removedDarkEsau = false;
+
+  const centerPos = g.r.GetCenterPos();
+  Isaac.Spawn(
+    EntityType.ENTITY_DARK_ESAU,
+    DarkEsauVariant.DARK_ESAU,
+    0,
+    centerPos,
+    Vector.Zero,
+    null,
+  );
 }

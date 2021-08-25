@@ -1,7 +1,7 @@
 // In the "hudpickups.png" file, we blank out the "No Achievements" icon
 // For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
 
-import { getHUDOffsetVector } from "isaacscript-common";
+import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
@@ -52,10 +52,7 @@ export function getPosition(): Vector {
   }
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
-  if (
-    character === PlayerType.PLAYER_BETHANY ||
-    character === PlayerType.PLAYER_JACOB
-  ) {
+  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
   } else if (character === PlayerType.PLAYER_BETHANY_B) {
     position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);

@@ -1,4 +1,4 @@
-import { getHUDOffsetVector } from "isaacscript-common";
+import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
 import g from "./globals";
 import TimerType from "./types/TimerType";
 import { initSprite } from "./util";
@@ -42,10 +42,7 @@ export function display(
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;
 
-  if (
-    character === PlayerType.PLAYER_BETHANY ||
-    character === PlayerType.PLAYER_JACOB
-  ) {
+  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
     startingY += 8;
   } else if (character === PlayerType.PLAYER_BETHANY_B) {
     startingY -= 5;

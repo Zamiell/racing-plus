@@ -40,7 +40,7 @@ export function preUseItemWeNeedToGoDeeper(
 
   player.AnimateCollectible(
     CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
-    "UseItem",
+    PlayerItemAnimation.USE_ITEM,
   );
 
   // Do not allow trapdoors on stage 9 and above

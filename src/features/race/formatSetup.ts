@@ -24,7 +24,6 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_LILITH, // 13
   PlayerType.PLAYER_KEEPER, // 14
   PlayerType.PLAYER_APOLLYON, // 15
-  PlayerType.PLAYER_JACOB, // 19
   PlayerType.PLAYER_EDEN_B, // 30
 ];
 

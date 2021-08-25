@@ -1,5 +1,8 @@
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  isJacobOrEsau,
+  MAX_PLAYER_POCKET_ITEM_SLOTS,
+  MAX_PLAYER_TRINKET_SLOTS,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
 import {
@@ -54,7 +57,14 @@ function postUpdateDeathAnimation() {
 
   v.run.seededDeath.reviveFrame = null;
   v.run.seededDeath.state = SeededDeathState.CHANGING_ROOMS;
+
   player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
+    }
+  }
 
   const enterDoor = g.l.EnterDoor;
   const door = g.r.GetDoor(enterDoor);
@@ -81,8 +91,16 @@ function postUpdateGhostForm() {
 
   v.run.seededDeath.state = SeededDeathState.DISABLED;
   v.run.seededDeath.debuffEndFrame = null;
+
   debuffOff(player);
   player.AnimateHappy();
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      debuffOff(twin);
+      twin.AnimateHappy();
+    }
+  }
 }
 
 function postUpdateDisableControls() {
@@ -95,6 +113,12 @@ function postUpdateDisableControls() {
     v.run.seededDeath.state === SeededDeathState.FETAL_POSITION
   ) {
     player.ControlsEnabled = false;
+    if (isJacobOrEsau(player)) {
+      const twin = player.GetOtherTwin();
+      if (twin !== null) {
+        twin.ControlsEnabled = false;
+      }
+    }
   }
 }
 
@@ -141,12 +165,24 @@ function postRenderFetalPosition() {
   const sprite = player.GetSprite();
 
   if (sprite.IsPlaying("AppearVanilla")) {
-    // If we do not lock the player to the same position, they can move while in the fetal position
-    // animation (even if their controls are disabled)
+    // Lock the player to the same position
+    // If we do not do this, they will be able to move around (even if their controls are disabled)
     player.Position = v.run.seededDeath.fetalPosition;
+    if (isJacobOrEsau(player)) {
+      const twin = player.GetOtherTwin();
+      if (twin !== null) {
+        twin.Position = v.run.seededDeath.fetalPosition;
+      }
+    }
   } else {
     v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
     player.ControlsEnabled = true;
+    if (isJacobOrEsau(player)) {
+      const twin = player.GetOtherTwin();
+      if (twin !== null) {
+        twin.ControlsEnabled = true;
+      }
+    }
   }
 }
 
@@ -180,11 +216,17 @@ function postNewRoomDeathAnimation() {
 
   // They entered a loading zone while dying (e.g. running through a Curse Room door)
   // Play the death animation again, since entering a new room canceled it
-  player.PlayExtraAnimation("Death");
-
-  // We need to disable the collision,
+  // We need to disable the collision again,
   // or else enemies will be able to push around the body during the death animation
+  player.PlayExtraAnimation("Death");
   player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.PlayExtraAnimation("Death");
+      twin.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+    }
+  }
 }
 
 function postNewRoomChangingRooms() {
@@ -196,15 +238,21 @@ function postNewRoomChangingRooms() {
   const player = Isaac.GetPlayer();
 
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
-
-  // Play the animation where Isaac lies in the fetal position
-  player.PlayExtraAnimation("AppearVanilla");
   v.run.seededDeath.fetalPosition = player.Position;
-
-  debuffOn(player);
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
+
+  // Play the animation where Isaac lies in the fetal position
+  player.PlayExtraAnimation("AppearVanilla");
+  debuffOn(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.PlayExtraAnimation("AppearVanilla");
+      debuffOn(twin);
+    }
+  }
 }
 
 function postNewRoomGhostForm(): void {
@@ -226,6 +274,12 @@ function postNewRoomGhostForm(): void {
   }
 
   player.AnimateSad();
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.AnimateSad();
+    }
+  }
 }
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
@@ -347,23 +401,45 @@ function invokeCustomDeathMechanic(player: EntityPlayer) {
 
   v.run.seededDeath.state = SeededDeathState.DEATH_ANIMATION;
   v.run.seededDeath.reviveFrame = gameFrameCount + DEATH_ANIMATION_FRAMES;
-  player.PlayExtraAnimation("Death");
   g.sfx.Play(SoundEffect.SOUND_ISAACDIES);
-  player.ControlsEnabled = false;
-  player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
 
   // Hide the player's health to obfuscate the fact that they are still technically alive
   g.seeds.AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 
-  // Drop all trinkets and pocket items
-  const trinketPosition1 = findFreePosition(player.Position);
-  player.DropTrinket(trinketPosition1, false);
-  const trinketPosition2 = findFreePosition(player.Position);
-  player.DropTrinket(trinketPosition2, false);
-  const pocketPosition1 = findFreePosition(player.Position);
-  player.DropPocketItem(0, pocketPosition1);
-  const pocketPosition2 = findFreePosition(player.Position);
-  player.DropPocketItem(1, pocketPosition2);
+  startDeathAnimation(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      startDeathAnimation(twin);
+    }
+  }
 
   return false;
+}
+
+function startDeathAnimation(player: EntityPlayer) {
+  player.PlayExtraAnimation("Death");
+  player.ControlsEnabled = false;
+  player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+  dropEverything(player);
+}
+
+function dropEverything(player: EntityPlayer) {
+  for (
+    let pocketItemSlot = 0;
+    pocketItemSlot < MAX_PLAYER_POCKET_ITEM_SLOTS;
+    pocketItemSlot++
+  ) {
+    const position = findFreePosition(player.Position);
+    player.DropPocketItem(pocketItemSlot, position);
+  }
+
+  for (
+    let trinketSlot = 0;
+    trinketSlot < MAX_PLAYER_TRINKET_SLOTS;
+    trinketSlot++
+  ) {
+    const position = findFreePosition(player.Position);
+    player.DropTrinket(position, true);
+  }
 }
