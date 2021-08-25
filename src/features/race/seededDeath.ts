@@ -40,6 +40,7 @@ export function postUpdate(): void {
   postUpdateGhostForm();
   postUpdateCheckTakingDevilItem();
   postUpdateWaitingForForgottenSwitch();
+  postUpdateCheckLazarusFlip();
 }
 
 function postUpdateDeathAnimation() {
@@ -85,6 +86,9 @@ function postUpdateGhostForm() {
   const isaacFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
+  // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs
+  applySeededGhostFade(player);
+
   // Check to see if the debuff is over
   if (
     v.run.seededDeath.debuffEndFrame === null ||
@@ -105,6 +109,11 @@ function postUpdateGhostForm() {
       twin.AnimateHappy();
     }
   }
+}
+
+export function applySeededGhostFade(player: EntityPlayer): void {
+  const sprite = player.GetSprite();
+  sprite.Color = Color(1, 1, 1, 0.25, 0, 0, 0);
 }
 
 function postUpdateCheckTakingDevilItem() {
@@ -135,6 +144,33 @@ function postUpdateWaitingForForgottenSwitch() {
   invokeCustomDeathMechanic(player);
 }
 
+function postUpdateCheckLazarusFlip() {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  if (
+    v.run.seededDeath.useFlipOnFrame === null ||
+    gameFrameCount < v.run.seededDeath.useFlipOnFrame
+  ) {
+    return;
+  }
+
+  if (v.run.seededDeath.playerToUseFlip !== null) {
+    const entity = v.run.seededDeath.playerToUseFlip.Ref;
+    if (entity !== null) {
+      const player = entity.ToPlayer();
+      if (player !== null) {
+        player.UseActiveItem(
+          CollectibleType.COLLECTIBLE_FLIP,
+          UseFlag.USE_NOANIM,
+        );
+      }
+    }
+  }
+
+  v.run.seededDeath.useFlipOnFrame = null;
+  v.run.seededDeath.playerToUseFlip = null;
+}
+
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   postRenderFetalPosition();
@@ -147,11 +183,23 @@ function postRenderFetalPosition() {
   }
 
   const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
   const sprite = player.GetSprite();
 
-  if (!sprite.IsPlaying("AppearVanilla")) {
-    v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
-    enableAllInputs();
+  if (sprite.IsPlaying("AppearVanilla")) {
+    return;
+  }
+
+  v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
+  enableAllInputs();
+
+  // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
+  // We grant it here so that it does not cancel the "AppearVanilla" animation
+  if (
+    character === PlayerType.PLAYER_KEEPER ||
+    character === PlayerType.PLAYER_KEEPER_B
+  ) {
+    player.UseCard(Card.CARD_HOLY);
   }
 }
 
@@ -214,11 +262,13 @@ function postNewRoomChangingRooms() {
   // Play the animation where Isaac lies in the fetal position
   player.PlayExtraAnimation("AppearVanilla");
   debuffOn(player);
+  applySeededGhostFade(player);
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
     if (twin !== null) {
       twin.PlayExtraAnimation("AppearVanilla");
       debuffOn(twin);
+      applySeededGhostFade(player);
     }
   }
 }
@@ -418,5 +468,30 @@ function dropEverything(player: EntityPlayer) {
   ) {
     const position = findFreePosition(player.Position);
     player.DropTrinket(position, true);
+  }
+}
+
+// ModCallbacksCustom.MC_POST_FLIP
+export function postFlip(player: EntityPlayer): void {
+  if (v.run.seededDeath.state !== SeededDeathState.GHOST_FORM) {
+    return;
+  }
+
+  const gameFrameCount = g.g.GetFrameCount();
+
+  // If Tainted Lazarus clears a room while in ghost form, he will switch to other Lazarus
+  // Prevent this from happening by switching back
+  // If we do the switch now, Tainted Lazarus will enter a bugged state where he has a very fast
+  // movement speed
+  // Mark to do the switch a frame from now
+  if (v.run.seededDeath.switchingBackToGhostLazarus) {
+    v.run.seededDeath.switchingBackToGhostLazarus = false;
+
+    // Flipping back from the other Lazarus will remove the fade, so we have to reapply it
+    applySeededGhostFade(player);
+  } else {
+    v.run.seededDeath.switchingBackToGhostLazarus = true;
+    v.run.seededDeath.useFlipOnFrame = gameFrameCount + 1;
+    v.run.seededDeath.playerToUseFlip = EntityPtr(player);
   }
 }

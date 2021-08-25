@@ -1,7 +1,7 @@
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as racePostFlip from "../features/race/callbacks/postFlip";
+import racePostFirstFlip from "../features/race/callbacks/postFirstFlip";
 
 export function main(player: EntityPlayer): void {
   startWithD6.postFirstFlip(player);
-  racePostFlip.postFirstFlip(player);
+  racePostFirstFlip(player);
 }

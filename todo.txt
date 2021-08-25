@@ -1,10 +1,15 @@
 ```
-### *v0.61.2* - August 25th, 2021
+### *v0.61.3* - August 25th, 2021
 
-- Feature: Colostomia will now instantly appear upon entering its Boss Room.
-- Fixed the bug where you could teleport to the Ultra Secret room when using a teleport item under certain conditions. (Thanks Po4ti)
-- Fixed the bug where seeded death was 5 seconds instead of 45 seconds. (Thanks Gamonymous)
+- Fixed the bug where Magic Mushroom would incorrectly appear in Angel Shops. (Thanks olo70009)
+- Fixed the bug where the Angel Statues would not spawn in Angel Shops.
+- Fixed the bug with seeded death where Tainted Lazarus could escape from the seeded ghost by clearing a room. (Now, flipping to the other Lazarus will cause it to switch back.) (Thanks Gamonymous)
+- Fixed the bug with seeded death where Tainted Keeper was not working properly. (Thanks Gamonymous)
+- Fixed the bug with seeded death where stepping on a cobweb would unfade a seeded ghost.
+- Fixed the bug with seeded death where Keeper would cancel the "Appear" animation by using the Holy Card.
 ```
+
+- holy mantle cancels animate vanilla
 
 TODO Racing+ new features:
 - charge ability

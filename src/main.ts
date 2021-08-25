@@ -48,6 +48,7 @@ import * as usePill from "./callbacks/usePill";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
+import * as postFlip from "./callbacksCustom/postFlip";
 import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
 import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
@@ -187,6 +188,8 @@ function registerCallbacksCustom(mod: ModUpgraded) {
     ModCallbacksCustom.MC_POST_PLAYER_FATAL_DAMAGE,
     postPlayerFatalDamage.main,
   );
+
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_FLIP, postFlip.main);
 
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_FIRST_FLIP,

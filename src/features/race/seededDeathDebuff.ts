@@ -14,10 +14,6 @@ export function debuffOn(player: EntityPlayer): void {
   // Make them take "red heart damage" for the purposes of getting a Devil Deal
   g.l.SetRedHeartDamage();
 
-  // Fade the player
-  const sprite = player.GetSprite();
-  sprite.Color = Color(1, 1, 1, 0.25, 0, 0, 0);
-
   debuffOnSetHealth(player);
   debuffOnRemoveActiveItems(player);
   debuffOnRemoveAllItems(player);
@@ -36,10 +32,10 @@ function debuffOnSetHealth(player: EntityPlayer) {
 
   switch (character) {
     // 14
-    case PlayerType.PLAYER_KEEPER: {
+    case PlayerType.PLAYER_KEEPER:
+    case PlayerType.PLAYER_KEEPER_B: {
       player.AddMaxHearts(2, true); // One coin container
       player.AddHearts(2);
-      player.UseCard(Card.CARD_HOLY);
       break;
     }
 

@@ -30,6 +30,10 @@ const v = {
       goldenKey: false,
       stage: null as int | null,
       removedDarkEsau: false,
+
+      switchingBackToGhostLazarus: false,
+      useFlipOnFrame: null as int | null,
+      playerToUseFlip: null as EntityPtr | null,
     },
 
     spawnedCorpseTrapdoor: false,

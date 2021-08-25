@@ -1,5 +1,6 @@
 import {
   giveTrinketsBack,
+  inAngelShop,
   temporarilyRemoveTrinkets,
 } from "isaacscript-common";
 import g from "../../../../../globals";
@@ -38,7 +39,8 @@ export default function betterDevilAngelRoomsPreGetCollectible(
   // The placeholder item will be deleted later on this frame
   if (
     !v.level.roomBuilt &&
-    (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL)
+    (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL) &&
+    !inAngelShop()
   ) {
     return CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER;
   }

@@ -1,3 +1,4 @@
+import { inAngelShop } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 
@@ -10,6 +11,7 @@ export default function betterDevilAngelRoomsPreRoomEntitySpawn(
   }
 
   const roomType = g.r.GetType();
+  const roomShape = g.r.GetRoomShape();
   const isFirstVisit = g.r.IsFirstVisit();
 
   if (
@@ -17,6 +19,15 @@ export default function betterDevilAngelRoomsPreRoomEntitySpawn(
     roomType !== RoomType.ROOM_ANGEL // 15
   ) {
     return undefined;
+  }
+
+  // Angel shops do not need to be seeded
+  if (inAngelShop()) {
+    return undefined;
+  }
+
+  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
+    error("Seeding non-1x1 rooms is not supported.");
   }
 
   if (!isFirstVisit) {

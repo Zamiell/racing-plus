@@ -1,10 +1,5 @@
-import { config } from "../../../modConfigMenu";
-import formatSetup from "../formatSetup";
+import * as seededDeath from "../seededDeath";
 
-export function postFirstFlip(player: EntityPlayer): void {
-  if (!config.clientCommunication) {
-    return;
-  }
-
-  formatSetup(player);
+export default function racePostFlip(player: EntityPlayer): void {
+  seededDeath.postFlip(player);
 }
