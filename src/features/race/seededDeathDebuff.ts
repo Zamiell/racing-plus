@@ -211,7 +211,7 @@ function debuffOffAddAllItems(player: EntityPlayer) {
 }
 
 function disableSpiritShackles(player: EntityPlayer) {
-  // IF we re-gave Spirit Shackles back to the player, they will get a free revival
+  // If we re-gave Spirit Shackles back to the player, they will get a free revival
   // Disable it if this is the case
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES)) {
     return;

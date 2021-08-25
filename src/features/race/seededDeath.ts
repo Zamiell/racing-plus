@@ -18,6 +18,10 @@ import {
   removeGridEntity,
   teleport,
 } from "../../utilGlobals";
+import {
+  disableAllInputs,
+  enableAllInputs,
+} from "../mandatory/disableAllInputs";
 import { forceSwitchToForgotten } from "../mandatory/switchForgotten";
 import { debuffOff, debuffOn } from "./seededDeathDebuff";
 import RaceFormat from "./types/RaceFormat";
@@ -34,7 +38,6 @@ const DEATH_ANIMATION_FRAMES = 46;
 export function postUpdate(): void {
   postUpdateDeathAnimation();
   postUpdateGhostForm();
-  postUpdateDisableControls();
   postUpdateCheckTakingDevilItem();
   postUpdateWaitingForForgottenSwitch();
 }
@@ -104,25 +107,6 @@ function postUpdateGhostForm() {
   }
 }
 
-function postUpdateDisableControls() {
-  const player = Isaac.GetPlayer();
-
-  // Ensure that they cannot perform any inputs while seeded death is happening
-  if (
-    v.run.seededDeath.state === SeededDeathState.DEATH_ANIMATION ||
-    v.run.seededDeath.state === SeededDeathState.CHANGING_ROOMS ||
-    v.run.seededDeath.state === SeededDeathState.FETAL_POSITION
-  ) {
-    player.ControlsEnabled = false;
-    if (isJacobOrEsau(player)) {
-      const twin = player.GetOtherTwin();
-      if (twin !== null) {
-        twin.ControlsEnabled = false;
-      }
-    }
-  }
-}
-
 function postUpdateCheckTakingDevilItem() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
   const gameFrameCount = g.g.GetFrameCount();
@@ -165,27 +149,9 @@ function postRenderFetalPosition() {
   const player = Isaac.GetPlayer();
   const sprite = player.GetSprite();
 
-  if (sprite.IsPlaying("AppearVanilla")) {
-    // Lock the player to the same position
-    // If we do not do this, they will be able to move around (even if their controls are disabled)
-    player.Position = v.run.seededDeath.fetalPosition;
-    if (isJacobOrEsau(player)) {
-      const twin = player.GetOtherTwin();
-      if (twin !== null) {
-        const adjustment = Vector(20, 0);
-        twin.Position = v.run.seededDeath.fetalPosition.add(adjustment);
-      }
-    }
-  } else {
+  if (!sprite.IsPlaying("AppearVanilla")) {
     v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
-
-    player.ControlsEnabled = true;
-    if (isJacobOrEsau(player)) {
-      const twin = player.GetOtherTwin();
-      if (twin !== null) {
-        twin.ControlsEnabled = true;
-      }
-    }
+    enableAllInputs();
   }
 }
 
@@ -241,7 +207,6 @@ function postNewRoomChangingRooms() {
   const player = Isaac.GetPlayer();
 
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
-  v.run.seededDeath.fetalPosition = player.Position;
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
@@ -412,6 +377,8 @@ function invokeCustomDeathMechanic(player: EntityPlayer) {
 
   v.run.seededDeath.state = SeededDeathState.DEATH_ANIMATION;
   v.run.seededDeath.reviveFrame = gameFrameCount + DEATH_ANIMATION_FRAMES;
+
+  disableAllInputs();
   g.sfx.Play(SoundEffect.SOUND_ISAACDIES);
 
   // Hide the player's health to obfuscate the fact that they are still technically alive

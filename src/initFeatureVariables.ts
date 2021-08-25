@@ -3,6 +3,7 @@ import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
+import * as disableAllInputs from "./features/mandatory/disableAllInputs";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
@@ -69,6 +70,7 @@ export default function initFeatureVariables(): void {
   trophy.init();
   fireworks.init();
   disableMultiplayer.init();
+  disableAllInputs.init();
   debugPowers.init();
   errors.init();
 

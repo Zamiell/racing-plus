@@ -14,7 +14,6 @@ const v = {
       state: SeededDeathState.DISABLED,
       reviveFrame: null as int | null,
       debuffEndFrame: null as int | null,
-      fetalPosition: Vector.Zero,
 
       devilRoomDeals: 0,
       frameOfLastDevilDeal: null as int | null,
