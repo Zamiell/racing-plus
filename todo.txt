@@ -13,9 +13,8 @@
 - Fixed the bug where water flows were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where Dusty Death's Heads were not properly flipped. (Thanks Po4ti)
 - Fixed the bug where in season 1, the door to the Mines would incorrectly display the planks sprite in certain situations. (Thanks Gamonymous)
+- Fixed the bug where Tainted Lazarus was not properly given his starting items in seeded races and diversity races. (Thanks Gamonymous)
 ```
-
-Test seeded death mechanic taking golden bomb to next floor
 
 TODO Racing+ new features:
 - make items in order on devil/angel rooms

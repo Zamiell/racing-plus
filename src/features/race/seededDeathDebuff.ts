@@ -29,7 +29,6 @@ export function debuffOn(player: EntityPlayer): void {
 
 function debuffOnSetHealth(player: EntityPlayer) {
   const character = player.GetPlayerType();
-  // const c = player.GetSubPlayer()
 
   player.AddMaxHearts(-24, true);
   player.AddSoulHearts(-24);
@@ -54,6 +53,17 @@ function debuffOnSetHealth(player: EntityPlayer) {
     default: {
       player.AddSoulHearts(3);
       break;
+    }
+  }
+
+  // Giving the player more health may have activated Spirit Shackles
+  // Disable it if this is the case
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES)) {
+    const effects = player.GetEffects();
+    const spiritShacklesEnabled =
+      effects.GetNullEffectNum(NullItemID.ID_SPIRIT_SHACKLES_DISABLED) === 0;
+    if (spiritShacklesEnabled) {
+      effects.AddNullEffect(NullItemID.ID_SPIRIT_SHACKLES_DISABLED, true);
     }
   }
 }
