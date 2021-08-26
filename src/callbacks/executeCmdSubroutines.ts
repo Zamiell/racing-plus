@@ -1,6 +1,7 @@
+import { teleport } from "../../../isaacscript-common/dist";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
-import { findFreePosition, teleport } from "../utilGlobals";
+import { findFreePosition } from "../utilGlobals";
 
 export function angel(params: string): void {
   const player = Isaac.GetPlayer();

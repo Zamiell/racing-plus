@@ -1,4 +1,8 @@
 import {
+  disableInputs,
+  enableInputs,
+  getRoomIndex,
+  getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   inBeastRoom,
   isJacobOrEsau,
@@ -13,16 +17,7 @@ import {
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
-import {
-  findFreePosition,
-  removeGridEntity,
-  teleport,
-} from "../../utilGlobals";
-import {
-  disableAllInputs,
-  enableAllInputs,
-} from "../mandatory/disableAllInputs";
-import { forceSwitchToForgotten } from "../mandatory/switchForgotten";
+import { findFreePosition, removeGridEntity } from "../../utilGlobals";
 import { debuffOff, debuffOn } from "./seededDeathDebuff";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
@@ -30,52 +25,15 @@ import RaceStatus from "./types/RaceStatus";
 import SeededDeathState from "./types/SeededDeathState";
 import v from "./v";
 
+const REVIVAL_TYPE_SEEDED_DEATH = 0;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
-const DEATH_ANIMATION_FRAMES = 46;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
-  postUpdateDeathAnimation();
   postUpdateGhostForm();
   postUpdateCheckTakingDevilItem();
-  postUpdateWaitingForForgottenSwitch();
   postUpdateCheckLazarusFlip();
-}
-
-function postUpdateDeathAnimation() {
-  if (v.run.seededDeath.state !== SeededDeathState.DEATH_ANIMATION) {
-    return;
-  }
-
-  const gameFrameCount = g.g.GetFrameCount();
-  const previousRoomIndex = g.l.GetPreviousRoomIndex();
-  const player = Isaac.GetPlayer();
-
-  // Check to see if the (fake) death animation is over
-  if (
-    v.run.seededDeath.reviveFrame === null ||
-    gameFrameCount < v.run.seededDeath.reviveFrame
-  ) {
-    return;
-  }
-
-  v.run.seededDeath.reviveFrame = null;
-  v.run.seededDeath.state = SeededDeathState.CHANGING_ROOMS;
-
-  player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      twin.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
-    }
-  }
-
-  const enterDoor = g.l.EnterDoor;
-  const door = g.r.GetDoor(enterDoor);
-  const direction = (door !== null && door.Direction) || Direction.NO_DIRECTION;
-  teleport(previousRoomIndex, direction, RoomTransitionAnim.WALK);
-  g.l.LeaveDoor = enterDoor;
 }
 
 function postUpdateGhostForm() {
@@ -126,24 +84,6 @@ function postUpdateCheckTakingDevilItem() {
   }
 }
 
-function postUpdateWaitingForForgottenSwitch() {
-  if (!v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
-    return;
-  }
-
-  const forgottenBodies = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariant.FORGOTTEN_BODY,
-  );
-  if (forgottenBodies.length > 0) {
-    return;
-  }
-
-  v.run.seededDeath.deferringDeathUntilForgottenSwitch = false;
-  const player = Isaac.GetPlayer();
-  invokeCustomDeathMechanic(player);
-}
-
 function postUpdateCheckLazarusFlip() {
   const gameFrameCount = g.g.GetFrameCount();
 
@@ -191,7 +131,7 @@ function postRenderFetalPosition() {
   }
 
   v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
-  enableAllInputs();
+  enableInputs();
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
   // We grant it here so that it does not cancel the "AppearVanilla" animation
@@ -219,58 +159,7 @@ function postRenderCheckDisplayTimer(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  postNewRoomDeathAnimation();
-  postNewRoomChangingRooms();
   postNewRoomGhostForm();
-}
-
-function postNewRoomDeathAnimation() {
-  if (v.run.seededDeath.state !== SeededDeathState.DEATH_ANIMATION) {
-    return;
-  }
-
-  const player = Isaac.GetPlayer();
-
-  // They entered a loading zone while dying (e.g. running through a Curse Room door)
-  // Play the death animation again, since entering a new room canceled it
-  // We need to disable the collision again,
-  // or else enemies will be able to push around the body during the death animation
-  player.PlayExtraAnimation("Death");
-  player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      twin.PlayExtraAnimation("Death");
-      twin.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-    }
-  }
-}
-
-function postNewRoomChangingRooms() {
-  if (v.run.seededDeath.state !== SeededDeathState.CHANGING_ROOMS) {
-    return;
-  }
-
-  const isaacFrameCount = Isaac.GetFrameCount();
-  const player = Isaac.GetPlayer();
-
-  v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
-  v.run.seededDeath.debuffEndFrame =
-    isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
-  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
-
-  // Play the animation where Isaac lies in the fetal position
-  player.PlayExtraAnimation("AppearVanilla");
-  debuffOn(player);
-  applySeededGhostFade(player);
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      twin.PlayExtraAnimation("AppearVanilla");
-      debuffOn(twin);
-      applySeededGhostFade(player);
-    }
-  }
 }
 
 function postNewRoomGhostForm(): void {
@@ -298,21 +187,6 @@ function postNewRoomGhostForm(): void {
       twin.AnimateSad();
     }
   }
-}
-
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_PLAYER (1)
-export function entityTakeDmgPlayer(): boolean | void {
-  // Make the player invulnerable during the death process
-  if (
-    v.run.seededDeath.state === SeededDeathState.DEATH_ANIMATION ||
-    v.run.seededDeath.state === SeededDeathState.CHANGING_ROOMS ||
-    v.run.seededDeath.state === SeededDeathState.FETAL_POSITION
-  ) {
-    return false;
-  }
-
-  return undefined;
 }
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
@@ -347,23 +221,14 @@ export function postEffectInitBloodDrop(effect: EntityEffect): void {
   effect.Remove();
 }
 
-// ModCallbacksCustom.MC_POST_PLAYER_FATAL_DAMAGE
-export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
-  if (
-    v.run.seededDeath.state !== SeededDeathState.DISABLED &&
-    v.run.seededDeath.state !== SeededDeathState.GHOST_FORM
-  ) {
-    // We are already in the process of dying
-    return false;
-  }
-
+// ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE
+export function preCustomRevive(player: EntityPlayer): int | void {
   if (!seededDeathFeatureShouldApply()) {
     return undefined;
   }
 
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
-  const character = player.GetPlayerType();
 
   // Do not revive the player if they have Spirit Shackles and it is activated
   if (willReviveFromSpiritShackles(player)) {
@@ -392,25 +257,29 @@ export function postPlayerFatalDamage(player: EntityPlayer): boolean | void {
   // Do not revive the player in The Beast room
   // Handling this special case would be too complicated and the player would probably lose the race
   // anyway
-  if (inBeastRoom()) {
+  if (inBeastRoom() || inBeastDebugRoom()) {
     return undefined;
   }
 
-  // If we are already switching from The Soul to The Forgotten,
-  // prevent the death and continue to wait
-  if (v.run.seededDeath.deferringDeathUntilForgottenSwitch) {
-    return false;
+  dropEverything(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      dropEverything(player);
+    }
   }
 
-  // If the player is The Soul, switch back to The Forgotten and defer invoking the custom death
-  // mechanic until the switch is complete
-  if (character === PlayerType.PLAYER_THESOUL) {
-    forceSwitchToForgotten();
-    v.run.seededDeath.deferringDeathUntilForgottenSwitch = true;
-    return false;
-  }
+  return REVIVAL_TYPE_SEEDED_DEATH;
+}
 
-  return invokeCustomDeathMechanic(player);
+function inBeastDebugRoom() {
+  const roomIndex = getRoomIndex();
+  const roomSubType = getRoomSubType();
+
+  return (
+    roomIndex === GridRooms.ROOM_DEBUG_IDX &&
+    roomSubType === HomeRoomSubType.BEAST_ROOM
+  );
 }
 
 function seededDeathFeatureShouldApply() {
@@ -419,36 +288,6 @@ function seededDeathFeatureShouldApply() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED
   );
-}
-
-function invokeCustomDeathMechanic(player: EntityPlayer) {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  v.run.seededDeath.state = SeededDeathState.DEATH_ANIMATION;
-  v.run.seededDeath.reviveFrame = gameFrameCount + DEATH_ANIMATION_FRAMES;
-
-  disableAllInputs();
-  g.sfx.Play(SoundEffect.SOUND_ISAACDIES);
-
-  // Hide the player's health to obfuscate the fact that they are still technically alive
-  g.seeds.AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
-
-  startDeathAnimation(player);
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      startDeathAnimation(twin);
-    }
-  }
-
-  return false;
-}
-
-function startDeathAnimation(player: EntityPlayer) {
-  player.PlayExtraAnimation("Death");
-  player.ControlsEnabled = false;
-  player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-  dropEverything(player);
 }
 
 function dropEverything(player: EntityPlayer) {
@@ -468,6 +307,29 @@ function dropEverything(player: EntityPlayer) {
   ) {
     const position = findFreePosition(player.Position);
     player.DropTrinket(position, true);
+  }
+}
+
+// ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE
+export function postCustomRevive(player: EntityPlayer): void {
+  const isaacFrameCount = Isaac.GetFrameCount();
+
+  v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
+  v.run.seededDeath.debuffEndFrame =
+    isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
+
+  // Play the animation where Isaac lies in the fetal position
+  disableInputs();
+  player.PlayExtraAnimation("AppearVanilla");
+  debuffOn(player);
+  applySeededGhostFade(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.PlayExtraAnimation("AppearVanilla");
+      debuffOn(twin);
+      applySeededGhostFade(player);
+    }
   }
 }
 

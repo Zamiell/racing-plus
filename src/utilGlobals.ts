@@ -188,15 +188,3 @@ export function spawnCollectible(
 
   return collectible;
 }
-
-export function teleport(
-  roomIndex: int,
-  direction = Direction.NO_DIRECTION,
-  roomTransitionAnim = RoomTransitionAnim.TELEPORT,
-): void {
-  // This must be set before every StartRoomTransition() invocation or else the function can send
-  // you to the wrong room
-  g.l.LeaveDoor = -1;
-
-  g.g.StartRoomTransition(roomIndex, direction, roomTransitionAnim);
-}

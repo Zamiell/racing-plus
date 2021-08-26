@@ -1,15 +1,10 @@
 ```
-### *v0.61.3* - August 25th, 2021
+### *v0.61.4* - August 25th, 2021
 
-- Fixed the bug where Magic Mushroom would incorrectly appear in Angel Shops. (Thanks olo70009)
-- Fixed the bug where the Angel Statues would not spawn in Angel Shops.
-- Fixed the bug with seeded death where Tainted Lazarus could escape from the seeded ghost by clearing a room. (Now, flipping to the other Lazarus will cause it to switch back.) (Thanks Gamonymous)
-- Fixed the bug with seeded death where Tainted Keeper was not working properly. (Thanks Gamonymous)
-- Fixed the bug with seeded death where stepping on a cobweb would unfade a seeded ghost.
-- Fixed the bug with seeded death where Keeper would cancel the "Appear" animation by using the Holy Card.
+- Skipping Dogma's cutscene is now toggleable in Mod Config Menu.
+- Fixed the bug with seeded death where it would trigger on The Beast fight. (Thanks Gamonymous)
+- Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
 ```
-
-- holy mantle cancels animate vanilla
 
 TODO Racing+ new features:
 - charge ability

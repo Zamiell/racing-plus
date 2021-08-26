@@ -46,6 +46,7 @@ import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
+import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postFlip from "./callbacksCustom/postFlip";
@@ -54,10 +55,10 @@ import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
-import * as postPlayerFatalDamage from "./callbacksCustom/postPlayerFatalDamage";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
+import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { VERSION } from "./constants";
 import initFeatureVariables from "./initFeatureVariables";
@@ -185,8 +186,8 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_PLAYER_FATAL_DAMAGE,
-    postPlayerFatalDamage.main,
+    ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE,
+    preCustomRevive.main,
   );
 
   mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_FLIP, postFlip.main);
@@ -218,6 +219,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
+  postCustomRevive.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);

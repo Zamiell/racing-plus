@@ -9,10 +9,11 @@ import {
   inGenesisRoom,
   log,
   onFinalFloor,
+  teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { movePlayersAndFamiliars } from "../../../../util";
-import { removeGridEntity, teleport } from "../../../../utilGlobals";
+import { removeGridEntity } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";

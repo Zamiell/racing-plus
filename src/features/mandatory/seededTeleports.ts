@@ -3,10 +3,10 @@ import {
   getRandomInt,
   log,
   saveDataManager,
+  teleport,
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
-import { teleport } from "../../utilGlobals";
 
 const v = {
   level: {

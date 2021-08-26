@@ -168,6 +168,7 @@ Post-flip actions:
 - `037` <!-- 407 --> The Hush door will be automatically opened.
 - `038` <!-- 411 --> Big Horn will spend less time underground.
 - `039` <!-- 917 --> Colostomia will instantly appear.
+- `040` <!-- 950 --> Dogma's death cutscene is skipped.
 - <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 

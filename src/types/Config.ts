@@ -26,6 +26,7 @@ export default class Config {
   openHushDoor = true; // 407
   fastBigHorn = true; // 411
   fastColostomia = true; // 917
+  fastDogma = true; // 950
 
   // Enemy Changes
   removeTreasureRoomEnemies = true;

@@ -15,13 +15,13 @@ export function postTearUpdateBloodParticle(tear: EntityTear): void {
     return;
   }
 
-  if (shouldFadeTear(tear)) {
+  if (isVasculitisTear(tear)) {
     fadeTear(tear);
   }
 }
 
-function shouldFadeTear(tear: EntityTear) {
-  // tear.SpawnerType will be equal to 1 if it was shot by the player.
+function isVasculitisTear(tear: EntityTear) {
+  // tear.SpawnerType will be equal to 1 if it was shot by the player
   return (
     tear.FrameCount === 0 &&
     tear.SpawnerType === 0 &&

@@ -1,5 +1,7 @@
 import {
   changeRoom,
+  disableInputs,
+  enableInputs,
   getPlayers,
   getRoomIndex,
   onRepentanceStage,
@@ -7,10 +9,6 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
-import {
-  disableAllInputs,
-  enableAllInputs,
-} from "../../../mandatory/disableAllInputs";
 import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
@@ -72,7 +70,7 @@ export function setFadingToBlack(
   v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  disableAllInputs();
+  disableInputs();
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);
   warpForgottenBody(player);
@@ -329,5 +327,5 @@ export function setPlayersVisible(
 
 function setDisabled() {
   blackSprite.setFullyTransparent();
-  enableAllInputs();
+  enableInputs();
 }
