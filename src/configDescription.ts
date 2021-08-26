@@ -200,7 +200,7 @@ export const CHARACTER_CHANGES: ConfigDescriptionArray = [
   ],
 ];
 
-// 031-03X
+// 031-040
 export const BOSS_CHANGES_1: ConfigDescriptionArray = [
   [
     "fadeBosses",
@@ -281,6 +281,15 @@ export const BOSS_CHANGES_1: ConfigDescriptionArray = [
       "039",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
+    ],
+  ],
+  [
+    "fastDogma", // 950
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "040",
+      "Fast Dogma",
+      "Automatically skip Dogma's death cutscene.",
     ],
   ],
 ];
