@@ -69,7 +69,7 @@ function postUpdateGhostForm() {
   }
 }
 
-export function applySeededGhostFade(player: EntityPlayer): void {
+function applySeededGhostFade(player: EntityPlayer): void {
   const sprite = player.GetSprite();
   sprite.Color = Color(1, 1, 1, 0.25, 0, 0, 0);
 }

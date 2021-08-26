@@ -1,4 +1,4 @@
-import { enableInputs } from "../../../../../../../isaacscript-common/dist";
+import { enableInputs } from "isaacscript-common";
 import { FastTravelState } from "../enums";
 import v from "../v";
 

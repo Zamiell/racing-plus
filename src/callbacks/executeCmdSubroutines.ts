@@ -1,4 +1,4 @@
-import { teleport } from "../../../isaacscript-common/dist";
+import { teleport } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import { findFreePosition } from "../utilGlobals";

@@ -1,7 +1,4 @@
-import {
-  ModCallbacksCustom,
-  ModUpgraded,
-} from "../../../isaacscript-common/dist";
+import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
 import racePostCustomRevive from "../features/race/callbacks/postCustomRevive";
 import RevivalType from "../features/race/types/RevivalType";
 
