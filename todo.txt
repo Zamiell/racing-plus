@@ -1,8 +1,6 @@
 ```
-### *v0.61.4* - August 25th, 2021
+### *v0.61.5* - August 26th, 2021
 
-- Skipping Dogma's cutscene is now toggleable in Mod Config Menu.
-- Fixed the bug with seeded death where it would trigger on The Beast fight. (Thanks Gamonymous)
 - Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
 ```
 
