@@ -91,6 +91,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
       PickupVariant.PICKUP_COIN,
       PickupVariant.PICKUP_COIN,
       PickupVariant.PICKUP_COIN,
+      PickupVariant.PICKUP_KEY,
     ],
   ], // 716
 ]);
