@@ -73,8 +73,8 @@ const FALSE_PHD_PILL_CONVERSIONS = new Map([
   [PillEffect.PILLEFFECT_SHOT_SPEED_UP, PillEffect.PILLEFFECT_SHOT_SPEED_DOWN], // 48
 ]);
 
-/** Indexed by PillEffect. These are not meant to ever be reset. */
-const pillSprites: Sprite[] = [];
+/** These are not meant to ever be reset. */
+const pillSprites = new Map<PillColor, Sprite>();
 
 const v = {
   run: {
@@ -88,13 +88,16 @@ const v = {
 export function init(): void {
   saveDataManager("showPills", v, featureEnabled);
 
-  // For convenience, make a null sprite on index 0
-  const nullSprite = Sprite();
-  pillSprites.push(nullSprite);
-
-  for (let i = 1; i < PillColor.NUM_STANDARD_PILLS; i++) {
-    const sprite = initSprite("gfx/pills/pill.anm2", `gfx/pills/${i}.png`);
-    pillSprites.push(sprite);
+  for (
+    let pillColor = 1;
+    pillColor < PillColor.NUM_STANDARD_PILLS;
+    pillColor++
+  ) {
+    const sprite = initSprite(
+      "gfx/pills/pill.anm2",
+      `gfx/pills/${pillColor}.png`,
+    );
+    pillSprites.set(pillColor, sprite);
   }
 }
 
@@ -204,7 +207,10 @@ function drawTextAndSprite() {
     // Show the pill sprite
     const y = baseY + 20 * (i + 1);
     const position = Vector(x, y);
-    const sprite = pillSprites[pillEntry.effect];
+    const sprite = pillSprites.get(pillEntry.color);
+    if (sprite === undefined) {
+      error(`Failed to find the sprite for pill color: ${pillEntry.color}`);
+    }
     sprite.RenderLayer(0, position);
 
     // Show the pill effect as text
