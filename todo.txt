@@ -1,8 +1,11 @@
 ```
 ### *v0.61.5* - August 26th, 2021
 
-- Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
+- Fixed the bug where the pill tracker did not work under certain conditions.
 ```
+
+- Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
+
 
 TODO Racing+ new features:
 - charge ability
