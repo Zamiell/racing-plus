@@ -11,10 +11,11 @@ export default class Config {
   fastTravel = true;
 
   // Character Changes
-  judasAddBomb = true;
-  samsonDropHeart = true;
-  taintedKeeperMoney = true;
-  showEdenStartingItems = true;
+  judasAddBomb = true; // 3
+  samsonDropHeart = true; // 6
+  showEdenStartingItems = true; // 9, 30
+  lostUseHolyCard = true; // 31
+  taintedKeeperMoney = true; // 33
 
   // Boss Changes
   fadeBosses = true;

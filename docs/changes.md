@@ -129,21 +129,22 @@ Post-flip actions:
 
 ### 2) Character Changes
 
-- `021` Judas starts with a bomb.
+- `021` <!-- 3 --> Judas starts with a bomb.
 
 > Why? Historically, Isaac was the main character used in tournaments. After Balls of Steel 4, tournaments started using Judas as the main character instead, since he had a higher damage multiplier. At this time, it was desirable for Judas to have a bomb so that he would play in a similar way to Isaac. Starting with a bomb makes the game slightly more skill-based, since it gives players the option to bomb a tinted rock, escape a slow 2x2 room, and so forth.
 
-- `022` Samson's Child's Heart is automatically dropped.
+- `022` <!-- 6 --> Samson's Child's Heart is automatically dropped.
 
 >  Why? When playing as Samson, players usually immediately drop the Child's Heart to improve their odds at good room drops.
 
-- `023` Tainted Keeper starts with 15 cents.
-
-> Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
-
-- `024` Eden's starting items will be shown in the starting room.
+- `023` <!-- 9, 30 --> Eden's starting items will be shown in the starting room.
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
+
+- `024` <!-- 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
+- `025` <!-- 33 --> Tainted Keeper starts with 15 cents.
+
+> Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
 ### 3) Boss Changes
 

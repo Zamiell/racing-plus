@@ -4,9 +4,9 @@
     "content\\itempools.xml": "f762099418a658f2af6d41d82642388323cdd972",
     "content\\items.xml": "db1acf471590667a99b68bf47106a690a3491a79",
     "content\\sounds.xml": "d8e9193c296cc16cc919a6b6327f06e810fd27ad",
-    "main.lua": "35a9a00ad5690ced60dcac348643208e693b9292",
+    "main.lua": "f74f0e91b6f77e2469da2ba61ed9a51e0973b1ec",
     "metadata.vdf": "24a30ec1bdd096e66061fad379b22ca37646e020",
-    "metadata.xml": "5b2d4e2a722de1d0ff2dd59d6787052e121b64dc",
+    "metadata.xml": "a7ae1bb25ad0e38133656868ff8777bfe5597e4a",
     "readme.txt": "9444eb5b9175cd01eece655520beffcf83dd797a",
     "resources\\cutscenes.xml": "dbe41fdde8a53ac0d430f1756d85656b06d3f6a1",
     "resources\\font\\teammeatfont10.fnt": "7752a5e20a9ab8f4d523831baa94515c4330522f",
@@ -121,7 +121,7 @@
     "resources\\gfx\\items\\collectibles\\Checkpoint.png": "84a846906673931e27c9666c4c5909cc0fbd56be",
     "resources\\gfx\\items\\collectibles\\Debug.png": "8fb45230206a31db131f9e9459fffbd67af79fa3",
     "resources\\gfx\\items\\collectibles\\Reset.png": "c491b3a2ffc5ae22c4ae3b69daf449e6d254b097",
-    "resources\\gfx\\items\\collectibles\\Sawblade.png": "13127ace2830d69247831c2f54ad12e753ee1bc8",
+    "resources\\gfx\\items\\collectibles\\Sawblade.png": "264c3050d665033cdaa570e9d63f6392cd477ed3",
     "resources\\gfx\\items\\collectibles\\Trophy.png": "dbb98e56858a11a54e8d87469f66cb5a1413f61d",
     "resources\\gfx\\items\\collectibles\\collectibles_057_distantadmiration_custom.png": "9b7ee1c709080aed52f2bd08328000b2689f2e3f",
     "resources\\gfx\\items\\collectibles\\collectibles_128_foreveralone_custom.png": "6559b80f2076e193fec5391e2bcadfd655e3fe51",
@@ -1626,8 +1626,8 @@
     "resources\\gfx\\ui\\main menu\\savedrawings\\dogma.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\savedrawings\\mother.png": "9450d3145b2cff38ab4e419d2074106b5046a661",
     "resources\\gfx\\ui\\main menu\\titlemenu-template.png": "9363b750818b701502c67c3e904386fe73f6c06c",
-    "resources\\gfx\\ui\\main menu\\titlemenu.png": "0486a996d99162b4de883f34f9948a6beba8aec1",
-    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "0486a996d99162b4de883f34f9948a6beba8aec1",
+    "resources\\gfx\\ui\\main menu\\titlemenu.png": "723cb0963d84a5390cb1c08154ba984ab4058efb",
+    "resources\\gfx\\ui\\main menu\\titlemenu_2.png": "723cb0963d84a5390cb1c08154ba984ab4058efb",
     "resources\\gfx\\ui\\max_familiars.anm2": "c4db8e2bda6996f1d08912bf2b66c6b300be9068",
     "resources\\gfx\\ui\\max_familiars.png": "2624fcd9605628b8558da9a9fd19556935cf9765",
     "resources\\gfx\\ui\\minimap_icons.png": "b59fc4878f3d62ebde6059009e3329a052f866bb",
@@ -1668,5 +1668,5 @@
     "resources\\rooms\\36.backwards.stb": "ad64104b6af39365ab821be424bfa4a2d7dd8e13",
     "resources\\rules.txt": "9c726f9e970de6bcff78aec5526665597156b730",
     "resources\\sfx\\speedrun_finish.wav": "6522d100a4e517fded302db673f0b796a15154c8",
-    "version.txt": "ea3a638363a948dba6ad3ab23044631e82f92655"
+    "version.txt": "e2e80d82257a456868dd4d62e51624e9108a48d0"
 }

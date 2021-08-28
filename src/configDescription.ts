@@ -163,7 +163,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
 // 021-02X
 export const CHARACTER_CHANGES: ConfigDescriptions = [
   [
-    "judasAddBomb",
+    "judasAddBomb", // 3
     [
       ModConfigMenuOptionType.BOOLEAN,
       "021",
@@ -172,7 +172,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "samsonDropHeart",
+    "samsonDropHeart", // 6
     [
       ModConfigMenuOptionType.BOOLEAN,
       "022",
@@ -181,21 +181,30 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "taintedKeeperMoney",
+    "showEdenStartingItems", // 9, 30
     [
       ModConfigMenuOptionType.BOOLEAN,
       "023",
-      "Tainted Keeper extra money",
-      "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
+      "Show Eden's starting items",
+      "Draw both of Eden's starting items on the screen while in the first room.",
     ],
   ],
   [
-    "showEdenStartingItems",
+    "lostUseHolyCard", // 31
     [
       ModConfigMenuOptionType.BOOLEAN,
       "024",
-      "Show Eden's starting items",
-      "Draw both of Eden's starting items on the screen while in the first room.",
+      "Automatically use the Holy Card",
+      "Automatically use the Holy Card when starting a run as Tainted Lost.",
+    ],
+  ],
+  [
+    "taintedKeeperMoney", // 33
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "025",
+      "Tainted Keeper extra money",
+      "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
   ],
 ];

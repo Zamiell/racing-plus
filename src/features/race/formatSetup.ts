@@ -3,7 +3,6 @@ import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
-import * as startsWithD6 from "../optional/major/startWithD6";
 import {
   COLLECTIBLE_13_LUCK_SERVER_ID,
   COLLECTIBLE_15_LUCK_SERVER_ID,
@@ -251,10 +250,7 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    (CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) ||
-      // Racing+ gives the D6 as an active item to some characters, so these characters should get
-      // the Schoolbag too for the same reason
-      startsWithD6.shouldGetActiveD6(player)) &&
+    CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden

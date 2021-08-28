@@ -1,11 +1,16 @@
 ```
 ### *v0.61.5* - August 26th, 2021
 
+- All characters are now given the D6 on the pocket active item slot for the purposes of having consistent muscle memory. If a character previously had a pocket item, they will instead have it on active item slot. The exception is Tainted Cain, who is no longer granted the D6.
+- Tainted Lost now automatically uses his Holy Card.
 - Updated the collectible sprite for Sawblade to match what the familiar looks like.
 - Fixed the bug where the key from Keeper's Sack would not be automatically inserted. (Thanks Gamonymous)
 - Fixed the bug where Perfection would not spawn correctly under certain circumstances. (Thanks Gamonymous)
 - Fixed the bug where Turdlet was incorrectly faded under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where if the player had two Sawblades, they would not be spaced properly.
 ```
+
+- custom flip handling
 
 - Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
 

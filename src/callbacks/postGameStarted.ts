@@ -7,15 +7,16 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
+import * as judasAddBomb from "../features/optional/characters/judasAddBomb";
+import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCard";
+import * as samsonDropHeart from "../features/optional/characters/samsonDropHeart";
+import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
 import extraStartingItemsPostGameStarted from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
 import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import * as judasAddBomb from "../features/optional/quality/judasAddBomb";
-import * as samsonDropHeart from "../features/optional/quality/samsonDropHeart";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
-import * as taintedKeeperMoney from "../features/optional/quality/taintedKeeperMoney";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
 import g from "../globals";
@@ -71,13 +72,16 @@ export function main(isContinued: boolean): void {
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 
+  // Character changes
+  judasAddBomb.postGameStarted();
+  samsonDropHeart.postGameStarted();
+  lostUseHolyCard.postGameStarted();
+  taintedKeeperMoney.postGameStarted();
+
   // Gameplay changes
   extraStartingItemsPostGameStarted();
 
   // Quality of life
-  samsonDropHeart.postGameStarted();
-  judasAddBomb.postGameStarted();
-  taintedKeeperMoney.postGameStarted();
   showDreamCatcherItemPostGameStarted();
 
   // Items

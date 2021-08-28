@@ -66,9 +66,14 @@ import {
   FamiliarVariantCustom,
 } from "../../types/enums";
 
+interface SawbladeData {
+  frameCountModifier: int | undefined;
+}
+
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
+const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
 
 const v = {
   run: {
@@ -101,11 +106,69 @@ function getPosition(familiar: EntityFamiliar) {
   if (player === null) {
     error("A sawblade was spawned without a SpawnerEntity.");
   }
+
+  let frameCount = familiar.FrameCount;
+  const data = familiar.GetData() as unknown as SawbladeData;
+  if (data.frameCountModifier !== undefined) {
+    frameCount += data.frameCountModifier;
+  }
+
   const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
   const rotatedVector = baseVector.Rotated(
-    familiar.FrameCount * ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS * -1,
+    frameCount * SAWBLADE_ROTATION_SPEED * -1,
   );
   return player.Position.add(rotatedVector);
+}
+
+// ModCallbacks.MC_FAMILIAR_INIT (7)
+export function postFamiliarInit(familiar: EntityFamiliar): void {
+  if (familiar.SpawnerEntity === null) {
+    return;
+  }
+
+  const player = familiar.SpawnerEntity.ToPlayer();
+  if (player === null) {
+    return;
+  }
+
+  const playerHash = GetPtrHash(player);
+  const sawblades = Isaac.FindByType(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariantCustom.SAWBLADE,
+  );
+
+  const otherSawbladesAttachedToSamePlayer: EntityFamiliar[] = [];
+  for (const sawbladeEntity of sawblades) {
+    const sawblade = sawbladeEntity.ToFamiliar();
+    if (sawblade === null) {
+      continue;
+    }
+
+    if (sawblade.SpawnerEntity === null) {
+      continue;
+    }
+
+    const sawbladePlayer = sawblade.SpawnerEntity.ToPlayer();
+    if (sawbladePlayer === null) {
+      continue;
+    }
+
+    const sawbladePlayerHash = GetPtrHash(sawbladePlayer);
+    if (sawbladePlayerHash === playerHash) {
+      otherSawbladesAttachedToSamePlayer.push(sawblade);
+    }
+  }
+
+  if (otherSawbladesAttachedToSamePlayer.length === 0) {
+    return;
+  }
+
+  // This is the second Sawblade spawning;
+  // initialize it such that it will rotate opposite to the first one
+  const framesPerRotation = 360 / SAWBLADE_ROTATION_SPEED;
+  const frameCountModifier = sawblades[0].FrameCount + framesPerRotation / 2;
+  const data = familiar.GetData() as unknown as SawbladeData;
+  data.frameCountModifier = frameCountModifier;
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
