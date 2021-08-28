@@ -15,6 +15,11 @@ const v = {
     blueWomb: false,
     theVoid: false,
 
+    perfection: {
+      floorsWithoutDamage: 0,
+      spawned: false,
+    },
+
     /**
      * We need to track the Repentance floors that we visited so that we can return to them during
      * the Ascent.

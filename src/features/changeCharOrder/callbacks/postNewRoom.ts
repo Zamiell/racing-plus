@@ -1,6 +1,6 @@
 import {
   forceNewRoomCallback,
-  getRoomNPCs,
+  getNPCs,
   gridToPos,
   removeAllEntities,
 } from "isaacscript-common";
@@ -33,7 +33,7 @@ function gotoButtonRoom() {
 function setupButtonRoom() {
   const player = Isaac.GetPlayer();
 
-  const npcs = getRoomNPCs();
+  const npcs = getNPCs();
   removeAllEntities(npcs);
   g.r.SetClear(true);
 

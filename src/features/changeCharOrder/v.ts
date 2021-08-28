@@ -15,7 +15,6 @@ const v = {
       | null,
     createButtonsFrame: null as int | null,
     charOrder: [] as PlayerType[],
-    // itemOrder: [] as CollectibleType[],
     sprites: {
       seasons: new Map<string, Sprite>(),
       characters: [] as Sprite[],

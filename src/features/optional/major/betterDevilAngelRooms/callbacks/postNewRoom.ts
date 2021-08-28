@@ -6,7 +6,9 @@ import angel from "../angel";
 import devil from "../devil";
 import v from "../v";
 
-const ENTITIES_TO_NOT_REMOVE = [EntityType.ENTITY_DARK_ESAU];
+const ENTITIES_TO_NOT_REMOVE = new Set<EntityType>([
+  EntityType.ENTITY_DARK_ESAU,
+]);
 
 export default function betterDevilAngelRoomsPostNewRoom(): void {
   if (!config.betterDevilAngelRooms) {
@@ -89,7 +91,7 @@ function respawnPersistentEntities() {
 // when we re-enter the room
 function removePickupsAndSlotsAndNPCs() {
   for (const entity of Isaac.GetRoomEntities()) {
-    if (ENTITIES_TO_NOT_REMOVE.includes(entity.Type)) {
+    if (ENTITIES_TO_NOT_REMOVE.has(entity.Type)) {
       continue;
     }
 

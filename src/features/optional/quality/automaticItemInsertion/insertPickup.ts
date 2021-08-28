@@ -247,7 +247,7 @@ function insertTrinket(
   }
 
   // Do not automatically insert trinkets that are detrimental (or potentially detrimental)
-  if (DETRIMENTAL_TRINKETS.includes(trinket.SubType)) {
+  if (DETRIMENTAL_TRINKETS.has(trinket.SubType)) {
     return null;
   }
 

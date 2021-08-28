@@ -13,7 +13,7 @@ import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 
-const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
+const CHARACTERS_WITH_AN_ACTIVE_ITEM = new Set<PlayerType>([
   PlayerType.PLAYER_ISAAC, // 0
   PlayerType.PLAYER_MAGDALENA, // 1
   PlayerType.PLAYER_JUDAS, // 3
@@ -25,7 +25,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM: PlayerType[] = [
   PlayerType.PLAYER_KEEPER, // 14
   PlayerType.PLAYER_APOLLYON, // 15
   PlayerType.PLAYER_EDEN_B, // 30
-];
+]);
 
 export default function formatSetup(player: EntityPlayer): void {
   if (
@@ -251,7 +251,7 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    (CHARACTERS_WITH_AN_ACTIVE_ITEM.includes(character) ||
+    (CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) ||
       // Racing+ gives the D6 as an active item to some characters, so these characters should get
       // the Schoolbag too for the same reason
       startsWithD6.shouldGetActiveD6(player)) &&

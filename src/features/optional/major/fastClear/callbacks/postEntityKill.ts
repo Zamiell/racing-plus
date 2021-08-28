@@ -65,7 +65,7 @@ export default function fastClearPostEntityKill(entity: Entity): void {
 
 function isWhitelistedNPC(npc: EntityNPC) {
   // The main fast-clear whitelist just includes NPC types
-  if (FAST_CLEAR_WHITELIST.includes(npc.Type)) {
+  if (FAST_CLEAR_WHITELIST.has(npc.Type)) {
     return true;
   }
 

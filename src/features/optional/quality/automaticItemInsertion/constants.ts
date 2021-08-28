@@ -96,7 +96,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   ], // 716
 ]);
 
-export const DETRIMENTAL_TRINKETS = [
+export const DETRIMENTAL_TRINKETS = new Set<TrinketType>([
   TrinketType.TRINKET_PURPLE_HEART, // 5
   TrinketType.TRINKET_MOMS_TOENAIL, // 16
   TrinketType.TRINKET_MATCH_STICK, // 41
@@ -104,7 +104,7 @@ export const DETRIMENTAL_TRINKETS = [
   TrinketType.TRINKET_FADED_POLAROID, // 69
   TrinketType.TRINKET_OUROBOROS_WORM, // 96
   TrinketType.TRINKET_M, // 138
-];
+]);
 
 export const UI_X = 35;
 export const COINS_X_OFFSET = 10; // For Deep Pockets

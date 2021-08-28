@@ -6,7 +6,7 @@ import {
   BOSS_CHANGES_2,
   BUG_FIXES,
   CHARACTER_CHANGES,
-  ConfigDescriptionArray,
+  ConfigDescriptions,
   CUSTOM_HOTKEYS,
   CUTSCENE_CHANGES,
   ENEMY_CHANGES,
@@ -72,7 +72,6 @@ export function init(): void {
 function deleteOldConfig() {
   // If we reload the mod, then it will create duplicates of every entry
   // Thus, we must first purge all settings relating to Racing+
-  // ModConfigMenu.MenuData = [];
   const categoryID = ModConfigMenu.GetCategoryIDByName(CATEGORY_NAME);
   if (categoryID !== null) {
     ModConfigMenu.MenuData.set(categoryID, {
@@ -151,7 +150,7 @@ function setAllSettings(newValue: boolean) {
 
 function registerSubMenuConfig(
   subMenuName: string,
-  descriptions: ConfigDescriptionArray,
+  descriptions: ConfigDescriptions,
 ) {
   for (const [configName, array] of descriptions) {
     const [optionType, code, shortDescription, longDescription] = array;
@@ -176,7 +175,7 @@ function registerSubMenuConfig(
 
 function registerSubMenuHotkeys(
   subMenuName: string,
-  descriptions: ConfigDescriptionArray,
+  descriptions: ConfigDescriptions,
 ) {
   for (const [configName, array] of descriptions) {
     const [optionType, , shortDescription, longDescription] = array;

@@ -1,7 +1,7 @@
 import {
   changeRoom,
-  disableInputs,
-  enableInputs,
+  disableAllInputs,
+  enableAllInputs,
   getPlayers,
   getRoomIndex,
   onRepentanceStage,
@@ -70,7 +70,7 @@ export function setFadingToBlack(
   v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  disableInputs();
+  disableAllInputs();
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);
   warpForgottenBody(player);
@@ -327,5 +327,5 @@ export function setPlayersVisible(
 
 function setDisabled() {
   blackSprite.setFullyTransparent();
-  enableInputs();
+  enableAllInputs();
 }

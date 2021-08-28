@@ -1,6 +1,6 @@
 import {
-  disableInputs,
-  enableInputs,
+  disableAllInputs,
+  enableAllInputs,
   getRoomIndex,
   getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
@@ -131,7 +131,7 @@ function postRenderFetalPosition() {
   }
 
   v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
-  enableInputs();
+  enableAllInputs();
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
   // We grant it here so that it does not cancel the "AppearVanilla" animation
@@ -319,7 +319,7 @@ export function postCustomRevive(player: EntityPlayer): void {
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
 
   // Play the animation where Isaac lies in the fetal position
-  disableInputs();
+  disableAllInputs();
   player.PlayExtraAnimation("AppearVanilla");
   debuffOn(player);
   applySeededGhostFade(player);

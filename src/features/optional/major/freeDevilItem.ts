@@ -8,14 +8,14 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSelfDamage } from "../../../util";
 
-const EXCLUDED_CHARACTERS = [
+const EXCLUDED_CHARACTERS = new Set<PlayerType>([
   // The Lost and Tainted Lost get free devil deals, so they do not need the trinket
   PlayerType.PLAYER_THELOST, // 10
   PlayerType.PLAYER_THELOST_B, // 31
   // If Tainted Soul is given a trinket, it will just be applied to Tainted Forgotten
   // (even if we ignore Tainted Soul, the feature will still apply to Tainted Forgotten normally)
   PlayerType.PLAYER_THESOUL_B, // 40
-];
+]);
 
 const v = {
   run: {
@@ -83,7 +83,7 @@ function checkGiveTrinket() {
   for (const player of getPlayers()) {
     const playerType = player.GetPlayerType();
 
-    if (!EXCLUDED_CHARACTERS.includes(playerType)) {
+    if (!EXCLUDED_CHARACTERS.has(playerType)) {
       giveTrinket(player);
     }
   }

@@ -13,7 +13,7 @@ import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
-const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
+const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES = new Set<PlayerType>([
   PlayerType.PLAYER_MAGDALENA_B,
   PlayerType.PLAYER_CAIN_B,
   PlayerType.PLAYER_JUDAS_B,
@@ -25,9 +25,9 @@ const TAINTED_CHARACTERS_WITH_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_JACOB_B,
   PlayerType.PLAYER_LAZARUS2_B,
   PlayerType.PLAYER_JACOB2_B,
-];
+]);
 
-const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
+const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES = new Set<PlayerType>([
   PlayerType.PLAYER_ISAAC_B,
   PlayerType.PLAYER_SAMSON_B,
   PlayerType.PLAYER_AZAZEL_B,
@@ -37,7 +37,7 @@ const TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES: PlayerType[] = [
   PlayerType.PLAYER_KEEPER_B,
   PlayerType.PLAYER_THEFORGOTTEN_B,
   PlayerType.PLAYER_THESOUL_B,
-];
+]);
 
 const v = {
   run: {
@@ -78,7 +78,7 @@ function shouldGetPocketActiveD6(player: EntityPlayer) {
     // The original characters, minus Jacob & Esau
     (character >= PlayerType.PLAYER_ISAAC &&
       character <= PlayerType.PLAYER_BETHANY) ||
-    TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES.includes(character)
+    TAINTED_CHARACTERS_WITHOUT_POCKET_ACTIVES.has(character)
   );
 }
 
@@ -101,7 +101,7 @@ export function shouldGetActiveD6(player: EntityPlayer): boolean {
   return (
     // Since some tainted characters start with a pocket active item,
     // we give them the D6 as an active item
-    TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.includes(character) ||
+    TAINTED_CHARACTERS_WITH_POCKET_ACTIVES.has(character) ||
     // Jacob & Esau cannot use pocket active items, so we give the active D6 to both of them
     // (we could give the D6 to just Esau, but since the Jacob & Esau are so weak,
     // it makes more sense to give it to both of them)

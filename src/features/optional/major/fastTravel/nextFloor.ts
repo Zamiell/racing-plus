@@ -1,4 +1,4 @@
-import { log, onRepentanceStage } from "isaacscript-common";
+import { onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
 import * as seededFloors from "../../../mandatory/seededFloors";
@@ -22,15 +22,11 @@ export function goto(upwards: boolean): void {
   // floors do not need to be reseeded for some reason
   v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
 
-  // Executing a console command to change floors will not increment the "GetStagesWithoutDamage()"
-  // variable
-  // Thus, we have to set it increment it manually if the player did not take any damage on this
-  // floor
+  // The fast-travel feature prevents the Perfection trinket from spawning
+  // Using the "WithoutDamage" methods of the Game class do not work properly,
+  // so we revert to keeping track of damage manually
   if (!v.level.tookDamage) {
-    g.g.AddStageWithoutDamage();
-    log("Finished this floor without taking any damage.");
-  } else {
-    log("Finished this floor with damage taken.");
+    v.run.perfection.floorsWithoutDamage += 1;
   }
 
   setFloorVariables(stage, stageType);

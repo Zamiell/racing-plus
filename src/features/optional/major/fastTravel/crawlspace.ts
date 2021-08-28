@@ -21,7 +21,7 @@ import v from "./v";
 
 const GRID_INDEX_OF_GREAT_GIDEON_CRAWLSPACE = 37;
 
-const GREAT_GIDEON_ROOM_VARIANTS = [5210, 5211, 5212, 5213, 5214];
+const GREAT_GIDEON_ROOM_VARIANTS = new Set<int>([5210, 5211, 5212, 5213, 5214]);
 
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
@@ -357,6 +357,6 @@ function isGreatGideonRoom() {
 
   return (
     roomStageID === StageID.SPECIAL_ROOMS &&
-    GREAT_GIDEON_ROOM_VARIANTS.includes(roomVariant)
+    GREAT_GIDEON_ROOM_VARIANTS.has(roomVariant)
   );
 }

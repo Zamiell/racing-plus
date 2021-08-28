@@ -1,11 +1,13 @@
 ```
 ### *v0.61.5* - August 26th, 2021
 
-- Fixed the bug where the pill tracker did not work under certain conditions.
+- Updated the collectible sprite for Sawblade to match what the familiar looks like.
+- Fixed the bug where the key from Keeper's Sack would not be automatically inserted. (Thanks Gamonymous)
+- Fixed the bug where Perfection would not spawn correctly under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where Turdlet was incorrectly faded under certain circumstances. (Thanks Gamonymous)
 ```
 
 - Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
-
 
 TODO Racing+ new features:
 - charge ability

@@ -7,7 +7,7 @@ import { CollectibleTypeCustom } from "./types/enums";
 const passiveItemsForEden: Array<CollectibleType | CollectibleTypeCustom> = [];
 export default passiveItemsForEden;
 
-export function init(): number[] {
+export function init(): Array<CollectibleType | CollectibleTypeCustom> {
   for (let i = 1; i <= getMaxCollectibleID(); i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
@@ -16,7 +16,7 @@ export function init(): number[] {
         itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&
       !isQuestItem(itemConfigItem.ID) &&
-      !BANNED_COLLECTIBLES.includes(itemConfigItem.ID) &&
+      !BANNED_COLLECTIBLES.has(itemConfigItem.ID) &&
       ![...COLLECTIBLE_REPLACEMENT_MAP.keys()].includes(i)
     ) {
       passiveItemsForEden.push(itemConfigItem.ID);

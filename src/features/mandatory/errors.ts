@@ -1,7 +1,7 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
-  getCollectibleList,
+  getCollectibleSet,
   getMaxCollectibleID,
   getPlayerIndex,
   getPlayers,
@@ -108,7 +108,7 @@ function isIncompleteSave() {
   }
 
   // Add every item in the game to the blacklist
-  for (const collectibleType of getCollectibleList()) {
+  for (const collectibleType of getCollectibleSet()) {
     if (collectibleType !== collectibleToCheckFor) {
       g.itemPool.AddRoomBlacklist(collectibleType);
     }

@@ -1,4 +1,4 @@
-import { getRoomNPCs, removeAllEntities } from "isaacscript-common";
+import { getNPCs, removeAllEntities } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { setRoomCleared } from "../../../utilGlobals";
@@ -18,7 +18,7 @@ function removeTreasureRoomEnemies() {
     return;
   }
 
-  const npcs = getRoomNPCs();
+  const npcs = getNPCs();
   removeAllEntities(npcs);
   setRoomCleared();
 }

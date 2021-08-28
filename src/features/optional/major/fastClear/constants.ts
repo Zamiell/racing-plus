@@ -1,6 +1,6 @@
 // We use a script to find every NPC in the game that has a death animation longer than 1 frame
 // This is used as a whitelist to know which entities should be affected by fast-clear
-export const FAST_CLEAR_WHITELIST = [
+export const FAST_CLEAR_WHITELIST = new Set<EntityType>([
   EntityType.ENTITY_MONSTRO, // 20
   EntityType.ENTITY_CHUB, // 28
   EntityType.ENTITY_HOPPER, // 29 (only included because of Eggy)
@@ -55,11 +55,13 @@ export const FAST_CLEAR_WHITELIST = [
   EntityType.ENTITY_HORNY_BOYS, // 920
   EntityType.ENTITY_CLUTCH, // 921
   EntityType.ENTITY_BEAST, // 951
-];
+]);
 
-export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT: Array<[int, int]> = [
+export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = new Set<
+  [EntityType, int]
+>([
   // We do not want fast-clear to apply to Lil' Haunts
   [EntityType.ENTITY_THE_HAUNT, HauntVariant.HAUNT], // 260
   // We only want fast-clear to apply to the final phase of Mother
   [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2], // 912
-];
+]);

@@ -6,7 +6,7 @@ import { CHARACTERS_WITH_NO_RED_HEARTS } from "isaacscript-common";
 export function preUseItemConverter(player: EntityPlayer): boolean | void {
   const character = player.GetPlayerType();
 
-  if (CHARACTERS_WITH_NO_RED_HEARTS.includes(character)) {
+  if (CHARACTERS_WITH_NO_RED_HEARTS.has(character)) {
     return true;
   }
 

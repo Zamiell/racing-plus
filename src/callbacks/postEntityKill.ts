@@ -65,6 +65,7 @@ export function main(entity: Entity): void {
   }
 
   fastClearPostEntityKill(entity);
+  fastTravelPostEntityKill.main(entity);
   fadeBosses.postEntityKill(entity);
 }
 

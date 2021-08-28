@@ -1,8 +1,9 @@
 import {
   anyPlayerHasCollectible,
+  arrayInArray,
   changeRoom,
+  getBosses,
   getRoomIndex,
-  getRoomNPCs,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -168,10 +169,10 @@ function getRoomItemsAndSetPrice() {
 
 function getRoomBosses() {
   const bosses: Array<[int, int]> = [];
-  for (const npc of getRoomNPCs()) {
-    if (npc.IsBoss() && !isBossException(npc.Type, npc.Variant)) {
-      const bossArray: [int, int] = [npc.Type, npc.Variant];
-      if (!bossInArray(bossArray, bosses)) {
+  for (const boss of getBosses()) {
+    if (!isBossException(boss.Type, boss.Variant)) {
+      const bossArray: [int, int] = [boss.Type, boss.Variant];
+      if (!arrayInArray(bossArray, bosses)) {
         bosses.push(bossArray);
       }
     }
@@ -187,17 +188,6 @@ function isBossException(type: EntityType, variant: int) {
     // 79.12 is The Blighted Ovum Baby
     // 79.20 is Umbilical Cord
     return variant === 10 || variant === 11 || variant === 12 || variant === 20;
-  }
-
-  return false;
-}
-
-// We have to make a custom function for this because arrays are passed by reference
-function bossInArray(newBossArray: [int, int], bosses: Array<[int, int]>) {
-  for (const bossArray of bosses) {
-    if (bossArray[0] === newBossArray[0] && bossArray[1] === newBossArray[1]) {
-      return true;
-    }
   }
 
   return false;

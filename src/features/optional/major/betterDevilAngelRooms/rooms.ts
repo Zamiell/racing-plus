@@ -21,7 +21,9 @@ import v from "./v";
 
 const GRID_TILES_PER_ROW = 15;
 
-const PERSISTENT_ENTITY_TYPES = [EntityType.ENTITY_WALL_HUGGER];
+const PERSISTENT_ENTITY_TYPES = new Set<EntityType>([
+  EntityType.ENTITY_WALL_HUGGER,
+]);
 
 export function getRoomSelection(
   devil: boolean,
@@ -230,7 +232,7 @@ function getEntitySeed(devil: boolean) {
 }
 
 function storePersistentEntity(entity: Entity) {
-  if (PERSISTENT_ENTITY_TYPES.includes(entity.Type)) {
+  if (PERSISTENT_ENTITY_TYPES.has(entity.Type)) {
     const gridIndex = g.r.GetGridIndex(entity.Position);
     const persistentEntity = {
       gridIndex,

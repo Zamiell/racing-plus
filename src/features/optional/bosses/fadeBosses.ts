@@ -5,12 +5,13 @@ import { config } from "../../../modConfigMenu";
 const FADE_AMOUNT = 0.4;
 const FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 
-const MULTI_SEGMENT_BOSSES = [
+const MULTI_SEGMENT_BOSSES = new Set<EntityType>([
   EntityType.ENTITY_LARRYJR, // 19 (and The Hollow / Tuff Twins / The Shell)
   EntityType.ENTITY_PIN, // 62 (and Scolex / Frail / Wormwood)
   EntityType.ENTITY_GEMINI, // 79 (and Steven / Blighted Ovum)
-  EntityType.ENTITY_HEART_OF_INFAMY,
-];
+  EntityType.ENTITY_HEART_OF_INFAMY, // 98
+  EntityType.ENTITY_TURDLET, // 918
+]);
 
 export function postEntityKill(entity: Entity): void {
   if (!config.fadeBosses) {
@@ -25,7 +26,7 @@ export function postEntityKill(entity: Entity): void {
 
   // We don't want to fade multi-segment bosses since killing one segment will fade the rest of the
   // segments
-  if (MULTI_SEGMENT_BOSSES.includes(entity.Type)) {
+  if (MULTI_SEGMENT_BOSSES.has(entity.Type)) {
     return;
   }
 

@@ -99,13 +99,13 @@ export function postNewRoom(): void {
 }
 
 function isBannedCollectible(entity: Entity) {
-  if (BANNED_COLLECTIBLES.includes(entity.SubType)) {
+  if (BANNED_COLLECTIBLES.has(entity.SubType)) {
     return true;
   }
 
   if (
     v.run.startedWithVoid &&
-    BANNED_COLLECTIBLES_WITH_VOID.includes(entity.SubType)
+    BANNED_COLLECTIBLES_WITH_VOID.has(entity.SubType)
   ) {
     return true;
   }

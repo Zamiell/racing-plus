@@ -1,7 +1,7 @@
 import Config from "./types/Config";
 import Hotkeys from "./types/Hotkeys";
 
-export type ConfigDescriptionArray = Array<
+export type ConfigDescriptions = Array<
   [
     keyof Config | keyof Hotkeys | null,
     [ModConfigMenuOptionType, string, string, string],
@@ -9,7 +9,7 @@ export type ConfigDescriptionArray = Array<
 >;
 
 // 001-00X
-export const MAJOR_CHANGES: ConfigDescriptionArray = [
+export const MAJOR_CHANGES: ConfigDescriptions = [
   [
     "clientCommunication",
     [
@@ -103,7 +103,7 @@ export const MAJOR_CHANGES: ConfigDescriptionArray = [
 ];
 
 // n/a
-export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
+export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "fastDropAllKeyboard",
     [
@@ -161,7 +161,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptionArray = [
 ];
 
 // 021-02X
-export const CHARACTER_CHANGES: ConfigDescriptionArray = [
+export const CHARACTER_CHANGES: ConfigDescriptions = [
   [
     "judasAddBomb",
     [
@@ -201,7 +201,7 @@ export const CHARACTER_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 031-040
-export const BOSS_CHANGES_1: ConfigDescriptionArray = [
+export const BOSS_CHANGES_1: ConfigDescriptions = [
   [
     "fadeBosses",
     [
@@ -295,7 +295,7 @@ export const BOSS_CHANGES_1: ConfigDescriptionArray = [
 ];
 
 // n/a
-export const BOSS_CHANGES_2: ConfigDescriptionArray = [
+export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
     null, // 274
     [
@@ -335,7 +335,7 @@ export const BOSS_CHANGES_2: ConfigDescriptionArray = [
 ];
 
 // 041-04X
-export const ENEMY_CHANGES: ConfigDescriptionArray = [
+export const ENEMY_CHANGES: ConfigDescriptions = [
   [
     "removeTreasureRoomEnemies",
     [
@@ -402,7 +402,7 @@ export const ENEMY_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 050-060
-export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
+export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
   [
     "speedUpFadeIn",
     [
@@ -496,7 +496,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptionArray = [
 ];
 
 // 061-06X
-export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
+export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
     "automaticItemInsertion",
     [
@@ -536,7 +536,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptionArray = [
 ];
 
 // 071-07X
-export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
+export const GAMEPLAY_CHANGES: ConfigDescriptions = [
   [
     "sawblade",
     [
@@ -594,7 +594,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptionArray = [
 ];
 
 // n/a
-export const REMOVALS: ConfigDescriptionArray = [
+export const REMOVALS: ConfigDescriptions = [
   [
     null,
     [
@@ -661,7 +661,7 @@ export const REMOVALS: ConfigDescriptionArray = [
 ];
 
 // 081-08X
-export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
+export const CUTSCENE_CHANGES: ConfigDescriptions = [
   [
     "fastTeleports",
     [
@@ -719,7 +719,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 091-09X
-export const BUG_FIXES: ConfigDescriptionArray = [
+export const BUG_FIXES: ConfigDescriptions = [
   [
     "teleportInvalidEntrance",
     [
@@ -777,7 +777,7 @@ export const BUG_FIXES: ConfigDescriptionArray = [
 ];
 
 // 101-10X
-export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
+export const GRAPHIC_CHANGES: ConfigDescriptions = [
   [
     "flyItemSprites",
     [
@@ -898,7 +898,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 111-11X
-export const SOUND_CHANGES: ConfigDescriptionArray = [
+export const SOUND_CHANGES: ConfigDescriptions = [
   [
     "silenceMomDad",
     [
@@ -911,7 +911,7 @@ export const SOUND_CHANGES: ConfigDescriptionArray = [
 ];
 
 // 121-12X
-export const OTHER_FEATURES: ConfigDescriptionArray = [
+export const OTHER_FEATURES: ConfigDescriptions = [
   [
     "customConsole",
     [

@@ -257,7 +257,7 @@ function getHealth(player: EntityPlayer): Health {
   // Eternal Hearts will be lost since we are about to change floors,
   // so convert it to other types of health
   // "eternalHearts" will be equal to 1 if we have an Eternal Heart
-  if (CHARACTERS_WITH_NO_RED_HEARTS.includes(character)) {
+  if (CHARACTERS_WITH_NO_RED_HEARTS.has(character)) {
     soulHearts += eternalHearts * 2;
   } else {
     maxHearts += eternalHearts * 2;

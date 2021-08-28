@@ -1,4 +1,4 @@
-import { getRoomNPCs } from "isaacscript-common";
+import { getNPCs } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 
 export default function fastClearPreSpawnClearAward(): void {
@@ -19,7 +19,7 @@ function resetAllDyingNPCs() {
   // the final boss (since the CanShutDoors value of the 2nd boss has not been reset back to normal)
   // This can be fixed by resetting the CanShutDoors values of all NPCs in the room when the room is
   // cleared
-  for (const npc of getRoomNPCs()) {
+  for (const npc of getNPCs()) {
     const data = npc.GetData();
     if (data.resetAttributeFrame === undefined) {
       continue;
