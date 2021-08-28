@@ -346,6 +346,7 @@ Post-flip actions:
   - White-dotted / Red --> Full red
   - Pink / Red --> White / Red
   - White / White-dotted --> Full white-dotted
+  - White / Cyan --> White / Green
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - The controls graphic in the start room is changed to be speedrunning-themed.

@@ -1,7 +1,6 @@
 import changeCharOrderPostUpdate from "../features/changeCharOrder/callbacks/postUpdate";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
-import * as preventItemRotate from "../features/mandatory/preventItemRotate";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
@@ -20,7 +19,6 @@ export function main(): void {
   fireworks.postUpdate();
   showLevelText.postUpdate();
   runTimer.postUpdate();
-  preventItemRotate.postUpdate();
   debugPowers.postUpdate();
 
   // Major features

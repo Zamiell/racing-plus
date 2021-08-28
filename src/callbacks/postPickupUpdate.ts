@@ -1,3 +1,4 @@
+import * as preventItemRotate from "../features/mandatory/preventItemRotate";
 import * as removeGlitchedItems from "../features/mandatory/removeGlitchedItems";
 
 export function init(mod: Mod): void {
@@ -10,4 +11,5 @@ export function init(mod: Mod): void {
 
 function collectible(pickup: EntityPickup) {
   removeGlitchedItems.postPickupUpdateCollectible(pickup);
+  preventItemRotate.postPickupUpdateCollectible(pickup);
 }

@@ -1,15 +1,21 @@
 ```
 ### *v0.61.11* - August 28th, 2021
 
+- The white-cyan pill is now white-green so that it is easier to distinguish from white-blue.
 - Deleted the two Bumbino rooms where he is trapped in a rock cage. (Thanks Gamonymous)
+- Fixed the bug where Recall would replace the D6. (It will now go to the normal active item item slot. If there is not room for a normal active item, then it will spawn on the ground.) (Thanks Gamonymous)
+- Fixed the bug where quest items were not reliably locked into place under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where the Holy Card feature would incorrectly play the announcer sound effect. (Thanks ez_duke)
 - Fixed the bug where Telepills had a chance to send you to the Ultra Secret Room. (Thanks Gamonymous)
-- Fixed the bug where you were not able to toggle the map while in a crawlspace.
+- Fixed the bug where you were not able to toggle the map while using a trapdoor.
 - Fixed the bug with seeded death where the familiars from Cambion Conception and Immaculate Conception would not return upon revival. (Thanks Gamonymous)
 ```
 
 - seeded death doesn't resize after magic mushroom
+
 - death animation doesn't play after razoring
-- custom flip handling
+- custom flip handling for D6 feature
+
 - Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)
 
 TODO Racing+ new features:

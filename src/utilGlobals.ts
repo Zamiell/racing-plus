@@ -184,7 +184,7 @@ export function spawnCollectible(
     collectible.Price = 15;
   }
 
-  preventItemRotate.checkQuestItem(collectibleType, seed);
+  preventItemRotate.checkQuestItem(collectible, collectibleType, seed);
 
   return collectible;
 }
