@@ -61,6 +61,44 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER = Isaac.GetItemIdByName(
     "Twisted Pair Placeholder",
   ),
+
+  // Transformation helpers
+  COLLECTIBLE_GUPPY_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Guppy Transformation Helper",
+  ),
+  COLLECTIBLE_BEELZEBUB_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Beelzebub Transformation Helper",
+  ),
+  COLLECTIBLE_FUN_GUY_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Fun Guy Transformation Helper",
+  ),
+  COLLECTIBLE_SERAPHIM_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Seraphim Transformation Helper",
+  ),
+  COLLECTIBLE_BOB_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Bob Transformation Helper",
+  ),
+  COLLECTIBLE_SPUN_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Spun Transformation Helper",
+  ),
+  COLLECTIBLE_YES_MOTHER_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Yes Mother Transformation Helper",
+  ),
+  COLLECTIBLE_CONJOINED_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Conjoined Transformation Helper",
+  ),
+  COLLECTIBLE_LEVIATHAN_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Leviathan Transformation Helper",
+  ),
+  COLLECTIBLE_OH_CRAP_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Oh Crap Transformation Helper",
+  ),
+  COLLECTIBLE_BOOKWORM_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Bookworm Transformation Helper",
+  ),
+  COLLECTIBLE_SPIDER_BABY_TRANSFORMATION_HELPER = Isaac.GetItemIdByName(
+    "Spider Baby Transformation Helper",
+  ),
 }
 
 export enum PickupPriceCustom {

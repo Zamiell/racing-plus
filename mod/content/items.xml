@@ -20,4 +20,18 @@
 	<passive description="" name="Maw of the Void Placeholder" quality="4" tags="offensive" /> <!-- 399 -->
 	<passive description="" name="Crown of Light Placeholder" quality="4" tags="offensive" /> <!-- 415 -->
 	<passive description="" name="Twisted Pair Placeholder" quality="4" tags="offensive" /> <!-- 698 -->
+
+	<!-- Transformation helpers -->
+	<passive description="" name="Guppy Transformation Helper" hidden="true" tags="guppy" /> <!-- 0 -->
+	<passive description="" name="Beelzebub Transformation Helper" hidden="true" tags="fly" /> <!-- 1 -->
+	<passive description="" name="Fun Guy Transformation Helper" hidden="true" tags="mushroom" /> <!-- 2 -->
+	<passive description="" name="Seraphim Transformation Helper" hidden="true" tags="angel" /> <!-- 3 -->
+	<passive description="" name="Bob Transformation Helper" hidden="true" tags="bob" /> <!-- 4 -->
+	<passive description="" name="Spun Transformation Helper" hidden="true" tags="syringe" /> <!-- 5 -->
+	<passive description="" name="Yes Mother Transformation Helper" hidden="true" tags="mom" /> <!-- 6 -->
+	<passive description="" name="Conjoined Transformation Helper" hidden="true" tags="baby" /> <!-- 7 -->
+	<passive description="" name="Leviathan Transformation Helper" hidden="true" tags="devil" /> <!-- 8 -->
+	<passive description="" name="Oh Crap Transformation Helper" hidden="true" tags="poop" /> <!-- 9 -->
+	<passive description="" name="Bookworm Transformation Helper" hidden="true" tags="book" /> <!-- 10 -->
+	<passive description="" name="Spider Baby Transformation Helper" hidden="true" tags="spider" /> <!-- 12 -->
 </items>
