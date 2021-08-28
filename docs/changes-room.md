@@ -316,15 +316,6 @@ The changed rooms are as follows:
 
 <br />
 
-### Donation Machine Room Removal
-
-One room in the Necropolis has a donation machine in it. Since removing curses also removes donation machines from the game, this room is largely useless.
-
-The deleted room is as follows:
-- Necropolis: #467
-
-<br />
-
 ### Close Enemies Fix
 
 Due to bug fixes in May 2018, most enemies that spawn near an entrance are no longer completely unavoidable damage. However, enemies that spawn very close to doors are unfair in certain circumstances, and it is more reasonable to have enemies spawn at least 2 tiles away from the player.
@@ -379,31 +370,6 @@ The changed rooms are as follows:
 - Dark Room: #132 (Bone Knight)
 - Chub: #1033 (Charger)
 - I AM ERROR: #26 (moved pickups)
-
-<br />
-
-### Hush Fly Fix
-
-The Hush Flies that are placed in some rooms are given the same armor scaling that Hush is, so they have been replaced with Attack Flies.
-
-The changed rooms are as follows:
-- Depths: #829, #857
-- Necropolis: #815, #843
-- Dank: #829, #857
-
-<br />
-
-### Beggars in Angel Shops
-
-Beggars are moved out of the way in all angel shops. This is a quality-of-life change.
-
-The changed rooms are as follows:
-- #40
-- #41
-- #42
-- #43
-- #44
-- #45
 
 <br />
 
@@ -494,6 +460,20 @@ The deleted rooms are as follows:
 
 <br />
 
+### Beggars in Angel Shops
+
+Beggars are moved out of the way in all angel shops. This is a quality-of-life change.
+
+The changed rooms are as follows:
+- #40
+- #41
+- #42
+- #43
+- #44
+- #45
+
+<br />
+
 ### Stacked Entity Fix
 
 Some rooms have the chance to be empty because of stacked entities.
@@ -502,6 +482,35 @@ The changed rooms are as follows:
 - Basement: #875 (Portal)
 - Cellar: #875 (Portal)
 - Burning: #875 (Portal)
+
+<br />
+
+### Donation Machine Room Removal
+
+One room in the Necropolis has a donation machine in it. Since removing curses also removes donation machines from the game, this room is largely useless.
+
+The deleted room is as follows:
+- Necropolis: #467
+
+<br />
+
+### Hush Fly Fix
+
+The Hush Flies that are placed in some rooms are given the same armor scaling that Hush is, so they have been replaced with Attack Flies.
+
+The changed rooms are as follows:
+- Depths: #829, #857
+- Necropolis: #815, #843
+- Dank: #829, #857
+
+<br />
+
+### Bumbino Fix
+
+There are two Bumbino Rooms where players have to sit and wait for him to break out of his rock cage. This is a waste of time.
+
+The deleted rooms are as follows:
+- #5273, #5274
 
 <br />
 

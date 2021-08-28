@@ -18,6 +18,7 @@ export function postGameStarted(): void {
         if (card === Card.CARD_HOLY) {
           player.SetCard(pocketItemSlot, Card.CARD_NULL);
           player.UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM);
+          break;
         }
       }
     }

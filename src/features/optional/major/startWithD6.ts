@@ -16,13 +16,17 @@
 import {
   getPlayerIndex,
   getPlayers,
+  hasOpenActiveItemSlot,
   inGenesisRoom,
   isJacobOrEsau,
   log,
+  PickingUpItem,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
@@ -115,6 +119,68 @@ function changedCharacterInSomeWay(player: EntityPlayer) {
   giveD6(player);
 }
 
+// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+export function postItemPickup(
+  player: EntityPlayer,
+  pickingUpItem: PickingUpItem,
+): void {
+  if (!config.startWithD6) {
+    return;
+  }
+
+  replaceTaintedForgottenRecall(player, pickingUpItem);
+}
+
+function replaceTaintedForgottenRecall(
+  player: EntityPlayer,
+  pickingUpItem: PickingUpItem,
+) {
+  if (
+    pickingUpItem.type !== ItemType.ITEM_PASSIVE ||
+    pickingUpItem.id !== CollectibleType.COLLECTIBLE_BIRTHRIGHT
+  ) {
+    return;
+  }
+
+  const character = player.GetPlayerType();
+  if (character !== PlayerType.PLAYER_THEFORGOTTEN_B) {
+    return;
+  }
+
+  // Birthright will give a pocket active item of Recall, which will replace the D6
+  // Give the D6 back and make Recall a normal active item
+  const pocketActive = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
+  if (pocketActive !== CollectibleType.COLLECTIBLE_RECALL) {
+    return;
+  }
+
+  const index = getPlayerIndex(player);
+  let charge = v.run.pocketActiveD6Charge.get(index);
+  if (charge === undefined) {
+    charge = D6_STARTING_CHARGE;
+  }
+
+  player.SetPocketActiveItem(
+    CollectibleType.COLLECTIBLE_D6,
+    ActiveSlot.SLOT_POCKET,
+  );
+  player.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
+
+  if (hasOpenActiveItemSlot(player)) {
+    player.AddCollectible(
+      CollectibleType.COLLECTIBLE_FLIP,
+      charge,
+      false,
+      ActiveSlot.SLOT_POCKET,
+    );
+  } else {
+    // Spawn it on the ground instead
+    const position = findFreePosition(player.Position);
+    const startSeed = g.seeds.GetStartSeed();
+    spawnCollectible(CollectibleType.COLLECTIBLE_RECALL, position, startSeed);
+  }
+}
+
 function giveD6(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
@@ -125,17 +191,22 @@ function giveD6(player: EntityPlayer) {
   const pocketItemTotalCharge = pocketItemCharge + pocketItemBatteryCharge;
   const hasPocketD6 = pocketItem === CollectibleType.COLLECTIBLE_D6;
 
-  // Tainted Cain is a special case;
+  // Jacob & Esau (19, 20) are a special case;
+  // since pocket actives do not work on them properly, give each of them a normal D6
+  if (isJacobOrEsau(player)) {
+    player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+    return;
+  }
+
+  // Tainted Cain (23) is a special case;
   // the Bag of Crafting does not work properly in the normal active slot
   // Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded the D6
   if (character === PlayerType.PLAYER_CAIN_B) {
     return;
   }
 
-  // Jacob & Esau are a special case;
-  // since pocket actives do not work on them properly, give each of them a normal D6
-  if (isJacobOrEsau(player)) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+  // Tainted Soul (40) is a special case; he cannot pick up items
+  if (character === PlayerType.PLAYER_THESOUL_B) {
     return;
   }
 

@@ -22,11 +22,12 @@ import { debuffOff, debuffOn } from "./seededDeathDebuff";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
+import RevivalType from "./types/RevivalType";
 import SeededDeathState from "./types/SeededDeathState";
 import v from "./v";
 
-const REVIVAL_TYPE_SEEDED_DEATH = 0;
-const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+// const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+const SEEDED_DEATH_DEBUFF_FRAMES = 5 * ISAAC_FRAMES_PER_SECOND; // DEBUG
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -269,7 +270,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     }
   }
 
-  return REVIVAL_TYPE_SEEDED_DEATH;
+  return RevivalType.SEEDED_DEATH;
 }
 
 function inBeastDebugRoom() {
@@ -283,6 +284,7 @@ function inBeastDebugRoom() {
 }
 
 function seededDeathFeatureShouldApply() {
+  return true;
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&

@@ -1,6 +1,6 @@
 import {
   changeRoom,
-  disableAllInputs,
+  disableAllInputsExceptFor,
   enableAllInputs,
   getPlayers,
   getRoomIndex,
@@ -70,7 +70,9 @@ export function setFadingToBlack(
   v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  disableAllInputs();
+  const whitelist = new Set<ButtonAction>([ButtonAction.ACTION_MAP]);
+  disableAllInputsExceptFor(whitelist);
+
   setGameStateFlags();
   setPlayerAttributes(player, entity.Position);
   warpForgottenBody(player);

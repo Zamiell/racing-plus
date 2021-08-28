@@ -28,25 +28,7 @@ export function useItemTeleport(): void {
 
 // This callback is manually called for Cursed Eye
 function seededTeleport() {
-  const rooms = g.l.GetRooms();
-
-  // Filter out the Ultra Secret room
-  // We could also filter out our current room, but this would cause problems in seeded races,
-  // so seeded races would have to be exempt
-  // Thus, don't bother with this in order to keep the behavior consistent through the different
-  // types of races
-  const roomIndexes: int[] = [];
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i);
-    if (
-      room !== null &&
-      room.Data !== null &&
-      room.Data.Type !== RoomType.ROOM_ULTRASECRET
-    ) {
-      // We must use the safe grid index or else teleporting to L rooms will fail
-      roomIndexes.push(room.SafeGridIndex);
-    }
-  }
+  const roomIndexes = getAllRoomIndexesForNormalRooms();
 
   v.level.teleportSeed = incrementRNG(v.level.teleportSeed);
   const roomIndex = getRandomArrayElement(roomIndexes, v.level.teleportSeed);
@@ -66,7 +48,6 @@ export function usePillTelepills(): void {
 
 function seededTelepills() {
   const stage = g.l.GetStage();
-  const rooms = g.l.GetRooms();
 
   // Telepills works in a way similar to Teleport!, but the possibilities can also include the
   // I AM ERROR room and the Black Market
@@ -87,18 +68,7 @@ function seededTelepills() {
     }
   }
 
-  // Find the indexes for all of the room possibilities
-  const roomIndexes: int[] = [];
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i); // This is 0 indexed
-    if (room === null) {
-      continue;
-    }
-
-    // We need to use SafeGridIndex instead of GridIndex because we will crash when teleporting to
-    // L rooms otherwise
-    roomIndexes.push(room.SafeGridIndex);
-  }
+  const roomIndexes = getAllRoomIndexesForNormalRooms();
   if (insertErrorRoom) {
     roomIndexes.push(GridRooms.ROOM_ERROR_IDX);
   }
@@ -132,4 +102,29 @@ export function postNewLevel(): void {
 export function postCursedTeleport(_player: EntityPlayer): void {
   log("Cursed Eye / Cursed Skull teleport detected.");
   seededTeleport();
+}
+
+function getAllRoomIndexesForNormalRooms() {
+  const rooms = g.l.GetRooms();
+
+  // We could filter out our current room, but this would cause problems in seeded races,
+  // so seeded races would have to be exempt
+  // Thus, don't bother with this in order to keep the behavior consistent through the different
+  // types of races
+  const roomIndexes: int[] = [];
+  for (let i = 0; i < rooms.Size; i++) {
+    const room = rooms.Get(i);
+    if (
+      room !== null &&
+      room.SafeGridIndex >= 0 &&
+      // Additionally, filter out the Ultra Secret room
+      room.Data !== null &&
+      room.Data.Type !== RoomType.ROOM_ULTRASECRET
+    ) {
+      // We must use the safe grid index or else teleporting to L rooms will fail
+      roomIndexes.push(room.SafeGridIndex);
+    }
+  }
+
+  return roomIndexes;
 }

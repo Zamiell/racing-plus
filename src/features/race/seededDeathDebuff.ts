@@ -198,6 +198,11 @@ function debuffOffAddAllItems(player: EntityPlayer) {
   }
 
   arrayEmpty(items);
+
+  // Now that we have add every item, update the players stats
+  player.AddCacheFlags(CacheFlag.CACHE_ALL);
+  player.EvaluateItems();
+
   disableSpiritShackles(player);
 }
 
