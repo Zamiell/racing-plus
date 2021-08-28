@@ -144,7 +144,7 @@ export function spawnCollectible(
   seed: int,
   options = false,
   forceFreeItem = false,
-): EntityPickup | null {
+): EntityPickup {
   const roomType = g.r.GetType();
 
   const collectible = g.g
@@ -159,7 +159,7 @@ export function spawnCollectible(
     )
     .ToPickup();
   if (collectible === null) {
-    return null;
+    error("Failed to spawn a collectible.");
   }
 
   if (options) {

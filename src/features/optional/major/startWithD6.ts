@@ -26,7 +26,11 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
+import {
+  findFreePosition,
+  getItemMaxCharges,
+  spawnCollectible,
+} from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
@@ -150,34 +154,31 @@ function replaceTaintedForgottenRecall(
   // Birthright will give a pocket active item of Recall, which will replace the D6
   // Give the D6 back and make Recall a normal active item
   const pocketActive = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
-  if (pocketActive !== CollectibleType.COLLECTIBLE_RECALL) {
+  const itemToReplace = CollectibleType.COLLECTIBLE_RECALL;
+  if (pocketActive !== itemToReplace) {
     return;
   }
 
   const index = getPlayerIndex(player);
-  let charge = v.run.pocketActiveD6Charge.get(index);
-  if (charge === undefined) {
-    charge = D6_STARTING_CHARGE;
+  let d6Charge = v.run.pocketActiveD6Charge.get(index);
+  if (d6Charge === undefined) {
+    d6Charge = D6_STARTING_CHARGE;
   }
 
   player.SetPocketActiveItem(
     CollectibleType.COLLECTIBLE_D6,
     ActiveSlot.SLOT_POCKET,
   );
-  player.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
+  player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   if (hasOpenActiveItemSlot(player)) {
-    player.AddCollectible(
-      CollectibleType.COLLECTIBLE_FLIP,
-      charge,
-      false,
-      ActiveSlot.SLOT_POCKET,
-    );
+    const charge = getItemMaxCharges(itemToReplace);
+    player.AddCollectible(itemToReplace, charge);
   } else {
     // Spawn it on the ground instead
     const position = findFreePosition(player.Position);
     const startSeed = g.seeds.GetStartSeed();
-    spawnCollectible(CollectibleType.COLLECTIBLE_RECALL, position, startSeed);
+    spawnCollectible(itemToReplace, position, startSeed);
   }
 }
 

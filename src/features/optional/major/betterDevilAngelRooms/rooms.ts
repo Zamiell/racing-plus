@@ -197,7 +197,7 @@ function spawnNormalEntity(
   const position = gridToPos(x, y);
   const seed = getEntitySeed(devil);
 
-  let entity;
+  let entity: Entity;
   if (
     entityType === EntityType.ENTITY_PICKUP &&
     variant === PickupVariant.PICKUP_COLLECTIBLE
@@ -216,9 +216,7 @@ function spawnNormalEntity(
     );
   }
 
-  if (entity !== null) {
-    storePersistentEntity(entity);
-  }
+  storePersistentEntity(entity);
 }
 
 function getEntitySeed(devil: boolean) {
