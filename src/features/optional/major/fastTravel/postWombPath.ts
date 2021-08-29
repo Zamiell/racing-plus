@@ -1,5 +1,6 @@
 import {
   ensureAllCases,
+  getRoomIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   log,
 } from "isaacscript-common";
@@ -25,10 +26,16 @@ const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 export function postEntityKillMomsHeart(_entity: Entity): void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
+  const roomIndex = getRoomIndex();
 
   // Don't do anything if we just killed the Mom's Heart or It Lives! on Mausoleum, Gehenna,
   // or The Void
   if (stage !== 8) {
+    return;
+  }
+
+  // Don't do anything if we just killed the It Lives! in an Emperor? Card room
+  if (roomIndex < 0) {
     return;
   }
 

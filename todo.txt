@@ -7,13 +7,15 @@
 - Attempting to switch to Esau Jr while being a seeded ghost will now fail.
 - Fixed the bug where Recall would replace the D6. (It will now go to the normal active item item slot. If there is not room for a normal active item, then it will spawn on the ground.) (Thanks Gamonymous)
 - Fixed the bug where quest items were not reliably locked into place under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where paths would spawn after defeating It Lives! in an Emperor? card room. (Thanks Gamonymous)
 - Fixed the bug where the Holy Card feature would incorrectly play the announcer sound effect. (Thanks ez_duke)
 - Fixed the bug where Telepills had a chance to send you to the Ultra Secret Room. (Thanks Gamonymous)
 - Fixed the bug where you were not able to toggle the map while using a trapdoor.
+- Fixed the bug where Flip would not charge properly when it was in a normal active item slot.
 - Fixed the bug with seeded death where the familiars from Cambion Conception and Immaculate Conception would not return upon revival. (Thanks Gamonymous)
 - Fixed the bug with seeded death where you were not revived with the correct size.
 - Fixed the bug with seeded death where the death animation would not play under certain conditions.
-- Fixed the bug where Flip would not charge properly when it was in a normal active item slot.
+- Fixed the bug with seeded death where it would not work properly on Jacob & Esau. (Thanks Gamonymous)
 ```
 
 - Fixed the bug with seeded death where transformations would not be reapplied. (Thanks Gamonymous)

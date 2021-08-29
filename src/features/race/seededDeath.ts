@@ -52,6 +52,12 @@ function postUpdateGhostForm() {
 
   // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs
   applySeededGhostFade(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      applySeededGhostFade(twin);
+    }
+  }
 
   // Check to see if the debuff is over
   if (
@@ -177,8 +183,9 @@ function postNewRoomWaitingForNewRoom() {
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
 
-  // Play the animation where Isaac lies in the fetal position
   disableAllInputs();
+
+  // Play the animation where Isaac lies in the fetal position
   player.PlayExtraAnimation("AppearVanilla");
   debuffOn(player);
   applySeededGhostFade(player);
@@ -187,7 +194,7 @@ function postNewRoomWaitingForNewRoom() {
     if (twin !== null) {
       twin.PlayExtraAnimation("AppearVanilla");
       debuffOn(twin);
-      applySeededGhostFade(player);
+      applySeededGhostFade(twin);
     }
   }
 }
