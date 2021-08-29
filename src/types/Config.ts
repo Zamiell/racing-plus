@@ -45,18 +45,20 @@ export default class Config {
   subvertTeleport = true;
   deleteVoidPortals = true;
   showNumSacrifices = true;
+  combinedDualityDoors = true; // 498
   removeFortuneCookieBanners = true; // 557
   showDreamCatcherItem = true; // 566
+  fastMoonlight = true; // 589
   fadeVasculitisTears = true; // 657
   removePerfectionVelocity = true; // 145
   automaticItemInsertion = true;
+  chargePocketItemFirst = true;
   showMaxFamiliars = true;
   showPills = true;
 
   // Gameplay changes
   sawblade = true;
   extraStartingItems = true;
-  combinedDualityDoors = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
 

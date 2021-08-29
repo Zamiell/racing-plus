@@ -272,6 +272,18 @@ functionMap.set("list", (_params: string) => {
   const roomEntities = Isaac.GetRoomEntities();
   for (let i = 0; i < roomEntities.length; i++) {
     const entity = roomEntities[i];
+
+    // Exclude background effects
+    if (
+      entity.Type === EntityType.ENTITY_EFFECT &&
+      (entity.Variant === EffectVariant.TINY_BUG || // 21
+        entity.Variant === EffectVariant.WALL_BUG || // 68
+        entity.Variant === EffectVariant.FALLING_EMBER || // 87
+        entity.Variant === EffectVariant.LIGHT) // 121
+    ) {
+      continue;
+    }
+
     let debugString = `${i + 1}  - ${entity.Type}.${entity.Variant}.${
       entity.SubType
     }`;

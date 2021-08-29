@@ -467,39 +467,39 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "removeFortuneCookieBanners",
+    "combinedDualityDoors", // 498
     [
       ModConfigMenuOptionType.BOOLEAN,
       "057",
+      "Duality revamp",
+      "Make Duality combine the Devil Room door and the Angel Room door together.",
+    ],
+  ],
+  [
+    "removeFortuneCookieBanners", // 557
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "058",
       "Remove Fortune Cookie banners",
       "Remove Fortune Cookie banners when don't get any pickups.",
     ],
   ],
   [
-    "showDreamCatcherItem",
+    "showDreamCatcherItem", // 566
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "059",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
   ],
   [
-    "fadeVasculitisTears",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "059",
-      "Fade Vasculitis tears",
-      "Fade the tears that explode out of enemies when you have Vasculitis.",
-    ],
-  ],
-  [
-    "removePerfectionVelocity",
+    "fastMoonlight", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
       "060",
-      "Remove Perfection velocity",
-      "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
+      "Fast Moonlight",
+      "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
   ],
 ];
@@ -507,19 +507,46 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
 // 061-06X
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
-    "automaticItemInsertion",
+    "fadeVasculitisTears", // 657
     [
       ModConfigMenuOptionType.BOOLEAN,
       "061",
+      "Fade Vasculitis tears",
+      "Fade the tears that explode out of enemies when you have Vasculitis.",
+    ],
+  ],
+  [
+    "removePerfectionVelocity", // 145
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "062",
+      "Remove Perfection velocity",
+      "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
+    ],
+  ],
+  [
+    "automaticItemInsertion",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "063",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
+    ],
+  ],
+  [
+    "chargePocketItemFirst",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "064",
+      "Charge the Pocket item first",
+      "Make batteries charge the pocket item first over the active item.",
     ],
   ],
   [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "062",
+      "065",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -528,7 +555,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "063",
+      "066",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -565,19 +592,10 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "combinedDualityDoors",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "073",
-      "Duality revamp",
-      "Make Duality combine the Devil Room door and the Angel Room door together.",
-    ],
-  ],
-  [
     "consistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "074",
+      "073",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -586,7 +604,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "075",
+      "074",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],

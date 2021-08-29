@@ -47,25 +47,25 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 ### 1) The D6 for Everyone
 
-- `002` All characters now start with the D6, either as a pocket item or an active item.
+- `002` <!-- startWithD6 --> All characters now start with the D6, either as a pocket item or an active item.
 
 > Why? Much of the strategy in the game is centered around having this item. The best players win races more consistently when having the D6 because it mitigates run disparity.
 
 ### 2) No Curses
 
-- `003` All curses are automatically disabled.
+- `003` <!-- disableCurses --> All curses are automatically disabled.
 
 > Why? Curses make the game less-skilled based, robbing the player of meaningful decision-making and strategy.
 
 ### 3) Devil Room & Angel Room Rebalancing
 
-- `004` Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+- `004` <!-- betterDevilAngelRooms --> Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
   - Average items per devil room are increased from 1.64 to 1.96.
   - Average items per angel room are increased from 1.34 to 1.51.
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
-- `005` Players receive a Your Soul trinket upon entering the first Devil Room of the run if they have not yet taken damage.
+- `005` <!-- freeDevilItem --> Players receive a Your Soul trinket upon entering the first Devil Room of the run if they have not yet taken damage.
   - Self-damage (e.g. from a Curse Room door) does not count.
   - This only applies for Devil Rooms on Basement 1 or Basement 2.
   - Keeper and Tainted Keeper will be awarded 15 cents instead of a Your Soul trinket.
@@ -74,20 +74,20 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 ### 4) Fast-Reset
 
-- `006` The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
+- `006` <!-- fastReset --> The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
 
 > Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for this. Speeding this up makes resetting for a starting item less tedious.
 
 ### 5) Fast-Clear
 
-- `007` Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
+- `007` <!-- fastClear --> Rooms are considered cleared at the beginning of an enemy's death animation, rather than the end.
 
 > Why? It is obnoxious to have to sit and wait for a long death animation to finish before being able to proceed with the game. The game was never originally intended to have this behavior, as demonstrated by Wrath of the Lamb.
 
 ### 6) Fast-Travel
 
-- `008` The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
-- `008` The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
+- `008` <!-- fastTravel --> The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
+- `008` <!-- fastTravel --> The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
 
 ### 7) Room Fixes
 
@@ -129,47 +129,47 @@ Post-flip actions:
 
 ### 2) Character Changes
 
-- `021` <!-- 3 --> Judas starts with a bomb.
+- `021` <!-- judasAddBomb 3 --> Judas starts with a bomb.
 
 > Why? Historically, Isaac was the main character used in tournaments. After Balls of Steel 4, tournaments started using Judas as the main character instead, since he had a higher damage multiplier. At this time, it was desirable for Judas to have a bomb so that he would play in a similar way to Isaac. Starting with a bomb makes the game slightly more skill-based, since it gives players the option to bomb a tinted rock, escape a slow 2x2 room, and so forth.
 
-- `022` <!-- 6 --> Samson's Child's Heart is automatically dropped.
+- `022` <!-- samsonDropHeart 6 --> Samson's Child's Heart is automatically dropped.
 
 >  Why? When playing as Samson, players usually immediately drop the Child's Heart to improve their odds at good room drops.
 
-- `023` <!-- 9, 30 --> Eden's starting items will be shown in the starting room.
+- `023` <!-- showEdenStartingItems 9, 30 --> Eden's starting items will be shown in the starting room.
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-- `024` <!-- 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
-- `025` <!-- 33 --> Tainted Keeper starts with 15 cents.
+- `024` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
+- `025` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
 
 > Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
 ### 3) Boss Changes
 
-- `031` Bosses will be faded during their death animation.
+- `031` <!-- fadeBosses --> Bosses will be faded during their death animation.
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
-- `032` <!-- 66 --> Stop Death from performing his slow attack.
+- `032` <!-- stopDeathSlow 66 --> Stop Death from performing his slow attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `033` <!-- 84 --> The unnecessary waiting during the Satan fight is removed.
-- `034` <!-- 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `035` <!-- 273 --> The Lamb body is removed upon death.
+- `033` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
+- `034` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `035` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `036` <!-- 273 --> The Victory Lap popup will no longer appear after defeating The Lamb.
+- `036` <!-- stopVictoryLapPopup 273 --> The Victory Lap popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `037` <!-- 407 --> The Hush door will be automatically opened.
-- `038` <!-- 411 --> Big Horn will spend less time underground.
-- `039` <!-- 917 --> Colostomia will instantly appear.
-- `040` <!-- 950 --> Dogma's death cutscene is skipped.
+- `037` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `038` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `039` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `040` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
@@ -182,70 +182,76 @@ Post-flip actions:
 
 ### 4) Enemy Changes
 
-- `041` All enemies are removed from Treasure Rooms.
+- `041` <!-- removeTreasureRoomEnemies --> All enemies are removed from Treasure Rooms.
 
 > Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
-- `042` <!-- 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `042` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `043` <!-- 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
+- `043` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `044` <!-- 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `044` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `045` <!-- 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
+- `045` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
 
 > Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
 
-- `046` <!-- 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
+- `046` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `047` <!-- 221 --> Cod Worms are replaced with Para-Bites.
+- `047` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
 
 > Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
 ### 5) Quality of Life Changes
 
-- `051` The fade in at the beginning of a run is sped-up.
-- `052` First floor Treasure Rooms are slightly changed so that you never have to spend a bomb or walk on spikes.
+- `051` <!-- speedUpFadeIn --> The fade in at the beginning of a run is sped-up.
+- `052` <!-- easyFirstFloorItems --> First floor Treasure Rooms are slightly changed so that you never have to spend a bomb or walk on spikes.
 
 > Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `053` Enemy red creep is changed to green and friendly green creep is changed to red.
+- `053` <!-- changeCreepColor --> Enemy red creep is changed to green and friendly green creep is changed to red.
 
 > Why? So that player creep will never be mistaken for enemy creep and vice versa. Furthermore, it is very difficult to see red enemy creep on the Womb floors.
 
-- `054` The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
-- `055` Void portals that spawn after bosses are automatically deleted.
+- `054` <!-- subvertTeleport --> The disruptive teleport from entering a room with Gurdy, Mom, Mom's Heart, or It Lives! no longer occurs.
+- `055` <!-- deleteVoidPortals --> Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
-- `056` The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `057` Fortune Cookie banner text is removed.
+- `056` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
+- `057` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+
+> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
+
+- `058` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `058` If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `059` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `059` The tears that explode out of enemies when you have Vasculitis are faded.
+- `060` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `061` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `060` The Perfection trinket will no longer have velocity.
+- `062` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `061` Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `062` An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `063` Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `063` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `064` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+- `065` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `066` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
@@ -255,23 +261,19 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `071` Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+- `071` <!-- sawblade --> Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
 
 > Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
-- `072` Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
+- `072` <!-- extraStartingItems --> Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
 
 > Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `073` Duality now combines Devil Room doors and Angel Room doors together.
-
-> Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
-
-- `074` Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+- `073` <!-- consistentTrollBombs --> Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
-- `075` Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+- `074` <!-- pillsCancelAnimations --> Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 
 > Why? This allows skilled players to gain time by canceling more animations.
 
@@ -311,7 +313,7 @@ Post-flip actions:
 
 ### 8) Cutscenes & Animations
 
-- `081` Teleport animations are sped up by a factor of 2.
+- `081` <!-- fastTeleports --> Teleport animations are sped up by a factor of 2.
 - The intro that occurs when you launch the game is removed.
 - The cutscenes that occur when finishing a run are removed.
 - The cutscenes that occur before each boss are removed.
@@ -320,7 +322,7 @@ Post-flip actions:
 
 ### 9) Bug Fixes
 
-- `091` All forms of teleport will no longer send you to an invalid entrance.
+- `091` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
 - Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
@@ -335,10 +337,10 @@ Post-flip actions:
 
 ### 10) Graphics Fixes
 
-- `101` The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
-- `102` The 20/20 sprite is now easier to see.
-- `103` The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
-- `104` Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- `101` <!-- flyItemSprites --> The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
+- `102` <!-- twentyTwenty --> The 20/20 sprite is now easier to see.
+- `103` <!-- starOfBethlehem --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
+- `104` <!-- paschalCandle --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
@@ -360,11 +362,11 @@ Post-flip actions:
 
 ### 11) Sound Fixes
 
-- `111` The audio clips of mom and dad on the Ascent are silenced.
+- `111` <!-- silenceMomDad --> The audio clips of mom and dad on the Ascent are silenced.
 
 ### 12) Other
 
-- `121` A custom console is provided that is better than the vanilla console.
+- `121` <!-- customConsole --> A custom console is provided that is better than the vanilla console.
 
 > Why? The vanilla console has an annoying animation and is inconvenient to use.
 

@@ -39,6 +39,7 @@ import * as preFamiliarCollision from "./callbacks/preFamiliarCollision";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
+import * as prePickupCollision from "./callbacks/prePickupCollision";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
@@ -135,6 +136,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
   postPickupUpdate.init(mod); // 35
+  prePickupCollision.init(mod); // 38
   postTearUpdate.init(mod); // 40
   postLaserInit.init(mod); // 47
   postEffectInit.init(mod); // 54

@@ -1,6 +1,7 @@
 ```
 ### *v0.61.11* - August 28th, 2021
 
+- Moonlights from Luna can now be entered as soon as they spawn.
 - The white-cyan pill is now white-green so that it is easier to distinguish from white-blue.
 - Deleted the two Bumbino rooms where he is trapped in a rock cage. (Thanks Gamonymous)
 - You will now be able to immediately pick up a Checkpoint on the frame that it spawns.
