@@ -13,7 +13,7 @@ import {
 import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
-const NUM_RACING_PLUS_ITEMS = 16;
+const NUM_RACING_PLUS_ITEMS = 28;
 const NUM_BABIES_MOD_ITEMS = 15;
 const STARTING_X = 115;
 const STARTING_Y = 70;

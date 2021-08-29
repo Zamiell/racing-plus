@@ -289,9 +289,10 @@ function giveTransformationHelper(
 ) {
   const transformations = getTransformationsForItem(collectibleType);
   for (const transformation of transformations) {
-    const helperCollectible = TRANSFORMATION_TO_HELPER_MAP.get(transformation);
-    if (helperCollectible !== undefined) {
-      player.AddCollectible(helperCollectible);
+    const helperCollectibleType =
+      TRANSFORMATION_TO_HELPER_MAP.get(transformation);
+    if (helperCollectibleType !== undefined) {
+      player.AddCollectible(helperCollectibleType);
     }
   }
 }

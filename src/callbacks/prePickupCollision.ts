@@ -9,10 +9,6 @@ export function init(mod: Mod): void {
 }
 
 // PickupVariant.PICKUP_LIL_BATTERY (90)
-export function lilBattery(
-  pickup: EntityPickup,
-  collider: Entity,
-  _low: boolean,
-): boolean | void {
+function lilBattery(pickup: EntityPickup, collider: Entity, _low: boolean) {
   return chargePocketItemFirst.prePickupCollisionLilBattery(pickup, collider);
 }
