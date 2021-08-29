@@ -1,6 +1,8 @@
 import {
   disableAllInputs,
   enableAllInputs,
+  getFinalFrameOfAnimation,
+  getPlayerFromEntityPtr,
   getRoomIndex,
   getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
@@ -27,8 +29,11 @@ import SeededDeathState from "./types/SeededDeathState";
 import v from "./v";
 
 // const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
-const SEEDED_DEATH_DEBUFF_FRAMES = 5 * ISAAC_FRAMES_PER_SECOND; // DEBUG
+const SEEDED_DEATH_DEBUFF_FRAMES = 10 * ISAAC_FRAMES_PER_SECOND; // DEBUG
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
+
+let dyingPlayer: EntityPtr | null = null;
+let playerToUseFlip: EntityPtr | null = null;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -95,21 +100,11 @@ function postUpdateCheckLazarusFlip() {
     return;
   }
 
-  if (v.run.seededDeath.playerToUseFlip !== null) {
-    const entity = v.run.seededDeath.playerToUseFlip.Ref;
-    if (entity !== null) {
-      const player = entity.ToPlayer();
-      if (player !== null) {
-        player.UseActiveItem(
-          CollectibleType.COLLECTIBLE_FLIP,
-          UseFlag.USE_NOANIM,
-        );
-      }
-    }
-  }
+  const player = getPlayerFromEntityPtr(playerToUseFlip);
+  player.UseActiveItem(CollectibleType.COLLECTIBLE_FLIP, UseFlag.USE_NOANIM);
 
   v.run.seededDeath.useFlipOnFrame = null;
-  v.run.seededDeath.playerToUseFlip = null;
+  playerToUseFlip = null;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -158,9 +153,43 @@ function postRenderCheckDisplayTimer(): void {
   timer.display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
 }
 
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  dyingPlayer = null;
+  playerToUseFlip = null;
+}
+
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  postNewRoomWaitingForNewRoom();
   postNewRoomGhostForm();
+}
+
+function postNewRoomWaitingForNewRoom() {
+  if (v.run.seededDeath.state !== SeededDeathState.WAITING_FOR_NEW_ROOM) {
+    return;
+  }
+
+  const isaacFrameCount = Isaac.GetFrameCount();
+  const player = getPlayerFromEntityPtr(dyingPlayer);
+
+  v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
+  v.run.seededDeath.debuffEndFrame =
+    isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
+
+  // Play the animation where Isaac lies in the fetal position
+  disableAllInputs();
+  player.PlayExtraAnimation("AppearVanilla");
+  debuffOn(player);
+  applySeededGhostFade(player);
+  if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      twin.PlayExtraAnimation("AppearVanilla");
+      debuffOn(twin);
+      applySeededGhostFade(player);
+    }
+  }
 }
 
 function postNewRoomGhostForm(): void {
@@ -188,6 +217,37 @@ function postNewRoomGhostForm(): void {
       twin.AnimateSad();
     }
   }
+}
+
+// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+export function postPlayerRender(player: EntityPlayer): void {
+  if (
+    v.run.seededDeath.state !==
+    SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH
+  ) {
+    return;
+  }
+
+  const playerHash = GetPtrHash(player);
+  const storedPlayer = getPlayerFromEntityPtr(dyingPlayer);
+  const storedPlayerHash = GetPtrHash(storedPlayer);
+  if (playerHash !== storedPlayerHash) {
+    return;
+  }
+
+  const sprite = player.GetSprite();
+  const animation = sprite.GetAnimation();
+  if (animation !== "Death") {
+    return;
+  }
+
+  const frame = sprite.GetFrame();
+  const finalFrameOfDeathAnimation = getFinalFrameOfAnimation(sprite);
+  if (frame !== finalFrameOfDeathAnimation) {
+    return;
+  }
+
+  v.run.seededDeath.state = SeededDeathState.WAITING_FOR_NEW_ROOM;
 }
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
@@ -270,6 +330,10 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     }
   }
 
+  v.run.seededDeath.state =
+    SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH;
+  dyingPlayer = EntityPtr(player);
+
   return RevivalType.SEEDED_DEATH;
 }
 
@@ -312,27 +376,11 @@ function dropEverything(player: EntityPlayer) {
   }
 }
 
-// ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE
+// ModCallbacksCustom.MC_POST_CUSTOM_REVIVE
 export function postCustomRevive(player: EntityPlayer): void {
-  const isaacFrameCount = Isaac.GetFrameCount();
-
-  v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
-  v.run.seededDeath.debuffEndFrame =
-    isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
-
-  // Play the animation where Isaac lies in the fetal position
-  disableAllInputs();
+  // The 1-Up animation has started playing,
+  // so we need to cancel it by playing the fetal position animation again
   player.PlayExtraAnimation("AppearVanilla");
-  debuffOn(player);
-  applySeededGhostFade(player);
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      twin.PlayExtraAnimation("AppearVanilla");
-      debuffOn(twin);
-      applySeededGhostFade(player);
-    }
-  }
 }
 
 // ModCallbacksCustom.MC_POST_FLIP
@@ -356,6 +404,6 @@ export function postFlip(player: EntityPlayer): void {
   } else {
     v.run.seededDeath.switchingBackToGhostLazarus = true;
     v.run.seededDeath.useFlipOnFrame = gameFrameCount + 1;
-    v.run.seededDeath.playerToUseFlip = EntityPtr(player);
+    playerToUseFlip = EntityPtr(player);
   }
 }

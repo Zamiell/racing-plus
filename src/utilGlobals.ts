@@ -166,6 +166,13 @@ export function spawnCollectible(
     collectible.OptionsPickupIndex = 1;
   }
 
+  // In vanilla, all pedestals have a 20 frame delay before they can be picked up
+  // Remove the pedestal delay for the Checkpoint,
+  // since players will always want to immediately pick it up
+  if (collectibleType === CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT) {
+    collectible.Wait = 0;
+  }
+
   if (
     roomType === RoomType.ROOM_ANGEL &&
     anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&

@@ -289,6 +289,14 @@ functionMap.set("luck", (_params: string) => {
   consoleCommand("debug 9");
 });
 
+functionMap.set("move", (_params: string) => {
+  const player = Isaac.GetPlayer();
+
+  // Move the player to a specific position
+  const oneByOneRoomRightDoorNextToLoadingZone = Vector(593, 280); // 593 works, 593.1 is too far
+  player.Position = oneByOneRoomRightDoorNextToLoadingZone;
+});
+
 functionMap.set("next", (_params: string) => {
   speedrunSetNext();
 });

@@ -12,7 +12,6 @@ const v = {
 
     seededDeath: {
       state: SeededDeathState.DISABLED,
-      reviveFrame: null as int | null,
       debuffEndFrame: null as int | null,
 
       devilRoomDeals: 0,
@@ -33,7 +32,6 @@ const v = {
 
       switchingBackToGhostLazarus: false,
       useFlipOnFrame: null as int | null,
-      playerToUseFlip: null as EntityPtr | null,
     },
 
     spawnedCorpseTrapdoor: false,

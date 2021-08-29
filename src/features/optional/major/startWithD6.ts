@@ -24,6 +24,7 @@ import {
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
+import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import {
@@ -100,6 +101,24 @@ export function postPlayerChangeType(player: EntityPlayer): void {
   changedCharacterInSomeWay(player);
 }
 
+// ModCallbacksCustom.MC_POST_FLIP
+export function postFlip(player: EntityPlayer): void {
+  // When Flip is in a normal active item slot, clearing rooms on one Lazarus will not charge the
+  // Flip for the other Lazarus
+  // Thus, we manually increase the charge of Flip whenever a flip happens
+  // When Flip is used, it will drain the other Flip automatically
+  // Furthermore, when Flip is used, it won't get an extra charge for some reason
+  for (const activeSlot of [
+    ActiveSlot.SLOT_PRIMARY,
+    ActiveSlot.SLOT_SECONDARY,
+  ]) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_FLIP) {
+      charge.add(player, activeSlot);
+    }
+  }
+}
+
 // ModCallbacksCustom.MC_POST_FIRST_FLIP
 export function postFirstFlip(player: EntityPlayer): void {
   if (!config.startWithD6) {
@@ -172,8 +191,8 @@ function replaceTaintedForgottenRecall(
   player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   if (hasOpenActiveItemSlot(player)) {
-    const charge = getItemMaxCharges(itemToReplace);
-    player.AddCollectible(itemToReplace, charge);
+    const itemToReplaceCharge = getItemMaxCharges(itemToReplace);
+    player.AddCollectible(itemToReplace, itemToReplaceCharge);
   } else {
     // Spawn it on the ground instead
     const position = findFreePosition(player.Position);
@@ -217,9 +236,9 @@ function giveD6(player: EntityPlayer) {
 
   // If they are switching characters, re-use the charge from the D6 on the previous frame
   const index = getPlayerIndex(player);
-  let charge = v.run.pocketActiveD6Charge.get(index);
-  if (charge === undefined) {
-    charge = D6_STARTING_CHARGE;
+  let d6Charge = v.run.pocketActiveD6Charge.get(index);
+  if (d6Charge === undefined) {
+    d6Charge = D6_STARTING_CHARGE;
   }
 
   // The "SetPocketActiveItem()" method also removes it from item pools
@@ -227,7 +246,7 @@ function giveD6(player: EntityPlayer) {
     CollectibleType.COLLECTIBLE_D6,
     ActiveSlot.SLOT_POCKET,
   );
-  player.SetActiveCharge(charge, ActiveSlot.SLOT_POCKET);
+  player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   // If they previously had a pocket active item, move it to the normal active item slot
   if (pocketItem !== CollectibleType.COLLECTIBLE_NULL) {

@@ -3,9 +3,10 @@ import {
   getNPCs,
   gridToPos,
   removeAllEntities,
+  removeItemFromItemTracker,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { consoleCommand, removeItemFromItemTracker } from "../../../util";
+import { consoleCommand } from "../../../util";
 import { ChallengeCustom } from "../../speedrun/enums";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import v from "../v";

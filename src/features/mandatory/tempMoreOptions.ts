@@ -1,8 +1,11 @@
 // In some situations, we force the first Treasure Room to have two items
 
-import { onRepentanceStage, saveDataManager } from "isaacscript-common";
+import {
+  onRepentanceStage,
+  removeItemFromItemTracker,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
-import { removeItemFromItemTracker } from "../../util";
 
 const v = {
   run: {

@@ -1,6 +1,5 @@
-import { log } from "isaacscript-common";
+import { log, removeItemFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/enums";
-import { removeItemFromItemTracker } from "../../../util";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import * as characterProgress from "../characterProgress";
 import * as season1 from "../season1";

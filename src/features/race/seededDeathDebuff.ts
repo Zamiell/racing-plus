@@ -3,24 +3,37 @@ import {
   getEnumValues,
   getPlayerCollectibleMap,
   removeDeadEyeMultiplier,
+  removeItemFromItemTracker,
 } from "isaacscript-common";
 import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 import ActiveItemDescription from "../../types/ActiveItemDescription";
-import { removeItemFromItemTracker } from "../../util";
 import v from "./v";
 
 export function debuffOn(player: EntityPlayer): void {
   // Make them take "red heart damage" for the purposes of getting a Devil Deal
   g.l.SetRedHeartDamage();
 
+  debuffOnRemoveSize(player);
   debuffOnSetHealth(player);
   debuffOnRemoveActiveItems(player);
   debuffOnRemoveAllItems(player);
   debuffOnRemoveGoldenBombsAndKeys(player);
   removeDeadEyeMultiplier(player);
-  debuffOnRemoveSize(player);
   debuffOnRemoveDarkEsau();
+}
+
+function debuffOnRemoveSize(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  // Store their size for later and reset it to default
+  // (in case they had items like Magic Mushroom and so forth)
+  if (character === PlayerType.PLAYER_ESAU) {
+    v.run.seededDeath.spriteScale2 = player.SpriteScale;
+  } else {
+    v.run.seededDeath.spriteScale = player.SpriteScale;
+  }
+  player.SpriteScale = Vector(1, 1);
 }
 
 function debuffOnSetHealth(player: EntityPlayer) {
@@ -124,19 +137,6 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   player.RemoveGoldenKey();
 }
 
-function debuffOnRemoveSize(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
-  // Store their size for later and reset it to default
-  // (in case they had items like Magic Mushroom and so forth)
-  if (character === PlayerType.PLAYER_ESAU) {
-    v.run.seededDeath.spriteScale2 = player.SpriteScale;
-  } else {
-    v.run.seededDeath.spriteScale = player.SpriteScale;
-  }
-  player.SpriteScale = Vector(1, 1);
-}
-
 function debuffOnRemoveDarkEsau() {
   // If Dark Esau is alive, the player can use it to clear rooms while they are dead
   // Remove Dark Esau to prevent this
@@ -155,11 +155,28 @@ export function debuffOff(player: EntityPlayer): void {
   const sprite = player.GetSprite();
   sprite.Color = COLOR_DEFAULT;
 
+  debuffOffRestoreSize(player);
   debuffOffAddActiveItems(player);
   debuffOffAddAllItems(player);
   debuffOffAddGoldenBombAndKey(player);
-  debuffOffRestoreSize(player);
   debuffOffAddDarkEsau();
+}
+
+function debuffOffRestoreSize(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  // Set their size to the way it was before the debuff was applied
+  if (character === PlayerType.PLAYER_ESAU) {
+    if (v.run.seededDeath.spriteScale2 !== null) {
+      player.SpriteScale = v.run.seededDeath.spriteScale2;
+    }
+    v.run.seededDeath.spriteScale2 = null;
+  } else {
+    if (v.run.seededDeath.spriteScale !== null) {
+      player.SpriteScale = v.run.seededDeath.spriteScale;
+    }
+    v.run.seededDeath.spriteScale = null;
+  }
 }
 
 function debuffOffAddActiveItems(player: EntityPlayer) {
@@ -244,23 +261,6 @@ function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
     if (stage === v.run.seededDeath.stage) {
       player.AddGoldenKey();
     }
-  }
-}
-
-function debuffOffRestoreSize(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
-  // Set their size to the way it was before the debuff was applied
-  if (character === PlayerType.PLAYER_ESAU) {
-    if (v.run.seededDeath.spriteScale2 !== null) {
-      player.SpriteScale = v.run.seededDeath.spriteScale2;
-    }
-    v.run.seededDeath.spriteScale2 = null;
-  } else {
-    if (v.run.seededDeath.spriteScale !== null) {
-      player.SpriteScale = v.run.seededDeath.spriteScale;
-    }
-    v.run.seededDeath.spriteScale = null;
   }
 }
 

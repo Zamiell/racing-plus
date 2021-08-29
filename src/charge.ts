@@ -5,36 +5,36 @@ import { getItemMaxCharges } from "./utilGlobals";
 // Give a charge to the active items of all players
 export function checkAdd(): void {
   for (const player of getPlayers()) {
-    for (const slot of [
+    for (const activeSlot of [
       ActiveSlot.SLOT_PRIMARY,
       ActiveSlot.SLOT_SECONDARY,
       ActiveSlot.SLOT_POCKET,
     ]) {
-      if (player.NeedsCharge(slot)) {
-        add(player, slot);
+      if (player.NeedsCharge(activeSlot)) {
+        add(player, activeSlot);
       }
     }
   }
 }
 
-function add(player: EntityPlayer, slot: ActiveSlot) {
+export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
   const hud = g.g.GetHUD();
 
   // Find out the new charge to set on the item
-  const currentCharge = player.GetActiveCharge(slot);
-  const batteryCharge = player.GetBatteryCharge(slot);
-  const chargesToAdd = getNumChargesToAdd(player, slot);
+  const currentCharge = player.GetActiveCharge(activeSlot);
+  const batteryCharge = player.GetBatteryCharge(activeSlot);
+  const chargesToAdd = getNumChargesToAdd(player, activeSlot);
   const modifiedChargesToAdd = getNumChargesWithAAAModifier(
     player,
-    slot,
+    activeSlot,
     chargesToAdd,
   );
   const newCharge = currentCharge + batteryCharge + modifiedChargesToAdd;
 
-  player.SetActiveCharge(newCharge, slot);
-  hud.FlashChargeBar(player, slot);
+  player.SetActiveCharge(newCharge, activeSlot);
+  hud.FlashChargeBar(player, activeSlot);
 
-  const chargeSoundEffect = shouldPlayFullRechargeSound(player, slot)
+  const chargeSoundEffect = shouldPlayFullRechargeSound(player, activeSlot)
     ? SoundEffect.SOUND_BATTERYCHARGE
     : SoundEffect.SOUND_BEEP;
   if (!g.sfx.IsPlaying(chargeSoundEffect)) {
@@ -42,11 +42,11 @@ function add(player: EntityPlayer, slot: ActiveSlot) {
   }
 }
 
-function getNumChargesToAdd(player: EntityPlayer, slot: ActiveSlot) {
+function getNumChargesToAdd(player: EntityPlayer, activeSlot: ActiveSlot) {
   const roomShape = g.r.GetRoomShape();
-  const activeItem = player.GetActiveItem(slot);
-  const activeCharge = player.GetActiveCharge(slot);
-  const batteryCharge = player.GetBatteryCharge(slot);
+  const activeItem = player.GetActiveItem(activeSlot);
+  const activeCharge = player.GetActiveCharge(activeSlot);
+  const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
   const maxCharges = getItemMaxCharges(activeItem);
 
@@ -84,12 +84,12 @@ function getNumChargesToAdd(player: EntityPlayer, slot: ActiveSlot) {
 // charged
 function getNumChargesWithAAAModifier(
   player: EntityPlayer,
-  slot: ActiveSlot,
+  activeSlot: ActiveSlot,
   chargesToAdd: int,
 ) {
-  const activeItem = player.GetActiveItem(slot);
-  const activeCharge = player.GetActiveCharge(slot);
-  const batteryCharge = player.GetBatteryCharge(slot);
+  const activeItem = player.GetActiveItem(activeSlot);
+  const activeCharge = player.GetActiveCharge(activeSlot);
+  const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
   const hasAAABattery = player.HasTrinket(TrinketType.TRINKET_AAA_BATTERY);
   const maxCharges = getItemMaxCharges(activeItem);
@@ -109,21 +109,24 @@ function getNumChargesWithAAAModifier(
   return chargesToAdd;
 }
 
-function shouldPlayFullRechargeSound(player: EntityPlayer, slot: ActiveSlot) {
-  const activeItem = player.GetActiveItem(slot);
-  const activeCharge = player.GetActiveCharge(slot);
-  const batteryCharge = player.GetBatteryCharge(slot);
+function shouldPlayFullRechargeSound(
+  player: EntityPlayer,
+  activeSlot: ActiveSlot,
+) {
+  const activeItem = player.GetActiveItem(activeSlot);
+  const activeCharge = player.GetActiveCharge(activeSlot);
+  const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
   const maxCharges = getItemMaxCharges(activeItem);
 
   if (!hasBattery) {
     // Play the full recharge sound if we are now fully charged
-    return !player.NeedsCharge(slot);
+    return !player.NeedsCharge(activeSlot);
   }
 
   // Play the full recharge sound if we are now fully charged or we are exactly half-way charged
   return (
-    !player.NeedsCharge(slot) ||
+    !player.NeedsCharge(activeSlot) ||
     (activeCharge === maxCharges && batteryCharge === 0)
   );
 }

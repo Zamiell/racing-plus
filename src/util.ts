@@ -1,5 +1,4 @@
 import {
-  getItemName,
   getPlayers,
   hasFlag,
   initRNG,
@@ -12,7 +11,6 @@ import {
   COLLECTIBLE_15_LUCK_SERVER_ID,
   COLLECTIBLE_SAWBLADE_SERVER_ID,
 } from "./features/race/constants";
-import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -154,18 +152,6 @@ export function removeAllCollectibles(): void {
   removeAllMatchingEntities(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
-  );
-}
-
-export function removeItemFromItemTracker(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): void {
-  const itemName = getItemName(collectibleType);
-
-  // This cannot use the "log()" function since the prefix will prevent the Item Tracker from
-  // recognizing the message
-  Isaac.DebugString(
-    `Removing voided collectible ${collectibleType} (${itemName}) from player 0 (Player)`,
   );
 }
 
