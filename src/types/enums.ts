@@ -33,7 +33,7 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_RESET = Isaac.GetItemIdByName("Reset"),
   COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
 
-  // Placeholders
+  // Starting item placeholders
   COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER = Isaac.GetItemIdByName(
     "Magic Mushroom Placeholder",
   ),

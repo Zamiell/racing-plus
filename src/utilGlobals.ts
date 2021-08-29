@@ -2,6 +2,8 @@ import {
   anyEntityCloserThan,
   anyPlayerIs,
   DISTANCE_OF_GRID_TILE,
+  getCollectibleInitCharges,
+  getCollectibleMaxCharges,
   getDoors,
   getRoomIndex,
   inCrawlspace,
@@ -45,34 +47,12 @@ export function findFreePosition(startingPosition: Vector): Vector {
   return g.r.FindFreePickupSpawnPosition(startingPosition);
 }
 
-function getItemInitCharges(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): int {
-  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem === null) {
-    return -1; // The default value for this property is -1
-  }
-
-  return itemConfigItem.InitCharge;
-}
-
-export function getItemMaxCharges(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-): int {
-  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem === null) {
-    return 0;
-  }
-
-  return itemConfigItem.MaxCharges;
-}
-
 export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
-  const initCharges = getItemInitCharges(collectibleType);
-  const maxCharges = getItemMaxCharges(collectibleType);
+  const initCharges = getCollectibleInitCharges(collectibleType);
+  const maxCharges = getCollectibleMaxCharges(collectibleType);
   const charges = initCharges === -1 ? maxCharges : initCharges;
 
   player.AddCollectible(collectibleType, charges);

@@ -1,6 +1,5 @@
-import { getPlayers } from "isaacscript-common";
+import { getCollectibleMaxCharges, getPlayers } from "isaacscript-common";
 import g from "./globals";
-import { getItemMaxCharges } from "./utilGlobals";
 
 // Give a charge to the active items of all players
 export function checkAdd(): void {
@@ -21,7 +20,7 @@ export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
   const hud = g.g.GetHUD();
 
   // Find out the new charge to set on the item
-  const currentCharge = player.GetActiveCharge(activeSlot);
+  const activeCharge = player.GetActiveCharge(activeSlot);
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const chargesToAdd = getNumChargesToAdd(player, activeSlot);
   const modifiedChargesToAdd = getNumChargesWithAAAModifier(
@@ -29,11 +28,18 @@ export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
     activeSlot,
     chargesToAdd,
   );
-  const newCharge = currentCharge + batteryCharge + modifiedChargesToAdd;
+  const newCharge = activeCharge + batteryCharge + modifiedChargesToAdd;
 
   player.SetActiveCharge(newCharge, activeSlot);
   hud.FlashChargeBar(player, activeSlot);
 
+  playSoundEffect(player, activeSlot);
+}
+
+export function playSoundEffect(
+  player: EntityPlayer,
+  activeSlot: ActiveSlot,
+): void {
   const chargeSoundEffect = shouldPlayFullRechargeSound(player, activeSlot)
     ? SoundEffect.SOUND_BATTERYCHARGE
     : SoundEffect.SOUND_BEEP;
@@ -48,7 +54,7 @@ function getNumChargesToAdd(player: EntityPlayer, activeSlot: ActiveSlot) {
   const activeCharge = player.GetActiveCharge(activeSlot);
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
-  const maxCharges = getItemMaxCharges(activeItem);
+  const maxCharges = getCollectibleMaxCharges(activeItem);
 
   if (!hasBattery && activeCharge === maxCharges) {
     return 0;
@@ -92,7 +98,7 @@ function getNumChargesWithAAAModifier(
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
   const hasAAABattery = player.HasTrinket(TrinketType.TRINKET_AAA_BATTERY);
-  const maxCharges = getItemMaxCharges(activeItem);
+  const maxCharges = getCollectibleMaxCharges(activeItem);
 
   if (!hasAAABattery) {
     return chargesToAdd;
@@ -117,7 +123,7 @@ function shouldPlayFullRechargeSound(
   const activeCharge = player.GetActiveCharge(activeSlot);
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
-  const maxCharges = getItemMaxCharges(activeItem);
+  const maxCharges = getCollectibleMaxCharges(activeItem);
 
   if (!hasBattery) {
     // Play the full recharge sound if we are now fully charged

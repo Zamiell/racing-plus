@@ -14,6 +14,7 @@
 // active slot)
 
 import {
+  getCollectibleMaxCharges,
   getPlayerIndex,
   getPlayers,
   hasOpenActiveItemSlot,
@@ -27,11 +28,7 @@ import {
 import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import {
-  findFreePosition,
-  getItemMaxCharges,
-  spawnCollectible,
-} from "../../../utilGlobals";
+import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
 
 const D6_STARTING_CHARGE = 6;
 
@@ -191,7 +188,7 @@ function replaceTaintedForgottenRecall(
   player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   if (hasOpenActiveItemSlot(player)) {
-    const itemToReplaceCharge = getItemMaxCharges(itemToReplace);
+    const itemToReplaceCharge = getCollectibleMaxCharges(itemToReplace);
     player.AddCollectible(itemToReplace, itemToReplaceCharge);
   } else {
     // Spawn it on the ground instead
