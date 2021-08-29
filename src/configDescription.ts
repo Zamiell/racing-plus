@@ -114,15 +114,6 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
-    "fastDropAllController",
-    [
-      ModConfigMenuOptionType.KEYBIND_CONTROLLER,
-      "",
-      "Fast drop",
-      "Drop all of your items instantaneously.",
-    ],
-  ],
-  [
     "fastDropTrinketsKeyboard",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
@@ -132,27 +123,9 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
-    "fastDropTrinketsController",
-    [
-      ModConfigMenuOptionType.KEYBIND_CONTROLLER,
-      "",
-      "Fast drop (trinkets)",
-      "Drop your trinkets instantaneously.",
-    ],
-  ],
-  [
     "fastDropPocketKeyboard",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
-      "",
-      "Fast drop (pocket)",
-      "Drop your pocket items instantaneously.",
-    ],
-  ],
-  [
-    "fastDropPocketController",
-    [
-      ModConfigMenuOptionType.KEYBIND_CONTROLLER,
       "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",

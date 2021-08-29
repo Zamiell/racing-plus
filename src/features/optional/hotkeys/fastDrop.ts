@@ -24,14 +24,7 @@ function checkInput() {
 function checkInputAll(player: EntityPlayer) {
   if (
     hotkeys.fastDropAllKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropAllKeyboard, player.ControllerIndex)
-  ) {
-    fastDrop(player, FastDropTarget.ALL);
-  }
-
-  if (
-    hotkeys.fastDropAllController !== -1 &&
-    Input.IsButtonPressed(hotkeys.fastDropAllController, player.ControllerIndex)
+    isKeyboardPressed(hotkeys.fastDropAllKeyboard, 0)
   ) {
     fastDrop(player, FastDropTarget.ALL);
   }
@@ -40,17 +33,7 @@ function checkInputAll(player: EntityPlayer) {
 function checkInputTrinkets(player: EntityPlayer) {
   if (
     hotkeys.fastDropTrinketsKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropTrinketsKeyboard, player.ControllerIndex)
-  ) {
-    fastDrop(player, FastDropTarget.TRINKETS);
-  }
-
-  if (
-    hotkeys.fastDropTrinketsController !== -1 &&
-    Input.IsButtonPressed(
-      hotkeys.fastDropTrinketsController,
-      player.ControllerIndex,
-    )
+    isKeyboardPressed(hotkeys.fastDropTrinketsKeyboard, 0)
   ) {
     fastDrop(player, FastDropTarget.TRINKETS);
   }
@@ -59,17 +42,7 @@ function checkInputTrinkets(player: EntityPlayer) {
 function checkInputPocket(player: EntityPlayer) {
   if (
     hotkeys.fastDropPocketKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropPocketKeyboard, player.ControllerIndex)
-  ) {
-    fastDrop(player, FastDropTarget.POCKET_ITEMS);
-  }
-
-  if (
-    hotkeys.fastDropPocketController !== -1 &&
-    Input.IsButtonPressed(
-      hotkeys.fastDropPocketController,
-      player.ControllerIndex,
-    )
+    isKeyboardPressed(hotkeys.fastDropPocketKeyboard, 0)
   ) {
     fastDrop(player, FastDropTarget.POCKET_ITEMS);
   }
