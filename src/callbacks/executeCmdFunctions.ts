@@ -1,4 +1,10 @@
-import { getPlayers, getRoomIndex, gridToPos, log } from "isaacscript-common";
+import {
+  getPlayers,
+  getRoomIndex,
+  gridToPos,
+  log,
+  saveDataManagerSave,
+} from "isaacscript-common";
 import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
@@ -97,18 +103,20 @@ functionMap.set("cards", (_params: string) => {
   let cardNum = 1;
   for (let y = 0; y <= 6; y++) {
     for (let x = 0; x <= 12; x++) {
-      if (cardNum < Card.NUM_CARDS) {
-        const position = gridToPos(x, y);
-        Isaac.Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_TAROTCARD,
-          cardNum,
-          position,
-          Vector.Zero,
-          null,
-        );
-        cardNum += 1;
+      if (cardNum === Card.NUM_CARDS) {
+        return;
       }
+
+      const position = gridToPos(x, y);
+      Isaac.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_TAROTCARD,
+        cardNum,
+        position,
+        Vector.Zero,
+        null,
+      );
+      cardNum += 1;
     }
   }
 });
@@ -339,26 +347,36 @@ functionMap.set("pill", (params: string) => {
     print("Unknown pill.");
     return;
   }
+
   consoleCommand(`g p${pillEffect}`);
   print(`Gave pill: #${pillEffect}`);
 });
 
 functionMap.set("pills", (_params: string) => {
-  let pillNum = 1;
+  let pillColor = 1;
+  let horse = false;
   for (let y = 0; y <= 6; y++) {
     for (let x = 0; x <= 12; x++) {
-      if (pillNum < PillColor.NUM_PILLS) {
-        const position = gridToPos(x, y);
-        Isaac.Spawn(
-          EntityType.ENTITY_PICKUP,
-          PickupVariant.PICKUP_PILL,
-          pillNum,
-          position,
-          Vector.Zero,
-          null,
-        );
-        pillNum = +1;
+      if (pillColor === PillColor.NUM_PILLS) {
+        if (horse) {
+          return;
+        }
+        horse = true;
+        pillColor = 1;
       }
+
+      const subType = horse ? pillColor + PillColor.PILL_GIANT_FLAG : pillColor;
+      const position = gridToPos(x, y);
+      Isaac.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_PILL,
+        subType,
+        position,
+        Vector.Zero,
+        null,
+      );
+
+      pillColor += 1;
     }
   }
 });
@@ -424,6 +442,11 @@ functionMap.set("s0", (_params: string) => {
 functionMap.set("s1", (_params: string) => {
   consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
   consoleCommand("setcharorder");
+});
+
+functionMap.set("save", (_params: string) => {
+  saveDataManagerSave();
+  print('Saved variables to the "save#.dat" file.');
 });
 
 functionMap.set("setcharorder", (_params: string) => {

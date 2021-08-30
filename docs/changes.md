@@ -250,6 +250,9 @@ Post-flip actions:
 
 - `063` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
 - `064` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+
+> Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
+
 - `065` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 - `066` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
@@ -261,21 +264,21 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `071` <!-- sawblade --> Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed and hitbox of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
-
-> Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
-
-- `072` <!-- extraStartingItems --> Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
+- `071` <!-- extraStartingItems --> Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
 
 > Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `073` <!-- consistentTrollBombs --> Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+- `072` <!-- consistentTrollBombs --> Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
 
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
-- `074` <!-- pillsCancelAnimations --> Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
+- `073` <!-- pillsCancelAnimations --> Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 
 > Why? This allows skilled players to gain time by canceling more animations.
+
+- Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed, hitbox, and tick rate of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+
+> Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
 - Card Reading no longer spawns portals on Womb 2 and beyond.
 
@@ -345,10 +348,11 @@ Post-flip actions:
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
-  - White-dotted / Red --> Full red
-  - Pink / Red --> White / Red
-  - White / White-dotted --> Full white-dotted
-  - White / Cyan --> White / Green
+  - <!-- PILL_ORANGE_ORANGE (3) --> Orange / Orange --> Full purple
+  - <!-- PILL_REDDOTS_RED (5) --> White-dotted / Red --> Full red
+  - <!-- PILL_PINK_RED (6) --> Pink / Red --> White / Red
+  - <!-- PILL_ORANGEDOTS_WHITE (9) --> White / White-dotted --> Full white-dotted
+  - <!-- PILL_WHITE_AZURE (10) --> White / Cyan --> White / Green
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - The controls graphic in the start room is changed to be speedrunning-themed.

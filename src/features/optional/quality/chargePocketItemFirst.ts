@@ -3,7 +3,13 @@
 // because they have a D6 on the pocket active
 // Flip this behavior
 
-import { ensureAllCases, getCollectibleMaxCharges } from "isaacscript-common";
+import {
+  ensureAllCases,
+  getCollectibleMaxCharges,
+  getPlayerIndex,
+  PlayerIndex,
+  saveDataManager,
+} from "isaacscript-common";
 import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -17,6 +23,61 @@ const ACTIVE_SLOTS_PRECEDENCE = [
   ActiveSlot.SLOT_PRIMARY,
   ActiveSlot.SLOT_SECONDARY,
 ];
+
+const v = {
+  run: {
+    activeItemChargesMap: new Map<PlayerIndex, Map<ActiveSlot, int>>(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("chargePocketItemFirst", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.chargePocketItemFirst;
+}
+
+// ModCallbacks.MC_USE_PILL (10)
+export function usePill48HourEnergy(player: EntityPlayer): void {
+  rewindActiveChargesToLastFrame(player);
+
+  // Now, charge the active items in the proper order
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
+    if (player.NeedsCharge(activeSlot)) {
+      player.FullCharge(activeSlot);
+
+      // Only one item gets a full charge
+      return;
+    }
+  }
+}
+
+function rewindActiveChargesToLastFrame(player: EntityPlayer) {
+  const playerIndex = getPlayerIndex(player);
+  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
+  if (activeItemCharges === undefined) {
+    error(`Failed to get the active charges for player: ${playerIndex}`);
+  }
+
+  for (const activeSlot of [
+    ActiveSlot.SLOT_PRIMARY,
+    ActiveSlot.SLOT_SECONDARY,
+    ActiveSlot.SLOT_POCKET,
+  ]) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+
+    const storedCharge = activeItemCharges.get(activeSlot);
+    if (storedCharge === undefined) {
+      continue;
+    }
+
+    player.SetActiveCharge(storedCharge, activeSlot);
+  }
+}
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
 export function postPickupRenderInvisiblePickup(pickup: EntityPickup): void {
@@ -196,4 +257,39 @@ function getNumChargesToAdd(
   }
 
   return charges;
+}
+
+// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
+export function postPlayerUpdate(player: EntityPlayer): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
+
+  updateActiveItemChargesMap(player);
+}
+
+function updateActiveItemChargesMap(player: EntityPlayer) {
+  // On every frame, we need to track the current charges for each active item that a player has so
+  // that we can rewind the charges when a player uses a 48 Hour Energy! pill
+  const playerIndex = getPlayerIndex(player);
+  let activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
+  if (activeItemCharges === undefined) {
+    activeItemCharges = new Map();
+    v.run.activeItemChargesMap.set(playerIndex, activeItemCharges);
+  }
+
+  for (const activeSlot of [
+    ActiveSlot.SLOT_PRIMARY,
+    ActiveSlot.SLOT_SECONDARY,
+    ActiveSlot.SLOT_POCKET,
+  ]) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+    const activeCharge = player.GetActiveCharge(activeSlot);
+    const batteryCharge = player.GetBatteryCharge(activeSlot);
+    const totalCharge = activeCharge + batteryCharge;
+    activeItemCharges.set(activeSlot, totalCharge);
+  }
 }

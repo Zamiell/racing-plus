@@ -547,19 +547,10 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
 // 071-07X
 export const GAMEPLAY_CHANGES: ConfigDescriptions = [
   [
-    "sawblade",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "071",
-      "Sawblade",
-      "An extra orbital item added to the Treasure Room pool.",
-    ],
-  ],
-  [
     "extraStartingItems",
     [
       ModConfigMenuOptionType.TEXT,
-      "072",
+      "071",
       "Extra Treasure Room Items",
       "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
     ],
@@ -568,7 +559,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     "consistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "073",
+      "072",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -577,9 +568,18 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "074",
+      "073",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Sawblade",
+      "An extra orbital item is added to the Treasure Room pool.",
     ],
   ],
   [

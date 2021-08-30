@@ -1,5 +1,4 @@
 import { log } from "isaacscript-common";
-import * as sawblade from "../features/items/sawblade";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
@@ -83,9 +82,6 @@ export function main(isContinued: boolean): void {
 
   // Quality of life
   showDreamCatcherItemPostGameStarted();
-
-  // Items
-  sawblade.postGameStarted();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)

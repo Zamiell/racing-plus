@@ -240,14 +240,20 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
     return;
   }
 
+  // Account for Horse Pills (i.e. giant pills)
+  let effectivePillColor = pillColor;
+  if (pillColor > PillColor.PILL_GIANT_FLAG) {
+    effectivePillColor = pillColor - PillColor.PILL_GIANT_FLAG;
+  }
+
   // See if we have already used this particular pill color on this run
   for (const pill of v.run.pillsIdentified) {
-    if (pill.color === pillColor) {
+    if (pill.color === effectivePillColor) {
       return;
     }
   }
 
-  newPill(pillColor, pillEffect);
+  newPill(effectivePillColor, pillEffect);
 }
 
 function newPill(pillColor: PillColor, pillEffect: PillEffect) {

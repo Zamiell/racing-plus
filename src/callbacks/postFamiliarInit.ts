@@ -16,10 +16,12 @@ export function init(mod: Mod): void {
   );
 }
 
+// FamiliarVariant.PASCHAL_CANDLE (221)
 function paschalCandle(familiar: EntityFamiliar) {
-  pc.postFamiliarInit(familiar);
+  pc.postFamiliarInitPaschalCandle(familiar);
 }
 
+// FamiliarVariantCustom.SAWBLADE
 function sawblade(familiar: EntityFamiliar) {
-  sb.postFamiliarInit(familiar);
+  sb.postFamiliarInitSawblade(familiar);
 }

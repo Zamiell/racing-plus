@@ -57,7 +57,6 @@ export default class Config {
   showPills = true;
 
   // Gameplay changes
-  sawblade = true;
   extraStartingItems = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;

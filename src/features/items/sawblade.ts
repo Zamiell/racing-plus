@@ -59,8 +59,6 @@ import {
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../globals";
-import { config } from "../../modConfigMenu";
 import {
   CollectibleTypeCustom,
   FamiliarVariantCustom,
@@ -121,7 +119,18 @@ function getPosition(familiar: EntityFamiliar) {
 }
 
 // ModCallbacks.MC_FAMILIAR_INIT (7)
-export function postFamiliarInit(familiar: EntityFamiliar): void {
+// FamiliarVariantCustom.SAWBLADE
+export function postFamiliarInitSawblade(familiar: EntityFamiliar): void {
+  setSpriteOffset(familiar);
+  offsetSecondSawblade(familiar);
+}
+
+function setSpriteOffset(familiar: EntityFamiliar) {
+  const sprite = familiar.GetSprite();
+  sprite.Offset = Vector(0, -16);
+}
+
+function offsetSecondSawblade(familiar: EntityFamiliar) {
   if (familiar.SpawnerEntity === null) {
     return;
   }
@@ -171,13 +180,6 @@ export function postFamiliarInit(familiar: EntityFamiliar): void {
   data.frameCountModifier = frameCountModifier;
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  if (!config.sawblade) {
-    g.itemPool.RemoveCollectible(CollectibleTypeCustom.COLLECTIBLE_SAWBLADE);
-  }
-}
-
 // ModCallbacks.MC_PRE_FAMILIAR_COLLISION (26)
 // FamiliarVariantCustom.SAWBLADE
 export function preFamiliarCollisionSawblade(collider: Entity): void {
@@ -189,10 +191,6 @@ export function preFamiliarCollisionSawblade(collider: Entity): void {
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
-  if (!config.sawblade) {
-    return;
-  }
-
   const numSawblades = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
