@@ -1,13 +1,7 @@
 ```
-### *v0.62.2* - August 29th, 2021
+### *v0.62.3* - August 30th, 2021
 
-- Orange pills are now purple so that they are easier to distinguish from gold pills.
-- Sawblade is no longer toggleable in Mod Config Menu.
-- Deleted the controller fast-drop hotkeys. If you play with a controller, you must now use the keyboard fast-drop hotkeys and use Joy2Key to bind controller inputs to them. (Thanks Gamonymous)
-- Fixed the bug where Horse Pills would not work properly with the pill remembering feature. (Thanks mgln)
-- Fixed the bug where 48 Hour Energy! would recharge the normal active item instead of the pocket active item. (Thanks Fallenfor)
-- Fixed the bug where Sawblade would be wobbly if you had BFFS!
-- Fixed the bug where Checkpoint would not have a sprite on the pause menu. (Thanks Gamonymous)
+-
 ```
 
 TODO Racing+ new features:
