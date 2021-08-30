@@ -6,6 +6,7 @@ import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import extraStartingItemsPostUpdate from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
+import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
 import fastTravelPostUpdate from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -28,6 +29,7 @@ export function main(): void {
   fastClearPostUpdate();
   fastTravelPostUpdate();
   fastDrop.postUpdate();
+  schoolbagSwitch.postUpdate();
 
   // Quality of life
   showPills.postUpdate();

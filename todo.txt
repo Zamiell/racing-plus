@@ -1,7 +1,7 @@
 ```
 ### *v0.62.3* - August 30th, 2021
 
--
+- Added a new option in Mod Config Menu to set a hotkey for switching the Schoolbag item.
 ```
 
 TODO Racing+ new features:

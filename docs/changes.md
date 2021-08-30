@@ -126,6 +126,7 @@ Post-flip actions:
   - a fast-drop button (for everything)
   - a fast-drop button for only trinkets
   - a fast-drop button for only pocket items
+  - a Schoolbag switch button
 
 ### 2) Character Changes
 

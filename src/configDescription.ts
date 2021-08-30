@@ -105,7 +105,7 @@ export const MAJOR_CHANGES: ConfigDescriptions = [
 // n/a
 export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
-    "fastDropAllKeyboard",
+    "fastDropAll",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
       "",
@@ -114,7 +114,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
-    "fastDropTrinketsKeyboard",
+    "fastDropTrinkets",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
       "",
@@ -123,12 +123,21 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
-    "fastDropPocketKeyboard",
+    "fastDropPocket",
     [
       ModConfigMenuOptionType.KEYBIND_KEYBOARD,
       "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",
+    ],
+  ],
+  [
+    "schoolbagSwitch",
+    [
+      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      "",
+      "Switch Schoolbag items",
+      "Switch between Schoolbag items without swapping cards or switching to The Soul.",
     ],
   ],
 ];

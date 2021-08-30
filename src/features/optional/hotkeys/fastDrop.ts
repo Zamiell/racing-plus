@@ -1,4 +1,4 @@
-import { getPlayers } from "isaacscript-common";
+import { getPlayers, isKeyboardPressed } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { findFreePosition } from "../../../utilGlobals";
 
@@ -9,73 +9,67 @@ enum FastDropTarget {
 }
 
 export function postUpdate(): void {
-  // Don't conditionally disable this feature because there are too many booleans to check
-  checkInput();
+  // Normally, we would iterate over the players and check for inputs corresponding to their
+  // ControllerIndex
+  // However, some Xbox controller inputs are not read by the game,
+  // which forces players to use Joy2Key to bind them to keyboard buttons
+  // Thus, a player might have a ControllerIndex of 1 and be pressing inputs on ControllerIndex 0
+  // Because of this, we only check for keyboard inputs,
+  // and then iterate over the players if an input is pressed
+  checkInputAll();
+  checkInputTrinkets();
+  checkInputPocket();
 }
 
-function checkInput() {
+function checkInputAll() {
+  if (hotkeys.fastDropAll !== -1 && isKeyboardPressed(hotkeys.fastDropAll)) {
+    fastDrop(FastDropTarget.ALL);
+  }
+}
+
+function checkInputTrinkets() {
+  if (
+    hotkeys.fastDropTrinkets !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropTrinkets)
+  ) {
+    fastDrop(FastDropTarget.TRINKETS);
+  }
+}
+
+function checkInputPocket() {
+  if (
+    hotkeys.fastDropPocket !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropPocket)
+  ) {
+    fastDrop(FastDropTarget.POCKET_ITEMS);
+  }
+}
+
+function fastDrop(target: FastDropTarget) {
   for (const player of getPlayers()) {
-    checkInputAll(player);
-    checkInputTrinkets(player);
-    checkInputPocket(player);
-  }
-}
+    // Fast-drop is disabled during when the player is holding an item above their head
+    if (!player.IsItemQueueEmpty()) {
+      return;
+    }
 
-function checkInputAll(player: EntityPlayer) {
-  if (
-    hotkeys.fastDropAllKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropAllKeyboard, 0)
-  ) {
-    fastDrop(player, FastDropTarget.ALL);
-  }
-}
+    // Trinkets
+    // (the Tick is handled properly because "DropTrinket()" won't do anything in that case)
+    if (target === FastDropTarget.ALL || target === FastDropTarget.TRINKETS) {
+      const pos1 = findFreePosition(player.Position);
+      player.DropTrinket(pos1, false);
+      const pos2 = findFreePosition(player.Position);
+      player.DropTrinket(pos2, false);
+    }
 
-function checkInputTrinkets(player: EntityPlayer) {
-  if (
-    hotkeys.fastDropTrinketsKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropTrinketsKeyboard, 0)
-  ) {
-    fastDrop(player, FastDropTarget.TRINKETS);
+    // Pocket items (cards, pills, runes, etc.)
+    if (
+      target === FastDropTarget.ALL ||
+      target === FastDropTarget.POCKET_ITEMS
+    ) {
+      const pos1 = findFreePosition(player.Position);
+      player.DropPocketItem(0, pos1);
+      const pos2 = findFreePosition(player.Position);
+      player.DropPocketItem(1, pos2);
+    }
   }
-}
-
-function checkInputPocket(player: EntityPlayer) {
-  if (
-    hotkeys.fastDropPocketKeyboard !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropPocketKeyboard, 0)
-  ) {
-    fastDrop(player, FastDropTarget.POCKET_ITEMS);
-  }
-}
-
-function fastDrop(player: EntityPlayer, target: FastDropTarget) {
-  // Fast-drop is disabled during when the player is holding an item above their head
-  if (!player.IsItemQueueEmpty()) {
-    return;
-  }
-
-  // Trinkets
-  // (the Tick is handled properly because "DropTrinket()" won't do anything in that case)
-  if (target === FastDropTarget.ALL || target === FastDropTarget.TRINKETS) {
-    const pos1 = findFreePosition(player.Position);
-    player.DropTrinket(pos1, false);
-    const pos2 = findFreePosition(player.Position);
-    player.DropTrinket(pos2, false);
-  }
-
-  // Pocket items (cards, pills, runes, etc.)
-  if (target === FastDropTarget.ALL || target === FastDropTarget.POCKET_ITEMS) {
-    const pos1 = findFreePosition(player.Position);
-    player.DropPocketItem(0, pos1);
-    const pos2 = findFreePosition(player.Position);
-    player.DropPocketItem(1, pos2);
-  }
-}
-
-// This logic is copied from InputHelper
-function isKeyboardPressed(key: Keyboard, controllerIndex: int) {
-  return (
-    Input.IsButtonPressed(key, controllerIndex) &&
-    !Input.IsButtonPressed(key % 32, controllerIndex)
-  );
 }
