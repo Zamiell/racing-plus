@@ -1,4 +1,4 @@
-import { getScreenBottomRight } from "../../../../isaacscript-common/dist";
+import { getScreenBottomRight } from "isaacscript-common";
 import g from "../../globals";
 
 const NOTIFICATION_LENGTH = 300;
