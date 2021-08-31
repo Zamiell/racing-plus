@@ -1,14 +1,13 @@
 ```
-### *v0.62.5* - August 30th, 2021
+### *v0.62.5* - August 31st, 2021
 
-- Racing+ now integrates the Fogless! mod by Mirry: https://steamcommunity.com/sharedfiles/filedetails/?id=835411179
-- If you do not have Mod Config Menu enabled, there is now a notification on your first run to inform you that you can use it to enable custom hotkeys.
-- Fixed the bug where Mod Config Menu was not properly loading your saved data. (Thanks ez_duke)
-- Fixed the bug where the NO! trinket would get removed when you entered a Devil Room or an Angel Room. (Thanks Gamonymous)
+- Fixed the bug where in Season 1, The Lost could find Holy Mantle. (Thanks Gamonymous)
+- Fixed the bug where the green pill sprite did not show correctly under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where Esau Jr. was not correctly getting the pocket D6.
 ```
 
 TODO Racing+ new features:
-- charge ability
+- roll ability like in Minish Cap
 - chat system
 - custom console
 - Charge bars for all of the charge items

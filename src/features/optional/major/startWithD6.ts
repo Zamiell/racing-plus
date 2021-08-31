@@ -131,12 +131,15 @@ export function postFirstEsauJr(player: EntityPlayer): void {
     return;
   }
 
-  changedCharacterInSomeWay(player);
+  changedCharacterInSomeWay(player, true);
 }
 
-function changedCharacterInSomeWay(player: EntityPlayer) {
+function changedCharacterInSomeWay(
+  player: EntityPlayer,
+  gotHereFromEsauJr = false,
+) {
   // In some cases, switching the character will delete the D6, so we may need to give another one
-  giveD6(player);
+  giveD6(player, gotHereFromEsauJr);
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
@@ -187,18 +190,11 @@ function replaceTaintedForgottenRecall(
   );
   player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
-  if (hasOpenActiveItemSlot(player)) {
-    const itemToReplaceCharge = getCollectibleMaxCharges(itemToReplace);
-    player.AddCollectible(itemToReplace, itemToReplaceCharge);
-  } else {
-    // Spawn it on the ground instead
-    const position = findFreePosition(player.Position);
-    const startSeed = g.seeds.GetStartSeed();
-    spawnCollectible(itemToReplace, position, startSeed);
-  }
+  const itemCharges = getCollectibleMaxCharges(itemToReplace);
+  giveActiveItem(player, itemToReplace, itemCharges);
 }
 
-function giveD6(player: EntityPlayer) {
+function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   const character = player.GetPlayerType();
   const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
   const pocketItemCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
@@ -231,7 +227,7 @@ function giveD6(player: EntityPlayer) {
     return;
   }
 
-  // If they are switching characters, re-use the charge from the D6 on the previous frame
+  // If they are switching characters, get the charge from the D6 on the previous frame
   const index = getPlayerIndex(player);
   let d6Charge = v.run.pocketActiveD6Charge.get(index);
   if (d6Charge === undefined) {
@@ -246,9 +242,25 @@ function giveD6(player: EntityPlayer) {
   player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   // If they previously had a pocket active item, move it to the normal active item slot
-  if (pocketItem !== CollectibleType.COLLECTIBLE_NULL) {
-    player.AddCollectible(pocketItem, pocketItemTotalCharge, false);
+  if (pocketItem !== CollectibleType.COLLECTIBLE_NULL && !gotHereFromEsauJr) {
+    giveActiveItem(player, pocketItem, pocketItemTotalCharge);
   }
 
   log("Awarded a pocket active D6.");
+}
+
+function giveActiveItem(
+  player: EntityPlayer,
+  collectibleType: CollectibleType,
+  itemCharge: int,
+) {
+  if (hasOpenActiveItemSlot(player)) {
+    player.AddCollectible(collectibleType, itemCharge);
+  } else {
+    // Spawn it on the ground instead
+    const position = findFreePosition(player.Position);
+    const startSeed = g.seeds.GetStartSeed();
+    const collectible = spawnCollectible(collectibleType, position, startSeed);
+    collectible.Charge = itemCharge;
+  }
 }
