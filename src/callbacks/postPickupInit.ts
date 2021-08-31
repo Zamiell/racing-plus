@@ -33,12 +33,6 @@ export function init(mod: Mod): void {
 }
 
 export function main(pickup: EntityPickup): void {
-  if (
-    pickup.Variant === 100 &&
-    pickup.SubType === CollectibleType.COLLECTIBLE_HOLY_MANTLE
-  ) {
-    Isaac.DebugString("GETTING HERE");
-  }
   automaticItemInsertion.postPickupInit(pickup);
 }
 

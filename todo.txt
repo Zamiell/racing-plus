@@ -1,9 +1,7 @@
 ```
-### *v0.62.5* - August 31st, 2021
+### *v0.62.7* - August 31st, 2021
 
-- Fixed the bug where in Season 1, The Lost could find Holy Mantle. (Thanks Gamonymous)
-- Fixed the bug where the green pill sprite did not show correctly under certain circumstances. (Thanks Gamonymous)
-- Fixed the bug where Esau Jr. was not correctly getting the pocket D6.
+-
 ```
 
 TODO Racing+ new features:

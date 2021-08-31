@@ -41,7 +41,7 @@ export function getCharacterOrder(key: string): int[] | undefined {
 
 export function setCharacterOrderDebug(): void {
   const order = [
-    PlayerType.PLAYER_THELOST_B,
+    PlayerType.PLAYER_THELOST,
     PlayerType.PLAYER_ISAAC_B,
     PlayerType.PLAYER_KEEPER_B,
     PlayerType.PLAYER_BETHANY,
