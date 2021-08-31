@@ -6,28 +6,19 @@ import g from "../../../../globals";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import { deleteDyingEntity } from "./util";
 
-const DEATH_ANIMATION_LENGTH = 24;
-
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   for (const entityType of [
     EntityType.ENTITY_GABRIEL,
     EntityType.ENTITY_URIEL,
   ]) {
-    deleteDyingEntity(entityType, AngelVariant.NORMAL, DEATH_ANIMATION_LENGTH);
+    deleteDyingEntity(entityType, AngelVariant.NORMAL);
   }
 }
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(npc: EntityNPC): void {
-  markDeathFrame(npc);
   spawnKeyPiece(npc);
-}
-
-function markDeathFrame(npc: EntityNPC) {
-  const gameFrameCount = g.g.GetFrameCount();
-  const data = npc.GetData();
-  data.killedFrame = gameFrameCount;
 }
 
 function spawnKeyPiece(npc: EntityNPC) {

@@ -5,27 +5,14 @@ import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
 import { deleteDyingEntity } from "./util";
 
-const DEATH_ANIMATION_LENGTH = 29;
-
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
-  deleteDyingEntity(
-    EntityType.ENTITY_FALLEN,
-    FallenVariant.KRAMPUS,
-    DEATH_ANIMATION_LENGTH,
-  );
+  deleteDyingEntity(EntityType.ENTITY_FALLEN, FallenVariant.KRAMPUS);
 }
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(npc: EntityNPC): void {
-  markDeathFrame(npc);
   spawnKrampusDrop(npc);
-}
-
-function markDeathFrame(npc: EntityNPC) {
-  const gameFrameCount = g.g.GetFrameCount();
-  const data = npc.GetData();
-  data.killedFrame = gameFrameCount;
 }
 
 function spawnKrampusDrop(npc: EntityNPC) {

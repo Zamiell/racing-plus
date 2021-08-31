@@ -1,7 +1,7 @@
 ```
 ### *v0.62.7* - August 31st, 2021
 
-- Esau Jr. is now removed from pools on Bethany and Tainted Bethany.
+- Fixed the bug where Krampus and angels could incorrectly drop items under certain circumstances. (Thanks sisuka)
 ```
 
 TODO Racing+ new features:
