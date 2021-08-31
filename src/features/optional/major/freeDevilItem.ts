@@ -8,6 +8,8 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSelfDamage } from "../../../util";
 
+const FREE_TRINKET_TYPE = TrinketType.TRINKET_YOUR_SOUL;
+
 const EXCLUDED_CHARACTERS = new Set<PlayerType>([
   // The Lost and Tainted Lost get free devil deals, so they do not need the trinket
   PlayerType.PLAYER_THELOST, // 10
@@ -104,20 +106,20 @@ function giveTrinket(player: EntityPlayer) {
     return;
   }
 
-  const trinketType = TrinketType.TRINKET_YOUR_SOUL;
-  if (getOpenTrinketSlot(player) !== null) {
-    // By default, put it directly in our inventory
-    player.AddTrinket(trinketType);
-  } else {
-    // If we do not have an available trinket slot, then spawn the trinket on the ground
+  const openSlot = getOpenTrinketSlot(player);
+  if (openSlot === null) {
+    // If we do not have an available trinket slot, spawn the trinket on the ground
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_TRINKET,
       player.Position,
       Vector.Zero,
       null,
-      trinketType,
+      FREE_TRINKET_TYPE,
       roomSeed,
     );
+  } else {
+    // By default, put it directly in our inventory
+    player.AddTrinket(FREE_TRINKET_TYPE);
   }
 }

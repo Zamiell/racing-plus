@@ -2,6 +2,7 @@ import { log } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
+import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
@@ -49,6 +50,7 @@ export function main(isContinued: boolean): void {
   }
 
   // Mandatory features
+  modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   centerStart.postGameStarted();

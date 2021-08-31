@@ -28,6 +28,6 @@ function checkInput() {
 
 function schoolbagSwitch() {
   for (const player of getPlayers()) {
-    player.SwapActiveItems();
+    player.SwapActiveItems(); // This will be a no-op if they do not have the Schoolbag
   }
 }

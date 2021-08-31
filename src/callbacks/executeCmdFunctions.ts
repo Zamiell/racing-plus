@@ -44,10 +44,18 @@ functionMap.set("blackmarket", (_params: string) => {
   blackMarket();
 });
 
-functionMap.set("bomb", (_params: string) => {
+functionMap.set("bomb", (params: string) => {
+  let bombs = 1;
+  if (params !== "") {
+    const num = validateNumber(params);
+    if (num !== undefined) {
+      bombs = num;
+    }
+  }
+
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    player.AddBombs(1);
+    player.AddBombs(bombs);
   }
 });
 
@@ -153,10 +161,18 @@ functionMap.set("char", (params: string) => {
   print(`Restarting as character: ${character}`);
 });
 
-functionMap.set("coin", (_params: string) => {
+functionMap.set("coin", (params: string) => {
+  let coins = 1;
+  if (params !== "") {
+    const num = validateNumber(params);
+    if (num !== undefined) {
+      coins = num;
+    }
+  }
+
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    player.AddCoins(1);
+    player.AddCoins(coins);
   }
 });
 
@@ -260,10 +276,18 @@ functionMap.set("iamerror", (_params: string) => {
   IAMERROR();
 });
 
-functionMap.set("key", (_params: string) => {
+functionMap.set("key", (params: string) => {
+  let keys = 1;
+  if (params !== "") {
+    const num = validateNumber(params);
+    if (num !== undefined) {
+      keys = num;
+    }
+  }
+
   const player = Isaac.GetPlayer();
   if (player !== null) {
-    player.AddKeys(1);
+    player.AddKeys(keys);
   }
 });
 

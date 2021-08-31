@@ -2,6 +2,7 @@ import * as cache from "../cache";
 import changeCharOrderPostRender from "../features/changeCharOrder/callbacks/postRender";
 import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as errors from "../features/mandatory/errors";
+import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as streakText from "../features/mandatory/streakText";
@@ -39,6 +40,7 @@ export function main(): void {
   }
 
   // Mandatory features
+  modConfigNotify.postRender();
   racingPlusSprite.postRender();
   detectSlideAnimation.postRender();
   streakText.postRender();

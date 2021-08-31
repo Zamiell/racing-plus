@@ -365,6 +365,10 @@ Post-flip actions:
 
 > Why? So that gameplay is not blocked when you use Rules card.
 
+- All fog is removed.
+
+> Why? It makes elements on the screen easier to see and it makes the game run better on poor computers.
+
 ### 11) Sound Fixes
 
 - `111` <!-- silenceMomDad --> The audio clips of mom and dad on the Ascent are silenced.

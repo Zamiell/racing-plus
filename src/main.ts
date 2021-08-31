@@ -1,5 +1,6 @@
 import {
   log,
+  logEntity,
   ModCallbacksCustom,
   ModUpgraded,
   saveDataManagerSetGlobal,
@@ -121,6 +122,10 @@ function registerCallbacksMain(mod: ModUpgraded) {
     ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN,
     preRoomEntitySpawn.main,
   ); // 71
+
+  mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, (pickup: EntityPickup) => {
+    logEntity(pickup);
+  }); // 71
 }
 
 function registerCallbacksWithExtraArgument(mod: ModUpgraded) {

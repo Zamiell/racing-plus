@@ -1,7 +1,10 @@
 ```
-### *v0.62.3* - August 30th, 2021
+### *v0.62.5* - August 30th, 2021
 
-- Added a new option in Mod Config Menu to set a hotkey for switching the Schoolbag item.
+- Racing+ now integrates the Fogless! mod by Mirry: https://steamcommunity.com/sharedfiles/filedetails/?id=835411179
+- If you do not have Mod Config Menu enabled, there is now a notification on your first run to inform you that you can use it to enable custom hotkeys.
+- Fixed the bug where Mod Config Menu was not properly loading your saved data. (Thanks ez_duke)
+- Fixed the bug where the NO! trinket would get removed when you entered a Devil Room or an Angel Room. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

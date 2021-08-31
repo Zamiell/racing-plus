@@ -35,7 +35,7 @@ export const config = v.persistent.config;
 export const hotkeys = v.persistent.hotkeys;
 
 export function init(): void {
-  if (ModConfigMenu === null || InputHelper === null) {
+  if (ModConfigMenu === undefined || InputHelper === undefined) {
     return;
   }
 
