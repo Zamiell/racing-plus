@@ -3,6 +3,7 @@
 
 import {
   anyPlayerHasCollectible,
+  anyPlayerIs,
   getPlayers,
   getRandomArrayElement,
   saveDataManager,
@@ -64,6 +65,15 @@ export function postGameStarted(): void {
     for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
       g.itemPool.RemoveCollectible(bannedCollectible);
     }
+  }
+
+  if (
+    anyPlayerIs(PlayerType.PLAYER_BETHANY) ||
+    anyPlayerIs(PlayerType.PLAYER_BETHANY_B)
+  ) {
+    // Esau Jr. is bugged with overcharges, which can result in a broken build
+    // Remove it from pools until the bug is fixed
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
   }
 }
 
