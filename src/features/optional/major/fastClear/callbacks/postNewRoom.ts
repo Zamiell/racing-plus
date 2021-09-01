@@ -24,6 +24,7 @@ function checkBugTwoHeavenDoors() {
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
     if (gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM) {
       heavenDoorIndexToKeep = heavenDoor.Index;
+      break;
     }
   }
   if (heavenDoorIndexToKeep === null) {

@@ -28,6 +28,10 @@ const v = {
   run: {
     activeItemChargesMap: new Map<PlayerIndex, Map<ActiveSlot, int>>(),
   },
+
+  room: {
+    checkedHairpin: false,
+  },
 };
 
 export function init(): void {
@@ -40,43 +44,7 @@ function featureEnabled() {
 
 // ModCallbacks.MC_USE_PILL (10)
 export function usePill48HourEnergy(player: EntityPlayer): void {
-  rewindActiveChargesToLastFrame(player);
-
-  // Now, charge the active items in the proper order
-  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    if (player.NeedsCharge(activeSlot)) {
-      player.FullCharge(activeSlot);
-
-      // Only one item gets a full charge
-      return;
-    }
-  }
-}
-
-function rewindActiveChargesToLastFrame(player: EntityPlayer) {
-  const playerIndex = getPlayerIndex(player);
-  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
-  if (activeItemCharges === undefined) {
-    error(`Failed to get the active charges for player: ${playerIndex}`);
-  }
-
-  for (const activeSlot of [
-    ActiveSlot.SLOT_PRIMARY,
-    ActiveSlot.SLOT_SECONDARY,
-    ActiveSlot.SLOT_POCKET,
-  ]) {
-    const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
-      continue;
-    }
-
-    const storedCharge = activeItemCharges.get(activeSlot);
-    if (storedCharge === undefined) {
-      continue;
-    }
-
-    player.SetActiveCharge(storedCharge, activeSlot);
-  }
+  rewindAndFullChargeOneItem(player);
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
@@ -319,7 +287,34 @@ export function postPlayerUpdate(player: EntityPlayer): void {
     return;
   }
 
+  checkHairpinCharge(player); // This must come before updating the map
   updateActiveItemChargesMap(player);
+}
+
+function checkHairpinCharge(player: EntityPlayer) {
+  const roomType = g.r.GetType();
+  const roomFrameCount = g.r.GetFrameCount();
+  const firstVisit = g.r.IsFirstVisit();
+  const hasHairpin = player.HasTrinket(TrinketType.TRINKET_HAIRPIN);
+
+  if (
+    roomType !== RoomType.ROOM_BOSS ||
+    roomFrameCount !== 1 ||
+    !firstVisit ||
+    !hasHairpin ||
+    v.room.checkedHairpin
+  ) {
+    return;
+  }
+
+  // The PostPlayerUpdate callback will fire multiple times per frame,
+  // but we only need to check for the Hairpin once
+  v.room.checkedHairpin = true;
+
+  // Hairpin charges the active item on the 1st frame of the room
+  // Thus, we have to perform this check in the PostPlayerUpdate callback instead of the PostNewRoom
+  // callback
+  rewindAndFullChargeOneItem(player);
 }
 
 function updateActiveItemChargesMap(player: EntityPlayer) {
@@ -345,5 +340,46 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
     const batteryCharge = player.GetBatteryCharge(activeSlot);
     const totalCharge = activeCharge + batteryCharge;
     activeItemCharges.set(activeSlot, totalCharge);
+  }
+}
+
+function rewindAndFullChargeOneItem(player: EntityPlayer) {
+  rewindActiveChargesToLastFrame(player);
+
+  // Now, charge the active items in the proper order
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
+    if (player.NeedsCharge(activeSlot)) {
+      player.FullCharge(activeSlot);
+      Isaac.DebugString(`GETTING HERE ${activeSlot}`);
+
+      // Only one item gets a full charge
+      return;
+    }
+  }
+}
+
+function rewindActiveChargesToLastFrame(player: EntityPlayer) {
+  const playerIndex = getPlayerIndex(player);
+  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
+  if (activeItemCharges === undefined) {
+    error(`Failed to get the active charges for player: ${playerIndex}`);
+  }
+
+  for (const activeSlot of [
+    ActiveSlot.SLOT_PRIMARY,
+    ActiveSlot.SLOT_SECONDARY,
+    ActiveSlot.SLOT_POCKET,
+  ]) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+
+    const storedCharge = activeItemCharges.get(activeSlot);
+    if (storedCharge === undefined) {
+      continue;
+    }
+
+    player.SetActiveCharge(storedCharge, activeSlot);
   }
 }

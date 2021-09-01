@@ -2,7 +2,9 @@
 ### *v0.62.9* - August 31st, 2021
 
 - Fixed the bug where charged keys would not charge the pocket active item first. (Thanks mgln)
+- Fixed the bug where Hairpin would not charge the pocket active item first. (Thanks mgln)
 - Fixed the bug with seeded death where dying on Lazarus would cause errors. (Thanks Gamonymous)
+- Fixed the bug where two beams of light would appear in a room if you died on the same frame that a vanilla beam of light would normally spawn. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

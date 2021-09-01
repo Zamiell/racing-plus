@@ -356,7 +356,6 @@ function inBeastDebugRoom() {
 }
 
 function seededDeathFeatureShouldApply() {
-  return true;
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
