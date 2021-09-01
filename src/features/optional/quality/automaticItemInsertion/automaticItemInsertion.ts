@@ -1,11 +1,14 @@
 import {
   anyPlayerHasCollectible,
   collectibleHasTag,
+  getPlayerFromIndex,
+  getPlayerIndex,
   getPlayerNumTransformationCollectibles,
   getScreenBottomLeft,
   getScreenBottomRight,
   isFirstPlayer,
   PickingUpItem,
+  PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -44,7 +47,7 @@ const v = {
   },
 
   room: {
-    pickupQueue: [] as Array<[PickupVariant, EntityPtr]>,
+    pickupQueue: [] as Array<[PickupVariant, PlayerIndex]>,
   },
 };
 
@@ -243,13 +246,9 @@ export function postPickupInit(pickup: EntityPickup): void {
 
 function checkIfExpectingPickupDrop(pickup: EntityPickup) {
   for (let i = 0; i < v.room.pickupQueue.length; i++) {
-    const [lookingForPickupVariant, playerPtr] = v.room.pickupQueue[i];
+    const [lookingForPickupVariant, playerIndex] = v.room.pickupQueue[i];
 
-    if (playerPtr.Ref === null) {
-      continue;
-    }
-
-    const player = playerPtr.Ref.ToPlayer();
+    const player = getPlayerFromIndex(playerIndex);
     if (player === null) {
       continue;
     }
@@ -434,9 +433,10 @@ function checkIfItemDropsPickups(
 
   // This item drops pickups, so record what we expect to spawn, and then wait for later
   for (const pickupVariant of pickupVariants) {
-    const queueArray: [PickupVariant, EntityPtr] = [
+    const playerIndex = getPlayerIndex(player);
+    const queueArray: [PickupVariant, PlayerIndex] = [
       pickupVariant,
-      EntityPtr(player),
+      playerIndex,
     ];
     v.room.pickupQueue.push(queueArray);
   }
@@ -464,9 +464,10 @@ function checkIfThirdSpunItem(
   );
   if (numSpunCollectibles === 2) {
     // We already have two Spun items and we are picking up a third one
-    const queueArray: [PickupVariant, EntityPtr] = [
+    const playerIndex = getPlayerIndex(player);
+    const queueArray: [PickupVariant, PlayerIndex] = [
       PickupVariant.PICKUP_PILL,
-      EntityPtr(player),
+      playerIndex,
     ];
     v.room.pickupQueue.push(queueArray);
   }

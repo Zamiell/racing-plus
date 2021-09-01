@@ -93,6 +93,35 @@ export function postPickupRenderInvisiblePickup(pickup: EntityPickup): void {
 }
 
 // ModCallbacks.MC_PRE_PICKUP_COLLISION (38)
+// PickupVariant.PICKUP_KEY (30)
+export function prePickupCollisionKey(
+  pickup: EntityPickup,
+  collider: Entity,
+): boolean | void {
+  if (!config.chargePocketItemFirst) {
+    return undefined;
+  }
+
+  if (pickup.SubType !== KeySubType.KEY_CHARGED) {
+    return undefined;
+  }
+
+  const player = collider.ToPlayer();
+  if (player === null) {
+    return undefined;
+  }
+
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
+    if (player.NeedsCharge(activeSlot)) {
+      collectPickupThatGrantsCharge(player, pickup, activeSlot);
+      return true; // Ignore collision
+    }
+  }
+
+  return undefined;
+}
+
+// ModCallbacks.MC_PRE_PICKUP_COLLISION (38)
 // PickupVariant.PICKUP_LIL_BATTERY (90)
 export function prePickupCollisionLilBattery(
   pickup: EntityPickup,
@@ -121,7 +150,7 @@ export function prePickupCollisionLilBattery(
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     if (player.NeedsCharge(activeSlot)) {
-      collectBatteryPickup(player, pickup, activeSlot);
+      collectPickupThatGrantsCharge(player, pickup, activeSlot);
       return true; // Ignore collision
     }
   }
@@ -129,7 +158,7 @@ export function prePickupCollisionLilBattery(
   return undefined;
 }
 
-function collectBatteryPickup(
+function collectPickupThatGrantsCharge(
   player: EntityPlayer,
   pickup: EntityPickup,
   activeSlot: ActiveSlot,
@@ -158,12 +187,25 @@ function spawnInvisiblePickup(pickup: EntityPickup) {
     null,
   );
   const sprite = invisiblePickup.GetSprite();
-  const filename = getBatteryFilename(pickup);
+  const filename = getPickupFilename(pickup);
   sprite.Load(filename, true);
   sprite.Play(COLLECT_ANIMATION, true);
 }
 
-function getBatteryFilename(pickup: EntityPickup) {
+function getPickupFilename(pickup: EntityPickup) {
+  if (
+    pickup.Variant === PickupVariant.PICKUP_KEY &&
+    pickup.SubType === KeySubType.KEY_CHARGED
+  ) {
+    return "gfx/005.034_chargedkey.anm2";
+  }
+
+  if (pickup.Variant !== PickupVariant.PICKUP_LIL_BATTERY) {
+    error(
+      `Failed to get the pickup filename for a pickup with variant: ${pickup.Variant}`,
+    );
+  }
+
   const batterySubType = pickup.SubType as BatterySubType;
 
   switch (batterySubType) {
@@ -195,13 +237,26 @@ function giveChargeToPlayer(
   pickup: EntityPickup,
   activeSlot: ActiveSlot,
 ) {
+  if (
+    pickup.Variant === PickupVariant.PICKUP_KEY &&
+    pickup.SubType === KeySubType.KEY_CHARGED
+  ) {
+    player.FullCharge(activeSlot);
+    return;
+  }
+
+  if (pickup.Variant !== PickupVariant.PICKUP_LIL_BATTERY) {
+    error(
+      `Failed to give a charge to a player for a pickup with variant: ${pickup.Variant}`,
+    );
+  }
+
   const batterySubType = pickup.SubType as BatterySubType;
 
   // Note that AAA Battery does not synergize with batteries in vanilla
   switch (batterySubType) {
     case BatterySubType.BATTERY_NORMAL: {
       player.FullCharge(activeSlot);
-
       return;
     }
 
@@ -215,7 +270,6 @@ function giveChargeToPlayer(
       );
       const newCharge = activeCharge + batteryCharge + chargesToAdd;
       player.SetActiveCharge(newCharge, activeSlot);
-
       return;
     }
 

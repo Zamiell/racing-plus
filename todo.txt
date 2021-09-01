@@ -1,7 +1,7 @@
 ```
-### *v0.62.7* - August 31st, 2021
+### *v0.62.9* - August 31st, 2021
 
-- Fixed the bug where Krampus and angels could incorrectly drop items under certain circumstances. (Thanks sisuka)
+- Fixed the bug where charged keys would not charge the pocket active item first. (Thanks mgln)
 ```
 
 TODO Racing+ new features:
