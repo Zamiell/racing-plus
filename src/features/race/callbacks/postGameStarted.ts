@@ -4,7 +4,6 @@ import { config } from "../../../modConfigMenu";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
-import * as seededDeath from "../seededDeath";
 import * as socket from "../socket";
 import * as socketFunctions from "../socketFunctions";
 import * as sprites from "../sprites";
@@ -22,7 +21,6 @@ export default function racePostGameStarted(): void {
 
   resetRaceVars();
   socket.postGameStarted();
-  seededDeath.postGameStarted();
   sprites.resetAll();
 
   // For race validation purposes, use the 0th player

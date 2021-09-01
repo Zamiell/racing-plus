@@ -2,6 +2,7 @@
 ### *v0.62.9* - August 31st, 2021
 
 - Fixed the bug where charged keys would not charge the pocket active item first. (Thanks mgln)
+- Fixed the bug with seeded death where dying on Lazarus would cause errors. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

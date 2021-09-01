@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
 import ActiveItemDescription from "../../types/ActiveItemDescription";
 import SeededDeathState from "./types/SeededDeathState";
@@ -12,6 +12,7 @@ const v = {
 
     seededDeath: {
       state: SeededDeathState.DISABLED,
+      dyingPlayerIndex: null as PlayerIndex | null,
       debuffEndFrame: null as int | null,
 
       devilRoomDeals: 0,
@@ -32,6 +33,7 @@ const v = {
 
       switchingBackToGhostLazarus: false,
       useFlipOnFrame: null as int | null,
+      playerToUseFlip: null as PlayerIndex | null,
     },
 
     spawnedCorpseTrapdoor: false,

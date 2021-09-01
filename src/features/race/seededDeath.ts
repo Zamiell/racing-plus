@@ -2,7 +2,8 @@ import {
   disableAllInputs,
   enableAllInputs,
   getFinalFrameOfAnimation,
-  getPlayerFromEntityPtr,
+  getPlayerFromIndex,
+  getPlayerIndex,
   getRoomIndex,
   getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
@@ -30,9 +31,6 @@ import v from "./v";
 
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
-
-let dyingPlayer: EntityPtr | null = null;
-let playerToUseFlip: EntityPtr | null = null;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -100,16 +98,19 @@ function postUpdateCheckLazarusFlip() {
 
   if (
     v.run.seededDeath.useFlipOnFrame === null ||
+    v.run.seededDeath.playerToUseFlip === null ||
     gameFrameCount < v.run.seededDeath.useFlipOnFrame
   ) {
     return;
   }
 
-  const player = getPlayerFromEntityPtr(playerToUseFlip);
-  player.UseActiveItem(CollectibleType.COLLECTIBLE_FLIP, UseFlag.USE_NOANIM);
+  const player = getPlayerFromIndex(v.run.seededDeath.playerToUseFlip);
+  if (player !== null) {
+    player.UseActiveItem(CollectibleType.COLLECTIBLE_FLIP, UseFlag.USE_NOANIM);
+  }
 
   v.run.seededDeath.useFlipOnFrame = null;
-  playerToUseFlip = null;
+  v.run.seededDeath.playerToUseFlip = null;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -158,12 +159,6 @@ function postRenderCheckDisplayTimer(): void {
   timer.display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  dyingPlayer = null;
-  playerToUseFlip = null;
-}
-
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   postNewRoomWaitingForNewRoom();
@@ -175,8 +170,16 @@ function postNewRoomWaitingForNewRoom() {
     return;
   }
 
+  if (v.run.seededDeath.dyingPlayerIndex === null) {
+    return;
+  }
+
+  const player = getPlayerFromIndex(v.run.seededDeath.dyingPlayerIndex);
+  if (player === null) {
+    return;
+  }
+
   const isaacFrameCount = Isaac.GetFrameCount();
-  const player = getPlayerFromEntityPtr(dyingPlayer);
 
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
   v.run.seededDeath.debuffEndFrame =
@@ -234,10 +237,8 @@ export function postPlayerRender(player: EntityPlayer): void {
     return;
   }
 
-  const playerHash = GetPtrHash(player);
-  const storedPlayer = getPlayerFromEntityPtr(dyingPlayer);
-  const storedPlayerHash = GetPtrHash(storedPlayer);
-  if (playerHash !== storedPlayerHash) {
+  const playerIndex = getPlayerIndex(player);
+  if (playerIndex !== v.run.seededDeath.dyingPlayerIndex) {
     return;
   }
 
@@ -296,6 +297,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
 
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
+  const playerIndex = getPlayerIndex(player);
 
   // Do not revive the player if they have Spirit Shackles and it is activated
   if (willReviveFromSpiritShackles(player)) {
@@ -338,7 +340,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
 
   v.run.seededDeath.state =
     SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH;
-  dyingPlayer = EntityPtr(player);
+  v.run.seededDeath.dyingPlayerIndex = playerIndex;
 
   return RevivalType.SEEDED_DEATH;
 }
@@ -354,6 +356,7 @@ function inBeastDebugRoom() {
 }
 
 function seededDeathFeatureShouldApply() {
+  return true;
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -409,6 +412,6 @@ export function postFlip(player: EntityPlayer): void {
   } else {
     v.run.seededDeath.switchingBackToGhostLazarus = true;
     v.run.seededDeath.useFlipOnFrame = gameFrameCount + 1;
-    playerToUseFlip = EntityPtr(player);
+    v.run.seededDeath.playerToUseFlip = getPlayerIndex(player);
   }
 }

@@ -14,6 +14,7 @@ import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import extraStartingItemsPostNewRoom from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
 import betterDevilAngelRoomsPostNewRoom from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
+import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -57,6 +58,7 @@ export function main(): void {
   startWithD6.postNewRoom();
   betterDevilAngelRoomsPostNewRoom();
   freeDevilItem.postNewRoom();
+  fastClearPostNewRoom();
   fastTravelPostNewRoom();
 
   // Character changes
