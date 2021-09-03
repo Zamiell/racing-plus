@@ -1,11 +1,13 @@
 ```
-### *v0.62.9* - August 31st, 2021
+### *v0.62.10* - August 31st, 2021
 
-- Fixed the bug where charged keys would not charge the pocket active item first. (Thanks mgln)
-- Fixed the bug where Hairpin would not charge the pocket active item first. (Thanks mgln)
-- Fixed the bug with seeded death where dying on Lazarus would cause errors. (Thanks Gamonymous)
-- Fixed the bug where two beams of light would appear in a room if you died on the same frame that a vanilla beam of light would normally spawn. (Thanks Gamonymous)
+- The Perfection trinket will no longer spawn on the final floor of a run.
+- Fixed the bug where charged keys would not grant a key. (Thanks Hispa)
+- Fixed the bug where automatic pickup insertion could fail in situations where you were already collecting a pickup.
+- Fixed the bug where Eternal Flies were incorrectly removed when you entered a Treasure Room.
 ```
+
+- double check to see if the maximum amount of pills are showing on the pill tracker
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

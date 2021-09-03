@@ -519,12 +519,13 @@ The deleted rooms are as follows:
 Certain rooms in the game were probably meant to be symmetrical, but one entity or tile was incorrectly placed. This is fixed.
 
 The changed rooms are as follows:
+- Treasure: #30, #32
 - Basement: #581
 - Burning: #595
 - Caves: #26, #53, #118, #416, #541
 - Flooded: #26, #53, #118, #416, #549, #918, #987
 - Sheol: #58
-- Cathedral: #9, #10, #21, #39, #57
+- Cathedral: #9, #10, #21, #39, #57, #454
 - Curse Room: #24
 - Monstro II: #1051
 - Headless Horseman: #4050

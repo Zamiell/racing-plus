@@ -34329,7 +34329,7 @@
 		<spawn x="2" y="3">
 			<entity type="1940" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="4" y="3">
+		<spawn x="6" y="3">
 			<entity type="100" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="10" y="3">

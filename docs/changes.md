@@ -187,27 +187,31 @@ Post-flip actions:
 
 > Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
-- `042` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `042` <!-- clearerShadowAttacks --> Some specific attacks that are telegraphed by shadows are given an additional outline to make it clear where the attack is landing.
+
+> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
+
+- `043` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `043` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
+- `044` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `044` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `045` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `045` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
+- `046` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
 
 > Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
 
-- `046` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
+- `047` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
 
 > Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
 
-- `047` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
+- `048` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
 
 > Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
@@ -249,13 +253,17 @@ Post-flip actions:
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `063` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `064` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+- `063` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+
+> Why? This can interfere with finishing the run.
+
+- `064` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `065` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `065` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `066` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `066` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `067` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 

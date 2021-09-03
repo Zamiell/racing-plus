@@ -27,7 +27,12 @@ module.exports = {
       {
         missingExports: true,
         unusedExports: true,
-        ignoreExports: ["src/**/*.d.ts", ".eslintrc.js", "src/main.ts"],
+        ignoreExports: [
+          "src/**/*.d.ts",
+          ".eslintrc.js",
+          "src/main.ts",
+          "src/bundleEntry.ts",
+        ],
       },
     ],
   },
