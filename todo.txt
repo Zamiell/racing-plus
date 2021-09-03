@@ -1,7 +1,7 @@
 ```
-### *v0.62.10* - August 31st, 2021
+### *v0.63.0* - September 2nd, 2021
 
-- Daddy Long Legs
+- A blue target is now drawn on the ground for the Daddy Long Legs multi-stomp attack and rock projectiles to make it more clear where the attack is landing.
 - The Perfection trinket will no longer spawn on the final floor of a run.
 - Fixed the bug where charged keys would not grant a key. (Thanks Hispa)
 - Fixed the bug where automatic pickup insertion could fail in situations where you were already collecting a pickup.

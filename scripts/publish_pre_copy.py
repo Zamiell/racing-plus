@@ -26,6 +26,7 @@ JSON_OUTPUT_DIRECTORY = os.path.join(
     SCRIPT_DIRECTORY,
     "..",
     "src",
+    "racing-plus",
     "features",
     "optional",
     "major",
