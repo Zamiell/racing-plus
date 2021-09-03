@@ -1,13 +1,13 @@
 ```
 ### *v0.62.10* - August 31st, 2021
 
+- Daddy Long Legs
 - The Perfection trinket will no longer spawn on the final floor of a run.
 - Fixed the bug where charged keys would not grant a key. (Thanks Hispa)
 - Fixed the bug where automatic pickup insertion could fail in situations where you were already collecting a pickup.
 - Fixed the bug where Eternal Flies were incorrectly removed when you entered a Treasure Room.
+- Fixed the bug where purple pills would not show correctly on the pill tracker.
 ```
-
-- double check to see if the maximum amount of pills are showing on the pill tracker
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

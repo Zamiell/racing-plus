@@ -187,10 +187,7 @@ Post-flip actions:
 
 > Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
-- `042` <!-- clearerShadowAttacks --> Some specific attacks that are telegraphed by shadows are given an additional outline to make it clear where the attack is landing.
-
-> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
-
+- `042` <!-- clearerShadowAttacks --> A blue target is drawn on the ground for the Daddy Long Legs multi-stomp attack and rock projectiles to make it more clear where the attack is landing.
 - `043` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.

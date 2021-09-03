@@ -13,7 +13,7 @@ export function postNPCUpdateDeath(npc: EntityNPC): void {
   }
 
   // Stop Death from performing the attack that slows down the player
-  if (npc.State === NpcState.STATE_ATTACK) {
-    npc.State = NpcState.STATE_MOVE;
+  if (npc.State === DeathState.SLOW_ATTACK) {
+    npc.State = DeathState.MAIN_IDLE;
   }
 }

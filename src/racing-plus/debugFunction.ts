@@ -10,7 +10,7 @@ export default function debugFunction(): void {
     const npc = daddy.ToNPC();
     if (npc !== null) {
       npc.State =
-        DaddyLongLegsState.MULTI_STOMP_ATTACK_MAIN as NpcState;
+        DaddyLongLegsState.MULTI_STOMP_ATTACK_MAIN;
     }
   }
   */

@@ -2,10 +2,11 @@
 // Instead, just make it appear on the ground like every other boss in the game does
 
 export function postNPCInitColostomia(npc: EntityNPC): void {
-  // In vanilla, the state starts at NpcState.STATE_IDLE and then always transitions to
-  // NpcState.STATE_ATTACK2
-  // By immediately setting the state to NpcState.STATE_ATTACK2, it will make it be on the ground
-  npc.State = NpcState.STATE_ATTACK2;
+  // The state starts at ColostomiaState.IDLE_PHASE_1 and then always transitions to
+  // ColostomiaState.SPIT_POOP_BOMB
+  // By immediately setting the state to ColostomiaState.SPIT_POOP_BOMB, it will force the NPC to be
+  // on the ground
+  npc.State = ColostomiaState.SPIT_POOP_BOMB;
 
   // Make it have a poof of smoke like a normal boss
   Isaac.Spawn(

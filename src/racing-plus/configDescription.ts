@@ -341,8 +341,8 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "042",
-      "Remove Treasure Room enemies",
-      "Remove all enemies from Treasure Rooms.",
+      "Make shadow attacks more clear",
+      "Make a blue target appear on the ground for the specific attacks that come from above.",
     ],
   ],
   [

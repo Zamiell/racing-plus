@@ -32,6 +32,7 @@ import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
+import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
 import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
@@ -138,6 +139,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postPickupRender.init(mod); // 36
   prePickupCollision.init(mod); // 38
   postTearUpdate.init(mod); // 40
+  postProjectileInit.init(mod); // 43
   postLaserInit.init(mod); // 47
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
