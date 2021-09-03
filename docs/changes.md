@@ -142,8 +142,12 @@ Post-flip actions:
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-- `024` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
-- `025` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
+- `024` <!-- lostShowHealth 10 --> Hearts will now display on the UI when playing as The Lost.
+
+> Why? So that you can more easily see when the Holy Mantle effect is active.
+
+- `025` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
+- `026` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
 
 > Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
@@ -229,38 +233,39 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `056` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `057` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+- `057` <!-- holyMantleUI --> The presence of a Holy Mantle shield is now shown on the hearts UI.
+- `058` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `058` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `059` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `059` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `060` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `060` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `061` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `061` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `062` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `062` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `063` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `063` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `064` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `064` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `065` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+- `065` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `066` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `066` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `067` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `067` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `068` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
@@ -350,6 +355,7 @@ Post-flip actions:
 - `102` <!-- twentyTwenty --> The 20/20 sprite is now easier to see.
 - `103` <!-- starOfBethlehem --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
 - `104` <!-- paschalCandle --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.

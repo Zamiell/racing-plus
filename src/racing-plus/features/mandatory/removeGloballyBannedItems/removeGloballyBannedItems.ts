@@ -11,7 +11,7 @@ import {
 import g from "../../../globals";
 import passiveItemsForEden from "../../../passiveItemsForEden";
 import { changeCollectibleSubType } from "../../../utilCollectible";
-import * as showEdenStartingItems from "../../optional/quality/showEdenStartingItems";
+import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,
   BANNED_COLLECTIBLES_WITH_VOID,

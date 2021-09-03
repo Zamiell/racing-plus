@@ -30,7 +30,7 @@ import * as chargePocketItemFirst from "./features/optional/quality/chargePocket
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
-import * as showEdenStartingItems from "./features/optional/quality/showEdenStartingItems";
+import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";

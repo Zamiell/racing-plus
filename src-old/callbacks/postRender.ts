@@ -4,10 +4,7 @@ export function main(): void {
   sprites.display();
   schoolbag.spriteDisplay();
   soulJar.spriteDisplay();
-  theLostHealth();
-  holyMantle();
   leadPencilChargeBar();
-  schoolbag.glowingHourGlass();
   timer.checkDisplaySeededDeath();
   pills.postRender();
   changeCharOrder.postRender();
@@ -26,118 +23,6 @@ export function main(): void {
 
   // Handle things for multi-character speedruns
   speedrunPostRender.main();
-}
-
-function theLostHealth() {
-  const character = g.p.GetPlayerType();
-  if (character !== PlayerType.PLAYER_THELOST) {
-    return;
-  }
-
-  if (g.run.lostHealthSprite === null) {
-    g.run.lostHealthSprite = Sprite();
-    g.run.lostHealthSprite.Load("gfx/ui/p20_lost_health.anm2", true);
-  }
-
-  const hudOffsetX = 0;
-  const hudOffsetY = 0;
-
-  let offsetX = hudOffsetX + 41;
-  if (g.p.GetExtraLives() > 0) {
-    offsetX += 24;
-  }
-
-  const offsetY = hudOffsetY + 2;
-
-  let animationToPlay = "Empty_Heart";
-  if (g.p.GetSoulHearts() >= 1) {
-    animationToPlay = "Lost_Heart_Half";
-  }
-  g.run.lostHealthSprite.Play(animationToPlay, true);
-  g.run.lostHealthSprite.Render(
-    Vector(offsetX, offsetY),
-    Vector.Zero,
-    Vector.Zero,
-  );
-}
-
-function holyMantle() {
-  const effects = g.p.GetEffects();
-  const numMantles = effects.GetCollectibleEffectNum(
-    CollectibleType.COLLECTIBLE_HOLY_MANTLE,
-  );
-  if (numMantles < 1) {
-    return;
-  }
-
-  if (g.run.holyMantleSprite === null) {
-    g.run.holyMantleSprite = Sprite();
-    g.run.holyMantleSprite.Load("gfx/ui/p20_holy_mantle.anm2", true);
-  }
-
-  const hudOffset1Heart = 41;
-  const hudOffset2Heart = hudOffset1Heart + 12;
-  const hudOffset3Heart = hudOffset2Heart + 12;
-  const hudOffset4Heart = hudOffset3Heart + 12;
-  const hudOffset5Heart = hudOffset4Heart + 12;
-  const hudOffset6Heart = hudOffset5Heart + 12;
-
-  const hudOffset1Row = 2;
-  const hudOffset2Row = hudOffset1Row + 10;
-
-  let yOffset: int;
-  let xOffset = hudOffset6Heart;
-
-  const visibleHearts = misc.getPlayerVisibleHearts();
-  if (visibleHearts > 6) {
-    yOffset = hudOffset2Row;
-  } else {
-    yOffset = hudOffset1Row;
-  }
-
-  let xHeart = visibleHearts % 6;
-  if (xHeart === 0) {
-    xHeart = 6;
-  }
-
-  if (xHeart <= 1) {
-    xOffset = hudOffset1Heart;
-  } else if (xHeart === 2) {
-    xOffset = hudOffset2Heart;
-  } else if (xHeart === 3) {
-    xOffset = hudOffset3Heart;
-  } else if (xHeart === 4) {
-    xOffset = hudOffset4Heart;
-  } else if (xHeart === 5) {
-    xOffset = hudOffset5Heart;
-  } else if (xHeart >= 6) {
-    xOffset = hudOffset6Heart;
-  }
-
-  if (g.l.GetCurses() === LevelCurse.CURSE_OF_THE_UNKNOWN) {
-    xOffset = hudOffset1Heart;
-  }
-
-  const character = g.p.GetPlayerType();
-  if (character === PlayerType.PLAYER_THELOST) {
-    if (g.p.GetExtraLives() > 0) {
-      xOffset += 24;
-    }
-  }
-
-  let animationToPlay;
-  if (character === PlayerType.PLAYER_KEEPER) {
-    animationToPlay = "Keeper_Mantle";
-  } else {
-    animationToPlay = "Mantle";
-  }
-
-  g.run.holyMantleSprite.Play(animationToPlay, true);
-  g.run.holyMantleSprite.Render(
-    Vector(xOffset, yOffset),
-    Vector.Zero,
-    Vector.Zero,
-  );
 }
 
 // Make an additional charge bar for the Lead Pencil

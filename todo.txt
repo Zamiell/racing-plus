@@ -1,12 +1,9 @@
 ```
-### *v0.63.0* - September 2nd, 2021
+### *v0.63.1* - September 3rd, 2021
 
-- A blue target is now drawn on the ground for the Daddy Long Legs multi-stomp attack and rock projectiles to make it more clear where the attack is landing.
-- The Perfection trinket will no longer spawn on the final floor of a run.
-- Fixed the bug where charged keys would not grant a key. (Thanks Hispa)
-- Fixed the bug where automatic pickup insertion could fail in situations where you were already collecting a pickup.
-- Fixed the bug where Eternal Flies were incorrectly removed when you entered a Treasure Room.
-- Fixed the bug where purple pills would not show correctly on the pill tracker.
+- The heart UI sprites have been modified so that it is easier to see an empty red heart container on a black background.
+- When playing as The Lost & Tainted Lost, the hearts will now show in the UI.
+- The presence of a Holy Mantle shield is now shown on the hearts UI.
 ```
 
 TODO Racing+ new features:

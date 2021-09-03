@@ -20,7 +20,7 @@ import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
-import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import speedrunPostNewRoom from "../features/speedrun/callbacks/postNewRoom";

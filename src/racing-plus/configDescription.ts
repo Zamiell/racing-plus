@@ -172,10 +172,19 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "lostUseHolyCard", // 31
+    "lostShowHealth", // 10
     [
       ModConfigMenuOptionType.BOOLEAN,
       "024",
+      "Show The Lost hearts on the UI",
+      "Force the heart UI to display when playing as The Lost.",
+    ],
+  ],
+  [
+    "lostUseHolyCard", // 31
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "025",
       "Automatically use the Holy Card",
       "Automatically use the Holy Card when starting a run as Tainted Lost.",
     ],
@@ -184,7 +193,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "taintedKeeperMoney", // 33
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "025",
+      "026",
       "Tainted Keeper extra money",
       "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
@@ -458,10 +467,19 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "combinedDualityDoors", // 498
+    "holyMantleUI", // 313
     [
       ModConfigMenuOptionType.BOOLEAN,
       "057",
+      "Show Holy Mantle on the hearts UI",
+      "Show the presence of a Holy Mantle shield on the hearts UI.",
+    ],
+  ],
+  [
+    "combinedDualityDoors", // 498
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "058",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -470,7 +488,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "removeFortuneCookieBanners", // 557
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "059",
       "Remove Fortune Cookie banners",
       "Remove Fortune Cookie banners when don't get any pickups.",
     ],
@@ -479,18 +497,9 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "showDreamCatcherItem", // 566
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "059",
+      "060",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
-    ],
-  ],
-  [
-    "fastMoonlight", // 589
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "060",
-      "Fast Moonlight",
-      "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
   ],
 ];
@@ -498,10 +507,19 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
 // 061-06X
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
-    "fadeVasculitisTears", // 657
+    "fastMoonlight", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
       "061",
+      "Fast Moonlight",
+      "Make Moonlights from Luna able to be entered as soon as they spawn.",
+    ],
+  ],
+  [
+    "fadeVasculitisTears", // 657
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "062",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -510,7 +528,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionVelocity", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "062",
+      "063",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -519,7 +537,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "063",
+      "064",
       "Remove Perfection on end floors",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -528,7 +546,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "064",
+      "065",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -537,7 +555,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "chargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "065",
+      "066",
       "Charge the Pocket item first",
       "Make batteries charge the pocket item first over the active item.",
     ],
@@ -546,7 +564,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "066",
+      "067",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -555,7 +573,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "067",
+      "068",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],

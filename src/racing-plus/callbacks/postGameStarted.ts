@@ -16,7 +16,7 @@ import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/bet
 import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
-import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
+import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
 import g from "../globals";

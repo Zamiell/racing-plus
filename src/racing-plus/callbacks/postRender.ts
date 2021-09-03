@@ -7,12 +7,14 @@ import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
+import * as lostShowHealth from "../features/optional/characters/lostShowHealth";
+import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as customConsole from "../features/optional/quality/customConsole";
+import * as holyMantleUI from "../features/optional/quality/holyMantleUI";
 import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
-import * as showEdenStartingItems from "../features/optional/quality/showEdenStartingItems";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
@@ -54,10 +56,14 @@ export function main(): void {
   fastTravelPostRender();
   fastReset.postRender();
 
+  // Character changes
+  lostShowHealth.postRender();
+  showEdenStartingItems.postRender();
+
   // Quality of life
   speedUpFadeIn.postRender();
-  showEdenStartingItems.postRender();
-  showDreamCatcherItemPostRender();
+  holyMantleUI.postRender(); // 313
+  showDreamCatcherItemPostRender(); // 566
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority
   automaticItemInsertion.postRender();
