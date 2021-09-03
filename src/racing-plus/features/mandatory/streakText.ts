@@ -98,6 +98,12 @@ function checkDraw() {
     return;
   }
 
+  const isPaused = g.g.IsPaused();
+
+  if (isPaused) {
+    return;
+  }
+
   if (v.run.frameSet === null) {
     // Only draw the tab text if there is no normal streak text showing
     if (v.run.tabText !== null) {

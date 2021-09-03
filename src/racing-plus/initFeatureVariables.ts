@@ -4,6 +4,7 @@ import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
+import * as drawVersion from "./features/mandatory/drawVersion";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
@@ -18,6 +19,7 @@ import * as streakText from "./features/mandatory/streakText";
 import * as switchForgotten from "./features/mandatory/switchForgotten";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
+import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
@@ -30,7 +32,6 @@ import * as chargePocketItemFirst from "./features/optional/quality/chargePocket
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
-import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
@@ -72,6 +73,7 @@ export default function initFeatureVariables(): void {
   trophy.init();
   fireworks.init();
   disableMultiplayer.init();
+  drawVersion.init();
   debugPowers.init();
   errors.init();
 

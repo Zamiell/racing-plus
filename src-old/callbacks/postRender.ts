@@ -1,30 +1,4 @@
 /*
-export function main(): void {
-  // Draw graphics
-  sprites.display();
-  schoolbag.spriteDisplay();
-  soulJar.spriteDisplay();
-  leadPencilChargeBar();
-  timer.checkDisplaySeededDeath();
-  pills.postRender();
-  changeCharOrder.postRender();
-  changeKeybindings.postRender();
-  drawVersion();
-
-  // Check to see if ( we are subverting a teleport from Gurdy, Mom, Mom's Heart, || It Lives
-  checkSubvertTeleport();
-
-  // Check for the seeded death mechanic
-  // (this is not in the "PostRender.Race()" function because it also applies to speedruns)
-  seededDeath.postRender();
-
-  // Do race specific stuff
-  shadow.Draw();
-
-  // Handle things for multi-character speedruns
-  speedrunPostRender.main();
-}
-
 // Make an additional charge bar for the Lead Pencil
 function leadPencilChargeBar() {
   const character = g.p.GetPlayerType();
@@ -86,46 +60,5 @@ function leadPencilChargeBar() {
     Vector.Zero,
     Vector.Zero,
   );
-}
-
-function drawVersion() {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  // Make the version persist for at least 2 seconds after the player presses "v"
-  if (Input.IsButtonPressed(Keyboard.KEY_V, 0)) {
-    g.run.showVersionFrame = gameFrameCount + 60;
-  }
-
-  if (g.run.showVersionFrame === 0 || gameFrameCount > g.run.showVersionFrame) {
-    return;
-  }
-
-  const center = misc.getScreenCenterPosition();
-  let text: string;
-  let x: int;
-  let y: int;
-
-  // Render the version of the mod
-  text = "Racing+";
-  x = center.X - 3 * text.length;
-  y = center.Y + 40;
-  Isaac.RenderText(text, x, y, 2, 2, 2, 2);
-
-  text = VERSION;
-  x = center.X - 3 * text.length;
-  y += 15;
-  Isaac.RenderText(text, x, y, 2, 2, 2, 2);
-
-  if (RacingPlusRebalancedVersion !== undefined) {
-    text = "Racing+ Rebalanced";
-    x = center.X - 3 * text.length;
-    y += 15;
-    Isaac.RenderText(text, x, y, 2, 2, 2, 2);
-
-    text = RacingPlusRebalancedVersion.toString();
-    x = center.X - 3 * text.length;
-    y += 15;
-    Isaac.RenderText(text, x, y, 2, 2, 2, 2);
-  }
 }
 */
