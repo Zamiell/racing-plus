@@ -1,6 +1,7 @@
 ```
 ### *v0.63.1* - September 3rd, 2021
 
+- Fixed the bug where the Secret Shop crawlspace would lead to a normal crawlspace. (Thanks 91)
 - Fixed the bug where quitting a race could cause specific types of errors to occur. (Thanks cutifire)
 - Fixed the bug where the holy mantle indicator was shaped incorrectly on Tainted Keeper. (Thanks Finalkids)
 - Fixed the bug where Dream Catcher would cause an error on Depths 2. (Thanks Finalkids)

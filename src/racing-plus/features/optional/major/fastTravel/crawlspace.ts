@@ -3,12 +3,8 @@
 import {
   getPlayerCloserThan,
   getRoomIndex,
-  getRoomStageID,
-  getRoomVariant,
   inCrawlspace,
-  inGenesisRoom,
   log,
-  onFinalFloor,
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -18,10 +14,6 @@ import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
 import v from "./v";
-
-const GRID_INDEX_OF_GREAT_GIDEON_CRAWLSPACE = 37;
-
-const GREAT_GIDEON_ROOM_VARIANTS = new Set<int>([5210, 5211, 5212, 5213, 5214]);
 
 const GRID_INDEX_OF_TOP_OF_LADDER = 2;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
@@ -215,17 +207,20 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
 // GridEntityType.GRID_STAIRS (18)
 export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
-  // In some situations, crawlspaces should be replaced with a teleport pad
-  if (shouldReplaceWithTeleportPad()) {
+  const variant = gridEntity.GetVariant();
+
+  // Replace special crawlspaces with teleport pads
+  if (variant === StairsVariant.PASSAGE_TO_BEGINNING_OF_FLOOR) {
     replaceWithTeleportPad(gridEntity);
     return;
   }
 
-  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-}
+  // Ignore other special crawlspaces
+  if (variant !== StairsVariant.NORMAL) {
+    return;
+  }
 
-function shouldReplaceWithTeleportPad() {
-  return onFinalFloor() && inGenesisRoom();
+  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
@@ -313,15 +308,6 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect) {
-  const gridEntity = entity as GridEntity;
-
-  // First, do nothing in the special case of this being a Great Gideon crawlspace
-  // (we don't want to handle this because it would require a lot more detection-based code)
-  // The crawlspace will still work, it will just
-  if (isGreatGideonCrawlspace(gridEntity)) {
-    return;
-  }
-
   const roomIndex = getRoomIndex();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
 
@@ -339,24 +325,6 @@ function touched(entity: GridEntity | EntityEffect) {
     );
   }
 
-  // Go to the crawlspace
+  // Enter the crawlspace room
   teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
-}
-
-function isGreatGideonCrawlspace(gridEntity: GridEntity) {
-  const gridIndex = gridEntity.GetGridIndex();
-
-  return (
-    isGreatGideonRoom() && gridIndex === GRID_INDEX_OF_GREAT_GIDEON_CRAWLSPACE
-  );
-}
-
-function isGreatGideonRoom() {
-  const roomStageID = getRoomStageID();
-  const roomVariant = getRoomVariant();
-
-  return (
-    roomStageID === StageID.SPECIAL_ROOMS &&
-    GREAT_GIDEON_ROOM_VARIANTS.has(roomVariant)
-  );
 }

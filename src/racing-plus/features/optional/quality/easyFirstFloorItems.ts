@@ -4,6 +4,7 @@
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { EffectVariantCustom } from "../../../types/enums";
 
 export function preRoomEntitySpawn(
   gridIndex: int,
@@ -54,8 +55,8 @@ export function preRoomEntitySpawn(
       const rockDeleteIndexes = [20, 47, 48, 62, 77, 78, 82, 95, 109];
       for (const rockIndex of rockDeleteIndexes) {
         if (rockIndex === gridIndex) {
-          // Equal to 1000.0, which is a blank effect, which is essentially nothing
-          return [999, 0, 0];
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.ENTITY_EFFECT)
+          return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }
 
@@ -67,8 +68,8 @@ export function preRoomEntitySpawn(
       const spikeIndexes = [48, 50, 78, 80];
       for (const spikeIndex of spikeIndexes) {
         if (spikeIndex === gridIndex) {
-          // Equal to 1000.0, which is a blank effect, which is essentially nothing
-          return [999, 0, 0];
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.ENTITY_EFFECT)
+          return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }
 
