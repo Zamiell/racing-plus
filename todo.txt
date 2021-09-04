@@ -1,15 +1,10 @@
 ```
-### *v0.63.2* - September 3rd, 2021
+### *v0.63.3* - September 4th, 2021
 
-- Fixed the bug where the Secret Shop crawlspace would lead to a normal crawlspace. (Thanks 91)
-- Fixed the bug where quitting a race could cause specific types of errors to occur. (Thanks cutifire)
-- Fixed the bug where the holy mantle indicator was shaped incorrectly on Tainted Keeper. (Thanks Finalkids)
-- Fixed the bug where Dream Catcher would cause an error on Depths 2. (Thanks Finalkids)
-- Fixed the bug where the Boss Rush would not spawn the proper reward when playing on a set seed. (Thanks Bamiot)
-- Fixed the bug with The Beast races where the trapdoor was incorrectly removed after Mom if you left the room. (Thanks cutifire)
-- Fixed the bug with seeded death where it would not apply to The Lost or Tainted Lost. (Thanks cutifire)
-- Fixed the bug with seeded death where dying as The Soul would not work properly.
+-
 ```
+
+- remove null with undefined throughout code
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

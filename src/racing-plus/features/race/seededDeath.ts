@@ -23,7 +23,7 @@ import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";
 import { findFreePosition, removeGridEntity } from "../../utilGlobals";
-import { debuffOff, debuffOn } from "./seededDeathDebuff";
+import { applySeededGhostFade, debuffOff, debuffOn } from "./seededDeathDebuff";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
@@ -33,7 +33,6 @@ import v from "./v";
 
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
-const FADE = Color(1, 1, 1, 0.25, 0, 0, 0);
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -51,7 +50,7 @@ function postUpdateGhostForm() {
   const player = Isaac.GetPlayer();
 
   // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs
-  applySeededGhostFade(player);
+  applySeededGhostFade(player, true);
 
   // Check to see if the debuff is over
   if (
@@ -71,30 +70,6 @@ function postUpdateGhostForm() {
     if (twin !== null) {
       debuffOff(twin);
       twin.AnimateHappy();
-    }
-  }
-}
-
-function applySeededGhostFade(player: EntityPlayer): void {
-  const character = player.GetPlayerType();
-
-  const sprite = player.GetSprite();
-  sprite.Color = FADE;
-
-  if (character === PlayerType.PLAYER_THESOUL) {
-    const forgottenBodies = Isaac.FindByType(
-      EntityType.ENTITY_FAMILIAR,
-      FamiliarVariant.FORGOTTEN_BODY,
-    );
-    for (const forgottenBody of forgottenBodies) {
-      const forgottenSprite = forgottenBody.GetSprite();
-      forgottenSprite.Color = FADE;
-    }
-  } else if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      const twinSprite = twin.GetSprite();
-      twinSprite.Color = FADE;
     }
   }
 }
@@ -198,11 +173,11 @@ function postNewRoomWaitingForNewRoom() {
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
 
   disableAllInputs();
+  applySeededGhostFade(player, true);
 
   // Play the animation where Isaac lies in the fetal position
   player.PlayExtraAnimation("AppearVanilla");
   debuffOn(player);
-  applySeededGhostFade(player);
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
     if (twin !== null) {
@@ -418,7 +393,7 @@ export function postFlip(player: EntityPlayer): void {
     v.run.seededDeath.switchingBackToGhostLazarus = false;
 
     // Flipping back from the other Lazarus will remove the fade, so we have to reapply it
-    applySeededGhostFade(player);
+    applySeededGhostFade(player, true);
   } else {
     v.run.seededDeath.switchingBackToGhostLazarus = true;
     v.run.seededDeath.useFlipOnFrame = gameFrameCount + 1;

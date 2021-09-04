@@ -3,6 +3,7 @@ import {
   getEnumValues,
   getPlayerCollectibleMap,
   getTransformationsForItem,
+  isJacobOrEsau,
   removeDeadEyeMultiplier,
   removeItemFromItemTracker,
 } from "isaacscript-common";
@@ -11,6 +12,8 @@ import g from "../../globals";
 import ActiveItemDescription from "../../types/ActiveItemDescription";
 import { CollectibleTypeCustom } from "../../types/enums";
 import v from "./v";
+
+const FADE = Color(1, 1, 1, 0.25, 0, 0, 0);
 
 const TRANSFORMATION_TO_HELPER_MAP = new Map<PlayerForm, CollectibleTypeCustom>(
   [
@@ -218,10 +221,7 @@ function debuffOnRemoveDarkEsau() {
 }
 
 export function debuffOff(player: EntityPlayer): void {
-  // Un-fade the character
-  const sprite = player.GetSprite();
-  sprite.Color = COLOR_DEFAULT;
-
+  applySeededGhostFade(player, false);
   debuffOffRestoreSize(player);
   debuffOffAddActiveItems(player);
   debuffOffAddAllItems(player);
@@ -369,4 +369,32 @@ function debuffOffAddDarkEsau() {
     Vector.Zero,
     null,
   );
+}
+
+export function applySeededGhostFade(
+  player: EntityPlayer,
+  enabled: boolean,
+): void {
+  const character = player.GetPlayerType();
+
+  const sprite = player.GetSprite();
+  const newColor = enabled ? FADE : COLOR_DEFAULT;
+  sprite.Color = newColor;
+
+  if (character === PlayerType.PLAYER_THESOUL) {
+    const forgottenBodies = Isaac.FindByType(
+      EntityType.ENTITY_FAMILIAR,
+      FamiliarVariant.FORGOTTEN_BODY,
+    );
+    for (const forgottenBody of forgottenBodies) {
+      const forgottenSprite = forgottenBody.GetSprite();
+      forgottenSprite.Color = newColor;
+    }
+  } else if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      const twinSprite = twin.GetSprite();
+      twinSprite.Color = newColor;
+    }
+  }
 }
