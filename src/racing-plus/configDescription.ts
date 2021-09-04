@@ -507,11 +507,11 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
 // 061-06X
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
-    "fastMoonlight", // 589
+    "fastLuna", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
       "061",
-      "Fast Moonlight",
+      "Fast Luna",
       "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
   ],

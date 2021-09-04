@@ -98,11 +98,8 @@ function checkDraw() {
     return;
   }
 
-  const isPaused = g.g.IsPaused();
-
-  if (isPaused) {
-    return;
-  }
+  // We don't check for "IsPaused()" because it looks buggy if the text disappears when changing
+  // rooms
 
   if (v.run.frameSet === null) {
     // Only draw the tab text if there is no normal streak text showing

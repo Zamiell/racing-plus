@@ -1,6 +1,6 @@
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
-import * as fastMoonlight from "../features/optional/quality/fastMoonlight";
+import * as fastLuna from "../features/optional/quality/fastLuna";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -24,5 +24,5 @@ function target(effect: EntityEffect) {
 // EffectVariant.HEAVEN_LIGHT_DOOR (39)
 function heavenLightDoor(effect: EntityEffect) {
   fastTravelPostEffectUpdate.heavenLightDoor(effect);
-  fastMoonlight.postEffectUpdateHeavenLightDoor(effect);
+  fastLuna.postEffectUpdateHeavenLightDoor(effect);
 }

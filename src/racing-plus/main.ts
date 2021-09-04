@@ -27,7 +27,6 @@ import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
-import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
@@ -41,7 +40,6 @@ import * as preFamiliarCollision from "./callbacks/preFamiliarCollision";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preNPCUpdate from "./callbacks/preNPCUpdate";
-import * as prePickupCollision from "./callbacks/prePickupCollision";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
@@ -57,9 +55,11 @@ import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
 import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
+import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
+import * as postSlotUpdate from "./callbacksCustom/postSlotUpdate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -136,8 +136,6 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCInit.init(mod); // 27
   postPickupInit.init(mod); // 34
   postPickupUpdate.init(mod); // 35
-  postPickupRender.init(mod); // 36
-  prePickupCollision.init(mod); // 38
   postTearUpdate.init(mod); // 40
   postProjectileInit.init(mod); // 43
   postLaserInit.init(mod); // 47
@@ -172,6 +170,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_PLAYER_INIT_LATE,
     postPlayerInitLate.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PICKUP_COLLECT,
+    postPickupCollect.main,
   );
 
   mod.AddCallbackCustom(
@@ -224,6 +227,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
   postCustomRevive.init(mod);
+  postSlotUpdate.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);

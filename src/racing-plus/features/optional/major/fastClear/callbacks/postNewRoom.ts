@@ -9,6 +9,7 @@ function checkBugTwoHeavenDoors() {
   const heavenDoors = Isaac.FindByType(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
   );
   if (heavenDoors.length < 2) {
     return;

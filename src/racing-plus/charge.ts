@@ -1,4 +1,8 @@
-import { getCollectibleMaxCharges, getPlayers } from "isaacscript-common";
+import {
+  getCollectibleMaxCharges,
+  getPlayers,
+  getTotalCharge,
+} from "isaacscript-common";
 import g from "./globals";
 
 // Give a charge to the active items of all players
@@ -20,15 +24,14 @@ export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
   const hud = g.g.GetHUD();
 
   // Find out the new charge to set on the item
-  const activeCharge = player.GetActiveCharge(activeSlot);
-  const batteryCharge = player.GetBatteryCharge(activeSlot);
+  const totalCharge = getTotalCharge(player, activeSlot);
   const chargesToAdd = getNumChargesToAdd(player, activeSlot);
   const modifiedChargesToAdd = getNumChargesWithAAAModifier(
     player,
     activeSlot,
     chargesToAdd,
   );
-  const newCharge = activeCharge + batteryCharge + modifiedChargesToAdd;
+  const newCharge = totalCharge + modifiedChargesToAdd;
 
   player.SetActiveCharge(newCharge, activeSlot);
   hud.FlashChargeBar(player, activeSlot);
@@ -40,12 +43,17 @@ export function playSoundEffect(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
 ): void {
+  for (const soundEffect of [
+    SoundEffect.SOUND_BATTERYCHARGE,
+    SoundEffect.SOUND_BEEP,
+  ]) {
+    g.sfx.Stop(soundEffect);
+  }
+
   const chargeSoundEffect = shouldPlayFullRechargeSound(player, activeSlot)
     ? SoundEffect.SOUND_BATTERYCHARGE
     : SoundEffect.SOUND_BEEP;
-  if (!g.sfx.IsPlaying(chargeSoundEffect)) {
-    g.sfx.Play(chargeSoundEffect);
-  }
+  g.sfx.Play(chargeSoundEffect);
 }
 
 function getNumChargesToAdd(player: EntityPlayer, activeSlot: ActiveSlot) {

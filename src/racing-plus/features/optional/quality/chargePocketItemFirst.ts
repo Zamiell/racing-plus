@@ -1,22 +1,41 @@
-// In vanilla, batteries will charge normal active items first over pocket active items
+// In vanilla, active items will be charged in the following order:
+// 1) ActiveSlot.SLOT_PRIMARY
+// 2) ActiveSlot.SLOT_SECONDARY
+// 3) ActiveSlot.SLOT_POCKET
 // In Racing+, this behavior is usually not what the player wants,
 // because they have a D6 on the pocket active
-// Flip this behavior
+// Change the precedence such that the pocket active has priority
+
+// This feature handles the following situations:
+// 1) Batteries (all subtypes)
+// 2) Charged keys
+// 3) Coins with the Charged Penny trinket
+// 4) 48 Hour Energy! pill
+// 5) Hairpin trinket
 
 import {
   ensureAllCases,
   getCollectibleMaxCharges,
   getPlayerIndex,
+  getTotalCharge,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
 import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { PickupVariantCustom } from "../../../types/enums";
 
-const COLLECT_ANIMATION = "Collect";
-const MICRO_BATTERY_CHARGES = 2;
+interface ChargeSituation {
+  chargeType: ChargeType;
+  numCharges?: int;
+  overcharge?: boolean;
+}
+
+enum ChargeType {
+  NONE,
+  FULL,
+  N_CHARGES,
+}
 
 const ACTIVE_SLOTS_PRECEDENCE = [
   ActiveSlot.SLOT_POCKET,
@@ -24,13 +43,19 @@ const ACTIVE_SLOTS_PRECEDENCE = [
   ActiveSlot.SLOT_SECONDARY,
 ];
 
+// The maximum amount of charges that a Battery Bum can grant is 3
+// The third charge occurs on the 40th frame after the "Prize" animation begins
+const BATTERY_BUM_CHARGE_DELAY_FRAMES = 40;
+
 const v = {
   run: {
     activeItemChargesMap: new Map<PlayerIndex, Map<ActiveSlot, int>>(),
+    checkForBatteryBumChargesUntilFrame: null as int | null,
   },
 
   room: {
     checkedHairpin: false,
+    batteryBumAnimationMap: new Map<PtrHash, string>(),
   },
 };
 
@@ -44,251 +69,14 @@ function featureEnabled() {
 
 // ModCallbacks.MC_USE_PILL (10)
 export function usePill48HourEnergy(player: EntityPlayer): void {
-  rewindAndFullChargeOneItem(player);
-}
-
-// ModCallbacks.MC_POST_PICKUP_RENDER (36)
-export function postPickupRenderInvisiblePickup(pickup: EntityPickup): void {
   if (!config.chargePocketItemFirst) {
     return;
   }
 
-  // Clean up the invisible pickups after they are finished playing the animation
-  const sprite = pickup.GetSprite();
-  if (!sprite.IsPlaying(COLLECT_ANIMATION)) {
-    pickup.Remove();
-  }
-}
-
-// ModCallbacks.MC_PRE_PICKUP_COLLISION (38)
-// PickupVariant.PICKUP_KEY (30)
-export function prePickupCollisionKey(
-  pickup: EntityPickup,
-  collider: Entity,
-): boolean | void {
-  if (!config.chargePocketItemFirst) {
-    return undefined;
-  }
-
-  if (pickup.SubType !== KeySubType.KEY_CHARGED) {
-    return undefined;
-  }
-
-  const player = collider.ToPlayer();
-  if (player === null) {
-    return undefined;
-  }
-
-  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    if (player.NeedsCharge(activeSlot)) {
-      collectPickupThatGrantsCharge(player, pickup, activeSlot);
-      return true; // Ignore collision
-    }
-  }
-
-  return undefined;
-}
-
-// ModCallbacks.MC_PRE_PICKUP_COLLISION (38)
-// PickupVariant.PICKUP_LIL_BATTERY (90)
-export function prePickupCollisionLilBattery(
-  pickup: EntityPickup,
-  collider: Entity,
-): boolean | void {
-  if (!config.chargePocketItemFirst) {
-    return undefined;
-  }
-
-  // We don't have to re-implement Mega Batteries, because they fully charge every slot
-  if (pickup.SubType === BatterySubType.BATTERY_MEGA) {
-    return undefined;
-  }
-
-  // Since Golden Batteries cause other golden batteries to spawn in random rooms,
-  // this would be too much work to re-implement from scratch
-  // Thus, let Golden Batteries retain the vanilla behavior
-  if (pickup.SubType === BatterySubType.BATTERY_GOLDEN) {
-    return undefined;
-  }
-
-  const player = collider.ToPlayer();
-  if (player === null) {
-    return undefined;
-  }
-
-  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    if (player.NeedsCharge(activeSlot)) {
-      collectPickupThatGrantsCharge(player, pickup, activeSlot);
-      return true; // Ignore collision
-    }
-  }
-
-  return undefined;
-}
-
-function collectPickupThatGrantsCharge(
-  player: EntityPlayer,
-  pickup: EntityPickup,
-  activeSlot: ActiveSlot,
-) {
-  const hud = g.g.GetHUD();
-
-  pickup.Remove();
-  spawnInvisiblePickup(pickup);
-  giveItemsToPlayer(player, pickup);
-  giveChargeToPlayer(player, pickup, activeSlot);
-  hud.FlashChargeBar(player, activeSlot);
-  charge.playSoundEffect(player, activeSlot);
-}
-
-function spawnInvisiblePickup(pickup: EntityPickup) {
-  // If we play the "Collect" animation on the existing pickup,
-  // it will look buggy because the shadow will remain
-  // It is not possible to modify entity shadows using Lua
-  // Thus, we delete the pickup and spawn an invisible pickup purely for the purposes of showing the
-  // "Collect" animation
-  const invisiblePickup = Isaac.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariantCustom.INVISIBLE_PICKUP,
-    0,
-    pickup.Position,
-    Vector.Zero,
-    null,
-  );
-  const sprite = invisiblePickup.GetSprite();
-  const filename = getPickupFilename(pickup);
-  sprite.Load(filename, true);
-  sprite.Play(COLLECT_ANIMATION, true);
-}
-
-function getPickupFilename(pickup: EntityPickup) {
-  if (
-    pickup.Variant === PickupVariant.PICKUP_KEY &&
-    pickup.SubType === KeySubType.KEY_CHARGED
-  ) {
-    return "gfx/005.034_chargedkey.anm2";
-  }
-
-  if (pickup.Variant !== PickupVariant.PICKUP_LIL_BATTERY) {
-    error(
-      `Failed to get the pickup filename for a pickup with variant: ${pickup.Variant}`,
-    );
-  }
-
-  const batterySubType = pickup.SubType as BatterySubType;
-
-  switch (batterySubType) {
-    case BatterySubType.BATTERY_NORMAL: {
-      return "gfx/005.090_LittleBattery.anm2";
-    }
-
-    case BatterySubType.BATTERY_MICRO: {
-      return "gfx/005.090_microbattery.anm2";
-    }
-
-    case BatterySubType.BATTERY_MEGA: {
-      return "gfx/005.090_megabattery.anm2";
-    }
-
-    case BatterySubType.BATTERY_GOLDEN: {
-      return "gfx/005.090_golden battery.anm2";
-    }
-
-    default: {
-      ensureAllCases(batterySubType);
-      return "";
-    }
-  }
-}
-
-function giveItemsToPlayer(player: EntityPlayer, pickup: EntityPickup) {
-  if (
-    pickup.Variant === PickupVariant.PICKUP_KEY &&
-    pickup.SubType === KeySubType.KEY_CHARGED
-  ) {
-    player.AddKeys(1);
-  }
-}
-
-function giveChargeToPlayer(
-  player: EntityPlayer,
-  pickup: EntityPickup,
-  activeSlot: ActiveSlot,
-) {
-  if (
-    pickup.Variant === PickupVariant.PICKUP_KEY &&
-    pickup.SubType === KeySubType.KEY_CHARGED
-  ) {
-    player.FullCharge(activeSlot);
-    return;
-  }
-
-  if (pickup.Variant !== PickupVariant.PICKUP_LIL_BATTERY) {
-    error(
-      `Failed to give a charge to a player for a pickup with variant: ${pickup.Variant}`,
-    );
-  }
-
-  const batterySubType = pickup.SubType as BatterySubType;
-
-  // Note that AAA Battery does not synergize with batteries in vanilla
-  switch (batterySubType) {
-    case BatterySubType.BATTERY_NORMAL: {
-      player.FullCharge(activeSlot);
-      return;
-    }
-
-    case BatterySubType.BATTERY_MICRO: {
-      const activeCharge = player.GetActiveCharge(activeSlot);
-      const batteryCharge = player.GetBatteryCharge(activeSlot);
-      const chargesToAdd = getNumChargesToAdd(
-        player,
-        activeSlot,
-        MICRO_BATTERY_CHARGES,
-      );
-      const newCharge = activeCharge + batteryCharge + chargesToAdd;
-      player.SetActiveCharge(newCharge, activeSlot);
-      return;
-    }
-
-    case BatterySubType.BATTERY_MEGA: {
-      // Intentionally not implemented
-      return;
-    }
-
-    case BatterySubType.BATTERY_GOLDEN: {
-      // Intentionally not implemented
-      return;
-    }
-
-    default: {
-      ensureAllCases(batterySubType);
-    }
-  }
-}
-
-function getNumChargesToAdd(
-  player: EntityPlayer,
-  activeSlot: ActiveSlot,
-  charges: int,
-) {
-  const activeItem = player.GetActiveItem(activeSlot);
-  const activeCharge = player.GetActiveCharge(activeSlot);
-  const batteryCharge = player.GetBatteryCharge(activeSlot);
-  const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
-  const maxCharges = getCollectibleMaxCharges(activeItem);
-
-  for (let i = 0; i < charges; i++) {
-    if (!hasBattery && activeCharge + i === maxCharges) {
-      return i;
-    }
-
-    if (hasBattery && batteryCharge + i === maxCharges) {
-      return i;
-    }
-  }
-
-  return charges;
+  const chargeSituation = {
+    chargeType: ChargeType.FULL,
+  };
+  checkSwitchCharge(player, chargeSituation);
 }
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
@@ -297,8 +85,28 @@ export function postPlayerUpdate(player: EntityPlayer): void {
     return;
   }
 
+  checkBatteryBumCharge(player); // This must come before updating the map
   checkHairpinCharge(player); // This must come before updating the map
   updateActiveItemChargesMap(player);
+}
+
+function checkBatteryBumCharge(player: EntityPlayer) {
+  if (v.run.checkForBatteryBumChargesUntilFrame === null) {
+    return;
+  }
+
+  const gameFrameCount = g.g.GetFrameCount();
+  if (gameFrameCount > v.run.checkForBatteryBumChargesUntilFrame) {
+    v.run.checkForBatteryBumChargesUntilFrame = null;
+    return;
+  }
+
+  const chargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: 1,
+    overcharge: true,
+  };
+  checkSwitchCharge(player, chargeSituation);
 }
 
 function checkHairpinCharge(player: EntityPlayer) {
@@ -324,12 +132,15 @@ function checkHairpinCharge(player: EntityPlayer) {
   // Hairpin charges the active item on the 1st frame of the room
   // Thus, we have to perform this check in the PostPlayerUpdate callback instead of the PostNewRoom
   // callback
-  rewindAndFullChargeOneItem(player);
+  const chargeSituation = {
+    chargeType: ChargeType.FULL,
+  };
+  checkSwitchCharge(player, chargeSituation);
 }
 
 function updateActiveItemChargesMap(player: EntityPlayer) {
-  // On every frame, we need to track the current charges for each active item that a player has so
-  // that we can rewind the charges when a player uses a 48 Hour Energy! pill
+  // On every frame, we need to track the current charges for each active item that a player has for
+  // the purposes of rewinding the charges
   const playerIndex = getPlayerIndex(player);
   let activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
   if (activeItemCharges === undefined) {
@@ -337,35 +148,151 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
     v.run.activeItemChargesMap.set(playerIndex, activeItemCharges);
   }
 
-  for (const activeSlot of [
-    ActiveSlot.SLOT_PRIMARY,
-    ActiveSlot.SLOT_SECONDARY,
-    ActiveSlot.SLOT_POCKET,
-  ]) {
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     const activeItem = player.GetActiveItem(activeSlot);
     if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
       continue;
     }
-    const activeCharge = player.GetActiveCharge(activeSlot);
-    const batteryCharge = player.GetBatteryCharge(activeSlot);
-    const totalCharge = activeCharge + batteryCharge;
+
+    const totalCharge = getTotalCharge(player, activeSlot);
     activeItemCharges.set(activeSlot, totalCharge);
   }
 }
 
-function rewindAndFullChargeOneItem(player: EntityPlayer) {
-  rewindActiveChargesToLastFrame(player);
+// ModCallbacksCustom.MC_POST_PICKUP_COLLECT
+export function postPickupCollect(
+  pickup: EntityPickup,
+  player: EntityPlayer,
+): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
 
-  // Now, charge the active items in the proper order
-  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    if (player.NeedsCharge(activeSlot)) {
-      player.FullCharge(activeSlot);
-      Isaac.DebugString(`GETTING HERE ${activeSlot}`);
+  const chargeSituation = getChargeSituationForPickup(pickup);
+  checkSwitchCharge(player, chargeSituation);
+}
 
-      // Only one item gets a full charge
-      return;
+function getChargeSituationForPickup(pickup: EntityPickup): ChargeSituation {
+  switch (pickup.Variant) {
+    // 20
+    case PickupVariant.PICKUP_COIN: {
+      return {
+        chargeType: ChargeType.N_CHARGES,
+        numCharges: 1,
+      };
+    }
+
+    // 30
+    case PickupVariant.PICKUP_KEY: {
+      if (pickup.SubType === KeySubType.KEY_CHARGED) {
+        return {
+          chargeType: ChargeType.FULL,
+        };
+      }
+
+      return {
+        chargeType: ChargeType.NONE,
+      };
+    }
+
+    // 90
+    case PickupVariant.PICKUP_LIL_BATTERY: {
+      return getChargeSituationForBattery(pickup);
+    }
+
+    default: {
+      return {
+        chargeType: ChargeType.NONE,
+      };
     }
   }
+}
+
+function getChargeSituationForBattery(pickup: EntityPickup) {
+  const batterySubType = pickup.SubType as BatterySubType;
+
+  switch (batterySubType) {
+    case BatterySubType.BATTERY_NORMAL: {
+      return {
+        chargeType: ChargeType.FULL,
+      };
+    }
+
+    case BatterySubType.BATTERY_MICRO: {
+      return {
+        chargeType: ChargeType.N_CHARGES,
+        numCharges: 2,
+      };
+    }
+
+    case BatterySubType.BATTERY_MEGA: {
+      // This fully-charges every active item, so this feature does not need to handle it
+      return {
+        chargeType: ChargeType.NONE,
+      };
+    }
+
+    case BatterySubType.BATTERY_GOLDEN: {
+      return {
+        chargeType: ChargeType.FULL,
+      };
+    }
+
+    default: {
+      ensureAllCases(batterySubType);
+      return {
+        chargeType: ChargeType.NONE,
+      };
+    }
+  }
+}
+
+function checkSwitchCharge(
+  player: EntityPlayer,
+  chargeSituation: ChargeSituation,
+) {
+  if (chargeSituation.chargeType === ChargeType.NONE) {
+    return;
+  }
+
+  if (!checkActiveItemsChargeChange(player)) {
+    return;
+  }
+
+  rewindActiveChargesToLastFrame(player);
+  giveCharge(player, chargeSituation);
+}
+
+function checkActiveItemsChargeChange(player: EntityPlayer) {
+  const playerIndex = getPlayerIndex(player);
+  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
+  if (activeItemCharges === undefined) {
+    error(
+      `Failed to get the stored active item charges for player: ${playerIndex}`,
+    );
+  }
+
+  const activeItemsChanged = new Set<ActiveSlot>();
+  for (const [activeSlot, oldTotalCharge] of activeItemCharges) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+
+    const totalCharge = getTotalCharge(player, activeSlot);
+    if (totalCharge !== oldTotalCharge) {
+      activeItemsChanged.add(activeSlot);
+    }
+  }
+
+  if (activeItemsChanged.has(ActiveSlot.SLOT_POCKET)) {
+    // We do not need to reorder any charges if it is the pocket active that got charged
+    return false;
+  }
+
+  // We do not want to reorder charges in situations where all of the active items are charged,
+  // so do nothing if more than one active item changed
+  return activeItemsChanged.size === 1;
 }
 
 function rewindActiveChargesToLastFrame(player: EntityPlayer) {
@@ -375,11 +302,7 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
     error(`Failed to get the active charges for player: ${playerIndex}`);
   }
 
-  for (const activeSlot of [
-    ActiveSlot.SLOT_PRIMARY,
-    ActiveSlot.SLOT_SECONDARY,
-    ActiveSlot.SLOT_POCKET,
-  ]) {
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     const activeItem = player.GetActiveItem(activeSlot);
     if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
       continue;
@@ -391,5 +314,76 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
     }
 
     player.SetActiveCharge(storedCharge, activeSlot);
+  }
+}
+
+function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
+  const hud = g.g.GetHUD();
+
+  // Now, charge the active items in the proper order
+  for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
+    if (!needsCharge(player, activeSlot, chargeSituation.overcharge)) {
+      continue;
+    }
+
+    if (chargeSituation.chargeType === ChargeType.FULL) {
+      player.FullCharge(activeSlot);
+    } else if (chargeSituation.chargeType === ChargeType.N_CHARGES) {
+      const totalCharge = getTotalCharge(player, activeSlot);
+      if (chargeSituation.numCharges === undefined) {
+        error(
+          "Failed to find the number of charges in the charge situation object.",
+        );
+      }
+      const newCharge = totalCharge + chargeSituation.numCharges;
+      player.SetActiveCharge(newCharge, activeSlot);
+    }
+
+    hud.FlashChargeBar(player, activeSlot);
+    charge.playSoundEffect(player, activeSlot);
+
+    // Only one item should get charged
+    return;
+  }
+}
+
+// We cannot use the "player.NeedsCharge()" method because we might be overcharging an item from a
+// Battery Bum
+function needsCharge(
+  player: EntityPlayer,
+  activeSlot: ActiveSlot,
+  overcharge?: boolean,
+) {
+  const activeItem = player.GetActiveItem(activeSlot);
+  if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+    return false;
+  }
+
+  const totalCharge = getTotalCharge(player, activeSlot);
+  const maxCharges = getCollectibleMaxCharges(activeItem);
+  const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
+  const adjustedMaxCharges =
+    hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
+
+  return totalCharge < adjustedMaxCharges;
+}
+
+// ModCallbacksCustom.MC_POST_SLOT_UPDATE
+// SlotVariant.BATTERY_BUM (13)
+export function postSlotUpdateBatteryBum(slot: Entity): void {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  const ptrHash = GetPtrHash(slot);
+  const lastAnimation = v.room.batteryBumAnimationMap.get(ptrHash);
+  const sprite = slot.GetSprite();
+  const animation = sprite.GetAnimation();
+  if (animation === lastAnimation) {
+    return;
+  }
+  v.room.batteryBumAnimationMap.set(ptrHash, animation);
+
+  if (animation === "Prize") {
+    v.run.checkForBatteryBumChargesUntilFrame =
+      gameFrameCount + BATTERY_BUM_CHARGE_DELAY_FRAMES;
   }
 }

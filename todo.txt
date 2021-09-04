@@ -1,10 +1,12 @@
 ```
 ### *v0.63.1* - September 3rd, 2021
 
+- Re-coded the "charge pocket item first" feature such that it will work with a wider-range of charging situations than it did previously, including Battery Bums, Golden Batteries, and so on.
 - The heart UI sprites have been modified so that it is easier to see an empty red heart container on a black background.
 - When playing as The Lost & Tainted Lost, the hearts will now show in the UI.
 - The presence of a Holy Mantle shield is now shown on the hearts UI.
 - Pressing F1 will now show the version of Racing+ on the screen.
+- Fixed the bug where Moonlights from Luna were incorrectly deleted. (Thanks sisuka)
 ```
 
 TODO Racing+ new features:

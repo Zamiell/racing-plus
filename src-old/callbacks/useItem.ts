@@ -2,9 +2,9 @@
 
 export function main(collectibleType: CollectibleType): void {
   const gameFrameCount = g.g.GetFrameCount();
-  const activeItem = g.p.GetActiveItem();
-  const activeCharge = g.p.GetActiveCharge();
-  const batteryCharge = g.p.GetBatteryCharge();
+  const activeItem = player.GetActiveItem();
+  const activeCharge = player.GetActiveCharge();
+  const batteryCharge = player.GetBatteryCharge();
   const activeItemMaxCharges = misc.getItemMaxCharges(activeItem);
 
   // Fix The Battery + 9 Volt synergy (1/2)

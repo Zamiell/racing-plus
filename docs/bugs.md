@@ -10,7 +10,6 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - The Great Gideon crawlspace is not be handled by the fast-travel feature.
 - Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
 - Monster Manual will not ever spawn Sawblade. (Reported by Gamonymous)
-- Battery Bums will charge your normal active item over your pocket active item. (Reported by Finalkids)
 
 <br />
 

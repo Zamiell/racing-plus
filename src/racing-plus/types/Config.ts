@@ -51,7 +51,7 @@ export default class Config {
   combinedDualityDoors = true; // 498
   removeFortuneCookieBanners = true; // 557
   showDreamCatcherItem = true; // 566
-  fastMoonlight = true; // 589
+  fastLuna = true; // 589
   fadeVasculitisTears = true; // 657
   removePerfectionVelocity = true; // 145
   removePerfectionOnEndFloors = true; // 145
