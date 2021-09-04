@@ -2,6 +2,7 @@ import {
   changeRoom,
   disableAllInputsExceptFor,
   enableAllInputs,
+  forgottenSwitch,
   getPlayers,
   getRoomIndex,
   onRepentanceStage,
@@ -9,7 +10,6 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
-import { forceSwitchToForgotten } from "../../../mandatory/switchForgotten";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
@@ -173,7 +173,7 @@ function warpForgottenBody(player: EntityPlayer) {
   // If we change the position of the Forgotten Body manually,
   // it will warp back to the same spot on the next frame
   // Instead, manually switch to the Forgotten to avoid this bug
-  forceSwitchToForgotten();
+  forgottenSwitch();
 
   // Also warp the body to where The Soul is so that The Forgotten won't jump down through a normal
   // floor

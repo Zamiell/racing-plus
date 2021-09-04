@@ -33,6 +33,7 @@ import v from "./v";
 
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
+const FADE = Color(1, 1, 1, 0.25, 0, 0, 0);
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -51,12 +52,6 @@ function postUpdateGhostForm() {
 
   // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs
   applySeededGhostFade(player);
-  if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== null) {
-      applySeededGhostFade(twin);
-    }
-  }
 
   // Check to see if the debuff is over
   if (
@@ -81,8 +76,27 @@ function postUpdateGhostForm() {
 }
 
 function applySeededGhostFade(player: EntityPlayer): void {
+  const character = player.GetPlayerType();
+
   const sprite = player.GetSprite();
-  sprite.Color = Color(1, 1, 1, 0.25, 0, 0, 0);
+  sprite.Color = FADE;
+
+  if (character === PlayerType.PLAYER_THESOUL) {
+    const forgottenBodies = Isaac.FindByType(
+      EntityType.ENTITY_FAMILIAR,
+      FamiliarVariant.FORGOTTEN_BODY,
+    );
+    for (const forgottenBody of forgottenBodies) {
+      const forgottenSprite = forgottenBody.GetSprite();
+      forgottenSprite.Color = FADE;
+    }
+  } else if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== null) {
+      const twinSprite = twin.GetSprite();
+      twinSprite.Color = FADE;
+    }
+  }
 }
 
 function postUpdateCheckTakingDevilItem() {
@@ -194,7 +208,6 @@ function postNewRoomWaitingForNewRoom() {
     if (twin !== null) {
       twin.PlayExtraAnimation("AppearVanilla");
       debuffOn(twin);
-      applySeededGhostFade(twin);
     }
   }
 }

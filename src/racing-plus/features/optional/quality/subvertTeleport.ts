@@ -1,11 +1,10 @@
 // Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart,
 // or It Lives!
 
-import { getPlayers, log } from "isaacscript-common";
+import { forgottenSwitch, getPlayers, log } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
-import { forceSwitchToForgotten } from "../../mandatory/switchForgotten";
 
 const ENTITIES_THAT_CAUSE_TELEPORT = [
   EntityType.ENTITY_GURDY, // 36
@@ -58,7 +57,7 @@ function subvertTeleport() {
     // Thus, just manually switch to the Forgotten to avoid this bug
     const character = player.GetPlayerType();
     if (character === PlayerType.PLAYER_THESOUL) {
-      forceSwitchToForgotten();
+      forgottenSwitch();
     }
   }
 

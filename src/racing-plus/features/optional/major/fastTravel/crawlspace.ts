@@ -209,7 +209,8 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
 export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
   const variant = gridEntity.GetVariant();
 
-  // Replace special crawlspaces with teleport pads
+  // We re-implement crawlspaces that lead to the beginning of the floor as a teleport pad since it
+  // is easier to understand
   if (variant === StairsVariant.PASSAGE_TO_BEGINNING_OF_FLOOR) {
     replaceWithTeleportPad(gridEntity);
     return;

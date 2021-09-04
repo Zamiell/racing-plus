@@ -16,7 +16,6 @@ import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
-import * as switchForgotten from "./features/mandatory/switchForgotten";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
@@ -68,7 +67,6 @@ export default function initFeatureVariables(): void {
   seededTeleports.init();
   runTimer.init();
   seededFloors.init();
-  switchForgotten.init();
   detectSlideAnimation.init();
   trophy.init();
   fireworks.init();

@@ -102,7 +102,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
   player.AddBoneHearts(-12);
 
   switch (character) {
-    // 14
+    // 14, 33
     case PlayerType.PLAYER_KEEPER:
     case PlayerType.PLAYER_KEEPER_B: {
       player.AddMaxHearts(2, true); // One coin container
@@ -114,6 +114,13 @@ function debuffOnSetHealth(player: EntityPlayer) {
     case PlayerType.PLAYER_THEFORGOTTEN: {
       player.AddMaxHearts(2, true);
       player.AddHearts(1);
+      break;
+    }
+
+    // 17
+    case PlayerType.PLAYER_THESOUL: {
+      player.AddBoneHearts(1);
+      player.AddSoulHearts(1);
       break;
     }
 
