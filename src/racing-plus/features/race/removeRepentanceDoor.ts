@@ -2,8 +2,8 @@
 // Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 
 import {
+  getEffectiveStage,
   getRepentanceDoor,
-  onRepentanceStage,
   removeAllEntities,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -22,8 +22,7 @@ export function preSpawnClearAward(): void {
 }
 
 function removeRepentanceDoor() {
-  const stage = g.l.GetStage();
-  const repentanceStage = onRepentanceStage();
+  const effectiveStage = getEffectiveStage();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
 
@@ -31,8 +30,8 @@ function removeRepentanceDoor() {
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
     g.race.goal !== RaceGoal.THE_BEAST ||
-    roomType !== RoomType.ROOM_BOSS ||
-    ((!repentanceStage || stage !== 4) && (repentanceStage || stage !== 5))
+    effectiveStage !== 5 ||
+    roomType !== RoomType.ROOM_BOSS
   ) {
     return;
   }

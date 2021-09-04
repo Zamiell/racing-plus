@@ -1,4 +1,4 @@
-import { getRoomIndex, log } from "isaacscript-common";
+import { getRoomIndex } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { findFreePosition } from "../../../utilGlobals";
@@ -32,8 +32,7 @@ function spawnBossRushTrophy() {
     bossRushDone
   ) {
     const centerPos = g.r.GetCenterPos();
-    const position = findFreePosition(centerPos);
-    log("Spawning a trophy for the Boss Rush goal.");
+    const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits
     trophy.spawn(position);
   }
 }

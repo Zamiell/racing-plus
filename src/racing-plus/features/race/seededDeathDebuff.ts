@@ -176,6 +176,7 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
 
 function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const character = player.GetPlayerType();
 
   if (character === PlayerType.PLAYER_ESAU) {
@@ -189,6 +190,7 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
 
   // The golden bomb / key are tied to the particular stage
   v.run.seededDeath.stage = stage;
+  v.run.seededDeath.stageType = stageType;
 
   // Remove any golden bombs and keys
   player.RemoveGoldenBomb();
@@ -314,6 +316,7 @@ function disableSpiritShackles(player: EntityPlayer) {
 
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
   const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const character = player.GetPlayerType();
 
   if (character === PlayerType.PLAYER_ESAU) {
@@ -324,7 +327,10 @@ function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
   if (v.run.seededDeath.goldenBomb) {
     v.run.seededDeath.goldenBomb = false;
 
-    if (stage === v.run.seededDeath.stage) {
+    if (
+      stage === v.run.seededDeath.stage &&
+      stageType === v.run.seededDeath.stageType
+    ) {
       player.AddGoldenBomb();
     }
   }
@@ -332,7 +338,10 @@ function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
   if (v.run.seededDeath.goldenKey) {
     v.run.seededDeath.goldenKey = false;
 
-    if (stage === v.run.seededDeath.stage) {
+    if (
+      stage === v.run.seededDeath.stage &&
+      stageType === v.run.seededDeath.stageType
+    ) {
       player.AddGoldenKey();
     }
   }

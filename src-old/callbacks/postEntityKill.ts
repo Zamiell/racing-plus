@@ -16,9 +16,6 @@ export function mom(_entity: Entity): void {
 // EntityType.ENTITY_MOMS_HEART (78)
 // EntityType.ENTITY_HUSH (407)
 export function momsHeart(entity: Entity): void {
-  const gameFrameCount = g.g.GetFrameCount();
-  const stage = g.l.GetStage();
-
   // Fix the (vanilla) bug with Globins, Sacks, etc.
   killExtraEnemies();
 }

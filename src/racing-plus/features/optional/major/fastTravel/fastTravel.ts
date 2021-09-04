@@ -106,7 +106,8 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
           g.race.myStatus === RacerStatus.RACING &&
           g.race.goal === RaceGoal.THE_BEAST &&
           !repentanceStage &&
-          stage === 6
+          stage === 6 &&
+          roomType === RoomType.ROOM_BOSS
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }

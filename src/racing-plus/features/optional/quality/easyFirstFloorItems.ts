@@ -1,7 +1,7 @@
 // We want the player to always be able to take an item on the first floor Treasure Room without
 // spending a bomb or being forced to walk on spikes
 
-import { getRoomVariant, onRepentanceStage } from "isaacscript-common";
+import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -12,17 +12,16 @@ export function preRoomEntitySpawn(
     return undefined;
   }
 
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
   const roomVariant = getRoomVariant();
 
-  // We only care about replacing things when the room is first loading
   if (roomFrameCount !== -1) {
     return undefined;
   }
 
-  if (stage !== 1 || onRepentanceStage()) {
+  if (effectiveStage !== 1) {
     return undefined;
   }
 

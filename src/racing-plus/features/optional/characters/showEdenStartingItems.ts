@@ -1,6 +1,6 @@
 import {
+  getEffectiveStage,
   getRoomIndex,
-  onRepentanceStage,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -84,7 +84,7 @@ function setItemSprites() {
 
 // Only show the sprites in the starting room of the first floor
 function shouldShowSprites() {
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
@@ -93,8 +93,7 @@ function shouldShowSprites() {
   return (
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
-    stage === 1 &&
-    !onRepentanceStage() &&
+    effectiveStage === 1 &&
     roomIndex === startingRoomIndex
   );
 }

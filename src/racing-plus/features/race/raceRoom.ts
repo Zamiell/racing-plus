@@ -1,6 +1,7 @@
 import {
   forceNewLevelCallback,
   forceNewRoomCallback,
+  getEffectiveStage,
   getPlayers,
   getRoomIndex,
   getRoomStageID,
@@ -140,12 +141,12 @@ function gotoRaceRoom() {
     return;
   }
 
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const stageType = g.l.GetStageType();
 
   // If we not already on Cellar 1, go there
   // We use the Cellar because it is the cleanest floor
-  if (stage !== 1 || stageType !== StageType.STAGETYPE_WOTL) {
+  if (effectiveStage !== 1 || stageType !== StageType.STAGETYPE_WOTL) {
     // Since we might be going to a new floor on frame 0,
     // we have to specify that the PostNewLevel callback should fire
     forceNewLevelCallback();

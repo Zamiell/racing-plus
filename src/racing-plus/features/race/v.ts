@@ -29,6 +29,7 @@ const v = {
       goldenBomb: false,
       goldenKey: false,
       stage: null as int | null,
+      stageType: null as int | null,
       removedDarkEsau: false,
 
       switchingBackToGhostLazarus: false,

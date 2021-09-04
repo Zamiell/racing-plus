@@ -2,6 +2,7 @@ import {
   getEffectiveStage,
   getOpenTrinketSlot,
   getPlayers,
+  isKeeper,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -93,14 +94,10 @@ function checkGiveTrinket() {
 
 function giveTrinket(player: EntityPlayer) {
   const roomSeed = g.r.GetSpawnSeed();
-  const character = player.GetPlayerType();
 
   player.AnimateHappy();
 
-  if (
-    character === PlayerType.PLAYER_KEEPER ||
-    character === PlayerType.PLAYER_KEEPER_B
-  ) {
+  if (isKeeper(player)) {
     // In the special case of Keeper or Tainted Keeper, we award 15 cents instead of a trinket
     player.AddCoins(15);
     return;

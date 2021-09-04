@@ -2,10 +2,10 @@
 
 import {
   anyPlayerIs,
+  getEffectiveStage,
   getItemName,
   getRandomArrayElement,
   gridToPos,
-  onRepentanceStage,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
@@ -209,10 +209,8 @@ export function postGameStarted(): void {
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const stage = g.l.GetStage();
-
   if (shouldShowLevelText()) {
-    showLevelText(stage);
+    showLevelText();
   }
 }
 
@@ -232,10 +230,12 @@ function shouldShowLevelText() {
   );
 }
 
-function showLevelText(stage: int) {
+function showLevelText() {
+  const effectiveStage = getEffectiveStage();
+
   // Show what the new floor is
   // (the game will not show this naturally after doing a "stage" console command)
-  if (VanillaStreakText && (stage !== 1 || onRepentanceStage())) {
+  if (VanillaStreakText && effectiveStage !== 1) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
     const text = getLevelText();
@@ -255,11 +255,11 @@ export function getLevelText(): string {
 }
 
 function goingToRaceRoom() {
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
 
   return (
     g.race.status === RaceStatus.OPEN &&
-    stage === 1 &&
+    effectiveStage === 1 &&
     (g.run.roomsEntered === 0 || g.run.roomsEntered === 1)
   );
 }

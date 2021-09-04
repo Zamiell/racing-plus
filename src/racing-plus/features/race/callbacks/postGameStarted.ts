@@ -1,6 +1,7 @@
 import { log, onSetSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { unseed } from "../../../utilGlobals";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -154,9 +155,8 @@ function validateSeed() {
       g.race.format === RaceFormat.DIVERSITY) &&
     onSetSeed()
   ) {
-    // If the run started with a set seed,
-    // this will change the reset behavior to that of an unseeded run
-    g.seeds.Reset();
+    // If the run started with a set seed, change the reset behavior to that of an unseeded run
+    unseed();
 
     g.run.restart = true;
     return false;

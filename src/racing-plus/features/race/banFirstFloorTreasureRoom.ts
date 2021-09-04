@@ -1,8 +1,8 @@
 import {
+  getEffectiveStage,
   getPlayers,
   log,
   MAX_NUM_DOORS,
-  onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../globals";
 import { removeAllCollectibles } from "../../util";
@@ -62,11 +62,10 @@ export function postNewRoom(): void {
 }
 
 function shouldBanFirstFloorTreasureRoom() {
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
 
   return (
-    stage === 1 &&
-    !onRepentanceStage() &&
+    effectiveStage === 1 &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED

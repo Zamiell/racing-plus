@@ -1,6 +1,5 @@
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 import RaceGoal from "../types/RaceGoal";
 import RacerStatus from "../types/RacerStatus";
@@ -21,7 +20,6 @@ function checkSpawnHushRaceTrophy() {
     g.race.goal === RaceGoal.HUSH
   ) {
     const centerPos = g.r.GetCenterPos();
-    const position = findFreePosition(centerPos);
-    trophy.spawn(position);
+    trophy.spawn(centerPos);
   }
 }

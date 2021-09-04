@@ -2,6 +2,7 @@ import {
   getHUDOffsetVector,
   getVisibleHearts,
   hasFlag,
+  isKeeper,
 } from "isaacscript-common";
 import g from "../../../globals";
 
@@ -65,8 +66,7 @@ export function postRender(): void {
     }
   }
 
-  const animation =
-    character === PlayerType.PLAYER_KEEPER ? "Keeper_Mantle" : "Mantle";
+  const animation = isKeeper(player) ? "Keeper_Mantle" : "Mantle";
   sprite.Play(animation, true);
   const hudOffset = getHUDOffsetVector();
   const heartOffset = Vector(xOffset, yOffset);

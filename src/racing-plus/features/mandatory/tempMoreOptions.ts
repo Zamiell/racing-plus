@@ -1,7 +1,7 @@
 // In some situations, we force the first Treasure Room to have two items
 
 import {
-  onRepentanceStage,
+  getEffectiveStage,
   removeItemFromItemTracker,
   saveDataManager,
 } from "isaacscript-common";
@@ -19,16 +19,13 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();
 
   // Ensure that the "More Options" buff does not persist beyond Basement 1
   // (it is removed as soon as they enter the first Treasure Room,
   // but they might have skipped the Basement 1 Treasure Room for some reason)
-  if (
-    (stage >= 2 || (stage === 1 && onRepentanceStage())) &&
-    v.run.removeMoreOptions
-  ) {
+  if (v.run.removeMoreOptions && effectiveStage >= 2) {
     v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
   }

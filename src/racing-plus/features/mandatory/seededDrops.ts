@@ -78,7 +78,9 @@ function shouldSpawnSeededDrop(): boolean {
     onSetSeed() &&
     // Boss rooms will drop a pedestal item instead of a random pickup
     roomType !== RoomType.ROOM_BOSS &&
-    // Room drops are not supposed to happen in crawlspaces
+    // The Boss Rush will drop a pedestal item when it is cleared
+    roomType !== RoomType.ROOM_BOSSRUSH &&
+    // In vanilla, room drops will never occur in crawlspaces, even with 50 luck
     roomType !== RoomType.ROOM_DUNGEON
   );
 }

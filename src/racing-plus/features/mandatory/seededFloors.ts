@@ -4,6 +4,7 @@
 import {
   CHARACTERS_WITH_NO_RED_HEARTS,
   getRandom,
+  isKeeper,
   onSetSeed,
   saveDataManager,
 } from "isaacscript-common";
@@ -73,7 +74,6 @@ export function before(stage: int): void {
   }
 
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
   const goldenHearts = player.GetGoldenHearts();
   let seed = g.l.GetDungeonPlacementSeed();
 
@@ -146,10 +146,7 @@ export function before(stage: int): void {
     player.AddSoulHearts(2);
 
     // Keeper will get 3 Blue Flies from this, so manually remove them
-    if (
-      character === PlayerType.PLAYER_KEEPER ||
-      character === PlayerType.PLAYER_KEEPER_B
-    ) {
+    if (isKeeper(player)) {
       const blueFlies = Isaac.FindByType(
         EntityType.ENTITY_FAMILIAR,
         FamiliarVariant.BLUE_FLY,

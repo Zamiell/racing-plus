@@ -1,10 +1,12 @@
 import {
   arrayEquals,
   ensureAllCases,
+  getEffectiveStage,
   getRoomIndex,
   log,
 } from "isaacscript-common";
 import g from "../../globals";
+import { unseed } from "../../utilGlobals";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import raceStart from "./raceStart";
@@ -64,7 +66,7 @@ const functionMap = new Map<
 functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
   const newStatus = newValue as RaceStatus;
   const roomIndex = getRoomIndex();
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
   switch (newStatus) {
@@ -80,7 +82,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
     case RaceStatus.OPEN: {
       // If we are in the first room of a run, go to the race room
-      if (stage === 1 && roomIndex === startingRoomIndex) {
+      if (effectiveStage === 1 && roomIndex === startingRoomIndex) {
         g.run.restart = true;
         log("Restarting to go to the race room.");
       }
@@ -119,7 +121,7 @@ functionMap.set(
   (oldValue: RaceDataType, _newValue: RaceDataType) => {
     if (oldValue === RacerStatus.RACING) {
       // After racing on a set seed, automatically reset the game state to that of an unseeded run
-      g.seeds.Reset();
+      unseed();
     }
 
     raceRoom.myStatusChanged();

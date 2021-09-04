@@ -17,6 +17,7 @@ import { speedrunSetNext } from "../features/speedrun/v";
 import g from "../globals";
 import PILL_MAP from "../pillMap";
 import { consoleCommand, restartAsCharacter } from "../util";
+import { unseed } from "../utilGlobals";
 import {
   angel,
   blackMarket,
@@ -531,7 +532,7 @@ functionMap.set("treasure", (_params: string) => {
 });
 
 functionMap.set("unseed", (_params: string) => {
-  g.seeds.Reset();
+  unseed();
   consoleCommand("restart");
 });
 

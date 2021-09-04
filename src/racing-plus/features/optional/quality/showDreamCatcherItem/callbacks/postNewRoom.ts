@@ -58,7 +58,7 @@ function warp() {
 
   const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
   let bossRoomIndex: int | null = null;
-  if (stage >= 1 && stage <= 7) {
+  if (stage !== 6 && stage <= 7) {
     // We don't need to show what the boss is for floors that always have the same boss
     bossRoomIndex = getRoomIndexForType(RoomType.ROOM_BOSS);
   }
@@ -182,15 +182,26 @@ function getRoomBosses() {
 }
 
 function isBossException(type: EntityType, variant: int) {
-  if (type === EntityType.ENTITY_GEMINI) {
-    // 79.10 is Gemini Baby
-    // 79.11 is Stephen Baby
-    // 79.12 is The Blighted Ovum Baby
-    // 79.20 is Umbilical Cord
-    return variant === 10 || variant === 11 || variant === 12 || variant === 20;
-  }
+  switch (type) {
+    // 45
+    case EntityType.ENTITY_MOM: {
+      return variant === MomVariant.STOMP;
+    }
 
-  return false;
+    // 79
+    case EntityType.ENTITY_GEMINI: {
+      return (
+        variant === GeminiVariant.GEMINI_BABY ||
+        variant === GeminiVariant.STEVEN_BABY ||
+        variant === GeminiVariant.BLIGHTED_OVUM_BABY ||
+        variant === GeminiVariant.UMBILICAL_CORD
+      );
+    }
+
+    default: {
+      return false;
+    }
+  }
 }
 
 function resetRoomState(roomIndex: int) {

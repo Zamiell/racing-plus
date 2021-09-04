@@ -1,14 +1,14 @@
 ```
 ### *v0.63.1* - September 3rd, 2021
 
-- Re-coded the "charge pocket item first" feature such that it will work with a wider-range of charging situations than it did previously, including Battery Bums, Golden Batteries, and so on.
-- The heart UI sprites have been modified so that it is easier to see an empty red heart container on a black background.
-- When playing as The Lost & Tainted Lost, the hearts will now show in the UI.
-- The presence of a Holy Mantle shield is now shown on the hearts UI.
-- Pressing F1 will now show the version of Racing+ on the screen.
-- Fixed the bug where Moonlights from Luna were incorrectly deleted. (Thanks sisuka)
-- Fixed the bug where in season 1, the first Devil Room would be empty if you got there on Downpour 1. (Thanks Moucheron Quipet)
+- Fixed the bug where quitting a race could cause specific types of errors to occur. (Thanks cutifire)
+- Fixed the bug where the holy mantle indicator was shaped incorrectly on Tainted Keeper. (Thanks Finalkids)
+- Fixed the bug where Dream Catcher would cause an error on Depths 2. (Thanks Finalkids)
+- Fixed the bug where the Boss Rush would not spawn the proper reward when playing on a set seed. (Thanks Bamiot)
+- Fixed the bug with seeded death where it would not apply to The Lost or Tainted Lost. (Thanks cutifire)
 ```
+
+- test dying on The Soul
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

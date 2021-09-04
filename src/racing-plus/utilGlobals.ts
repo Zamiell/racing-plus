@@ -175,3 +175,12 @@ export function spawnCollectible(
 
   return collectible;
 }
+
+export function unseed(): void {
+  // Invoking the "Reset()" method will cause the log to be spammed with:
+  // [ASSERT] - Error: Game Start Seed was not set.
+  // It will also cause the "GetStartSeed()" method to return 0, which can cause crashes
+  // So we must immediately re-initialize the game start seed by using the "Restart()" method
+  g.seeds.Reset();
+  g.seeds.Restart(0);
+}

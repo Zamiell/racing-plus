@@ -1,6 +1,7 @@
 import {
   disableAllInputs,
   enableAllInputs,
+  getDeathAnimationName,
   getFinalFrameOfAnimation,
   getPlayerFromIndex,
   getPlayerIndex,
@@ -9,6 +10,7 @@ import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   inBeastRoom,
   isJacobOrEsau,
+  isKeeper,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
   willReviveFromSpiritShackles,
@@ -125,7 +127,6 @@ function postRenderFetalPosition() {
   }
 
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
   const sprite = player.GetSprite();
 
   if (sprite.IsPlaying("AppearVanilla")) {
@@ -137,10 +138,7 @@ function postRenderFetalPosition() {
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
   // We grant it here so that it does not cancel the "AppearVanilla" animation
-  if (
-    character === PlayerType.PLAYER_KEEPER ||
-    character === PlayerType.PLAYER_KEEPER_B
-  ) {
+  if (isKeeper(player)) {
     player.UseCard(Card.CARD_HOLY);
   }
 }
@@ -243,8 +241,8 @@ export function postPlayerRender(player: EntityPlayer): void {
   }
 
   const sprite = player.GetSprite();
-  const animation = sprite.GetAnimation();
-  if (animation !== "Death") {
+  const deathAnimation = getDeathAnimationName(player);
+  if (!sprite.IsPlaying(deathAnimation)) {
     return;
   }
 
