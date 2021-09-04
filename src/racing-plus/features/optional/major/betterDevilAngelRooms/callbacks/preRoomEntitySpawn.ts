@@ -1,6 +1,7 @@
 import { inAngelShop } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
+import { EffectVariantCustom } from "../../../../../types/enums";
 
 // On the first visit to the room, remove all of the things in it
 export default function betterDevilAngelRoomsPreRoomEntitySpawn(
@@ -44,7 +45,8 @@ export default function betterDevilAngelRoomsPreRoomEntitySpawn(
 
 function removeAllGridEntities(entityType: EntityType): [int, int, int] | void {
   if (entityType >= 1000) {
-    return [999, 0, 0]; // Equal to 1000.0, which is a blank effect, which is essentially nothing
+    // In this callback, 999 is equal to 1000 (i.e. EntityType.ENTITY_EFFECT)
+    return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
   }
 
   return undefined;

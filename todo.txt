@@ -5,6 +5,7 @@
 - Fixed the bug where the holy mantle indicator was shaped incorrectly on Tainted Keeper. (Thanks Finalkids)
 - Fixed the bug where Dream Catcher would cause an error on Depths 2. (Thanks Finalkids)
 - Fixed the bug where the Boss Rush would not spawn the proper reward when playing on a set seed. (Thanks Bamiot)
+- Fixed the bug with The Beast races where the trapdoor was incorrectly removed after Mom if you left the room. (Thanks cutifire)
 - Fixed the bug with seeded death where it would not apply to The Lost or Tainted Lost. (Thanks cutifire)
 ```
 

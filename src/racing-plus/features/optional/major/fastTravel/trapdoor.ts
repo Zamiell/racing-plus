@@ -95,6 +95,7 @@ function shouldRemove() {
   const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const roomFrameCount = g.r.GetFrameCount();
   const roomIndex = getRoomIndex();
   const repentanceStage = onRepentanceStage();
 
@@ -209,11 +210,15 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.THE_BEAST &&
+    !repentanceStage &&
     stage === 6 &&
+    // Not spawned after killing mom or not spawned immediately after re-entering the room
     !(
       roomType === RoomType.ROOM_BOSS &&
-      v.room.momKilledFrame !== null &&
-      gameFrameCount === v.room.momKilledFrame + FRAME_DELAY_AFTER_KILLING_MOM
+      ((v.room.momKilledFrame !== null &&
+        gameFrameCount ===
+          v.room.momKilledFrame + FRAME_DELAY_AFTER_KILLING_MOM) ||
+        roomFrameCount === 0)
     )
   ) {
     log(

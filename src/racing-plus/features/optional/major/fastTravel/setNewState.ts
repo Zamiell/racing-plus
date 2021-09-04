@@ -103,8 +103,7 @@ function setGameStateFlags() {
     g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
     stage === 6 &&
-    roomType === RoomType.ROOM_BOSS &&
-    v.room.momKilledFrame !== null
+    roomType === RoomType.ROOM_BOSS
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);

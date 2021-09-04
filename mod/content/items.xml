@@ -6,32 +6,52 @@
 	<!-- Utility items -->
 	<passive description="" gfx="Trophy.png" name="Trophy" hidden="true" />
 	<passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" />
-	<passive description="Reset to the first character" name="Reset" hidden="true" />
+	<passive description="Reset to the first character" gfx="questionmark.png" name="Reset" hidden="true" />
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" />
 
 	<!-- Placeholders -->
-	<passive description="" name="Magic Mushroom Placeholder" quality="4" tags="offensive" /> <!-- 12 -->
-	<passive description="" name="Sacred Heart Placeholder" quality="4" tags="offensive" /> <!-- 182 -->
-	<passive description="" name="Death's Touch Placeholder" quality="4" tags="offensive" /> <!-- 237 -->
-	<!-- We do not give the Judas' Shadow Placeholder a "offensive" tag to match how it is in vanilla -->
-	<passive description="" name="Judas' Shadow Placeholder" quality="4" /> <!-- 311 -->
-	<passive description="" name="Godhead Placeholder" quality="4" tags="offensive" /> <!-- 331 -->
-	<passive description="" name="Incubus Placeholder" quality="4" tags="offensive" /> <!-- 360 -->
-	<passive description="" name="Maw of the Void Placeholder" quality="4" tags="offensive" /> <!-- 399 -->
-	<passive description="" name="Crown of Light Placeholder" quality="4" tags="offensive" /> <!-- 415 -->
-	<passive description="" name="Twisted Pair Placeholder" quality="4" tags="offensive" /> <!-- 698 -->
+	<!-- 12 -->
+	<passive description="" gfx="questionmark.png" name="Magic Mushroom Placeholder" quality="4" tags="offensive" />
+	<!-- 182 -->
+	<passive description="" gfx="questionmark.png" name="Sacred Heart Placeholder" quality="4" tags="offensive" />
+	<!-- 237 -->
+	<passive description="" gfx="questionmark.png" name="Death's Touch Placeholder" quality="4" tags="offensive" />
+	<!-- 311 - We do not give the Judas' Shadow Placeholder a "offensive" tag to match how it is in vanilla -->
+	<passive description="" gfx="questionmark.png" name="Judas' Shadow Placeholder" quality="4" />
+	<!-- 331 -->
+	<passive description="" gfx="questionmark.png" name="Godhead Placeholder" quality="4" tags="offensive" />
+	<!-- 360 -->
+	<passive description="" gfx="questionmark.png" name="Incubus Placeholder" quality="4" tags="offensive" />
+	<!-- 399 -->
+	<passive description="" gfx="questionmark.png" name="Maw of the Void Placeholder" quality="4" tags="offensive" />
+	<!-- 415 -->
+	<passive description="" gfx="questionmark.png" name="Crown of Light Placeholder" quality="4" tags="offensive" />
+	<!-- 698 -->
+	<passive description="" gfx="questionmark.png" name="Twisted Pair Placeholder" quality="4" tags="offensive" />
 
 	<!-- Transformation helpers -->
-	<passive description="" name="Guppy Transformation Helper" hidden="true" tags="guppy quest" /> <!-- 0 -->
-	<passive description="" name="Beelzebub Transformation Helper" hidden="true" tags="fly quest" /> <!-- 1 -->
-	<passive description="" name="Fun Guy Transformation Helper" hidden="true" tags="mushroom quest" /> <!-- 2 -->
-	<passive description="" name="Seraphim Transformation Helper" hidden="true" tags="angel quest" /> <!-- 3 -->
-	<passive description="" name="Bob Transformation Helper" hidden="true" tags="bob quest" /> <!-- 4 -->
-	<passive description="" name="Spun Transformation Helper" hidden="true" tags="syringe quest" /> <!-- 5 -->
-	<passive description="" name="Yes Mother Transformation Helper" hidden="true" tags="mom quest" /> <!-- 6 -->
-	<passive description="" name="Conjoined Transformation Helper" hidden="true" tags="baby quest" /> <!-- 7 -->
-	<passive description="" name="Leviathan Transformation Helper" hidden="true" tags="devil quest" /> <!-- 8 -->
-	<passive description="" name="Oh Crap Transformation Helper" hidden="true" tags="poop quest" /> <!-- 9 -->
-	<passive description="" name="Bookworm Transformation Helper" hidden="true" tags="book quest" /> <!-- 10 -->
-	<passive description="" name="Spider Baby Transformation Helper" hidden="true" tags="spider quest" /> <!-- 12 -->
+	<!-- 0 -->
+	<passive description="" gfx="questionmark.png" name="Guppy Transformation Helper" hidden="true" tags="guppy quest" />
+	<!-- 1 -->
+	<passive description="" gfx="questionmark.png" name="Beelzebub Transformation Helper" hidden="true" tags="fly quest" />
+	<!-- 2 -->
+	<passive description="" gfx="questionmark.png" name="Fun Guy Transformation Helper" hidden="true" tags="mushroom quest" />
+	<!-- 3 -->
+	<passive description="" gfx="questionmark.png" name="Seraphim Transformation Helper" hidden="true" tags="angel quest" />
+	<!-- 4 -->
+	<passive description="" gfx="questionmark.png" name="Bob Transformation Helper" hidden="true" tags="bob quest" />
+	<!-- 5 -->
+	<passive description="" gfx="questionmark.png" name="Spun Transformation Helper" hidden="true" tags="syringe quest" />
+	<!-- 6 -->
+	<passive description="" gfx="questionmark.png" name="Yes Mother Transformation Helper" hidden="true" tags="mom quest" />
+	<!-- 7 -->
+	<passive description="" gfx="questionmark.png" name="Conjoined Transformation Helper" hidden="true" tags="baby quest" />
+	<!-- 8 -->
+	<passive description="" gfx="questionmark.png" name="Leviathan Transformation Helper" hidden="true" tags="devil quest" />
+	<!-- 9 -->
+	<passive description="" gfx="questionmark.png" name="Oh Crap Transformation Helper" hidden="true" tags="poop quest" />
+	<!-- 10 -->
+	<passive description="" gfx="questionmark.png" name="Bookworm Transformation Helper" hidden="true" tags="book quest" />
+	<!-- 12 -->
+	<passive description="" gfx="questionmark.png" name="Spider Baby Transformation Helper" hidden="true" tags="spider quest" />
 </items>
