@@ -8,7 +8,7 @@ import {
 import CARD_MAP from "../cardMap";
 import CHARACTER_MAP from "../characterMap";
 import { VERSION } from "../constants";
-import debugFunction, { debugFunction2 } from "../debugFunction";
+import debugFunction from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
@@ -214,10 +214,6 @@ functionMap.set("dd", (params: string) => {
 functionMap.set("debug", (_params: string) => {
   print("Executing debug function.");
   debugFunction();
-});
-
-functionMap.set("debug2", (_params: string) => {
-  debugFunction2();
 });
 
 functionMap.set("devil", (params: string) => {

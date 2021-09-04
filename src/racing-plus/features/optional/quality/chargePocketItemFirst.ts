@@ -168,12 +168,83 @@ export function postPickupCollect(
     return;
   }
 
-  const chargeSituation = getChargeSituationForPickup(pickup);
+  const chargeSituation = getChargeSituationForPickup(
+    pickup.Variant,
+    pickup.SubType,
+  );
   checkSwitchCharge(player, chargeSituation);
 }
 
-function getChargeSituationForPickup(pickup: EntityPickup): ChargeSituation {
-  switch (pickup.Variant) {
+// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ItemType.ITEM_PASSIVE (1)
+// CollectibleType.COLLECTIBLE_9_VOLT (116)
+export function postItemPickup9Volt(player: EntityPlayer): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
+
+  const chargeSituation = {
+    chargeType: ChargeType.FULL,
+  };
+  checkSwitchCharge(player, chargeSituation);
+}
+
+// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ItemType.ITEM_PASSIVE (1)
+// CollectibleType.COLLECTIBLE_BATTERY_PACK (603)
+export function postItemPickupBatteryPack(player: EntityPlayer): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
+
+  const chargeSituation = {
+    chargeType: ChargeType.FULL,
+  };
+  checkSwitchCharge(player, chargeSituation);
+}
+
+// ModCallbacksCustom.MC_POST_PURCHASE
+export function postPurchase(
+  player: EntityPlayer,
+  pickupVariant: PickupVariant,
+  pickupSubType: int,
+): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
+
+  const chargeSituation = getChargeSituationForPickup(
+    pickupVariant,
+    pickupSubType,
+  );
+  checkSwitchCharge(player, chargeSituation);
+}
+
+// ModCallbacksCustom.MC_POST_SLOT_UPDATE
+// SlotVariant.BATTERY_BUM (13)
+export function postSlotUpdateBatteryBum(slot: Entity): void {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  const ptrHash = GetPtrHash(slot);
+  const lastAnimation = v.room.batteryBumAnimationMap.get(ptrHash);
+  const sprite = slot.GetSprite();
+  const animation = sprite.GetAnimation();
+  if (animation === lastAnimation) {
+    return;
+  }
+  v.room.batteryBumAnimationMap.set(ptrHash, animation);
+
+  if (animation === "Prize") {
+    v.run.checkForBatteryBumChargesUntilFrame =
+      gameFrameCount + BATTERY_BUM_CHARGE_DELAY_FRAMES;
+  }
+}
+
+function getChargeSituationForPickup(
+  pickupVariant: PickupVariant,
+  pickupSubType: int,
+): ChargeSituation {
+  switch (pickupVariant) {
     // 20
     case PickupVariant.PICKUP_COIN: {
       return {
@@ -184,7 +255,7 @@ function getChargeSituationForPickup(pickup: EntityPickup): ChargeSituation {
 
     // 30
     case PickupVariant.PICKUP_KEY: {
-      if (pickup.SubType === KeySubType.KEY_CHARGED) {
+      if (pickupSubType === KeySubType.KEY_CHARGED) {
         return {
           chargeType: ChargeType.FULL,
         };
@@ -197,7 +268,7 @@ function getChargeSituationForPickup(pickup: EntityPickup): ChargeSituation {
 
     // 90
     case PickupVariant.PICKUP_LIL_BATTERY: {
-      return getChargeSituationForBattery(pickup);
+      return getChargeSituationForBattery(pickupSubType);
     }
 
     default: {
@@ -208,9 +279,7 @@ function getChargeSituationForPickup(pickup: EntityPickup): ChargeSituation {
   }
 }
 
-function getChargeSituationForBattery(pickup: EntityPickup) {
-  const batterySubType = pickup.SubType as BatterySubType;
-
+function getChargeSituationForBattery(batterySubType: BatterySubType) {
   switch (batterySubType) {
     case BatterySubType.BATTERY_NORMAL: {
       return {
@@ -366,24 +435,4 @@ function needsCharge(
     hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
 
   return totalCharge < adjustedMaxCharges;
-}
-
-// ModCallbacksCustom.MC_POST_SLOT_UPDATE
-// SlotVariant.BATTERY_BUM (13)
-export function postSlotUpdateBatteryBum(slot: Entity): void {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  const ptrHash = GetPtrHash(slot);
-  const lastAnimation = v.room.batteryBumAnimationMap.get(ptrHash);
-  const sprite = slot.GetSprite();
-  const animation = sprite.GetAnimation();
-  if (animation === lastAnimation) {
-    return;
-  }
-  v.room.batteryBumAnimationMap.set(ptrHash, animation);
-
-  if (animation === "Prize") {
-    v.run.checkForBatteryBumChargesUntilFrame =
-      gameFrameCount + BATTERY_BUM_CHARGE_DELAY_FRAMES;
-  }
 }

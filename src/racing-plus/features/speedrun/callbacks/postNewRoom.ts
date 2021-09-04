@@ -1,4 +1,8 @@
-import { getPlayers, getRandomInt } from "isaacscript-common";
+import {
+  getEffectiveStage,
+  getPlayers,
+  getRandomInt,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { removeAllCollectibles } from "../../../util";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
@@ -22,10 +26,10 @@ function checkFirstCharacterFirstFloorDevilRoom() {
     return;
   }
 
-  const stage = g.l.GetStage();
+  const effectiveStage = getEffectiveStage();
   const roomType = g.r.GetType();
 
-  if (stage !== 1) {
+  if (effectiveStage !== 1) {
     return;
   }
 

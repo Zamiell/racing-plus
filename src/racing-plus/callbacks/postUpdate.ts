@@ -1,3 +1,4 @@
+import * as debugFunction from "../debugFunction";
 import changeCharOrderPostUpdate from "../features/changeCharOrder/callbacks/postUpdate";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
@@ -21,6 +22,7 @@ export function main(): void {
   showLevelText.postUpdate();
   runTimer.postUpdate();
   debugPowers.postUpdate();
+  debugFunction.postUpdate();
 
   // Major features
   racePostUpdate();

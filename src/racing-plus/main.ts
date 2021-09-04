@@ -58,6 +58,7 @@ import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
+import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postSlotUpdate from "./callbacksCustom/postSlotUpdate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
@@ -214,6 +215,8 @@ function registerCallbacksCustom(mod: ModUpgraded) {
     postTransformation.main,
   );
 
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_PURCHASE, postPurchase.main);
+
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_SACRIFICE,
     postSacrifice.main,
@@ -226,6 +229,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
+  postItemPickup.init(mod);
   postCustomRevive.init(mod);
   postSlotUpdate.init(mod);
   postGridEntityInit.init(mod);

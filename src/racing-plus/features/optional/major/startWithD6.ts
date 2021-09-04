@@ -21,7 +21,6 @@ import {
   inGenesisRoom,
   isJacobOrEsau,
   log,
-  PickingUpItem,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -143,25 +142,10 @@ function changedCharacterInSomeWay(
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
-export function postItemPickup(
-  player: EntityPlayer,
-  pickingUpItem: PickingUpItem,
-): void {
+// ItemType.ITEM_PASSIVE (1)
+// CollectibleType.COLLECTIBLE_BIRTHRIGHT (619)
+export function postItemPickupBirthright(player: EntityPlayer): void {
   if (!config.startWithD6) {
-    return;
-  }
-
-  replaceTaintedForgottenRecall(player, pickingUpItem);
-}
-
-function replaceTaintedForgottenRecall(
-  player: EntityPlayer,
-  pickingUpItem: PickingUpItem,
-) {
-  if (
-    pickingUpItem.type !== ItemType.ITEM_PASSIVE ||
-    pickingUpItem.id !== CollectibleType.COLLECTIBLE_BIRTHRIGHT
-  ) {
     return;
   }
 

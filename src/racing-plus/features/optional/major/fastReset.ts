@@ -1,5 +1,6 @@
 import {
   isActionTriggeredOnAnyInput,
+  isKeyboardPressed,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -43,12 +44,12 @@ function checkResetInput() {
   // Don't fast-reset if any modifiers are pressed
   // (with the exception of shift, since the speedrunner MasterOfPotato uses shift)
   if (
-    Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, 0) || // 341
-    Input.IsButtonPressed(Keyboard.KEY_LEFT_ALT, 0) || // 342
-    Input.IsButtonPressed(Keyboard.KEY_LEFT_SUPER, 0) || // 343
-    Input.IsButtonPressed(Keyboard.KEY_RIGHT_CONTROL, 0) || // 345
-    Input.IsButtonPressed(Keyboard.KEY_RIGHT_ALT, 0) || // 346
-    Input.IsButtonPressed(Keyboard.KEY_RIGHT_SUPER, 0) // 347
+    isKeyboardPressed(Keyboard.KEY_LEFT_CONTROL) || // 341
+    isKeyboardPressed(Keyboard.KEY_LEFT_ALT) || // 342
+    isKeyboardPressed(Keyboard.KEY_LEFT_SUPER) || // 343
+    isKeyboardPressed(Keyboard.KEY_RIGHT_CONTROL) || // 345
+    isKeyboardPressed(Keyboard.KEY_RIGHT_ALT) || // 346
+    isKeyboardPressed(Keyboard.KEY_RIGHT_SUPER) // 347
   ) {
     return;
   }

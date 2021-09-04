@@ -7,6 +7,7 @@
 - The presence of a Holy Mantle shield is now shown on the hearts UI.
 - Pressing F1 will now show the version of Racing+ on the screen.
 - Fixed the bug where Moonlights from Luna were incorrectly deleted. (Thanks sisuka)
+- Fixed the bug where in season 1, the first Devil Room would be empty if you got there on Downpour 1. (Thanks Moucheron Quipet)
 ```
 
 TODO Racing+ new features:

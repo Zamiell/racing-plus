@@ -1,4 +1,8 @@
-import { getScreenCenter, saveDataManager } from "isaacscript-common";
+import {
+  getScreenCenter,
+  isKeyboardPressed,
+  saveDataManager,
+} from "isaacscript-common";
 import { VERSION } from "../../constants";
 import g from "../../globals";
 
@@ -21,7 +25,7 @@ export function postRender(): void {
   }
 
   // Make the version persist for at least 2 seconds after the player presses "v"
-  if (Input.IsButtonPressed(Keyboard.KEY_F1, 0)) {
+  if (isKeyboardPressed(Keyboard.KEY_F1)) {
     v.run.showVersionFrame = gameFrameCount + 60;
   }
 
