@@ -29,6 +29,7 @@ import * as startWithD6 from "./features/optional/major/startWithD6";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
+import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChargeBar";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
@@ -87,6 +88,7 @@ export default function initFeatureVariables(): void {
   showPills.init();
   showNumSacrifices.init();
   showEdenStartingItems.init();
+  leadPencilChargeBar.init();
   showDreamCatcherItemVars.init();
   showMaxFamiliars.init();
   speedUpFadeIn.init();

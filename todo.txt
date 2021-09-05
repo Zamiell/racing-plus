@@ -1,11 +1,7 @@
 ```
-### *v0.63.4* - September 4th, 2021
+### *v0.63.4* - September 6th, 2021
 
-- Lead Pencil now shows a charge bar.
-- Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
-- Scared Hearts now have a custom animation so that they are easier to identify.
-- Sticky Nickels now have a custom effect so that they are easier to identify.
-- Made the hands in Chest room #193 symmetric.
+-
 ```
 
 TODO Racing+ new features:
