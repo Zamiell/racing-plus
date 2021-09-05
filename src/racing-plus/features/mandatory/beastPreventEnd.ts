@@ -36,7 +36,14 @@ export function postNewRoom(): void {
   // If we do nothing, The Beast fight will begin again
   // If we remove all of the Beast entities, it will trigger the credits
   // Instead, we spawn another Beast to prevent the fight from beginning
-  Isaac.Spawn(EntityType.ENTITY_BEAST, 0, 0, Vector.Zero, Vector.Zero, null);
+  Isaac.Spawn(
+    EntityType.ENTITY_BEAST,
+    0,
+    0,
+    Vector.Zero,
+    Vector.Zero,
+    undefined,
+  );
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   Isaac.Spawn(
@@ -45,6 +52,6 @@ export function postNewRoom(): void {
     0,
     centerPos,
     Vector.Zero,
-    null,
+    undefined,
   );
 }

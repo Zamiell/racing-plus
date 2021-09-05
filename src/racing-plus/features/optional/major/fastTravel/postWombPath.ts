@@ -192,7 +192,7 @@ function spawnHeavenDoor(position: Vector) {
     0,
     position,
     Vector.Zero,
-    null,
+    undefined,
   );
 }
 

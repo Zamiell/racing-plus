@@ -75,7 +75,7 @@ function emulateClearingNormalChallengeBossRoom() {
 
 function setRepentanceDoors() {
   const door = getRepentanceDoor();
-  if (door === null) {
+  if (door === undefined) {
     return;
   }
 
@@ -133,7 +133,7 @@ function spawnTrapdoorInBossRooms() {
   const trapdoorPosition = getTrapdoorPosition();
   const gridIndex = g.r.GetGridIndex(trapdoorPosition);
   const gridEntity = g.r.GetGridEntity(gridIndex);
-  if (gridEntity !== null) {
+  if (gridEntity !== undefined) {
     removeGridEntity(gridEntity);
   }
   const trapdoor = Isaac.GridSpawn(
@@ -190,8 +190,8 @@ function clearSurroundingTiles(centerGridEntity: GridEntity) {
       gridEntity.Destroy(true);
     } else if (gridEntityType === GridEntityType.GRID_PIT) {
       const pit = gridEntity.ToPit();
-      if (pit !== null) {
-        pit.MakeBridge(null);
+      if (pit !== undefined) {
+        pit.MakeBridge(undefined);
       }
     }
   }
@@ -201,7 +201,7 @@ function clearSurroundingTiles(centerGridEntity: GridEntity) {
 // GridEntityType.GRID_DOOR (16)
 export function postGridEntityUpdateDoor(gridEntity: GridEntity): void {
   const door = gridEntity.ToDoor();
-  if (door !== null && isRepentanceDoor(door)) {
+  if (door !== undefined && isRepentanceDoor(door)) {
     updateRepentanceDoorState(door);
   }
 }

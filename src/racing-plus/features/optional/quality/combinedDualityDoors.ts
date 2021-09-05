@@ -42,7 +42,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   }
 
   const door = g.r.GetDoor(v.room.modifiedDevilDoorSlot);
-  if (door === null) {
+  if (door === undefined) {
     return;
   }
 
@@ -64,7 +64,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   // then re-calling the "InitializeDevilAngelRoom()" method below will do nothing
   // We can work around this by deleting the room data, which will allow the method to work again
   const room = g.l.GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX);
-  room.Data = null;
+  room.Data = undefined;
 
   if (playerOnDevilSide) {
     g.l.InitializeDevilAngelRoom(false, true);
@@ -140,7 +140,7 @@ function checkModifyDevilRoomDoor() {
     return;
   }
   const door = devilRoomDoor === null ? angelRoomDoor : devilRoomDoor;
-  if (door === null) {
+  if (door === undefined) {
     return;
   }
 

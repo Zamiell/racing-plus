@@ -123,7 +123,7 @@ functionMap.set("cards", (_params: string) => {
         cardNum,
         position,
         Vector.Zero,
-        null,
+        undefined,
       );
       cardNum += 1;
     }
@@ -242,7 +242,7 @@ functionMap.set("effects", (_params: string) => {
   }
   for (let i = 0; i < effectsList.Size; i++) {
     const effect = effectsList.Get(i);
-    if (effect !== null) {
+    if (effect !== undefined) {
       log(`${i + 1} - ${effect.Item.Name}`);
     }
   }
@@ -320,10 +320,57 @@ functionMap.set("list", (_params: string) => {
     let debugString = `${i + 1}  - ${entity.Type}.${entity.Variant}.${
       entity.SubType
     }`;
-    const npc = entity.ToNPC();
-    if (npc !== null) {
-      debugString += `.${npc.State}`;
+
+    const bomb = entity.ToBomb();
+    if (bomb !== undefined) {
+      debugString += " (bomb)";
     }
+
+    const effect = entity.ToEffect();
+    if (effect !== undefined) {
+      debugString += `.${effect.State} (effect)`;
+    }
+
+    const familiar = entity.ToFamiliar();
+    if (familiar !== undefined) {
+      debugString += `.${familiar.State} (familiar)`;
+    }
+
+    const knife = entity.ToKnife();
+    if (knife !== undefined) {
+      debugString += " (knife)";
+    }
+
+    const laser = entity.ToLaser();
+    if (laser !== undefined) {
+      debugString += " (laser)";
+    }
+
+    const npc = entity.ToNPC();
+    if (npc !== undefined) {
+      debugString += `.${npc.State} (NPC)`;
+    }
+
+    const pickup = entity.ToPickup();
+    if (pickup !== undefined) {
+      debugString += `.${pickup.State} (pickup)`;
+    }
+
+    const player = entity.ToPlayer();
+    if (player !== undefined) {
+      debugString += " (player)";
+    }
+
+    const projectile = entity.ToProjectile();
+    if (projectile !== undefined) {
+      debugString += " (projectile)";
+    }
+
+    const tear = entity.ToTear();
+    if (tear !== undefined) {
+      debugString += " (tear)";
+    }
+
     debugString += ` (InitSeed: ${entity.InitSeed})`;
     log(debugString);
   }
@@ -398,7 +445,7 @@ functionMap.set("pills", (_params: string) => {
         subType,
         position,
         Vector.Zero,
-        null,
+        undefined,
       );
 
       pillColor += 1;

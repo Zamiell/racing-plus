@@ -173,7 +173,7 @@ function spawnGridEntity(
     // const gridIndex = g.r.GetGridIndex(gridEntity.Position);
     // g.r.SetGridPath(gridIndex, GridPath.PIT);
     const pit = gridEntity.ToPit();
-    if (pit !== null) {
+    if (pit !== undefined) {
       pit.UpdateCollision();
     }
   }
@@ -210,7 +210,7 @@ function spawnNormalEntity(
       variant,
       position,
       Vector.Zero,
-      null,
+      undefined,
       subtype,
       seed,
     );

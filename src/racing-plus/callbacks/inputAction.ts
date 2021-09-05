@@ -10,7 +10,7 @@ export function init(mod: Mod): void {
 
 // InputHook.IS_ACTION_TRIGGERED (1)
 function isActionTriggered(
-  entity: Entity | null,
+  entity: Entity | undefined,
   _inputHook: InputHook,
   buttonAction: ButtonAction,
 ) {

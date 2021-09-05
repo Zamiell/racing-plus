@@ -66,7 +66,7 @@ export default function betterDevilAngelRoomsPostNewRoom(): void {
 function removeDecorationSprites() {
   for (const gridIndex of v.level.spawnedDecorationGridIndexes) {
     const gridEntity = g.r.GetGridEntity(gridIndex);
-    if (gridEntity !== null) {
+    if (gridEntity !== undefined) {
       removeSprite(gridEntity);
     }
   }
@@ -82,7 +82,7 @@ function respawnPersistentEntities() {
       persistentEntity.subType,
       position,
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 }
@@ -99,7 +99,7 @@ function removePickupsAndSlotsAndNPCs() {
     if (
       entity.Type === EntityType.ENTITY_PICKUP ||
       entity.Type === EntityType.ENTITY_SLOT ||
-      (npc !== null &&
+      (npc !== undefined &&
         !npc.HasEntityFlags(EntityFlag.FLAG_CHARM) &&
         !npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY) &&
         !npc.HasEntityFlags(EntityFlag.FLAG_PERSISTENT))

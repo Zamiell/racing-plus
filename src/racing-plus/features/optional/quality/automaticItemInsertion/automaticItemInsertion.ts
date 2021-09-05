@@ -214,7 +214,7 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
   let closestPickup: EntityPickup | null = null;
   for (const pickupEntity of pickups) {
     const pickup = pickupEntity.ToPickup();
-    if (pickup === null) {
+    if (pickup === undefined) {
       continue;
     }
 
@@ -255,7 +255,7 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
     const [lookingForPickupVariant, playerIndex] = v.room.pickupQueue[i];
 
     const player = getPlayerFromIndex(playerIndex);
-    if (player === null) {
+    if (player === undefined) {
       continue;
     }
 

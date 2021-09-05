@@ -53,8 +53,8 @@ function getAttachedLilHaunts(haunt: EntityNPC) {
     // Only target Lil' Haunts attached to this Haunt
     const npc = lilHaunt.ToNPC();
     if (
-      npc !== null &&
-      npc.Parent !== null &&
+      npc !== undefined &&
+      npc.Parent !== undefined &&
       GetPtrHash(npc.Parent) === hauntPtrHash
     ) {
       childrenLilHaunts.push(npc);

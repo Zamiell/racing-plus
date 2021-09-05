@@ -170,7 +170,7 @@ function spawnSeededDrop(): void {
         pickupVariant,
         position,
         Vector.Zero,
-        null,
+        undefined,
         subType,
         rng.Next(),
       );

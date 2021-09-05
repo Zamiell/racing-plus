@@ -21,7 +21,7 @@ export function postEntityKillLamb(_entity: Entity): void {
       0,
       Vector.Zero,
       Vector.Zero,
-      null,
+      undefined,
     );
     log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
     // (this will not work to delay the room clearing if "debug 10" is turned on)
@@ -59,6 +59,6 @@ function emulateRoomClear() {
     0,
     position,
     Vector.Zero,
-    null,
+    undefined,
   );
 }

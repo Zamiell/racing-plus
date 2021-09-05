@@ -45,7 +45,10 @@ export function postNewRoom(): void {
   if (!v.run.placeholdersRemoved) {
     const lastRoomDesc = g.l.GetLastRoomDesc();
     const lastRoomData = lastRoomDesc.Data;
-    if (lastRoomData !== null && lastRoomData.Type === RoomType.ROOM_TREASURE) {
+    if (
+      lastRoomData !== undefined &&
+      lastRoomData.Type === RoomType.ROOM_TREASURE
+    ) {
       removePlaceholdersFromPools();
     }
   }

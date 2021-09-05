@@ -280,13 +280,13 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         0,
         position,
         Vector.Zero,
-        null,
+        undefined,
       ).ToEffect();
 
       // This will get naturally initialized by the fast-travel system on the next frame
       // However, we explicitly initialize it now to prevent indexing errors later on this frame
       // (when the room is cleared)
-      if (heavenDoor !== null) {
+      if (heavenDoor !== undefined) {
         fastTravel.init(
           heavenDoor,
           FastTravelEntityType.HEAVEN_DOOR,

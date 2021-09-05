@@ -17,6 +17,6 @@ function removeAndSpawnBigChest(pickup: EntityPickup) {
     0,
     pickup.Position,
     Vector.Zero,
-    null,
+    undefined,
   );
 }

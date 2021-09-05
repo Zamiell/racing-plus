@@ -44,7 +44,7 @@ function removeRepentanceDoor() {
     removeAllEntities(dustClouds);
 
     const repentanceDoor = getRepentanceDoor();
-    if (repentanceDoor !== null) {
+    if (repentanceDoor !== undefined) {
       g.r.RemoveDoor(repentanceDoor.Slot);
     }
   }

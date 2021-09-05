@@ -22,7 +22,7 @@ export function postSacrifice(numSacrifices: int): void {
 function checkDeleteSpikes() {
   if (shouldDeleteSpikes()) {
     const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
-    if (spikes !== null) {
+    if (spikes !== undefined) {
       removeGridEntity(spikes);
     }
   }

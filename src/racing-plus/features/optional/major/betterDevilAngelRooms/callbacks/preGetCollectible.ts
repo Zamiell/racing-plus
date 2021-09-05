@@ -68,7 +68,7 @@ export default function betterDevilAngelRoomsPreGetCollectible(
 
     // Otherwise, check to see if this is an active item
     const itemConfigItem = g.itemConfig.GetCollectible(subType);
-    if (itemConfigItem === null) {
+    if (itemConfigItem === undefined) {
       continue;
     }
 

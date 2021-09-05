@@ -29,9 +29,9 @@ function drawControlsGraphic() {
     CreepRedSubTypeCustom.FLOOR_EFFECT_CREEP,
     centerPos,
     Vector.Zero,
-    null,
+    undefined,
   ).ToEffect();
-  if (controlsEffect === null) {
+  if (controlsEffect === undefined) {
     return;
   }
 

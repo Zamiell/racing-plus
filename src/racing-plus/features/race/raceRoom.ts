@@ -209,13 +209,13 @@ function setupRaceRoom() {
       0,
       gridToPos(x, y),
       Vector.Zero,
-      null,
+      undefined,
     );
     gapingMaw.ClearEntityFlags(EntityFlag.FLAG_APPEAR); // Make them appear instantly
   }
 
   // Disable the MinimapAPI to emulate what happens with the vanilla map
-  if (MinimapAPI !== null) {
+  if (MinimapAPI !== undefined) {
     MinimapAPI.Config.Disable = true;
   }
 }

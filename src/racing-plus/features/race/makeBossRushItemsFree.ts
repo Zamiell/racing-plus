@@ -31,7 +31,7 @@ function makeBossRushItemsFree() {
   );
   for (const collectible of collectibles) {
     const pickup = collectible.ToPickup();
-    if (pickup !== null) {
+    if (pickup !== undefined) {
       pickup.AutoUpdatePrice = false;
       pickup.Price = PickupPrice.PRICE_FREE;
     }

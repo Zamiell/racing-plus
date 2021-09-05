@@ -45,7 +45,7 @@ function isOtherHandOverlapping(initialHand: EntityNPC) {
   for (const hand of hands) {
     const npc = hand.ToNPC();
     if (
-      npc !== null &&
+      npc !== undefined &&
       GetPtrHash(npc) !== GetPtrHash(initialHand) &&
       npc.State === NpcState.STATE_MOVE &&
       npc.StateFrame === initialHand.StateFrame

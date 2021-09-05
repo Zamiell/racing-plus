@@ -215,7 +215,7 @@ function drawTextAndSprite() {
 
     // Show the pill effect as text
     const pillConfig = g.itemConfig.GetPillEffect(pillEntry.effect);
-    if (pillConfig === null) {
+    if (pillConfig === undefined) {
       error(`Failed to get the pill config for effect: ${pillEntry.effect}`);
     }
     let effectName = pillConfig.Name;

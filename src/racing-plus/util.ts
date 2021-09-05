@@ -122,14 +122,18 @@ export function moveEsauNextToJacob(): void {
   );
   for (const esau of esaus) {
     const player = esau.ToPlayer();
-    if (player !== null) {
-      const jacob = player.GetOtherTwin();
-      if (jacob !== null) {
-        const adjustment = Vector(20, 0);
-        const adjustedPosition = jacob.Position.add(adjustment);
-        esau.Position = adjustedPosition;
-      }
+    if (player === undefined) {
+      continue;
     }
+
+    const jacob = player.GetOtherTwin();
+    if (jacob === undefined) {
+      continue;
+    }
+
+    const adjustment = Vector(20, 0);
+    const adjustedPosition = jacob.Position.add(adjustment);
+    esau.Position = adjustedPosition;
   }
 }
 

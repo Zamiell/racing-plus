@@ -35,17 +35,19 @@ function shouldDeleteVoidDoor() {
 
 function deleteVoidDoor() {
   const voidDoor = g.r.GetDoor(DoorSlot.UP1);
-  if (voidDoor !== null) {
-    removeGridEntity(voidDoor);
-    const wall = Isaac.GridSpawn(
-      GridEntityType.GRID_WALL,
-      0,
-      voidDoor.Position,
-      true,
-    );
-
-    // For some reason, spawned walls start with a collision class of COLLISION_NONE,
-    // so we have to manually set it
-    wall.CollisionClass = GridCollisionClass.COLLISION_WALL;
+  if (voidDoor === undefined) {
+    return;
   }
+
+  removeGridEntity(voidDoor);
+  const wall = Isaac.GridSpawn(
+    GridEntityType.GRID_WALL,
+    0,
+    voidDoor.Position,
+    true,
+  );
+
+  // For some reason, spawned walls start with a collision class of COLLISION_NONE,
+  // so we have to manually set it
+  wall.CollisionClass = GridCollisionClass.COLLISION_WALL;
 }

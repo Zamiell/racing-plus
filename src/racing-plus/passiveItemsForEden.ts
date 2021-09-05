@@ -11,7 +11,7 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
   for (let i = 1; i <= getMaxCollectibleID(); i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
-      itemConfigItem !== null &&
+      itemConfigItem !== undefined &&
       (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
         itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&

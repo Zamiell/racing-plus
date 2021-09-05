@@ -184,7 +184,7 @@ export function useCard(card: Card): void {
   }
 
   const cardConfig = g.itemConfig.GetCard(card);
-  if (cardConfig === null) {
+  if (cardConfig === undefined) {
     error(`Failed to get the card config for: ${card}`);
   }
   const cardName = cardConfig.Name;
@@ -194,7 +194,7 @@ export function useCard(card: Card): void {
 // ModCallbacks.MC_USE_PILL (10)
 export function usePill(pillEffect: PillEffect): void {
   const pillConfig = g.itemConfig.GetPillEffect(pillEffect);
-  if (pillConfig === null) {
+  if (pillConfig === undefined) {
     error(`Failed to get the pill config for effect: ${pillEffect}`);
   }
   const pillEffectName = pillConfig.Name;

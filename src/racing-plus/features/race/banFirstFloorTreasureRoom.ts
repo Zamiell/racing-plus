@@ -40,7 +40,7 @@ export function postNewRoom(): void {
   );
   for (let i = 0; i < MAX_NUM_DOORS; i++) {
     const door = g.r.GetDoor(i);
-    if (door !== null && door.TargetRoomIndex === roomIndex) {
+    if (door !== undefined && door.TargetRoomIndex === roomIndex) {
       g.r.RemoveDoor(i);
       log("Removed the Treasure Room door on B1.");
     }
@@ -49,7 +49,7 @@ export function postNewRoom(): void {
   // Delete the icon on the minimap
   // (this has to be done on every room, because it will reappear)
   let roomDesc;
-  if (MinimapAPI === null) {
+  if (MinimapAPI === undefined) {
     roomDesc = g.l.GetRoomByIdx(roomIndex);
     roomDesc.DisplayFlags = 0;
     g.l.UpdateVisibility(); // Setting the display flag will not actually update the map

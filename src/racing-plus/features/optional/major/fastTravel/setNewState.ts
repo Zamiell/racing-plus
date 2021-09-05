@@ -138,7 +138,7 @@ function movePlayerToTrapdoor(player: EntityPlayer, position: Vector) {
   player.Position = position;
   if (shouldMoveOther) {
     const taintedSoul = player.GetOtherTwin();
-    if (taintedSoul !== null) {
+    if (taintedSoul !== undefined) {
       taintedSoul.Position = position;
     }
   }
@@ -152,7 +152,7 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
   }
 
   const taintedSoul = player.GetOtherTwin();
-  if (taintedSoul === null) {
+  if (taintedSoul === undefined) {
     return false;
   }
 
@@ -190,7 +190,7 @@ function dropTaintedForgotten(player: EntityPlayer) {
   const character = player.GetPlayerType();
   if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     const taintedSoul = player.GetOtherTwin();
-    if (taintedSoul !== null) {
+    if (taintedSoul !== undefined) {
       taintedSoul.ThrowHeldEntity(Vector.Zero);
     }
   }
@@ -219,7 +219,7 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
   if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     const taintedSoul = player.GetOtherTwin();
     if (
-      taintedSoul !== null &&
+      taintedSoul !== undefined &&
       taintedSoul.Position.X === player.Position.X &&
       taintedSoul.Position.Y === player.Position.Y
     ) {
@@ -293,12 +293,14 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
   );
   for (const taintedForgotten of taintedForgottens) {
     const player = taintedForgotten.ToPlayer();
-    if (player !== null) {
-      taintedForgotten.Position = centerPos;
-      const taintedSoul = player.GetOtherTwin();
-      if (taintedSoul !== null) {
-        taintedSoul.Position = centerPos;
-      }
+    if (player === undefined) {
+      continue;
+    }
+
+    taintedForgotten.Position = centerPos;
+    const taintedSoul = player.GetOtherTwin();
+    if (taintedSoul !== undefined) {
+      taintedSoul.Position = centerPos;
     }
   }
 }
@@ -312,7 +314,7 @@ function spawnHoles(players: EntityPlayer[]) {
       0,
       player.Position,
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 }

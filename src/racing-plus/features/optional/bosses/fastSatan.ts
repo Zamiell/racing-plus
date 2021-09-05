@@ -45,7 +45,15 @@ function spawnEnemies() {
   const positions = [gridToPos(5, 3), gridToPos(7, 3)];
   for (const position of positions) {
     seed = incrementRNG(seed);
-    g.g.Spawn(EntityType.ENTITY_LEECH, 1, position, Vector.Zero, null, 0, seed);
+    g.g.Spawn(
+      EntityType.ENTITY_LEECH,
+      1,
+      position,
+      Vector.Zero,
+      undefined,
+      0,
+      seed,
+    );
   }
 
   seed = incrementRNG(seed);
@@ -54,7 +62,7 @@ function spawnEnemies() {
     0,
     gridToPos(6, 3),
     Vector.Zero,
-    null,
+    undefined,
     0,
     seed,
   );
@@ -65,7 +73,7 @@ function primeStatue() {
   const satans = Isaac.FindByType(EntityType.ENTITY_SATAN);
   for (const satan of satans) {
     const npc = satan.ToNPC();
-    if (npc !== null) {
+    if (npc !== undefined) {
       npc.I1 = 1;
     }
   }

@@ -132,7 +132,7 @@ function openClosedHeavenDoors() {
   );
   for (const entity of heavenDoors) {
     const effect = entity.ToEffect();
-    if (effect !== null) {
+    if (effect !== undefined) {
       const entityState = state.get(effect, FAST_TRAVEL_ENTITY_TYPE);
       if (entityState === FastTravelEntityState.CLOSED) {
         state.open(effect, FAST_TRAVEL_ENTITY_TYPE);

@@ -23,7 +23,7 @@ export function main(entity: Entity): void {
   }
 
   const npc = entity.ToNPC();
-  if (npc === null) {
+  if (npc === undefined) {
     return;
   }
 
@@ -50,7 +50,7 @@ export function main(entity: Entity): void {
     PickupVariant.PICKUP_TRINKET,
     npc.Position,
     velocity,
-    null,
+    undefined,
     TrinketType.TRINKET_PERFECTION,
     startSeed,
   );

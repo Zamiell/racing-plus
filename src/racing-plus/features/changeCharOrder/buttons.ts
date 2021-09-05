@@ -232,7 +232,7 @@ function deleteCharacterButtonAtIndex(i: int) {
   const [, x, y] = season.charPositions[i];
   const position = gridToPos(x, y);
   const gridEntity = g.r.GetGridEntityFromPos(position);
-  if (gridEntity !== null) {
+  if (gridEntity !== undefined) {
     removeGridEntity(gridEntity);
   }
 

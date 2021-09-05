@@ -83,7 +83,7 @@ function getFirstDoorSlotAndPosition(): [int | null, Vector | null] {
   for (let i = 0; i < MAX_NUM_DOORS; i++) {
     const door = g.r.GetDoor(i);
     if (
-      door !== null &&
+      door !== undefined &&
       door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
       door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
     ) {

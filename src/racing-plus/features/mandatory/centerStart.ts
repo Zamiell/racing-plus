@@ -60,7 +60,7 @@ function pickUpTaintedForgotten() {
     const character = player.GetPlayerType();
     if (character === PlayerType.PLAYER_THESOUL_B) {
       const taintedForgotten = player.GetOtherTwin();
-      if (taintedForgotten !== null) {
+      if (taintedForgotten !== undefined) {
         player.TryHoldEntity(taintedForgotten);
       }
     }

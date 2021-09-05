@@ -2,7 +2,7 @@ import * as raceInputAction from "../features/race/callbacks/inputAction";
 
 const functionMap = new Map<
   ButtonAction,
-  (entity: Entity | null) => boolean | void
+  (entity: Entity | undefined) => boolean | void
 >();
 export default functionMap;
 

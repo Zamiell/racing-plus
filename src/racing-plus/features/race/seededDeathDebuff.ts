@@ -367,7 +367,7 @@ function debuffOffAddDarkEsau() {
     0,
     centerPos,
     Vector.Zero,
-    null,
+    undefined,
   );
 }
 
@@ -392,7 +392,7 @@ export function applySeededGhostFade(
     }
   } else if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
-    if (twin !== null) {
+    if (twin !== undefined) {
       const twinSprite = twin.GetSprite();
       twinSprite.Color = newColor;
     }

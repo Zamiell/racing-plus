@@ -101,7 +101,7 @@ function setPosition(familiar: EntityFamiliar) {
 
 function getPosition(familiar: EntityFamiliar) {
   const player = familiar.SpawnerEntity;
-  if (player === null) {
+  if (player === undefined) {
     error("A sawblade was spawned without a SpawnerEntity.");
   }
 
@@ -131,12 +131,12 @@ function setSpriteOffset(familiar: EntityFamiliar) {
 }
 
 function offsetSecondSawblade(familiar: EntityFamiliar) {
-  if (familiar.SpawnerEntity === null) {
+  if (familiar.SpawnerEntity === undefined) {
     return;
   }
 
   const player = familiar.SpawnerEntity.ToPlayer();
-  if (player === null) {
+  if (player === undefined) {
     return;
   }
 
@@ -149,16 +149,16 @@ function offsetSecondSawblade(familiar: EntityFamiliar) {
   const otherSawbladesAttachedToSamePlayer: EntityFamiliar[] = [];
   for (const sawbladeEntity of sawblades) {
     const sawblade = sawbladeEntity.ToFamiliar();
-    if (sawblade === null) {
+    if (sawblade === undefined) {
       continue;
     }
 
-    if (sawblade.SpawnerEntity === null) {
+    if (sawblade.SpawnerEntity === undefined) {
       continue;
     }
 
     const sawbladePlayer = sawblade.SpawnerEntity.ToPlayer();
-    if (sawbladePlayer === null) {
+    if (sawbladePlayer === undefined) {
       continue;
     }
 
@@ -228,7 +228,7 @@ function removeSawblade(player: EntityPlayer) {
     FamiliarVariantCustom.SAWBLADE,
   );
   for (const sawblade of sawblades) {
-    if (sawblade.SpawnerEntity === null) {
+    if (sawblade.SpawnerEntity === undefined) {
       continue;
     }
 

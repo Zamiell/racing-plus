@@ -13,7 +13,7 @@ export function postNewLevel(): void {
 
   if (stage === 9) {
     const hushDoor = g.r.GetDoor(DoorSlot.UP0);
-    if (hushDoor !== null) {
+    if (hushDoor !== undefined) {
       hushDoor.TryUnlock(player, true);
     }
     g.sfx.Stop(SoundEffect.SOUND_BOSS_LITE_ROAR);

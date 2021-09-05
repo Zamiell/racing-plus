@@ -111,7 +111,7 @@ function giveTrinket(player: EntityPlayer) {
       PickupVariant.PICKUP_TRINKET,
       player.Position,
       Vector.Zero,
-      null,
+      undefined,
       FREE_TRINKET_TYPE,
       roomSeed,
     );

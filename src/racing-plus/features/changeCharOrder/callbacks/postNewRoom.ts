@@ -60,7 +60,7 @@ function setupButtonRoom() {
   const itemConfigItem = g.itemConfig.GetCollectible(
     CollectibleType.COLLECTIBLE_BELT,
   );
-  if (itemConfigItem !== null) {
+  if (itemConfigItem !== undefined) {
     player.RemoveCostume(itemConfigItem);
   }
 

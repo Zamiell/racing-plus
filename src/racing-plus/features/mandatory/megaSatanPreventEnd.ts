@@ -22,6 +22,6 @@ function emulateRoomClear() {
     0,
     position,
     Vector.Zero,
-    null,
+    undefined,
   );
 }

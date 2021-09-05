@@ -55,7 +55,7 @@ export function give(player: EntityPlayer): void {
   const itemConfigItem = g.itemConfig.GetCollectible(
     CollectibleType.COLLECTIBLE_MORE_OPTIONS,
   );
-  if (itemConfigItem === null) {
+  if (itemConfigItem === undefined) {
     error(
       `Failed to get the item config for: ${CollectibleType.COLLECTIBLE_MORE_OPTIONS}`,
     );

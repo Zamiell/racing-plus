@@ -20,7 +20,7 @@ export function postEntityKill(entity: Entity): void {
 
   // We only want to fade bosses
   const npc = entity.ToNPC();
-  if (npc === null || !npc.IsBoss()) {
+  if (npc === undefined || !npc.IsBoss()) {
     return;
   }
 

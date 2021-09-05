@@ -51,7 +51,7 @@ export function postNewRoom(): void {
       PinVariant.FRAIL,
       position,
       Vector.Zero,
-      null,
+      undefined,
       0,
       seed,
     );

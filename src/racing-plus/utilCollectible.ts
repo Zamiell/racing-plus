@@ -12,7 +12,7 @@ export function changeCollectibleSubType(
   // Changing the subtype will not affect the existing sprite
   const sprite = collectible.GetSprite();
   const itemConfigItem = g.itemConfig.GetCollectible(newCollectibleType);
-  if (itemConfigItem === null) {
+  if (itemConfigItem === undefined) {
     error(`Failed to get the item config for: ${newCollectibleType}`);
   }
   const gfxFileName = itemConfigItem.GfxFileName;

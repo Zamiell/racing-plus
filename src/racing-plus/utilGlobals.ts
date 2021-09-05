@@ -133,12 +133,12 @@ export function spawnCollectible(
       PickupVariant.PICKUP_COLLECTIBLE,
       position,
       Vector.Zero,
-      null,
+      undefined,
       collectibleType,
       seed,
     )
     .ToPickup();
-  if (collectible === null) {
+  if (collectible === undefined) {
     error("Failed to spawn a collectible.");
   }
 

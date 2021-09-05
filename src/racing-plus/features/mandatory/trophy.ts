@@ -28,7 +28,7 @@ export function spawn(position: Vector): void {
     0,
     position,
     Vector.Zero,
-    null,
+    undefined,
   );
 
   // Keep track that we spawned it so that we can respawn it if the player re-enters the room
@@ -63,7 +63,7 @@ function checkTouch() {
 
       // Players should not be able to finish the race if they died at the same time as defeating
       // the boss
-      if (player !== null && !player.IsDead() && !isSeededDeathActive()) {
+      if (player !== undefined && !player.IsDead() && !isSeededDeathActive()) {
         touch(trophy, player);
         return;
       }
@@ -121,7 +121,7 @@ function checkRespawn() {
     0,
     v.level.trophy.position,
     Vector.Zero,
-    null,
+    undefined,
   );
   log("Respawned a Race Trophy since we re-entered the room.");
 }

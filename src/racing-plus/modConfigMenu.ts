@@ -73,7 +73,7 @@ function deleteOldConfig() {
   // If we reload the mod, then it will create duplicates of every entry
   // Thus, we must first purge all settings relating to Racing+
   const categoryID = ModConfigMenu.GetCategoryIDByName(CATEGORY_NAME);
-  if (categoryID !== null) {
+  if (categoryID !== undefined) {
     ModConfigMenu.MenuData.set(categoryID, {
       Name: CATEGORY_NAME,
       Subcategories: [],
@@ -362,12 +362,12 @@ function getPopupGfx(optionType: ModConfigMenuOptionType) {
   return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
     optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
     ? ModConfigMenu.PopupGfx.WIDE_SMALL
-    : null;
+    : undefined;
 }
 
 function getPopupWidth(optionType: ModConfigMenuOptionType) {
   return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
     optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
     ? 280
-    : null;
+    : undefined;
 }

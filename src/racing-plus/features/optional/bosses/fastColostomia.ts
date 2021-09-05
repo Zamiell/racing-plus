@@ -15,6 +15,6 @@ export function postNPCInitColostomia(npc: EntityNPC): void {
     3, // 3 is the subtype that the Monstro poof has, so copy it
     npc.Position,
     Vector.Zero,
-    null,
+    undefined,
   );
 }

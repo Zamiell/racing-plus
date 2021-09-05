@@ -57,7 +57,7 @@ function checkSpawnKrampus() {
     0,
     centerPos,
     Vector.Zero,
-    null,
+    undefined,
   );
 
   prepareRoomSinceEnemiesSpawned();

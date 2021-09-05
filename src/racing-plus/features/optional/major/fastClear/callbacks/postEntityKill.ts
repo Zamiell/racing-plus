@@ -29,7 +29,7 @@ export default function fastClearPostEntityKill(entity: Entity): void {
   }
 
   const npc = entity.ToNPC();
-  if (npc === null) {
+  if (npc === undefined) {
     return;
   }
 

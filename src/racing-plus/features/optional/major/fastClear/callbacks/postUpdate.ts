@@ -20,15 +20,20 @@ function checkQueue() {
 
   for (let i = v.room.NPCQueue.length - 1; i >= 0; i--) {
     const fastClearNPCDescription = v.room.NPCQueue[i];
-    if (gameFrameCount >= fastClearNPCDescription.gameFrameToModify) {
-      v.room.NPCQueue.splice(i, 1);
-      const entity = fastClearNPCDescription.entityPtr.Ref;
-      if (entity !== null) {
-        const npc = entity.ToNPC();
-        if (npc !== null) {
-          applyFastClear(npc);
-        }
-      }
+    if (gameFrameCount < fastClearNPCDescription.gameFrameToModify) {
+      continue;
+    }
+
+    v.room.NPCQueue.splice(i, 1);
+
+    const entity = fastClearNPCDescription.entityPtr.Ref;
+    if (entity === undefined) {
+      continue;
+    }
+
+    const npc = entity.ToNPC();
+    if (npc !== undefined) {
+      applyFastClear(npc);
     }
   }
 }

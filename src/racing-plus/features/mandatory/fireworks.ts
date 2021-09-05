@@ -53,7 +53,7 @@ function spawnSparkleOnPlayer() {
       0,
       blingPosition,
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 }
@@ -73,9 +73,9 @@ function spawnFireworks() {
         0,
         fireworkPos,
         Vector.Zero,
-        null,
+        undefined,
       ).ToEffect();
-      if (firework !== null) {
+      if (firework !== undefined) {
         firework.SetTimeout(20);
       }
     }

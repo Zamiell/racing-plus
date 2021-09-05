@@ -4,6 +4,7 @@ import {
   changeRoom,
   getBosses,
   getRoomIndex,
+  getRoomIndexesForType,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -35,7 +36,7 @@ function revertItemPrices() {
   for (const entity of collectibles) {
     const pickup = entity.ToPickup();
     if (
-      pickup !== null &&
+      pickup !== undefined &&
       pickup.Price === PickupPriceCustom.PRICE_NO_MINIMAP
     ) {
       pickup.Price = 0;
@@ -56,30 +57,34 @@ function warp() {
   v.level.warpState = DreamCatcherWarpState.WARPING;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
-  const treasureRoomIndex = getRoomIndexForType(RoomType.ROOM_TREASURE);
-  let bossRoomIndex: int | null = null;
+  const treasureRoomIndexes = getRoomIndexesForType(RoomType.ROOM_TREASURE);
+  let bossRoomIndexes: int[] = [];
   if (stage !== 6 && stage <= 7) {
     // We don't need to show what the boss is for floors that always have the same boss
-    bossRoomIndex = getRoomIndexForType(RoomType.ROOM_BOSS);
+    bossRoomIndexes = getRoomIndexesForType(RoomType.ROOM_BOSS);
   }
 
-  if (treasureRoomIndex !== null) {
+  v.level.items = [];
+  for (const treasureRoomIndex of treasureRoomIndexes) {
     changeRoom(treasureRoomIndex);
-    v.level.items = getRoomItemsAndSetPrice();
+    const newItems = getRoomItemsAndSetPrice();
+    v.level.items = v.level.items.concat(newItems);
   }
 
-  if (bossRoomIndex !== null) {
+  v.level.bosses = [];
+  for (const bossRoomIndex of bossRoomIndexes) {
     changeRoom(bossRoomIndex);
-    v.level.bosses = getRoomBosses();
+    const newBosses = getRoomBosses();
+    v.level.bosses = v.level.bosses.concat(newBosses);
   }
 
   changeRoom(startingRoomIndex);
 
-  if (treasureRoomIndex !== null) {
+  for (const treasureRoomIndex of treasureRoomIndexes) {
     resetRoomState(treasureRoomIndex);
   }
 
-  if (bossRoomIndex !== null) {
+  for (const bossRoomIndex of bossRoomIndexes) {
     resetRoomState(bossRoomIndex);
   }
 
@@ -95,7 +100,7 @@ function warp() {
       LadderSubType.STAIRWAY,
       position,
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 
@@ -124,24 +129,12 @@ function getMinimapDisplayFlagsMap() {
   const rooms = g.l.GetRooms();
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
-    if (room !== null) {
+    if (room !== undefined) {
       displayFlags.set(room.SafeGridIndex, room.DisplayFlags);
     }
   }
 
   return displayFlags;
-}
-
-function getRoomIndexForType(roomType: RoomType) {
-  const rooms = g.l.GetRooms();
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i);
-    if (room !== null && room.Data !== null && room.Data.Type === roomType) {
-      return room.SafeGridIndex;
-    }
-  }
-
-  return null;
 }
 
 function getRoomItemsAndSetPrice() {
@@ -159,7 +152,7 @@ function getRoomItemsAndSetPrice() {
     // the minimap to display this star
     // We can set the price to any arbitrary value
     const pickup = entity.ToPickup();
-    if (pickup !== null) {
+    if (pickup !== undefined) {
       pickup.Price = PickupPriceCustom.PRICE_NO_MINIMAP;
     }
   }

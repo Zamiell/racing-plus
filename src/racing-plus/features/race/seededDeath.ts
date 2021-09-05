@@ -67,7 +67,7 @@ function postUpdateGhostForm() {
   player.AnimateHappy();
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
-    if (twin !== null) {
+    if (twin !== undefined) {
       debuffOff(twin);
       twin.AnimateHappy();
     }
@@ -96,7 +96,7 @@ function postUpdateCheckLazarusFlip() {
   }
 
   const player = getPlayerFromIndex(v.run.seededDeath.playerToUseFlip);
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseActiveItem(CollectibleType.COLLECTIBLE_FLIP, UseFlag.USE_NOANIM);
   }
 
@@ -162,7 +162,7 @@ function postNewRoomWaitingForNewRoom() {
   }
 
   const player = getPlayerFromIndex(v.run.seededDeath.dyingPlayerIndex);
-  if (player === null) {
+  if (player === undefined) {
     return;
   }
 
@@ -180,7 +180,7 @@ function postNewRoomWaitingForNewRoom() {
   debuffOn(player);
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
-    if (twin !== null) {
+    if (twin !== undefined) {
       twin.PlayExtraAnimation("AppearVanilla");
       debuffOn(twin);
     }
@@ -201,14 +201,14 @@ function postNewRoomGhostForm(): void {
   }
 
   const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
-  if (spikes !== null) {
+  if (spikes !== undefined) {
     removeGridEntity(spikes);
   }
 
   player.AnimateSad();
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
-    if (twin !== null) {
+    if (twin !== undefined) {
       twin.AnimateSad();
     }
   }

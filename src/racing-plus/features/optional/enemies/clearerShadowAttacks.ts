@@ -25,7 +25,7 @@ export function postEffectUpdateTarget(effect: EntityEffect): void {
     return;
   }
 
-  if (effect.SpawnerEntity === null) {
+  if (effect.SpawnerEntity === undefined) {
     effect.Remove();
     return;
   }
@@ -51,7 +51,7 @@ function spawnTarget(spawner: Entity) {
     Vector.Zero,
     spawner,
   ).ToEffect();
-  if (target !== null) {
+  if (target !== undefined) {
     const sprite = target.GetSprite();
     sprite.Color = BLUE;
   }
