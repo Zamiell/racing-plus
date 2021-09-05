@@ -26,6 +26,10 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
   PlayerType.PLAYER_EDEN_B, // 30
 ]);
 
+/**
+ * In vanilla, most of these characters have a pocket item, which is made to be the active item in
+ * Racing+.
+ */
 const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_JACOB, // 19
   PlayerType.PLAYER_ESAU, // 20
