@@ -112,17 +112,16 @@ function checkPostRoomTransitionSubvert() {
   }
 
   const gridPosition = ONE_BY_ONE_ROOM_ENTER_MAP.get(direction);
-  if (gridPosition !== undefined) {
-    const player = Isaac.GetPlayer();
-    if (player !== null) {
-      player.Position = g.r.GetGridPosition(gridPosition);
-      v.level.crawlspace.subvertedRoomTransitionDirection =
-        Direction.NO_DIRECTION;
-      log(
-        "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
-      );
-    }
+  if (gridPosition === undefined) {
+    return;
   }
+
+  const player = Isaac.GetPlayer();
+  player.Position = g.r.GetGridPosition(gridPosition);
+  v.level.crawlspace.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
+  log(
+    "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
+  );
 }
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
@@ -266,7 +265,7 @@ export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
     gridEntity.Position,
     TELEPORTER_ACTIVATION_DISTANCE,
   );
-  if (playerTouching !== null) {
+  if (playerTouching !== undefined) {
     teleport(startingRoomIndex);
   }
 }

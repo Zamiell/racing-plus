@@ -27,14 +27,14 @@ export function set(): void {
   );
 
   for (let i = 0; i < v.level.items.length; i++) {
-    if (itemSprites[i] === null) {
+    if (itemSprites[i] === undefined) {
       const collectibleType = v.level.items[i];
       itemSprites[i] = initGlowingItemSprite(collectibleType);
     }
   }
 
   for (let i = 0; i < v.level.bosses.length; i++) {
-    if (bossSprites[i] === null) {
+    if (bossSprites[i] === undefined) {
       const [entityType, variant] = v.level.bosses[i];
       bossSprites[i] = initBossSprite(entityType, variant);
     }

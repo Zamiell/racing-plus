@@ -92,7 +92,7 @@ function displayCharacterProgress() {
   const digit3Position = position.add(digit3Modification);
   digit3Sprite.RenderLayer(0, digit3Position);
 
-  let digit4Position = null;
+  let digit4Position: Vector | undefined;
   if (digit4 !== -1) {
     const digit4Sprite = sprites.digit[3];
     digit4Sprite.SetFrame("Default", digit4);
@@ -106,7 +106,7 @@ function displayCharacterProgress() {
 
   let posSeason;
   const spacing = 17;
-  if (digit4Position === null) {
+  if (digit4Position === undefined) {
     posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
   } else {
     posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);

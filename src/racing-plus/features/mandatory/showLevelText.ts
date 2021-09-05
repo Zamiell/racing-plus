@@ -3,7 +3,7 @@ import * as streakText from "./streakText";
 
 export function postUpdate(): void {
   // Players who prefer the vanilla streak text will have a separate mod enabled
-  if (VanillaStreakText !== null) {
+  if (VanillaStreakText !== undefined) {
     return;
   }
 

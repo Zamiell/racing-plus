@@ -70,17 +70,17 @@ export function disconnect(): void {
   client = null;
 }
 
-export function send(packedMsg: string): [number | null, string] {
+export function send(packedMsg: string): [number | undefined, string] {
   if (client === null) {
-    return [null, "client is not initialized"];
+    return [undefined, "client is not initialized"];
   }
 
   return client.send(packedMsg);
 }
 
-export function receive(): [string | null, string] {
+export function receive(): [string | undefined, string] {
   if (client === null) {
-    return [null, "client is not initialized"];
+    return [undefined, "client is not initialized"];
   }
 
   return client.receive();

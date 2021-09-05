@@ -319,7 +319,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   dropEverything(player);
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
-    if (twin !== null) {
+    if (twin !== undefined) {
       dropEverything(player);
     }
   }

@@ -156,7 +156,7 @@ function draw(text: string, fade: float) {
 // CollectibleType.COLLECTIBLE_LEMEGETON (712)
 export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
-  if (wisp !== null) {
+  if (wisp !== undefined) {
     const itemName = getItemName(wisp.SubType);
     set(itemName);
   }
@@ -173,7 +173,7 @@ function getItemWispThatJustSpawned() {
     }
   }
 
-  return null;
+  return undefined;
 }
 
 // ModCallbacks.MC_USE_CARD (5)
@@ -235,7 +235,7 @@ function showLevelText() {
 
   // Show what the new floor is
   // (the game will not show this naturally after doing a "stage" console command)
-  if (VanillaStreakText && effectiveStage !== 1) {
+  if (VanillaStreakText !== undefined && effectiveStage !== 1) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
     const text = getLevelText();
@@ -280,7 +280,7 @@ export function preUseItemDeadSeaScrolls(
   player.UseActiveItem(randomCollectible, UseFlag.USE_OWNED, activeSlot);
 
   const itemName = getItemName(randomCollectible);
-  if (VanillaStreakText) {
+  if (VanillaStreakText !== undefined) {
     hud.ShowItemText(itemName);
   } else {
     set(itemName);

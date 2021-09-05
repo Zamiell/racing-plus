@@ -20,7 +20,7 @@ function checkBugTwoHeavenDoors() {
   // vanilla Heaven Door spawns
   // Delete all of the heaven doors except for one
   // By default, prefer the heaven door that is in in the center of the room
-  let heavenDoorIndexToKeep = null;
+  let heavenDoorIndexToKeep: int | undefined;
   for (const heavenDoor of heavenDoors) {
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
     if (gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM) {
@@ -28,8 +28,8 @@ function checkBugTwoHeavenDoors() {
       break;
     }
   }
-  if (heavenDoorIndexToKeep === null) {
-    heavenDoorIndexToKeep = heavenDoors[0];
+  if (heavenDoorIndexToKeep === undefined) {
+    heavenDoorIndexToKeep = heavenDoors[0].Index;
   }
 
   for (const heavenDoor of heavenDoors) {

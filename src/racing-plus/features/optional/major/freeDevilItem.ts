@@ -49,7 +49,7 @@ export function entityTakeDmgPlayer(
 
 function checkForSelfDamage(tookDamage: Entity, damageFlags: int) {
   const player = tookDamage.ToPlayer();
-  if (player !== null && !isSelfDamage(damageFlags)) {
+  if (player !== undefined && !isSelfDamage(damageFlags)) {
     v.run.tookDamage = true;
   }
 }
@@ -104,7 +104,7 @@ function giveTrinket(player: EntityPlayer) {
   }
 
   const openSlot = getOpenTrinketSlot(player);
-  if (openSlot === null) {
+  if (openSlot === undefined) {
     // If we do not have an available trinket slot, spawn the trinket on the ground
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,

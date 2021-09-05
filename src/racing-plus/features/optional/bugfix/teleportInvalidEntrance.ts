@@ -33,7 +33,7 @@ export function postNewRoom(): void {
   }
 
   const [firstDoorSlot, firstDoorPosition] = getFirstDoorSlotAndPosition();
-  if (firstDoorSlot === null || firstDoorPosition === null) {
+  if (firstDoorSlot === undefined || firstDoorPosition === undefined) {
     // Some rooms have no doors, like I AM ERROR rooms
     return;
   }
@@ -79,7 +79,7 @@ function isPlayerNextToADoor() {
   return false;
 }
 
-function getFirstDoorSlotAndPosition(): [int | null, Vector | null] {
+function getFirstDoorSlotAndPosition(): [int | undefined, Vector | undefined] {
   for (let i = 0; i < MAX_NUM_DOORS; i++) {
     const door = g.r.GetDoor(i);
     if (
@@ -91,7 +91,7 @@ function getFirstDoorSlotAndPosition(): [int | null, Vector | null] {
     }
   }
 
-  return [null, null];
+  return [undefined, undefined];
 }
 
 function getDoorEnterPosition(doorSlot: DoorSlot, doorPosition: Vector) {

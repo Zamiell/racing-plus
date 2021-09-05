@@ -1,4 +1,9 @@
-import { saveDataManager, saveDataManagerSave } from "isaacscript-common";
+import {
+  controllerToString,
+  keyboardToString,
+  saveDataManager,
+  saveDataManagerSave,
+} from "isaacscript-common";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
@@ -35,7 +40,7 @@ export const config = v.persistent.config;
 export const hotkeys = v.persistent.hotkeys;
 
 export function init(): void {
-  if (ModConfigMenu === undefined || InputHelper === undefined) {
+  if (ModConfigMenu === undefined) {
     return;
   }
 
@@ -70,6 +75,10 @@ export function init(): void {
 }
 
 function deleteOldConfig() {
+  if (ModConfigMenu === undefined) {
+    return;
+  }
+
   // If we reload the mod, then it will create duplicates of every entry
   // Thus, we must first purge all settings relating to Racing+
   const categoryID = ModConfigMenu.GetCategoryIDByName(CATEGORY_NAME);
@@ -100,6 +109,10 @@ function validateConfigDescriptions() {
 }
 
 function registerPresets() {
+  if (ModConfigMenu === undefined) {
+    return;
+  }
+
   ModConfigMenu.AddText(CATEGORY_NAME, PRESETS_NAME, () => "Mod by Zamiel");
   ModConfigMenu.AddText(CATEGORY_NAME, PRESETS_NAME, () => "isaacracing.net");
   ModConfigMenu.AddSpace(CATEGORY_NAME, PRESETS_NAME);
@@ -160,6 +173,10 @@ function registerSubMenuConfig(
   subMenuName: string,
   descriptions: ConfigDescriptions,
 ) {
+  if (ModConfigMenu === undefined) {
+    return;
+  }
+
   for (const [configName, array] of descriptions) {
     const [optionType, code, shortDescription, longDescription] = array;
 
@@ -189,6 +206,10 @@ function registerSubMenuHotkeys(
   subMenuName: string,
   descriptions: ConfigDescriptions,
 ) {
+  if (ModConfigMenu === undefined) {
+    return;
+  }
+
   for (const [configName, array] of descriptions) {
     const [optionType, , shortDescription, longDescription] = array;
 
@@ -264,8 +285,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        const stringValue = InputHelper.KeyboardToString.get(currentValue);
-        text = stringValue === null ? "Unknown Key" : stringValue;
+        text = keyboardToString(currentValue);
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
@@ -278,8 +298,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        const stringValue = InputHelper.ControllerToString.get(currentValue);
-        text = stringValue === null ? "Unknown Button" : stringValue;
+        text = controllerToString(currentValue);
       }
 
       return `${shortDescription}: ${text} (controller)`;
@@ -340,11 +359,11 @@ function popupGetKeepSettingString(
 function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
   switch (optionType) {
     case ModConfigMenuOptionType.KEYBIND_KEYBOARD: {
-      return InputHelper.KeyboardToString.get(key);
+      return keyboardToString(key);
     }
 
     case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
-      return InputHelper.ControllerToString.get(key);
+      return controllerToString(key);
     }
 
     default: {
@@ -355,15 +374,19 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
 }
 
 function popupGetBackKeyText() {
+  if (ModConfigMenu === undefined) {
+    return "back";
+  }
+
   const lastBackPressed = ModConfigMenu.Config.LastBackPressed;
 
-  const keyboardString = InputHelper.KeyboardToString.get(lastBackPressed);
-  if (keyboardString !== null) {
+  const keyboardString = keyboardToString(lastBackPressed as Keyboard);
+  if (keyboardString !== "unknown") {
     return keyboardString;
   }
 
-  const controllerString = InputHelper.ControllerToString.get(lastBackPressed);
-  if (controllerString !== null) {
+  const controllerString = controllerToString(lastBackPressed as Controller);
+  if (controllerString !== "unknown") {
     return controllerString;
   }
 
@@ -371,6 +394,10 @@ function popupGetBackKeyText() {
 }
 
 function getPopupGfx(optionType: ModConfigMenuOptionType) {
+  if (ModConfigMenu === undefined) {
+    return undefined;
+  }
+
   return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
     optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
     ? ModConfigMenu.PopupGfx.WIDE_SMALL

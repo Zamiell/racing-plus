@@ -4,7 +4,7 @@ import { DETRIMENTAL_TRINKETS } from "./constants";
 export default function insertPickup(
   pickup: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   switch (pickup.Variant) {
     // 20
     case PickupVariant.PICKUP_COIN: {
@@ -40,7 +40,7 @@ export default function insertPickup(
       error(
         `The automatic item insertion feature encountered an unknown pickup of variant: ${pickup.Variant}`,
       );
-      return null;
+      return undefined;
     }
   }
 }
@@ -49,7 +49,7 @@ export default function insertPickup(
 function insertCoin(
   coin: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   switch (coin.SubType) {
     // 1
     case CoinSubType.COIN_PENNY: {
@@ -90,19 +90,19 @@ function insertCoin(
     // 6
     case CoinSubType.COIN_STICKYNICKEL: {
       // Don't put Sticky Nickels in our inventory automatically
-      return null;
+      return undefined;
     }
 
     case CoinSubType.COIN_GOLDEN: {
       // Don't put Golden Coins in our inventory automatically
-      return null;
+      return undefined;
     }
 
     default: {
       error(
         `The automatic item insertion feature encountered an unknown coin subtype of: ${coin.SubType}`,
       );
-      return null;
+      return undefined;
     }
   }
 }
@@ -111,7 +111,7 @@ function insertCoin(
 function insertKey(
   key: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   switch (key.SubType) {
     // 1
     case KeySubType.KEY_NORMAL: {
@@ -146,7 +146,7 @@ function insertKey(
       error(
         `The automatic item insertion feature encountered an unknown key subtype of: ${key.SubType}`,
       );
-      return null;
+      return undefined;
     }
   }
 }
@@ -155,7 +155,7 @@ function insertKey(
 function insertBomb(
   bomb: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   switch (bomb.SubType) {
     // 1
     case BombSubType.BOMB_NORMAL: {
@@ -174,7 +174,7 @@ function insertBomb(
     // 3
     case BombSubType.BOMB_TROLL: {
       // Don't put Troll Bombs in our inventory automatically
-      return null;
+      return undefined;
     }
 
     // 4
@@ -187,26 +187,26 @@ function insertBomb(
     // 5
     case BombSubType.BOMB_SUPERTROLL: {
       // Don't put Mega Troll Bombs in our inventory automatically
-      return null;
+      return undefined;
     }
 
     // 6
     case BombSubType.BOMB_GOLDENTROLL: {
       // Don't put Golden Troll Bombs in our inventory automatically
-      return null;
+      return undefined;
     }
 
     // 7
     case BombSubType.BOMB_GIGA: {
       // Don't put Giga Bombs in our inventory automatically
-      return null;
+      return undefined;
     }
 
     default: {
       error(
         `The automatic item insertion feature encountered an unknown key subtype of: ${bomb.SubType}`,
       );
-      return null;
+      return undefined;
     }
   }
 }
@@ -215,9 +215,9 @@ function insertBomb(
 function insertPill(
   pill: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   if (!hasOpenPocketItemSlot(player)) {
-    return null;
+    return undefined;
   }
 
   player.AddPill(pill.SubType);
@@ -228,9 +228,9 @@ function insertPill(
 function insertCard(
   card: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   if (!hasOpenPocketItemSlot(player)) {
-    return null;
+    return undefined;
   }
 
   player.AddCard(card.SubType);
@@ -241,14 +241,14 @@ function insertCard(
 function insertTrinket(
   trinket: EntityPickup,
   player: EntityPlayer,
-): [PickupVariant, int] | null {
+): [PickupVariant, int] | undefined {
   if (!hasOpenTrinketSlot(player)) {
-    return null;
+    return undefined;
   }
 
   // Do not automatically insert trinkets that are detrimental (or potentially detrimental)
   if (DETRIMENTAL_TRINKETS.has(trinket.SubType)) {
-    return null;
+    return undefined;
   }
 
   player.AddTrinket(trinket.SubType);

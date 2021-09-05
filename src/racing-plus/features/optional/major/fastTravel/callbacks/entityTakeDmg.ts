@@ -11,7 +11,7 @@ export default function fastTravelEntityTakeDmgPlayer(
   }
 
   const player = tookDamage.ToPlayer();
-  if (player !== null && !isSelfDamage(damageFlags)) {
+  if (player !== undefined && !isSelfDamage(damageFlags)) {
     v.level.tookDamage = true;
     v.run.perfection.floorsWithoutDamage = 0;
   }

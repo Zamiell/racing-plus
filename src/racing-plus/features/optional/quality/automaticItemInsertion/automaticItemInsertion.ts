@@ -323,7 +323,7 @@ function insertPickupAndUpdateDelta(
 ) {
   // Some pickups cannot be automatically inserted
   const pickupInserted = insertPickup(pickup, player);
-  if (pickupInserted !== null) {
+  if (pickupInserted !== undefined) {
     // Only remove the pickup if it has been successfully inserted
     pickup.Remove();
 

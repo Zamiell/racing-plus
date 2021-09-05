@@ -11,12 +11,12 @@ export function main(
   let newTable: [EntityType, int, int] | void;
 
   newTable = easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
-  if (newTable !== null) {
+  if (newTable !== undefined) {
     return newTable;
   }
 
   newTable = betterDevilAngelRoomsPreRoomEntitySpawn(entityType);
-  if (newTable !== null) {
+  if (newTable !== undefined) {
     return newTable;
   }
 

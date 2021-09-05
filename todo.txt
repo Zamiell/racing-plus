@@ -1,9 +1,10 @@
 ```
-### *v0.63.3* - September 4th, 2021
+### *v0.63.4* - September 4th, 2021
 
-- Fixed the bug where the version was incorrectly displayed when pressing F1. (Thanks mgln)
-- Fixed the bug where Dreamcatcher would not work properly if there were multiple Treasure Rooms or Boss Rooms.
+-
 ```
+
+- search for all "player === undefined" and "player === null"
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

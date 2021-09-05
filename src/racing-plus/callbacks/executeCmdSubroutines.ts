@@ -37,7 +37,7 @@ export function chaosCardTears(): void {
 
 export function crawlspace(): void {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     const position = findFreePosition(player.Position);
     Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
   }
@@ -57,7 +57,7 @@ export function commands(
 
 export function devil(params: string): void {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseCard(Card.CARD_JOKER);
   }
 
@@ -133,7 +133,7 @@ function getModificationVector(amount: float, direction: Direction) {
 
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     const position = findFreePosition(player.Position);
     Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
   }

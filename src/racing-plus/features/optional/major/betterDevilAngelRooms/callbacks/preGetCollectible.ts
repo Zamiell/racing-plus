@@ -62,7 +62,7 @@ export default function betterDevilAngelRoomsPreGetCollectible(
     v.run.gettingCollectible = false;
 
     // Simply return the new subtype if we do not have the NO! trinket
-    if (trinketSituation === null) {
+    if (trinketSituation === undefined) {
       return subType;
     }
 

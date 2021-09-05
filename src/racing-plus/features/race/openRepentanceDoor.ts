@@ -25,7 +25,7 @@ function openRepentanceDoor() {
 
   if (roomType === RoomType.ROOM_BOSS && roomClear) {
     for (const door of getDoors()) {
-      if (door !== null && door.IsLocked()) {
+      if (door.IsLocked()) {
         door.TryUnlock(player, true);
       }
     }

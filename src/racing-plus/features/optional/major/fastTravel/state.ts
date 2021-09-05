@@ -50,10 +50,10 @@ function setOpenClose(
 export function get(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-): FastTravelEntityState | null {
+): FastTravelEntityState | undefined {
   const entityDescription = getDescription(entity, fastTravelEntityType);
-  if (entityDescription === null) {
-    return null;
+  if (entityDescription === undefined) {
+    return undefined;
   }
 
   return entityDescription.state;
@@ -65,7 +65,7 @@ function set(
   state: FastTravelEntityState,
 ): void {
   const entityDescription = getDescription(entity, fastTravelEntityType);
-  if (entityDescription === null) {
+  if (entityDescription === undefined) {
     error(`Failed to set a new fast-travel entity state: ${state}`);
   }
 
@@ -108,7 +108,7 @@ export function initDescription(
 export function getDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-): FastTravelEntityDescription | null {
+): FastTravelEntityDescription | undefined {
   const index = getIndex(entity, fastTravelEntityType);
 
   let description: FastTravelEntityDescription | undefined;
@@ -134,7 +134,7 @@ export function getDescription(
   }
 
   if (description === undefined) {
-    return null;
+    return undefined;
   }
 
   return description;
@@ -199,7 +199,7 @@ export function shouldOpen(
   fastTravelEntityType: FastTravelEntityType,
 ): boolean {
   const entityDescription = getDescription(entity, fastTravelEntityType);
-  if (entityDescription === null) {
+  if (entityDescription === undefined) {
     return false;
   }
 

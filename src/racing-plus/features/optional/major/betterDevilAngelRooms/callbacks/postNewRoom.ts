@@ -132,7 +132,7 @@ function fillRoomWithDecorations() {
   // (e.g. pickups spawning on top of pits)
   for (let gridIndex = 0; gridIndex < gridSize; gridIndex++) {
     const existingGridEntity = g.r.GetGridEntity(gridIndex);
-    if (existingGridEntity !== null) {
+    if (existingGridEntity !== undefined) {
       continue;
     }
 

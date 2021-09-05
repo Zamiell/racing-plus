@@ -95,7 +95,7 @@ function read() {
   }
 
   const [rawData, errMsg] = socketClient.receive();
-  if (rawData === null) {
+  if (rawData === undefined) {
     if (errMsg !== "timeout") {
       log(`Failed to read data: ${errMsg}`);
       socketClient.disconnect();
@@ -130,7 +130,7 @@ export function send(command: SocketCommandOut, data = ""): void {
 
   const packedMsg = packSocketMsg(command, data);
   const [sentBytes, errMsg] = socketClient.send(packedMsg);
-  if (sentBytes === null) {
+  if (sentBytes === undefined) {
     log(`Failed to send data over the socket: ${errMsg}`);
     socketClient.disconnect();
     reset();

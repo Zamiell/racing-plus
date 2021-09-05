@@ -1,8 +1,8 @@
 import { config } from "../../../modConfigMenu";
 
-export default function disableCurses(): LevelCurse | null {
+export default function disableCurses(): LevelCurse | undefined {
   if (!config.disableCurses) {
-    return null;
+    return undefined;
   }
 
   return LevelCurse.CURSE_NONE;

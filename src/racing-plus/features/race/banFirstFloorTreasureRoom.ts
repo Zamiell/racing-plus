@@ -48,14 +48,13 @@ export function postNewRoom(): void {
 
   // Delete the icon on the minimap
   // (this has to be done on every room, because it will reappear)
-  let roomDesc;
   if (MinimapAPI === undefined) {
-    roomDesc = g.l.GetRoomByIdx(roomIndex);
+    const roomDesc = g.l.GetRoomByIdx(roomIndex);
     roomDesc.DisplayFlags = 0;
     g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
   } else {
-    roomDesc = MinimapAPI.GetRoomByIdx(roomIndex);
-    if (roomDesc !== null) {
+    const roomDesc = MinimapAPI.GetRoomByIdx(roomIndex);
+    if (roomDesc !== undefined) {
       roomDesc.Remove();
     }
   }

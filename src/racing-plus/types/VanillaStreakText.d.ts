@@ -1,1 +1,1 @@
-declare const VanillaStreakText: boolean;
+declare const VanillaStreakText: boolean | undefined;

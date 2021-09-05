@@ -160,7 +160,7 @@ function spawnGridEntity(
     xmlEntityType,
     xmlEntityVariant,
   );
-  if (gridEntityArray === null) {
+  if (gridEntityArray === undefined) {
     return;
   }
   const [entityType, variant] = gridEntityArray;

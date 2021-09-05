@@ -55,21 +55,21 @@ functionMap.set("bomb", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddBombs(bombs);
   }
 });
 
 functionMap.set("bombs", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddBombs(99);
   }
 });
 
 functionMap.set("boss", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseCard(Card.CARD_EMPEROR);
   }
 });
@@ -176,14 +176,14 @@ functionMap.set("coin", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddCoins(coins);
   }
 });
 
 functionMap.set("coins", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddCoins(99);
   }
 });
@@ -227,7 +227,7 @@ functionMap.set("down", (params: string) => {
 
 functionMap.set("fool", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseCard(Card.CARD_FOOL);
   }
 });
@@ -287,14 +287,14 @@ functionMap.set("key", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddKeys(keys);
   }
 });
 
 functionMap.set("keys", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.AddKeys(99);
   }
 });
@@ -528,7 +528,7 @@ functionMap.set("setcharorder", (_params: string) => {
 
 functionMap.set("shop", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseCard(Card.CARD_HERMIT);
   }
 });
@@ -573,7 +573,7 @@ functionMap.set("trapdoor", (_params: string) => {
 
 functionMap.set("treasure", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== null) {
+  if (player !== undefined) {
     player.UseCard(Card.CARD_STARS);
   }
 });

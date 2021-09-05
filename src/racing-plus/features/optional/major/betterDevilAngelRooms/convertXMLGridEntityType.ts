@@ -39,11 +39,11 @@ const GRID_ENTITY_MAP = new Map<int, [GridEntityType, int]>([
 export default function convertXMLGridEntityType(
   xmlGridEntityType: int,
   xmlGridEntityVariant: int,
-): [int, int] | null {
+): [int, int] | undefined {
   // Triggers are bugged; spawning one will immediately crash the game
   // In this case, just skip this grid tile
   if (xmlGridEntityType === EntityType.ENTITY_TRIGGER_OUTPUT) {
-    return null;
+    return undefined;
   }
 
   // Grid entity types/variants are represented in XML files as different numbers than what they are

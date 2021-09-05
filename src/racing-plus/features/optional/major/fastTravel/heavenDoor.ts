@@ -108,7 +108,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     entity,
     FAST_TRAVEL_ENTITY_TYPE,
   );
-  if (entityDescription === null) {
+  if (entityDescription === undefined) {
     return;
   }
 
