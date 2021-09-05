@@ -43,8 +43,8 @@ export function init(): void {
   // which the save data manager does not support
   // We don't need to use any class functions on these objects,
   // so we can manually remove the metatable before feeding it to the save data manager
-  setmetatable(config, null);
-  setmetatable(hotkeys, null);
+  setmetatable(config, undefined);
+  setmetatable(hotkeys, undefined);
 
   saveDataManager("modConfigMenu", v);
 
@@ -108,7 +108,11 @@ function registerPresets() {
     Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => isAllConfigSetTo(true),
     Display: () => `Enable every setting: ${onOff(isAllConfigSetTo(true))}`,
-    OnChange: (newValue: boolean | number) => {
+    OnChange: (newValue: boolean | number | undefined) => {
+      if (newValue === undefined) {
+        return;
+      }
+
       const booleanNewValue = newValue as boolean;
       setAllSettings(booleanNewValue);
     },
@@ -119,7 +123,11 @@ function registerPresets() {
     Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => isAllConfigSetTo(false),
     Display: () => `Disable every setting: ${onOff(isAllConfigSetTo(false))}`,
-    OnChange: (newValue: boolean | number) => {
+    OnChange: (newValue: boolean | number | undefined) => {
+      if (newValue === undefined) {
+        return;
+      }
+
       const booleanNewValue = newValue as boolean;
       setAllSettings(!booleanNewValue);
     },
@@ -164,7 +172,11 @@ function registerSubMenuConfig(
           code,
           shortDescription,
         ),
-      OnChange: (newValue: number | boolean) => {
+      OnChange: (newValue: number | boolean | undefined) => {
+        if (newValue === undefined) {
+          return;
+        }
+
         config[configName as keyof Config] = newValue as boolean;
         saveDataManagerSave();
       },
@@ -189,11 +201,11 @@ function registerSubMenuHotkeys(
           optionType,
           shortDescription,
         ),
-      OnChange: (newValue: number | boolean) => {
-        if (newValue === null) {
-          // The value passed by Mod Config Menu will be null if the user canceled a popup dialog
+      OnChange: (newValue: number | boolean | undefined) => {
+        if (newValue === undefined) {
           newValue = getDefaultValue(optionType);
         }
+
         hotkeys[configName as keyof Hotkeys] = newValue as number;
       },
       Popup: () => getPopupDescription(configName as keyof Hotkeys, optionType),
