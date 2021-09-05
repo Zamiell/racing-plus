@@ -14,7 +14,7 @@ export function useItem(): void {
   // Thus, we can override the Fortune Cookie text by immediately showing normal streak text after a
   // Fortune Cookie use
   // However, this will only work if they do not have the "VanillaStreakText" mod enabled
-  if (VanillaStreakText) {
+  if (VanillaStreakText !== undefined) {
     return;
   }
 

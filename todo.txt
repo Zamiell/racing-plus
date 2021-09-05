@@ -4,8 +4,6 @@
 -
 ```
 
-- search for all "player === undefined" and "player === null"
-
 TODO Racing+ new features:
 - roll ability like in Minish Cap
 - chat system
