@@ -691,7 +691,7 @@ export const REMOVALS: ConfigDescriptions = [
       ModConfigMenuOptionType.TEXT,
       "",
       "Remove unbalanced Void synergies",
-      "Make Mega Blast and Magic Mush removed from pools if the player starts with Void.",
+      "Make Mega Blast and Mega Mush removed from pools if the player starts with Void.",
     ],
   ],
   [

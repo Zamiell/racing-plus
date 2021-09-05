@@ -317,7 +317,7 @@ Post-flip actions:
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-- Mega Blast and Magic Mush are removed from all pools if the player starts with Void.
+- Mega Blast and Mega Mush are removed from all pools if the player starts with Void.
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
