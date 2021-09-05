@@ -526,6 +526,7 @@ The changed rooms are as follows:
 - Flooded: #26, #53, #118, #416, #549, #918, #987
 - Sheol: #58
 - Cathedral: #9, #10, #21, #39, #57, #454
+- Chest: #193
 - Curse Room: #24
 - Monstro II: #1051
 - Headless Horseman: #4050

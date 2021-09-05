@@ -1,7 +1,7 @@
 ```
 ### *v0.63.4* - September 4th, 2021
 
--
+- Made the hands in Chest room #193 symmetric.
 ```
 
 TODO Racing+ new features:
