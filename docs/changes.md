@@ -233,7 +233,7 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `056` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `057` <!-- holyMantleUI --> The presence of a Holy Mantle shield is now shown on the hearts UI.
+- `057` <!-- holyMantleUI 313 --> The presence of a Holy Mantle shield is now shown on the hearts UI.
 - `058` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
 - `059` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 

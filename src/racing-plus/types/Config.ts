@@ -48,6 +48,7 @@ export default class Config {
   deleteVoidPortals = true;
   showNumSacrifices = true;
   holyMantleUI = true; // 313
+  leadPencilChargeBar = true; // 444
   combinedDualityDoors = true; // 498
   removeFortuneCookieBanners = true; // 557
   showDreamCatcherItem = true; // 566

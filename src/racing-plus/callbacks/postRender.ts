@@ -15,6 +15,7 @@ import fastTravelPostRender from "../features/optional/major/fastTravel/callback
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as customConsole from "../features/optional/quality/customConsole";
 import * as holyMantleUI from "../features/optional/quality/holyMantleUI";
+import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
@@ -65,6 +66,7 @@ export function main(): void {
   // Quality of life
   speedUpFadeIn.postRender();
   holyMantleUI.postRender(); // 313
+  leadPencilChargeBar.postRender(); // 444
   showDreamCatcherItemPostRender(); // 566
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority
