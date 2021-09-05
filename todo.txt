@@ -1,6 +1,8 @@
 ```
 ### *v0.63.4* - September 4th, 2021
 
+- Scared Hearts now have a custom animation so that they are easier to identify.
+- Sticky Nickels now have a custom effect so that they are easier to identify.
 - Made the hands in Chest room #193 symmetric.
 ```
 

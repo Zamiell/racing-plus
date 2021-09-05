@@ -27,35 +27,4 @@ export function devil(effect: EntityEffect): void {
   }
 }
 
-export function stickyNickel(effect: EntityEffect): void {
-  const sprite = effect.GetSprite();
-  const data = effect.GetData();
-
-  let removeEffect = true;
-  if (data.StickyNickel) {
-    const coin = data.StickyNickel as EntityEffect | undefined;
-    if (
-      coin !== undefined &&
-      coin.Exists() &&
-      coin.SubType === CoinSubType.COIN_STICKYNICKEL
-    ) {
-      // Update our position to the nickel's position (in case it moved)
-      effect.Position = coin.Position;
-
-      // We do not want to remove the effect yet, since the nickel is still sticky
-      removeEffect = false;
-    }
-  }
-
-  if (removeEffect) {
-    if (sprite.IsPlaying("Disappear")) {
-      if (sprite.GetFrame() >= 44) {
-        effect.Remove();
-      }
-    } else {
-      sprite.Play("Disappear", true);
-    }
-  }
-}
-
 */

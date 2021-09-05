@@ -856,7 +856,25 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
       ModConfigMenuOptionType.BOOLEAN,
       "104",
       "Better Paschal Candle",
-      'Paschal Candle now "fills up" so that you can easily tell at a glance if it is maxed out.',
+      'Make Paschal Candle "fill up" so that you can easily tell at a glance if it is maxed out.',
+    ],
+  ],
+  [
+    "scaredHeart",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "105",
+      "Distinct Scared Hearts",
+      "Make Sticky Nickels have a custom animation so that they are easier to identify.",
+    ],
+  ],
+  [
+    "stickyNickel",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "106",
+      "Distinct Sticky Nickels",
+      "Make Sticky Nickels have a custom effect so that they are easier to identify.",
     ],
   ],
   [

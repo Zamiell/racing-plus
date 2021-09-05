@@ -1,39 +1,4 @@
 /*
-// PickupVariant.PICKUP_COIN (20)
-export function coin(pickup: EntityPickup): void {
-  if (pickup.SubType !== CoinSubType.COIN_STICKYNICKEL) {
-    return;
-  }
-
-  const sprite = pickup.GetSprite();
-  const data = pickup.GetData();
-
-  // Spawn the effect
-  const stickyEffect = Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
-    EffectVariantCustom.STICKY_NICKEL,
-    0,
-    pickup.Position,
-    Vector.Zero,
-    pickup,
-  );
-  const stickySprite = stickyEffect.GetSprite();
-  const stickyData = stickyEffect.GetData();
-
-  // Get what animation to use
-  let animation = "Idle";
-  if (sprite.IsPlaying("Appear")) {
-    animation = "Appear";
-  }
-  stickySprite.Play(animation, true);
-
-  // Set up the data
-  data.WasStickyNickel = true;
-  stickyData.StickyNickel = pickup;
-
-  // Make it render below most things
-  stickyEffect.RenderZOffset = -10000;
-}
 
 // PickupVariant.PICKUP_TAROTCARD (300)
 export function tarotCard(pickup: EntityPickup): void {

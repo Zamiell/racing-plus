@@ -9,6 +9,7 @@ export function init(mod: Mod): void {
   );
 }
 
+// PickupVariant.PICKUP_COLLECTIBLE (100)
 function collectible(pickup: EntityPickup) {
   removeGlitchedItems.postPickupUpdateCollectible(pickup);
   preventItemRotate.postPickupUpdateCollectible(pickup);

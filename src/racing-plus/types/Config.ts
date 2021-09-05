@@ -72,10 +72,12 @@ export default class Config {
   teleportInvalidEntrance = true;
 
   // Graphics
-  flyItemSprites = true;
-  twentyTwenty = true;
-  starOfBethlehem = true;
-  paschalCandle = true;
+  flyItemSprites = true; // 57, 128, 364
+  twentyTwenty = true; // 245
+  starOfBethlehem = true; // 651
+  paschalCandle = true; // 221 (FamiliarVariant)
+  scaredHeart = true; // 10.9 (PickupVariant, HeartSubType)
+  stickyNickel = true; // 20.6 (PickupVariant, CoinSubType)
 
   // Sounds
   silenceMomDad = true;

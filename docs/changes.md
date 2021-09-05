@@ -167,7 +167,7 @@ Post-flip actions:
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `036` <!-- stopVictoryLapPopup 273 --> The Victory Lap popup will no longer appear after defeating The Lamb.
+- `036` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
@@ -355,6 +355,8 @@ Post-flip actions:
 - `102` <!-- twentyTwenty --> The 20/20 sprite is now easier to see.
 - `103` <!-- starOfBethlehem --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
 - `104` <!-- paschalCandle --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- `105` <!-- scaredHeart --> Scared Hearts now have a custom animation so that they are easier to identify.
+- `106` <!-- stickyNickel --> Sticky Nickels now have a custom effect so that they are easier to identify.
 - The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
@@ -408,18 +410,12 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - The disappearing animation for Pitfalls are sped up by a factor of 2.
 - Some things that are unseeded are now seeded:
   - cards from Sloth, Super Sloth, Pride, and Super Pride
-- Diagonal knife throws have a 3-frame window instead of a 1-frame window.
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
-- Death will no longer perform his slow attack.
 - The pickup delay on reloaded pedestal items is decreased from 18 frames to 15 frames.
-- The "Would you like to do a Victory Lap!?" popup no longer appears after defeating The Lamb.
-- All pills can now be used to cancel pedestal pickup animations.
 - The devil statue will be faded if there is an item pedestal hiding behind it.
 - Globins, Sacks, Fistula, and Teratoma will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - 9 Volt now properly synergizes with The Battery.
 - Double coins and nickels heal Keeper for their proper amount.
-- Monstro's Lung will now properly synergize with multi-shot items such as 20/20.
--->
-<!--
 - Scared Hearts and Sticky Nickels now have unique sprites.
-- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.) <!-- cspell:disable-line -->
+- There are now unique card backs for Rules, Suicide King, ?, Blank Rune, and Black Rune. (Thanks goes to [piber20](https://steamcommunity.com/id/piber20) for creating the sprites in the [Unique Card Backs](https://steamcommunity.com/sharedfiles/filedetails/?id=1120999933) mod.)
+-->
