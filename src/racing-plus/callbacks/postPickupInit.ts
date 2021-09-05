@@ -3,6 +3,7 @@ import * as scaredHeart from "../features/optional/graphics/scaredHeart";
 import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
+import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
@@ -26,6 +27,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_POST_PICKUP_INIT,
     collectible,
     PickupVariant.PICKUP_COLLECTIBLE, // 100
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_PICKUP_INIT,
+    tarotCard,
+    PickupVariant.PICKUP_TAROTCARD, // 300
   );
 
   mod.AddCallback(
@@ -66,6 +73,11 @@ function collectible(pickup: EntityPickup) {
   flyItemSprites.postPickupInit(pickup);
   twentyTwenty.postPickupInit(pickup);
   starOfBethlehem.postPickupInit(pickup);
+}
+
+// PickupVariant.PICKUP_TAROTCARD (300)
+function tarotCard(pickup: EntityPickup) {
+  uniqueCardBacks.postPickupInitTarotCard(pickup);
 }
 
 // PickupVariant.PICKUP_BIGCHEST (340)

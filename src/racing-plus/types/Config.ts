@@ -78,6 +78,7 @@ export default class Config {
   paschalCandle = true; // 221 (FamiliarVariant)
   scaredHeart = true; // 10.9 (PickupVariant, HeartSubType)
   stickyNickel = true; // 20.6 (PickupVariant, CoinSubType)
+  uniqueCardBacks = true; // 300 (PickupVariant)
 
   // Sounds
   silenceMomDad = true;

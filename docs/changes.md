@@ -234,38 +234,39 @@ Post-flip actions:
 
 - `056` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
 - `057` <!-- holyMantleUI --> The presence of a Holy Mantle shield is now shown on the hearts UI.
-- `058` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+- `058` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
+- `059` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `059` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `060` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `060` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `061` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `061` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `062` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `062` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `063` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `063` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `064` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `064` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `065` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `065` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `066` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+- `066` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `067` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `067` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `068` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `068` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `069` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
@@ -357,6 +358,7 @@ Post-flip actions:
 - `104` <!-- paschalCandle --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - `105` <!-- scaredHeart --> Scared Hearts now have a custom animation so that they are easier to identify.
 - `106` <!-- stickyNickel --> Sticky Nickels now have a custom effect so that they are easier to identify.
+- `107` <!-- uniqueCardBacks --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
 - The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)

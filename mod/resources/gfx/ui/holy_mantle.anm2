@@ -2,8 +2,8 @@
 	<Info CreatedBy="Unknown" CreatedOn="6/30/2018 05:20:21 AM" Version="20" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="p20_holy_mantle.png" Id="0"/>
-			<Spritesheet Path="p20_holy_mantle_glow.png" Id="1"/>
+			<Spritesheet Path="holy_mantle.png" Id="0"/>
+			<Spritesheet Path="holy_mantle_glow.png" Id="1"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="Glow" Id="0" SpritesheetId="1"/>

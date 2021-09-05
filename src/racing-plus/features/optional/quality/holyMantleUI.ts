@@ -7,7 +7,7 @@ import {
 import g from "../../../globals";
 
 const sprite = Sprite();
-sprite.Load("gfx/ui/p20_holy_mantle.anm2", true);
+sprite.Load("gfx/ui/holy_mantle.anm2", true);
 
 export function postRender(): void {
   const curses = g.l.GetCurses();

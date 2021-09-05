@@ -878,6 +878,15 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
+    "uniqueCardBacks",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "107",
+      "Unique card backs",
+      "Make some cards have a unique card back or modified graphic so that they are easier to identify.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,

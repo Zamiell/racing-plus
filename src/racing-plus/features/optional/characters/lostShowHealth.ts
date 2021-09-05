@@ -5,7 +5,7 @@ const HEART_UI_POSITION = Vector(41, 2);
 const HEART_UI_EXTRA_LIVES_OFFSET = Vector(24, 0);
 
 const sprite = Sprite();
-sprite.Load("gfx/ui/p20_lost_health.anm2", true);
+sprite.Load("gfx/ui/lost_health.anm2", true);
 
 export function postRender(): void {
   if (!config.lostShowHealth) {

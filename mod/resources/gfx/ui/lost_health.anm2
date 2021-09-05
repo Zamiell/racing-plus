@@ -2,7 +2,7 @@
 	<Info CreatedBy="Unknown" CreatedOn="6/30/2018 05:11:47 AM" Version="19" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="p20_lost_health.png" Id="0"/>
+			<Spritesheet Path="lost_health.png" Id="0"/>
 			<Spritesheet Path="ui_hearts.png" Id="1"/>
 		</Spritesheets>
 		<Layers>
