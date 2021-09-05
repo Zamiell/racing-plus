@@ -12,7 +12,7 @@ import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 
-const CHARACTERS_WITH_AN_ACTIVE_ITEM = new Set<PlayerType>([
+const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
   PlayerType.PLAYER_ISAAC, // 0
   PlayerType.PLAYER_MAGDALENA, // 1
   PlayerType.PLAYER_JUDAS, // 3
@@ -23,6 +23,10 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM = new Set<PlayerType>([
   PlayerType.PLAYER_LILITH, // 13
   PlayerType.PLAYER_KEEPER, // 14
   PlayerType.PLAYER_APOLLYON, // 15
+  PlayerType.PLAYER_EDEN_B, // 30
+]);
+
+const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_JACOB, // 19
   PlayerType.PLAYER_ESAU, // 20
   PlayerType.PLAYER_MAGDALENA_B, // 22
@@ -30,7 +34,6 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM = new Set<PlayerType>([
   PlayerType.PLAYER_XXX_B, // 25
   PlayerType.PLAYER_EVE_B, // 26
   PlayerType.PLAYER_LAZARUS_B, // 29
-  PlayerType.PLAYER_EDEN_B, // 30
   PlayerType.PLAYER_APOLLYON_B, // 34
   PlayerType.PLAYER_BETHANY_B, // 36
   PlayerType.PLAYER_JACOB_B, // 37
@@ -260,7 +263,8 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) &&
+    (CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA.has(character) ||
+      CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character)) &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden
