@@ -22,7 +22,7 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 
 ## Introduction
 
-The main point of the Racing+ mod is to enable multiplayer racing with other people. It contains various netcode, has sprites to show what place you are in, and so forth.
+The main point of the Racing+ mod is to enable multiplayer racing with other people. It contains network code, has sprites to show what place you are in, and so forth.
 
 Additionally, Racing+ makes some gameplay tweaks and fixes some vanilla bugs. You might not be able to recognize some of the smaller changes, so this page documents every change that it performs. With that said, you will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
 
