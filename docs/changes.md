@@ -22,11 +22,11 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 
 ## Introduction
 
-Overall, the main point of the Racing+ mod is to enable multiplayer racing with other people. You will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
+The main point of the Racing+ mod is to enable multiplayer racing with other people. It contains various netcode, has sprites to show what place you are in, and so forth.
 
-With that said, Racing+ does make a lot of smaller changes that you might not be able to pick-up on right away. This page documents every change that it performs.
+Additionally, Racing+ makes some gameplay tweaks and fixes some vanilla bugs. You might not be able to recognize some of the smaller changes, so this page documents every change that it performs. With that said, you will find that doing a speedrun using the Racing+ mod will be very similar to doing a speedrun on the vanilla game.
 
-Most changes are prefixed by a code, like: `001`. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818&searchtext=modconfigmenu). If a change does not have a prefix, you won't be able to toggle that option, since it is probably accomplished by modifying the game's resource files directly.
+Most changes on this page are prefixed by a code, like: `001`. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818&searchtext=modconfigmenu). If a change does not have a prefix, you won't be able to toggle that option, since it is probably accomplished by modifying the game's resource files directly.
 
 <br />
 
