@@ -3,4 +3,5 @@ export default class Hotkeys {
   fastDropTrinkets = -1;
   fastDropPocket = -1;
   schoolbagSwitch = -1;
+  autofire = -1;
 }

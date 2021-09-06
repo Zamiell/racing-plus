@@ -5,6 +5,11 @@ const DEBUG_HOTKEY = Keyboard.KEY_F2;
 
 let debugHotkeyPressed = false;
 
+export default function debugFunction(): void {
+  // Enable debug mode
+  g.debug = true;
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   if (!g.debug) {
@@ -23,7 +28,11 @@ export function postUpdate(): void {
 
 function hotkeyFunction() {}
 
-export default function debugFunction(): void {
-  // Enable debug mode
-  g.debug = true;
+// ModCallbacks.MC_POST_EFFECT_RENDER (56)
+export function postEffectRender(_effect: EntityEffect): void {
+  /*
+  const text = `State: ${effect.State}`;
+  const position = Isaac.WorldToRenderPosition(effect.Position);
+  Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
+  */
 }

@@ -4,15 +4,15 @@ import { hotkeys } from "../../../modConfigMenu";
 let isPressed = false;
 
 export function postUpdate(): void {
+  if (hotkeys.schoolbagSwitch === -1) {
+    return;
+  }
+
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs
   checkInput();
 }
 
 function checkInput() {
-  if (hotkeys.schoolbagSwitch === -1) {
-    return;
-  }
-
   if (!isKeyboardPressed(hotkeys.schoolbagSwitch)) {
     isPressed = false;
     return;

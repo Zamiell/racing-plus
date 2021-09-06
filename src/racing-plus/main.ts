@@ -13,6 +13,7 @@ import * as inputAction from "./callbacks/inputAction";
 import * as postBombInit from "./callbacks/postBombInit";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
+import * as postEffectRender from "./callbacks/postEffectRender";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
@@ -97,6 +98,7 @@ function registerCallbacks(mod: ModUpgraded) {
 function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
+  mod.AddCallback(ModCallbacks.MC_USE_ITEM, useItem.main); // 3
   mod.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
   mod.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
@@ -109,6 +111,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main); // 32
   mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.main); // 34
+  mod.AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, postEffectRender.main); // 56
   mod.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
   mod.AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, preGetCollectible.main); // 62
   mod.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65

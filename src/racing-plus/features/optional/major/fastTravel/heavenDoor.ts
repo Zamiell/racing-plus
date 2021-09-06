@@ -1,3 +1,4 @@
+import { inItLivesRoom } from "isaacscript-common";
 import g from "../../../../globals";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
@@ -112,8 +113,8 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     return;
   }
 
-  if (!entityDescription.initial && effect.FrameCount < 40) {
-    // We want the player to be forced to dodge the final wave of tears from It Lives!
+  // We want the player to be forced to dodge the final wave of tears from It Lives!
+  if (!entityDescription.initial && effect.FrameCount < 40 && inItLivesRoom()) {
     return;
   }
 

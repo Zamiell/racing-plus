@@ -5,7 +5,9 @@ import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
+import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import extraStartingItemsPostUpdate from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
+import * as autofire from "../features/optional/hotkeys/autofire";
 import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import fastClearPostUpdate from "../features/optional/major/fastClear/callbacks/postUpdate";
@@ -33,10 +35,16 @@ export function main(): void {
   fastDrop.postUpdate();
   schoolbagSwitch.postUpdate();
 
+  // Hotkeys
+  autofire.postUpdate();
+
   // Quality of life
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
 
   // Gameplay changes
   extraStartingItemsPostUpdate();
+
+  // Bug fixes
+  battery9VoltSynergy.postUpdate();
 }

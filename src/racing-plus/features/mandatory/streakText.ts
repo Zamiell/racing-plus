@@ -310,7 +310,7 @@ export function postTransformation(
   set(transformationName);
 }
 
-function set(text: string) {
+export function set(text: string): void {
   v.run.text = text;
   v.run.frameSet = Isaac.GetFrameCount();
 }

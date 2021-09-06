@@ -9,6 +9,7 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
+import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as appearHands from "../features/optional/enemies/appearHands";
@@ -79,4 +80,5 @@ export function main(): void {
 
   // Bux fixes
   teleportInvalidEntrance.postNewRoom();
+  removeInvalidPitfalls.postNewRoom();
 }

@@ -70,7 +70,9 @@ export default class Config {
   fastTeleports = true;
 
   // Bug Fixes
+  battery9VoltSynergy = true;
   teleportInvalidEntrance = true;
+  removeInvalidPitfalls = true;
 
   // Graphics
   flyItemSprites = true; // 57, 128, 364

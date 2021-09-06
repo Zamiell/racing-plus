@@ -2,6 +2,7 @@ import debugFunction from "../debugFunction";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
+import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
 import { CollectibleTypeCustom } from "../types/enums";
@@ -42,6 +43,17 @@ export function init(mod: Mod): void {
     debugItem,
     CollectibleTypeCustom.COLLECTIBLE_DEBUG,
   );
+}
+
+export function main(
+  collectibleType: CollectibleType | int,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: int,
+  activeSlot: int,
+  _customVarData: int,
+): boolean | void {
+  battery9VoltSynergy.useItem(collectibleType, player, activeSlot);
 }
 
 // CollectibleType.COLLECTIBLE_TELEPORT (44)

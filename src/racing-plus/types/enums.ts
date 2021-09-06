@@ -29,6 +29,9 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_SAWBLADE = Isaac.GetItemIdByName("Sawblade"),
   COLLECTIBLE_13_LUCK = Isaac.GetItemIdByName("13 Luck"),
   COLLECTIBLE_15_LUCK = Isaac.GetItemIdByName("15 Luck"),
+  COLLECTIBLE_3_DOLLAR_BILL_SEEDED = Isaac.GetItemIdByName(
+    "3 Dollar Bill (Seeded)",
+  ),
 
   // Utility items
   COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),

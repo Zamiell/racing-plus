@@ -57,6 +57,8 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["teden", 30],
   ["tlost", 31],
   ["tlilith", 32],
+  ["tlili", 32],
+  ["tlil", 32],
   ["tkeeper", 33],
   ["tapollyon", 34],
   ["tforgotten", 35],

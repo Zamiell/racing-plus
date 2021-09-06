@@ -1,8 +1,16 @@
 ```
-### *v0.63.6* - September 6th, 2021
+### *v0.64.0* - September 6th, 2021
 
--
+- Added an autofire hotkey. (This is useful for Tainted Lilith, Anti-Gravity builds, Number Two builds, and more.)
+- You can now hold down the drop/switch button to temporarily deactivate the pocket item charging precedence.
+- Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- Custom code is added to provide a synergy for The Battery and 9 Volt.
+- In seeded races, 3 Dollar Bill is now seeded per room.
+- Fixed the bug where the beam of light after Isaac would not take you up right away.
+- Fixed the bug where The Battery would cause charging events to grant too many charges.
 ```
+
+- get rid of g.run
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

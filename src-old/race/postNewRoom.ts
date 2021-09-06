@@ -1,28 +1,7 @@
 /*
 
-import * as seededDeath from "../features/seededDeath";
-import * as seededRooms from "../features/seededRooms";
-import g from "../globals";
-import * as misc from "../misc";
-import * as sprites from "../sprites";
-import { CollectibleTypeCustom } from "../types/enums";
-import { THREE_DOLLAR_BILL_EFFECTS, VICTORY_LAP_BOSSES } from "./constants";
-
 export function main(): void {
-  // Remove some sprites if they are showing
-  sprites.init("place2", "");
-  sprites.init("dps-button", "");
-  sprites.init("victory-lap-button", "");
-
-  checkOpenMegaSatanDoor();
   checkVictoryLapBossReplace();
-
-  // Check for the special death mechanic
-  seededDeath.postNewRoom();
-  seededDeath.postNewRoomCheckSacrificeRoom();
-
-  // Check for rooms that should be manually seeded during seeded races
-  seededRooms.postNewRoom();
 }
 
 function checkVictoryLapBossReplace() {

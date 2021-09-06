@@ -41,6 +41,7 @@ Regardless of the format:
   - Instead of dying, players will respawn in the previous room with 1.5 soul hearts.
   - They will have a "debuff" effect that removes all of the items. The debuff will last 45 seconds.
   - This mechanic does not apply to deaths in Devil Rooms, Sacrifice Rooms, or the Boss Rush. (Deaths in those rooms will be permanent.)
+- 3 Dollar Bill is seeded per room.
 
 <br />
 

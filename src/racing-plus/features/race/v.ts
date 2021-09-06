@@ -9,6 +9,7 @@ const v = {
     madeBossRushItemsFree: false,
 
     numVictoryLaps: 0,
+    seeded3DollarBillItem: null as CollectibleType | null,
 
     seededDeath: {
       state: SeededDeathState.DISABLED,

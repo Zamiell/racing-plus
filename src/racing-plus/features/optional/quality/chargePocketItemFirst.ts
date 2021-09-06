@@ -33,7 +33,6 @@ interface ChargeSituation {
 
 enum ChargeType {
   NONE,
-  FULL,
   N_CHARGES,
 }
 
@@ -46,6 +45,9 @@ const ACTIVE_SLOTS_PRECEDENCE = [
 // The maximum amount of charges that a Battery Bum can grant is 3
 // The third charge occurs on the 40th frame after the "Prize" animation begins
 const BATTERY_BUM_CHARGE_DELAY_FRAMES = 40;
+
+const LIL_BATTERY_CHARGES = 6;
+const MICRO_BATTERY_CHARGES = 2;
 
 const v = {
   run: {
@@ -73,8 +75,13 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
     return;
   }
 
-  const chargeSituation = {
-    chargeType: ChargeType.FULL,
+  if (dropButtonPressed(player)) {
+    return;
+  }
+
+  const chargeSituation: ChargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
 }
@@ -82,6 +89,10 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
   if (!config.chargePocketItemFirst) {
+    return;
+  }
+
+  if (dropButtonPressed(player)) {
     return;
   }
 
@@ -101,7 +112,7 @@ function checkBatteryBumCharge(player: EntityPlayer) {
     return;
   }
 
-  const chargeSituation = {
+  const chargeSituation: ChargeSituation = {
     chargeType: ChargeType.N_CHARGES,
     numCharges: 1,
     overcharge: true,
@@ -132,8 +143,9 @@ function checkHairpinCharge(player: EntityPlayer) {
   // Hairpin charges the active item on the 1st frame of the room
   // Thus, we have to perform this check in the PostPlayerUpdate callback instead of the PostNewRoom
   // callback
-  const chargeSituation = {
-    chargeType: ChargeType.FULL,
+  const chargeSituation: ChargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
 }
@@ -168,6 +180,10 @@ export function postPickupCollect(
     return;
   }
 
+  if (dropButtonPressed(player)) {
+    return;
+  }
+
   const chargeSituation = getChargeSituationForPickup(
     pickup.Variant,
     pickup.SubType,
@@ -183,8 +199,13 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
     return;
   }
 
-  const chargeSituation = {
-    chargeType: ChargeType.FULL,
+  if (dropButtonPressed(player)) {
+    return;
+  }
+
+  const chargeSituation: ChargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
 }
@@ -197,8 +218,13 @@ export function postItemPickupBatteryPack(player: EntityPlayer): void {
     return;
   }
 
-  const chargeSituation = {
-    chargeType: ChargeType.FULL,
+  if (dropButtonPressed(player)) {
+    return;
+  }
+
+  const chargeSituation: ChargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
 }
@@ -213,6 +239,10 @@ export function postPurchase(
     return;
   }
 
+  if (dropButtonPressed(player)) {
+    return;
+  }
+
   const chargeSituation = getChargeSituationForPickup(
     pickupVariant,
     pickupSubType,
@@ -223,6 +253,10 @@ export function postPurchase(
 // ModCallbacksCustom.MC_POST_SLOT_UPDATE
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotUpdateBatteryBum(slot: Entity): void {
+  if (!config.chargePocketItemFirst) {
+    return;
+  }
+
   const gameFrameCount = g.g.GetFrameCount();
 
   const ptrHash = GetPtrHash(slot);
@@ -257,7 +291,8 @@ function getChargeSituationForPickup(
     case PickupVariant.PICKUP_KEY: {
       if (pickupSubType === KeySubType.KEY_CHARGED) {
         return {
-          chargeType: ChargeType.FULL,
+          chargeType: ChargeType.N_CHARGES,
+          numCharges: LIL_BATTERY_CHARGES,
         };
       }
 
@@ -283,14 +318,15 @@ function getChargeSituationForBattery(batterySubType: BatterySubType) {
   switch (batterySubType) {
     case BatterySubType.BATTERY_NORMAL: {
       return {
-        chargeType: ChargeType.FULL,
+        chargeType: ChargeType.N_CHARGES,
+        numCharges: LIL_BATTERY_CHARGES,
       };
     }
 
     case BatterySubType.BATTERY_MICRO: {
       return {
         chargeType: ChargeType.N_CHARGES,
-        numCharges: 2,
+        numCharges: MICRO_BATTERY_CHARGES,
       };
     }
 
@@ -303,7 +339,8 @@ function getChargeSituationForBattery(batterySubType: BatterySubType) {
 
     case BatterySubType.BATTERY_GOLDEN: {
       return {
-        chargeType: ChargeType.FULL,
+        chargeType: ChargeType.N_CHARGES,
+        numCharges: LIL_BATTERY_CHARGES,
       };
     }
 
@@ -395,9 +432,7 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
       continue;
     }
 
-    if (chargeSituation.chargeType === ChargeType.FULL) {
-      player.FullCharge(activeSlot);
-    } else if (chargeSituation.chargeType === ChargeType.N_CHARGES) {
+    if (chargeSituation.chargeType === ChargeType.N_CHARGES) {
       const totalCharge = getTotalCharge(player, activeSlot);
       if (chargeSituation.numCharges === undefined) {
         error(
@@ -435,4 +470,11 @@ function needsCharge(
     hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
 
   return totalCharge < adjustedMaxCharges;
+}
+
+function dropButtonPressed(player: EntityPlayer) {
+  return Input.IsActionPressed(
+    ButtonAction.ACTION_DROP,
+    player.ControllerIndex,
+  );
 }

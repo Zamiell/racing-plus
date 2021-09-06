@@ -127,6 +127,7 @@ Post-flip actions:
   - a fast-drop button for only trinkets
   - a fast-drop button for only pocket items
   - a Schoolbag switch button
+  - an autofire button
 
 ### 2) Character Changes
 
@@ -197,24 +198,16 @@ Post-flip actions:
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
 - `044` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
-
-> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
 - `045` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
 - `046` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
 
-> Why? No other enemies in the game are invulnerable during this time, so this mechanic doesn't make any sense. It results in the player being forced to wait without performing any inputs.
+> Why? No other enemies in the game are invulnerable during this time, so this mechanic is not consistent.
 
 - `047` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
-
-> Why? These enemies can take a long time to attack, resulting in the player being forced to wait without performing any inputs.
-
 - `048` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
-
-> Why? Cod Worms force the player to sit and wait without performing any inputs. This is terrible game design and not conducive to competitive play.
 
 ### 5) Quality of Life Changes
 
@@ -261,7 +254,8 @@ Post-flip actions:
 > Why? This can interfere with finishing the run.
 
 - `066` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `067` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item.
+- `067` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
+  - This also fixes the vanilla bug where 48 Hour Energy! and Hairpin will only charge 12-charge items for 3 charges instead of 6.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
@@ -337,7 +331,9 @@ Post-flip actions:
 
 ### 9) Bug Fixes
 
-- `091` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
+- `091` <!-- battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
+- `092` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
+- `093` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - Restock Machines will now appear in shops 25% of the time.
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.

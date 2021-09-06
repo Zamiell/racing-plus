@@ -8,7 +8,7 @@ export type ConfigDescriptions = Array<
   ]
 >;
 
-// 001-00X
+// 001-010
 export const MAJOR_CHANGES: ConfigDescriptions = [
   [
     "clientCommunication",
@@ -140,9 +140,18 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
       "Switch between Schoolbag items without swapping cards or switching to The Soul.",
     ],
   ],
+  [
+    "autofire",
+    [
+      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      "",
+      "Toggle autofire",
+      "Enable autofire, which toggles the fire input on every frame.",
+    ],
+  ],
 ];
 
-// 021-02X
+// 021-030
 export const CHARACTER_CHANGES: ConfigDescriptions = [
   [
     "judasAddBomb", // 3
@@ -334,7 +343,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
   ],
 ];
 
-// 041-04X
+// 041-050
 export const ENEMY_CHANGES: ConfigDescriptions = [
   [
     "removeTreasureRoomEnemies",
@@ -410,7 +419,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 050-060
+// 051-060
 export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
   [
     "speedUpFadeIn",
@@ -504,7 +513,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
   ],
 ];
 
-// 061-06X
+// 061-070
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
     "showDreamCatcherItem", // 566
@@ -598,7 +607,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   ],
 ];
 
-// 071-07X
+// 071-080
 export const GAMEPLAY_CHANGES: ConfigDescriptions = [
   [
     "extraStartingItems",
@@ -714,7 +723,7 @@ export const REMOVALS: ConfigDescriptions = [
   ],
 ];
 
-// 081-08X
+// 081-090
 export const CUTSCENE_CHANGES: ConfigDescriptions = [
   [
     "fastTeleports",
@@ -772,15 +781,33 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 091-09X
+// 091-100
 export const BUG_FIXES: ConfigDescriptions = [
+  [
+    "battery9VoltSynergy",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "091",
+      "Fix The Battery + 9 Volt synergy",
+      "Make these items work together properly.",
+    ],
+  ],
   [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "091",
+      "092",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
+    ],
+  ],
+  [
+    "removeInvalidPitfalls",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "093",
+      "Remove invalid Pitfalls",
+      "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
   ],
   [
@@ -830,7 +857,7 @@ export const BUG_FIXES: ConfigDescriptions = [
   ],
 ];
 
-// 101-10X
+// 101-110
 export const GRAPHIC_CHANGES: ConfigDescriptions = [
   [
     "flyItemSprites",
@@ -978,7 +1005,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 111-11X
+// 111-120
 export const SOUND_CHANGES: ConfigDescriptions = [
   [
     "silenceMomDad",
@@ -991,7 +1018,7 @@ export const SOUND_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 121-12X
+// 121-130
 export const OTHER_FEATURES: ConfigDescriptions = [
   [
     "customConsole",
