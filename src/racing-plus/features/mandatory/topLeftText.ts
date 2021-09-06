@@ -15,6 +15,7 @@ import {
   shouldShowEndOfRunTextSpeedrun,
 } from "../speedrun/speedrun";
 import { speedrunGetFinishedFrames } from "../speedrun/v";
+import { getRoomsEntered } from "../util/roomsEntered";
 
 const STARTING_X = 55;
 const STARTING_Y = 10;
@@ -43,7 +44,8 @@ export function postRender(): void {
     if (shouldShowEndOfRunTextSpeedrun()) {
       lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
-      lines.push(`Rooms entered: ${g.run.roomsEntered}`);
+      const roomsEntered = getRoomsEntered();
+      lines.push(`Rooms entered: ${roomsEntered}`);
     }
 
     // Draw a 3rd line to show the total frames

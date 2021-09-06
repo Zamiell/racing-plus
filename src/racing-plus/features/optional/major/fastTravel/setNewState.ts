@@ -13,6 +13,7 @@ import { moveEsauNextToJacob } from "../../../../util";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
+import { decrementRoomsEntered } from "../../../util/roomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
@@ -237,7 +238,7 @@ function setChangingToStartingRoom() {
   // card is properly decremented
   // We arbitrarily use the starting room for this
   changeRoom(startingRoomIndex);
-  g.run.roomsEntered -= 1; // This should not count as entering a room
+  decrementRoomsEntered(); // This should not count as entering a room
 }
 
 function setGoingToNewFloor() {

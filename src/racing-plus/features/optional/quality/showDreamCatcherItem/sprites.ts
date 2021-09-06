@@ -5,7 +5,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../util";
-import { isSlideAnimationActive } from "../../../mandatory/detectSlideAnimation";
+import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 

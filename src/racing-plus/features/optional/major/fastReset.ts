@@ -7,6 +7,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../util";
 import { speedrunSetFastReset } from "../../speedrun/v";
+import { getRoomsEntered } from "../../util/roomsEntered";
 
 const v = {
   run: {
@@ -64,7 +65,9 @@ function checkResetInput() {
 
 function reset() {
   const isaacFrameCount = Isaac.GetFrameCount();
-  if (g.run.roomsEntered <= 3 || isaacFrameCount <= v.run.lastResetFrame + 60) {
+  const roomsEntered = getRoomsEntered();
+
+  if (roomsEntered <= 3 || isaacFrameCount <= v.run.lastResetFrame + 60) {
     // Speedrun functionality relies on knowing whether or not a fast-reset occurred
     speedrunSetFastReset();
 

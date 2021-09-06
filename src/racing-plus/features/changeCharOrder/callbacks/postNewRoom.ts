@@ -8,6 +8,7 @@ import {
 import g from "../../../globals";
 import { consoleCommand } from "../../../util";
 import { ChallengeCustom } from "../../speedrun/enums";
+import { getRoomsEntered } from "../../util/roomsEntered";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import v from "../v";
 
@@ -17,9 +18,11 @@ export default function charCharOrderPostNewRoom(): void {
     return;
   }
 
-  if (g.run.roomsEntered === 1) {
+  const roomsEntered = getRoomsEntered();
+
+  if (roomsEntered === 1) {
     gotoButtonRoom();
-  } else if (g.run.roomsEntered === 3) {
+  } else if (roomsEntered === 3) {
     setupButtonRoom();
   }
 }

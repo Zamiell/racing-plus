@@ -3,6 +3,7 @@
 
 - Added an autofire hotkey. (This is useful for Tainted Lilith, Anti-Gravity builds, Number Two builds, and more.)
 - You can now hold down the drop/switch button to temporarily deactivate the pocket item charging precedence.
+- Blood Rights is now removed from pools on Tainted Samson.
 - Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - Custom code is added to provide a synergy for The Battery and 9 Volt.
 - In seeded races, 3 Dollar Bill is now seeded per room.
@@ -11,6 +12,7 @@
 ```
 
 - get rid of g.run
+- tainted samson blood rights
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

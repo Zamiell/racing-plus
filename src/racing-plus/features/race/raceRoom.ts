@@ -11,6 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand, initSprite } from "../../util";
+import { getRoomsEntered } from "../util/roomsEntered";
 import {
   RACE_ROOM_POSITION,
   RACE_ROOM_STAGE_ID,
@@ -163,12 +164,14 @@ function gotoRaceRoom() {
 }
 
 function shouldGotoRaceRoom() {
+  const roomsEntered = getRoomsEntered();
+
   return (
     (g.race.status === RaceStatus.OPEN ||
       g.race.status === RaceStatus.STARTING) &&
     // Only bring them to the race room if they are not in the middle of a run
     // e.g. the only room that they have entered is the starting room on Basement 1
-    g.run.roomsEntered === 1
+    roomsEntered === 1
   );
 }
 

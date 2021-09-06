@@ -3,7 +3,6 @@ import * as cache from "../cache";
 import charCharOrderPostNewRoom from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
-import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -25,6 +24,8 @@ import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDr
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import racePostNewRoom from "../features/race/callbacks/postNewRoom";
 import speedrunPostNewRoom from "../features/speedrun/callbacks/postNewRoom";
+import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
+import * as roomsEntered from "../features/util/roomsEntered";
 import g from "../globals";
 
 export function main(): void {
@@ -40,13 +41,13 @@ export function main(): void {
     `MC_POST_NEW_ROOM - ${roomStageID}.${roomVariant} (on stage ${stage}.${stageType}) (game frame ${gameFrameCount})`,
   );
 
-  // Set variables
-  g.run.roomsEntered += 1; // Keep track of how many rooms we enter over the course of the run
+  // Util
+  detectSlideAnimation.postNewRoom();
+  roomsEntered.postNewRoom();
 
   // Mandatory features
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
-  detectSlideAnimation.postNewRoom();
   controlsGraphic.postNewRoom();
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();

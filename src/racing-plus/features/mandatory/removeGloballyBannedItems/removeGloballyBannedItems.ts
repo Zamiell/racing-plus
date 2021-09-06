@@ -75,6 +75,11 @@ export function postGameStarted(): void {
     // Remove it from pools until the bug is fixed
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
   }
+
+  if (anyPlayerIs(PlayerType.PLAYER_SAMSON_B)) {
+    // Tainted Samson can break the game with Blood Rights since we will never die
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BLOOD_RIGHTS);
+  }
 }
 
 // ModCallbacks.MC_USE_ITEM (3)
@@ -85,7 +90,6 @@ export function useItemSpindownDice(): void {
     PickupVariant.PICKUP_COLLECTIBLE,
   );
 
-  // Prevent getting banned items on the Death Certificate floor
   for (const collectible of collectibles) {
     if (isBannedCollectible(collectible)) {
       changeCollectibleSubType(collectible, collectible.SubType - 1);
@@ -116,6 +120,21 @@ function isBannedCollectible(entity: Entity) {
   if (
     v.run.startedWithVoid &&
     BANNED_COLLECTIBLES_WITH_VOID.has(entity.SubType)
+  ) {
+    return true;
+  }
+
+  if (
+    (anyPlayerIs(PlayerType.PLAYER_BETHANY) ||
+      anyPlayerIs(PlayerType.PLAYER_BETHANY_B)) &&
+    entity.SubType === CollectibleType.COLLECTIBLE_ESAU_JR
+  ) {
+    return true;
+  }
+
+  if (
+    anyPlayerIs(PlayerType.PLAYER_SAMSON_B) &&
+    entity.SubType === CollectibleType.COLLECTIBLE_BLOOD_RIGHTS
   ) {
     return true;
   }

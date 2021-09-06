@@ -1,6 +1,6 @@
 import * as cache from "../cache";
 import changeCharOrderPostRender from "../features/changeCharOrder/callbacks/postRender";
-import * as detectSlideAnimation from "../features/mandatory/detectSlideAnimation";
+import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";

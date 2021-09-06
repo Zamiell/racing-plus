@@ -2,7 +2,6 @@ import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
-import * as detectSlideAnimation from "./features/mandatory/detectSlideAnimation";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as errors from "./features/mandatory/errors";
@@ -42,6 +41,8 @@ import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
 import * as speedrunVars from "./features/speedrun/v";
+import * as detectSlideAnimation from "./features/util/detectSlideAnimation";
+import * as roomsEntered from "./features/util/roomsEntered";
 import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
 import * as passiveItemsForEden from "./passiveItemsForEden";
@@ -58,6 +59,10 @@ export default function initFeatureVariables(): void {
   sawblade.init();
   passiveItemsForEden.init();
 
+  // Util
+  detectSlideAnimation.init();
+  roomsEntered.init();
+
   // Mandatory features
   streakText.init();
   removeGloballyBannedItems.init();
@@ -70,7 +75,6 @@ export default function initFeatureVariables(): void {
   seededTeleports.init();
   runTimer.init();
   seededFloors.init();
-  detectSlideAnimation.init();
   trophy.init();
   fireworks.init();
   disableMultiplayer.init();

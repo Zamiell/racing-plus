@@ -24,8 +24,6 @@ export default class Globals {
      * while in the PostGameStarted callback.
      */
     restart: false,
-
-    roomsEntered: 0,
   };
 
   /** Race variables that are set via the client communicating with us over a socket. */

@@ -1,6 +1,7 @@
 import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../util";
+import { getRoomsEntered } from "../util/roomsEntered";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
@@ -125,7 +126,9 @@ function getPosition(spriteName: keyof typeof sprites) {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (g.run.roomsEntered > 1) {
+  const roomsEntered = getRoomsEntered();
+
+  if (roomsEntered > 1) {
     resetSprites();
   }
 }

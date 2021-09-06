@@ -7,7 +7,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import { initGlowingItemSprite } from "../../../util";
-import { isSlideAnimationActive } from "../../mandatory/detectSlideAnimation";
+import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
 
 // Near the top-left
 const SPRITE_X = 123;
