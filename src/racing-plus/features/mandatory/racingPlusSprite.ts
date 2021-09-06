@@ -21,6 +21,7 @@ const SPRITE_POSITION = Vector(4, 72); // On top of where the "No Achievements" 
 
 const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
     return;
@@ -59,4 +60,13 @@ export function getPosition(): Vector {
   }
 
   return position;
+}
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  // We want this sprite to appear on all runs, so we need to disable achievements on all runs
+  // The easiest way to do this without affecting gameplay is to enable an easter egg that prevents
+  // a curse from appearing
+  // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
+  g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
 }

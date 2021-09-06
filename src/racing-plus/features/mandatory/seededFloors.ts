@@ -51,6 +51,10 @@ function featureEnabled() {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
+  // We may have had the Curse of the Unknown seed enabled in a previous run,
+  // so ensure that it is removed
+  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
+
   if (onSetSeed()) {
     // Remove certain trinkets that mess up floor generation
     g.itemPool.RemoveTrinket(TrinketType.TRINKET_SILVER_DOLLAR); // 110
