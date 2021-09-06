@@ -1,7 +1,13 @@
-import { getClosestPlayer, getRoomIndex, gridToPos } from "isaacscript-common";
+import {
+  getClosestPlayer,
+  getRoomIndex,
+  gridToPos,
+  openAllDoors,
+} from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../util";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
+import { isSlideAnimationActive } from "../util/detectSlideAnimation";
 import v from "./v";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);
@@ -17,6 +23,10 @@ const victoryLapSprite = initGlowingItemSprite(
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
+  if (isSlideAnimationActive()) {
+    return;
+  }
+
   const roomIndex = getRoomIndex();
 
   if (
@@ -97,6 +107,25 @@ export function spawnVictoryLapButton(center?: boolean): void {
     spritePosition: position.add(SPRITE_OFFSET_COLLECTIBLE),
     pressed: false,
   };
+}
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  if (!g.raceVars.finished) {
+    return;
+  }
+
+  const roomIndex = getRoomIndex();
+
+  if (
+    (v.level.dpsButton !== null && v.level.dpsButton.roomIndex === roomIndex) ||
+    (v.level.victoryLapButton !== null &&
+      v.level.victoryLapButton.roomIndex === roomIndex)
+  ) {
+    // The buttons will cause the door to close, so re-open the door
+    // (the door will stay open since the room is already cleared)
+    openAllDoors();
+  }
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE

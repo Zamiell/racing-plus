@@ -1,6 +1,7 @@
 import { getRoomIndex } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
+import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 import * as raceRoom from "../raceRoom";
@@ -38,6 +39,7 @@ export default function racePostNewRoom(): void {
   replaceScolex.postNewRoom();
   seededDeath.postNewRoom();
   seeded3DollarBill.postNewRoom();
+  endOfRaceButtons.postNewRoom();
   victoryLap.postNewRoom();
   recordMegaSatanRoom();
 }

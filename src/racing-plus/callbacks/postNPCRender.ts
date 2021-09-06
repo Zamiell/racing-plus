@@ -13,6 +13,6 @@ export function main(npc: EntityNPC): void {
   fastClearPostNPCRender(npc);
 }
 
-export function dummy(npc: EntityNPC): void {
+function dummy(npc: EntityNPC) {
   dummyDPS.postNPCRenderDummy(npc);
 }
