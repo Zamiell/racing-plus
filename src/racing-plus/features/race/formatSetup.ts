@@ -1,13 +1,7 @@
 import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
-import { CollectibleTypeCustom } from "../../types/enums";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
-import {
-  COLLECTIBLE_13_LUCK_SERVER_ID,
-  COLLECTIBLE_15_LUCK_SERVER_ID,
-  COLLECTIBLE_SAWBLADE_SERVER_ID,
-} from "./constants";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
@@ -109,8 +103,8 @@ function unseeded(player: EntityPlayer) {
 function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable
-  for (const itemID of g.race.startingItems) {
-    giveCollectibleAndRemoveFromPools(player, itemID);
+  for (const collectibleID of g.race.startingItems) {
+    giveCollectibleAndRemoveFromPools(player, collectibleID);
   }
 }
 
@@ -127,19 +121,8 @@ function seeded(player: EntityPlayer) {
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item)
-  for (let itemID of g.race.startingItems) {
-    // The "13 Luck" item is a special case
-    // The server does not know what the real ID of it is,
-    // so it uses an arbitrarily large number to represent it
-    if (itemID === COLLECTIBLE_13_LUCK_SERVER_ID) {
-      itemID = CollectibleTypeCustom.COLLECTIBLE_13_LUCK;
-    } else if (itemID === COLLECTIBLE_15_LUCK_SERVER_ID) {
-      itemID = CollectibleTypeCustom.COLLECTIBLE_15_LUCK;
-    } else if (itemID === COLLECTIBLE_SAWBLADE_SERVER_ID) {
-      itemID = CollectibleTypeCustom.COLLECTIBLE_SAWBLADE;
-    }
-
-    giveCollectibleAndRemoveFromPools(player, itemID);
+  for (const collectibleID of g.race.startingItems) {
+    giveCollectibleAndRemoveFromPools(player, collectibleID);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright

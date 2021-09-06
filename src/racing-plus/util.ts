@@ -6,11 +6,7 @@ import {
   MAX_VANILLA_COLLECTIBLE_TYPE,
   removeAllMatchingEntities,
 } from "isaacscript-common";
-import {
-  COLLECTIBLE_13_LUCK_SERVER_ID,
-  COLLECTIBLE_15_LUCK_SERVER_ID,
-  COLLECTIBLE_SAWBLADE_SERVER_ID,
-} from "./features/race/constants";
+import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -49,9 +45,9 @@ export function initGlowingItemSprite(itemID: int): Sprite {
   } else if (
     (itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
       itemID <= MAX_VANILLA_COLLECTIBLE_TYPE) ||
-    itemID === COLLECTIBLE_13_LUCK_SERVER_ID ||
-    itemID === COLLECTIBLE_15_LUCK_SERVER_ID ||
-    itemID === COLLECTIBLE_SAWBLADE_SERVER_ID
+    itemID === CollectibleTypeCustom.COLLECTIBLE_SAWBLADE ||
+    itemID === CollectibleTypeCustom.COLLECTIBLE_13_LUCK ||
+    itemID === CollectibleTypeCustom.COLLECTIBLE_15_LUCK
   ) {
     // Between Sad Onion and Decap Attack (or a custom modded items)
     const paddedNumber = itemID.toString().padStart(3, "0");
