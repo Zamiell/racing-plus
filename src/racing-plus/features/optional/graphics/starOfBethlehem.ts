@@ -1,4 +1,4 @@
-import { COLLECTIBLE_SPRITE_LAYER } from "../../../constants";
+import { setCollectibleSprite } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const CUSTOM_PNG_PATH =
@@ -10,8 +10,6 @@ export function postPickupInit(pickup: EntityPickup): void {
   }
 
   if (pickup.SubType === CollectibleType.COLLECTIBLE_STAR_OF_BETHLEHEM) {
-    const sprite = pickup.GetSprite();
-    sprite.ReplaceSpritesheet(COLLECTIBLE_SPRITE_LAYER, CUSTOM_PNG_PATH);
-    sprite.LoadGraphics();
+    setCollectibleSprite(pickup, CUSTOM_PNG_PATH);
   }
 }

@@ -17,6 +17,7 @@ import * as postEffectRender from "./callbacks/postEffectRender";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
+import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameEnd from "./callbacks/postGameEnd";
@@ -108,6 +109,10 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit.main); // 17
   mod.AddCallback(ModCallbacks.MC_EXECUTE_CMD, executeCmd.main); // 22
   mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, preEntitySpawn.main); // 24
+  mod.AddCallback(
+    ModCallbacks.MC_POST_FAMILIAR_RENDER,
+    postFamiliarRender.main,
+  ); // 25
   mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main); // 32
   mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.main); // 34
@@ -136,6 +141,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   entityTakeDmg.init(mod); // 11
   inputAction.init(mod); // 13
   preUseItem.init(mod); // 23
+  postFamiliarRender.init(mod); // 25
   preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
   postNPCRender.init(mod); // 28

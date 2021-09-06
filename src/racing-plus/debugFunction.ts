@@ -28,6 +28,16 @@ export function postUpdate(): void {
 
 function hotkeyFunction() {}
 
+// ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
+export function postFamiliarRender(_familiar: EntityFamiliar): void {
+  // const text = `State: ${familiar.State}`;
+  // const text = `Position: ${familiar.Position.X}, ${familiar.Position.Y}`;
+  // const text = `Animation: ${familiar.GetSprite().GetAnimation()}`;
+  // const text = `Visible: ${familiar.IsVisible()}`;
+  // const position = Isaac.WorldToRenderPosition(familiar.Position);
+  // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
+}
+
 // ModCallbacks.MC_POST_EFFECT_RENDER (56)
 export function postEffectRender(_effect: EntityEffect): void {
   // const text = `State: ${effect.State}`;

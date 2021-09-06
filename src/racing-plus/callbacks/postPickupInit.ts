@@ -1,3 +1,4 @@
+import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as flyItemSprites from "../features/optional/graphics/flyItemSprites";
 import * as scaredHeart from "../features/optional/graphics/scaredHeart";
 import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem";
@@ -55,6 +56,7 @@ export function init(mod: Mod): void {
 }
 
 export function main(pickup: EntityPickup): void {
+  seededGBBug.postPickupInit(pickup);
   automaticItemInsertion.postPickupInit(pickup);
 }
 

@@ -1,4 +1,4 @@
-import { COLLECTIBLE_SPRITE_LAYER } from "../../../constants";
+import { setCollectibleSprite } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const PNG_DIRECTORY = "gfx/items/collectibles";
@@ -24,11 +24,6 @@ export function postPickupInit(pickup: EntityPickup): void {
 
   const customSprite = CUSTOM_PNG_MAP.get(pickup.SubType);
   if (customSprite !== undefined) {
-    const sprite = pickup.GetSprite();
-    sprite.ReplaceSpritesheet(
-      COLLECTIBLE_SPRITE_LAYER,
-      `${PNG_DIRECTORY}/${customSprite}`,
-    );
-    sprite.LoadGraphics();
+    setCollectibleSprite(pickup, `${PNG_DIRECTORY}/${customSprite}`);
   }
 }

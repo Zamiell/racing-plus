@@ -1,22 +1,9 @@
 ```
-### *v0.64.0* - September 6th, 2021
+### *v0.64.1* - September 6th, 2021
 
-- Added an autofire hotkey. (This is useful for Tainted Lilith, Anti-Gravity builds, Number Two builds, and more.)
-- You can now hold down the drop/switch button to temporarily deactivate the pocket item charging precedence.
-- Blood Rights is now removed from pools on Tainted Samson.
-- Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
-- Custom code is added to provide a synergy for The Battery and 9 Volt.
-- All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- The statue in a Devil Room will now be faded if there are pickups behind it.
-- You can no longer abuse save & quit in a Genesis room.
-- You can no longer abuse save & quit to get extra familiars on Tainted Lilith.
-- Damocles is now correctly removed after using Genesis.
-- In seeded races, 3 Dollar Bill is now seeded per room.
-- Fixed the bug where the beam of light after Isaac would not take you up right away.
-- Fixed the bug where The Battery would cause charging events to grant too many charges.
+- The DPS button and Victory Lap button will now spawn after finishing a race. The Victory Lap boss pool has been updated to include all of the Repentance bosses.
 ```
 
-- victory lap
 - shadows
 - seeded GB bug (look for frame after familiar disappears for post pickup init)
 

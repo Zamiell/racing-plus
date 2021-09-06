@@ -8,6 +8,7 @@ import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
+import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as streakText from "../features/mandatory/streakText";
 import * as judasAddBomb from "../features/optional/characters/judasAddBomb";
 import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCard";
@@ -58,6 +59,7 @@ export function main(isContinued: boolean): void {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
   streakText.postGameStarted();
+  seededGBBug.postGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before
   // race initialization because we need to find out what the passive item is before other items are
