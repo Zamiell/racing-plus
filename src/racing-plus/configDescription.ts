@@ -805,7 +805,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "093",
+      "094",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
@@ -853,6 +853,15 @@ export const BUG_FIXES: ConfigDescriptions = [
       "",
       "Seeded teleports",
       "Make Teleport!, Cursed Eye, Broken Remote, and Telepills teleports seeded properly.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Fix infinite Genesis",
+      "Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the Genesis bug.",
     ],
   ],
 ];

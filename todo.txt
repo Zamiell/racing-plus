@@ -11,7 +11,11 @@
 - Fixed the bug where The Battery would cause charging events to grant too many charges.
 ```
 
-- get rid of g.run
+- Taking more items with Damocles + Genesis than you should have
+
+- test genesis bug fix
+- finish copying code
+- seeded GB bug (look for frame after familiar disappears for post pickup init)
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap
