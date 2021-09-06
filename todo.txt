@@ -14,6 +14,8 @@
 - Taking more items with Damocles + Genesis than you should have
 
 - test genesis bug fix
+- test gello bug fix
+
 - finish copying code
 - seeded GB bug (look for frame after familiar disappears for post pickup init)
 

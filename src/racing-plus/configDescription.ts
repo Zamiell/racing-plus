@@ -805,7 +805,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "094",
+      "093",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],

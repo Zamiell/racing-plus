@@ -2,6 +2,7 @@ import { log } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
+import * as gelloSaveAndQuitFix from "../features/mandatory/gelloSaveAndQuitFix";
 import * as genesisSaveAndQuitFix from "../features/mandatory/genesisSaveAndQuitFix";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
@@ -114,4 +115,5 @@ function setSeeds() {
 function postGameStartedContinued() {
   fastTravelPostGameStartedContinued();
   genesisSaveAndQuitFix.postGameStartedContinued();
+  gelloSaveAndQuitFix.postGameStartedContinued();
 }

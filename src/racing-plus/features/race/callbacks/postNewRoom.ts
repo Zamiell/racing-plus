@@ -14,6 +14,7 @@ import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
+import * as victoryLap from "../victoryLap";
 
 // Home is 13, so we take the next stage number after that
 const MEGA_SATAN_FAKE_STAGE_NUM = 14;
@@ -37,6 +38,7 @@ export default function racePostNewRoom(): void {
   replaceScolex.postNewRoom();
   seededDeath.postNewRoom();
   seeded3DollarBill.postNewRoom();
+  victoryLap.postNewRoom();
   recordMegaSatanRoom();
 }
 

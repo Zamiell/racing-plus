@@ -345,6 +345,7 @@ Post-flip actions:
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
+- The bug where Tainted Lilith can duplicate the Gello familiar is fixed.
 - Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the bug where the options property is deleted.
 
 ### 10) Graphics Fixes
