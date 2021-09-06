@@ -16,6 +16,7 @@
 - Fixed the bug where The Battery would cause charging events to grant too many charges.
 ```
 
+- victory lap
 - shadows
 - seeded GB bug (look for frame after familiar disappears for post pickup init)
 

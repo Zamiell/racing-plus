@@ -40,7 +40,7 @@ function checkSpecialRestart() {
   const challenge = Isaac.GetChallenge();
 
   if (v.run.restartCharacter !== null && character !== v.run.restartCharacter) {
-    restartAsCharacter(character);
+    restartAsCharacter(v.run.restartCharacter);
     return;
   }
 
