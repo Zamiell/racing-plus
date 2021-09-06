@@ -168,6 +168,7 @@ const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
   // Don't include The Beast (951.0) since it is a story boss
 ];
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   checkVictoryLapBossReplace();
 }
@@ -220,33 +221,10 @@ function spawnBoss(bossArray: [int, int, int]) {
   );
 }
 
-/*
-function touchedVictoryLapButton() {
-  v.run.numVictoryLaps += 1;
-
-  // TODO
-  // Make them float upwards
-  // (the code is loosely copied from the "FastTravel.CheckTrapdoorEnter()" function)
-  const gameFrameCount = g.g.GetFrameCount();
-  g.run.trapdoor.state = FastTravelState.PLAYER_ANIMATION;
-  g.run.trapdoor.upwards = true;
-  g.run.trapdoor.frame = gameFrameCount + 16;
-  g.p.ControlsEnabled = false;
-  g.p.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE; // 0
-  // (this is necessary so that enemy attacks don't move the player while they are doing the jumping
-  // animation)
-  g.p.Velocity = Vector.Zero; // Remove all of the player's momentum
-  g.p.PlayExtraAnimation("LightTravel");
-  g.run.level.stage -= 1;
-  // This is needed or else state 5 will not correctly trigger
-  // (because the PostNewRoom callback will occur 3 times instead of 2)
-}
-*/
-
 export function shouldShowVictoryLaps(): boolean {
   return config.clientCommunication && v.run.numVictoryLaps > 0;
 }
 
 export function getNumVictoryLaps(): int {
-  return v.run.victoryLaps;
+  return v.run.numVictoryLaps;
 }

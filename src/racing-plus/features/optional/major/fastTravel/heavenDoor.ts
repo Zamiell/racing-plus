@@ -118,7 +118,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     return;
   }
 
-  setFadingToBlack(entity, player, true);
+  setFadingToBlack(player, entity.Position, true);
 }
 
 // ModCallbacksCustom.MC_POST_ROOM_CLEAR

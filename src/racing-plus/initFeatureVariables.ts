@@ -4,6 +4,7 @@ import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
+import * as dummyDPS from "./features/mandatory/dummyDPS";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
@@ -80,6 +81,7 @@ export default function initFeatureVariables(): void {
   fireworks.init();
   disableMultiplayer.init();
   drawVersion.init();
+  dummyDPS.init();
   debugPowers.init();
   errors.init();
 

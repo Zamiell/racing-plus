@@ -2,6 +2,7 @@ import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
 import * as changeCharOrderPostGridEntityUpdate from "../features/changeCharOrder/callbacks/postGridEntityUpdate";
 import * as fastTravelPostGridEntityUpdate from "../features/optional/major/fastTravel/callbacks/postGridEntityUpdate";
 import * as deleteVoidPortals from "../features/optional/quality/deleteVoidPortals";
+import * as racePostGridEntityUpdate from "../features/race/callbacks/postGridEntityUpdate";
 import * as speedrunPostGridEntityUpdate from "../features/speedrun/callbacks/postGridEntityUpdate";
 
 export function init(mod: ModUpgraded): void {
@@ -55,6 +56,7 @@ function crawlspace(gridEntity: GridEntity) {
 // GridEntityType.GRID_PRESSURE_PLATE (20)
 function pressurePlate(gridEntity: GridEntity) {
   changeCharOrderPostGridEntityUpdate.pressurePlate(gridEntity);
+  racePostGridEntityUpdate.pressurePlate(gridEntity);
 }
 
 // GridEntityType.GRID_TELEPORTER (23)

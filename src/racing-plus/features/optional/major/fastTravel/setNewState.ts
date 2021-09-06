@@ -55,8 +55,8 @@ export default function setNewState(fastTravelState: FastTravelState): void {
 }
 
 export function setFadingToBlack(
-  entity: GridEntity | EntityEffect,
   player: EntityPlayer,
+  position: Vector,
   upwards: boolean,
 ): void {
   const roomIndex = getRoomIndex();
@@ -75,7 +75,7 @@ export function setFadingToBlack(
   disableAllInputsExceptFor(whitelist);
 
   setGameStateFlags();
-  setPlayerAttributes(player, entity.Position);
+  setPlayerAttributes(player, position);
   warpForgottenBody(player);
   dropTaintedForgotten(player);
   playTravellingAnimation(player, upwards);

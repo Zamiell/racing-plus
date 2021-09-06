@@ -35,7 +35,8 @@ export function postRender(): void {
   if (shouldShowVictoryLaps()) {
     // Display the number of victory laps
     // (this should have priority over showing the seed)
-    lines.push(`Victory Lap #${getNumVictoryLaps()}`);
+    const victoryLaps = getNumVictoryLaps();
+    lines.push(`Victory Lap #${victoryLaps}`);
   } else if (shouldShowEndOfRunTextSpeedrun() || shouldShowEndOfRunTextRace()) {
     // Show some run summary information
     // (it will be removed if they exit the room)

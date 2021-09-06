@@ -138,6 +138,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   preUseItem.init(mod); // 23
   preFamiliarCollision.init(mod); // 26
   postNPCInit.init(mod); // 27
+  postNPCRender.init(mod); // 28
   postPickupInit.init(mod); // 34
   postPickupUpdate.init(mod); // 35
   postTearUpdate.init(mod); // 40

@@ -13,6 +13,7 @@ import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
+import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
@@ -313,25 +314,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.VICTORY_LAP: {
-      // TODO
-      /*
-      // Spawn a button for the Victory Lap feature
-      // We want to use a position from the "GridToPos()" function because otherwise the position
-      // can slightly shift if it does not align with the grid
-      position = gridToPos(6, 3);
-      if (roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
-        position = gridToPos(6, 9);
-      }
-
-      g.run.level.buttons.push({
-        type: "victory-lap",
-        pos: position,
-        roomIndex,
-      });
-      Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, position, true);
-      sprites.init("victory-lap-button", "victory-lap-button");
-      */
-
+      spawnVictoryLapButton(true);
       break;
     }
 

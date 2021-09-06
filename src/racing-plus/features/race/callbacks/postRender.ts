@@ -1,6 +1,7 @@
 import { log } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import raceStart from "../raceStart";
@@ -21,6 +22,7 @@ export default function racePostRender(): void {
   raceTimer.postRender();
   placeLeft.postRender();
   seededDeath.postRender();
+  endOfRaceButtons.postRender();
 
   if (g.race.status !== RaceStatus.NONE) {
     checkGameOpenedInMiddleOfRace();

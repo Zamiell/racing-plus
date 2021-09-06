@@ -275,7 +275,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
-  setFadingToBlack(entity, player, false);
+  setFadingToBlack(player, entity.Position, false);
 }
 
 // If we manually spawn a trapdoor on the same tile that a vanilla trapdoor spawns after defeating

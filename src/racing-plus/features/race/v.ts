@@ -1,6 +1,7 @@
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
 import ActiveItemDescription from "../../types/ActiveItemDescription";
+import ButtonDescription from "../../types/ButtonDescription";
 import SeededDeathState from "./types/SeededDeathState";
 
 const v = {
@@ -39,12 +40,13 @@ const v = {
     },
 
     spawnedCorpseTrapdoor: false,
-
-    victoryLaps: 0,
   },
 
   level: {
     numSacrifices: 0,
+
+    dpsButton: null as ButtonDescription | null,
+    victoryLapButton: null as ButtonDescription | null,
   },
 
   room: {
