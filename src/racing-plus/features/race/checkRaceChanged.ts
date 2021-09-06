@@ -7,12 +7,14 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { unseed } from "../../utilGlobals";
+import { restartOnNextFrame, setRestartSeed } from "../util/restartOnNextFrame";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import raceStart from "./raceStart";
 import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
 import RaceData, { RaceDataType } from "./types/RaceData";
+import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 
@@ -72,7 +74,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
   switch (newStatus) {
     case RaceStatus.NONE: {
       if (raceRoom.inRaceRoom()) {
-        g.run.restart = true;
+        restartOnNextFrame();
         log("Restarting because we want to exit the race room.");
       }
 
@@ -83,7 +85,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
     case RaceStatus.OPEN: {
       // If we are in the first room of a run, go to the race room
       if (effectiveStage === 1 && roomIndex === startingRoomIndex) {
-        g.run.restart = true;
+        restartOnNextFrame();
         log("Restarting to go to the race room.");
       }
 
@@ -101,7 +103,10 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
     }
 
     case RaceStatus.IN_PROGRESS: {
-      g.run.restart = true;
+      restartOnNextFrame();
+      if (g.race.format === RaceFormat.SEEDED) {
+        setRestartSeed(g.race.seed);
+      }
       log("Restarting because the run has now started.");
 
       raceStart();

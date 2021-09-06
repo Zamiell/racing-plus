@@ -5,8 +5,8 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { consoleCommand } from "../../../util";
-import { speedrunSetFastReset } from "../../speedrun/v";
+import { restart } from "../../../util";
+import { speedrunSetFastReset } from "../../speedrun/exported";
 import { getRoomsEntered } from "../../util/roomsEntered";
 
 const v = {
@@ -70,8 +70,7 @@ function reset() {
   if (roomsEntered <= 3 || isaacFrameCount <= v.run.lastResetFrame + 60) {
     // Speedrun functionality relies on knowing whether or not a fast-reset occurred
     speedrunSetFastReset();
-
-    consoleCommand("restart");
+    restart();
   } else {
     // In speedruns, we want to double tap R to return reset to the same character
     v.run.lastResetFrame = isaacFrameCount;

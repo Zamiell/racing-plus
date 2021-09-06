@@ -1,7 +1,6 @@
 import { log } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { consoleCommand, restartAsCharacter } from "../../../util";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import raceStart from "../raceStart";
@@ -10,7 +9,6 @@ import * as seededDeath from "../seededDeath";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
-import RaceFormat from "../types/RaceFormat";
 import RacerStatus from "../types/RacerStatus";
 import RaceStatus from "../types/RaceStatus";
 
@@ -46,65 +44,4 @@ function checkGameOpenedInMiddleOfRace() {
     log("The game was opened in the middle of a race!");
     raceStart();
   }
-}
-
-export function checkRestartWrongChallenge(): boolean {
-  if (
-    !config.clientCommunication ||
-    g.race.status === RaceStatus.NONE ||
-    g.race.format === RaceFormat.CUSTOM
-  ) {
-    return false;
-  }
-
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge === Challenge.CHALLENGE_NULL) {
-    return false;
-  }
-
-  consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
-  return true;
-}
-
-export function checkRestartWrongRaceCharacter(): boolean {
-  if (
-    !config.clientCommunication ||
-    g.race.status === RaceStatus.NONE ||
-    g.race.format === RaceFormat.CUSTOM
-  ) {
-    return false;
-  }
-
-  const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
-
-  if (character === g.race.character) {
-    return false;
-  }
-
-  restartAsCharacter(g.race.character);
-  return true;
-}
-
-export function checkRestartWrongRaceSeed(): boolean {
-  if (
-    !config.clientCommunication ||
-    g.race.format !== RaceFormat.SEEDED ||
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
-  ) {
-    return false;
-  }
-
-  const startSeedString = g.seeds.GetStartSeedString();
-
-  if (startSeedString !== g.race.seed) {
-    // This command will change the seed of the run and restart the game
-    consoleCommand(`seed ${g.race.seed}`);
-
-    return true;
-  }
-
-  return false;
 }

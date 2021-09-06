@@ -159,6 +159,10 @@ export function removeAllCollectibles(): void {
   );
 }
 
+export function restart(): void {
+  consoleCommand("restart");
+}
+
 export function restartAsCharacter(character: PlayerType): void {
   // Doing a "restart 40" causes the player to spawn as Tainted Soul without a Forgotten companion
   if (character === PlayerType.PLAYER_THESOUL_B) {
@@ -166,4 +170,14 @@ export function restartAsCharacter(character: PlayerType): void {
   }
 
   consoleCommand(`restart ${character}`);
+}
+
+export function restartChallenge(challenge: Challenge): void {
+  // This command will change the challenge of the run and restart the game
+  consoleCommand(`challenge ${challenge}`);
+}
+
+export function restartSeed(seed: string): void {
+  // This command will change the seed of the run and restart the game
+  consoleCommand(`seed ${seed}`);
 }

@@ -2,6 +2,12 @@ import { log, onSetSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { unseed } from "../../../utilGlobals";
+import {
+  restartOnNextFrame,
+  setRestartChallenge,
+  setRestartCharacter,
+  setRestartSeed,
+} from "../../util/restartOnNextFrame";
 import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -83,7 +89,8 @@ function validateChallenge() {
     challenge !== Challenge.CHALLENGE_NULL &&
     g.race.format !== RaceFormat.CUSTOM
   ) {
-    g.run.restart = true;
+    restartOnNextFrame();
+    setRestartChallenge(Challenge.CHALLENGE_NULL);
     log(
       "Restarting since we are on a custom challenge and this is not a custom race.",
     );
@@ -146,7 +153,8 @@ function validateSeed() {
     g.race.myStatus === RacerStatus.RACING &&
     startSeedString !== g.race.seed
   ) {
-    g.run.restart = true;
+    restartOnNextFrame();
+    setRestartSeed(g.race.seed);
     return false;
   }
 
@@ -156,9 +164,8 @@ function validateSeed() {
     onSetSeed()
   ) {
     // If the run started with a set seed, change the reset behavior to that of an unseeded run
+    restartOnNextFrame();
     unseed();
-
-    g.run.restart = true;
     return false;
   }
 
@@ -177,7 +184,8 @@ function validateCharacter(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   if (character !== g.race.character && g.race.format !== RaceFormat.CUSTOM) {
-    g.run.restart = true;
+    restartOnNextFrame();
+    setRestartCharacter(g.race.character);
     return false;
   }
 

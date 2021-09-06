@@ -13,10 +13,11 @@ import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
 import { ChallengeCustom } from "../features/speedrun/enums";
-import { speedrunSetNext } from "../features/speedrun/v";
+import { speedrunSetNext } from "../features/speedrun/exported";
+import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
 import PILL_MAP from "../pillMap";
-import { consoleCommand, restartAsCharacter } from "../util";
+import { consoleCommand, restart, restartAsCharacter } from "../util";
 import { unseed } from "../utilGlobals";
 import {
   angel,
@@ -523,7 +524,7 @@ functionMap.set("save", (_params: string) => {
 
 functionMap.set("setcharorder", (_params: string) => {
   setCharacterOrderDebug();
-  g.run.restart = true;
+  restartOnNextFrame();
 });
 
 functionMap.set("shop", (_params: string) => {
@@ -580,7 +581,7 @@ functionMap.set("treasure", (_params: string) => {
 
 functionMap.set("unseed", (_params: string) => {
   unseed();
-  consoleCommand("restart");
+  restart();
 });
 
 functionMap.set("version", (_params: string) => {

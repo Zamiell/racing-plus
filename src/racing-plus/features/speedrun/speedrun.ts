@@ -1,6 +1,5 @@
-import { arraySum, log } from "isaacscript-common";
+import { arraySum } from "isaacscript-common";
 import { ISAAC_FRAMES_PER_SECOND } from "../../constants";
-import g from "../../globals";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
@@ -77,7 +76,33 @@ export function getAverageTimePerCharacter(): string {
   return `${minute1}${minute2}.${second1}${second2}`;
 }
 
-export function getCurrentCharacter(): int {
+export function getCurrentCharacter(): PlayerType {
+  const characterOrder = getCharacterOrderSafe();
+  const arrayIndex = v.persistent.characterNum - 1;
+  const character = characterOrder[arrayIndex];
+  if (character === undefined) {
+    error(
+      `Failed to find the character at array index ${arrayIndex} for the character order of the current challenge.`,
+    );
+  }
+
+  return character;
+}
+
+export function getFirstCharacter(): PlayerType {
+  const characterOrder = getCharacterOrderSafe();
+  const arrayIndex = 0;
+  const character = characterOrder[arrayIndex];
+  if (character === undefined) {
+    error(
+      `Failed to find the character at array index ${arrayIndex} for the character order of the current challenge.`,
+    );
+  }
+
+  return character;
+}
+
+function getCharacterOrderSafe() {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
   if (challengeDefinition === undefined) {
@@ -123,37 +148,7 @@ export function getCurrentCharacter(): int {
     );
   }
 
-  const arrayIndex = v.persistent.characterNum - 1;
-  const character = characterOrder[arrayIndex];
-  if (character === undefined) {
-    error(
-      `Failed to find the character at array index ${arrayIndex} for the character order of challenge: ${abbreviation}`,
-    );
-  }
-
-  return character;
-}
-
-export function goBackToFirstCharacter(): boolean {
-  if (v.persistent.performedFastReset) {
-    v.persistent.performedFastReset = false;
-    return false;
-  }
-
-  if (isOnFirstCharacter()) {
-    return false;
-  }
-
-  // They held R for a slow reset, and they are not on the first character,
-  // so they want to restart from the first character
-  v.persistent.characterNum = 1;
-  g.run.restart = true;
-  log("Restarting because we want to start from the first character again.");
-
-  // Tell the LiveSplit AutoSplitter to reset
-  v.persistent.liveSplitReset = true;
-
-  return true;
+  return characterOrder;
 }
 
 export function inSpeedrun(): boolean {
@@ -173,24 +168,6 @@ export function isOnFinalCharacter(): boolean {
 
 export function isOnFirstCharacter(): boolean {
   return v.persistent.characterNum === 1;
-}
-
-export function setCorrectCharacter(): boolean {
-  const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
-  const currentCharacter = getCurrentCharacter();
-
-  if (character !== currentCharacter) {
-    v.persistent.performedFastReset = true;
-    g.run.restart = true;
-    log(
-      `Restarting because we are on character ${character} and we need to be on character ${currentCharacter}.`,
-    );
-
-    return true;
-  }
-
-  return false;
 }
 
 export function shouldShowEndOfRunTextSpeedrun(): boolean {

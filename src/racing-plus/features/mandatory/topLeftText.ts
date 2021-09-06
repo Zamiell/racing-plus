@@ -8,13 +8,13 @@ import {
 import { shouldShowEndOfRunTextRace } from "../race/raceFinish";
 import { shouldShowRaceID } from "../race/raceStart";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
+import { speedrunGetFinishedFrames } from "../speedrun/exported";
 import {
   getAverageTimePerCharacter,
   inSpeedrun,
   isOnFinalCharacter,
   shouldShowEndOfRunTextSpeedrun,
 } from "../speedrun/speedrun";
-import { speedrunGetFinishedFrames } from "../speedrun/v";
 import { getRoomsEntered } from "../util/roomsEntered";
 
 const STARTING_X = 55;

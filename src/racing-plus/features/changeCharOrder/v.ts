@@ -5,7 +5,7 @@ import ChangeCharOrderPhase from "./types/ChangeCharOrderPhase";
 const v = {
   persistent: {
     /** Indexed by speedrun abbreviation. */
-    charOrders: new Map<string, int[]>(),
+    charOrders: new Map<string, PlayerType[]>(),
   },
 
   room: {
@@ -35,19 +35,19 @@ export function init(): void {
   saveDataManager("changeCharOrder", v);
 }
 
-export function getCharacterOrder(key: string): int[] | undefined {
+export function getCharacterOrder(key: string): PlayerType[] | undefined {
   return v.persistent.charOrders.get(key);
 }
 
 export function setCharacterOrderDebug(): void {
   const order = [
+    PlayerType.PLAYER_APOLLYON,
+    PlayerType.PLAYER_BETHANY_B,
     PlayerType.PLAYER_THELOST,
-    PlayerType.PLAYER_ISAAC_B,
+    PlayerType.PLAYER_JUDAS,
+    PlayerType.PLAYER_ISAAC,
     PlayerType.PLAYER_KEEPER_B,
-    PlayerType.PLAYER_BETHANY,
     PlayerType.PLAYER_AZAZEL,
-    PlayerType.PLAYER_JUDAS_B,
-    PlayerType.PLAYER_APOLLYON_B,
   ];
   v.persistent.charOrders.set("R7S1", order);
 }

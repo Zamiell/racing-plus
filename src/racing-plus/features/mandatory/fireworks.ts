@@ -1,7 +1,7 @@
 import { getPlayers, gridToPos, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 import RaceStatus from "../race/types/RaceStatus";
-import { speedrunIsFinished } from "../speedrun/v";
+import { speedrunIsFinished } from "../speedrun/exported";
 
 const v = {
   run: {

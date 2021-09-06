@@ -12,7 +12,6 @@
 ```
 
 - get rid of g.run
-- tainted samson blood rights
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

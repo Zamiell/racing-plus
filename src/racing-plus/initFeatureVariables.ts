@@ -42,15 +42,14 @@ import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
 import * as speedrunVars from "./features/speedrun/v";
 import * as detectSlideAnimation from "./features/util/detectSlideAnimation";
+import * as restartOnNextFrame from "./features/util/restartOnNextFrame";
 import * as roomsEntered from "./features/util/roomsEntered";
-import * as globals from "./globals";
 import * as modConfigMenu from "./modConfigMenu";
 import * as passiveItemsForEden from "./passiveItemsForEden";
 
 export default function initFeatureVariables(): void {
   // Core
   modConfigMenu.init();
-  globals.init();
   raceVars.init();
   socketClient.init();
   speedrunVars.init();
@@ -61,6 +60,7 @@ export default function initFeatureVariables(): void {
 
   // Util
   detectSlideAnimation.init();
+  restartOnNextFrame.init();
   roomsEntered.init();
 
   // Mandatory features

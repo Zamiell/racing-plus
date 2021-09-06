@@ -16,16 +16,6 @@ export default class Globals {
   fontDroid = Font();
   fontPF = Font();
 
-  /** Variables that are reset at the beginning of every run. */
-  run = {
-    /**
-     * Whether or not to restart the run on the next frame.
-     * This variable is used because the game prevents you from executing a "restart" console command
-     * while in the PostGameStarted callback.
-     */
-    restart: false,
-  };
-
   /** Race variables that are set via the client communicating with us over a socket. */
   race = new RaceData();
 

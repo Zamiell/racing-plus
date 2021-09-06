@@ -1,6 +1,5 @@
 import * as cache from "../cache";
 import changeCharOrderPostRender from "../features/changeCharOrder/callbacks/postRender";
-import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -20,21 +19,16 @@ import showDreamCatcherItemPostRender from "../features/optional/quality/showDre
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
-import racePostRender, {
-  checkRestartWrongChallenge,
-  checkRestartWrongRaceCharacter,
-  checkRestartWrongRaceSeed,
-} from "../features/race/callbacks/postRender";
-import speedrunPostRender, {
-  checkRestartWrongSpeedrunCharacter,
-} from "../features/speedrun/callbacks/postRender";
-import g from "../globals";
-import { consoleCommand } from "../util";
+import racePostRender from "../features/race/callbacks/postRender";
+import speedrunPostRender from "../features/speedrun/callbacks/postRender";
+import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
+import * as restartOnNextFrame from "../features/util/restartOnNextFrame";
 
 export function main(): void {
   cache.updateAPIFunctions();
 
-  if (checkRestart()) {
+  if (restartOnNextFrame.isRestartingOnNextFrame()) {
+    restartOnNextFrame.postRender();
     return;
   }
 
@@ -73,35 +67,4 @@ export function main(): void {
   automaticItemInsertion.postRender();
   showPills.postRender();
   customConsole.postRender();
-}
-
-// Conditionally restart the game
-// (e.g. if Easter Egg or character validation failed)
-// (we can't do this in the "PostGameStarted" callback because the "restart" command will fail when
-// the game is first loading)
-function checkRestart() {
-  if (!g.run.restart) {
-    return false;
-  }
-  g.run.restart = false;
-
-  if (checkRestartWrongSpeedrunCharacter()) {
-    return true;
-  }
-
-  if (checkRestartWrongChallenge()) {
-    return true;
-  }
-
-  if (checkRestartWrongRaceCharacter()) {
-    return true;
-  }
-
-  if (checkRestartWrongRaceSeed()) {
-    return true;
-  }
-
-  // Since no special conditions apply, just do a normal restart
-  consoleCommand("restart");
-  return true;
 }

@@ -19,6 +19,7 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import racePostGameStarted from "../features/race/callbacks/postGameStarted";
 import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
+import { isRestartingOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
 
 export function main(isContinued: boolean): void {
@@ -63,11 +64,11 @@ export function main(isContinued: boolean): void {
 
   // Major features
   racePostGameStarted();
-  if (g.run.restart) {
+  if (isRestartingOnNextFrame()) {
     return;
   }
   speedrunPostGameStarted();
-  if (g.run.restart) {
+  if (isRestartingOnNextFrame()) {
     return;
   }
   startWithD6.postGameStarted();
