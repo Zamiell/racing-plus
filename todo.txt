@@ -6,6 +6,7 @@
 - Blood Rights is now removed from pools on Tainted Samson.
 - Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - Custom code is added to provide a synergy for The Battery and 9 Volt.
+- All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - The statue in a Devil Room will now be faded if there are pickups behind it.
 - You can no longer abuse save & quit in a Genesis room.
 - You can no longer abuse save & quit to get extra familiars on Tainted Lilith.
@@ -15,7 +16,7 @@
 - Fixed the bug where The Battery would cause charging events to grant too many charges.
 ```
 
-- finish copying code
+- shadows
 - seeded GB bug (look for frame after familiar disappears for post pickup init)
 
 TODO Racing+ new features:

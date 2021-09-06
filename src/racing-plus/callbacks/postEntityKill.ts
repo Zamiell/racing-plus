@@ -4,6 +4,7 @@ import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd"
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as skipBeastIntroCutscene from "../features/mandatory/skipBeastIntroCutscene";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
+import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import fastClearPostEntityKill from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
@@ -73,11 +74,13 @@ export function main(entity: Entity): void {
 function mom(entity: Entity) {
   replacePhotos.postEntityKillMom(entity);
   fastTravelPostEntityKill.mom(entity);
+  killExtraEnemies.postEntityKillMom();
 }
 
 // EntityType.ENTITY_MOMS_HEART (78)
 function momsHeart(entity: Entity) {
   fastTravelPostEntityKill.momsHeart(entity);
+  killExtraEnemies.postEntityKillMomsHeart();
 }
 
 // EntityType.ENTITY_THE_LAMB (273)

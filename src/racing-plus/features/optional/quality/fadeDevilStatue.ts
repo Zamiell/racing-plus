@@ -1,5 +1,5 @@
 const FADED = Color(1, 1, 1, 0.3, 0, 0, 0);
-const X_DISTANCE = 60;
+const X_DISTANCE = 35;
 const Y_DISTANCE_ABOVE = 78;
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)

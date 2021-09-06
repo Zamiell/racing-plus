@@ -220,10 +220,10 @@ function spawnBoss(bossArray: [int, int, int]) {
   );
 }
 
-export function touchedVictoryLapButton(): void {
+/*
+function touchedVictoryLapButton() {
   v.run.numVictoryLaps += 1;
 
-  /*
   // TODO
   // Make them float upwards
   // (the code is loosely copied from the "FastTravel.CheckTrapdoorEnter()" function)
@@ -240,8 +240,8 @@ export function touchedVictoryLapButton(): void {
   g.run.level.stage -= 1;
   // This is needed or else state 5 will not correctly trigger
   // (because the PostNewRoom callback will occur 3 times instead of 2)
-  */
 }
+*/
 
 export function shouldShowVictoryLaps(): boolean {
   return config.clientCommunication && v.run.numVictoryLaps > 0;

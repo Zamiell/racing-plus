@@ -411,6 +411,5 @@ Racing+ has [several custom challenges](challenges.md), each of which introduces
 - Some things that are unseeded are now seeded:
   - cards from Sloth, Super Sloth, Pride, and Super Pride
 - Pin's first attack happens on the 15th frame (instead of the 73rd frame).
-- The devil statue will be faded if there is an item pedestal hiding behind it.
 - Double coins and nickels heal Keeper for their proper amount.
 -->
