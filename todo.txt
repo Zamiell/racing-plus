@@ -5,7 +5,7 @@
 ```
 
 - shadows
-- seeded GB bug (look for frame after familiar disappears for post pickup init)
+- seeded GB bug (need algorithm)
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap

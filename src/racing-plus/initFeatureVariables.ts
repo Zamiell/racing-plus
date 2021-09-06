@@ -14,6 +14,7 @@ import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
+import * as seededGBBug from "./features/mandatory/seededGBBug";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
@@ -75,8 +76,9 @@ export default function initFeatureVariables(): void {
   tempMoreOptions.init();
   seededDrops.init();
   seededTeleports.init();
-  runTimer.init();
   seededFloors.init();
+  seededGBBug.init();
+  runTimer.init();
   trophy.init();
   fireworks.init();
   disableMultiplayer.init();
