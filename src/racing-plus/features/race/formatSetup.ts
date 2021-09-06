@@ -103,8 +103,8 @@ function unseeded(player: EntityPlayer) {
 function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable
-  for (const itemID of g.race.startingItems) {
-    giveCollectibleAndRemoveFromPools(player, itemID);
+  for (const collectibleID of g.race.startingItems) {
+    giveCollectibleAndRemoveFromPools(player, collectibleID);
   }
 }
 
@@ -121,8 +121,8 @@ function seeded(player: EntityPlayer) {
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item)
-  for (const itemID of g.race.startingItems) {
-    giveCollectibleAndRemoveFromPools(player, itemID);
+  for (const collectibleID of g.race.startingItems) {
+    giveCollectibleAndRemoveFromPools(player, collectibleID);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
