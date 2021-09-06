@@ -16,11 +16,13 @@ import {
   CUTSCENE_CHANGES,
   ENEMY_CHANGES,
   GAMEPLAY_CHANGES,
-  GRAPHIC_CHANGES,
+  GRAPHIC_CHANGES_1,
+  GRAPHIC_CHANGES_2,
   MAJOR_CHANGES,
   OTHER_FEATURES,
   QUALITY_OF_LIFE_CHANGES_1,
   QUALITY_OF_LIFE_CHANGES_2,
+  QUALITY_OF_LIFE_CHANGES_3,
   REMOVALS,
   SOUND_CHANGES,
 } from "./configDescription";
@@ -65,11 +67,13 @@ export function init(): void {
   registerSubMenuConfig("Enemies", ENEMY_CHANGES);
   registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
   registerSubMenuConfig("QoL (2)", QUALITY_OF_LIFE_CHANGES_2);
+  registerSubMenuConfig("QoL (3)", QUALITY_OF_LIFE_CHANGES_3);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Removals", REMOVALS);
   registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);
   registerSubMenuConfig("Bug Fixes", BUG_FIXES);
-  registerSubMenuConfig("Graphics", GRAPHIC_CHANGES);
+  registerSubMenuConfig("GFX (1)", GRAPHIC_CHANGES_1);
+  registerSubMenuConfig("GFX (2)", GRAPHIC_CHANGES_2);
   registerSubMenuConfig("Sound", SOUND_CHANGES);
   registerSubMenuConfig("Other", OTHER_FEATURES);
 }

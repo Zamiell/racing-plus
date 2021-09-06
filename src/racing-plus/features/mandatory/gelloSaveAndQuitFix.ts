@@ -3,5 +3,8 @@
 import { removeAllMatchingEntities } from "isaacscript-common";
 
 export function postGameStartedContinued(): void {
-  removeAllMatchingEntities(EntityType.ENTITY_FAMILIAR, FamiliarVariant.GELLO);
+  removeAllMatchingEntities(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariant.UMBILICAL_BABY,
+  );
 }

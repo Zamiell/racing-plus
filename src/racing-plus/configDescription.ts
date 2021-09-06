@@ -8,7 +8,7 @@ export type ConfigDescriptions = Array<
   ]
 >;
 
-// 001-010
+// 0001-0010
 export const MAJOR_CHANGES: ConfigDescriptions = [
   [
     "clientCommunication",
@@ -151,13 +151,13 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   ],
 ];
 
-// 021-030
+// 0201-0210
 export const CHARACTER_CHANGES: ConfigDescriptions = [
   [
     "judasAddBomb", // 3
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "021",
+      "0201",
       "Add a bomb to Judas",
       "Makes Judas start with 1 bomb instead of 0 bombs.",
     ],
@@ -166,7 +166,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "samsonDropHeart", // 6
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "022",
+      "0202",
       "Make Samson drop his trinket",
       "Makes Samson automatically drop his Child's Heart trinket at the beginning of a run.",
     ],
@@ -175,7 +175,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "showEdenStartingItems", // 9, 30
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "023",
+      "0203",
       "Show Eden's starting items",
       "Draw both of Eden's starting items on the screen while in the first room.",
     ],
@@ -184,7 +184,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "lostShowHealth", // 10
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "024",
+      "0204",
       "Show The Lost hearts on the UI",
       "Force the heart UI to display when playing as The Lost.",
     ],
@@ -193,7 +193,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "lostUseHolyCard", // 31
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "025",
+      "0205",
       "Automatically use the Holy Card",
       "Automatically use the Holy Card when starting a run as Tainted Lost.",
     ],
@@ -202,20 +202,29 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "taintedKeeperMoney", // 33
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "026",
+      "0206",
       "Tainted Keeper extra money",
       "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
   ],
 ];
 
-// 031-040
+// 0301-0310
 export const BOSS_CHANGES_1: ConfigDescriptions = [
   [
     "fadeBosses",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "031",
+      "0301",
+      "Fade dead bosses",
+      "Make bosses faded during their death animation so that you can see the dropped item.",
+    ],
+  ],
+  [
+    "killExtraEnemies",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0302",
       "Fade dead bosses",
       "Make bosses faded during their death animation so that you can see the dropped item.",
     ],
@@ -224,7 +233,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "stopDeathSlow", // 66
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "032",
+      "0303",
       "Stop Death's slow attack",
       "Stop Death from performing the attack that reduces your speed by a factor of 2.",
     ],
@@ -233,7 +242,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "033",
+      "0304",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
@@ -242,7 +251,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "034",
+      "0305",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
     ],
@@ -251,7 +260,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "035",
+      "0306",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
@@ -260,7 +269,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "stopVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "036",
+      "0307",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -269,7 +278,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "037",
+      "0308",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -278,7 +287,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "038",
+      "0309",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -287,24 +296,24 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "039",
+      "0310",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "040",
+      "0311",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],
   ],
-];
-
-// n/a
-export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
     null, // 274
     [
@@ -343,13 +352,13 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
   ],
 ];
 
-// 041-050
+// 0401-0410
 export const ENEMY_CHANGES: ConfigDescriptions = [
   [
     "removeTreasureRoomEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "041",
+      "0401",
       "Remove Treasure Room enemies",
       "Remove all enemies from Treasure Rooms.",
     ],
@@ -358,7 +367,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "clearerShadowAttacks",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "042",
+      "0402",
       "Make shadow attacks more clear",
       "Make a blue target appear on the ground for the specific attacks that come from above.",
     ],
@@ -367,7 +376,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "globinSoftlock", // 24
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "043",
+      "0403",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
     ],
@@ -376,7 +385,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "fastHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "044",
+      "0404",
       "Fast hands",
       "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
     ],
@@ -385,7 +394,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "appearHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "045",
+      "0405",
       "Reveal hands",
       "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
     ],
@@ -394,7 +403,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "disableInvulnerability", // 219, 260, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "046",
+      "0406",
       "Disable invulnerability",
       "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
     ],
@@ -403,7 +412,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "fastGhosts", // 219, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "047",
+      "0407",
       "Fast ghosts",
       "Wizoobs and Red Ghosts have faster attack patterns.",
     ],
@@ -412,20 +421,20 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     "replaceCodWorms", // 221
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "048",
+      "0408",
       "Replace Cod Worms",
       "Cod Worms are replaced with Para-Bites.",
     ],
   ],
 ];
 
-// 051-060
+// 0501-0510
 export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
   [
     "speedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "051",
+      "0501",
       "Speed-up new run fade-ins",
       "Speed-up the fade-in that occurs at the beginning of a new run.",
     ],
@@ -434,7 +443,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "easyFirstFloorItems",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "052",
+      "0502",
       "Easier first floor items",
       "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.",
     ],
@@ -443,7 +452,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "changeCreepColor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "053",
+      "0503",
       "Consistent creep color",
       "Change enemy red creep to green and change friendly green creep to red.",
     ],
@@ -452,7 +461,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "subvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "054",
+      "0504",
       "Subvert disruptive teleports",
       "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
@@ -461,7 +470,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "deleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "055",
+      "0505",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
     ],
@@ -470,7 +479,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "showNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "056",
+      "0506",
       "Show the number of sacrifices",
       "Show the number of sacrifices in the top-left when in a Sacrifice Room.",
     ],
@@ -479,7 +488,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "holyMantleUI", // 313
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "057",
+      "0507",
       "Show Holy Mantle on the hearts UI",
       "Show the presence of a Holy Mantle shield on the hearts UI.",
     ],
@@ -488,7 +497,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "leadPencilChargeBar", // 444
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "058",
+      "0508",
       "Show Holy Mantle on the hearts UI",
       "Show the presence of a Holy Mantle shield on the hearts UI.",
     ],
@@ -497,7 +506,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "combinedDualityDoors", // 498
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "059",
+      "0509",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -506,20 +515,20 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "removeFortuneCookieBanners", // 557
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "060",
+      "0510",
       "Remove Fortune Cookie banners",
       "Remove Fortune Cookie banners when don't get any pickups.",
     ],
   ],
 ];
 
-// 061-070
+// 0511-0520
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
     "showDreamCatcherItem", // 566
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "061",
+      "0511",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -528,7 +537,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "fastLuna", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "062",
+      "0512",
       "Fast Luna",
       "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
@@ -537,7 +546,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "fadeVasculitisTears", // 657
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "063",
+      "0513",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -546,7 +555,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionVelocity", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "064",
+      "0514",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -555,7 +564,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "065",
+      "0515",
       "Remove Perfection on end floors",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -564,7 +573,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "066",
+      "0516",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -573,7 +582,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "chargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "067",
+      "0517",
       "Charge the Pocket item first",
       "Make batteries charge the pocket item first over the active item.",
     ],
@@ -582,7 +591,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "068",
+      "0518",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -591,11 +600,24 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "069",
+      "0519",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
   ],
+  [
+    "fadeDevilStatue",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0520",
+      "Fade Devil statue",
+      "Fade the statue in a Devil Room if there are pickups behind it.",
+    ],
+  ],
+];
+
+// 0521-0530
+export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
   [
     null,
     [
@@ -607,13 +629,13 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   ],
 ];
 
-// 071-080
+// 0601-0610
 export const GAMEPLAY_CHANGES: ConfigDescriptions = [
   [
     "extraStartingItems",
     [
       ModConfigMenuOptionType.TEXT,
-      "071",
+      "0601",
       "Extra Treasure Room Items",
       "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
     ],
@@ -622,7 +644,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     "consistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "072",
+      "0602",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
     ],
@@ -631,7 +653,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     "pillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "073",
+      "0603",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
     ],
@@ -723,13 +745,13 @@ export const REMOVALS: ConfigDescriptions = [
   ],
 ];
 
-// 081-090
+// 0801-0810
 export const CUTSCENE_CHANGES: ConfigDescriptions = [
   [
     "fastTeleports",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "081",
+      "0801",
       "Fast teleports",
       "Teleport animations are sped up by a factor of 2.",
     ],
@@ -781,13 +803,13 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 091-100
+// 0901-0910
 export const BUG_FIXES: ConfigDescriptions = [
   [
     "battery9VoltSynergy",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "091",
+      "0901",
       "Fix The Battery + 9 Volt synergy",
       "Make these items work together properly.",
     ],
@@ -796,7 +818,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "092",
+      "0902",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -805,7 +827,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "093",
+      "0903",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
@@ -866,13 +888,13 @@ export const BUG_FIXES: ConfigDescriptions = [
   ],
 ];
 
-// 101-110
-export const GRAPHIC_CHANGES: ConfigDescriptions = [
+// 1001-1010
+export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
   [
     "flyItemSprites",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "101",
+      "1001",
       "Fix fly colors",
       "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
     ],
@@ -881,7 +903,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "twentyTwenty",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "102",
+      "1002",
       "Better 20/20",
       "Make the 20/20 sprite easier to see.",
     ],
@@ -890,7 +912,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "starOfBethlehem",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "103",
+      "1003",
       "Better Star of Bethlehem",
       "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
     ],
@@ -899,7 +921,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "paschalCandle",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "104",
+      "1004",
       "Better Paschal Candle",
       'Make Paschal Candle "fill up" so that you can easily tell at a glance if it is maxed out.',
     ],
@@ -908,7 +930,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "scaredHeart",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "105",
+      "1005",
       "Distinct Scared Hearts",
       "Make Sticky Nickels have a custom animation so that they are easier to identify.",
     ],
@@ -917,7 +939,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "stickyNickel",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "106",
+      "1006",
       "Distinct Sticky Nickels",
       "Make Sticky Nickels have a custom effect so that they are easier to identify.",
     ],
@@ -926,7 +948,7 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
     "uniqueCardBacks",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "107",
+      "1007",
       "Unique card backs",
       "Make some cards have a unique card back or modified graphic so that they are easier to identify.",
     ],
@@ -958,6 +980,10 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
       "Pills now have a consistent orientation on the ground.",
     ],
   ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [
@@ -1014,26 +1040,26 @@ export const GRAPHIC_CHANGES: ConfigDescriptions = [
   ],
 ];
 
-// 111-120
+// 1101-1110
 export const SOUND_CHANGES: ConfigDescriptions = [
   [
     "silenceMomDad",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "111",
+      "1101",
       "Silence mom & dad",
       "The audio clips of mom and dad on the Ascent are silenced.",
     ],
   ],
 ];
 
-// 121-130
+// 1201-1210
 export const OTHER_FEATURES: ConfigDescriptions = [
   [
     "customConsole",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "121",
+      "1201",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
     ],
@@ -1048,11 +1074,13 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES_1,
   ...QUALITY_OF_LIFE_CHANGES_2,
+  ...QUALITY_OF_LIFE_CHANGES_3,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
   ...REMOVALS,
   ...BUG_FIXES,
-  ...GRAPHIC_CHANGES,
+  ...GRAPHIC_CHANGES_1,
+  ...GRAPHIC_CHANGES_2,
   ...SOUND_CHANGES,
   ...OTHER_FEATURES,
 ];

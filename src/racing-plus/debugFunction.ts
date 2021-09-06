@@ -30,9 +30,8 @@ function hotkeyFunction() {}
 
 // ModCallbacks.MC_POST_EFFECT_RENDER (56)
 export function postEffectRender(_effect: EntityEffect): void {
-  /*
-  const text = `State: ${effect.State}`;
-  const position = Isaac.WorldToRenderPosition(effect.Position);
-  Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
-  */
+  // const text = `State: ${effect.State}`;
+  // const text = `Position: ${effect.Position.X}, ${effect.Position.Y}`;
+  // const position = Isaac.WorldToRenderPosition(effect.Position);
+  // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }

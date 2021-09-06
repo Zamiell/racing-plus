@@ -224,6 +224,7 @@ export function touchedVictoryLapButton(): void {
   v.run.numVictoryLaps += 1;
 
   /*
+  // TODO
   // Make them float upwards
   // (the code is loosely copied from the "FastTravel.CheckTrapdoorEnter()" function)
   const gameFrameCount = g.g.GetFrameCount();

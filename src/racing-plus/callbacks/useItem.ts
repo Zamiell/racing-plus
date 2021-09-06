@@ -1,4 +1,5 @@
 import debugFunction from "../debugFunction";
+import * as fixGenesisAndDamocles from "../features/mandatory/fixGenesisAndDamocles";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -24,6 +25,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_USE_ITEM,
     fortuneCookie,
     CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    genesis,
+    CollectibleType.COLLECTIBLE_GENESIS, // 622
   );
 
   mod.AddCallback(
@@ -69,6 +76,15 @@ function voidItem() {
 // CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
 function fortuneCookie() {
   removeFortuneCookieBanners.useItem();
+}
+
+// CollectibleType.COLLECTIBLE_GENESIS (622)
+function genesis(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  player: EntityPlayer,
+) {
+  fixGenesisAndDamocles.useItemGenesis(player);
 }
 
 // CollectibleType.COLLECTIBLE_LEMEGETON (712)

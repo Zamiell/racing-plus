@@ -1,10 +1,17 @@
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
+import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";
 import * as fastLuna from "../features/optional/quality/fastLuna";
 import { EffectVariantCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(
+    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    devil,
+    EffectVariant.DEVIL, // 6
+  );
+
   mod.AddCallback(
     ModCallbacks.MC_POST_EFFECT_UPDATE,
     target,
@@ -22,6 +29,10 @@ export function init(mod: Mod): void {
     stickyNickelEffect,
     EffectVariantCustom.STICKY_NICKEL,
   );
+}
+
+function devil(effect: EntityEffect) {
+  fadeDevilStatue.postEffectUpdateDevil(effect);
 }
 
 // EffectVariant.TARGET (30)

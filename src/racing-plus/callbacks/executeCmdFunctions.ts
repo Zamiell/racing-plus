@@ -373,6 +373,7 @@ functionMap.set("list", (_params: string) => {
     }
 
     debugString += ` (InitSeed: ${entity.InitSeed})`;
+    debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     log(debugString);
   }
   print('Logged the entities in the room to the "log.txt" file.');

@@ -6,15 +6,14 @@
 - Blood Rights is now removed from pools on Tainted Samson.
 - Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - Custom code is added to provide a synergy for The Battery and 9 Volt.
+- The statue in a Devil Room will now be faded if there are pickups behind it.
+- You can no longer abuse save & quit in a Genesis room.
+- You can no longer abuse save & quit to get extra familiars on Tainted Lilith.
+- Damocles is now correctly removed after using Genesis.
 - In seeded races, 3 Dollar Bill is now seeded per room.
 - Fixed the bug where the beam of light after Isaac would not take you up right away.
 - Fixed the bug where The Battery would cause charging events to grant too many charges.
 ```
-
-- Taking more items with Damocles + Genesis than you should have
-
-- test genesis bug fix
-- test gello bug fix
 
 - finish copying code
 - seeded GB bug (look for frame after familiar disappears for post pickup init)
@@ -23,8 +22,6 @@ TODO Racing+ new features:
 - roll ability like in Minish Cap
 - chat system
 - custom console
-- Charge bars for all of the charge items
-	- Azazel's Rage
-- automatically open door after going to 2x1 room in mines with completed knife
 - Add charge bar for No. 2
+- Add charge bar for Azazel's Rage
 - Implement time offsets, show on the first room of each floor

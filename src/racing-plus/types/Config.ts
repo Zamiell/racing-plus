@@ -20,6 +20,7 @@ export default class Config {
 
   // Boss Changes
   fadeBosses = true;
+  killExtraEnemies = true; // 45, 78
   stopDeathSlow = true; // 66
   fastSatan = true; // 84
   fastHaunt = true; // 260
@@ -60,6 +61,7 @@ export default class Config {
   chargePocketItemFirst = true;
   showMaxFamiliars = true;
   showPills = true;
+  fadeDevilStatue = true;
 
   // Gameplay changes
   extraStartingItems = true;
