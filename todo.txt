@@ -1,5 +1,5 @@
 ```
-### *v0.65.1* - September 7th, 2021
+### *v0.65.1* - September 6th, 2021
 
 - Fixed the bug where active items could incorrectly become overcharged in certain situations.
 ```
