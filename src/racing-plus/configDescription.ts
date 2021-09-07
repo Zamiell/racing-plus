@@ -886,6 +886,15 @@ export const BUG_FIXES: ConfigDescriptions = [
       "Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the Genesis bug.",
     ],
   ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Seeded GB Bug",
+      "Make morphed GB Bug pickups seeded in order.",
+    ],
+  ],
 ];
 
 // 1001-1010

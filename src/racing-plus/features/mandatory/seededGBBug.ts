@@ -14,7 +14,6 @@ const v = {
   run: {
     seed: 0,
     GBBugVisibleMap: new Map<PtrHash, boolean>(),
-    /** [PtrHash, game frame count when spawned] */
     lastSpawnedPickupPtrHash: null as PtrHash | null,
     lastSpawnedPickupFrame: null as int | null,
   },

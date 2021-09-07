@@ -1,13 +1,14 @@
 ```
-### *v0.64.1* - September 6th, 2021
+### *v0.65.0* - September 6th, 2021
 
 - The DPS button and Victory Lap button will now spawn after finishing a race. The Victory Lap boss pool has been updated to include all of the Repentance bosses.
+- Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.
+- Fixed the bug where Soul of Isaac would not work on quest items. (Thanks mgln)
 ```
 
 - shadows
 
 TODO Racing+ new features:
-- seeded GB bug (need algorithm)
 - roll ability like in Minish Cap
 - chat system
 - custom console

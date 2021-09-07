@@ -21,6 +21,14 @@ export function init(): void {
   saveDataManager("preventItemRotate", v);
 }
 
+// ModCallbacks.MC_USE_CARD (5)
+// Card.CARD_SOUL_ISAAC (81)
+export function useCardSoulOfIsaac(): void {
+  // Soul of Isaac causes items to flip
+  // Delete all tracked items (assuming that the player deliberately wants to roll a quest item)
+  v.room.trackedItems.clear();
+}
+
 // ModCallbacks.MC_POST_PICKUP_UPDATE (35)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export function postPickupUpdateCollectible(pickup: EntityPickup): void {

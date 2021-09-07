@@ -354,6 +354,7 @@ Post-flip actions:
 - Tainted Lilith can no longer duplicate the Gello familiar with save & quit.
 - Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the bug where the options property is deleted.
 - Damocles is now correctly removed after using Genesis.
+- Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.
 
 ### 10) Graphics Fixes
 
