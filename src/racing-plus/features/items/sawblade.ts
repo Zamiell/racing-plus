@@ -55,11 +55,6 @@ Sawblade stats:
 */
 
 import {
-  getPlayerIndex,
-  PlayerIndex,
-  saveDataManager,
-} from "isaacscript-common";
-import {
   CollectibleTypeCustom,
   FamiliarVariantCustom,
 } from "../../types/enums";
@@ -72,16 +67,6 @@ const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
 const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
-
-const v = {
-  run: {
-    sawblades: new Map<PlayerIndex, int>(),
-  },
-};
-
-export function init(): void {
-  saveDataManager("sawblade", v);
-}
 
 // ModCallbacks.MC_FAMILIAR_UPDATE (6)
 // FamiliarVariantCustom.SAWBLADE
@@ -189,25 +174,19 @@ export function preFamiliarCollisionSawblade(collider: Entity): void {
   }
 }
 
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
-  const numSawblades = player.GetCollectibleNum(
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+// PlayerVariant.PLAYER (0)
+export function postPEffectUpdatePlayer(player: EntityPlayer): void {
+  const numSawbladeCollectibles = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
+  const sawbladesOfPlayer = getSawbladesOfPlayer(player);
 
-  const playerIndex = getPlayerIndex(player);
-  let numOldSawblades = v.run.sawblades.get(playerIndex);
-  if (numOldSawblades === undefined) {
-    numOldSawblades = 0;
-    v.run.sawblades.set(playerIndex, numOldSawblades);
-  }
-
-  if (numSawblades > numOldSawblades) {
+  if (numSawbladeCollectibles > sawbladesOfPlayer.length) {
     spawnNewSawblade(player);
-    v.run.sawblades.set(playerIndex, numOldSawblades + 1);
-  } else if (numSawblades < numOldSawblades) {
-    removeSawblade(player);
-    v.run.sawblades.set(playerIndex, numOldSawblades - 1);
+  } else if (numSawbladeCollectibles < sawbladesOfPlayer.length) {
+    const firstSawblade = sawbladesOfPlayer[0];
+    firstSawblade.Remove();
   }
 }
 
@@ -222,21 +201,28 @@ function spawnNewSawblade(player: EntityPlayer) {
   );
 }
 
-function removeSawblade(player: EntityPlayer) {
+function getSawbladesOfPlayer(player: EntityPlayer) {
   const sawblades = Isaac.FindByType(
     EntityType.ENTITY_FAMILIAR,
     FamiliarVariantCustom.SAWBLADE,
   );
+  const sawbladesOfPlayer: EntityFamiliar[] = [];
   for (const sawblade of sawblades) {
-    if (sawblade.SpawnerEntity === undefined) {
+    const familiar = sawblade.ToFamiliar();
+    if (familiar === undefined) {
+      continue;
+    }
+
+    if (familiar.SpawnerEntity === undefined) {
       continue;
     }
 
     const playerHash = GetPtrHash(player);
-    const spawnerEntityHash = GetPtrHash(sawblade.SpawnerEntity);
+    const spawnerEntityHash = GetPtrHash(familiar.SpawnerEntity);
     if (playerHash === spawnerEntityHash) {
-      sawblade.Remove();
-      return;
+      sawbladesOfPlayer.push(familiar);
     }
   }
+
+  return sawbladesOfPlayer;
 }

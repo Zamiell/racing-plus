@@ -153,7 +153,7 @@ const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
   [908, 0, 0], // Baby Plum
   [909, 0, 0], // The Scourge
   [910, 0, 0], // Chimera
-  [911, 0, 0], // Rotgut
+  // Rotgut is exempt since it requires leaving the current screen
   // Don't include Mother (912.0) it is a story boss
   [913, 0, 0], // Min-Min
   [914, 0, 0], // Clog

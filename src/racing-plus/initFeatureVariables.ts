@@ -1,5 +1,4 @@
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
-import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
@@ -58,7 +57,6 @@ export default function initFeatureVariables(): void {
   speedrunVars.init();
   changeCharOrderVars.init();
   characterProgress.init();
-  sawblade.init();
   passiveItemsForEden.init();
 
   // Util

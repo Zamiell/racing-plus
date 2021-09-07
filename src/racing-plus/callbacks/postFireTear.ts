@@ -6,5 +6,5 @@ export function main(tear: EntityTear): void {
   debugPowers.postFireTear(tear);
 
   // Quality of life
-  leadPencilChargeBar.postFireTear(tear);
+  leadPencilChargeBar.postFireTear();
 }

@@ -14,6 +14,7 @@ sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 const v = {
   run: {
     firedTears: 0,
+    lastFiredTearFrame: null as int | null,
   },
 };
 
@@ -59,6 +60,11 @@ function drawChargeBar(player: EntityPlayer) {
     return;
   }
 
+  // In other situations, the barrage fire, but we have no way of tracking it
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2)) {
+    return;
+  }
+
   const flyingOffset = player.GetFlyingOffset();
 
   // The vanilla charge bars appear to the top-right of the player
@@ -85,12 +91,21 @@ function drawChargeBar(player: EntityPlayer) {
 }
 
 // ModCallbacks.MC_POST_FIRE_TEAR (61)
-export function postFireTear(tear: EntityTear): void {
+export function postFireTear(): void {
   if (!config.leadPencilChargeBar) {
     return;
   }
 
-  // The first tear fired will have a tear index of 0,
-  // the second tear fired will have a tear index of 1, and so on
-  v.run.firedTears = tear.TearIndex + 1;
+  // Lead Pencil fires every N tears
+  // The counter needs to be incremented even if the player does not have Lead Pencil,
+  // so that the charge bar will be accurate if they pick up the item mid-run
+  const gameFrameCount = g.g.GetFrameCount();
+
+  // The second tear of multi-shots don't count towards the Lead Pencil counter
+  if (gameFrameCount === v.run.lastFiredTearFrame) {
+    return;
+  }
+  v.run.lastFiredTearFrame = gameFrameCount;
+
+  v.run.firedTears += 1;
 }
