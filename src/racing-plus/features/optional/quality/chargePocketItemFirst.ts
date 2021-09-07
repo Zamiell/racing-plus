@@ -439,7 +439,19 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
           "Failed to find the number of charges in the charge situation object.",
         );
       }
-      const newCharge = totalCharge + chargeSituation.numCharges;
+      let newCharge = totalCharge + chargeSituation.numCharges;
+      const activeItem = player.GetActiveItem(activeSlot);
+      let maxCharges = getCollectibleMaxCharges(activeItem);
+      const hasBattery = player.HasCollectible(
+        CollectibleType.COLLECTIBLE_BATTERY,
+      );
+      if (hasBattery || chargeSituation.overcharge === true) {
+        maxCharges *= 2;
+      }
+      if (newCharge > maxCharges) {
+        newCharge = maxCharges;
+      }
+
       player.SetActiveCharge(newCharge, activeSlot);
     }
 
