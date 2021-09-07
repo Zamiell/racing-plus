@@ -3,7 +3,7 @@
 
 import {
   getItemName,
-  isQuestItem,
+  isQuestCollectible,
   log,
   saveDataManager,
 } from "isaacscript-common";
@@ -51,7 +51,7 @@ export function checkQuestItem(
   collectibleType: CollectibleType | CollectibleTypeCustom,
   seed: int,
 ): void {
-  if (isQuestItem(collectibleType)) {
+  if (isQuestCollectible(collectibleType)) {
     v.room.trackedItems.set(seed, collectibleType);
 
     // The item might have already shifted on the first frame that it spawns,

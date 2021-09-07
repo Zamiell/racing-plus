@@ -5,9 +5,9 @@
 ```
 
 - shadows
-- seeded GB bug (need algorithm)
 
 TODO Racing+ new features:
+- seeded GB bug (need algorithm)
 - roll ability like in Minish Cap
 - chat system
 - custom console

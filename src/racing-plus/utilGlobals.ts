@@ -8,7 +8,7 @@ import {
   getRoomIndex,
   inCrawlspace,
   isHiddenSecretRoomDoor,
-  isQuestItem,
+  isQuestCollectible,
 } from "isaacscript-common";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import g from "./globals";
@@ -156,7 +156,7 @@ export function spawnCollectible(
   if (
     roomType === RoomType.ROOM_ANGEL &&
     anyPlayerIs(PlayerType.PLAYER_KEEPER_B) &&
-    !isQuestItem(collectibleType) &&
+    !isQuestCollectible(collectibleType) &&
     !forceFreeItem
   ) {
     // When playing Tainted Keeper, collectibles are supposed to have a price,

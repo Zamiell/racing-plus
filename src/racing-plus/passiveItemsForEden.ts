@@ -1,4 +1,4 @@
-import { getMaxCollectibleID, isQuestItem } from "isaacscript-common";
+import { getMaxCollectibleID, isQuestCollectible } from "isaacscript-common";
 import { BANNED_COLLECTIBLES } from "./features/mandatory/removeGloballyBannedItems/constants";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
@@ -15,7 +15,7 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
       (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
         itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&
-      !isQuestItem(itemConfigItem.ID) &&
+      !isQuestCollectible(itemConfigItem.ID) &&
       !BANNED_COLLECTIBLES.has(itemConfigItem.ID) &&
       ![...COLLECTIBLE_REPLACEMENT_MAP.keys()].includes(i)
     ) {
