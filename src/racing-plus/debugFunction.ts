@@ -1,4 +1,4 @@
-import { isKeyboardPressed } from "isaacscript-common";
+import { getCurrentDimension, isKeyboardPressed } from "isaacscript-common";
 import g from "./globals";
 
 const DEBUG_HOTKEY = Keyboard.KEY_F2;
@@ -8,6 +8,8 @@ let debugHotkeyPressed = false;
 export default function debugFunction(): void {
   // Enable debug mode
   g.debug = true;
+
+  print(getCurrentDimension());
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)

@@ -16,6 +16,7 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_PLAYER_INIT (9)
 export function postPlayerInit(player: EntityPlayer): void {
+  return;
   if (v.run.firstPlayerControllerIndex === null) {
     v.run.firstPlayerControllerIndex = player.ControllerIndex;
   }
@@ -23,6 +24,7 @@ export function postPlayerInit(player: EntityPlayer): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
+  return;
   const controllerIndexes: int[] = [];
   for (const player of getPlayers()) {
     if (!controllerIndexes.includes(player.ControllerIndex)) {
@@ -37,6 +39,7 @@ export function postGameStarted(): void {
 
 // ModCallbacks.MC_PRE_GAME_EXIT (17)
 export function preGameExit(shouldSave: boolean): void {
+  return;
   if (!shouldSave) {
     v.run.firstPlayerControllerIndex = null;
   }
@@ -44,6 +47,7 @@ export function preGameExit(shouldSave: boolean): void {
 
 // ModCallbacksCustom.MC_POST_PLAYER_INIT_LATE
 export function postPlayerInitLate(player: EntityPlayer): void {
+  return;
   if (isChildPlayer(player)) {
     return;
   }

@@ -1,12 +1,11 @@
 ```
-### *v0.65.2* - September 7th, 2021
+### *v0.65.3* - September 7th, 2021
 
-- The Lead Pencil charge bar will no longer display if you have Technology 2 (since there is no way to track the tears). (Thanks Gamonymous)
-- Rotgut will no longer appear as a Victory Lap boss.
-- Fixed the bug where the Lead Pencil would not work properly with multi-shot items. (Thanks Gamonymous)
-- Fixed the bug where Sawblade would not work properly on Tainted Lazarus. (Thanks Gamonymous)
+-
 ```
 
+- remove fear
+- speed up pin and wormwood
 - shadows
 
 TODO Racing+ new features:

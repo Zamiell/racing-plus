@@ -79,7 +79,7 @@ function Shadow.unmarshall(self, data)
 end
 
 local function validate(data, allowedLength)
-  if type(data) ~= 'string' then
+  if type(data) ~= "string" then
     return nil
   end
   if #data < allowedLength then
