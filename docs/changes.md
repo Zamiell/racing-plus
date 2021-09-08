@@ -288,7 +288,7 @@ Post-flip actions:
 
 > Why? This allows skilled players to gain time by canceling more animations.
 
-- Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed, hitbox, and tick rate of the Sacrificial Dagger from Afterbirth+. It does 11 contact damage.
+- Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed, hitbox, and tick rate of the Sacrificial Dagger from Afterbirth+. It does 10 contact damage.
 
 > Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
 
