@@ -76,6 +76,11 @@ export function postGameStarted(): void {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
   }
 
+  if (anyPlayerIs(PlayerType.PLAYER_MAGDALENA_B)) {
+    // Tainted Magdalene is invincible with Sharp Plug
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
+  }
+
   if (anyPlayerIs(PlayerType.PLAYER_SAMSON_B)) {
     // Tainted Samson can break the game with Blood Rights since we will never die
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BLOOD_RIGHTS);
@@ -128,6 +133,13 @@ function isBannedCollectible(entity: Entity) {
     (anyPlayerIs(PlayerType.PLAYER_BETHANY) ||
       anyPlayerIs(PlayerType.PLAYER_BETHANY_B)) &&
     entity.SubType === CollectibleType.COLLECTIBLE_ESAU_JR
+  ) {
+    return true;
+  }
+
+  if (
+    anyPlayerIs(PlayerType.PLAYER_MAGDALENA_B) &&
+    entity.SubType === CollectibleType.COLLECTIBLE_SHARP_PLUG
   ) {
     return true;
   }
