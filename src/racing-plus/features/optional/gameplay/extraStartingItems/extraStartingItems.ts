@@ -47,7 +47,9 @@ export function postNewRoom(): void {
     const lastRoomData = lastRoomDesc.Data;
     if (
       lastRoomData !== undefined &&
-      lastRoomData.Type === RoomType.ROOM_TREASURE
+      (lastRoomData.Type === RoomType.ROOM_TREASURE ||
+        // Tainted Keeper can find Treasure Room items in a shop
+        lastRoomData.Type === RoomType.ROOM_SHOP)
     ) {
       removePlaceholdersFromPools();
     }

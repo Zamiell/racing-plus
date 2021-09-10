@@ -4,7 +4,8 @@
 -
 ```
 
-- remove fear
+- remove b1 extra items on leaving shop
+- host immunity to all status effects
 - speed up pin and wormwood
 - shadows
 
