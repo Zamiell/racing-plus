@@ -72,7 +72,7 @@ export default class Config {
   // Cutscenes
   fastTeleports = true;
 
-  // Bug Fixes
+  // Bug fixes
   battery9VoltSynergy = true;
   teleportInvalidEntrance = true;
   removeInvalidPitfalls = true;

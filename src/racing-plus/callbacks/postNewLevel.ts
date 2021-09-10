@@ -18,18 +18,18 @@ export function main(): void {
     `MC_POST_NEW_LEVEL - ${stage}.${stageType} (game frame ${gameFrameCount})`,
   );
 
-  // Mandatory features
+  // Mandatory
   streakText.postNewLevel();
   tempMoreOptions.postNewLevel();
   seededTeleports.postNewLevel();
 
-  // Major features
+  // Major
   racePostNewLevel();
 
-  // Gameplay changes
+  // Gameplay
   extraStartingItemsPostNewLevel();
 
-  // Quality of life
+  // QoL
   openHushDoor.postNewLevel();
   showDreamCatcherItemPostNewLevel();
 

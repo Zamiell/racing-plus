@@ -52,7 +52,7 @@ export function main(isContinued: boolean): void {
     return;
   }
 
-  // Mandatory features
+  // Mandatory
   racingPlusSprite.postGameStarted();
   modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
@@ -66,7 +66,7 @@ export function main(isContinued: boolean): void {
   // added on top
   showEdenStartingItems.postGameStarted();
 
-  // Major features
+  // Major
   racePostGameStarted();
   if (isRestartingOnNextFrame()) {
     return;
@@ -78,16 +78,16 @@ export function main(isContinued: boolean): void {
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 
-  // Character changes
+  // Chars
   judasAddBomb.postGameStarted();
   samsonDropHeart.postGameStarted();
   lostUseHolyCard.postGameStarted();
   taintedKeeperMoney.postGameStarted();
 
-  // Gameplay changes
+  // Gameplay
   extraStartingItemsPostGameStarted();
 
-  // Quality of life
+  // QoL
   showDreamCatcherItemPostGameStarted();
 
   // Conditionally show a festive hat

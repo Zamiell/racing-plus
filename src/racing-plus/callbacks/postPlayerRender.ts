@@ -7,7 +7,7 @@ export function main(player: EntityPlayer): void {
     return;
   }
 
-  // Major features
+  // Major
   racePostPlayerRender(player);
 
   // Cutscenes

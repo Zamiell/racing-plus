@@ -4,12 +4,12 @@ import * as automaticItemInsertion from "../features/optional/quality/automaticI
 import { speedrunPreItemPickup } from "../features/speedrun/callbacks/preItemPickup";
 
 export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
-  // Mandatory features
+  // Mandatory
   streakText.preItemPickup(pickingUpItem);
 
-  // Major features
+  // Major
   speedrunPreItemPickup(player, pickingUpItem);
 
-  // Quality of life
+  // QoL
   automaticItemInsertion.preItemPickup(player, pickingUpItem);
 }

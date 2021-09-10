@@ -24,13 +24,13 @@ function player(
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
-  // Mandatory features
+  // Mandatory
   const sustainDamage = debugPowers.entityTakeDmgPlayer();
   if (sustainDamage !== undefined) {
     return sustainDamage;
   }
 
-  // Major features
+  // Major
   freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
 

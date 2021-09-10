@@ -9,13 +9,13 @@ export function main(player: EntityPlayer): void {
     return;
   }
 
-  // Major features
+  // Major
   startWithD6.postPlayerUpdate(player);
   fastTravelPostPlayerUpdate(player);
 
-  // Gameplay changes
+  // Gameplay
   combinedDualityDoors.postPlayerUpdate(player);
 
-  // Quality of life
+  // QoL
   chargePocketItemFirst.postPlayerUpdate(player);
 }

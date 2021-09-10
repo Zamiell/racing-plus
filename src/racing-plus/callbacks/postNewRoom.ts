@@ -45,7 +45,7 @@ export function main(): void {
   detectSlideAnimation.postNewRoom();
   roomsEntered.postNewRoom();
 
-  // Mandatory features
+  // Mandatory
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
   controlsGraphic.postNewRoom();
@@ -53,7 +53,7 @@ export function main(): void {
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
 
-  // Major features
+  // Major
   racePostNewRoom();
   speedrunPostNewRoom();
   charCharOrderPostNewRoom();
@@ -63,23 +63,23 @@ export function main(): void {
   fastClearPostNewRoom();
   fastTravelPostNewRoom();
 
-  // Character changes
+  // Chars
   showEdenStartingItems.postNewRoom();
 
-  // Enemy changes
+  // Enemies
   fastSatan.postNewRoom();
   appearHands.postNewRoom();
   removeTreasureRoomEnemies.postNewRoom();
 
-  // Quality of life
+  // QoL
   showDreamCatcherItemPostNewRoom();
   subvertTeleport.postNewRoom();
 
-  // Gameplay changes
+  // Gameplay
   combinedDualityDoors.postNewRoom();
   extraStartingItemsPostNewRoom();
 
-  // Bux fixes
+  // Bug fixes
   teleportInvalidEntrance.postNewRoom();
   removeInvalidPitfalls.postNewRoom();
 }

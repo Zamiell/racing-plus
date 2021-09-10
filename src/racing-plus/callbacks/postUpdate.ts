@@ -18,7 +18,7 @@ import racePostUpdate from "../features/race/callbacks/postUpdate";
 import speedrunPostUpdate from "../features/speedrun/callbacks/postUpdate";
 
 export function main(): void {
-  // Mandatory features
+  // Mandatory
   trophy.postUpdate();
   fireworks.postUpdate();
   showLevelText.postUpdate();
@@ -26,7 +26,7 @@ export function main(): void {
   debugPowers.postUpdate();
   debugFunction.postUpdate();
 
-  // Major features
+  // Major
   racePostUpdate();
   speedrunPostUpdate();
   changeCharOrderPostUpdate();
@@ -38,11 +38,11 @@ export function main(): void {
   // Hotkeys
   autofire.postUpdate();
 
-  // Quality of life
+  // QoL
   showPills.postUpdate();
   showMaxFamiliars.postUpdate();
 
-  // Gameplay changes
+  // Gameplay
   extraStartingItemsPostUpdate();
 
   // Bug fixes

@@ -2,8 +2,9 @@ import * as showNumSacrifices from "../features/optional/quality/showNumSacrific
 import racePostSacrifice from "../features/race/callbacks/postSacrifice";
 
 export function main(player: EntityPlayer, numSacrifices: int): void {
+  // Major
   racePostSacrifice(player, numSacrifices);
 
-  // Quality of life
+  // QoL
   showNumSacrifices.postSacrifice(numSacrifices);
 }

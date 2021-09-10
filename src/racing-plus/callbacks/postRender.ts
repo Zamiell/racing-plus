@@ -37,7 +37,7 @@ export function main(): void {
     return;
   }
 
-  // Mandatory features
+  // Mandatory
   modConfigNotify.postRender();
   racingPlusSprite.postRender();
   detectSlideAnimation.postRender();
@@ -46,18 +46,18 @@ export function main(): void {
   topLeftText.postRender();
   drawVersion.postRender();
 
-  // Major features
+  // Major
   racePostRender();
   speedrunPostRender();
   changeCharOrderPostRender();
   fastTravelPostRender();
   fastReset.postRender();
 
-  // Character changes
+  // Chars
   lostShowHealth.postRender();
   showEdenStartingItems.postRender();
 
-  // Quality of life
+  // QoL
   speedUpFadeIn.postRender();
   holyMantleUI.postRender(); // 313
   leadPencilChargeBar.postRender(); // 444
