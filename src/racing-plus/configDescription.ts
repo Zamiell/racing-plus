@@ -426,6 +426,15 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
       "Cod Worms are replaced with Para-Bites.",
     ],
   ],
+  [
+    "removeStrayPitfalls", // 291
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0409",
+      "Remove stray Pitfalls",
+      "Kill all Pitfalls on room clear.",
+    ],
+  ],
 ];
 
 // 0501-0510

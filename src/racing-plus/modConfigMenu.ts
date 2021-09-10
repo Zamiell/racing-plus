@@ -70,11 +70,11 @@ export function init(): void {
   registerSubMenuConfig("QoL (3)", QUALITY_OF_LIFE_CHANGES_3);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Removals", REMOVALS);
-  registerSubMenuConfig("Cutscene", CUTSCENE_CHANGES);
+  registerSubMenuConfig("Cutscenes", CUTSCENE_CHANGES);
   registerSubMenuConfig("Bug Fixes", BUG_FIXES);
   registerSubMenuConfig("GFX (1)", GRAPHIC_CHANGES_1);
   registerSubMenuConfig("GFX (2)", GRAPHIC_CHANGES_2);
-  registerSubMenuConfig("Sound", SOUND_CHANGES);
+  registerSubMenuConfig("Sounds", SOUND_CHANGES);
   registerSubMenuConfig("Other", OTHER_FEATURES);
 }
 

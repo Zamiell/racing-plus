@@ -5,6 +5,7 @@ import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem"
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
+import * as fastClearPostPickupInit from "../features/optional/major/fastClear/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
@@ -72,6 +73,7 @@ function coin(pickup: EntityPickup) {
 
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 function collectible(pickup: EntityPickup) {
+  fastClearPostPickupInit.collectible(pickup);
   flyItemSprites.postPickupInit(pickup);
   twentyTwenty.postPickupInit(pickup);
   starOfBethlehem.postPickupInit(pickup);

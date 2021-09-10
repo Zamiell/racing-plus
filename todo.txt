@@ -1,11 +1,12 @@
 ```
 ### *v0.65.3* - September 7th, 2021
 
--
+- Pitfalls will now be killed when the room is cleared. (Thanks ez_duke)
+- Fixed the bug where Krampus and Angels would not work properly with Stop Watch or Broken Watch. (Thanks 91)
+- Fixed the bug where items would be deleted on save & quit even if you weren't in a Genesis room. (Thanks Gamonymous)
+- Fixed the bug where the extra starting items would not be removed if you exited a shop. (Thanks mgln)
 ```
 
-- remove b1 extra items on leaving shop
-- host immunity to all status effects
 - speed up pin and wormwood
 - shadows
 

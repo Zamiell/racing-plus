@@ -1,8 +1,6 @@
 import { getFinalFrameOfAnimation, log } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import * as angels from "../angels";
-import * as krampus from "../krampus";
 import v from "../v";
 
 export default function fastClearPostUpdate(): void {
@@ -11,8 +9,6 @@ export default function fastClearPostUpdate(): void {
   }
 
   checkQueue();
-  krampus.postUpdate();
-  angels.postUpdate();
 }
 
 function checkQueue() {

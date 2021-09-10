@@ -1,6 +1,6 @@
 // Should match the ordering in "configDescription.ts"
 export default class Config {
-  // Major Changes
+  // Major
   clientCommunication = true;
   startWithD6 = true;
   disableCurses = true;
@@ -10,7 +10,7 @@ export default class Config {
   fastClear = true;
   fastTravel = true;
 
-  // Character Changes
+  // Chars
   judasAddBomb = true; // 3
   samsonDropHeart = true; // 6
   showEdenStartingItems = true; // 9, 30
@@ -18,7 +18,7 @@ export default class Config {
   lostUseHolyCard = true; // 31
   taintedKeeperMoney = true; // 33
 
-  // Boss Changes
+  // Boss
   fadeBosses = true;
   killExtraEnemies = true; // 45, 78
   stopDeathSlow = true; // 66
@@ -31,7 +31,7 @@ export default class Config {
   fastColostomia = true; // 917
   fastDogma = true; // 950
 
-  // Enemy Changes
+  // Enemies
   removeTreasureRoomEnemies = true;
   clearerShadowAttacks = true;
   globinSoftlock = true; // 24
@@ -40,8 +40,9 @@ export default class Config {
   disableInvulnerability = true; // 219, 260, 285
   fastGhosts = true; // 219, 285
   replaceCodWorms = true; // 221
+  removeStrayPitfalls = true; // 291
 
-  // Quality of Life Changes
+  // QoL
   speedUpFadeIn = true;
   easyFirstFloorItems = true;
   changeCreepColor = true;
@@ -63,12 +64,12 @@ export default class Config {
   showPills = true;
   fadeDevilStatue = true;
 
-  // Gameplay changes
+  // Gameplay
   extraStartingItems = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
 
-  // Cutscenes & Animations
+  // Cutscenes
   fastTeleports = true;
 
   // Bug Fixes
@@ -76,7 +77,7 @@ export default class Config {
   teleportInvalidEntrance = true;
   removeInvalidPitfalls = true;
 
-  // Graphics
+  // GFX
   flyItemSprites = true; // 57, 128, 364
   twentyTwenty = true; // 245
   starOfBethlehem = true; // 651

@@ -3,12 +3,6 @@ import g from "../../../../globals";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
 import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
-import { deleteDyingEntity } from "./util";
-
-// ModCallbacks.MC_POST_UPDATE (1)
-export function postUpdate(): void {
-  deleteDyingEntity(EntityType.ENTITY_FALLEN, FallenVariant.KRAMPUS);
-}
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(npc: EntityNPC): void {

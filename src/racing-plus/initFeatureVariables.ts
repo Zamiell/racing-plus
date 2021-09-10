@@ -64,7 +64,7 @@ export default function initFeatureVariables(): void {
   restartOnNextFrame.init();
   roomsEntered.init();
 
-  // Mandatory features
+  // Mandatory
   streakText.init();
   removeGloballyBannedItems.init();
   removeGlitchedItems.init();
@@ -85,7 +85,7 @@ export default function initFeatureVariables(): void {
   debugPowers.init();
   errors.init();
 
-  // Major features
+  // Major
   startWithD6.init();
   fastClearVars.init();
   fastTravelVars.init();
@@ -96,10 +96,10 @@ export default function initFeatureVariables(): void {
   // Hotkeys
   autofire.init();
 
-  // Boss changes
+  // Boss
   killExtraEnemies.init();
 
-  // Quality of life
+  // QoL
   showPills.init();
   showNumSacrifices.init();
   showEdenStartingItems.init();
@@ -111,7 +111,7 @@ export default function initFeatureVariables(): void {
   removePerfectionVelocity.init();
   chargePocketItemFirst.init();
 
-  // Gameplay changes
+  // Gameplay
   combinedDualityDoors.init();
   extraStartingItems.init();
 
