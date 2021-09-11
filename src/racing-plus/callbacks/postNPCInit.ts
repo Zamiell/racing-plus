@@ -22,14 +22,17 @@ export function init(mod: Mod): void {
   );
 }
 
+// EntityType.ENTITY_DADDYLONGLEGS (101)
 function daddyLongLegs(npc: EntityNPC) {
   clearerShadowAttacks.postNPCInitDaddyLongLegs(npc);
 }
 
+// EntityType.ENTITY_PITFALL (291)
 function pitfall(npc: EntityNPC) {
   betterDevilAngelRoomsPostNPCInit.pitfall(npc);
 }
 
+// EntityType.ENTITY_COLOSTOMIA (917)
 function colostomia(npc: EntityNPC) {
   fastColostomia.postNPCInitColostomia(npc);
 }

@@ -9,7 +9,6 @@
 - Fixed the bug where the extra starting items would not be removed if you exited a shop. (Thanks mgln)
 ```
 
-- speed up pin and wormwood
 - shadows
 
 TODO Racing+ new features:

@@ -38,6 +38,13 @@ export function postFamiliarRender(_familiar: EntityFamiliar): void {
   // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }
 
+// ModCallbacks.MC_POST_NPC_RENDER (28)
+export function postNPCRender(_npc: EntityNPC): void {
+  // const text = `State: ${npc.State}`;
+  // const position = Isaac.WorldToRenderPosition(npc.Position);
+  // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
+}
+
 // ModCallbacks.MC_POST_EFFECT_RENDER (56)
 export function postEffectRender(_effect: EntityEffect): void {
   // const text = `State: ${effect.State}`;
