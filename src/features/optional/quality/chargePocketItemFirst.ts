@@ -379,7 +379,7 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
   }
 
   const activeItemsChanged = new Set<ActiveSlot>();
-  for (const [activeSlot, oldTotalCharge] of activeItemCharges) {
+  for (const [activeSlot, oldTotalCharge] of activeItemCharges.entries()) {
     const activeItem = player.GetActiveItem(activeSlot);
     if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
       continue;

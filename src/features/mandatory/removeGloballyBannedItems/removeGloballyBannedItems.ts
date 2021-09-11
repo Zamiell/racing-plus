@@ -30,7 +30,7 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  for (const bannedCollectible of BANNED_COLLECTIBLES) {
+  for (const bannedCollectible of BANNED_COLLECTIBLES.values()) {
     g.itemPool.RemoveCollectible(bannedCollectible);
 
     // If Eden started with a banned item, replace it
@@ -48,7 +48,7 @@ export function postGameStarted(): void {
     }
   }
 
-  for (const bannedTrinket of BANNED_TRINKETS) {
+  for (const bannedTrinket of BANNED_TRINKETS.values()) {
     g.itemPool.RemoveTrinket(bannedTrinket);
 
     // If Eden started with a banned trinket, delete it
@@ -62,7 +62,7 @@ export function postGameStarted(): void {
   if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VOID)) {
     v.run.startedWithVoid = true;
 
-    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
+    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID.values()) {
       g.itemPool.RemoveCollectible(bannedCollectible);
     }
   }

@@ -6,11 +6,11 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
 
-const ENTITIES_THAT_CAUSE_TELEPORT = [
+const ENTITIES_THAT_CAUSE_TELEPORT = new Set([
   EntityType.ENTITY_GURDY, // 36
   EntityType.ENTITY_MOM, // 45
   EntityType.ENTITY_MOMS_HEART, // 78
-];
+]);
 
 const TOP_DOOR_POSITION = Vector(320, 160);
 const LEFT_DOOR_POSITION = Vector(80, 280);
@@ -35,7 +35,7 @@ function shouldSubvertTeleport() {
     return false;
   }
 
-  for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT) {
+  for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT.values()) {
     const entities = Isaac.FindByType(entityType, -1, -1, false, true);
     if (entities.length > 0) {
       return true;

@@ -248,7 +248,7 @@ function storePersistentEntity(entity: Entity) {
 function fixPitGraphics() {
   const pitMap = getPitMap();
 
-  for (const [gridIndex, gridEntity] of pitMap) {
+  for (const [gridIndex, gridEntity] of pitMap.entries()) {
     const gridIndexLeft = gridIndex - 1;
     const L = pitMap.has(gridIndexLeft);
     const gridIndexRight = gridIndex + 1;

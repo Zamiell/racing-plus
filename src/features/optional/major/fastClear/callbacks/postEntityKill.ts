@@ -73,7 +73,7 @@ function isWhitelistedNPC(npc: EntityNPC) {
   for (const [
     entityType,
     entityVariant,
-  ] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT) {
+  ] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT.values()) {
     if (entityType === npc.Type && entityVariant === npc.Variant) {
       return true;
     }

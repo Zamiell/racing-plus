@@ -205,7 +205,7 @@ function resetRoomState(roomIndex: int) {
 }
 
 function restoreMinimapDisplayFlags(displayFlagsMap: Map<int, int>) {
-  for (const [gridIndex, displayFlags] of displayFlagsMap) {
+  for (const [gridIndex, displayFlags] of displayFlagsMap.entries()) {
     const room = g.l.GetRoomByIdx(gridIndex);
     room.DisplayFlags = displayFlags;
   }

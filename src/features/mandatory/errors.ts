@@ -15,6 +15,8 @@ import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const NUM_RACING_PLUS_ITEMS = 29;
 const NUM_BABIES_MOD_ITEMS = 15;
+const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
+const ITEM_POOL_TO_CHECK = ItemPoolType.POOL_SECRET;
 const STARTING_X = 115;
 const STARTING_Y = 70;
 
@@ -60,12 +62,9 @@ function isCorruptMod() {
 
 // Check to see if Death Certificate is unlocked
 function isIncompleteSave() {
-  const collectibleToCheckFor = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
-  const itemPoolToCheck = ItemPoolType.POOL_SECRET;
-
   // If Eden is holding Death Certificate, then it is obviously unlocked
   // (and it will also be removed from pools so the below check won't work)
-  if (anyPlayerHasCollectible(collectibleToCheckFor)) {
+  if (anyPlayerHasCollectible(COLLECTIBLE_TO_CHECK_FOR)) {
     return false;
   }
 
@@ -108,21 +107,22 @@ function isIncompleteSave() {
   }
 
   // Add every item in the game to the blacklist
-  for (const collectibleType of getCollectibleSet()) {
-    if (collectibleType !== collectibleToCheckFor) {
+  const collectibleSet = getCollectibleSet();
+  for (const collectibleType of collectibleSet.values()) {
+    if (collectibleType !== COLLECTIBLE_TO_CHECK_FOR) {
       g.itemPool.AddRoomBlacklist(collectibleType);
     }
   }
 
   // Get an item from the pool and see if it is the intended item
   const itemPoolCollectible = g.itemPool.GetCollectible(
-    itemPoolToCheck,
+    ITEM_POOL_TO_CHECK,
     false,
     1,
   );
-  if (itemPoolCollectible !== collectibleToCheckFor) {
+  if (itemPoolCollectible !== COLLECTIBLE_TO_CHECK_FOR) {
     log(
-      `Error: Incomplete save file detected. (Failed to get item ${collectibleToCheckFor} from pool ${itemPoolToCheck}; got item ${itemPoolCollectible} instead.)`,
+      `Error: Incomplete save file detected. (Failed to get item ${COLLECTIBLE_TO_CHECK_FOR} from pool ${ITEM_POOL_TO_CHECK}; got item ${itemPoolCollectible} instead.)`,
     );
     v.run.incompleteSave = true;
   }

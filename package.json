@@ -15,7 +15,7 @@
     "isaac-typescript-definitions": "^1.0.183",
     "isaacscript": "^1.1.19",
     "isaacscript-common": "^1.0.302",
-    "isaacscript-lint": "^1.0.54"
+    "isaacscript-lint": "^1.0.55"
   },
   "devDependencies": {
     "ts-prune": "^0.10.0"

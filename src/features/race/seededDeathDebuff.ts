@@ -171,7 +171,7 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
       : v.run.seededDeath.items;
 
   const collectibleMap = getPlayerCollectibleMap(player);
-  for (const [collectibleType, collectibleNum] of collectibleMap) {
+  for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
     for (let i = 1; i <= collectibleNum; i++) {
       items.push(collectibleType);
       player.RemoveCollectible(collectibleType);
@@ -297,7 +297,7 @@ function giveTransformationHelper(
   collectibleType: CollectibleType,
 ) {
   const transformations = getTransformationsForItem(collectibleType);
-  for (const transformation of transformations) {
+  for (const transformation of transformations.values()) {
     const helperCollectibleType =
       TRANSFORMATION_TO_HELPER_MAP.get(transformation);
     if (helperCollectibleType !== undefined) {

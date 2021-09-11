@@ -18,7 +18,10 @@ export function postRender(): void {
 }
 
 function drawButtonSprites() {
-  for (const [seasonAbbreviation, seasonSprite] of v.room.sprites.seasons) {
+  for (const [
+    seasonAbbreviation,
+    seasonSprite,
+  ] of v.room.sprites.seasons.entries()) {
     const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
     const posButton = gridToPos(position.X, position.Y - 1);
     const posRender = Isaac.WorldToRenderPosition(posButton);
