@@ -9,9 +9,6 @@
     // Specifies the root folder within your source files
     "rootDir": "./src",
 
-    // Specifies the directory of the output
-    "outDir": "./mod",
-
     // Necessary since we import JSON files
     "resolveJsonModule": true,
   },
@@ -24,7 +21,7 @@
   // TypeScriptToLua settings
   "tstl": {
     "luaTarget": "5.3",
-    "luaBundle": "main.lua", // Will bundle all output Lua files into a single file
+    "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file
     "luaBundleEntry": "./src/bundleEntry.ts",
   },
 }
