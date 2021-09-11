@@ -19,9 +19,6 @@ from get_version_from_package_json import get_version_from_package_json
 
 SCRIPT_PATH = os.path.realpath(__file__)
 SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
-CONSTANTS_TS_PATH = os.path.join(
-    SCRIPT_DIRECTORY, "..", "src", "racing-plus", "constants.ts"
-)
 ROOMS_DIRECTORY = os.path.join(
     SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipping/"
 )
@@ -33,7 +30,6 @@ JSON_OUTPUT_DIRECTORY = os.path.join(
     SCRIPT_DIRECTORY,
     "..",
     "src",
-    "racing-plus",
     "features",
     "optional",
     "major",
@@ -42,32 +38,11 @@ JSON_OUTPUT_DIRECTORY = os.path.join(
 
 
 def main():
-    writeVersionToConstantsTS()
-
     # Draw the version on the title screen
     write_version.main()
 
     # Convert some room XML files to JSON so that they can be directly imported by the mod
     convertXMLToJSON()
-
-
-def writeVersionToConstantsTS():
-    version = get_version_from_package_json()
-
-    if not os.path.isfile(CONSTANTS_TS_PATH):
-        error('Failed to find the "constants.ts" file at: {}'.format(CONSTANTS_TS_PATH))
-
-    with open(CONSTANTS_TS_PATH, "r") as file:
-        file_data = file.read()
-
-    file_data = re.sub(
-        r'const VERSION = ".+"', 'const VERSION = "{}"'.format(version), file_data
-    )
-
-    with open(CONSTANTS_TS_PATH, "w", newline="\n") as file:
-        file.write(file_data)
-
-    print("The constants.ts version was updated to version: {}".format(version))
 
 
 def convertXMLToJSON():
