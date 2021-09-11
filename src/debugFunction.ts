@@ -6,7 +6,6 @@ const DEBUG_HOTKEY = Keyboard.KEY_F2;
 let debugHotkeyPressed = false;
 
 export default function debugFunction(): void {
-  // Enable debug mode
   g.debug = true;
 }
 
