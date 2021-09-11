@@ -516,7 +516,7 @@ The deleted rooms are as follows:
 
 ### Symmetry Fix
 
-Certain rooms in the game were probably meant to be symmetrical, but one entity or tile was incorrectly placed. This is fixed.
+Certain rooms in the game were probably meant to be symmetrical, but one entity was incorrectly placed. This is fixed.
 
 The changed rooms are as follows:
 - Treasure: #30, #32

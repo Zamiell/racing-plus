@@ -20,7 +20,9 @@ export function enteredRoomViaTeleport(): boolean {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomIndex = getRoomIndex();
   const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
-  const cameFromCrawlspace = previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX;
+  const cameFromCrawlspace =
+    previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX ||
+    previousRoomIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
 
   return (
     g.l.LeaveDoor === -1 &&

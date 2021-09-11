@@ -32,7 +32,7 @@ export function init(
 
   const sprite = entity.GetSprite();
   const fileName = sprite.GetFilename();
-  const customFileName = getCustomSpriteFilename(fastTravelEntityType);
+  const customFileName = getCustomSpriteFilename(entity, fastTravelEntityType);
   if (fileName === customFileName) {
     return;
   }
@@ -57,7 +57,10 @@ export function init(
   }
 }
 
-function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
+function getCustomSpriteFilename(
+  entity: GridEntity | EntityEffect,
+  fastTravelEntityType: FastTravelEntityType,
+) {
   const isGreedMode = g.g.IsGreedMode();
   const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
@@ -131,6 +134,13 @@ function getCustomSpriteFilename(fastTravelEntityType: FastTravelEntityType) {
     }
 
     case FastTravelEntityType.CRAWLSPACE: {
+      const gridEntity = entity as GridEntity;
+      const variant = gridEntity.GetVariant();
+
+      if (variant === StairsVariant.SECRET_SHOP) {
+        return "gfx/grid/door_20_secrettrapdoor_shop_custom.anm2";
+      }
+
       return "gfx/grid/door_20_secrettrapdoor_custom.anm2"; // cspell:disable-line
     }
 

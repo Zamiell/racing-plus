@@ -25,6 +25,7 @@ export function postEntityKillLamb(_entity: Entity): void {
     );
     log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
     // (this will not work to delay the room clearing if "debug 10" is turned on)
+    // (this will not die if the player uses Blood Rights since it is an effect)
 
     emulateRoomClear();
   }

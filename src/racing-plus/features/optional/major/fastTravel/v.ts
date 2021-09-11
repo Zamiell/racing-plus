@@ -108,6 +108,8 @@ const v = {
      */
     momKilledFrame: null as int | null,
 
+    movedAwayFromSecretShopLadder: false,
+
     /** Used to replace a crawlspace with a teleporter under certain conditions. */
     teleporter: {
       frame: null as int | null,

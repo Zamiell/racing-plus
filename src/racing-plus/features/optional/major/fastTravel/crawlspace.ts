@@ -1,8 +1,10 @@
 // For testing, a seed with a black market is: 2SB2 M4R6
 
 import {
+  DISTANCE_OF_GRID_TILE,
   getPlayerCloserThan,
   getRoomIndex,
+  inBeastRoom,
   inCrawlspace,
   log,
   teleport,
@@ -15,7 +17,8 @@ import * as fastTravel from "./fastTravel";
 import * as state from "./state";
 import v from "./v";
 
-const GRID_INDEX_OF_TOP_OF_LADDER = 2;
+const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;
+const GRID_INDEX_SECRET_SHOP_LADDER = 25;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
 
 const TELEPORTER_ACTIVATION_DISTANCE = 20; // Exactly the same as a vanilla teleporter
@@ -80,8 +83,8 @@ function checkEnteringCrawlspace() {
   if (inCrawlspace() && v.level.crawlspace.amEntering) {
     v.level.crawlspace.amEntering = false;
 
-    // When a player manually teleports into a crawlspace, they will not consistently be placed at the
-    // top of the ladder
+    // When a player manually teleports into a crawlspace, they will not consistently be placed at
+    // the top of the ladder
     // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
     movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
     log(
@@ -111,6 +114,11 @@ function checkPostRoomTransitionSubvert() {
     return;
   }
 
+  const roomShape = g.r.GetRoomShape();
+  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
+    return;
+  }
+
   const gridPosition = ONE_BY_ONE_ROOM_ENTER_MAP.get(direction);
   if (gridPosition === undefined) {
     return;
@@ -130,17 +138,47 @@ export function postPlayerUpdate(player: EntityPlayer): void {
     return;
   }
 
+  checkMovedAwayFromSecretShopLadder(player);
   checkTopOfCrawlspaceLadder(player);
   checkExitSoftlock(player);
 }
 
+function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
+  const roomIndex = getRoomIndex();
+  if (roomIndex !== GridRooms.ROOM_SECRET_SHOP_IDX) {
+    return;
+  }
+
+  const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
+  if (player.Position.Distance(ladderPosition) > DISTANCE_OF_GRID_TILE) {
+    v.room.movedAwayFromSecretShopLadder = true;
+  }
+}
+
 function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const roomIndex = getRoomIndex();
+
+  // The Beast room shares the grid index of a crawlspace
+  if (inBeastRoom()) {
+    return;
+  }
 
   if (
-    inCrawlspace() &&
-    g.r.GetGridIndex(player.Position) === GRID_INDEX_OF_TOP_OF_LADDER
+    roomIndex !== GridRooms.ROOM_DUNGEON_IDX &&
+    roomIndex !== GridRooms.ROOM_SECRET_SHOP_IDX
   ) {
+    return;
+  }
+
+  if (
+    roomIndex === GridRooms.ROOM_SECRET_SHOP_IDX &&
+    !v.room.movedAwayFromSecretShopLadder
+  ) {
+    return;
+  }
+
+  if (playerIsTouchingExitSquare(player)) {
     v.room.amChangingRooms = true;
     v.level.crawlspace.amExiting = true;
 
@@ -151,6 +189,23 @@ function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
 
     teleport(returnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
   }
+}
+
+function playerIsTouchingExitSquare(player: EntityPlayer) {
+  const roomIndex = getRoomIndex();
+
+  if (roomIndex === GridRooms.ROOM_DUNGEON_IDX) {
+    const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
+    return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
+  }
+
+  const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
+  return (
+    // The vanilla hitbox seems to be half of a grid square,
+    // so we need to specify our hitbox to be bigger than this
+    // (0.6 is not big enough to consistently work when coming from the left side)
+    player.Position.Distance(ladderPosition) < DISTANCE_OF_GRID_TILE * 0.75
+  );
 }
 
 function checkExitSoftlock(player: EntityPlayer) {
@@ -216,7 +271,10 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
   }
 
   // Ignore other special crawlspaces
-  if (variant !== StairsVariant.NORMAL) {
+  if (
+    variant !== StairsVariant.NORMAL &&
+    variant !== StairsVariant.SECRET_SHOP
+  ) {
     return;
   }
 
@@ -308,6 +366,8 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect) {
+  const gridEntity = entity as GridEntity;
+  const variant = gridEntity.GetVariant();
   const roomIndex = getRoomIndex();
   const previousRoomIndex = g.l.GetPreviousRoomIndex();
 
@@ -326,5 +386,9 @@ function touched(entity: GridEntity | EntityEffect) {
   }
 
   // Enter the crawlspace room
-  teleport(GridRooms.ROOM_DUNGEON_IDX, Direction.DOWN, RoomTransitionAnim.WALK);
+  const destinationRoomIndex =
+    variant === StairsVariant.SECRET_SHOP
+      ? GridRooms.ROOM_SECRET_SHOP_IDX
+      : GridRooms.ROOM_DUNGEON_IDX;
+  teleport(destinationRoomIndex, Direction.DOWN, RoomTransitionAnim.WALK);
 }
