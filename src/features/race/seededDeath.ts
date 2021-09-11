@@ -132,7 +132,7 @@ function postRenderFetalPosition() {
   }
 }
 
-function postRenderCheckDisplayTimer(): void {
+function postRenderCheckDisplayTimer() {
   if (v.run.seededDeath.debuffEndFrame === null) {
     return;
   }
@@ -187,7 +187,7 @@ function postNewRoomWaitingForNewRoom() {
   }
 }
 
-function postNewRoomGhostForm(): void {
+function postNewRoomGhostForm() {
   if (v.run.seededDeath.state !== SeededDeathState.GHOST_FORM) {
     return;
   }

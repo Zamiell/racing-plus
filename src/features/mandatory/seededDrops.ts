@@ -101,7 +101,7 @@ function shouldSpawnSeededDrop(): boolean {
 // Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, and Nuh Uh!
 // (Old Capacitor does not need to be removed, since the Lil Battery chance is independent of the
 // room drop)
-function spawnSeededDrop(): void {
+function spawnSeededDrop() {
   const centerPos = g.r.GetCenterPos();
   const seed = getSeed();
   const rng = initRNG(seed);

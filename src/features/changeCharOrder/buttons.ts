@@ -103,7 +103,7 @@ export function postGridEntityUpdatePressurePlate(
   checkPressed(gridEntity);
 }
 
-function checkPressed(gridEntity: GridEntity): void {
+function checkPressed(gridEntity: GridEntity) {
   switch (v.room.phase) {
     case ChangeCharOrderPhase.SEASON_SELECT: {
       checkPressedPhaseSeasonSelect(gridEntity);

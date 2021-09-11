@@ -63,7 +63,7 @@ function set(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   state: FastTravelEntityState,
-): void {
+) {
   const entityDescription = getDescription(entity, fastTravelEntityType);
   if (entityDescription === undefined) {
     error(`Failed to set a new fast-travel entity state: ${state}`);

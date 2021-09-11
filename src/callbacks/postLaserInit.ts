@@ -9,6 +9,6 @@ export function init(mod: Mod): void {
 }
 
 // LaserVariant.GIANT_RED (6)
-function giantRed(laser: EntityLaser): void {
+function giantRed(laser: EntityLaser) {
   racePostLaserInit.giantRed(laser);
 }
