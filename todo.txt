@@ -1,12 +1,7 @@
 ```
-### *v0.66.0* - September 7th, 2021
+### *v0.66.1* - September 11th, 2021
 
-- [Season 1](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-1-normal-vs-tainted) has officially begun!
-- Pitfalls will now be killed when the room is cleared. (Thanks ez_duke)
-- Secret Shops are now handled by fast travel.
-- Fixed the bug where Krampus and Angels would not work properly with Stop Watch or Broken Watch. (Thanks 91)
-- Fixed the bug where items would be deleted on save & quit even if you weren't in a Genesis room. (Thanks Gamonymous)
-- Fixed the bug where the extra starting items would not be removed if you exited a shop. (Thanks mgln)
+-
 ```
 
 - shadows
