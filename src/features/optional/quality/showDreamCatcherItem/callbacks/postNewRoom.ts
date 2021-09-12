@@ -1,5 +1,6 @@
 import {
   anyPlayerHasCollectible,
+  anyPlayerIs,
   arrayInArray,
   changeRoom,
   getBosses,
@@ -14,6 +15,7 @@ import * as sprites from "../sprites";
 import v from "../v";
 
 const STAIRWAY_GRID_INDEX = 25;
+const TAINTED_KEEPER_ITEM_PRICE = 15;
 
 export default function showDreamCatcherItemPostNewRoom(): void {
   if (!config.showDreamCatcherItem) {
@@ -29,6 +31,10 @@ export default function showDreamCatcherItemPostNewRoom(): void {
 // Now that we have arrived in the room for real, reset the prices back to the way that they are
 // supposed to be
 function revertItemPrices() {
+  const revertedPrice = anyPlayerIs(PlayerType.PLAYER_KEEPER_B)
+    ? TAINTED_KEEPER_ITEM_PRICE
+    : 0;
+
   const collectibles = Isaac.FindByType(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
@@ -39,7 +45,7 @@ function revertItemPrices() {
       pickup !== undefined &&
       pickup.Price === PickupPriceCustom.PRICE_NO_MINIMAP
     ) {
-      pickup.Price = 0;
+      pickup.Price = revertedPrice;
     }
   }
 }
