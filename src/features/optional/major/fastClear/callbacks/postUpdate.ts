@@ -58,6 +58,10 @@ function applyFastClear(npc: EntityNPC) {
 }
 
 function checkEarlyClearRoom() {
+  if (v.run.earlyClearedRoom) {
+    return;
+  }
+
   const gameFrameCount = g.g.GetFrameCount();
   const roomClear = g.r.IsClear();
   const roomFrameCount = g.r.GetFrameCount();

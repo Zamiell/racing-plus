@@ -6,6 +6,7 @@ const v = {
   run: {
     aliveEnemies: new Set<PtrHash>(),
     delayClearUntilFrame: null as int | null,
+    earlyClearedRoom: false,
 
     /**
      * Set to true when the room frame count is -1 and set to false in the PostNewRoom callback

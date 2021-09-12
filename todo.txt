@@ -1,10 +1,9 @@
 ```
-### *v0.66.1* - September 11th, 2021
+### *v0.67.1* - September 12th, 2021
 
 -
 ```
 
-- open doors but don't clear room
 - shadows
 
 TODO Racing+ new features:

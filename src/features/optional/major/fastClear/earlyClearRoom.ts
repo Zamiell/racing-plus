@@ -1,5 +1,11 @@
-import { openAllDoors } from "isaacscript-common";
+// The main part of fast-clear messes with the CanShutDoors property of NPCs
+// Separately, we also keep track of the current enemies in the room, and open the doors early
+// Thankfully, even if the player exits the room on the frame that the doors are manually opened,
+// the game will still charge the active item and spawn the drop as per normal
+
+import { log, openAllDoors } from "isaacscript-common";
 import g from "../../../../globals";
+import v from "./v";
 
 const CREEP_VARIANTS_TO_KILL = new Set([
   EffectVariant.CREEP_RED, // 22
@@ -18,21 +24,17 @@ const EARLY_CLEAR_ROOM_TYPE_BLACKLIST = new Set([
 ]);
 
 export default function earlyClearRoom(): void {
-  return;
-
   const roomType = g.r.GetType();
 
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
     return;
   }
 
-  openAllDoors();
-  playDoorOpenSoundEffect();
-  killExtraEntities();
-}
+  v.run.earlyClearedRoom = true;
+  log("Early clearing the room (fast-clear).");
 
-function playDoorOpenSoundEffect() {
-  g.sfx.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN, 1, 0, false, 1);
+  openAllDoors();
+  killExtraEntities();
 }
 
 function killExtraEntities() {
