@@ -58,21 +58,21 @@ function warp() {
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomIndexes = getRoomIndexesForType(RoomType.ROOM_TREASURE);
-  let bossRoomIndexes: int[] = [];
+  let bossRoomIndexes: Set<int> = new Set();
   if (stage !== 6 && stage <= 7) {
     // We don't need to show what the boss is for floors that always have the same boss
     bossRoomIndexes = getRoomIndexesForType(RoomType.ROOM_BOSS);
   }
 
   v.level.items = [];
-  for (const treasureRoomIndex of treasureRoomIndexes) {
+  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
     changeRoom(treasureRoomIndex);
     const newItems = getRoomItemsAndSetPrice();
     v.level.items = v.level.items.concat(newItems);
   }
 
   v.level.bosses = [];
-  for (const bossRoomIndex of bossRoomIndexes) {
+  for (const bossRoomIndex of bossRoomIndexes.values()) {
     changeRoom(bossRoomIndex);
     const newBosses = getRoomBosses();
     v.level.bosses = v.level.bosses.concat(newBosses);
@@ -80,11 +80,11 @@ function warp() {
 
   changeRoom(startingRoomIndex);
 
-  for (const treasureRoomIndex of treasureRoomIndexes) {
+  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
     resetRoomState(treasureRoomIndex);
   }
 
-  for (const bossRoomIndex of bossRoomIndexes) {
+  for (const bossRoomIndex of bossRoomIndexes.values()) {
     resetRoomState(bossRoomIndex);
   }
 
