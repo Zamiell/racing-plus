@@ -99,6 +99,7 @@ function registerCallbacks(mod: ModUpgraded) {
 }
 
 function registerCallbacksMain(mod: ModUpgraded) {
+  mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, postNPCUpdate.main); // 0
   mod.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   mod.AddCallback(ModCallbacks.MC_USE_ITEM, useItem.main); // 3
