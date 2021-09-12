@@ -274,12 +274,9 @@ function fixPitGraphics() {
 
 function getPitMap() {
   const pitMap = new Map<int, GridEntity>();
-  for (const gridEntity of getGridEntities()) {
-    const gridEntityType = gridEntity.GetType();
-    if (gridEntityType === GridEntityType.GRID_PIT) {
-      const gridIndex = gridEntity.GetGridIndex();
-      pitMap.set(gridIndex, gridEntity);
-    }
+  for (const gridEntity of getGridEntities(GridEntityType.GRID_PIT)) {
+    const gridIndex = gridEntity.GetGridIndex();
+    pitMap.set(gridIndex, gridEntity);
   }
 
   return pitMap;

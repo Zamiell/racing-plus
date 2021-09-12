@@ -24,6 +24,7 @@ npx eslint --max-warnings 0 src
 # We use no-progress and no-summary because we want to only output errors
 npx cspell --no-progress --no-summary "src/**/*.ts"
 npx cspell --no-progress --no-summary "docs/**/*.md"
+npx cspell --no-progress --no-summary "mod/metadata.xml"
 
 # Step 3 - Check for unused imports
 # The "--error" flag makes it return an error code of 1 if unused exports are found

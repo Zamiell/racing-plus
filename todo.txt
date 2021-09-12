@@ -4,6 +4,7 @@
 -
 ```
 
+- open doors but don't clear room
 - shadows
 
 TODO Racing+ new features:

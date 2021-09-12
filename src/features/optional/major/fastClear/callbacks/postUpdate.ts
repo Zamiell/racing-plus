@@ -1,14 +1,20 @@
-import { getFinalFrameOfAnimation, log } from "isaacscript-common";
+import {
+  getFinalFrameOfAnimation,
+  getGridEntities,
+  log,
+} from "isaacscript-common";
 import g from "../../../../../globals";
-import { config } from "../../../../../modConfigMenu";
+import earlyClearRoom from "../earlyClearRoom";
+import shouldEnableFastClear from "../shouldDisable";
 import v from "../v";
 
 export default function fastClearPostUpdate(): void {
-  if (!config.fastClear) {
+  if (!shouldEnableFastClear()) {
     return;
   }
 
   checkQueue();
+  checkEarlyClearRoom();
 }
 
 function checkQueue() {
@@ -49,4 +55,51 @@ function applyFastClear(npc: EntityNPC) {
   // CanShutDoors attribute later
   const data = npc.GetData();
   data.resetAttributeFrame = finalFrame;
+}
+
+function checkEarlyClearRoom() {
+  const gameFrameCount = g.g.GetFrameCount();
+  const roomClear = g.r.IsClear();
+  const roomFrameCount = g.r.GetFrameCount();
+
+  // If a frame has passed since an enemy died, reset the delay counter
+  if (
+    v.run.delayClearUntilFrame !== null &&
+    gameFrameCount >= v.run.delayClearUntilFrame
+  ) {
+    v.run.delayClearUntilFrame = null;
+  }
+
+  // Check on every frame to see if we need to open the doors
+  if (
+    v.run.aliveEnemies.size === 0 &&
+    v.run.delayClearUntilFrame === null &&
+    !roomClear &&
+    checkAllPressurePlatesPushed() &&
+    // Under certain conditions, the room can be clear of enemies on the first frame
+    roomFrameCount > 1
+  ) {
+    earlyClearRoom();
+  }
+}
+
+function checkAllPressurePlatesPushed() {
+  const hasPressurePlates = g.r.HasTriggerPressurePlates();
+
+  if (!hasPressurePlates || v.room.buttonsAllPushed) {
+    return true;
+  }
+
+  // We are in a room with pressure plates, so check to see if they have all been pressed
+  for (const gridEntity of getGridEntities(
+    GridEntityType.GRID_PRESSURE_PLATE,
+  )) {
+    const gridEntityDesc = gridEntity.GetSaveState();
+    if (gridEntityDesc.State !== PressurePlateState.PRESSURE_PLATE_PRESSED) {
+      return false;
+    }
+  }
+
+  v.room.buttonsAllPushed = true;
+  return true;
 }

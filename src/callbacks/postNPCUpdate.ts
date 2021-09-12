@@ -37,6 +37,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
+    ragling,
+    EntityType.ENTITY_RAGLING, // 246
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
     haunt,
     EntityType.ENTITY_THE_HAUNT, // 260
   );
@@ -67,6 +73,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
+    stoney,
+    EntityType.ENTITY_STONEY, // 302
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
     hush,
     EntityType.ENTITY_HUSH, // 407
   );
@@ -76,6 +88,10 @@ export function init(mod: Mod): void {
     bigHorn,
     EntityType.ENTITY_BIG_HORN, // 411
   );
+}
+
+export function main(npc: EntityNPC): void {
+  fastClearPostNPCUpdate.main(npc);
 }
 
 // EntityType.ENTITY_GLOBIN (24)
@@ -98,6 +114,11 @@ function momsHand(npc: EntityNPC) {
 function wizoob(npc: EntityNPC) {
   disableInvulnerability.postNPCUpdateGhosts(npc);
   fastGhosts.postNPCUpdateGhosts(npc);
+}
+
+// EntityType.ENTITY_RAGLING (246)
+function ragling(npc: EntityNPC) {
+  fastClearPostNPCUpdate.ragling(npc);
 }
 
 // EntityType.ENTITY_THE_HAUNT (260)
@@ -126,6 +147,11 @@ function redGhost(npc: EntityNPC) {
 function momsDeadHand(npc: EntityNPC) {
   appearHands.postNPCUpdateHands(npc);
   fastHands.postNPCUpdateHands(npc);
+}
+
+// EntityType.ENTITY_STONEY (302)
+function stoney(npc: EntityNPC) {
+  fastClearPostNPCUpdate.stoney(npc);
 }
 
 // EntityType.ENTITY_HUSH (407)

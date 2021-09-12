@@ -1,8 +1,8 @@
 import { getNPCs } from "isaacscript-common";
-import { config } from "../../../../../modConfigMenu";
+import shouldEnableFastClear from "../shouldDisable";
 
 export default function fastClearPreSpawnClearAward(): void {
-  if (!config.fastClear) {
+  if (!shouldEnableFastClear()) {
     return;
   }
 

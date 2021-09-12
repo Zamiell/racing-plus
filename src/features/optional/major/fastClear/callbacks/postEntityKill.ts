@@ -14,17 +14,18 @@
 // new function ourselves
 
 import g from "../../../../../globals";
-import { config } from "../../../../../modConfigMenu";
 import * as angels from "../angels";
 import {
   FAST_CLEAR_WHITELIST,
   FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
 } from "../constants";
 import * as krampus from "../krampus";
+import shouldEnableFastClear from "../shouldDisable";
+import * as tracking from "../tracking";
 import v from "../v";
 
 export default function fastClearPostEntityKill(entity: Entity): void {
-  if (!config.fastClear) {
+  if (!shouldEnableFastClear()) {
     return;
   }
 
@@ -32,6 +33,8 @@ export default function fastClearPostEntityKill(entity: Entity): void {
   if (npc === undefined) {
     return;
   }
+
+  tracking.checkRemove(npc, true);
 
   if (!isWhitelistedNPC(npc)) {
     return;
@@ -70,13 +73,9 @@ function isWhitelistedNPC(npc: EntityNPC) {
   }
 
   // Some NPCs are only whitelisted that have specific variants
-  for (const [
-    entityType,
-    entityVariant,
-  ] of FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT.values()) {
-    if (entityType === npc.Type && entityVariant === npc.Variant) {
-      return true;
-    }
+  const entityTypeVariant = `${npc.Type}.${npc.Variant}`;
+  if (FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT.has(entityTypeVariant)) {
+    return true;
   }
 
   return false;

@@ -16,6 +16,7 @@ import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectRender from "./callbacks/postEffectRender";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
+import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
@@ -115,6 +116,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
     ModCallbacks.MC_POST_FAMILIAR_RENDER,
     postFamiliarRender.main,
   ); // 25
+  mod.AddCallback(ModCallbacks.MC_POST_NPC_INIT, postNPCInit.main); // 27
   mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postNPCRender.main); // 28
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender.main); // 32
   mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPickupInit.main); // 34
@@ -122,6 +124,7 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireTear.main); // 61
   mod.AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, preGetCollectible.main); // 62
   mod.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, getPillEffect.main); // 65
+  mod.AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, postEntityRemove.main); // 67
   mod.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, postEntityKill.main); // 68
   mod.AddCallback(
     ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD,

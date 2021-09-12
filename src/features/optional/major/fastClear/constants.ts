@@ -57,11 +57,25 @@ export const FAST_CLEAR_WHITELIST = new Set<EntityType>([
   EntityType.ENTITY_BEAST, // 951
 ]);
 
-export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = new Set<
-  [EntityType, int]
->([
+export const FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT = new Set<string>([
   // We do not want fast-clear to apply to Lil' Haunts
-  [EntityType.ENTITY_THE_HAUNT, HauntVariant.HAUNT], // 260
+  `${EntityType.ENTITY_THE_HAUNT}.${HauntVariant.HAUNT}`, // 260
   // We only want fast-clear to apply to the final phase of Mother
-  [EntityType.ENTITY_MOTHER, MotherVariant.PHASE_2], // 912
+  `${EntityType.ENTITY_MOTHER}.${MotherVariant.PHASE_2}`, // 912
+]);
+
+export const ATTACHED_NPC_ID_WITHOUT_SUBTYPE = new Set<string>([
+  `${EntityType.ENTITY_VIS}.${VisVariant.CHUBBER_PROJECTILE}`,
+  `${EntityType.ENTITY_DEATH}.${DeathVariant.DEATH_SCYTHE}`,
+  `${EntityType.ENTITY_PEEP}.${PeepVariant.PEEP_EYE}`,
+  `${EntityType.ENTITY_PEEP}.${PeepVariant.BLOAT_EYE}`,
+  `${EntityType.ENTITY_BEGOTTEN}.${BegottenVariant.BEGOTTEN_CHAIN}`,
+  `${EntityType.ENTITY_MAMA_GURDY}.${MamaGurdyVariant.LEFT_HAND}`,
+  `${EntityType.ENTITY_MAMA_GURDY}.${MamaGurdyVariant.RIGHT_HAND}`,
+  `${EntityType.ENTITY_BIG_HORN}.${BigHornVariant.SMALL_HOLE}`,
+  `${EntityType.ENTITY_BIG_HORN}.${BigHornVariant.BIG_HOLE}`,
+]);
+
+export const ATTACHED_NPC_ID_WITH_SUBTYPE = new Set<string>([
+  `${EntityType.ENTITY_CHARGER}.${ChargerVariant.CHARGER}.${ChargerSubType.MY_SHADOW}`,
 ]);

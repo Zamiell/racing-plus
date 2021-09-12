@@ -151,11 +151,10 @@ function seasonButtonPressed(seasonChosenAbbreviation: string) {
 }
 
 function removeAllRoomButtons() {
-  for (const gridEntity of getGridEntities()) {
-    const gridEntityType = gridEntity.GetType();
-    if (gridEntityType === GridEntityType.GRID_PRESSURE_PLATE) {
-      removeGridEntity(gridEntity);
-    }
+  for (const gridEntity of getGridEntities(
+    GridEntityType.GRID_PRESSURE_PLATE,
+  )) {
+    removeGridEntity(gridEntity);
   }
 }
 

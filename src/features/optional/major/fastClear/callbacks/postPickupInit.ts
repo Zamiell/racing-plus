@@ -1,4 +1,10 @@
+import shouldEnableFastClear from "../shouldDisable";
+
 export function collectible(pickup: EntityPickup): void {
+  if (!shouldEnableFastClear()) {
+    return;
+  }
+
   checkVanillaAngelDrop(pickup);
   checkVanillaKrampusDrop(pickup);
 }

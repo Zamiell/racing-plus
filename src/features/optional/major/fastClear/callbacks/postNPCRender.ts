@@ -1,7 +1,7 @@
-import { config } from "../../../../../modConfigMenu";
+import shouldEnableFastClear from "../shouldDisable";
 
 export default function fastClearPostNPCRender(npc: EntityNPC): void {
-  if (!config.fastClear) {
+  if (!shouldEnableFastClear()) {
     return;
   }
 
