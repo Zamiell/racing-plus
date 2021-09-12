@@ -1,8 +1,7 @@
 ```
-### *v0.67.1* - September 12th, 2021
+### *v0.67.2* - September 12th, 2021
 
-- Fixed the bug where Dream Catcher would show two Mr. Fred's instead of one. (Thanks Gamonymous)
-- Fixed the bug where Dream Catcher would make items in Treasure Rooms free for Tainted Keeper. (Thanks Gamonymous)
+-
 ```
 
 - shadows
