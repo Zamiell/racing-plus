@@ -113,7 +113,7 @@ function momsHand(npc: EntityNPC) {
 // EntityType.ENTITY_WIZOOB (219)
 function wizoob(npc: EntityNPC) {
   disableInvulnerability.postNPCUpdateGhosts(npc);
-  fastGhosts.postNPCUpdateGhosts(npc);
+  fastGhosts.postNPCUpdateWizoob(npc);
 }
 
 // EntityType.ENTITY_RAGLING (246)
@@ -140,7 +140,7 @@ function lamb(npc: EntityNPC) {
 // EntityType.ENTITY_RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
   disableInvulnerability.postNPCUpdateGhosts(npc);
-  fastGhosts.postNPCUpdateGhosts(npc);
+  fastGhosts.postNPCUpdateRedGhost(npc);
 }
 
 // EntityType.ENTITY_MOMS_DEAD_HAND (287)
