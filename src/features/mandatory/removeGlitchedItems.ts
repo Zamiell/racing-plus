@@ -1,5 +1,8 @@
-import { isGlitchedCollectible, saveDataManager } from "isaacscript-common";
-import { changeCollectibleSubType } from "../../utilCollectibles";
+import {
+  changeCollectibleSubType,
+  isGlitchedCollectible,
+  saveDataManager,
+} from "isaacscript-common";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.COLLECTIBLE_SAD_ONION;
 

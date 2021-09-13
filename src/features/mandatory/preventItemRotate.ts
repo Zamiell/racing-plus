@@ -2,13 +2,13 @@
 // and the Tainted Isaac switching mechanic
 
 import {
+  changeCollectibleSubType,
   getItemName,
   isQuestCollectible,
   log,
   saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/enums";
-import { changeCollectibleSubType } from "../../utilCollectibles";
 
 const v = {
   room: {

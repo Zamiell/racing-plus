@@ -4,13 +4,13 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  changeCollectibleSubType,
   getPlayers,
   getRandomArrayElement,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import passiveItemsForEden from "../../../passiveItemsForEden";
-import { changeCollectibleSubType } from "../../../utilCollectibles";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,

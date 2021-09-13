@@ -1,8 +1,11 @@
-import { getEffectiveStage, saveDataManager } from "isaacscript-common";
+import {
+  changeCollectibleSubType,
+  getEffectiveStage,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { changeCollectibleSubType } from "../../../../utilCollectibles";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 const v = {
