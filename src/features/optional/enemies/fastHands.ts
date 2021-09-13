@@ -6,12 +6,25 @@ const DELAY_FRAMES = 4;
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_MOMS_HAND (213)
-// EntityType.ENTITY_MOMS_DEAD_HAND (287)
-export function postNPCUpdateHands(npc: EntityNPC): void {
+export function postNPCUpdateMomsHand(npc: EntityNPC): void {
   if (!config.fastHands) {
     return;
   }
 
+  postNPCUpdate(npc);
+}
+
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
+  if (!config.fastHands) {
+    return;
+  }
+
+  postNPCUpdate(npc);
+}
+
+function postNPCUpdate(npc: EntityNPC) {
   // NpcState.STATE_MOVE is when they are following the player
   if (npc.State === NpcState.STATE_MOVE) {
     speedUpInitialDelay(npc);

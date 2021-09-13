@@ -20,7 +20,7 @@ export function postNPCUpdateRedGhost(npc: EntityNPC): void {
   speedUp(npc);
 }
 
-export function speedUp(npc: EntityNPC): void {
+function speedUp(npc: EntityNPC) {
   // Speed up the attack pattern of Wizoobs & Red Ghosts
   if (
     npc.State === NpcState.STATE_IDLE && // This is when they are disappeared and doing nothing

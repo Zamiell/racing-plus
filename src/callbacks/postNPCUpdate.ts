@@ -106,13 +106,13 @@ function death(npc: EntityNPC) {
 
 // EntityType.ENTITY_MOMS_HAND (213)
 function momsHand(npc: EntityNPC) {
-  appearHands.postNPCUpdateHands(npc);
-  fastHands.postNPCUpdateHands(npc);
+  appearHands.postNPCUpdateMomsHand(npc);
+  fastHands.postNPCUpdateMomsHand(npc);
 }
 
 // EntityType.ENTITY_WIZOOB (219)
 function wizoob(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateGhosts(npc);
+  disableInvulnerability.postNPCUpdateWizoob(npc);
   fastGhosts.postNPCUpdateWizoob(npc);
 }
 
@@ -123,7 +123,7 @@ function ragling(npc: EntityNPC) {
 
 // EntityType.ENTITY_THE_HAUNT (260)
 function haunt(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateGhosts(npc);
+  disableInvulnerability.postNPCUpdateHaunt(npc);
   fastHaunt.postNPCUpdateHaunt(npc);
 }
 
@@ -139,14 +139,14 @@ function lamb(npc: EntityNPC) {
 
 // EntityType.ENTITY_RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateGhosts(npc);
+  disableInvulnerability.postNPCUpdateRedGhost(npc);
   fastGhosts.postNPCUpdateRedGhost(npc);
 }
 
 // EntityType.ENTITY_MOMS_DEAD_HAND (287)
 function momsDeadHand(npc: EntityNPC) {
-  appearHands.postNPCUpdateHands(npc);
-  fastHands.postNPCUpdateHands(npc);
+  appearHands.postNPCUpdateMomsDeadHand(npc);
+  fastHands.postNPCUpdateMomsDeadHand(npc);
 }
 
 // EntityType.ENTITY_STONEY (302)

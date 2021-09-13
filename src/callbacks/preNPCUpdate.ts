@@ -16,10 +16,10 @@ export function init(mod: Mod): void {
 
 // EntityType.ENTITY_MOMS_HAND (213)
 function momsHand(npc: EntityNPC) {
-  return appearHands.preNPCUpdate(npc);
+  return appearHands.preNPCUpdateMomsHand(npc);
 }
 
 // EntityType.ENTITY_MOMS_DEAD_HAND (287)
 function momsDeadHand(npc: EntityNPC) {
-  return appearHands.preNPCUpdate(npc);
+  return appearHands.preNPCUpdateMomsDeadHand(npc);
 }

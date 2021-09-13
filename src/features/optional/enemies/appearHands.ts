@@ -3,12 +3,25 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_MOMS_HAND (213)
-// EntityType.ENTITY_MOMS_DEAD_HAND (287)
-export function postNPCUpdateHands(npc: EntityNPC): void {
+export function postNPCUpdateMomsHand(npc: EntityNPC): void {
   if (!config.appearHands) {
     return;
   }
 
+  postNPCUpdate(npc);
+}
+
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
+  if (!config.appearHands) {
+    return;
+  }
+
+  postNPCUpdate(npc);
+}
+
+function postNPCUpdate(npc: EntityNPC) {
   // Play a custom "Appear" animation when they first spawn
   // This cannot be in the PostNPCInit callback because when done there,
   // a shadow will appear below the hand, which does not look very good,
@@ -20,11 +33,26 @@ export function postNPCUpdateHands(npc: EntityNPC): void {
 }
 
 // ModCallbacks.MC_PRE_NPC_UPDATE (69)
-export function preNPCUpdate(npc: EntityNPC): boolean | void {
+// EntityType.ENTITY_MOMS_HAND (213)
+export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | void {
   if (!config.appearHands) {
     return undefined;
   }
 
+  return preNPCUpdate(npc);
+}
+
+// ModCallbacks.MC_PRE_NPC_UPDATE (69)
+// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+export function preNPCUpdateMomsDeadHand(npc: EntityNPC): boolean | void {
+  if (!config.appearHands) {
+    return undefined;
+  }
+
+  return preNPCUpdate(npc);
+}
+
+function preNPCUpdate(npc: EntityNPC) {
   const sprite = npc.GetSprite();
 
   // Ignore the normal AI when it is playing the custom "Appear" animation
