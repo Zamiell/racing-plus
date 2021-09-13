@@ -10,7 +10,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import passiveItemsForEden from "../../../passiveItemsForEden";
-import { changeCollectibleSubType } from "../../../utilCollectible";
+import { changeCollectibleSubType } from "../../../utilCollectibles";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,
@@ -96,8 +96,13 @@ export function useItemSpindownDice(): void {
   );
 
   for (const collectible of collectibles) {
-    if (isBannedCollectible(collectible)) {
-      changeCollectibleSubType(collectible, collectible.SubType - 1);
+    const pickup = collectible.ToPickup();
+    if (pickup === undefined) {
+      continue;
+    }
+
+    if (isBannedCollectible(pickup)) {
+      changeCollectibleSubType(pickup, pickup.SubType - 1);
     }
   }
 }

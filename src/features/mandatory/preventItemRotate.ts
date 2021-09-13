@@ -8,7 +8,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/enums";
-import { changeCollectibleSubType } from "../../utilCollectible";
+import { changeCollectibleSubType } from "../../utilCollectibles";
 
 const v = {
   room: {

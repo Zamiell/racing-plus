@@ -2,7 +2,7 @@ import { getEffectiveStage, saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { changeCollectibleSubType } from "../../../../utilCollectible";
+import { changeCollectibleSubType } from "../../../../utilCollectibles";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 const v = {
@@ -79,37 +79,42 @@ function rollDuplicateItems() {
   );
 
   for (const collectible of collectibles) {
-    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+    const pickup = collectible.ToPickup();
+    if (pickup === undefined) {
+      continue;
+    }
+
+    if (pickup.SubType === CollectibleType.COLLECTIBLE_NULL) {
       // Ignore empty pedestals (i.e. items that have already been taken by the player)
       continue;
     }
 
     if (
       foundDeathsTouch &&
-      collectible.SubType ===
+      pickup.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
     ) {
-      const newCollectible = g.itemPool.GetCollectible(
+      const newCollectibleType = g.itemPool.GetCollectible(
         ItemPoolType.POOL_TREASURE,
         true,
         startSeed,
       );
 
-      changeCollectibleSubType(collectible, newCollectible);
+      changeCollectibleSubType(pickup, newCollectibleType);
     }
 
     if (
       foundMagicMush &&
-      collectible.SubType ===
+      pickup.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
     ) {
-      const newCollectible = g.itemPool.GetCollectible(
+      const newCollectibleType = g.itemPool.GetCollectible(
         ItemPoolType.POOL_TREASURE,
         true,
         startSeed,
       );
 
-      changeCollectibleSubType(collectible, newCollectible);
+      changeCollectibleSubType(pickup, newCollectibleType);
     }
   }
 }
@@ -121,15 +126,20 @@ function replacePlaceholderItems() {
   );
 
   for (const collectible of collectibles) {
-    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+    const pickup = collectible.ToPickup();
+    if (pickup === undefined) {
+      continue;
+    }
+
+    if (pickup.SubType === CollectibleType.COLLECTIBLE_NULL) {
       // Ignore empty pedestals (i.e. items that have already been taken by the player)
       continue;
     }
 
-    const newCollectible = COLLECTIBLE_REPLACEMENT_MAP.get(collectible.SubType);
+    const newCollectibleType = COLLECTIBLE_REPLACEMENT_MAP.get(pickup.SubType);
 
-    if (newCollectible !== undefined) {
-      changeCollectibleSubType(collectible, newCollectible);
+    if (newCollectibleType !== undefined) {
+      changeCollectibleSubType(pickup, newCollectibleType);
     }
   }
 }
