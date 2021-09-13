@@ -2,9 +2,8 @@
 // it can sometimes go over pits and become inaccessible
 
 import { saveDataManager } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { findFreePosition } from "../../../utilGlobals";
+import { getPerfectionPosition } from "../major/fastTravel/spawnPerfection";
 
 const v = {
   run: {
@@ -36,10 +35,9 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   }
 
   // Normally, the Perfection trinket will be flung outward from the location of the boss
-  // Instead, set it to be a free tile near the center of the room
+  // Instead, set it to be a free tile near the center of the room (by passing null to the function)
   // This is guaranteed to be accessible because there are no boss rooms that have divided islands
-  const centerPos = g.r.GetCenterPos();
-  pickup.Position = findFreePosition(centerPos);
+  pickup.Position = getPerfectionPosition(null);
   pickup.Velocity = Vector.Zero;
 
   v.run.spawnedPerfection = true;

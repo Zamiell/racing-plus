@@ -1,7 +1,8 @@
 ```
 ### *v0.67.2* - September 12th, 2021
 
--
+- Autofire has been nerfed on Spirit Sword to be one per every 3 frames instead of once every 2 frames.
+- Fixed the bug where the beam of light on Cathedral would not be in the center of the room under certain circumstances. (Thanks Gamonymous)
 ```
 
 - shadows

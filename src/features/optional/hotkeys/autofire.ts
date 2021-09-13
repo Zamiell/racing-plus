@@ -6,6 +6,11 @@ import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
 import * as streakText from "../../mandatory/streakText";
 
+// Release the key on every other frame
+const NORMAL_FRAME_DELAY = 2;
+// From trial and error, this is roughly equivalent to what I can spam manually
+const SPIRIT_SWORD_FRAME_DELAY = 3;
+
 const v = {
   run: {
     enabled: false,
@@ -111,5 +116,13 @@ export function inputActionGetActionValueShoot(
 
 function autofireShouldReleaseKey() {
   const gameFrameCount = g.g.GetFrameCount();
-  return gameFrameCount % 2 === 0;
+  const player = Isaac.GetPlayer();
+  const hasSpiritSword = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_SPIRIT_SWORD,
+  );
+  const frameDelay = hasSpiritSword
+    ? SPIRIT_SWORD_FRAME_DELAY
+    : NORMAL_FRAME_DELAY;
+
+  return gameFrameCount % frameDelay === 0;
 }
