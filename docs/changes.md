@@ -276,7 +276,17 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `0601` <!-- extraStartingItems --> Extra starting items (such as Incubus and Maw of the Void) will appear in the Treasure Room on the first floor.
+- `0601` <!-- extraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
+  - 12 - Magic Mushroom (from 0.5)
+  - 237 - Death's Touch (from 0.2)
+- `0601` <!-- extraStartingItems --> The following extra starting items will appear in the Treasure Room on the first floor:
+  - 182 - Sacred Heart
+  - 311 - Judas' Shadow
+  - 331 - Godhead
+  - 360 - Incubus
+  - 399 - Maw of the Void
+  - 415 - Crown of Light
+  - 698 - Twisted Pair
 
 > Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 

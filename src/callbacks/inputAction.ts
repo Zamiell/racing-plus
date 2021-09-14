@@ -22,7 +22,7 @@ export function init(mod: Mod): void {
   );
 }
 
-// InputHook.IS_ACTION_TRIGGERED (1)
+// InputHook.IS_ACTION_PRESSED (0)
 function isActionPressed(
   entity: Entity | undefined,
   _inputHook: InputHook,

@@ -68,11 +68,11 @@ import * as postSlotUpdate from "./callbacksCustom/postSlotUpdate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
-import { VERSION } from "./constants";
+import { MOD_NAME, VERSION } from "./constants";
 import initFeatureVariables from "./initFeatureVariables";
 
 export default function main(): void {
-  const mod = RegisterMod("racing-plus", 1);
+  const mod = RegisterMod(MOD_NAME, 1);
   const modUpgraded = upgradeMod(mod);
 
   welcomeBanner();
@@ -82,8 +82,7 @@ export default function main(): void {
 }
 
 function welcomeBanner() {
-  const modName = "Racing+";
-  const welcomeText = `${modName} ${VERSION} initialized.`;
+  const welcomeText = `${MOD_NAME} ${VERSION} initialized.`;
   const hyphens = "-".repeat(welcomeText.length);
   const welcomeTextBorder = `+-${hyphens}-+`;
   log(welcomeTextBorder);
