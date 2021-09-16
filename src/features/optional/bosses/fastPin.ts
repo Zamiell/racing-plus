@@ -1,11 +1,14 @@
+// Speed up the tear attack of Pin, Frail, and Scolex
 // Make Wormwood spend less time underground
-// Wormwood is in the idle state when they are underground
-// The state frame starts at a number around 50,
-// depending on how far away they are from the player
-// It will tick downwards towards 0
+// There does not seem to be a good way of speeding up Pin/Frail/Scolex while it is underground
 
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
+
+const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
+const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;
+/** This is the same for both NpcState.STATE_ATTACK and NpcState.STATE_ATTACK2. */
+const PIN_ATTACK_STATE_FRAME_FINAL = 105;
 
 const v = {
   room: {
@@ -15,22 +18,64 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastWormwood", v, featureEnabled);
+  saveDataManager("fastPin", v, featureEnabled);
 }
 
 function featureEnabled() {
-  return config.fastWormwood;
+  return config.fastPin;
 }
 
 export function postNPCUpdatePin(npc: EntityNPC): void {
-  if (!config.fastWormwood) {
+  if (!config.fastPin) {
     return;
   }
 
-  if (npc.Variant !== PinVariant.WORMWOOD || npc.Parent !== undefined) {
+  if (npc.Parent !== undefined) {
     return;
   }
 
+  checkPin(npc);
+  checkWormwood(npc);
+}
+
+function checkPin(npc: EntityNPC) {
+  if (
+    npc.Variant !== PinVariant.PIN &&
+    npc.Variant !== PinVariant.FRAIL &&
+    npc.Variant !== PinVariant.SCOLEX
+  ) {
+    return;
+  }
+
+  speedUpTearAttack(npc);
+}
+
+function speedUpTearAttack(npc: EntityNPC) {
+  // In vanilla, Pin will spend too long underground after performing the tear attack
+  if (
+    npc.State === NpcState.STATE_ATTACK &&
+    npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
+  ) {
+    npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
+  }
+
+  if (
+    npc.State === NpcState.STATE_ATTACK2 &&
+    npc.StateFrame >= PIN_ATTACK2_STATE_FRAME_IN_GROUND
+  ) {
+    npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
+  }
+}
+
+function checkWormwood(npc: EntityNPC) {
+  if (npc.Variant !== PinVariant.WORMWOOD) {
+    return;
+  }
+
+  // Wormwood is in the idle state when they are underground
+  // The state frame starts at a number around 50,
+  // depending on how far away they are from the player
+  // It will tick downwards towards 0
   // When Wormwood is underground, we force it to be invisible to prevent buggy artifacts
   // As soon as it does another attack, make it visible again
   if (
@@ -39,7 +84,7 @@ export function postNPCUpdatePin(npc: EntityNPC): void {
     !npc.Visible
   ) {
     v.room.pokePhase = false;
-    makeVisible();
+    makeAllSegmentsVisible(npc);
     return;
   }
 
@@ -55,11 +100,11 @@ export function postNPCUpdatePin(npc: EntityNPC): void {
   }
 
   if (npc.State === NpcState.STATE_IDLE) {
-    checkSpeedUpWormwood(npc);
+    checkSpeedUpWormwoodWhileUnderground(npc);
   }
 }
 
-function checkSpeedUpWormwood(npc: EntityNPC) {
+function checkSpeedUpWormwoodWhileUnderground(npc: EntityNPC) {
   if (npc.StateFrame <= 1) {
     return;
   }
@@ -103,12 +148,9 @@ function speedUpWormwood(npc: EntityNPC) {
   v.room.wasIdleOnLastFrame = false;
 }
 
-function makeVisible() {
-  const wormwoods = Isaac.FindByType(
-    EntityType.ENTITY_PIN,
-    PinVariant.WORMWOOD,
-  );
-  for (const wormwood of wormwoods) {
-    wormwood.Visible = true;
+function makeAllSegmentsVisible(npc: EntityNPC) {
+  const pins = Isaac.FindByType(npc.Type, npc.Variant);
+  for (const pin of pins) {
+    pin.Visible = true;
   }
 }

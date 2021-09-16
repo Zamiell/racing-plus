@@ -507,10 +507,11 @@ The changed rooms are as follows:
 
 ### Bumbino Fix
 
-There are two Bumbino Rooms where players have to sit and wait for him to break out of his rock cage. This is a waste of time.
+There are some Bumbino Rooms where players have to sit and wait for him to break out of his rock cage. This is a waste of time.
 
 The deleted rooms are as follows:
-- #5273, #5274
+- Cathedral: #360
+- Bumbino: #5273, #5274
 
 <br />
 
@@ -536,6 +537,7 @@ The changed rooms are as follows:
 
 ### Miscellaneous
 
+- Wormwood room #5182 was modified to remove the pits next to the doors, which gives the player slightly more time to react to the faster Wormwood mechanic.
 - Double Trouble room #3762 was changed to move the skulls away from the trapdoor (so that spawned Hosts would not interact with the trapdoor).
 
 <br />

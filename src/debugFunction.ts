@@ -7,6 +7,20 @@ let debugHotkeyPressed = false;
 
 export default function debugFunction(): void {
   g.debug = true;
+
+  const pins = Isaac.FindByType(EntityType.ENTITY_PIN);
+  for (const pin of pins) {
+    if (pin.Parent !== undefined) {
+      continue;
+    }
+
+    const npc = pin.ToNPC();
+    if (npc === undefined) {
+      continue;
+    }
+
+    npc.State = 8;
+  }
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -25,7 +39,21 @@ export function postUpdate(): void {
   }
 }
 
-function hotkeyFunction() {}
+function hotkeyFunction() {
+  const pins = Isaac.FindByType(EntityType.ENTITY_PIN);
+  for (const pin of pins) {
+    if (pin.Parent !== undefined) {
+      continue;
+    }
+
+    const npc = pin.ToNPC();
+    if (npc === undefined) {
+      continue;
+    }
+
+    npc.State = 4;
+  }
+}
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {
@@ -38,10 +66,17 @@ export function postFamiliarRender(_familiar: EntityFamiliar): void {
 }
 
 // ModCallbacks.MC_POST_NPC_RENDER (28)
-export function postNPCRender(_npc: EntityNPC): void {
-  // const text = `State: ${npc.State}, StateFrame: ${npc.StateFrame}, I1: ${npc.I1}, I2: ${npc.I2}, V1: ${npc.V1}, V2: ${npc.V2}`;
-  // const position = Isaac.WorldToRenderPosition(npc.Position);
-  // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
+export function postNPCRender(npc: EntityNPC): void {
+  if (npc.Parent !== undefined) {
+    return;
+  }
+
+  const text = `State: ${npc.State}, StateFrame: ${npc.StateFrame}, I1: ${npc.I1}, I2: ${npc.I2}, V1: ${npc.V1}, V2: ${npc.V2}`;
+  // const sprite = npc.GetSprite();
+  // const animation = sprite.GetAnimation();
+  // const text = `Animation: ${animation}`;
+  const position = Isaac.WorldToRenderPosition(npc.Position);
+  Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }
 
 // ModCallbacks.MC_POST_EFFECT_RENDER (56)

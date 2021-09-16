@@ -25647,9 +25647,6 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="7" y="0">
-			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="8" y="0">
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -25680,14 +25677,8 @@
 		<spawn x="12" y="1">
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="12" y="2">
-			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="3">
 			<entity type="62" variant="3" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="0" y="4">
-			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="0" y="5">
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
@@ -25717,9 +25708,6 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="4" y="6">
-			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="5" y="6">
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>

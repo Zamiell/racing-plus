@@ -105,16 +105,18 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 Post-flip actions:
 
-1) Remove the duplicated start rooms for The Chest / Dark Room
+1) Fix flipped Utero room 975 (the flipped Wall Huggers should always rotate around the center)
 
-2) Un-flip Y-flipped Gurdy rooms:
+2) Remove the duplicated start rooms for The Chest / Dark Room
+
+3) Un-flip Y-flipped Gurdy rooms:
    The Chest - #20015, #30015
 
-3) Un-flip double Gate rooms (and enable all of the doors)
+4) Un-flip double Gate rooms (and enable all of the doors)
    The Chest - #20040, #30040
    Dark Room - #20012, #30012
 
-4) Un-flip some Mega Maw rooms:
+5) Un-flip some Mega Maw rooms:
    The Chest - #20039, #30039, #20059, #30059, #20121, #30121
    Dark Room - #20011, #30011
 
@@ -163,7 +165,7 @@ Post-flip actions:
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
 - `0302` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- `0303` <!-- fastWormwood 62 --> Wormwood will now spend less time underground.
+- `0303` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
 - `0304` <!-- stopDeathSlow 66 --> Stop Death from performing his slow attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.

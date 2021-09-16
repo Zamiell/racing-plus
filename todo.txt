@@ -1,7 +1,11 @@
 ```
 ### *v0.68.2* - September 16th, 2021
 
--
+- Pin, Frail, and Scolex will now spend less time underground after performing a non-jump attack.
+- Wormwood room #5182 was modified to remove the pits next to the doors, which gives the player slightly more time to react to the faster Wormwood mechanic. (Thanks Moucheron Quipet)
+- Removed the Cathedral room where Bumbino is trapped behind rocks. (Thanks Gamonymous)
+- Fixed the bug where the health for Tainted Lost would be misaligned when they had Birthright. (Thanks Gamonymous)
+- Fixed the bug where some flipped versions of Utero room #975 would make the Wall Huggers move in ways that was not intended. (Thanks Gamonymous)
 ```
 
 - shadows

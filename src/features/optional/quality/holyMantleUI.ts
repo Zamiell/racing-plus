@@ -3,6 +3,7 @@ import {
   getVisibleHearts,
   hasFlag,
   isKeeper,
+  isLost,
 } from "isaacscript-common";
 import g from "../../../globals";
 
@@ -12,7 +13,6 @@ sprite.Load("gfx/ui/holy_mantle.anm2", true);
 export function postRender(): void {
   const curses = g.l.GetCurses();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
   const extraLives = player.GetExtraLives();
   const effects = player.GetEffects();
   const numMantles = effects.GetCollectibleEffectNum(
@@ -60,7 +60,7 @@ export function postRender(): void {
     xOffset = hudOffset1Heart;
   }
 
-  if (character === PlayerType.PLAYER_THELOST) {
+  if (isLost(player)) {
     if (extraLives > 0) {
       xOffset += 24;
     }

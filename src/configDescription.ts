@@ -230,12 +230,12 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "fastWormwood", // 62
+    "fastPin", // 62
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0303",
-      "Fade dead bosses",
-      "Make bosses faded during their death animation so that you can see the dropped item.",
+      "Fast Pin",
+      "Make Pin, Frail, Scolex, and Wormwood spend less time underground.",
     ],
   ],
   [

@@ -1,7 +1,7 @@
 import * as fixHushCollision from "../features/mandatory/fixHushCollision";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
-import * as fastWormwood from "../features/optional/bosses/fastWormwood";
+import * as fastPin from "../features/optional/bosses/fastPin";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as stopDeathSlow from "../features/optional/bosses/stopDeathSlow";
 import * as appearHands from "../features/optional/enemies/appearHands";
@@ -115,7 +115,7 @@ function globin(npc: EntityNPC) {
 
 // EntityType.ENTITY_PIN (62)
 function pin(npc: EntityNPC) {
-  fastWormwood.postNPCUpdatePin(npc);
+  fastPin.postNPCUpdatePin(npc);
 }
 
 // EntityType.ENTITY_DEATH (66)
