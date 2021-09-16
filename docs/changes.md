@@ -170,18 +170,19 @@ Post-flip actions:
 
 - `0305` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
 - `0306` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `0307` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
+- `0307` <!-- consistentAngels 271, 272 --> Two of the same angel type will no longer appear in a single room.
+- `0308` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `0308` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
+- `0309` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0309` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0310` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0311` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0312` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0310` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0311` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0312` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0313` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 

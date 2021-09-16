@@ -266,10 +266,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "removeLambBody", // 273
+    "consistentAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0307",
+      "Consistent angels",
+      "Prevent two of the same angel from spawning in the same room.",
+    ],
+  ],
+  [
+    "removeLambBody", // 273
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0308",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
@@ -278,7 +287,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "stopVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0308",
+      "0309",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -287,18 +296,9 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0309",
+      "0310",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
-    ],
-  ],
-  [
-    "fastBigHorn", // 411
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0310",
-      "Fast Big Horn",
-      "Make Big Horn spend less time underground.",
     ],
   ],
 ];
@@ -306,10 +306,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
 // 0311-0320
 export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
-    "fastColostomia", // 917
+    "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",
+      "Fast Big Horn",
+      "Make Big Horn spend less time underground.",
+    ],
+  ],
+  [
+    "fastColostomia", // 917
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0312",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -318,7 +327,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0312",
+      "0313",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],

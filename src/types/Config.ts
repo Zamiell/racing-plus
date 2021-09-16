@@ -25,6 +25,7 @@ export default class Config {
   stopDeathSlow = true; // 66
   fastSatan = true; // 84
   fastHaunt = true; // 260
+  consistentAngels = true; // 271, 272
   removeLambBody = true; // 273
   stopVictoryLapPopup = true; // 273
   openHushDoor = true; // 407
