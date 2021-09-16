@@ -3,6 +3,7 @@
 // Prevent this from happening by keeping track of the angel types
 
 import { saveDataManager } from "isaacscript-common";
+import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -41,14 +42,27 @@ function checkDuplicateAngel(npc: EntityNPC) {
     return;
   }
 
-  const lastSpawnedAngelType = v.room.lastSpawnedAngelType;
-  v.room.lastSpawnedAngelType = npc.Type;
+  if (v.room.lastSpawnedAngelType === null) {
+    v.room.lastSpawnedAngelType = npc.Type;
+    return;
+  }
 
-  if (lastSpawnedAngelType !== null && lastSpawnedAngelType !== npc.Type) {
+  if (v.room.lastSpawnedAngelType === npc.Type) {
+    npc.Remove();
+    v.room.lastSpawnedAngelType = null;
+
     const otherAngelType =
       npc.Type === EntityType.ENTITY_URIEL
         ? EntityType.ENTITY_GABRIEL
         : EntityType.ENTITY_URIEL;
-    npc.Morph(otherAngelType, npc.Variant, npc.SubType, -1);
+    g.g.Spawn(
+      otherAngelType,
+      npc.Variant,
+      npc.Position,
+      npc.Velocity,
+      npc.SpawnerEntity,
+      npc.SubType,
+      npc.InitSeed,
+    );
   }
 }
