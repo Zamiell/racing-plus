@@ -1,12 +1,7 @@
 ```
-### *v0.68.0* - September 16th, 2021
+### *v0.68.2* - September 16th, 2021
 
-- Wormwood will now spend less time underground.
-- Needles & Pasties will now spend less time underground.
-- If two Uriels or two Gabriels will spawn in the same room, the second one will be morphed into the other angel.
-- Fixed the bug where Restock Machines only appeared in shops 20% of the time instead of 25%. (Thanks Gamonymous)
-- Fixed the bug where a trapdoor and/or beam of light was not properly centered in some circumstances. (Thanks Gamonymous)
-- Fixed the bug where Filigree Feather caused double angel drops. (Thanks elgirs)
+-
 ```
 
 - shadows
