@@ -46,13 +46,6 @@ export function init(): void {
     return;
   }
 
-  // Since config and hotkeys are TypeScriptToLua classes, they have metatables on them,
-  // which the save data manager does not support
-  // We don't need to use any class functions on these objects,
-  // so we can manually remove the metatable before feeding it to the save data manager
-  setmetatable(config, undefined);
-  setmetatable(hotkeys, undefined);
-
   saveDataManager("modConfigMenu", v);
 
   deleteOldConfig();

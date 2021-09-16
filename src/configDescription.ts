@@ -221,7 +221,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "killExtraEnemies",
+    "killExtraEnemies", // 45, 78
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0302",
@@ -230,10 +230,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "stopDeathSlow", // 66
+    "fastWormwood", // 62
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0303",
+      "Fade dead bosses",
+      "Make bosses faded during their death animation so that you can see the dropped item.",
+    ],
+  ],
+  [
+    "stopDeathSlow", // 66
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0304",
       "Stop Death's slow attack",
       "Stop Death from performing the attack that reduces your speed by a factor of 2.",
     ],
@@ -242,7 +251,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0304",
+      "0305",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
@@ -251,7 +260,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0305",
+      "0306",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
     ],
@@ -260,7 +269,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0306",
+      "0307",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
@@ -269,7 +278,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "stopVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0307",
+      "0308",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -278,7 +287,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0308",
+      "0309",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -287,18 +296,9 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0309",
+      "0310",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
-    ],
-  ],
-  [
-    "fastColostomia", // 917
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0310",
-      "Fast Colostomia",
-      "Make Colostomia appear instantly.",
     ],
   ],
 ];
@@ -306,10 +306,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
 // 0311-0320
 export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
-    "fastDogma", // 950
+    "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",
+      "Fast Colostomia",
+      "Make Colostomia appear instantly.",
+    ],
+  ],
+  [
+    "fastDogma", // 950
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0312",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],
@@ -433,6 +442,15 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
       "0409",
       "Remove stray Pitfalls",
       "Kill all Pitfalls on room clear.",
+    ],
+  ],
+  [
+    "fastNeedles", // 881
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0410",
+      "Fast Needles/Pasties",
+      "Make Needles & Pasties spend less time underground.",
     ],
   ],
 ];

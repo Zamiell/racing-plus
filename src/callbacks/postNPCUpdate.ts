@@ -1,12 +1,14 @@
 import * as fixHushCollision from "../features/mandatory/fixHushCollision";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
+import * as fastWormwood from "../features/optional/bosses/fastWormwood";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as stopDeathSlow from "../features/optional/bosses/stopDeathSlow";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
+import * as fastNeedles from "../features/optional/enemies/fastNeedles";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 
@@ -15,6 +17,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_NPC_UPDATE,
     globin,
     EntityType.ENTITY_GLOBIN, // 24
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
+    pin,
+    EntityType.ENTITY_PIN, // 62
   );
 
   mod.AddCallback(
@@ -88,6 +96,12 @@ export function init(mod: Mod): void {
     bigHorn,
     EntityType.ENTITY_BIG_HORN, // 411
   );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
+    needle,
+    EntityType.ENTITY_NEEDLE, // 881
+  );
 }
 
 export function main(npc: EntityNPC): void {
@@ -97,6 +111,11 @@ export function main(npc: EntityNPC): void {
 // EntityType.ENTITY_GLOBIN (24)
 function globin(npc: EntityNPC) {
   globinSoftlock.postNPCUpdateGlobin(npc);
+}
+
+// EntityType.ENTITY_PIN (62)
+function pin(npc: EntityNPC) {
+  fastWormwood.postNPCUpdatePin(npc);
 }
 
 // EntityType.ENTITY_DEATH (66)
@@ -162,4 +181,9 @@ function hush(npc: EntityNPC) {
 // EntityType.ENTITY_BIG_HORN (411)
 function bigHorn(npc: EntityNPC) {
   fastBigHorn.postNPCUpdateBigHorn(npc);
+}
+
+// EntityType.ENTITY_NEEDLE (881)
+function needle(npc: EntityNPC) {
+  fastNeedles.postNPCUpdateNeedle(npc);
 }

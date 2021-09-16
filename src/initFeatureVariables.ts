@@ -18,6 +18,7 @@ import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
+import * as fastWormwood from "./features/optional/bosses/fastWormwood";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
@@ -98,6 +99,7 @@ export default function initFeatureVariables(): void {
 
   // Boss
   killExtraEnemies.init();
+  fastWormwood.init();
 
   // QoL
   showPills.init();

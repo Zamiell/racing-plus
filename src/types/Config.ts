@@ -21,6 +21,7 @@ export default class Config {
   // Boss
   fadeBosses = true;
   killExtraEnemies = true; // 45, 78
+  fastWormwood = true; // 62
   stopDeathSlow = true; // 66
   fastSatan = true; // 84
   fastHaunt = true; // 260
@@ -41,6 +42,7 @@ export default class Config {
   fastGhosts = true; // 219, 285
   replaceCodWorms = true; // 221
   removeStrayPitfalls = true; // 291
+  fastNeedles = true; // 881
 
   // QoL
   speedUpFadeIn = true;

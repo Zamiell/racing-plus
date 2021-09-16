@@ -163,24 +163,25 @@ Post-flip actions:
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
 - `0302` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- `0303` <!-- stopDeathSlow 66 --> Stop Death from performing his slow attack.
+- `0303` <!-- fastWormwood 62 --> Wormwood will now spend less time underground.
+- `0304` <!-- stopDeathSlow 66 --> Stop Death from performing his slow attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `0304` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
-- `0305` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `0306` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
+- `0305` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
+- `0306` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `0307` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `0307` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
+- `0308` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0308` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0309` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0310` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0311` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0309` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0310` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0311` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0312` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
@@ -213,6 +214,8 @@ Post-flip actions:
 
 - `0407` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
 - `0408` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
+- `0409` <!-- removeStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
+- `0410` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
 
 ### 5) Quality of Life Changes
 

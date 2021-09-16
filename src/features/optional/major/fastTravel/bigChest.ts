@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
+import { spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import RaceGoal from "../../../race/types/RaceGoal";
@@ -255,8 +255,6 @@ function bossRush() {
 }
 
 function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
-  const position = findFreePosition(pickup.Position);
-
   if (replacementAction !== ReplacementAction.LEAVE_ALONE) {
     pickup.Remove();
   }
@@ -270,7 +268,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.TRAPDOOR: {
-      Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
+      Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, pickup.Position, true);
       break;
     }
 
@@ -279,7 +277,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         EntityType.ENTITY_EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
         0,
-        position,
+        pickup.Position,
         Vector.Zero,
         undefined,
       ).ToEffect();
@@ -302,14 +300,14 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       const seed = g.r.GetAwardSeed();
       spawnCollectible(
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-        position,
+        pickup.Position,
         seed,
       );
       break;
     }
 
     case ReplacementAction.TROPHY: {
-      trophy.spawn(position);
+      trophy.spawn(pickup.Position);
       break;
     }
 
