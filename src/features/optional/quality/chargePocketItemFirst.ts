@@ -373,14 +373,6 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
 
     const totalCharge = getTotalCharge(player, activeSlot);
     if (totalCharge !== oldTotalCharge) {
-      Isaac.DebugString(
-        `GETTING HERE ACTIVE SLOT CHANGED ${activeSlot}, from ${oldTotalCharge} to ${totalCharge}`,
-      );
-      Isaac.DebugString(
-        `GETTING HERE TYPES ${type(activeSlot)}, from ${type(
-          oldTotalCharge,
-        )} to ${type(totalCharge)}`,
-      );
       activeItemsChanged.add(activeSlot);
     }
   }
