@@ -185,7 +185,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0204",
-      "Show The Lost hearts on the UI",
+      "Show The Lost hearts",
       "Force the heart UI to display when playing as The Lost.",
     ],
   ],
@@ -386,7 +386,7 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0402",
-      "Make shadow attacks more clear",
+      "Make shadow attacks clearer",
       "Make a blue target appear on the ground for the specific attacks that come from above.",
     ],
   ],
@@ -525,7 +525,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0507",
-      "Show Holy Mantle on the hearts UI",
+      "Show Holy Mantle on the UI",
       "Show the presence of a Holy Mantle shield on the hearts UI.",
     ],
   ],
@@ -534,8 +534,8 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0508",
-      "Show Holy Mantle on the hearts UI",
-      "Show the presence of a Holy Mantle shield on the hearts UI.",
+      "Show Lead Pencil charge bar",
+      "It will only show in situations where the Lead Pencil will work normally.",
     ],
   ],
   [
@@ -552,8 +552,8 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0510",
-      "Remove Fortune Cookie banners",
-      "Remove Fortune Cookie banners when don't get any pickups.",
+      "Remove Fortune Cookie UI",
+      "Remove the banners that occur when Fortune Cookie does not grant a pickup.",
     ],
   ],
 ];
@@ -601,7 +601,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0515",
-      "Remove Perfection on end floors",
+      "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
   ],
