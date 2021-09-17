@@ -71,11 +71,7 @@ function featureEnabled() {
 
 // ModCallbacks.MC_USE_PILL (10)
 export function usePill48HourEnergy(player: EntityPlayer): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
@@ -88,11 +84,7 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
@@ -176,17 +168,14 @@ export function postPickupCollect(
   pickup: EntityPickup,
   player: EntityPlayer,
 ): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
   const chargeSituation = getChargeSituationForPickup(
     pickup.Variant,
     pickup.SubType,
+    player,
   );
   checkSwitchCharge(player, chargeSituation);
 }
@@ -195,11 +184,7 @@ export function postPickupCollect(
 // ItemType.ITEM_PASSIVE (1)
 // CollectibleType.COLLECTIBLE_9_VOLT (116)
 export function postItemPickup9Volt(player: EntityPlayer): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
@@ -214,11 +199,7 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
 // ItemType.ITEM_PASSIVE (1)
 // CollectibleType.COLLECTIBLE_BATTERY_PACK (603)
 export function postItemPickupBatteryPack(player: EntityPlayer): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
@@ -235,17 +216,14 @@ export function postPurchase(
   pickupVariant: PickupVariant,
   pickupSubType: int,
 ): void {
-  if (!config.chargePocketItemFirst) {
-    return;
-  }
-
-  if (dropButtonPressed(player)) {
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
   const chargeSituation = getChargeSituationForPickup(
     pickupVariant,
     pickupSubType,
+    player,
   );
   checkSwitchCharge(player, chargeSituation);
 }
@@ -253,12 +231,13 @@ export function postPurchase(
 // ModCallbacksCustom.MC_POST_SLOT_UPDATE
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotUpdateBatteryBum(slot: Entity): void {
-  if (!config.chargePocketItemFirst) {
+  const player = Isaac.GetPlayer();
+
+  if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
   const gameFrameCount = g.g.GetFrameCount();
-
   const ptrHash = GetPtrHash(slot);
   const lastAnimation = v.room.batteryBumAnimationMap.get(ptrHash);
   const sprite = slot.GetSprite();
@@ -277,13 +256,20 @@ export function postSlotUpdateBatteryBum(slot: Entity): void {
 function getChargeSituationForPickup(
   pickupVariant: PickupVariant,
   pickupSubType: int,
+  player: EntityPlayer,
 ): ChargeSituation {
   switch (pickupVariant) {
     // 20
     case PickupVariant.PICKUP_COIN: {
+      if (player.HasTrinket(TrinketType.TRINKET_CHARGED_PENNY)) {
+        return {
+          chargeType: ChargeType.N_CHARGES,
+          numCharges: 1,
+        };
+      }
+
       return {
-        chargeType: ChargeType.N_CHARGES,
-        numCharges: 1,
+        chargeType: ChargeType.NONE,
       };
     }
 
@@ -387,6 +373,14 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
 
     const totalCharge = getTotalCharge(player, activeSlot);
     if (totalCharge !== oldTotalCharge) {
+      Isaac.DebugString(
+        `GETTING HERE ACTIVE SLOT CHANGED ${activeSlot}, from ${oldTotalCharge} to ${totalCharge}`,
+      );
+      Isaac.DebugString(
+        `GETTING HERE TYPES ${type(activeSlot)}, from ${type(
+          oldTotalCharge,
+        )} to ${type(totalCharge)}`,
+      );
       activeItemsChanged.add(activeSlot);
     }
   }
@@ -482,6 +476,10 @@ function needsCharge(
     hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
 
   return totalCharge < adjustedMaxCharges;
+}
+
+function chargePocketFeatureShouldApply(player: EntityPlayer) {
+  return config.chargePocketItemFirst && !dropButtonPressed(player);
 }
 
 function dropButtonPressed(player: EntityPlayer) {
