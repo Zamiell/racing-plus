@@ -2,12 +2,14 @@ import { log } from "isaacscript-common";
 import Sandbox from "../../types/Sandbox";
 import SocketClient from "../../types/SocketClient";
 
-const PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
+const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
+const UDP_PORT = 9113;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
 
 let sandbox: Sandbox | null = null;
 let connectionAttemptFrame = null as int | null;
-let client = null as SocketClient | null;
+let clientTCP = null as SocketClient | null;
+let clientUDP = null as SocketClient | null;
 
 export function init(): void {
   // Racing+ installs a sandbox that prevents mods from accessing DLLs
@@ -50,42 +52,64 @@ export function connect(): boolean {
     connectionAttemptFrame = isaacFrameCount;
     return false;
   }
-
   connectionAttemptFrame = isaacFrameCount;
 
-  client = sandbox.connectLocalhost(PORT);
-  if (client === null) {
+  clientTCP = sandbox.connectLocalhost(TCP_PORT, true);
+  if (clientTCP === null) {
+    return false;
+  }
+
+  clientUDP = sandbox.connectLocalhost(UDP_PORT, false);
+  if (clientUDP === null) {
     return false;
   }
 
   // We check for new socket data on every PostRender frame
   // However, the remote socket might not necessarily have any new data for us
   // Thus, we set the timeout to 0 in order to prevent lag
-  client.settimeout(0);
+  clientTCP.settimeout(0);
+  clientUDP.settimeout(0);
 
   return true;
 }
 
 export function disconnect(): void {
-  client = null;
+  clientTCP = null;
+  clientUDP = null;
 }
 
 export function send(packedMsg: string): [number | undefined, string] {
-  if (client === null) {
-    return [undefined, "client is not initialized"];
+  if (clientTCP === null) {
+    return [undefined, "TCP client is not initialized"];
   }
 
-  return client.send(packedMsg);
+  return clientTCP.send(packedMsg);
+}
+
+export function sendUDP(packedMsg: string): [number | undefined, string] {
+  if (clientUDP === null) {
+    return [undefined, "UDP client is not initialized"];
+  }
+
+  return clientUDP.send(packedMsg);
 }
 
 export function receive(): [string | undefined, string] {
-  if (client === null) {
-    return [undefined, "client is not initialized"];
+  if (clientTCP === null) {
+    return [undefined, "TCP client is not initialized"];
   }
 
-  return client.receive();
+  return clientTCP.receive();
+}
+
+export function receiveUDP(): [string | undefined, string] {
+  if (clientUDP === null) {
+    return [undefined, "UDP client is not initialized"];
+  }
+
+  return clientUDP.receive();
 }
 
 export function isActive(): boolean {
-  return client !== null;
+  return clientTCP !== null && clientUDP !== null;
 }

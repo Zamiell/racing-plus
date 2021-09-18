@@ -1,8 +1,7 @@
 ```
-### *v0.68.3* - September 16th, 2021
+### *v0.68.3* - September 18th, 2021
 
-- Fixed the bug where saving & quitting could cause coins to charge the pocket active item under certain circumstances. (Thanks ez_duke)
-- Fixed the bug where using a Glowing Hourglass in the starting room of a floor could lead to a softlock. (Thanks thereisnofuture)
+-
 ```
 
 - shadows

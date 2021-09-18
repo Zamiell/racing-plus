@@ -7,6 +7,7 @@ import * as raceRoom from "../raceRoom";
 import raceStart from "../raceStart";
 import * as raceTimer from "../raceTimer";
 import * as seededDeath from "../seededDeath";
+import * as shadows from "../shadows/shadows";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
@@ -23,6 +24,7 @@ export default function racePostRender(): void {
   placeLeft.postRender();
   seededDeath.postRender();
   endOfRaceButtons.postRender();
+  shadows.postRender();
 
   if (g.race.status !== RaceStatus.NONE) {
     checkGameOpenedInMiddleOfRace();

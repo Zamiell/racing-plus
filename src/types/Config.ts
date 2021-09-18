@@ -71,6 +71,7 @@ export default class Config {
   extraStartingItems = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
+  shadows = true;
 
   // Cutscenes
   fastTeleports = true;

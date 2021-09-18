@@ -88,7 +88,6 @@ export function postItemPickup(pickingUpItem: PickingUpItem): void {
   }
 }
 
-// Subroutines
 function read() {
   if (!socketClient.isActive()) {
     return false;
@@ -101,6 +100,7 @@ function read() {
       socketClient.disconnect();
       reset();
     }
+
     return false;
   }
 
@@ -119,6 +119,25 @@ function read() {
   return true;
 }
 
+export function readUDP(): string | null {
+  if (!socketClient.isActive()) {
+    return null;
+  }
+
+  const [rawData, errMsg] = socketClient.receiveUDP();
+  if (rawData === undefined) {
+    if (errMsg !== "timeout") {
+      log(`Failed to read data: ${errMsg}`);
+      socketClient.disconnect();
+      reset();
+    }
+
+    return null;
+  }
+
+  return rawData;
+}
+
 export function send(command: SocketCommandOut, data = ""): void {
   if (!socketClient.isActive()) {
     return;
@@ -131,7 +150,20 @@ export function send(command: SocketCommandOut, data = ""): void {
   const packedMsg = packSocketMsg(command, data);
   const [sentBytes, errMsg] = socketClient.send(packedMsg);
   if (sentBytes === undefined) {
-    log(`Failed to send data over the socket: ${errMsg}`);
+    log(`Failed to send data over the TCP socket: ${errMsg}`);
+    socketClient.disconnect();
+    reset();
+  }
+}
+
+export function sendUDP(data: string): void {
+  if (!socketClient.isActive()) {
+    return;
+  }
+
+  const [sentBytes, errMsg] = socketClient.sendUDP(data);
+  if (sentBytes === undefined) {
+    log(`Failed to send data over the UDP socket: ${errMsg}`);
     socketClient.disconnect();
     reset();
   }

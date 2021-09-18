@@ -695,6 +695,15 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
+    "shadows",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0604",
+      "Opponent's shadows",
+      "Enable the drawing of race opponents as faded sprites during seeded races.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,

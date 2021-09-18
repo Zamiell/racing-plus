@@ -11,6 +11,7 @@ functionMap.set("reset", reset);
 export function reset(): void {
   const oldRaceData = cloneRaceData(g.race);
   g.race = new RaceData();
+  g.race.userID = oldRaceData.userID;
   checkRaceChanged(oldRaceData, g.race);
 }
 

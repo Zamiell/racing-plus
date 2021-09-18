@@ -9,6 +9,7 @@ export type RaceDataType = boolean | number | string | int[];
 
 /** This must match the "ModSocket" class on the client. */
 export default class RaceData {
+  userID = -1;
   /** -1 if a race is not going on. */
   raceID = -1;
   status = RaceStatus.NONE;
