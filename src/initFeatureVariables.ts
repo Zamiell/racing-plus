@@ -41,6 +41,7 @@ import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars"
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
+import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
@@ -56,6 +57,7 @@ export default function initFeatureVariables(): void {
   modConfigMenu.init();
   raceVars.init();
   socketClient.init();
+  shadows.init();
   speedrunVars.init();
   changeCharOrderVars.init();
   characterProgress.init();

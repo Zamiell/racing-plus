@@ -23,6 +23,20 @@ import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
 import * as socket from "../socket";
 import RacerStatus from "../types/RacerStatus";
 import RaceStatus from "../types/RaceStatus";
+import {
+  BEACON_DATA_FORMAT,
+  BEACON_FIELDS,
+  BEACON_INTERVAL,
+  CHARACTER_LAYER_ID,
+  CHARACTER_PNG_MAP,
+  DEFAULT_ANIMATION,
+  DEFAULT_CHARACTER_PNG,
+  DEFAULT_OVERLAY_ANIMATION,
+  FADED_COLOR,
+  OVERLAY_ANIMATIONS,
+  SHADOW_DATA_FORMAT,
+  SHADOW_FIELDS,
+} from "./constants";
 import * as struct from "./struct";
 
 interface ShadowData {
@@ -52,31 +66,6 @@ interface ShadowMessage {
   overlayAnimation: string;
   overlayAnimationFrame: int;
 }
-
-const BEACON_INTERVAL = 10 * ISAAC_FRAMES_PER_SECOND;
-const BEACON_FIELDS = ["raceID", "userID", "message"];
-const BEACON_DATA_FORMAT = "IIc5";
-
-const SHADOW_FIELDS = [
-  "raceID",
-  "userID",
-  "x",
-  "y",
-  "stage",
-  "roomIndex",
-  "character",
-  "animation",
-  "animationFrame",
-  "overlayAnimation",
-  "overlayAnimationFrame",
-];
-const SHADOW_DATA_FORMAT = "IIffIIIc20Ic20I";
-
-const CHARACTER_LAYER_ID = 0;
-const DEFAULT_ANIMATION = "WalkDown";
-const DEFAULT_OVERLAY_ANIMATION = "HeadDown";
-const FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);
-const OVERLAY_ANIMATIONS = ["HeadLeft", "HeadUp", "HeadRight", "HeadDown"];
 
 const lastBeaconFrame: int | null = null;
 
@@ -280,226 +269,21 @@ function drawShadows() {
     }
 
     if (spriteCharacter !== shadowData.character) {
-      const characterPNG = getCharacterPNG(shadowData.character);
+      let characterPNG = CHARACTER_PNG_MAP.get(shadowData.character);
+      if (characterPNG === undefined) {
+        characterPNG = DEFAULT_CHARACTER_PNG;
+      }
       sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
       spriteCharacterMap.set(shadowData.userID, shadowData.character);
     }
 
+    sprite.SetFrame(shadowData.animationFrame);
+    sprite.SetOverlayFrame(
+      shadowData.overlayAnimation,
+      shadowData.overlayAnimationFrame,
+    );
     const positionGame = Vector(shadowData.x, shadowData.y);
     const position = Isaac.WorldToRenderPosition(positionGame);
     sprite.Render(position, Vector.Zero, Vector.Zero);
-  }
-}
-
-function getCharacterPNG(character: PlayerType) {
-  switch (character) {
-    // 0
-    case PlayerType.PLAYER_ISAAC: {
-      return "characters/costumes/character_001_isaac.png";
-    }
-
-    // 1
-    case PlayerType.PLAYER_MAGDALENA: {
-      return "characters/costumes/character_002_magdalene.png";
-    }
-
-    // 2
-    case PlayerType.PLAYER_CAIN: {
-      return "characters/costumes/character_003_cain.png";
-    }
-
-    // 3
-    case PlayerType.PLAYER_JUDAS: {
-      return "characters/costumes/character_004_judas.png";
-    }
-
-    // 4
-    case PlayerType.PLAYER_XXX: {
-      return "characters/costumes/character_006_bluebaby.png";
-    }
-
-    // 5
-    case PlayerType.PLAYER_EVE: {
-      return "characters/costumes/character_005_eve.png";
-    }
-
-    // 6
-    case PlayerType.PLAYER_SAMSON: {
-      return "characters/costumes/character_007_samson.png";
-    }
-
-    // 7
-    case PlayerType.PLAYER_AZAZEL: {
-      return "characters/costumes/character_008_azazel.png";
-    }
-
-    // 8
-    case PlayerType.PLAYER_LAZARUS: {
-      return "characters/costumes/character_009_lazarus.png";
-    }
-
-    // 9
-    case PlayerType.PLAYER_EDEN: {
-      return "characters/costumes/character_009_eden.png";
-    }
-
-    // 10
-    case PlayerType.PLAYER_THELOST: {
-      return "characters/costumes/character_012_thelost.png";
-    }
-
-    // 11
-    case PlayerType.PLAYER_LAZARUS2: {
-      return "characters/costumes/character_010_lazarus2.png";
-    }
-
-    // 12
-    case PlayerType.PLAYER_BLACKJUDAS: {
-      return "characters/costumes/character_013_blackjudas.png";
-    }
-
-    // 13
-    case PlayerType.PLAYER_LILITH: {
-      return "characters/costumes/character_014_lilith.png";
-    }
-
-    // 14
-    case PlayerType.PLAYER_KEEPER: {
-      return "characters/costumes/character_015_keeper.png";
-    }
-
-    // 15
-    case PlayerType.PLAYER_APOLLYON: {
-      return "characters/costumes/character_016_apollyon.png";
-    }
-
-    // 16
-    case PlayerType.PLAYER_THEFORGOTTEN: {
-      return "characters/costumes/character_017_theforgotten.png";
-    }
-
-    // 17
-    case PlayerType.PLAYER_THESOUL: {
-      return "characters/costumes/character_018_thesoul.png";
-    }
-
-    // 18
-    case PlayerType.PLAYER_BETHANY: {
-      return "characters/costumes/character_001x_bethany.png";
-    }
-
-    // 19
-    case PlayerType.PLAYER_JACOB: {
-      return "characters/costumes/character_002x_jacob.png";
-    }
-
-    // 20
-    case PlayerType.PLAYER_ESAU: {
-      return "characters/costumes/character_003x_esau.png";
-    }
-
-    // 21
-    case PlayerType.PLAYER_ISAAC_B: {
-      return "characters/costumes/character_001b_isaac.png";
-    }
-
-    // 22
-    case PlayerType.PLAYER_MAGDALENA_B: {
-      return "characters/costumes/character_002b_magdalene.png";
-    }
-
-    // 23
-    case PlayerType.PLAYER_CAIN_B: {
-      return "characters/costumes/character_003b_cain.png";
-    }
-
-    // 24
-    case PlayerType.PLAYER_JUDAS_B: {
-      return "characters/costumes/character_004b_judas.png";
-    }
-
-    // 25
-    case PlayerType.PLAYER_XXX_B: {
-      return "characters/costumes/character_005b_bluebaby.png";
-    }
-
-    // 26
-    case PlayerType.PLAYER_EVE_B: {
-      return "characters/costumes/character_006b_eve.png";
-    }
-
-    // 27
-    case PlayerType.PLAYER_SAMSON_B: {
-      return "characters/costumes/character_007b_samson.png";
-    }
-
-    // 28
-    case PlayerType.PLAYER_AZAZEL_B: {
-      return "characters/costumes/character_008b_azazel.png";
-    }
-
-    // 29
-    case PlayerType.PLAYER_LAZARUS_B: {
-      return "characters/costumes/character_009b_lazarus.png";
-    }
-
-    // 30
-    case PlayerType.PLAYER_EDEN_B: {
-      return "characters/costumes/characters/costumes/character_009_eden.png";
-    }
-
-    // 31
-    case PlayerType.PLAYER_THELOST_B: {
-      return "characters/costumes/character_012b_thelost.png";
-    }
-
-    // 32
-    case PlayerType.PLAYER_LILITH_B: {
-      return "characters/costumes/character_014b_lilith.png";
-    }
-
-    // 33
-    case PlayerType.PLAYER_KEEPER_B: {
-      return "characters/costumes/character_015b_keeper.png";
-    }
-
-    // 34
-    case PlayerType.PLAYER_APOLLYON_B: {
-      return "characters/costumes/character_016b_apollyon.png";
-    }
-
-    // 35
-    case PlayerType.PLAYER_THEFORGOTTEN_B: {
-      return "characters/costumes/character_016b_theforgotten.png";
-    }
-
-    // 36
-    case PlayerType.PLAYER_BETHANY_B: {
-      return "characters/costumes/character_018b_bethany.png";
-    }
-
-    // 37
-    case PlayerType.PLAYER_JACOB_B: {
-      return "characters/costumes/character_019b_jacob.png";
-    }
-
-    // 38
-    case PlayerType.PLAYER_LAZARUS2_B: {
-      return "characters/costumes/character_009b_lazarus2.png";
-    }
-
-    // 39
-    case PlayerType.PLAYER_JACOB2_B: {
-      return "characters/costumes/character_019b_jacob2.png";
-    }
-
-    // 40
-    case PlayerType.PLAYER_THESOUL_B: {
-      return "characters/costumes/character_017b_thesoul.png";
-    }
-
-    default: {
-      return "characters/costumes/character_001_isaac.png";
-    }
   }
 }
