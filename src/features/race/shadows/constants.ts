@@ -17,6 +17,7 @@ import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 export const BEACON_INTERVAL = 10 * ISAAC_FRAMES_PER_SECOND;
 export const BEACON_FIELDS = ["raceID", "userID", "message"];
 export const BEACON_DATA_FORMAT = "IIc5";
+export const BEACON_MESSAGE = "HELLO";
 
 export const SHADOW_INTERVAL = 2; // In render frames
 export const SHADOW_FIELDS = [
@@ -40,12 +41,6 @@ export const DEFAULT_OVERLAY_ANIMATION = "HeadDown";
 export const DEFAULT_CHARACTER_PNG =
   "characters/costumes/character_001_isaac.png";
 export const FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);
-export const OVERLAY_ANIMATIONS = [
-  "HeadLeft",
-  "HeadUp",
-  "HeadRight",
-  "HeadDown",
-];
 
 export const CHARACTER_PNG_MAP = new Map<PlayerType, string>([
   [PlayerType.PLAYER_ISAAC, "characters/costumes/character_001_isaac.png"], // 0

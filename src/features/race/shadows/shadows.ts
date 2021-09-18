@@ -7,19 +7,20 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
 import * as socket from "../socket";
+import RaceFormat from "../types/RaceFormat";
 import RacerStatus from "../types/RacerStatus";
 import RaceStatus from "../types/RaceStatus";
 import {
   BEACON_DATA_FORMAT,
   BEACON_FIELDS,
   BEACON_INTERVAL,
+  BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
   CHARACTER_PNG_MAP,
   DEFAULT_ANIMATION,
   DEFAULT_CHARACTER_PNG,
   DEFAULT_OVERLAY_ANIMATION,
   FADED_COLOR,
-  OVERLAY_ANIMATIONS,
   SHADOW_DATA_FORMAT,
   SHADOW_FIELDS,
   SHADOW_INTERVAL,
@@ -87,9 +88,10 @@ function shadowsEnabled() {
 
   return (
     config.shadows &&
-    g.race.seed === startSeedString &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED &&
+    g.race.seed === startSeedString &&
     !g.race.solo
   );
 }
@@ -108,7 +110,7 @@ function sendBeacon() {
   const structObject = {
     raceID: g.race.raceID,
     userID: g.race.userID,
-    message: "HELLO",
+    message: BEACON_MESSAGE,
   };
 
   const structData: unknown[] = [];
@@ -135,7 +137,7 @@ function sendShadow() {
   const sprite = player.GetSprite();
   const animation = sprite.GetAnimation();
   const animationFrame = sprite.GetFrame();
-  const overlayAnimation = getOverlayAnimation(sprite);
+  const overlayAnimation = sprite.GetOverlayAnimation();
   const overlayAnimationFrame = sprite.GetOverlayFrame();
   const roomIndex = getRoomIndex();
 
@@ -162,16 +164,6 @@ function sendShadow() {
 
   const packedData = struct.pack(SHADOW_DATA_FORMAT, table.unpack(structData));
   socket.sendUDP(packedData);
-}
-
-function getOverlayAnimation(sprite: Sprite) {
-  for (const overlayAnimation of OVERLAY_ANIMATIONS) {
-    if (sprite.IsOverlayPlaying(overlayAnimation)) {
-      return overlayAnimation;
-    }
-  }
-
-  return DEFAULT_OVERLAY_ANIMATION;
 }
 
 function getShadows() {
@@ -247,8 +239,6 @@ function drawShadows() {
     if (sprite === undefined) {
       sprite = Sprite();
       sprite.Load("gfx/001.000_Player.anm2", true);
-      sprite.Play(DEFAULT_ANIMATION, true);
-      sprite.PlayOverlay(DEFAULT_OVERLAY_ANIMATION, true);
       sprite.Color = FADED_COLOR;
       spriteMap.set(shadowData.userID, sprite);
     }
@@ -267,7 +257,9 @@ function drawShadows() {
       spriteCharacterMap.set(shadowData.userID, shadowData.character);
     }
 
+    sprite.SetAnimation(DEFAULT_ANIMATION);
     sprite.SetFrame(shadowData.animationFrame);
+    sprite.SetOverlayAnimation(DEFAULT_OVERLAY_ANIMATION);
     sprite.SetOverlayFrame(
       shadowData.overlayAnimation,
       shadowData.overlayAnimationFrame,
