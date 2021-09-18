@@ -37,9 +37,8 @@ end
 
 local struct = {}
 
-function struct.pack(format, ...)
+function struct:pack(format, vars)
   local stream = {}
-  local vars = {...}
   local endianness = true
 
   for i = 1, format:len() do
@@ -51,7 +50,11 @@ function struct.pack(format, ...)
       endianness = false
     elseif opt:find('[bBhHiIlL]') then
       local n = opt:find('[hH]') and 2 or opt:find('[iI]') and 4 or opt:find('[lL]') and 8 or 1
-      local val = tonumber(table.remove(vars, 1))
+      local firstElement = table.remove(vars, 1)
+      local val = tonumber(firstElement)
+      if val == nil then
+        error("Failed to convert \"" .. firstElement .. "\" to a number.")
+      end
 
       local bytes = {}
       for j = 1, n do
@@ -130,7 +133,7 @@ function struct.pack(format, ...)
   return table.concat(stream)
 end
 
-function struct.unpack(format, stream, pos)
+function struct:unpack(format, stream, pos)
   local vars = {}
   local iterator = pos or 1
   local endianness = true

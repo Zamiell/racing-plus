@@ -128,7 +128,7 @@ function sendBeacon() {
     structData.push(fieldData);
   }
 
-  const packedData = struct.pack(BEACON_DATA_FORMAT, table.unpack(structData));
+  const packedData = struct.pack(BEACON_DATA_FORMAT, structData);
   socket.sendUDP(packedData);
 }
 
