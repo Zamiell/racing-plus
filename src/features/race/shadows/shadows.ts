@@ -1,20 +1,6 @@
 // In seeded races, the silhouettes of other races are drawn onto the screen
 // This is accomplished via UDP datagrams that are sent to the client, and then to the server
 
-/*
-
-pack/unpack reference:
-
-- "b" a signed char, "B" an unsigned char
-- "h" a signed short (2 bytes), "H" an unsigned short (2 bytes)
-- "i" a signed int (4 bytes), "I" an unsigned int (4 bytes)
-- "l" a signed long (8 bytes), "L" an unsigned long (8 bytes)
-- "f" a float (4 bytes), "d" a double (8 bytes)
-- "s" a zero-terminated string
-- "cn" a sequence of exactly n chars corresponding to a single Lua string
-
-*/
-
 import { getRoomIndex, saveDataManager } from "isaacscript-common";
 import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 import g from "../../../globals";
@@ -36,6 +22,7 @@ import {
   OVERLAY_ANIMATIONS,
   SHADOW_DATA_FORMAT,
   SHADOW_FIELDS,
+  SHADOW_INTERVAL,
 } from "./constants";
 import * as struct from "./struct";
 
@@ -67,7 +54,7 @@ interface ShadowMessage {
   overlayAnimationFrame: int;
 }
 
-const lastBeaconFrame: int | null = null;
+let lastBeaconFrame: int | null = null;
 
 /** Indexed by user ID. */
 const spriteMap = new Map<int, Sprite>();
@@ -96,12 +83,14 @@ export function postRender(): void {
 }
 
 function shadowsEnabled() {
+  const startSeedString = g.seeds.GetStartSeedString();
+
   return (
     config.shadows &&
+    g.race.seed === startSeedString &&
     g.race.status === RaceStatus.IN_PROGRESS &&
-    (g.race.myStatus === RacerStatus.RACING ||
-      g.race.myStatus === RacerStatus.FINISHED ||
-      g.race.myStatus === RacerStatus.QUIT)
+    g.race.myStatus === RacerStatus.RACING &&
+    !g.race.solo
   );
 }
 
@@ -114,6 +103,7 @@ function sendBeacon() {
   ) {
     return;
   }
+  lastBeaconFrame = isaacFrameCount;
 
   const structObject = {
     raceID: g.race.raceID,
@@ -135,7 +125,7 @@ function sendBeacon() {
 function sendShadow() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  if (isaacFrameCount % 2 === 0) {
+  if (isaacFrameCount % SHADOW_INTERVAL === 0) {
     return;
   }
 

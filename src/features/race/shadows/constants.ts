@@ -1,9 +1,24 @@
+/*
+
+pack/unpack reference:
+
+- "b" a signed char, "B" an unsigned char
+- "h" a signed short (2 bytes), "H" an unsigned short (2 bytes)
+- "i" a signed int (4 bytes), "I" an unsigned int (4 bytes)
+- "l" a signed long (8 bytes), "L" an unsigned long (8 bytes)
+- "f" a float (4 bytes), "d" a double (8 bytes)
+- "s" a zero-terminated string
+- "cn" a sequence of exactly n chars corresponding to a single Lua string
+
+*/
+
 import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 
 export const BEACON_INTERVAL = 10 * ISAAC_FRAMES_PER_SECOND;
 export const BEACON_FIELDS = ["raceID", "userID", "message"];
 export const BEACON_DATA_FORMAT = "IIc5";
 
+export const SHADOW_INTERVAL = 2; // In render frames
 export const SHADOW_FIELDS = [
   "raceID",
   "userID",
