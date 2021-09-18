@@ -13,6 +13,11 @@ const STAGE_8_SPAWN_GRID_LOCATION = 70;
 // We put it 2 squares to the right of the center of the room
 const STAGE_10_SPAWN_GRID_LOCATION = 69;
 
+const SPLITTING_BOSSES = new Set<EntityType>([
+  EntityType.ENTITY_FISTULA_BIG, // 71
+  EntityType.ENTITY_FISTULA_MEDIUM, // 72
+]);
+
 export function postEntityKill(entity: Entity): void {
   if (v.run.perfection.spawned) {
     return;
@@ -31,6 +36,10 @@ export function postEntityKill(entity: Entity): void {
   }
 
   if (!npc.IsBoss()) {
+    return;
+  }
+
+  if (SPLITTING_BOSSES.has(npc.Type)) {
     return;
   }
 

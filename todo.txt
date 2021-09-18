@@ -1,7 +1,7 @@
 ```
 ### *v0.68.3* - September 18th, 2021
 
--
+- Fixed the bug where the Perfection trinket would drop too early from Fistula and Teratoma. (Thanks makia)
 ```
 
 - shadows
