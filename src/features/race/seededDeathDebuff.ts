@@ -10,7 +10,10 @@ import {
 import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 import ActiveItemDescription from "../../types/ActiveItemDescription";
-import { CollectibleTypeCustom } from "../../types/enums";
+import {
+  CollectibleTypeCustom,
+  TRANSFORMATION_HELPERS,
+} from "../../types/enums";
 import v from "./v";
 
 const FADE = Color(1, 1, 1, 0.25, 0, 0, 0);
@@ -173,7 +176,9 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
     for (let i = 1; i <= collectibleNum; i++) {
-      items.push(collectibleType);
+      if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
+        items.push(collectibleType);
+      }
       player.RemoveCollectible(collectibleType);
       removeItemFromItemTracker(collectibleType);
     }

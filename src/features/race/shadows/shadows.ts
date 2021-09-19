@@ -281,12 +281,14 @@ function setSpriteCharacter(sprite: Sprite, shadowData: ShadowData) {
   }
 
   if (spriteCharacter !== shadowData.character) {
+    spriteCharacterMap.set(shadowData.userID, shadowData.character);
+
     let characterPNG = CHARACTER_PNG_MAP.get(shadowData.character);
     if (characterPNG === undefined) {
       characterPNG = DEFAULT_CHARACTER_PNG;
     }
     sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
-    spriteCharacterMap.set(shadowData.userID, shadowData.character);
+    Isaac.DebugString(`GETTING HERE SET SHADOW CHARACTER TO: ${characterPNG}`);
   }
 }
 

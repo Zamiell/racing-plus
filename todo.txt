@@ -1,8 +1,10 @@
 ```
 ### *v0.69.0* - September 18th, 2021
 
-- Shadows have been added back to seeded races. Additionally, there are now shadows for every person in the race at the same time.
-- Fixed the bug where the Perfection trinket would drop too early from Fistula and Teratoma. (Thanks makia)
+- Fixed the bug with seeded death where the "Appear" animation could play at an inappropriate time. (Thanks Hispa)
+- Fixed the bug with seeded death where dying multiple times could incorrectly grant transformations.
+- Fixed the bug with seeded shadows where they would cause runtime errors in certain situations. (Thanks Hispa)
+- Fixed the bug with seeded shadows where they would show the wrong location in a big room.
 ```
 
 TODO Racing+ new features:
