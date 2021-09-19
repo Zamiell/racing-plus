@@ -56,7 +56,7 @@ function drawDPSText(npc: EntityNPC) {
     roundedDPSString = "0.00";
   }
   const text = `DPS: ${roundedDPSString}`;
-  const renderPosition = Isaac.WorldToRenderPosition(npc.Position);
+  const renderPosition = Isaac.WorldToScreen(npc.Position);
   const y = renderPosition.Y + DPS_TEXT_Y_OFFSET;
   const bottomRight = getScreenBottomRight();
   g.fontPF.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRight.X, true);

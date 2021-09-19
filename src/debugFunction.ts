@@ -33,7 +33,7 @@ export function postFamiliarRender(_familiar: EntityFamiliar): void {
   // const text = `Position: ${familiar.Position.X}, ${familiar.Position.Y}`;
   // const text = `Animation: ${familiar.GetSprite().GetAnimation()}`;
   // const text = `Visible: ${familiar.IsVisible()}`;
-  // const position = Isaac.WorldToRenderPosition(familiar.Position);
+  // const position = Isaac.WorldToScreen(familiar.Position);
   // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }
 
@@ -48,7 +48,7 @@ export function postNPCRender(_npc: EntityNPC): void {
   // const sprite = npc.GetSprite();
   // const animation = sprite.GetAnimation();
   // const text = `Animation: ${animation}`;
-  // const position = Isaac.WorldToRenderPosition(npc.Position);
+  // const position = Isaac.WorldToScreen(npc.Position);
   // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }
 
@@ -56,6 +56,6 @@ export function postNPCRender(_npc: EntityNPC): void {
 export function postEffectRender(_effect: EntityEffect): void {
   // const text = `State: ${effect.State}`;
   // const text = `Position: ${effect.Position.X}, ${effect.Position.Y}`;
-  // const position = Isaac.WorldToRenderPosition(effect.Position);
+  // const position = Isaac.WorldToScreen(effect.Position);
   // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }

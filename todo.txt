@@ -1,11 +1,7 @@
 ```
-### *v0.69.1* - September 19th, 2021
+### *v0.69.3* - September 19th, 2021
 
-- Fixed the bug with seeded death where the "Appear" animation could play at an inappropriate time. (Thanks Hispa)
-- Fixed the bug with seeded death where dying multiple times could incorrectly grant transformations.
-- Fixed the bug with seeded shadows where they would cause runtime errors in certain situations. (Thanks Hispa)
-- Fixed the bug with seeded shadows where they would show the wrong location in a big room.
-- Fixed the bug in Season 1 where the pits were not properly filled in next to a trapdoor. (Thanks Adrayon)
+-
 ```
 
 TODO Racing+ new features:

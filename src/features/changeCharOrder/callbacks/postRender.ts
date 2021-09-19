@@ -34,7 +34,7 @@ function disableControls() {
 
 function drawCurrentChoosingActivity() {
   const posActivityGame = gridToPos(6, 6);
-  const posActivity = Isaac.WorldToRenderPosition(posActivityGame);
+  const posActivity = Isaac.WorldToScreen(posActivityGame);
   posActivity.Y -= 15;
   const text = getTextForCurrentActivity(v.room.phase);
   const length = g.fontDroid.GetStringWidthUTF8(text);
@@ -82,7 +82,7 @@ function drawCharacterSprites() {
       posCharGame = gridToPos(x, y - 1); // We want it to be one tile above the button
     }
 
-    const posChar = Isaac.WorldToRenderPosition(posCharGame);
+    const posChar = Isaac.WorldToScreen(posCharGame);
     posChar.Y += 10; // Nudge it a bit upwards to make it look better
 
     characterSprite.Render(posChar, Vector.Zero, Vector.Zero);

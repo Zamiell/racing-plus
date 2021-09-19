@@ -24,7 +24,7 @@ function drawButtonSprites() {
   ] of v.room.sprites.seasons.entries()) {
     const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
     const posButton = gridToPos(position.X, position.Y - 1);
-    const posRender = Isaac.WorldToRenderPosition(posButton);
+    const posRender = Isaac.WorldToScreen(posButton);
     seasonSprite.RenderLayer(0, posRender);
   }
 }
