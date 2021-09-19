@@ -1,7 +1,11 @@
 // In seeded races, the silhouettes of other races are drawn onto the screen
 // This is accomplished via UDP datagrams that are sent to the client, and then to the server
 
-import { getRoomIndex, saveDataManager } from "isaacscript-common";
+import {
+  getRoomIndex,
+  isActionPressedOnAnyInput,
+  saveDataManager,
+} from "isaacscript-common";
 import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -37,6 +41,7 @@ interface ShadowData {
   animationFrame: int;
   overlayAnimation: string;
   overlayAnimationFrame: int;
+  username: string;
   frameUpdated: int;
 }
 
@@ -53,6 +58,7 @@ interface ShadowMessage {
   animationFrame: int;
   overlayAnimation: string;
   overlayAnimationFrame: int;
+  username: string;
 }
 
 let lastBeaconFrame: int | null = null;
@@ -158,6 +164,7 @@ function sendShadow() {
     animationFrame,
     overlayAnimation,
     overlayAnimationFrame,
+    username: g.race.username,
   };
 
   const structData: unknown[] = [];
@@ -218,6 +225,7 @@ function updateShadow(shadowMessage: ShadowMessage) {
     animationFrame: shadowMessage.animationFrame,
     overlayAnimation: shadowMessage.overlayAnimation,
     overlayAnimationFrame: shadowMessage.overlayAnimationFrame,
+    username: shadowMessage.username,
     frameUpdated: isaacFrameCount,
   };
   v.run.shadows.set(shadowMessage.userID, shadowData);
@@ -300,4 +308,23 @@ function drawSprite(sprite: Sprite, shadowData: ShadowData) {
   const positionGame = Vector(shadowData.x, shadowData.y);
   const position = Isaac.WorldToRenderPosition(positionGame);
   sprite.Render(position, Vector.Zero, Vector.Zero);
+
+  // Additionally, show the username of the player above the sprite if they are holding down the map
+  // button
+  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+    const positionText = position.add(Vector(0, -20));
+    const color = KColor(1, 1, 1, 1);
+    const scale = 1;
+    const length = g.fontDroid.GetStringWidthUTF8(shadowData.username) * scale;
+    g.fontDroid.DrawStringScaled(
+      shadowData.username,
+      positionText.X - length / 2,
+      positionText.Y,
+      scale,
+      scale,
+      color,
+      0,
+      true,
+    );
+  }
 }

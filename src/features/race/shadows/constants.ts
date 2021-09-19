@@ -33,8 +33,9 @@ export const SHADOW_FIELDS = [
   "animationFrame",
   "overlayAnimation",
   "overlayAnimationFrame",
+  "username",
 ];
-export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20I"; // This matches the ShadowMessage interface
+export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20"; // This matches the ShadowMessage interface
 
 export const CHARACTER_LAYER_ID = 0;
 export const DEFAULT_CHARACTER_PNG =
