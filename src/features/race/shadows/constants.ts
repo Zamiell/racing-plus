@@ -33,11 +33,9 @@ export const SHADOW_FIELDS = [
   "overlayAnimation",
   "overlayAnimationFrame",
 ];
-export const SHADOW_DATA_FORMAT = "IIffIIIc20Ic20I";
+export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20I"; // This matches the ShadowMessage interface
 
 export const CHARACTER_LAYER_ID = 0;
-export const DEFAULT_ANIMATION = "WalkDown";
-export const DEFAULT_OVERLAY_ANIMATION = "HeadDown";
 export const DEFAULT_CHARACTER_PNG =
   "characters/costumes/character_001_isaac.png";
 export const FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);

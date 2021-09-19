@@ -17,9 +17,7 @@ import {
   BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
   CHARACTER_PNG_MAP,
-  DEFAULT_ANIMATION,
   DEFAULT_CHARACTER_PNG,
-  DEFAULT_OVERLAY_ANIMATION,
   FADED_COLOR,
   SHADOW_DATA_FORMAT,
   SHADOW_FIELDS,
@@ -32,6 +30,7 @@ interface ShadowData {
   x: float;
   y: float;
   stage: int;
+  stageType: int;
   roomIndex: int;
   character: PlayerType;
   animation: string;
@@ -47,6 +46,7 @@ interface ShadowMessage {
   x: float;
   y: float;
   stage: int;
+  stageType: int;
   roomIndex: int;
   character: PlayerType;
   animation: string;
@@ -132,12 +132,16 @@ function sendShadow() {
   }
 
   const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const sprite = player.GetSprite();
   const animation = sprite.GetAnimation();
   const animationFrame = sprite.GetFrame();
-  const overlayAnimation = sprite.GetOverlayAnimation();
+  let overlayAnimation = sprite.GetOverlayAnimation();
+  if (sprite.IsOverlayPlaying(overlayAnimation)) {
+    overlayAnimation = "";
+  }
   const overlayAnimationFrame = sprite.GetOverlayFrame();
   const roomIndex = getRoomIndex();
 
@@ -147,6 +151,7 @@ function sendShadow() {
     x: player.Position.X,
     y: player.Position.Y,
     stage,
+    stageType,
     roomIndex,
     character,
     animation,
@@ -206,6 +211,7 @@ function updateShadow(shadowMessage: ShadowMessage) {
     x: shadowMessage.x,
     y: shadowMessage.y,
     stage: shadowMessage.stage,
+    stageType: shadowMessage.stageType,
     roomIndex: shadowMessage.roomIndex,
     character: shadowMessage.character,
     animation: shadowMessage.animation,
@@ -223,6 +229,8 @@ function drawShadows() {
   }
 
   const isaacFrameCount = Isaac.GetFrameCount();
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const roomIndex = getRoomIndex();
 
   for (const shadowData of v.run.shadows.values()) {
@@ -231,41 +239,65 @@ function drawShadows() {
       continue;
     }
 
-    if (shadowData.roomIndex !== roomIndex) {
+    if (
+      shadowData.stage !== stage ||
+      shadowData.stageType !== stageType ||
+      shadowData.roomIndex !== roomIndex
+    ) {
       continue;
     }
 
-    let sprite = spriteMap.get(shadowData.userID);
-    if (sprite === undefined) {
-      sprite = Sprite();
-      sprite.Load("gfx/001.000_Player.anm2", true);
-      sprite.Color = FADED_COLOR;
-      spriteMap.set(shadowData.userID, sprite);
-    }
+    const sprite = getShadowSprite(shadowData);
+    setSpriteCharacter(sprite, shadowData);
+    setSpriteAnimation(sprite, shadowData);
+    drawSprite(sprite, shadowData);
+  }
+}
 
-    let spriteCharacter = spriteCharacterMap.get(shadowData.userID);
-    if (spriteCharacter === undefined) {
-      spriteCharacter = -1;
-    }
+function getShadowSprite(shadowData: ShadowData) {
+  let sprite = spriteMap.get(shadowData.userID);
+  if (sprite === undefined) {
+    sprite = Sprite();
+    sprite.Load("gfx/001.000_Player.anm2", true);
+    sprite.Color = FADED_COLOR;
+    spriteMap.set(shadowData.userID, sprite);
+  }
 
-    if (spriteCharacter !== shadowData.character) {
-      let characterPNG = CHARACTER_PNG_MAP.get(shadowData.character);
-      if (characterPNG === undefined) {
-        characterPNG = DEFAULT_CHARACTER_PNG;
-      }
-      sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
-      spriteCharacterMap.set(shadowData.userID, shadowData.character);
-    }
+  return sprite;
+}
 
-    sprite.SetAnimation(DEFAULT_ANIMATION);
-    sprite.SetFrame(shadowData.animationFrame);
-    sprite.SetOverlayAnimation(DEFAULT_OVERLAY_ANIMATION);
+function setSpriteCharacter(sprite: Sprite, shadowData: ShadowData) {
+  let spriteCharacter = spriteCharacterMap.get(shadowData.userID);
+  if (spriteCharacter === undefined) {
+    spriteCharacter = -1;
+  }
+
+  if (spriteCharacter !== shadowData.character) {
+    let characterPNG = CHARACTER_PNG_MAP.get(shadowData.character);
+    if (characterPNG === undefined) {
+      characterPNG = DEFAULT_CHARACTER_PNG;
+    }
+    sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
+    spriteCharacterMap.set(shadowData.userID, shadowData.character);
+  }
+}
+
+function setSpriteAnimation(sprite: Sprite, shadowData: ShadowData) {
+  sprite.SetAnimation(shadowData.animation);
+  sprite.SetFrame(shadowData.animationFrame);
+
+  if (shadowData.overlayAnimation === "") {
+    sprite.RemoveOverlay();
+  } else {
     sprite.SetOverlayFrame(
       shadowData.overlayAnimation,
       shadowData.overlayAnimationFrame,
     );
-    const positionGame = Vector(shadowData.x, shadowData.y);
-    const position = Isaac.WorldToRenderPosition(positionGame);
-    sprite.Render(position, Vector.Zero, Vector.Zero);
   }
+}
+
+function drawSprite(sprite: Sprite, shadowData: ShadowData) {
+  const positionGame = Vector(shadowData.x, shadowData.y);
+  const position = Isaac.WorldToRenderPosition(positionGame);
+  sprite.Render(position, Vector.Zero, Vector.Zero);
 }
