@@ -68,7 +68,11 @@ function struct:pack(format, vars)
         table.insert(stream, table.concat(bytes))
       end
     elseif opt:find('[fd]') then
-      local val = tonumber(table.remove(vars, 1))
+      local firstElement = table.remove(vars, 1)
+      local val = tonumber(firstElement)
+      if val == nil then
+        error("Failed to convert \"" .. firstElement .. "\" to a number.")
+      end
       local sign = 0
 
       if val < 0 then
@@ -118,6 +122,9 @@ function struct:pack(format, vars)
     elseif opt == 'c' then
       local n = format:sub(i + 1):match('%d+')
       local length = tonumber(n)
+      if length == nil then
+        error("Failed to convert \"" .. length .. "\" to a number.")
+      end
 
       if length > 0 then
         local str = tostring(table.remove(vars, 1))
@@ -210,7 +217,7 @@ function struct:unpack(format, stream, pos)
       table.insert(vars, str)
     elseif opt == 'c' then
       local n = format:sub(i + 1):match('%d+')
-      table.insert(vars, stream:sub(iterator, iterator + tonumber(n)-1))
+      table.insert(vars, stream:sub(iterator, iterator + tonumber(n) - 1))
       iterator = iterator + tonumber(n)
       i = i + n:len()
     end

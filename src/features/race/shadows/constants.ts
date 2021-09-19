@@ -26,6 +26,7 @@ export const SHADOW_FIELDS = [
   "x",
   "y",
   "stage",
+  "stageType",
   "roomIndex",
   "character",
   "animation",
