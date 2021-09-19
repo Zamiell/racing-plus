@@ -1,5 +1,5 @@
 ```
-### *v0.69.0* - September 18th, 2021
+### *v0.69.1* - September 19th, 2021
 
 - Fixed the bug with seeded death where the "Appear" animation could play at an inappropriate time. (Thanks Hispa)
 - Fixed the bug with seeded death where dying multiple times could incorrectly grant transformations.

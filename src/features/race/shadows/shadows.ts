@@ -288,7 +288,6 @@ function setSpriteCharacter(sprite: Sprite, shadowData: ShadowData) {
       characterPNG = DEFAULT_CHARACTER_PNG;
     }
     sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
-    Isaac.DebugString(`GETTING HERE SET SHADOW CHARACTER TO: ${characterPNG}`);
   }
 }
 
