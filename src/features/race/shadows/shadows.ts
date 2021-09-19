@@ -311,12 +311,13 @@ function drawSprite(sprite: Sprite, shadowData: ShadowData) {
 
   // Additionally, show the username of the player above the sprite if they are holding down the map
   // button
-  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
-    const positionText = position.add(Vector(0, -20));
-    const color = KColor(1, 1, 1, 1);
+  if (isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+    const positionText = position.add(Vector(0, -40)); // Above the sprite
+    const fadeAmount = 0.5;
+    const color = KColor(1, 1, 1, fadeAmount);
     const scale = 1;
-    const length = g.fontDroid.GetStringWidthUTF8(shadowData.username) * scale;
-    g.fontDroid.DrawStringScaled(
+    const length = g.fontPF.GetStringWidthUTF8(shadowData.username) * scale;
+    g.fontPF.DrawStringScaled(
       shadowData.username,
       positionText.X - length / 2,
       positionText.Y,
