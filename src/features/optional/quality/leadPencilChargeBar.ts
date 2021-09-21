@@ -60,7 +60,7 @@ function drawChargeBar(player: EntityPlayer) {
     return;
   }
 
-  // In other situations, the barrage fire, but we have no way of tracking it
+  // In other situations, the barrage will fire, but we have no way of tracking it
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2)) {
     return;
   }
