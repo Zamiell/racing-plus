@@ -43,6 +43,7 @@ function drawChargeBar(player: EntityPlayer) {
   }
 
   const character = player.GetPlayerType();
+  const flyingOffset = player.GetFlyingOffset();
 
   // Lead Pencil is a useless item in some situations (the barrage will never fire)
   // In these situations, don't clutter the screen with the charge bar
@@ -64,8 +65,6 @@ function drawChargeBar(player: EntityPlayer) {
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2)) {
     return;
   }
-
-  const flyingOffset = player.GetFlyingOffset();
 
   // The vanilla charge bars appear to the top-right of the player
   // We place the lead pencil charge bar to the top-left
