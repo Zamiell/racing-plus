@@ -51,7 +51,6 @@ function drawChargeBar(player: EntityPlayer) {
     character === PlayerType.PLAYER_AZAZEL || // 7
     character === PlayerType.PLAYER_LILITH || // 13
     character === PlayerType.PLAYER_THEFORGOTTEN || // 16
-    player.HasCollectible(CollectibleType.COLLECTIBLE_DR_FETUS) || // 52
     player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) || // 68
     player.HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) || // 114
     player.HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) || // 118
@@ -62,7 +61,10 @@ function drawChargeBar(player: EntityPlayer) {
   }
 
   // In other situations, the barrage will fire, but we have no way of tracking it
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2)) {
+  if (
+    player.HasCollectible(CollectibleType.COLLECTIBLE_DR_FETUS) || // 52
+    player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) // 152
+  ) {
     return;
   }
 
