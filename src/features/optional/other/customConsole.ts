@@ -53,7 +53,7 @@ export function postRender(): void {
     return;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible === true) {
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
     return;
   }
 

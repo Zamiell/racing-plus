@@ -1,13 +1,12 @@
 ```
-### *v0.69.3* - September 19th, 2021
+### *v0.69.4* - September 28th, 2021
 
-- Fixed the bug where wisps could damage pitfalls in Devil Rooms.
+-
 ```
 
 TODO Racing+ new features:
 - roll ability like in Minish Cap
 - chat system
-- custom console
 - Add charge bar for No. 2
 - Add charge bar for Azazel's Rage
 - Implement time offsets, show on the first room of each floor
