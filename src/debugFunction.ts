@@ -10,12 +10,6 @@ let debugHotkey2Pressed = false;
 
 export default function debugFunction(): void {
   g.debug = true;
-
-  const pitfalls = Isaac.FindByType(EntityType.ENTITY_PITFALL, 0);
-  for (const pitfall of pitfalls) {
-    Isaac.DebugString(`COL1 - ${pitfall.EntityCollisionClass}`);
-    Isaac.DebugString(`COL2 - ${pitfall.GridCollisionClass}`);
-  }
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)
