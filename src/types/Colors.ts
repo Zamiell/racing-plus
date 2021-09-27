@@ -1,6 +1,7 @@
 enum Colors {
   WHITE = "#ffffff",
   YELLOW = "#ffff00",
+  GREEN = "#33aa33",
 }
 export default Colors;
 
@@ -8,7 +9,6 @@ export default Colors;
 
 Black                   = COLOR.."000000FF",
 Red                     = COLOR.."FF3333FF",
-Green                   = COLOR.."33AA33FF",
 Blue                    = COLOR.."3333FFFF",
 Magenta                 = COLOR.."FF33FFFF",
 Cyan                    = COLOR.."00DDDDFF",

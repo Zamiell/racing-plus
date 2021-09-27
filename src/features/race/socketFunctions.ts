@@ -1,5 +1,6 @@
 import { jsonDecode } from "isaacscript-common";
 import g from "../../globals";
+import ChatMessage from "../../types/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import RaceData, { cloneRaceData } from "./types/RaceData";
@@ -71,6 +72,13 @@ functionMap.set("set", (rawData: string) => {
       error(`Setting race types of "${previousValueType}" are not supported.`);
     }
   }
+});
+
+functionMap.set("chat", (rawData: string) => {
+  const isaacFrameCount = Isaac.GetFrameCount();
+  const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
+  chatMessage.frameReceived = isaacFrameCount;
+  g.chatMessages.unshift(chatMessage);
 });
 
 // Mostly copied from the "unpackSocketMsg()" function

@@ -1,5 +1,6 @@
 import RaceData from "../features/race/types/RaceData";
 import RaceVars from "../features/race/types/RaceVars";
+import ChatMessage from "./ChatMessage";
 
 export default class Globals {
   debug = true;
@@ -15,6 +16,8 @@ export default class Globals {
   music = MusicManager();
   fontDroid = Font();
   fontPF = Font();
+
+  chatMessages: ChatMessage[] = [];
 
   /** Race variables that are set via the client communicating with us over a socket. */
   race = new RaceData();

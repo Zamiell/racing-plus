@@ -16,13 +16,15 @@ import { config } from "../../../modConfigMenu";
 import Colors from "../../../types/Colors";
 import TextSegment from "../../../types/TextSegment";
 import { consoleCommand } from "../../../util";
+import * as socket from "../../race/socket";
+import RaceStatus from "../../race/types/RaceStatus";
 
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
 const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = ISAAC_FRAMES_PER_SECOND * 0.5;
-const TRANSPARENCY = 0.75;
+export const DEFAULT_CONSOLE_OPACITY = 0.75;
 
-let isConsoleOpen = false;
+let consoleOpen = false;
 let inputText = "";
 let inputTextIndex = 0;
 let savedText = ""; // Used to save a partially completed message when recalling history
@@ -57,7 +59,7 @@ export function postRender(): void {
     return;
   }
 
-  if (!isConsoleOpen) {
+  if (!consoleOpen) {
     checkKeyboardInput(Keyboard.KEY_ENTER, isaacFrameCount);
     return;
   }
@@ -135,7 +137,7 @@ function keyPressed(keyboardValue: Keyboard) {
 function open() {
   logArray(v.persistent.inputHistory);
 
-  isConsoleOpen = true;
+  consoleOpen = true;
   disableAllInputs();
   AwaitingTextInput = true;
 
@@ -143,7 +145,7 @@ function open() {
 }
 
 function close(execute = true) {
-  isConsoleOpen = false;
+  consoleOpen = false;
   enableAllInputs();
   AwaitingTextInput = false;
 
@@ -155,7 +157,11 @@ function close(execute = true) {
     return;
   }
 
-  consoleCommand(inputText);
+  if (g.race.status === RaceStatus.NONE) {
+    consoleCommand(inputText);
+  } else {
+    socket.send("chat", inputText);
+  }
 
   appendHistory();
   inputText = "";
@@ -182,7 +188,7 @@ function appendHistory() {
 
 function drawConsole() {
   // We check to see if the console is open again in case it was opened on this frame
-  if (!isConsoleOpen) {
+  if (!consoleOpen) {
     return;
   }
 
@@ -210,14 +216,18 @@ function drawConsole() {
   drawText(textSegments, CONSOLE_POSITION);
 }
 
-export function drawText(textSegments: TextSegment[], position: Vector): void {
+export function drawText(
+  textSegments: TextSegment[],
+  position: Vector,
+  alpha = DEFAULT_CONSOLE_OPACITY,
+): void {
   let x = position.X;
   const y = position.Y;
 
   for (const textSegment of textSegments) {
     const hexColor =
       textSegment.color === undefined ? Colors.WHITE : textSegment.color;
-    const kColor = hexToKColor(hexColor, TRANSPARENCY);
+    const kColor = hexToKColor(hexColor, alpha);
     g.fontPF.DrawString(textSegment.text, x, y, kColor, 0, true);
 
     x += g.fontPF.GetStringWidth(textSegment.text);
@@ -246,7 +256,7 @@ keyFunctionMap.set(Keyboard.KEY_ESCAPE, () => {
 
 // 257
 keyFunctionMap.set(Keyboard.KEY_ENTER, () => {
-  if (isConsoleOpen) {
+  if (consoleOpen) {
     close();
   } else {
     open();
@@ -341,3 +351,7 @@ keyFunctionMap.set(Keyboard.KEY_HOME, () => {
 keyFunctionMap.set(Keyboard.KEY_END, () => {
   inputTextIndex = inputText.length;
 });
+
+export function isConsoleOpen(): boolean {
+  return consoleOpen;
+}
