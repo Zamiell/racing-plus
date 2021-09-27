@@ -695,15 +695,6 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "shadows",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0604",
-      "Opponent's shadows",
-      "Enable the drawing of race opponents as faded sprites during seeded races.",
-    ],
-  ],
-  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -1116,6 +1107,24 @@ export const OTHER_FEATURES: ConfigDescriptions = [
       "1201",
       "Enable the custom console",
       "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
+    ],
+  ],
+  [
+    "shadows",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1202",
+      "Draw opponent's shadows",
+      "Enable the drawing of race opponents as faded sprites during seeded races.",
+    ],
+  ],
+  [
+    "chat",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1203",
+      "Draw race chat",
+      "Enable the drawing of race chat on the screen.",
     ],
   ],
 ];

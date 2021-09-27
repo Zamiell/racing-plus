@@ -1,3 +1,4 @@
+import { config } from "../../modConfigMenu";
 import TextSegment from "../../types/TextSegment";
 import { CONSOLE_POSITION, drawText } from "../optional/other/customConsole";
 
@@ -5,6 +6,10 @@ const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));
 const LINE_LENGTH = 13;
 
 export function postRender(): void {
+  if (!config.chat) {
+    return;
+  }
+
   const chatMessages: string[] = [];
 
   const x = CHAT_POSITION.X;

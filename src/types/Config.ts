@@ -71,7 +71,6 @@ export default class Config {
   extraStartingItems = true;
   consistentTrollBombs = true;
   pillsCancelAnimations = true;
-  shadows = true;
 
   // Cutscenes
   fastTeleports = true;
@@ -95,4 +94,6 @@ export default class Config {
 
   // Other
   customConsole = true;
+  shadows = true;
+  chat = true;
 }
