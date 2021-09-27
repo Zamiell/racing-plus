@@ -42,6 +42,11 @@ function checkResetInput() {
     return;
   }
 
+  // Disable the fast-reset feature if the custom console is open
+  if (AwaitingTextInput) {
+    return;
+  }
+
   // Don't fast-reset if any modifiers are pressed
   // (with the exception of shift, since the speedrunner MasterOfPotato uses shift)
   if (

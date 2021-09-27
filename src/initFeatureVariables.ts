@@ -31,6 +31,7 @@ import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
+import * as customConsole from "./features/optional/other/customConsole";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
@@ -123,4 +124,7 @@ export default function initFeatureVariables(): void {
 
   // Bug fixes
   battery9VoltSynergy.init();
+
+  // Other
+  customConsole.init();
 }

@@ -11,8 +11,8 @@ import * as lostShowHealth from "../features/optional/characters/lostShowHealth"
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
+import * as customConsole from "../features/optional/other/customConsole";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
-import * as customConsole from "../features/optional/quality/customConsole";
 import * as holyMantleUI from "../features/optional/quality/holyMantleUI";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import showDreamCatcherItemPostRender from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";

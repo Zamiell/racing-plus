@@ -1,12 +1,21 @@
 import { isKeyboardPressed } from "isaacscript-common";
 import g from "./globals";
+import { hotkeys } from "./modConfigMenu";
 
 const DEBUG_HOTKEY = Keyboard.KEY_F2;
+const DEBUG_HOTKEY2 = Keyboard.KEY_F3;
 
 let debugHotkeyPressed = false;
+let debugHotkey2Pressed = false;
 
 export default function debugFunction(): void {
   g.debug = true;
+
+  const pitfalls = Isaac.FindByType(EntityType.ENTITY_PITFALL, 0);
+  for (const pitfall of pitfalls) {
+    Isaac.DebugString(`COL1 - ${pitfall.EntityCollisionClass}`);
+    Isaac.DebugString(`COL2 - ${pitfall.GridCollisionClass}`);
+  }
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -23,9 +32,24 @@ export function postUpdate(): void {
   } else {
     debugHotkeyPressed = false;
   }
+
+  if (isKeyboardPressed(DEBUG_HOTKEY2)) {
+    if (!debugHotkey2Pressed) {
+      hotkey2Function();
+    }
+    debugHotkey2Pressed = true;
+  } else {
+    debugHotkey2Pressed = false;
+  }
 }
 
 function hotkeyFunction() {}
+
+function hotkey2Function() {
+  hotkeys.fastDropAll = Keyboard.KEY_Z;
+  hotkeys.autofire = Keyboard.KEY_F;
+  print("Test hotkeys set.");
+}
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {

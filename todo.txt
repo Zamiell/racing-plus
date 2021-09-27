@@ -1,7 +1,7 @@
 ```
 ### *v0.69.3* - September 19th, 2021
 
--
+- Fixed the bug where wisps could damage pitfalls in Devil Rooms.
 ```
 
 TODO Racing+ new features:

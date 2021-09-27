@@ -216,6 +216,15 @@ function spawnNormalEntity(
     );
   }
 
+  // For some reason, Pitfalls do not spawn with the correct collision classes
+  if (
+    entityType === EntityType.ENTITY_PITFALL &&
+    variant === PitfallVariant.PITFALL
+  ) {
+    entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES;
+    entity.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS;
+  }
+
   storePersistentEntity(entity);
 }
 
