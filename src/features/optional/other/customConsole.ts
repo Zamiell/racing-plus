@@ -224,7 +224,7 @@ export function drawText(textSegments: TextSegment[], position: Vector): void {
   }
 }
 
-export function getScreenPosition(
+function getScreenPosition(
   x: float,
   y: float,
   anchorX: float,
@@ -341,7 +341,3 @@ keyFunctionMap.set(Keyboard.KEY_HOME, () => {
 keyFunctionMap.set(Keyboard.KEY_END, () => {
   inputTextIndex = inputText.length;
 });
-
-export function getConsoleHistory(): string[] {
-  return v.persistent.inputHistory;
-}
