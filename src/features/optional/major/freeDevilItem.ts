@@ -36,20 +36,16 @@ function featureEnabled() {
 }
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-export function entityTakeDmgPlayer(
-  tookDamage: Entity,
-  damageFlags: int,
-): void {
+export function entityTakeDmgPlayer(damageFlags: int): void {
   if (!config.freeDevilItem) {
     return;
   }
 
-  checkForSelfDamage(tookDamage, damageFlags);
+  checkForSelfDamage(damageFlags);
 }
 
-function checkForSelfDamage(tookDamage: Entity, damageFlags: int) {
-  const player = tookDamage.ToPlayer();
-  if (player !== undefined && !isSelfDamage(damageFlags)) {
+function checkForSelfDamage(damageFlags: int) {
+  if (!isSelfDamage(damageFlags)) {
     v.run.tookDamage = true;
   }
 }

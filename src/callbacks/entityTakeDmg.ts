@@ -7,7 +7,7 @@ import * as roll from "../features/optional/other/roll";
 export function init(mod: Mod): void {
   mod.AddCallback(
     ModCallbacks.MC_ENTITY_TAKE_DMG,
-    player,
+    entityTakeDmgPlayer,
     EntityType.ENTITY_PLAYER, // 1
   );
 
@@ -18,13 +18,18 @@ export function init(mod: Mod): void {
   );
 }
 
-function player(
+function entityTakeDmgPlayer(
   tookDamage: Entity,
   _damageAmount: float,
   damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
+  const player = tookDamage.ToPlayer();
+  if (player === undefined) {
+    return undefined;
+  }
+
   // Features that prevent damage
   let sustainDamage: boolean | void;
 
@@ -33,14 +38,14 @@ function player(
     return sustainDamage;
   }
 
-  sustainDamage = roll.entityTakeDmgPlayer();
+  sustainDamage = roll.entityTakeDmgPlayer(player);
   if (sustainDamage !== undefined) {
     return sustainDamage;
   }
 
   // Major
-  freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
-  fastTravelEntityTakeDmgPlayer(tookDamage, damageFlags);
+  freeDevilItem.entityTakeDmgPlayer(damageFlags);
+  fastTravelEntityTakeDmgPlayer(damageFlags);
 
   return undefined;
 }

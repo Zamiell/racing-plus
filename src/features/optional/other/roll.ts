@@ -151,9 +151,9 @@ function stopRoll(player: EntityPlayer) {
   enableAllInputs();
 }
 
-export function entityTakeDmgPlayer(): boolean | void {
+export function entityTakeDmgPlayer(player: EntityPlayer): boolean | void {
   if (v.run.rolling) {
-    return false;
+    stopRoll(player);
   }
 
   return undefined;
