@@ -5,6 +5,16 @@ export interface FastTravelEntityDescription {
   state: FastTravelEntityState;
 }
 
+export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL = new Set([
+  "Happy",
+  "Sad",
+  "Jump",
+  "RollingLeft",
+  "RollingRight",
+  "RollingDown",
+  "RollingUp",
+]);
+
 export const TRAPDOOR_OPEN_DISTANCE = 60; // Determined through trial and error
 export const TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS = TRAPDOOR_OPEN_DISTANCE * 2.5;
 export const TRAPDOOR_BOSS_REACTION_FRAMES = 30;

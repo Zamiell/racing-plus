@@ -96,4 +96,5 @@ export default class Config {
   customConsole = true;
   shadows = true;
   chat = true;
+  roll = true;
 }

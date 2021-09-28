@@ -12,6 +12,7 @@ import * as showEdenStartingItems from "../features/optional/characters/showEden
 import * as fastReset from "../features/optional/major/fastReset";
 import fastTravelPostRender from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/other/customConsole";
+import * as roll from "../features/optional/other/roll";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as holyMantleUI from "../features/optional/quality/holyMantleUI";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
@@ -66,5 +67,8 @@ export function main(): void {
   // Should be after the "Show Max Familiars" feature so that the text has priority
   automaticItemInsertion.postRender();
   showPills.postRender();
+
+  // Other
   customConsole.postRender();
+  roll.postRender();
 }

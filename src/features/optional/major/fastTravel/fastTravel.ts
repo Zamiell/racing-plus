@@ -11,7 +11,10 @@ import g from "../../../../globals";
 import RaceGoal from "../../../race/types/RaceGoal";
 import RacerStatus from "../../../race/types/RacerStatus";
 import RaceStatus from "../../../race/types/RaceStatus";
-import { TRAPDOOR_TOUCH_DISTANCE } from "./constants";
+import {
+  ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
+  TRAPDOOR_TOUCH_DISTANCE,
+} from "./constants";
 import {
   FastTravelEntityState,
   FastTravelEntityType,
@@ -206,10 +209,9 @@ export function checkPlayerTouched(
 function canInteractWith(player: EntityPlayer) {
   // Players cannot interact with fast travel entities while playing certain animations
   const sprite = player.GetSprite();
+  const animation = sprite.GetAnimation();
   return (
     !player.IsHoldingItem() &&
-    !sprite.IsPlaying("Happy") &&
-    !sprite.IsPlaying("Sad") &&
-    !sprite.IsPlaying("Jump") // Account for How to Jump
+    !ANIMATIONS_THAT_PREVENT_FAST_TRAVEL.has(animation)
   );
 }

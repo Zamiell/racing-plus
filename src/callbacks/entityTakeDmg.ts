@@ -2,6 +2,7 @@ import * as debugPowers from "../features/mandatory/debugPowers";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import * as roll from "../features/optional/other/roll";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -24,8 +25,15 @@ function player(
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
-  // Mandatory
-  const sustainDamage = debugPowers.entityTakeDmgPlayer();
+  // Features that prevent damage
+  let sustainDamage: boolean | void;
+
+  sustainDamage = debugPowers.entityTakeDmgPlayer();
+  if (sustainDamage !== undefined) {
+    return sustainDamage;
+  }
+
+  sustainDamage = roll.entityTakeDmgPlayer();
   if (sustainDamage !== undefined) {
     return sustainDamage;
   }

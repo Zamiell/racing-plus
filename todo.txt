@@ -1,12 +1,8 @@
 ```
-### *v0.69.4* - September 28th, 2021
+### *v0.69.5* - September 27th, 2021
 
 -
 ```
 
 TODO Racing+ new features:
-- roll ability like in Minish Cap
-- chat system
-- Add charge bar for No. 2
-- Add charge bar for Azazel's Rage
 - Implement time offsets, show on the first room of each floor

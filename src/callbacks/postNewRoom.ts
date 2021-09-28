@@ -19,6 +19,7 @@ import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callb
 import fastTravelPostNewRoom from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
+import * as roll from "../features/optional/other/roll";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import showDreamCatcherItemPostNewRoom from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
@@ -82,4 +83,7 @@ export function main(): void {
   // Bug fixes
   teleportInvalidEntrance.postNewRoom();
   removeInvalidPitfalls.postNewRoom();
+
+  // Other
+  roll.postNewRoom();
 }

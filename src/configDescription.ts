@@ -149,6 +149,10 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
       "Enable autofire, which toggles the fire input on every frame.",
     ],
   ],
+  [
+    "roll",
+    [ModConfigMenuOptionType.KEYBIND_KEYBOARD, "", "Roll", "Do a barrel roll."],
+  ],
 ];
 
 // 0201-0210
@@ -1125,6 +1129,15 @@ export const OTHER_FEATURES: ConfigDescriptions = [
       "1203",
       "Draw race chat",
       "Enable the drawing of race chat on the screen.",
+    ],
+  ],
+  [
+    "roll",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1204",
+      "Enable rolling",
+      "Turn on experimental rolling, which will invalidate your run for online races and offline leaderboards.",
     ],
   ],
 ];

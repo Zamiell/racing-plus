@@ -41,7 +41,8 @@ function hotkeyFunction() {}
 
 function hotkey2Function() {
   hotkeys.fastDropAll = Keyboard.KEY_Z;
-  hotkeys.autofire = Keyboard.KEY_F;
+  hotkeys.autofire = Keyboard.KEY_G;
+  hotkeys.roll = Keyboard.KEY_F;
   print("Test hotkeys set.");
 }
 
