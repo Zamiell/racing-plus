@@ -43,7 +43,7 @@ export function postRender(): void {
 function checkInput() {
   const player = Isaac.GetPlayer();
 
-  if (player.IsHoldingItem()) {
+  if (!playerCanRoll(player)) {
     return;
   }
 
@@ -58,6 +58,16 @@ function checkInput() {
   isPressed = true;
 
   roll(player);
+}
+
+function playerCanRoll(player: EntityPlayer) {
+  const effects = player.GetEffects();
+
+  return (
+    !player.IsHoldingItem() &&
+    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) &&
+    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS)
+  );
 }
 
 function roll(player: EntityPlayer) {
@@ -151,10 +161,8 @@ function stopRoll(player: EntityPlayer) {
   enableAllInputs();
 }
 
-export function entityTakeDmgPlayer(player: EntityPlayer): boolean | void {
+export function entityTakeDmgPlayer(player: EntityPlayer): void {
   if (v.run.rolling) {
     stopRoll(player);
   }
-
-  return undefined;
 }

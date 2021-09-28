@@ -31,14 +31,7 @@ function entityTakeDmgPlayer(
   }
 
   // Features that prevent damage
-  let sustainDamage: boolean | void;
-
-  sustainDamage = debugPowers.entityTakeDmgPlayer();
-  if (sustainDamage !== undefined) {
-    return sustainDamage;
-  }
-
-  sustainDamage = roll.entityTakeDmgPlayer(player);
+  const sustainDamage = debugPowers.entityTakeDmgPlayer();
   if (sustainDamage !== undefined) {
     return sustainDamage;
   }
@@ -46,6 +39,9 @@ function entityTakeDmgPlayer(
   // Major
   freeDevilItem.entityTakeDmgPlayer(damageFlags);
   fastTravelEntityTakeDmgPlayer(damageFlags);
+
+  // Other
+  roll.entityTakeDmgPlayer(player);
 
   return undefined;
 }
