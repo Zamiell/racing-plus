@@ -227,7 +227,7 @@ Post-flip actions:
 
 > Why? This slightly decreases the time spent in the resetting phase, which everyone agrees is not very fun.
 
-- `0503` <!-- changeCreepColor --> Enemy red creep is changed to green and friendly green creep is changed to red.
+- `0503` <!-- changeCreepColor --> Enemy red creep is changed to green and friendly green creep is changed to blue.
 
 > Why? So that player creep will never be mistaken for enemy creep and vice versa. Furthermore, it is very difficult to see red enemy creep on the Womb floors.
 
