@@ -41,7 +41,7 @@ export function postRender(): void {
 }
 
 function checkInput() {
-  const player = Isaac.GetPlayer();
+  const player = getRollPlayer();
 
   if (!playerCanRoll(player)) {
     return;
@@ -126,7 +126,7 @@ function getRollingAnimation(direction: Direction) {
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (v.run.rolling) {
-    const player = Isaac.GetPlayer();
+    const player = getRollPlayer();
     stopRoll(player);
   }
 }
@@ -138,6 +138,11 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   }
 
   if (!v.run.rolling) {
+    return;
+  }
+
+  const character = player.GetPlayerType();
+  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     return;
   }
 
@@ -165,4 +170,19 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
   if (v.run.rolling) {
     stopRoll(player);
   }
+}
+
+function getRollPlayer() {
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+
+  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+    const taintedSoul = player.GetOtherTwin();
+    if (taintedSoul === undefined) {
+      error("Failed to get Tainted Soul from Tainted Forgotten.");
+    }
+    return taintedSoul;
+  }
+
+  return player;
 }
