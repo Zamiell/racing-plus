@@ -1,3 +1,4 @@
+import { logAllDamageFlags } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
@@ -25,6 +26,8 @@ function entityTakeDmgPlayer(
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
+  logAllDamageFlags(damageFlags);
+
   const player = tookDamage.ToPlayer();
   if (player === undefined) {
     return undefined;

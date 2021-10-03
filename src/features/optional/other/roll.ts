@@ -2,6 +2,8 @@ import {
   disableAllInputs,
   enableAllInputs,
   ensureAllCases,
+  isActionPressedOnAnyInput,
+  isJacobOrEsau,
   isKeyboardPressed,
   saveDataManager,
 } from "isaacscript-common";
@@ -18,7 +20,9 @@ let isPressed = false;
 const v = {
   run: {
     rolling: false,
+    rolling2: false,
     originalVelocity: Vector.Zero,
+    originalVelocity2: Vector.Zero,
   },
 };
 
@@ -57,7 +61,7 @@ function checkInput() {
   }
   isPressed = true;
 
-  roll(player);
+  startRoll(player);
 }
 
 function playerCanRoll(player: EntityPlayer) {
@@ -70,18 +74,32 @@ function playerCanRoll(player: EntityPlayer) {
   );
 }
 
-function roll(player: EntityPlayer) {
+function startRoll(player: EntityPlayer) {
   if (v.run.rolling) {
     return;
   }
 
-  v.run.rolling = true;
   disableAllInputs();
 
   // The player's velocity is stored so that it can be restored when the roll is over
+  v.run.rolling = true;
   v.run.originalVelocity = player.Velocity;
+  playRollingAnimation(player);
 
-  // Play the rolling animation
+  if (
+    isJacobOrEsau(player) &&
+    !isActionPressedOnAnyInput(ButtonAction.ACTION_DROP)
+  ) {
+    const esau = player.GetOtherTwin();
+    if (esau !== undefined) {
+      v.run.rolling2 = true;
+      v.run.originalVelocity2 = esau.Velocity;
+      playRollingAnimation(esau);
+    }
+  }
+}
+
+function playRollingAnimation(player: EntityPlayer) {
   const sprite = player.GetSprite();
   const movementDirection = player.GetMovementDirection();
   const rollingAnimation = getRollingAnimation(movementDirection);
@@ -137,12 +155,17 @@ export function postPlayerUpdate(player: EntityPlayer): void {
     return;
   }
 
-  if (!v.run.rolling) {
+  const character = player.GetPlayerType();
+  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
     return;
   }
 
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (character === PlayerType.PLAYER_ESAU) {
+    postPlayerUpdateEsau(player);
+    return;
+  }
+
+  if (!v.run.rolling) {
     return;
   }
 
@@ -157,11 +180,28 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   player.Velocity = v.run.originalVelocity.Normalized().mul(rollSpeed);
 }
 
+export function postPlayerUpdateEsau(player: EntityPlayer): void {
+  if (!v.run.rolling2) {
+    return;
+  }
+
+  const rollSpeed = ROLL_SPEED * player.MoveSpeed;
+  player.Velocity = v.run.originalVelocity2.Normalized().mul(rollSpeed);
+}
+
 function stopRoll(player: EntityPlayer) {
   player.Velocity = v.run.originalVelocity;
+  if (isJacobOrEsau(player)) {
+    const esau = player.GetOtherTwin();
+    if (esau !== undefined) {
+      esau.Velocity = v.run.originalVelocity2;
+    }
+  }
 
   v.run.rolling = false;
+  v.run.rolling2 = false;
   v.run.originalVelocity = Vector.Zero;
+  v.run.originalVelocity2 = Vector.Zero;
 
   enableAllInputs();
 }
