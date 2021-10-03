@@ -3,7 +3,7 @@
 
 - Damocles is now removed from seeded races (because it isn't seeded).
 - Fixed the bug with seeded death where dying twice would permanently remove your active items. (Thanks Hispa)
-
+- Fixed the bug where doing two races in a row would result in race data being deleted.
 ```
 
 TODO Racing+ new features:
