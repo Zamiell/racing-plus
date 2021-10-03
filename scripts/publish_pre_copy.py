@@ -19,8 +19,9 @@ from get_version_from_package_json import get_version_from_package_json
 
 SCRIPT_PATH = os.path.realpath(__file__)
 SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
+GLOBALS_TS_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "src", "types", "Globals.ts")
 ROOMS_DIRECTORY = os.path.join(
-    SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipping/"
+    SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipping"
 )
 XML_FILES_TO_CONVERT = [
     "angelRooms",
@@ -41,8 +42,23 @@ def main():
     # Draw the version on the title screen
     write_version.main()
 
+    setDebugVariableToFalse()
+
     # Convert some room XML files to JSON so that they can be directly imported by the mod
     convertXMLToJSON()
+
+
+def setDebugVariableToFalse():
+    if not os.path.exists(GLOBALS_TS_PATH):
+        error("The globals file does not exist at: {}".format(GLOBALS_TS_PATH))
+
+    with open(GLOBALS_TS_PATH, "r") as file:
+        file_data = file.read()
+
+    file_data = file_data.replace("debug = true;", "debug = false;")
+
+    with open(GLOBALS_TS_PATH, "w") as file:
+        file.write(file_data)
 
 
 def convertXMLToJSON():

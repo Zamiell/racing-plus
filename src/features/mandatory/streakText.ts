@@ -11,9 +11,8 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
-import RaceStatus from "../race/types/RaceStatus";
+import { goingToRaceRoom } from "../race/raceRoom";
 import { ChallengeCustom } from "../speedrun/enums";
-import { getRoomsEntered } from "../util/roomsEntered";
 
 const FRAMES_BEFORE_FADE = 50;
 
@@ -253,17 +252,6 @@ export function getLevelText(): string {
   }
 
   return g.l.GetName(stage, stageType);
-}
-
-function goingToRaceRoom() {
-  const effectiveStage = getEffectiveStage();
-  const roomsEntered = getRoomsEntered();
-
-  return (
-    g.race.status === RaceStatus.OPEN &&
-    effectiveStage === 1 &&
-    (roomsEntered === 0 || roomsEntered === 1)
-  );
 }
 
 // ModCallbacks.MC_PRE_USE_ITEM (23)

@@ -12,7 +12,6 @@ import formatSetup from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
-import * as socketFunctions from "../socketFunctions";
 import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
@@ -46,14 +45,6 @@ export default function racePostGameStarted(): void {
 }
 
 function resetRaceVars() {
-  // If we finished a race and we reset,
-  // we don't want to show any of the graphics on the starting screen
-  // Clear out all of the race data to defaults
-  // (the client will only explicitly reset the race data if we navigate back to the lobby)
-  if (g.raceVars.finished) {
-    socketFunctions.reset();
-  }
-
   g.raceVars.finished = false;
   g.raceVars.finishedTime = 0;
 }

@@ -133,15 +133,18 @@ function getPosition(spriteName: keyof typeof sprites) {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  Isaac.DebugString("GETTING HERE 1");
   gotoRaceRoom();
   setupRaceRoom();
 }
 
 function gotoRaceRoom() {
   if (!shouldGotoRaceRoom()) {
+    Isaac.DebugString("GETTING HERE 2");
     return;
   }
 
+  Isaac.DebugString("GETTING HERE 3");
   const effectiveStage = getEffectiveStage();
   const stageType = g.l.GetStageType();
 
@@ -166,6 +169,8 @@ function gotoRaceRoom() {
 function shouldGotoRaceRoom() {
   const roomsEntered = getRoomsEntered();
 
+  Isaac.DebugString(`RACE STATUS: ${g.race.status}`);
+  Isaac.DebugString(`ROOMS ENTERED: ${roomsEntered}`);
   return (
     (g.race.status === RaceStatus.OPEN ||
       g.race.status === RaceStatus.STARTING) &&
@@ -320,4 +325,15 @@ export function numEntrantsChanged(): void {
   if (g.race.status === RaceStatus.OPEN) {
     initNumEntrantsSprite();
   }
+}
+
+export function goingToRaceRoom(): boolean {
+  const effectiveStage = getEffectiveStage();
+  const roomsEntered = getRoomsEntered();
+
+  return (
+    g.race.status === RaceStatus.OPEN &&
+    effectiveStage === 1 &&
+    (roomsEntered === 0 || roomsEntered === 1)
+  );
 }
