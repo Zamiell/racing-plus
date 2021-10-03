@@ -144,8 +144,6 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
       ? v.run.seededDeath.actives2
       : v.run.seededDeath.actives;
 
-  activesMap.clear();
-
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const item = player.GetActiveItem(activeSlot);
     if (item === CollectibleType.COLLECTIBLE_NULL) {

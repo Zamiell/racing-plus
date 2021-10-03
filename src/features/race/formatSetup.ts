@@ -151,6 +151,10 @@ function seeded(player: EntityPlayer) {
   // Remove Glyph of Balance from pools, since it is useless
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GLYPH_OF_BALANCE);
 
+  // Remove Damocles, since it is unseeded
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES);
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE);
+
   // Remove Cain's Eye, since it is useless
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 }
