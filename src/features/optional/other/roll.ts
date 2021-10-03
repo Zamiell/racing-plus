@@ -180,7 +180,7 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   player.Velocity = v.run.originalVelocity.Normalized().mul(rollSpeed);
 }
 
-export function postPlayerUpdateEsau(player: EntityPlayer): void {
+function postPlayerUpdateEsau(player: EntityPlayer) {
   if (!v.run.rolling2) {
     return;
   }
