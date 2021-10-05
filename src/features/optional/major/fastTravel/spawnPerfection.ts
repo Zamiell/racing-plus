@@ -4,15 +4,6 @@ import v from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 
-// On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of light
-// We put it 2 squares to the right of where the beam of light is
-const STAGE_8_SPAWN_GRID_LOCATION = 70;
-
-// On stage 10, we do not want the Perfection Trinket to be close to the passage to the next floor
-// in the center of the room
-// We put it 2 squares to the right of the center of the room
-const STAGE_10_SPAWN_GRID_LOCATION = 69;
-
 const SPLITTING_BOSSES = new Set<EntityType>([
   EntityType.ENTITY_FISTULA_BIG, // 71
   EntityType.ENTITY_FISTULA_MEDIUM, // 72
@@ -57,11 +48,10 @@ export function postEntityKill(entity: Entity): void {
   }
 
   const velocity = RandomVector().mul(PERFECTION_VELOCITY_MULTIPLIER);
-  const position = getPerfectionPosition(npc);
   g.g.Spawn(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_TRINKET,
-    position,
+    npc.Position,
     velocity,
     undefined,
     TrinketType.TRINKET_PERFECTION,
@@ -69,19 +59,4 @@ export function postEntityKill(entity: Entity): void {
   );
 
   v.run.perfection.spawned = true;
-}
-
-export function getPerfectionPosition(npc: EntityNPC | null): Vector {
-  const stage = g.l.GetStage();
-  const centerPos = g.r.GetCenterPos();
-
-  if (stage === 8) {
-    return g.r.GetGridPosition(STAGE_8_SPAWN_GRID_LOCATION);
-  }
-
-  if (stage === 10) {
-    return g.r.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
-  }
-
-  return npc === null ? centerPos : npc.Position;
 }
