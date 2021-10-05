@@ -51,7 +51,7 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   v.run.spawnedPerfection = true;
 }
 
-export function getPerfectionPosition(): Vector {
+function getPerfectionPosition(): Vector {
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
   const gridEntity = g.r.GetGridEntityFromPos(centerPos);
