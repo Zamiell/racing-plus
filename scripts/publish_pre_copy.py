@@ -52,13 +52,15 @@ def setDebugVariableToFalse():
     if not os.path.exists(GLOBALS_TS_PATH):
         error("The globals file does not exist at: {}".format(GLOBALS_TS_PATH))
 
-    with open(GLOBALS_TS_PATH, "r") as file:
+    with open(GLOBALS_TS_PATH, "rb") as file:
         file_data = file.read()
 
-    file_data = file_data.replace("debug = true;", "debug = false;")
+    file_string = file_data.decode("utf-8")
+    file_string = file_string.replace("debug = true;", "debug = false;")
+    file_data = file_string.encode("utf-8")
 
-    with open(GLOBALS_TS_PATH, "w") as file:
-        file.write(file_data, newline="\n")
+    with open(GLOBALS_TS_PATH, "wb") as file:
+        file.write(file_data)
 
 
 def convertXMLToJSON():
@@ -66,8 +68,8 @@ def convertXMLToJSON():
         # Read the file into a string
         file_name = file_to_convert + ".xml"
         file_path = os.path.join(ROOMS_DIRECTORY, file_name)
-        with open(file_path, "r") as file_handle:
-            file_contents = file_handle.read()
+        with open(file_path, "r") as file:
+            file_contents = file.read()
 
         # Convert the XML string to a Python dictionary
         dict = xmltodict.parse(file_contents)
@@ -79,8 +81,8 @@ def convertXMLToJSON():
         # Write the JSON to disk
         output_file_name = file_to_convert + ".json"
         output_file_path = os.path.join(JSON_OUTPUT_DIRECTORY, output_file_name)
-        with open(output_file_path, "w") as file_handle:
-            file_handle.write(jsonString, newline="\n")
+        with open(output_file_path, "w") as file:
+            file.write(jsonString)
 
         print("Created: {}".format(output_file_path))
 
