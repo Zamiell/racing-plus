@@ -36,7 +36,7 @@ function featureEnabled() {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!config.roll || !g.debug) {
+  if (!rollEnabled()) {
     return;
   }
 
@@ -151,7 +151,7 @@ export function postNewRoom(): void {
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
-  if (!config.roll || !g.debug) {
+  if (!rollEnabled()) {
     return;
   }
 
@@ -225,4 +225,8 @@ function getRollPlayer() {
   }
 
   return player;
+}
+
+function rollEnabled() {
+  return config.roll && g.debug;
 }

@@ -1,4 +1,4 @@
-import { isKeyboardPressed } from "isaacscript-common";
+import { isKeyboardPressed, round } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
@@ -41,8 +41,8 @@ function hotkeyFunction() {}
 
 function hotkey2Function() {
   hotkeys.fastDropAll = Keyboard.KEY_Z;
-  hotkeys.autofire = Keyboard.KEY_G;
-  hotkeys.roll = Keyboard.KEY_F;
+  hotkeys.autofire = Keyboard.KEY_F;
+  hotkeys.roll = Keyboard.KEY_G;
   print("Test hotkeys set.");
 }
 
@@ -69,6 +69,15 @@ export function postNPCRender(_npc: EntityNPC): void {
   // const text = `Animation: ${animation}`;
   // const position = Isaac.WorldToScreen(npc.Position);
   // Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
+}
+
+// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+export function postPlayerRender(player: EntityPlayer): void {
+  const x = round(player.Velocity.X, 1);
+  const y = round(player.Velocity.Y, 1);
+  const text = `Velocity: ${x}, ${y}`;
+  const position = Isaac.WorldToScreen(player.Position);
+  Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }
 
 // ModCallbacks.MC_POST_EFFECT_RENDER (56)

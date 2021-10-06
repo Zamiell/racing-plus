@@ -58,7 +58,7 @@ def setDebugVariableToFalse():
     file_data = file_data.replace("debug = true;", "debug = false;")
 
     with open(GLOBALS_TS_PATH, "w") as file:
-        file.write(file_data)
+        file.write(file_data, newline="\n")
 
 
 def convertXMLToJSON():
@@ -80,7 +80,7 @@ def convertXMLToJSON():
         output_file_name = file_to_convert + ".json"
         output_file_path = os.path.join(JSON_OUTPUT_DIRECTORY, output_file_name)
         with open(output_file_path, "w") as file_handle:
-            file_handle.write(jsonString)
+            file_handle.write(jsonString, newline="\n")
 
         print("Created: {}".format(output_file_path))
 
