@@ -143,8 +143,6 @@ export enum PickupPriceCustom {
   PRICE_NO_MINIMAP = -50,
 }
 
-/*
 export enum SoundEffectCustom {
   SOUND_SPEEDRUN_FINISH = Isaac.GetSoundIdByName("Speedrun Finish"),
 }
-*/

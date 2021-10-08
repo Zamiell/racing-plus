@@ -1,7 +1,7 @@
 ```
-### *v0.69.7* - October 5th, 2021
+### *v0.69.8* - October ?th, 2021
 
-- Fixed the bug where Angel Room #14 had two items instead of one.
+-
 ```
 
 TODO Racing+ new features:

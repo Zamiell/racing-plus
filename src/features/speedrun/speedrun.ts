@@ -1,7 +1,8 @@
 import { arraySum } from "isaacscript-common";
 import { ISAAC_FRAMES_PER_SECOND } from "../../constants";
+import g from "../../globals";
 import * as timer from "../../timer";
-import { CollectibleTypeCustom } from "../../types/enums";
+import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
@@ -35,7 +36,7 @@ export function finish(player: EntityPlayer): void {
 
   // Play a sound effect
   // (custom sounds do not function properly in the current patch)
-  // g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
+  g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
 
   // Give them the Checkpoint custom item
   // (this is used by the AutoSplitter to know when to split)
