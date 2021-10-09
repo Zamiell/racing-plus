@@ -2,11 +2,12 @@
 // If there was N seconds between damage, then the DPS counter resets
 
 import {
+  GAME_FRAMES_PER_SECOND,
   getScreenBottomRight,
   round,
   saveDataManager,
 } from "isaacscript-common";
-import { GAME_FRAMES_PER_SECOND, KCOLOR_DEFAULT } from "../../constants";
+import { KCOLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 
 const DPS_TEXT_Y_OFFSET = -40;

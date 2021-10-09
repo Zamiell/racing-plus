@@ -12,7 +12,7 @@ pack/unpack reference:
 
 */
 
-import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
+import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 
 export const BEACON_INTERVAL = 10 * ISAAC_FRAMES_PER_SECOND;
 export const BEACON_FIELDS = ["raceID", "userID", "message"];

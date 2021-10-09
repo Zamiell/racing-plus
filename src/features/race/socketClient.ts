@@ -1,6 +1,5 @@
 import { log } from "isaacscript-common";
 import Sandbox from "../../types/Sandbox";
-import SocketClient from "../../types/SocketClient";
 
 const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
 const UDP_PORT = 9113;

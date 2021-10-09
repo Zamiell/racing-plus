@@ -1,8 +1,6 @@
 export const COLOR_DEFAULT = Color(1, 1, 1, 1);
 export const KCOLOR_DEFAULT = KColor(1, 1, 1, 1);
 
-export const GAME_FRAMES_PER_SECOND = 30;
-export const ISAAC_FRAMES_PER_SECOND = 60;
 export const MOD_NAME = "Racing+";
 export const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
 export const TWO_BY_ONE_TRAPDOOR_POSITION = Vector(600, 200);

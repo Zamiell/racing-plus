@@ -1,5 +1,3 @@
-import SocketClient from "./SocketClient";
-
 /** @noSelf */
 export default interface Sandbox {
   isSocketInitialized(): boolean;

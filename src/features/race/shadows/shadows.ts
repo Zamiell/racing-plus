@@ -3,10 +3,10 @@
 
 import {
   getRoomIndex,
+  ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
   saveDataManager,
 } from "isaacscript-common";
-import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
@@ -78,6 +78,7 @@ export function init(): void {
   saveDataManager("shadows", v);
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!shadowsEnabled()) {
     return;

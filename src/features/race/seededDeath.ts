@@ -1,6 +1,7 @@
 import {
   disableAllInputs,
   enableAllInputs,
+  GAME_FRAMES_PER_SECOND,
   getDeathAnimationName,
   getFinalFrameOfAnimation,
   getPlayerFromIndex,
@@ -9,16 +10,13 @@ import {
   getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   inBeastRoom,
+  ISAAC_FRAMES_PER_SECOND,
   isJacobOrEsau,
   isKeeper,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
-import {
-  GAME_FRAMES_PER_SECOND,
-  ISAAC_FRAMES_PER_SECOND,
-} from "../../constants";
 import g from "../../globals";
 import * as timer from "../../timer";
 import TimerType from "../../types/TimerType";

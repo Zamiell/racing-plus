@@ -4,12 +4,12 @@ import {
   getEnumValues,
   getScreenBottomRight,
   hexToKColor,
+  ISAAC_FRAMES_PER_SECOND,
   isKeyboardPressed,
   log,
   logArray,
   saveDataManager,
 } from "isaacscript-common";
-import { ISAAC_FRAMES_PER_SECOND } from "../../../constants";
 import g from "../../../globals";
 import KEYBOARD_MAP from "../../../keyboardMap";
 import { config } from "../../../modConfigMenu";
@@ -43,6 +43,7 @@ export function init(): void {
   saveDataManager("customConsole", v);
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!config.customConsole) {
     return;

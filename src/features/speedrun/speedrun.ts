@@ -1,5 +1,4 @@
-import { arraySum } from "isaacscript-common";
-import { ISAAC_FRAMES_PER_SECOND } from "../../constants";
+import { arraySum, ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
