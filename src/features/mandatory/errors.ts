@@ -19,6 +19,7 @@ const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
 const ITEM_POOL_TO_CHECK = ItemPoolType.POOL_SECRET;
 const STARTING_X = 115;
 const STARTING_Y = 70;
+const MAX_CHARACTERS = 50;
 
 const v = {
   run: {
@@ -180,22 +181,30 @@ export function postRender(): boolean {
   }
 
   if (v.run.corrupted) {
-    drawCorrupted();
+    drawText(
+      "Error: You must completely close and re-open the game after enabling or disabling any mods.\n\nIf this error persists after re-opening the game, then your Racing+ mod is corrupted and needs to be redownloaded/reinstalled.",
+    );
     return true;
   }
 
   if (v.run.incompleteSave) {
-    drawSaveFileNotFullyUnlocked();
+    drawText(
+      "Error: You must use a fully unlocked save file to play the Racing+ mod. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources",
+    );
     return true;
   }
 
   if (v.run.otherModsEnabled) {
-    drawOtherModsEnabled();
+    drawText(
+      "Error: You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
+    );
     return true;
   }
 
   if (inSpeedrun() && !checkValidCharOrder()) {
-    drawSetCharOrder();
+    drawText(
+      'Error: You must set a character order first by using the "Change Char Order" custom challenge.',
+    );
     return true;
   }
 
@@ -204,7 +213,9 @@ export function postRender(): boolean {
     const character = player.GetPlayerType();
     const randomBabyID = Isaac.GetPlayerTypeByName("Random Baby");
     if (character !== randomBabyID) {
-      drawTurnOffBabies();
+      drawText(
+        "Error: You must turn off The Babies Mod when playing characters other than Random Baby.",
+      );
       return true;
     }
   }
@@ -243,146 +254,31 @@ function drawNoRepentance() {
   Isaac.RenderText("manually from GitHub.", x, y, 2, 2, 2, 2);
 }
 
-function drawCorrupted() {
-  let x = STARTING_X;
+function drawText(text: string) {
+  const x = STARTING_X;
   let y = STARTING_Y;
-  Isaac.RenderText(
-    "Error: You must close and re-open the game after",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  x += 42;
-  y += 10;
-  Isaac.RenderText("enabling or disabling any mods.", x, y, 2, 2, 2, 2);
-  y += 20;
-  Isaac.RenderText(
-    "If this error persists after re-opening the game,",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText(
-    "then your Racing+ mod is corrupted and needs to be",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText("redownloaded/reinstalled.", x, y, 2, 2, 2, 2);
+
+  for (const line of text.split("\n")) {
+    const splitLines = getSplitLines(line);
+    for (const splitLine of splitLines) {
+      Isaac.RenderText(splitLine, x, y, 2, 2, 2, 2);
+      y += 10;
+    }
+  }
 }
 
-function drawSaveFileNotFullyUnlocked() {
-  let x = STARTING_X;
-  let y = STARTING_Y;
-  Isaac.RenderText(
-    "Error: You must use a fully unlocked save file to",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  x += 42;
-  y += 10;
-  Isaac.RenderText(
-    "play the Racing+ mod. This is so that all",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText(
-    "players will have consistent items in races",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText("and speedruns. You can download a fully", x, y, 2, 2, 2, 2);
-  y += 10;
-  Isaac.RenderText("unlocked save file at:", x, y, 2, 2, 2, 2);
-  x -= 42;
-  y += 20;
-  Isaac.RenderText(
-    "https://www.speedrun.com/repentance/resources",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-}
+function getSplitLines(line: string): string[] {
+  let spaceLeft = MAX_CHARACTERS;
+  const words = line.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if (word.length + 1 > spaceLeft) {
+      words[i] = `\n${word}`;
+      spaceLeft = MAX_CHARACTERS - word.length;
+    } else {
+      spaceLeft -= word.length + 1;
+    }
+  }
 
-function drawOtherModsEnabled() {
-  let x = STARTING_X;
-  let y = STARTING_Y;
-  Isaac.RenderText("Error: You have illegal mods enabled.", x, y, 2, 2, 2, 2);
-  x += 42;
-  y += 20;
-  Isaac.RenderText(
-    "Make sure that Racing+ is the only mod enabled",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText("in your mod list and try again.", x, y, 2, 2, 2, 2);
-}
-
-function drawSetCharOrder() {
-  let x = STARTING_X;
-  let y = STARTING_Y;
-  Isaac.RenderText(
-    "Error: You must set a character order first",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  x += 42;
-  y += 10;
-  Isaac.RenderText('by using the "Change Char Order" custom', x, y, 2, 2, 2, 2);
-  y += 10;
-  Isaac.RenderText("challenge.", x, y, 2, 2, 2, 2);
-}
-
-function drawTurnOffBabies() {
-  let x = STARTING_X;
-  let y = STARTING_Y;
-  Isaac.RenderText(
-    "Error: You must turn off The Babies Mod when playing",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  x += 42;
-  y += 10;
-  Isaac.RenderText("characters other than Random Baby.", x, y, 2, 2, 2, 2);
+  return words.join(" ").split("\n");
 }

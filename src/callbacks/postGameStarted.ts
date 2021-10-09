@@ -47,7 +47,7 @@ export function main(isContinued: boolean): void {
     return;
   }
 
-  // Check for errors that should prevent the Racing+ mod from doing anything
+  // Check for errors that should prevent the mod from doing anything
   if (errors.check()) {
     return;
   }

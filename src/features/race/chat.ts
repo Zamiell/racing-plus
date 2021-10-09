@@ -18,6 +18,7 @@ const MAX_CHAT_MESSAGES = 10;
 const FADED_CHAT_OPACITY = 0.15;
 const FRAMES_FOR_CHAT_TO_SHOW = 120;
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!config.chat) {
     return;
