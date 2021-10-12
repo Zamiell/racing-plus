@@ -2,6 +2,7 @@ import {
   forceNewLevelCallback,
   forceNewRoomCallback,
   getEffectiveStage,
+  getNPCs,
   getPlayers,
   getRoomIndex,
   getRoomStageID,
@@ -18,6 +19,11 @@ import {
   RACE_ROOM_VARIANT,
 } from "./constants";
 import RaceStatus from "./types/RaceStatus";
+
+// We use the Cellar because it is the cleanest floor
+const STAGE_ARGUMENT_FOR_LOBBY = "1a";
+// We use a room with no grid entities and a single Gaper
+const ROOM_VARIANT_FOR_RACE_ROOM = 5;
 
 const GFX_PATH = "gfx/race/race-room";
 const X_SPACING = 110;
@@ -145,20 +151,18 @@ function gotoRaceRoom() {
   const effectiveStage = getEffectiveStage();
   const stageType = g.l.GetStageType();
 
-  // If we not already on Cellar 1, go there
-  // We use the Cellar because it is the cleanest floor
+  // If we not already on the right floor, go there
   if (effectiveStage !== 1 || stageType !== StageType.STAGETYPE_WOTL) {
     // Since we might be going to a new floor on frame 0,
     // we have to specify that the PostNewLevel callback should fire
     forceNewLevelCallback();
-    consoleCommand("stage 1a");
+    consoleCommand(`stage ${STAGE_ARGUMENT_FOR_LOBBY}`);
   }
 
-  // For the race room, we use a room with no grid entities and a single Gaper
   // Since we might be going to a new room on frame 0,
   // we have to specify that the PostNewRoom callback should fire
   forceNewRoomCallback();
-  consoleCommand("goto d.5");
+  consoleCommand(`goto d.${ROOM_VARIANT_FOR_RACE_ROOM}`);
   // We will not actually be sent to the room until a frame passes,
   // so wait until the next PostNewRoom fires
 }
@@ -180,8 +184,8 @@ function setupRaceRoom() {
     return;
   }
 
-  const gapers = Isaac.FindByType(EntityType.ENTITY_GAPER);
-  removeAllEntities(gapers);
+  const npcs = getNPCs();
+  removeAllEntities(npcs);
   g.r.SetClear(true);
 
   // We want to trap the player in the room, so delete all 4 doors

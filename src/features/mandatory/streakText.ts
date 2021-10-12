@@ -135,7 +135,7 @@ function getFade(frame: int) {
 }
 
 function draw(text: string, fade: float) {
-  const positionGame = gridToPos(6, 0); // Below the top door
+  const positionGame = gridToPos(6, 0); // In the top center of the screen
   const position = Isaac.WorldToRenderPosition(positionGame);
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
