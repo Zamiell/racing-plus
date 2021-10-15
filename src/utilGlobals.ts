@@ -127,6 +127,12 @@ export function spawnCollectible(
   options = false,
   forceFreeItem = false,
 ): EntityPickup {
+  if (seed === 0) {
+    error(
+      "Attempted to spawn a collectible with a seed of 0, which is not allowed. (It will cause the game to crash under certain conditions.)",
+    );
+  }
+
   const roomType = g.r.GetType();
 
   const collectible = g.g

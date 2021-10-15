@@ -11,6 +11,7 @@ import * as automaticItemInsertion from "../features/optional/quality/automaticI
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
+import { PickupVariantCustom } from "../types/enums";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -53,6 +54,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_POST_PICKUP_INIT,
     trophy,
     PickupVariant.PICKUP_TROPHY, // 370
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_PICKUP_INIT,
+    invisiblePickup,
+    PickupVariantCustom.INVISIBLE_PICKUP,
   );
 }
 
@@ -98,4 +105,9 @@ function trinket(pickup: EntityPickup) {
 // PickupVariant.PICKUP_TROPHY (370)
 function trophy(pickup: EntityPickup) {
   speedrunPostPickupInit.trophy(pickup);
+}
+
+// PickupVariantCustom.INVISIBLE_PICKUP
+function invisiblePickup(pickup: EntityPickup) {
+  pickup.Remove();
 }

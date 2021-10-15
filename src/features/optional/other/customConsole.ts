@@ -60,6 +60,12 @@ export function postRender(): void {
     return;
   }
 
+  const player = Isaac.GetPlayer();
+  if (player.IsDead()) {
+    close(false);
+    return;
+  }
+
   if (!consoleOpen) {
     checkKeyboardInput(Keyboard.KEY_ENTER, isaacFrameCount);
     return;
@@ -146,6 +152,10 @@ function open() {
 }
 
 function close(execute = true) {
+  if (!consoleOpen) {
+    return;
+  }
+
   consoleOpen = false;
   enableAllInputs();
   AwaitingTextInput = false;
