@@ -1,7 +1,6 @@
 import {
   getClosestPlayer,
   getRoomIndex,
-  gridToPos,
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -68,12 +67,18 @@ export function spawnEndOfRaceButtons(): void {
 function spawnDPSButton() {
   const roomIndex = getRoomIndex();
 
-  let position = gridToPos(1, 1);
+  let position = g.r.GetGridPosition(32); // Top left
   if (roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
-    position = gridToPos(1, 6); // A Y of 1 is out of bounds inside of the Mega Satan room
+    // The normal position is out of bounds inside of the Mega Satan room
+    position = g.r.GetGridPosition(107);
   }
 
-  Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, position, true);
+  Isaac.GridSpawn(
+    GridEntityType.GRID_PRESSURE_PLATE,
+    PressurePlateVariant.PRESSURE_PLATE,
+    position,
+    true,
+  );
 
   const gridIndex = g.r.GetGridIndex(position);
 
@@ -88,9 +93,10 @@ function spawnDPSButton() {
 export function spawnVictoryLapButton(center?: boolean): void {
   const roomIndex = getRoomIndex();
 
-  let position = gridToPos(11, 1);
+  let position = g.r.GetGridPosition(42); // Top right
   if (roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
-    position = gridToPos(11, 6); // A Y of 1 is out of bounds inside of the Mega Satan room
+    // The normal position is out of bounds inside of the Mega Satan room
+    position = g.r.GetGridPosition(117);
   }
 
   if (center === true) {

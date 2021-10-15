@@ -89,7 +89,7 @@ function createCharacterButtons() {
     v.room.sprites.characters.push(characterSprite);
   }
 
-  const nextToBottomDoor = gridToPos(6, 5);
+  const nextToBottomDoor = g.r.GetGridPosition(97);
   for (const player of getPlayers()) {
     player.Position = nextToBottomDoor;
   }

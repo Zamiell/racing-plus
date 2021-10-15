@@ -1,11 +1,13 @@
-import { getPlayers, gridToPos, saveDataManager } from "isaacscript-common";
+import { getPlayers, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import { incrementRNG } from "../../util";
 import RaceStatus from "../race/types/RaceStatus";
 import { speedrunIsFinished } from "../speedrun/exported";
 
 const v = {
   run: {
     numFireworksSpawned: 0,
+    seed: 0,
   },
 };
 
@@ -13,6 +15,7 @@ export function init(): void {
   saveDataManager("fireworks", v);
 }
 
+// ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   makeFireworksQuieter();
 
@@ -66,12 +69,14 @@ function spawnFireworks() {
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     for (let i = 0; i < 5; i++) {
       v.run.numFireworksSpawned += 1;
-      const fireworkPos = gridToPos(math.random(1, 11), math.random(2, 8));
+      v.run.seed = incrementRNG(v.run.seed);
+      const randomGridIndex = g.r.GetRandomTileIndex(v.run.seed);
+      const position = g.r.GetGridPosition(randomGridIndex);
       const firework = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
         EffectVariant.FIREWORKS,
         0,
-        fireworkPos,
+        position,
         Vector.Zero,
         undefined,
       ).ToEffect();
@@ -80,4 +85,9 @@ function spawnFireworks() {
       }
     }
   }
+}
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  v.run.seed = g.seeds.GetStartSeed();
 }

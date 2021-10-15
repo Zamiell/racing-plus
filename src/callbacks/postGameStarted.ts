@@ -2,6 +2,7 @@ import { log } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
+import * as fireworks from "../features/mandatory/fireworks";
 import * as gelloSaveAndQuitFix from "../features/mandatory/gelloSaveAndQuitFix";
 import * as genesisSaveAndQuitFix from "../features/mandatory/genesisSaveAndQuitFix";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -60,6 +61,7 @@ export function main(isContinued: boolean): void {
   centerStart.postGameStarted();
   streakText.postGameStarted();
   seededGBBug.postGameStarted();
+  fireworks.postGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before
   // race initialization because we need to find out what the passive item is before other items are

@@ -1,4 +1,5 @@
-import { getPlayers, gridToPos } from "isaacscript-common";
+import { getPlayers } from "isaacscript-common";
+import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 export function postGameStarted(): void {
@@ -11,11 +12,12 @@ export function postGameStarted(): void {
     if (character === PlayerType.PLAYER_SAMSON) {
       const removed = player.TryRemoveTrinket(TrinketType.TRINKET_CHILDS_HEART);
       if (removed) {
+        const bottomRightCorner = g.r.GetGridPosition(106);
         const childsHeart = Isaac.Spawn(
           EntityType.ENTITY_PICKUP,
           PickupVariant.PICKUP_TRINKET,
           TrinketType.TRINKET_CHILDS_HEART,
-          gridToPos(0, 6),
+          bottomRightCorner,
           Vector.Zero,
           player,
         );

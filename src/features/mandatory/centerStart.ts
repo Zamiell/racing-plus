@@ -2,7 +2,7 @@
 // Instead, put the player in the middle of the room so that they have equal access to all 4 doors
 // This feature is not configurable because it could grant an advantage to turn off
 
-import { getPlayers } from "isaacscript-common";
+import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
 import g from "../../globals";
 import { movePlayersAndFamiliars } from "../../util";
 
@@ -29,27 +29,15 @@ export function centerPlayers(): void {
   // If this is a multiplayer game, spread out the players in a circle around the center of the room
   if (players.length > 1) {
     const distanceBetweenPlayers = 50;
-    const positions = distributeAround(
+    const circlePoints = getCircleDiscretizedPoints(
       centerPos,
       distanceBetweenPlayers,
       players.length,
     );
     for (let i = 0; i < players.length; i++) {
-      players[i].Position = positions[i];
+      players[i].Position = circlePoints[i];
     }
   }
-}
-
-function distributeAround(centerPos: Vector, distance: int, numPoints: int) {
-  const positions: Vector[] = [];
-  const leftOfCenter = Vector(-distance, 0);
-  for (let i = 0; i < numPoints; i++) {
-    const rotatedPosition = leftOfCenter.Rotated((i * 360) / numPoints);
-    const positionFromCenter = centerPos.add(rotatedPosition);
-    positions.push(positionFromCenter);
-  }
-
-  return positions;
 }
 
 function pickUpTaintedForgotten() {

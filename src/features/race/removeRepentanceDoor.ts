@@ -4,7 +4,7 @@
 import {
   getEffectiveStage,
   getRepentanceDoor,
-  removeAllEntities,
+  removeEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import RaceGoal from "./types/RaceGoal";
@@ -41,7 +41,7 @@ function removeRepentanceDoor() {
       EntityType.ENTITY_EFFECT,
       EffectVariant.DUST_CLOUD,
     );
-    removeAllEntities(dustClouds);
+    removeEntities(dustClouds);
 
     const repentanceDoor = getRepentanceDoor();
     if (repentanceDoor !== undefined) {

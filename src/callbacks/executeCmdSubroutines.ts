@@ -104,7 +104,7 @@ export function list(all = false): void {
       continue;
     }
 
-    let debugString = `${i + 1}  - ${entity.Type}.${entity.Variant}.${
+    let debugString = `${i + 1} - ${entity.Type}.${entity.Variant}.${
       entity.SubType
     }`;
 

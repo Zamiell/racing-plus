@@ -1,4 +1,4 @@
-import { removeAllEntities } from "isaacscript-common";
+import { removeEntities } from "isaacscript-common";
 import g from "../../globals";
 
 // Card Reading is too powerful, so it is nerfed in Racing+
@@ -19,5 +19,5 @@ function removeEndGamePortals() {
     EntityType.ENTITY_EFFECT,
     EffectVariant.PORTAL_TELEPORT,
   );
-  removeAllEntities(portals);
+  removeEntities(portals);
 }

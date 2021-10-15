@@ -1,6 +1,6 @@
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
-import { removeAllEntities } from "isaacscript-common";
+import { removeEntities } from "isaacscript-common";
 import g from "../../globals";
 import { incrementRNG } from "../../util";
 import RaceFormat from "./types/RaceFormat";
@@ -30,7 +30,7 @@ export function postNewRoom(): void {
   }
 
   // There are 10 Scolex entities for each scolex
-  removeAllEntities(scolexes);
+  removeEntities(scolexes);
 
   let seed = roomSeed;
   for (let i = 0; i < 2; i++) {

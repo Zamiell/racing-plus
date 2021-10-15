@@ -7,8 +7,7 @@ import {
   getRoomIndex,
   getRoomStageID,
   getRoomVariant,
-  gridToPos,
-  removeAllEntities,
+  removeEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand, initSprite } from "../../util";
@@ -185,7 +184,7 @@ function setupRaceRoom() {
   }
 
   const npcs = getNPCs();
-  removeAllEntities(npcs);
+  removeEntities(npcs);
   g.r.SetClear(true);
 
   // We want to trap the player in the room, so delete all 4 doors
@@ -205,16 +204,13 @@ function setupRaceRoom() {
   }
 
   // Spawn two Gaping Maws (235.0)
-  const positions = [
-    [5, 5],
-    [7, 5],
-  ];
-  for (const [x, y] of positions) {
+  for (const gridIndex of [96, 98]) {
+    const position = g.r.GetGridPosition(gridIndex);
     const gapingMaw = Isaac.Spawn(
       EntityType.ENTITY_GAPING_MAW,
       0,
       0,
-      gridToPos(x, y),
+      position,
       Vector.Zero,
       undefined,
     );

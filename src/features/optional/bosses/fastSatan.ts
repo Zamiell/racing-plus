@@ -1,4 +1,4 @@
-import { getRoomStageID, getRoomVariant, gridToPos } from "isaacscript-common";
+import { getRoomStageID, getRoomVariant } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { incrementRNG } from "../../../util";
@@ -42,8 +42,8 @@ function spawnEnemies() {
   const roomSeed = g.r.GetSpawnSeed();
 
   let seed = roomSeed;
-  const positions = [gridToPos(5, 3), gridToPos(7, 3)];
-  for (const position of positions) {
+  for (const gridIndex of [66, 68]) {
+    const position = g.r.GetGridPosition(gridIndex);
     seed = incrementRNG(seed);
     g.g.Spawn(
       EntityType.ENTITY_LEECH,
@@ -57,10 +57,11 @@ function spawnEnemies() {
   }
 
   seed = incrementRNG(seed);
+  const centerPos = g.r.GetCenterPos();
   g.g.Spawn(
     EntityType.ENTITY_FALLEN,
     0,
-    gridToPos(6, 3),
+    centerPos,
     Vector.Zero,
     undefined,
     0,

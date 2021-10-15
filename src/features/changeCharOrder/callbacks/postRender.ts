@@ -33,15 +33,15 @@ function disableControls() {
 }
 
 function drawCurrentChoosingActivity() {
-  const posActivityGame = gridToPos(6, 6);
-  const posActivity = Isaac.WorldToScreen(posActivityGame);
-  posActivity.Y -= 15;
+  const bottomCenterOfRoom = g.r.GetGridPosition(112);
+  const position = Isaac.WorldToScreen(bottomCenterOfRoom);
+  position.Y -= 15;
   const text = getTextForCurrentActivity(v.room.phase);
   const length = g.fontDroid.GetStringWidthUTF8(text);
   g.fontDroid.DrawString(
     text,
-    posActivity.X - length / 2,
-    posActivity.Y,
+    position.X - length / 2,
+    position.Y,
     KCOLOR_DEFAULT,
     0,
     true,
@@ -77,7 +77,8 @@ function drawCharacterSprites() {
 
     let posCharGame;
     if (v.room.sprites.characters.length === 1) {
-      posCharGame = gridToPos(6, 5); // The bottom-center of the room
+      const nextToBottomDoor = g.r.GetGridPosition(97);
+      posCharGame = nextToBottomDoor;
     } else {
       posCharGame = gridToPos(x, y - 1); // We want it to be one tile above the button
     }

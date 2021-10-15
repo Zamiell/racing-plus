@@ -2,7 +2,7 @@ import {
   forceNewRoomCallback,
   getNPCs,
   gridToPos,
-  removeAllEntities,
+  removeEntities,
   removeItemFromItemTracker,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -38,21 +38,16 @@ function setupButtonRoom() {
   const player = Isaac.GetPlayer();
 
   const npcs = getNPCs();
-  removeAllEntities(npcs);
+  removeEntities(npcs);
   g.r.SetClear(true);
 
-  // We want to trap the player in the room, so delete all 4 doors
   for (let i = 0; i < 4; i++) {
     g.r.RemoveDoor(i);
   }
 
-  // Put the player next to the bottom door
-  player.Position = gridToPos(6, 5);
-
-  // Remove the D6
+  const nextToBottomDoor = g.r.GetGridPosition(97);
+  player.Position = nextToBottomDoor;
   player.RemoveCollectible(CollectibleType.COLLECTIBLE_D6);
-
-  // Remove the bomb
   player.AddBombs(-1);
 
   // Give Isaac's some speed

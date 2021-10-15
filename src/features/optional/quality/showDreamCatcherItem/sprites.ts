@@ -1,8 +1,4 @@
-import {
-  anyPlayerHasCollectible,
-  getRoomIndex,
-  gridToPos,
-} from "isaacscript-common";
+import { anyPlayerHasCollectible, getRoomIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../util";
 import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
@@ -87,8 +83,8 @@ export function draw(): void {
     return;
   }
 
-  const topLeftRoomPosition = gridToPos(1, 1);
-  const nextToDreamCatcherPosition = gridToPos(2, 1);
+  const topLeftRoomPosition = g.r.GetGridPosition(32);
+  const nextToDreamCatcherPosition = g.r.GetGridPosition(33);
 
   if (dreamCatcherSprite !== null) {
     const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);

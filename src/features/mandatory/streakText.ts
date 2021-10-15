@@ -5,7 +5,6 @@ import {
   getEffectiveStage,
   getItemName,
   getRandomArrayElement,
-  gridToPos,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
@@ -14,6 +13,7 @@ import { incrementRNG } from "../../util";
 import { goingToRaceRoom } from "../race/raceRoom";
 import { ChallengeCustom } from "../speedrun/enums";
 
+const TEXT_GRID_INDEX = 22; // In the top center of the screen
 const FRAMES_BEFORE_FADE = 50;
 
 // Listed in order of the wiki (32 in total)
@@ -135,7 +135,7 @@ function getFade(frame: int) {
 }
 
 function draw(text: string, fade: float) {
-  const positionGame = gridToPos(6, 0); // In the top center of the screen
+  const positionGame = g.r.GetGridPosition(TEXT_GRID_INDEX);
   const position = Isaac.WorldToRenderPosition(positionGame);
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
