@@ -1,5 +1,5 @@
 ```
-### *v0.69.8* - October ?th, 2021
+### *v0.69.8* - October 15th, 2021
 
 - Fixed the bug where using Soul of Eden in the Mom boss room would cause the game to crash under certain conditions. (Thanks TNTerminator)
 - Fixed the bug where the custom console would function incorrectly if the player died. (Thanks TNTerminator)
