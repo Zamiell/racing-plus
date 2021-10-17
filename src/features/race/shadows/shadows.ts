@@ -14,13 +14,13 @@ import * as socket from "../socket";
 import RaceFormat from "../types/RaceFormat";
 import RacerStatus from "../types/RacerStatus";
 import RaceStatus from "../types/RaceStatus";
+import { CHARACTER_PNG_MAP } from "./characterPNGMap";
 import {
   BEACON_DATA_FORMAT,
   BEACON_FIELDS,
   BEACON_INTERVAL,
   BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
-  CHARACTER_PNG_MAP,
   DEFAULT_CHARACTER_PNG,
   FADED_COLOR,
   SHADOW_DATA_FORMAT,

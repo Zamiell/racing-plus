@@ -6,6 +6,8 @@ import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
 import g from "../../globals";
 import { movePlayersAndFamiliars } from "../../util";
 
+const CIRCLE_RADIUS_BETWEEN_PLAYERS = 50;
+
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   centerPlayers();
@@ -28,11 +30,13 @@ export function centerPlayers(): void {
 
   // If this is a multiplayer game, spread out the players in a circle around the center of the room
   if (players.length > 1) {
-    const distanceBetweenPlayers = 50;
     const circlePoints = getCircleDiscretizedPoints(
       centerPos,
-      distanceBetweenPlayers,
+      CIRCLE_RADIUS_BETWEEN_PLAYERS,
       players.length,
+      1,
+      1,
+      Direction.LEFT,
     );
     for (let i = 0; i < players.length; i++) {
       players[i].Position = circlePoints[i];
