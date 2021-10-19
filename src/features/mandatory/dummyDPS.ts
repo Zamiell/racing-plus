@@ -3,7 +3,7 @@
 
 import {
   GAME_FRAMES_PER_SECOND,
-  getScreenBottomRight,
+  getScreenBottomRightPos,
   round,
   saveDataManager,
 } from "isaacscript-common";
@@ -59,8 +59,8 @@ function drawDPSText(npc: EntityNPC) {
   const text = `DPS: ${roundedDPSString}`;
   const renderPosition = Isaac.WorldToScreen(npc.Position);
   const y = renderPosition.Y + DPS_TEXT_Y_OFFSET;
-  const bottomRight = getScreenBottomRight();
-  g.fontPF.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRight.X, true);
+  const bottomRightPos = getScreenBottomRightPos();
+  g.fontPF.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRightPos.X, true);
 }
 
 function getDPS() {

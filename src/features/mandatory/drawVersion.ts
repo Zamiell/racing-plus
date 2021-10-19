@@ -1,5 +1,5 @@
 import {
-  getScreenCenter,
+  getScreenCenterPos,
   isKeyboardPressed,
   saveDataManager,
 } from "isaacscript-common";
@@ -36,18 +36,18 @@ export function postRender(): void {
     return;
   }
 
-  const center = getScreenCenter();
+  const centerPos = getScreenCenterPos();
   let text: string;
   let x: int;
   let y: int;
 
   text = "Racing+";
-  x = center.X - 3 * text.length;
-  y = center.Y + 40;
+  x = centerPos.X - 3 * text.length;
+  y = centerPos.Y + 40;
   Isaac.RenderText(text, x, y, 2, 2, 2, 2);
 
   text = `v${VERSION}`;
-  x = center.X - 3 * text.length;
+  x = centerPos.X - 3 * text.length;
   y += 15;
   Isaac.RenderText(text, x, y, 2, 2, 2, 2);
 }

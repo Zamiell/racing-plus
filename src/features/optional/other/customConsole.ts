@@ -2,7 +2,7 @@ import {
   disableAllInputs,
   enableAllInputs,
   getEnumValues,
-  getScreenBottomRight,
+  getScreenBottomRightPos,
   hexToKColor,
   ISAAC_FRAMES_PER_SECOND,
   isKeyboardPressed,
@@ -251,10 +251,10 @@ function getScreenPosition(
   anchorX: float,
   anchorY: float,
 ): Vector {
-  const bottomRight = getScreenBottomRight();
+  const bottomRightPos = getScreenBottomRightPos();
   return Vector(
-    anchorX * bottomRight.X + x * (1 - anchorX * 2),
-    anchorY * bottomRight.Y + y * (1 - anchorY * 2),
+    anchorX * bottomRightPos.X + x * (1 - anchorX * 2),
+    anchorY * bottomRightPos.Y + y * (1 - anchorY * 2),
   );
 }
 

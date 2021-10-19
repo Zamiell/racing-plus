@@ -4,8 +4,8 @@ import {
   getPlayerFromIndex,
   getPlayerIndex,
   getPlayerNumTransformationCollectibles,
-  getScreenBottomLeft,
-  getScreenBottomRight,
+  getScreenBottomLeftPos,
+  getScreenBottomRightPos,
   isFirstPlayer,
   PickingUpItem,
   PlayerIndex,
@@ -142,9 +142,9 @@ function drawPocketItemsDelta() {
     }
 
     const color = getTextColor(fade);
-    const bottomRightCorner = getScreenBottomRight();
-    const x = bottomRightCorner.X - BOTTOM_CORNER_OFFSET;
-    const y = bottomRightCorner.Y - BOTTOM_CORNER_OFFSET;
+    const bottomRightPos = getScreenBottomRightPos();
+    const x = bottomRightPos.X - BOTTOM_CORNER_OFFSET;
+    const y = bottomRightPos.Y - BOTTOM_CORNER_OFFSET;
     g.fontPF.DrawString(text, x, y, color, 0, true);
   }
 }
@@ -162,9 +162,9 @@ function drawTrinketsDelta() {
     }
 
     const color = getTextColor(fade);
-    const bottomLeftCorner = getScreenBottomLeft();
-    const x = bottomLeftCorner.X + BOTTOM_CORNER_OFFSET;
-    const y = bottomLeftCorner.Y - BOTTOM_CORNER_OFFSET;
+    const bottomLeftPos = getScreenBottomLeftPos();
+    const x = bottomLeftPos.X + BOTTOM_CORNER_OFFSET;
+    const y = bottomLeftPos.Y - BOTTOM_CORNER_OFFSET;
     g.fontPF.DrawString(text, x, y, color, 0, true);
   }
 }

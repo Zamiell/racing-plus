@@ -1,4 +1,4 @@
-import { getScreenBottomRight } from "isaacscript-common";
+import { getScreenBottomRightPos } from "isaacscript-common";
 import g from "../../globals";
 
 const NOTIFICATION_LENGTH = 300;
@@ -29,8 +29,8 @@ export function postRender(): void {
     return;
   }
 
-  const bottomRight = getScreenBottomRight();
-  const closeToBottom = bottomRight.Y - 28;
+  const bottomRightPos = getScreenBottomRightPos();
+  const closeToBottom = bottomRightPos.Y - 28;
   const alpha = (math.min(timer, 60) / 60) * 0.5;
   const color = KColor(1, 1, 0, alpha);
   g.fontPF.DrawString(
@@ -38,7 +38,7 @@ export function postRender(): void {
     0,
     closeToBottom,
     color,
-    bottomRight.X,
+    bottomRightPos.X,
     true,
   );
 }

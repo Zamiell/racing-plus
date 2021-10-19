@@ -4,7 +4,7 @@
 // 3) "Go!"
 // 4) Once we have finished a race, the final place
 
-import { getScreenCenter } from "isaacscript-common";
+import { getScreenCenterPos } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../util";
 import RacerStatus from "./types/RacerStatus";
@@ -37,8 +37,8 @@ function drawSprite() {
 }
 
 function getPosition() {
-  const screenCenter = getScreenCenter();
-  return Vector(screenCenter.X, screenCenter.Y - 80);
+  const centerPos = getScreenCenterPos();
+  return Vector(centerPos.X, centerPos.Y - 80);
 }
 
 function hideGoSprite() {

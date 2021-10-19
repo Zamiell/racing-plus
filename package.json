@@ -12,9 +12,9 @@
   "license": "GPL-3.0",
   "author": "Racing+",
   "dependencies": {
-    "isaac-typescript-definitions": "^1.0.232",
-    "isaacscript": "^1.1.24",
-    "isaacscript-common": "^1.0.348",
+    "isaac-typescript-definitions": "^1.0.236",
+    "isaacscript": "^1.1.26",
+    "isaacscript-common": "^1.0.350",
     "isaacscript-lint": "^1.0.63"
   }
 }
