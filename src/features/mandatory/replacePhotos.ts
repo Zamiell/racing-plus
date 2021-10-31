@@ -2,11 +2,12 @@ import {
   anyPlayerHasCollectible,
   ensureAllCases,
   log,
+  nextSeed,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
-import { hasPolaroidOrNegative, incrementRNG } from "../../util";
+import { hasPolaroidOrNegative } from "../../util";
 import { spawnCollectible } from "../../utilGlobals";
 import RaceGoal from "../race/types/RaceGoal";
 import RacerStatus from "../race/types/RacerStatus";
@@ -193,7 +194,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       );
 
       // We don't want both of the collectibles to have the same RNG
-      const newSeed = incrementRNG(roomSeed);
+      const newSeed = nextSeed(roomSeed);
 
       spawnCollectible(
         CollectibleType.COLLECTIBLE_NEGATIVE,
@@ -218,7 +219,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         );
 
         // We don't want both of the collectibles to have the same RNG
-        const newSeed = incrementRNG(roomSeed);
+        const newSeed = nextSeed(roomSeed);
 
         spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,

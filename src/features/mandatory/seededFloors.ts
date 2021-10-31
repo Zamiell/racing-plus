@@ -5,12 +5,12 @@ import {
   CHARACTERS_WITH_NO_RED_HEARTS,
   getRandom,
   isKeeper,
+  nextSeed,
   onSetSeed,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { incrementRNG } from "../../util";
 
 interface Health {
   soulHeartTypes: HeartSubType[];
@@ -95,7 +95,7 @@ export function before(stage: int): void {
   }
 
   // Modification 2: Book touched
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const bookMod = getRandom(seed);
   if (bookMod < 0.5) {
     g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, false);
@@ -104,7 +104,7 @@ export function before(stage: int): void {
   }
 
   // Modification 3: Coins
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const coinMod = getRandom(seed);
   player.AddCoins(-99);
   if (coinMod < 0.5) {
@@ -114,7 +114,7 @@ export function before(stage: int): void {
   }
 
   // Modification 4: Keys
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const keyMod = getRandom(seed);
   player.AddKeys(-99);
   if (keyMod < 0.5) {
@@ -135,7 +135,7 @@ export function before(stage: int): void {
   // Modification 5: Full health
   player.AddMaxHearts(2, false);
   player.AddHearts(1);
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const fullHealthMod = getRandom(seed);
   if (fullHealthMod < 0.66) {
     // 66% chance to be full health
@@ -143,7 +143,7 @@ export function before(stage: int): void {
   }
 
   // Modification 6: Critical health
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const criticalHealthMod = getRandom(seed);
   if (criticalHealthMod < 0.75) {
     // 75% chance to not be at critical health

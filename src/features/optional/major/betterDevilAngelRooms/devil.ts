@@ -1,6 +1,10 @@
-import { anyPlayerHasTrinket, getDoors, getRandom } from "isaacscript-common";
+import {
+  anyPlayerHasTrinket,
+  getDoors,
+  getRandom,
+  nextSeed,
+} from "isaacscript-common";
 import g from "../../../../globals";
-import { incrementRNG } from "../../../../util";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import { getRoomDebug, getRoomSelection, spawnLuaRoom } from "./rooms";
 import v from "./v";
@@ -18,7 +22,7 @@ export default function devil(): void {
     return;
   }
 
-  v.run.seeds.devilSelection = incrementRNG(v.run.seeds.devilSelection);
+  v.run.seeds.devilSelection = nextSeed(v.run.seeds.devilSelection);
   const roomSubType = hasNumberMagnet
     ? NUMBER_MAGNET_ROOM_SUBTYPE
     : NORMAL_ROOM_SUBTYPE;
@@ -44,7 +48,7 @@ function checkSpawnKrampus() {
     return false;
   }
 
-  v.run.seeds.krampus = incrementRNG(v.run.seeds.krampus);
+  v.run.seeds.krampus = nextSeed(v.run.seeds.krampus);
   const krampusRoll = getRandom(v.run.seeds.krampus);
   if (krampusRoll > KRAMPUS_CHANCE) {
     return false;

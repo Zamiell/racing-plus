@@ -2,11 +2,11 @@ import {
   getRandomArrayElement,
   getRandomInt,
   log,
+  nextSeed,
   saveDataManager,
   teleport,
 } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 
 const v = {
   level: {
@@ -30,7 +30,7 @@ export function useItemTeleport(): void {
 function seededTeleport() {
   const roomIndexes = getAllRoomIndexesForNormalRooms();
 
-  v.level.teleportSeed = incrementRNG(v.level.teleportSeed);
+  v.level.teleportSeed = nextSeed(v.level.teleportSeed);
   const roomIndex = getRandomArrayElement(roomIndexes, v.level.teleportSeed);
 
   teleport(roomIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
@@ -61,7 +61,7 @@ function seededTelepills() {
 
     // There is a 2% chance have a Black Market inserted into the list of possibilities
     // (according to Blade)
-    v.level.telepillsSeed = incrementRNG(v.level.telepillsSeed);
+    v.level.telepillsSeed = nextSeed(v.level.telepillsSeed);
     const blackMarketRoll = getRandomInt(1, 100, v.level.telepillsSeed);
     if (blackMarketRoll <= 2) {
       insertBlackMarket = true;
@@ -77,7 +77,7 @@ function seededTelepills() {
   }
 
   // Get a random room index
-  v.level.telepillsSeed = incrementRNG(v.level.telepillsSeed);
+  v.level.telepillsSeed = nextSeed(v.level.telepillsSeed);
   const gridIndex = getRandomArrayElement(roomIndexes, v.level.telepillsSeed);
 
   teleport(gridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
@@ -91,7 +91,7 @@ export function postNewLevel(): void {
   for (let i = 0; i < 100; i++) {
     // Increment the RNG 100 times so that players cannot use knowledge of Teleport! teleports
     // to determine where the Telepills destination will be
-    incrementedLevelSeed = incrementRNG(incrementedLevelSeed);
+    incrementedLevelSeed = nextSeed(incrementedLevelSeed);
   }
 
   v.level.teleportSeed = levelSeed;

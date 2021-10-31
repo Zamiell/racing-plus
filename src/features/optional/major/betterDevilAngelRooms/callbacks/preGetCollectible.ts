@@ -1,12 +1,12 @@
 import {
   giveTrinketsBack,
   inAngelShop,
+  nextSeed,
   temporarilyRemoveTrinkets,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../../types/enums";
-import { incrementRNG } from "../../../../../util";
 import v from "../v";
 
 export default function betterDevilAngelRoomsPreGetCollectible(
@@ -87,9 +87,7 @@ function getNewSubType(itemPoolType: ItemPoolType) {
   switch (itemPoolType) {
     // 3
     case ItemPoolType.POOL_DEVIL: {
-      v.run.seeds.devilCollectibles = incrementRNG(
-        v.run.seeds.devilCollectibles,
-      );
+      v.run.seeds.devilCollectibles = nextSeed(v.run.seeds.devilCollectibles);
       return g.itemPool.GetCollectible(
         itemPoolType,
         true,
@@ -99,9 +97,7 @@ function getNewSubType(itemPoolType: ItemPoolType) {
 
     // 4
     case ItemPoolType.POOL_ANGEL: {
-      v.run.seeds.angelCollectibles = incrementRNG(
-        v.run.seeds.angelCollectibles,
-      );
+      v.run.seeds.angelCollectibles = nextSeed(v.run.seeds.angelCollectibles);
       return g.itemPool.GetCollectible(
         itemPoolType,
         true,

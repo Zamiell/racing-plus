@@ -1,8 +1,7 @@
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
-import { removeEntities } from "isaacscript-common";
+import { nextSeed, removeEntities } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
@@ -45,7 +44,7 @@ export function postNewRoom(): void {
       modification = Vector(150, 0);
     }
     const position = centerPos.add(modification);
-    seed = incrementRNG(seed);
+    seed = nextSeed(seed);
     const frail = g.g.Spawn(
       EntityType.ENTITY_PIN,
       PinVariant.FRAIL,

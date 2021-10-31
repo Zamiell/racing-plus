@@ -1,7 +1,6 @@
 import {
   getPlayers,
   hasFlag,
-  initRNG,
   log,
   removeAllMatchingEntities,
 } from "isaacscript-common";
@@ -27,12 +26,6 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   }
 
   return [hasPolaroid, hasNegative];
-}
-
-export function incrementRNG(seed: int): int {
-  const rng = initRNG(seed);
-  rng.Next();
-  return rng.GetSeed();
 }
 
 export function isSelfDamage(damageFlags: int): boolean {

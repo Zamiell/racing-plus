@@ -1,7 +1,6 @@
-import { getRoomStageID, getRoomVariant } from "isaacscript-common";
+import { getRoomStageID, getRoomVariant, nextSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { incrementRNG } from "../../../util";
 
 const SATAN_ROOM_VARIANT = 3600;
 
@@ -44,7 +43,7 @@ function spawnEnemies() {
   let seed = roomSeed;
   for (const gridIndex of [66, 68]) {
     const position = g.r.GetGridPosition(gridIndex);
-    seed = incrementRNG(seed);
+    seed = nextSeed(seed);
     g.g.Spawn(
       EntityType.ENTITY_LEECH,
       1,
@@ -56,7 +55,7 @@ function spawnEnemies() {
     );
   }
 
-  seed = incrementRNG(seed);
+  seed = nextSeed(seed);
   const centerPos = g.r.GetCenterPos();
   g.g.Spawn(
     EntityType.ENTITY_FALLEN,

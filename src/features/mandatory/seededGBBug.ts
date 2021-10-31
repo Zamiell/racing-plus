@@ -6,9 +6,8 @@
 // keep track of the last spawned pickup so that we can morph it from the PostFamiliarRender
 // callback
 
-import { saveDataManager } from "isaacscript-common";
+import { nextSeed, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 
 const v = {
   run: {
@@ -94,10 +93,10 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
   // https://bindingofisaacrebirth.fandom.com/wiki/GB_Bug#Algorithm
   // In vanilla, a chest has a greater chance of morphing into another chest,
   // but we ignore this since we want morphs to go in order
-  v.run.seed = incrementRNG(v.run.seed);
+  v.run.seed = nextSeed(v.run.seed);
   const shouldRollIntoChest = v.run.seed % 10 === 0;
   if (shouldRollIntoChest) {
-    v.run.seed = incrementRNG(v.run.seed);
+    v.run.seed = nextSeed(v.run.seed);
     const shouldRollIntoLockedChest = (v.run.seed & 3) === 0;
     const chestVariant = shouldRollIntoLockedChest
       ? PickupVariant.PICKUP_LOCKEDCHEST

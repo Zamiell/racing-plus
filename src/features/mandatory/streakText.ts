@@ -5,11 +5,11 @@ import {
   getEffectiveStage,
   getItemName,
   getRandomArrayElement,
+  nextSeed,
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 import { goingToRaceRoom } from "../race/raceRoom";
 import { ChallengeCustom } from "../speedrun/enums";
 
@@ -262,7 +262,7 @@ export function preUseItemDeadSeaScrolls(
 ): boolean | void {
   const hud = g.g.GetHUD();
 
-  v.run.deadSeaScrollsSeed = incrementRNG(v.run.deadSeaScrollsSeed);
+  v.run.deadSeaScrollsSeed = nextSeed(v.run.deadSeaScrollsSeed);
   const randomCollectible = getRandomArrayElement(
     DEAD_SEA_SCROLL_EFFECTS,
     v.run.deadSeaScrollsSeed,

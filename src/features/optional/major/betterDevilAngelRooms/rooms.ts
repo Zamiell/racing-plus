@@ -8,10 +8,10 @@ import {
   getRandomFloat,
   gridToPos,
   log,
+  nextSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
-import { incrementRNG } from "../../../../util";
 import { spawnCollectible } from "../../../../utilGlobals";
 import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
@@ -230,11 +230,11 @@ function spawnNormalEntity(
 
 function getEntitySeed(devil: boolean) {
   if (devil) {
-    v.run.seeds.devilEntities = incrementRNG(v.run.seeds.devilEntities);
+    v.run.seeds.devilEntities = nextSeed(v.run.seeds.devilEntities);
     return v.run.seeds.devilEntities;
   }
 
-  v.run.seeds.angelEntities = incrementRNG(v.run.seeds.angelEntities);
+  v.run.seeds.angelEntities = nextSeed(v.run.seeds.angelEntities);
   return v.run.seeds.angelEntities;
 }
 

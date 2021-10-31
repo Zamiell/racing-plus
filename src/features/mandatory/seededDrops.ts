@@ -6,11 +6,11 @@ import {
   getTotalPlayerCollectibles,
   initRNG,
   log,
+  nextSeed,
   onSetSeed,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 import { findFreePosition } from "../../utilGlobals";
 
 const v = {
@@ -240,10 +240,10 @@ function getSeed() {
     roomType === RoomType.ROOM_DEVIL || // 14
     roomType === RoomType.ROOM_ANGEL // 15
   ) {
-    v.run.seedDevilAngel = incrementRNG(v.run.seedDevilAngel);
+    v.run.seedDevilAngel = nextSeed(v.run.seedDevilAngel);
     return v.run.seedDevilAngel;
   }
 
-  v.run.seed = incrementRNG(v.run.seed);
+  v.run.seed = nextSeed(v.run.seed);
   return v.run.seed;
 }

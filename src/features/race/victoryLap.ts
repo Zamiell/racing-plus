@@ -2,11 +2,11 @@ import {
   getRandomArrayElement,
   inBlueBabyRoom,
   inLambRoom,
+  nextSeed,
   removeAllMatchingEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { incrementRNG } from "../../util";
 import v from "./v";
 
 const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
@@ -192,7 +192,7 @@ function checkVictoryLapBossReplace() {
   let randomBossSeed = roomSeed;
   const numBosses = v.run.numVictoryLaps + 1;
   for (let i = 1; i <= numBosses; i++) {
-    randomBossSeed = incrementRNG(randomBossSeed);
+    randomBossSeed = nextSeed(randomBossSeed);
     const randomBoss = getRandomArrayElement(
       VICTORY_LAP_BOSSES,
       randomBossSeed,

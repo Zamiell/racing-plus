@@ -1,6 +1,5 @@
-import { getPlayers, saveDataManager } from "isaacscript-common";
+import { getPlayers, nextSeed, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import { incrementRNG } from "../../util";
 import RaceStatus from "../race/types/RaceStatus";
 import { speedrunIsFinished } from "../speedrun/exported";
 
@@ -69,7 +68,7 @@ function spawnFireworks() {
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     for (let i = 0; i < 5; i++) {
       v.run.numFireworksSpawned += 1;
-      v.run.seed = incrementRNG(v.run.seed);
+      v.run.seed = nextSeed(v.run.seed);
       const randomGridIndex = g.r.GetRandomTileIndex(v.run.seed);
       const position = g.r.GetGridPosition(randomGridIndex);
       const firework = Isaac.Spawn(
