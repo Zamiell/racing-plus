@@ -7,8 +7,8 @@ import {
 import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { initSprite } from "../../../sprite";
 import PillDescription from "../../../types/PillDescription";
-import { initSprite } from "../../../util";
 
 const NUM_PILLS_IN_POOL = 13;
 

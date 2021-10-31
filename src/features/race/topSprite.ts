@@ -6,7 +6,7 @@
 
 import { getScreenCenterPos } from "isaacscript-common";
 import g from "../../globals";
-import { initSprite } from "../../util";
+import { initSprite } from "../../sprite";
 import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 

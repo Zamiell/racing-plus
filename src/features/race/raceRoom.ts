@@ -10,7 +10,8 @@ import {
   removeEntities,
 } from "isaacscript-common";
 import g from "../../globals";
-import { consoleCommand, initSprite } from "../../util";
+import { initSprite } from "../../sprite";
+import { consoleCommand } from "../../util";
 import { getRoomsEntered } from "../util/roomsEntered";
 import {
   RACE_ROOM_POSITION,

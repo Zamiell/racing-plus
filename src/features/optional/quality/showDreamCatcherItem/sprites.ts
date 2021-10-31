@@ -1,6 +1,6 @@
 import { anyPlayerHasCollectible, getRoomIndex } from "isaacscript-common";
 import g from "../../../../globals";
-import { initGlowingItemSprite, initSprite } from "../../../../util";
+import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";

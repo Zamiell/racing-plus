@@ -14,8 +14,8 @@ import {
   TWO_BY_ONE_TRAPDOOR_POSITION,
 } from "../../constants";
 import g from "../../globals";
+import { initSprite } from "../../sprite";
 import RepentanceDoorState from "../../types/RepentanceDoorState";
-import { initSprite } from "../../util";
 import { removeGridEntity } from "../../utilGlobals";
 import v from "./v";
 

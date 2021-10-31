@@ -4,7 +4,7 @@ import {
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../globals";
-import { initGlowingItemSprite } from "../../util";
+import { initGlowingItemSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
 import { isSlideAnimationActive } from "../util/detectSlideAnimation";
 import v from "./v";

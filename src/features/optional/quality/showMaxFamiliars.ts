@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import { initSprite } from "../../../util";
+import { initSprite } from "../../../sprite";
 
 const MAX_FAMILIARS = 64;
 const SPRITE_POSITION = Vector(35, 33); // To the right of the coin count

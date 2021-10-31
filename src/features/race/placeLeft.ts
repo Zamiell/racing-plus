@@ -1,7 +1,7 @@
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen
 
 import g from "../../globals";
-import { initSprite } from "../../util";
+import { initSprite } from "../../sprite";
 import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
 import RacerStatus from "./types/RacerStatus";

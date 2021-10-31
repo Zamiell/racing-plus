@@ -9,7 +9,7 @@ import {
   SPRITE_TAINTED_BETHANY_OFFSET,
 } from "../../constants";
 import g from "../../globals";
-import { initSprite } from "../../util";
+import { initSprite } from "../../sprite";
 import * as socketClient from "../race/socketClient";
 
 enum SpriteLayer {

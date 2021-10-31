@@ -3,10 +3,8 @@ import {
   hasFlag,
   initRNG,
   log,
-  MAX_VANILLA_COLLECTIBLE_TYPE,
   removeAllMatchingEntities,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "./types/enums";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -35,63 +33,6 @@ export function incrementRNG(seed: int): int {
   const rng = initRNG(seed);
   rng.Next();
   return rng.GetSeed();
-}
-
-export function initGlowingItemSprite(itemID: int): Sprite {
-  // "NEW" is a "Curse of the Blind" item sprite
-  let fileNum: string;
-  if (itemID < 1) {
-    fileNum = "NEW";
-  } else if (
-    (itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
-      itemID <= MAX_VANILLA_COLLECTIBLE_TYPE) ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_SAWBLADE ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_13_LUCK ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_15_LUCK
-  ) {
-    // Between Sad Onion and Decap Attack (or a custom modded items)
-    const paddedNumber = itemID.toString().padStart(3, "0");
-    fileNum = paddedNumber;
-  } else if (
-    itemID > CollectibleType.COLLECTIBLE_DECAP_ATTACK &&
-    itemID < 2001
-  ) {
-    // Between Decap Attack and Swallowed Penny
-    fileNum = "NEW";
-  } else if (itemID >= 2001 && itemID <= 2189) {
-    // Between Swallowed Penny and Sigil of Baphomet
-    fileNum = itemID.toString();
-  } else if (itemID > 2189 && itemID < 32769) {
-    // Between Sigil of Baphomet and Golden Swallowed Penny
-    fileNum = "NEW";
-  } else if (itemID >= 32769 && itemID <= 32957) {
-    // Between Golden Swallowed Penny and Golden Sigil of Baphomet
-    fileNum = itemID.toString();
-  } else {
-    // Past Golden Sigil of Baphomet
-    fileNum = "NEW";
-  }
-
-  return initSprite(
-    "gfx/glowing_item.anm2",
-    `gfx/items_glowing/collectibles_${fileNum}.png`,
-  );
-}
-
-export function initSprite(anm2Path: string, pngPath?: string): Sprite {
-  const sprite = Sprite();
-
-  if (pngPath === undefined) {
-    sprite.Load(anm2Path, true);
-  } else {
-    sprite.Load(anm2Path, false);
-    sprite.ReplaceSpritesheet(0, pngPath);
-    sprite.LoadGraphics();
-  }
-
-  sprite.SetFrame("Default", 0);
-
-  return sprite;
 }
 
 export function isSelfDamage(damageFlags: int): boolean {

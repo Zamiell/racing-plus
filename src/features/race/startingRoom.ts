@@ -1,6 +1,6 @@
 import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
-import { initGlowingItemSprite, initSprite } from "../../util";
+import { initGlowingItemSprite, initSprite } from "../../sprite";
 import { getRoomsEntered } from "../util/roomsEntered";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";

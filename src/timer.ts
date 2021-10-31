@@ -1,7 +1,7 @@
 import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
 import g from "./globals";
+import { initSprite } from "./sprite";
 import TimerType from "./types/TimerType";
-import { initSprite } from "./util";
 
 interface Sprites {
   clock: Sprite;
