@@ -3,6 +3,7 @@ import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
+import * as planetariumFix from "../planetariumFix";
 import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
@@ -41,6 +42,7 @@ export default function racePostNewRoom(): void {
   seeded3DollarBill.postNewRoom();
   endOfRaceButtons.postNewRoom();
   victoryLap.postNewRoom();
+  planetariumFix.postNewRoom();
   recordMegaSatanRoom();
 }
 

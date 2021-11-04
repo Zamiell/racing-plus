@@ -1,8 +1,17 @@
 import { MAX_VANILLA_COLLECTIBLE_TYPE } from "isaacscript-common";
 import { CollectibleTypeCustom } from "./types/enums";
 
-export function initGlowingItemSprite(itemID: int): Sprite {
-  const fileNum = getFileNum(itemID);
+const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
+
+export function initGlowingItemSprite(
+  collectibleOrTrinketType: int,
+  trinket = false,
+): Sprite {
+  if (trinket) {
+    collectibleOrTrinketType += GLOWING_IMAGE_TRINKET_OFFSET;
+  }
+
+  const fileNum = getFileNum(collectibleOrTrinketType);
   return initSprite(
     "gfx/glowing_item.anm2",
     `gfx/items-glowing/collectibles_${fileNum}.png`,

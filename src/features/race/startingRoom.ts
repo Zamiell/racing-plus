@@ -219,29 +219,24 @@ function initDiversitySprites() {
   sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
   sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
 
-  sprites.diversityItem1 = initGlowingItemSprite(
-    g.race.startingItems[0] as CollectibleType,
-  );
-  sprites.diversityItem2 = initGlowingItemSprite(
-    g.race.startingItems[1] as CollectibleType,
-  );
-  sprites.diversityItem3 = initGlowingItemSprite(
-    g.race.startingItems[2] as CollectibleType,
-  );
-  sprites.diversityItem4 = initGlowingItemSprite(
-    g.race.startingItems[3] as CollectibleType,
-  );
+  const activeCollectibleType = g.race.startingItems[0] as CollectibleType;
+  sprites.diversityItem1 = initGlowingItemSprite(activeCollectibleType);
 
-  let modifiedTrinketID = tonumber(g.race.startingItems[4]);
-  if (modifiedTrinketID === undefined) {
-    error(
-      `Failed to convert the diversity trinket to a number: ${g.race.startingItems[4]}`,
-    );
+  const passive1CollectibleType = g.race.startingItems[1] as CollectibleType;
+  sprites.diversityItem2 = initGlowingItemSprite(passive1CollectibleType);
+
+  const passive2CollectibleType = g.race.startingItems[2] as CollectibleType;
+  sprites.diversityItem3 = initGlowingItemSprite(passive2CollectibleType);
+
+  const passive3CollectibleType = g.race.startingItems[3] as CollectibleType;
+  sprites.diversityItem4 = initGlowingItemSprite(passive3CollectibleType);
+
+  const trinketType = g.race.startingItems[4] as TrinketType;
+  if (trinketType < FIRST_GOLDEN_TRINKET_ID) {
+    // A normal trinket
+    sprites.diversityItem5 = initGlowingItemSprite(trinketType, true);
+  } else {
+    // A golden trinket, which should not have its ID modified
+    sprites.diversityItem5 = initGlowingItemSprite(trinketType);
   }
-  if (modifiedTrinketID < FIRST_GOLDEN_TRINKET_ID) {
-    // Trinkets are represented in the "items.json" file as items with IDs past 2000
-    // (but golden trinkets retain their vanilla ID)
-    modifiedTrinketID += 2000;
-  }
-  sprites.diversityItem5 = initGlowingItemSprite(modifiedTrinketID);
 }
