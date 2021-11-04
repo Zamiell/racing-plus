@@ -1,7 +1,7 @@
 ```
 ### *v0.69.10* - November ?th, 2021
 
--
+- In seeded races, Magic 8 Ball is now removed from pools.
 ```
 
 TODO Racing+ new features:

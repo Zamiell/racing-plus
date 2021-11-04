@@ -208,6 +208,7 @@
         "secretpath",
         "secretshop",
         "secrettrapdoor",
+        "seededrace",
         "setcharorder",
         "setmetatable",
         "settimeout",

@@ -12,6 +12,9 @@ import debugFunction from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
+import RaceFormat from "../features/race/types/RaceFormat";
+import RacerStatus from "../features/race/types/RacerStatus";
+import RaceStatus from "../features/race/types/RaceStatus";
 import { ChallengeCustom } from "../features/speedrun/enums";
 import { speedrunSetNext } from "../features/speedrun/exported";
 import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
@@ -451,6 +454,13 @@ functionMap.set("s1", (_params: string) => {
 functionMap.set("save", (_params: string) => {
   saveDataManagerSave();
   print('Saved variables to the "save#.dat" file.');
+});
+
+functionMap.set("seededrace", (params: string) => {
+  const enabled = params !== "off";
+  g.race.status = enabled ? RaceStatus.IN_PROGRESS : RaceStatus.NONE;
+  g.race.myStatus = enabled ? RacerStatus.NOT_READY : RacerStatus.RACING;
+  g.race.format = enabled ? RaceFormat.UNSEEDED : RaceFormat.SEEDED;
 });
 
 functionMap.set("setcharorder", (_params: string) => {
