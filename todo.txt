@@ -1,8 +1,7 @@
 ```
-### *v0.69.9* - November 4th, 2021
+### *v0.69.10* - November ?th, 2021
 
-- In seeded races, not entering a Treasure Room no longer increases the chance of a Planetarium spawning, which should make floor generation more consistent. (Thanks Hispa)
-- Fixed the bug where Card Reading would not work correctly with Dream Catcher. (Thanks Adrayon)
+-
 ```
 
 TODO Racing+ new features:

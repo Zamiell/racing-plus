@@ -145,11 +145,14 @@ function seeded(player: EntityPlayer) {
     );
   }
 
-  // Remove Sol from pools, since it is mostly useless
+  // Remove Sol, since it is mostly useless
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
 
-  // Remove Glyph of Balance from pools, since it is useless
+  // Remove Glyph of Balance, since it is useless
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GLYPH_OF_BALANCE);
+
+  // Remove Magic 8 Ball, since it changes floor generation
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_MAGIC_8_BALL);
 
   // Remove Damocles, since it is unseeded
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES);
