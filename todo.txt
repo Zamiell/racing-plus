@@ -1,7 +1,9 @@
 ```
 ### *v0.69.10* - November ?th, 2021
 
-- In seeded races, Magic 8 Ball is now removed from pools.
+- In seeded races, Magic 8 Ball no longer increases the chance for a Planetarium to spawn. (Thanks Gamonymous)
+- Fixed the bug where text would not work properly in non-standard room shapes. (Thanks Gamonymous)
+- Fixed the bug where the race place would not be set correctly when you were in Home. Thanks to Gamonymous for fixing this.
 ```
 
 TODO Racing+ new features:

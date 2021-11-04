@@ -13,7 +13,7 @@ import g from "../../globals";
 import { goingToRaceRoom } from "../race/raceRoom";
 import { ChallengeCustom } from "../speedrun/enums";
 
-const TEXT_GRID_INDEX = 22; // In the top center of the screen
+const TEXT_DRAW_POSITION = Vector(266.5, 72); // In the top center of the screen
 const FRAMES_BEFORE_FADE = 50;
 
 // Listed in order of the wiki (32 in total)
@@ -135,15 +135,13 @@ function getFade(frame: int) {
 }
 
 function draw(text: string, fade: float) {
-  const positionGame = g.r.GetGridPosition(TEXT_GRID_INDEX);
-  const position = Isaac.WorldToRenderPosition(positionGame);
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
   const length = g.fontDroid.GetStringWidthUTF8(text) * scale;
   g.fontDroid.DrawStringScaled(
     text,
-    position.X - length / 2,
-    position.Y,
+    TEXT_DRAW_POSITION.X - length / 2,
+    TEXT_DRAW_POSITION.Y,
     scale,
     scale,
     color,
