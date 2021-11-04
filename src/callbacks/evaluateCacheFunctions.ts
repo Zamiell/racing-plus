@@ -5,6 +5,20 @@ import { CollectibleTypeCustom } from "../types/enums";
 const functionMap = new Map<CacheFlag, (player: EntityPlayer) => void>();
 export default functionMap;
 
+// 1 << 2
+functionMap.set(CacheFlag.CACHE_SHOTSPEED, (player: EntityPlayer) => {
+  magic8BallSeeded(player);
+});
+
+function magic8BallSeeded(player: EntityPlayer) {
+  const numMagic8BallSeeded = player.GetCollectibleNum(
+    CollectibleTypeCustom.COLLECTIBLE_MAGIC_8_BALL_SEEDED,
+  );
+  for (let i = 0; i < numMagic8BallSeeded; i++) {
+    player.ShotSpeed += 0.16;
+  }
+}
+
 // 1 << 4
 functionMap.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
   debugPowers.evaluateCacheSpeed(player);

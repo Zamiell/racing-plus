@@ -11,6 +11,9 @@ import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 import v from "./v";
 
+const REPLACED_ITEM = CollectibleType.COLLECTIBLE_3_DOLLAR_BILL;
+const REPLACEMENT_ITEM = CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED;
+
 // Listed in alphabetical order to match the wiki page
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
 const THREE_DOLLAR_BILL_ITEMS: CollectibleType[] = [
@@ -52,11 +55,7 @@ export function postNewRoom(): void {
 }
 
 function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
-  if (
-    !player.HasCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED,
-    )
-  ) {
+  if (!player.HasCollectible(REPLACEMENT_ITEM)) {
     return;
   }
 
@@ -100,9 +99,7 @@ export function postItemPickup(
 ): void {
   // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill
   if (
-    player.HasCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED,
-    ) &&
+    player.HasCollectible(REPLACEMENT_ITEM) &&
     pickingUpItem.type === ItemType.ITEM_PASSIVE &&
     pickingUpItem.id === v.run.seeded3DollarBillItem
   ) {
@@ -118,13 +115,11 @@ export function postItemPickup3DollarBill(player: EntityPlayer): void {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED &&
-    player.HasCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL)
+    player.HasCollectible(REPLACED_ITEM)
   ) {
-    player.RemoveCollectible(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL);
-    removeItemFromItemTracker(CollectibleType.COLLECTIBLE_3_DOLLAR_BILL);
-    player.AddCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED,
-    );
+    player.RemoveCollectible(REPLACED_ITEM);
+    removeItemFromItemTracker(REPLACED_ITEM);
+    player.AddCollectible(REPLACEMENT_ITEM);
 
     checkApplySeeded3DollarBillItem(player);
   }

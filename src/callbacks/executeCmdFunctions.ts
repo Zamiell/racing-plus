@@ -460,8 +460,8 @@ functionMap.set("seededrace", (params: string) => {
   const enabled = params !== "off";
 
   g.race.status = enabled ? RaceStatus.IN_PROGRESS : RaceStatus.NONE;
-  g.race.myStatus = enabled ? RacerStatus.NOT_READY : RacerStatus.RACING;
-  g.race.format = enabled ? RaceFormat.UNSEEDED : RaceFormat.SEEDED;
+  g.race.myStatus = enabled ? RacerStatus.RACING : RacerStatus.NOT_READY;
+  g.race.format = enabled ? RaceFormat.SEEDED : RaceFormat.UNSEEDED;
 
   const enabledText = enabled ? "Enabled" : "Disabled";
   print(`${enabledText} seeded race mode.`);

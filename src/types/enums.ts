@@ -31,7 +31,10 @@ export enum CollectibleTypeCustom {
   COLLECTIBLE_15_LUCK = Isaac.GetItemIdByName("15 Luck"),
   COLLECTIBLE_3_DOLLAR_BILL_SEEDED = Isaac.GetItemIdByName(
     "3 Dollar Bill (Seeded)",
-  ),
+  ), // 191
+  COLLECTIBLE_MAGIC_8_BALL_SEEDED = Isaac.GetItemIdByName(
+    "Magic 8 Ball (Seeded)",
+  ), // 194
 
   // Utility items
   COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),

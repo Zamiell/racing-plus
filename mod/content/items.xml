@@ -2,7 +2,10 @@
 	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" tags="summonable monstermanual offensive" />
 	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" />
 	<passive description="A horny amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
-	<passive description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" />
+	<!-- 191 -->
+	<passive cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" />
+	<!-- 194 -->
+	<passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" />
 
 	<!-- Utility items -->
 	<passive description="" gfx="Trophy.png" name="Trophy" hidden="true" />
