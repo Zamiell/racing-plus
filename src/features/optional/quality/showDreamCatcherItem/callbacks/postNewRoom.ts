@@ -70,6 +70,20 @@ function warp() {
     bossRoomIndexes = getRoomIndexesForType(RoomType.ROOM_BOSS);
   }
 
+  // Once we warp away, any Card Reading portals will be destroyed, so record what they are
+  const cardReadingPortalDescriptions: Array<[int, Vector]> = [];
+  const cardReadingPortals = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.PORTAL_TELEPORT,
+  );
+  for (const cardReadingPortal of cardReadingPortals) {
+    const tuple: [int, Vector] = [
+      cardReadingPortal.SubType,
+      cardReadingPortal.Position,
+    ];
+    cardReadingPortalDescriptions.push(tuple);
+  }
+
   v.level.items = [];
   for (const treasureRoomIndex of treasureRoomIndexes.values()) {
     changeRoom(treasureRoomIndex);
@@ -104,6 +118,20 @@ function warp() {
       EntityType.ENTITY_EFFECT,
       EffectVariant.TALL_LADDER,
       LadderSubType.STAIRWAY,
+      position,
+      Vector.Zero,
+      undefined,
+    );
+  }
+
+  // If the player has Card Reading, moving away from the room would delete the portals,
+  // so respawn them if necessary
+  for (const cardReadingPortalDescription of cardReadingPortalDescriptions) {
+    const [subType, position] = cardReadingPortalDescription;
+    Isaac.Spawn(
+      EntityType.ENTITY_EFFECT,
+      EffectVariant.PORTAL_TELEPORT,
+      subType,
       position,
       Vector.Zero,
       undefined,
