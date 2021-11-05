@@ -136,3 +136,7 @@ export function fastTravelSetClearFrame(): void {
 
   v.room.clearFrame = gameFrameCount;
 }
+
+export function isFastTravelHappening(): boolean {
+  return v.run.state > FastTravelState.DISABLED;
+}

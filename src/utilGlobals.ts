@@ -11,6 +11,7 @@ import {
   isQuestCollectible,
 } from "isaacscript-common";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
+import { isFastTravelHappening } from "./features/optional/major/fastTravel/v";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
@@ -28,7 +29,8 @@ export function enteredRoomViaTeleport(): boolean {
     g.l.LeaveDoor === -1 &&
     !justReachedThisFloor &&
     !inCrawlspace() &&
-    !cameFromCrawlspace
+    !cameFromCrawlspace &&
+    !isFastTravelHappening()
   );
 }
 

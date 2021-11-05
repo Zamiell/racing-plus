@@ -130,7 +130,6 @@ function getCharacterOrderSafe() {
   }
 
   if (characterOrder.length !== numElements) {
-    traceback();
     error(
       `The character order for challenge ${abbreviation} had ${characterOrder.length} elements, but it needs to have ${numElements}.`,
     );

@@ -5,6 +5,7 @@ import {
   forgottenSwitch,
   getPlayers,
   getRoomIndex,
+  log,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -21,15 +22,11 @@ import v from "./v";
 
 export default function setNewState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
+  log(`New fast travel state: ${FastTravelState[fastTravelState]}`);
 
   switch (fastTravelState) {
     case FastTravelState.FADING_TO_BLACK: {
       // "setFadingToBlack()" is manually called by other functions since it has extra arguments
-      break;
-    }
-
-    case FastTravelState.CHANGING_TO_STARTING_ROOM: {
-      setChangingToStartingRoom();
       break;
     }
 
@@ -229,7 +226,7 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
   }
 }
 
-function setChangingToStartingRoom() {
+function setGoingToNewFloor() {
   const startingRoomIndex = g.l.GetStartingRoomIndex();
 
   blackSprite.setFullyOpaque();
@@ -237,12 +234,14 @@ function setChangingToStartingRoom() {
   // Before moving to the next floor, we need to change the room so that health from a Strength
   // card is properly decremented
   // We arbitrarily use the starting room for this
+  // Even if a player is using a trapdoor in the starting room from a shovel,
+  // this should not make any difference
   changeRoom(startingRoomIndex);
   decrementRoomsEntered(); // This should not count as entering a room
-}
 
-function setGoingToNewFloor() {
   nextFloor.goto(v.run.upwards);
+
+  setNewState(FastTravelState.FADING_IN);
 }
 
 function setFadingIn() {
@@ -250,6 +249,7 @@ function setFadingIn() {
 
   v.run.framesPassed = 0;
 
+  Isaac.DebugString("GETTING HERE");
   adjustJacobAndEsau(players);
   adjustTaintedForgotten(players);
   spawnHoles(players);

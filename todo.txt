@@ -1,9 +1,12 @@
 ```
-### *v0.69.10* - November ?th, 2021
+### *v0.69.10* - November 4th, 2021
 
 - In seeded races, Magic 8 Ball no longer increases the chance for a Planetarium to spawn. (Thanks Gamonymous)
+- Mines, Ashpit, and the Ascent are now exempt from flipping due to bugs with Bomb Grimaces. (Thanks MoucheronQuipet)
 - Fixed the bug where text would not work properly in non-standard room shapes. (Thanks Gamonymous)
 - Fixed the bug where the race place would not be set correctly when you were in Home. Thanks to Gamonymous for fixing this.
+- Fixed the bug where fast-travel pitfalls would not spawn properly in seeded races.
+- Fixed the bug where entering a room with a heaven door would not work properly on the Ascent. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

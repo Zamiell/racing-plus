@@ -1,19 +1,15 @@
-// Planetariums have a greater chance of occurring if a Treasure Room is skipped,
-// which can cause a divergence in seeded races
-// In order to mitigate this, we force all players to visit every Treasure Room in seeded races
-// The code in this file is mostly copied from the custom Dream Catcher implementation
-
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   changeRoom,
   getEffectiveStage,
+  getPlayers,
   getRoomIndex,
   getRoomIndexesForType,
 } from "isaacscript-common";
 import g from "../../globals";
 import DreamCatcherWarpState from "../../types/DreamCatcherWarpState";
-import { PickupPriceCustom } from "../../types/enums";
+import { EffectVariantCustom, PickupPriceCustom } from "../../types/enums";
 import { centerPlayers } from "../mandatory/centerStart";
 import RaceFormat from "./types/RaceFormat";
 import RacerStatus from "./types/RacerStatus";
@@ -30,7 +26,8 @@ function shouldApplyPlanetariumFix() {
     g.race.myStatus === RacerStatus.RACING &&
     getEffectiveStage() > 1 &&
     !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    !g.g.IsGreedMode()
+    !g.g.IsGreedMode() &&
+    !g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
   );
 }
 
@@ -45,11 +42,28 @@ export function postRender(): void {
 
 function repositionPlayer() {
   if (
-    v.level.planetariumFixWarpState ===
+    v.level.planetariumFixWarpState !==
     DreamCatcherWarpState.REPOSITIONING_PLAYER
   ) {
-    v.level.planetariumFixWarpState = DreamCatcherWarpState.FINISHED;
-    centerPlayers();
+    return;
+  }
+
+  v.level.planetariumFixWarpState = DreamCatcherWarpState.FINISHED;
+
+  centerPlayers();
+
+  // Fix the bug where the fast-travel pitfalls will be misaligned due to being spawned before the
+  // player's position was updated
+  const players = getPlayers();
+  const customPitfalls = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    EffectVariantCustom.PITFALL_CUSTOM,
+  );
+  for (let i = 0; i < customPitfalls.length; i++) {
+    const pitfall = customPitfalls[i];
+    const player = players[i];
+
+    pitfall.Position = player.Position;
   }
 }
 
