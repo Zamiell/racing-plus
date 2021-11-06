@@ -1,10 +1,9 @@
-// We replace the vanilla streak text because it blocks the map occasionally
-
 import {
   anyPlayerIs,
   getEffectiveStage,
   getItemName,
   getRandomArrayElement,
+  getScreenBottomRightPos,
   nextSeed,
   PickingUpItem,
   saveDataManager,
@@ -13,7 +12,6 @@ import g from "../../globals";
 import { goingToRaceRoom } from "../race/raceRoom";
 import { ChallengeCustom } from "../speedrun/enums";
 
-const TEXT_DRAW_POSITION = Vector(266.5, 72); // In the top center of the screen
 const FRAMES_BEFORE_FADE = 50;
 
 // Listed in order of the wiki (32 in total)
@@ -135,13 +133,17 @@ function getFade(frame: int) {
 }
 
 function draw(text: string, fade: float) {
+  const bottomRightPos = getScreenBottomRightPos();
+  const x = bottomRightPos.X * 0.5;
+  const y = bottomRightPos.Y * 0.25;
+
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
   const length = g.fontDroid.GetStringWidthUTF8(text) * scale;
   g.fontDroid.DrawStringScaled(
     text,
-    TEXT_DRAW_POSITION.X - length / 2,
-    TEXT_DRAW_POSITION.Y,
+    x - length / 2,
+    y,
     scale,
     scale,
     color,

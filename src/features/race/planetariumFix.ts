@@ -16,6 +16,11 @@ import RacerStatus from "./types/RacerStatus";
 import RaceStatus from "./types/RaceStatus";
 import v from "./v";
 
+// Planetariums have a greater chance of occurring if a Treasure Room is skipped,
+// which can cause a divergence in seeded races
+// In order to mitigate this, we force all players to visit every Treasure Room in seeded races
+// The code in this file is mostly copied from the custom Dream Catcher implementation
+
 const STAIRWAY_GRID_INDEX = 25;
 const TAINTED_KEEPER_ITEM_PRICE = 15;
 
