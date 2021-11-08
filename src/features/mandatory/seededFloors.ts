@@ -1,7 +1,5 @@
-// This feature is not configurable because it could change floors, causing a seed to be different
-// This feature relies on fast travel to function
-
 import {
+  CHARACTERS_WITH_NO_RED_HEARTS,
   getPlayerHealth,
   getRandom,
   isKeeper,
@@ -70,6 +68,7 @@ export function before(stage: int): void {
   }
 
   const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
   const goldenHearts = player.GetGoldenHearts();
   let seed = g.l.GetDungeonPlacementSeed();
 
@@ -78,6 +77,16 @@ export function before(stage: int): void {
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
+
+  // Eternal Hearts will be lost since we are about to change floors,
+  // so convert it to other types of health
+  // "eternalHearts" will be equal to 1 if we have an Eternal Heart
+  if (CHARACTERS_WITH_NO_RED_HEARTS.has(character)) {
+    v.run.playerHealth.soulHearts += v.run.playerHealth.eternalHearts * 2;
+  } else {
+    v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
+    v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
+  }
 
   // Modification 1: Devil Room visited
   if (stage < 3) {
