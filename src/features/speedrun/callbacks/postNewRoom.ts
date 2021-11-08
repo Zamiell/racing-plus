@@ -10,7 +10,7 @@ import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInR
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
 
-export default function speedrunPostNewRoom(): void {
+export function speedrunPostNewRoom(): void {
   if (!inSpeedrun()) {
     return;
   }

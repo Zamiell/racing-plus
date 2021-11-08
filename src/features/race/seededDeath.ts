@@ -19,14 +19,14 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
-import TimerType from "../../types/TimerType";
+import { TimerType } from "../../types/TimerType";
 import { findFreePosition, removeGridEntity } from "../../utilGlobals";
 import { applySeededGhostFade, debuffOff, debuffOn } from "./seededDeathDebuff";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
-import RevivalType from "./types/RevivalType";
-import SeededDeathState from "./types/SeededDeathState";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
+import { RevivalType } from "./types/RevivalType";
+import { SeededDeathState } from "./types/SeededDeathState";
 import v from "./v";
 
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;

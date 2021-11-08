@@ -1,8 +1,8 @@
 import { inItLivesRoom } from "isaacscript-common";
 import g from "../../../../globals";
-import RaceGoal from "../../../race/types/RaceGoal";
-import RacerStatus from "../../../race/types/RacerStatus";
-import RaceStatus from "../../../race/types/RaceStatus";
+import { RaceGoal } from "../../../race/types/RaceGoal";
+import { RacerStatus } from "../../../race/types/RacerStatus";
+import { RaceStatus } from "../../../race/types/RaceStatus";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";

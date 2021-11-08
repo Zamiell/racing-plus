@@ -11,13 +11,13 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
-import KEYBOARD_MAP from "../../../keyboardMap";
+import { KEYBOARD_MAP } from "../../../keyboardMap";
 import { config } from "../../../modConfigMenu";
-import Colors from "../../../types/Colors";
-import TextSegment from "../../../types/TextSegment";
+import { Colors } from "../../../types/Colors";
+import { TextSegment } from "../../../types/TextSegment";
 import { consoleCommand } from "../../../util";
 import * as socket from "../../race/socket";
-import RaceStatus from "../../race/types/RaceStatus";
+import { RaceStatus } from "../../race/types/RaceStatus";
 
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;

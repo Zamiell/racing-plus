@@ -1,6 +1,6 @@
 import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import g from "../../../../../globals";
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import v from "../v";
 
 export function fastClearPostNewRoom(): void {

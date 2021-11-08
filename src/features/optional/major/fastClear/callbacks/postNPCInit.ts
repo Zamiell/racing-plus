@@ -1,7 +1,7 @@
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as tracking from "../tracking";
 
-export default function fastClearPostNPCInit(npc: EntityNPC): void {
+export function fastClearPostNPCInit(npc: EntityNPC): void {
   if (!shouldEnableFastClear()) {
     return;
   }

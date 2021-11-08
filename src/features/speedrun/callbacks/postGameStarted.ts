@@ -16,7 +16,7 @@ import {
 } from "../speedrun";
 import v, { resetFirstCharacterVars, resetPersistentVars } from "../v";
 
-export default function speedrunPostGameStarted(): void {
+export function speedrunPostGameStarted(): void {
   if (!inSpeedrun()) {
     resetPersistentVars();
     return;

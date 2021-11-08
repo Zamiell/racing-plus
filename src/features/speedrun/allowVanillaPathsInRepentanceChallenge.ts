@@ -15,7 +15,7 @@ import {
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
-import RepentanceDoorState from "../../types/RepentanceDoorState";
+import { RepentanceDoorState } from "../../types/RepentanceDoorState";
 import { removeGridEntity } from "../../utilGlobals";
 import v from "./v";
 

@@ -1,6 +1,5 @@
-enum RepentanceDoorState {
+export enum RepentanceDoorState {
   INITIAL,
   UNLOCKED,
   HALF_BOMBED,
 }
-export default RepentanceDoorState;

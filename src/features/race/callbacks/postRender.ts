@@ -6,17 +6,17 @@ import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as placeLeft from "../placeLeft";
 import * as planetariumFix from "../planetariumFix";
 import * as raceRoom from "../raceRoom";
-import raceStart from "../raceStart";
+import { raceStart } from "../raceStart";
 import * as raceTimer from "../raceTimer";
 import * as seededDeath from "../seededDeath";
 import * as shadows from "../shadows/shadows";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
-import RacerStatus from "../types/RacerStatus";
-import RaceStatus from "../types/RaceStatus";
+import { RacerStatus } from "../types/RacerStatus";
+import { RaceStatus } from "../types/RaceStatus";
 
-export default function racePostRender(): void {
+export function racePostRender(): void {
   if (!config.clientCommunication) {
     return;
   }

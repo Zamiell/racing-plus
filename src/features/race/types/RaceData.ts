@@ -1,14 +1,14 @@
-import RaceDifficulty from "./RaceDifficulty";
-import RaceFormat from "./RaceFormat";
-import RaceGoal from "./RaceGoal";
-import RacerStatus from "./RacerStatus";
-import RaceStatus from "./RaceStatus";
+import { RaceDifficulty } from "./RaceDifficulty";
+import { RaceFormat } from "./RaceFormat";
+import { RaceGoal } from "./RaceGoal";
+import { RacerStatus } from "./RacerStatus";
+import { RaceStatus } from "./RaceStatus";
 
 // The possible types for values of RaceData
 export type RaceDataType = boolean | number | string | int[];
 
 /** This must match the "ModSocket" class on the client. */
-export default class RaceData {
+export class RaceData {
   userID = -1;
   username = "";
   /** -1 if a race is not going on. */

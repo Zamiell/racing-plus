@@ -2,7 +2,7 @@ import * as consistentAngels from "../features/optional/bosses/consistentAngels"
 import * as fastColostomia from "../features/optional/bosses/fastColostomia";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
-import fastClearPostNPCInit from "../features/optional/major/fastClear/callbacks/postNPCInit";
+import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callbacks/postNPCInit";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

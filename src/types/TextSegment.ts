@@ -1,6 +1,6 @@
-import Colors from "./Colors";
+import { Colors } from "./Colors";
 
-export default interface TextSegment {
+export interface TextSegment {
   text: string;
   color?: Colors;
 }

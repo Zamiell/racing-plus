@@ -7,9 +7,9 @@ import {
   removeEntities,
 } from "isaacscript-common";
 import g from "../../globals";
-import RaceGoal from "./types/RaceGoal";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceGoal } from "./types/RaceGoal";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 // MC_POST_NEW_ROOM (18)
 export function postNewRoom(): void {

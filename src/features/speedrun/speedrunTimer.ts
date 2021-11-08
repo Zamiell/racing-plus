@@ -1,6 +1,6 @@
 import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 import * as timer from "../../timer";
-import TimerType from "../../types/TimerType";
+import { TimerType } from "../../types/TimerType";
 import v from "./v";
 
 export function postRender(): void {

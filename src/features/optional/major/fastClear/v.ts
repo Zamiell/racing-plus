@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import FastClearNPCDescription from "../../../../types/FastClearNPCDescription";
+import { FastClearNPCDescription } from "../../../../types/FastClearNPCDescription";
 
 const v = {
   run: {

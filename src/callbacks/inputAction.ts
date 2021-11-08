@@ -1,6 +1,6 @@
-import getActionValueFunctions from "./getActionValueFunctions";
-import isActionPressedFunctions from "./isActionPressedFunctions";
-import isActionTriggeredFunctions from "./isActionTriggeredFunctions";
+import { getActionValueFunctions } from "./getActionValueFunctions";
+import { isActionPressedFunctions } from "./isActionPressedFunctions";
+import { isActionTriggeredFunctions } from "./isActionTriggeredFunctions";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

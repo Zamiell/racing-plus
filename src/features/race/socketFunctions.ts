@@ -1,14 +1,16 @@
 import { jsonDecode } from "isaacscript-common";
 import g from "../../globals";
-import ChatMessage from "../../types/ChatMessage";
+import { ChatMessage } from "../../types/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
-import RaceData, { cloneRaceData } from "./types/RaceData";
+import { cloneRaceData, RaceData } from "./types/RaceData";
 
-const functionMap = new Map<SocketCommandIn, (data: string) => void>();
-export default functionMap;
+export const socketFunctions = new Map<
+  SocketCommandIn,
+  (data: string) => void
+>();
 
-functionMap.set("reset", reset);
+socketFunctions.set("reset", reset);
 export function reset(): void {
   const oldRaceData = cloneRaceData(g.race);
   g.race = new RaceData();
@@ -16,7 +18,7 @@ export function reset(): void {
   checkRaceChanged(oldRaceData, g.race);
 }
 
-functionMap.set("set", (rawData: string) => {
+socketFunctions.set("set", (rawData: string) => {
   const [propertyString, data] = unpackSetMsg(rawData);
   const property = propertyString as keyof RaceData;
   const previousValue = g.race[property];
@@ -74,7 +76,7 @@ functionMap.set("set", (rawData: string) => {
   }
 });
 
-functionMap.set("chat", (rawData: string) => {
+socketFunctions.set("chat", (rawData: string) => {
   const isaacFrameCount = Isaac.GetFrameCount();
   const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
   chatMessage.frameReceived = isaacFrameCount;

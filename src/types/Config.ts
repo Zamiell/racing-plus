@@ -1,5 +1,5 @@
 // Should match the ordering in "configDescription.ts"
-export default class Config {
+export class Config {
   // Major
   clientCommunication = true;
   startWithD6 = true;

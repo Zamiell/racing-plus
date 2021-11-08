@@ -1,4 +1,4 @@
-enum RaceGoal {
+export enum RaceGoal {
   BLUE_BABY = "Blue Baby",
   THE_LAMB = "The Lamb",
   MEGA_SATAN = "Mega Satan",
@@ -9,4 +9,3 @@ enum RaceGoal {
   BOSS_RUSH = "Boss Rush",
   CUSTOM = "custom",
 }
-export default RaceGoal;

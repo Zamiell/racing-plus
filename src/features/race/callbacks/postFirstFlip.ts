@@ -1,7 +1,7 @@
 import { config } from "../../../modConfigMenu";
-import formatSetup from "../formatSetup";
+import { formatSetup } from "../formatSetup";
 
-export default function racePostFirstFlip(player: EntityPlayer): void {
+export function racePostFirstFlip(player: EntityPlayer): void {
   if (!config.clientCommunication) {
     return;
   }

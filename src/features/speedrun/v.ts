@@ -1,5 +1,5 @@
 import { saveDataManager } from "isaacscript-common";
-import RepentanceDoorState from "../../types/RepentanceDoorState";
+import { RepentanceDoorState } from "../../types/RepentanceDoorState";
 
 const v = {
   persistent: {

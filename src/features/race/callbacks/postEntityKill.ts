@@ -1,9 +1,9 @@
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as trophy from "../../mandatory/trophy";
-import RaceGoal from "../types/RaceGoal";
-import RacerStatus from "../types/RacerStatus";
-import RaceStatus from "../types/RaceStatus";
+import { RaceGoal } from "../types/RaceGoal";
+import { RacerStatus } from "../types/RacerStatus";
+import { RaceStatus } from "../types/RaceStatus";
 
 export function hush(_entity: Entity): void {
   if (!config.clientCommunication) {

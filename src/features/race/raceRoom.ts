@@ -18,7 +18,7 @@ import {
   RACE_ROOM_STAGE_ID,
   RACE_ROOM_VARIANT,
 } from "./constants";
-import RaceStatus from "./types/RaceStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 // We use the Cellar because it is the cleanest floor
 const STAGE_ARGUMENT_FOR_LOBBY = "1a";

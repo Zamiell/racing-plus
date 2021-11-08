@@ -11,16 +11,16 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { moveEsauNextToJacob } from "../../../../util";
-import RaceGoal from "../../../race/types/RaceGoal";
-import RacerStatus from "../../../race/types/RacerStatus";
-import RaceStatus from "../../../race/types/RaceStatus";
+import { RaceGoal } from "../../../race/types/RaceGoal";
+import { RacerStatus } from "../../../race/types/RacerStatus";
+import { RaceStatus } from "../../../race/types/RaceStatus";
 import { decrementRoomsEntered } from "../../../util/roomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
 import v from "./v";
 
-export default function setNewState(fastTravelState: FastTravelState): void {
+export function setNewState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
   log(`New fast travel state: ${FastTravelState[fastTravelState]}`);
 

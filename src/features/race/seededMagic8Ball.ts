@@ -1,9 +1,9 @@
 import { removeItemFromItemTracker } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 const REPLACED_ITEM = CollectibleType.COLLECTIBLE_MAGIC_8_BALL;
 const REPLACEMENT_ITEM = CollectibleTypeCustom.COLLECTIBLE_MAGIC_8_BALL_SEEDED;

@@ -6,9 +6,9 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 const REPLACED_ITEM = CollectibleType.COLLECTIBLE_3_DOLLAR_BILL;

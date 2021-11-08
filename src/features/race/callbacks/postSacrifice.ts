@@ -4,7 +4,7 @@
 import { config } from "../../../modConfigMenu";
 import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 
-export default function racePostSacrifice(
+export function racePostSacrifice(
   _player: EntityPlayer,
   numSacrifices: int,
 ): void {

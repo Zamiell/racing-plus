@@ -13,7 +13,7 @@ Notes:
 
 */
 
-import preEntitySpawnFunctions from "./preEntitySpawnFunctions";
+import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
 
 export function main(
   entityType: EntityType | int,

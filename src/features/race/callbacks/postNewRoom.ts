@@ -21,7 +21,7 @@ import * as victoryLap from "../victoryLap";
 // Home is 13, so we take the next stage number after that
 const MEGA_SATAN_FAKE_STAGE_NUM = 14;
 
-export default function racePostNewRoom(): void {
+export function racePostNewRoom(): void {
   if (!config.clientCommunication) {
     return;
   }

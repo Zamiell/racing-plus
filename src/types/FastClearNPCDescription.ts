@@ -1,4 +1,4 @@
-export default interface FastClearNPCDescription {
+export interface FastClearNPCDescription {
   gameFrameToModify: int;
   entityPtr: EntityPtr;
 }

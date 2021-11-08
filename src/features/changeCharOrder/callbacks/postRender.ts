@@ -4,10 +4,10 @@ import g from "../../../globals";
 import { ChallengeCustom } from "../../speedrun/enums";
 import * as buttons from "../buttons";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
-import ChangeCharOrderPhase from "../types/ChangeCharOrderPhase";
+import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";
 import v from "../v";
 
-export default function charCharOrderPostRender(): void {
+export function changeCharOrderPostRender(): void {
   const challenge = Isaac.GetChallenge();
   if (challenge !== ChallengeCustom.CHANGE_CHAR_ORDER) {
     return;

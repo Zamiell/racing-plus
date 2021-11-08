@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import ChangeCharOrderPhase from "./types/ChangeCharOrderPhase";
+import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 
 const v = {
   persistent: {

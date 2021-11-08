@@ -17,13 +17,13 @@ import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCar
 import * as samsonDropHeart from "../features/optional/characters/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
-import extraStartingItemsPostGameStarted from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
-import betterDevilAngelRoomsPostGameStarted from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
-import fastTravelPostGameStartedContinued from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
+import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
+import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
+import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import showDreamCatcherItemPostGameStarted from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
-import racePostGameStarted from "../features/race/callbacks/postGameStarted";
-import speedrunPostGameStarted from "../features/speedrun/callbacks/postGameStarted";
+import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
+import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
+import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
 import { isRestartingOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
 

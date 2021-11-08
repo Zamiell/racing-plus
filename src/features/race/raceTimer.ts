@@ -1,8 +1,8 @@
 import g from "../../globals";
 import * as timer from "../../timer";
-import TimerType from "../../types/TimerType";
+import { TimerType } from "../../types/TimerType";
 import { inRaceRoom } from "./raceRoom";
-import RacerStatus from "./types/RacerStatus";
+import { RacerStatus } from "./types/RacerStatus";
 
 export function postRender(): void {
   checkDisplay();

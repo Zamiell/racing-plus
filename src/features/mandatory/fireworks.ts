@@ -1,6 +1,6 @@
 import { getPlayers, nextSeed, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import RaceStatus from "../race/types/RaceStatus";
+import { RaceStatus } from "../race/types/RaceStatus";
 import { speedrunIsFinished } from "../speedrun/exported";
 
 const v = {

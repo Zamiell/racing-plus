@@ -1,4 +1,4 @@
-export default interface EntityLocation {
+export interface EntityLocation {
   roomIndex: int;
   position: Vector;
 }

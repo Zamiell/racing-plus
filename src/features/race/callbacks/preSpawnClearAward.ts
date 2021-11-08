@@ -3,7 +3,7 @@ import * as openRepentanceDoor from "../openRepentanceDoor";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeVoidDoor from "../removeVoidDoor";
 
-export default function preSpawnClearAward(): void {
+export function racePreSpawnClearAward(): void {
   if (!config.clientCommunication) {
     return;
   }

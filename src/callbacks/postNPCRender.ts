@@ -1,6 +1,6 @@
 import * as debugFunction from "../debugFunction";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
-import fastClearPostNPCRender from "../features/optional/major/fastClear/callbacks/postNPCRender";
+import { fastClearPostNPCRender } from "../features/optional/major/fastClear/callbacks/postNPCRender";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

@@ -2,13 +2,18 @@ import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import { CollectibleTypeCustom } from "../types/enums";
 
-const functionMap = new Map<CacheFlag, (player: EntityPlayer) => void>();
-export default functionMap;
+export const evaluateCacheFunctions = new Map<
+  CacheFlag,
+  (player: EntityPlayer) => void
+>();
 
 // 1 << 2
-functionMap.set(CacheFlag.CACHE_SHOTSPEED, (player: EntityPlayer) => {
-  magic8BallSeeded(player);
-});
+evaluateCacheFunctions.set(
+  CacheFlag.CACHE_SHOTSPEED,
+  (player: EntityPlayer) => {
+    magic8BallSeeded(player);
+  },
+);
 
 function magic8BallSeeded(player: EntityPlayer) {
   const numMagic8BallSeeded = player.GetCollectibleNum(
@@ -20,17 +25,20 @@ function magic8BallSeeded(player: EntityPlayer) {
 }
 
 // 1 << 4
-functionMap.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
+evaluateCacheFunctions.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
   debugPowers.evaluateCacheSpeed(player);
 });
 
 // 1 << 6
-functionMap.set(CacheFlag.CACHE_TEARCOLOR, (player: EntityPlayer) => {
-  changeCreepColor.evaluateCacheTearColor(player);
-});
+evaluateCacheFunctions.set(
+  CacheFlag.CACHE_TEARCOLOR,
+  (player: EntityPlayer) => {
+    changeCreepColor.evaluateCacheTearColor(player);
+  },
+);
 
 // 1 << 10
-functionMap.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {
+evaluateCacheFunctions.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {
   thirteenLuck(player);
   fifteenLuck(player);
 });

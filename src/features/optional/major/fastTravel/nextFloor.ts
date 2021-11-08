@@ -2,9 +2,9 @@ import { onRepentanceStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import RaceGoal from "../../../race/types/RaceGoal";
-import RacerStatus from "../../../race/types/RacerStatus";
-import RaceStatus from "../../../race/types/RaceStatus";
+import { RaceGoal } from "../../../race/types/RaceGoal";
+import { RacerStatus } from "../../../race/types/RacerStatus";
+import { RaceStatus } from "../../../race/types/RaceStatus";
 import v from "./v";
 
 export function goto(upwards: boolean): void {

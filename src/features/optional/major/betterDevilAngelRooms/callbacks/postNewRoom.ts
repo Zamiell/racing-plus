@@ -2,15 +2,15 @@ import { inAngelShop } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { setRoomCleared } from "../../../../../utilGlobals";
-import angel from "../angel";
-import devil from "../devil";
+import { angel } from "../angel";
+import { devil } from "../devil";
 import v from "../v";
 
 const ENTITIES_TO_NOT_REMOVE = new Set<EntityType>([
   EntityType.ENTITY_DARK_ESAU,
 ]);
 
-export default function betterDevilAngelRoomsPostNewRoom(): void {
+export function betterDevilAngelRoomsPostNewRoom(): void {
   if (!config.betterDevilAngelRooms) {
     return;
   }

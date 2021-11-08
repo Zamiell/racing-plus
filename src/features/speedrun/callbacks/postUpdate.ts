@@ -1,7 +1,7 @@
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
-export default function speedrunPostUpdate(): void {
+export function speedrunPostUpdate(): void {
   if (!inSpeedrun()) {
     return;
   }

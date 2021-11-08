@@ -4,11 +4,11 @@ import { config } from "../../../modConfigMenu";
 import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 import * as seededDeath from "../seededDeath";
-import RaceGoal from "../types/RaceGoal";
-import RacerStatus from "../types/RacerStatus";
-import RaceStatus from "../types/RaceStatus";
+import { RaceGoal } from "../types/RaceGoal";
+import { RacerStatus } from "../types/RacerStatus";
+import { RaceStatus } from "../types/RaceStatus";
 
-export default function racePostUpdate(): void {
+export function racePostUpdate(): void {
   if (!config.clientCommunication) {
     return;
   }

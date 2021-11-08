@@ -8,19 +8,19 @@ import {
   setRestartCharacter,
   setRestartSeed,
 } from "../../util/restartOnNextFrame";
-import formatSetup from "../formatSetup";
+import { formatSetup } from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
 import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
-import RaceDifficulty from "../types/RaceDifficulty";
-import RaceFormat from "../types/RaceFormat";
-import RacerStatus from "../types/RacerStatus";
-import RaceStatus from "../types/RaceStatus";
+import { RaceDifficulty } from "../types/RaceDifficulty";
+import { RaceFormat } from "../types/RaceFormat";
+import { RacerStatus } from "../types/RacerStatus";
+import { RaceStatus } from "../types/RaceStatus";
 
-export default function racePostGameStarted(): void {
+export function racePostGameStarted(): void {
   if (!config.clientCommunication) {
     return;
   }

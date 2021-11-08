@@ -20,11 +20,11 @@ import {
   FAST_CLEAR_WHITELIST_WITH_SPECIFIC_VARIANT,
 } from "../constants";
 import * as krampus from "../krampus";
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as tracking from "../tracking";
 import v from "../v";
 
-export default function fastClearPostEntityKill(entity: Entity): void {
+export function fastClearPostEntityKill(entity: Entity): void {
   if (!shouldEnableFastClear()) {
     return;
   }

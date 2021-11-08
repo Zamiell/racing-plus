@@ -1,6 +1,6 @@
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
-export default function fastClearPostNPCRender(npc: EntityNPC): void {
+export function fastClearPostNPCRender(npc: EntityNPC): void {
   if (!shouldEnableFastClear()) {
     return;
   }

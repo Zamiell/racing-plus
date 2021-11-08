@@ -1,8 +1,8 @@
 import { anyPlayerHasCollectible, getRandomInt } from "isaacscript-common";
 import g from "../../../../globals";
 import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
-import RacerStatus from "../../../race/types/RacerStatus";
-import RaceStatus from "../../../race/types/RaceStatus";
+import { RacerStatus } from "../../../race/types/RacerStatus";
+import { RaceStatus } from "../../../race/types/RaceStatus";
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(npc: EntityNPC): void {

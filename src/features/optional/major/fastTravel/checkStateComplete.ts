@@ -3,7 +3,7 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
-import setNewState, { setPlayersVisible } from "./setNewState";
+import { setNewState, setPlayersVisible } from "./setNewState";
 import v from "./v";
 
 // ModCallbacks.MC_POST_RENDER (2)

@@ -10,7 +10,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
-import passiveItemsForEden from "../../../passiveItemsForEden";
+import { passiveItemsForEden } from "../../../passiveItemsForEden";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,

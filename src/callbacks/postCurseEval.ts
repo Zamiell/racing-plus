@@ -1,4 +1,4 @@
-import disableCurses from "../features/optional/major/disableCurses";
+import { disableCurses } from "../features/optional/major/disableCurses";
 
 export function main(curses: int): LevelCurse {
   const newCurses = disableCurses();

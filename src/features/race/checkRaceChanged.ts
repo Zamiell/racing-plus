@@ -10,13 +10,13 @@ import { unseed } from "../../utilGlobals";
 import { restartOnNextFrame, setRestartSeed } from "../util/restartOnNextFrame";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
-import raceStart from "./raceStart";
+import { raceStart } from "./raceStart";
 import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
-import RaceData, { RaceDataType } from "./types/RaceData";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceData, RaceDataType } from "./types/RaceData";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 export function checkRaceChanged(
   oldRaceData: RaceData,

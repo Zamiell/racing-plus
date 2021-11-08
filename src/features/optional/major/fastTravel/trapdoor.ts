@@ -7,9 +7,9 @@ import {
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
 import { removeGridEntity } from "../../../../utilGlobals";
-import RaceGoal from "../../../race/types/RaceGoal";
-import RacerStatus from "../../../race/types/RacerStatus";
-import RaceStatus from "../../../race/types/RaceStatus";
+import { RaceGoal } from "../../../race/types/RaceGoal";
+import { RacerStatus } from "../../../race/types/RacerStatus";
+import { RaceStatus } from "../../../race/types/RaceStatus";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";

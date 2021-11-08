@@ -8,12 +8,12 @@ import {
   getRoomIndexesForType,
 } from "isaacscript-common";
 import g from "../../globals";
-import DreamCatcherWarpState from "../../types/DreamCatcherWarpState";
+import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
 import { EffectVariantCustom, PickupPriceCustom } from "../../types/enums";
 import { centerPlayers } from "../mandatory/centerStart";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 // Planetariums have a greater chance of occurring if a Treasure Room is skipped,

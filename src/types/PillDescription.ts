@@ -1,4 +1,4 @@
-export default interface PillDescription {
+export interface PillDescription {
   color: PillColor;
   effect: PillEffect;
 }

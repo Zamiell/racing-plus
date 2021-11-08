@@ -1,5 +1,5 @@
 // cspell:disable
-const PILL_MAP = new Map([
+export const PILL_MAP = new Map([
   ["badgas", 0],
   ["gas", 0],
   ["badtrip", 1],
@@ -163,4 +163,3 @@ const PILL_MAP = new Map([
   ["experiment", 49],
   ["exp", 49],
 ]);
-export default PILL_MAP;

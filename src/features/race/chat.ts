@@ -3,8 +3,8 @@
 
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import Colors from "../../types/Colors";
-import TextSegment from "../../types/TextSegment";
+import { Colors } from "../../types/Colors";
+import { TextSegment } from "../../types/TextSegment";
 import {
   CONSOLE_POSITION,
   DEFAULT_CONSOLE_OPACITY,

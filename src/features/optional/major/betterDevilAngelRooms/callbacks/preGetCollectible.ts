@@ -9,7 +9,7 @@ import { config } from "../../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../../types/enums";
 import v from "../v";
 
-export default function betterDevilAngelRoomsPreGetCollectible(
+export function betterDevilAngelRoomsPreGetCollectible(
   itemPoolType: ItemPoolType,
   _decrease: boolean,
   _seed: int,

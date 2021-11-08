@@ -1,8 +1,8 @@
-import RaceData from "../features/race/types/RaceData";
-import RaceVars from "../features/race/types/RaceVars";
-import ChatMessage from "./ChatMessage";
+import { RaceData } from "../features/race/types/RaceData";
+import { RaceVars } from "../features/race/types/RaceVars";
+import { ChatMessage } from "./ChatMessage";
 
-export default class Globals {
+export class Globals {
   debug = false;
 
   // Cached API functions

@@ -1,11 +1,11 @@
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { inRaceRoom } from "./raceRoom";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
-import RaceVars from "./types/RaceVars";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
+import { RaceVars } from "./types/RaceVars";
 
-export default function raceStart(): void {
+export function raceStart(): void {
   g.raceVars = new RaceVars();
   g.raceVars.started = true;
   g.raceVars.startedTime = Isaac.GetTime();

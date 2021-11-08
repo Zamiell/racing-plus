@@ -1,7 +1,7 @@
 import { config } from "../../../../../modConfigMenu";
 import * as extraStartingItems from "../extraStartingItems";
 
-export default function extraStartingItemsPostNewLevel(): void {
+export function extraStartingItemsPostNewLevel(): void {
   if (!config.extraStartingItems) {
     return;
   }

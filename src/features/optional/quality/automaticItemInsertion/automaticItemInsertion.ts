@@ -24,7 +24,7 @@ import {
   PICKUP_VARIANT_CARD_OR_PILL,
   UI_X,
 } from "./constants";
-import insertPickup from "./insertPickup";
+import { insertPickup } from "./insertPickup";
 
 const v = {
   run: {

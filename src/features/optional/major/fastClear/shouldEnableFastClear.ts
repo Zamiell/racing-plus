@@ -2,7 +2,7 @@ import { isGreedMode } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 
-export default function shouldEnableFastClear(): boolean {
+export function shouldEnableFastClear(): boolean {
   return (
     config.fastClear &&
     !isGreedMode() &&

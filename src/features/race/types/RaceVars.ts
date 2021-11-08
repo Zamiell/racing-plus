@@ -1,4 +1,4 @@
-export default class RaceVars {
+export class RaceVars {
   started = false;
   startedTime = -1;
   startedFrame = -1;

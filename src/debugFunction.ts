@@ -8,7 +8,7 @@ const DEBUG_HOTKEY2 = Keyboard.KEY_F3;
 let debugHotkeyPressed = false;
 let debugHotkey2Pressed = false;
 
-export default function debugFunction(): void {
+export function debugFunction(): void {
   g.debug = true;
 }
 

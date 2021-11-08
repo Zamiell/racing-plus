@@ -1,7 +1,7 @@
 import { hasOpenPocketItemSlot, hasOpenTrinketSlot } from "isaacscript-common";
 import { DETRIMENTAL_TRINKETS } from "./constants";
 
-export default function insertPickup(
+export function insertPickup(
   pickup: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {

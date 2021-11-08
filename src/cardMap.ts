@@ -1,5 +1,5 @@
 // cspell:disable
-const CARD_MAP = new Map([
+export const CARD_MAP = new Map([
   ["fool", 1],
   ["magician", 2],
   ["magi", 2],
@@ -299,4 +299,3 @@ const CARD_MAP = new Map([
   ["jacob&esau", 97],
   ["jacob", 97],
 ]);
-export default CARD_MAP;

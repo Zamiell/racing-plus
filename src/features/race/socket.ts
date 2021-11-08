@@ -9,9 +9,9 @@ import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import * as socketClient from "./socketClient";
-import socketFunctions, { reset } from "./socketFunctions";
-import RaceData, { cloneRaceData } from "./types/RaceData";
-import RaceStatus from "./types/RaceStatus";
+import { reset, socketFunctions } from "./socketFunctions";
+import { cloneRaceData, RaceData } from "./types/RaceData";
+import { RaceStatus } from "./types/RaceStatus";
 
 const DEBUG = false;
 

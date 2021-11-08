@@ -1,8 +1,8 @@
 import { getRoomIndex, log, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import EntityLocation from "../../types/EntityLocation";
+import { EntityLocation } from "../../types/EntityLocation";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
-import raceFinish from "../race/raceFinish";
+import { raceFinish } from "../race/raceFinish";
 import { isSeededDeathActive } from "../race/v";
 import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";

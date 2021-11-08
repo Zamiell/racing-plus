@@ -9,7 +9,7 @@ import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 import { removeGridEntity } from "../../utilGlobals";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import ChangeCharOrderPhase from "./types/ChangeCharOrderPhase";
+import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v from "./v";
 
 // ModCallbacks.MC_POST_RENDER (2)

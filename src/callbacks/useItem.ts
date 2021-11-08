@@ -1,4 +1,4 @@
-import debugFunction from "../debugFunction";
+import { debugFunction } from "../debugFunction";
 import * as fixGenesisAndDamocles from "../features/mandatory/fixGenesisAndDamocles";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";

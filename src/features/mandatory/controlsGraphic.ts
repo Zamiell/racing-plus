@@ -6,9 +6,9 @@
 import { getEffectiveStage, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
 import { CreepRedSubTypeCustom } from "../../types/enums";
-import RaceFormat from "../race/types/RaceFormat";
-import RacerStatus from "../race/types/RacerStatus";
-import RaceStatus from "../race/types/RaceStatus";
+import { RaceFormat } from "../race/types/RaceFormat";
+import { RacerStatus } from "../race/types/RacerStatus";
+import { RaceStatus } from "../race/types/RaceStatus";
 
 export function postNewRoom(): void {
   drawControlsGraphic();

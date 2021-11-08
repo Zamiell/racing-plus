@@ -1,6 +1,6 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
-import fastTravelEntityTakeDmgPlayer from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
+import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
 

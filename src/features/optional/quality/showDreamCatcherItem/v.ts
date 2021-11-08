@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import DreamCatcherWarpState from "../../../../types/DreamCatcherWarpState";
+import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 
 const v = {
   level: {

@@ -2,7 +2,7 @@
  * - The first value of the array is the lowercase character.
  * - The second value of the array is the uppercase character.
  */
-const KEYBOARD_MAP = new Map<Keyboard, [string, string]>([
+export const KEYBOARD_MAP = new Map<Keyboard, [string, string]>([
   [Keyboard.KEY_0, ["0", ")"]],
   [Keyboard.KEY_1, ["1", "!"]],
   [Keyboard.KEY_2, ["2", "@"]],
@@ -67,4 +67,3 @@ const KEYBOARD_MAP = new Map<Keyboard, [string, string]>([
   [Keyboard.KEY_Y, ["y", "Y"]],
   [Keyboard.KEY_Z, ["z", "Z"]],
 ]);
-export default KEYBOARD_MAP;

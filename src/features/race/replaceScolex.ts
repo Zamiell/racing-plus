@@ -2,9 +2,9 @@
 
 import { nextSeed, removeEntities } from "isaacscript-common";
 import g from "../../globals";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   if (

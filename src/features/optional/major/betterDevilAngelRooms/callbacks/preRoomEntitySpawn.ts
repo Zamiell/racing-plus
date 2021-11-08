@@ -4,7 +4,7 @@ import { config } from "../../../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../../../types/enums";
 
 // On the first visit to the room, remove all of the things in it
-export default function betterDevilAngelRoomsPreRoomEntitySpawn(
+export function betterDevilAngelRoomsPreRoomEntitySpawn(
   entityType: EntityType,
 ): [int, int, int] | void {
   if (!config.betterDevilAngelRooms) {

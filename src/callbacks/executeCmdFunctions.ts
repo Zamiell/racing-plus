@@ -5,21 +5,21 @@ import {
   log,
   saveDataManagerSave,
 } from "isaacscript-common";
-import CARD_MAP from "../cardMap";
-import CHARACTER_MAP from "../characterMap";
+import { CARD_MAP } from "../cardMap";
+import { CHARACTER_MAP } from "../characterMap";
 import { VERSION } from "../constants";
-import debugFunction from "../debugFunction";
+import { debugFunction } from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
-import RaceFormat from "../features/race/types/RaceFormat";
-import RacerStatus from "../features/race/types/RacerStatus";
-import RaceStatus from "../features/race/types/RaceStatus";
+import { RaceFormat } from "../features/race/types/RaceFormat";
+import { RacerStatus } from "../features/race/types/RacerStatus";
+import { RaceStatus } from "../features/race/types/RaceStatus";
 import { ChallengeCustom } from "../features/speedrun/enums";
 import { speedrunSetNext } from "../features/speedrun/exported";
 import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
-import PILL_MAP from "../pillMap";
+import { PILL_MAP } from "../pillMap";
 import { consoleCommand, restart, restartAsCharacter } from "../util";
 import { unseed } from "../utilGlobals";
 import {
@@ -38,19 +38,17 @@ import {
   validateNumber,
 } from "./executeCmdSubroutines";
 
-const functionMap = new Map<string, (params: string) => void>();
-export default functionMap;
+export const executeCmdFunctions = new Map<string, (params: string) => void>();
 
-functionMap.set("angel", (params: string) => {
+executeCmdFunctions.set("angel", (params: string) => {
   angel(params);
 });
 
-// cspell:disable-next-line
-functionMap.set("blackmarket", (_params: string) => {
+executeCmdFunctions.set("blackmarket", (_params: string) => {
   blackMarket();
 });
 
-functionMap.set("bomb", (params: string) => {
+executeCmdFunctions.set("bomb", (params: string) => {
   let bombs = 1;
   if (params !== "") {
     const num = validateNumber(params);
@@ -65,25 +63,25 @@ functionMap.set("bomb", (params: string) => {
   }
 });
 
-functionMap.set("bombs", (_params: string) => {
+executeCmdFunctions.set("bombs", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.AddBombs(99);
   }
 });
 
-functionMap.set("boss", (_params: string) => {
+executeCmdFunctions.set("boss", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.UseCard(Card.CARD_EMPEROR);
   }
 });
 
-functionMap.set("bm", (_params: string) => {
+executeCmdFunctions.set("bm", (_params: string) => {
   blackMarket();
 });
 
-functionMap.set("card", (params: string) => {
+executeCmdFunctions.set("card", (params: string) => {
   if (params === "") {
     print("You must specify a card name or number.");
     return;
@@ -113,7 +111,7 @@ functionMap.set("card", (params: string) => {
   print(`Gave card: #${card}`);
 });
 
-functionMap.set("cards", (_params: string) => {
+executeCmdFunctions.set("cards", (_params: string) => {
   let cardNum = 1;
   for (let y = 0; y <= 6; y++) {
     for (let x = 0; x <= 12; x++) {
@@ -135,19 +133,19 @@ functionMap.set("cards", (_params: string) => {
   }
 });
 
-functionMap.set("cc", (_params: string) => {
+executeCmdFunctions.set("cc", (_params: string) => {
   chaosCardTears();
 });
 
-functionMap.set("changechar", (_params: string) => {
+executeCmdFunctions.set("changechar", (_params: string) => {
   consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
 });
 
-functionMap.set("chaos", (_params: string) => {
+executeCmdFunctions.set("chaos", (_params: string) => {
   chaosCardTears();
 });
 
-functionMap.set("char", (params: string) => {
+executeCmdFunctions.set("char", (params: string) => {
   if (params === "") {
     print("You must specify a character name or number.");
     return;
@@ -171,7 +169,7 @@ functionMap.set("char", (params: string) => {
   print(`Restarting as character: ${character}`);
 });
 
-functionMap.set("coin", (params: string) => {
+executeCmdFunctions.set("coin", (params: string) => {
   let coins = 1;
   if (params !== "") {
     const num = validateNumber(params);
@@ -186,14 +184,14 @@ functionMap.set("coin", (params: string) => {
   }
 });
 
-functionMap.set("coins", (_params: string) => {
+executeCmdFunctions.set("coins", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.AddCoins(99);
   }
 });
 
-functionMap.set("connect", (_params: string) => {
+executeCmdFunctions.set("connect", (_params: string) => {
   if (socketClient.connect()) {
     print("Successfully connected.");
   } else {
@@ -201,43 +199,43 @@ functionMap.set("connect", (_params: string) => {
   }
 });
 
-functionMap.set("commands", (_params: string) => {
-  commands(functionMap);
+executeCmdFunctions.set("commands", (_params: string) => {
+  commands(executeCmdFunctions);
 });
 
-functionMap.set("crawl", (_params: string) => {
+executeCmdFunctions.set("crawl", (_params: string) => {
   crawlspace();
 });
 
-functionMap.set("crawlspace", (_params: string) => {
+executeCmdFunctions.set("crawlspace", (_params: string) => {
   crawlspace();
 });
 
-functionMap.set("dd", (params: string) => {
+executeCmdFunctions.set("dd", (params: string) => {
   devil(params);
 });
 
-functionMap.set("debug", (_params: string) => {
+executeCmdFunctions.set("debug", (_params: string) => {
   print("Executing debug function.");
   debugFunction();
 });
 
-functionMap.set("devil", (params: string) => {
+executeCmdFunctions.set("devil", (params: string) => {
   devil(params);
 });
 
-functionMap.set("down", (params: string) => {
+executeCmdFunctions.set("down", (params: string) => {
   movePlayer(params, Direction.DOWN);
 });
 
-functionMap.set("fool", (_params: string) => {
+executeCmdFunctions.set("fool", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.UseCard(Card.CARD_FOOL);
   }
 });
 
-functionMap.set("effects", (_params: string) => {
+executeCmdFunctions.set("effects", (_params: string) => {
   const player = Isaac.GetPlayer();
   const effects = player.GetEffects();
   const effectsList = effects.GetEffectsList();
@@ -254,35 +252,35 @@ functionMap.set("effects", (_params: string) => {
   print('Logged the player\'s effects to the "log.txt" file.');
 });
 
-functionMap.set("error", (_params: string) => {
+executeCmdFunctions.set("error", (_params: string) => {
   IAMERROR();
 });
 
-functionMap.set("goldbomb", (_params: string) => {
+executeCmdFunctions.set("goldbomb", (_params: string) => {
   goldenBomb();
 });
 
-functionMap.set("goldenbomb", (_params: string) => {
+executeCmdFunctions.set("goldenbomb", (_params: string) => {
   goldenBomb();
 });
 
-functionMap.set("goldenkey", (_params: string) => {
+executeCmdFunctions.set("goldenkey", (_params: string) => {
   goldenKey();
 });
 
-functionMap.set("goldkey", (_params: string) => {
+executeCmdFunctions.set("goldkey", (_params: string) => {
   goldenKey();
 });
 
-functionMap.set("help", (_params: string) => {
-  commands(functionMap);
+executeCmdFunctions.set("help", (_params: string) => {
+  commands(executeCmdFunctions);
 });
 
-functionMap.set("iamerror", (_params: string) => {
+executeCmdFunctions.set("iamerror", (_params: string) => {
   IAMERROR();
 });
 
-functionMap.set("key", (params: string) => {
+executeCmdFunctions.set("key", (params: string) => {
   let keys = 1;
   if (params !== "") {
     const num = validateNumber(params);
@@ -297,26 +295,26 @@ functionMap.set("key", (params: string) => {
   }
 });
 
-functionMap.set("keys", (_params: string) => {
+executeCmdFunctions.set("keys", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.AddKeys(99);
   }
 });
 
-functionMap.set("list", (_params: string) => {
+executeCmdFunctions.set("list", (_params: string) => {
   list();
 });
 
-functionMap.set("listall", (_params: string) => {
+executeCmdFunctions.set("listall", (_params: string) => {
   list(true);
 });
 
-functionMap.set("luck", (_params: string) => {
+executeCmdFunctions.set("luck", (_params: string) => {
   consoleCommand("debug 9");
 });
 
-functionMap.set("move", (_params: string) => {
+executeCmdFunctions.set("move", (_params: string) => {
   const player = Isaac.GetPlayer();
 
   // Move the player to a specific position
@@ -324,11 +322,11 @@ functionMap.set("move", (_params: string) => {
   player.Position = oneByOneRoomRightDoorNextToLoadingZone;
 });
 
-functionMap.set("next", (_params: string) => {
+executeCmdFunctions.set("next", (_params: string) => {
   speedrunSetNext();
 });
 
-functionMap.set("pill", (params: string) => {
+executeCmdFunctions.set("pill", (params: string) => {
   if (params === "") {
     print("You must specify a pill name or number.");
     return;
@@ -359,7 +357,7 @@ functionMap.set("pill", (params: string) => {
   print(`Gave pill: #${pillEffect}`);
 });
 
-functionMap.set("pills", (_params: string) => {
+executeCmdFunctions.set("pills", (_params: string) => {
   let pillColor = 1;
   let horse = false;
   for (let y = 0; y <= 6; y++) {
@@ -388,22 +386,22 @@ functionMap.set("pills", (_params: string) => {
   }
 });
 
-functionMap.set("pos", (_params: string) => {
+executeCmdFunctions.set("pos", (_params: string) => {
   for (const player of getPlayers()) {
     print(`Player position: (${player.Position.X}, ${player.Position.Y})`);
   }
 });
 
-functionMap.set("previous", (_params: string) => {
+executeCmdFunctions.set("previous", (_params: string) => {
   speedrunSetNext(true);
 });
 
-functionMap.set("roomindex", (_params: string) => {
+executeCmdFunctions.set("roomindex", (_params: string) => {
   const roomIndex = getRoomIndex();
   print(roomIndex);
 });
 
-functionMap.set("s", (params: string) => {
+executeCmdFunctions.set("s", (params: string) => {
   if (params === "") {
     print("You must specify a stage number.");
     return;
@@ -442,21 +440,21 @@ functionMap.set("s", (params: string) => {
   consoleCommand(`stage ${stage}${stageType}`);
 });
 
-functionMap.set("s0", (_params: string) => {
+executeCmdFunctions.set("s0", (_params: string) => {
   consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
 });
 
-functionMap.set("s1", (_params: string) => {
+executeCmdFunctions.set("s1", (_params: string) => {
   consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
   consoleCommand("setcharorder");
 });
 
-functionMap.set("save", (_params: string) => {
+executeCmdFunctions.set("save", (_params: string) => {
   saveDataManagerSave();
   print('Saved variables to the "save#.dat" file.');
 });
 
-functionMap.set("seededrace", (params: string) => {
+executeCmdFunctions.set("seededrace", (params: string) => {
   const enabled = params !== "off";
 
   g.race.status = enabled ? RaceStatus.IN_PROGRESS : RaceStatus.NONE;
@@ -467,19 +465,19 @@ functionMap.set("seededrace", (params: string) => {
   print(`${enabledText} seeded race mode.`);
 });
 
-functionMap.set("setcharorder", (_params: string) => {
+executeCmdFunctions.set("setcharorder", (_params: string) => {
   setCharacterOrderDebug();
   restartOnNextFrame();
 });
 
-functionMap.set("shop", (_params: string) => {
+executeCmdFunctions.set("shop", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.UseCard(Card.CARD_HERMIT);
   }
 });
 
-functionMap.set("sound", (params: string) => {
+executeCmdFunctions.set("sound", (params: string) => {
   const soundEffect = validateNumber(params);
   if (soundEffect === undefined) {
     return;
@@ -487,7 +485,7 @@ functionMap.set("sound", (params: string) => {
   g.sfx.Play(soundEffect);
 });
 
-functionMap.set("sounds", (_params: string) => {
+executeCmdFunctions.set("sounds", (_params: string) => {
   print("Printing out the currently playing sounds to the log.txt.");
   for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
     if (g.sfx.IsPlaying(i)) {
@@ -496,40 +494,40 @@ functionMap.set("sounds", (_params: string) => {
   }
 });
 
-functionMap.set("spam", (_params: string) => {
+executeCmdFunctions.set("spam", (_params: string) => {
   debugPowers.toggleSpam();
 });
 
-functionMap.set("speed", (_params: string) => {
+executeCmdFunctions.set("speed", (_params: string) => {
   debugPowers.toggleSpeed();
 });
 
-functionMap.set("stick", (_params: string) => {
+executeCmdFunctions.set("stick", (_params: string) => {
   const seedString = g.seeds.GetStartSeedString();
   consoleCommand(`seed ${seedString}`);
 });
 
-functionMap.set("trap", (_params: string) => {
+executeCmdFunctions.set("trap", (_params: string) => {
   trapdoor();
 });
 
-functionMap.set("trapdoor", (_params: string) => {
+executeCmdFunctions.set("trapdoor", (_params: string) => {
   trapdoor();
 });
 
-functionMap.set("treasure", (_params: string) => {
+executeCmdFunctions.set("treasure", (_params: string) => {
   const player = Isaac.GetPlayer();
   if (player !== undefined) {
     player.UseCard(Card.CARD_STARS);
   }
 });
 
-functionMap.set("unseed", (_params: string) => {
+executeCmdFunctions.set("unseed", (_params: string) => {
   unseed();
   restart();
 });
 
-functionMap.set("version", (_params: string) => {
+executeCmdFunctions.set("version", (_params: string) => {
   const msg = `Racing+ version: ${VERSION}`;
   log(msg);
   print(msg);

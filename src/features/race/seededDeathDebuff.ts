@@ -9,7 +9,7 @@ import {
 } from "isaacscript-common";
 import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
-import ActiveItemDescription from "../../types/ActiveItemDescription";
+import { ActiveItemDescription } from "../../types/ActiveItemDescription";
 import {
   CollectibleTypeCustom,
   TRANSFORMATION_HELPERS,

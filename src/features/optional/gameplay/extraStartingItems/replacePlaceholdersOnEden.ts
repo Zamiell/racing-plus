@@ -1,6 +1,6 @@
 import { getPlayers, getRandomArrayElement } from "isaacscript-common";
 import g from "../../../../globals";
-import passiveItemsForEden from "../../../../passiveItemsForEden";
+import { passiveItemsForEden } from "../../../../passiveItemsForEden";
 import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 

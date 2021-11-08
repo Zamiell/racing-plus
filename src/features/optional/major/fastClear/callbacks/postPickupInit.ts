@@ -1,4 +1,4 @@
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
 export function collectible(pickup: EntityPickup): void {
   if (!shouldEnableFastClear()) {

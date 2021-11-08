@@ -1,4 +1,4 @@
-import SeasonDescription from "./types/SeasonDescription";
+import { SeasonDescription } from "./types/SeasonDescription";
 
 // The format of "charPosition" is: character ID, X, Y
 export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {

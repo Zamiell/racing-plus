@@ -7,8 +7,8 @@
 import { getScreenCenterPos } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;

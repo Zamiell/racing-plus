@@ -12,7 +12,7 @@ import v from "./v";
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
 const KRAMPUS_CHANCE = 0.4;
 
-export default function devil(): void {
+export function devil(): void {
   const hasNumberMagnet = anyPlayerHasTrinket(
     TrinketType.TRINKET_NUMBER_MAGNET,
   );

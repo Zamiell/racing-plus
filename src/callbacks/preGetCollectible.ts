@@ -1,4 +1,4 @@
-import betterDevilAngelRoomsPreGetCollectible from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
+import { betterDevilAngelRoomsPreGetCollectible } from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
 
 export function main(
   itemPoolType: ItemPoolType,

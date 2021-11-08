@@ -2,9 +2,9 @@ import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../sprite";
 import { getRoomsEntered } from "../util/roomsEntered";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";

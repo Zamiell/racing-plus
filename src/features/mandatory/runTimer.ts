@@ -10,7 +10,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import * as timer from "../../timer";
-import TimerType from "../../types/TimerType";
+import { TimerType } from "../../types/TimerType";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
 
 const RUN_TIMER_X = 52;

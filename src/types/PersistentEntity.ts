@@ -1,4 +1,4 @@
-export default interface PersistentEntity {
+export interface PersistentEntity {
   gridIndex: int;
   type: int;
   variant: int;

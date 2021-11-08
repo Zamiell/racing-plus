@@ -4,7 +4,7 @@ import { spawnEndOfRaceButtons } from "./endOfRaceButtons";
 import * as socket from "./socket";
 import v from "./v";
 
-export default function raceFinish(): void {
+export function raceFinish(): void {
   g.raceVars.finished = true;
   g.raceVars.finishedTime = Isaac.GetTime() - g.raceVars.startedTime;
   g.raceVars.finishedFrames = Isaac.GetFrameCount() - g.raceVars.startedFrame;

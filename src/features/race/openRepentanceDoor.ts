@@ -2,9 +2,9 @@
 
 import { getDoors } from "isaacscript-common";
 import g from "../../globals";
-import RaceGoal from "./types/RaceGoal";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceGoal } from "./types/RaceGoal";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 export function preSpawnClearAward(): void {
   openRepentanceDoor();

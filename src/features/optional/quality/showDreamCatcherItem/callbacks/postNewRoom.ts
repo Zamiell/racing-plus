@@ -9,7 +9,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import DreamCatcherWarpState from "../../../../../types/DreamCatcherWarpState";
+import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import { PickupPriceCustom } from "../../../../../types/enums";
 import * as sprites from "../sprites";
 import v from "../v";
@@ -17,7 +17,7 @@ import v from "../v";
 const STAIRWAY_GRID_INDEX = 25;
 const TAINTED_KEEPER_ITEM_PRICE = 15;
 
-export default function showDreamCatcherItemPostNewRoom(): void {
+export function showDreamCatcherItemPostNewRoom(): void {
   if (!config.showDreamCatcherItem) {
     return;
   }

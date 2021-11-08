@@ -9,9 +9,9 @@ import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
 import { hasPolaroidOrNegative } from "../../util";
 import { spawnCollectible } from "../../utilGlobals";
-import RaceGoal from "../race/types/RaceGoal";
-import RacerStatus from "../race/types/RacerStatus";
-import RaceStatus from "../race/types/RaceStatus";
+import { RaceGoal } from "../race/types/RaceGoal";
+import { RacerStatus } from "../race/types/RacerStatus";
+import { RaceStatus } from "../race/types/RaceStatus";
 import { inSpeedrun } from "../speedrun/speedrun";
 
 enum PhotoSituation {

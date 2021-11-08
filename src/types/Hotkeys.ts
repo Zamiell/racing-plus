@@ -1,4 +1,4 @@
-export default class Hotkeys {
+export class Hotkeys {
   fastDropAll = -1;
   fastDropTrinkets = -1;
   fastDropPocket = -1;

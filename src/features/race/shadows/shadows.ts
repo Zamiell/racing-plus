@@ -11,9 +11,9 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
 import * as socket from "../socket";
-import RaceFormat from "../types/RaceFormat";
-import RacerStatus from "../types/RacerStatus";
-import RaceStatus from "../types/RaceStatus";
+import { RaceFormat } from "../types/RaceFormat";
+import { RacerStatus } from "../types/RacerStatus";
+import { RaceStatus } from "../types/RaceStatus";
 import { CHARACTER_PNG_MAP } from "./characterPNGMap";
 import {
   BEACON_DATA_FORMAT,

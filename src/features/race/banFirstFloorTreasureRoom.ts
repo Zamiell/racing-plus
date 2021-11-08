@@ -6,9 +6,9 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { removeAllCollectibles } from "../../util";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();

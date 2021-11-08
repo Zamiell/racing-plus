@@ -1,9 +1,9 @@
 // Automatically open the Mega Satan door on races with a Mega Satan goal
 
 import g from "../../globals";
-import RaceGoal from "./types/RaceGoal";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceGoal } from "./types/RaceGoal";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 export function postNewLevel(): void {
   const stage = g.l.GetStage();

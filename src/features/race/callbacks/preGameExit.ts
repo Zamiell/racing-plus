@@ -1,7 +1,7 @@
 import { config } from "../../../modConfigMenu";
 import * as socket from "../socket";
 
-export default function racePreGameExit(): void {
+export function racePreGameExit(): void {
   if (!config.clientCommunication) {
     return;
   }

@@ -1,7 +1,7 @@
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as replaceCodWorms from "../features/optional/enemies/replaceCodWorms";
 
-const functionMap = new Map<
+export const preEntitySpawnFunctions = new Map<
   EntityType,
   (
     variant: int,
@@ -11,10 +11,9 @@ const functionMap = new Map<
     initSeed: int,
   ) => [EntityType, int, int, int] | void
 >();
-export default functionMap;
 
 // 5
-functionMap.set(
+preEntitySpawnFunctions.set(
   EntityType.ENTITY_PICKUP,
   (
     variant: int,
@@ -32,7 +31,7 @@ functionMap.set(
 );
 
 // 221
-functionMap.set(
+preEntitySpawnFunctions.set(
   EntityType.ENTITY_COD_WORM,
   (
     _variant: int,

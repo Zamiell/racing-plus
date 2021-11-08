@@ -69,7 +69,7 @@ import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
-import initFeatureVariables from "./initFeatureVariables";
+import { initFeatureVariables } from "./initFeatureVariables";
 
 export default function main(): void {
   const mod = RegisterMod(MOD_NAME, 1);

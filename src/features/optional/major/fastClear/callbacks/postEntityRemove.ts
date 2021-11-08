@@ -1,7 +1,7 @@
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as tracking from "../tracking";
 
-export default function fastClearPostEntityRemove(entity: Entity): void {
+export function fastClearPostEntityRemove(entity: Entity): void {
   if (!shouldEnableFastClear()) {
     return;
   }

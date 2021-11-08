@@ -1,4 +1,4 @@
-enum RacerStatus {
+export enum RacerStatus {
   NOT_READY = "not ready",
   READY = "ready",
   RACING = "racing",
@@ -6,4 +6,3 @@ enum RacerStatus {
   QUIT = "quit",
   DISQUALIFIED = "disqualified",
 }
-export default RacerStatus;

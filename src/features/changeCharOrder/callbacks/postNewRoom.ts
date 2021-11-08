@@ -12,7 +12,7 @@ import { getRoomsEntered } from "../../util/roomsEntered";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import v from "../v";
 
-export default function charCharOrderPostNewRoom(): void {
+export function charCharOrderPostNewRoom(): void {
   const challenge = Isaac.GetChallenge();
   if (challenge !== ChallengeCustom.CHANGE_CHAR_ORDER) {
     return;

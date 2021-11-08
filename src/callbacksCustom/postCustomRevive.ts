@@ -1,6 +1,6 @@
 import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
-import racePostCustomRevive from "../features/race/callbacks/postCustomRevive";
-import RevivalType from "../features/race/types/RevivalType";
+import { racePostCustomRevive } from "../features/race/callbacks/postCustomRevive";
+import { RevivalType } from "../features/race/types/RevivalType";
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(

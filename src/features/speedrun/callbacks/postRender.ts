@@ -11,7 +11,7 @@ import v from "../v";
 
 const FADEOUT_SPEED = 0.0275;
 
-export default function speedrunPostRender(): void {
+export function speedrunPostRender(): void {
   if (!inSpeedrun()) {
     return;
   }

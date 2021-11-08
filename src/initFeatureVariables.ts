@@ -54,7 +54,7 @@ import * as roomsEntered from "./features/util/roomsEntered";
 import * as modConfigMenu from "./modConfigMenu";
 import * as passiveItemsForEden from "./passiveItemsForEden";
 
-export default function initFeatureVariables(): void {
+export function initFeatureVariables(): void {
   // Core
   modConfigMenu.init();
   raceVars.init();

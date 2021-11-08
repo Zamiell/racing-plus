@@ -11,11 +11,11 @@ import {
   nextSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import JSONRoom, { JSONSpawn } from "../../../../types/JSONRoom";
+import { JSONRoom, JSONSpawn } from "../../../../types/JSONRoom";
 import { spawnCollectible } from "../../../../utilGlobals";
 import * as angelRooms from "./angelRooms.json";
 import { NORMAL_ROOM_SUBTYPE } from "./constants";
-import convertXMLGridEntityType from "./convertXMLGridEntityType";
+import { convertXMLGridEntityType } from "./convertXMLGridEntityType";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 

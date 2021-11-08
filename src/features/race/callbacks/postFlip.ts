@@ -1,7 +1,7 @@
 import { config } from "../../../modConfigMenu";
 import * as seededDeath from "../seededDeath";
 
-export default function racePostFlip(player: EntityPlayer): void {
+export function racePostFlip(player: EntityPlayer): void {
   if (!config.clientCommunication) {
     return;
   }

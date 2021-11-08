@@ -1,6 +1,6 @@
 import { GRID_ENTITY_XML_MAP } from "isaacscript-common";
 
-export default function convertXMLGridEntityType(
+export function convertXMLGridEntityType(
   xmlGridEntityType: int,
   xmlGridEntityVariant: int,
 ): [int, int] | undefined {

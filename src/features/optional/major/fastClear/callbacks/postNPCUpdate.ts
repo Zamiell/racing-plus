@@ -1,5 +1,5 @@
 import { isRaglingDeathPatch } from "../ragling";
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as tracking from "../tracking";
 
 export function main(npc: EntityNPC): void {

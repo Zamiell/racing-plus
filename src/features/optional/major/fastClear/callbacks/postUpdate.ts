@@ -4,11 +4,11 @@ import {
   log,
 } from "isaacscript-common";
 import g from "../../../../../globals";
-import earlyClearRoom from "../earlyClearRoom";
-import shouldEnableFastClear from "../shouldDisable";
+import { earlyClearRoom } from "../earlyClearRoom";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import v from "../v";
 
-export default function fastClearPostUpdate(): void {
+export function fastClearPostUpdate(): void {
   if (!shouldEnableFastClear()) {
     return;
   }

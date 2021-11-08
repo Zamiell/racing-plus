@@ -1,8 +1,8 @@
 import { NORMAL_TRAPDOOR_POSITION } from "../../constants";
 import g from "../../globals";
-import RaceGoal from "./types/RaceGoal";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceGoal } from "./types/RaceGoal";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 // If the goal of the race is Mother, we need to explicitly spawn a trapdoor after Mom's Heart is

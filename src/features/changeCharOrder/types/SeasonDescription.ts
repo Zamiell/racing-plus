@@ -1,4 +1,4 @@
-export default interface SeasonDescription {
+export interface SeasonDescription {
   X: int;
   Y: int;
   numChars: int;

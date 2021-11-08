@@ -23,7 +23,7 @@ const EARLY_CLEAR_ROOM_TYPE_BLACKLIST = new Set([
   RoomType.ROOM_BOSSRUSH, // 17
 ]);
 
-export default function earlyClearRoom(): void {
+export function earlyClearRoom(): void {
   const roomType = g.r.GetType();
 
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {

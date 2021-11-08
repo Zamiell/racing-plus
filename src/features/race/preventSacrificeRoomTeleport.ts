@@ -1,9 +1,9 @@
 import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import g from "../../globals";
 import { removeGridEntity } from "../../utilGlobals";
-import RaceGoal from "./types/RaceGoal";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceGoal } from "./types/RaceGoal";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;

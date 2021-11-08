@@ -1,7 +1,7 @@
 import { getNPCs } from "isaacscript-common";
-import shouldEnableFastClear from "../shouldDisable";
+import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
-export default function fastClearPreSpawnClearAward(): void {
+export function fastClearPreSpawnClearAward(): void {
   if (!shouldEnableFastClear()) {
     return;
   }

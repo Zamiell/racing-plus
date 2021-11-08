@@ -4,8 +4,9 @@ import { COLLECTIBLE_REPLACEMENT_MAP } from "./features/optional/gameplay/extraS
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
-const passiveItemsForEden: Array<CollectibleType | CollectibleTypeCustom> = [];
-export default passiveItemsForEden;
+export const passiveItemsForEden: Array<
+  CollectibleType | CollectibleTypeCustom
+> = [];
 
 export function init(): Array<CollectibleType | CollectibleTypeCustom> {
   for (let i = 1; i <= getMaxCollectibleID(); i++) {

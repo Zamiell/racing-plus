@@ -2,9 +2,9 @@ import { ensureAllCases } from "isaacscript-common";
 import g from "../../globals";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
-import RaceFormat from "./types/RaceFormat";
-import RacerStatus from "./types/RacerStatus";
-import RaceStatus from "./types/RaceStatus";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
   PlayerType.PLAYER_ISAAC, // 0
@@ -37,7 +37,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_JACOB_B, // 37
 ]);
 
-export default function formatSetup(player: EntityPlayer): void {
+export function formatSetup(player: EntityPlayer): void {
   if (
     g.race.myStatus === RacerStatus.FINISHED ||
     g.race.myStatus === RacerStatus.QUIT ||

@@ -1,5 +1,5 @@
-import Config from "./types/Config";
-import Hotkeys from "./types/Hotkeys";
+import { Config } from "./types/Config";
+import { Hotkeys } from "./types/Hotkeys";
 
 export type ConfigDescriptions = Array<
   [

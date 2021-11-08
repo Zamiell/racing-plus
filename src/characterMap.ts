@@ -1,5 +1,5 @@
 // cspell:disable
-const CHARACTER_MAP = new Map<string, PlayerType>([
+export const CHARACTER_MAP = new Map<string, PlayerType>([
   ["isaac", 0],
   ["magdalene", 1],
   ["maggy", 1],
@@ -88,4 +88,3 @@ const CHARACTER_MAP = new Map<string, PlayerType>([
   ["baby", 41],
   ["randombaby", 41],
 ]);
-export default CHARACTER_MAP;

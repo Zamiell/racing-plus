@@ -2,7 +2,7 @@ import { nextSeed } from "isaacscript-common";
 import { getRoomDebug, getRoomSelection, spawnLuaRoom } from "./rooms";
 import v from "./v";
 
-export default function angel(): void {
+export function angel(): void {
   v.run.seeds.angelSelection = nextSeed(v.run.seeds.angelSelection);
   let luaRoom = getRoomSelection(false, v.run.seeds.angelSelection);
 

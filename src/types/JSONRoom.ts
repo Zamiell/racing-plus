@@ -1,4 +1,4 @@
-export default interface JSONRoom {
+export interface JSONRoom {
   /** Needs to be converted to an int. */
   "@difficulty": string;
   /** Needs to be converted to an int. */

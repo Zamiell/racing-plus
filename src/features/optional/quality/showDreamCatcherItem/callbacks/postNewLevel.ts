@@ -1,5 +1,5 @@
 import * as sprites from "../sprites";
 
-export default function showDreamCatcherItemPostNewLevel(): void {
+export function showDreamCatcherItemPostNewLevel(): void {
   sprites.reset();
 }

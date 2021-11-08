@@ -1,9 +1,9 @@
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
-import ActiveItemDescription from "../../types/ActiveItemDescription";
-import ButtonDescription from "../../types/ButtonDescription";
-import DreamCatcherWarpState from "../../types/DreamCatcherWarpState";
-import SeededDeathState from "./types/SeededDeathState";
+import { ActiveItemDescription } from "../../types/ActiveItemDescription";
+import { ButtonDescription } from "../../types/ButtonDescription";
+import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
+import { SeededDeathState } from "./types/SeededDeathState";
 
 const v = {
   run: {

@@ -1,4 +1,4 @@
-import betterDevilAngelRoomsPreRoomEntitySpawn from "../features/optional/major/betterDevilAngelRooms/callbacks/preRoomEntitySpawn";
+import { betterDevilAngelRoomsPreRoomEntitySpawn } from "../features/optional/major/betterDevilAngelRooms/callbacks/preRoomEntitySpawn";
 import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloorItems";
 
 export function main(

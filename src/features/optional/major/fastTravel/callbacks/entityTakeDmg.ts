@@ -2,9 +2,7 @@ import { config } from "../../../../../modConfigMenu";
 import { isSelfDamage } from "../../../../../util";
 import v from "../v";
 
-export default function fastTravelEntityTakeDmgPlayer(
-  damageFlags: DamageFlag,
-): void {
+export function fastTravelEntityTakeDmgPlayer(damageFlags: DamageFlag): void {
   if (!config.fastTravel) {
     return;
   }

@@ -1,7 +1,7 @@
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
-export default function speedrunPostGameEnd(isGameOver: boolean): void {
+export function speedrunPostGameEnd(isGameOver: boolean): void {
   if (!inSpeedrun()) {
     return;
   }
