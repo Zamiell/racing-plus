@@ -1,7 +1,9 @@
 import {
   anyPlayerIs,
+  getCardName,
   getCollectibleName,
   getEffectiveStage,
+  getPillEffectName,
   getRandomArrayElement,
   getScreenBottomRightPos,
   getTrinketName,
@@ -184,21 +186,13 @@ export function useCard(card: Card): void {
     return;
   }
 
-  const cardConfig = g.itemConfig.GetCard(card);
-  if (cardConfig === undefined) {
-    error(`Failed to get the card config for: ${card}`);
-  }
-  const cardName = cardConfig.Name;
+  const cardName = getCardName(card);
   set(cardName);
 }
 
 // ModCallbacks.MC_USE_PILL (10)
 export function usePill(pillEffect: PillEffect): void {
-  const pillConfig = g.itemConfig.GetPillEffect(pillEffect);
-  if (pillConfig === undefined) {
-    error(`Failed to get the pill config for effect: ${pillEffect}`);
-  }
-  const pillEffectName = pillConfig.Name;
+  const pillEffectName = getPillEffectName(pillEffect);
   set(pillEffectName);
 }
 

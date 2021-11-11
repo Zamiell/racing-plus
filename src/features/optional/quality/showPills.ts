@@ -1,5 +1,6 @@
 import {
   anyPlayerHasCollectible,
+  getPillEffectName,
   isActionPressedOnAnyInput,
   log,
   saveDataManager,
@@ -197,8 +198,15 @@ function drawTextAndSprite() {
     }
   }
 
-  const text = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
-  g.fontDroid.DrawString(text, x - 10, baseY - 9 + 20, KCOLOR_DEFAULT, 0, true);
+  const pillsIdentifiedText = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
+  g.fontDroid.DrawString(
+    pillsIdentifiedText,
+    x - 10,
+    baseY - 9 + 20,
+    KCOLOR_DEFAULT,
+    0,
+    true,
+  );
 
   baseY += 20;
   for (let i = 0; i < v.run.pillsIdentified.length; i++) {
@@ -214,15 +222,18 @@ function drawTextAndSprite() {
     sprite.RenderLayer(0, position);
 
     // Show the pill effect as text
-    const pillConfig = g.itemConfig.GetPillEffect(pillEntry.effect);
-    if (pillConfig === undefined) {
-      error(`Failed to get the pill config for effect: ${pillEntry.effect}`);
+    let pillEffectName = getPillEffectName(pillEntry.effect);
+    if (pillEffectName === "Feels like I'm walking on sunshine!") {
+      pillEffectName = "Walking on sunshine!";
     }
-    let effectName = pillConfig.Name;
-    if (text === "Feels like I'm walking on sunshine!") {
-      effectName = "Walking on sunshine!";
-    }
-    g.fontDroid.DrawString(effectName, x + 15, y - 9, KCOLOR_DEFAULT, 0, true);
+    g.fontDroid.DrawString(
+      pillEffectName,
+      x + 15,
+      y - 9,
+      KCOLOR_DEFAULT,
+      0,
+      true,
+    );
   }
 }
 

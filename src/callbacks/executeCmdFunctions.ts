@@ -1,4 +1,5 @@
 import {
+  getCollectibleName,
   getPlayers,
   getRoomIndex,
   gridToPos,
@@ -246,7 +247,7 @@ executeCmdFunctions.set("effects", (_params: string) => {
   for (let i = 0; i < effectsList.Size; i++) {
     const effect = effectsList.Get(i);
     if (effect !== undefined) {
-      log(`${i + 1} - ${effect.Item.Name}`);
+      log(`${i + 1} - ${getCollectibleName(effect.Item.ID)}`);
     }
   }
   print('Logged the player\'s effects to the "log.txt" file.');
