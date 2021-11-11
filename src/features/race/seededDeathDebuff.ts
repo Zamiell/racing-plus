@@ -4,6 +4,7 @@ import {
   getPlayerCollectibleMap,
   getTransformationsForItem,
   isJacobOrEsau,
+  removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
 } from "isaacscript-common";
@@ -103,9 +104,7 @@ function debuffOnRemoveSize(player: EntityPlayer) {
 function debuffOnSetHealth(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
-  player.AddMaxHearts(-24, true);
-  player.AddSoulHearts(-24);
-  player.AddBoneHearts(-12);
+  removeAllPlayerHealth(player);
 
   switch (character) {
     // 14, 33
