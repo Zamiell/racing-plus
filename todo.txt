@@ -1,11 +1,8 @@
 ```
 ### *v0.69.13* - November 11th, 2021
 
-- The itempools.xml file has been updated to be the same as the new patch. Thanks to Gamonymous for this.
-- The Lost health feature is now removed from the mod, since it exists in vanilla. (Thanks Finalkids)
-- The Holy Mantle health feature is now removed from the mod, since it exists in vanilla. (Thanks Finalkids)
-- There is now a custom keybinding to open the chat/console.
-- Fixed the bug where the mod was not removing items properly from the item tracker. (Thanks Gamonymous)
+- Fixed the bug where Dead Tainted Lazarus was not getting the Schoolbag in diversity races. (Thanks Moucheron Quipet)
+- Fixed the bug where extra bone hearts would be granted upon reaching a new floor in seeded races. (Thanks AshD0wn)
 ```
 
 TODO Racing+ new features:

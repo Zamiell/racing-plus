@@ -35,6 +35,8 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_APOLLYON_B, // 34
   PlayerType.PLAYER_BETHANY_B, // 36
   PlayerType.PLAYER_JACOB_B, // 37
+  PlayerType.PLAYER_LAZARUS2_B, // 38
+  PlayerType.PLAYER_JACOB2_B, // 39
 ]);
 
 export function formatSetup(player: EntityPlayer): void {
