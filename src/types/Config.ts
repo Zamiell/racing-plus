@@ -14,7 +14,6 @@ export class Config {
   judasAddBomb = true; // 3
   samsonDropHeart = true; // 6
   showEdenStartingItems = true; // 9, 30
-  lostShowHealth = true; // 10
   lostUseHolyCard = true; // 31
   taintedKeeperMoney = true; // 33
 
@@ -52,7 +51,6 @@ export class Config {
   subvertTeleport = true;
   deleteVoidPortals = true;
   showNumSacrifices = true;
-  holyMantleUI = true; // 313
   leadPencilChargeBar = true; // 444
   combinedDualityDoors = true; // 498
   removeFortuneCookieBanners = true; // 557

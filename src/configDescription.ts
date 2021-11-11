@@ -185,19 +185,10 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "lostShowHealth", // 10
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0204",
-      "Show The Lost hearts",
-      "Force the heart UI to display when playing as The Lost.",
-    ],
-  ],
-  [
     "lostUseHolyCard", // 31
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0205",
+      "0204",
       "Automatically use the Holy Card",
       "Automatically use the Holy Card when starting a run as Tainted Lost.",
     ],
@@ -206,7 +197,7 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
     "taintedKeeperMoney", // 33
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0206",
+      "0205",
       "Tainted Keeper extra money",
       "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
@@ -525,19 +516,10 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "holyMantleUI", // 313
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0507",
-      "Show Holy Mantle on the UI",
-      "Show the presence of a Holy Mantle shield on the hearts UI.",
-    ],
-  ],
-  [
     "leadPencilChargeBar", // 444
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0508",
+      "0507",
       "Show Lead Pencil charge bar",
       "It will only show in situations where the Lead Pencil will work normally.",
     ],
@@ -546,7 +528,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "combinedDualityDoors", // 498
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0509",
+      "0508",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -555,9 +537,18 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
     "removeFortuneCookieBanners", // 557
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0510",
+      "0509",
       "Remove Fortune Cookie UI",
       "Remove the banners that occur when Fortune Cookie does not grant a pickup.",
+    ],
+  ],
+  [
+    "showDreamCatcherItem", // 566
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0510",
+      "Show the Dream Catcher item",
+      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
   ],
 ];
@@ -565,19 +556,10 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
 // 0511-0520
 export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
   [
-    "showDreamCatcherItem", // 566
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0511",
-      "Show the Dream Catcher item",
-      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
-    ],
-  ],
-  [
     "fastLuna", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0512",
+      "0511",
       "Fast Luna",
       "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
@@ -586,7 +568,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "fadeVasculitisTears", // 657
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0513",
+      "0512",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -595,7 +577,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionVelocity", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0514",
+      "0513",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -604,7 +586,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0515",
+      "0514",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -613,7 +595,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0516",
+      "0515",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -622,7 +604,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "chargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0517",
+      "0516",
       "Charge the Pocket item first",
       "Make batteries charge the pocket item first over the active item.",
     ],
@@ -631,7 +613,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0518",
+      "0517",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -640,7 +622,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0519",
+      "0518",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -649,15 +631,11 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "fadeDevilStatue",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0520",
+      "0519",
       "Fade Devil statue",
       "Fade the statue in a Devil Room if there are pickups behind it.",
     ],
   ],
-];
-
-// 0521-0530
-export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
   [
     null,
     [
@@ -668,6 +646,9 @@ export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
     ],
   ],
 ];
+
+// 0521-0530
+// export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [];
 
 // 0601-0610
 export const GAMEPLAY_CHANGES: ConfigDescriptions = [
@@ -1150,7 +1131,7 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES_1,
   ...QUALITY_OF_LIFE_CHANGES_2,
-  ...QUALITY_OF_LIFE_CHANGES_3,
+  // ...QUALITY_OF_LIFE_CHANGES_3,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
   ...REMOVALS,

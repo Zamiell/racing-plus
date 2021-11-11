@@ -22,7 +22,6 @@ import {
   OTHER_FEATURES,
   QUALITY_OF_LIFE_CHANGES_1,
   QUALITY_OF_LIFE_CHANGES_2,
-  QUALITY_OF_LIFE_CHANGES_3,
   REMOVALS,
   SOUND_CHANGES,
 } from "./configDescription";
@@ -60,7 +59,7 @@ export function init(): void {
   registerSubMenuConfig("Enemies", ENEMY_CHANGES);
   registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
   registerSubMenuConfig("QoL (2)", QUALITY_OF_LIFE_CHANGES_2);
-  registerSubMenuConfig("QoL (3)", QUALITY_OF_LIFE_CHANGES_3);
+  // registerSubMenuConfig("QoL (3)", QUALITY_OF_LIFE_CHANGES_3);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Removals", REMOVALS);
   registerSubMenuConfig("Cutscenes", CUTSCENE_CHANGES);

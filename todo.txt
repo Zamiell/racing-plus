@@ -1,7 +1,9 @@
 ```
-### *v0.69.13* - November ?th, 2021
+### *v0.69.13* - November 11th, 2021
 
--
+- The itempools.xml file has been updated to be the same as the new patch. Thanks to Gamonymous for this.
+- The Lost health feature is now removed from the mod, since it exists in vanilla.
+- The Holy Mantle health feature is now removed from the mod, since it exists in vanilla.
 ```
 
 TODO Racing+ new features:

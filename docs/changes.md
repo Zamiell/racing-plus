@@ -150,12 +150,8 @@ Post-flip actions:
 
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
-- `0204` <!-- lostShowHealth 10 --> Hearts will now display on the UI when playing as The Lost.
-
-> Why? So that you can more easily see when the Holy Mantle effect is active.
-
-- `0205` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
-- `0206` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
+- `0204` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
+- `0205` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
 
 > Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
@@ -238,45 +234,44 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `0506` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `0507` <!-- holyMantleUI 313 --> The presence of a Holy Mantle shield is now shown on the hearts UI.
-- `0508` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
-- `0509` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+- `0507` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
+- `0508` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `0510` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `0509` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `0511` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `0510` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `0512` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `0513` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `0511` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `0512` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `0514` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `0513` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `0515` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `0514` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `0516` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `0517` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
+- `0515` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `0516` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
   - This also fixes the vanilla bug where 48 Hour Energy! and Hairpin will only charge 12-charge items for 3 charges instead of 6.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `0518` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `0519` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `0517` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `0518` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
-- `0520` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
+- `0519` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
 - Players will start in the center of the room (instead of at the bottom).
 
 > Why? This is convenient because it makes the player equidistant to all of the doors.
