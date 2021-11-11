@@ -247,7 +247,8 @@ executeCmdFunctions.set("effects", (_params: string) => {
   for (let i = 0; i < effectsList.Size; i++) {
     const effect = effectsList.Get(i);
     if (effect !== undefined) {
-      log(`${i + 1} - ${getCollectibleName(effect.Item.ID)}`);
+      const collectibleName = getCollectibleName(effect.Item.ID);
+      log(`${i + 1} - ${collectibleName}`);
     }
   }
   print('Logged the player\'s effects to the "log.txt" file.');
