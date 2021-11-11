@@ -7,7 +7,6 @@ import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
-import * as lostShowHealth from "../features/optional/characters/lostShowHealth";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
@@ -55,7 +54,6 @@ export function main(): void {
   fastReset.postRender();
 
   // Chars
-  lostShowHealth.postRender();
   showEdenStartingItems.postRender();
 
   // QoL
