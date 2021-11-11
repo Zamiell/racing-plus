@@ -85,8 +85,8 @@ def get_file_hash(file_path):
     return sha.hexdigest()
 
 
-def printf(msg):
-    print(msg, flush=True)
+def printf(*args):
+    print(*args, flush=True)
 
 
 if __name__ == "__main__":

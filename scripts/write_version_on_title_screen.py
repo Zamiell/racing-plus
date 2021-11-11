@@ -87,8 +87,8 @@ def error(msg):
     sys.exit(1)
 
 
-def printf(msg):
-    print(msg, flush=True)
+def printf(*args):
+    print(*args, flush=True)
 
 
 if __name__ == "__main__":
