@@ -150,6 +150,15 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
+    "console",
+    [
+      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      "",
+      "Toggle chat/console",
+      "When in a race, this toggles the chat. When not in a race, this toggles the custom console. If not set, this will default to Enter.",
+    ],
+  ],
+  [
     "roll",
     [ModConfigMenuOptionType.KEYBIND_KEYBOARD, "", "Roll", "Do a barrel roll."],
   ],

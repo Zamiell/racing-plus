@@ -12,7 +12,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { KEYBOARD_MAP } from "../../../keyboardMap";
-import { config } from "../../../modConfigMenu";
+import { config, hotkeys } from "../../../modConfigMenu";
 import { Colors } from "../../../types/Colors";
 import { TextSegment } from "../../../types/TextSegment";
 import { consoleCommand } from "../../../util";
@@ -66,22 +66,30 @@ export function postRender(): void {
     return;
   }
 
+  const defaultConsoleOpenInput = Keyboard.KEY_ENTER;
+  const consoleOpenInput =
+    hotkeys.console === -1 ? defaultConsoleOpenInput : hotkeys.console;
+
   if (!consoleOpen) {
-    checkKeyboardInput(Keyboard.KEY_ENTER, isaacFrameCount);
+    checkKeyboardInput(consoleOpenInput, isaacFrameCount, consoleOpenInput);
     return;
   }
 
-  checkAllKeyboardInput(isaacFrameCount);
+  checkAllKeyboardInput(isaacFrameCount, consoleOpenInput);
   drawConsole();
 }
 
-function checkAllKeyboardInput(isaacFrameCount: int) {
+function checkAllKeyboardInput(isaacFrameCount: int, consoleOpenInput: int) {
   for (const keyboardValue of getEnumValues(Keyboard)) {
-    checkKeyboardInput(keyboardValue, isaacFrameCount);
+    checkKeyboardInput(keyboardValue, isaacFrameCount, consoleOpenInput);
   }
 }
 
-function checkKeyboardInput(keyboardValue: Keyboard, isaacFrameCount: int) {
+function checkKeyboardInput(
+  keyboardValue: Keyboard,
+  isaacFrameCount: int,
+  consoleOpenInput: int,
+) {
   const pressed = isKeyboardPressed(keyboardValue);
   if (!pressed) {
     keysPressed.delete(keyboardValue);
@@ -99,15 +107,16 @@ function checkKeyboardInput(keyboardValue: Keyboard, isaacFrameCount: int) {
   const framesSinceKeyPressed = isaacFrameCount - framePressed;
   const shouldTriggerRepeatPress =
     framesSinceKeyPressed > REPEAT_KEY_DELAY_IN_RENDER_FRAMES &&
-    framesSinceKeyPressed % 2 === 0; // Every other frame
+    framesSinceKeyPressed % 2 === 0 && // Every other frame
+    keyboardValue !== consoleOpenInput;
   const shouldPress = pressedOnThisFrame || shouldTriggerRepeatPress;
 
   if (shouldPress) {
-    keyPressed(keyboardValue);
+    keyPressed(keyboardValue, consoleOpenInput);
   }
 }
 
-function keyPressed(keyboardValue: Keyboard) {
+function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
   // Do nothing if modifiers other than shift are pressed
   if (
     keysPressed.has(Keyboard.KEY_LEFT_CONTROL) ||
@@ -123,6 +132,15 @@ function keyPressed(keyboardValue: Keyboard) {
   const shiftPressed =
     keysPressed.has(Keyboard.KEY_LEFT_SHIFT) ||
     keysPressed.has(Keyboard.KEY_RIGHT_SHIFT);
+
+  if (keyboardValue === consoleOpenInput && !shiftPressed) {
+    if (consoleOpen) {
+      close();
+    } else {
+      open();
+    }
+    return;
+  }
 
   const keyFunction = keyFunctionMap.get(keyboardValue);
   if (keyFunction !== undefined && !shiftPressed) {
@@ -263,15 +281,6 @@ const keyFunctionMap = new Map<Keyboard, () => void>();
 // 256
 keyFunctionMap.set(Keyboard.KEY_ESCAPE, () => {
   close(false);
-});
-
-// 257
-keyFunctionMap.set(Keyboard.KEY_ENTER, () => {
-  if (consoleOpen) {
-    close();
-  } else {
-    open();
-  }
 });
 
 // 259

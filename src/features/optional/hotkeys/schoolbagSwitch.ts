@@ -3,7 +3,8 @@ import { hotkeys } from "../../../modConfigMenu";
 
 let isPressed = false;
 
-export function postUpdate(): void {
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender(): void {
   if (hotkeys.schoolbagSwitch === -1) {
     return;
   }

@@ -8,7 +8,8 @@ enum FastDropTarget {
   POCKET_ITEMS,
 }
 
-export function postUpdate(): void {
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender(): void {
   // Normally, we would iterate over the players and check for inputs corresponding to their
   // ControllerIndex
   // However, some Xbox controller inputs are not read by the game,

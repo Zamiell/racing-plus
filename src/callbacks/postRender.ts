@@ -8,6 +8,9 @@ import * as runTimer from "../features/mandatory/runTimer";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
+import * as autofire from "../features/optional/hotkeys/autofire";
+import * as fastDrop from "../features/optional/hotkeys/fastDrop";
+import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/other/customConsole";
@@ -66,7 +69,10 @@ export function main(): void {
   automaticItemInsertion.postRender();
   showPills.postRender();
 
-  // Other
+  // Hotkeys
+  fastDrop.postRender();
+  schoolbagSwitch.postRender();
+  autofire.postRender();
   customConsole.postRender();
   roll.postRender();
 }

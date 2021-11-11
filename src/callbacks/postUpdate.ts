@@ -7,9 +7,6 @@ import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
-import * as autofire from "../features/optional/hotkeys/autofire";
-import * as fastDrop from "../features/optional/hotkeys/fastDrop";
-import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -32,11 +29,6 @@ export function main(): void {
   changeCharOrderPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();
-  fastDrop.postUpdate();
-  schoolbagSwitch.postUpdate();
-
-  // Hotkeys
-  autofire.postUpdate();
 
   // QoL
   showPills.postUpdate();

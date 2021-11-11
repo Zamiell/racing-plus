@@ -4,5 +4,6 @@ export class Hotkeys {
   fastDropPocket = -1;
   schoolbagSwitch = -1;
   autofire = -1;
+  console = -1;
   roll = -1;
 }

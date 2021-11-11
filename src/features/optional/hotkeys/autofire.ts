@@ -27,7 +27,8 @@ function featureEnabled() {
   return hotkeys.autofire !== -1;
 }
 
-export function postUpdate(): void {
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender(): void {
   if (hotkeys.autofire === -1) {
     return;
   }

@@ -9,3 +9,5 @@
 TODO Racing+ new features:
 - Use the new Room.Clear
 - Implement time offsets, show on the first room of each floor
+
+- room 1092 is bugged with out of bounds
