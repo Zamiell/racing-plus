@@ -3,10 +3,10 @@ import {
   getPlayerHealth,
   getRandom,
   isKeeper,
-  MAX_PLAYER_HEART_CONTAINERS,
   nextSeed,
   onSetSeed,
   PlayerHealth,
+  removeAllPlayerHealth,
   saveDataManager,
   setPlayerHealth,
 } from "isaacscript-common";
@@ -73,7 +73,6 @@ export function before(stage: int): void {
 
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
-  const goldenHearts = player.GetGoldenHearts();
   let seed = g.l.GetDungeonPlacementSeed();
 
   // Record the current inventory and health values
@@ -128,14 +127,7 @@ export function before(stage: int): void {
   }
 
   // Remove all health
-  g.seeds.AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
-  // (we hide the health UI in case they are using Forget Me Now)
-  player.AddGoldenHearts(goldenHearts * -1);
-  // (we have to remove the exact amount of Golden Hearts or else it will bug out)
-  // (we remove Golden Hearts first so that they don't break)
-  player.AddMaxHearts(MAX_PLAYER_HEART_CONTAINERS * -2, false);
-  player.AddSoulHearts(MAX_PLAYER_HEART_CONTAINERS * -2);
-  player.AddBoneHearts(MAX_PLAYER_HEART_CONTAINERS);
+  removeAllPlayerHealth(player);
 
   // Modification 5: Full health
   player.AddMaxHearts(2, false);

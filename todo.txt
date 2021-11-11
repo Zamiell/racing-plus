@@ -1,8 +1,9 @@
 ```
-### *v0.69.12* - November 10th, 2021
+### *v0.69.13* - November ?th, 2021
 
 -
 ```
 
 TODO Racing+ new features:
+- Use the new Room.Clear
 - Implement time offsets, show on the first room of each floor
