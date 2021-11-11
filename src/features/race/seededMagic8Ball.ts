@@ -1,4 +1,4 @@
-import { removeItemFromItemTracker } from "isaacscript-common";
+import { removeCollectibleFromItemTracker } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 import { RaceFormat } from "./types/RaceFormat";
@@ -17,7 +17,7 @@ export function postItemPickupMagic8Ball(player: EntityPlayer): void {
     player.HasCollectible(REPLACED_ITEM)
   ) {
     player.RemoveCollectible(REPLACED_ITEM);
-    removeItemFromItemTracker(REPLACED_ITEM);
+    removeCollectibleFromItemTracker(REPLACED_ITEM);
     player.AddCollectible(REPLACEMENT_ITEM);
   }
 }

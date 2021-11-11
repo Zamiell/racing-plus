@@ -2,8 +2,8 @@ import {
   forceNewRoomCallback,
   getNPCs,
   gridToPos,
+  removeCollectibleFromItemTracker,
   removeEntities,
-  removeItemFromItemTracker,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { consoleCommand } from "../../../util";
@@ -52,9 +52,9 @@ function setupButtonRoom() {
 
   // Give Isaac's some speed
   player.AddCollectible(CollectibleType.COLLECTIBLE_BELT, 0, false);
-  removeItemFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
+  removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
   player.AddCollectible(CollectibleType.COLLECTIBLE_BELT, 0, false);
-  removeItemFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
+  removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
   const itemConfigItem = g.itemConfig.GetCollectible(
     CollectibleType.COLLECTIBLE_BELT,
   );

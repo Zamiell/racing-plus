@@ -3,7 +3,7 @@
 
 import {
   changeCollectibleSubType,
-  getItemName,
+  getCollectibleName,
   isQuestCollectible,
   log,
   saveDataManager,
@@ -46,10 +46,10 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
     const oldSubType = pickup.SubType;
     changeCollectibleSubType(pickup, trackedCollectibleType);
 
+    const trackedCollectibleName = getCollectibleName(trackedCollectibleType);
+    const oldCollectibleName = getCollectibleName(oldSubType);
     log(
-      `Prevented pedestal item ${getItemName(
-        trackedCollectibleType,
-      )} from rotating to item ${getItemName(oldSubType)}.`,
+      `Prevented pedestal item ${trackedCollectibleName} from rotating to item ${oldCollectibleName}.`,
     );
   }
 }

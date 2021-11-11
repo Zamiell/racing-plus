@@ -2,7 +2,7 @@
 
 import {
   getEffectiveStage,
-  removeItemFromItemTracker,
+  removeCollectibleFromItemTracker,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -49,7 +49,7 @@ export function give(player: EntityPlayer): void {
   }
 
   player.AddCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
-  removeItemFromItemTracker(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
+  removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
 
   // We don't want the costume to show
   const itemConfigItem = g.itemConfig.GetCollectible(

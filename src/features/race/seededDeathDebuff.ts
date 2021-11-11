@@ -4,8 +4,8 @@ import {
   getPlayerCollectibleMap,
   getTransformationsForItem,
   isJacobOrEsau,
+  removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
-  removeItemFromItemTracker,
 } from "isaacscript-common";
 import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
@@ -178,7 +178,7 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
         items.push(collectibleType);
       }
       player.RemoveCollectible(collectibleType);
-      removeItemFromItemTracker(collectibleType);
+      removeCollectibleFromItemTracker(collectibleType);
     }
   }
 

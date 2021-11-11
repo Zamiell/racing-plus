@@ -2,7 +2,7 @@ import {
   getPlayers,
   getRandomInt,
   PickingUpItem,
-  removeItemFromItemTracker,
+  removeCollectibleFromItemTracker,
 } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
@@ -63,7 +63,7 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
 
   if (v.run.seeded3DollarBillItem !== null) {
     player.RemoveCollectible(v.run.seeded3DollarBillItem);
-    removeItemFromItemTracker(v.run.seeded3DollarBillItem);
+    removeCollectibleFromItemTracker(v.run.seeded3DollarBillItem);
   }
 
   const initialArrayIndex = getRandomInt(
@@ -118,7 +118,7 @@ export function postItemPickup3DollarBill(player: EntityPlayer): void {
     player.HasCollectible(REPLACED_ITEM)
   ) {
     player.RemoveCollectible(REPLACED_ITEM);
-    removeItemFromItemTracker(REPLACED_ITEM);
+    removeCollectibleFromItemTracker(REPLACED_ITEM);
     player.AddCollectible(REPLACEMENT_ITEM);
 
     checkApplySeeded3DollarBillItem(player);

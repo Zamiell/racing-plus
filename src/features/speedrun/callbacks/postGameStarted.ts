@@ -1,4 +1,4 @@
-import { log, removeItemFromItemTracker } from "isaacscript-common";
+import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/enums";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
@@ -51,7 +51,7 @@ function liveSplitReset() {
     log(
       `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.COLLECTIBLE_RESET}.`,
     );
-    removeItemFromItemTracker(CollectibleTypeCustom.COLLECTIBLE_RESET);
+    removeCollectibleFromItemTracker(CollectibleTypeCustom.COLLECTIBLE_RESET);
   }
 }
 

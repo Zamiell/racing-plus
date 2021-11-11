@@ -1,9 +1,10 @@
 import {
   anyPlayerIs,
+  getCollectibleName,
   getEffectiveStage,
-  getItemName,
   getRandomArrayElement,
   getScreenBottomRightPos,
+  getTrinketName,
   nextSeed,
   PickingUpItem,
   saveDataManager,
@@ -157,8 +158,8 @@ function draw(text: string, fade: float) {
 export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
-    const itemName = getItemName(wisp.SubType);
-    set(itemName);
+    const collectibleName = getCollectibleName(wisp.SubType);
+    set(collectibleName);
   }
 }
 
@@ -269,11 +270,11 @@ export function preUseItemDeadSeaScrolls(
   );
   player.UseActiveItem(randomCollectible, UseFlag.USE_OWNED, activeSlot);
 
-  const itemName = getItemName(randomCollectible);
+  const collectibleName = getCollectibleName(randomCollectible);
   if (VanillaStreakText !== undefined) {
-    hud.ShowItemText(itemName);
+    hud.ShowItemText(collectibleName);
   } else {
-    set(itemName);
+    set(collectibleName);
   }
 
   return true;
@@ -282,9 +283,11 @@ export function preUseItemDeadSeaScrolls(
 // ModCallbacksCustom.MC_PRE_ITEM_PICKUP
 export function preItemPickup(pickingUpItem: PickingUpItem): void {
   const trinket = pickingUpItem.type === ItemType.ITEM_TRINKET;
-  const itemName = getItemName(pickingUpItem.id, trinket);
+  const name = trinket
+    ? getTrinketName(pickingUpItem.id)
+    : getCollectibleName(pickingUpItem.id);
 
-  set(itemName);
+  set(name);
 }
 
 // ModCallbacksCustom.MC_POST_TRANSFORMATION
