@@ -1,0 +1,55 @@
+<AnimatedActor>
+	<Info CreatedBy="Unknown" CreatedOn="01.19.2021 23:42:44" Fps="30" Version="27" />
+	<Content>
+		<Spritesheets>
+			<Spritesheet Id="0" Path="ground.png" />
+			<Spritesheet Id="1" Path="frame.png" />
+			<Spritesheet Id="2" Path="bossspot_01_basement.png" />
+			<Spritesheet Id="3" Path="playerspot_01_basement.png" />
+			<Spritesheet Id="4" Path="Portrait_20.0_Monstro.png" />
+			<Spritesheet Id="5" Path="../stage/PlayerPortrait_Isaac.png" />
+			<Spritesheet Id="6" Path="vs.png" />
+			<Spritesheet Id="7" Path="PlayerName_01_Isaac.png" />
+			<Spritesheet Id="8" Path="BossName_97.0_MaskOfInfamy.png" />
+			<Spritesheet Id="9" Path="doubletrouble.png" />
+			<Spritesheet Id="10" Path="overlay.png" />
+		</Spritesheets>
+		<Layers>
+			<Layer Id="0" Name="Background" SpritesheetId="0" />
+			<Layer Id="1" Name="Frame" SpritesheetId="1" />
+			<Layer Id="2" Name="BossSpot" SpritesheetId="2" />
+			<Layer Id="3" Name="PlayerSpot" SpritesheetId="3" />
+			<Layer Id="4" Name="BossPortrait" SpritesheetId="4" />
+			<Layer Id="5" Name="PlayerPortrait" SpritesheetId="5" />
+			<Layer Id="6" Name="PlayerName" SpritesheetId="7" />
+			<Layer Id="7" Name="BossName" SpritesheetId="8" />
+			<Layer Id="8" Name="VS Text" SpritesheetId="6" />
+			<Layer Id="9" Name="BossDouble" SpritesheetId="4" />
+			<Layer Id="10" Name="DTText" SpritesheetId="9" />
+			<Layer Id="11" Name="Overlay" SpritesheetId="10" BlendMode="2" />
+			<Layer Id="12" Name="PlayerPortraitAlt" SpritesheetId="5" />
+			<Layer Id="13" Name="BossPortraitGround" SpritesheetId="4" />
+			<Layer Id="14" Name="BossPortrait2Ground" SpritesheetId="4" />
+		</Layers>
+		<Nulls />
+		<Events />
+	</Content>
+	<Animations DefaultAnimation="Scene">
+		<Animation Name="Scene" FrameNum="0" Loop="false">
+			<RootAnimation>
+			</RootAnimation>
+			<LayerAnimations>
+			</LayerAnimations>
+			<NullAnimations />
+			<Triggers />
+		</Animation>
+		<Animation Name="DoubleTrouble" FrameNum="0" Loop="false">
+			<RootAnimation>
+			</RootAnimation>
+			<LayerAnimations>
+			</LayerAnimations>
+			<NullAnimations />
+			<Triggers />
+		</Animation>
+	</Animations>
+</AnimatedActor>

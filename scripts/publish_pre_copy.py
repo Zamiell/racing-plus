@@ -11,7 +11,7 @@ import json
 import os
 import re
 import sys
-import write_version
+import write_version_on_title_screen
 import xmltodict
 
 from get_version_from_package_json import get_version_from_package_json
@@ -39,8 +39,7 @@ JSON_OUTPUT_DIRECTORY = os.path.join(
 
 
 def main():
-    # Draw the version on the title screen
-    write_version.main()
+    write_version_on_title_screen.main()
 
     setDebugVariableToFalse()
 
