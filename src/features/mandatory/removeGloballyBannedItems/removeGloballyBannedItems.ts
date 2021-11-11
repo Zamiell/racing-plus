@@ -76,7 +76,7 @@ export function postGameStarted(): void {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
   }
 
-  if (anyPlayerIs(PlayerType.PLAYER_MAGDALENA_B)) {
+  if (anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B)) {
     // Tainted Magdalene is invincible with Sharp Plug
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
   }
@@ -143,7 +143,7 @@ function isBannedCollectible(entity: Entity) {
   }
 
   if (
-    anyPlayerIs(PlayerType.PLAYER_MAGDALENA_B) &&
+    anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B) &&
     entity.SubType === CollectibleType.COLLECTIBLE_SHARP_PLUG
   ) {
     return true;

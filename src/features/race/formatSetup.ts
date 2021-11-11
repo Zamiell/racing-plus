@@ -8,9 +8,9 @@ import { RaceStatus } from "./types/RaceStatus";
 
 const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
   PlayerType.PLAYER_ISAAC, // 0
-  PlayerType.PLAYER_MAGDALENA, // 1
+  PlayerType.PLAYER_MAGDALENE, // 1
   PlayerType.PLAYER_JUDAS, // 3
-  PlayerType.PLAYER_XXX, // 4
+  PlayerType.PLAYER_BLUEBABY, // 4
   PlayerType.PLAYER_EVE, // 5
   PlayerType.PLAYER_EDEN, // 9
   PlayerType.PLAYER_THELOST, // 10
@@ -27,9 +27,9 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
 const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_JACOB, // 19
   PlayerType.PLAYER_ESAU, // 20
-  PlayerType.PLAYER_MAGDALENA_B, // 22
+  PlayerType.PLAYER_MAGDALENE_B, // 22
   PlayerType.PLAYER_JUDAS_B, // 24
-  PlayerType.PLAYER_XXX_B, // 25
+  PlayerType.PLAYER_BLUEBABY_B, // 25
   PlayerType.PLAYER_EVE_B, // 26
   PlayerType.PLAYER_LAZARUS_B, // 29
   PlayerType.PLAYER_APOLLYON_B, // 34

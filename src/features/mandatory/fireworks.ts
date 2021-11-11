@@ -35,12 +35,12 @@ function makeFireworksQuieter() {
     return;
   }
 
-  // TODO replace with "Isaac.CountEntities()" after the next patch
-  const fireworks = Isaac.FindByType(
+  const numFireworks = Isaac.CountEntities(
+    undefined,
     EntityType.ENTITY_EFFECT,
     EffectVariant.FIREWORKS,
   );
-  if (fireworks.length > 0) {
+  if (numFireworks > 0) {
     g.sfx.AdjustVolume(SoundEffect.SOUND_BOSS1_EXPLOSIONS, 0.2);
   }
 }

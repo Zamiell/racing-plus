@@ -1,12 +1,15 @@
 export const CHARACTER_PNG_MAP = new Map<PlayerType, string>([
   [PlayerType.PLAYER_ISAAC, "characters/costumes/character_001_isaac.png"], // 0
   [
-    PlayerType.PLAYER_MAGDALENA,
+    PlayerType.PLAYER_MAGDALENE,
     "characters/costumes/character_002_magdalene.png",
   ], // 1
   [PlayerType.PLAYER_CAIN, "characters/costumes/character_003_cain.png"], // 2
   [PlayerType.PLAYER_JUDAS, "characters/costumes/character_004_judas.png"], // 3
-  [PlayerType.PLAYER_XXX, "characters/costumes/character_006_bluebaby.png"], // 4
+  [
+    PlayerType.PLAYER_BLUEBABY,
+    "characters/costumes/character_006_bluebaby.png",
+  ], // 4
   [PlayerType.PLAYER_EVE, "characters/costumes/character_005_eve.png"], // 5
   [PlayerType.PLAYER_SAMSON, "characters/costumes/character_007_samson.png"], // 6
   [PlayerType.PLAYER_AZAZEL, "characters/costumes/character_008_azazel.png"], // 7
@@ -37,12 +40,15 @@ export const CHARACTER_PNG_MAP = new Map<PlayerType, string>([
   [PlayerType.PLAYER_ESAU, "characters/costumes/character_003x_esau.png"], // 20
   [PlayerType.PLAYER_ISAAC_B, "characters/costumes/character_001b_isaac.png"], // 21
   [
-    PlayerType.PLAYER_MAGDALENA_B,
+    PlayerType.PLAYER_MAGDALENE_B,
     "characters/costumes/character_002b_magdalene.png",
   ], // 22
   [PlayerType.PLAYER_CAIN_B, "characters/costumes/character_003b_cain.png"], // 23
   [PlayerType.PLAYER_JUDAS_B, "characters/costumes/character_004b_judas.png"], // 24
-  [PlayerType.PLAYER_XXX_B, "characters/costumes/character_005b_bluebaby.png"], // 25
+  [
+    PlayerType.PLAYER_BLUEBABY_B,
+    "characters/costumes/character_005b_bluebaby.png",
+  ], // 25
   [PlayerType.PLAYER_EVE_B, "characters/costumes/character_006b_eve.png"], // 26
   [PlayerType.PLAYER_SAMSON_B, "characters/costumes/character_007b_samson.png"], // 27
   [PlayerType.PLAYER_AZAZEL_B, "characters/costumes/character_008b_azazel.png"], // 28
