@@ -1,8 +1,7 @@
 ```
-### *v0.69.13* - November 11th, 2021
+### *v0.69.15* - November 12th, 2021
 
-- Fixed the bug where Dead Tainted Lazarus was not getting the Schoolbag in diversity races. (Thanks Moucheron Quipet)
-- Fixed the bug where extra bone hearts would be granted upon reaching a new floor in seeded races. (Thanks AshD0wn)
+- Fixed the bug where Holy Mantle was not being shown in the UI. (Thanks Moucheron Quipet)
 ```
 
 TODO Racing+ new features:
