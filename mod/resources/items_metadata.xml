@@ -157,7 +157,7 @@
     <item id="158" quality="3" tags="offensive stars lazarussharedglobal"/>
     <item id="159" quality="3" tags="devil nolostbr summonable"/>
     <item id="160" quality="2" tags="offensive"/>
-    <item id="161" quality="1" tags="nolostbr nocantrip nochallenge"/>
+    <item id="161" quality="1" tags="nolostbr nocantrip"/>
     <item id="162" quality="1" tags="nolostbr summonable angel"/>
     <item id="163" quality="1" tags="summonable baby monstermanual offensive"/>
     <item id="164" quality="2" tags="offensive"/>
@@ -306,7 +306,7 @@
     <item id="308" quality="1" tags="summonable offensive stars"/>
     <item id="309" quality="2" tags="summonable tearsup offensive stars"/>
     <item id="310" quality="2" tags="summonable offensive"/>
-    <item id="311" quality="4" tags="nolostbr nocantrip nochallenge"/>
+    <item id="311" quality="4" tags="nolostbr nocantrip"/>
     <item id="312" quality="2" tags="nolostbr summonable"/>
     <item id="313" quality="4" tags="summonable angel"/>
     <item id="314" quality="1" tags="nolostbr summonable"/>
@@ -327,7 +327,7 @@
     <item id="329" quality="2" tags="summonable offensive"/>
     <item id="330" quality="2" tags="summonable tearsup offensive"/>
     <item id="331" quality="4" tags="summonable offensive angel"/>
-    <item id="332" quality="1" tags="nolostbr nocantrip nochallenge"/>
+    <item id="332" quality="1" tags="nolostbr nocantrip"/>
     <item id="333" quality="3" tags="summonable offensive lazarussharedglobal"/>
     <item id="334" quality="3" tags="nolostbr"/>
     <item id="335" quality="3" tags="summonable"/>
@@ -477,7 +477,7 @@
     <item id="479" quality="3" tags="offensive"/>
     <item id="480" quality="2" tags="offensive"/>
     <item id="481" quality="0" tags="offensive"/>
-    <item id="482" quality="0" tags="nolostbr nochallenge nodaily"/>
+    <item id="482" quality="0" tags="nolostbr nodaily"/>
     <item id="483" quality="3" tags="offensive"/>
     <item id="484" quality="1" tags="offensive"/>
     <item id="485" quality="1" tags="offensive"/>
@@ -627,7 +627,7 @@
     <item id="633" quality="0" tags="lazarusshared noeden quest"/>
     <item id="634" quality="2" tags="offensive"/>
     <item id="635" quality="1" tags="uniquefamiliar offensive"/>
-    <item id="636" quality="4" tags="offensive nocantrip nochallenge nodaily"/>
+    <item id="636" quality="4" tags="offensive nocantrip nodaily"/>
     <item id="637" quality="3" tags="summonable offensive"/>
     <item id="638" quality="2" tags="offensive"/>
     <item id="639" quality="2" tags="nolostbr"/>
