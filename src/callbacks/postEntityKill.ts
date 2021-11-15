@@ -98,8 +98,7 @@ function mom(entity: Entity) {
 }
 
 // EntityType.ENTITY_MOMS_HEART (78)
-function momsHeart(entity: Entity) {
-  fastTravelPostEntityKill.momsHeart(entity);
+function momsHeart(_entity: Entity) {
   killExtraEnemies.postEntityKillMomsHeart();
 }
 
@@ -130,7 +129,6 @@ function megaSatan2(entity: Entity) {
 
 // EntityType.ENTITY_HUSH (407)
 function hush(entity: Entity) {
-  fastTravelPostEntityKill.hush(entity);
   racePostEntityKill.hush(entity);
 }
 

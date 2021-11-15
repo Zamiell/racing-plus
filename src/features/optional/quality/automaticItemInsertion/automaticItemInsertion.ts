@@ -218,6 +218,11 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
       continue;
     }
 
+    // Skip over pickups that have a price
+    if (pickup.Price !== 0) {
+      continue;
+    }
+
     // Skip over pickups that have already been collected
     const sprite = pickup.GetSprite();
     if (sprite.IsPlaying("Collect")) {

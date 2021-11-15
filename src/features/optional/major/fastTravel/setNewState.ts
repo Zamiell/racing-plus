@@ -249,7 +249,6 @@ function setFadingIn() {
 
   v.run.framesPassed = 0;
 
-  Isaac.DebugString("GETTING HERE");
   adjustJacobAndEsau(players);
   adjustTaintedForgotten(players);
   spawnHoles(players);

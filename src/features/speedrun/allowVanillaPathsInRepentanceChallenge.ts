@@ -7,6 +7,7 @@ import {
   isDoorToMines,
   isRepentanceDoor,
   onRepentanceStage,
+  removeGridEntity,
 } from "isaacscript-common";
 import {
   NORMAL_TRAPDOOR_POSITION,
@@ -16,7 +17,6 @@ import {
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
-import { removeGridEntity } from "../../utilGlobals";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

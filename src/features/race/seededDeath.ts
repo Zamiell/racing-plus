@@ -15,12 +15,13 @@ import {
   isKeeper,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
+  removeGridEntity,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
-import { findFreePosition, removeGridEntity } from "../../utilGlobals";
+import { findFreePosition } from "../../utilGlobals";
 import { applySeededGhostFade, debuffOff, debuffOn } from "./seededDeathDebuff";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";

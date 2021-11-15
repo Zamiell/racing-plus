@@ -17,7 +17,7 @@ export function init(): void {
 export function toggleChaosCard(): void {
   v.run.chaosCard = !v.run.chaosCard;
   const enabled = v.run.chaosCard ? "Enabled" : "Disabled";
-  print(`${enabled} Chaos Card tears.`);
+  Isaac.ConsoleOutput(`${enabled} Chaos Card tears.`);
 }
 
 export function toggleSpam(): void {
@@ -29,7 +29,7 @@ export function toggleSpeed(): void {
 
   v.run.speed = !v.run.speed;
   const enabled = v.run.speed ? "Enabled" : "Disabled";
-  print(`${enabled} max speed.`);
+  Isaac.ConsoleOutput(`${enabled} max speed.`);
 
   // Also, give the player flight
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)) {

@@ -4,6 +4,7 @@ import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
 } from "./constants";
+import { checkPostItLivesOrHushPath } from "./postItLivesOrHushPath";
 import v from "./v";
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -74,13 +75,17 @@ function checkAllPressurePlatesPushed() {
 }
 
 function earlyClearRoom() {
+  const gameFrameCount = g.g.GetFrameCount();
+
   v.run.earlyClearedRoom = true;
-  log("Early clearing the room (fast-clear).");
+  log(`Early clearing the room on frame ${gameFrameCount} (fast-clear).`);
 
   openAllDoors();
   killExtraEntities();
   g.r.TriggerClear();
   g.r.SetClear(true);
+
+  checkPostItLivesOrHushPath();
 }
 
 function killExtraEntities() {

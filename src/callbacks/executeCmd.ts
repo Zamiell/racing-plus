@@ -14,6 +14,6 @@ export function main(command: string, parameters: string): void {
   if (executeCmdFunction !== undefined) {
     executeCmdFunction(parameters);
   } else {
-    print("Unknown vanilla or Racing+ command.");
+    Isaac.ConsoleOutput("Unknown vanilla or Racing+ command.");
   }
 }

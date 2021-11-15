@@ -7,11 +7,8 @@ import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
-import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
-const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 12;
-const FRAME_DELAY_AFTER_KILLING_HUSH = 13;
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
@@ -37,7 +34,6 @@ function shouldRemove(effect: EntityEffect) {
     return false;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
   // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
@@ -49,34 +45,6 @@ function shouldRemove(effect: EntityEffect) {
     (stage === 8 || stage === 9)
   ) {
     return true;
-  }
-
-  if (!v.room.deletePaths) {
-    return false;
-  }
-
-  // If a specific amount of frames have passed since killing It Lives!,
-  // then delete the vanilla heaven door (since we manually spawned one already)
-  if (v.room.itLivesKilledFrame !== null) {
-    const naturalSpawnFrame =
-      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES;
-    const naturalSpawnFrameForBible = naturalSpawnFrame + 1;
-    if (
-      gameFrameCount === naturalSpawnFrame ||
-      gameFrameCount === naturalSpawnFrameForBible
-    ) {
-      return true;
-    }
-  }
-
-  // If a specific amount of frames have passed since killing Hush,
-  // then delete the vanilla heaven door (since we manually spawned one already)
-  if (v.room.hushKilledFrame !== null) {
-    const naturalSpawnFrame =
-      v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH;
-    if (gameFrameCount === naturalSpawnFrame) {
-      return true;
-    }
   }
 
   return false;

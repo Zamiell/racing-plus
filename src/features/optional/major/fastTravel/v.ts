@@ -84,27 +84,12 @@ const v = {
     /** Indexed by grid index. */
     crawlspaces: new Map<int, FastTravelEntityDescription>(),
 
-    /** Used to prevent the vanilla paths from spawning after defeating It Lives! or Hush. */
-    deletePaths: false,
-
     /** Indexed by grid index. */
     heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
-    /** Used so that we can delete the vanilla paths on the appropriate frame. */
-    hushKilledFrame: null as int | null,
-
     /**
-     * Defeating It Lives! triggers the PostEntityKill callback twice for some reason,
-     * so we need to keep track of whether this is the first or second trigger.
-     */
-    itLivesKilled: false,
-
-    /** Used so that we can delete the vanilla paths on the appropriate frame. */
-    itLivesKilledFrame: null as int | null,
-
-    /**
-     * Used so that we can spawned a Mausoleum trapdoor for on the appropriate frame (for races to
-     * The Beast).
+     * Used so that we can spawn a Mausoleum trapdoor for on the appropriate frame (for races to The
+     * Beast).
      */
     momKilledFrame: null as int | null,
 

@@ -3,10 +3,10 @@ import {
   log,
   onRepentanceStage,
   onSheol,
+  removeGridEntity,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { isPostBossVoidPortal } from "../../../../util";
-import { removeGridEntity } from "../../../../utilGlobals";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
@@ -17,9 +17,6 @@ import * as state from "./state";
 import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
-const FRAME_DELAY_AFTER_KILLING_IT_LIVES = 11;
-const FRAME_DELAY_AFTER_KILLING_HUSH = 12;
-const FRAME_DELAY_AFTER_KILLING_MOM = 11;
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
 // GridEntityType.GRID_TRAPDOOR (17)
@@ -54,7 +51,6 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   // Keep it closed on every frame so that we can implement our own custom functionality
   gridEntity.State = TrapdoorState.CLOSED;
 
-  checkDoubleTrapdoorOverlapBug(gridEntity);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
@@ -98,33 +94,6 @@ function shouldRemove() {
   const roomFrameCount = g.r.GetFrameCount();
   const roomIndex = getRoomIndex();
   const repentanceStage = onRepentanceStage();
-
-  // If a specific amount of frames have passed since killing It Lives!,
-  // then delete the vanilla trapdoor (since we manually spawned one already)
-  if (
-    v.room.deletePaths &&
-    v.room.itLivesKilledFrame !== null &&
-    gameFrameCount ===
-      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
-  ) {
-    log(
-      `Removed a vanilla trapdoor after It Lives! on game frame: ${gameFrameCount}`,
-    );
-    return true;
-  }
-
-  // If a specific amount of frames have passed since killing Hush,
-  // then delete the vanilla trapdoor (since we manually spawned one already)
-  if (
-    v.room.deletePaths &&
-    v.room.hushKilledFrame !== null &&
-    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
-  ) {
-    log(
-      `Removed a vanilla trapdoor after Hush on game frame: ${gameFrameCount}`,
-    );
-    return true;
-  }
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2
   if (
@@ -216,8 +185,7 @@ function shouldRemove() {
     !(
       roomType === RoomType.ROOM_BOSS &&
       ((v.room.momKilledFrame !== null &&
-        gameFrameCount ===
-          v.room.momKilledFrame + FRAME_DELAY_AFTER_KILLING_MOM) ||
+        gameFrameCount === v.room.momKilledFrame + 1) ||
         roomFrameCount === 0)
     )
   ) {
@@ -276,36 +244,4 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   setFadingToBlack(player, entity.Position, false);
-}
-
-// If we manually spawn a trapdoor on the same tile that a vanilla trapdoor spawns after defeating
-// It Lives! or Hush, then the manually spawned trapdoor will get overwritten by the vanilla one
-// In this case, the PostGridEntityInit callback will never fire (because the same grid entity type
-// continually exists on every frame), so the trapdoor will never be initialized
-// Manually initialize the grid entity if this is the case
-function checkDoubleTrapdoorOverlapBug(gridEntity: GridEntity) {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  if (
-    v.room.deletePaths &&
-    v.room.itLivesKilledFrame !== null &&
-    gameFrameCount ===
-      v.room.itLivesKilledFrame + FRAME_DELAY_AFTER_KILLING_IT_LIVES
-  ) {
-    log(
-      `Re-initializing a ${FastTravelEntityType[FAST_TRAVEL_ENTITY_TYPE]} after killing It Lives!`,
-    );
-    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-  }
-
-  if (
-    v.room.deletePaths &&
-    v.room.hushKilledFrame !== null &&
-    gameFrameCount === v.room.hushKilledFrame + FRAME_DELAY_AFTER_KILLING_HUSH
-  ) {
-    log(
-      `Re-initializing a ${FastTravelEntityType[FAST_TRAVEL_ENTITY_TYPE]} after killing Hush.`,
-    );
-    fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-  }
 }

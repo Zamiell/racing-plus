@@ -7,11 +7,11 @@ import {
   inBeastRoom,
   inCrawlspace,
   log,
+  removeGridEntity,
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { movePlayersAndFamiliars } from "../../../../util";
-import { removeGridEntity } from "../../../../utilGlobals";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";

@@ -19,7 +19,7 @@ export function angel(params: string): void {
   if (params !== "") {
     const num = tonumber(params);
     if (num === undefined) {
-      print("That is an invalid Angel Room number.");
+      Isaac.ConsoleOutput("That is an invalid Angel Room number.");
       return;
     }
 
@@ -50,9 +50,9 @@ export function commands(
   const commandNames = [...functionMap.keys()];
   table.sort(commandNames);
 
-  print("List of Racing+ commands:");
+  Isaac.ConsoleOutput("List of Racing+ commands:");
   const text = commandNames.join(" ");
-  print(text);
+  Isaac.ConsoleOutput(text);
 }
 
 export function devil(params: string): void {
@@ -64,7 +64,7 @@ export function devil(params: string): void {
   if (params !== "") {
     const num = tonumber(params);
     if (num === undefined) {
-      print("That is an invalid Devil Room number.");
+      Isaac.ConsoleOutput("That is an invalid Devil Room number.");
       return;
     }
 
@@ -86,7 +86,7 @@ export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
 
-export function list(all = false): void {
+export function list(includeAll: boolean): void {
   log("Entities in the room:");
   const roomEntities = Isaac.GetRoomEntities();
   for (let i = 0; i < roomEntities.length; i++) {
@@ -94,9 +94,11 @@ export function list(all = false): void {
 
     // Exclude background effects
     if (
-      !all &&
+      !includeAll &&
       entity.Type === EntityType.ENTITY_EFFECT &&
       (entity.Variant === EffectVariant.TINY_BUG || // 21
+        entity.Variant === EffectVariant.TINY_FLY || // 33
+        entity.Variant === EffectVariant.WATER_DROPLET || // 41
         entity.Variant === EffectVariant.WALL_BUG || // 68
         entity.Variant === EffectVariant.FALLING_EMBER || // 87
         entity.Variant === EffectVariant.LIGHT) // 121
@@ -162,7 +164,7 @@ export function list(all = false): void {
     debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     log(debugString);
   }
-  print('Logged the entities in the room to the "log.txt" file.');
+  Isaac.ConsoleOutput('Logged the entities in the room to the "log.txt" file.');
 }
 
 export function movePlayer(params: string, direction: Direction): void {
@@ -221,7 +223,7 @@ export function trapdoor(): void {
 export function validateNumber(params: string): number | undefined {
   const num = tonumber(params);
   if (num === undefined) {
-    print("You must specify a number.");
+    Isaac.ConsoleOutput("You must specify a number.");
   }
 
   return num;

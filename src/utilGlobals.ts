@@ -71,22 +71,6 @@ export function giveTrinketAndRemoveFromPools(
   g.itemPool.RemoveTrinket(trinketType);
 }
 
-export function removeGridEntity(gridEntity: GridEntity): void {
-  // In some cases, the grid entity will show on screen for a frame before it is removed
-  // (like for the trapdoor spawned after killing It Lives!)
-  // We can replace the graphics to fix this
-  const sprite = gridEntity.GetSprite();
-  sprite.ReplaceSpritesheet(0, "gfx/none.png");
-  sprite.LoadGraphics();
-
-  const gridIndex = gridEntity.GetGridIndex();
-  g.r.RemoveGridEntity(gridIndex, 0, false); // gridEntity.Destroy() does not work
-
-  // It is best practice to call the "Update()" method after removing a grid entity;
-  // otherwise, spawning grid entities on the same tile can fail
-  g.r.Update();
-}
-
 /**
  * If a room had enemies in it that were removed in a PostGameStarted callback, then a room drop
  * will be awarded and the doors will start closed and then open. Manually fix this.

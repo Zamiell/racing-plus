@@ -3,6 +3,8 @@ import {
   getRoomIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   log,
+  removeAllMatchingEntities,
+  removeAllMatchingGridEntities,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../util";
@@ -10,7 +12,6 @@ import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { ChallengeCustom } from "../../../speedrun/enums";
-import v from "./v";
 
 enum ItLivesSituation {
   NEITHER,
@@ -23,14 +24,16 @@ enum ItLivesSituation {
 // they are near the top wall
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
-export function postEntityKillMomsHeart(_entity: Entity): void {
-  const gameFrameCount = g.g.GetFrameCount();
+export function checkPostItLivesOrHushPath(): void {
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const roomIndex = getRoomIndex();
 
-  // Don't do anything if we just killed the Mom's Heart or It Lives! on Mausoleum, Gehenna,
-  // or The Void
-  if (stage !== 8) {
+  if (stage !== 8 && stage !== 9) {
+    return;
+  }
+
+  if (roomType !== RoomType.ROOM_BOSS) {
     return;
   }
 
@@ -39,32 +42,18 @@ export function postEntityKillMomsHeart(_entity: Entity): void {
     return;
   }
 
-  // Defeating It Lives! triggers the PostEntityKill callback twice for some reason,
-  // so we need to keep track of whether this is the first or second trigger
-  if (!v.room.itLivesKilled) {
-    // This is the first trigger; wait for the second one
-    v.room.itLivesKilled = true;
-    return;
-  }
-
-  // First, record the frame that It Lives! died so that we can delete the vanilla trapdoor and
-  // heaven door on the specific frame that they spawn
-  v.room.itLivesKilledFrame = gameFrameCount;
-
-  manuallySpawn();
-}
-
-export function postEntityKillHush(_entity: Entity): void {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  // First, record the frame that It Lives! died so that we can delete the vanilla trapdoor and
-  // heaven door on the specific frame that they spawn
-  v.room.hushKilledFrame = gameFrameCount;
-
   manuallySpawn();
 }
 
 function manuallySpawn() {
+  // First, remove any existing trapdoors or heaven doors;
+  // afterward, we will respawn them in an appropriate way
+  removeAllMatchingEntities(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+  );
+  removeAllMatchingGridEntities(GridEntityType.GRID_TRAPDOOR);
+
   const situation = getItLivesSituation();
   doItLivesSituation(situation);
 }
@@ -140,10 +129,10 @@ function getItLivesSituationRace(goal: RaceGoal) {
 }
 
 function doItLivesSituation(situation: ItLivesSituation) {
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
-  // Mark to delete the vanilla paths
-  v.room.deletePaths = true;
+  // TODO remove existing
 
   let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
   let positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
@@ -156,26 +145,30 @@ function doItLivesSituation(situation: ItLivesSituation) {
 
   switch (situation) {
     case ItLivesSituation.NEITHER: {
-      log("It Lives! or Hush killed; no paths will be spawned.");
+      log(
+        `It Lives! or Hush killed on frame ${gameFrameCount}; no paths will be spawned.`,
+      );
       break;
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
       spawnHeavenDoor(positionCenter);
-      log("It Lives! or Hush killed; going up.");
+      log(`It Lives! or Hush killed on frame ${gameFrameCount}; going up.`);
       break;
     }
 
     case ItLivesSituation.TRAPDOOR: {
       spawnTrapdoor(positionCenter);
-      log("It Lives! or Hush killed; going down.");
+      log(`It Lives! or Hush killed on frame ${gameFrameCount}; going down.`);
       break;
     }
 
     case ItLivesSituation.BOTH: {
       spawnTrapdoor(positionLeft);
       spawnHeavenDoor(positionRight);
-      log("It Lives! or Hush killed; spawning both paths.");
+      log(
+        `It Lives! or Hush killed on frame ${gameFrameCount}; spawning both paths.`,
+      );
       break;
     }
 

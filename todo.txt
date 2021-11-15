@@ -1,8 +1,14 @@
 ```
 ### *v0.70.1* - November ?th, 2021
 
--
+- Fast-insertion will now be applied to Mom's Ring. Thanks to Gamonymous for this.
+- Remove some fixes that are no longer necessary since they are fixed in the vanilla game. Thanks to Gamonymous for this.
+- Fixed the bug where the Justice card could insert pickups with prices. (Thanks 3kch1)
 ```
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
+
+
+test to see the following in the log file:
+- Removed a vanilla trapdoor on Depths 2 (for The Beast goal) on game frame

@@ -1,13 +1,13 @@
 import {
   ensureAllCases,
-  getGridEntities,
   getPlayers,
   gridToPos,
   log,
+  removeAllMatchingGridEntities,
+  removeGridEntity,
 } from "isaacscript-common";
 import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
-import { removeGridEntity } from "../../utilGlobals";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v from "./v";
@@ -141,21 +141,13 @@ function seasonButtonPressed(seasonChosenAbbreviation: string) {
 
   v.room.phase = ChangeCharOrderPhase.CHARACTER_SELECT;
   v.room.seasonChosenAbbreviation = seasonChosenAbbreviation;
-  removeAllRoomButtons();
+  removeAllMatchingGridEntities(GridEntityType.GRID_PRESSURE_PLATE);
 
   // Delete all of the season sprites
   v.room.sprites.seasons.clear();
 
   // Mark to create new buttons (for the characters) on the next frame
   v.room.createButtonsFrame = gameFrameCount + 1;
-}
-
-function removeAllRoomButtons() {
-  for (const gridEntity of getGridEntities(
-    GridEntityType.GRID_PRESSURE_PLATE,
-  )) {
-    removeGridEntity(gridEntity);
-  }
 }
 
 function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {

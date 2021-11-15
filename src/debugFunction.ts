@@ -43,7 +43,8 @@ function hotkey2Function() {
   hotkeys.fastDropAll = Keyboard.KEY_Z;
   hotkeys.autofire = Keyboard.KEY_F;
   hotkeys.roll = Keyboard.KEY_G;
-  print("Test hotkeys set.");
+
+  Isaac.ConsoleOutput("Test hotkeys set.");
 }
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)

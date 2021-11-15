@@ -1,6 +1,8 @@
-import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
+import {
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
+  removeGridEntity,
+} from "isaacscript-common";
 import g from "../../globals";
-import { removeGridEntity } from "../../utilGlobals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";

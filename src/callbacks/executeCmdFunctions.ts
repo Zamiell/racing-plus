@@ -84,7 +84,7 @@ executeCmdFunctions.set("bm", (_params: string) => {
 
 executeCmdFunctions.set("card", (params: string) => {
   if (params === "") {
-    print("You must specify a card name or number.");
+    Isaac.ConsoleOutput("You must specify a card name or number.");
     return;
   }
 
@@ -92,24 +92,24 @@ executeCmdFunctions.set("card", (params: string) => {
   if (num !== undefined) {
     // Validate the card ID
     if (num < 1 || num >= Card.NUM_CARDS) {
-      print("That is an invalid card ID.");
+      Isaac.ConsoleOutput("That is an invalid card ID.");
       return;
     }
 
     // They entered a number instead of a name, so just give the card corresponding to this number
     consoleCommand(`g k${num}`);
-    print(`Gave card: #${num}`);
+    Isaac.ConsoleOutput(`Gave card: #${num}`);
     return;
   }
 
   const word = params.toLowerCase();
   const card = CARD_MAP.get(word);
   if (card === undefined) {
-    print("Unknown card.");
+    Isaac.ConsoleOutput("Unknown card.");
     return;
   }
   consoleCommand(`g k${card}`);
-  print(`Gave card: #${card}`);
+  Isaac.ConsoleOutput(`Gave card: #${card}`);
 });
 
 executeCmdFunctions.set("cards", (_params: string) => {
@@ -148,7 +148,7 @@ executeCmdFunctions.set("chaos", (_params: string) => {
 
 executeCmdFunctions.set("char", (params: string) => {
   if (params === "") {
-    print("You must specify a character name or number.");
+    Isaac.ConsoleOutput("You must specify a character name or number.");
     return;
   }
 
@@ -160,14 +160,14 @@ executeCmdFunctions.set("char", (params: string) => {
     const word = params.toLowerCase();
     const characterFromMap = CHARACTER_MAP.get(word);
     if (characterFromMap === undefined) {
-      print("Unknown character.");
+      Isaac.ConsoleOutput("Unknown character.");
       return;
     }
     character = characterFromMap;
   }
 
   restartAsCharacter(character);
-  print(`Restarting as character: ${character}`);
+  Isaac.ConsoleOutput(`Restarting as character: ${character}`);
 });
 
 executeCmdFunctions.set("coin", (params: string) => {
@@ -194,9 +194,9 @@ executeCmdFunctions.set("coins", (_params: string) => {
 
 executeCmdFunctions.set("connect", (_params: string) => {
   if (socketClient.connect()) {
-    print("Successfully connected.");
+    Isaac.ConsoleOutput("Successfully connected.");
   } else {
-    print("Failed to connect.");
+    Isaac.ConsoleOutput("Failed to connect.");
   }
 });
 
@@ -217,7 +217,7 @@ executeCmdFunctions.set("dd", (params: string) => {
 });
 
 executeCmdFunctions.set("debug", (_params: string) => {
-  print("Executing debug function.");
+  Isaac.ConsoleOutput("Executing debug function.");
   debugFunction();
 });
 
@@ -241,7 +241,7 @@ executeCmdFunctions.set("effects", (_params: string) => {
   const effects = player.GetEffects();
   const effectsList = effects.GetEffectsList();
   if (effectsList.Size === 0) {
-    print("There are no current temporary effects.");
+    Isaac.ConsoleOutput("There are no current temporary effects.");
     return;
   }
   for (let i = 0; i < effectsList.Size; i++) {
@@ -251,7 +251,7 @@ executeCmdFunctions.set("effects", (_params: string) => {
       log(`${i + 1} - ${collectibleName}`);
     }
   }
-  print('Logged the player\'s effects to the "log.txt" file.');
+  Isaac.ConsoleOutput('Logged the player\'s effects to the "log.txt" file.');
 });
 
 executeCmdFunctions.set("error", (_params: string) => {
@@ -305,7 +305,7 @@ executeCmdFunctions.set("keys", (_params: string) => {
 });
 
 executeCmdFunctions.set("list", (_params: string) => {
-  list();
+  list(false);
 });
 
 executeCmdFunctions.set("listall", (_params: string) => {
@@ -330,7 +330,7 @@ executeCmdFunctions.set("next", (_params: string) => {
 
 executeCmdFunctions.set("pill", (params: string) => {
   if (params === "") {
-    print("You must specify a pill name or number.");
+    Isaac.ConsoleOutput("You must specify a pill name or number.");
     return;
   }
 
@@ -338,25 +338,25 @@ executeCmdFunctions.set("pill", (params: string) => {
   if (num !== undefined) {
     // Validate the pill ID
     if (num < 1 || num >= PillEffect.NUM_PILL_EFFECTS) {
-      print("That is an invalid pill effect ID.");
+      Isaac.ConsoleOutput("That is an invalid pill effect ID.");
       return;
     }
 
     // They entered a number instead of a name, so just give the pill corresponding to this number
     consoleCommand(`g p${num}`);
-    print(`Gave pill: #${num}`);
+    Isaac.ConsoleOutput(`Gave pill: #${num}`);
     return;
   }
 
   const word = params.toLowerCase();
   const pillEffect = PILL_MAP.get(word);
   if (pillEffect === undefined) {
-    print("Unknown pill.");
+    Isaac.ConsoleOutput("Unknown pill.");
     return;
   }
 
   consoleCommand(`g p${pillEffect}`);
-  print(`Gave pill: #${pillEffect}`);
+  Isaac.ConsoleOutput(`Gave pill: #${pillEffect}`);
 });
 
 executeCmdFunctions.set("pills", (_params: string) => {
@@ -390,7 +390,9 @@ executeCmdFunctions.set("pills", (_params: string) => {
 
 executeCmdFunctions.set("pos", (_params: string) => {
   for (const player of getPlayers()) {
-    print(`Player position: (${player.Position.X}, ${player.Position.Y})`);
+    Isaac.ConsoleOutput(
+      `Player position: (${player.Position.X}, ${player.Position.Y})`,
+    );
   }
 });
 
@@ -400,12 +402,12 @@ executeCmdFunctions.set("previous", (_params: string) => {
 
 executeCmdFunctions.set("roomindex", (_params: string) => {
   const roomIndex = getRoomIndex();
-  print(roomIndex);
+  Isaac.ConsoleOutput(`The current room index is: ${roomIndex}`);
 });
 
 executeCmdFunctions.set("s", (params: string) => {
   if (params === "") {
-    print("You must specify a stage number.");
+    Isaac.ConsoleOutput("You must specify a stage number.");
     return;
   }
 
@@ -435,7 +437,9 @@ executeCmdFunctions.set("s", (params: string) => {
   const minStage = 1;
   const maxStage = 13;
   if (stage < minStage || stage > maxStage) {
-    print(`Invalid stage number; must be between ${minStage} and ${maxStage}.`);
+    Isaac.ConsoleOutput(
+      `Invalid stage number; must be between ${minStage} and ${maxStage}.`,
+    );
     return;
   }
 
@@ -453,7 +457,7 @@ executeCmdFunctions.set("s1", (_params: string) => {
 
 executeCmdFunctions.set("save", (_params: string) => {
   saveDataManagerSave();
-  print('Saved variables to the "save#.dat" file.');
+  Isaac.ConsoleOutput('Saved variables to the "save#.dat" file.');
 });
 
 executeCmdFunctions.set("seededrace", (params: string) => {
@@ -464,7 +468,7 @@ executeCmdFunctions.set("seededrace", (params: string) => {
   g.race.format = enabled ? RaceFormat.SEEDED : RaceFormat.UNSEEDED;
 
   const enabledText = enabled ? "Enabled" : "Disabled";
-  print(`${enabledText} seeded race mode.`);
+  Isaac.ConsoleOutput(`${enabledText} seeded race mode.`);
 });
 
 executeCmdFunctions.set("setcharorder", (_params: string) => {
@@ -488,7 +492,9 @@ executeCmdFunctions.set("sound", (params: string) => {
 });
 
 executeCmdFunctions.set("sounds", (_params: string) => {
-  print("Printing out the currently playing sounds to the log.txt.");
+  Isaac.ConsoleOutput(
+    "Printing out the currently playing sounds to the log.txt.",
+  );
   for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
     if (g.sfx.IsPlaying(i)) {
       log(`Currently playing sound effect: ${i}`);
@@ -532,5 +538,5 @@ executeCmdFunctions.set("unseed", (_params: string) => {
 executeCmdFunctions.set("version", (_params: string) => {
   const msg = `Racing+ version: ${VERSION}`;
   log(msg);
-  print(msg);
+  Isaac.ConsoleOutput(msg);
 });
