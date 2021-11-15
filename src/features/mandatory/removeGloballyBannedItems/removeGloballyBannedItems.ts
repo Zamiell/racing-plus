@@ -5,13 +5,9 @@ import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   changeCollectibleSubType,
-  getPlayers,
-  getRandomArrayElement,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { passiveItemsForEden } from "../../../passiveItemsForEden";
-import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import {
   BANNED_COLLECTIBLES,
   BANNED_COLLECTIBLES_WITH_VOID,
@@ -32,31 +28,10 @@ export function init(): void {
 export function postGameStarted(): void {
   for (const bannedCollectible of BANNED_COLLECTIBLES.values()) {
     g.itemPool.RemoveCollectible(bannedCollectible);
-
-    // If Eden started with a banned item, replace it
-    for (const player of getPlayers()) {
-      if (player.HasCollectible(bannedCollectible)) {
-        const startSeed = g.seeds.GetStartSeed();
-        const edenReplacementItem = getRandomArrayElement(
-          passiveItemsForEden,
-          startSeed,
-        );
-        player.RemoveCollectible(bannedCollectible);
-        player.AddCollectible(edenReplacementItem);
-        showEdenStartingItems.changeStartingPassiveItem(edenReplacementItem);
-      }
-    }
   }
 
   for (const bannedTrinket of BANNED_TRINKETS.values()) {
     g.itemPool.RemoveTrinket(bannedTrinket);
-
-    // If Eden started with a banned trinket, delete it
-    for (const player of getPlayers()) {
-      if (player.HasTrinket(bannedTrinket)) {
-        player.TryRemoveTrinket(bannedTrinket);
-      }
-    }
   }
 
   if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VOID)) {

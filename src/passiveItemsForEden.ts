@@ -1,5 +1,4 @@
-import { getMaxCollectibleID, isQuestCollectible } from "isaacscript-common";
-import { BANNED_COLLECTIBLES } from "./features/mandatory/removeGloballyBannedItems/constants";
+import { getMaxCollectibleID } from "isaacscript-common";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -16,8 +15,6 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
       (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
         itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&
-      !isQuestCollectible(itemConfigItem.ID) &&
-      !BANNED_COLLECTIBLES.has(itemConfigItem.ID) &&
       ![...COLLECTIBLE_REPLACEMENT_MAP.keys()].includes(i)
     ) {
       passiveItemsForEden.push(itemConfigItem.ID);
