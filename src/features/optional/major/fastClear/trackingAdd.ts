@@ -1,13 +1,12 @@
-import { getRoomIndex, getRoomVisitedCount, log } from "isaacscript-common";
+import { log } from "isaacscript-common";
 import {
   ATTACHED_NPCS_TYPE_VARIANT,
   ATTACHED_NPCS_TYPE_VARIANT_SUBTYPE,
+  FAST_CLEAR_DEBUG,
 } from "./constants";
 import { isRaglingDeathPatch } from "./ragling";
 import * as trackingRemove from "./trackingRemove";
 import v from "./v";
-
-const DEBUG = true;
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {
@@ -59,7 +58,6 @@ function checkAdd(npc: EntityNPC) {
     return;
   }
 
-  checkFlushOldRoomEnemies();
   add(npc, ptrHash);
 }
 
@@ -81,34 +79,10 @@ function isAttachedNPC(npc: EntityNPC) {
   return false;
 }
 
-function checkFlushOldRoomEnemies() {
-  const roomIndex = getRoomIndex();
-  const roomVisitedCount = getRoomVisitedCount();
-
-  // If we are entering a new room, flush all of the stuff in the old room
-  // We can't use the PostNewRoom callback to handle this since the NPCUpdate callback will fire
-  // before that
-  if (
-    roomIndex !== v.run.currentRoomIndex ||
-    roomVisitedCount !== v.run.currentRoomVisitedCount
-  ) {
-    v.run.currentRoomIndex = roomIndex;
-    v.run.currentRoomVisitedCount = roomVisitedCount;
-
-    v.run.aliveEnemies = new Set();
-    v.run.delayClearUntilFrame = null;
-    v.run.earlyClearedRoom = false;
-
-    if (DEBUG) {
-      log("Flushed fast-travel tracking entries due to entering a new room.");
-    }
-  }
-}
-
 function add(npc: EntityNPC, ptrHash: PtrHash) {
   v.run.aliveEnemies.add(ptrHash);
 
-  if (DEBUG) {
+  if (FAST_CLEAR_DEBUG) {
     log(
       `Added NPC to track: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );

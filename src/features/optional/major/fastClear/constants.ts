@@ -1,3 +1,5 @@
+export const FAST_CLEAR_DEBUG = true;
+
 export const ATTACHED_NPCS_TYPE_VARIANT = new Set<string>([
   `${EntityType.ENTITY_VIS}.${VisVariant.CHUBBER_PROJECTILE}`,
   `${EntityType.ENTITY_DEATH}.${DeathVariant.DEATH_SCYTHE}`,

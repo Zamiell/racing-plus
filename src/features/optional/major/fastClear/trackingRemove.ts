@@ -1,8 +1,7 @@
 import { log } from "isaacscript-common";
 import g from "../../../../globals";
+import { FAST_CLEAR_DEBUG } from "./constants";
 import v from "./v";
-
-const DEBUG = true;
 
 // ModCallbacks.MC_POST_ENTITY_REMOVE (67)
 export function postEntityRemove(entity: Entity): void {
@@ -65,7 +64,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
 
   // We check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate callback
 
-  if (DEBUG) {
+  if (FAST_CLEAR_DEBUG) {
     log(
       `Removed NPC to track: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );

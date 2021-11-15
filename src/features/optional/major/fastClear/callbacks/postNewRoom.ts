@@ -1,12 +1,14 @@
 import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import g from "../../../../../globals";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
+import * as trackingClear from "../trackingClear";
 
 export function fastClearPostNewRoom(): void {
   if (!shouldEnableFastClear()) {
     return;
   }
 
+  trackingClear.postNewRoom();
   checkBugTwoHeavenDoors();
 }
 
