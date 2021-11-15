@@ -1,5 +1,4 @@
 import { debugFunction } from "../debugFunction";
-import * as fixGenesisAndDamocles from "../features/mandatory/fixGenesisAndDamocles";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -76,15 +75,6 @@ function voidItem() {
 // CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
 function fortuneCookie() {
   removeFortuneCookieBanners.useItem();
-}
-
-// CollectibleType.COLLECTIBLE_GENESIS (622)
-function genesis(
-  _collectibleType: CollectibleType | int,
-  _rng: RNG,
-  player: EntityPlayer,
-) {
-  fixGenesisAndDamocles.useItemGenesis(player);
 }
 
 // CollectibleType.COLLECTIBLE_LEMEGETON (712)
