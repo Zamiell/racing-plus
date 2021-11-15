@@ -1,5 +1,5 @@
 import { getMaxCollectibleID } from "isaacscript-common";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
+import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
@@ -15,7 +15,7 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
       (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
         itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&
-      ![...COLLECTIBLE_REPLACEMENT_MAP.keys()].includes(i)
+      !PLACEHOLDER_COLLECTIBLES_SET.has(i)
     ) {
       passiveItemsForEden.push(itemConfigItem.ID);
     }

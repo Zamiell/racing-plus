@@ -41,3 +41,7 @@ export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
     CollectibleType.COLLECTIBLE_TWISTED_PAIR,
   ],
 ]);
+
+export const PLACEHOLDER_COLLECTIBLES_SET = new Set(
+  COLLECTIBLE_REPLACEMENT_MAP.keys(),
+);
