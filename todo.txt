@@ -1,10 +1,7 @@
 ```
-### *v0.70.1* - November 15th, 2021
+### *v0.70.2* - November ?th, 2021
 
-- Fast-insertion will now be applied to Mom's Ring. Thanks to Gamonymous for this.
-- Remove some fixes that are no longer necessary since they are fixed in the vanilla game. Thanks to Gamonymous for this.
-- Fixed the bug where the Justice card could insert pickups with prices. (Thanks 3kch1)
-- Fixed the bug in season 1 where the paths would not spawn properly after It Lives! (Thanks TNTerminator)
+-
 ```
 
 TODO Racing+ new features:
