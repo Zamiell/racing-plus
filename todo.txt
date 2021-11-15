@@ -1,11 +1,13 @@
 ```
 ### *v0.69.15* - November 12th, 2021
 
-- Fixed the bug where Holy Mantle was not being shown in the UI. (Thanks Moucheron Quipet)
+- The room changes from the last vanilla patch are now present in Racing+.
+- Polties and Kinetis will now immediately show themselves upon entering the room.
+- Dusts will now never disappear.
+- A lot of deleted rooms were put back into Racing+ now that there are fast Needles/Pasties, fast Polties/Kinetis, and fast Dusts.
+- Fixed the bug where Raglings would not work properly with fast-clear.
 ```
 
 TODO Racing+ new features:
 - Use the new Room.Clear
 - Implement time offsets, show on the first room of each floor
-
-- room 1092 is bugged with out of bounds

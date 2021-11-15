@@ -458,12 +458,30 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    "fastNeedles", // 881
+    "fastPolties", // 816
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0410",
+      "Fast Polties/Kinetis",
+      "Make Polties & Kinetis show themselves immediately upon entering the room.",
+    ],
+  ],
+  [
+    "fastNeedles", // 881
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0411",
       "Fast Needles/Pasties",
       "Make Needles & Pasties spend less time underground.",
+    ],
+  ],
+  [
+    "fastDusts", // 882
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0412",
+      "Fast Dusts",
+      "Make Dusts never disappear.",
     ],
   ],
 ];

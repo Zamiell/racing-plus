@@ -6,6 +6,7 @@ import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as stopDeathSlow from "../features/optional/bosses/stopDeathSlow";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
+import * as fastDusts from "../features/optional/enemies/fastDusts";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as fastNeedles from "../features/optional/enemies/fastNeedles";
@@ -102,6 +103,12 @@ export function init(mod: Mod): void {
     needle,
     EntityType.ENTITY_NEEDLE, // 881
   );
+
+  mod.AddCallback(
+    ModCallbacks.MC_NPC_UPDATE,
+    dust,
+    EntityType.ENTITY_DUST, // 882
+  );
 }
 
 export function main(npc: EntityNPC): void {
@@ -186,4 +193,9 @@ function bigHorn(npc: EntityNPC) {
 // EntityType.ENTITY_NEEDLE (881)
 function needle(npc: EntityNPC) {
   fastNeedles.postNPCUpdateNeedle(npc);
+}
+
+// EntityType.ENTITY_DUST (882)
+function dust(npc: EntityNPC) {
+  fastDusts.postNPCUpdateDust(npc);
 }

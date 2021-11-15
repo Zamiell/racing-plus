@@ -7,7 +7,6 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isKeyboardPressed,
   log,
-  logArray,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -160,8 +159,6 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
 }
 
 function open() {
-  logArray(v.persistent.inputHistory);
-
   consoleOpen = true;
   disableAllInputs();
   AwaitingTextInput = true;

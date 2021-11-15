@@ -16,7 +16,6 @@ import { fastTravelPostRender } from "../features/optional/major/fastTravel/call
 import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
-import * as holyMantleUI from "../features/optional/quality/holyMantleUI";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -61,7 +60,6 @@ export function main(): void {
 
   // QoL
   speedUpFadeIn.postRender();
-  holyMantleUI.postRender(); // 313
   leadPencilChargeBar.postRender(); // 444
   showDreamCatcherItemPostRender(); // 566
   showMaxFamiliars.postRender();

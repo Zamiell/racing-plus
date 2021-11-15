@@ -59,6 +59,7 @@ import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
 import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
+import * as postNPCInitLate from "./callbacksCustom/postNPCInitLate";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
@@ -244,6 +245,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {
+  postNPCInitLate.init(mod);
   postItemPickup.init(mod);
   postCustomRevive.init(mod);
   postSlotUpdate.init(mod);

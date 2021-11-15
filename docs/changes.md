@@ -215,7 +215,9 @@ Post-flip actions:
 - `0407` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
 - `0408` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
 - `0409` <!-- removeStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
-- `0410` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
+- `0410` <!-- fastPolties 816 --> Polties & Kinetis will now immediately show themselves.
+- `0411` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
+- `0412` <!-- fastDusts 882 --> Dusts will now never disappear.
 
 ### 5) Quality of Life Changes
 

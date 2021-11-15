@@ -42,7 +42,9 @@ export class Config {
   fastGhosts = true; // 219, 285
   replaceCodWorms = true; // 221
   removeStrayPitfalls = true; // 291
+  fastPolties = true; // 816
   fastNeedles = true; // 881
+  fastDusts = true; // 882
 
   // QoL
   speedUpFadeIn = true;

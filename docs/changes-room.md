@@ -45,6 +45,8 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 - All rooms with 1 item pedestal have 2 Angel Statues. In some rooms, there is an additional reward.
 - All rooms with 2 item pedestals have 1 Angel Statue and have no extra rewards.
 
+<!-- In vanilla, all of the room shapes are normal and all of the doors are enabled. -->
+
 <br />
 
 ### Trapdoor Room
@@ -97,8 +99,8 @@ On certain rooms in the Basement/Cellar, some Pooters can fly over rocks, causin
 The changed rooms are as follows:
 - Basement: #132, #391 (moved the Pooters)
 - Basement: #811 (replaced with Gapers)
-- Burning: #132, #391 (moved the Pooters)
-- Burning: #825 (replaced with Gapers)
+- Burning: #132, #405 (moved the Pooters)
+- Burning: #825 (replaced with Flaming Gapers)
 
 <br />
 
@@ -127,7 +129,7 @@ The changed room is as follows:
 
 ### Lump Fix
 
-In L rooms and 2x2 rooms, Tar Boys and Lumps can pseudo-softlock the player by constantly appearing outside of vision. This results in the clear time of the room being highly reliant on RNG. In these rooms, Tar Boys are replaced with Black Bonies or Dank Chargers, and Lumps are replaced with Mr. Red Maws, Tumors, or Guts.
+In L rooms and 2x2 rooms, Tar Boys and Lumps can pseudo-softlock the player by constantly appearing outside of vision. This results in the clear time of the room being highly reliant on RNG. In these rooms, Tar Boys are replaced with Black Bonies, Dank Globins, Dank Chargers, or Sticky Leapers. Lumps are replaced with Mr. Red Maws, Tumors, or Swingers.
 
 The changed rooms are as follows:
 - Dank Depths: #893, #894, #896, #905, #906, #907, #908, #962, #1091
@@ -183,7 +185,6 @@ While not technically unavoidable, many narrow rooms have near-impossible attack
 The changed rooms are as follows:
 - Depths: #638 (Mom's Dead Hand) (deleted)
 - Necropolis: #616 (Mom's Dead Hand) (deleted)
-- Dank: #637 (Mom's Dead Hand) (deleted)
 - Womb: #598 (Mom's Dead Hand) (deleted)
 - Utero: #586  (Mom's Dead Hand) (deleted)
 - Scarred: #611 (Mom's Dead Hand) (deleted)
@@ -191,12 +192,9 @@ The changed rooms are as follows:
 - Cathedral: #260 (Gabriel) (changed to 1x1)
 - Sheol: #257, #275, #308 (Mom's Dead Hand) (deleted)
 - Chest: #114 (Headless Horseman Head x2) (changed to 1x1)
-- Chest: #116 (Monstro x2) (deleted)
 - Chest: #121 (Mega Maw) (changed to 1x1)
-- Chest: #125 (Monstro x2) (changed to 1x1)
 - Chest: #127 (The Fallen) (changed to 1x1)
 - Chest: #135 (Gurdy Jr.) (deleted)
-- Chest: #161 (Monstro x4) (deleted)
 - Dark Room: #123, #142 (Teratoma) (deleted)
 - Dark Room: #124, #143 (The Fallen) (deleted)
 - Dark Room: #138 (4 Nulls) (deleted)
@@ -224,7 +222,7 @@ The puzzle rooms with the red fires along the sides of the room have no consiste
 The deleted room is as follows:
 - Basement: #771
 - Cellar: #771
-- Burning: #785?
+- Burning: #785
 
 <br />
 
@@ -308,6 +306,13 @@ The changed rooms are as follows:
 
 <br />
 
+### Out of Bounds Fixes
+
+In some rooms, entities are placed out of bounds, which causes glitchy behavior.
+
+The changed room is as follows:
+- Necropolis: #1092
+
 
 
 
@@ -328,10 +333,10 @@ The changed rooms are as follows:
 - Cellar: #126 (Mulligan/Mulligoon)
 - Cellar: #359 (Mulligan)
 - Burning: #126 (Mulligan/Mulligoon)
-- Caves: #440 (Boom Fly)
+- Caves: #44 (Boom Fly)
 - Caves: #48 (Red Boom Fly)
 - Caves: #165 (Attack Fly)
-- Caves: #44 (Boom Fly)
+- Caves: #440 (Boom Fly)
 - Caves: #890 (Maggot)
 - Catacombs: #44 (Boom Fly)
 - Catacombs: #267 (Night Crawler)
@@ -343,26 +348,17 @@ The changed rooms are as follows:
 - Flooded: #448 (Boom Fly)
 - Flooded: #898 (Maggot)
 - Flooded: #953 (Drowned Boom Fly)
-- Depths: #14 (Brain)
-- Womb: #182 (Gurglings)
+- Womb: #203 (Lump)
 - Womb: #333 (Fistula)
 - Womb: #410 (Sucker)
-- Womb: #542 (Gurglings)
-- Womb: #203 (Lump)
-- Womb: #471 (Gurglings)
 - Utero: #3 (Guts)
-- Utero: #131 (Gurdy Jr.)
-- Utero: #182 (Gurglings)
 - Utero: #333 (Fistula)
 - Utero: #410 (Sucker)
-- Scarred: #182 (Gurglings)
 - Scarred: #333 (Fistula)
 - Scarred: #410 (Sucker)
-- Scarred: #555 (Gurglings)
 - Cathedral: #28 (Holy Leech)
 - Sheol: #28 (Kamikaze Leech)
 - Sheol: #212 (Cage)
-- Chest: #35, #87 (Gurglings)
 - Chest: #53, #72, #84 (Fistula)
 - Chest: #54 (Blastocyst)
 - Dark Room: #104 (Sisters Vis)
@@ -370,44 +366,6 @@ The changed rooms are as follows:
 - Dark Room: #132 (Bone Knight)
 - Chub: #1033 (Charger)
 - I AM ERROR: #26 (moved pickups)
-
-<br />
-
-### Needle & Pasty Removal
-
-Some rooms have only Needles or Pasties in them, which forces the player to wait and do nothing.
-
-The deleted rooms are as follows:
-- Caves: #949, #950, #953, #961, #966, #967, #976
-- Flooded: #1103, #1134, #1135, #1138, #1146, #1151, #1152, #1161
-- Ashpit: #201, #204, #205, #206, #210, #298, #302, #311, #353, #581, #615, #10 (Ambush), #1017 (Gideon Wave)
-- Depths: #962, #964, #965, #977, #980, #983, #985, #996, #1005, #1006
-- Dank: #1188, #1189, #1202, #1205, #1208, #1210, #1221, #1230, #1231
-- Womb: #890, #891
-- Utero: #874, #875
-- Scarred: #1070, #1071
-
-<br />
-
-### Polty & Kineti Removal
-
-Some rooms have only Polties or Kineti in them, which forces the player to wait and do nothing. Other rooms have enemies trapped behind objects that force you to wait for the Polties/Kineti to clear the way.
-
-The deleted rooms are as follows:
-- Downpour: #226, #227, #228, #229, #230, #231, #232, #234, #238, #249, #253, #256, #358, #412, #419, #463, #529, #532, #533, #534, #557, #580, #634, #5005
-- Mausoleum: #370, #376, #388, #414, #418, #441, #468, #469, #515, #575
-- Cathedral: #330, #332, #334, #336, #348, #372, #421, #422, #426, #435, #459, #511, #558
-- Ascent: #310, #319, #439, #463, #476
-
-<br />
-
-### Dust Removal
-
-Some rooms have only Dusts in them, which forces the player to wait and do nothing.
-
-The deleted rooms are as follows:
-- Ashpit: #373, #374, #375, #376, #377, #378, #380, #381, #388, #389, #394, #395, #396, #434, #545, #565, #600, #601, #5001, #5030, #10003, #9 (Ambush), #1014 (Gideon Wave), #1021 (Gideon Wave), #1028 (Gideon Wave)
-- Ascent: #370
 
 <br />
 
@@ -426,7 +384,6 @@ The deleted rooms are as follows:
 - Cathedral: #54, #87
 - Sheol: #87
 - Chest: #42
-- Ascent: #104, #105, #106, #139
 
 <br />
 
@@ -435,21 +392,23 @@ The deleted rooms are as follows:
 Some rooms in the game only have a few rocks, pits, etc. These types of rooms rob the player of interesting gameplay.
 
 The deleted rooms are as follows:
-- Basement: #13, #15, #89, #141, #144, #217, #218, #223, #226, #229, #230, #281, #282, #286, #287, #288, #291, #292, #338, #384, #520, #600, #601, #617, #619, #621, #622, #623, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #976, #979, #1072, #1084
-- Cellar: #21, #26, #27, #29, #52, #89, #141, #144, #210, #211, #212, #213, #214, #254, #255, #256, #257, #258, #299, #304, #305, #306, #307, #308, #338, #520, #600, #601, #617, #621, #622, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #1044
+- Basement: #13, #15, #26, #27, #29, #89, #141, #144, #217, #218, #223, #226, #229, #230, #281, #282, #286, #287, #288, #291, #292, #338, #384, #520, #600, #601, #617, #619, #621, #622, #623, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #976, #979, #1072, #1084
+- Cellar: #21, #26, #27, #29, #52, #89, #141, #144, #210, #211, #212, #213, #214, #254, #255, #256, #257, #258, #299, #304, #305, #306, #308, #338, #520, #600, #601, #617, #621, #622, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #1044
 - Burning: #13, #15, #26, #27, #29, #89, #141, #144, #217, #218, #223, #226, #229, #230, #281, #282, #286, #287, #288, #291, #292, #338, #398, #534, #614, #615, #631, #633, #635, #636, #637, #650, #763, #767, #774, #775, #782, #914, #965, #966, #968, #988, #991, #1225
-- Downpour: #27, #90, #122, #139, #140, #144, #161, #162, #163, #164, #210, #212, #213, #219, #220, #258, #259, #314, #317, #5000, #5011
-- Dross: #22, #52, #79, #92, #93, #97, #114, #115, #139, #141, #142, #146, #147, #153, #154, #198, #201, #267, #307, #362, #485, #512, #550, #5000, #5010
+- Downpour: #27, #90, #122, #139, #140, #144, #161, #162, #164, #210, #212, #213, #219, #220, #258, #259, #314, #317, #513, #5000, #5011
+- Dross: #22, #52, #79, #92, #93, #97, #114, #139, #141, #142, #146, #147, #153, #154, #198, #201, #267, #307, #362, #485, #512, #550, #5000, #5010
 - Caves: #213, #215, #216, #263, #264, #310, #311, #312, #686, #688, #689, #713, #846, #857, #897, #902, #986
 - Catacombs: #139, #207, #208, #209, #210, #247, #248, #249, #250, #251, #294, #295, #296, #297, #310, #311, #312, #680, #682, #686, #707, #840, #851
 - Flooded: #213, #215, #216, #263, #264, #310, #311, #312, #694, #696, #697, #721, #854, #865, #1047, #1104
-- Mines: #5, #7, #15, #20, #22, #23, #45, #50, #62, #408, #499, #5000, #5030
-- Ashpit: #6, #7, #15, #19, #21, #22, #40, #245, #247, #288, #366, #507, #508, #512, #568, #5000, #5029
-- Depths: #196, #199, #287, #288, #289, #290, #291, #693, #825, #883, #1013, #1050, #10000, #10009
+- Mines: #0, #5, #7, #15, #20, #22, #23, #45, #50, #62, #408, #5000, #5030
+- Ashpit: #1, #6, #7, #15, #19, #21, #22, #40, #245, #247, #288, #366, #507, #508, #512, #700, #5000, #5029
+- Depths: #196, #199, #287, #288, #289, #290, #291, #693, #825, #883, #1013, #10000, #10009
 - Catacombs: #196, #199, #287, #288, #289, #290, #291, #670, #811, #856, #898, #906, #920, #10000, #10009
 - Depths: #196, #199, #287, #288, #289, #290, #291, #691, #825, #990, #998, #1136, #10000, #10009
+- Necropolis: #196, #199, #287, #288, #289, #290, #291, #10000, #10009
+- Dank: #196, #199, #287, #288, #289, #290, #291, #990, #10000, #10009
 - Mausoleum: #18, #19, #53, #86, #101, #102, #362, #437, #475
-- Gehenna: #23, #24, #35, #52, #66, #67, #260, #374, #401, #442, #472, #495, #496
+- Gehenna: #23, #24, #35, #52, #66, #67, #260, #374, #401, #442, #472, #495, #496, #538, #540, #541
 - Womb: #177, #178, #179, #180, #181, #214, #215, #216, #217, #218, #266, #267, #268, #269, #270, #676, #687, #827
 - Utero: #177, #178, #179, #180, #181, #214, #215, #216, #217, #218, #266, #267, #268, #269, #270, #664, #675, #803, #804, #1071
 - Scarred: #177, #178, #179, #180, #181, #214, #215, #216, #217, #218, #266, #267, #268, #269, #270, #689, #700, #821
@@ -457,6 +416,26 @@ The deleted rooms are as follows:
 - Cathedral: #26, #71, #221, #256, #257, #259, #261, #262, #473
 - Sheol: #71, #286, #291, #513, #516, #519
 - Chest: #26, #142, #143, #199
+
+<br />
+
+### Stacked Entity Fix
+
+Some rooms have the chance to be empty because of stacked entities.
+
+The changed rooms are as follows:
+- Basement: #875 (Portal)
+- Cellar: #875 (Portal)
+- Burning: #889 (Portal)
+
+<br />
+
+### Donation Machine Room Removal
+
+One room in the Necropolis has a donation machine in it. Since removing curses also removes donation machines from the game, this room is largely useless.
+
+The deleted room is as follows:
+- Necropolis: #467
 
 <br />
 
@@ -471,26 +450,6 @@ The changed rooms are as follows:
 - #43
 - #44
 - #45
-
-<br />
-
-### Stacked Entity Fix
-
-Some rooms have the chance to be empty because of stacked entities.
-
-The changed rooms are as follows:
-- Basement: #875 (Portal)
-- Cellar: #875 (Portal)
-- Burning: #875 (Portal)
-
-<br />
-
-### Donation Machine Room Removal
-
-One room in the Necropolis has a donation machine in it. Since removing curses also removes donation machines from the game, this room is largely useless.
-
-The deleted room is as follows:
-- Necropolis: #467
 
 <br />
 
@@ -522,7 +481,7 @@ Certain rooms in the game were probably meant to be symmetrical, but one entity 
 The changed rooms are as follows:
 - Treasure: #30, #32
 - Basement: #581
-- Burning: #595
+- Burning: #405, #595
 - Caves: #26, #53, #118, #416, #541
 - Flooded: #26, #53, #118, #416, #549, #918, #987
 - Sheol: #58
@@ -538,6 +497,6 @@ The changed rooms are as follows:
 ### Miscellaneous
 
 - Wormwood room #5182 was modified to remove the pits next to the doors, which gives the player slightly more time to react to the faster Wormwood mechanic.
-- Double Trouble room #3762 was changed to move the skulls away from the trapdoor (so that spawned Hosts would not interact with the trapdoor).
+- Double Trouble room #3762 was changed to move the skulls away from the trapdoor (so that spawned Hosts do not interact with the trapdoor).
 
 <br />
