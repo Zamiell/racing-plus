@@ -28,12 +28,6 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_USE_ITEM,
-    genesis,
-    CollectibleType.COLLECTIBLE_GENESIS, // 622
-  );
-
-  mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
     lemegeton,
     CollectibleType.COLLECTIBLE_LEMEGETON, // 712
   );
