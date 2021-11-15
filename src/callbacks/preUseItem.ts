@@ -1,4 +1,3 @@
-import * as fixConverter from "../features/mandatory/fixConverter";
 import * as streakText from "../features/mandatory/streakText";
 import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
 
@@ -19,12 +18,6 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_PRE_USE_ITEM,
     deadSeaScrolls,
     CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS, // 124
-  );
-
-  mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
-    converter,
-    CollectibleType.COLLECTIBLE_CONVERTER, // 296
   );
 }
 
@@ -62,16 +55,4 @@ function deadSeaScrolls(
   _customVarData: int,
 ) {
   return streakText.preUseItemDeadSeaScrolls(player, activeSlot);
-}
-
-// CollectibleType.COLLECTIBLE_CONVERTER (296)
-function converter(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  player: EntityPlayer,
-  _useFlags: int,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-) {
-  return fixConverter.preUseItemConverter(player);
 }

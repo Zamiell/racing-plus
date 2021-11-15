@@ -67,23 +67,9 @@ export function postGameStarted(): void {
     }
   }
 
-  if (
-    anyPlayerIs(PlayerType.PLAYER_BETHANY) ||
-    anyPlayerIs(PlayerType.PLAYER_BETHANY_B)
-  ) {
-    // Esau Jr. is bugged with overcharges, which can result in a broken build
-    // Remove it from pools until the bug is fixed
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
-  }
-
   if (anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B)) {
     // Tainted Magdalene is invincible with Sharp Plug
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
-  }
-
-  if (anyPlayerIs(PlayerType.PLAYER_SAMSON_B)) {
-    // Tainted Samson can break the game with Blood Rights since we will never die
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BLOOD_RIGHTS);
   }
 }
 
@@ -135,23 +121,8 @@ function isBannedCollectible(entity: Entity) {
   }
 
   if (
-    (anyPlayerIs(PlayerType.PLAYER_BETHANY) ||
-      anyPlayerIs(PlayerType.PLAYER_BETHANY_B)) &&
-    entity.SubType === CollectibleType.COLLECTIBLE_ESAU_JR
-  ) {
-    return true;
-  }
-
-  if (
     anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B) &&
     entity.SubType === CollectibleType.COLLECTIBLE_SHARP_PLUG
-  ) {
-    return true;
-  }
-
-  if (
-    anyPlayerIs(PlayerType.PLAYER_SAMSON_B) &&
-    entity.SubType === CollectibleType.COLLECTIBLE_BLOOD_RIGHTS
   ) {
     return true;
   }
