@@ -94,6 +94,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
       PickupVariant.PICKUP_KEY,
     ],
   ], // 716
+  [CollectibleType.COLLECTIBLE_MOMS_RING, [PickupVariant.PICKUP_TAROTCARD]], // 732
 ]);
 
 export const DETRIMENTAL_TRINKETS = new Set<TrinketType>([
