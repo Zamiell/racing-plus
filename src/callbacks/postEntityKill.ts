@@ -120,7 +120,7 @@ function uriel(entity: Entity) {
 
 // EntityType.ENTITY_GABRIEL (272)
 function gabriel(entity: Entity) {
-  fastAngels.postEntityKillUriel(entity);
+  fastAngels.postEntityKillGabriel(entity);
 }
 
 // EntityType.ENTITY_MEGA_SATAN_2 (275)

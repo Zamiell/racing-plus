@@ -11,7 +11,7 @@ export function postUpdate(): void {
   checkEarlyClearRoom();
 }
 
-export function checkEarlyClearRoom(): void {
+function checkEarlyClearRoom() {
   const gameFrameCount = g.g.GetFrameCount();
   const roomFrameCount = g.r.GetFrameCount();
   const roomType = g.r.GetType();
