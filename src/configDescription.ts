@@ -252,10 +252,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "fastSatan", // 84
+    "fastKrampus", // 81
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0305",
+      "Fast Krampus",
+      "Make Krampus immediately drop his item once he is killed.",
+    ],
+  ],
+  [
+    "fastSatan", // 84
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0306",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
@@ -264,34 +273,47 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0306",
+      "0307",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
+    ],
+  ],
+  [
+    "fastAngels", // 271, 272
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0308",
+      "Fast angels",
+      "Make Uriel and Gabriel immediately drop their key piece once they are killed.",
     ],
   ],
   [
     "consistentAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0307",
+      "0309",
       "Consistent angels",
-      "Prevent two of the same angel from spawning in the same room.",
+      "Prevent two of the same angel boss from spawning in the same room.",
     ],
   ],
   [
     "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0308",
+      "0310",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
     "stopVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0309",
+      "0311",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -300,20 +322,16 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0310",
+      "0312",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
   ],
-];
-
-// 0311-0320
-export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0311",
+      "0313",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -322,7 +340,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0312",
+      "0314",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -331,7 +349,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0313",
+      "0315",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],

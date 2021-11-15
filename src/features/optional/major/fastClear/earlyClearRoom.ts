@@ -1,40 +1,86 @@
-// The main part of fast-clear messes with the CanShutDoors property of NPCs
-// Separately, we also keep track of the current enemies in the room, and open the doors early
-// Thankfully, even if the player exits the room on the frame that the doors are manually opened,
-// the game will still charge the active item and spawn the drop as per normal
-
-import { log, openAllDoors } from "isaacscript-common";
+import { getGridEntities, log, openAllDoors } from "isaacscript-common";
 import g from "../../../../globals";
+import {
+  CREEP_VARIANTS_TO_KILL,
+  EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
+} from "./constants";
 import v from "./v";
 
-const CREEP_VARIANTS_TO_KILL = new Set([
-  EffectVariant.CREEP_RED, // 22
-  EffectVariant.CREEP_GREEN, // 23
-  EffectVariant.CREEP_YELLOW, // 24
-  EffectVariant.CREEP_WHITE, // 25
-  EffectVariant.CREEP_BLACK, // 26
-  EffectVariant.CREEP_BROWN, // 56
-  EffectVariant.CREEP_SLIPPERY_BROWN, // 94
-]);
+// ModCallbacks.MC_POST_UPDATE (1)
+export function postUpdate(): void {
+  checkEarlyClearRoom();
+}
 
-const EARLY_CLEAR_ROOM_TYPE_BLACKLIST = new Set([
-  RoomType.ROOM_BOSS, // 5
-  RoomType.ROOM_CHALLENGE, // 11
-  RoomType.ROOM_BOSSRUSH, // 17
-]);
-
-export function earlyClearRoom(): void {
+export function checkEarlyClearRoom(): void {
+  const gameFrameCount = g.g.GetFrameCount();
+  const roomFrameCount = g.r.GetFrameCount();
   const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
 
+  // Do nothing if we already cleared the room
+  if (v.run.earlyClearedRoom) {
+    return;
+  }
+
+  // Under certain conditions, the room can be clear of enemies on the first frame
+  // Thus, the earliest possible frame that fast-clear should apply is on frame 1
+  if (roomFrameCount < 1) {
+    return;
+  }
+
+  // Certain types of rooms are exempt from the fast-clear feature
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
     return;
   }
 
+  // If a frame has passed since an enemy died, reset the delay counter
+  if (
+    v.run.delayClearUntilFrame !== null &&
+    gameFrameCount >= v.run.delayClearUntilFrame
+  ) {
+    v.run.delayClearUntilFrame = null;
+  }
+
+  // Check on every frame to see if we need to open the doors
+  if (
+    v.run.aliveEnemies.size === 0 &&
+    v.run.delayClearUntilFrame === null &&
+    !roomClear &&
+    checkAllPressurePlatesPushed()
+  ) {
+    earlyClearRoom();
+  }
+}
+
+function checkAllPressurePlatesPushed() {
+  const hasPressurePlates = g.r.HasTriggerPressurePlates();
+
+  if (!hasPressurePlates || v.room.buttonsAllPushed) {
+    return true;
+  }
+
+  // We are in a room with pressure plates, so check to see if they have all been pressed
+  for (const gridEntity of getGridEntities(
+    GridEntityType.GRID_PRESSURE_PLATE,
+  )) {
+    const gridEntityDesc = gridEntity.GetSaveState();
+    if (gridEntityDesc.State !== PressurePlateState.PRESSURE_PLATE_PRESSED) {
+      return false;
+    }
+  }
+
+  v.room.buttonsAllPushed = true;
+  return true;
+}
+
+function earlyClearRoom() {
   v.run.earlyClearedRoom = true;
   log("Early clearing the room (fast-clear).");
 
   openAllDoors();
   killExtraEntities();
+  g.r.TriggerClear();
+  g.r.SetClear(true);
 }
 
 function killExtraEntities() {

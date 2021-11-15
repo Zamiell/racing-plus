@@ -2,19 +2,57 @@ import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
 } from "isaacscript-common";
-import g from "../../../../globals";
-import { findFreePosition, spawnCollectible } from "../../../../utilGlobals";
+import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
+import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
-export function postEntityKill(npc: EntityNPC): void {
-  spawnKeyPiece(npc);
+// The game only spawns key pieces from angels after the death animation is over
+// This takes too long, so manually spawn the key pieces as soon as the angel dies
+// This also prevents the situation where a player can leave the room before the death animation
+// is finished and miss out on a key piece
+
+// ModCallbacks.MC_POST_PICKUP_INIT (34)
+// PickupVariant.PICKUP_COLLECTIBLE (100)
+export function postPickupInitCollectible(pickup: EntityPickup): void {
+  checkRemoveVanillaAngelDrop(pickup);
 }
 
-function spawnKeyPiece(npc: EntityNPC) {
-  // The game only spawns key pieces from angels after the death animation is over
-  // This takes too long, so manually spawn the key pieces as soon as the angel dies
-  // This also prevents the situation where a player can leave the room before the death animation
-  // is finished and miss out on a key piece
+function checkRemoveVanillaAngelDrop(pickup: EntityPickup) {
+  // We don't check for the collectible type in case the player has Filigree Feather
+  if (
+    pickup.SpawnerType === EntityType.ENTITY_URIEL || // 271
+    pickup.SpawnerType === EntityType.ENTITY_GABRIEL // 272
+  ) {
+    pickup.Remove();
+  }
+}
+
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_URIEL (271)
+export function postEntityKillUriel(entity: Entity): void {
+  if (!config.fastAngels) {
+    return;
+  }
+
+  spawnKeyPiece(entity);
+}
+
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_GABRIEL (272)
+export function postEntityKillGabriel(entity: Entity): void {
+  if (!config.fastAngels) {
+    return;
+  }
+
+  spawnKeyPiece(entity);
+}
+
+function spawnKeyPiece(entity: Entity) {
+  // Fallen Angels do not drop key pieces
+  if (entity.Variant !== AngelVariant.NORMAL) {
+    return;
+  }
+
   const roomType = g.r.GetType();
 
   // We don't want to drop key pieces from angels in Victory Lap bosses or the Boss Rush
@@ -39,11 +77,12 @@ function spawnKeyPiece(npc: EntityNPC) {
 
   // Spawn the item
   // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
-  const position = findFreePosition(npc.Position);
-  spawnCollectible(getKeySubType(npc), position, npc.InitSeed, false, true);
+  const position = findFreePosition(entity.Position);
+  const subType = getKeySubType(entity);
+  spawnCollectible(subType, position, entity.InitSeed, false, true);
 }
 
-function getKeySubType(npc: EntityNPC) {
+function getKeySubType(entity: Entity) {
   if (anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS)) {
     // Even if the player has both key pieces,
     // Filigree Feather will still make an angel drop a random item
@@ -51,14 +90,14 @@ function getKeySubType(npc: EntityNPC) {
   }
 
   if (
-    npc.Type === EntityType.ENTITY_URIEL &&
+    entity.Type === EntityType.ENTITY_URIEL &&
     !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
   }
 
   if (
-    npc.Type === EntityType.ENTITY_GABRIEL &&
+    entity.Type === EntityType.ENTITY_GABRIEL &&
     !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_2;

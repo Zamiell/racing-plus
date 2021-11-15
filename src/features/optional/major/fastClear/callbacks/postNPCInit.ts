@@ -1,10 +1,10 @@
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
-import * as tracking from "../tracking";
+import * as trackingAdd from "../trackingAdd";
 
 export function fastClearPostNPCInit(npc: EntityNPC): void {
   if (!shouldEnableFastClear()) {
     return;
   }
 
-  tracking.checkAdd(npc);
+  trackingAdd.postNPCInit(npc);
 }

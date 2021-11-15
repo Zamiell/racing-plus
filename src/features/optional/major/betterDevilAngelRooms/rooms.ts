@@ -48,7 +48,7 @@ function getRoomsWithSubType(rooms: JSONRoom[], subType: int) {
     const roomSubTypeString = room["@subtype"];
     const roomSubType = tonumber(roomSubTypeString);
     if (roomSubType === undefined) {
-      error(`Failed to parse the subtype of a room: ${roomSubTypeString}`);
+      error(`Failed to parse the sub-type of a room: ${roomSubTypeString}`);
     }
 
     if (roomSubType === subType) {
@@ -136,16 +136,16 @@ function spawnAllEntities(spawns: JSONSpawn[], devil: boolean) {
       error(`Failed to convert the entity variant to a number: ${variant}`);
     }
 
-    const subtypeString = spawn.entity["@subtype"];
-    const subtype = tonumber(subtypeString);
-    if (subtype === undefined) {
-      error(`Failed to convert the entity subtype to a number: ${subtype}`);
+    const subTypeString = spawn.entity["@subtype"];
+    const subType = tonumber(subTypeString);
+    if (subType === undefined) {
+      error(`Failed to convert the entity sub-type to a number: ${subType}`);
     }
 
     if (entityType >= 1000) {
       spawnGridEntity(entityType, variant, x, y);
     } else {
-      spawnNormalEntity(entityType, variant, subtype, x, y, devil);
+      spawnNormalEntity(entityType, variant, subType, x, y, devil);
     }
   }
 }
@@ -189,7 +189,7 @@ function spawnGridEntity(
 function spawnNormalEntity(
   entityType: int,
   variant: int,
-  subtype: int,
+  subType: int,
   x: int,
   y: int,
   devil: boolean,
@@ -203,7 +203,7 @@ function spawnNormalEntity(
     variant === PickupVariant.PICKUP_COLLECTIBLE
   ) {
     const options = !devil;
-    entity = spawnCollectible(subtype, position, seed, options);
+    entity = spawnCollectible(subType, position, seed, options);
   } else {
     entity = g.g.Spawn(
       entityType,
@@ -211,7 +211,7 @@ function spawnNormalEntity(
       position,
       Vector.Zero,
       undefined,
-      subtype,
+      subType,
       seed,
     );
   }

@@ -175,7 +175,7 @@ function spawnSeededDrop() {
         rng.Next(),
       );
 
-      // Pickups with a subtype of 0 can morph into the various kinds of other pickups
+      // Pickups with a sub-type of 0 can morph into the various kinds of other pickups
       // If we are spawning a 2nd copy of this pickup, make sure that it is the same type
       subType = pickup.SubType;
     }

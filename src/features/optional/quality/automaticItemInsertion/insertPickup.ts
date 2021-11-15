@@ -100,7 +100,7 @@ function insertCoin(
 
     default: {
       error(
-        `The automatic item insertion feature encountered an unknown coin subtype of: ${coin.SubType}`,
+        `The automatic item insertion feature encountered an unknown coin sub-type of: ${coin.SubType}`,
       );
       return undefined;
     }
@@ -144,7 +144,7 @@ function insertKey(
 
     default: {
       error(
-        `The automatic item insertion feature encountered an unknown key subtype of: ${key.SubType}`,
+        `The automatic item insertion feature encountered an unknown key sub-type of: ${key.SubType}`,
       );
       return undefined;
     }
@@ -204,7 +204,7 @@ function insertBomb(
 
     default: {
       error(
-        `The automatic item insertion feature encountered an unknown key subtype of: ${bomb.SubType}`,
+        `The automatic item insertion feature encountered an unknown key sub-type of: ${bomb.SubType}`,
       );
       return undefined;
     }

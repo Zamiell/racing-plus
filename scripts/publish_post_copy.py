@@ -28,15 +28,15 @@ GAME_DIRECTORY = os.path.join(
     "The Binding of Isaac Rebirth",
 )
 TARGET_MOD_DIRECTORY = os.path.join(GAME_DIRECTORY, "mods", MOD_NAME)
-PRE_FLIPPING_DIRECTORY = os.path.join(
-    TARGET_MOD_DIRECTORY, "resources", "rooms", "pre-flipping"
+PRE_FLIPPED_DIRECTORY = os.path.join(
+    TARGET_MOD_DIRECTORY, "resources", "rooms", "pre-flipped"
 )
 
 
 def main():
-    # Remove the "pre-flipping" directory, since it isn't necessary to send this to the end-user
-    printf("Removing the pre-flipping directory...")
-    removePreFlippingDirectory()
+    # Remove the "pre-flipped" directory, since it isn't necessary to send this to the end-user
+    printf("Removing the pre-flipped directory...")
+    removePreFlippedDirectory()
 
     # Make SHA1 hashes of every file so that the client can validate the mod's integrity
     printf("Getting SHA1 hashes of every file...")
@@ -47,9 +47,9 @@ def main():
     printf("Complete!")
 
 
-def removePreFlippingDirectory():
-    if os.path.exists(PRE_FLIPPING_DIRECTORY):
-        shutil.rmtree(PRE_FLIPPING_DIRECTORY)
+def removePreFlippedDirectory():
+    if os.path.exists(PRE_FLIPPED_DIRECTORY):
+        shutil.rmtree(PRE_FLIPPED_DIRECTORY)
 
 
 def get_sha1_hashes():

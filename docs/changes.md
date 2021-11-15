@@ -167,21 +167,23 @@ Post-flip actions:
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `0305` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
-- `0306` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `0307` <!-- consistentAngels 271, 272 --> Two of the same angel type will no longer appear in a single room.
-- `0308` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
+- `0305` <!-- fastKrampus 81 --> Krampus will immediately drop his item once he is killed.
+- `0306` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
+- `0307` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `0308` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
+- `0309` <!-- consistentAngels 271, 272 --> Two of the same angel type will no longer appear in a single room.
+- `0310` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `0309` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
+- `0311` <!-- stopVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0310` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0311` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0312` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0313` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0312` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0313` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0314` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0315` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 

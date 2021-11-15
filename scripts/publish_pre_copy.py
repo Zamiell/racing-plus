@@ -21,7 +21,7 @@ SCRIPT_PATH = os.path.realpath(__file__)
 SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
 GLOBALS_TS_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "src", "types", "Globals.ts")
 ROOMS_DIRECTORY = os.path.join(
-    SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipping"
+    SCRIPT_DIRECTORY, "..", "mod", "resources", "rooms", "pre-flipped"
 )
 XML_FILES_TO_CONVERT = [
     "angelRooms",

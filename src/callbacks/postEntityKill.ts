@@ -4,6 +4,8 @@ import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd"
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as skipBeastIntroCutscene from "../features/mandatory/skipBeastIntroCutscene";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
+import * as fastAngels from "../features/optional/bosses/fastAngels";
+import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
@@ -27,8 +29,26 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_POST_ENTITY_KILL,
+    fallen,
+    EntityType.ENTITY_FALLEN, // 81
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
     lamb,
     EntityType.ENTITY_THE_LAMB, // 273
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    uriel,
+    EntityType.ENTITY_URIEL, // 271
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_ENTITY_KILL,
+    gabriel,
+    EntityType.ENTITY_GABRIEL, // 272
   );
 
   mod.AddCallback(
@@ -83,9 +103,24 @@ function momsHeart(entity: Entity) {
   killExtraEnemies.postEntityKillMomsHeart();
 }
 
+// EntityType.ENTITY_FALLEN (81)
+function fallen(entity: Entity) {
+  fastKrampus.postEntityKillFallen(entity);
+}
+
 // EntityType.ENTITY_THE_LAMB (273)
 function lamb(entity: Entity) {
   stopVictoryLapPopup.postEntityKillLamb(entity);
+}
+
+// EntityType.ENTITY_URIEL (271)
+function uriel(entity: Entity) {
+  fastAngels.postEntityKillUriel(entity);
+}
+
+// EntityType.ENTITY_GABRIEL (272)
+function gabriel(entity: Entity) {
+  fastAngels.postEntityKillUriel(entity);
 }
 
 // EntityType.ENTITY_MEGA_SATAN_2 (275)

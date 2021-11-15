@@ -61,7 +61,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
     const subType = getNewSubType(itemPoolType);
     v.run.gettingCollectible = false;
 
-    // Simply return the new subtype if we do not have the NO! trinket
+    // Simply return the new sub-type if we do not have the NO! trinket
     if (trinketSituation === undefined) {
       return subType;
     }
@@ -74,7 +74,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
 
     if (itemConfigItem.Type !== ItemType.ITEM_ACTIVE) {
       // It is not an active item
-      // Give the NO! trinket back and return the new subtype
+      // Give the NO! trinket back and return the new sub-type
       giveTrinketsBack(player, trinketSituation);
       return subType;
     }

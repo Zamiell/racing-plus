@@ -12,7 +12,7 @@ export function postNPCInitColostomia(npc: EntityNPC): void {
   Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
     EffectVariant.POOF01,
-    3, // 3 is the subtype that the Monstro poof has, so copy it
+    3, // 3 is the sub-type that the Monstro poof has, so copy it
     npc.Position,
     Vector.Zero,
     undefined,

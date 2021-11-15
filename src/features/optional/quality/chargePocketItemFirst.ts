@@ -7,7 +7,7 @@
 // Change the precedence such that the pocket active has priority
 
 // This feature handles the following situations:
-// 1) Batteries (all subtypes)
+// 1) Batteries (all sub-types)
 // 2) Charged keys
 // 3) Coins with the Charged Penny trinket
 // 4) 48 Hour Energy! pill
