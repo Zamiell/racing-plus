@@ -1,12 +1,7 @@
 ```
-### *v0.70.0* - November 14th, 2021
+### *v0.70.1* - November ?th, 2021
 
-- The fast clear feature is upgraded due to new features in the latest patch. Instead of the doors opening after a 10 frame delay, they will now open after a 1 frame delay.
-- The new rooms from the last vanilla patch are now present in Racing+.
-- Polties and Kinetis will now immediately show themselves upon entering the room.
-- Dusts will now never disappear.
-- A lot of deleted rooms were put back into Racing+ now that there are fast Needles/Pasties, fast Polties/Kinetis, and fast Dusts.
-- Fixed the bug where Raglings would not work properly with fast-clear.
+-
 ```
 
 TODO Racing+ new features:

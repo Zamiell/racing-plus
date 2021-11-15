@@ -98,6 +98,10 @@ function checkFlushOldRoomEnemies() {
     v.run.aliveEnemies = new Set();
     v.run.delayClearUntilFrame = null;
     v.run.earlyClearedRoom = false;
+
+    if (DEBUG) {
+      log("Flushed fast-travel tracking entries due to entering a new room.");
+    }
   }
 }
 
