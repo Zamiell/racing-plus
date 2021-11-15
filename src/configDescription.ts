@@ -903,15 +903,6 @@ export const BUG_FIXES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
-      "Fix shop Restock Machines",
-      "Restock Machines are supposed to appear 25% of the time, but this does not happen in vanilla.",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
       "Fix crawlspace exits",
       "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
     ],
