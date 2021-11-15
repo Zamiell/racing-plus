@@ -3,7 +3,6 @@ import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
 import * as fireworks from "../features/mandatory/fireworks";
-import * as gelloSaveAndQuitFix from "../features/mandatory/gelloSaveAndQuitFix";
 import * as genesisSaveAndQuitFix from "../features/mandatory/genesisSaveAndQuitFix";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
@@ -105,5 +104,4 @@ export function main(isContinued: boolean): void {
 function postGameStartedContinued() {
   fastTravelPostGameStartedContinued();
   genesisSaveAndQuitFix.postGameStartedContinued();
-  gelloSaveAndQuitFix.postGameStartedContinued();
 }
