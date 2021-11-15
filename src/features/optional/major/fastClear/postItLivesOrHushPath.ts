@@ -132,8 +132,6 @@ function doItLivesSituation(situation: ItLivesSituation) {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
 
-  // TODO remove existing
-
   let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
   let positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
   let positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);

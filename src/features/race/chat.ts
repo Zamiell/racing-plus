@@ -1,6 +1,3 @@
-// TODO don't display race chat from previous race
-// TODO send all race chat history upon joining race
-
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { Colors } from "../../types/Colors";
@@ -11,6 +8,9 @@ import {
   drawText,
   isConsoleOpen,
 } from "../optional/other/customConsole";
+
+// TODO don't display race chat from previous race
+// TODO send all race chat history upon joining race
 
 const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));
 const LINE_LENGTH = 13;

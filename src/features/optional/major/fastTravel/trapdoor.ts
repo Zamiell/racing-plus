@@ -91,7 +91,6 @@ function shouldRemove() {
   const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const roomFrameCount = g.r.GetFrameCount();
   const roomIndex = getRoomIndex();
   const repentanceStage = onRepentanceStage();
 
@@ -171,28 +170,6 @@ function shouldRemove() {
       );
       return true;
     }
-  }
-
-  // If the goal of the race is The Beast, delete any Womb trapdoors on Depths 2 that are not
-  // spawned naturally after defeating Mom
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.THE_BEAST &&
-    !repentanceStage &&
-    stage === 6 &&
-    // Not spawned after killing mom or not spawned immediately after re-entering the room
-    !(
-      roomType === RoomType.ROOM_BOSS &&
-      ((v.room.momKilledFrame !== null &&
-        gameFrameCount === v.room.momKilledFrame + 1) ||
-        roomFrameCount === 0)
-    )
-  ) {
-    log(
-      `Removed a vanilla trapdoor on Depths 2 (for The Beast goal) on game frame: ${gameFrameCount}`,
-    );
-    return true;
   }
 
   // Delete the trapdoors on the Ascent

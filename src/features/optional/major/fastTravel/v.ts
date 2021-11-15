@@ -87,12 +87,6 @@ const v = {
     /** Indexed by grid index. */
     heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
-    /**
-     * Used so that we can spawn a Mausoleum trapdoor for on the appropriate frame (for races to The
-     * Beast).
-     */
-    momKilledFrame: null as int | null,
-
     movedAwayFromSecretShopLadder: false,
 
     /** Used to replace a crawlspace with a teleporter under certain conditions. */
