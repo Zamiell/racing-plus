@@ -912,15 +912,6 @@ export const BUG_FIXES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
-      "Fix Black Market entrances",
-      "Entering a Black Market will no longer send you to the I AM ERROR room. (This is a bug introduced in v820.)",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
       "Fix crawlspace exits",
       "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
     ],

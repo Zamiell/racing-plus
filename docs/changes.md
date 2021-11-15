@@ -361,10 +361,6 @@ Post-flip actions:
 
 > Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
 
-- Entering a Black Market will no longer send you to the I AM ERROR room.
-
-> Why? In v820, all Black Markets became broken in this way.
-
 - Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
