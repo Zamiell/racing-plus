@@ -37,7 +37,8 @@ function checkAdd(npc: EntityNPC) {
   }
 
   // We don't care if this is a non-battle NPC
-  if (!npc.CanShutDoors) {
+  // (for some reason, Deep Gapers have their "CanShutDoors" property equal to false)
+  if (!npc.CanShutDoors && npc.Type !== EntityType.ENTITY_DEEP_GAPER) {
     return;
   }
 

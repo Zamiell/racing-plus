@@ -1,7 +1,7 @@
 ```
-### *v0.70.3* - November ?th, 2021
+### *v0.70.3* - November 15th, 2021
 
--
+- Fixed the bug where Deep Gapers would not work properly with fast-clear.
 ```
 
 TODO Racing+ new features:

@@ -3,6 +3,16 @@ import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import { findFreePosition } from "../utilGlobals";
 
+const IGNORE_EFFECT_VARIANTS = new Set([
+  EffectVariant.TINY_BUG, // 21
+  EffectVariant.TINY_FLY, // 33
+  EffectVariant.WATER_DROPLET, // 41
+  EffectVariant.WALL_BUG, // 68
+  EffectVariant.FALLING_EMBER, // 87
+  EffectVariant.LIGHT, // 121
+  EffectVariant.TADPOLE, // 158
+]);
+
 export function angel(params: string): void {
   const player = Isaac.GetPlayer();
   const hasEucharist = player.HasCollectible(
@@ -96,12 +106,7 @@ export function list(includeAll: boolean): void {
     if (
       !includeAll &&
       entity.Type === EntityType.ENTITY_EFFECT &&
-      (entity.Variant === EffectVariant.TINY_BUG || // 21
-        entity.Variant === EffectVariant.TINY_FLY || // 33
-        entity.Variant === EffectVariant.WATER_DROPLET || // 41
-        entity.Variant === EffectVariant.WALL_BUG || // 68
-        entity.Variant === EffectVariant.FALLING_EMBER || // 87
-        entity.Variant === EffectVariant.LIGHT) // 121
+      IGNORE_EFFECT_VARIANTS.has(entity.Variant)
     ) {
       continue;
     }
