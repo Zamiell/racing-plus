@@ -1,8 +1,7 @@
 ```
-### *v0.71.1 - November 17th, 2021
+### *v0.71.2 - November 17th, 2021
 
-- Fixed the bug where fast-clear was incorrectly working with Cohorts. (Thanks KiraKeepKool)
-- Fixed the bug where the graphics would get messed up in certain situations. (Thanks Sakk)
+-
 ```
 
 TODO Racing+ new features:
@@ -11,4 +10,4 @@ TODO Racing+ new features:
 - remove screen isaacscript functions
 - remove get offset isaacscript functions
 - provide wrapper for sfx:Play
-- hud bugfix, 1.0 --> 0.0, can disable it via modconfigmenu
+- hud bugfix, 1.0 --> 0.0, can disable it via mod config menu
