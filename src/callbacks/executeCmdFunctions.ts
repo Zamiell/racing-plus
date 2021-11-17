@@ -33,7 +33,7 @@ import {
   goldenBomb,
   goldenKey,
   IAMERROR,
-  list,
+  listEntities,
   movePlayer,
   trapdoor,
   validateNumber,
@@ -43,6 +43,13 @@ export const executeCmdFunctions = new Map<string, (params: string) => void>();
 
 executeCmdFunctions.set("angel", (params: string) => {
   angel(params);
+});
+
+executeCmdFunctions.set("ascent", (_params: string) => {
+  g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
+  g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH, true);
+
+  Isaac.ConsoleOutput("Set Ascent flags.");
 });
 
 executeCmdFunctions.set("blackmarket", (_params: string) => {
@@ -305,11 +312,11 @@ executeCmdFunctions.set("keys", (_params: string) => {
 });
 
 executeCmdFunctions.set("list", (_params: string) => {
-  list(false);
+  listEntities(false);
 });
 
 executeCmdFunctions.set("listall", (_params: string) => {
-  list(true);
+  listEntities(true);
 });
 
 executeCmdFunctions.set("luck", (_params: string) => {

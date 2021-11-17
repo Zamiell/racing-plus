@@ -1,8 +1,14 @@
 ```
-### *v0.71.0 - November 17th, 2021
+### *v0.71.1 - November 17th, 2021
 
-- The mod is now updated with the files from vanilla patch v1.7.6 (including the room changes).
+- Fixed the bug where fast-clear was incorrectly working with Cohorts. (Thanks KiraKeepKool)
+- Fixed the bug where the graphics would get messed up in certain situations. (Thanks Sakk)
 ```
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
+
+- remove screen isaacscript functions
+- remove get offset isaacscript functions
+- provide wrapper for sfx:Play
+- hud bugfix, 1.0 --> 0.0, can disable it via modconfigmenu

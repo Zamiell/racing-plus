@@ -4,6 +4,8 @@ import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAn
 import { findFreePosition } from "../utilGlobals";
 
 const IGNORE_EFFECT_VARIANTS = new Set([
+  EffectVariant.BLOOD_EXPLOSION, // 2
+  EffectVariant.BLOOD_PARTICLE, // 5
   EffectVariant.TINY_BUG, // 21
   EffectVariant.TINY_FLY, // 33
   EffectVariant.WATER_DROPLET, // 41
@@ -96,7 +98,7 @@ export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
 
-export function list(includeAll: boolean): void {
+export function listEntities(includeAll: boolean): void {
   log("Entities in the room:");
   const roomEntities = Isaac.GetRoomEntities();
   for (let i = 0; i < roomEntities.length; i++) {
@@ -142,7 +144,7 @@ export function list(includeAll: boolean): void {
 
     const npc = entity.ToNPC();
     if (npc !== undefined) {
-      debugString += `.${npc.State} (NPC)`;
+      debugString += `.${npc.State} (NPC) (CanShutDoors: ${npc.CanShutDoors})`;
     }
 
     const pickup = entity.ToPickup();
@@ -166,6 +168,7 @@ export function list(includeAll: boolean): void {
     }
 
     debugString += ` (InitSeed: ${entity.InitSeed})`;
+    debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     log(debugString);
   }

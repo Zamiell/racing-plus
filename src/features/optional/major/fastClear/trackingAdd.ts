@@ -1,4 +1,5 @@
 import { log } from "isaacscript-common";
+import g from "../../../../globals";
 import {
   ATTACHED_NPCS_TYPE_VARIANT,
   ATTACHED_NPCS_TYPE_VARIANT_SUBTYPE,
@@ -37,7 +38,7 @@ function checkAdd(npc: EntityNPC) {
   }
 
   // We don't care if this is a non-battle NPC
-  // (for some reason, Deep Gapers have their "CanShutDoors" property equal to false)
+  // (for some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false)
   if (!npc.CanShutDoors && npc.Type !== EntityType.ENTITY_DEEP_GAPER) {
     return;
   }
@@ -81,12 +82,16 @@ function isAttachedNPC(npc: EntityNPC) {
 }
 
 function add(npc: EntityNPC, ptrHash: PtrHash) {
+  const gameFrameCount = g.g.GetFrameCount();
+
   v.run.aliveEnemies.add(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
     log(
-      `Added NPC to track: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
+      `Added NPC to track to frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );
-    log(`Total NPCs tracked: ${v.run.aliveEnemies.size}`);
+    log(
+      `Total NPCs tracked on frame ${gameFrameCount}: ${v.run.aliveEnemies.size}`,
+    );
   }
 }

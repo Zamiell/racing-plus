@@ -1,4 +1,5 @@
 import { getRoomIndex, getRoomVisitedCount, log } from "isaacscript-common";
+import g from "../../../../globals";
 import { FAST_CLEAR_DEBUG } from "./constants";
 import v from "./v";
 
@@ -33,6 +34,7 @@ export function postEntityKill(): void {
 }
 
 function checkFlushOldRoomEnemies() {
+  const gameFrameCount = g.g.GetFrameCount();
   const roomIndex = getRoomIndex();
   const roomVisitedCount = getRoomVisitedCount();
 
@@ -51,7 +53,9 @@ function checkFlushOldRoomEnemies() {
     v.run.earlyClearedRoom = false;
 
     if (FAST_CLEAR_DEBUG) {
-      log("Flushed fast-travel tracking entries due to entering a new room.");
+      log(
+        `Flushed fast-travel tracking entries on frame ${gameFrameCount} due to entering room: ${roomIndex}`,
+      );
     }
   }
 }
