@@ -1,3 +1,16 @@
+<!--
+
+Changes from vanilla:
+- Removed the "nochallenge" tags from all items so that the R+7 custom challenges will emulate item
+  possibilities in vanilla.
+- Added the "noeden" tag to the following banned collectibles:
+  - Mercurius (590)
+  - TMTRAINER (721)
+- Added the "noeden" tag to the following banned trinket:
+  - Karma (85)
+
+-->
+
 <items>
     <item id="1" quality="3" tags="summonable tearsup offensive"/>
     <item id="2" quality="2" tags="summonable offensive"/>
@@ -8,7 +21,7 @@
     <item id="7" quality="3" tags="summonable offensive"/>
     <item id="8" quality="1" tags="summonable baby monstermanual offensive"/>
     <item id="9" quality="0" tags="poop summonable nocantrip fly"/>
-    <item id="10" quality="3" tags="summonable monstermanual fly"/>
+    <item id="10" quality="2" tags="summonable monstermanual fly"/>
     <item id="11" quality="2" tags="mushroom"/>
     <item id="12" quality="4" tags="summonable mushroom offensive"/>
     <item id="13" quality="2" tags="nolostbr summonable syringe"/>
@@ -226,7 +239,7 @@
     <item id="227" quality="1" tags="nolostbr summonable"/>
     <item id="228" quality="2" tags="summonable mom tearsup offensive"/>
     <item id="229" quality="2" tags="summonable offensive"/>
-    <item id="230" quality="4" tags="devil summonable offensive"/>
+    <item id="230" quality="3" tags="devil summonable offensive"/>
     <item id="231" quality="2" tags="summonable offensive"/>
     <item id="232" quality="4" tags="summonable"/>
     <item id="233" quality="0" tags="summonable offensive"/>
@@ -273,7 +286,7 @@
     <item id="275" quality="3" tags="summonable baby monstermanual offensive"/>
     <item id="276" quality="0" tags="uniquefamiliar nolostbr summonable"/>
     <item id="277" quality="1" tags="summonable monstermanual offensive"/>
-    <item id="278" quality="4" tags="summonable"/>
+    <item id="278" quality="3" tags="summonable"/>
     <item id="279" quality="2" tags="summonable monstermanual fly"/>
     <item id="280" quality="1" tags="summonable spider monstermanual offensive"/>
     <item id="281" quality="1" tags="summonable"/>
@@ -306,7 +319,7 @@
     <item id="308" quality="1" tags="summonable offensive stars"/>
     <item id="309" quality="2" tags="summonable tearsup offensive stars"/>
     <item id="310" quality="2" tags="summonable offensive"/>
-    <item id="311" quality="4" tags="nolostbr nocantrip"/>
+    <item id="311" quality="3" tags="nolostbr nocantrip"/>
     <item id="312" quality="2" tags="nolostbr summonable"/>
     <item id="313" quality="4" tags="summonable angel"/>
     <item id="314" quality="1" tags="nolostbr summonable"/>
@@ -417,7 +430,7 @@
     <item id="419" quality="3" tags="offensive"/>
     <item id="420" quality="1" tags="summonable offensive"/>
     <item id="421" quality="1" tags="offensive"/>
-    <item id="422" quality="3" tags="offensive"/>
+    <item id="422" quality="3" tags="offensive nocantrip"/>
     <item id="423" quality="1" tags="summonable"/>
     <item id="424" quality="3" tags="summonable offensive"/>
     <item id="425" quality="2" tags="summonable"/>
@@ -715,7 +728,7 @@
     <item id="725" quality="2" tags="summonable offensive"/>
     <item id="726" quality="3" tags="summonable offensive"/>
     <item id="727" quality="2" tags="summonable offensive"/>
-    <item id="728" quality="2" tags="offensive"/>
+    <item id="728" quality="3" tags="offensive"/>
     <item id="729" quality="2" tags="offensive"/>
     <item id="730" quality="3" tags="offensive"/>
     <item id="731" quality="2" tags="offensive"/>
@@ -842,7 +855,7 @@
     <trinket id="121" quality="0" tags=""/>
     <trinket id="122" quality="0" tags=""/>
     <trinket id="123" quality="0" tags=""/>
-    <trinket id="124" quality="0" tags=""/>
+    <trinket id="124" quality="0" tags="nogreed"/>
     <trinket id="125" quality="0" tags=""/>
     <trinket id="126" quality="0" tags=""/>
     <trinket id="127" quality="0" tags=""/>
@@ -870,7 +883,7 @@
     <trinket id="149" quality="0" tags=""/>
     <trinket id="150" quality="0" tags=""/>
     <trinket id="151" quality="0" tags=""/>
-    <trinket id="152" quality="0" tags="lazarussharedglobal"/>
+    <trinket id="152" quality="0" tags="lazarussharedglobal nogreed"/>
     <trinket id="153" quality="0" tags=""/>
     <trinket id="154" quality="0" tags=""/>
     <trinket id="155" quality="0" tags="lazarussharedglobal nogreed"/>

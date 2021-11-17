@@ -1,3 +1,10 @@
+<!--
+
+Changes from vanilla:
+- Removed Mom's Knife from the Treasure Room pool
+
+-->
+
 <ItemPools>
 	<Pool Name="treasure">
 		<!--The Sad Onion-->
@@ -147,7 +154,6 @@
 		<!--Demon Baby-->
 		<Item Id="113" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Mom's Knife-->
-		<!-- Changed from vanilla -->
 		<!--<Item Id="114" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>-->
 		<!--Ouija Board-->
 		<Item Id="115" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -3781,6 +3787,8 @@
 		<Item Id="616" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<!--Rotten Tomato-->
 		<Item Id="618" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<!--Red Stew-->
+		<Item Id="621" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<!--Knockout Drops-->
 		<Item Id="637" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<!--Plum Flute-->

@@ -1,7 +1,7 @@
 ```
-### *v0.70.3* - November 15th, 2021
+### *v0.71.0 - November ?th, 2021
 
-- Fixed the bug where Deep Gapers would not work properly with fast-clear.
+- The mod is now updated with the files from vanilla patch v1.7.6.
 ```
 
 TODO Racing+ new features:
