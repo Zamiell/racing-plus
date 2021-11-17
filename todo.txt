@@ -1,7 +1,7 @@
 ```
-### *v0.71.0 - November ?th, 2021
+### *v0.71.0 - November 17th, 2021
 
-- The mod is now updated with the files from vanilla patch v1.7.6.
+- The mod is now updated with the files from vanilla patch v1.7.6 (including the room changes).
 ```
 
 TODO Racing+ new features:
