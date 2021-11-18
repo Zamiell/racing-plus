@@ -3,10 +3,10 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 /** Corresponds to the "Charging" animation in "chargebar_lead_pencil.anm2" */
-const NUM_FRAMES_IN_CHARGING_ANIMATION = 101;
-const NUM_TEARS_UNTIL_LEAD_PENCIL = 15;
-const VANILLA_CHARGE_BAR_X_OFFSET = 19;
-const VANILLA_CHARGE_BAR_Y_OFFSET = 54;
+export const NUM_FRAMES_IN_CHARGING_ANIMATION = 101;
+const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
+export const VANILLA_CHARGE_BAR_X_OFFSET = 19;
+export const VANILLA_CHARGE_BAR_Y_OFFSET = 54;
 
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
@@ -79,16 +79,14 @@ function drawChargeBar(player: EntityPlayer) {
   );
 
   // Render it
-  const tearNum = v.run.firedTears % NUM_TEARS_UNTIL_LEAD_PENCIL;
+  const tearNum = v.run.firedTears % NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
   let barFrame =
-    tearNum * (NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_TEARS_UNTIL_LEAD_PENCIL);
+    tearNum *
+    (NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES);
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
-  sprite.Render(
-    g.r.WorldToScreenPosition(adjustedPosition),
-    Vector.Zero,
-    Vector.Zero,
-  );
+  const position = g.r.WorldToScreenPosition(adjustedPosition);
+  sprite.Render(position, Vector.Zero, Vector.Zero);
 }
 
 // ModCallbacks.MC_POST_FIRE_TEAR (61)

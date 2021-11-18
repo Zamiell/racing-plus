@@ -619,10 +619,19 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    "removePerfectionVelocity", // 145
+    "azazelsRageChargeBar", // 669
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0513",
+      "Show Azazels' Rage charge bar",
+      "Show a custom charge bar that lets you know how close you are to the blast firing.",
+    ],
+  ],
+  [
+    "removePerfectionVelocity", // 145
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0514",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -631,7 +640,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0514",
+      "0515",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -640,7 +649,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0515",
+      "0516",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -649,7 +658,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "chargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0516",
+      "0517",
       "Charge the Pocket item first",
       "Make batteries charge the pocket item first over the active item.",
     ],
@@ -658,7 +667,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0517",
+      "0518",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -667,7 +676,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0518",
+      "0519",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
     ],
@@ -676,11 +685,15 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "fadeDevilStatue",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0519",
+      "0520",
       "Fade Devil statue",
       "Fade the statue in a Devil Room if there are pickups behind it.",
     ],
   ],
+];
+
+// 0521-0530
+export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
   [
     null,
     [
@@ -691,9 +704,6 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     ],
   ],
 ];
-
-// 0521-0530
-// export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [];
 
 // 0601-0610
 export const GAMEPLAY_CHANGES: ConfigDescriptions = [
@@ -1167,7 +1177,7 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...ENEMY_CHANGES,
   ...QUALITY_OF_LIFE_CHANGES_1,
   ...QUALITY_OF_LIFE_CHANGES_2,
-  // ...QUALITY_OF_LIFE_CHANGES_3,
+  ...QUALITY_OF_LIFE_CHANGES_3,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
   ...REMOVALS,

@@ -61,6 +61,7 @@ export class Config {
   showDreamCatcherItem = true; // 566
   fastLuna = true; // 589
   fadeVasculitisTears = true; // 657
+  azazelsRageChargeBar = true; // 669
   removePerfectionVelocity = true; // 145
   removePerfectionOnEndFloors = true; // 145
   automaticItemInsertion = true;

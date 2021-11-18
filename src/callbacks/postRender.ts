@@ -16,6 +16,7 @@ import { fastTravelPostRender } from "../features/optional/major/fastTravel/call
 import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -62,6 +63,7 @@ export function main(): void {
   speedUpFadeIn.postRender();
   leadPencilChargeBar.postRender(); // 444
   showDreamCatcherItemPostRender(); // 566
+  azazelsRageChargeBar.postRender(); // 699
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority
   automaticItemInsertion.postRender();
