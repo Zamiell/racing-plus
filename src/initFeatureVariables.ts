@@ -52,11 +52,13 @@ import * as detectSlideAnimation from "./features/util/detectSlideAnimation";
 import * as restartOnNextFrame from "./features/util/restartOnNextFrame";
 import * as roomsEntered from "./features/util/roomsEntered";
 import * as modConfigMenu from "./modConfigMenu";
+import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
 import * as passiveItemsForEden from "./passiveItemsForEden";
 
 export function initFeatureVariables(): void {
   // Core
   modConfigMenu.init();
+  modConfigMenuVanilla.init();
   raceVars.init();
   socketClient.init();
   shadows.init();

@@ -48,7 +48,7 @@ export function init(): void {
 
   saveDataManager("modConfigMenu", v);
 
-  deleteOldConfig();
+  deleteOldConfig(CATEGORY_NAME);
   validateConfigDescriptions();
 
   registerPresets();
@@ -71,17 +71,17 @@ export function init(): void {
   registerSubMenuConfig("Other", OTHER_FEATURES);
 }
 
-function deleteOldConfig() {
+export function deleteOldConfig(categoryName: string): void {
   if (ModConfigMenu === undefined) {
     return;
   }
 
   // If we reload the mod, then it will create duplicates of every entry
   // Thus, we must first purge all settings relating to Racing+
-  const categoryID = ModConfigMenu.GetCategoryIDByName(CATEGORY_NAME);
+  const categoryID = ModConfigMenu.GetCategoryIDByName(categoryName);
   if (categoryID !== undefined) {
     ModConfigMenu.MenuData.set(categoryID, {
-      Name: CATEGORY_NAME,
+      Name: categoryName,
       Subcategories: [],
     });
   }
@@ -308,7 +308,7 @@ function getDisplayTextKeyboardController(
   }
 }
 
-function onOff(setting: boolean) {
+export function onOff(setting: boolean) {
   return setting ? "ON" : "OFF";
 }
 
