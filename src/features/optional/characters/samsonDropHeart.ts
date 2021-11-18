@@ -21,7 +21,8 @@ export function postGameStarted(): void {
           Vector.Zero,
           player,
         );
-        childsHeart.GetSprite().Play("Idle", true);
+        const sprite = childsHeart.GetSprite();
+        sprite.Play("Idle", true);
       }
     }
   }

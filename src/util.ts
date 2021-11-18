@@ -1,5 +1,7 @@
 import {
   getPlayers,
+  getRoomIndex,
+  getRoomSubType,
   hasFlag,
   log,
   removeAllMatchingEntities,
@@ -26,6 +28,16 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   }
 
   return [hasPolaroid, hasNegative];
+}
+
+export function inBeastDebugRoom(): boolean {
+  const roomIndex = getRoomIndex();
+  const roomSubType = getRoomSubType();
+
+  return (
+    roomIndex === GridRooms.ROOM_DEBUG_IDX &&
+    roomSubType === HomeRoomSubType.BEAST_ROOM
+  );
 }
 
 export function isSelfDamage(damageFlags: int): boolean {

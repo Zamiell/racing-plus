@@ -1,11 +1,20 @@
-import { getGridEntities, log, openAllDoors } from "isaacscript-common";
+import {
+  getGridEntities,
+  getRoomVariant,
+  inBeastRoom,
+  log,
+  openAllDoors,
+} from "isaacscript-common";
 import g from "../../../../globals";
+import { inBeastDebugRoom } from "../../../../util";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
 } from "./constants";
 import { checkPostItLivesOrHushPath } from "./postItLivesOrHushPath";
 import v from "./v";
+
+const GREAT_GIDEON_ROOM_VARIANTS = new Set([5210, 5211, 5212, 5213, 5214]);
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -17,6 +26,7 @@ function checkEarlyClearRoom() {
   const roomFrameCount = g.r.GetFrameCount();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
+  const roomVariant = getRoomVariant();
 
   // Do nothing if we already cleared the room
   if (v.run.earlyClearedRoom) {
@@ -31,6 +41,18 @@ function checkEarlyClearRoom() {
 
   // Certain types of rooms are exempt from the fast-clear feature
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
+    return;
+  }
+
+  // The Great Gideon is exempt from the fast-clear feature
+  // (since it can cause the boss item to spawn on a pit from a Rock Explosion)
+  if (GREAT_GIDEON_ROOM_VARIANTS.has(roomVariant)) {
+    return;
+  }
+
+  // The Beast fight is exempt from the fast-clear feature
+  // (since it will prevent the trophy logic from working correctly)
+  if (inBeastRoom() || inBeastDebugRoom()) {
     return;
   }
 

@@ -13,9 +13,10 @@ export class Globals {
   itemPool = Game().GetItemPool();
   itemConfig = Isaac.GetItemConfig();
   sfx = SFXManager();
-  music = MusicManager();
-  fontDroid = Font();
-  fontPF = Font();
+  fonts = {
+    droid: Font(),
+    pf: Font(),
+  };
 
   chatMessages: ChatMessage[] = [];
 
@@ -26,7 +27,7 @@ export class Globals {
   raceVars = new RaceVars();
 
   constructor() {
-    this.fontDroid.Load("font/droid.fnt");
-    this.fontPF.Load("font/pftempestasevencondensed.fnt");
+    this.fonts.droid.Load("font/droid.fnt");
+    this.fonts.pf.Load("font/pftempestasevencondensed.fnt");
   }
 }

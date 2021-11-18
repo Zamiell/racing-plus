@@ -199,7 +199,7 @@ function drawTextAndSprite() {
   }
 
   const pillsIdentifiedText = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
-  g.fontDroid.DrawString(
+  g.fonts.droid.DrawString(
     pillsIdentifiedText,
     x - 10,
     baseY - 9 + 20,
@@ -226,7 +226,7 @@ function drawTextAndSprite() {
     if (pillEffectName === "Feels like I'm walking on sunshine!") {
       pillEffectName = "Walking on sunshine!";
     }
-    g.fontDroid.DrawString(
+    g.fonts.droid.DrawString(
       pillEffectName,
       x + 15,
       y - 9,

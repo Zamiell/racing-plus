@@ -60,7 +60,7 @@ function drawDPSText(npc: EntityNPC) {
   const renderPosition = Isaac.WorldToScreen(npc.Position);
   const y = renderPosition.Y + DPS_TEXT_Y_OFFSET;
   const bottomRightPos = getScreenBottomRightPos();
-  g.fontPF.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRightPos.X, true);
+  g.fonts.pf.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRightPos.X, true);
 }
 
 function getDPS() {

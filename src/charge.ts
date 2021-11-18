@@ -2,6 +2,7 @@ import {
   getCollectibleMaxCharges,
   getPlayers,
   getTotalCharge,
+  playSound,
 } from "isaacscript-common";
 import g from "./globals";
 
@@ -20,7 +21,7 @@ export function checkAdd(): void {
   }
 }
 
-export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
+function add(player: EntityPlayer, activeSlot: ActiveSlot) {
   const hud = g.g.GetHUD();
 
   // Find out the new charge to set on the item
@@ -36,10 +37,10 @@ export function add(player: EntityPlayer, activeSlot: ActiveSlot): void {
   player.SetActiveCharge(newCharge, activeSlot);
   hud.FlashChargeBar(player, activeSlot);
 
-  playSoundEffect(player, activeSlot);
+  playChargeSoundEffect(player, activeSlot);
 }
 
-export function playSoundEffect(
+export function playChargeSoundEffect(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
 ): void {
@@ -53,7 +54,7 @@ export function playSoundEffect(
   const chargeSoundEffect = shouldPlayFullRechargeSound(player, activeSlot)
     ? SoundEffect.SOUND_BATTERYCHARGE
     : SoundEffect.SOUND_BEEP;
-  g.sfx.Play(chargeSoundEffect);
+  playSound(chargeSoundEffect);
 }
 
 function getNumChargesToAdd(player: EntityPlayer, activeSlot: ActiveSlot) {

@@ -3,6 +3,11 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { setRoomCleared } from "../../../utilGlobals";
 
+const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new Set([
+  EntityType.ENTITY_ETERNALFLY,
+  EntityType.ENTITY_DARK_ESAU,
+]);
+
 export function postNewRoom(): void {
   if (!config.removeTreasureRoomEnemies) {
     return;
@@ -19,7 +24,7 @@ function removeTreasureRoomEnemies() {
   }
 
   for (const npc of getNPCs()) {
-    if (npc.Type !== EntityType.ENTITY_ETERNALFLY) {
+    if (!ENTITY_TYPES_EXEMPT_FROM_REMOVAL.has(npc.Type)) {
       npc.Remove();
     }
   }

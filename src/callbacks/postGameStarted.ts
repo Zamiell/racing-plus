@@ -17,6 +17,7 @@ import * as samsonDropHeart from "../features/optional/characters/samsonDropHear
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
 import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
+import * as hudOffsetFix from "../features/optional/graphics/hudOffsetFix";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -90,6 +91,9 @@ export function main(isContinued: boolean): void {
 
   // QoL
   showDreamCatcherItemPostGameStarted();
+
+  // GFX
+  hudOffsetFix.postGameStarted();
 
   // Conditionally show a festive hat
   // (commented out if it is not currently a holiday)

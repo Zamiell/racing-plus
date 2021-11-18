@@ -318,8 +318,8 @@ function drawSprite(sprite: Sprite, shadowData: ShadowData) {
     const fadeAmount = 0.5;
     const color = KColor(1, 1, 1, fadeAmount);
     const scale = 1;
-    const length = g.fontPF.GetStringWidthUTF8(shadowData.username) * scale;
-    g.fontPF.DrawStringScaled(
+    const length = g.fonts.pf.GetStringWidthUTF8(shadowData.username) * scale;
+    g.fonts.pf.DrawStringScaled(
       shadowData.username,
       positionText.X - length / 2,
       positionText.Y,

@@ -1,8 +1,8 @@
 import { log } from "isaacscript-common";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
+import * as fastDogma from "../features/mandatory/fastDogma";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as skipBeastIntroCutscene from "../features/mandatory/skipBeastIntroCutscene";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
@@ -133,7 +133,7 @@ function hush(entity: Entity) {
 
 // EntityType.ENTITY_DOGMA (950)
 function dogma(entity: Entity) {
-  skipBeastIntroCutscene.postEntityKillDogma(entity);
+  fastDogma.postEntityKillDogma(entity);
 }
 
 // EntityType.ENTITY_BEAST (951)

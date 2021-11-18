@@ -142,8 +142,8 @@ function draw(text: string, fade: float) {
 
   const color = KColor(1, 1, 1, fade);
   const scale = 1;
-  const length = g.fontDroid.GetStringWidthUTF8(text) * scale;
-  g.fontDroid.DrawStringScaled(
+  const length = g.fonts.droid.GetStringWidthUTF8(text) * scale;
+  g.fonts.droid.DrawStringScaled(
     text,
     x - length / 2,
     y,

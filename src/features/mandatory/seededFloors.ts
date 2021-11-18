@@ -73,6 +73,7 @@ export function before(stage: int): void {
 
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
+  const eternalHearts = player.GetEternalHearts();
   let seed = g.l.GetDungeonPlacementSeed();
 
   // Record the current inventory and health values
@@ -90,6 +91,7 @@ export function before(stage: int): void {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
     v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
   }
+  v.run.playerHealth.eternalHearts = 0;
 
   // Modification 1: Devil Room visited
   if (stage < 3) {
@@ -161,6 +163,9 @@ export function before(stage: int): void {
       }
     }
   }
+
+  // Add any eternal hearts back so that the giantbook animation is triggered as per normal
+  player.AddEternalHearts(eternalHearts);
 }
 
 export function after(): void {

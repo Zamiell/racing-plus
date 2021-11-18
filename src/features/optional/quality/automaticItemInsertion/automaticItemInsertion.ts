@@ -91,7 +91,7 @@ function drawCoinsDelta() {
     const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
 
     const color = getTextColor(fade);
-    g.fontPF.DrawString(text, x, COINS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, x, COINS_Y, color, 0, true);
   }
 }
 
@@ -108,7 +108,7 @@ function drawKeysDelta() {
     }
 
     const color = getTextColor(fade);
-    g.fontPF.DrawString(text, UI_X, KEYS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, UI_X, KEYS_Y, color, 0, true);
   }
 }
 
@@ -125,7 +125,7 @@ function drawBombsDelta() {
     }
 
     const color = getTextColor(fade);
-    g.fontPF.DrawString(text, UI_X, BOMBS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, UI_X, BOMBS_Y, color, 0, true);
   }
 }
 
@@ -145,7 +145,7 @@ function drawPocketItemsDelta() {
     const bottomRightPos = getScreenBottomRightPos();
     const x = bottomRightPos.X - BOTTOM_CORNER_OFFSET;
     const y = bottomRightPos.Y - BOTTOM_CORNER_OFFSET;
-    g.fontPF.DrawString(text, x, y, color, 0, true);
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
   }
 }
 
@@ -165,7 +165,7 @@ function drawTrinketsDelta() {
     const bottomLeftPos = getScreenBottomLeftPos();
     const x = bottomLeftPos.X + BOTTOM_CORNER_OFFSET;
     const y = bottomLeftPos.Y - BOTTOM_CORNER_OFFSET;
-    g.fontPF.DrawString(text, x, y, color, 0, true);
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
   }
 }
 

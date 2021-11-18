@@ -83,13 +83,14 @@ export class Config {
   removeInvalidPitfalls = true;
 
   // GFX
-  flyItemSprites = true; // 57, 128, 364
-  twentyTwenty = true; // 245
-  starOfBethlehem = true; // 651
+  flyItemSprites = true; // 57, 128, 364 (CollectibleType)
+  twentyTwenty = true; // 245 (CollectibleType)
+  starOfBethlehem = true; // 651 (CollectibleType)
   paschalCandle = true; // 221 (FamiliarVariant)
   scaredHeart = true; // 10.9 (PickupVariant, HeartSubType)
   stickyNickel = true; // 20.6 (PickupVariant, CoinSubType)
   uniqueCardBacks = true; // 300 (PickupVariant)
+  hudOffsetFix = true;
 
   // Sounds
   silenceMomDad = true;

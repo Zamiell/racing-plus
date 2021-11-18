@@ -1011,6 +1011,15 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
+    "hudOffsetFix",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1008",
+      "Fix HUD offset",
+      "Fix the default HUD offset to be the same as it was in Afterbirth+.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -1028,6 +1037,10 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "Make the Error trinket sprite have an outline.",
     ],
   ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [
@@ -1037,10 +1050,6 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "Pills now have a consistent orientation on the ground.",
     ],
   ],
-];
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [

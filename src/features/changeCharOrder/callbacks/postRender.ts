@@ -37,8 +37,8 @@ function drawCurrentChoosingActivity() {
   const position = Isaac.WorldToScreen(bottomCenterOfRoom);
   position.Y -= 15;
   const text = getTextForCurrentActivity(v.room.phase);
-  const length = g.fontDroid.GetStringWidthUTF8(text);
-  g.fontDroid.DrawString(
+  const length = g.fonts.droid.GetStringWidthUTF8(text);
+  g.fonts.droid.DrawString(
     text,
     position.X - length / 2,
     position.Y,

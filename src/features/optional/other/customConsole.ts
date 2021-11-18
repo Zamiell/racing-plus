@@ -254,9 +254,9 @@ export function drawText(
     const hexColor =
       textSegment.color === undefined ? Colors.WHITE : textSegment.color;
     const kColor = hexToKColor(hexColor, alpha);
-    g.fontPF.DrawString(textSegment.text, x, y, kColor, 0, true);
+    g.fonts.pf.DrawString(textSegment.text, x, y, kColor, 0, true);
 
-    x += g.fontPF.GetStringWidth(textSegment.text);
+    x += g.fonts.pf.GetStringWidth(textSegment.text);
   }
 }
 

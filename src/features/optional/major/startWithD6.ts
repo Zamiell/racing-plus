@@ -1,3 +1,19 @@
+import {
+  getCollectibleMaxCharges,
+  getPlayerIndex,
+  getPlayers,
+  hasOpenActiveItemSlot,
+  inGenesisRoom,
+  isJacobOrEsau,
+  log,
+  PlayerIndex,
+  runNextFrame,
+  saveDataManager,
+} from "isaacscript-common";
+import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
+import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
+
 // A major feature of Racing+ is to give every character the D6,
 // since it heavily reduces run disparity
 
@@ -13,27 +29,12 @@
 // (the exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
 // active slot)
 
-import {
-  getCollectibleMaxCharges,
-  getPlayerIndex,
-  getPlayers,
-  hasOpenActiveItemSlot,
-  inGenesisRoom,
-  isJacobOrEsau,
-  log,
-  PlayerIndex,
-  saveDataManager,
-} from "isaacscript-common";
-import * as charge from "../../../charge";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
-import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
-
 const D6_STARTING_CHARGE = 6;
 
 const v = {
   run: {
     pocketActiveD6Charge: new Map<PlayerIndex, int>(),
+    currentFlipCharge: 0,
   },
 };
 
@@ -77,6 +78,49 @@ function checkGenesisRoom() {
   }
 }
 
+// ModCallbacks.MC_PRE_USE_ITEM (23)
+export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
+  const character = player.GetPlayerType();
+  if (
+    character !== PlayerType.PLAYER_LAZARUS_B &&
+    character !== PlayerType.PLAYER_LAZARUS2_B
+  ) {
+    return;
+  }
+
+  // This function is triggered when:
+  // 1) Flip is used by the player
+  // 2) Flip is triggered automatically by clearing a room
+  // Record the current charge so that we can propagate it to the other Flip
+  // We can't use the ActiveSlot passed by the callback because it will be -1 when Flip is triggered
+  // via a room clear
+  const flipActiveSlot = getFlipActiveSlot(player);
+  if (flipActiveSlot === null) {
+    return;
+  }
+
+  const flipCharge = player.GetActiveCharge(flipActiveSlot);
+
+  // UseFlag.USE_OWNED will be set if this is a manual invocation
+  const flipTriggeredByRoomClear = useFlags === 0;
+
+  v.run.currentFlipCharge = flipTriggeredByRoomClear ? flipCharge : 0;
+}
+
+function getFlipActiveSlot(player: EntityPlayer) {
+  for (const activeSlot of [
+    ActiveSlot.SLOT_PRIMARY,
+    ActiveSlot.SLOT_SECONDARY,
+  ]) {
+    const activeItem = player.GetActiveItem(activeSlot);
+    if (activeItem === CollectibleType.COLLECTIBLE_FLIP) {
+      return activeSlot;
+    }
+  }
+
+  return null;
+}
+
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer): void {
   if (!config.startWithD6) {
@@ -99,20 +143,29 @@ export function postPlayerChangeType(player: EntityPlayer): void {
 
 // ModCallbacksCustom.MC_POST_FLIP
 export function postFlip(player: EntityPlayer): void {
-  // When Flip is in a normal active item slot, clearing rooms on one Lazarus will not charge the
-  // Flip for the other Lazarus
-  // Thus, we manually increase the charge of Flip whenever a flip happens
-  // When Flip is used, it will drain the other Flip automatically
-  // Furthermore, when Flip is used, it won't get an extra charge for some reason
-  for (const activeSlot of [
-    ActiveSlot.SLOT_PRIMARY,
-    ActiveSlot.SLOT_SECONDARY,
-  ]) {
-    const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_FLIP) {
-      charge.add(player, activeSlot);
-    }
+  const character = player.GetPlayerType();
+  if (
+    character !== PlayerType.PLAYER_LAZARUS_B &&
+    character !== PlayerType.PLAYER_LAZARUS2_B
+  ) {
+    return;
   }
+
+  // Normally, Tainted Lazarus has Flip in a pocket active slot,
+  // and the amount of charges on the Flip is maintained between characters
+  // However, this does not happen if the item is in a normal active slot,
+  // so we have to manually ensure that the charge state is duplicated
+  const flipActiveSlot = getFlipActiveSlot(player);
+  if (flipActiveSlot === null) {
+    return;
+  }
+
+  // We cannot simply set the active charge, because Tainted Lazarus will get an additional charge
+  // on the next frame, causing them to get a double-charge for clearing a room
+  // Thus, defer setting the charge for a frame
+  runNextFrame(() => {
+    player.SetActiveCharge(v.run.currentFlipCharge, flipActiveSlot);
+  });
 }
 
 // ModCallbacksCustom.MC_POST_FIRST_FLIP

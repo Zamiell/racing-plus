@@ -1,5 +1,8 @@
-import { arraySum, ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
-import g from "../../globals";
+import {
+  arraySum,
+  ISAAC_FRAMES_PER_SECOND,
+  playSound,
+} from "isaacscript-common";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
 import { getCharacterOrder } from "../changeCharOrder/v";
@@ -33,9 +36,7 @@ export function checkValidCharOrder(): boolean {
 export function finish(player: EntityPlayer): void {
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  // Play a sound effect
-  // (custom sounds do not function properly in the current patch)
-  g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH, 1.5, 0, false, 1);
+  playSound(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
 
   // Give them the Checkpoint custom item
   // (this is used by the AutoSplitter to know when to split)

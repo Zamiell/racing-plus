@@ -11,7 +11,7 @@ import {
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { movePlayersAndFamiliars } from "../../../../util";
+import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../util";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
@@ -160,7 +160,7 @@ function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
   const roomIndex = getRoomIndex();
 
   // The Beast room shares the grid index of a crawlspace
-  if (inBeastRoom()) {
+  if (inBeastRoom() || inBeastDebugRoom()) {
     return;
   }
 

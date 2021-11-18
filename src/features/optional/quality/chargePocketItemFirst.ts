@@ -442,7 +442,7 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
     }
 
     hud.FlashChargeBar(player, activeSlot);
-    charge.playSoundEffect(player, activeSlot);
+    charge.playChargeSoundEffect(player, activeSlot);
 
     // Only one item should get charged
     return;

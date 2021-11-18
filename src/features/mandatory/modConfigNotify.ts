@@ -33,7 +33,7 @@ export function postRender(): void {
   const closeToBottom = bottomRightPos.Y - 28;
   const alpha = (math.min(timer, 60) / 60) * 0.5;
   const color = KColor(1, 1, 0, alpha);
-  g.fontPF.DrawString(
+  g.fonts.pf.DrawString(
     NOTIFICATION_TEXT,
     0,
     closeToBottom,

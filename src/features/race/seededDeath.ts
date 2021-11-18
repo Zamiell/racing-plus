@@ -6,8 +6,6 @@ import {
   getFinalFrameOfAnimation,
   getPlayerFromIndex,
   getPlayerIndex,
-  getRoomIndex,
-  getRoomSubType,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   inBeastRoom,
   ISAAC_FRAMES_PER_SECOND,
@@ -21,6 +19,7 @@ import {
 import g from "../../globals";
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
+import { inBeastDebugRoom } from "../../util";
 import { findFreePosition } from "../../utilGlobals";
 import { applySeededGhostFade, debuffOff, debuffOn } from "./seededDeathDebuff";
 import { RaceFormat } from "./types/RaceFormat";
@@ -328,16 +327,6 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   v.run.seededDeath.dyingPlayerIndex = playerIndex;
 
   return RevivalType.SEEDED_DEATH;
-}
-
-function inBeastDebugRoom() {
-  const roomIndex = getRoomIndex();
-  const roomSubType = getRoomSubType();
-
-  return (
-    roomIndex === GridRooms.ROOM_DEBUG_IDX &&
-    roomSubType === HomeRoomSubType.BEAST_ROOM
-  );
 }
 
 function seededDeathFeatureShouldApply() {

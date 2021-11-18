@@ -376,6 +376,10 @@ Post-flip actions:
 - `1005` <!-- scaredHeart --> Scared Hearts now have a custom animation so that they are easier to identify.
 - `1006` <!-- stickyNickel --> Sticky Nickels now have a custom effect so that they are easier to identify.
 - `1007` <!-- uniqueCardBacks --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
+- `1008` <!-- hudOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
+
+> Why? This is how it was in Afterbirth+ and is likely the intended default value.
+
 - The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
