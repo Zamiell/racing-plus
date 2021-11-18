@@ -3,11 +3,11 @@ import {
   getOpenTrinketSlot,
   getPlayers,
   isKeeper,
+  isSelfDamage,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { isSelfDamage } from "../../../util";
 
 const FREE_TRINKET_TYPE = TrinketType.TRINKET_YOUR_SOUL;
 

@@ -1,11 +1,11 @@
 import {
   anyPlayerHasCollectible,
+  getDefaultKColor,
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
   saveDataManager,
 } from "isaacscript-common";
-import { KCOLOR_DEFAULT } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
@@ -203,7 +203,7 @@ function drawTextAndSprite() {
     pillsIdentifiedText,
     x - 10,
     baseY - 9 + 20,
-    KCOLOR_DEFAULT,
+    getDefaultKColor(),
     0,
     true,
   );
@@ -230,7 +230,7 @@ function drawTextAndSprite() {
       pillEffectName,
       x + 15,
       y - 9,
-      KCOLOR_DEFAULT,
+      getDefaultKColor(),
       0,
       true,
     );

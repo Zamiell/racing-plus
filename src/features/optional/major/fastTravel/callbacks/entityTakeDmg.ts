@@ -1,5 +1,5 @@
+import { isSelfDamage } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
-import { isSelfDamage } from "../../../../../util";
 import v from "../v";
 
 export function fastTravelEntityTakeDmgPlayer(damageFlags: DamageFlag): void {

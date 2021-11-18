@@ -3,9 +3,9 @@ import {
   getPlayers,
   log,
   MAX_NUM_DOORS,
+  removeAllCollectibles,
 } from "isaacscript-common";
 import g from "../../globals";
-import { removeAllCollectibles } from "../../util";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";

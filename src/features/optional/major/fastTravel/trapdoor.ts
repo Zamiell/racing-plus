@@ -1,12 +1,12 @@
 import {
   getRoomIndex,
+  isPostBossVoidPortal,
   log,
   onRepentanceStage,
   onSheol,
   removeGridEntity,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { isPostBossVoidPortal } from "../../../../util";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";

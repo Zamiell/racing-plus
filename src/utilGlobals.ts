@@ -72,8 +72,8 @@ export function giveTrinketAndRemoveFromPools(
 }
 
 /**
- * If a room had enemies in it that were removed in a PostGameStarted callback, then a room drop
- * will be awarded and the doors will start closed and then open. Manually fix this.
+ * If a room had enemies in it that were removed in a PostNewRoom callback, then a room drop will be
+ * awarded and the doors will start closed and then open. Manually fix this.
  */
 export function setRoomCleared(): void {
   const roomClear = g.r.IsClear();

@@ -2,9 +2,7 @@ import {
   getPlayers,
   getRoomIndex,
   getRoomSubType,
-  hasFlag,
   log,
-  removeAllMatchingEntities,
 } from "isaacscript-common";
 
 export function consoleCommand(command: string): void {
@@ -38,22 +36,6 @@ export function inBeastDebugRoom(): boolean {
     roomIndex === GridRooms.ROOM_DEBUG_IDX &&
     roomSubType === HomeRoomSubType.BEAST_ROOM
   );
-}
-
-export function isSelfDamage(damageFlags: int): boolean {
-  return (
-    // Exclude self-damage from e.g. Curse Room spikes
-    hasFlag(damageFlags, DamageFlag.DAMAGE_NO_PENALTIES) ||
-    // Exclude self-damage from e.g. Razor
-    hasFlag(damageFlags, DamageFlag.DAMAGE_RED_HEARTS)
-  );
-}
-
-export function isPostBossVoidPortal(gridEntity: GridEntity): boolean {
-  // The VarData of Void Portals that are spawned after bosses will be equal to 1
-  // The VarData of the Void Portal in the room after Hush is equal to 0
-  const saveState = gridEntity.GetSaveState();
-  return saveState.VarData === 1;
 }
 
 export function moveEsauNextToJacob(): void {
@@ -92,13 +74,6 @@ export function movePlayersAndFamiliars(position: Vector): void {
   for (const familiar of familiars) {
     familiar.Position = position;
   }
-}
-
-export function removeAllCollectibles(): void {
-  removeAllMatchingEntities(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
 }
 
 export function restart(): void {

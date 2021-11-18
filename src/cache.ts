@@ -1,6 +1,6 @@
 import g from "./globals";
 
-export function updateAPIFunctions(): void {
+export function updateCachedAPIFunctions(): void {
   // Update some cached API functions
   // If we don't do this on every frame, the game can crash
   g.l = g.g.GetLevel();

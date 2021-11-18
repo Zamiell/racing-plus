@@ -2,9 +2,9 @@ import {
   getEffectiveStage,
   getPlayers,
   getRandomInt,
+  removeAllCollectibles,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { removeAllCollectibles } from "../../../util";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";

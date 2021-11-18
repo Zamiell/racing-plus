@@ -1,5 +1,5 @@
 import { getRoomStageID, getRoomVariant, log } from "isaacscript-common";
-import * as cache from "../cache";
+import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
@@ -30,7 +30,7 @@ import * as roomsEntered from "../features/util/roomsEntered";
 import g from "../globals";
 
 export function main(): void {
-  cache.updateAPIFunctions();
+  updateCachedAPIFunctions();
 
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();

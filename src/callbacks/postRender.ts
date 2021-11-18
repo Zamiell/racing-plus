@@ -1,4 +1,4 @@
-import * as cache from "../cache";
+import { updateCachedAPIFunctions } from "../cache";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
@@ -28,7 +28,7 @@ import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
 import * as restartOnNextFrame from "../features/util/restartOnNextFrame";
 
 export function main(): void {
-  cache.updateAPIFunctions();
+  updateCachedAPIFunctions();
 
   if (restartOnNextFrame.isRestartingOnNextFrame()) {
     restartOnNextFrame.postRender();

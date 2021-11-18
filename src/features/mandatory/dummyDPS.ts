@@ -1,13 +1,10 @@
-// We display the DPS above the damage for the Dummy
-// If there was N seconds between damage, then the DPS counter resets
-
 import {
   GAME_FRAMES_PER_SECOND,
+  getDefaultKColor,
   getScreenBottomRightPos,
   round,
   saveDataManager,
 } from "isaacscript-common";
-import { KCOLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 
 const DPS_TEXT_Y_OFFSET = -40;
@@ -60,7 +57,7 @@ function drawDPSText(npc: EntityNPC) {
   const renderPosition = Isaac.WorldToScreen(npc.Position);
   const y = renderPosition.Y + DPS_TEXT_Y_OFFSET;
   const bottomRightPos = getScreenBottomRightPos();
-  g.fonts.pf.DrawString(text, 0, y, KCOLOR_DEFAULT, bottomRightPos.X, true);
+  g.fonts.pf.DrawString(text, 0, y, getDefaultKColor(), bottomRightPos.X, true);
 }
 
 function getDPS() {

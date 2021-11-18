@@ -1,12 +1,12 @@
 import {
   ensureAllCases,
+  getDefaultColor,
   getPlayers,
   gridToPos,
   log,
   removeAllMatchingGridEntities,
   removeGridEntity,
 } from "isaacscript-common";
-import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
@@ -184,7 +184,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   // Change the graphic to that of a number
   v.room.sprites.characters[i].Load("gfx/timer/timer.anm2", true);
   v.room.sprites.characters[i].SetFrame("Default", v.room.charOrder.length);
-  v.room.sprites.characters[i].Color = COLOR_DEFAULT; // Remove the fade
+  v.room.sprites.characters[i].Color = getDefaultColor(); // Remove the fade
 
   season1DeleteOtherCharButton(i);
 

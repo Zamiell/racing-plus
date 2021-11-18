@@ -2,8 +2,7 @@
 // pedestals
 // Prevent players from abusing this by deleting all item pedestals in the room upon re-entry
 
-import { inGenesisRoom } from "isaacscript-common";
-import { removeAllCollectibles } from "../../util";
+import { inGenesisRoom, removeAllCollectibles } from "isaacscript-common";
 
 export function postGameStartedContinued(): void {
   if (inGenesisRoom()) {

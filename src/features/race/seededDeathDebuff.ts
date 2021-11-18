@@ -1,5 +1,6 @@
 import {
   arrayEmpty,
+  getDefaultColor,
   getEnumValues,
   getPlayerCollectibleMap,
   getTransformationsForItem,
@@ -8,7 +9,6 @@ import {
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
 } from "isaacscript-common";
-import { COLOR_DEFAULT } from "../../constants";
 import g from "../../globals";
 import { ActiveItemDescription } from "../../types/ActiveItemDescription";
 import {
@@ -380,7 +380,7 @@ export function applySeededGhostFade(
   const character = player.GetPlayerType();
 
   const sprite = player.GetSprite();
-  const newColor = enabled ? FADE : COLOR_DEFAULT;
+  const newColor = enabled ? FADE : getDefaultColor();
   sprite.Color = newColor;
 
   if (character === PlayerType.PLAYER_THESOUL) {

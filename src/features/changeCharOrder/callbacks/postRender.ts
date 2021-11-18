@@ -1,5 +1,4 @@
-import { gridToPos } from "isaacscript-common";
-import { KCOLOR_DEFAULT } from "../../../constants";
+import { getDefaultKColor, gridToPos } from "isaacscript-common";
 import g from "../../../globals";
 import { ChallengeCustom } from "../../speedrun/enums";
 import * as buttons from "../buttons";
@@ -42,7 +41,7 @@ function drawCurrentChoosingActivity() {
     text,
     position.X - length / 2,
     position.Y,
-    KCOLOR_DEFAULT,
+    getDefaultKColor(),
     0,
     true,
   );
