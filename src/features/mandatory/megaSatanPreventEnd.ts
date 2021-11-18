@@ -1,4 +1,4 @@
-import * as charge from "../../charge";
+import { addRoomClearCharges } from "isaacscript-common";
 import g from "../../globals";
 
 // There is a 50% chance after defeating Mega Satan that the game will trigger a cutscene and force
@@ -12,7 +12,7 @@ export function postEntityKillMegaSatan2(_entity: Entity): void {
 function emulateRoomClear() {
   // Emulate the room being cleared
   g.r.SetClear(true);
-  charge.checkAdd();
+  addRoomClearCharges();
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   const position = g.r.GetCenterPos();

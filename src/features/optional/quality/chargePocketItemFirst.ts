@@ -18,10 +18,10 @@ import {
   getCollectibleMaxCharges,
   getPlayerIndex,
   getTotalCharge,
+  playChargeSoundEffect,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
-import * as charge from "../../../charge";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -442,7 +442,7 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
     }
 
     hud.FlashChargeBar(player, activeSlot);
-    charge.playChargeSoundEffect(player, activeSlot);
+    playChargeSoundEffect(player, activeSlot);
 
     // Only one item should get charged
     return;
