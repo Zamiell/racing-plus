@@ -1,13 +1,7 @@
 ```
-### *v0.71.2 - November 17th, 2021
+### *v0.71.3 - November ?th, 2021
 
-- There is now a custom charge bar for Azazel's Rage.
-- Fixed the (vanilla) bug where the default HUD offset was set to 1.0 instead of 0.0. If you intentionally want to set your HUD offset to 1.0 for some reason, you will have to disable the bug fix through Mod Config Menu.
-- Fixed the bug where Flip would not work properly on Tainted Lazarus.
-- Fixed the bug where eternal hearts did not work properly in seeded races. (Thanks Moucheron Quipet)
-- Fixed the bug where the trophy would not appear properly in races to The Beast. (Thanks KiraKeepKool)
-- Fixed the bug where Dark Esau would be removed if you entered a Treasure Room. (Thanks Moucheron Quipet)
-- Fixed the bug where fast-clear could cause a boss item to spawn underneath a pit in a Great Gideon room. (Thanks mijus)
+-
 ```
 
 TODO Racing+ new features:

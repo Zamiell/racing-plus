@@ -1,7 +1,11 @@
-import { getPlayers, saveDataManager } from "isaacscript-common";
+import { getPlayers } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { NUM_FRAMES_IN_CHARGING_ANIMATION, VANILLA_CHARGE_BAR_X_OFFSET, VANILLA_CHARGE_BAR_Y_OFFSET } from "./leadPencilChargeBar";
+import {
+  NUM_FRAMES_IN_CHARGING_ANIMATION,
+  VANILLA_CHARGE_BAR_X_OFFSET,
+  VANILLA_CHARGE_BAR_Y_OFFSET,
+} from "./leadPencilChargeBar";
 
 const NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE = 4;
 
@@ -24,7 +28,6 @@ function drawChargeBar(player: EntityPlayer) {
     return;
   }
 
-  const character = player.GetPlayerType();
   const flyingOffset = player.GetFlyingOffset();
   const effects = player.GetEffects();
   let numCharges = effects.GetCollectibleEffectNum(
@@ -48,13 +51,10 @@ function drawChargeBar(player: EntityPlayer) {
 
   // Render it
   let barFrame =
-    numCharges * (NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE);
+    numCharges *
+    (NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE);
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
   const position = g.r.WorldToScreenPosition(adjustedPosition);
-  sprite.Render(
-    position,
-    Vector.Zero,
-    Vector.Zero,
-  );
+  sprite.Render(position, Vector.Zero, Vector.Zero);
 }
