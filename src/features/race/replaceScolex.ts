@@ -6,6 +6,9 @@ import { RaceStatus } from "./types/RaceStatus";
 
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
+const SCOLEX_TYPE = EntityType.ENTITY_PIN;
+const SCOLEX_VARIANT = PinVariant.SCOLEX;
+
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (
@@ -26,15 +29,15 @@ export function postNewRoom(): void {
 
   const numScolexes = Isaac.CountEntities(
     undefined,
-    EntityType.ENTITY_PIN,
-    PinVariant.SCOLEX,
+    SCOLEX_TYPE,
+    SCOLEX_VARIANT,
   );
   if (numScolexes === 0) {
     return;
   }
 
-  // There are 10 Scolex entities for each scolex
-  removeAllMatchingEntities(EntityType.ENTITY_PIN, PinVariant.SCOLEX);
+  // There are 10 Scolex entities for each Scolex
+  removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
   let seed = roomSeed;
   for (let i = 0; i < 2; i++) {

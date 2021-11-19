@@ -213,7 +213,7 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
   const pickups = getPickups(pickupVariant);
 
   let closestPickup: EntityPickup | null = null;
-  let closestDistance = math.huge;
+  let closestDistance: int | null = null;
   for (const pickup of pickups) {
     // Skip over pickups that have a price
     if (pickup.Price !== 0) {
@@ -226,12 +226,14 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
       continue;
     }
 
-    if (closestPickup === null) {
+    const distance = entity.Position.Distance(pickup.Position);
+
+    if (closestPickup === null || closestDistance === null) {
       closestPickup = pickup;
+      closestDistance = distance;
       continue;
     }
 
-    const distance = entity.Position.Distance(pickup.Position);
     if (distance < closestDistance) {
       closestPickup = pickup;
       closestDistance = distance;
