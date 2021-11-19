@@ -112,13 +112,15 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 14, 33
     case PlayerType.PLAYER_KEEPER:
     case PlayerType.PLAYER_KEEPER_B: {
-      player.AddMaxHearts(2, true); // One coin container
+      // One filled coin container
+      player.AddMaxHearts(2, true);
       player.AddHearts(2);
       break;
     }
 
     // 16
     case PlayerType.PLAYER_THEFORGOTTEN: {
+      // One filled bone heart
       player.AddMaxHearts(2, true);
       player.AddHearts(1);
       break;
@@ -126,12 +128,22 @@ function debuffOnSetHealth(player: EntityPlayer) {
 
     // 17
     case PlayerType.PLAYER_THESOUL: {
+      // One empty bone heart + one half soul heart
       player.AddBoneHearts(1);
       player.AddSoulHearts(1);
       break;
     }
 
+    // 18
+    case PlayerType.PLAYER_BETHANY: {
+      // One heart container
+      player.AddMaxHearts(2, true);
+      player.AddHearts(2);
+      break;
+    }
+
     default: {
+      // One and a half soul hearts
       player.AddSoulHearts(3);
       break;
     }
