@@ -47,7 +47,8 @@ export function getPosition(): Vector {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
-  // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
+  // On vanilla, being in Hard Mode shifts the "No Achievements" icon to the right
+  // Being in greed mode shifts the "No Achievements" icon to the left
   if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
   } else if (
