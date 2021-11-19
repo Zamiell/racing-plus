@@ -1,4 +1,4 @@
-import { getHUDOffsetVector } from "isaacscript-common";
+import { getHeartsUIWidth, getHUDOffsetVector } from "isaacscript-common";
 import { VERSION } from "../../constants";
 import g from "../../globals";
 import {
@@ -27,7 +27,7 @@ export function postRender(): void {
 
   // We want to place informational text for the player to the right of the heart containers
   // (which will depend on how many heart containers we have)
-  const x = STARTING_X + HUDOffsetVector.X + getHeartXOffset();
+  const x = STARTING_X + HUDOffsetVector.X + getHeartsUIWidth();
   let y = STARTING_Y + HUDOffsetVector.Y;
   const lineLength = 15;
 
@@ -70,40 +70,4 @@ export function postRender(): void {
     Isaac.RenderText(line, x, y, 2, 2, 2, 2);
     y += lineLength;
   }
-}
-
-function getHeartXOffset() {
-  const curses = g.l.GetCurses();
-  const player = Isaac.GetPlayer();
-  const maxHearts = player.GetMaxHearts();
-  const soulHearts = player.GetSoulHearts();
-  const boneHearts = player.GetBoneHearts();
-  const extraLives = player.GetExtraLives();
-
-  const heartLength = 12; // This is how long each heart is on the UI in the upper left hand corner
-  // (this is not in pixels, but in draw coordinates;
-  // you can see that it is 13 pixels wide in the "ui_hearts.png" file)
-  let combinedHearts = maxHearts + soulHearts + boneHearts * 2; // There are no half bone hearts
-  if (combinedHearts > 12) {
-    combinedHearts = 12; // After 6 hearts, it wraps to a second row
-  }
-
-  if (curses === LevelCurse.CURSE_OF_THE_UNKNOWN) {
-    combinedHearts = 2;
-  }
-
-  let offset = (combinedHearts / 2) * heartLength;
-  if (extraLives > 9) {
-    offset += 20;
-    if (player.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
-      offset += 6;
-    }
-  } else if (extraLives > 0) {
-    offset += 16;
-    if (player.HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)) {
-      offset += 4;
-    }
-  }
-
-  return offset;
 }
