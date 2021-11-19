@@ -1,4 +1,4 @@
-import { isRaglingDeathPatch } from "../ragling";
+import { isRaglingDeathPatch } from "isaacscript-common";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as trackingAdd from "../trackingAdd";
 import * as trackingClear from "../trackingClear";
