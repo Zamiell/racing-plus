@@ -1,14 +1,14 @@
-// Racing+ re-implements the controls graphic in the starting room so that it will not interfere
-// with other kinds of graphics
-// Some code is borrowed from Revelations / StageAPI
-// This feature is not configurable because we destroy the original starting room graphic file
-
 import { getEffectiveStage, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
 import { CreepRedSubTypeCustom } from "../../types/enums";
 import { RaceFormat } from "../race/types/RaceFormat";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";
+
+// Racing+ re-implements the controls graphic in the starting room so that it will not interfere
+// with other kinds of graphics
+// Some code is borrowed from Revelations / StageAPI
+// This feature is not configurable because we destroy the original starting room graphic file
 
 export function postNewRoom(): void {
   drawControlsGraphic();

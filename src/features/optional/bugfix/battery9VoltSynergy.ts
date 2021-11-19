@@ -1,5 +1,3 @@
-// In vanilla, The Battery & 9 Volt do not synergize together
-
 import {
   getCollectibleMaxCharges,
   getPlayerFromIndex,
@@ -9,6 +7,8 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
+
+// In vanilla, The Battery & 9 Volt do not synergize together
 
 const v = {
   run: {

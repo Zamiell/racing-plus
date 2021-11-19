@@ -1,9 +1,9 @@
+import { config } from "../../../modConfigMenu";
+
 // The state frame starts at -33 and increments upwards to 0
 // If there is more than one Needle in the room, each subsequent Needle will have 39 frames added to
 
-import { config } from "../../../modConfigMenu";
-
-// its counter so that each one jumps individually
+// Adjust the counter for multiple Needles so that each one jumps individually
 const FRAME_DELAY_BEFORE_JUMPING = -7;
 
 // ModCallbacks.MC_NPC_UPDATE (0)

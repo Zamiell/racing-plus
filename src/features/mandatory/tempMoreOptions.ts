@@ -1,11 +1,11 @@
-// In some situations, we force the first Treasure Room to have two items
-
 import {
   getEffectiveStage,
   removeCollectibleFromItemTracker,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+
+// In some situations, we force the first Treasure Room to have two items
 
 const v = {
   run: {

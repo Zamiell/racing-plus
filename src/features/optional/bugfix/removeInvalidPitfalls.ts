@@ -1,9 +1,9 @@
+import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
+
 // Prevent the bug where if Suction Pitfalls do not complete their "Disappear" animation by the time
 // the player leaves the room, they will re-appear the next time the player enters the room
 // (even though the room is already cleared and they should be gone)
-
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
 
 export function postNewRoom(): void {
   if (!config.removeInvalidPitfalls) {

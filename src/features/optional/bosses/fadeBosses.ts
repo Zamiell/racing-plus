@@ -1,6 +1,6 @@
-// When beginning a death animation, make bosses faded so that it makes it easier to see
-
 import { config } from "../../../modConfigMenu";
+
+// When beginning a death animation, make bosses faded so that it makes it easier to see
 
 const FADE_AMOUNT = 0.4;
 const FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);

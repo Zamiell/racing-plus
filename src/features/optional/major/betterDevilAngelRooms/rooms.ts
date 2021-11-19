@@ -1,8 +1,3 @@
-// We use Basement Renovator to create custom Devil Rooms and Angel Rooms
-// These are saved into separate XML files called "devilRooms.xml" and "angelRooms.xml"
-// Then, we use the "convert-xml-to-lua.lua" script to convert the XML to a Lua table that can be
-// imported as a module
-
 import {
   getGridEntities,
   getRandomFloat,
@@ -18,6 +13,11 @@ import { NORMAL_ROOM_SUBTYPE } from "./constants";
 import { convertXMLGridEntityType } from "./convertXMLGridEntityType";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
+
+// We use Basement Renovator to create custom Devil Rooms and Angel Rooms
+// These are saved into separate XML files called "devilRooms.xml" and "angelRooms.xml"
+// Then, we use the "convert-xml-to-lua.lua" script to convert the XML to a Lua table that can be
+// imported as a module
 
 const GRID_TILES_PER_ROW = 15;
 

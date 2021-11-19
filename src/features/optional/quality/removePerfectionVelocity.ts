@@ -1,9 +1,9 @@
-// Since the Perfection trinket spawns with a velocity,
-// it can sometimes go over pits and become inaccessible
-
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+
+// Since the Perfection trinket spawns with a velocity,
+// it can sometimes go over pits and become inaccessible
 
 // On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of light
 // We put it 2 squares to the right of where the beam of light is

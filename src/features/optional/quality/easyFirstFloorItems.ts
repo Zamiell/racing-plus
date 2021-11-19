@@ -1,10 +1,10 @@
-// We want the player to always be able to take an item on the first floor Treasure Room without
-// spending a bomb or being forced to walk on spikes
-
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/enums";
+
+// We want the player to always be able to take an item on the first floor Treasure Room without
+// spending a bomb or being forced to walk on spikes
 
 export function preRoomEntitySpawn(
   gridIndex: int,

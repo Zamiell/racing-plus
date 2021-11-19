@@ -1,6 +1,3 @@
-// Racing+ removes some items from the game for various reasons
-// This feature is not configurable because it could cause a seed to be different
-
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
@@ -13,6 +10,9 @@ import {
   BANNED_COLLECTIBLES_WITH_VOID,
   BANNED_TRINKETS,
 } from "./constants";
+
+// Racing+ removes some items from the game for various reasons
+// This feature is not configurable because it could cause a seed to be different
 
 const v = {
   run: {

@@ -1,14 +1,14 @@
-// We show several things at the top of the screen:
-// 1) "Wait for the race to begin!" (only in the race room)
-// 2) An error message if we are on the wrong difficulty
-// 3) "Go!"
-// 4) Once we have finished a race, the final place
-
 import { getScreenCenterPos } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
+
+// We show several things at the top of the screen:
+// 1) "Wait for the race to begin!" (only in the race room)
+// 2) An error message if we are on the wrong difficulty
+// 3) "Go!"
+// 4) Once we have finished a race, the final place
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;

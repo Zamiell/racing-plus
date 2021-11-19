@@ -1,3 +1,15 @@
+import {
+  ensureAllCases,
+  getCollectibleMaxCharges,
+  getPlayerIndex,
+  getTotalCharge,
+  playChargeSoundEffect,
+  PlayerIndex,
+  saveDataManager,
+} from "isaacscript-common";
+import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
+
 // In vanilla, active items will be charged in the following order:
 // 1) ActiveSlot.SLOT_PRIMARY
 // 2) ActiveSlot.SLOT_SECONDARY
@@ -12,18 +24,6 @@
 // 3) Coins with the Charged Penny trinket
 // 4) 48 Hour Energy! pill
 // 5) Hairpin trinket
-
-import {
-  ensureAllCases,
-  getCollectibleMaxCharges,
-  getPlayerIndex,
-  getTotalCharge,
-  playChargeSoundEffect,
-  PlayerIndex,
-  saveDataManager,
-} from "isaacscript-common";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
 
 interface ChargeSituation {
   chargeType: ChargeType;

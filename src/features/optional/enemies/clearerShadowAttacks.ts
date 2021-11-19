@@ -1,9 +1,9 @@
+import { TargetSubTypeCustom } from "../../../types/enums";
+
 // This feature affects:
 // - Daddy Long Legs (101) (only the multi-stomp attack)
 // - Reap Creep (900) (rock projectiles)
 // - Bumbino (916) (rock projectiles)
-
-import { TargetSubTypeCustom } from "../../../types/enums";
 
 const BLUE = Color(0, 0, 0.5, 0.5);
 

@@ -1,6 +1,3 @@
-// In seeded races, the silhouettes of other races are drawn onto the screen
-// This is accomplished via UDP datagrams that are sent to the client, and then to the server
-
 import {
   getRoomIndex,
   ISAAC_FRAMES_PER_SECOND,
@@ -28,6 +25,9 @@ import {
   SHADOW_INTERVAL,
 } from "./constants";
 import * as struct from "./struct";
+
+// In seeded races, the silhouettes of other races are drawn onto the screen
+// This is accomplished via UDP datagrams that are sent to the client, and then to the server
 
 interface ShadowData {
   userID: int;

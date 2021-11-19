@@ -1,10 +1,10 @@
-// We have to return a value from both the "isActionPressed()" and the "getActionValue()" callbacks
-// in order for Anti-Gravity autofire to work
-
 import { isKeyboardPressed, saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
 import * as streakText from "../../mandatory/streakText";
+
+// We have to return a value from both the "isActionPressed()" and the "getActionValue()" callbacks
+// in order for Anti-Gravity autofire to work
 
 // Release the key on every other frame
 const NORMAL_FRAME_DELAY = 2;

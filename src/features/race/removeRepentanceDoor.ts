@@ -1,6 +1,3 @@
-// For races to The Beast, the player must go to Depths 2
-// Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
-
 import {
   getEffectiveStage,
   getRepentanceDoor,
@@ -10,6 +7,9 @@ import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
+
+// For races to The Beast, the player must go to Depths 2
+// Thus, we must prevent them from going to the Mausoleum floors by deleting the doors
 
 // MC_POST_NEW_ROOM (18)
 export function postNewRoom(): void {

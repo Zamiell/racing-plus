@@ -1,9 +1,9 @@
+import { saveDataManager } from "isaacscript-common";
+import { config } from "../../../modConfigMenu";
+
 // Speed up the tear attack of Pin, Frail, and Scolex
 // Make Wormwood spend less time underground
 // There does not seem to be a good way of speeding up Pin/Frail/Scolex while it is underground
-
-import { saveDataManager } from "isaacscript-common";
-import { config } from "../../../modConfigMenu";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
 const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;

@@ -1,10 +1,10 @@
-// In vanilla, bombing two angel statues will sometimes result in two of the same angel type
-// spawning
-// Prevent this from happening by keeping track of the angel types
-
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+
+// In vanilla, bombing two angel statues will sometimes result in two of the same angel type
+// spawning
+// Prevent this from happening by keeping track of the angel types
 
 const v = {
   room: {

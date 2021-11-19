@@ -1,6 +1,3 @@
-// Keep specific items from being affected by the Glitched Crown, Binge Eater,
-// and the Tainted Isaac switching mechanic
-
 import {
   changeCollectibleSubType,
   getCollectibleName,
@@ -9,6 +6,9 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/enums";
+
+// Keep specific items from being affected by the Glitched Crown, Binge Eater,
+// and the Tainted Isaac switching mechanic
 
 const v = {
   room: {

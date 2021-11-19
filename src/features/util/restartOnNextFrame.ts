@@ -1,6 +1,3 @@
-// This feature is used because the game prevents you from executing a "restart" console command
-// while in the PostGameStarted callback
-
 import { saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 import {
@@ -9,6 +6,9 @@ import {
   restartChallenge,
   restartSeed,
 } from "../../util";
+
+// This feature is used because the game prevents you from executing a "restart" console command
+// while in the PostGameStarted callback
 
 const v = {
   run: {

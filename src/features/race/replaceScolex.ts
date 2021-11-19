@@ -1,11 +1,12 @@
-// In seeded races, we replace Scolex with two Frails to reduce RNG
-
 import { nextSeed, removeEntities } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 
+// In seeded races, we replace Scolex with two Frails to reduce RNG
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||

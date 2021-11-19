@@ -1,7 +1,7 @@
-// Automatically open the Hush door to speed things up
-
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+
+// Automatically open the Hush door to speed things up
 
 export function postNewLevel(): void {
   if (!config.openHushDoor) {

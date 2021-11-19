@@ -1,5 +1,3 @@
-// These are shared functions for fast-travel entities
-
 import {
   ensureAllCases,
   getRoomIndex,
@@ -22,6 +20,8 @@ import {
 } from "./enums";
 import * as state from "./state";
 import v from "./v";
+
+// These are shared functions for fast-travel entities
 
 export function init(
   entity: GridEntity | EntityEffect,

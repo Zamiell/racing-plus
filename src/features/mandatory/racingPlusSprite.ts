@@ -1,6 +1,3 @@
-// In the "hudpickups.png" file, we blank out the "No Achievements" icon
-// For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
-
 import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
@@ -11,6 +8,9 @@ import {
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import * as socketClient from "../race/socketClient";
+
+// In the "hudpickups.png" file, we blank out the "No Achievements" icon
+// For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
 
 enum SpriteLayer {
   BLUE,

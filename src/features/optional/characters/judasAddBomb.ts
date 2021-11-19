@@ -1,7 +1,7 @@
-// We grant Judas an extra bomb so that the character is slightly more skill based
-
 import { getPlayers } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
+
+// We grant Judas an extra bomb so that the character is slightly more skill based
 
 export function postGameStarted(): void {
   if (!config.judasAddBomb) {

@@ -1,3 +1,6 @@
+import { nextSeed, saveDataManager } from "isaacscript-common";
+import g from "../../globals";
+
 // In vanilla, GB Bug morphs are determined via the InitSeed of the morphed pickup
 // This is no good for seeded races because we need the pickups to spawn in order
 // We can detect when the GB Bug morphs a pickup by looking at the frame that the familiar becomes
@@ -5,9 +8,6 @@
 // However, the PostFamiliarRender callback fires after the pickup has already spawned, so we must
 // keep track of the last spawned pickup so that we can morph it from the PostFamiliarRender
 // callback
-
-import { nextSeed, saveDataManager } from "isaacscript-common";
-import g from "../../globals";
 
 const v = {
   run: {

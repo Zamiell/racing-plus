@@ -1,4 +1,4 @@
-// Should match the ordering in "configDescription.ts"
+/** Config values should match the ordering in "configDescription.ts". */
 export class Config {
   // Major
   clientCommunication = true;

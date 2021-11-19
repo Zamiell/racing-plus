@@ -1,6 +1,6 @@
-// Speed up the first Lil' Haunt (260.10) attached to a Haunt (260.0)
-
 import { config } from "../../../modConfigMenu";
+
+// Speed up the first Lil' Haunt (260.10) attached to a Haunt (260.0)
 
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
 const BLACK_CHAMPION_COLOR_IDX = 17;
