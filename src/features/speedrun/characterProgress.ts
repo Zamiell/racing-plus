@@ -1,7 +1,11 @@
-import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
+import {
+  getHUDOffsetVector,
+  isBethany,
+  isJacobOrEsau,
+} from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
-  SPRITE_TAINTED_BETHANY_OFFSET,
+  SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
 import g from "../../globals";
 import { CHALLENGE_DEFINITIONS } from "./constants";
@@ -53,11 +57,10 @@ function displayCharacterProgress() {
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
+  if (isBethany(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
-  } else if (character === PlayerType.PLAYER_BETHANY_B) {
-    position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);
+  } else if (isJacobOrEsau(player)) {
+    position = position.add(SPRITE_JACOB_ESAU_OFFSET);
   }
 
   // Display the sprites

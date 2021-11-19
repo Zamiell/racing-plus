@@ -1,9 +1,14 @@
-import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
+import {
+  getHUDOffsetVector,
+  isBethany,
+  isGreedMode,
+  isJacobOrEsau,
+} from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
   SPRITE_DIFFICULTY_OFFSET,
-  SPRITE_TAINTED_BETHANY_OFFSET,
+  SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
@@ -38,7 +43,6 @@ export function getPosition(): Vector {
   const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
@@ -47,16 +51,19 @@ export function getPosition(): Vector {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
-  // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
-  if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
+  // On vanilla, being in Hard Mode shifts the "No Achievements" icon to the right
+  // Being in greed mode shifts the "No Achievements" icon to the left
+  if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
+  } else if (isGreedMode()) {
+    position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
-  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
+  if (isBethany(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
-  } else if (character === PlayerType.PLAYER_BETHANY_B) {
-    position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);
+  } else if (isJacobOrEsau(player)) {
+    position = position.add(SPRITE_JACOB_ESAU_OFFSET);
   }
 
   return position;
