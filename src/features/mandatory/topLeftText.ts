@@ -28,7 +28,9 @@ export function postRender(): void {
   // We want to place informational text for the player to the right of the heart containers
   // (which will depend on how many heart containers we have)
   const x = HUDOffsetVector.X + heartsUIWidth + STARTING_X;
-  let y = HUDOffsetVector.Y + STARTING_Y;
+
+  let y = STARTING_Y + HUDOffsetVector.Y;
+
   const lineLength = 15;
 
   const lines: string[] = [];
