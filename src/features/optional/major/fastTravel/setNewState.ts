@@ -3,6 +3,7 @@ import {
   disableAllInputsExceptFor,
   enableAllInputs,
   forgottenSwitch,
+  getFamiliars,
   getPlayers,
   getRoomIndex,
   log,
@@ -175,10 +176,7 @@ function warpForgottenBody(player: EntityPlayer) {
 
   // Also warp the body to where The Soul is so that The Forgotten won't jump down through a normal
   // floor
-  const forgottenBodies = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariant.FORGOTTEN_BODY,
-  );
+  const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
   for (const forgottenBody of forgottenBodies) {
     forgottenBody.Position = player.Position;
   }
@@ -267,7 +265,7 @@ function adjustJacobAndEsau(players: EntityPlayer[]) {
   // new run
   const jacobs = Isaac.FindByType(
     EntityType.ENTITY_PLAYER,
-    0,
+    PlayerVariant.PLAYER,
     PlayerType.PLAYER_JACOB,
   );
   for (const jacob of jacobs) {
@@ -288,7 +286,7 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
   // new run
   const taintedForgottens = Isaac.FindByType(
     EntityType.ENTITY_PLAYER,
-    0,
+    PlayerVariant.PLAYER,
     PlayerType.PLAYER_THEFORGOTTEN_B,
   );
   for (const taintedForgotten of taintedForgottens) {

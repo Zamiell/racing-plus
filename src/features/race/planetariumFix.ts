@@ -4,6 +4,7 @@ import {
   changeRoom,
   getCollectibles,
   getEffectiveStage,
+  getEffects,
   getPlayers,
   getRoomIndex,
   getRoomIndexesForType,
@@ -61,10 +62,7 @@ function repositionPlayer() {
   // Fix the bug where the fast-travel pitfalls will be misaligned due to being spawned before the
   // player's position was updated
   const players = getPlayers();
-  const customPitfalls = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
-    EffectVariantCustom.PITFALL_CUSTOM,
-  );
+  const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
   for (let i = 0; i < customPitfalls.length; i++) {
     const pitfall = customPitfalls[i];
     const player = players[i];

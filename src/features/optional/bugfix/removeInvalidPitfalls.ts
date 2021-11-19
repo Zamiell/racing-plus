@@ -1,3 +1,4 @@
+import { removeAllMatchingEntities } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -15,10 +16,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  const pitfalls = Isaac.FindByType(EntityType.ENTITY_PITFALL);
-  for (const pitfall of pitfalls) {
-    if (pitfall.Variant === PitfallVariant.SUCTION_PITFALL) {
-      pitfall.Remove();
-    }
-  }
+  removeAllMatchingEntities(
+    EntityType.ENTITY_PITFALL,
+    PitfallVariant.SUCTION_PITFALL,
+  );
 }

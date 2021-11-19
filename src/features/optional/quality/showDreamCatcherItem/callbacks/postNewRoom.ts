@@ -5,6 +5,7 @@ import {
   changeRoom,
   getBosses,
   getCollectibles,
+  getEffects,
   getRoomIndex,
   getRoomIndexesForType,
 } from "isaacscript-common";
@@ -65,10 +66,7 @@ function warp() {
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are
   const cardReadingPortalDescriptions: Array<[int, Vector]> = [];
-  const cardReadingPortals = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
-    EffectVariant.PORTAL_TELEPORT,
-  );
+  const cardReadingPortals = getEffects(EffectVariant.PORTAL_TELEPORT);
   for (const cardReadingPortal of cardReadingPortals) {
     const tuple: [int, Vector] = [
       cardReadingPortal.SubType,

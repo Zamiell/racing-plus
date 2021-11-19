@@ -3,6 +3,7 @@ import {
   getCardName,
   getCollectibleName,
   getEffectiveStage,
+  getFamiliars,
   getPillEffectName,
   getRandomArrayElement,
   getScreenBottomRightPos,
@@ -166,10 +167,7 @@ export function useItemLemegeton(): void {
 }
 
 function getItemWispThatJustSpawned() {
-  const wisps = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariant.ITEM_WISP,
-  );
+  const wisps = getFamiliars(FamiliarVariant.ITEM_WISP);
   for (const wisp of wisps) {
     if (wisp.FrameCount === 0) {
       return wisp;

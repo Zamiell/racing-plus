@@ -1,4 +1,9 @@
-import { getRoomStageID, getRoomVariant, nextSeed } from "isaacscript-common";
+import {
+  getNPCs,
+  getRoomStageID,
+  getRoomVariant,
+  nextSeed,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -70,11 +75,8 @@ function spawnEnemies() {
 
 function primeStatue() {
   // Prime the statue to wake up quicker
-  const satans = Isaac.FindByType(EntityType.ENTITY_SATAN);
+  const satans = getNPCs(EntityType.ENTITY_SATAN);
   for (const satan of satans) {
-    const npc = satan.ToNPC();
-    if (npc !== undefined) {
-      npc.I1 = 1;
-    }
+    satan.I1 = 1;
   }
 }

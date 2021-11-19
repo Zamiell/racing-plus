@@ -1,4 +1,4 @@
-import { nextSeed, removeEntities } from "isaacscript-common";
+import { nextSeed, removeAllMatchingEntities } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
@@ -24,13 +24,17 @@ export function postNewRoom(): void {
     return;
   }
 
-  const scolexes = Isaac.FindByType(EntityType.ENTITY_PIN, PinVariant.SCOLEX);
-  if (scolexes.length === 0) {
+  const numScolexes = Isaac.CountEntities(
+    undefined,
+    EntityType.ENTITY_PIN,
+    PinVariant.SCOLEX,
+  );
+  if (numScolexes === 0) {
     return;
   }
 
   // There are 10 Scolex entities for each scolex
-  removeEntities(scolexes);
+  removeAllMatchingEntities(EntityType.ENTITY_PIN, PinVariant.SCOLEX);
 
   let seed = roomSeed;
   for (let i = 0; i < 2; i++) {

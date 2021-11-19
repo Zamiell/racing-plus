@@ -1,3 +1,4 @@
+import { getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
@@ -6,7 +7,7 @@ export function preSpawnClearAward(): void {
     return;
   }
 
-  const pitfalls = Isaac.FindByType(EntityType.ENTITY_PITFALL);
+  const pitfalls = getNPCs(EntityType.ENTITY_PITFALL);
   for (const pitfall of pitfalls) {
     pitfall.Kill();
   }

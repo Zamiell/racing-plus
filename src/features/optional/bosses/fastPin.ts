@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { getNPCs, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // Speed up the tear attack of Pin, Frail, and Scolex
@@ -133,10 +133,7 @@ function speedUpWormwood(npc: EntityNPC) {
   // Wormwood will first path towards the path, tag them,
   // and then move to the nearest water tile
   // Speed up this process by immediately teleporting Wormwood next to the player
-  const wormwoods = Isaac.FindByType(
-    EntityType.ENTITY_PIN,
-    PinVariant.WORMWOOD,
-  );
+  const wormwoods = getNPCs(EntityType.ENTITY_PIN, PinVariant.WORMWOOD);
   for (const wormwood of wormwoods) {
     wormwood.Position = player.Position;
     wormwood.Visible = false;
@@ -149,7 +146,7 @@ function speedUpWormwood(npc: EntityNPC) {
 }
 
 function makeAllSegmentsVisible(npc: EntityNPC) {
-  const pins = Isaac.FindByType(npc.Type, npc.Variant);
+  const pins = getNPCs(npc.Type, npc.Variant);
   for (const pin of pins) {
     pin.Visible = true;
   }

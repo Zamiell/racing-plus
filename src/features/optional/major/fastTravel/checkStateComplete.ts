@@ -1,4 +1,4 @@
-import { getPlayers } from "isaacscript-common";
+import { getEffects, getPlayers } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/enums";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
@@ -78,12 +78,9 @@ function makePlayersJump(players: EntityPlayer[]) {
   }
 
   // Make the hole(s) disappear
-  const pitfalls = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
-    EffectVariantCustom.PITFALL_CUSTOM,
-  );
-  for (const pitfall of pitfalls) {
-    const sprite = pitfall.GetSprite();
+  const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
+  for (const customPitfall of customPitfalls) {
+    const sprite = customPitfall.GetSprite();
     sprite.Play("Disappear", true);
   }
 }

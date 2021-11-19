@@ -1,4 +1,5 @@
 import {
+  getEntities,
   getFamiliars,
   getPlayers,
   getRoomIndex,
@@ -40,9 +41,9 @@ export function inBeastDebugRoom(): boolean {
 }
 
 export function moveEsauNextToJacob(): void {
-  const esaus = Isaac.FindByType(
+  const esaus = getEntities(
     EntityType.ENTITY_PLAYER,
-    0,
+    PlayerVariant.PLAYER,
     PlayerType.PLAYER_ESAU,
   );
   for (const esau of esaus) {

@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   collectibleHasTag,
+  getPickups,
   getPlayerFromIndex,
   getPlayerIndex,
   getPlayerNumTransformationCollectibles,
@@ -209,15 +210,11 @@ export function useCardJustice(player: EntityPlayer): void {
 }
 
 function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
-  const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP, pickupVariant);
+  const pickups = getPickups(pickupVariant);
 
   let closestPickup: EntityPickup | null = null;
-  for (const pickupEntity of pickups) {
-    const pickup = pickupEntity.ToPickup();
-    if (pickup === undefined) {
-      continue;
-    }
-
+  let closestDistance = math.huge;
+  for (const pickup of pickups) {
     // Skip over pickups that have a price
     if (pickup.Price !== 0) {
       continue;
@@ -234,12 +231,10 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
       continue;
     }
 
-    const distanceToThisPickup = entity.Position.Distance(pickup.Position);
-    const distanceToClosestPickup = entity.Position.Distance(
-      closestPickup.Position,
-    );
-    if (distanceToThisPickup < distanceToClosestPickup) {
+    const distance = entity.Position.Distance(pickup.Position);
+    if (distance < closestDistance) {
       closestPickup = pickup;
+      closestDistance = distance;
     }
   }
 

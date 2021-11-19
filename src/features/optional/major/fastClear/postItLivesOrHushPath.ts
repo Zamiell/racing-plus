@@ -51,6 +51,7 @@ function manuallySpawn() {
   removeAllMatchingEntities(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
   );
   removeAllMatchingGridEntities(GridEntityType.GRID_TRAPDOOR);
 
@@ -180,7 +181,7 @@ function spawnHeavenDoor(position: Vector) {
   Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
-    0,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
     position,
     Vector.Zero,
     undefined,

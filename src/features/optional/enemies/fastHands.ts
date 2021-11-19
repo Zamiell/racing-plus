@@ -1,3 +1,4 @@
+import { getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const SHADOW_APPEAR_FRAME = 40;
@@ -51,17 +52,15 @@ function checkOtherHandOverlap(npc: EntityNPC) {
 }
 
 function isOtherHandOverlapping(initialHand: EntityNPC) {
-  const momsHands = Isaac.FindByType(EntityType.ENTITY_MOMS_HAND);
-  const momsDeadHands = Isaac.FindByType(EntityType.ENTITY_MOMS_DEAD_HAND);
+  const momsHands = getNPCs(EntityType.ENTITY_MOMS_HAND);
+  const momsDeadHands = getNPCs(EntityType.ENTITY_MOMS_DEAD_HAND);
   const hands = momsHands.concat(momsDeadHands);
 
   for (const hand of hands) {
-    const npc = hand.ToNPC();
     if (
-      npc !== undefined &&
-      GetPtrHash(npc) !== GetPtrHash(initialHand) &&
-      npc.State === NpcState.STATE_MOVE &&
-      npc.StateFrame === initialHand.StateFrame
+      GetPtrHash(hand) !== GetPtrHash(initialHand) &&
+      hand.State === NpcState.STATE_MOVE &&
+      hand.StateFrame === initialHand.StateFrame
     ) {
       return true;
     }

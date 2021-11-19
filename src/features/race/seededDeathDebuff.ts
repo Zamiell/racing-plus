@@ -2,6 +2,8 @@ import {
   arrayEmpty,
   getDefaultColor,
   getEnumValues,
+  getFamiliars,
+  getNPCs,
   getPlayerCollectibleMap,
   getTransformationsForItem,
   isJacobOrEsau,
@@ -212,7 +214,7 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
 function debuffOnRemoveDarkEsau() {
   // If Dark Esau is alive, the player can use it to clear rooms while they are dead
   // Remove Dark Esau to prevent this
-  const darkEsaus = Isaac.FindByType(
+  const darkEsaus = getNPCs(
     EntityType.ENTITY_DARK_ESAU,
     DarkEsauVariant.DARK_ESAU,
   );
@@ -384,10 +386,7 @@ export function applySeededGhostFade(
   sprite.Color = newColor;
 
   if (character === PlayerType.PLAYER_THESOUL) {
-    const forgottenBodies = Isaac.FindByType(
-      EntityType.ENTITY_FAMILIAR,
-      FamiliarVariant.FORGOTTEN_BODY,
-    );
+    const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
     for (const forgottenBody of forgottenBodies) {
       const forgottenSprite = forgottenBody.GetSprite();
       forgottenSprite.Color = newColor;

@@ -1,3 +1,4 @@
+import { getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // Speed up the first Lil' Haunt (260.10) attached to a Haunt (260.0)
@@ -47,17 +48,18 @@ function checkDetachLilHaunts(npc: EntityNPC) {
 
 function getAttachedLilHaunts(haunt: EntityNPC) {
   const hauntPtrHash = GetPtrHash(haunt);
-  const lilHaunts = Isaac.FindByType(EntityType.ENTITY_THE_HAUNT, 10);
+  const lilHaunts = getNPCs(
+    EntityType.ENTITY_THE_HAUNT,
+    HauntVariant.LIL_HAUNT,
+  );
   const childrenLilHaunts: EntityNPC[] = [];
   for (const lilHaunt of lilHaunts) {
     // Only target Lil' Haunts attached to this Haunt
-    const npc = lilHaunt.ToNPC();
     if (
-      npc !== undefined &&
-      npc.Parent !== undefined &&
-      GetPtrHash(npc.Parent) === hauntPtrHash
+      lilHaunt.Parent !== undefined &&
+      GetPtrHash(lilHaunt.Parent) === hauntPtrHash
     ) {
-      childrenLilHaunts.push(npc);
+      childrenLilHaunts.push(lilHaunt);
     }
   }
 

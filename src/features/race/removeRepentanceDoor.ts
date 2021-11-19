@@ -1,7 +1,7 @@
 import {
   getEffectiveStage,
   getRepentanceDoor,
-  removeEntities,
+  removeAllMatchingEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
@@ -37,11 +37,10 @@ function removeRepentanceDoor() {
   }
 
   if (roomClear) {
-    const dustClouds = Isaac.FindByType(
+    removeAllMatchingEntities(
       EntityType.ENTITY_EFFECT,
       EffectVariant.DUST_CLOUD,
     );
-    removeEntities(dustClouds);
 
     const repentanceDoor = getRepentanceDoor();
     if (repentanceDoor !== undefined) {

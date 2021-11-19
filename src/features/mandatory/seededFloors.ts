@@ -1,5 +1,6 @@
 import {
   CHARACTERS_WITH_NO_RED_HEARTS,
+  getFamiliars,
   getPlayerHealth,
   getRandom,
   isKeeper,
@@ -150,10 +151,7 @@ export function before(stage: int): void {
 
     // Keeper will get 3 Blue Flies from this, so manually remove them
     if (isKeeper(player)) {
-      const blueFlies = Isaac.FindByType(
-        EntityType.ENTITY_FAMILIAR,
-        FamiliarVariant.BLUE_FLY,
-      );
+      const blueFlies = getFamiliars(FamiliarVariant.BLUE_FLY);
       for (let i = 0; i < blueFlies.length; i++) {
         if (i >= 3) {
           break;

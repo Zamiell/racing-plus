@@ -1,4 +1,9 @@
-import { getRoomIndex, log, saveDataManager } from "isaacscript-common";
+import {
+  getEntities,
+  getRoomIndex,
+  log,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 import { EntityLocation } from "../../types/EntityLocation";
 import { CollectibleTypeCustom, EntityTypeCustom } from "../../types/enums";
@@ -51,7 +56,7 @@ function checkTouch() {
 
   // We cannot perform this check in the NPCUpdate callback since it will not fire during the
   // "Appear" animation
-  const trophies = Isaac.FindByType(EntityTypeCustom.ENTITY_RACE_TROPHY);
+  const trophies = getEntities(EntityTypeCustom.ENTITY_RACE_TROPHY);
   for (const trophy of trophies) {
     const playersInRange = Isaac.FindInRadius(
       trophy.Position,
@@ -106,10 +111,11 @@ function checkRespawn() {
   // Don't do anything if a trophy already exists in the room
   // (this can happen if code earlier on in the PostNewRoom callback spawned a Big Chest or a
   // trophy)
-  const existingTrophies = Isaac.FindByType(
+  const numTrophies = Isaac.CountEntities(
+    undefined,
     EntityTypeCustom.ENTITY_RACE_TROPHY,
   );
-  if (existingTrophies.length > 0) {
+  if (numTrophies > 0) {
     return;
   }
 

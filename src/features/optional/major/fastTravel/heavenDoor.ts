@@ -1,4 +1,4 @@
-import { inItLivesRoom } from "isaacscript-common";
+import { getEffects, inItLivesRoom } from "isaacscript-common";
 import g from "../../../../globals";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
@@ -95,17 +95,14 @@ export function postRoomClear(): void {
 }
 
 function openClosedHeavenDoors() {
-  const heavenDoors = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
+  const heavenDoors = getEffects(
     EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
   );
-  for (const entity of heavenDoors) {
-    const effect = entity.ToEffect();
-    if (effect !== undefined) {
-      const entityState = state.get(effect, FAST_TRAVEL_ENTITY_TYPE);
-      if (entityState === FastTravelEntityState.CLOSED) {
-        state.open(effect, FAST_TRAVEL_ENTITY_TYPE);
-      }
+  for (const heavenDoor of heavenDoors) {
+    const entityState = state.get(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
+    if (entityState === FastTravelEntityState.CLOSED) {
+      state.open(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
     }
   }
 }

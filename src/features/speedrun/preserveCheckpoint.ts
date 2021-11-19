@@ -1,3 +1,4 @@
+import { getCollectibles } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 
@@ -17,12 +18,13 @@ export function useCardBlackRune(): void {
 // CollectibleType.COLLECTIBLE_D6 (105)
 export function preUseItemD6(player: EntityPlayer): boolean | void {
   // The Checkpoint custom item is about to be deleted, so spawn another one
-  const checkpoints = Isaac.FindByType(
+  const numCheckpoints = Isaac.CountEntities(
+    undefined,
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
   );
-  if (checkpoints.length > 0) {
+  if (numCheckpoints > 0) {
     player.AnimateSad();
     return true;
   }
@@ -31,9 +33,7 @@ export function preUseItemD6(player: EntityPlayer): boolean | void {
 }
 
 function respawnCheckpoint() {
-  const checkpoints = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
+  const checkpoints = getCollectibles(
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
   );
   for (const checkpoint of checkpoints) {

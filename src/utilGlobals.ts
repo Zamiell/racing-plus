@@ -5,6 +5,7 @@ import {
   getCollectibleInitCharges,
   getCollectibleMaxCharges,
   getDoors,
+  getEffects,
   getRoomIndex,
   inCrawlspace,
   isHiddenSecretRoomDoor,
@@ -36,9 +37,9 @@ export function enteredRoomViaTeleport(): boolean {
 
 export function findFreePosition(startingPosition: Vector): Vector {
   // The "FindFreePickupSpawnPosition()" function will not account for beams of light
-  const heavenDoors = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
+  const heavenDoors = getEffects(
     EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
   );
   for (let i = 0; i < 100; i++) {
     const position = g.r.FindFreePickupSpawnPosition(startingPosition, i);

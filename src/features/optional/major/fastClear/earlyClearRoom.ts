@@ -1,4 +1,5 @@
 import {
+  getNPCs,
   getRoomVariant,
   inBeastRoom,
   isAllPressurePlatesPushed,
@@ -96,12 +97,10 @@ function killExtraEntities() {
 }
 
 function killDeathsHeads() {
-  // We need to specify variant 0 because we do not want to target Dank Death's Heads
-  const deathsHeads = Isaac.FindByType(
+  const deathsHeads = getNPCs(
     EntityType.ENTITY_DEATHS_HEAD,
-    -1,
-    -1,
-    false,
+    undefined,
+    undefined,
     true,
   );
   for (const deathsHead of deathsHeads) {
@@ -112,39 +111,35 @@ function killDeathsHeads() {
     }
 
     // Activate the death state
-    const npc = deathsHead.ToNPC();
-    if (npc !== undefined) {
-      npc.State = 18; // There is no enum for the Death's Head death state
-    }
+    deathsHead.State = NpcState.STATE_DEATH;
   }
 }
 
 function killFleshDeathsHeads() {
-  const fleshDeathsHeads = Isaac.FindByType(
+  const fleshDeathsHeads = getNPCs(
     EntityType.ENTITY_FLESH_DEATHS_HEAD,
-    -1,
-    -1,
-    false,
+    undefined,
+    undefined,
     true,
   );
-  for (const entity of fleshDeathsHeads) {
+  for (const fleshDeathsHead of fleshDeathsHeads) {
     // Activating the death state won't make the tears explode out of it,
     // so just kill it and spawn another one, which will immediately die
-    entity.Visible = false;
-    entity.Kill();
+    fleshDeathsHead.Visible = false;
+    fleshDeathsHead.Kill();
     const newHead = g.g
       .Spawn(
-        entity.Type,
-        entity.Variant,
-        entity.Position,
-        entity.Velocity,
-        entity.Parent,
-        entity.SubType,
-        entity.InitSeed,
+        fleshDeathsHead.Type,
+        fleshDeathsHead.Variant,
+        fleshDeathsHead.Position,
+        fleshDeathsHead.Velocity,
+        fleshDeathsHead.Parent,
+        fleshDeathsHead.SubType,
+        fleshDeathsHead.InitSeed,
       )
       .ToNPC();
     if (newHead !== undefined) {
-      newHead.State = 18; // There is no enum for the Flesh Death's Head death state
+      newHead.State = NpcState.STATE_DEATH;
     }
   }
 }

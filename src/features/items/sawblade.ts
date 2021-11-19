@@ -54,6 +54,7 @@ Sawblade stats:
 
 */
 
+import { getFamiliars } from "isaacscript-common";
 import {
   CollectibleTypeCustom,
   FamiliarVariantCustom,
@@ -126,18 +127,10 @@ function offsetSecondSawblade(familiar: EntityFamiliar) {
   }
 
   const playerHash = GetPtrHash(player);
-  const sawblades = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariantCustom.SAWBLADE,
-  );
+  const sawblades = getFamiliars(FamiliarVariantCustom.SAWBLADE);
 
   const otherSawbladesAttachedToSamePlayer: EntityFamiliar[] = [];
-  for (const sawbladeEntity of sawblades) {
-    const sawblade = sawbladeEntity.ToFamiliar();
-    if (sawblade === undefined) {
-      continue;
-    }
-
+  for (const sawblade of sawblades) {
     if (sawblade.SpawnerEntity === undefined) {
       continue;
     }
@@ -202,25 +195,17 @@ function spawnNewSawblade(player: EntityPlayer) {
 }
 
 function getSawbladesOfPlayer(player: EntityPlayer) {
-  const sawblades = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariantCustom.SAWBLADE,
-  );
+  const sawblades = getFamiliars(FamiliarVariantCustom.SAWBLADE);
   const sawbladesOfPlayer: EntityFamiliar[] = [];
   for (const sawblade of sawblades) {
-    const familiar = sawblade.ToFamiliar();
-    if (familiar === undefined) {
-      continue;
-    }
-
-    if (familiar.SpawnerEntity === undefined) {
+    if (sawblade.SpawnerEntity === undefined) {
       continue;
     }
 
     const playerHash = GetPtrHash(player);
-    const spawnerEntityHash = GetPtrHash(familiar.SpawnerEntity);
+    const spawnerEntityHash = GetPtrHash(sawblade.SpawnerEntity);
     if (playerHash === spawnerEntityHash) {
-      sawbladesOfPlayer.push(familiar);
+      sawbladesOfPlayer.push(sawblade);
     }
   }
 

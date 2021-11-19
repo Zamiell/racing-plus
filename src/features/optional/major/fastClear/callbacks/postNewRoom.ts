@@ -1,4 +1,4 @@
-import { GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
+import { getEffects, GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
 import g from "../../../../../globals";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as trackingClear from "../trackingClear";
@@ -13,8 +13,7 @@ export function fastClearPostNewRoom(): void {
 }
 
 function checkBugTwoHeavenDoors() {
-  const heavenDoors = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
+  const heavenDoors = getEffects(
     EffectVariant.HEAVEN_LIGHT_DOOR,
     HeavenLightDoorSubType.HEAVEN_DOOR,
   );

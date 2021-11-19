@@ -276,7 +276,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       const heavenDoor = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
-        0,
+        HeavenLightDoorSubType.HEAVEN_DOOR,
         pickup.Position,
         Vector.Zero,
         undefined,

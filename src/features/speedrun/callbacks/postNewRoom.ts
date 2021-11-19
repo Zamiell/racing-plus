@@ -1,5 +1,6 @@
 import {
   getEffectiveStage,
+  getEffects,
   getPlayers,
   getRandomInt,
   removeAllCollectibles,
@@ -77,9 +78,9 @@ function checkWomb2IAMERROR() {
     return;
   }
 
-  const heavenDoors = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
+  const heavenDoors = getEffects(
     EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
   );
   for (const heavenDoor of heavenDoors) {
     heavenDoor.Remove();

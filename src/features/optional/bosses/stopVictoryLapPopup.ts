@@ -1,4 +1,9 @@
-import { addRoomClearCharges, log, onDarkRoom } from "isaacscript-common";
+import {
+  addRoomClearCharges,
+  getNPCs,
+  log,
+  onDarkRoom,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/enums";
@@ -31,7 +36,7 @@ export function postEntityKillLamb(_entity: Entity): void {
 }
 
 function allLambEntitiesDead() {
-  const lambs = Isaac.FindByType(EntityType.ENTITY_THE_LAMB);
+  const lambs = getNPCs(EntityType.ENTITY_THE_LAMB);
   for (const lamb of lambs) {
     if (lamb.IsInvincible()) {
       continue;
