@@ -1,4 +1,8 @@
-import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
+import {
+  getHUDOffsetVector,
+  isGreedMode,
+  isJacobOrEsau,
+} from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
@@ -51,10 +55,7 @@ export function getPosition(): Vector {
   // Being in greed mode shifts the "No Achievements" icon to the left
   if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
-  } else if (
-    g.g.Difficulty === Difficulty.DIFFICULTY_GREED ||
-    g.g.Difficulty === Difficulty.DIFFICULTY_GREEDIER
-  ) {
+  } else if (isGreedMode()) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
