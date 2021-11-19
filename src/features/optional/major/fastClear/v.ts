@@ -10,10 +10,6 @@ const v = {
     delayClearUntilFrame: null as int | null,
     earlyClearedRoom: false,
   },
-
-  room: {
-    buttonsAllPushed: false,
-  },
 };
 export default v;
 
