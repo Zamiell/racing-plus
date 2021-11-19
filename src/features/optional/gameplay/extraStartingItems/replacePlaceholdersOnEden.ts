@@ -2,6 +2,7 @@ import { getPlayers, getRandomArrayElement } from "isaacscript-common";
 import g from "../../../../globals";
 import { passiveItemsForEden } from "../../../../passiveItemsForEden";
 import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
+import * as showEdenStartingItems from "../../characters/showEdenStartingItems";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 export function postGameStarted(): void {
@@ -26,6 +27,7 @@ export function postGameStarted(): void {
         passiveItemsForEden,
         startSeed,
       );
+      showEdenStartingItems.changeStartingPassiveItem(newCollectible);
       giveCollectibleAndRemoveFromPools(player, newCollectible);
     }
   }
