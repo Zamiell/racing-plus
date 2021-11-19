@@ -1,8 +1,7 @@
-import { saveDataManager } from "isaacscript-common";
+import { MAX_NUM_FAMILIARS, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 
-const MAX_FAMILIARS = 64;
 const SPRITE_POSITION = Vector(35, 33); // To the right of the coin count
 
 const sprite = initSprite("gfx/ui/max_familiars.anm2");
@@ -31,7 +30,7 @@ export function postUpdate(): void {
     undefined,
     EntityType.ENTITY_FAMILIAR,
   );
-  v.run.haveMaxFamiliars = numFamiliars >= MAX_FAMILIARS;
+  v.run.haveMaxFamiliars = numFamiliars >= MAX_NUM_FAMILIARS;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
