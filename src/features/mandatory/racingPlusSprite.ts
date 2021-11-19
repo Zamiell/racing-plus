@@ -1,5 +1,6 @@
 import {
   getHUDOffsetVector,
+  isBethany,
   isGreedMode,
   isJacobOrEsau,
 } from "isaacscript-common";
@@ -42,7 +43,6 @@ export function getPosition(): Vector {
   const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
@@ -60,10 +60,7 @@ export function getPosition(): Vector {
   }
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
-  if (
-    character === PlayerType.PLAYER_BETHANY ||
-    character === PlayerType.PLAYER_BETHANY_B
-  ) {
+  if (isBethany(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
   } else if (isJacobOrEsau(player)) {
     position = position.add(SPRITE_JACOB_ESAU_OFFSET);

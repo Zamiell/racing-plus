@@ -1,4 +1,8 @@
-import { getHUDOffsetVector, isJacobOrEsau } from "isaacscript-common";
+import {
+  getHUDOffsetVector,
+  isBethany,
+  isJacobOrEsau,
+} from "isaacscript-common";
 import g from "./globals";
 import { initSprite } from "./sprite";
 import { TimerType } from "./types/TimerType";
@@ -37,15 +41,11 @@ export function display(
   }
 
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
   const HUDOffsetVector = getHUDOffsetVector();
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;
 
-  if (
-    character === PlayerType.PLAYER_BETHANY ||
-    character === PlayerType.PLAYER_BETHANY_B
-  ) {
+  if (isBethany(player)) {
     startingY += 8;
   } else if (isJacobOrEsau(player)) {
     startingY += 25;
