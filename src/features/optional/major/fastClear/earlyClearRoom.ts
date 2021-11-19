@@ -1,7 +1,7 @@
 import {
-  getGridEntities,
   getRoomVariant,
   inBeastRoom,
+  isAllPressurePlatesPushed,
   log,
   openAllDoors,
 } from "isaacscript-common";
@@ -69,31 +69,10 @@ function checkEarlyClearRoom() {
     v.run.aliveEnemies.size === 0 &&
     v.run.delayClearUntilFrame === null &&
     !roomClear &&
-    checkAllPressurePlatesPushed()
+    isAllPressurePlatesPushed()
   ) {
     earlyClearRoom();
   }
-}
-
-function checkAllPressurePlatesPushed() {
-  const hasPressurePlates = g.r.HasTriggerPressurePlates();
-
-  if (!hasPressurePlates || v.room.buttonsAllPushed) {
-    return true;
-  }
-
-  // We are in a room with pressure plates, so check to see if they have all been pressed
-  for (const gridEntity of getGridEntities(
-    GridEntityType.GRID_PRESSURE_PLATE,
-  )) {
-    const gridEntityDesc = gridEntity.GetSaveState();
-    if (gridEntityDesc.State !== PressurePlateState.PRESSURE_PLATE_PRESSED) {
-      return false;
-    }
-  }
-
-  v.room.buttonsAllPushed = true;
-  return true;
 }
 
 function earlyClearRoom() {

@@ -22,12 +22,12 @@ const STARTING_Y = 10;
 
 export function postRender(): void {
   const seedString = g.seeds.GetStartSeedString();
-
   const HUDOffsetVector = getHUDOffsetVector();
+  const heartsUIWidth = getHeartsUIWidth();
 
   // We want to place informational text for the player to the right of the heart containers
   // (which will depend on how many heart containers we have)
-  const x = STARTING_X + HUDOffsetVector.X + getHeartsUIWidth();
+  const x = HUDOffsetVector.X + heartsUIWidth + STARTING_X;
   let y = STARTING_Y + HUDOffsetVector.Y;
   const lineLength = 15;
 
