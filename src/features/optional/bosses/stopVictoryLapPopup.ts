@@ -1,9 +1,4 @@
-import {
-  addRoomClearCharges,
-  log,
-  onDarkRoom,
-  playSound,
-} from "isaacscript-common";
+import { addRoomClearCharges, log, onDarkRoom } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/enums";
@@ -54,7 +49,7 @@ function emulateRoomClear() {
   // Emulate the room being cleared
   g.r.SetClear(true);
   addRoomClearCharges();
-  playSound(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
+  g.sfx.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   const position = g.r.GetCenterPos();

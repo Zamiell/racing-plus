@@ -4,7 +4,6 @@ import {
   getRoomIndex,
   gridToPos,
   log,
-  playSound,
   saveDataManagerSave,
 } from "isaacscript-common";
 import { CARD_MAP } from "../cardMap";
@@ -496,7 +495,8 @@ executeCmdFunctions.set("sound", (params: string) => {
   if (soundEffect === undefined) {
     return;
   }
-  playSound(soundEffect);
+
+  g.sfx.Play(soundEffect);
 });
 
 executeCmdFunctions.set("sounds", (_params: string) => {
