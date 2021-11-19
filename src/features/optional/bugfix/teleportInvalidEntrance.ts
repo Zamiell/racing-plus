@@ -1,6 +1,7 @@
 import {
   anyPlayerCloserThan,
   getDoors,
+  getFamiliars,
   getPlayers,
   log,
   MAX_NUM_DOORS,
@@ -56,8 +57,7 @@ export function postNewRoom(): void {
   moveEsauNextToJacob();
 
   // Also move the familiars
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
+  for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }
 

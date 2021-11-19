@@ -4,6 +4,7 @@ import {
   arrayInArray,
   changeRoom,
   getBosses,
+  getCollectibles,
   getRoomIndex,
   getRoomIndexesForType,
 } from "isaacscript-common";
@@ -35,17 +36,9 @@ function revertItemPrices() {
     ? TAINTED_KEEPER_ITEM_PRICE
     : 0;
 
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-  for (const entity of collectibles) {
-    const pickup = entity.ToPickup();
-    if (
-      pickup !== undefined &&
-      pickup.Price === PickupPriceCustom.PRICE_NO_MINIMAP
-    ) {
-      pickup.Price = revertedPrice;
+  for (const collectible of getCollectibles()) {
+    if (collectible.Price === PickupPriceCustom.PRICE_NO_MINIMAP) {
+      collectible.Price = revertedPrice;
     }
   }
 }
@@ -173,22 +166,15 @@ function getMinimapDisplayFlagsMap() {
 
 function getRoomItemsAndSetPrice() {
   const collectibleTypes: CollectibleType[] = [];
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-  for (const entity of collectibles) {
-    collectibleTypes.push(entity.SubType);
+  for (const collectible of getCollectibles()) {
+    collectibleTypes.push(collectible.SubType);
 
     // Now that we have been in the room, the gold star that represents a pedestal item will show up
     // on the minimap for this room
     // We can get around this by giving a price to the item, because unpurchased items do not cause
     // the minimap to display this star
     // We can set the price to any arbitrary value
-    const pickup = entity.ToPickup();
-    if (pickup !== undefined) {
-      pickup.Price = PickupPriceCustom.PRICE_NO_MINIMAP;
-    }
+    collectible.Price = PickupPriceCustom.PRICE_NO_MINIMAP;
   }
 
   return collectibleTypes;

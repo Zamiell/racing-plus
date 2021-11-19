@@ -1,4 +1,9 @@
-import { forgottenSwitch, getPlayers, log } from "isaacscript-common";
+import {
+  forgottenSwitch,
+  getFamiliars,
+  getPlayers,
+  log,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
@@ -36,6 +41,7 @@ function shouldSubvertTeleport() {
   }
 
   for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT.values()) {
+    // We cannot use "Isaac.CountEntities()" for this since we need to ignore charmed entities
     const entities = Isaac.FindByType(entityType, -1, -1, false, true);
     if (entities.length > 0) {
       return true;
@@ -64,8 +70,7 @@ function subvertTeleport() {
   moveEsauNextToJacob();
 
   // Also, account for familiars
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
+  for (const familiar of getFamiliars()) {
     familiar.Position = normalPosition;
   }
 

@@ -158,8 +158,8 @@ export function before(stage: int): void {
         if (i >= 3) {
           break;
         }
-        const fly = blueFlies[i];
-        fly.Remove();
+        const blueFly = blueFlies[i];
+        blueFly.Remove();
       }
     }
   }

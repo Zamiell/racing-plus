@@ -1,4 +1,4 @@
-import { anyPlayerIs, getRoomIndex } from "isaacscript-common";
+import { anyPlayerIs, getCollectibles, getRoomIndex } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
@@ -25,15 +25,8 @@ export function postNewRoom(): void {
 }
 
 function makeBossRushItemsFree() {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-  for (const collectible of collectibles) {
-    const pickup = collectible.ToPickup();
-    if (pickup !== undefined) {
-      pickup.AutoUpdatePrice = false;
-      pickup.Price = PickupPrice.PRICE_FREE;
-    }
+  for (const collectible of getCollectibles()) {
+    collectible.AutoUpdatePrice = false;
+    collectible.Price = PickupPrice.PRICE_FREE;
   }
 }

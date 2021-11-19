@@ -1,4 +1,4 @@
-import { nextSeed, saveDataManager } from "isaacscript-common";
+import { getPickups, nextSeed, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 
 // In vanilla, GB Bug morphs are determined via the InitSeed of the morphed pickup
@@ -66,13 +66,7 @@ function getLastSpawnedPickup() {
 
   const gameFrameCount = g.g.GetFrameCount();
 
-  const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP);
-  for (const entity of pickups) {
-    const pickup = entity.ToPickup();
-    if (pickup === undefined) {
-      continue;
-    }
-
+  for (const pickup of getPickups()) {
     const ptrHash = GetPtrHash(pickup);
 
     if (ptrHash !== v.run.lastSpawnedPickupPtrHash) {

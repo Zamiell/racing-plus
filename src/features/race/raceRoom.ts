@@ -2,6 +2,7 @@ import {
   forceNewLevelCallback,
   forceNewRoomCallback,
   getEffectiveStage,
+  getFamiliars,
   getNPCs,
   getPlayers,
   getRoomIndex,
@@ -199,8 +200,7 @@ function setupRaceRoom() {
   }
 
   // Put familiars next to the bottom door, if any
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
+  for (const familiar of getFamiliars()) {
     familiar.Position = RACE_ROOM_POSITION;
   }
 

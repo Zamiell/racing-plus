@@ -1,5 +1,6 @@
 import {
   changeCollectibleSubType,
+  getCollectibles,
   getEffectiveStage,
   saveDataManager,
 } from "isaacscript-common";
@@ -64,37 +65,30 @@ export function postNewRoom(): void {
 
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
-  const deathsTouches = Isaac.FindByType(
+  const numDeathTouches = Isaac.CountEntities(
+    undefined,
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
   );
-  const foundDeathsTouch = deathsTouches.length > 0;
-  const magicMushes = Isaac.FindByType(
+  const deathsTouchExists = numDeathTouches > 0;
+  const numMagicMushrooms = Isaac.CountEntities(
+    undefined,
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
   );
-  const foundMagicMush = magicMushes.length > 0;
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
+  const magicMushroomExists = numMagicMushrooms > 0;
 
-  for (const collectible of collectibles) {
-    const pickup = collectible.ToPickup();
-    if (pickup === undefined) {
-      continue;
-    }
-
-    if (pickup.SubType === CollectibleType.COLLECTIBLE_NULL) {
-      // Ignore empty pedestals (i.e. items that have already been taken by the player)
+  for (const collectible of getCollectibles()) {
+    // Ignore empty pedestals (i.e. items that have already been taken by the player)
+    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
       continue;
     }
 
     if (
-      foundDeathsTouch &&
-      pickup.SubType ===
+      deathsTouchExists &&
+      collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
     ) {
       const newCollectibleType = g.itemPool.GetCollectible(
@@ -103,12 +97,12 @@ function rollDuplicateItems() {
         startSeed,
       );
 
-      changeCollectibleSubType(pickup, newCollectibleType);
+      changeCollectibleSubType(collectible, newCollectibleType);
     }
 
     if (
-      foundMagicMush &&
-      pickup.SubType ===
+      magicMushroomExists &&
+      collectible.SubType ===
         CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
     ) {
       const newCollectibleType = g.itemPool.GetCollectible(
@@ -117,32 +111,23 @@ function rollDuplicateItems() {
         startSeed,
       );
 
-      changeCollectibleSubType(pickup, newCollectibleType);
+      changeCollectibleSubType(collectible, newCollectibleType);
     }
   }
 }
 
 function replacePlaceholderItems() {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-
-  for (const collectible of collectibles) {
-    const pickup = collectible.ToPickup();
-    if (pickup === undefined) {
+  for (const collectible of getCollectibles()) {
+    // Ignore empty pedestals (i.e. items that have already been taken by the player)
+    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
       continue;
     }
 
-    if (pickup.SubType === CollectibleType.COLLECTIBLE_NULL) {
-      // Ignore empty pedestals (i.e. items that have already been taken by the player)
-      continue;
-    }
-
-    const newCollectibleType = COLLECTIBLE_REPLACEMENT_MAP.get(pickup.SubType);
-
+    const newCollectibleType = COLLECTIBLE_REPLACEMENT_MAP.get(
+      collectible.SubType,
+    );
     if (newCollectibleType !== undefined) {
-      changeCollectibleSubType(pickup, newCollectibleType);
+      changeCollectibleSubType(collectible, newCollectibleType);
     }
   }
 }

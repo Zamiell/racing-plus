@@ -1,3 +1,5 @@
+import { getPickups } from "isaacscript-common";
+
 const FADED = Color(1, 1, 1, 0.3, 0, 0, 0);
 const X_DISTANCE = 35;
 const Y_DISTANCE_ABOVE = 78;
@@ -6,9 +8,8 @@ const Y_DISTANCE_ABOVE = 78;
 // EffectVariant.DEVIL (6)
 export function postEffectUpdateDevil(effect: EntityEffect): void {
   // Fade the statue if there are any collectibles in a rectangle above the effect
-  const pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP);
   let pickupIsClose = false;
-  for (const pickup of pickups) {
+  for (const pickup of getPickups()) {
     if (
       pickup.Position.X >= effect.Position.X - X_DISTANCE &&
       pickup.Position.X <= effect.Position.X + X_DISTANCE &&

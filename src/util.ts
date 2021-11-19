@@ -1,4 +1,5 @@
 import {
+  getFamiliars,
   getPlayers,
   getRoomIndex,
   getRoomSubType,
@@ -70,8 +71,7 @@ export function movePlayersAndFamiliars(position: Vector): void {
   moveEsauNextToJacob();
 
   // Put familiars next to the players
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  for (const familiar of familiars) {
+  for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }
 }

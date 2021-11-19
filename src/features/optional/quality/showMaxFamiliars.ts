@@ -27,8 +27,11 @@ export function postUpdate(): void {
     return;
   }
 
-  const familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR);
-  v.run.haveMaxFamiliars = familiars.length >= MAX_FAMILIARS;
+  const numFamiliars = Isaac.CountEntities(
+    undefined,
+    EntityType.ENTITY_FAMILIAR,
+  );
+  v.run.haveMaxFamiliars = numFamiliars >= MAX_FAMILIARS;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)

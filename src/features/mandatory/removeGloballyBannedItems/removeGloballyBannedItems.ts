@@ -2,6 +2,7 @@ import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   changeCollectibleSubType,
+  getCollectibles,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -51,32 +52,18 @@ export function postGameStarted(): void {
 // ModCallbacks.MC_USE_ITEM (3)
 // CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
 export function useItemSpindownDice(): void {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-
-  for (const collectible of collectibles) {
-    const pickup = collectible.ToPickup();
-    if (pickup === undefined) {
-      continue;
-    }
-
-    if (isBannedCollectible(pickup)) {
-      changeCollectibleSubType(pickup, pickup.SubType - 1);
+  for (const collectible of getCollectibles()) {
+    if (isBannedCollectible(collectible)) {
+      // Skip over the banned collectible and turn it into the one before that
+      changeCollectibleSubType(collectible, collectible.SubType - 1);
     }
   }
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const collectibles = Isaac.FindByType(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-  );
-
   // Prevent getting banned items on the Death Certificate floor
-  for (const collectible of collectibles) {
+  for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       collectible.Remove();
     }
