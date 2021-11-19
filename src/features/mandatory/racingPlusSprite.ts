@@ -48,8 +48,13 @@ export function getPosition(): Vector {
   }
 
   // On vanilla, being in Hard Mode or Greed Mode shifts the "No Achievements" icon to the right
-  if (g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL) {
+  if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
+  } else if (
+    g.g.Difficulty === Difficulty.DIFFICULTY_GREED ||
+    g.g.Difficulty === Difficulty.DIFFICULTY_GREEDIER
+  ) {
+    position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
