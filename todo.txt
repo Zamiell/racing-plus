@@ -1,7 +1,7 @@
 ```
-### *v0.71.5 - November 19th, 2021
+### *v0.71.6 - November ?th, 2021
 
-- Fixed the bug with seeded death where Bethany would not revive properly. (Thanks olo70009)
+-
 ```
 
 TODO Racing+ new features:
