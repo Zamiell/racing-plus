@@ -1,11 +1,6 @@
-import { log } from "isaacscript-common";
+import { isAliveExceptionNPC, log } from "isaacscript-common";
 import g from "../../../../globals";
-import {
-  ATTACHED_NPCS_TYPE_VARIANT,
-  ATTACHED_NPCS_TYPE_VARIANT_SUBTYPE,
-  FAST_CLEAR_DEBUG,
-} from "./constants";
-import { isRaglingDeathPatch } from "./ragling";
+import { FAST_CLEAR_DEBUG } from "./constants";
 import * as trackingRemove from "./trackingRemove";
 import v from "./v";
 
@@ -49,36 +44,12 @@ function checkAdd(npc: EntityNPC) {
     return;
   }
 
-  // Rag Man Raglings do not actually die; they turn into patches on the ground
-  // So, they will get past the above death check
-  if (isRaglingDeathPatch(npc)) {
-    return;
-  }
-
-  // We don't care if this is a specific child NPC attached to some other NPC
-  if (isAttachedNPC(npc)) {
+  // We don't care if this is a specific child NPC attached to some other NPC (like Death's scythes)
+  if (isAliveExceptionNPC(npc)) {
     return;
   }
 
   add(npc, ptrHash);
-}
-
-/**
- * Checks for NPCs that have "CanShutDoors" set to true naturally by the game,
- * but shouldn't actually keep the doors closed.
- */
-function isAttachedNPC(npc: EntityNPC) {
-  const entityTypeVariant = `${npc.Type}.${npc.Variant}`;
-  if (ATTACHED_NPCS_TYPE_VARIANT.has(entityTypeVariant)) {
-    return true;
-  }
-
-  const entityTypeVariantSubType = `${npc.Type}.${npc.Variant}.${npc.SubType}`;
-  if (ATTACHED_NPCS_TYPE_VARIANT_SUBTYPE.has(entityTypeVariantSubType)) {
-    return true;
-  }
-
-  return false;
 }
 
 function add(npc: EntityNPC, ptrHash: PtrHash) {
