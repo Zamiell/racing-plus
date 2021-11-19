@@ -3,7 +3,7 @@ import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_CHALLENGE_OFFSET,
   SPRITE_DIFFICULTY_OFFSET,
-  SPRITE_TAINTED_BETHANY_OFFSET,
+  SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
@@ -53,10 +53,13 @@ export function getPosition(): Vector {
   }
 
   // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
-  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
+  if (
+    character === PlayerType.PLAYER_BETHANY ||
+    character === PlayerType.PLAYER_BETHANY_B
+  ) {
     position = position.add(SPRITE_BETHANY_OFFSET);
-  } else if (character === PlayerType.PLAYER_BETHANY_B) {
-    position = position.add(SPRITE_TAINTED_BETHANY_OFFSET);
+  } else if (isJacobOrEsau(player)) {
+    position = position.add(SPRITE_JACOB_ESAU_OFFSET);
   }
 
   return position;

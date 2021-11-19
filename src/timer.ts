@@ -42,10 +42,13 @@ export function display(
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;
 
-  if (character === PlayerType.PLAYER_BETHANY || isJacobOrEsau(player)) {
+  if (
+    character === PlayerType.PLAYER_BETHANY ||
+    character === PlayerType.PLAYER_BETHANY_B
+  ) {
     startingY += 8;
-  } else if (character === PlayerType.PLAYER_BETHANY_B) {
-    startingY -= 5;
+  } else if (isJacobOrEsau(player)) {
+    startingY += 25;
   }
 
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_DUALITY)) {
