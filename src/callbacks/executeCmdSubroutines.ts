@@ -1,4 +1,4 @@
-import { log, teleport } from "isaacscript-common";
+import { getEntities, log, teleport } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import { findFreePosition } from "../utilGlobals";
@@ -100,9 +100,9 @@ export function IAMERROR(): void {
 
 export function listEntities(includeAll: boolean): void {
   log("Entities in the room:");
-  const roomEntities = Isaac.GetRoomEntities();
-  for (let i = 0; i < roomEntities.length; i++) {
-    const entity = roomEntities[i];
+  const entities = getEntities();
+  for (let i = 0; i < entities.length; i++) {
+    const entity = entities[i];
 
     // Exclude background effects
     if (

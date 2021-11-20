@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { getNPCs, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // After killing Mom, Mom's Heart, or It Lives!, all entities in the room are killed
@@ -7,7 +7,7 @@ import { config } from "../../../modConfigMenu";
 // Blisters also need to be killed twice (to kill the spawned Sacks)
 // Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma)
 
-const BUGGED_ENEMIES = new Set<EntityType>([
+const BUGGED_NPC_TYPES = new Set<EntityType>([
   EntityType.ENTITY_GLOBIN, // 24
   EntityType.ENTITY_BOIL, // 30
   EntityType.ENTITY_FISTULA_BIG, // 71 (also includes Teratoma)
@@ -63,12 +63,12 @@ export function postEntityKillMomsHeart(): void {
 function killExtraEnemies() {
   v.room.killedExtraEnemies = true;
 
-  for (const entity of Isaac.GetRoomEntities()) {
-    if (BUGGED_ENEMIES.has(entity.Type)) {
+  for (const npc of getNPCs()) {
+    if (BUGGED_NPC_TYPES.has(npc.Type)) {
       // Removing it just causes it to disappear, which looks buggy,
       // so show a small blood explosion as well
-      entity.BloodExplode();
-      entity.Remove();
+      npc.BloodExplode();
+      npc.Remove();
     }
   }
 }

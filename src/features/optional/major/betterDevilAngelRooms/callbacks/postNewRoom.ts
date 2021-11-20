@@ -1,4 +1,4 @@
-import { inAngelShop } from "isaacscript-common";
+import { getEntities, inAngelShop } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { setRoomCleared } from "../../../../../utilGlobals";
@@ -90,7 +90,7 @@ function respawnPersistentEntities() {
 // We do this here instead of in the PreRoomEntitySpawn callback so that they will not re-appear
 // when we re-enter the room
 function removePickupsAndSlotsAndNPCs() {
-  for (const entity of Isaac.GetRoomEntities()) {
+  for (const entity of getEntities()) {
     if (ENTITIES_TO_NOT_REMOVE.has(entity.Type)) {
       continue;
     }
