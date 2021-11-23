@@ -14,7 +14,7 @@
   "dependencies": {
     "isaac-typescript-definitions": "^1.0.275",
     "isaacscript": "^1.1.41",
-    "isaacscript-common": "^1.0.447",
-    "isaacscript-lint": "^1.0.65"
+    "isaacscript-common": "^1.0.448",
+    "isaacscript-lint": "^1.0.67"
   }
 }

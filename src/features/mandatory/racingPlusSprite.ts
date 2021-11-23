@@ -75,5 +75,6 @@ export function postGameStarted(): void {
   // The easiest way to do this without affecting gameplay is to enable an easter egg that prevents
   // a curse from appearing
   // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
+  // Note that not all easter eggs prevent achievements, but this one does
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
 }
