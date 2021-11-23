@@ -1,4 +1,4 @@
-import { getEntities, log, teleport } from "isaacscript-common";
+import { getEntities, log, printConsole, teleport } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import { findFreePosition } from "../utilGlobals";
@@ -31,7 +31,7 @@ export function angel(params: string): void {
   if (params !== "") {
     const num = tonumber(params);
     if (num === undefined) {
-      Isaac.ConsoleOutput("That is an invalid Angel Room number.");
+      printConsole("That is an invalid Angel Room number.");
       return;
     }
 
@@ -62,9 +62,9 @@ export function commands(
   const commandNames = [...functionMap.keys()];
   table.sort(commandNames);
 
-  Isaac.ConsoleOutput("List of Racing+ commands:");
+  printConsole("List of Racing+ commands:");
   const text = commandNames.join(" ");
-  Isaac.ConsoleOutput(text);
+  printConsole(text);
 }
 
 export function devil(params: string): void {
@@ -76,7 +76,7 @@ export function devil(params: string): void {
   if (params !== "") {
     const num = tonumber(params);
     if (num === undefined) {
-      Isaac.ConsoleOutput("That is an invalid Devil Room number.");
+      printConsole("That is an invalid Devil Room number.");
       return;
     }
 
@@ -172,7 +172,7 @@ export function listEntities(includeAll: boolean): void {
     debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     log(debugString);
   }
-  Isaac.ConsoleOutput('Logged the entities in the room to the "log.txt" file.');
+  printConsole('Logged the entities in the room to the "log.txt" file.');
 }
 
 export function movePlayer(params: string, direction: Direction): void {
@@ -231,7 +231,7 @@ export function trapdoor(): void {
 export function validateNumber(params: string): number | undefined {
   const num = tonumber(params);
   if (num === undefined) {
-    Isaac.ConsoleOutput("You must specify a number.");
+    printConsole("You must specify a number.");
   }
 
   return num;

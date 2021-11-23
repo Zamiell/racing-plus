@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { printConsole, saveDataManager } from "isaacscript-common";
 
 const MAX_SPEED = 2;
 
@@ -17,7 +17,7 @@ export function init(): void {
 export function toggleChaosCard(): void {
   v.run.chaosCard = !v.run.chaosCard;
   const enabled = v.run.chaosCard ? "Enabled" : "Disabled";
-  Isaac.ConsoleOutput(`${enabled} Chaos Card tears.`);
+  printConsole(`${enabled} Chaos Card tears.`);
 }
 
 export function toggleSpam(): void {
@@ -29,7 +29,7 @@ export function toggleSpeed(): void {
 
   v.run.speed = !v.run.speed;
   const enabled = v.run.speed ? "Enabled" : "Disabled";
-  Isaac.ConsoleOutput(`${enabled} max speed.`);
+  printConsole(`${enabled} max speed.`);
 
   // Also, give the player flight
   if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)) {

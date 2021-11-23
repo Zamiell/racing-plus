@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { log, printConsole } from "isaacscript-common";
 import { executeCmdFunctions } from "./executeCmdFunctions";
 
 export function main(command: string, parameters: string): void {
@@ -14,6 +14,6 @@ export function main(command: string, parameters: string): void {
   if (executeCmdFunction !== undefined) {
     executeCmdFunction(parameters);
   } else {
-    Isaac.ConsoleOutput("Unknown vanilla or Racing+ command.");
+    printConsole("Unknown vanilla or Racing+ command.");
   }
 }

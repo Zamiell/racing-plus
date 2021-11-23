@@ -1,4 +1,4 @@
-import { isKeyboardPressed } from "isaacscript-common";
+import { isKeyboardPressed, printConsole } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
@@ -44,7 +44,7 @@ function hotkey2Function() {
   hotkeys.autofire = Keyboard.KEY_F;
   hotkeys.roll = Keyboard.KEY_G;
 
-  Isaac.ConsoleOutput("Test hotkeys set.");
+  printConsole("Test hotkeys set.");
 }
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
