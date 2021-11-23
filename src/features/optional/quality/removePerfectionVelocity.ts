@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { findFreePosition, saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -69,7 +69,7 @@ function getPerfectionPosition(): Vector {
     gridEntity !== undefined &&
     gridEntity.CollisionClass !== GridCollisionClass.COLLISION_NONE
   ) {
-    return g.r.FindFreePickupSpawnPosition(centerPos);
+    return findFreePosition(centerPos);
   }
 
   // By default, spawn Perfection in the middle of the room

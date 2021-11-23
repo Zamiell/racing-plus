@@ -1,7 +1,12 @@
-import { getEntities, log, printConsole, teleport } from "isaacscript-common";
+import {
+  findFreePosition,
+  getEntities,
+  log,
+  printConsole,
+  teleport,
+} from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
-import { findFreePosition } from "../utilGlobals";
 
 const IGNORE_EFFECT_VARIANTS = new Set([
   EffectVariant.BLOOD_EXPLOSION, // 2

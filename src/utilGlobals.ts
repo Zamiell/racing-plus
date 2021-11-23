@@ -1,11 +1,8 @@
 import {
-  anyEntityCloserThan,
   anyPlayerIs,
-  DISTANCE_OF_GRID_TILE,
   getCollectibleInitCharges,
   getCollectibleMaxCharges,
   getDoors,
-  getEffects,
   getRoomIndex,
   inCrawlspace,
   isHiddenSecretRoomDoor,
@@ -33,23 +30,6 @@ export function enteredRoomViaTeleport(): boolean {
     !cameFromCrawlspace &&
     !isFastTravelHappening()
   );
-}
-
-export function findFreePosition(startingPosition: Vector): Vector {
-  // The "FindFreePickupSpawnPosition()" function will not account for beams of light
-  const heavenDoors = getEffects(
-    EffectVariant.HEAVEN_LIGHT_DOOR,
-    HeavenLightDoorSubType.HEAVEN_DOOR,
-  );
-  for (let i = 0; i < 100; i++) {
-    const position = g.r.FindFreePickupSpawnPosition(startingPosition, i);
-    if (!anyEntityCloserThan(heavenDoors, position, DISTANCE_OF_GRID_TILE)) {
-      return position;
-    }
-  }
-
-  // We failed to find a free position in N iterations
-  return g.r.FindFreePickupSpawnPosition(startingPosition);
 }
 
 export function giveCollectibleAndRemoveFromPools(

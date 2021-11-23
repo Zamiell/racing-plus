@@ -1,6 +1,9 @@
-import { getPlayers, isKeyboardPressed } from "isaacscript-common";
+import {
+  findFreePosition,
+  getPlayers,
+  isKeyboardPressed,
+} from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
-import { findFreePosition } from "../../../utilGlobals";
 
 enum FastDropTarget {
   ALL,

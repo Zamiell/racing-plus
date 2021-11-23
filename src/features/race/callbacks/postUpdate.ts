@@ -1,7 +1,6 @@
-import { getRoomIndex } from "isaacscript-common";
+import { findFreePosition, getRoomIndex } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { findFreePosition } from "../../../utilGlobals";
 import * as trophy from "../../mandatory/trophy";
 import * as seededDeath from "../seededDeath";
 import { RaceGoal } from "../types/RaceGoal";

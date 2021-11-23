@@ -1,5 +1,6 @@
 import {
   anyPlayerHasCollectible,
+  findFreePosition,
   getTotalPlayerCollectibles,
   initRNG,
   log,
@@ -8,7 +9,6 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-import { findFreePosition } from "../../utilGlobals";
 
 // This feature is not configurable because it could change item pools and trinket pools,
 // causing a seed to be different

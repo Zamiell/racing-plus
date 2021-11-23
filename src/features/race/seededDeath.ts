@@ -1,6 +1,7 @@
 import {
   disableAllInputs,
   enableAllInputs,
+  findFreePosition,
   GAME_FRAMES_PER_SECOND,
   getDeathAnimationName,
   getFinalFrameOfAnimation,
@@ -20,7 +21,6 @@ import g from "../../globals";
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
 import { inBeastDebugRoom } from "../../util";
-import { findFreePosition } from "../../utilGlobals";
 import { applySeededGhostFade, debuffOff, debuffOn } from "./seededDeathDebuff";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";

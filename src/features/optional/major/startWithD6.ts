@@ -1,4 +1,5 @@
 import {
+  findFreePosition,
   getCollectibleMaxCharges,
   getPlayerIndex,
   getPlayers,
@@ -12,7 +13,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { findFreePosition, spawnCollectible } from "../../../utilGlobals";
+import { spawnCollectible } from "../../../utilGlobals";
 
 // A major feature of Racing+ is to give every character the D6,
 // since it heavily reduces run disparity
