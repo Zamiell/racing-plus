@@ -382,7 +382,6 @@ Post-flip actions:
 > Why? This is how it was in Afterbirth+ and is likely the intended default value.
 
 - `1009` <!-- holidayHats --> Show a festive hat during a holiday.
-
 - The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - The Locust of Famine sprite now matches the color of the flies.
 - The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
