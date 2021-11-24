@@ -17,6 +17,7 @@ import * as samsonDropHeart from "../features/optional/characters/samsonDropHear
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
 import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
+import * as holidayHats from "../features/optional/graphics/holidayHats";
 import * as hudOffsetFix from "../features/optional/graphics/hudOffsetFix";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
@@ -94,11 +95,7 @@ export function main(isContinued: boolean): void {
 
   // GFX
   hudOffsetFix.postGameStarted();
-
-  // Conditionally show a festive hat
-  // (commented out if it is not currently a holiday)
-  // g.p.AddNullCostume(NullItemID.ID_CHRISTMAS)
-  // (this corresponds to "n016_Christmas.anm2" in the "costumes2.xml" file)
+  holidayHats.postGameStarted();
 
   // Features that need to be last
   // (this checks for items, so it has to be after all features that grant items)

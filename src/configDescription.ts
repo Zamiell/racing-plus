@@ -1030,6 +1030,15 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
+    "holidayHats",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1009",
+      "Holiday hats",
+      "Show a festive hat during a holiday.",
+    ],
+  ],
+  [
     null,
     [
       ModConfigMenuOptionType.TEXT,
@@ -1038,6 +1047,10 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "Make the Locust of Famine sprite match the color of the flies.",
     ],
   ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [
@@ -1047,10 +1060,6 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "Make the Error trinket sprite have an outline.",
     ],
   ],
-];
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [

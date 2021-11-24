@@ -92,6 +92,7 @@ export class Config {
   stickyNickel = true; // 20.6 (PickupVariant, CoinSubType)
   uniqueCardBacks = true; // 300 (PickupVariant)
   hudOffsetFix = true;
+  holidayHats = true;
 
   // Sounds
   silenceMomDad = true;
