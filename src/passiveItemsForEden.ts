@@ -1,4 +1,4 @@
-import { getMaxCollectibleID } from "isaacscript-common";
+import { getMaxCollectibleID, isPassiveCollectible } from "isaacscript-common";
 import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -11,9 +11,8 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
   for (let i = 1; i <= getMaxCollectibleID(); i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
+      isPassiveCollectible(i) &&
       itemConfigItem !== undefined &&
-      (itemConfigItem.Type === ItemType.ITEM_PASSIVE ||
-        itemConfigItem.Type === ItemType.ITEM_FAMILIAR) &&
       !itemConfigItem.Hidden &&
       !PLACEHOLDER_COLLECTIBLES_SET.has(i)
     ) {

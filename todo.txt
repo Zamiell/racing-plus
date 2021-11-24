@@ -3,6 +3,7 @@
 
 - Fixed the bug where fast-clear would not work with Cohorts under certain conditions. (Thanks 3kch1)
 - Fixed the bug where race placings were incorrect under certain conditions. (Thanks Gamonymous)
+- Fixed the bug where using Flip on characters other than Tainted Lazarus could cause errors under certain conditions. (Thanks Hispa)
 ```
 
 TODO Racing+ new features:
