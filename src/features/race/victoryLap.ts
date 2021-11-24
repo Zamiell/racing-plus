@@ -1,7 +1,6 @@
 import {
   getRandomArrayElement,
-  inBlueBabyRoom,
-  inLambRoom,
+  inBossRoomOf,
   nextSeed,
   removeAllMatchingEntities,
 } from "isaacscript-common";
@@ -180,7 +179,7 @@ function checkVictoryLapBossReplace() {
   if (
     !g.raceVars.finished ||
     roomClear ||
-    (!inBlueBabyRoom() && !inLambRoom())
+    (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.THE_LAMB))
   ) {
     return;
   }

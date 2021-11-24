@@ -1,4 +1,5 @@
 import { isChildPlayer } from "isaacscript-common";
+import * as flipCustom from "../features/items/flipCustom";
 import { fastTravelPostPlayerUpdate } from "../features/optional/major/fastTravel/callbacks/postPlayerUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
@@ -19,6 +20,9 @@ export function main(player: EntityPlayer): void {
 
   // QoL
   chargePocketItemFirst.postPlayerUpdate(player);
+
+  // Items
+  flipCustom.postPlayerUpdate(player);
 
   // Other
   roll.postPlayerUpdate(player);

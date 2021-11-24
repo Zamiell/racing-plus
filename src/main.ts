@@ -31,6 +31,7 @@ import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPEffectUpdate from "./callbacks/postPEffectUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
+import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
@@ -153,6 +154,7 @@ function registerCallbacksWithExtraArgument(mod: ModUpgraded) {
   postNPCRender.init(mod); // 28
   postPickupInit.init(mod); // 34
   postPickupUpdate.init(mod); // 35
+  postPickupRender.init(mod); // 36
   postTearUpdate.init(mod); // 40
   postProjectileInit.init(mod); // 43
   postLaserInit.init(mod); // 47

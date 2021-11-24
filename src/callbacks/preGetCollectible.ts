@@ -5,5 +5,11 @@ export function main(
   decrease: boolean,
   seed: int,
 ): CollectibleType | int | void {
+  /*
+  log(
+    `MC_PRE_GET_COLLECTIBLE - itemPoolType: ${itemPoolType}, decrease: ${decrease}, seed: ${seed}`,
+  );
+  */
+
   return betterDevilAngelRoomsPreGetCollectible(itemPoolType, decrease, seed);
 }

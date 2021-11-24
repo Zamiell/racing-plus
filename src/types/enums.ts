@@ -26,15 +26,19 @@ export enum EffectVariantCustom {
 // EntityType.ENTITY_PICKUP (5)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export enum CollectibleTypeCustom {
+  // Custom items
   COLLECTIBLE_SAWBLADE = Isaac.GetItemIdByName("Sawblade"),
   COLLECTIBLE_13_LUCK = Isaac.GetItemIdByName("13 Luck"),
   COLLECTIBLE_15_LUCK = Isaac.GetItemIdByName("15 Luck"),
+
+  // Vanilla replacements
   COLLECTIBLE_3_DOLLAR_BILL_SEEDED = Isaac.GetItemIdByName(
     "3 Dollar Bill (Seeded)",
   ), // 191
   COLLECTIBLE_MAGIC_8_BALL_SEEDED = Isaac.GetItemIdByName(
     "Magic 8 Ball (Seeded)",
   ), // 194
+  COLLECTIBLE_FLIP_CUSTOM = Isaac.GetItemIdByName("Flip (Custom)"), // 711
 
   // Utility items
   COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),

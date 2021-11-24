@@ -1,13 +1,6 @@
-import {
-  getNPCs,
-  getRoomStageID,
-  getRoomVariant,
-  nextSeed,
-} from "isaacscript-common";
+import { getNPCs, inBossRoomOf, nextSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-
-const SATAN_ROOM_VARIANT = 3600;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -21,8 +14,6 @@ export function postNewRoom(): void {
 // There is an annoying delay before The Fallen and the leeches spawn
 // To fix this, we manually spawn it as soon as the room is entered
 function instantlySpawnSatan() {
-  const roomStageID = getRoomStageID();
-  const roomVariant = getRoomVariant();
   const roomClear = g.r.IsClear();
 
   if (roomClear) {
@@ -30,10 +21,7 @@ function instantlySpawnSatan() {
   }
 
   // There is only one Satan room
-  if (
-    roomStageID !== StageID.SPECIAL_ROOMS ||
-    roomVariant !== SATAN_ROOM_VARIANT
-  ) {
+  if (!inBossRoomOf(BossID.SATAN)) {
     return;
   }
 

@@ -1,8 +1,8 @@
 import {
-  changeCollectibleSubType,
   getCollectibles,
   getEffectiveStage,
   saveDataManager,
+  setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
@@ -97,7 +97,7 @@ function rollDuplicateItems() {
         startSeed,
       );
 
-      changeCollectibleSubType(collectible, newCollectibleType);
+      setCollectibleSubType(collectible, newCollectibleType);
     }
 
     if (
@@ -111,7 +111,7 @@ function rollDuplicateItems() {
         startSeed,
       );
 
-      changeCollectibleSubType(collectible, newCollectibleType);
+      setCollectibleSubType(collectible, newCollectibleType);
     }
   }
 }
@@ -127,7 +127,7 @@ function replacePlaceholderItems() {
       collectible.SubType,
     );
     if (newCollectibleType !== undefined) {
-      changeCollectibleSubType(collectible, newCollectibleType);
+      setCollectibleSubType(collectible, newCollectibleType);
     }
   }
 }

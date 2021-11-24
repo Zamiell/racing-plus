@@ -1,9 +1,9 @@
 import {
-  changeCollectibleSubType,
   getCollectibleName,
   isQuestCollectible,
   log,
   saveDataManager,
+  setCollectibleSubType,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/enums";
 
@@ -44,7 +44,7 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
   ) {
     // This item has switched, so restore it back to the way it was
     const oldSubType = pickup.SubType;
-    changeCollectibleSubType(pickup, trackedCollectibleType);
+    setCollectibleSubType(pickup, trackedCollectibleType);
 
     const trackedCollectibleName = getCollectibleName(trackedCollectibleType);
     const oldCollectibleName = getCollectibleName(oldSubType);

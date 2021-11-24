@@ -65,6 +65,12 @@ export function init(mod: Mod): void {
 }
 
 export function main(pickup: EntityPickup): void {
+  /*
+  log(
+    `MC_POST_PICKUP_INIT - ${pickup.Type}.${pickup.Variant}.${pickup.SubType} - Seed: ${pickup.InitSeed}`,
+  );
+  */
+
   seededGBBug.postPickupInit(pickup);
   automaticItemInsertion.postPickupInit(pickup);
 }

@@ -628,10 +628,19 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    "removePerfectionVelocity", // 145
+    "flipCustom", // 711
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0514",
+      "Custom Flip",
+      "Replace Flip with a custom version that works on every item and properly shows what each item will change into.",
+    ],
+  ],
+  [
+    "removePerfectionVelocity", // 145
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0515",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -640,7 +649,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "removePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0515",
+      "0516",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -649,7 +658,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "automaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0516",
+      "0517",
       "Automatically insert pickups",
       "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
@@ -658,7 +667,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "chargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0517",
+      "0518",
       "Charge the Pocket item first",
       "Make batteries charge the pocket item first over the active item.",
     ],
@@ -667,7 +676,7 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0518",
+      "0519",
       "Show max familiars",
       "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
@@ -676,24 +685,24 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
     "showPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0519",
+      "0520",
       "Remember pills",
       "Hold the map button to see a list of identified pills for easy reference.",
-    ],
-  ],
-  [
-    "fadeDevilStatue",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0520",
-      "Fade Devil statue",
-      "Fade the statue in a Devil Room if there are pickups behind it.",
     ],
   ],
 ];
 
 // 0521-0530
 export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
+  [
+    "fadeDevilStatue",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0521",
+      "Fade Devil statue",
+      "Fade the statue in a Devil Room if there are pickups behind it.",
+    ],
+  ],
   [
     null,
     [

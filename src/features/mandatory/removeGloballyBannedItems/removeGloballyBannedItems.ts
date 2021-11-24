@@ -1,9 +1,9 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
-  changeCollectibleSubType,
   getCollectibles,
   saveDataManager,
+  setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
 import {
@@ -55,7 +55,7 @@ export function useItemSpindownDice(): void {
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       // Skip over the banned collectible and turn it into the one before that
-      changeCollectibleSubType(collectible, collectible.SubType - 1);
+      setCollectibleSubType(collectible, collectible.SubType - 1);
     }
   }
 }

@@ -1,4 +1,5 @@
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
+import * as flipCustom from "./features/items/flipCustom";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
@@ -127,6 +128,9 @@ export function initFeatureVariables(): void {
 
   // Bug fixes
   battery9VoltSynergy.init();
+
+  // Items
+  flipCustom.init();
 
   // Other
   customConsole.init();

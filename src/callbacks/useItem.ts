@@ -1,4 +1,5 @@
 import { debugFunction } from "../debugFunction";
+import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -36,6 +37,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_USE_ITEM,
     spindownDice,
     CollectibleType.COLLECTIBLE_SPINDOWN_DICE, // 723
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    useItemFlipCustom,
+    CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM,
   );
 
   mod.AddCallback(
@@ -79,6 +86,11 @@ function lemegeton() {
 // CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
 function spindownDice() {
   removeGloballyBannedItems.useItemSpindownDice();
+}
+
+// CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
+function useItemFlipCustom() {
+  return flipCustom.useItemFlipCustom();
 }
 
 // CollectibleTypeCustom.COLLECTIBLE_DEBUG

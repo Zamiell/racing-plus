@@ -1,10 +1,9 @@
 ```
-### *v0.71.7 - November 24th, 2021
+### *v0.72.0 - November ?th, 2021
 
-- Fixed the bug where fast-clear would not work with Cohorts under certain conditions. (Thanks 3kch1)
-- Fixed the bug where race placings were incorrect under certain conditions. (Thanks Gamonymous)
-- Fixed the bug where using Flip on characters other than Tainted Lazarus could cause errors under certain conditions. (Thanks Hispa)
-- Fixed the bug where Treasure Room placeholder items were not being removed under certain conditions. (Thanks Gamonymous)
+- On characters other than Tainted Lazarus, Flip has been reimplemented:
+  - The item behind is now rendered at an offset that is easier to see.
+  - Flip will now work on every collectible item.
 ```
 
 TODO Racing+ new features:

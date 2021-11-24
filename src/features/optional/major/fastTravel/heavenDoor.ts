@@ -1,4 +1,4 @@
-import { getEffects, inItLivesRoom } from "isaacscript-common";
+import { getEffects, inBossRoomOf } from "isaacscript-common";
 import g from "../../../../globals";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
@@ -82,7 +82,11 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   }
 
   // We want the player to be forced to dodge the final wave of tears from It Lives!
-  if (!entityDescription.initial && effect.FrameCount < 40 && inItLivesRoom()) {
+  if (
+    inBossRoomOf(BossID.IT_LIVES) &&
+    !entityDescription.initial &&
+    effect.FrameCount < 40
+  ) {
     return;
   }
 

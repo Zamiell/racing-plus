@@ -1,7 +1,7 @@
 import {
   getNPCs,
-  getRoomVariant,
   inBeastRoom,
+  inBossRoomOf,
   isAllPressurePlatesPushed,
   log,
   openAllDoors,
@@ -15,8 +15,6 @@ import {
 import { checkPostItLivesOrHushPath } from "./postItLivesOrHushPath";
 import v from "./v";
 
-const GREAT_GIDEON_ROOM_VARIANTS = new Set([5210, 5211, 5212, 5213, 5214]);
-
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   checkEarlyClearRoom();
@@ -27,7 +25,6 @@ function checkEarlyClearRoom() {
   const roomFrameCount = g.r.GetFrameCount();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
-  const roomVariant = getRoomVariant();
 
   // Do nothing if we already cleared the room
   if (v.run.earlyClearedRoom) {
@@ -47,7 +44,7 @@ function checkEarlyClearRoom() {
 
   // The Great Gideon is exempt from the fast-clear feature
   // (since it can cause the boss item to spawn on a pit from a Rock Explosion)
-  if (GREAT_GIDEON_ROOM_VARIANTS.has(roomVariant)) {
+  if (inBossRoomOf(BossID.GREAT_GIDEON)) {
     return;
   }
 

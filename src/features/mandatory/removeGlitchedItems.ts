@@ -1,7 +1,7 @@
 import {
-  changeCollectibleSubType,
   isGlitchedCollectible,
   saveDataManager,
+  setCollectibleSubType,
 } from "isaacscript-common";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.COLLECTIBLE_SAD_ONION;
@@ -39,6 +39,6 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
   }
 
   if (glitchedCollectible) {
-    changeCollectibleSubType(pickup, storedCollectibleType);
+    setCollectibleSubType(pickup, storedCollectibleType);
   }
 }
