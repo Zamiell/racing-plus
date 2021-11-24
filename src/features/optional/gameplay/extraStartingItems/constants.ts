@@ -42,6 +42,14 @@ export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   ],
 ]);
 
+export const COLLECTIBLE_PLACEHOLDER_REVERSE_MAP = new Map<
+  CollectibleType,
+  CollectibleTypeCustom
+>();
+for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
+  COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.set(value, key);
+}
+
 export const PLACEHOLDER_COLLECTIBLES_SET = new Set(
   COLLECTIBLE_REPLACEMENT_MAP.keys(),
 );

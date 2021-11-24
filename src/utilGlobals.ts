@@ -9,6 +9,7 @@ import {
   isQuestCollectible,
 } from "isaacscript-common";
 import * as preventItemRotate from "./features/mandatory/preventItemRotate";
+import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { isFastTravelHappening } from "./features/optional/major/fastTravel/v";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
@@ -42,6 +43,13 @@ export function giveCollectibleAndRemoveFromPools(
 
   player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
+
+  const placeholderCollectible = COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.get(
+    collectibleType as CollectibleType,
+  );
+  if (placeholderCollectible !== undefined) {
+    g.itemPool.RemoveCollectible(placeholderCollectible);
+  }
 }
 
 export function giveTrinketAndRemoveFromPools(
