@@ -62,8 +62,11 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
   // their children
   let frameDelay = 1;
   if (npc.Type === EntityType.ENTITY_COHORT) {
-    // It takes 16 frames for the first Globin to spawn from a Cohort dying
-    frameDelay = 16;
+    // It takes between 16 to 22 frames for the first Globin to spawn from a Cohort dying
+    frameDelay = 22;
+    log(
+      `Delaying ${frameDelay} frames due to killing a Cohort on frame: ${gameFrameCount}`,
+    );
   }
   v.run.delayClearUntilFrame = gameFrameCount + frameDelay;
 

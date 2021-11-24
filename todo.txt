@@ -1,7 +1,8 @@
 ```
 ### *v0.71.7 - November ?th, 2021
 
--
+- Fixed the bug where fast-clear would not work with Cohorts under certain conditions. (Thanks 3kch1)
+- Fixed the bug where race placings were incorrect under certain conditions. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:
