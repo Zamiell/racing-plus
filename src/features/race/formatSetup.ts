@@ -1,24 +1,13 @@
-import { ensureAllCases } from "isaacscript-common";
+import {
+  CHARACTERS_WITH_AN_ACTIVE_ITEM,
+  ensureAllCases,
+} from "isaacscript-common";
 import g from "../../globals";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
-
-const CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA = new Set<PlayerType>([
-  PlayerType.PLAYER_ISAAC, // 0
-  PlayerType.PLAYER_MAGDALENE, // 1
-  PlayerType.PLAYER_JUDAS, // 3
-  PlayerType.PLAYER_BLUEBABY, // 4
-  PlayerType.PLAYER_EVE, // 5
-  PlayerType.PLAYER_EDEN, // 9
-  PlayerType.PLAYER_THELOST, // 10
-  PlayerType.PLAYER_LILITH, // 13
-  PlayerType.PLAYER_KEEPER, // 14
-  PlayerType.PLAYER_APOLLYON, // 15
-  PlayerType.PLAYER_EDEN_B, // 30
-]);
 
 /**
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in
@@ -256,7 +245,7 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    (CHARACTERS_WITH_AN_ACTIVE_ITEM_VANILLA.has(character) ||
+    (CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) ||
       CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character)) &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.)
