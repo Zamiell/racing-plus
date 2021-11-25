@@ -26,6 +26,12 @@ export enum EffectVariantCustom {
 // EntityType.ENTITY_PICKUP (5)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export enum CollectibleTypeCustom {
+  // Utility items
+  COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),
+  COLLECTIBLE_CHECKPOINT = Isaac.GetItemIdByName("Checkpoint"),
+  COLLECTIBLE_RESET = Isaac.GetItemIdByName("Reset"),
+  COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
+
   // Custom items
   COLLECTIBLE_SAWBLADE = Isaac.GetItemIdByName("Sawblade"),
   COLLECTIBLE_13_LUCK = Isaac.GetItemIdByName("13 Luck"),
@@ -39,12 +45,6 @@ export enum CollectibleTypeCustom {
     "Magic 8 Ball (Seeded)",
   ), // 194
   COLLECTIBLE_FLIP_CUSTOM = Isaac.GetItemIdByName("Flip (Custom)"), // 711
-
-  // Utility items
-  COLLECTIBLE_TROPHY = Isaac.GetItemIdByName("Trophy"),
-  COLLECTIBLE_CHECKPOINT = Isaac.GetItemIdByName("Checkpoint"),
-  COLLECTIBLE_RESET = Isaac.GetItemIdByName("Reset"),
-  COLLECTIBLE_DEBUG = Isaac.GetItemIdByName("Debug"),
 
   // Starting item placeholders
   COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER = Isaac.GetItemIdByName(
