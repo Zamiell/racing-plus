@@ -1,7 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { PersistentEntity } from "../../../../types/PersistentEntity";
 
 const v = {
   run: {
@@ -26,9 +25,7 @@ const v = {
   },
 
   level: {
-    roomBuilt: false,
-    persistentEntities: [] as PersistentEntity[],
-    spawnedDecorationGridIndexes: [] as int[],
+    vanillaCollectiblesHaveSpawnedInCustomRoom: false,
   },
 };
 export default v;

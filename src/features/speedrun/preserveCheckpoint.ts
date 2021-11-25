@@ -1,4 +1,7 @@
-import { getCollectibles } from "isaacscript-common";
+import {
+  getCollectibles,
+  removeCollectiblePickupDelay,
+} from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/enums";
 
@@ -38,14 +41,19 @@ function respawnCheckpoint() {
   );
   for (const checkpoint of checkpoints) {
     // The Checkpoint custom item is about to be deleted, so spawn another one
-    g.g.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_COLLECTIBLE,
-      checkpoint.Position,
-      checkpoint.Velocity,
-      checkpoint.SpawnerEntity,
-      CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-      checkpoint.InitSeed,
-    );
+    const newCheckpoint = g.g
+      .Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_COLLECTIBLE,
+        checkpoint.Position,
+        checkpoint.Velocity,
+        checkpoint.SpawnerEntity,
+        CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+        checkpoint.InitSeed,
+      )
+      .ToPickup();
+    if (newCheckpoint !== undefined) {
+      removeCollectiblePickupDelay(newCheckpoint);
+    }
   }
 }

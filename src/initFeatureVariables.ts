@@ -7,7 +7,6 @@ import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
-import * as preventItemRotate from "./features/mandatory/preventItemRotate";
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
@@ -78,7 +77,6 @@ export function initFeatureVariables(): void {
   removeGloballyBannedItems.init();
   removeGlitchedItems.init();
   replacePhotos.init();
-  preventItemRotate.init();
   beastPreventEnd.init();
   tempMoreOptions.init();
   seededDrops.init();

@@ -8,10 +8,11 @@ import {
   onDarkRoom,
   onRepentanceStage,
   onSheol,
+  removeCollectiblePickupDelay,
+  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/enums";
-import { spawnCollectible } from "../../../../utilGlobals";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { RaceGoal } from "../../../race/types/RaceGoal";
@@ -298,11 +299,12 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
 
     case ReplacementAction.CHECKPOINT: {
       const seed = g.r.GetAwardSeed();
-      spawnCollectible(
+      const checkpoint = spawnCollectible(
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
         pickup.Position,
         seed,
       );
+      removeCollectiblePickupDelay(checkpoint);
       break;
     }
 

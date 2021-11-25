@@ -38,13 +38,17 @@ export function betterDevilAngelRoomsPreGetCollectible(
   // which should not affect pools
   // The placeholder item will be deleted later on this frame
   if (
-    !v.level.roomBuilt &&
+    !v.level.vanillaCollectiblesHaveSpawnedInCustomRoom &&
     (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL) &&
     !inAngelShop()
   ) {
     return CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER;
   }
 
+  return getDevilOrAngelItemInOrder(itemPoolType);
+}
+
+function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   const player = Isaac.GetPlayer();
 
   // We need to account for the NO! trinket;

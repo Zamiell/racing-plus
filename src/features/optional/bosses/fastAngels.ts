@@ -2,10 +2,10 @@ import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   findFreePosition,
+  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { spawnCollectible } from "../../../utilGlobals";
 
 // The game only spawns key pieces from angels after the death animation is over
 // This takes too long, so manually spawn the key pieces as soon as the angel dies

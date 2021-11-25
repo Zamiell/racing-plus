@@ -4,11 +4,11 @@ import {
   log,
   nextSeed,
   saveDataManager,
+  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../globals";
 import { PickupVariantCustom } from "../../types/enums";
 import { hasPolaroidOrNegative } from "../../util";
-import { spawnCollectible } from "../../utilGlobals";
 import { RaceGoal } from "../race/types/RaceGoal";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";

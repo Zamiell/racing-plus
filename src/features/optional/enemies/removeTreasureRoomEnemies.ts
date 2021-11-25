@@ -1,7 +1,6 @@
-import { getNPCs } from "isaacscript-common";
+import { getNPCs, setRoomCleared } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { setRoomCleared } from "../../../utilGlobals";
 
 const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new Set([
   EntityType.ENTITY_ETERNALFLY,

@@ -2,10 +2,10 @@ import {
   anyPlayerHasCollectible,
   findFreePosition,
   getRandomInt,
+  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { spawnCollectible } from "../../../utilGlobals";
 import { RacerStatus } from "../../race/types/RacerStatus";
 import { RaceStatus } from "../../race/types/RaceStatus";
 

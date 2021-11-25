@@ -10,9 +10,9 @@ exec echo "Error: requires python"
 import json
 import os
 import re
+import subprocess
 import sys
 import write_version_on_title_screen
-import xmltodict
 
 from get_version_from_package_json import get_version_from_package_json
 
@@ -64,26 +64,22 @@ def setDebugVariableToFalse():
 
 def convertXMLToJSON():
     for file_to_convert in XML_FILES_TO_CONVERT:
-        # Read the file into a string
-        file_name = file_to_convert + ".xml"
-        file_path = os.path.join(ROOMS_DIRECTORY, file_name)
-        with open(file_path, "r") as file:
-            file_contents = file.read()
+        xml_file_name = file_to_convert + ".xml"
+        xml_file_path = os.path.join(ROOMS_DIRECTORY, xml_file_name)
 
-        # Convert the XML string to a Python dictionary
-        dict = xmltodict.parse(file_contents)
+        json_file_name = file_to_convert + ".json"
+        json_file_path = os.path.join(JSON_OUTPUT_DIRECTORY, json_file_name)
 
-        # Convert the Python dictionary to a JSON string
-        # (we specify the separators to remove all extra whitespace)
-        jsonString = json.dumps(dict, separators=(",", ":"))
+        completed_process = subprocess.run(
+            ["npx", "convert-xml-to-json", xml_file_path, json_file_path],
+            check=True,
+            shell=True,
+        )
 
-        # Write the JSON to disk
-        output_file_name = file_to_convert + ".json"
-        output_file_path = os.path.join(JSON_OUTPUT_DIRECTORY, output_file_name)
-        with open(output_file_path, "w") as file:
-            file.write(jsonString)
+        if completed_process.returncode != 0:
+            error("The XML to JSON conversion failed.")
 
-        print("Created: {}".format(output_file_path))
+        print("Created: {}".format(json_file_path))
 
 
 def error(msg):
