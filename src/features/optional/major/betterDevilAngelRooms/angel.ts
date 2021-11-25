@@ -20,7 +20,7 @@ export function angel(): void {
     v.run.debugRoomNum = null;
 
     const debugJSONRoom = getJSONRoomOfVariant(jsonRooms, roomVariant);
-    if (debugJSONRoom === null) {
+    if (debugJSONRoom === undefined) {
       error(`Failed to find JSON room of variant: ${roomVariant}`);
     }
     jsonRoom = debugJSONRoom;

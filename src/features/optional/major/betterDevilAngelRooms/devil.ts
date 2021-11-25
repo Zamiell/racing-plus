@@ -44,7 +44,7 @@ export function devil(): void {
     v.run.debugRoomNum = null;
 
     const debugJSONRoom = getJSONRoomOfVariant(jsonRoomsOfSubType, roomVariant);
-    if (debugJSONRoom === null) {
+    if (debugJSONRoom === undefined) {
       error(`Failed to find JSON room of variant: ${roomVariant}`);
     }
     jsonRoom = debugJSONRoom;
