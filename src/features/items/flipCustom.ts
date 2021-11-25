@@ -18,7 +18,7 @@ const COLLECTIBLE_LAYER = 1;
 
 const v = {
   level: {
-    /** Indexed by collectible `InitSeed`. */
+    /** Indexed by collectible InitSeed. */
     flippedCollectibleTypes: new Map<int, CollectibleType>(),
     flippedSprites: new Map<int, Sprite>(),
   },
@@ -34,7 +34,7 @@ function featureEnabled() {
 
 // ModCallbacks.MC_USE_ITEM (3)
 // CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
-export function useItemFlipCustom(): boolean | void {
+export function useItemFlipCustom(player: EntityPlayer): boolean | void {
   if (!config.flipCustom) {
     return undefined;
   }
@@ -59,16 +59,30 @@ export function useItemFlipCustom(): boolean | void {
     );
   }
 
+  // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
+  if (isTaintedLazarus(player)) {
+    player.UseActiveItem(
+      CollectibleType.COLLECTIBLE_FLIP,
+      false,
+      false,
+      false,
+      false,
+      -1,
+    );
+  }
+
   // Display the "Use" animation
   return true;
 }
 
 // ModCallbacks.MC_POST_PLAYER_UPDATE (31)
 export function postPlayerUpdate(player: EntityPlayer) {
-  if (isTaintedLazarus(player)) {
+  if (!config.flipCustom) {
     return;
   }
 
+  // Automatically replace the vanilla flip with the custom one
+  // (this handles Tainted Lazarus correctly, since he is given Flip in the normal active item slot)
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_FLIP)) {
     player.RemoveCollectible(CollectibleType.COLLECTIBLE_FLIP);
     const charges = getCollectibleMaxCharges(
@@ -100,12 +114,7 @@ export function postPickupRenderCollectible(
     collectible.InitSeed,
   );
   if (flippedCollectibleType === undefined) {
-    const itemPoolType = getCollectibleItemPoolType(collectible);
-    flippedCollectibleType = g.itemPool.GetCollectible(
-      itemPoolType,
-      true,
-      collectible.InitSeed,
-    );
+    flippedCollectibleType = getNewFlippedCollectibleType(collectible);
     v.level.flippedCollectibleTypes.set(
       collectible.InitSeed,
       flippedCollectibleType,
@@ -128,6 +137,22 @@ export function postPickupRenderCollectible(
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);
   flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
+}
+
+function getNewFlippedCollectibleType(collectible: EntityPickup) {
+  const isFirstVisit = g.r.IsFirstVisit();
+  const roomFrameCount = g.r.GetFrameCount();
+
+  Isaac.DebugString(`GETTING HERE 1 - ${isFirstVisit} - ${roomFrameCount}`);
+  // The item duplication is only supposed to happen to items that were part of the room layout
+  if (!isFirstVisit || roomFrameCount > 0) {
+    Isaac.DebugString("GETTING HERE 2");
+    return CollectibleType.COLLECTIBLE_NULL;
+  }
+  Isaac.DebugString("GETTING HERE 3");
+
+  const itemPoolType = getCollectibleItemPoolType(collectible);
+  return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
 }
 
 function initFlippedSprite(collectibleType: CollectibleType) {

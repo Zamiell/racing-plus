@@ -6,6 +6,7 @@ import {
   inCrawlspace,
   log,
   removeGridEntity,
+  runNextFrame,
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -47,30 +48,6 @@ const ONE_BY_ONE_ROOM_ENTER_MAP = new Map<Direction, int>([
 ]);
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.CRAWLSPACE;
-
-// ModCallbacks.MC_POST_UPDATE (1)
-export function postUpdate(): void {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  if (
-    v.room.teleporter.frame !== null &&
-    gameFrameCount >= v.room.teleporter.frame
-  ) {
-    spawnTeleporter();
-    v.room.teleporter.frame = null;
-    v.room.teleporter.position = Vector.Zero;
-    v.room.teleporter.spawned = true;
-  }
-}
-
-function spawnTeleporter() {
-  Isaac.GridSpawn(
-    GridEntityType.GRID_TELEPORTER,
-    0,
-    v.room.teleporter.position,
-    true,
-  );
-}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -282,15 +259,21 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
-  const gameFrameCount = g.g.GetFrameCount();
-
   removeGridEntity(gridEntity);
 
   // If we remove a crawlspace and spawn a teleporter on the same tile on the same frame,
   // the teleporter will immediately despawn for some reason
   // Work around this by simply spawning it on the next game frame
-  v.room.teleporter.frame = gameFrameCount + 1;
-  v.room.teleporter.position = gridEntity.Position;
+  runNextFrame(() => {
+    Isaac.GridSpawn(
+      GridEntityType.GRID_TELEPORTER,
+      0,
+      gridEntity.Position,
+      true,
+    );
+
+    v.room.teleporterSpawned = true;
+  });
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
@@ -313,7 +296,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
 // GridEntityType.GRID_TELEPORTER (23)
 export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
-  if (!v.room.teleporter.spawned) {
+  if (!v.room.teleporterSpawned) {
     return;
   }
 

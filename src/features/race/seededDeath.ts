@@ -15,6 +15,7 @@ import {
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
   removeGridEntity,
+  runNextFrame,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -36,7 +37,6 @@ const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 export function postUpdate(): void {
   postUpdateGhostForm();
   postUpdateCheckTakingDevilItem();
-  postUpdateCheckLazarusFlip();
 }
 
 function postUpdateGhostForm() {
@@ -80,26 +80,6 @@ function postUpdateCheckTakingDevilItem() {
     v.run.seededDeath.devilRoomDeals = devilRoomDeals;
     v.run.seededDeath.frameOfLastDevilDeal = gameFrameCount;
   }
-}
-
-function postUpdateCheckLazarusFlip() {
-  const gameFrameCount = g.g.GetFrameCount();
-
-  if (
-    v.run.seededDeath.useFlipOnFrame === null ||
-    v.run.seededDeath.playerToUseFlip === null ||
-    gameFrameCount < v.run.seededDeath.useFlipOnFrame
-  ) {
-    return;
-  }
-
-  const player = getPlayerFromIndex(v.run.seededDeath.playerToUseFlip);
-  if (player !== undefined) {
-    player.UseActiveItem(CollectibleType.COLLECTIBLE_FLIP, UseFlag.USE_NOANIM);
-  }
-
-  v.run.seededDeath.useFlipOnFrame = null;
-  v.run.seededDeath.playerToUseFlip = null;
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -370,8 +350,6 @@ export function postFlip(player: EntityPlayer): void {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
-
   // If Tainted Lazarus clears a room while in ghost form, he will switch to other Lazarus
   // Prevent this from happening by switching back
   // If we do the switch now, Tainted Lazarus will enter a bugged state where he has a very fast
@@ -380,11 +358,16 @@ export function postFlip(player: EntityPlayer): void {
   if (v.run.seededDeath.switchingBackToGhostLazarus) {
     v.run.seededDeath.switchingBackToGhostLazarus = false;
 
-    // Flipping back from the other Lazarus will remove the fade, so we have to reapply it
+    // Flipping back from the other Lazarus will remove the seeded death fade,
+    // so we have to reapply it
     applySeededGhostFade(player, true);
   } else {
-    v.run.seededDeath.switchingBackToGhostLazarus = true;
-    v.run.seededDeath.useFlipOnFrame = gameFrameCount + 1;
-    v.run.seededDeath.playerToUseFlip = getPlayerIndex(player);
+    runNextFrame(() => {
+      v.run.seededDeath.switchingBackToGhostLazarus = true;
+      player.UseActiveItem(
+        CollectibleType.COLLECTIBLE_FLIP,
+        UseFlag.USE_NOANIM,
+      );
+    });
   }
 }

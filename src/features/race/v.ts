@@ -36,8 +36,6 @@ const v = {
       removedDarkEsau: false,
 
       switchingBackToGhostLazarus: false,
-      useFlipOnFrame: null as int | null,
-      playerToUseFlip: null as PlayerIndex | null,
     },
 
     spawnedCorpseTrapdoor: false,

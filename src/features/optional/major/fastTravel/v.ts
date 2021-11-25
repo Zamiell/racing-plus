@@ -89,12 +89,8 @@ const v = {
 
     movedAwayFromSecretShopLadder: false,
 
-    /** Used to replace a crawlspace with a teleporter under certain conditions. */
-    teleporter: {
-      frame: null as int | null,
-      position: Vector.Zero,
-      spawned: false,
-    },
+    /** Used when replacing a crawlspace with a teleporter. */
+    teleporterSpawned: false,
 
     /** Indexed by grid index. */
     trapdoors: new Map<int, FastTravelEntityDescription>(),

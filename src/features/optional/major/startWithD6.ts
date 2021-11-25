@@ -14,6 +14,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { CollectibleTypeCustom } from "../../../types/enums";
 
 // A major feature of Racing+ is to give every character the D6,
 // since it heavily reduces run disparity
@@ -114,7 +115,10 @@ function getFlipActiveSlot(player: EntityPlayer) {
     ActiveSlot.SLOT_SECONDARY,
   ]) {
     const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_FLIP) {
+    if (
+      activeItem === CollectibleType.COLLECTIBLE_FLIP ||
+      activeItem === CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
+    ) {
       return activeSlot;
     }
   }

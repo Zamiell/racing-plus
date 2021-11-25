@@ -1,9 +1,7 @@
 ```
 ### *v0.72.0 - November ?th, 2021
 
-- On characters other than Tainted Lazarus, Flip has been reimplemented:
-  - The item behind is now rendered at an offset that is easier to see.
-  - Flip will now work on every collectible item.
+- Flip has been reimplemented. The item behind is now rendered at an offset that is easier to see.
 ```
 
 TODO Racing+ new features:

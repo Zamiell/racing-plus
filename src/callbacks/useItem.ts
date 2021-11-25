@@ -89,8 +89,12 @@ function spindownDice() {
 }
 
 // CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
-function useItemFlipCustom() {
-  return flipCustom.useItemFlipCustom();
+function useItemFlipCustom(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  player: EntityPlayer,
+) {
+  return flipCustom.useItemFlipCustom(player);
 }
 
 // CollectibleTypeCustom.COLLECTIBLE_DEBUG
