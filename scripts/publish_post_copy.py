@@ -41,8 +41,8 @@ def main():
     # Make SHA1 hashes of every file so that the client can validate the mod's integrity
     printf("Getting SHA1 hashes of every file...")
     sha1_hashes = get_sha1_hashes()
-    printf('Writing the hashes to "SHA1_FILE_PATH"...')
-    write_hashes_to_json_file(sha1_hashes)
+    printf('Writing the hashes to "{}"...'.format(SHA1_FILE_PATH))
+    write_hashes_to_file(sha1_hashes, SHA1_FILE_PATH)
 
     printf("Complete!")
 
@@ -63,9 +63,9 @@ def get_sha1_hashes():
     return hashes
 
 
-def write_hashes_to_json_file(sha1_hashes):
+def write_hashes_to_file(sha1_hashes, file_path):
     # By default, the file will be created with "\r\n" end-of-line separators
-    with open(SHA1_FILE_PATH, "w", newline="\n") as file_pointer:
+    with open(file_path, "w", newline="\n") as file_pointer:
         # By default, the JSON will be all combined into a single line, so we specify the indent to make it pretty
         # By default, the JSON will be dumped in a random order, so we use "sort_keys" to make it alphabetical
         json.dump(sha1_hashes, file_pointer, indent=4, sort_keys=True)

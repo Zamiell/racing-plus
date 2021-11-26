@@ -79,8 +79,6 @@ def convertXMLToJSON():
         if completed_process.returncode != 0:
             error("The XML to JSON conversion failed.")
 
-        print("Created: {}".format(json_file_path))
-
 
 def error(msg):
     printf("Error: {}".format(msg))
