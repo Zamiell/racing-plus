@@ -143,13 +143,10 @@ function getNewFlippedCollectibleType(collectible: EntityPickup) {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomFrameCount = g.r.GetFrameCount();
 
-  Isaac.DebugString(`GETTING HERE 1 - ${isFirstVisit} - ${roomFrameCount}`);
-  // The item duplication is only supposed to happen to items that were part of the room layout
+  // The Flip effect is only supposed to happen to items that are part of the room layout
   if (!isFirstVisit || roomFrameCount > 0) {
-    Isaac.DebugString("GETTING HERE 2");
     return CollectibleType.COLLECTIBLE_NULL;
   }
-  Isaac.DebugString("GETTING HERE 3");
 
   const itemPoolType = getCollectibleItemPoolType(collectible);
   return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
