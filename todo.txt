@@ -1,7 +1,7 @@
 ```
-### *v0.72.7 - November 27th, 2021
+### *v0.72.8 - November ?th, 2021
 
-- Fixed the bug where players would start in incorrect positions when entering a Devil Room or an Angel Room. (Thanks Hispa)
+-
 ```
 
 TODO Racing+ new features:
