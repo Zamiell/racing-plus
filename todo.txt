@@ -1,9 +1,8 @@
 ```
-### *v0.72.2 - November 26th, 2021
+### *v0.72.5 - November 27th, 2021
 
-- Fixed the bug where seeded death would not work properly with Tainted Forgotten. (Thanks Moucheron Quipet)
-- Fixed the bug where seeded death would not work properly with Tainted Jacob's ghost form. (Thanks Moucheron Quipet)
-- Fixed the bug where seeded death would cause two Dark Esau's to spawn when playing as Tainted Jacob under certain conditions.  (Thanks Moucheron Quipet)
+- Fixed the bug where Krampus drops would cost money on Tainted Keeper. (Thanks 3kch1)
+- Fixed the bug where Krampus would not register as a battle NPC. (Thanks 3kch1)
 ```
 
 TODO Racing+ new features:

@@ -79,8 +79,8 @@ function spawnKeyPiece(entity: Entity) {
   // Spawn the item
   // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
   const position = findFreePosition(entity.Position);
-  const subType = getKeySubType(entity);
-  spawnCollectible(subType, position, entity.InitSeed, false, true);
+  const collectibleType = getKeySubType(entity);
+  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
 }
 
 function getKeySubType(entity: Entity) {

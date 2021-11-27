@@ -8,6 +8,7 @@ import {
   getRandomJSONRoom,
   JSONRoom,
   nextSeed,
+  setRoomUncleared,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import * as devilRooms from "./devilRooms.json";
@@ -85,6 +86,8 @@ function checkSpawnKrampus() {
     0,
     v.run.seeds.krampus,
   );
+
+  setRoomUncleared();
 
   return true;
 }

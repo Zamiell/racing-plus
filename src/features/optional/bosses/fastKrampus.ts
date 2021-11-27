@@ -43,7 +43,8 @@ export function postEntityKillFallen(entity: Entity): void {
 function spawnKrampusDrop(entity: Entity) {
   // Spawn the item
   const position = findFreePosition(entity.Position);
-  spawnCollectible(getKrampusItemSubType(), position, entity.InitSeed);
+  const collectibleType = getKrampusItemSubType();
+  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
 }
 
 function getKrampusItemSubType() {

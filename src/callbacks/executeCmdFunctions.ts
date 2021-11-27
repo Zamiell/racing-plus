@@ -1,5 +1,6 @@
 import {
   getCollectibleName,
+  getNPCs,
   getPlayers,
   getRoomIndex,
   gridToPos,
@@ -318,6 +319,13 @@ executeCmdFunctions.set("list", (_params: string) => {
 
 executeCmdFunctions.set("listall", (_params: string) => {
   listEntities(true);
+});
+
+executeCmdFunctions.set("lowhp", (_params: string) => {
+  for (const npc of getNPCs()) {
+    npc.HitPoints = 1;
+  }
+  printConsole("Set every NPC to 1 HP.");
 });
 
 executeCmdFunctions.set("luck", (_params: string) => {
