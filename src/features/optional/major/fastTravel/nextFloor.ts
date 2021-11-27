@@ -1,4 +1,7 @@
-import { onRepentanceStage } from "isaacscript-common";
+import {
+  onRepentanceStage,
+  removeAllMatchingEntities,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../util";
 import * as seededFloors from "../../../mandatory/seededFloors";
@@ -13,6 +16,12 @@ export function goto(upwards: boolean): void {
   const stageType = g.l.GetStageType();
   const nextStage = getNextStage();
   const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
+
+  // If Tainted Jacob loses Anime Sola for any reason,
+  // it can cause multiple Dark Esau's to spawn upon reaching a new floor
+  // Since Dark Esau is never supposed to persist between floors,
+  // we can safely remove all Dark Esau entities at this point
+  removeAllMatchingEntities(EntityType.ENTITY_DARK_ESAU);
 
   // If we do a "stage" command to go to the same floor that we are already on,
   // it will use the same floor layout as the previous floor

@@ -244,6 +244,10 @@ function registerCallbacksCustom(mod: ModUpgraded) {
     ModCallbacksCustom.MC_POST_CURSED_TELEPORT,
     postCursedTeleport.main,
   );
+
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_PLAYER_FATAL_DAMAGE, () => {
+    Isaac.DebugString("GETTING HERE FATAL");
+  });
 }
 
 function registerCallbacksCustomWithExtraArgument(mod: ModUpgraded) {

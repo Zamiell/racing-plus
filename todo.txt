@@ -1,7 +1,9 @@
 ```
-### *v0.72.0 - November ?th, 2021
+### *v0.72.2 - November 26th, 2021
 
-- Flip has been reimplemented. The item behind is now rendered at an offset that is easier to see.
+- Fixed the bug where seeded death would not work properly with Tainted Forgotten. (Thanks Moucheron Quipet)
+- Fixed the bug where seeded death would not work properly with Tainted Jacob's ghost form. (Thanks Moucheron Quipet)
+- Fixed the bug where seeded death would cause two Dark Esau's to spawn when playing as Tainted Jacob under certain conditions.  (Thanks Moucheron Quipet)
 ```
 
 TODO Racing+ new features:

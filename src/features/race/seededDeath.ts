@@ -12,6 +12,7 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isJacobOrEsau,
   isKeeper,
+  log,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
   removeGridEntity,
@@ -30,6 +31,7 @@ import { RevivalType } from "./types/RevivalType";
 import { SeededDeathState } from "./types/SeededDeathState";
 import v from "./v";
 
+const DEBUG = true;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 
@@ -60,6 +62,13 @@ function postUpdateGhostForm() {
 
   v.run.seededDeath.state = SeededDeathState.DISABLED;
   v.run.seededDeath.debuffEndFrame = null;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
+  }
 
   debuffOff(player);
   player.AnimateHappy();
@@ -101,6 +110,14 @@ function postRenderFetalPosition() {
   }
 
   v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
+  }
+
   enableAllInputs();
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
@@ -149,6 +166,13 @@ function postNewRoomWaitingForNewRoom() {
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
+  }
 
   disableAllInputs();
   applySeededGhostFade(player, true);
@@ -219,6 +243,13 @@ export function postPlayerRender(player: EntityPlayer): void {
   }
 
   v.run.seededDeath.state = SeededDeathState.WAITING_FOR_NEW_ROOM;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
+  }
 }
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
@@ -305,6 +336,13 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   v.run.seededDeath.state =
     SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH;
   v.run.seededDeath.dyingPlayerIndex = playerIndex;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
+  }
 
   return RevivalType.SEEDED_DEATH;
 }
