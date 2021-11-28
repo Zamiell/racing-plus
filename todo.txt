@@ -1,7 +1,8 @@
 ```
-### *v0.72.8 - November ?th, 2021
+### *v0.72.8 - November 28th, 2021
 
--
+- In seeded races, doors to Repentance floors will no longer spawn (unless the goal is Mother).
+- Fixed the bug where Donation Machines would appear if you finished or quit a seeded race. (Thanks Hispa)
 ```
 
 TODO Racing+ new features:

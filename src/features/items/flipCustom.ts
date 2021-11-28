@@ -5,6 +5,7 @@ import {
   getCollectibleMaxCharges,
   getCollectibles,
   isTaintedLazarus,
+  removeCollectibleFromItemTracker,
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
@@ -12,6 +13,8 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../types/enums";
 
+const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
+const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 const COLLECTIBLE_LAYER = 1;
@@ -83,16 +86,11 @@ export function postPlayerUpdate(player: EntityPlayer) {
 
   // Automatically replace the vanilla flip with the custom one
   // (this handles Tainted Lazarus correctly, since he is given Flip in the normal active item slot)
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_FLIP)) {
-    player.RemoveCollectible(CollectibleType.COLLECTIBLE_FLIP);
-    const charges = getCollectibleMaxCharges(
-      CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM,
-    );
-    player.AddCollectible(
-      CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM,
-      charges,
-      false,
-    );
+  if (player.HasCollectible(OLD_ITEM)) {
+    player.RemoveCollectible(OLD_ITEM);
+    removeCollectibleFromItemTracker(OLD_ITEM);
+    const charges = getCollectibleMaxCharges(NEW_ITEM);
+    player.AddCollectible(NEW_ITEM, charges, false);
   }
 }
 

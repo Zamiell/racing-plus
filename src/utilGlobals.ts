@@ -4,6 +4,7 @@ import {
   getRoomIndex,
   inCrawlspace,
 } from "isaacscript-common";
+import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { isFastTravelHappening } from "./features/optional/major/fastTravel/v";
 import g from "./globals";
@@ -61,5 +62,9 @@ export function unseed(): void {
   // It will also cause the "GetStartSeed()" method to return 0, which can cause crashes
   // So we must immediately re-initialize the game start seed by using the "Restart()" method
   g.seeds.Reset();
-  g.seeds.Restart(0);
+  g.seeds.Restart(Challenge.CHALLENGE_NULL);
+
+  // Resetting the "Seeds" class will also remove any Easter Eggs that have been enabled,
+  // so we must manually reactivate them
+  racingPlusSprite.postGameStarted();
 }

@@ -54,6 +54,19 @@ function raceValueChanged(
   newValue: RaceDataType,
 ) {
   log(`Race value "${property}" changed: ${oldValue} --> ${newValue}`);
+
+  if (type(oldValue) === "table") {
+    for (const [i, value] of ipairs(oldValue as Record<number, unknown>)) {
+      log(`Old array: ${i}) - ${value}`);
+    }
+  }
+
+  if (type(newValue) === "table") {
+    for (const [i, value] of ipairs(newValue as Record<number, unknown>)) {
+      log(`New array: ${i}) - ${value}`);
+    }
+  }
+
   const changedFunction = functionMap.get(property);
   if (changedFunction !== undefined) {
     changedFunction(oldValue, newValue);
