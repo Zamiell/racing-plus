@@ -1,7 +1,13 @@
-import { MAX_VANILLA_COLLECTIBLE_TYPE } from "isaacscript-common";
+import {
+  getCollectibleGfxFilename,
+  getEnumValues,
+  MAX_VANILLA_COLLECTIBLE_TYPE,
+} from "isaacscript-common";
 import { CollectibleTypeCustom } from "./types/enums";
 
 const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
+const COLLECTIBLE_TYPE_CUSTOM_ARRAY = getEnumValues(CollectibleTypeCustom);
+const COLLECTIBLE_TYPE_CUSTOM_SET = new Set(COLLECTIBLE_TYPE_CUSTOM_ARRAY);
 
 export function initGlowingItemSprite(
   collectibleOrTrinketType: int,
@@ -11,11 +17,34 @@ export function initGlowingItemSprite(
     collectibleOrTrinketType += GLOWING_IMAGE_TRINKET_OFFSET;
   }
 
-  const fileNum = getFileNum(collectibleOrTrinketType);
-  return initSprite(
-    "gfx/glowing_item.anm2",
-    `gfx/items-glowing/collectibles_${fileNum}.png`,
-  );
+  const directory = getDirectory(collectibleOrTrinketType);
+  const filename = getFilename(collectibleOrTrinketType);
+  return initSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
+}
+
+function getDirectory(itemID: int) {
+  return isCustomCollectible(itemID) ? "items-glowing" : "items-glowing-custom";
+}
+
+function getFilename(itemID: int) {
+  if (isCustomCollectible(itemID)) {
+    const gfxFilename = getCollectibleGfxFilename(itemID);
+    const pathSegments = gfxFilename.split("/");
+    if (pathSegments.length === 0) {
+      return "questionmark.png";
+    }
+    const finalSegment = pathSegments[pathSegments.length - 1];
+    return finalSegment;
+  }
+
+  const fileNum = getFileNum(itemID);
+  return `collectibles_${fileNum}.png`;
+}
+
+function isCustomCollectible(
+  collectibleType: CollectibleType | CollectibleTypeCustom,
+) {
+  return COLLECTIBLE_TYPE_CUSTOM_SET.has(collectibleType);
 }
 
 function getFileNum(itemID: int) {
@@ -28,11 +57,8 @@ function getFileNum(itemID: int) {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items)
   if (
-    (itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
-      itemID <= MAX_VANILLA_COLLECTIBLE_TYPE) ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_SAWBLADE ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_13_LUCK ||
-    itemID === CollectibleTypeCustom.COLLECTIBLE_15_LUCK
+    itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
+    itemID <= MAX_VANILLA_COLLECTIBLE_TYPE
   ) {
     return itemID.toString().padStart(3, "0");
   }

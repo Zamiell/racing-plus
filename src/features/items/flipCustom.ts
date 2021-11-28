@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   copyColor,
+  getCollectibleGfxFilename,
   getCollectibleItemPoolType,
   getCollectibleMaxCharges,
   getCollectibles,
@@ -159,13 +160,8 @@ function initFlippedSprite(collectibleType: CollectibleType) {
   faded.A = FADE_AMOUNT;
   sprite.Color = faded;
 
-  const itemConfigItem = g.itemConfig.GetCollectible(collectibleType);
-  if (itemConfigItem === undefined) {
-    error(
-      `Failed to get the item config for collectible type: ${collectibleType}`,
-    );
-  }
-  sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, itemConfigItem.GfxFileName);
+  const gfxFilename = getCollectibleGfxFilename(collectibleType);
+  sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
   sprite.LoadGraphics();
 
   return sprite;
