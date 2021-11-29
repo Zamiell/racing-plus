@@ -1,6 +1,6 @@
 import { getPickups } from "isaacscript-common";
 
-const FADED = Color(1, 1, 1, 0.3, 0, 0, 0);
+const MOSTLY_FADED_COLOR = Color(1, 1, 1, 0.3, 0, 0, 0);
 const X_DISTANCE = 35;
 const Y_DISTANCE_ABOVE = 78;
 
@@ -22,6 +22,6 @@ export function postEffectUpdateDevil(effect: EntityEffect): void {
   }
 
   if (pickupIsClose) {
-    effect.SetColor(FADED, 1000, 0, true, true);
+    effect.SetColor(MOSTLY_FADED_COLOR, 1000, 0, true, true);
   }
 }

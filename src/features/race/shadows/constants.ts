@@ -40,4 +40,4 @@ export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20"; // This matches the Sha
 export const CHARACTER_LAYER_ID = 0;
 export const DEFAULT_CHARACTER_PNG =
   "characters/costumes/character_001_isaac.png";
-export const FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);
+export const SHADOW_FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);

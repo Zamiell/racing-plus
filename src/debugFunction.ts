@@ -1,4 +1,4 @@
-import { isKeyboardPressed, printConsole } from "isaacscript-common";
+import { getDoors, isKeyboardPressed, printConsole } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
@@ -10,6 +10,10 @@ let debugHotkey2Pressed = false;
 
 export function debugFunction(): void {
   g.debug = true;
+
+  for (const door of getDoors()) {
+    Isaac.DebugString(`DOOR TYPE: ${door.GetType()}`);
+  }
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)

@@ -19,7 +19,7 @@ import {
 } from "../../types/enums";
 import v from "./v";
 
-const FADE = Color(1, 1, 1, 0.25, 0, 0, 0);
+const QUARTER_FADED_COLOR = Color(1, 1, 1, 0.25);
 
 const TRANSFORMATION_TO_HELPER_MAP = new Map<PlayerForm, CollectibleTypeCustom>(
   [
@@ -394,7 +394,7 @@ export function applySeededGhostFade(
   const character = player.GetPlayerType();
 
   const sprite = player.GetSprite();
-  const newColor = enabled ? FADE : getDefaultColor();
+  const newColor = enabled ? QUARTER_FADED_COLOR : getDefaultColor();
   sprite.Color = newColor;
 
   if (character === PlayerType.PLAYER_THESOUL) {

@@ -12,6 +12,8 @@ import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v from "./v";
 
+const HALF_FADED_COLOR = Color(1, 1, 1, 0.5, 0, 0, 0);
+
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   drawButtonSprites();
@@ -84,7 +86,7 @@ function createCharacterButtons() {
     // The 5th frame is rather interesting
     characterSprite.SetFrame("Death", 5);
     // Fade the character so it looks like a ghost
-    characterSprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0);
+    characterSprite.Color = HALF_FADED_COLOR;
 
     v.room.sprites.characters.push(characterSprite);
   }

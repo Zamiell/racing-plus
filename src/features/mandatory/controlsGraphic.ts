@@ -10,6 +10,8 @@ import { RaceFormat } from "../race/types/RaceFormat";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";
 
+const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
+
 export function postNewRoom(): void {
   drawControlsGraphic();
 }
@@ -47,7 +49,7 @@ function drawControlsGraphic() {
 
   // On vanilla, the sprite is a slightly different color on the Burning Basement
   if (stageType === StageType.STAGETYPE_AFTERBIRTH) {
-    controlsSprite.Color = Color(0.5, 0.5, 0.5, 1, 0, 0, 0);
+    controlsSprite.Color = BURNING_BASEMENT_COLOR;
   }
 }
 

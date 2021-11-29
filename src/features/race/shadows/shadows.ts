@@ -22,8 +22,8 @@ import {
   BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
   DEFAULT_CHARACTER_PNG,
-  FADED_COLOR,
   SHADOW_DATA_FORMAT,
+  SHADOW_FADED_COLOR,
   SHADOW_FIELDS,
   SHADOW_INTERVAL,
 } from "./constants";
@@ -268,7 +268,7 @@ function getShadowSprite(shadowData: ShadowData) {
   if (sprite === undefined) {
     sprite = Sprite();
     sprite.Load("gfx/001.000_Player.anm2", true);
-    sprite.Color = FADED_COLOR;
+    sprite.Color = SHADOW_FADED_COLOR;
     spriteMap.set(shadowData.userID, sprite);
   }
 

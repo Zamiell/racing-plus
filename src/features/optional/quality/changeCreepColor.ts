@@ -1,3 +1,4 @@
+import { copyColor } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_EVALUATE_CACHE (8)
@@ -34,18 +35,9 @@ export function postEffectInitCreepRed(effect: EntityEffect): void {
   }
 
   const sprite = effect.GetSprite();
-  const oldColor = sprite.Color;
 
   // We can't call "SetColorize()" on the existing color object, so create a new one
-  const newColor = Color(
-    oldColor.R,
-    oldColor.G,
-    oldColor.B,
-    oldColor.A,
-    oldColor.RO,
-    oldColor.GO,
-    oldColor.BO,
-  );
+  const newColor = copyColor(sprite.Color);
 
   // Set the color to green
   // These values were determined through trial and error to make creep that looks roughly similar
@@ -70,18 +62,9 @@ export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
   }
 
   const sprite = effect.GetSprite();
-  const oldColor = sprite.Color;
 
   // We can't call "SetColorize()" on the existing color object, so create a new one
-  const newColor = Color(
-    oldColor.R,
-    oldColor.G,
-    oldColor.B,
-    oldColor.A,
-    oldColor.RO,
-    oldColor.GO,
-    oldColor.BO,
-  );
+  const newColor = copyColor(sprite.Color);
 
   // Set the color to blue
   // These values were determined through trial and error

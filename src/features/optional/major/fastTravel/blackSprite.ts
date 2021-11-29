@@ -15,10 +15,10 @@ export function draw(): void {
   // Conditionally adjust the opacity
   if (v.run.state === FastTravelState.FADING_TO_BLACK) {
     const opacity = v.run.framesPassed / FADE_TO_BLACK_FRAMES;
-    sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
+    sprite.Color = Color(1, 1, 1, opacity);
   } else if (v.run.state === FastTravelState.FADING_IN) {
     const opacity = 1 - v.run.framesPassed / FADE_TO_BLACK_FRAMES;
-    sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
+    sprite.Color = Color(1, 1, 1, opacity);
   }
 
   sprite.RenderLayer(0, Vector.Zero);
@@ -26,10 +26,10 @@ export function draw(): void {
 
 export function setFullyOpaque(): void {
   const opacity = 1;
-  sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
+  sprite.Color = Color(1, 1, 1, opacity);
 }
 
 export function setFullyTransparent(): void {
   const opacity = 0;
-  sprite.Color = Color(1, 1, 1, opacity, 0, 0, 0);
+  sprite.Color = Color(1, 1, 1, opacity);
 }

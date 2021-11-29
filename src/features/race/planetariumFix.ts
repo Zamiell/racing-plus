@@ -8,6 +8,7 @@ import {
   anyPlayerIs,
   changeRoom,
   getCollectibles,
+  getDoors,
   getEffectiveStage,
   getEffects,
   getPlayers,
@@ -120,6 +121,12 @@ function warp() {
   }
 
   restoreMinimapDisplayFlags(displayFlagsMap);
+
+  // If the Treasure room was attached to the starting room, the door will now be open
+  // Manually close it
+  for (const door of getDoors()) {
+    // if (door.GetType() === )
+  }
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary
