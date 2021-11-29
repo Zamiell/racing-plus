@@ -151,6 +151,11 @@ function seeded(player: EntityPlayer) {
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES);
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE);
 
+  // Remove Birthright on Tainted Cain, since it changes floor generation
+  if (character === PlayerType.PLAYER_CAIN_B) {
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
+
   // Remove Cain's Eye, since it is useless
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 }

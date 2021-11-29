@@ -6,11 +6,11 @@
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" tags="quest" />
 
 	<!-- Custom items -->
-	<!-- Server ID: 1001 -->
+	<!-- Server Collectible ID: 1001 -->
 	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" />
-	<!-- Server ID: 1002 -->
+	<!-- Server Collectible ID: 1002 -->
 	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
-	<!-- Server ID: 1003 -->
+	<!-- Server Collectible ID: 1003 -->
 	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" tags="summonable monstermanual offensive" />
 	<!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 

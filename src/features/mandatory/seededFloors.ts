@@ -1,9 +1,7 @@
 import {
-  CHARACTERS_WITH_NO_RED_HEARTS,
-  getFamiliars,
+  characterCanHaveRedHearts,
   getPlayerHealth,
   getRandom,
-  isKeeper,
   nextSeed,
   onSetSeed,
   PlayerHealth,
@@ -86,7 +84,7 @@ export function before(stage: int): void {
   // Eternal Hearts will be lost since we are about to change floors,
   // so convert it to other types of health
   // "eternalHearts" will be equal to 1 if we have an Eternal Heart
-  if (CHARACTERS_WITH_NO_RED_HEARTS.has(character)) {
+  if (characterCanHaveRedHearts(character)) {
     v.run.playerHealth.soulHearts += v.run.playerHealth.eternalHearts * 2;
   } else {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
@@ -133,32 +131,32 @@ export function before(stage: int): void {
   removeAllPlayerHealth(player);
 
   // Modification 5: Full health
-  player.AddMaxHearts(2, false);
-  player.AddHearts(1);
-  seed = nextSeed(seed);
-  const fullHealthMod = getRandom(seed);
-  if (fullHealthMod < 0.66) {
-    // 66% chance to be full health
+  // (which always applies to characters who cannot have red heart containers)
+  if (characterCanHaveRedHearts(character)) {
+    player.AddMaxHearts(2, false);
     player.AddHearts(1);
+    seed = nextSeed(seed);
+    const fullHealthMod = getRandom(seed);
+    if (fullHealthMod < 0.66) {
+      // 66% chance to be full health
+      player.AddHearts(1);
+    }
+  } else {
+    // Give them one soul heart so that they do not die upon changing floors
+    player.AddSoulHearts(2);
   }
 
   // Modification 6: Critical health
+  // (which is defined as being at 1 heart or less)
   seed = nextSeed(seed);
   const criticalHealthMod = getRandom(seed);
   if (criticalHealthMod < 0.75) {
     // 75% chance to not be at critical health
-    player.AddSoulHearts(2);
-
-    // Keeper will get 3 Blue Flies from this, so manually remove them
-    if (isKeeper(player)) {
-      const blueFlies = getFamiliars(FamiliarVariant.BLUE_FLY);
-      for (let i = 0; i < blueFlies.length; i++) {
-        if (i >= 3) {
-          break;
-        }
-        const blueFly = blueFlies[i];
-        blueFly.Remove();
-      }
+    if (characterCanHaveRedHearts(character)) {
+      player.AddMaxHearts(2, false);
+      player.AddHearts(2);
+    } else {
+      player.AddSoulHearts(2);
     }
   }
 
