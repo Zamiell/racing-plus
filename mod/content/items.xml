@@ -12,7 +12,7 @@
 	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
 	<!-- Server ID: 1003 -->
 	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" tags="summonable monstermanual offensive" />
-	<!-- (see "SERVER_ITEM_ID_TO_COLLECTIBLE_TYPE_CUSTOM_MAP") -->
+	<!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 
 	<!-- Vanilla replacements -->
 	<!-- 191 -->
