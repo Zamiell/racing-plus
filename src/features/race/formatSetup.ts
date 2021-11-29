@@ -3,6 +3,7 @@ import {
   ensureAllCases,
 } from "isaacscript-common";
 import g from "../../globals";
+import { serverCollectibleIDToCollectibleType } from "../../util";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import { RaceFormat } from "./types/RaceFormat";
@@ -94,8 +95,10 @@ function unseeded(player: EntityPlayer) {
 function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable
-  for (const collectibleID of g.race.startingItems) {
-    giveCollectibleAndRemoveFromPools(player, collectibleID);
+  for (const serverCollectibleID of g.race.startingItems) {
+    const collectibleType =
+      serverCollectibleIDToCollectibleType(serverCollectibleID);
+    giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 }
 
@@ -112,8 +115,10 @@ function seeded(player: EntityPlayer) {
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item)
-  for (const collectibleID of g.race.startingItems) {
-    giveCollectibleAndRemoveFromPools(player, collectibleID);
+  for (const serverCollectibleID of g.race.startingItems) {
+    const collectibleType =
+      serverCollectibleIDToCollectibleType(serverCollectibleID);
+    giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
@@ -180,16 +185,19 @@ function diversity(player: EntityPlayer) {
   }
 
   // Give the player their five random diversity starting items
-  const startingItems = g.race.startingItems;
-  for (let i = 0; i < startingItems.length; i++) {
-    const itemOrTrinketID = startingItems[i];
+  for (let i = 0; i < g.race.startingItems.length; i++) {
+    const itemOrTrinketID = g.race.startingItems[i];
 
     if (i === 0) {
       // The first item is the active
-      giveCollectibleAndRemoveFromPools(player, itemOrTrinketID);
+      const collectibleType =
+        serverCollectibleIDToCollectibleType(itemOrTrinketID);
+      giveCollectibleAndRemoveFromPools(player, collectibleType);
     } else if (i === 1 || i === 2 || i === 3) {
       // The second, third, and fourth items are the passives
-      giveCollectibleAndRemoveFromPools(player, itemOrTrinketID);
+      const collectibleType =
+        serverCollectibleIDToCollectibleType(itemOrTrinketID);
+      giveCollectibleAndRemoveFromPools(player, collectibleType);
     } else if (i === 4) {
       // The fifth item is the trinket
       if (trinket1 !== 0) {
@@ -205,7 +213,7 @@ function diversity(player: EntityPlayer) {
         false,
       );
 
-      // Regive Paper Clip to Cain, for example
+      // Re-give Paper Clip to Cain, for example
       if (trinket1 !== 0) {
         player.AddTrinket(trinket1);
       }

@@ -3,6 +3,7 @@
 
 - In seeded races, doors to Repentance floors will no longer spawn (unless the goal is Mother).
 - Fixed the bug where Donation Machines would appear if you finished or quit a seeded race. (Thanks Hispa)
+- Fixed the bug where 13 Luck, 15 Luck, and Sawblade were not awarded correctly. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

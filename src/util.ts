@@ -6,6 +6,7 @@ import {
   getRoomSubType,
   log,
 } from "isaacscript-common";
+import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -98,4 +99,21 @@ export function restartChallenge(challenge: Challenge): void {
 export function restartSeed(seed: string): void {
   // This command will change the seed of the run and restart the game
   consoleCommand(`seed ${seed}`);
+}
+
+export function serverCollectibleIDToCollectibleType(serverCollectibleID: int) {
+  if (serverCollectibleID > 1000) {
+    const collectibleType =
+      SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP.get(serverCollectibleID);
+    if (collectibleType === undefined) {
+      log(
+        `Error: Failed to find a corresponding collectible type for the server collectible ID of: ${serverCollectibleID}`,
+      );
+      return CollectibleType.COLLECTIBLE_SAD_ONION;
+    }
+
+    return collectibleType;
+  }
+
+  return serverCollectibleID;
 }

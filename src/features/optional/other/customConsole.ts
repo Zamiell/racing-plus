@@ -10,7 +10,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { KEYBOARD_MAP } from "../../../keyboardMap";
+import { KEYBOARD_MAP } from "../../../maps/keyboardMap";
 import { config, hotkeys } from "../../../modConfigMenu";
 import { Colors } from "../../../types/Colors";
 import { TextSegment } from "../../../types/TextSegment";

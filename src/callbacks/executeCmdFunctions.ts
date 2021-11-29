@@ -8,8 +8,6 @@ import {
   printConsole,
   saveDataManagerSave,
 } from "isaacscript-common";
-import { CARD_MAP } from "../cardMap";
-import { CHARACTER_MAP } from "../characterMap";
 import { VERSION } from "../constants";
 import { debugFunction } from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
@@ -22,7 +20,9 @@ import { ChallengeCustom } from "../features/speedrun/enums";
 import { speedrunSetNext } from "../features/speedrun/exported";
 import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
-import { PILL_MAP } from "../pillMap";
+import { CARD_MAP } from "../maps/cardMap";
+import { CHARACTER_MAP } from "../maps/characterMap";
+import { PILL_MAP } from "../maps/pillMap";
 import { consoleCommand, restart, restartAsCharacter } from "../util";
 import { unseed } from "../utilGlobals";
 import {
