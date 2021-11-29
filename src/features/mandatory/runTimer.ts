@@ -1,3 +1,9 @@
+// Racing+ removes the font that displays the in-game time
+// Thus, we need to create a substitute for this
+// By holding the map button, players can show a timer that represents the current time spent on
+// this specific run
+// Unlike the normal run timer, this uses real time instead of game frame count
+
 import {
   anyPlayerIs,
   isActionPressedOnAnyInput,
@@ -6,12 +12,6 @@ import {
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
-
-// Racing+ removes the font that displays the in-game time
-// Thus, we need to create a substitute for this
-// By holding the map button, players can show a timer that represents the current time spent on
-// this specific run
-// Unlike the normal run timer, this uses real time instead of game frame count
 
 const RUN_TIMER_X = 52;
 const RUN_TIMER_Y = 49;

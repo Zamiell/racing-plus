@@ -1,10 +1,10 @@
-import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
-import g from "../../globals";
-import { movePlayersAndFamiliars } from "../../util";
-
 // By default, the player starts near the bottom door at the beginning of a new run
 // Instead, put the player in the middle of the room so that they have equal access to all 4 doors
 // This feature is not configurable because it could grant an advantage to turn off
+
+import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
+import g from "../../globals";
+import { movePlayersAndFamiliars } from "../../util";
 
 const CIRCLE_RADIUS_BETWEEN_PLAYERS = 50;
 

@@ -1,10 +1,11 @@
-import { addRoomClearCharges } from "isaacscript-common";
-import g from "../../globals";
-
 // There is a 50% chance after defeating Mega Satan that the game will trigger a cutscene and force
 // the player to leave the run
 // By simply setting the room to be cleared when Mega Satan 2 dies,
 // the game will never go on to make the 50% roll
+
+import { addRoomClearCharges } from "isaacscript-common";
+import g from "../../globals";
+
 export function postEntityKillMegaSatan2(_entity: Entity): void {
   emulateRoomClear();
 }

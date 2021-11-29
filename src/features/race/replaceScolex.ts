@@ -1,10 +1,10 @@
+// In seeded races, we replace Scolex with two Frails to reduce RNG
+
 import { nextSeed, removeAllMatchingEntities } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
-
-// In seeded races, we replace Scolex with two Frails to reduce RNG
 
 const SCOLEX_TYPE = EntityType.ENTITY_PIN;
 const SCOLEX_VARIANT = PinVariant.SCOLEX;

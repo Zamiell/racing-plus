@@ -1,8 +1,8 @@
-import { getPlayers, isChildPlayer, saveDataManager } from "isaacscript-common";
-import g from "../../globals";
-
 // Multiplayer is illegal in Racing+ races and custom challenges, so if multiplayer is detected,
 // the run is forcefully ended
+
+import { getPlayers, isChildPlayer, saveDataManager } from "isaacscript-common";
+import g from "../../globals";
 
 const ENABLED = true;
 

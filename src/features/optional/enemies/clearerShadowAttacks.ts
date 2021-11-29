@@ -1,11 +1,11 @@
-import { TargetSubTypeCustom } from "../../../types/enums";
-
 // This feature affects:
 // - Daddy Long Legs (101) (only the multi-stomp attack)
 // - Reap Creep (900) (rock projectiles)
 // - Bumbino (916) (rock projectiles)
 
-const BLUE = Color(0, 0, 0.5, 0.5);
+import { TargetSubTypeCustom } from "../../../types/enums";
+
+const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
 
 // ModCallbacks.MC_POST_NPC_INIT (27)
 // EntityType.ENTITY_DADDYLONGLEGS (101)
@@ -53,6 +53,6 @@ function spawnTarget(spawner: Entity) {
   ).ToEffect();
   if (target !== undefined) {
     const sprite = target.GetSprite();
-    sprite.Color = BLUE;
+    sprite.Color = LIGHT_BLUE;
   }
 }

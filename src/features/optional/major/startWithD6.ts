@@ -1,3 +1,18 @@
+// A major feature of Racing+ is to give every character the D6,
+// since it heavily reduces run disparity
+
+// We choose to give the D6 as a pocket active item
+// If we instead gave the D6 as a normal active item, the vast majority of the active items in the
+// game would go unused, since players hardly ever drop the D6 for anything
+// Giving the D6 as a pocket active fixes this problem
+
+// Some characters already have pocket active items
+// In these cases, we could award the D6 as an active item
+// However, we want players to have consistent muscle memory for which key to use the D6 on
+// Thus, we strip the vanilla pocket active item and move it to the active item slot
+// (the exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
+// active slot)
+
 import {
   findFreePosition,
   getCollectibleMaxCharges,
@@ -15,21 +30,6 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../types/enums";
-
-// A major feature of Racing+ is to give every character the D6,
-// since it heavily reduces run disparity
-
-// We choose to give the D6 as a pocket active item
-// If we instead gave the D6 as a normal active item, the vast majority of the active items in the
-// game would go unused, since players hardly ever drop the D6 for anything
-// Giving the D6 as a pocket active fixes this problem
-
-// Some characters already have pocket active items
-// In these cases, we could award the D6 as an active item
-// However, we want players to have consistent muscle memory for which key to use the D6 on
-// Thus, we strip the vanilla pocket active item and move it to the active item slot
-// (the exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
-// active slot)
 
 const D6_STARTING_CHARGE = 6;
 

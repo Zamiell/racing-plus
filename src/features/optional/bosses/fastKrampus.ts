@@ -1,3 +1,8 @@
+// The game only spawns Krampus' drop after his death animation is over
+// This takes too long, so manually spawn the drop as soon as Krampus dies
+// This also prevents the situation where a player can leave the room before the death animation
+// is finished and miss out on a drop
+
 import {
   anyPlayerHasCollectible,
   findFreePosition,
@@ -8,11 +13,6 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { RacerStatus } from "../../race/types/RacerStatus";
 import { RaceStatus } from "../../race/types/RaceStatus";
-
-// The game only spawns Krampus' drop after his death animation is over
-// This takes too long, so manually spawn the drop as soon as Krampus dies
-// This also prevents the situation where a player can leave the room before the death animation
-// is finished and miss out on a drop
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 // PickupVariant.PICKUP_COLLECTIBLE (100)

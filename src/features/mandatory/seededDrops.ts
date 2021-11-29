@@ -1,3 +1,6 @@
+// This feature is not configurable because it could change item pools and trinket pools,
+// causing a seed to be different
+
 import {
   anyPlayerHasCollectible,
   findFreePosition,
@@ -9,9 +12,6 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-
-// This feature is not configurable because it could change item pools and trinket pools,
-// causing a seed to be different
 
 const v = {
   run: {

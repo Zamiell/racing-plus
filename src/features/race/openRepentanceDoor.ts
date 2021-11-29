@@ -1,10 +1,10 @@
+// Automatically open Repentance doors in races to Mother
+
 import { getDoors } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
-
-// Automatically open Repentance doors in races to Mother
 
 export function preSpawnClearAward(): void {
   openRepentanceDoor();

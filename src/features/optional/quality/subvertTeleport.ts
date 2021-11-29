@@ -1,3 +1,6 @@
+// Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart,
+// or It Lives!
+
 import {
   forgottenSwitch,
   getFamiliars,
@@ -7,9 +10,6 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
-
-// Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart,
-// or It Lives!
 
 const ENTITIES_THAT_CAUSE_TELEPORT = new Set([
   EntityType.ENTITY_GURDY, // 36

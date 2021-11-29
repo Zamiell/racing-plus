@@ -1,3 +1,6 @@
+// This feature is not configurable because it could change floors, causing a seed to be different
+// This feature relies on fast travel to function
+
 import {
   characterCanHaveRedHearts,
   getPlayerHealth,
@@ -11,9 +14,6 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-
-// This feature is not configurable because it could change floors, causing a seed to be different
-// This feature relies on fast travel to function
 
 interface GameStateFlags {
   devilVisited: boolean;

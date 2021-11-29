@@ -1,4 +1,4 @@
-import { getRoomIndex } from "isaacscript-common";
+import { FINAL_STAGE, getRoomIndex } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as endOfRaceButtons from "../endOfRaceButtons";
@@ -18,8 +18,8 @@ import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 import * as victoryLap from "../victoryLap";
 
-// Home is 13, so we take the next stage number after that
-const MEGA_SATAN_FAKE_STAGE_NUM = 14;
+// We take the next stage after the final vanilla stage
+const MEGA_SATAN_FAKE_STAGE_NUM = FINAL_STAGE + 1;
 
 export function racePostNewRoom(): void {
   if (!config.clientCommunication) {

@@ -1,3 +1,8 @@
+// The game only spawns key pieces from angels after the death animation is over
+// This takes too long, so manually spawn the key pieces as soon as the angel dies
+// This also prevents the situation where a player can leave the room before the death animation
+// is finished and miss out on a key piece
+
 import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
@@ -6,11 +11,6 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-
-// The game only spawns key pieces from angels after the death animation is over
-// This takes too long, so manually spawn the key pieces as soon as the angel dies
-// This also prevents the situation where a player can leave the room before the death animation
-// is finished and miss out on a key piece
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 // PickupVariant.PICKUP_COLLECTIBLE (100)

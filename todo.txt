@@ -1,10 +1,10 @@
 ```
-### *v0.72.9 - November 28th, 2021
+### *v0.72.10* - November ?th, 2021
 
-- On seeded races, Birthright is now removed from pools if you start as Cain.
-- Fixed the bug where seeded floors would not work properly on characters that were not able to get red heart containers. (Thanks Gamonymous)
-- Fixed the bug where seeded floors would not work properly on characters that were not able to get soul hearts. (Thanks Gamonymous)
+- Fixed the icons for custom items on the death portrait. Thanks to Gamonymous for this.
 ```
+
+- search for all Color constructor
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
