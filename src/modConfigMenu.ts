@@ -224,6 +224,7 @@ function registerSubMenuHotkeys(
           newValue = getDefaultValue(optionType);
         }
 
+        Isaac.DebugString(`GETTING HERE - ${configName}`);
         hotkeys[configName as keyof Hotkeys] = newValue as number;
       },
       Popup: () => getPopupDescription(configName as keyof Hotkeys, optionType),

@@ -405,6 +405,22 @@ executeCmdFunctions.set("pills", (_params: string) => {
   }
 });
 
+executeCmdFunctions.set("pocket", (params: string) => {
+  if (params === "") {
+    printConsole("You must supply a collectible type.");
+    return;
+  }
+
+  const num = validateNumber(params);
+  if (num === undefined) {
+    return;
+  }
+
+  const collectibleType = num;
+  const player = Isaac.GetPlayer();
+  player.SetPocketActiveItem(collectibleType, ActiveSlot.SLOT_POCKET);
+});
+
 executeCmdFunctions.set("pos", (_params: string) => {
   for (const player of getPlayers()) {
     printConsole(
