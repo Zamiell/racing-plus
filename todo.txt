@@ -6,9 +6,6 @@
 ```
 
 - fix treasure room issue
-- search for all getRoomIndex and refactor
-  - search for all \..*gridIndex
-  - search for all \..*safeGridIndex
 - search for all currentRoomListIndex and refactor to use new early room callback
 - simple-vdf - https://www.npmjs.com/package/simple-vdf
 

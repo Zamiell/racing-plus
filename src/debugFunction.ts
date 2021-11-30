@@ -1,9 +1,4 @@
-import {
-  EMPTY_PNG_PATH,
-  getCollectibles,
-  isKeyboardPressed,
-  printConsole,
-} from "isaacscript-common";
+import { isKeyboardPressed, printConsole } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
@@ -15,14 +10,6 @@ let debugHotkey2Pressed = false;
 
 export function debugFunction(): void {
   g.debug = true;
-
-  const collectibles = getCollectibles();
-  const collectible = collectibles[0];
-  collectible.SubType = 0;
-  const sprite = collectible.GetSprite();
-  sprite.ReplaceSpritesheet(1, EMPTY_PNG_PATH);
-  sprite.ReplaceSpritesheet(4, EMPTY_PNG_PATH);
-  sprite.LoadGraphics();
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)

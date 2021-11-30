@@ -191,8 +191,8 @@ function resetRoomState(roomGridIndex: int) {
 }
 
 function restoreMinimapDisplayFlags(displayFlagsMap: Map<int, int>) {
-  for (const [gridIndex, displayFlags] of displayFlagsMap.entries()) {
-    const room = g.l.GetRoomByIdx(gridIndex);
+  for (const [roomGridIndex, displayFlags] of displayFlagsMap.entries()) {
+    const room = g.l.GetRoomByIdx(roomGridIndex);
     room.DisplayFlags = displayFlags;
   }
   g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
