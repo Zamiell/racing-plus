@@ -186,7 +186,7 @@ function setItemPrices() {
   }
 }
 
-export function resetRoomState(roomGridIndex: int) {
+function resetRoomState(roomGridIndex: int) {
   const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
   roomDesc.VisitedCount = 0;
   roomDesc.Clear = false;
