@@ -1,11 +1,10 @@
 ```
-### *v0.72.10* - November ?th, 2021
+### *v0.72.10* - November 29th, 2021
 
 - Fixed the bug where in seeded races, Treasure Rooms would be open if they were connected to the starting room. (Thanks Gamonymous)
 - Fixed the icons for custom items on the death portrait. Thanks to Gamonymous for this.
 ```
 
-- fix treasure room issue
 - simple-vdf - https://www.npmjs.com/package/simple-vdf
 
 TODO Racing+ new features:

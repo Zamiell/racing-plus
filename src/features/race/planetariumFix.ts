@@ -8,11 +8,13 @@ import {
   anyPlayerIs,
   changeRoom,
   getCollectibles,
+  getDoors,
   getEffectiveStage,
   getEffects,
   getPlayers,
   getRoomGridIndexesForType,
   getRoomSafeGridIndex,
+  lockDoor,
 } from "isaacscript-common";
 import g from "../../globals";
 import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
@@ -125,10 +127,9 @@ function warp() {
 
   // If the Treasure room was attached to the starting room, the door will now be open
   // Manually close it
-  /*
   for (const treasureRoomDoor of getDoors(RoomType.ROOM_TREASURE)) {
+    lockDoor(treasureRoomDoor);
   }
-  */
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary
