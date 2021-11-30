@@ -220,6 +220,7 @@
         "secretshop",
         "secrettrapdoor",
         "seededrace",
+        "seededraceoff",
         "setcharorder",
         "setmetatable",
         "settimeout",

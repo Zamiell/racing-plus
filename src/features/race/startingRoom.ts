@@ -10,21 +10,21 @@ const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
 
 const sprites: Record<string, Sprite | null> = {
-  seededStartingTitle: null as Sprite | null, // "Item" or "Build"
-  seededItemCenter: null as Sprite | null,
-  seededItemLeft: null as Sprite | null,
-  seededItemRight: null as Sprite | null,
-  seededItemFarLeft: null as Sprite | null,
-  seededItemFarRight: null as Sprite | null,
+  seededStartingTitle: null, // "Starting Item" or "Starting Build"
+  seededItemCenter: null,
+  seededItemLeft: null,
+  seededItemRight: null,
+  seededItemFarLeft: null,
+  seededItemFarRight: null,
 
-  diversityActive: null as Sprite | null,
-  diversityPassives: null as Sprite | null,
-  diversityTrinket: null as Sprite | null,
-  diversityItem1: null as Sprite | null,
-  diversityItem2: null as Sprite | null,
-  diversityItem3: null as Sprite | null,
-  diversityItem4: null as Sprite | null,
-  diversityItem5: null as Sprite | null,
+  diversityActive: null,
+  diversityPassives: null,
+  diversityTrinket: null,
+  diversityItem1: null,
+  diversityItem2: null,
+  diversityItem3: null,
+  diversityItem4: null,
+  diversityItem5: null,
 };
 
 // ModCallbacks.MC_POST_RENDER (2)

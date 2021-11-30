@@ -23,7 +23,7 @@ export function initGlowingItemSprite(
 }
 
 function getDirectory(itemID: int) {
-  return isCustomCollectible(itemID) ? "items-glowing" : "items-glowing-custom";
+  return isCustomCollectible(itemID) ? "items-glowing-custom" : "items-glowing";
 }
 
 function getFilename(itemID: int) {

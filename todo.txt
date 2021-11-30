@@ -1,8 +1,7 @@
 ```
-### *v0.72.10* - November 29th, 2021
+### *v0.72.10* - November 30th, 2021
 
-- Fixed the bug where in seeded races, Treasure Rooms would be open if they were connected to the starting room. (Thanks Gamonymous)
-- Fixed the icons for custom items on the death portrait. Thanks to Gamonymous for this.
+- Fixed the bug where item sprites would not display on screen.
 ```
 
 - simple-vdf - https://www.npmjs.com/package/simple-vdf

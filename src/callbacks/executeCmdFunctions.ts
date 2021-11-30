@@ -6,6 +6,7 @@ import {
   getRoomSafeGridIndex,
   gridToPos,
   log,
+  onSetSeed,
   printConsole,
   saveDataManagerSave,
 } from "isaacscript-common";
@@ -14,6 +15,7 @@ import { debugFunction } from "../debugFunction";
 import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
+import { RaceData } from "../features/race/types/RaceData";
 import { RaceFormat } from "../features/race/types/RaceFormat";
 import { RacerStatus } from "../features/race/types/RacerStatus";
 import { RaceStatus } from "../features/race/types/RaceStatus";
@@ -496,15 +498,37 @@ executeCmdFunctions.set("save", (_params: string) => {
   printConsole('Saved variables to the "save#.dat" file.');
 });
 
-executeCmdFunctions.set("seededrace", (params: string) => {
-  const enabled = params !== "off";
+executeCmdFunctions.set("seededrace", (_params: string) => {
+  if (!onSetSeed()) {
+    printConsole(
+      'You must be on a set seed in order to use the "seededrace" command.',
+    );
+    return;
+  }
 
-  g.race.status = enabled ? RaceStatus.IN_PROGRESS : RaceStatus.NONE;
-  g.race.myStatus = enabled ? RacerStatus.RACING : RacerStatus.NOT_READY;
-  g.race.format = enabled ? RaceFormat.SEEDED : RaceFormat.UNSEEDED;
+  if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
+    printConsole(
+      'You must have the Racing+ client open and be in the lobby in order to use the "seededrace" command.',
+    );
+    return;
+  }
 
-  const enabledText = enabled ? "Enabled" : "Disabled";
-  printConsole(`${enabledText} seeded race mode.`);
+  const startSeedString = g.seeds.GetStartSeedString();
+
+  g.race.status = RaceStatus.IN_PROGRESS;
+  g.race.myStatus = RacerStatus.RACING;
+  g.race.format = RaceFormat.SEEDED;
+  g.race.seed = startSeedString;
+  g.race.startingItems = [CollectibleType.COLLECTIBLE_20_20];
+
+  printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
+  restart();
+});
+
+executeCmdFunctions.set("seededraceoff", (_params: string) => {
+  g.race = new RaceData();
+
+  printConsole("Disabled seeded race mode.");
 });
 
 executeCmdFunctions.set("setcharorder", (_params: string) => {
