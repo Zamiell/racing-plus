@@ -63,8 +63,8 @@ export function postPlayerUpdate(player: EntityPlayer): void {
   // If the room was already initialized,
   // then re-calling the "InitializeDevilAngelRoom()" method below will do nothing
   // We can work around this by deleting the room data, which will allow the method to work again
-  const room = g.l.GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX);
-  room.Data = undefined;
+  const roomDesc = g.l.GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX);
+  roomDesc.Data = undefined;
 
   if (playerOnDevilSide) {
     g.l.InitializeDevilAngelRoom(false, true);
@@ -125,8 +125,8 @@ function checkModifyDevilRoomDoor() {
   }
 
   // If we have already entered a Devil Room or an Angel Room, only that specific door will spawn
-  const devilOrAngelRoom = g.l.GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX);
-  if (devilOrAngelRoom.VisitedCount > 0) {
+  const devilOrAngelRoomDesc = g.l.GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX);
+  if (devilOrAngelRoomDesc.VisitedCount > 0) {
     return;
   }
 

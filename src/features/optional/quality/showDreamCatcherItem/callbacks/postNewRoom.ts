@@ -218,16 +218,16 @@ function isBossException(type: EntityType, variant: int) {
 }
 
 function resetRoomState(roomGridIndex: int) {
-  const room = g.l.GetRoomByIdx(roomGridIndex);
-  room.VisitedCount = 0;
-  room.Clear = false;
-  room.ClearCount = 0;
+  const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
+  roomDesc.VisitedCount = 0;
+  roomDesc.Clear = false;
+  roomDesc.ClearCount = 0;
 }
 
 function restoreMinimapDisplayFlags(displayFlagsMap: Map<int, int>) {
   for (const [gridIndex, displayFlags] of displayFlagsMap.entries()) {
-    const room = g.l.GetRoomByIdx(gridIndex);
-    room.DisplayFlags = displayFlags;
+    const roomDesc = g.l.GetRoomByIdx(gridIndex);
+    roomDesc.DisplayFlags = displayFlags;
   }
   g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
 }

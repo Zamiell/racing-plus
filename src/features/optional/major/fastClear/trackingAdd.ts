@@ -28,15 +28,15 @@ export function postNPCUpdate(npc: EntityNPC): void {
   // In order to keep track of new NPCs,
   // we can't completely rely on the PostNPCInit callback because it is not fired for certain NPCs
   // (like when a Gusher emerges from killing a Gaper)
-  checkAdd(npc);
+  checkAdd(npc, "MC_NPC_UPDATE");
 }
 
 // ModCallbacks.MC_POST_NPC_INIT (27)
 export function postNPCInit(npc: EntityNPC): void {
-  checkAdd(npc);
+  checkAdd(npc, "MC_POST_NPC_INIT");
 }
 
-function checkAdd(npc: EntityNPC) {
+function checkAdd(npc: EntityNPC, parentCallback: string) {
   // Don't do anything if we are already tracking this NPC
   const ptrHash = GetPtrHash(npc);
   if (v.room.aliveEnemies.has(ptrHash)) {
@@ -60,17 +60,17 @@ function checkAdd(npc: EntityNPC) {
     return;
   }
 
-  add(npc, ptrHash);
+  add(npc, ptrHash, parentCallback);
 }
 
-function add(npc: EntityNPC, ptrHash: PtrHash) {
+function add(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.aliveEnemies.add(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
     log(
-      `Added NPC to track to frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
+      `Added NPC to track to frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash} (${parentCallback})`,
     );
     log(
       `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,

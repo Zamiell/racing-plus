@@ -125,8 +125,10 @@ function warp() {
 
   // If the Treasure room was attached to the starting room, the door will now be open
   // Manually close it
-  // TODO
-  // for (const door of getDoors()) {}
+  /*
+  for (const treasureRoomDoor of getDoors(RoomType.ROOM_TREASURE)) {
+  }
+  */
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary
@@ -183,17 +185,17 @@ function setItemPrices() {
   }
 }
 
-function resetRoomState(roomGridIndex: int) {
-  const room = g.l.GetRoomByIdx(roomGridIndex);
-  room.VisitedCount = 0;
-  room.Clear = false;
-  room.ClearCount = 0;
+export function resetRoomState(roomGridIndex: int) {
+  const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
+  roomDesc.VisitedCount = 0;
+  roomDesc.Clear = false;
+  roomDesc.ClearCount = 0;
 }
 
 function restoreMinimapDisplayFlags(displayFlagsMap: Map<int, int>) {
   for (const [roomGridIndex, displayFlags] of displayFlagsMap.entries()) {
-    const room = g.l.GetRoomByIdx(roomGridIndex);
-    room.DisplayFlags = displayFlags;
+    const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
+    roomDesc.DisplayFlags = displayFlags;
   }
   g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
 }
