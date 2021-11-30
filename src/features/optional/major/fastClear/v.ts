@@ -3,7 +3,7 @@ import { config } from "../../../../modConfigMenu";
 
 const v = {
   run: {
-    currentRoomIndex: null as int | null,
+    currentRoomListIndex: null as int | null,
     currentRoomVisitedCount: null as int | null,
 
     aliveEnemies: new Set<PtrHash>(),

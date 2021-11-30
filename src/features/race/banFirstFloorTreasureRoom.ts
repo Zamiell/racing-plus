@@ -33,14 +33,14 @@ export function postNewRoom(): void {
   // Delete the doors to the Basement 1 treasure room, if any
   // (this includes the doors in a Secret Room)
   // (we must delete the door before changing the minimap, or else the icon will remain)
-  const roomIndex = g.l.QueryRoomTypeIndex(
+  const roomGridIndex = g.l.QueryRoomTypeIndex(
     RoomType.ROOM_TREASURE,
     false,
     RNG(),
   );
   for (let i = 0; i < MAX_NUM_DOORS; i++) {
     const door = g.r.GetDoor(i);
-    if (door !== undefined && door.TargetRoomIndex === roomIndex) {
+    if (door !== undefined && door.TargetRoomIndex === roomGridIndex) {
       g.r.RemoveDoor(i);
       log("Removed the Treasure Room door on B1.");
     }
@@ -49,11 +49,11 @@ export function postNewRoom(): void {
   // Delete the icon on the minimap
   // (this has to be done on every room, because it will reappear)
   if (MinimapAPI === undefined) {
-    const roomDesc = g.l.GetRoomByIdx(roomIndex);
+    const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
     roomDesc.DisplayFlags = 0;
     g.l.UpdateVisibility(); // Setting the display flag will not actually update the map
   } else {
-    const roomDesc = MinimapAPI.GetRoomByIdx(roomIndex);
+    const roomDesc = MinimapAPI.GetRoomByIdx(roomGridIndex);
     if (roomDesc !== undefined) {
       roomDesc.Remove();
     }

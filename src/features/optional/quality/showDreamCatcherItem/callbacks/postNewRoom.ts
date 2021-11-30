@@ -6,8 +6,8 @@ import {
   getBosses,
   getCollectibles,
   getEffects,
-  getRoomIndex,
-  getRoomIndexesForType,
+  getRoomGridIndexesForType,
+  getRoomSafeGridIndex,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -48,7 +48,7 @@ function revertItemPrices() {
 // we have to warp to the room and look for ourselves
 function warp() {
   const stage = g.l.GetStage();
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
 
   if (!shouldWarp()) {
     return;
@@ -57,11 +57,13 @@ function warp() {
   v.level.warpState = DreamCatcherWarpState.WARPING;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
-  const treasureRoomIndexes = getRoomIndexesForType(RoomType.ROOM_TREASURE);
-  let bossRoomIndexes: Set<int> = new Set();
+  const treasureRoomGridIndexes = getRoomGridIndexesForType(
+    RoomType.ROOM_TREASURE,
+  );
+  let bossRoomGridIndexes: Set<int> = new Set();
   if (stage !== 6 && stage <= 7) {
     // We don't need to show what the boss is for floors that always have the same boss
-    bossRoomIndexes = getRoomIndexesForType(RoomType.ROOM_BOSS);
+    bossRoomGridIndexes = getRoomGridIndexesForType(RoomType.ROOM_BOSS);
   }
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are
@@ -76,27 +78,27 @@ function warp() {
   }
 
   v.level.items = [];
-  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
-    changeRoom(treasureRoomIndex);
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+    changeRoom(treasureRoomGridIndex);
     const newItems = getRoomItemsAndSetPrice();
     v.level.items = v.level.items.concat(newItems);
   }
 
   v.level.bosses = [];
-  for (const bossRoomIndex of bossRoomIndexes.values()) {
-    changeRoom(bossRoomIndex);
+  for (const bossRoomGridIndex of bossRoomGridIndexes.values()) {
+    changeRoom(bossRoomGridIndex);
     const newBosses = getRoomBosses();
     v.level.bosses = v.level.bosses.concat(newBosses);
   }
 
-  changeRoom(startingRoomIndex);
+  changeRoom(startingRoomGridIndex);
 
-  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
-    resetRoomState(treasureRoomIndex);
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+    resetRoomState(treasureRoomGridIndex);
   }
 
-  for (const bossRoomIndex of bossRoomIndexes.values()) {
-    resetRoomState(bossRoomIndex);
+  for (const bossRoomGridIndex of bossRoomGridIndexes.values()) {
+    resetRoomState(bossRoomGridIndex);
   }
 
   restoreMinimapDisplayFlags(displayFlagsMap);
@@ -135,16 +137,16 @@ function warp() {
 }
 
 function shouldWarp() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
     v.level.warpState === DreamCatcherWarpState.INITIAL &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode() &&
-    roomIndex === startingRoomIndex &&
+    roomSafeGridIndex === startingRoomGridIndex &&
     isFirstVisit
   );
 }
@@ -215,8 +217,8 @@ function isBossException(type: EntityType, variant: int) {
   }
 }
 
-function resetRoomState(roomIndex: int) {
-  const room = g.l.GetRoomByIdx(roomIndex);
+function resetRoomState(roomGridIndex: int) {
+  const room = g.l.GetRoomByIdx(roomGridIndex);
   room.VisitedCount = 0;
   room.Clear = false;
   room.ClearCount = 0;

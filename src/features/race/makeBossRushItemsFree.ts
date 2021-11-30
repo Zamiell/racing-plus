@@ -1,4 +1,8 @@
-import { anyPlayerIs, getCollectibles, getRoomIndex } from "isaacscript-common";
+import {
+  anyPlayerIs,
+  getCollectibles,
+  getRoomSafeGridIndex,
+} from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
@@ -10,14 +14,14 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   if (
     !v.run.madeBossRushItemsFree &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
-    roomIndex === GridRooms.ROOM_BOSSRUSH_IDX
+    roomSafeGridIndex === GridRooms.ROOM_BOSSRUSH_IDX
   ) {
     v.run.madeBossRushItemsFree = true;
     makeBossRushItemsFree();

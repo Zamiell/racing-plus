@@ -1,11 +1,11 @@
 import {
   getRepentanceDoor,
-  getRoomIndex,
   getSurroundingGridEntities,
   isDoorToDownpour,
   isDoorToMausoleum,
   isDoorToMines,
   isRepentanceDoor,
+  isRoomInsideMap,
   onRepentanceStage,
   removeGridEntity,
 } from "isaacscript-common";
@@ -119,14 +119,12 @@ function setRepentanceDoors() {
 }
 
 function spawnTrapdoorInBossRooms() {
-  const roomIndex = getRoomIndex();
-
   if (doesSecretPathChallengeSpawnTrapdoorOnThisFloor()) {
     return;
   }
 
-  // Avoid opening trapdoors on negative boss room index (from The Emperor? card)
-  if (roomIndex < 0) {
+  // Avoid opening trapdoors on boss rooms outside the map (e.g. from The Emperor? card)
+  if (!isRoomInsideMap()) {
     return;
   }
 

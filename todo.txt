@@ -1,10 +1,16 @@
 ```
 ### *v0.72.10* - November ?th, 2021
 
+- Fixed the bug where in seeded races, Treasure Rooms would be open if they were connected to the starting room. (Thanks Gamonymous)
 - Fixed the icons for custom items on the death portrait. Thanks to Gamonymous for this.
 ```
 
-- search for all Color constructor
+- fix treasure room issue
+- search for all getRoomIndex and refactor
+  - search for all \..*gridIndex
+  - search for all \..*safeGridIndex
+- search for all currentRoomListIndex and refactor to use new early room callback
+- simple-vdf - https://www.npmjs.com/package/simple-vdf
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor

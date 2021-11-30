@@ -2,7 +2,7 @@
 // This is accomplished via UDP datagrams that are sent to the client, and then to the server
 
 import {
-  getRoomIndex,
+  getRoomListIndex,
   ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
   saveDataManager,
@@ -35,6 +35,7 @@ interface ShadowData {
   y: float;
   stage: int;
   stageType: int;
+  /** Equal to the list index specifically. */
   roomIndex: int;
   character: PlayerType;
   animation: string;
@@ -52,6 +53,7 @@ interface ShadowMessage {
   y: float;
   stage: int;
   stageType: int;
+  /** Equal to the list index specifically. */
   roomIndex: int;
   character: PlayerType;
   animation: string;
@@ -150,7 +152,7 @@ function sendShadow() {
     overlayAnimation = "";
   }
   const overlayAnimationFrame = sprite.GetOverlayFrame();
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
   const structObject: ShadowMessage = {
     raceID: g.race.raceID,
@@ -159,7 +161,7 @@ function sendShadow() {
     y: player.Position.Y,
     stage,
     stageType,
-    roomIndex,
+    roomIndex: roomListIndex,
     character,
     animation,
     animationFrame,
@@ -240,7 +242,7 @@ function drawShadows() {
   const isaacFrameCount = Isaac.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
   for (const shadowData of v.run.shadows.values()) {
     const framesSinceLastUpdate = isaacFrameCount - shadowData.frameUpdated;
@@ -251,7 +253,7 @@ function drawShadows() {
     if (
       shadowData.stage !== stage ||
       shadowData.stageType !== stageType ||
-      shadowData.roomIndex !== roomIndex
+      shadowData.roomIndex !== roomListIndex
     ) {
       continue;
     }

@@ -2,7 +2,8 @@ import {
   getCollectibleName,
   getNPCs,
   getPlayers,
-  getRoomIndex,
+  getRoomListIndex,
+  getRoomSafeGridIndex,
   gridToPos,
   log,
   printConsole,
@@ -417,8 +418,11 @@ executeCmdFunctions.set("previous", (_params: string) => {
 });
 
 executeCmdFunctions.set("roomindex", (_params: string) => {
-  const roomIndex = getRoomIndex();
-  printConsole(`The current room index is: ${roomIndex}`);
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomListIndex = getRoomListIndex();
+
+  printConsole(`The current room safe grid index is: ${roomSafeGridIndex}`);
+  printConsole(`The current room list index is: ${roomListIndex}`);
 });
 
 executeCmdFunctions.set("s", (params: string) => {

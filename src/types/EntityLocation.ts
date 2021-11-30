@@ -1,4 +1,4 @@
 export interface EntityLocation {
-  roomIndex: int;
+  roomListIndex: int;
   position: Vector;
 }

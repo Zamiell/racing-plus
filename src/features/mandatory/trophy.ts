@@ -1,6 +1,6 @@
 import {
   getEntities,
-  getRoomIndex,
+  getRoomListIndex,
   log,
   saveDataManager,
 } from "isaacscript-common";
@@ -25,7 +25,7 @@ export function init(): void {
 }
 
 export function spawn(position: Vector): void {
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
   Isaac.Spawn(
     EntityTypeCustom.ENTITY_RACE_TROPHY,
@@ -38,7 +38,7 @@ export function spawn(position: Vector): void {
 
   // Keep track that we spawned it so that we can respawn it if the player re-enters the room
   v.level.trophy = {
-    roomIndex,
+    roomListIndex,
     position,
   };
 }
@@ -102,9 +102,12 @@ export function postNewRoom(): void {
 }
 
 function checkRespawn() {
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
-  if (v.level.trophy === null || roomIndex !== v.level.trophy.roomIndex) {
+  if (
+    v.level.trophy === null ||
+    roomListIndex !== v.level.trophy.roomListIndex
+  ) {
     return;
   }
 

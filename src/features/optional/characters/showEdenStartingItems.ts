@@ -1,6 +1,6 @@
 import {
   getEffectiveStage,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -85,16 +85,16 @@ function setItemSprites() {
 // Only show the sprites in the starting room of the first floor
 function shouldShowSprites() {
   const effectiveStage = getEffectiveStage();
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
     effectiveStage === 1 &&
-    roomIndex === startingRoomIndex
+    roomSafeGridIndex === startingRoomGridIndex
   );
 }
 

@@ -3,9 +3,10 @@
 import {
   DISTANCE_OF_GRID_TILE,
   getPlayerCloserThan,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   inBeastRoom,
   inCrawlspace,
+  isRoomInsideMap,
   log,
   removeGridEntity,
   runNextFrame,
@@ -121,8 +122,8 @@ export function postPlayerUpdate(player: EntityPlayer): void {
 }
 
 function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
-  const roomIndex = getRoomIndex();
-  if (roomIndex !== GridRooms.ROOM_SECRET_SHOP_IDX) {
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  if (roomSafeGridIndex !== GridRooms.ROOM_SECRET_SHOP_IDX) {
     return;
   }
 
@@ -133,8 +134,8 @@ function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
 }
 
 function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const roomIndex = getRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   // The Beast room shares the grid index of a crawlspace
   if (inBeastRoom() || inBeastDebugRoom()) {
@@ -142,14 +143,14 @@ function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
   }
 
   if (
-    roomIndex !== GridRooms.ROOM_DUNGEON_IDX &&
-    roomIndex !== GridRooms.ROOM_SECRET_SHOP_IDX
+    roomSafeGridIndex !== GridRooms.ROOM_DUNGEON_IDX &&
+    roomSafeGridIndex !== GridRooms.ROOM_SECRET_SHOP_IDX
   ) {
     return;
   }
 
   if (
-    roomIndex === GridRooms.ROOM_SECRET_SHOP_IDX &&
+    roomSafeGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX &&
     !v.room.movedAwayFromSecretShopLadder
   ) {
     return;
@@ -159,19 +160,19 @@ function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
     v.room.amChangingRooms = true;
     v.level.crawlspace.amExiting = true;
 
-    const returnRoomIndex =
-      v.level.crawlspace.returnRoomIndex === null
-        ? startingRoomIndex
-        : v.level.crawlspace.returnRoomIndex;
+    const returnRoomGridIndex =
+      v.level.crawlspace.returnRoomGridIndex === null
+        ? startingRoomGridIndex
+        : v.level.crawlspace.returnRoomGridIndex;
 
-    teleport(returnRoomIndex, Direction.UP, RoomTransitionAnim.WALK);
+    teleport(returnRoomGridIndex, Direction.UP, RoomTransitionAnim.WALK);
   }
 }
 
 function playerIsTouchingExitSquare(player: EntityPlayer) {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  if (roomIndex === GridRooms.ROOM_DUNGEON_IDX) {
+  if (roomSafeGridIndex === GridRooms.ROOM_DUNGEON_IDX) {
     const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
     return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
   }
@@ -191,12 +192,12 @@ function checkExitSoftlock(player: EntityPlayer) {
   // (because the game is programmed to send you to the previous room)
   // Fix this by checking to see if the player is about to touch a loading zone and if so,
   // subvert their interaction
-  const previousRoomIndex = g.l.GetPreviousRoomIndex(); // We need the unsafe version here
+  const previousRoomGridIndex = g.l.GetPreviousRoomIndex(); // We need the unsafe version here
   const roomType = g.r.GetType();
 
   if (
-    previousRoomIndex !== GridRooms.ROOM_DUNGEON_IDX ||
-    v.level.crawlspace.previousReturnRoomIndex === null
+    previousRoomGridIndex !== GridRooms.ROOM_DUNGEON_IDX ||
+    v.level.crawlspace.previousReturnRoomGridIndex === null
   ) {
     return;
   }
@@ -206,7 +207,7 @@ function checkExitSoftlock(player: EntityPlayer) {
     v.level.crawlspace.subvertedRoomTransitionDirection = direction;
     v.room.amChangingRooms = true;
     teleport(
-      v.level.crawlspace.previousReturnRoomIndex,
+      v.level.crawlspace.previousReturnRoomGridIndex,
       direction,
       RoomTransitionAnim.WALK,
     );
@@ -300,14 +301,14 @@ export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
     return;
   }
 
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
 
   const playerTouching = getPlayerCloserThan(
     gridEntity.Position,
     TELEPORTER_ACTIVATION_DISTANCE,
   );
   if (playerTouching !== undefined) {
-    teleport(startingRoomIndex);
+    teleport(startingRoomGridIndex);
   }
 }
 
@@ -320,7 +321,6 @@ export function postGridEntityRemoveCrawlspace(gridIndex: int): void {
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   const roomFrameCount = g.r.GetFrameCount();
   const roomClear = g.r.IsClear();
-  const roomIndex = getRoomIndex();
 
   if (roomFrameCount === 0) {
     // If we just entered a new room with enemies in it, spawn the crawlspace closed so that the
@@ -333,7 +333,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
     // (the below distance check will fail and the crawlspace will be spawned open,
     // but then the player will be teleported away from the entrance of the room back on top of the
     // crawlspace, which will cause them to immediately re-enter it again)
-    if (roomIndex < 0) {
+    if (!isRoomInsideMap()) {
       return false;
     }
 
@@ -351,27 +351,30 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 function touched(entity: GridEntity | EntityEffect) {
   const gridEntity = entity as GridEntity;
   const variant = gridEntity.GetVariant();
-  const roomIndex = getRoomIndex();
-  const previousRoomIndex = g.l.GetPreviousRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 
   // Save the current room information so that we can return here once we exit the top of the
   // crawlspace ladder
-  v.level.crawlspace.returnRoomIndex = roomIndex;
+  v.level.crawlspace.returnRoomGridIndex = roomSafeGridIndex;
   v.level.crawlspace.returnRoomPosition = entity.Position;
 
   // Additionally, save the previous room information so that we can avoid a softlock when returning
   // to a room outside the grid
-  if (roomIndex < 0 && v.level.crawlspace.previousReturnRoomIndex === null) {
-    v.level.crawlspace.previousReturnRoomIndex = previousRoomIndex;
+  if (
+    !isRoomInsideMap() &&
+    v.level.crawlspace.previousReturnRoomGridIndex === null
+  ) {
+    v.level.crawlspace.previousReturnRoomGridIndex = previousRoomGridIndex;
     log(
-      `Since we are entering a crawlspace from a room outside of the grid, storing the previous room index: ${v.level.crawlspace.previousReturnRoomIndex}`,
+      `Since we are entering a crawlspace from a room outside of the grid, storing the previous room index: ${v.level.crawlspace.previousReturnRoomGridIndex}`,
     );
   }
 
   // Enter the crawlspace room
-  const destinationRoomIndex =
+  const destinationRoomGridIndex =
     variant === StairsVariant.SECRET_SHOP
       ? GridRooms.ROOM_SECRET_SHOP_IDX
       : GridRooms.ROOM_DUNGEON_IDX;
-  teleport(destinationRoomIndex, Direction.DOWN, RoomTransitionAnim.WALK);
+  teleport(destinationRoomGridIndex, Direction.DOWN, RoomTransitionAnim.WALK);
 }

@@ -1,4 +1,4 @@
-import { getRoomIndex, getRoomVisitedCount, log } from "isaacscript-common";
+import { getRoomListIndex, getRoomVisitedCount, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { FAST_CLEAR_DEBUG } from "./constants";
 import v from "./v";
@@ -35,17 +35,17 @@ export function postEntityKill(): void {
 
 function checkFlushOldRoomEnemies() {
   const gameFrameCount = g.g.GetFrameCount();
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
   const roomVisitedCount = getRoomVisitedCount();
 
   // If we are entering a new room, flush all of the stuff in the old room
   // We can't use the PostNewRoom callback to handle this since the NPCUpdate callback will fire
   // before that
   if (
-    roomIndex !== v.run.currentRoomIndex ||
+    roomListIndex !== v.run.currentRoomListIndex ||
     roomVisitedCount !== v.run.currentRoomVisitedCount
   ) {
-    v.run.currentRoomIndex = roomIndex;
+    v.run.currentRoomListIndex = roomListIndex;
     v.run.currentRoomVisitedCount = roomVisitedCount;
 
     v.run.aliveEnemies = new Set();
@@ -54,7 +54,7 @@ function checkFlushOldRoomEnemies() {
 
     if (FAST_CLEAR_DEBUG) {
       log(
-        `Flushed fast-travel tracking entries on frame ${gameFrameCount} due to entering room: ${roomIndex}`,
+        `Flushed fast-travel tracking entries on frame ${gameFrameCount} due to entering room: ${roomListIndex}`,
       );
     }
   }

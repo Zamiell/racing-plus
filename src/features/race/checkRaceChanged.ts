@@ -2,7 +2,7 @@ import {
   arrayEquals,
   ensureAllCases,
   getEffectiveStage,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   log,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -80,9 +80,9 @@ const functionMap = new Map<
 
 functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
   const newStatus = newValue as RaceStatus;
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const effectiveStage = getEffectiveStage();
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
 
   switch (newStatus) {
     case RaceStatus.NONE: {
@@ -97,7 +97,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
     case RaceStatus.OPEN: {
       // If we are in the first room of a run, go to the race room
-      if (effectiveStage === 1 && roomIndex === startingRoomIndex) {
+      if (effectiveStage === 1 && roomSafeGridIndex === startingRoomGridIndex) {
         restartOnNextFrame();
         log("Restarting to go to the race room.");
       }

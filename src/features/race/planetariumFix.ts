@@ -8,12 +8,11 @@ import {
   anyPlayerIs,
   changeRoom,
   getCollectibles,
-  getDoors,
   getEffectiveStage,
   getEffects,
   getPlayers,
-  getRoomIndex,
-  getRoomIndexesForType,
+  getRoomGridIndexesForType,
+  getRoomSafeGridIndex,
 } from "isaacscript-common";
 import g from "../../globals";
 import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
@@ -98,7 +97,7 @@ function revertItemPrices() {
 }
 
 function warp() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
 
   if (!shouldWarp()) {
     return;
@@ -107,26 +106,27 @@ function warp() {
   v.level.planetariumFixWarpState = DreamCatcherWarpState.WARPING;
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
-  const treasureRoomIndexes = getRoomIndexesForType(RoomType.ROOM_TREASURE);
+  const treasureRoomGridIndexes = getRoomGridIndexesForType(
+    RoomType.ROOM_TREASURE,
+  );
 
-  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
-    changeRoom(treasureRoomIndex);
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+    changeRoom(treasureRoomGridIndex);
     setItemPrices();
   }
 
-  changeRoom(startingRoomIndex);
+  changeRoom(startingRoomGridIndex);
 
-  for (const treasureRoomIndex of treasureRoomIndexes.values()) {
-    resetRoomState(treasureRoomIndex);
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+    resetRoomState(treasureRoomGridIndex);
   }
 
   restoreMinimapDisplayFlags(displayFlagsMap);
 
   // If the Treasure room was attached to the starting room, the door will now be open
   // Manually close it
-  for (const door of getDoors()) {
-    // if (door.GetType() === )
-  }
+  // TODO
+  // for (const door of getDoors()) {}
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary
@@ -148,13 +148,13 @@ function warp() {
 }
 
 function shouldWarp() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     v.level.planetariumFixWarpState === DreamCatcherWarpState.INITIAL &&
-    roomIndex === startingRoomIndex &&
+    roomSafeGridIndex === startingRoomGridIndex &&
     isFirstVisit
   );
 }
@@ -183,8 +183,8 @@ function setItemPrices() {
   }
 }
 
-function resetRoomState(roomIndex: int) {
-  const room = g.l.GetRoomByIdx(roomIndex);
+function resetRoomState(roomGridIndex: int) {
+  const room = g.l.GetRoomByIdx(roomGridIndex);
   room.VisitedCount = 0;
   room.Clear = false;
   room.ClearCount = 0;

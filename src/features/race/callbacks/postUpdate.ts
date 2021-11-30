@@ -1,4 +1,4 @@
-import { findFreePosition, getRoomIndex } from "isaacscript-common";
+import { findFreePosition, getRoomSafeGridIndex } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as trophy from "../../mandatory/trophy";
@@ -17,7 +17,7 @@ export function racePostUpdate(): void {
 }
 
 function spawnBossRushTrophy() {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
 
   if (
@@ -26,7 +26,7 @@ function spawnBossRushTrophy() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
     !g.raceVars.finished &&
-    roomIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
+    roomSafeGridIndex === GridRooms.ROOM_BOSSRUSH_IDX &&
     bossRushDone
   ) {
     const centerPos = g.r.GetCenterPos();

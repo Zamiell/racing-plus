@@ -1,7 +1,7 @@
 import {
   getCollectibleInitCharges,
   getCollectibleMaxCharges,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   inCrawlspace,
 } from "isaacscript-common";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
@@ -11,14 +11,15 @@ import g from "./globals";
 import { CollectibleTypeCustom } from "./types/enums";
 
 export function enteredRoomViaTeleport(): boolean {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const previousRoomIndex = g.l.GetPreviousRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
-  const roomIndex = getRoomIndex();
-  const justReachedThisFloor = roomIndex === startingRoomIndex && isFirstVisit;
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const justReachedThisFloor =
+    roomSafeGridIndex === startingRoomGridIndex && isFirstVisit;
   const cameFromCrawlspace =
-    previousRoomIndex === GridRooms.ROOM_DUNGEON_IDX ||
-    previousRoomIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
+    previousRoomGridIndex === GridRooms.ROOM_DUNGEON_IDX ||
+    previousRoomGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
 
   return (
     g.l.LeaveDoor === -1 &&

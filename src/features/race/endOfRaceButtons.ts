@@ -1,6 +1,7 @@
 import {
   getClosestPlayer,
-  getRoomIndex,
+  getRoomListIndex,
+  getRoomSafeGridIndex,
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -26,11 +27,11 @@ export function postRender(): void {
     return;
   }
 
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
   if (
     v.level.dpsButton !== null &&
-    v.level.dpsButton.roomIndex === roomIndex &&
+    v.level.dpsButton.roomListIndex === roomListIndex &&
     !v.level.dpsButton.pressed
   ) {
     DPSSprite.Render(
@@ -42,7 +43,7 @@ export function postRender(): void {
 
   if (
     v.level.victoryLapButton !== null &&
-    v.level.victoryLapButton.roomIndex === roomIndex &&
+    v.level.victoryLapButton.roomListIndex === roomListIndex &&
     !v.level.victoryLapButton.pressed
   ) {
     victoryLapSprite.Render(
@@ -65,10 +66,11 @@ export function spawnEndOfRaceButtons(): void {
 }
 
 function spawnDPSButton() {
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   let position = g.r.GetGridPosition(32); // Top left
-  if (roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     // The normal position is out of bounds inside of the Mega Satan room
     position = g.r.GetGridPosition(107);
   }
@@ -83,7 +85,7 @@ function spawnDPSButton() {
   const gridIndex = g.r.GetGridIndex(position);
 
   v.level.dpsButton = {
-    roomIndex,
+    roomListIndex,
     gridIndex,
     spritePosition: position.add(SPRITE_OFFSET_SHOPKEEPER),
     pressed: false,
@@ -91,10 +93,11 @@ function spawnDPSButton() {
 }
 
 export function spawnVictoryLapButton(center?: boolean): void {
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   let position = g.r.GetGridPosition(42); // Top right
-  if (roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     // The normal position is out of bounds inside of the Mega Satan room
     position = g.r.GetGridPosition(117);
   }
@@ -108,7 +111,7 @@ export function spawnVictoryLapButton(center?: boolean): void {
   const gridIndex = g.r.GetGridIndex(position);
 
   v.level.victoryLapButton = {
-    roomIndex,
+    roomListIndex,
     gridIndex,
     spritePosition: position.add(SPRITE_OFFSET_COLLECTIBLE),
     pressed: false,
@@ -121,12 +124,13 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
 
   if (
-    (v.level.dpsButton !== null && v.level.dpsButton.roomIndex === roomIndex) ||
+    (v.level.dpsButton !== null &&
+      v.level.dpsButton.roomListIndex === roomListIndex) ||
     (v.level.victoryLapButton !== null &&
-      v.level.victoryLapButton.roomIndex === roomIndex)
+      v.level.victoryLapButton.roomListIndex === roomListIndex)
   ) {
     // The buttons will cause the door to close, so re-open the door
     // (the door will stay open since the room is already cleared)
@@ -148,12 +152,12 @@ function checkDPSButtonPressed(gridEntity: GridEntity) {
     return;
   }
 
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
   const gridIndex = gridEntity.GetGridIndex();
   const gridDescription = gridEntity.GetSaveState();
 
   if (
-    roomIndex !== v.level.dpsButton.roomIndex ||
+    roomListIndex !== v.level.dpsButton.roomListIndex ||
     gridIndex !== v.level.dpsButton.gridIndex ||
     gridDescription.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
   ) {
@@ -180,12 +184,12 @@ function checkVictoryLapButtonPressed(gridEntity: GridEntity) {
     return;
   }
 
-  const roomIndex = getRoomIndex();
+  const roomListIndex = getRoomListIndex();
   const gridIndex = gridEntity.GetGridIndex();
   const gridDescription = gridEntity.GetSaveState();
 
   if (
-    roomIndex !== v.level.victoryLapButton.roomIndex ||
+    roomListIndex !== v.level.victoryLapButton.roomListIndex ||
     gridIndex !== v.level.victoryLapButton.gridIndex ||
     gridDescription.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
   ) {

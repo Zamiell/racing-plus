@@ -1,7 +1,7 @@
 import {
   anyPlayerHasCollectible,
   ensureAllCases,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   log,
   onCathedral,
   onChest,
@@ -169,9 +169,9 @@ function speedrunAlternate() {
 */
 
 function blueBaby() {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  if (onChest() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (onChest() && roomSafeGridIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.TROPHY;
   }
 
@@ -179,9 +179,9 @@ function blueBaby() {
 }
 
 function theLamb() {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  if (onDarkRoom() && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (onDarkRoom() && roomSafeGridIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.TROPHY;
   }
 
@@ -189,16 +189,16 @@ function theLamb() {
 }
 
 function megaSatan() {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const stage = g.l.GetStage();
 
-  if (stage === 11 && roomIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (stage === 11 && roomSafeGridIndex !== GridRooms.ROOM_MEGA_SATAN_IDX) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
     // have to go to Mega Satan
     return ReplacementAction.REMOVE;
   }
 
-  if (stage === 11 && roomIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (stage === 11 && roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     return ReplacementAction.TROPHY;
   }
 

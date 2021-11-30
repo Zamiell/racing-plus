@@ -5,7 +5,7 @@ import {
   forgottenSwitch,
   getFamiliars,
   getPlayers,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -57,7 +57,7 @@ export function setFadingToBlack(
   position: Vector,
   upwards: boolean,
 ): void {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
@@ -65,9 +65,10 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.framesPassed = 0;
   v.run.upwards = upwards;
-  v.run.blueWomb = roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
-  v.run.theVoid = roomIndex === GridRooms.ROOM_THE_VOID_IDX;
-  v.run.repentanceSecretExit = roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+  v.run.blueWomb = roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
+  v.run.theVoid = roomSafeGridIndex === GridRooms.ROOM_THE_VOID_IDX;
+  v.run.repentanceSecretExit =
+    roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   const whitelist = new Set<ButtonAction>([ButtonAction.ACTION_MAP]);
   disableAllInputsExceptFor(whitelist);
@@ -83,13 +84,13 @@ function setGameStateFlags() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   // If the player has gone through the trapdoor past the strange door
   if (
     !repentanceStage &&
     stage === 6 &&
-    roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+    roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
@@ -225,7 +226,7 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
 }
 
 function setGoingToNewFloor() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
 
   blackSprite.setFullyOpaque();
 
@@ -234,7 +235,7 @@ function setGoingToNewFloor() {
   // We arbitrarily use the starting room for this
   // Even if a player is using a trapdoor in the starting room from a shovel,
   // this should not make any difference
-  changeRoom(startingRoomIndex);
+  changeRoom(startingRoomGridIndex);
   decrementRoomsEntered(); // This should not count as entering a room
 
   nextFloor.goto(v.run.upwards);

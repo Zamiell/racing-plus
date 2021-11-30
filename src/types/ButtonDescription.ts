@@ -1,5 +1,5 @@
 export interface ButtonDescription {
-  roomIndex: int;
+  roomListIndex: int;
   gridIndex: int;
   spritePosition: Vector;
   pressed: boolean;

@@ -2,7 +2,7 @@
 
 import {
   ensureAllCases,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   isChildPlayer,
   log,
   onRepentanceStage,
@@ -69,24 +69,24 @@ function getCustomSpriteFilename(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const stage = g.l.GetStage();
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
       // -8
-      if (roomIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
+      if (roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
 
       // -9
-      if (roomIndex === GridRooms.ROOM_THE_VOID_IDX) {
+      if (roomSafeGridIndex === GridRooms.ROOM_THE_VOID_IDX) {
         return "gfx/grid/voidtrapdoor.anm2";
       }
 
       // -10
-      if (roomIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
+      if (roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
         if (!repentanceStage && (stage === 1 || stage === 2)) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }

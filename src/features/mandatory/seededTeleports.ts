@@ -28,13 +28,16 @@ export function useItemTeleport(): void {
 
 // This callback is manually called for Cursed Eye
 function seededTeleport() {
-  const roomIndexes = getAllRoomIndexesForNormalRooms();
+  const roomGridIndexes = getAllRoomGridIndexesForNormalRooms();
 
   v.level.teleportSeed = nextSeed(v.level.teleportSeed);
-  const roomIndex = getRandomArrayElement(roomIndexes, v.level.teleportSeed);
+  const roomGridIndex = getRandomArrayElement(
+    roomGridIndexes,
+    v.level.teleportSeed,
+  );
 
-  teleport(roomIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
-  log(`Seeded teleport to room: ${roomIndex}`);
+  teleport(roomGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
+  log(`Seeded teleport to room: ${roomGridIndex}`);
 
   // Even though the player has already started teleporting to a different room,
   // the above call will override the existing effect
@@ -68,19 +71,22 @@ function seededTelepills() {
     }
   }
 
-  const roomIndexes = getAllRoomIndexesForNormalRooms();
+  const roomGridIndexes = getAllRoomGridIndexesForNormalRooms();
   if (insertErrorRoom) {
-    roomIndexes.push(GridRooms.ROOM_ERROR_IDX);
+    roomGridIndexes.push(GridRooms.ROOM_ERROR_IDX);
   }
   if (insertBlackMarket) {
-    roomIndexes.push(GridRooms.ROOM_BLACK_MARKET_IDX);
+    roomGridIndexes.push(GridRooms.ROOM_BLACK_MARKET_IDX);
   }
 
   // Get a random room index
   v.level.telepillsSeed = nextSeed(v.level.telepillsSeed);
-  const gridIndex = getRandomArrayElement(roomIndexes, v.level.telepillsSeed);
+  const roomGridIndex = getRandomArrayElement(
+    roomGridIndexes,
+    v.level.telepillsSeed,
+  );
 
-  teleport(gridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
+  teleport(roomGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
 }
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
@@ -104,14 +110,14 @@ export function postCursedTeleport(_player: EntityPlayer): void {
   seededTeleport();
 }
 
-function getAllRoomIndexesForNormalRooms() {
+function getAllRoomGridIndexesForNormalRooms() {
   const rooms = g.l.GetRooms();
 
   // We could filter out our current room, but this would cause problems in seeded races,
   // so seeded races would have to be exempt
   // Thus, don't bother with this in order to keep the behavior consistent through the different
   // types of races
-  const roomIndexes: int[] = [];
+  const roomGridIndexes: int[] = [];
   for (let i = 0; i < rooms.Size; i++) {
     const room = rooms.Get(i);
     if (
@@ -122,9 +128,9 @@ function getAllRoomIndexesForNormalRooms() {
       room.Data.Type !== RoomType.ROOM_ULTRASECRET
     ) {
       // We must use the safe grid index or else teleporting to L rooms will fail
-      roomIndexes.push(room.SafeGridIndex);
+      roomGridIndexes.push(room.SafeGridIndex);
     }
   }
 
-  return roomIndexes;
+  return roomGridIndexes;
 }

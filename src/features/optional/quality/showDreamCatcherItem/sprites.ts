@@ -1,4 +1,7 @@
-import { anyPlayerHasCollectible, getRoomIndex } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  getRoomSafeGridIndex,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
@@ -61,14 +64,14 @@ export function reset(): void {
 }
 
 function shouldShowSprites() {
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const roomIndex = getRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
     (v.level.items.length > 0 || v.level.bosses.length > 0) &&
     // Only show the sprites in the starting room
-    roomIndex === startingRoomIndex &&
+    roomSafeGridIndex === startingRoomGridIndex &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !g.g.IsGreedMode()
   );

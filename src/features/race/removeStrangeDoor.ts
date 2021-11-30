@@ -1,6 +1,6 @@
 import {
   getRepentanceDoor,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -10,8 +10,8 @@ import { RaceStatus } from "./types/RaceStatus";
 
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const roomIndex = getRoomIndex();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const repentanceStage = onRepentanceStage();
 
   if (
@@ -20,7 +20,7 @@ export function postNewRoom(): void {
     g.race.goal !== RaceGoal.THE_BEAST ||
     repentanceStage ||
     stage !== 6 ||
-    roomIndex !== startingRoomIndex
+    roomSafeGridIndex !== startingRoomGridIndex
   ) {
     return;
   }

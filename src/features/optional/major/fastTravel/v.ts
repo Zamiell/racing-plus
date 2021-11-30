@@ -53,9 +53,9 @@ const v = {
        */
       amExiting: false,
 
-      returnRoomIndex: null as int | null,
+      returnRoomGridIndex: null as int | null,
       returnRoomPosition: null as Vector | null,
-      previousReturnRoomIndex: null as int | null,
+      previousReturnRoomGridIndex: null as int | null,
 
       /**
        * Used to reposition the player after we subvert their touching of a loading zone and

@@ -2,7 +2,7 @@ import {
   getEntities,
   getFamiliars,
   getPlayers,
-  getRoomIndex,
+  getRoomSafeGridIndex,
   getRoomSubType,
   log,
 } from "isaacscript-common";
@@ -32,11 +32,11 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
 }
 
 export function inBeastDebugRoom(): boolean {
-  const roomIndex = getRoomIndex();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
   const roomSubType = getRoomSubType();
 
   return (
-    roomIndex === GridRooms.ROOM_DEBUG_IDX &&
+    roomSafeGridIndex === GridRooms.ROOM_DEBUG_IDX &&
     roomSubType === HomeRoomSubType.BEAST_ROOM
   );
 }

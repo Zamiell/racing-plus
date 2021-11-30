@@ -1,7 +1,7 @@
 import {
   ensureAllCases,
-  getRoomIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  isRoomInsideMap,
   log,
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
@@ -27,7 +27,6 @@ const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 export function checkPostItLivesOrHushPath(): void {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const roomIndex = getRoomIndex();
 
   if (stage !== 8 && stage !== 9) {
     return;
@@ -38,7 +37,7 @@ export function checkPostItLivesOrHushPath(): void {
   }
 
   // Don't do anything if we just killed the It Lives! in an Emperor? Card room
-  if (roomIndex < 0) {
+  if (!isRoomInsideMap()) {
     return;
   }
 
