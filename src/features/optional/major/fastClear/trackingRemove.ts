@@ -31,7 +31,7 @@ export function checkRemove(
 ): void {
   // We only care about entities that are in the "aliveEnemies" table
   const ptrHash = GetPtrHash(npc);
-  if (!v.run.aliveEnemies.has(ptrHash)) {
+  if (!v.room.aliveEnemies.has(ptrHash)) {
     return;
   }
 
@@ -55,7 +55,7 @@ export function checkRemove(
 function remove(npc: EntityNPC, ptrHash: PtrHash) {
   const gameFrameCount = g.g.GetFrameCount();
 
-  v.run.aliveEnemies.delete(ptrHash);
+  v.room.aliveEnemies.delete(ptrHash);
 
   // If this was the last NPC in the room that died,
   // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
@@ -68,7 +68,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
       `Delaying ${frameDelay} frames due to killing a Cohort on frame: ${gameFrameCount}`,
     );
   }
-  v.run.delayClearUntilFrame = gameFrameCount + frameDelay;
+  v.room.delayClearUntilFrame = gameFrameCount + frameDelay;
 
   // Next, we check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate
   // callback
@@ -78,7 +78,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
       `Removed NPC to track on frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );
     log(
-      `Total NPCs tracked on frame ${gameFrameCount}: ${v.run.aliveEnemies.size}`,
+      `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
 }

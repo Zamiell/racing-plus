@@ -1,7 +1,6 @@
 import { isRaglingDeathPatch } from "isaacscript-common";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as trackingAdd from "../trackingAdd";
-import * as trackingClear from "../trackingClear";
 import * as trackingRemove from "../trackingRemove";
 
 export function main(npc: EntityNPC): void {
@@ -9,7 +8,6 @@ export function main(npc: EntityNPC): void {
     return;
   }
 
-  trackingClear.postNPCUpdate();
   trackingAdd.postNPCUpdate(npc);
 }
 

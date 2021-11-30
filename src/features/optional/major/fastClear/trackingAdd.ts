@@ -39,7 +39,7 @@ export function postNPCInit(npc: EntityNPC): void {
 function checkAdd(npc: EntityNPC) {
   // Don't do anything if we are already tracking this NPC
   const ptrHash = GetPtrHash(npc);
-  if (v.run.aliveEnemies.has(ptrHash)) {
+  if (v.room.aliveEnemies.has(ptrHash)) {
     return;
   }
 
@@ -66,14 +66,14 @@ function checkAdd(npc: EntityNPC) {
 function add(npc: EntityNPC, ptrHash: PtrHash) {
   const gameFrameCount = g.g.GetFrameCount();
 
-  v.run.aliveEnemies.add(ptrHash);
+  v.room.aliveEnemies.add(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
     log(
       `Added NPC to track to frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );
     log(
-      `Total NPCs tracked on frame ${gameFrameCount}: ${v.run.aliveEnemies.size}`,
+      `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
 }

@@ -2,10 +2,7 @@ import { saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 
 const v = {
-  run: {
-    currentRoomListIndex: null as int | null,
-    currentRoomVisitedCount: null as int | null,
-
+  room: {
     aliveEnemies: new Set<PtrHash>(),
     delayClearUntilFrame: null as int | null,
     earlyClearedRoom: false,
