@@ -6,7 +6,6 @@ import {
   getFamiliars,
   getPlayers,
   getRoomSafeGridIndex,
-  log,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -23,7 +22,7 @@ import v from "./v";
 
 export function setNewState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
-  log(`New fast travel state: ${FastTravelState[fastTravelState]}`);
+  // log(`New fast travel state: ${FastTravelState[fastTravelState]}`);
 
   switch (fastTravelState) {
     case FastTravelState.FADING_TO_BLACK: {

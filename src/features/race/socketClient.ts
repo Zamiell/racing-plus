@@ -11,7 +11,7 @@ let clientTCP = null as SocketClient | null;
 let clientUDP = null as SocketClient | null;
 
 export function init(): void {
-  // Racing+ installs a sandbox that prevents mods from accessing DLLs
+  // Racing+ installs a sandbox that prevents mods from doing unsafe things
   // If the sandbox is in place, then we should be clear to request a socket later on
   const [ok, requiredSandbox] = pcall(require, "sandbox");
   if (!ok) {
@@ -20,6 +20,14 @@ export function init(): void {
   }
 
   sandbox = requiredSandbox as Sandbox;
+
+  if (sandbox.init !== undefined) {
+    sandbox = null;
+    log(
+      'Detected sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
+    );
+    return;
+  }
 
   if (!sandbox.isSocketInitialized()) {
     sandbox = null;
