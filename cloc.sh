@@ -9,7 +9,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR"
 cloc \
   --exclude-dir="node_modules" \
-  --exclude-lang="JSON,Lua,XML" \
+  --include-lang="TypeScript" \
   "$DIR" \
   "$DIR/node_modules/isaacscript" \
   "$DIR/node_modules/isaac-typescript-definitions" \

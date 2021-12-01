@@ -112,14 +112,14 @@ function warp() {
     RoomType.ROOM_TREASURE,
   );
 
-  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes) {
     changeRoom(treasureRoomGridIndex);
     setItemPrices();
   }
 
   changeRoom(startingRoomGridIndex);
 
-  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes) {
     resetRoomState(treasureRoomGridIndex);
   }
 

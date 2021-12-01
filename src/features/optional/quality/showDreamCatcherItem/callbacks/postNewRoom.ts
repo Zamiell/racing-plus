@@ -60,7 +60,7 @@ function warp() {
   const treasureRoomGridIndexes = getRoomGridIndexesForType(
     RoomType.ROOM_TREASURE,
   );
-  let bossRoomGridIndexes: Set<int> = new Set();
+  let bossRoomGridIndexes: int[] = [];
   if (stage !== 6 && stage <= 7) {
     // We don't need to show what the boss is for floors that always have the same boss
     bossRoomGridIndexes = getRoomGridIndexesForType(RoomType.ROOM_BOSS);
@@ -78,14 +78,14 @@ function warp() {
   }
 
   v.level.items = [];
-  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes) {
     changeRoom(treasureRoomGridIndex);
     const newItems = getRoomItemsAndSetPrice();
     v.level.items = v.level.items.concat(newItems);
   }
 
   v.level.bosses = [];
-  for (const bossRoomGridIndex of bossRoomGridIndexes.values()) {
+  for (const bossRoomGridIndex of bossRoomGridIndexes) {
     changeRoom(bossRoomGridIndex);
     const newBosses = getRoomBosses();
     v.level.bosses = v.level.bosses.concat(newBosses);
@@ -93,11 +93,11 @@ function warp() {
 
   changeRoom(startingRoomGridIndex);
 
-  for (const treasureRoomGridIndex of treasureRoomGridIndexes.values()) {
+  for (const treasureRoomGridIndex of treasureRoomGridIndexes) {
     resetRoomState(treasureRoomGridIndex);
   }
 
-  for (const bossRoomGridIndex of bossRoomGridIndexes.values()) {
+  for (const bossRoomGridIndex of bossRoomGridIndexes) {
     resetRoomState(bossRoomGridIndex);
   }
 

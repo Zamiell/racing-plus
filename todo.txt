@@ -1,10 +1,8 @@
 ```
-### *v0.72.11* - November 30th, 2021
+### *v0.72.12* - November ?th, 2021
 
-- Fixed the bug where item sprites would not display on screen.
+-
 ```
-
-- simple-vdf - https://www.npmjs.com/package/simple-vdf
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
