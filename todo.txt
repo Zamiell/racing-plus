@@ -1,5 +1,5 @@
 ```
-### *v0.72.10* - November 30th, 2021
+### *v0.72.11* - November 30th, 2021
 
 - Fixed the bug where item sprites would not display on screen.
 ```
