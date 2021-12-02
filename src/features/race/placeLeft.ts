@@ -13,12 +13,17 @@ const SPRITE_OFFSET = Vector(20, 7);
 
 let sprite: Sprite | null = null;
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   drawSprite();
 }
 
 function drawSprite() {
   if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+    return;
+  }
+
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
     return;
   }
 

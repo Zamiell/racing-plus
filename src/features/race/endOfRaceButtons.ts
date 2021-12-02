@@ -27,6 +27,10 @@ export function postRender(): void {
     return;
   }
 
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   const roomListIndex = getRoomListIndex();
 
   if (
