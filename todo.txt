@@ -1,9 +1,39 @@
 ```
-### *v0.72.12* - November ?th, 2021
+### *v0.72.12* - December 1st, 2021
 
 - Fixed the bug where the left hand place sprite would show if Mod Config Menu was open.
 - Fixed the bug where the end-of-race buttons would show if Mod Config Menu was open.
 ```
+
+Belated congratulations to the top 10 finishers of Racing+ Online Solo Season 1, which lasted from October 17th, 2017 to March 18th, 2018:
+
+1) Cyber_1
+2) Zamiel
+3) SlashSP
+4) thereisnofuture
+5) Loopy
+6) YuCaesar
+7) Ou_J
+8) Sushimuffin
+9) Noro
+10) Sakk
+
+You have now been immortalized on the Hall of Fame page here: https://isaacracing.net/halloffame
+
+Belated congratulations to the top 10 finishers of Racing+ Online Solo Season 2, which lasted from March 19th, 2018 to ?:
+
+1)
+2)
+3)
+4)
+5)
+6)
+7)
+8)
+9)
+10)
+
+You have now been immortalized on the Hall of Fame page here: https://isaacracing.net/halloffame
 
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
