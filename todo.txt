@@ -1,39 +1,28 @@
 ```
-### *v0.72.12* - December 1st, 2021
+### *v0.73.0* - December 2nd, 2021
 
-- Fixed the bug where the left hand place sprite would show if Mod Config Menu was open.
-- Fixed the bug where the end-of-race buttons would show if Mod Config Menu was open.
-```
-
-Belated congratulations to the top 10 finishers of Racing+ Online Solo Season 1, which lasted from October 17th, 2017 to March 18th, 2018:
+Belated congratulations to the top 10 finishers of Racing+ Ranked Solo Season 2, which lasted from March 19th, 2018 to October 26th, 2018:
 
 1) Cyber_1
-2) Zamiel
-3) SlashSP
+2) antizoubilamakA
+3) Zamiel
 4) thereisnofuture
-5) Loopy
-6) YuCaesar
-7) Ou_J
-8) Sushimuffin
-9) Noro
-10) Sakk
+5) cold90a
+6) elgirs
+7) ILLARIO
+8) Noro
+9) galnegus
+10) Im_Cirno
 
-You have now been immortalized on the Hall of Fame page here: https://isaacracing.net/halloffame
+All of you have now been immortalized on the Hall of Fame page on the Racing+ website: https://isaacracing.net/halloffame
 
-Belated congratulations to the top 10 finishers of Racing+ Online Solo Season 2, which lasted from March 19th, 2018 to ?:
-
-1)
-2)
-3)
-4)
-5)
-6)
-7)
-8)
-9)
-10)
-
-You have now been immortalized on the Hall of Fame page here: https://isaacracing.net/halloffame
+- Some seeded starts have been changed:
+  - 20/20 --> 20/20 + The Inner Eye
+  - Incubus --> 2x Incubus
+  - Twisted Pair --> 2x Twisted Pair
+```
 
 TODO Racing+ new features:
+- write TSTL plugin to insert a comment at the top of the file
+- write TSTL plugin to insert a debug statement in between every line
 - Implement time offsets, show on the first room of each floor

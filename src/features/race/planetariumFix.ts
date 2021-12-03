@@ -13,6 +13,7 @@ import {
   getEffects,
   getPlayers,
   getRoomGridIndexesForType,
+  getRooms,
   getRoomSafeGridIndex,
   lockDoor,
 } from "isaacscript-common";
@@ -164,12 +165,8 @@ function shouldWarp() {
 
 function getMinimapDisplayFlagsMap() {
   const displayFlags = new Map<int, int>();
-  const rooms = g.l.GetRooms();
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i);
-    if (room !== undefined) {
-      displayFlags.set(room.SafeGridIndex, room.DisplayFlags);
-    }
+  for (const roomDesc of getRooms()) {
+    displayFlags.set(roomDesc.SafeGridIndex, roomDesc.DisplayFlags);
   }
 
   return displayFlags;

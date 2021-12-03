@@ -1,6 +1,7 @@
 import {
   getRandomArrayElement,
   getRandomInt,
+  getRooms,
   log,
   nextSeed,
   saveDataManager,
@@ -111,24 +112,20 @@ export function postCursedTeleport(_player: EntityPlayer): void {
 }
 
 function getAllRoomGridIndexesForNormalRooms() {
-  const rooms = g.l.GetRooms();
-
   // We could filter out our current room, but this would cause problems in seeded races,
   // so seeded races would have to be exempt
   // Thus, don't bother with this in order to keep the behavior consistent through the different
   // types of races
   const roomGridIndexes: int[] = [];
-  for (let i = 0; i < rooms.Size; i++) {
-    const room = rooms.Get(i);
+  for (const roomDesc of getRooms()) {
     if (
-      room !== undefined &&
-      room.SafeGridIndex >= 0 &&
+      roomDesc.SafeGridIndex >= 0 &&
       // Additionally, filter out the Ultra Secret room
-      room.Data !== undefined &&
-      room.Data.Type !== RoomType.ROOM_ULTRASECRET
+      roomDesc.Data !== undefined &&
+      roomDesc.Data.Type !== RoomType.ROOM_ULTRASECRET
     ) {
       // We must use the safe grid index or else teleporting to L rooms will fail
-      roomGridIndexes.push(room.SafeGridIndex);
+      roomGridIndexes.push(roomDesc.SafeGridIndex);
     }
   }
 
