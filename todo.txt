@@ -1,21 +1,7 @@
 ```
-### *v0.73.0* - December 2nd, 2021
+### *v0.73.0* - December 3rd, 2021
 
-Belated congratulations to the top 10 finishers of Racing+ Ranked Solo Season 2, which lasted from March 19th, 2018 to October 26th, 2018:
-
-1) Cyber_1
-2) antizoubilamakA
-3) Zamiel
-4) thereisnofuture
-5) cold90a
-6) elgirs
-7) ILLARIO
-8) Noro
-9) galnegus
-10) Im_Cirno
-
-All of you have now been immortalized on the Hall of Fame page on the Racing+ website: https://isaacracing.net/halloffame
-
+- Racing+ Ranked Solo Season 3 has begun! This new season has you start with
 - Some seeded starts have been changed:
   - 20/20 --> 20/20 + The Inner Eye
   - Incubus --> 2x Incubus
