@@ -1,11 +1,16 @@
 ```
 ### *v0.73.0* - December 3rd, 2021
 
-- Racing+ Ranked Solo Season 3 has begun! This new season has you start with
+- Racing+ Ranked Solo Season 3 has begun! This new season has you start with a rotating seeded item and The Compass
+- The first item that you will get is always Mom's Knife.
+- You can use the `/rankedsoloreset` command to delete all of your races and start from the beginning.
 - Some seeded starts have been changed:
   - 20/20 --> 20/20 + The Inner Eye
   - Incubus --> 2x Incubus
   - Twisted Pair --> 2x Twisted Pair
+- Updated the mod to work with vanilla patch 1.7.7.
+- Fixed the bug where seeded death would not work properly with rotten hearts.
+- Fixed the bug where seeded death would not work properly with broken hearts.
 ```
 
 TODO Racing+ new features:
