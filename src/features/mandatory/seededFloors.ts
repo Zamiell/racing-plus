@@ -85,10 +85,10 @@ export function before(stage: int): void {
   // so convert it to other types of health
   // "eternalHearts" will be equal to 1 if we have an Eternal Heart
   if (characterCanHaveRedHearts(character)) {
-    v.run.playerHealth.soulHearts += v.run.playerHealth.eternalHearts * 2;
-  } else {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
     v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
+  } else {
+    v.run.playerHealth.soulHearts += v.run.playerHealth.eternalHearts * 2;
   }
   v.run.playerHealth.eternalHearts = 0;
 
