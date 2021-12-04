@@ -3175,8 +3175,6 @@ Changes from vanilla:
 		<Item Id="519" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--7 Seals-->
 		<Item Id="526" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<!--Death's List-->
-		<Item Id="530" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Sacrificial Altar-->
 		<Item Id="536" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<!--Book of the Dead-->

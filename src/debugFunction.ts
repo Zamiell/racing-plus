@@ -1,9 +1,4 @@
-import {
-  getPlayerAvailableHeartSlots,
-  isKeyboardPressed,
-  printConsole,
-} from "isaacscript-common";
-import { isSeededDeathActive } from "./features/race/v";
+import { isKeyboardPressed, printConsole } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
@@ -15,10 +10,6 @@ let debugHotkey2Pressed = false;
 
 export function debugFunction(): void {
   g.debug = true;
-
-  const player = Isaac.GetPlayer();
-  Isaac.DebugString(`Seeded death active: ${isSeededDeathActive()}`);
-  Isaac.DebugString(`POOP: ${getPlayerAvailableHeartSlots(player)}`);
 }
 
 // ModCallbacks.MC_POST_UPDATE (1)
