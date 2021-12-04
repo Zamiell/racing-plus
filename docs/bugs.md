@@ -17,7 +17,6 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 ## Bugs with Seeded Death
 
 - It can cause you to get a 2nd Small Rock from a tinted rock. (Reported by Moucheron Quipet)
-- It can grant the Stompy transformation if you revive with Magic Mushroom or Leo. (The Stompy transformation is bugged with the "firstTimePickingUp" flag.)
 - Being a ghost while Mega Blast is active will show the animation playing and have knockback, but the blast itself will be removed. (Reported by Gamonymous)
 - Being a ghost will prevent Brimstone-style lasers from firing. (Reported by Xelnas)
 - Using Esau Jr. while being a ghost will give the items back to the wrong character. (Reported by Gamonymous)
