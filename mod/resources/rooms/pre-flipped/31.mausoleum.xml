@@ -33105,7 +33105,7 @@
 			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="6" y="4">
-			<entity type="6100" variant="1" subtype="0" weight="1.0"/>
+			<entity type="6100" variant="1" subtype="1" weight="1.0"/>
 		</spawn>
 		<spawn x="9" y="4">
 			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
@@ -38510,7 +38510,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="545" name="New Room" type="1" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="1.0">
+	<room variant="545" name="New Room (Tall)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -38596,7 +38596,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="546" name="New Room" type="1" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="1.0">
+	<room variant="546" name="New Room (Tall)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -58279,7 +58279,7 @@
 			<entity type="5" variant="60" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="5" y="3">
-			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+			<entity type="5" variant="300" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="6" y="3">
 			<entity type="1930" variant="0" subtype="0" weight="1.0"/>

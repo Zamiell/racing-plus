@@ -1,8 +1,8 @@
 ```
-### *v0.73.1* - December 3rd, 2021
+### *v0.73.2* - December ?rd, 2021
 
-- Fixed the bug with seeded where wisps and item wisps were not removed.
-- Fixed the bug where Cohorts would not work properly with fast-clear (again).
+- The multiplayer leaderboards have been reset. Rankings are now calculated using a starting date of May 21st, 2021.
+- The new rooms from Gehenna and Corpse have been integrated into Racing+.
 ```
 
 TODO Racing+ new features:
