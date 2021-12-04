@@ -62,13 +62,7 @@ function postUpdateGhostForm() {
 
   v.run.seededDeath.state = SeededDeathState.DISABLED;
   v.run.seededDeath.debuffEndFrame = null;
-  if (DEBUG) {
-    log(
-      `Changed seeded death state: ${
-        SeededDeathState[v.run.seededDeath.state]
-      }`,
-    );
-  }
+  logStateChange();
 
   debuffOff(player);
   player.AnimateHappy();
@@ -110,13 +104,7 @@ function postRenderFetalPosition() {
   }
 
   v.run.seededDeath.state = SeededDeathState.GHOST_FORM;
-  if (DEBUG) {
-    log(
-      `Changed seeded death state: ${
-        SeededDeathState[v.run.seededDeath.state]
-      }`,
-    );
-  }
+  logStateChange();
 
   enableAllInputs();
 
@@ -166,13 +154,7 @@ function postNewRoomWaitingForNewRoom() {
   v.run.seededDeath.state = SeededDeathState.FETAL_POSITION;
   v.run.seededDeath.debuffEndFrame =
     isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
-  if (DEBUG) {
-    log(
-      `Changed seeded death state: ${
-        SeededDeathState[v.run.seededDeath.state]
-      }`,
-    );
-  }
+  logStateChange();
 
   disableAllInputs();
   applySeededGhostFade(player, true);
@@ -243,13 +225,7 @@ export function postPlayerRender(player: EntityPlayer): void {
   }
 
   v.run.seededDeath.state = SeededDeathState.WAITING_FOR_NEW_ROOM;
-  if (DEBUG) {
-    log(
-      `Changed seeded death state: ${
-        SeededDeathState[v.run.seededDeath.state]
-      }`,
-    );
-  }
+  logStateChange();
 }
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
@@ -336,13 +312,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   v.run.seededDeath.state =
     SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH;
   v.run.seededDeath.dyingPlayerIndex = playerIndex;
-  if (DEBUG) {
-    log(
-      `Changed seeded death state: ${
-        SeededDeathState[v.run.seededDeath.state]
-      }`,
-    );
-  }
+  logStateChange();
 
   return RevivalType.SEEDED_DEATH;
 }
@@ -408,4 +378,14 @@ export function postFlip(player: EntityPlayer): void {
       );
     });
   }
+}
+
+function logStateChange() {
+  if (!DEBUG) {
+    return;
+  }
+
+  log(
+    `Changed seeded death state: ${SeededDeathState[v.run.seededDeath.state]}`,
+  );
 }

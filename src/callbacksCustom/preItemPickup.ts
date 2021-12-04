@@ -4,6 +4,12 @@ import * as automaticItemInsertion from "../features/optional/quality/automaticI
 import { speedrunPreItemPickup } from "../features/speedrun/callbacks/preItemPickup";
 
 export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
+  /*
+  log(
+    `MC_PRE_ITEM_PICKUP - Type: ${pickingUpItem.type} - ID: ${pickingUpItem.id}`,
+  );
+  */
+
   // Mandatory
   streakText.preItemPickup(pickingUpItem);
 
