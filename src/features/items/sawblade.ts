@@ -77,7 +77,12 @@ export function postFamiliarUpdateSawblade(familiar: EntityFamiliar): void {
 
 // It should rotate around the player like a Cube of Meat or Sacrificial Dagger does
 function setPosition(familiar: EntityFamiliar) {
-  familiar.Position = getPosition(familiar);
+  const position = getPosition(familiar);
+  if (position === undefined) {
+    return;
+  }
+
+  familiar.Position = position;
 
   // Sometimes, when the familiar collides with things, it can pick up some velocity,
   // which will cause the sprite to glitch out
@@ -88,7 +93,7 @@ function setPosition(familiar: EntityFamiliar) {
 function getPosition(familiar: EntityFamiliar) {
   const player = familiar.SpawnerEntity;
   if (player === undefined) {
-    error("A sawblade was spawned without a SpawnerEntity.");
+    return undefined;
   }
 
   let frameCount = familiar.FrameCount;
@@ -101,6 +106,7 @@ function getPosition(familiar: EntityFamiliar) {
   const rotatedVector = baseVector.Rotated(
     frameCount * SAWBLADE_ROTATION_SPEED * -1,
   );
+
   return player.Position.add(rotatedVector);
 }
 
@@ -173,41 +179,12 @@ export function postPEffectUpdatePlayer(player: EntityPlayer): void {
   const numSawbladeCollectibles = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
-  const sawbladesOfPlayer = getSawbladesOfPlayer(player);
-
-  if (numSawbladeCollectibles > sawbladesOfPlayer.length) {
-    spawnNewSawblade(player);
-  } else if (numSawbladeCollectibles < sawbladesOfPlayer.length) {
-    const firstSawblade = sawbladesOfPlayer[0];
-    firstSawblade.Remove();
-  }
-}
-
-function spawnNewSawblade(player: EntityPlayer) {
-  Isaac.Spawn(
-    EntityType.ENTITY_FAMILIAR,
-    FamiliarVariantCustom.SAWBLADE,
-    0,
-    Vector.Zero,
-    Vector.Zero,
-    player,
+  const sawbladeRNG = player.GetCollectibleRNG(
+    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
-}
-
-function getSawbladesOfPlayer(player: EntityPlayer) {
-  const sawblades = getFamiliars(FamiliarVariantCustom.SAWBLADE);
-  const sawbladesOfPlayer: EntityFamiliar[] = [];
-  for (const sawblade of sawblades) {
-    if (sawblade.SpawnerEntity === undefined) {
-      continue;
-    }
-
-    const playerHash = GetPtrHash(player);
-    const spawnerEntityHash = GetPtrHash(sawblade.SpawnerEntity);
-    if (playerHash === spawnerEntityHash) {
-      sawbladesOfPlayer.push(sawblade);
-    }
-  }
-
-  return sawbladesOfPlayer;
+  player.CheckFamiliar(
+    FamiliarVariantCustom.SAWBLADE,
+    numSawbladeCollectibles,
+    sawbladeRNG,
+  );
 }
