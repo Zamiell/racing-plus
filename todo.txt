@@ -5,6 +5,7 @@
 ```
 
 TODO Racing+ new features:
+- make alias for StairsVariant ?
 - write TSTL plugin to insert a comment at the top of the file
 - write TSTL plugin to insert a debug statement in between every line
 - Implement time offsets, show on the first room of each floor
