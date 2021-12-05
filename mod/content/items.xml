@@ -1,26 +1,26 @@
-<items gfxroot="gfx/items/" version="1">
+<items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
 	<!-- Utility items -->
 	<passive description="Congratulations!" gfx="Trophy.png" name="Trophy" hidden="true" />
-	<passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" />
+	<passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" id="1" />
 	<passive description="Reset to the first character" gfx="questionmark.png" name="Reset" hidden="true" tags="quest" />
 	<active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" tags="quest" />
 
 	<!-- Custom items -->
 	<!-- Server Collectible ID: 1001 -->
-	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" />
+	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" id="2"/>
 	<!-- Server Collectible ID: 1002 -->
-	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" />
+	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" id="3" />
 	<!-- Server Collectible ID: 1003 -->
-	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" tags="summonable monstermanual offensive" />
+	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" tags="summonable monstermanual offensive" id="4" />
 	<!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 
 	<!-- Vanilla replacements -->
 	<!-- 191 -->
-	<passive cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" />
+	<passive cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" id="5" />
 	<!-- 194 -->
-	<passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" />
+	<passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" id="6" />
 	<!-- 711 -->
-	<active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" />
+	<active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="7" />
 
 	<!-- Placeholders -->
 	<!-- 12 -->
