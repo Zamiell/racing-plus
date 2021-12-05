@@ -184,6 +184,8 @@ export function after(): void {
     setPlayerHealth(player, v.run.playerHealth);
   }
 
+  fixWhoreOfBabylon(player);
+
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }
 
@@ -223,4 +225,29 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
   player.AddCoins(inventory.coins);
   player.AddKeys(-99);
   player.AddKeys(inventory.keys);
+}
+
+/** Restoring the player's health can result in a bugged Whore of Babylon state. */
+function fixWhoreOfBabylon(player: EntityPlayer) {
+  const effects = player.GetEffects();
+  const hasWhoreEffect = effects.HasCollectibleEffect(
+    CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
+  );
+  const shouldHaveWhoreEffect = shouldWhoreOfBabylonApply(player);
+
+  if (shouldHaveWhoreEffect && !hasWhoreEffect) {
+    effects.AddCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON);
+  } else if (!shouldHaveWhoreEffect && hasWhoreEffect) {
+    effects.RemoveCollectibleEffect(
+      CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
+    );
+  }
+}
+
+function shouldWhoreOfBabylonApply(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  const hearts = player.GetHearts();
+  const redHeartTriggerAmount = character === PlayerType.PLAYER_EVE ? 2 : 1;
+
+  return hearts <= redHeartTriggerAmount;
 }
