@@ -1,7 +1,7 @@
 ```
-### *v0.74.1* - December 5th, 2021
+### *v0.74.2* - December 5th, 2021
 
-- Fixed the bug where shop items would count as Devil-Deal-style items. (Thanks Monkeypot)
+- Fixed the bug where Whore of Babylon would incorrectly trigger in the first room of a floor under certain circumstances. (Thanks Fallenfor)
 ```
 
 TODO Racing+ new features:
