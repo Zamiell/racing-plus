@@ -1,7 +1,6 @@
 import {
   anyPlayerHasCollectible,
   copyColor,
-  getCollectibleGfxFilename,
   getCollectibleItemPoolType,
   getCollectibleMaxCharges,
   getCollectibles,
@@ -10,15 +9,16 @@ import {
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
+import { COLLECTIBLE_LAYER } from "../../constants";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
+import { initItemSprite } from "../../sprite";
 import { CollectibleTypeCustom } from "../../types/enums";
 
 const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
 const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
-const COLLECTIBLE_LAYER = 1;
 
 const v = {
   level: {
@@ -152,17 +152,11 @@ function getNewFlippedCollectibleType(collectible: EntityPickup) {
 }
 
 function initFlippedSprite(collectibleType: CollectibleType) {
-  const sprite = Sprite();
-  sprite.Load("gfx/005.100_collectible.anm2", false);
-  sprite.SetFrame("Idle", 0);
+  const sprite = initItemSprite(collectibleType);
 
   const faded = copyColor(sprite.Color);
   faded.A = FADE_AMOUNT;
   sprite.Color = faded;
-
-  const gfxFilename = getCollectibleGfxFilename(collectibleType);
-  sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
-  sprite.LoadGraphics();
 
   return sprite;
 }

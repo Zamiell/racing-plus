@@ -19,15 +19,16 @@ const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
 const KRAMPUS_CHANCE = 0.4;
 
 export function devil(): void {
+  const hasNumberMagnet = anyPlayerHasTrinket(
+    TrinketType.TRINKET_NUMBER_MAGNET,
+  );
+
   // First, find out if we should encounter Krampus instead of getting a normal Devil Room
-  if (checkSpawnKrampus()) {
+  if (!hasNumberMagnet && checkSpawnKrampus()) {
     return;
   }
 
   const jsonRooms = devilRooms.rooms.room;
-  const hasNumberMagnet = anyPlayerHasTrinket(
-    TrinketType.TRINKET_NUMBER_MAGNET,
-  );
   const subType = hasNumberMagnet
     ? NUMBER_MAGNET_ROOM_SUBTYPE
     : NORMAL_ROOM_SUBTYPE;

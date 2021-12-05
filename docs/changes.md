@@ -69,12 +69,10 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
-- `0005` <!-- freeDevilItem --> Players receive a Your Soul trinket upon entering the first Devil Room of the run if they have not yet taken damage.
+- `0005` <!-- freeDevilItem --> As long as players have not taken any damage, players will get their first Devil Deal item free.
   - Self-damage (e.g. from a Curse Room door) does not count.
-  - This only applies for Devil Rooms on Basement 1 or Basement 2.
-  - Keeper and Tainted Keeper will be awarded 15 cents instead of a Your Soul trinket.
 
-> Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play flawlessly for the first two floors).
+> Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play well for the first two floors).
 
 ### 5) Fast-Reset
 

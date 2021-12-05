@@ -37,7 +37,7 @@ function entityTakeDmgPlayer(
   }
 
   // Major
-  freeDevilItem.entityTakeDmgPlayer(damageFlags);
+  freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
   fastTravelEntityTakeDmgPlayer(damageFlags);
 
   // Other

@@ -1,7 +1,16 @@
 ```
-### *v0.73.3* - December 4th, 2021
+### *v0.74.0* - December 4th, 2021
 
-- Fixed the bug where eternal hearts would not properly grant a heart container in seeded races under certain conditions. (Thanks thereisnofuture)
+- If you are playing a Season 3 Ranked Solo race, the server will now remind you to stream on Twitch or YouTube.
+- The free Devil Room item mechanic is reworked:
+  - Players are no longer granted a Your Soul trinket.
+  - Keeper & Tainted Keeper are no longer granted coins.
+  - Instead, all items that cost hearts will be made free until you take damage or take an item that costs hearts, whichever comes first.
+  - This applies to every room, not just Devil Rooms.
+- Fixed the bug where you could not take a trophy if you had a Glass Cannon under certain conditions. (Thanks Monkeypot)
+- Fixed the bug where Number Magnet did not prevent Krampus from appearing in a Devil Room. (Thanks ez_duke)
+- Fixed the bug where damage to child players (e.g. the Strawman Keeper) could count as damage for the purposes of the free Devil Room item mechanic.
+- Fixed the bug where Sawblade would not show up properly at the beginning of a race. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:

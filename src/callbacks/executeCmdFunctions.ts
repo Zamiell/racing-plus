@@ -26,7 +26,12 @@ import g from "../globals";
 import { CARD_MAP } from "../maps/cardMap";
 import { CHARACTER_MAP } from "../maps/characterMap";
 import { PILL_MAP } from "../maps/pillMap";
-import { consoleCommand, restart, restartAsCharacter } from "../util";
+import {
+  consoleCommand,
+  getPartialMatchFromMap,
+  restart,
+  restartAsCharacter,
+} from "../util";
 import { unseed } from "../utilGlobals";
 import {
   angel,
@@ -169,13 +174,14 @@ executeCmdFunctions.set("char", (params: string) => {
   if (num !== undefined) {
     character = num;
   } else {
-    const word = params.toLowerCase();
-    const characterFromMap = CHARACTER_MAP.get(word);
-    if (characterFromMap === undefined) {
+    const match = getPartialMatchFromMap(params, CHARACTER_MAP) as
+      | PlayerType
+      | undefined;
+    if (match === undefined) {
       printConsole("Unknown character.");
       return;
     }
-    character = characterFromMap;
+    character = match;
   }
 
   restartAsCharacter(character);

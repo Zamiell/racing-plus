@@ -1,4 +1,5 @@
 import * as removeGlitchedItems from "../features/mandatory/removeGlitchedItems";
+import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -11,4 +12,5 @@ export function init(mod: Mod): void {
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 function collectible(pickup: EntityPickup) {
   removeGlitchedItems.postPickupUpdateCollectible(pickup);
+  freeDevilItem.postPickupUpdateCollectible(pickup);
 }

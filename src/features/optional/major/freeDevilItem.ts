@@ -1,29 +1,24 @@
 import {
-  getEffectiveStage,
-  getOpenTrinketSlot,
-  getPlayers,
-  isKeeper,
+  anyPlayerIs,
+  isChildPlayer,
   isSelfDamage,
   saveDataManager,
 } from "isaacscript-common";
+import { COLLECTIBLE_LAYER } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { initItemSprite } from "../../../sprite";
+import { PickupPriceCustom } from "../../../types/enums";
 
-const FREE_TRINKET_TYPE = TrinketType.TRINKET_YOUR_SOUL;
-
-const EXCLUDED_CHARACTERS = new Set<PlayerType>([
-  // The Lost and Tainted Lost get free devil deals, so they do not need the trinket
-  PlayerType.PLAYER_THELOST, // 10
-  PlayerType.PLAYER_THELOST_B, // 31
-  // If Tainted Soul is given a trinket, it will just be applied to Tainted Forgotten
-  // (even if we ignore Tainted Soul, the feature will still apply to Tainted Forgotten normally)
-  PlayerType.PLAYER_THESOUL_B, // 40
-]);
+const ITEM_OFFSET = Vector(0, 30);
 
 const v = {
   run: {
     tookDamage: false,
-    granted: false,
+  },
+
+  room: {
+    spriteMap: new Map<PtrHash, Sprite>(),
   },
 };
 
@@ -36,83 +31,90 @@ function featureEnabled() {
 }
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-export function entityTakeDmgPlayer(damageFlags: int): void {
+export function entityTakeDmgPlayer(
+  tookDamage: Entity,
+  damageFlags: int,
+): void {
   if (!config.freeDevilItem) {
     return;
   }
 
-  checkForSelfDamage(damageFlags);
-}
-
-function checkForSelfDamage(damageFlags: int) {
-  if (!isSelfDamage(damageFlags)) {
-    v.run.tookDamage = true;
+  const player = tookDamage.ToPlayer();
+  if (player === undefined) {
+    return;
   }
+
+  if (isChildPlayer(player)) {
+    return;
+  }
+
+  if (isSelfDamage(damageFlags)) {
+    return;
+  }
+
+  v.run.tookDamage = true;
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (18)
-export function postNewRoom(): void {
+// ModCallbacks.MC_POST_PICKUP_UPDATE (35)
+// PickupVariant.PICKUP_COLLECTIBLE (100)
+export function postPickupUpdateCollectible(pickup: EntityPickup) {
   if (!config.freeDevilItem) {
     return;
   }
 
-  checkGiveTrinket();
+  if (!shouldGetFreeDevilItem()) {
+    return;
+  }
+
+  if (pickup.Price !== 0) {
+    // Update the price of the item on every frame
+    // We deliberately do not change "AutoUpdatePrice" so that as soon as the free item is no longer
+    // eligible, the price will immediately change
+    pickup.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
+  }
 }
 
-function checkGiveTrinket() {
+function shouldGetFreeDevilItem() {
+  const devilRoomDeals = g.g.GetDevilRoomDeals();
   const gameFrameCount = g.g.GetFrameCount();
-  const roomType = g.r.GetType();
-  const effectiveStage = getEffectiveStage();
+  const anyPlayerIsTheLost = anyPlayerIs(
+    PlayerType.PLAYER_THELOST,
+    PlayerType.PLAYER_THELOST_B,
+  );
 
-  if (
-    v.run.granted ||
-    v.run.tookDamage ||
-    roomType !== RoomType.ROOM_DEVIL ||
-    effectiveStage > 2 ||
+  return (
+    !v.run.tookDamage &&
+    devilRoomDeals === 0 &&
+    !anyPlayerIsTheLost &&
     // We might be travelling to a Devil Room for run-initialization-related tasks
-    gameFrameCount === 0
-  ) {
-    return;
-  }
-
-  // We have arrived at the first Devil Room and no player has taken any damage
-  // Award all players with a trinket prize
-  v.run.granted = true;
-
-  for (const player of getPlayers()) {
-    const playerType = player.GetPlayerType();
-
-    if (!EXCLUDED_CHARACTERS.has(playerType)) {
-      giveTrinket(player);
-    }
-  }
+    gameFrameCount > 0
+  );
 }
 
-function giveTrinket(player: EntityPlayer) {
-  const roomSeed = g.r.GetSpawnSeed();
-
-  player.AnimateHappy();
-
-  if (isKeeper(player)) {
-    // In the special case of Keeper or Tainted Keeper, we award 15 cents instead of a trinket
-    player.AddCoins(15);
+// ModCallbacks.MC_POST_PICKUP_RENDER (36)
+// PickupVariant.PICKUP_COLLECTIBLE (100)
+export function postPickupRenderCollectible(
+  pickup: EntityPickup,
+  renderOffset: Vector,
+) {
+  if (!config.freeDevilItem) {
     return;
   }
 
-  const openSlot = getOpenTrinketSlot(player);
-  if (openSlot === undefined) {
-    // If we do not have an available trinket slot, spawn the trinket on the ground
-    g.g.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_TRINKET,
-      player.Position,
-      Vector.Zero,
-      undefined,
-      FREE_TRINKET_TYPE,
-      roomSeed,
-    );
-  } else {
-    // By default, put it directly in our inventory
-    player.AddTrinket(FREE_TRINKET_TYPE);
+  if (pickup.Price !== PickupPriceCustom.PRICE_FREE_DEVIL_DEAL) {
+    return;
   }
+
+  const ptrHash = GetPtrHash(pickup);
+  let sprite = v.room.spriteMap.get(ptrHash);
+  if (sprite === undefined) {
+    sprite = initItemSprite(CollectibleType.COLLECTIBLE_MYSTERY_GIFT);
+    sprite.Scale = Vector(0.666, 0.666);
+
+    v.room.spriteMap.set(ptrHash, sprite);
+  }
+
+  const worldPosition = Isaac.WorldToRenderPosition(pickup.Position);
+  const position = worldPosition.add(renderOffset).add(ITEM_OFFSET);
+  sprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }

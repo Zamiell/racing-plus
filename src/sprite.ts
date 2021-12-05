@@ -3,16 +3,25 @@ import {
   getEnumValues,
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
+import { COLLECTIBLE_LAYER } from "./constants";
 import { CollectibleTypeCustom } from "./types/enums";
+import { serverCollectibleIDToCollectibleType } from "./util";
 
-const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 const COLLECTIBLE_TYPE_CUSTOM_ARRAY = getEnumValues(CollectibleTypeCustom);
 const COLLECTIBLE_TYPE_CUSTOM_SET = new Set(COLLECTIBLE_TYPE_CUSTOM_ARRAY);
+const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
 export function initGlowingItemSprite(
   collectibleOrTrinketType: int,
   trinket = false,
 ): Sprite {
+  // Account for custom items from the server that have an ID between 1001 and 1999 instead of their
+  // real collectible type
+  collectibleOrTrinketType = serverCollectibleIDToCollectibleType(
+    collectibleOrTrinketType,
+  );
+
+  // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png"
   if (trinket) {
     collectibleOrTrinketType += GLOWING_IMAGE_TRINKET_OFFSET;
   }
@@ -85,6 +94,18 @@ function getFileNum(itemID: int) {
 
   // Past Golden Sigil of Baphomet
   return defaultReturn;
+}
+
+export function initItemSprite(collectibleType: CollectibleType): Sprite {
+  const sprite = Sprite();
+  sprite.Load("gfx/005.100_collectible.anm2", false);
+  sprite.SetFrame("Idle", 0);
+
+  const gfxFilename = getCollectibleGfxFilename(collectibleType);
+  sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
+  sprite.LoadGraphics();
+
+  return sprite;
 }
 
 export function initSprite(anm2Path: string, pngPath?: string): Sprite {

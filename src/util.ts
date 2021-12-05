@@ -5,6 +5,7 @@ import {
   getRoomSafeGridIndex,
   getRoomSubType,
   log,
+  logArray,
 } from "isaacscript-common";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 
@@ -12,6 +13,30 @@ export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
   Isaac.ExecuteCommand(command);
   log(`Finished executing console command: ${command}`);
+}
+
+export function getPartialMatchFromMap(
+  searchText: string,
+  map: Map<string, unknown>,
+): unknown | undefined {
+  const keys = [...map.keys()];
+  keys.sort();
+
+  searchText = searchText.toLowerCase();
+  searchText = searchText.replaceAll(" ", "");
+
+  const matchingKeys = keys.filter((key) =>
+    key.toLowerCase().startsWith(searchText),
+  );
+  matchingKeys.sort();
+  logArray(matchingKeys);
+
+  const matchingKey = matchingKeys[0];
+  if (matchingKey === undefined) {
+    return undefined;
+  }
+
+  return map.get(matchingKey);
 }
 
 export function hasPolaroidOrNegative(): [boolean, boolean] {
@@ -102,18 +127,19 @@ export function restartSeed(seed: string): void {
 }
 
 export function serverCollectibleIDToCollectibleType(serverCollectibleID: int) {
-  if (serverCollectibleID > 1000) {
-    const collectibleType =
-      SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP.get(serverCollectibleID);
-    if (collectibleType === undefined) {
-      log(
-        `Error: Failed to find a corresponding collectible type for the server collectible ID of: ${serverCollectibleID}`,
-      );
-      return CollectibleType.COLLECTIBLE_SAD_ONION;
-    }
-
-    return collectibleType;
+  // 1001-1999 is reserved for server collectible IDs
+  if (serverCollectibleID <= 1000 || serverCollectibleID >= 2000) {
+    return serverCollectibleID;
   }
 
-  return serverCollectibleID;
+  const collectibleType =
+    SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP.get(serverCollectibleID);
+  if (collectibleType === undefined) {
+    log(
+      `Error: Failed to find a corresponding collectible type for the server collectible ID of: ${serverCollectibleID}`,
+    );
+    return CollectibleType.COLLECTIBLE_SAD_ONION;
+  }
+
+  return collectibleType;
 }
