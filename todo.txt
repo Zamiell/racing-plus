@@ -1,5 +1,5 @@
 ```
-### *v0.74.1* - December ?th, 2021
+### *v0.74.1* - December 5th, 2021
 
 - Fixed the bug where shop items would count as Devil-Deal-style items. (Thanks Monkeypot)
 ```
