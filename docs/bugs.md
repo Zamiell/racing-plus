@@ -6,7 +6,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 
 ## Miscellaneous Bugs
 
-- When returning to the Boss Rush from a crawlspace, the camera will jerk from the door to the location of the crawlspace.
+- When returning to a big room from a crawlspace, the camera will jerk from the door to the location of the crawlspace.
 - The Great Gideon crawlspace is not be handled by the fast-travel feature.
 - Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
 - Monster Manual will not ever spawn Sawblade. (Reported by Gamonymous)
