@@ -1,7 +1,7 @@
 ```
 ### *v0.74.1* - December ?th, 2021
 
--
+- Fixed the bug where shop items would count as Devil-Deal-style items. (Thanks Monkeypot)
 ```
 
 TODO Racing+ new features:

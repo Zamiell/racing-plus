@@ -66,10 +66,11 @@ export function postPickupUpdateCollectible(pickup: EntityPickup) {
     return;
   }
 
-  if (pickup.Price !== 0) {
+  if (isDevilDealStyleCollectible(pickup)) {
     // Update the price of the item on every frame
-    // We deliberately do not change "AutoUpdatePrice" so that as soon as the free item is no longer
-    // eligible, the price will immediately change
+    // We deliberately do not change "AutoUpdatePrice" so that as soon as the player is no longer
+    // eligible for the free item, the price will immediately change back to what it is supposed to
+    // be
     pickup.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
   }
 }
@@ -89,6 +90,29 @@ function shouldGetFreeDevilItem() {
     // We might be travelling to a Devil Room for run-initialization-related tasks
     gameFrameCount > 0
   );
+}
+
+/**
+ * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
+ * price is less than 0 and is not PickupPrice.PRICE_FREE. However, this does not work on Keeper,
+ * because all Devil-Deal-style items cost money. Furthermore, it does not work on Tainted Keeper,
+ * because all items cost money.
+ *
+ * For simplicity, this function assumes that every item in a Devil Room or Black Market Keeper is
+ * a Devil-Deal-style item for Keeper and Tainted Keeper. This is not necessarily true, as Keeper
+ * could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for example.
+ */
+function isDevilDealStyleCollectible(pickup: EntityPickup) {
+  const roomType = g.r.GetType();
+
+  if (anyPlayerIs(PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_KEEPER_B)) {
+    return (
+      roomType === RoomType.ROOM_DEVIL ||
+      roomType === RoomType.ROOM_BLACK_MARKET
+    );
+  }
+
+  return pickup.Price < 0 && pickup.Price !== PickupPrice.PRICE_FREE;
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
