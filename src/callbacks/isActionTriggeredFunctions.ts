@@ -6,6 +6,6 @@ export const isActionTriggeredFunctions = new Map<
 >();
 
 // 28
-isActionTriggeredFunctions.set(ButtonAction.ACTION_CONSOLE, () => {
-  return raceInputAction.isActionTriggeredConsole();
-});
+isActionTriggeredFunctions.set(ButtonAction.ACTION_CONSOLE, () =>
+  raceInputAction.isActionTriggeredConsole(),
+);

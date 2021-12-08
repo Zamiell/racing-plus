@@ -39,7 +39,5 @@ preEntitySpawnFunctions.set(
     _position: Vector,
     _spawner: Entity,
     initSeed: int,
-  ) => {
-    return replaceCodWorms.preEntitySpawn(initSeed);
-  },
+  ) => replaceCodWorms.preEntitySpawn(initSeed),
 );

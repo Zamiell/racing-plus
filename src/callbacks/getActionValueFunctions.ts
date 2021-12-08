@@ -8,31 +8,27 @@ export const getActionValueFunctions = new Map<
 // 4
 getActionValueFunctions.set(
   ButtonAction.ACTION_SHOOTLEFT,
-  (entity: Entity | undefined) => {
-    return autofire.inputActionGetActionValueShoot(entity);
-  },
+  (entity: Entity | undefined) =>
+    autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 5
 getActionValueFunctions.set(
   ButtonAction.ACTION_SHOOTRIGHT,
-  (entity: Entity | undefined) => {
-    return autofire.inputActionGetActionValueShoot(entity);
-  },
+  (entity: Entity | undefined) =>
+    autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 6
 getActionValueFunctions.set(
   ButtonAction.ACTION_SHOOTUP,
-  (entity: Entity | undefined) => {
-    return autofire.inputActionGetActionValueShoot(entity);
-  },
+  (entity: Entity | undefined) =>
+    autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 7
 getActionValueFunctions.set(
   ButtonAction.ACTION_SHOOTDOWN,
-  (entity: Entity | undefined) => {
-    return autofire.inputActionGetActionValueShoot(entity);
-  },
+  (entity: Entity | undefined) =>
+    autofire.inputActionGetActionValueShoot(entity),
 );
