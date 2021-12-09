@@ -5,10 +5,12 @@ import {
   changeRoom,
   getBosses,
   getCollectibles,
+  getDoors,
   getEffects,
   getRoomGridIndexesForType,
   getRooms,
   getRoomSafeGridIndex,
+  lockDoor,
   log,
 } from "isaacscript-common";
 import g from "../../../../../globals";
@@ -107,6 +109,12 @@ function warp() {
   }
 
   restoreMinimapDisplayFlags(displayFlagsMap);
+
+  // If the Treasure room was attached to the starting room, the door will now be open
+  // Manually close it
+  for (const treasureRoomDoor of getDoors(RoomType.ROOM_TREASURE)) {
+    lockDoor(treasureRoomDoor);
+  }
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary

@@ -521,6 +521,7 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
 
   const startSeedString = g.seeds.GetStartSeedString();
 
+  g.debug = true;
   g.race.status = RaceStatus.IN_PROGRESS;
   g.race.myStatus = RacerStatus.RACING;
   g.race.format = RaceFormat.SEEDED;
@@ -533,6 +534,8 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
 
 executeCmdFunctions.set("seededraceoff", (_params: string) => {
   g.race = new RaceData();
+  unseed();
+  restart();
 
   printConsole("Disabled seeded race mode.");
 });
