@@ -2,7 +2,7 @@ import {
   giveTrinketsBack,
   inAngelShop,
   nextSeed,
-  temporarilyRemoveTrinkets,
+  temporarilyRemoveTrinket,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -54,7 +54,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   // We need to account for the NO! trinket;
   // if the player has it, we need to temporarily remove it,
   // otherwise the random items selected will not be consistent
-  const trinketSituation = temporarilyRemoveTrinkets(
+  const trinketSituation = temporarilyRemoveTrinket(
     player,
     TrinketType.TRINKET_NO,
   );
