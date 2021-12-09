@@ -9,6 +9,7 @@ import {
   getRoomGridIndexesForType,
   getRooms,
   getRoomSafeGridIndex,
+  log,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -56,6 +57,9 @@ function warp() {
   }
 
   v.level.warpState = DreamCatcherWarpState.WARPING;
+  log(
+    "Warping to the Treasure Room and the Boss Room (for the Dream Catcher feature).",
+  );
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomGridIndexes = getRoomGridIndexesForType(

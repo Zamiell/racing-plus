@@ -1,7 +1,7 @@
 ```
 ### *v0.74.3* - December ?th, 2021
 
--
+- Fixed the bug where Dream Catcher would not work properly in seeded races. (Thanks Monkeypot)
 ```
 
 TODO Racing+ new features:

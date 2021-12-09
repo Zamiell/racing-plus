@@ -16,6 +16,7 @@ import {
   getRooms,
   getRoomSafeGridIndex,
   lockDoor,
+  log,
 } from "isaacscript-common";
 import g from "../../globals";
 import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
@@ -29,24 +30,8 @@ import v from "./v";
 const STAIRWAY_GRID_INDEX = 25;
 const TAINTED_KEEPER_ITEM_PRICE = 15;
 
-function shouldApplyPlanetariumFix() {
-  return (
-    g.race.format === RaceFormat.SEEDED &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    getEffectiveStage() > 1 &&
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    !g.g.IsGreedMode() &&
-    !g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
-  );
-}
-
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!shouldApplyPlanetariumFix()) {
-    return;
-  }
-
   repositionPlayer();
 }
 
@@ -84,6 +69,18 @@ export function postNewRoom(): void {
   warp();
 }
 
+function shouldApplyPlanetariumFix() {
+  return (
+    g.race.format === RaceFormat.SEEDED &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    getEffectiveStage() > 1 &&
+    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
+    !g.g.IsGreedMode() &&
+    !g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+  );
+}
+
 // When we initially visited the room, we set the prices of the items to an arbitrary value
 // Now that we have arrived in the room for real, reset the prices back to the way that they are
 // supposed to be
@@ -107,6 +104,7 @@ function warp() {
   }
 
   v.level.planetariumFixWarpState = DreamCatcherWarpState.WARPING;
+  log("Warping to the Treasure Room (for the Planetarium Fix).");
   const displayFlagsMap = getMinimapDisplayFlagsMap();
 
   const treasureRoomGridIndexes = getRoomGridIndexesForType(
