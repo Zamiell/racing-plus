@@ -36,41 +36,60 @@ export function postNPCInit(npc: EntityNPC): void {
   checkAdd(npc, "MC_POST_NPC_INIT");
 }
 
-function checkAdd(npc: EntityNPC, parentCallback: string) {
-  // Don't do anything if we are already tracking this NPC
-  const ptrHash = GetPtrHash(npc);
+// ModCallbacks.MC_POST_PROJECTILE_INIT (43)
+export function postProjectileInit(projectile: EntityProjectile): void {
+  checkAdd(projectile, "MC_POST_PROJECTILE_INIT");
+}
+
+function checkAdd(entity: Entity, parentCallback: string) {
+  // Don't do anything if we are already tracking this entity
+  const ptrHash = GetPtrHash(entity);
   if (v.room.aliveEnemies.has(ptrHash)) {
+    return;
+  }
+
+  // The only projectiles that we want to track are Meat Projectiles from a Cohort
+  const projectile = entity.ToProjectile();
+  if (
+    projectile !== undefined &&
+    projectile.Variant !== ProjectileVariant.PROJECTILE_MEAT
+  ) {
     return;
   }
 
   // We don't care if this is a non-battle NPC
   // (for some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false)
-  if (!npc.CanShutDoors && npc.Type !== EntityType.ENTITY_DEEP_GAPER) {
+  const npc = entity.ToNPC();
+  if (
+    npc !== undefined &&
+    !npc.CanShutDoors &&
+    npc.Type !== EntityType.ENTITY_DEEP_GAPER
+  ) {
     return;
   }
 
   // We don't care if the NPC is already dead
   // (this is needed because we can enter this function from the PostNPCUpdate callback)
-  if (npc.IsDead()) {
+  if (entity.IsDead()) {
     return;
   }
 
   // We don't care if this is a specific child NPC attached to some other NPC (like Death's scythes)
-  if (isAliveExceptionNPC(npc)) {
+  if (npc !== undefined && isAliveExceptionNPC(npc)) {
     return;
   }
 
-  add(npc, ptrHash, parentCallback);
+  add(entity, ptrHash, parentCallback);
 }
 
-function add(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
+function add(entity: Entity, ptrHash: PtrHash, parentCallback: string) {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.aliveEnemies.add(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
     log(
-      `Added NPC to track to frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash} (${parentCallback})`,
+      `Added NPC to track to frame ${gameFrameCount}: ${entity.Type}.${entity.Variant}.${entity.SubType} - ${ptrHash} (${parentCallback})`,
     );
     log(
       `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,

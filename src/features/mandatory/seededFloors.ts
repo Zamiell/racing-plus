@@ -245,9 +245,12 @@ function fixWhoreOfBabylon(player: EntityPlayer) {
 }
 
 function shouldWhoreOfBabylonApply(player: EntityPlayer) {
+  const hasWhore = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
+  );
   const character = player.GetPlayerType();
   const hearts = player.GetHearts();
   const redHeartTriggerAmount = character === PlayerType.PLAYER_EVE ? 2 : 1;
 
-  return hearts <= redHeartTriggerAmount;
+  return hasWhore && hearts <= redHeartTriggerAmount;
 }

@@ -1,3 +1,5 @@
+// This file shares code with "planetariumFix.ts"
+
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,

@@ -1,7 +1,7 @@
 // Planetariums have a greater chance of occurring if a Treasure Room is skipped,
 // which can cause a divergence in seeded races
 // In order to mitigate this, we force all players to visit every Treasure Room in seeded races
-// The code in this file is mostly copied from the custom Dream Catcher implementation
+// The file shares code with "showDreamCatcherItem/callbacks/postNewRoom.ts"
 
 import {
   anyPlayerHasCollectible,

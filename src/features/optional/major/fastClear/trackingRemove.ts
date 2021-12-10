@@ -57,22 +57,6 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
 
   v.room.aliveEnemies.delete(ptrHash);
 
-  // If this was the last NPC in the room that died,
-  // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
-  // their children
-  let frameDelay = 1;
-  if (npc.Type === EntityType.ENTITY_COHORT) {
-    // It takes between 16 to 26 frames for the first Globin to spawn from a Cohort dying
-    frameDelay = 26;
-    log(
-      `Delaying ${frameDelay} frames due to killing a Cohort on frame: ${gameFrameCount}`,
-    );
-  }
-  v.room.delayClearUntilFrame = gameFrameCount + frameDelay;
-
-  // Next, we check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate
-  // callback
-
   if (FAST_CLEAR_DEBUG) {
     log(
       `Removed NPC to track on frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
@@ -81,4 +65,11 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
       `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
+  // If this was the last NPC in the room that died,
+  // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
+  // their children
+  v.room.delayClearUntilFrame = gameFrameCount + 1;
+
+  // Next, we check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate
+  // callback
 }

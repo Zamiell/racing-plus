@@ -1,7 +1,10 @@
 ```
-### *v0.74.3* - December ?th, 2021
+### *v0.74.3* - December 9th, 2021
 
-- Fixed the bug where Dream Catcher would not work properly in seeded races. (Thanks Monkeypot)
+- Fixed the bug where Card Reading would not work properly in seeded races. (Thanks Monkeypot)
+- Fixed the bug where Whore of Babylon would incorrect be applied in the starting room of a floor under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where Cohorts would not work properly with fast-clear (again). (Thanks NorBro86)
+- Fixed the bug where Black Market items would be free under certain conditions. (Thanks Monkeypot)
 ```
 
 TODO Racing+ new features:
