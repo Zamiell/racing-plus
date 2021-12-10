@@ -12,6 +12,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Monster Manual will not ever spawn Sawblade. (Reported by Gamonymous)
 - The charges from killing enemies with 4.5 Volt will not prioritize the pocket active item. (Reported by Gamonymous)
 - The Lead Pencil charge bar will not work properly with Incubus and other familiars that copy the player's tears. (Reported by ez_duke)
+- In seeded races, it is possible to get The Fallen as a boss without having taken a Devil Deal. (Reported by Gamonymous)
 
 <br />
 

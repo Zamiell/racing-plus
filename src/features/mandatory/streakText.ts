@@ -7,6 +7,7 @@ import {
   getPillEffectName,
   getRandomArrayElement,
   getScreenBottomRightPos,
+  getTransformationName,
   getTrinketName,
   nextSeed,
   PickingUpItem,
@@ -53,24 +54,6 @@ const DEAD_SEA_SCROLL_EFFECTS = [
   CollectibleType.COLLECTIBLE_TELEPORT,
   CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
   CollectibleType.COLLECTIBLE_YUM_HEART,
-];
-
-const TRANSFORMATION_NAMES = [
-  "Guppy",
-  "Beelzebub",
-  "Fun Guy",
-  "Seraphim",
-  "Bob",
-  "Spun",
-  "Yes Mother?",
-  "Conjoined",
-  "Leviathan",
-  "Oh Crap",
-  "Bookworm",
-  "Adult",
-  "Spider Baby",
-  "Stompy",
-  "Flight", // Unused
 ];
 
 const v = {
@@ -291,7 +274,7 @@ export function postTransformation(
     return;
   }
 
-  const transformationName = TRANSFORMATION_NAMES[playerForm];
+  const transformationName = getTransformationName(playerForm);
   set(transformationName);
 }
 

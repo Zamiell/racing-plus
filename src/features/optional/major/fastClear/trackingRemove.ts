@@ -59,12 +59,13 @@ function remove(npc: EntityNPC, ptrHash: PtrHash) {
 
   if (FAST_CLEAR_DEBUG) {
     log(
-      `Removed NPC to track on frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
+      `Removed fast-clear entity to track on frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash}`,
     );
     log(
-      `Total NPCs tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
+      `Total fast-clear entities tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
+
   // If this was the last NPC in the room that died,
   // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
   // their children

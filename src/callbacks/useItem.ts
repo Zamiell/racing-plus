@@ -3,6 +3,7 @@ import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
+import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
@@ -25,6 +26,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_USE_ITEM,
     fortuneCookie,
     CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_USE_ITEM,
+    meatCleaver,
+    CollectibleType.COLLECTIBLE_MEAT_CLEAVER, // 631
   );
 
   mod.AddCallback(
@@ -76,6 +83,11 @@ function voidItem() {
 // CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
 function fortuneCookie() {
   removeFortuneCookieBanners.useItem();
+}
+
+// CollectibleType.COLLECTIBLE_MEAT_CLEAVER (631)
+function meatCleaver() {
+  consistentAngels.useItemMeatCleaver();
 }
 
 // CollectibleType.COLLECTIBLE_LEMEGETON (712)

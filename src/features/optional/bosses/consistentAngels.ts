@@ -6,14 +6,23 @@ import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
+const FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER = 2;
+
 const v = {
   room: {
     lastSpawnedAngelType: null as EntityType | null,
+    usedMeatCleaverFrame: null as int | null,
   },
 };
 
 export function init(): void {
   saveDataManager("consistentAngels", v);
+}
+
+// ModCallbacks.MC_USE_ITEM (3)
+// CollectibleType.COLLECTIBLE_MEAT_CLEAVER (631)
+export function useItemMeatCleaver(): void {
+  v.room.usedMeatCleaverFrame = g.g.GetFrameCount();
 }
 
 // ModCallbacks.MC_POST_NPC_INIT (27)
@@ -37,6 +46,17 @@ export function postNPCInitGabriel(npc: EntityNPC): void {
 }
 
 function checkDuplicateAngel(npc: EntityNPC) {
+  const gameFrameCount = g.g.GetFrameCount();
+
+  // This feature should not apply to angels that were duplicated with a Meat Cleaver
+  if (
+    v.room.usedMeatCleaverFrame !== null &&
+    v.room.usedMeatCleaverFrame + FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER ===
+      gameFrameCount
+  ) {
+    return;
+  }
+
   // This feature does not apply to Fallen Angels
   if (npc.Variant !== AngelVariant.NORMAL) {
     return;
