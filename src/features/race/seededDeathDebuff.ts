@@ -102,8 +102,8 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
       : v.run.seededDeath.actives;
 
   for (const activeSlot of getEnumValues(ActiveSlot)) {
-    const item = player.GetActiveItem(activeSlot);
-    if (item === CollectibleType.COLLECTIBLE_NULL) {
+    const collectibleType = player.GetActiveItem(activeSlot);
+    if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
       continue;
     }
 
@@ -111,13 +111,17 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
     const batteryCharge = player.GetBatteryCharge(activeSlot);
 
     const activeItemDescription: ActiveItemDescription = {
-      item,
+      collectibleType,
       charge,
       batteryCharge,
     };
     activesMap.set(activeSlot, activeItemDescription);
 
-    player.RemoveCollectible(item);
+    player.RemoveCollectible(collectibleType);
+    player.RemoveCollectible(collectibleType);
+    // (we remove it twice to account for the vanilla bug where removing it once will not properly
+    // decrement the transformation counter)
+    removeCollectibleFromItemTracker(collectibleType);
   }
 }
 
@@ -130,11 +134,14 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
 
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
-    for (let i = 1; i <= collectibleNum; i++) {
+    for (let i = 0; i < collectibleNum; i++) {
       if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
         items.push(collectibleType);
       }
       player.RemoveCollectible(collectibleType);
+      player.RemoveCollectible(collectibleType);
+      // (we remove it twice to account for the vanilla bug where removing it once will not properly
+      // decrement the transformation counter)
       removeCollectibleFromItemTracker(collectibleType);
     }
   }
@@ -224,12 +231,12 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
       const totalCharge =
         activeItemDescription.charge + activeItemDescription.batteryCharge;
       player.AddCollectible(
-        activeItemDescription.item,
+        activeItemDescription.collectibleType,
         totalCharge,
         false,
         activeSlot,
       );
-      giveTransformationHelper(player, activeItemDescription.item);
+      giveTransformationHelper(player, activeItemDescription.collectibleType);
     }
 
     activesMap.delete(activeSlot);
@@ -245,7 +252,7 @@ function debuffOffAddAllItems(player: EntityPlayer) {
 
   for (const collectibleType of items) {
     player.AddCollectible(collectibleType, 0, false);
-    // giveTransformationHelper(player, collectibleType);
+    giveTransformationHelper(player, collectibleType);
   }
 
   arrayEmpty(items);

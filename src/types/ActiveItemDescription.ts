@@ -1,5 +1,5 @@
 export interface ActiveItemDescription {
-  item: CollectibleType | int;
+  collectibleType: CollectibleType | int;
   charge: int;
   batteryCharge: int;
 }
