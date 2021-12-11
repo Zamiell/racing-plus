@@ -1,7 +1,7 @@
 import {
   getEffectiveStage,
+  getEffects,
   getRepentanceDoor,
-  removeAllMatchingEntities,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
@@ -14,7 +14,7 @@ export function postNewRoom(): void {
   checkRemoveRepentanceDoor();
 }
 
-// MC_PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {
   checkRemoveRepentanceDoor();
 }
@@ -59,10 +59,15 @@ function shouldRemoveRepentanceDoorOnBeastRace() {
 }
 
 function removeRepentanceDoor() {
-  removeAllMatchingEntities(EntityType.ENTITY_EFFECT, EffectVariant.DUST_CLOUD);
-
   const repentanceDoor = getRepentanceDoor();
-  if (repentanceDoor !== undefined) {
-    g.r.RemoveDoor(repentanceDoor.Slot);
+  if (repentanceDoor === undefined) {
+    return;
+  }
+
+  g.r.RemoveDoor(repentanceDoor.Slot);
+
+  // When the door is spawned, the game creates dust clouds
+  for (const effect of getEffects(EffectVariant.DUST_CLOUD)) {
+    effect.Visible = false;
   }
 }

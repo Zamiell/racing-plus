@@ -245,7 +245,7 @@ function debuffOffAddAllItems(player: EntityPlayer) {
 
   for (const collectibleType of items) {
     player.AddCollectible(collectibleType, 0, false);
-    giveTransformationHelper(player, collectibleType);
+    // giveTransformationHelper(player, collectibleType);
   }
 
   arrayEmpty(items);
@@ -262,7 +262,7 @@ function giveTransformationHelper(
   collectibleType: CollectibleType,
 ) {
   const transformations = getTransformationsForItem(collectibleType);
-  for (const transformation of transformations.values()) {
+  for (const transformation of transformations) {
     const helperCollectibleType =
       TRANSFORMATION_TO_HELPER_MAP.get(transformation);
     if (helperCollectibleType !== undefined) {

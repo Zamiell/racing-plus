@@ -6,6 +6,7 @@
 - Fixed the bug where Whore of Babylon would incorrect be applied in the starting room of a floor under certain conditions. (Thanks Fallenfor)
 - Fixed the bug where Cohorts would not work properly with fast-clear (again). (Thanks NorBro86)
 - Fixed the bug where using a Meat Cleaver on a Uriel or Gabriel would not work correctly. (Thanks Gamonymous)
+- Fixed the bug where if a Repentance door was removed, it would show for a single frame before it was removed. (Thanks Gamonymous)
 ```
 
 TODO Racing+ new features:
