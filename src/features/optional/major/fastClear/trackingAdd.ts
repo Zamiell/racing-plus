@@ -14,14 +14,14 @@ export function postNPCUpdate(npc: EntityNPC): void {
   // because there are no flags set yet in the PostNPCInit callback
   // Thus, we have to wait until they are initialized before we remove them from the table
   if (npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
-    trackingRemove.checkRemove(npc, false);
+    trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_FLAG_FRIENDLY");
     return;
   }
 
   // Eggies will never trigger the PostEntityKill callback,
   // so we must manually check to see if they are dead on every frame
   if (isDyingEggyWithNoSpidersLeft(npc)) {
-    trackingRemove.checkRemove(npc, false);
+    trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_DYING_EGGY");
     return;
   }
 

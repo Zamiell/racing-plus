@@ -4,7 +4,6 @@
 import {
   getHUDOffsetVector,
   isBethany,
-  isGreedMode,
   isJacobOrEsau,
 } from "isaacscript-common";
 import {
@@ -55,7 +54,7 @@ export function getPosition(): Vector {
   // Being in greed mode shifts the "No Achievements" icon to the left
   if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
-  } else if (isGreedMode()) {
+  } else if (g.g.IsGreedMode()) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
