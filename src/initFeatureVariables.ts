@@ -10,6 +10,7 @@ import * as fireworks from "./features/mandatory/fireworks";
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
+import * as roomVisiter from "./features/mandatory/roomVisiter";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
@@ -91,6 +92,7 @@ export function initFeatureVariables(): void {
   dummyDPS.init();
   debugPowers.init();
   errors.init();
+  roomVisiter.init();
 
   // Major
   startWithD6.init();

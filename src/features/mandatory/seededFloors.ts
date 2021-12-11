@@ -184,6 +184,7 @@ export function after(): void {
     setPlayerHealth(player, v.run.playerHealth);
   }
 
+  addExtraHealthFromItems(player);
   fixWhoreOfBabylon(player);
 
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
@@ -225,6 +226,18 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
   player.AddCoins(inventory.coins);
   player.AddKeys(-99);
   player.AddKeys(inventory.keys);
+}
+
+function addExtraHealthFromItems(player: EntityPlayer) {
+  // In vanilla, no matter how many Dream Catchers the player has, it will only grant 1 soul heart
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+    player.AddSoulHearts(1);
+  }
+
+  const numMaggysFaith = player.GetTrinketMultiplier(
+    TrinketType.TRINKET_MAGGYS_FAITH,
+  );
+  player.AddEternalHearts(numMaggysFaith);
 }
 
 /** Restoring the player's health can result in a bugged Whore of Babylon state. */

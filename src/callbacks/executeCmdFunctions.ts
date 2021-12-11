@@ -50,6 +50,9 @@ import {
   validateNumber,
 } from "./executeCmdSubroutines";
 
+const DEFAULT_SEEDED_RACE_STARTING_ITEM =
+  CollectibleType.COLLECTIBLE_MOMS_KNIFE;
+
 export const executeCmdFunctions = new Map<string, (params: string) => void>();
 
 executeCmdFunctions.set("angel", (params: string) => {
@@ -517,7 +520,16 @@ executeCmdFunctions.set("save", (_params: string) => {
   printConsole('Saved variables to the "save#.dat" file.');
 });
 
-executeCmdFunctions.set("seededrace", (_params: string) => {
+executeCmdFunctions.set("seededrace", (params: string) => {
+  let startingItem = DEFAULT_SEEDED_RACE_STARTING_ITEM;
+  if (params !== "") {
+    const num = validateNumber(params);
+    if (num === undefined) {
+      return;
+    }
+    startingItem = num;
+  }
+
   if (!onSetSeed()) {
     printConsole(
       'You must be on a set seed in order to use the "seededrace" command.',
@@ -539,7 +551,7 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
   g.race.myStatus = RacerStatus.RACING;
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
-  g.race.startingItems = [CollectibleType.COLLECTIBLE_EPIC_FETUS];
+  g.race.startingItems = [startingItem];
 
   printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
   restart();

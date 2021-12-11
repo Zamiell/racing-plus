@@ -17,6 +17,7 @@ import {
   getRooms,
   getRoomSafeGridIndex,
   lockDoor,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { EffectVariantCustom, PickupPriceCustom } from "../../types/enums";
@@ -38,6 +39,10 @@ const v = {
     bosses: [] as Array<[int, int]>,
   },
 };
+
+export function init(): void {
+  saveDataManager("roomVisiter", v);
+}
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
