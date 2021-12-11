@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.6* - December 11th, 2021
+
+- Fixed the bug where in seeded races, Planetariums would be open if they were connected to the starting room. (Thanks Fallenfor)
+
 ### *v0.74.5* - December 10th, 2021
 
 - Fixed the bug where in seeded races, Empty Heart would not grant any heart containers upon reaching a new floor. (Thanks Fallenfor)

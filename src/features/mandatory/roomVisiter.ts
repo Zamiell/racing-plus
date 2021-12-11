@@ -188,9 +188,14 @@ function warp(roomsTypesToVisit: Set<RoomType>) {
 
   restoreMinimapDisplayFlags(displayFlagsMap);
 
-  // If the Treasure room was attached to the starting room, the door will now be open
-  // Manually close it
-  for (const treasureRoomDoor of getDoors(RoomType.ROOM_TREASURE)) {
+  // If a room that is normally locked is was attached to the starting room,
+  // the door will now be open; manually close it
+  for (const treasureRoomDoor of getDoors(
+    RoomType.ROOM_SHOP, // 2
+    RoomType.ROOM_TREASURE, // 4
+    RoomType.ROOM_LIBRARY, // 12
+    RoomType.ROOM_PLANETARIUM, // 24
+  )) {
     lockDoor(treasureRoomDoor);
   }
 

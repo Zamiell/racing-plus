@@ -1,8 +1,2 @@
-```
-### *v0.74.6* - December 11th, 2021
-
--
-```
-
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
