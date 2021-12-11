@@ -4,7 +4,6 @@ import { config } from "../../../modConfigMenu";
 import * as chat from "../chat";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as placeLeft from "../placeLeft";
-import * as planetariumFix from "../planetariumFix";
 import * as raceRoom from "../raceRoom";
 import { raceStart } from "../raceStart";
 import * as raceTimer from "../raceTimer";
@@ -34,7 +33,6 @@ export function racePostRender(): void {
     startingRoom.postRender();
     topSprite.postRender();
     chat.postRender();
-    planetariumFix.postRender();
   }
 }
 

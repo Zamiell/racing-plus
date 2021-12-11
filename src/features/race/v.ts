@@ -2,7 +2,6 @@ import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { config } from "../../modConfigMenu";
 import { ActiveItemDescription } from "../../types/ActiveItemDescription";
 import { ButtonDescription } from "../../types/ButtonDescription";
-import { DreamCatcherWarpState } from "../../types/DreamCatcherWarpState";
 import { SeededDeathState } from "./types/SeededDeathState";
 
 const v = {
@@ -46,9 +45,6 @@ const v = {
 
     dpsButton: null as ButtonDescription | null,
     victoryLapButton: null as ButtonDescription | null,
-
-    /** Only applies to seeded races. */
-    planetariumFixWarpState: DreamCatcherWarpState.INITIAL,
   },
 
   room: {

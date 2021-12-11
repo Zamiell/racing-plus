@@ -45,6 +45,7 @@ import {
   IAMERROR,
   listEntities,
   movePlayer,
+  planetarium,
   trapdoor,
   validateNumber,
 } from "./executeCmdSubroutines";
@@ -413,6 +414,14 @@ executeCmdFunctions.set("pills", (_params: string) => {
   }
 });
 
+executeCmdFunctions.set("planet", (_params: string) => {
+  planetarium();
+});
+
+executeCmdFunctions.set("planetarium", (_params: string) => {
+  planetarium();
+});
+
 executeCmdFunctions.set("pocket", (params: string) => {
   if (params === "") {
     printConsole("You must supply a collectible type.");
@@ -439,6 +448,10 @@ executeCmdFunctions.set("pos", (_params: string) => {
 
 executeCmdFunctions.set("previous", (_params: string) => {
   speedrunSetNext(true);
+});
+
+executeCmdFunctions.set("rankedsoloreset", (_params: string) => {
+  printConsole("This command has to be performed on the Racing+ client.");
 });
 
 executeCmdFunctions.set("roomindex", (_params: string) => {
@@ -526,7 +539,7 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
   g.race.myStatus = RacerStatus.RACING;
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
-  g.race.startingItems = [CollectibleType.COLLECTIBLE_20_20];
+  g.race.startingItems = [CollectibleType.COLLECTIBLE_EPIC_FETUS];
 
   printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
   restart();

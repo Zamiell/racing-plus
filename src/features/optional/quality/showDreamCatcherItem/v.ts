@@ -1,15 +1,12 @@
-import { saveDataManager } from "isaacscript-common";
+import { anyPlayerHasCollectible, saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 
 const v = {
   level: {
-    items: [] as CollectibleType[],
+    collectibles: [] as CollectibleType[],
 
     /** Bosses are stored as an array of: [entityType, variant] */
     bosses: [] as Array<[int, int]>,
-
-    warpState: DreamCatcherWarpState.INITIAL,
   },
 };
 export default v;
@@ -20,4 +17,11 @@ export function init(): void {
 
 function featureEnabled() {
   return config.showDreamCatcherItem;
+}
+
+export function shouldCheckForDreamCatcherThings(): boolean {
+  return (
+    featureEnabled() &&
+    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)
+  );
 }

@@ -10,5 +10,9 @@
 - Fixed the bug with seeded death revival where transformations could be incorrectly awarded under certain circumstances. (Thanks ez_duke)
 ```
 
+seed SVJ7 HMVY
+- why is crawlspace different
+- why is stage 4a different
+
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor

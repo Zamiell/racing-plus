@@ -4,6 +4,7 @@ import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
+import * as roomVisiter from "../features/mandatory/roomVisiter";
 import * as runTimer from "../features/mandatory/runTimer";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
@@ -48,6 +49,7 @@ export function main(): void {
   runTimer.postRender();
   topLeftText.postRender();
   drawVersion.postRender();
+  roomVisiter.postRender();
 
   // Major
   racePostRender();

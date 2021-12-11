@@ -5,6 +5,7 @@ import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
+import * as roomVisiter from "../features/mandatory/roomVisiter";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
@@ -52,6 +53,7 @@ export function main(): void {
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
+  roomVisiter.postNewRoom();
 
   // Major
   racePostNewRoom();

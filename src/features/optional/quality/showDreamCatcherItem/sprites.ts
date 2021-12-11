@@ -25,9 +25,9 @@ export function set(): void {
     CollectibleType.COLLECTIBLE_DREAM_CATCHER,
   );
 
-  for (let i = 0; i < v.level.items.length; i++) {
+  for (let i = 0; i < v.level.collectibles.length; i++) {
     if (itemSprites[i] === undefined) {
-      const collectibleType = v.level.items[i];
+      const collectibleType = v.level.collectibles[i];
       itemSprites[i] = initGlowingItemSprite(collectibleType);
     }
   }
@@ -69,7 +69,7 @@ function shouldShowSprites() {
 
   return (
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
-    (v.level.items.length > 0 || v.level.bosses.length > 0) &&
+    (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
     // Only show the sprites in the starting room
     roomSafeGridIndex === startingRoomGridIndex &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns

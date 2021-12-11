@@ -1,6 +1,7 @@
 import {
   findFreePosition,
   getEntities,
+  getRoomGridIndexesForType,
   log,
   printConsole,
   teleport,
@@ -223,6 +224,19 @@ function getModificationVector(amount: float, direction: Direction) {
       return Vector.Zero;
     }
   }
+}
+
+export function planetarium(): void {
+  const planetariumGridIndexes = getRoomGridIndexesForType(
+    RoomType.ROOM_PLANETARIUM,
+  );
+  if (planetariumGridIndexes.length === 0) {
+    printConsole("There are no Planetariums on this floor.");
+    return;
+  }
+
+  const planetariumGridIndex = planetariumGridIndexes[0];
+  teleport(planetariumGridIndex);
 }
 
 export function trapdoor(): void {
