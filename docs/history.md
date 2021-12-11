@@ -1,5 +1,23 @@
 # Racing+ Version History and News
 
+### *v0.74.5* - December 10th, 2021
+
+- Fixed the bug where in seeded races, Empty Heart would not grant any heart containers upon reaching a new floor. (Thanks Fallenfor)
+- Fixed the bug where in seeded races, Hollow Heart would not grant any bone hearts upon reaching a new floor. (Thanks Hispa)
+
+### *v0.74.3* - December 10th, 2021
+
+- The free Devil Deal mechanic no longer applies to the Black Market.  (Thanks Monkeypot)
+- Fixed the bug where Card Reading would not work properly in seeded races. (Thanks Monkeypot)
+- Fixed the bug where Whore of Babylon would incorrect be applied in the starting room of a floor under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where Cohorts would not work properly with fast-clear (again). (Thanks NorBro)
+- Fixed the bug where using a Meat Cleaver on a Uriel or Gabriel would not work correctly. (Thanks Gamonymous)
+- Fixed the bug where if a Repentance door was removed, it would show for a single frame before it was removed. (Thanks Gamonymous)
+- Fixed the bug with seeded death revival where transformations could be incorrectly awarded under certain circumstances. (Thanks ez_duke)
+- Fixed the bug where seeded races would generate different floors if one person entered a Planetarium.
+- Fixed the bug where in seeded races, Dream Catcher would not grant any soul hearts upon reaching a new floor.
+- Fixed the bug where in seeded races, Maggy's Faith would not grant any eternal hearts upon reaching a new floor. (Thanks Monkeypot)
+
 ### *v0.74.2* - December 5th, 2021
 
 - Fixed the bug where Whore of Babylon would incorrectly trigger in the first room of a floor under certain circumstances. (Thanks Fallenfor
