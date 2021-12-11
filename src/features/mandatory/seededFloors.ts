@@ -229,15 +229,31 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
 }
 
 function addExtraHealthFromItems(player: EntityPlayer) {
+  // 566
   // In vanilla, no matter how many Dream Catchers the player has, it will only grant 1 soul heart
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
     player.AddSoulHearts(1);
   }
 
+  // 676
+  const redHearts = player.GetHearts();
+  if (
+    player.HasCollectible(CollectibleType.COLLECTIBLE_EMPTY_HEART) &&
+    redHearts <= 2
+  ) {
+    player.AddMaxHearts(2, true);
+  }
+
+  // 55
   const numMaggysFaith = player.GetTrinketMultiplier(
     TrinketType.TRINKET_MAGGYS_FAITH,
   );
   player.AddEternalHearts(numMaggysFaith);
+
+  const numHollowHearts = player.GetTrinketMultiplier(
+    TrinketType.TRINKET_HOLLOW_HEART,
+  );
+  player.AddBoneHearts(numHollowHearts);
 }
 
 /** Restoring the player's health can result in a bugged Whore of Babylon state. */
