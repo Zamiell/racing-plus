@@ -141,16 +141,8 @@ function getRollingAnimation(direction: Direction) {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  if (v.run.rolling) {
-    const player = getRollPlayer();
-    stopRoll(player);
-  }
-}
-
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (!rollEnabled()) {
     return;
   }
@@ -206,6 +198,16 @@ function stopRoll(player: EntityPlayer) {
   enableAllInputs();
 }
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  if (v.run.rolling) {
+    const player = getRollPlayer();
+    stopRoll(player);
+  }
+}
+
+// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
+// EntityType.ENTITY_PLAYER (1)
 export function entityTakeDmgPlayer(player: EntityPlayer): void {
   if (v.run.rolling) {
     stopRoll(player);

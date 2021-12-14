@@ -69,6 +69,21 @@ const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
 const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
 
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
+  const numSawbladeCollectibles = player.GetCollectibleNum(
+    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
+  );
+  const sawbladeRNG = player.GetCollectibleRNG(
+    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
+  );
+  player.CheckFamiliar(
+    FamiliarVariantCustom.SAWBLADE,
+    numSawbladeCollectibles,
+    sawbladeRNG,
+  );
+}
+
 // ModCallbacks.MC_FAMILIAR_UPDATE (6)
 // FamiliarVariantCustom.SAWBLADE
 export function postFamiliarUpdateSawblade(familiar: EntityFamiliar): void {
@@ -171,20 +186,4 @@ export function preFamiliarCollisionSawblade(collider: Entity): void {
   if (collider.Type === EntityType.ENTITY_PROJECTILE) {
     collider.Die();
   }
-}
-
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
-// PlayerVariant.PLAYER (0)
-export function postPEffectUpdatePlayer(player: EntityPlayer): void {
-  const numSawbladeCollectibles = player.GetCollectibleNum(
-    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
-  );
-  const sawbladeRNG = player.GetCollectibleRNG(
-    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
-  );
-  player.CheckFamiliar(
-    FamiliarVariantCustom.SAWBLADE,
-    numSawbladeCollectibles,
-    sawbladeRNG,
-  );
 }

@@ -79,8 +79,8 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
   return true;
 }
 
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer) {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer) {
   if (!config.flipCustom) {
     return;
   }

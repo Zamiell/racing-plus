@@ -22,17 +22,8 @@ export function init(): void {
   saveDataManager("combinedDualityDoors", v);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  if (!config.combinedDualityDoors) {
-    return;
-  }
-
-  checkModifyDevilRoomDoor();
-}
-
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (!config.combinedDualityDoors) {
     return;
   }
@@ -102,6 +93,15 @@ function shouldInvertDirection(slot: DoorSlot) {
     slot === DoorSlot.RIGHT1 ||
     slot === DoorSlot.DOWN1
   );
+}
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  if (!config.combinedDualityDoors) {
+    return;
+  }
+
+  checkModifyDevilRoomDoor();
 }
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)

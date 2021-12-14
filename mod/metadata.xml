@@ -10,14 +10,15 @@ A racing mod for The Binding of Isaac: Repentance[/b][/h1]
 Normally a single player game, the mod, client, and server allow players to be able to race against each other in real time.
 
 [b]2) Multi-Character Speedruns[/b]
-The Racing+ mod uses custom challenges to facilitate multi-character speedruns, in which you must beat the game multiple times in a row on various characters. You can find the leaderboards here: https://www.speedrun.com/repentance/full_game
+The Racing+ mod uses custom challenges to facilitate multi-character speedruns, in which you must beat the game multiple times in a row on various characters. Check out [url=https://www.speedrun.com/repentance/full_game]the leaderboards[/url]!
 
 [b]3) The Largest Collection of Bug Fixes That Exist[/b]
 The Racing+ mod includes many bug fixes that remain unpatched in the vanilla game.
 
-Find out more at [url=https://isaacracing.net]the official Racing+ webpage.[/url]
+Find out more at [url=https://isaacracing.net]the official Racing+ webpage[/url].
 
-For technical support or general questions, please [b]do not post a comment here[/b]. Instead, post in the Racing+ general chat on the Isaac racing &amp; speedrunning Discord server: https://discord.gg/JzbhWQb</description>
+For technical support or general questions, please [b]do not post a comment here[/b]. Instead, post in the Racing+ general chat on [url=https://discord.gg/JzbhWQb]the Isaac racing &amp; speedrunning Discord server[/url].
+</description>
   <version>0.74.7</version>
   <visibility>Public</visibility>
   <tag id="Lua"/>

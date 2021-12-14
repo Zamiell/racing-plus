@@ -126,8 +126,8 @@ function getFlipActiveSlot(player: EntityPlayer) {
   return null;
 }
 
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (!config.startWithD6) {
     return;
   }

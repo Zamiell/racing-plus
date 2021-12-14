@@ -35,7 +35,6 @@ import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
-import * as postPlayerUpdate from "./callbacks/postPlayerUpdate";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
 import * as postTearUpdate from "./callbacks/postTearUpdate";
@@ -104,7 +103,6 @@ function registerCallbacksMain(mod: ModUpgraded) {
   mod.AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate.main); // 1
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, postRender.main); // 2
   mod.AddCallback(ModCallbacks.MC_USE_ITEM, useItem.main); // 3
-  mod.AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPEffectUpdate.main);
   mod.AddCallback(ModCallbacks.MC_USE_CARD, useCard.main); // 5
   mod.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evaluateCache.main); // 8
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postPlayerInit.main); // 9
@@ -182,8 +180,8 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_PLAYER_UPDATE_REORDERED,
-    postPlayerUpdate.main,
+    ModCallbacksCustom.MC_POST_PEFFECT_UPDATE_REORDERED,
+    postPEffectUpdate.main,
   );
 
   mod.AddCallbackCustom(

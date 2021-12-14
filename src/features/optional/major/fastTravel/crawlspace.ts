@@ -50,68 +50,8 @@ const ONE_BY_ONE_ROOM_ENTER_MAP = new Map<Direction, int>([
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.CRAWLSPACE;
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  checkEnteringCrawlspace();
-  checkExitingCrawlspace();
-  checkPostRoomTransitionSubvert();
-}
-
-function checkEnteringCrawlspace() {
-  if (inCrawlspace() && v.level.crawlspace.amEntering) {
-    v.level.crawlspace.amEntering = false;
-
-    // When a player manually teleports into a crawlspace, they will not consistently be placed at
-    // the top of the ladder
-    // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
-    movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
-    log(
-      "Manually repositioned a player to the top of the ladder after returning to a crawlspace after a Black Market.",
-    );
-  }
-}
-
-function checkExitingCrawlspace() {
-  if (v.level.crawlspace.amExiting) {
-    v.level.crawlspace.amExiting = false;
-
-    if (v.level.crawlspace.returnRoomPosition === null) {
-      return;
-    }
-
-    movePlayersAndFamiliars(v.level.crawlspace.returnRoomPosition);
-  }
-}
-
-function checkPostRoomTransitionSubvert() {
-  // If we subverted the room transition for a room outside of the grid,
-  // we might not end up in a spot where the player expects
-  // So, move to the most logical position
-  const direction = v.level.crawlspace.subvertedRoomTransitionDirection;
-  if (direction === Direction.NO_DIRECTION) {
-    return;
-  }
-
-  const roomShape = g.r.GetRoomShape();
-  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
-    return;
-  }
-
-  const gridPosition = ONE_BY_ONE_ROOM_ENTER_MAP.get(direction);
-  if (gridPosition === undefined) {
-    return;
-  }
-
-  const player = Isaac.GetPlayer();
-  player.Position = g.r.GetGridPosition(gridPosition);
-  v.level.crawlspace.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
-  log(
-    "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
-  );
-}
-
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (v.room.amChangingRooms) {
     return;
   }
@@ -234,6 +174,66 @@ function getExitDirection(roomType: RoomType, player: EntityPlayer) {
       return undefined;
     }
   }
+}
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  checkEnteringCrawlspace();
+  checkExitingCrawlspace();
+  checkPostRoomTransitionSubvert();
+}
+
+function checkEnteringCrawlspace() {
+  if (inCrawlspace() && v.level.crawlspace.amEntering) {
+    v.level.crawlspace.amEntering = false;
+
+    // When a player manually teleports into a crawlspace, they will not consistently be placed at
+    // the top of the ladder
+    // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
+    movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
+    log(
+      "Manually repositioned a player to the top of the ladder after returning to a crawlspace after a Black Market.",
+    );
+  }
+}
+
+function checkExitingCrawlspace() {
+  if (v.level.crawlspace.amExiting) {
+    v.level.crawlspace.amExiting = false;
+
+    if (v.level.crawlspace.returnRoomPosition === null) {
+      return;
+    }
+
+    movePlayersAndFamiliars(v.level.crawlspace.returnRoomPosition);
+  }
+}
+
+function checkPostRoomTransitionSubvert() {
+  // If we subverted the room transition for a room outside of the grid,
+  // we might not end up in a spot where the player expects
+  // So, move to the most logical position
+  const direction = v.level.crawlspace.subvertedRoomTransitionDirection;
+  if (direction === Direction.NO_DIRECTION) {
+    return;
+  }
+
+  const roomShape = g.r.GetRoomShape();
+  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
+    return;
+  }
+
+  const gridPosition = ONE_BY_ONE_ROOM_ENTER_MAP.get(direction);
+  if (gridPosition === undefined) {
+    return;
+  }
+
+  const player = Isaac.GetPlayer();
+  player.Position = g.r.GetGridPosition(gridPosition);
+  v.level.crawlspace.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
+  log(
+    "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
+  );
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT

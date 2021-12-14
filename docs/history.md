@@ -1,5 +1,7 @@
 # Racing+ Version History and News
 
+- Racing+ users should now use the "pure" version of Mod Config Menu instead of other versions: https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787
+
 ### *v0.74.6* - December 11th, 2021
 
 - Fixed the bug where in seeded races, Planetariums would be open if they were connected to the starting room. (Thanks Fallenfor)

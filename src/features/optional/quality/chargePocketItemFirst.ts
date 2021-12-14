@@ -69,21 +69,8 @@ function featureEnabled() {
   return config.chargePocketItemFirst;
 }
 
-// ModCallbacks.MC_USE_PILL (10)
-export function usePill48HourEnergy(player: EntityPlayer): void {
-  if (!chargePocketFeatureShouldApply(player)) {
-    return;
-  }
-
-  const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
-    numCharges: LIL_BATTERY_CHARGES,
-  };
-  checkSwitchCharge(player, chargeSituation);
-}
-
-// ModCallbacks.MC_POST_PLAYER_UPDATE (31)
-export function postPlayerUpdate(player: EntityPlayer): void {
+// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
@@ -161,6 +148,19 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
     const totalCharge = getTotalCharge(player, activeSlot);
     activeItemCharges.set(activeSlot, totalCharge);
   }
+}
+
+// ModCallbacks.MC_USE_PILL (10)
+export function usePill48HourEnergy(player: EntityPlayer): void {
+  if (!chargePocketFeatureShouldApply(player)) {
+    return;
+  }
+
+  const chargeSituation: ChargeSituation = {
+    chargeType: ChargeType.N_CHARGES,
+    numCharges: LIL_BATTERY_CHARGES,
+  };
+  checkSwitchCharge(player, chargeSituation);
 }
 
 // ModCallbacksCustom.MC_POST_PICKUP_COLLECT
