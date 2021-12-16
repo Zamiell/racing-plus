@@ -17,7 +17,7 @@ Regardless of the format:
 
 ## Seeded
 
-- In seeded races, both players play on the same seed. (This means that they should get all of the same items, bosses, and so forth.)
+- In seeded races, all players play on the same seed. (This means that they should get all of the same items, bosses, and so forth.)
 - Resetting is allowed, but it will just take a player back to the beginning of the same seed.
 - Each player will start with a pre-defined starting item that is chosen before the match, such as Cricket's Head or Mom's Knife.
 - The Basement 1 Treasure Room is removed. (This is to prevent players from starting with 2 items instead of 1.)
