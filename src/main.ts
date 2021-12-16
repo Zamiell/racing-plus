@@ -73,13 +73,13 @@ import { MOD_NAME, VERSION } from "./constants";
 import { initFeatureVariables } from "./initFeatureVariables";
 
 export default function main(): void {
-  const mod = RegisterMod(MOD_NAME, 1);
-  const modUpgraded = upgradeMod(mod);
+  const modVanilla = RegisterMod(MOD_NAME, 1);
+  const mod = upgradeMod(modVanilla);
 
   welcomeBanner();
   initFeatureVariables();
   saveDataManagerSetGlobal();
-  registerCallbacks(modUpgraded);
+  registerCallbacks(mod);
 }
 
 function welcomeBanner() {
