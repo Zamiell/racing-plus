@@ -6,6 +6,7 @@ import {
   getRoomSafeGridIndex,
   gridToPos,
   log,
+  logAllSeedEffects,
   onSetSeed,
   printConsole,
   saveDataManagerSave,
@@ -565,6 +566,11 @@ executeCmdFunctions.set("seededraceoff", (_params: string) => {
   printConsole("Disabled seeded race mode.");
 });
 
+executeCmdFunctions.set("seeds", (_params: string) => {
+  logAllSeedEffects();
+  printConsole('Logged the seed effects to the "log.txt" file.');
+});
+
 executeCmdFunctions.set("setcharorder", (_params: string) => {
   setCharacterOrderDebug();
   restartOnNextFrame();
@@ -587,12 +593,15 @@ executeCmdFunctions.set("sound", (params: string) => {
 });
 
 executeCmdFunctions.set("sounds", (_params: string) => {
-  printConsole("Printing out the currently playing sounds to the log.txt.");
   for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
     if (g.sfx.IsPlaying(i)) {
       log(`Currently playing sound effect: ${i}`);
     }
   }
+
+  printConsole(
+    'Logged the currently playing sound effects to the "log.txt" file.',
+  );
 });
 
 executeCmdFunctions.set("spam", (_params: string) => {

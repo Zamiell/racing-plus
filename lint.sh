@@ -31,7 +31,13 @@ npx cspell --no-progress --no-summary "src/**/*.ts"
 npx cspell --no-progress --no-summary "mod/metadata.xml"
 npx cspell --no-progress --no-summary "docs/**/*.md"
 
-# Step 3 - Check for unused imports
+# Step 4 - Check for incorrectly formatted XML files
+# (and skip this step if xmllint is not currently installed for whatever reason)
+if ! command -v xmllint &> /dev/null; then
+  find "$DIR/mod" -name "*.xml" -print0 | xargs -0 xmllint --noout
+fi
+
+# Step 5 - Check for unused imports
 # The "--error" flag makes it return an error code of 1 if unused exports are found
 npx ts-prune --error
 
