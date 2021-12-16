@@ -45,7 +45,7 @@ Regardless of the format:
   - They will have a "debuff" effect that removes all of the items. The debuff will last 45 seconds.
   - This mechanic does not apply to deaths in Devil Rooms, Sacrifice Rooms, or the Boss Rush. (Deaths in those rooms will be permanent.)
 - 3 Dollar Bill is seeded per room.
-- Not entering a Treasure Room no longer increases the chance of a Planetarium spawning.
+- Not entering a Treasure Room no longer increases the chance of a Planetarium spawning. (However, this mechanic does not apply to the first floor.)
 
 <br />
 
