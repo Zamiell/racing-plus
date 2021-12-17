@@ -225,7 +225,7 @@ export function checkPlayerTouched(
   }
 }
 
-export function isUsingPony(player: EntityPlayer): boolean {
+function isUsingPony(player: EntityPlayer): boolean {
   const temporaryEffects = player.GetEffects();
   return (
     temporaryEffects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_PONY) ||
