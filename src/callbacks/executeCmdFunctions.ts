@@ -453,6 +453,10 @@ executeCmdFunctions.set("roomindex", (_params: string) => {
   roomInfo();
 });
 
+executeCmdFunctions.set("roominfo", (_params: string) => {
+  roomInfo();
+});
+
 executeCmdFunctions.set("s", (params: string) => {
   if (params === "") {
     printConsole("You must specify a stage number.");
