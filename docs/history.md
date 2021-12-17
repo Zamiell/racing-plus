@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.74.7* - December ?th, 2021
+### *v0.74.8* - December 17th, 2021
 
 - Merry Christmas!
 - Racing+ users should now use the "pure" version of Mod Config Menu instead of other versions. It can be found here: https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787
