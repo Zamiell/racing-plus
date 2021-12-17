@@ -18,6 +18,14 @@ export function goto(upwards: boolean): void {
   const nextStage = getNextStage();
   const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
 
+  // The effect of Empress? cards are supposed to end after one minute passive
+  // However, taking away the health and re-adding it will cause the extra two red heart containers
+  // to not be removed properly once the minute ends
+  // Thus, we cut the effect short now
+  for (const player of getPlayers()) {
+    const effects = player.GetEffects();
+    effects.RemoveNullEffect(NullItemID.ID_REVERSE_EMPRESS);
+  }
   // The effect of Sun? cards are supposed to end upon reaching a new floor, so we can remove the
   // effect now so that it will not interfere with the recording of the player's current health
   for (const player of getPlayers()) {
