@@ -2,6 +2,7 @@
 
 import {
   ensureAllCases,
+  getPlayers,
   getRoomSafeGridIndex,
   isChildPlayer,
   log,
@@ -165,10 +166,23 @@ export function checkShouldOpen(
   const entityState = state.get(entity, fastTravelEntityType);
   if (
     entityState === FastTravelEntityState.CLOSED &&
-    state.shouldOpen(entity, fastTravelEntityType)
+    state.shouldOpen(entity, fastTravelEntityType) &&
+    // TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+    !anyPlayerUsingPony()
   ) {
     state.open(entity, fastTravelEntityType);
   }
+}
+
+// TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+export function anyPlayerUsingPony() {
+  for (const player of getPlayers()) {
+    if (isUsingPony(player)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function checkPlayerTouched(
@@ -195,8 +209,13 @@ export function checkPlayerTouched(
   );
   for (const playerEntity of playersTouching) {
     const player = playerEntity.ToPlayer();
+    if (player === undefined) {
+      continue;
+    }
+
     if (
-      player !== undefined &&
+      // We don't want a Pony dash to transition to a new floor or a crawlspace
+      !isUsingPony(player) &&
       !isChildPlayer(player) &&
       canInteractWith(player)
     ) {
@@ -204,6 +223,16 @@ export function checkPlayerTouched(
       return; // Prevent two players from touching the same entity
     }
   }
+}
+
+export function isUsingPony(player: EntityPlayer): boolean {
+  const temporaryEffects = player.GetEffects();
+  return (
+    temporaryEffects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_PONY) ||
+    temporaryEffects.HasCollectibleEffect(
+      CollectibleType.COLLECTIBLE_WHITE_PONY,
+    )
+  );
 }
 
 function canInteractWith(player: EntityPlayer) {

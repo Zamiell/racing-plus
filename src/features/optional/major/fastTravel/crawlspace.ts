@@ -15,7 +15,7 @@ import {
 import g from "../../../../globals";
 import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../util";
 import { DEBUG } from "./constants";
-import { FastTravelEntityType } from "./enums";
+import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
 import v from "./v";
@@ -291,8 +291,20 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   // Keep it closed on every frame so that we can implement our own custom functionality
   gridEntity.State = TrapdoorState.CLOSED;
 
+  checkShouldClose(gridEntity);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+}
+
+// TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+function checkShouldClose(gridEntity: GridEntity) {
+  const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  if (
+    entityState === FastTravelEntityState.OPEN &&
+    fastTravel.anyPlayerUsingPony()
+  ) {
+    state.close(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  }
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
