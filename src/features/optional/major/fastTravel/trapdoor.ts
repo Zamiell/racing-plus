@@ -10,6 +10,7 @@ import g from "../../../../globals";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
+import { DEBUG } from "./constants";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -220,5 +221,9 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
+  if (DEBUG) {
+    log("Touched a trapdoor.");
+  }
+
   setFadingToBlack(player, entity.Position, false);
 }

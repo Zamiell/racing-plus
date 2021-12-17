@@ -2,9 +2,12 @@ import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   getCollectibleSet,
+  getEffectiveStage,
   getMaxCollectibleID,
   getPlayerIndex,
   getPlayers,
+  getRoomVisitedCount,
+  inStartingRoom,
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
@@ -212,7 +215,15 @@ export function postRender(): boolean {
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
     const randomBabyID = Isaac.GetPlayerTypeByName("Random Baby");
-    if (character !== randomBabyID) {
+    const effectiveStage = getEffectiveStage();
+    const roomVisitedCount = getRoomVisitedCount();
+
+    if (
+      effectiveStage === 1 &&
+      inStartingRoom() &&
+      roomVisitedCount === 1 &&
+      character !== randomBabyID
+    ) {
       drawText(
         "Error: You must turn off The Babies Mod when playing characters other than Random Baby.",
       );

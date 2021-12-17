@@ -1,6 +1,7 @@
-import { anyPlayerCloserThan, ensureAllCases } from "isaacscript-common";
+import { anyPlayerCloserThan, ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
 import {
+  DEBUG,
   FastTravelEntityDescription,
   TRAPDOOR_BOSS_REACTION_FRAMES,
   TRAPDOOR_OPEN_DISTANCE,
@@ -34,6 +35,7 @@ function setOpenClose(
     ? FastTravelEntityState.OPEN
     : FastTravelEntityState.CLOSED;
   set(entity, fastTravelEntityType, state);
+
   const sprite = entity.GetSprite();
   let animationPrefix = isOpen ? "Opened" : "Closed";
   if (
@@ -45,6 +47,12 @@ function setOpenClose(
   }
   const animation = `${animationPrefix} Custom`;
   sprite.Play(animation, true);
+
+  if (DEBUG) {
+    log(
+      `${animationPrefix} a fast travel entity: ${FastTravelEntityType[fastTravelEntityType]}`,
+    );
+  }
 }
 
 export function get(

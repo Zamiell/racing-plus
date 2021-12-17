@@ -1,5 +1,4 @@
 import {
-  getCollectibleName,
   getNPCs,
   getPlayers,
   getRoomListIndex,
@@ -7,6 +6,7 @@ import {
   gridToPos,
   log,
   logAllSeedEffects,
+  logTemporaryEffects,
   onSetSeed,
   printConsole,
   saveDataManagerSave,
@@ -261,19 +261,7 @@ executeCmdFunctions.set("fool", (_params: string) => {
 
 executeCmdFunctions.set("effects", (_params: string) => {
   const player = Isaac.GetPlayer();
-  const effects = player.GetEffects();
-  const effectsList = effects.GetEffectsList();
-  if (effectsList.Size === 0) {
-    printConsole("There are no current temporary effects.");
-    return;
-  }
-  for (let i = 0; i < effectsList.Size; i++) {
-    const effect = effectsList.Get(i);
-    if (effect !== undefined) {
-      const collectibleName = getCollectibleName(effect.Item.ID);
-      log(`${i + 1} - ${collectibleName}`);
-    }
-  }
+  logTemporaryEffects(player);
   printConsole('Logged the player\'s effects to the "log.txt" file.');
 });
 
