@@ -1,4 +1,5 @@
 import {
+  getPlayers,
   onRepentanceStage,
   removeAllMatchingEntities,
 } from "isaacscript-common";
@@ -16,6 +17,13 @@ export function goto(upwards: boolean): void {
   const stageType = g.l.GetStageType();
   const nextStage = getNextStage();
   const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
+
+  // The effect of Sun? cards are supposed to end upon reaching a new floor, so we can remove the
+  // effect now so that it will not interfere with the recording of the player's current health
+  for (const player of getPlayers()) {
+    const effects = player.GetEffects();
+    effects.RemoveNullEffect(NullItemID.ID_REVERSE_SUN);
+  }
 
   // If Tainted Jacob loses Anime Sola for any reason,
   // it can cause multiple Dark Esau's to spawn upon reaching a new floor

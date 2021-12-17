@@ -2,9 +2,11 @@
 
 ### *v0.74.7* - December ?th, 2021
 
+- Merry Christmas!
 - Racing+ users should now use the "pure" version of Mod Config Menu instead of other versions. It can be found here: https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787
 - Trapdoors and crawlspaces can no longer be entered while the player dashing from a Pony or White Pony. (Thanks KiraKeepKool)
 - Fixed the bug where the Genesis room was not being detected properly. (Thanks Gamonymous)
+- Fixed the bug where in seeded races, Sun? cards would not properly revert health upon reaching a new floor. (Thanks Moucheron Quipet)
 
 ### *v0.74.6* - December 11th, 2021
 
