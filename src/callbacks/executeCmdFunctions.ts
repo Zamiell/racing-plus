@@ -1,8 +1,6 @@
 import {
   getNPCs,
   getPlayers,
-  getRoomListIndex,
-  getRoomSafeGridIndex,
   gridToPos,
   log,
   logAllSeedEffects,
@@ -47,6 +45,7 @@ import {
   listEntities,
   movePlayer,
   planetarium,
+  roomInfo,
   trapdoor,
   validateNumber,
 } from "./executeCmdSubroutines";
@@ -446,12 +445,12 @@ executeCmdFunctions.set("rankedsoloreset", (_params: string) => {
   printConsole("This command has to be performed on the Racing+ client.");
 });
 
-executeCmdFunctions.set("roomindex", (_params: string) => {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-  const roomListIndex = getRoomListIndex();
+executeCmdFunctions.set("room", (_params: string) => {
+  roomInfo();
+});
 
-  printConsole(`The current room safe grid index is: ${roomSafeGridIndex}`);
-  printConsole(`The current room list index is: ${roomListIndex}`);
+executeCmdFunctions.set("roomindex", (_params: string) => {
+  roomInfo();
 });
 
 executeCmdFunctions.set("s", (params: string) => {

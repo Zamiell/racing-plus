@@ -2,12 +2,15 @@ import {
   findFreePosition,
   getEntities,
   getRoomGridIndexesForType,
+  getRoomListIndex,
+  getRoomSafeGridIndex,
   log,
   printConsole,
   teleport,
 } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
+import g from "../globals";
 
 const IGNORE_EFFECT_VARIANTS = new Set([
   EffectVariant.BLOOD_EXPLOSION, // 2
@@ -237,6 +240,16 @@ export function planetarium(): void {
 
   const planetariumGridIndex = planetariumGridIndexes[0];
   teleport(planetariumGridIndex);
+}
+
+export function roomInfo(): void {
+  const roomType = g.r.GetType();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomListIndex = getRoomListIndex();
+
+  printConsole(`The current room type is: ${roomType}`);
+  printConsole(`The current room safe grid index is: ${roomSafeGridIndex}`);
+  printConsole(`The current room list index is: ${roomListIndex}`);
 }
 
 export function trapdoor(): void {
