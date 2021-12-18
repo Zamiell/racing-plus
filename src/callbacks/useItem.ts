@@ -7,7 +7,7 @@ import * as consistentAngels from "../features/optional/bosses/consistentAngels"
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
-import { CollectibleTypeCustom } from "../types/enums";
+import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

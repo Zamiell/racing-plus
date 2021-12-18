@@ -1,5 +1,5 @@
 import * as sb from "../features/items/sawblade";
-import { FamiliarVariantCustom } from "../types/enums";
+import { FamiliarVariantCustom } from "../types/FamiliarVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

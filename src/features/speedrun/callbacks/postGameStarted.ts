@@ -1,5 +1,5 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../types/enums";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
   restartOnNextFrame,

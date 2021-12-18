@@ -1,7 +1,8 @@
 import { arraySum, ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
-import { CollectibleTypeCustom, SoundEffectCustom } from "../../types/enums";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";

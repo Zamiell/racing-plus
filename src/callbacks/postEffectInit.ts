@@ -1,7 +1,7 @@
 import * as centerStart from "../features/mandatory/centerStart";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import * as racePostEffectInit from "../features/race/callbacks/postEffectInit";
-import { EffectVariantCustom } from "../types/enums";
+import { EffectVariantCustom } from "../types/EffectVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

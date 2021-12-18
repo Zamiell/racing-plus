@@ -4,7 +4,7 @@
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { EffectVariantCustom } from "../../../types/enums";
+import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 export function preRoomEntitySpawn(
   gridIndex: int,

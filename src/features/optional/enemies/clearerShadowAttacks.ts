@@ -3,7 +3,7 @@
 // - Reap Creep (900) (rock projectiles)
 // - Bumbino (916) (rock projectiles)
 
-import { TargetSubTypeCustom } from "../../../types/enums";
+import { TargetSubTypeCustom } from "../../../types/TargetSubTypeCustom";
 
 const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
 

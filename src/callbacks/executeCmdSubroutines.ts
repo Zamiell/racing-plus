@@ -247,9 +247,9 @@ export function roomInfo(): void {
   const roomSafeGridIndex = getRoomSafeGridIndex();
   const roomListIndex = getRoomListIndex();
 
-  printConsole(`The current room type is: ${roomType}`);
-  printConsole(`The current room safe grid index is: ${roomSafeGridIndex}`);
-  printConsole(`The current room list index is: ${roomListIndex}`);
+  printConsole(`Current room type: ${roomType}`);
+  printConsole(`Current room safe grid index: ${roomSafeGridIndex}`);
+  printConsole(`Current room list index: ${roomListIndex}`);
 }
 
 export function trapdoor(): void {

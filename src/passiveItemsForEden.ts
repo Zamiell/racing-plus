@@ -1,7 +1,7 @@
 import { getMaxCollectibleID, isPassiveCollectible } from "isaacscript-common";
 import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
-import { CollectibleTypeCustom } from "./types/enums";
+import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 
 export const passiveItemsForEden: Array<
   CollectibleType | CollectibleTypeCustom

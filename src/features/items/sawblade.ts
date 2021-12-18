@@ -55,10 +55,8 @@ Sawblade stats:
 */
 
 import { getFamiliars } from "isaacscript-common";
-import {
-  CollectibleTypeCustom,
-  FamiliarVariantCustom,
-} from "../../types/enums";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { FamiliarVariantCustom } from "../../types/FamiliarVariantCustom";
 
 interface SawbladeData {
   frameCountModifier: int | undefined;

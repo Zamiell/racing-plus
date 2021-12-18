@@ -15,7 +15,7 @@ import {
 import g from "../../globals";
 import { TRANSFORMATION_TO_HELPER_MAP } from "../../maps/transformationToHelperMap";
 import { ActiveItemDescription } from "../../types/ActiveItemDescription";
-import { TRANSFORMATION_HELPERS } from "../../types/enums";
+import { TRANSFORMATION_HELPERS } from "../../types/transformationHelpers";
 import v from "./v";
 
 const QUARTER_FADED_COLOR = Color(1, 1, 1, 0.25);

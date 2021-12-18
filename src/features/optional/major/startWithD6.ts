@@ -29,7 +29,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { CollectibleTypeCustom } from "../../../types/enums";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 const D6_STARTING_CHARGE = 6;
 

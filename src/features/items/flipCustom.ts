@@ -13,7 +13,7 @@ import { COLLECTIBLE_LAYER } from "../../constants";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { initItemSprite } from "../../sprite";
-import { CollectibleTypeCustom } from "../../types/enums";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 
 const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
 const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;

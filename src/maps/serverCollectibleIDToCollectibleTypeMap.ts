@@ -1,4 +1,4 @@
-import { CollectibleTypeCustom } from "../types/enums";
+import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new Map<
   int,

@@ -12,7 +12,7 @@ import {
   spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { CollectibleTypeCustom } from "../../../../types/enums";
+import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { RaceGoal } from "../../../race/types/RaceGoal";

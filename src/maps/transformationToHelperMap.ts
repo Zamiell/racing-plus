@@ -1,4 +1,4 @@
-import { CollectibleTypeCustom } from "../types/enums";
+import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export const TRANSFORMATION_TO_HELPER_MAP = new Map<
   PlayerForm,

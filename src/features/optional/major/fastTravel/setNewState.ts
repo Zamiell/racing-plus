@@ -9,7 +9,7 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { EffectVariantCustom } from "../../../../types/enums";
+import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { moveEsauNextToJacob } from "../../../../util";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";

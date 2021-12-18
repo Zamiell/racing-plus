@@ -3,7 +3,7 @@
 
 import { ensureAllCases } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import { NullItemIDCustom } from "../../../types/enums";
+import { NullItemIDCustom } from "../../../types/NullItemIDCustom";
 
 enum Holiday {
   NONE,

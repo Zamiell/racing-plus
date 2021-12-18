@@ -5,7 +5,7 @@
 
 import { getEffectiveStage, getRoomSafeGridIndex } from "isaacscript-common";
 import g from "../../globals";
-import { CreepRedSubTypeCustom } from "../../types/enums";
+import { CreepRedSubTypeCustom } from "../../types/CreepRedSubTypeCustom";
 import { RaceFormat } from "../race/types/RaceFormat";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";

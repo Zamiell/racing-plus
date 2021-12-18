@@ -1,4 +1,4 @@
-import { PlayerTypeCustom } from "../types/enums";
+import { PlayerTypeCustom } from "../types/PlayerTypeCustom";
 
 // cspell:disable
 export const CHARACTER_MAP = new Map<string, PlayerType | PlayerTypeCustom>([

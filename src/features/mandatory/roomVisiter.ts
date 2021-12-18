@@ -20,7 +20,8 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-import { EffectVariantCustom, PickupPriceCustom } from "../../types/enums";
+import { EffectVariantCustom } from "../../types/EffectVariantCustom";
+import { PickupPriceCustom } from "../../types/PickupPriceCustom";
 import { RoomVisitorWarpState } from "../../types/RoomVisitorWarpState";
 import { shouldCheckForDreamCatcherThings } from "../optional/quality/showDreamCatcherItem/v";
 import { shouldApplyPlanetariumFix } from "../race/planetariumFix";

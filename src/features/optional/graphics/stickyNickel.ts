@@ -1,6 +1,6 @@
 import { getFinalFrameOfAnimation } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import { EffectVariantCustom } from "../../../types/enums";
+import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 interface StickyNickelEffectData {
   associatedCoinPtr: EntityPtr | undefined;

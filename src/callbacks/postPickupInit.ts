@@ -12,7 +12,7 @@ import * as automaticItemInsertion from "../features/optional/quality/automaticI
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
-import { PickupVariantCustom } from "../types/enums";
+import { PickupVariantCustom } from "../types/PickupVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

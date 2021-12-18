@@ -8,7 +8,7 @@ import { COLLECTIBLE_LAYER } from "../../../constants";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initItemSprite } from "../../../sprite";
-import { PickupPriceCustom } from "../../../types/enums";
+import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
 
 const ITEM_OFFSET = Vector(0, 30);
 

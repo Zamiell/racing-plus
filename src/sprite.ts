@@ -4,7 +4,7 @@ import {
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
-import { CollectibleTypeCustom } from "./types/enums";
+import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 import { serverCollectibleIDToCollectibleType } from "./util";
 
 const COLLECTIBLE_TYPE_CUSTOM_ARRAY = getEnumValues(CollectibleTypeCustom);

@@ -6,7 +6,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { EffectVariantCustom } from "../../../types/enums";
+import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 export function postEntityKillLamb(_entity: Entity): void {
   if (!config.stopVictoryLapPopup) {

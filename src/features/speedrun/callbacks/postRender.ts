@@ -34,15 +34,18 @@ function checkBeginFadeOutAfterCheckpoint() {
   v.run.fadeFrame = null;
   g.g.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
 
-  // 72 restarts as the current character and we want a frame of leeway
-  v.run.resetFrame = isaacFrameCount + 70;
-  // (this is necessary because we don't want the player to be able to reset to skip having to
-  // watch the fade out)
+  // If we do nothing, the game will now take us to the main menu
+  // We can interrupt going to the menu by restarting the game on the frame before it happens
+  // 69 is the latest frame that works, determined via trial and error
+  // Doing this is necessary because we do not want the player to be able to reset to skip having to
+  // watch the fade out animation
+  v.run.resetFrame = isaacFrameCount + 69;
 }
 
 function checkManualResetAtEndOfFadeout() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
+  Isaac.DebugString(`GETTING HERE - ${isaacFrameCount} - ${v.run.resetFrame}`);
   if (v.run.resetFrame === null || isaacFrameCount < v.run.resetFrame) {
     return;
   }

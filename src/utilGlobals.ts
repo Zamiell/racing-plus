@@ -8,7 +8,7 @@ import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { isFastTravelHappening } from "./features/optional/major/fastTravel/v";
 import g from "./globals";
-import { CollectibleTypeCustom } from "./types/enums";
+import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 
 export function enteredRoomViaTeleport(): boolean {
   const startingRoomGridIndex = g.l.GetStartingRoomIndex();

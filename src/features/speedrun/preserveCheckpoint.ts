@@ -3,7 +3,7 @@ import {
   removeCollectiblePickupDelay,
 } from "isaacscript-common";
 import g from "../../globals";
-import { CollectibleTypeCustom } from "../../types/enums";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 
 // ModCallbacks.MC_USE_ITEM (3)
 // CollectibleType.COLLECTIBLE_VOID (477)

@@ -6,7 +6,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { CollectibleTypeCustom } from "../../../../types/enums";
+import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
 const v = {

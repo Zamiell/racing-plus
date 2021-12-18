@@ -1,6 +1,6 @@
 import * as sb from "../features/items/sawblade";
 import * as pc from "../features/optional/graphics/paschalCandle";
-import { FamiliarVariantCustom } from "../types/enums";
+import { FamiliarVariantCustom } from "../types/FamiliarVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

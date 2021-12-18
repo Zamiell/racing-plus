@@ -1,9 +1,10 @@
 import { PickingUpItem } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../types/enums";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
-const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30; // In Isaac frames
+/** In render frames. */
+const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30;
 
 export function speedrunPreItemPickup(
   player: EntityPlayer,

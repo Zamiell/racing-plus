@@ -1,6 +1,6 @@
 import { getEffects, getPlayers } from "isaacscript-common";
 import g from "../../../../globals";
-import { EffectVariantCustom } from "../../../../types/enums";
+import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import { setNewState, setPlayersVisible } from "./setNewState";

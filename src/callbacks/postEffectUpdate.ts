@@ -3,7 +3,7 @@ import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
 import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";
 import * as fastLuna from "../features/optional/quality/fastLuna";
-import { EffectVariantCustom } from "../types/enums";
+import { EffectVariantCustom } from "../types/EffectVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

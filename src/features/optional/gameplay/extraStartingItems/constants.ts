@@ -1,4 +1,4 @@
-import { CollectibleTypeCustom } from "../../../../types/enums";
+import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 
 export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   CollectibleTypeCustom,
