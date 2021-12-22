@@ -51,8 +51,8 @@ function thirteenLuck(player: EntityPlayer) {
 
   for (let i = 0; i < num13Luck; i++) {
     player.Luck += 13;
+    player.Luck += characterLuckModifier;
   }
-  player.Luck += characterLuckModifier;
 }
 
 function fifteenLuck(player: EntityPlayer) {
@@ -63,8 +63,8 @@ function fifteenLuck(player: EntityPlayer) {
 
   for (let i = 0; i < num15Luck; i++) {
     player.Luck += 15;
+    player.Luck += characterLuckModifier;
   }
-  player.Luck += characterLuckModifier;
 }
 
 function getCharacterLuckModifier(player: EntityPlayer) {
