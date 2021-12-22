@@ -47,16 +47,51 @@ function thirteenLuck(player: EntityPlayer) {
   const num13Luck = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_13_LUCK,
   );
+  const characterLuckModifier = getCharacterLuckModifier(player);
+
   for (let i = 0; i < num13Luck; i++) {
     player.Luck += 13;
   }
+  player.Luck += characterLuckModifier;
 }
 
 function fifteenLuck(player: EntityPlayer) {
   const num15Luck = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_15_LUCK,
   );
+  const characterLuckModifier = getCharacterLuckModifier(player);
+
   for (let i = 0; i < num15Luck; i++) {
     player.Luck += 15;
+  }
+  player.Luck += characterLuckModifier;
+}
+
+function getCharacterLuckModifier(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  switch (character) {
+    case PlayerType.PLAYER_LAZARUS: {
+      return 1;
+    }
+
+    case PlayerType.PLAYER_KEEPER: {
+      return 2;
+    }
+
+    case PlayerType.PLAYER_ESAU: {
+      return 1;
+    }
+
+    case PlayerType.PLAYER_LAZARUS2_B: {
+      return 2;
+    }
+
+    case PlayerType.PLAYER_KEEPER_B: {
+      return 2;
+    }
+
+    default: {
+      return 0;
+    }
   }
 }

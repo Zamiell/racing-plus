@@ -1,5 +1,15 @@
 # Racing+ Version History and News
 
+### *v0.74.9* - December 21st, 2021
+
+- The custom items of 13 Luck and 15 Luck will now give extra luck to characters that start with negative luck.
+- Fixed the bug where Diplopia would not work properly on Keeper or Tainted Keeper in a Devil Room with the free-item mechanic. (Thanks 3kch1)
+
+### *v0.74.9* - December 17th, 2021
+
+- Fixed the bug where the Checkpoint was not working correctly. (Thanks olo70009)
+- Fixed the bug where Scolex was not removed properly in seeded races under certain conditions. (Thanks Monkeypot)
+
 ### *v0.74.8* - December 17th, 2021
 
 - Merry Christmas!

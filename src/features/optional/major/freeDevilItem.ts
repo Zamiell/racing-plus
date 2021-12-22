@@ -111,8 +111,9 @@ function isDevilDealStyleCollectible(pickup: EntityPickup) {
 
   if (anyPlayerIs(PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_KEEPER_B)) {
     return (
-      roomType === RoomType.ROOM_DEVIL ||
-      roomType === RoomType.ROOM_BLACK_MARKET
+      pickup.Price > 0 &&
+      (roomType === RoomType.ROOM_DEVIL ||
+        roomType === RoomType.ROOM_BLACK_MARKET)
     );
   }
 
