@@ -1,3 +1,4 @@
+import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as raceInputAction from "../features/race/callbacks/inputAction";
 
 export const isActionTriggeredFunctions = new Map<
@@ -8,4 +9,9 @@ export const isActionTriggeredFunctions = new Map<
 // 28
 isActionTriggeredFunctions.set(ButtonAction.ACTION_CONSOLE, () =>
   raceInputAction.isActionTriggeredConsole(),
+);
+
+// 9
+isActionTriggeredFunctions.set(ButtonAction.ACTION_ITEM, () =>
+  chargePocketItemFirst.isActionTriggeredItem(),
 );

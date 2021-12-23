@@ -163,6 +163,12 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
+// ModCallbacks.MC_INPUT_ACTION (13)
+export function isActionTriggeredItem(): boolean | undefined {
+  // Prevent using the active item before the charges have been swapped
+  return v.room.batteryBumAnimationMap === undefined ? undefined : false;
+}
+
 // ModCallbacksCustom.MC_POST_PICKUP_COLLECT
 export function postPickupCollect(
   pickup: EntityPickup,

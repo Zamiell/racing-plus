@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.13* - December 23rd, 2021
+
+- Fixed the bug where you could incorrectly use the charge from a Battery Bum on an active item before it was transferred to the pocket item. (Thanks Fallenfor)
+
 ### *v0.74.12* - December 23rd, 2021
 
 - Fixed the bug where Esau was not getting a holiday hat. (Thanks Moucheron Quipet)
