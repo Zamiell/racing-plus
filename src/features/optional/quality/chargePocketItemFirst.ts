@@ -166,7 +166,7 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
 // ModCallbacks.MC_INPUT_ACTION (13)
 export function isActionTriggeredItem(): boolean | undefined {
   // Prevent using the active item before the charges have been swapped
-  return v.room.batteryBumAnimationMap === undefined ? undefined : false;
+  return v.run.checkForBatteryBumChargesUntilFrame === null ? undefined : false;
 }
 
 // ModCallbacksCustom.MC_POST_PICKUP_COLLECT
