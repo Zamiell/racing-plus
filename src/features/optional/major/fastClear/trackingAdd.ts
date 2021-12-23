@@ -37,7 +37,7 @@ export function postNPCInit(npc: EntityNPC): void {
 }
 
 // ModCallbacks.MC_POST_PROJECTILE_INIT (43)
-export function postProjectileInit(projectile: EntityProjectile): void {
+export function postProjectileInitMeat(projectile: EntityProjectile): void {
   checkAdd(projectile, "MC_POST_PROJECTILE_INIT");
 }
 

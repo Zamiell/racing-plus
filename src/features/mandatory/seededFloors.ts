@@ -3,6 +3,7 @@
 
 import {
   characterCanHaveRedHearts,
+  characterGetsBlackHeartFromEternalHeart,
   getPlayerHealth,
   getRandom,
   nextSeed,
@@ -88,7 +89,13 @@ export function before(stage: int): void {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
     v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
   } else {
-    v.run.playerHealth.soulHearts += v.run.playerHealth.eternalHearts * 2;
+    const heartSubType = characterGetsBlackHeartFromEternalHeart(character)
+      ? HeartSubType.HEART_BLACK
+      : HeartSubType.HEART_SOUL;
+    for (let i = 0; i < v.run.playerHealth.eternalHearts; i++) {
+      v.run.playerHealth.soulHearts += 2;
+      v.run.playerHealth.soulHeartTypes.push(heartSubType);
+    }
   }
   v.run.playerHealth.eternalHearts = 0;
 

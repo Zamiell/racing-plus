@@ -1,5 +1,11 @@
 # Racing+ Version History and News
 
+### *v0.74.12* - December 23rd, 2021
+
+- Fixed the bug where Esau was not getting a holiday hat. (Thanks Moucheron Quipet)
+- Fixed the bug in seeded races where eternal hearts were not working properly with characters who could not get red heart containers. (Thanks Moucheron Quipet)
+- Fixed the bug where Cohorts would not work properly with fast-clear (again). (Thanks Moucheron Quipet)
+
 ### *v0.74.10* - December 21st, 2021
 
 - The custom items of 13 Luck and 15 Luck will now give extra luck to characters that start with negative luck.

@@ -1,7 +1,7 @@
 // Conditionally show a festive hat
 // (disabled if it is not currently a holiday)
 
-import { ensureAllCases } from "isaacscript-common";
+import { ensureAllCases, isJacobOrEsau } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { NullItemIDCustom } from "../../../types/NullItemIDCustom";
 
@@ -28,6 +28,13 @@ export function postGameStarted(): void {
 
   const player = Isaac.GetPlayer();
   player.AddNullCostume(holidayCostumeID);
+
+  if (isJacobOrEsau(player)) {
+    const esau = player.GetOtherTwin();
+    if (esau !== undefined) {
+      esau.AddNullCostume(holidayCostumeID);
+    }
+  }
 }
 
 function getHolidayCostumeID(holiday: Holiday) {
