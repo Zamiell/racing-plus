@@ -123,12 +123,13 @@ executeCmdFunctions.set("card", (params: string) => {
     return;
   }
 
-  const word = params.toLowerCase();
-  const card = CARD_MAP.get(word);
-  if (card === undefined) {
+  const match = getPartialMatchFromMap(params, CARD_MAP) as Card | undefined;
+  if (match === undefined) {
     printConsole("Unknown card.");
     return;
   }
+  const card = match;
+
   consoleCommand(`g k${card}`);
   printConsole(`Gave card: #${card}`);
 });
