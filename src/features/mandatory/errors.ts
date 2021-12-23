@@ -17,7 +17,7 @@ import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const NUM_RACING_PLUS_ITEMS = 31;
-const NUM_BABIES_MOD_ITEMS = 15;
+const NUM_BABIES_MOD_ITEMS = 17;
 const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
 const ITEM_POOL_TO_CHECK = ItemPoolType.POOL_SECRET;
 const STARTING_X = 115;
