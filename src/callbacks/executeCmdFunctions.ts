@@ -123,7 +123,7 @@ executeCmdFunctions.set("card", (params: string) => {
     return;
   }
 
-  const match = getPartialMatchFromMap(params, CARD_MAP) as Card | undefined;
+  const match = getPartialMatchFromMap(params, CARD_MAP);
   if (match === undefined) {
     printConsole("Unknown card.");
     return;
@@ -366,12 +366,12 @@ executeCmdFunctions.set("pill", (params: string) => {
     return;
   }
 
-  const word = params.toLowerCase();
-  const pillEffect = PILL_MAP.get(word);
-  if (pillEffect === undefined) {
-    printConsole("Unknown pill.");
+  const match = getPartialMatchFromMap(params, PILL_MAP);
+  if (match === undefined) {
+    printConsole("Unknown pill effect.");
     return;
   }
+  const pillEffect = match;
 
   consoleCommand(`g p${pillEffect}`);
   printConsole(`Gave pill: #${pillEffect}`);

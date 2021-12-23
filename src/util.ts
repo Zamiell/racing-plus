@@ -15,10 +15,10 @@ export function consoleCommand(command: string): void {
   log(`Finished executing console command: ${command}`);
 }
 
-export function getPartialMatchFromMap(
+export function getPartialMatchFromMap<T>(
   searchText: string,
-  map: Map<string, unknown>,
-): unknown | undefined {
+  map: Map<string, T>,
+): T | undefined {
   const keys = [...map.keys()];
   keys.sort();
 
