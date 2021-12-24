@@ -23,7 +23,7 @@ export function init(): void {
   if (sandboxTraceback === undefined) {
     sandbox = null;
     log(
-      'Detected sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
+      'Detected the sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
     );
     return;
   }
@@ -31,12 +31,12 @@ export function init(): void {
   if (!sandbox.isSocketInitialized()) {
     sandbox = null;
     log(
-      'Detected sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
+      'Detected the sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
     );
     return;
   }
 
-  log("Detected sandbox environment.");
+  log("Detected the sandbox environment.");
 }
 
 export function connect(): boolean {
@@ -69,12 +69,6 @@ export function connect(): boolean {
   if (clientUDP === null) {
     return false;
   }
-
-  // We check for new socket data on every PostRender frame
-  // However, the remote socket might not necessarily have any new data for us
-  // Thus, we set the timeout to 0 in order to prevent lag
-  clientTCP.settimeout(0);
-  clientUDP.settimeout(0);
 
   return true;
 }
