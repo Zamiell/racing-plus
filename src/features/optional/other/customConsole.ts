@@ -151,8 +151,8 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
   if (keyStringArray !== undefined) {
     const [lowercaseCharacter, uppercaseCharacter] = keyStringArray;
     const character = shiftPressed ? uppercaseCharacter : lowercaseCharacter;
-    const front = inputText.substring(0, inputTextIndex);
-    const back = inputText.substring(inputTextIndex);
+    const front = inputText.slice(0, inputTextIndex);
+    const back = inputText.slice(inputTextIndex);
     inputText = `${front}${character}${back}`;
     inputTextIndex += 1;
   }
@@ -218,8 +218,8 @@ function drawConsole() {
     return;
   }
 
-  const front = inputText.substring(0, inputTextIndex);
-  const back = inputText.substring(inputTextIndex);
+  const front = inputText.slice(0, inputTextIndex);
+  const back = inputText.slice(inputTextIndex);
   const textSegments: TextSegment[] = [
     {
       text: ">",
@@ -286,8 +286,8 @@ keyFunctionMap.set(Keyboard.KEY_BACKSPACE, () => {
     return;
   }
 
-  const front = inputText.substring(0, inputTextIndex);
-  const back = inputText.substring(inputTextIndex);
+  const front = inputText.slice(0, inputTextIndex);
+  const back = inputText.slice(inputTextIndex);
   const frontWithLastCharRemoved = front.slice(0, -1);
   inputText = frontWithLastCharRemoved + back;
   inputTextIndex -= 1;
