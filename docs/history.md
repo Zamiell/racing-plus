@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.14* - December 23rd, 2021
+
+- Fixed the bug where rerolling your build would delete the D4 or D100 under certain conditions. (Thanks ez_duke)
+
 ### *v0.74.13* - December 23rd, 2021
 
 - Fixed the bug where you could incorrectly use the charge from a Battery Bum on an active item before it was transferred to the pocket item. (Thanks Fallenfor)

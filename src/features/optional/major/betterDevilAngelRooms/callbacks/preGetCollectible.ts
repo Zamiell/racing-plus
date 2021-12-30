@@ -22,7 +22,12 @@ export function betterDevilAngelRoomsPreGetCollectible(
     return undefined;
   }
 
+  const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
+
+  if (gameFrameCount === v.room.usedD4Frame) {
+    return undefined;
+  }
 
   if (
     itemPoolType !== ItemPoolType.POOL_DEVIL && // 3

@@ -1,4 +1,5 @@
 import * as streakText from "../features/mandatory/streakText";
+import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
 
@@ -19,6 +20,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_PRE_USE_ITEM,
     deadSeaScrolls,
     CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS, // 124
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_PRE_USE_ITEM,
+    d4,
+    CollectibleType.COLLECTIBLE_D4, // 284
   );
 
   mod.AddCallback(
@@ -62,6 +69,11 @@ function deadSeaScrolls(
   _customVarData: int,
 ) {
   return streakText.preUseItemDeadSeaScrolls(player, activeSlot);
+}
+
+// CollectibleType.COLLECTIBLE_D4 (284)
+function d4() {
+  betterDevilAngelRoomsPreUseItemD4();
 }
 
 // CollectibleType.COLLECTIBLE_FLIP (711)

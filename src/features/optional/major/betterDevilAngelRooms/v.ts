@@ -27,6 +27,10 @@ const v = {
   level: {
     vanillaCollectiblesHaveSpawnedInCustomRoom: false,
   },
+
+  room: {
+    usedD4Frame: null as int | null,
+  },
 };
 export default v;
 
