@@ -13,7 +13,7 @@ enum Holiday {
   NEW_YEARS,
 }
 
-const CURRENT_HOLIDAY = Holiday.CHRISTMAS;
+const CURRENT_HOLIDAY = Holiday.NEW_YEARS;
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

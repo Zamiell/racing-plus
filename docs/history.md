@@ -2,8 +2,11 @@
 
 ### *v0.74.14* - December 30th, 2021
 
+- Happy New Years!
 - Fixed the bug where rerolling your build would delete the D4 or D100 under certain conditions. (Thanks ez_duke)
+- Fixed the bug in seeded races where Bethany's soul charges and Tainted Bethany's blood charges could change unexpectedly when changing between floors. (Thanks KiraKeepKool)
 - Fixed the bug where ranked races would not show up properly in the race room. (Thanks Sakk)
+- Fixed the bug where custom revival would not work properly when the player was berserk. (Thanks Hispa)
 
 ### *v0.74.13* - December 23rd, 2021
 
