@@ -1,6 +1,11 @@
 # Racing+ Version History and News
 
-### *v0.74.14* - December 30th, 2021
+### *v0.74.18* - December ?th, 2021
+
+- Vanishing Twin will now work faster. (It is reimplemented from scratch.)
+  - Vanishing Twin will use the vanilla behavior for multi-segment bosses, double champion bosses, and Double Trouble rooms.
+
+### *v0.74.17* - December 30th, 2021
 
 - Happy New Years!
 - Fixed the bug where rerolling your build would delete the D4 or D100 under certain conditions. (Thanks ez_duke)

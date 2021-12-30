@@ -37,6 +37,7 @@ import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
+import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
 import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChargeBar";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
@@ -114,12 +115,13 @@ export function initFeatureVariables(): void {
   showPills.init();
   showNumSacrifices.init();
   showEdenStartingItems.init();
-  leadPencilChargeBar.init();
-  showDreamCatcherItemVars.init();
+  leadPencilChargeBar.init(); // 444
+  showDreamCatcherItemVars.init(); // 566
+  fastVanishingTwin.init(); // 697
+  removePerfectionVelocity.init(); // 145
   showMaxFamiliars.init();
   speedUpFadeIn.init();
   automaticItemInsertion.init();
-  removePerfectionVelocity.init();
   chargePocketItemFirst.init();
 
   // Gameplay

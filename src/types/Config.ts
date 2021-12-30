@@ -62,6 +62,7 @@ export class Config {
   fastLuna = true; // 589
   fadeVasculitisTears = true; // 657
   azazelsRageChargeBar = true; // 669
+  fastVanishingTwin = true; // 697
   flipCustom = true; // 711
   removePerfectionVelocity = true; // 145
   removePerfectionOnEndFloors = true; // 145
