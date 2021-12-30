@@ -12,5 +12,4 @@ export function betterDevilAngelRoomsPreUseItemD4(): void {
   // This callback is fired for D4, D100, 1-pip dice rooms, and 6-pip dice rooms
   const gameFrameCount = g.g.GetFrameCount();
   v.room.usedD4Frame = gameFrameCount;
-  Isaac.DebugString("GETTING HERE - REROLLED");
 }

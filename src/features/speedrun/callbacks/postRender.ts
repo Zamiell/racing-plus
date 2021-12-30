@@ -45,7 +45,6 @@ function checkBeginFadeOutAfterCheckpoint() {
 function checkManualResetAtEndOfFadeout() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  Isaac.DebugString(`GETTING HERE - ${isaacFrameCount} - ${v.run.resetFrame}`);
   if (v.run.resetFrame === null || isaacFrameCount < v.run.resetFrame) {
     return;
   }

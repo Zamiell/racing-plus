@@ -1,8 +1,9 @@
 # Racing+ Version History and News
 
-### *v0.74.14* - December 23rd, 2021
+### *v0.74.14* - December 30th, 2021
 
 - Fixed the bug where rerolling your build would delete the D4 or D100 under certain conditions. (Thanks ez_duke)
+- Fixed the bug where ranked races would not show up properly in the race room. (Thanks Sakk)
 
 ### *v0.74.13* - December 23rd, 2021
 
