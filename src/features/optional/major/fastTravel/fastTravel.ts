@@ -76,14 +76,16 @@ function getCustomSpriteFilename(
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
+      const gridEntity = entity as GridEntity;
+      const variant = gridEntity.GetVariant();
+
+      if (variant === TrapdoorVariant.VOID_PORTAL) {
+        return "gfx/grid/voidtrapdoor_custom.anm2";
+      }
+
       // -8
       if (roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
-      }
-
-      // -9
-      if (roomSafeGridIndex === GridRooms.ROOM_THE_VOID_IDX) {
-        return "gfx/grid/voidtrapdoor.anm2";
       }
 
       // -10
@@ -167,14 +169,14 @@ export function checkShouldOpen(
   if (
     entityState === FastTravelEntityState.CLOSED &&
     state.shouldOpen(entity, fastTravelEntityType) &&
-    // TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+    // TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
     !anyPlayerUsingPony()
   ) {
     state.open(entity, fastTravelEntityType);
   }
 }
 
-// TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+// TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
 export function anyPlayerUsingPony() {
   for (const player of getPlayers()) {
     if (isUsingPony(player)) {

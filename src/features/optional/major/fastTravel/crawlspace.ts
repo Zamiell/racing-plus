@@ -296,7 +296,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
-// TODO remove this after the next vanilla patch when Crawlspaces are decoupled from sprites
+// TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
 function checkShouldClose(gridEntity: GridEntity) {
   const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   if (

@@ -2,7 +2,6 @@ import {
   log,
   ModCallbacksCustom,
   ModUpgraded,
-  saveDataManagerSetGlobal,
   upgradeMod,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
@@ -78,7 +77,6 @@ export default function main(): void {
 
   welcomeBanner();
   initFeatureVariables();
-  saveDataManagerSetGlobal();
   registerCallbacks(mod);
 }
 
