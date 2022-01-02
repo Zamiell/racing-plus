@@ -3,7 +3,7 @@
 ### *v0.74.19* - January 2nd, 2022
 
 - Fixed the bug where in seeded races, Card Reading portals would not be removed properly.
-- Fixed the bug where the buttons would not spawn under certain circumstances. (Thanks cutifire)
+- Fixed the bug where buttons would not spawn under certain circumstances. (Thanks Moucheron Quipet)
 
 ### *v0.74.18* - December ?th, 2021
 

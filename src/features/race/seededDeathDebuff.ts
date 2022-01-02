@@ -116,12 +116,17 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
       batteryCharge,
     };
     activesMap.set(activeSlot, activeItemDescription);
+  }
 
-    player.RemoveCollectible(collectibleType);
-    player.RemoveCollectible(collectibleType);
-    // (we remove it twice to account for the vanilla bug where removing it once will not properly
-    // decrement the transformation counter)
-    removeCollectibleFromItemTracker(collectibleType);
+  // Now that we have gathered information about all of the active items, remove them
+  // (we do it in this order to prevent bugs with removing items on the wrong slot)
+  for (const activeSlot of getEnumValues(ActiveSlot)) {
+    const collectibleType = player.GetActiveItem(activeSlot);
+    if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
+      continue;
+    }
+
+    removeCollectible(player, collectibleType);
   }
 }
 
@@ -138,11 +143,8 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
       if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
         items.push(collectibleType);
       }
-      player.RemoveCollectible(collectibleType);
-      player.RemoveCollectible(collectibleType);
-      // (we remove it twice to account for the vanilla bug where removing it once will not properly
-      // decrement the transformation counter)
-      removeCollectibleFromItemTracker(collectibleType);
+
+      removeCollectible(player, collectibleType);
     }
   }
 
@@ -227,19 +229,20 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
 
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const activeItemDescription = activesMap.get(activeSlot);
-    if (activeItemDescription !== undefined) {
-      const totalCharge =
-        activeItemDescription.charge + activeItemDescription.batteryCharge;
-      player.AddCollectible(
-        activeItemDescription.collectibleType,
-        totalCharge,
-        false,
-        activeSlot,
-      );
-      giveTransformationHelper(player, activeItemDescription.collectibleType);
+    if (activeItemDescription === undefined) {
+      continue;
     }
-
     activesMap.delete(activeSlot);
+
+    const totalCharge =
+      activeItemDescription.charge + activeItemDescription.batteryCharge;
+    player.AddCollectible(
+      activeItemDescription.collectibleType,
+      totalCharge,
+      false,
+      activeSlot,
+    );
+    giveTransformationHelper(player, activeItemDescription.collectibleType);
   }
 }
 
@@ -366,4 +369,17 @@ export function applySeededGhostFade(
       twinSprite.Color = newColor;
     }
   }
+}
+
+function removeCollectible(
+  player: EntityPlayer,
+  collectibleType: CollectibleType,
+) {
+  // We remove the collectible twice to account for the vanilla bug where removing it once will not
+  // properly decrement the transformation counter
+  // https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/404
+  player.RemoveCollectible(collectibleType);
+  player.RemoveCollectible(collectibleType);
+
+  removeCollectibleFromItemTracker(collectibleType);
 }

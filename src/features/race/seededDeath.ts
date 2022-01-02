@@ -381,11 +381,11 @@ export function postFlip(player: EntityPlayer): void {
 }
 
 function logStateChange() {
-  if (!DEBUG) {
-    return;
+  if (DEBUG) {
+    log(
+      `Changed seeded death state: ${
+        SeededDeathState[v.run.seededDeath.state]
+      }`,
+    );
   }
-
-  log(
-    `Changed seeded death state: ${SeededDeathState[v.run.seededDeath.state]}`,
-  );
 }
