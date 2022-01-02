@@ -1,5 +1,6 @@
-import { saveDataManager } from "isaacscript-common";
+import { MAX_VANILLA_CHARACTER, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
+import { PlayerTypeCustom } from "../../types/PlayerTypeCustom";
 import {
   restart,
   restartAsCharacter,
@@ -13,7 +14,7 @@ import {
 const v = {
   run: {
     restartOnNextFrame: false,
-    restartCharacter: null as PlayerType | null,
+    restartCharacter: null as PlayerType | PlayerTypeCustom | null,
     restartChallenge: null as Challenge | null,
     restartSeed: null as string | null,
   },
@@ -60,14 +61,24 @@ function checkSpecialRestart() {
 
 export function restartOnNextFrame(): void {
   v.run.restartOnNextFrame = true;
-  v.run.restartCharacter = null;
 }
 
 export function isRestartingOnNextFrame(): boolean {
   return v.run.restartOnNextFrame;
 }
 
-export function setRestartCharacter(character: PlayerType): void {
+export function setRestartCharacter(
+  character: PlayerType | PlayerTypeCustom,
+): void {
+  if (
+    character < 0 ||
+    (character > MAX_VANILLA_CHARACTER &&
+      character !== PlayerTypeCustom.PLAYER_RANDOM_BABY)
+  ) {
+    // Prevent crashing the game when switching to a custom character that does not exist
+    return;
+  }
+
   v.run.restartCharacter = character;
 }
 

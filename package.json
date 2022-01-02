@@ -15,7 +15,7 @@
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^1.0.329",
     "isaacscript": "^1.1.71",
-    "isaacscript-common": "^1.0.590",
+    "isaacscript-common": "^1.0.591",
     "isaacscript-lint": "^1.0.77"
   }
 }

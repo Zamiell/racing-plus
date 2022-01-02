@@ -8,6 +8,7 @@ import {
   logArray,
 } from "isaacscript-common";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
+import { PlayerTypeCustom } from "./types/PlayerTypeCustom";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -107,7 +108,9 @@ export function restart(): void {
   consoleCommand("restart");
 }
 
-export function restartAsCharacter(character: PlayerType): void {
+export function restartAsCharacter(
+  character: PlayerType | PlayerTypeCustom,
+): void {
   // Doing a "restart 40" causes the player to spawn as Tainted Soul without a Forgotten companion
   if (character === PlayerType.PLAYER_THESOUL_B) {
     character = PlayerType.PLAYER_THEFORGOTTEN_B;
