@@ -10,6 +10,7 @@ import {
   log,
   removeGridEntity,
   runNextFrame,
+  spawnGridEntity,
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -266,14 +267,9 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
   // If we remove a crawlspace and spawn a teleporter on the same tile on the same frame,
   // the teleporter will immediately despawn for some reason
   // Work around this by simply spawning it on the next game frame
+  const gridIndex = gridEntity.GetGridIndex();
   runNextFrame(() => {
-    Isaac.GridSpawn(
-      GridEntityType.GRID_TELEPORTER,
-      0,
-      gridEntity.Position,
-      true,
-    );
-
+    spawnGridEntity(GridEntityType.GRID_TELEPORTER, gridIndex);
     v.room.teleporterSpawned = true;
   });
 }

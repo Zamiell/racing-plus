@@ -3,6 +3,7 @@ import {
   getRoomListIndex,
   getRoomSafeGridIndex,
   openAllDoors,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
@@ -73,25 +74,23 @@ function spawnDPSButton() {
   const roomListIndex = getRoomListIndex();
   const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  let position = g.r.GetGridPosition(32); // Top left
+  let gridIndex = 32; // Top-left
   if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     // The normal position is out of bounds inside of the Mega Satan room
-    position = g.r.GetGridPosition(107);
+    gridIndex = 107;
   }
 
-  Isaac.GridSpawn(
+  const button = spawnGridEntityWithVariant(
     GridEntityType.GRID_PRESSURE_PLATE,
     PressurePlateVariant.PRESSURE_PLATE,
-    position,
-    true,
+    gridIndex,
   );
-
-  const gridIndex = g.r.GetGridIndex(position);
+  const spritePosition = button.Position.add(SPRITE_OFFSET_SHOPKEEPER);
 
   v.level.dpsButton = {
     roomListIndex,
     gridIndex,
-    spritePosition: position.add(SPRITE_OFFSET_SHOPKEEPER),
+    spritePosition,
     pressed: false,
   };
 }
@@ -100,24 +99,28 @@ export function spawnVictoryLapButton(center?: boolean): void {
   const roomListIndex = getRoomListIndex();
   const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  let position = g.r.GetGridPosition(42); // Top right
+  let gridIndex = 42; // Top right
   if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
     // The normal position is out of bounds inside of the Mega Satan room
-    position = g.r.GetGridPosition(117);
+    gridIndex = 117;
   }
 
   if (center === true) {
-    position = g.r.GetCenterPos();
+    const centerPos = g.r.GetCenterPos();
+    gridIndex = g.r.GetGridIndex(centerPos);
   }
 
-  Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, position, true);
-
-  const gridIndex = g.r.GetGridIndex(position);
+  const button = spawnGridEntityWithVariant(
+    GridEntityType.GRID_PRESSURE_PLATE,
+    PressurePlateVariant.PRESSURE_PLATE,
+    gridIndex,
+  );
+  const spritePosition = button.Position.add(SPRITE_OFFSET_COLLECTIBLE);
 
   v.level.victoryLapButton = {
     roomListIndex,
     gridIndex,
-    spritePosition: position.add(SPRITE_OFFSET_COLLECTIBLE),
+    spritePosition,
     pressed: false,
   };
 }

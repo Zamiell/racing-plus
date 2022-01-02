@@ -1,4 +1,4 @@
-import { removeGridEntity } from "isaacscript-common";
+import { spawnGridEntity } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
@@ -39,15 +39,7 @@ function deleteVoidDoor() {
     return;
   }
 
-  removeGridEntity(voidDoor);
-  const wall = Isaac.GridSpawn(
-    GridEntityType.GRID_WALL,
-    0,
-    voidDoor.Position,
-    true,
-  );
-
-  // For some reason, spawned walls start with a collision class of COLLISION_NONE,
-  // so we have to manually set it
-  wall.CollisionClass = GridCollisionClass.COLLISION_WALL;
+  // Spawning a wall on top of the door will automatically delete the door
+  const gridIndex = voidDoor.GetGridIndex();
+  spawnGridEntity(GridEntityType.GRID_WALL, gridIndex);
 }

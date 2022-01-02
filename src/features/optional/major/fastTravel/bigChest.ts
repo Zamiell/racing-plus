@@ -10,6 +10,7 @@ import {
   onSheol,
   removeCollectiblePickupDelay,
   spawnCollectible,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
@@ -269,7 +270,12 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.TRAPDOOR: {
-      Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, pickup.Position, true);
+      const gridIndex = g.r.GetGridIndex(pickup.Position);
+      spawnGridEntityWithVariant(
+        GridEntityType.GRID_TRAPDOOR,
+        TrapdoorVariant.NORMAL,
+        gridIndex,
+      );
       break;
     }
 

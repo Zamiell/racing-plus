@@ -6,6 +6,7 @@ import {
   log,
   removeAllMatchingGridEntities,
   removeGridEntity,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../globals";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
@@ -70,11 +71,12 @@ function createCharacterButtons() {
   v.room.sprites.characters = [];
   for (const [characterID, x, y] of season.charPositions) {
     // Spawn buttons for each characters
-    Isaac.GridSpawn(
+    const position = gridToPos(x, y);
+    const gridIndex = g.r.GetGridIndex(position);
+    spawnGridEntityWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
-      gridToPos(x, y),
-      true,
+      gridIndex,
     );
 
     // Spawn the character selection graphic next to the button

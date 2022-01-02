@@ -4,6 +4,7 @@ import {
   gridToPos,
   removeCollectibleFromItemTracker,
   removeEntities,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { consoleCommand } from "../../../util";
@@ -76,7 +77,12 @@ function setupButtonRoom() {
     }
 
     const position = gridToPos(seasonDescription.X, seasonDescription.Y);
-    Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, position, true);
+    const gridIndex = g.r.GetGridIndex(position);
+    spawnGridEntityWithVariant(
+      GridEntityType.GRID_PRESSURE_PLATE,
+      PressurePlateVariant.PRESSURE_PLATE,
+      gridIndex,
+    );
 
     const seasonSprite = Sprite();
     seasonSprite.Load(`gfx/changeCharOrder/buttons/${key}.anm2`, true);

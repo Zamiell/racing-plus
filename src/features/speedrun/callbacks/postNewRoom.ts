@@ -4,6 +4,7 @@ import {
   getPlayers,
   getRandomInt,
   removeAllCollectibles,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
@@ -84,6 +85,11 @@ function checkWomb2IAMERROR() {
   );
   for (const heavenDoor of heavenDoors) {
     heavenDoor.Remove();
-    Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, heavenDoor.Position, true);
+    const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
+    spawnGridEntityWithVariant(
+      GridEntityType.GRID_TRAPDOOR,
+      TrapdoorVariant.NORMAL,
+      gridIndex,
+    );
   }
 }

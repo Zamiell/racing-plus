@@ -9,9 +9,7 @@ export function postNewRoom(): void {
 }
 
 function removeEndGamePortals() {
-  const stage = g.l.GetStage();
-
-  if (stage < 8) {
+  if (!shouldRemoveEndGamePortals()) {
     return;
   }
 
@@ -19,4 +17,9 @@ function removeEndGamePortals() {
     EntityType.ENTITY_EFFECT,
     EffectVariant.PORTAL_TELEPORT,
   );
+}
+
+export function shouldRemoveEndGamePortals(): boolean {
+  const stage = g.l.GetStage();
+  return stage >= 8;
 }

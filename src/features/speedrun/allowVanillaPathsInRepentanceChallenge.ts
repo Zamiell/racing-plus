@@ -7,7 +7,8 @@ import {
   isRepentanceDoor,
   isRoomInsideMap,
   onRepentanceStage,
-  removeGridEntity,
+  spawnGridEntity,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import {
   NORMAL_TRAPDOOR_POSITION,
@@ -38,17 +39,18 @@ export function preUseItemWeNeedToGoDeeper(
       ? GridEntityType.GRID_STAIRS
       : GridEntityType.GRID_TRAPDOOR;
 
-  player.AnimateCollectible(
-    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
-    PlayerItemAnimation.USE_ITEM,
-  );
-
   // Do not allow trapdoors on stage 9 and above
   if (stage >= 9 && gridEntityType === GridEntityType.GRID_TRAPDOOR) {
     return undefined;
   }
 
-  Isaac.GridSpawn(gridEntityType, 0, player.Position, true);
+  const gridIndex = g.r.GetGridIndex(player.Position);
+  spawnGridEntity(gridEntityType, gridIndex);
+
+  player.AnimateCollectible(
+    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
+    PlayerItemAnimation.USE_ITEM,
+  );
 
   return true;
 }
@@ -130,15 +132,10 @@ function spawnTrapdoorInBossRooms() {
 
   const trapdoorPosition = getTrapdoorPosition();
   const gridIndex = g.r.GetGridIndex(trapdoorPosition);
-  const gridEntity = g.r.GetGridEntity(gridIndex);
-  if (gridEntity !== undefined) {
-    removeGridEntity(gridEntity);
-  }
-  const trapdoor = Isaac.GridSpawn(
+  const trapdoor = spawnGridEntityWithVariant(
     GridEntityType.GRID_TRAPDOOR,
-    0,
-    trapdoorPosition,
-    true,
+    TrapdoorVariant.NORMAL,
+    gridIndex,
   );
 
   // Emulate the feature of vanilla where surrounding rocks will be destroyed and surrounding pits

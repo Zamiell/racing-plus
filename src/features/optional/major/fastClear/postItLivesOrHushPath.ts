@@ -5,6 +5,7 @@ import {
   log,
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../util";
@@ -188,5 +189,10 @@ function spawnHeavenDoor(position: Vector) {
 }
 
 function spawnTrapdoor(position: Vector) {
-  Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
+  const gridIndex = g.r.GetGridIndex(position);
+  spawnGridEntityWithVariant(
+    GridEntityType.GRID_TRAPDOOR,
+    TrapdoorVariant.NORMAL,
+    gridIndex,
+  );
 }

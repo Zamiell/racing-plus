@@ -1,11 +1,11 @@
 import {
-  findFreePosition,
   getEntities,
   getRoomGridIndexesForType,
   getRoomListIndex,
   getRoomSafeGridIndex,
   log,
   printConsole,
+  spawnGridEntityWithVariant,
   teleport,
 } from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
@@ -58,10 +58,13 @@ export function chaosCardTears(): void {
 
 export function crawlspace(): void {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    const position = findFreePosition(player.Position);
-    Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, position, true);
-  }
+  const position = g.r.FindFreeTilePosition(player.Position, 0);
+  const gridIndex = g.r.GetGridIndex(position);
+  spawnGridEntityWithVariant(
+    GridEntityType.GRID_STAIRS,
+    StairsVariant.NORMAL,
+    gridIndex,
+  );
 }
 
 export function commands(
@@ -78,9 +81,7 @@ export function commands(
 
 export function devil(params: string): void {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.UseCard(Card.CARD_JOKER);
-  }
+  player.UseCard(Card.CARD_JOKER);
 
   if (params !== "") {
     const num = tonumber(params);
@@ -254,10 +255,13 @@ export function roomInfo(): void {
 
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    const position = findFreePosition(player.Position);
-    Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 0, position, true);
-  }
+  const position = g.r.FindFreeTilePosition(player.Position, 0);
+  const gridIndex = g.r.GetGridIndex(position);
+  spawnGridEntityWithVariant(
+    GridEntityType.GRID_TRAPDOOR,
+    TrapdoorVariant.NORMAL,
+    gridIndex,
+  );
 }
 
 export function validateNumber(params: string): number | undefined {

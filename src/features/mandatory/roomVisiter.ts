@@ -26,6 +26,7 @@ import { RoomVisitorWarpState } from "../../types/RoomVisitorWarpState";
 import { shouldCheckForDreamCatcherThings } from "../optional/quality/showDreamCatcherItem/v";
 import { shouldApplyPlanetariumFix } from "../race/planetariumFix";
 import { centerPlayers } from "./centerStart";
+import { shouldRemoveEndGamePortals } from "./nerfCardReading";
 
 const STAIRWAY_GRID_INDEX = 25;
 const TAINTED_KEEPER_ITEM_PRICE = 15;
@@ -164,6 +165,10 @@ function warp(roomsTypesToVisit: Set<RoomType>) {
     }
   }
 
+  if (roomGridIndexes.length === 0) {
+    return;
+  }
+
   for (const gridIndex of roomGridIndexes) {
     changeRoom(gridIndex);
     setCollectiblesToCustomPrices();
@@ -216,16 +221,18 @@ function warp(roomsTypesToVisit: Set<RoomType>) {
 
   // If the player has Card Reading, moving away from the room would delete the portals,
   // so respawn them if necessary
-  for (const cardReadingPortalDescription of cardReadingPortalDescriptions) {
-    const [subType, position] = cardReadingPortalDescription;
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.PORTAL_TELEPORT,
-      subType,
-      position,
-      Vector.Zero,
-      undefined,
-    );
+  if (!shouldRemoveEndGamePortals()) {
+    for (const cardReadingPortalDescription of cardReadingPortalDescriptions) {
+      const [subType, position] = cardReadingPortalDescription;
+      Isaac.Spawn(
+        EntityType.ENTITY_EFFECT,
+        EffectVariant.PORTAL_TELEPORT,
+        subType,
+        position,
+        Vector.Zero,
+        undefined,
+      );
+    }
   }
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
