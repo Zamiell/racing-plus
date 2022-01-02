@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.20* - January 2nd, 2022
+
+- Fixed the bug where in seeded races, the custom death mechanic would incorrectly trigger on Tainted Esau under certain circumstances. (Thanks cutifire)
+
 ### *v0.74.19* - January 2nd, 2022
 
 - Fixed the bug where in seeded races, Card Reading portals would not be removed properly.

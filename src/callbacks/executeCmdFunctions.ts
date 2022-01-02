@@ -50,6 +50,7 @@ import {
   validateNumber,
 } from "./executeCmdSubroutines";
 
+const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_JUDAS;
 const DEFAULT_SEEDED_RACE_STARTING_ITEM =
   CollectibleType.COLLECTIBLE_MOMS_KNIFE;
 
@@ -513,16 +514,7 @@ executeCmdFunctions.set("save", (_params: string) => {
   printConsole('Saved variables to the "save#.dat" file.');
 });
 
-executeCmdFunctions.set("seededrace", (params: string) => {
-  let startingItem = DEFAULT_SEEDED_RACE_STARTING_ITEM;
-  if (params !== "") {
-    const num = validateNumber(params);
-    if (num === undefined) {
-      return;
-    }
-    startingItem = num;
-  }
-
+executeCmdFunctions.set("seededrace", (_params: string) => {
   if (!onSetSeed()) {
     printConsole(
       'You must be on a set seed in order to use the "seededrace" command.',
@@ -544,10 +536,43 @@ executeCmdFunctions.set("seededrace", (params: string) => {
   g.race.myStatus = RacerStatus.RACING;
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
-  g.race.startingItems = [startingItem];
+  g.race.character = DEFAULT_SEEDED_RACE_STARTING_CHARACTER;
+  g.race.startingItems = [DEFAULT_SEEDED_RACE_STARTING_ITEM];
 
   printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
   restart();
+});
+
+executeCmdFunctions.set("seededracecharacter", (params: string) => {
+  if (params === "") {
+    printConsole("You must enter a character number.");
+  }
+
+  const num = validateNumber(params);
+  if (num === undefined) {
+    return;
+  }
+
+  g.race.character = num;
+});
+
+executeCmdFunctions.set("seededracebuild", (_params: string) => {
+  printConsole('Use the "seededraceitem" command instead.');
+});
+
+executeCmdFunctions.set("seededraceitem", (params: string) => {
+  if (params === "") {
+    printConsole(
+      "You must enter an item number. (For example, 114 for Mom's Knife.)",
+    );
+  }
+
+  const num = validateNumber(params);
+  if (num === undefined) {
+    return;
+  }
+
+  g.race.startingItems = [num];
 });
 
 executeCmdFunctions.set("seededraceoff", (_params: string) => {
