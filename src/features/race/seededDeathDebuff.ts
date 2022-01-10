@@ -78,8 +78,9 @@ function debuffOnSetHealth(player: EntityPlayer) {
       break;
     }
 
-    // 18
-    case PlayerType.PLAYER_BETHANY: {
+    // 18, 22
+    case PlayerType.PLAYER_BETHANY:
+    case PlayerType.PLAYER_MAGDALENE_B: {
       // One heart container
       player.AddMaxHearts(2, true);
       player.AddHearts(2);

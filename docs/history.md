@@ -2,7 +2,8 @@
 
 ### *v0.74.21* - January 10th, 2022
 
-- Seeded shadows of other players are now disabled by default.
+- In seeded races, Tainted Magdalene will now revive with 1 red heart container instead of 1.5 soul hearts (similar to Bethany). (Thanks KiraKeepKool)
+- In seeded races, shadows of other players are now disabled by default.
 - The custom console can now only be opened if you are in a race.
 - Fixed the bug where seeded death would not work properly with Berserk! under certain circumstances.
 - Fixed the bug where seeded death would incorrectly grant a Bookworm transformation under certain circumstances. (Thanks Po4ti)
