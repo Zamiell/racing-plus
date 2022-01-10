@@ -105,12 +105,17 @@ function killDeathsHeads() {
   for (const deathsHead of deathsHeads) {
     // Death's Dank Head is a "normal" enemy in that it does not rely on other enemies in the room
     // to be alive
+    // (it is the only variant that has this behavior)
     if (deathsHead.Variant === DeathsHeadVariant.DANK_DEATHS_HEAD) {
       continue;
     }
 
     // Activate the death state
     deathsHead.State = NpcState.STATE_DEATH;
+    // (we can't do "deathsHead.Kill()" because then it immediately vanishes)
+    deathsHead.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+    // (players should be able to run through them as they are dying;
+    // this matches the vanilla behavior)
   }
 }
 

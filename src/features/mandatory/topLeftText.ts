@@ -1,3 +1,6 @@
+// We want to place informational text for the player to the right of the heart containers
+// (which will depend on how many heart containers we have)
+
 import { getHeartsUIWidth, getHUDOffsetVector } from "isaacscript-common";
 import { VERSION } from "../../constants";
 import g from "../../globals";
@@ -25,8 +28,6 @@ export function postRender(): void {
   const HUDOffsetVector = getHUDOffsetVector();
   const heartsUIWidth = getHeartsUIWidth();
 
-  // We want to place informational text for the player to the right of the heart containers
-  // (which will depend on how many heart containers we have)
   const x = HUDOffsetVector.X + heartsUIWidth + STARTING_X;
   let y = HUDOffsetVector.Y + STARTING_Y;
   const lineLength = 15;

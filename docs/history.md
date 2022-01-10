@@ -2,6 +2,9 @@
 
 ### *v0.74.21* - January 10th, 2022
 
+- Death's Heads will no longer deal damage during their death animation. (This matches the vanilla behavior in Repentance.) (Thanks cutifire)
+- You can no longer start seeded races as Tainted Lazarus.
+- You can no longer start seeded races with an character + item anti-synergy.
 - In seeded races, Tainted Magdalene will now revive with 1 red heart container instead of 1.5 soul hearts (similar to Bethany). (Thanks KiraKeepKool)
 - In seeded races, shadows of other players are now disabled by default.
 - The custom console can now only be opened if you are in a race.
@@ -9,6 +12,7 @@
 - Fixed the bug where seeded death would incorrectly grant a Bookworm transformation under certain circumstances. (Thanks Po4ti)
 - Fixed the bug where doors from Crystal Key were not affected by fast-clear. (Thanks Fallenfor)
 - Fixed the bug where Contract from Below would not work in seeded races. (Thanks Fallenfor)
+- Fixed the bug where Holy Mantle would cause text at the top of the screen to not be positioned properly.
 
 ### *v0.74.20* - January 2nd, 2022
 
