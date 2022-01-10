@@ -2,7 +2,7 @@
 
 ### *v0.74.21* - January 10th, 2022
 
-- Seeded ghosts are now disabled by default.
+- Seeded shadows of other players are now disabled by default.
 - The custom console can now only be opened if you are in a race.
 - Fixed the bug where seeded death would not work properly with Berserk! under certain circumstances.
 - Fixed the bug where seeded death would incorrectly grant a Bookworm transformation under certain circumstances. (Thanks Po4ti)

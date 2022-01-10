@@ -18,10 +18,12 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 
 ## Bugs with Seeded Death
 
-- It can cause you to get a 2nd Small Rock from a tinted rock. (Reported by Moucheron Quipet)
-- Being a ghost while Mega Blast is active will show the animation playing and have knockback, but the blast itself will be removed. (Reported by Gamonymous)
 - Being a ghost will prevent Brimstone-style lasers from firing. (Reported by Xelnas)
-- Using Esau Jr. while being a ghost will give the items back to the wrong character. (Reported by Gamonymous)
-- Dying with Experimental Treatment will not remove the stat modification that it granted. (Reported by Gamonymous)
+- Specific items do not work properly:
+  - Small Rock (#90) - After revival, you can get a 2nd Small Rock from a tinted rock. (Reported by Moucheron Quipet)
+  - Experimental Treatment (#240) - Dying will not remove the stat modification that it granted. (Reported by Gamonymous)
+  - Mega Blast (#441) - Being a ghost while the blast is active will show the animation playing and have knockback, but the blast itself will be removed. (Reported by Gamonymous)
+  - Red Stew (#621) - The temporary damage buff will not be affected by dying. (Reported by Hispa)
+  - Esau Jr. (#703) - Using it while being a ghost will give the items back to the wrong character. (Reported by Gamonymous)
 
 <br />

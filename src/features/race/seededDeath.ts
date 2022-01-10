@@ -32,7 +32,7 @@ import { SeededDeathState } from "./types/SeededDeathState";
 import v from "./v";
 
 const DEBUG = true;
-const SEEDED_DEATH_DEBUFF_FRAMES = 5 * ISAAC_FRAMES_PER_SECOND; // 45
+const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
