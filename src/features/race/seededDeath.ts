@@ -340,8 +340,14 @@ function dropEverything(player: EntityPlayer) {
     trinketSlot < MAX_PLAYER_TRINKET_SLOTS;
     trinketSlot++
   ) {
-    const position = findFreePosition(player.Position);
-    player.DropTrinket(position, true);
+    const trinketType = player.GetTrinket(trinketSlot);
+    if (trinketType === TrinketType.TRINKET_PERFECTION) {
+      // In the special case of the Perfection trinket, it should be deleted instead of dropped
+      player.TryRemoveTrinket(TrinketType.TRINKET_PERFECTION);
+    } else {
+      const position = findFreePosition(player.Position);
+      player.DropTrinket(position, true);
+    }
   }
 }
 

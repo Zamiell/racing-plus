@@ -14,6 +14,7 @@
 - Fixed the bug where Contract from Below would not work in seeded races. (Thanks Fallenfor)
 - Fixed the bug where Holy Mantle would cause text at the top of the screen to not be positioned properly.
 - Fixed the bug where you could get a free active item charge with the Hairpin under certain circumstances. (Thanks Adrayon)
+- Fixed the bug where in seeded races, the Perfection trinket would not disappear if you died. (Thanks Fallenfor)
 
 ### *v0.74.20* - January 2nd, 2022
 
