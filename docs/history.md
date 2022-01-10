@@ -1,5 +1,12 @@
 # Racing+ Version History and News
 
+### *v0.74.21* - January 10th, 2022
+
+- Seeded ghosts are now disabled by default.
+- The custom console can now only be opened if you are in a race.
+- Fixed the bug where seeded death would not work properly with Berserk! under certain circumstances.
+- Fixed the bug where seeded death would incorrectly grant a Bookworm transformation under certain circumstances. (Thanks Po4ti)
+
 ### *v0.74.20* - January 2nd, 2022
 
 - Fixed the bug where in seeded races, the custom death mechanic would incorrectly trigger on Tainted Esau under certain circumstances. (Thanks cutifire)

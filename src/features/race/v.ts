@@ -22,6 +22,9 @@ const v = {
       deferringDeathUntilForgottenSwitch: false,
 
       // Variables for tracking player state
+      // All are explicitly set back to false after reading them as true
+      hasBookOfVirtues: false,
+      hasBookOfBelialBirthrightCombo: false,
       actives: new Map<ActiveSlot, ActiveItemDescription>(),
       actives2: new Map<ActiveSlot, ActiveItemDescription>(),
       items: [] as CollectibleType[],

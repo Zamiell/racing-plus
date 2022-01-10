@@ -101,6 +101,23 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
       ? v.run.seededDeath.actives2
       : v.run.seededDeath.actives;
 
+  // Before we iterate over the active items, we need to remove the book that is sitting under the
+  // active item, if any
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES)) {
+    v.run.seededDeath.hasBookOfVirtues = true;
+    removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES);
+  }
+  if (
+    character === PlayerType.PLAYER_JUDAS &&
+    player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) &&
+    player.HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+  ) {
+    v.run.seededDeath.hasBookOfBelialBirthrightCombo = true;
+    removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL);
+    removeCollectible(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  }
+
+  // Go through all of their active items
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const collectibleType = player.GetActiveItem(activeSlot);
     if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
@@ -228,6 +245,24 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
       ? v.run.seededDeath.actives2
       : v.run.seededDeath.actives;
 
+  // Before we restore the active items, we need to restore the book that was sitting under the
+  // active item, if any
+  if (v.run.seededDeath.hasBookOfVirtues) {
+    v.run.seededDeath.hasBookOfVirtues = false;
+
+    // We set "firstTimePickingUp" to true since it needs to count towards Bookworm
+    player.AddCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, 0, true);
+  }
+  if (v.run.seededDeath.hasBookOfBelialBirthrightCombo) {
+    v.run.seededDeath.hasBookOfBelialBirthrightCombo = false;
+
+    player.AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT, 0, false);
+
+    // We set "firstTimePickingUp" to true since it needs to count towards Bookworm
+    player.AddCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, 0, true);
+  }
+
+  // Restore all of their active items
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const activeItemDescription = activesMap.get(activeSlot);
     if (activeItemDescription === undefined) {

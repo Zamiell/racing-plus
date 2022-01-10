@@ -22,6 +22,7 @@ export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
 const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = ISAAC_FRAMES_PER_SECOND * 0.5;
 export const DEFAULT_CONSOLE_OPACITY = 0.75;
+const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.KEY_ENTER;
 
 let consoleOpen = false;
 let inputText = "";
@@ -65,9 +66,8 @@ export function postRender(): void {
     return;
   }
 
-  const defaultConsoleOpenInput = Keyboard.KEY_ENTER;
   const consoleOpenInput =
-    hotkeys.console === -1 ? defaultConsoleOpenInput : hotkeys.console;
+    hotkeys.console === -1 ? DEFAULT_CONSOLE_OPEN_INPUT : hotkeys.console;
 
   if (!consoleOpen) {
     checkKeyboardInput(consoleOpenInput, isaacFrameCount, consoleOpenInput);
@@ -135,9 +135,10 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
   if (keyboardValue === consoleOpenInput && !shiftPressed) {
     if (consoleOpen) {
       close();
-    } else {
+    } else if (g.race.status !== RaceStatus.NONE) {
       open();
     }
+
     return;
   }
 

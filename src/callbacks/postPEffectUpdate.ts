@@ -1,7 +1,7 @@
 import { isChildPlayer } from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
 import * as sawblade from "../features/items/sawblade";
-import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPlayerUpdate";
+import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";

@@ -101,7 +101,7 @@ export class Config {
 
   // Other
   customConsole = true;
-  shadows = true;
+  shadows = false;
   chat = true;
   roll = true;
 }
