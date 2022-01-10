@@ -79,11 +79,13 @@ function earlyClearRoom() {
   v.room.earlyClearedRoom = true;
   log(`Early clearing the room on frame ${gameFrameCount} (fast-clear).`);
 
-  openAllDoors();
-  killExtraEntities();
+  // The "TriggerClear()" method must be before other logic because extra doors can be spawned by
+  // clearing the room
   g.r.TriggerClear();
   g.r.SetClear(true);
 
+  openAllDoors();
+  killExtraEntities();
   checkPostItLivesOrHushPath();
 }
 

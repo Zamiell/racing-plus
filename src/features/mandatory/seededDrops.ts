@@ -126,7 +126,7 @@ function spawnSeededDrop() {
     // 2 contracts / 3 pickups: 0.44 (base) (would be 0.3 otherwise)
     // 3 contracts / 4 pickups: 0.2
     // 4 contracts / 5 pickups: 0.13
-    const nothingChance = 0.666 ^ pickupCount; // "math.pow()" does not exist in Isaac's Lua version
+    const nothingChance = 0.666 ** pickupCount;
     if (nothingChance * 0.5 > rng.RandomFloat()) {
       pickupCount = 0;
     }
