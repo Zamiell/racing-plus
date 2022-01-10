@@ -7,11 +7,14 @@ export const isActionTriggeredFunctions = new Map<
 >();
 
 // 28
-isActionTriggeredFunctions.set(ButtonAction.ACTION_CONSOLE, () =>
-  raceInputAction.isActionTriggeredConsole(),
+isActionTriggeredFunctions.set(
+  ButtonAction.ACTION_CONSOLE,
+  (_entity: Entity | undefined) => raceInputAction.isActionTriggeredConsole(),
 );
 
 // 9
-isActionTriggeredFunctions.set(ButtonAction.ACTION_ITEM, () =>
-  chargePocketItemFirst.isActionTriggeredItem(),
+isActionTriggeredFunctions.set(
+  ButtonAction.ACTION_ITEM,
+  (entity: Entity | undefined) =>
+    chargePocketItemFirst.isActionTriggeredItem(entity),
 );

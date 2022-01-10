@@ -164,9 +164,31 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
 }
 
 // ModCallbacks.MC_INPUT_ACTION (13)
-export function isActionTriggeredItem(): boolean | undefined {
+export function isActionTriggeredItem(
+  entity: Entity | undefined,
+): boolean | undefined {
+  if (entity === undefined) {
+    return undefined;
+  }
+
+  const player = entity.ToPlayer();
+  if (player === undefined) {
+    return undefined;
+  }
+
+  if (!chargePocketFeatureShouldApply(player)) {
+    return undefined;
+  }
+
   // Prevent using the active item before the charges have been swapped
-  return v.run.checkForBatteryBumChargesUntilFrame === null ? undefined : false;
+  const roomFrameCount = g.r.GetFrameCount();
+  const hasHairpin = player.HasTrinket(TrinketType.TRINKET_HAIRPIN);
+
+  const batteryBumCharging = v.run.checkForBatteryBumChargesUntilFrame !== null;
+  const hairpinActivating = hasHairpin && roomFrameCount <= 1;
+  const shouldStopActiveItemUses = batteryBumCharging || hairpinActivating;
+
+  return shouldStopActiveItemUses ? false : undefined;
 }
 
 // ModCallbacksCustom.MC_POST_PICKUP_COLLECT

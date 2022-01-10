@@ -13,6 +13,7 @@
 - Fixed the bug where doors from Crystal Key were not affected by fast-clear. (Thanks Fallenfor)
 - Fixed the bug where Contract from Below would not work in seeded races. (Thanks Fallenfor)
 - Fixed the bug where Holy Mantle would cause text at the top of the screen to not be positioned properly.
+- Fixed the bug where you could get a free active item charge with the Hairpin under certain circumstances. (Thanks Adrayon)
 
 ### *v0.74.20* - January 2nd, 2022
 
