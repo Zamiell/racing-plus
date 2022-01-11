@@ -8,6 +8,7 @@ import {
   arrayInArray,
   changeRoom,
   getBosses,
+  getCollectibleDevilHeartPrice,
   getCollectibles,
   getDoors,
   getEffectiveStage,
@@ -16,6 +17,7 @@ import {
   getRoomGridIndexesForType,
   getRooms,
   getRoomSafeGridIndex,
+  inDevilsCrownTreasureRoom,
   lockDoor,
   saveDataManager,
 } from "isaacscript-common";
@@ -79,19 +81,34 @@ export function postNewRoom(): void {
   checkWarp();
 }
 
-// If we warped to a room that had collectibles in it, we set their prices to an arbitrary value
-// If we are entering that room now for real, reset the prices back to the way that they are
-// supposed to be
+/**
+ * If we warped to a room that had collectibles in it, we set their prices to an arbitrary value.
+ * If we are entering that room now for real, reset the prices back to the way that they are
+ * supposed to be.
+ */
 function revertItemPrices() {
-  const originalPrice = anyPlayerIs(PlayerType.PLAYER_KEEPER_B)
-    ? TAINTED_KEEPER_ITEM_PRICE
-    : 0;
-
   for (const collectible of getCollectibles()) {
     if (collectible.Price === PickupPriceCustom.PRICE_NO_MINIMAP) {
-      collectible.Price = originalPrice;
+      collectible.Price = getOriginalPrice(collectible.SubType);
     }
   }
+}
+
+function getOriginalPrice(collectibleType: CollectibleType) {
+  const player = Isaac.GetPlayer();
+
+  // On Tainted Keeper, Treasure Room items cost money
+  if (anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
+    return TAINTED_KEEPER_ITEM_PRICE;
+  }
+
+  // If the player has the Devil's Crown trinket, the Treasure Room items will cost hearts
+  if (inDevilsCrownTreasureRoom()) {
+    return getCollectibleDevilHeartPrice(collectibleType, player);
+  }
+
+  // By default, Treasure Room items do not have a price
+  return 0;
 }
 
 function checkWarp() {
