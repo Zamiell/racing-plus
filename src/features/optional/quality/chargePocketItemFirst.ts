@@ -12,6 +12,9 @@
 // 3) Coins with the Charged Penny trinket
 // 4) 48 Hour Energy! pill
 // 5) Hairpin trinket
+// 6) Battery Bum
+// 7) 9 Volt
+// 8) Battery Pack
 
 import {
   ensureAllCases,
@@ -56,7 +59,6 @@ const v = {
   },
 
   room: {
-    checkedHairpin: false,
     batteryBumAnimationMap: new Map<PtrHash, string>(),
   },
 };
@@ -109,15 +111,10 @@ function checkHairpinCharge(player: EntityPlayer) {
     roomType !== RoomType.ROOM_BOSS ||
     roomFrameCount !== 1 ||
     !firstVisit ||
-    !hasHairpin ||
-    v.room.checkedHairpin
+    !hasHairpin
   ) {
     return;
   }
-
-  // The PostPlayerUpdate callback will fire multiple times per frame,
-  // but we only need to check for the Hairpin once
-  v.room.checkedHairpin = true;
 
   // Hairpin charges the active item on the 1st frame of the room
   // Thus, we have to perform this check in the PostPEffectUpdate callback instead of the
@@ -221,6 +218,7 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
+  Isaac.DebugString("GETTING HERE");
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
@@ -477,8 +475,10 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
   }
 }
 
-// We cannot use the "player.NeedsCharge()" method because we might be overcharging an item from a
-// Battery Bum
+/**
+ * We cannot use the "player.NeedsCharge()" method because we might be overcharging an item from a
+ * Battery Bum.
+ */
 function needsCharge(
   player: EntityPlayer,
   activeSlot: ActiveSlot,

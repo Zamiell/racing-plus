@@ -46,19 +46,19 @@ export function useItem(
   const activeCharge = player.GetActiveCharge(activeSlot);
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const activeItemMaxCharges = getCollectibleMaxCharges(collectibleType);
+  const playerIndex = getPlayerIndex(player);
 
-  // Fix The Battery + 9 Volt synergy (1/2)
   if (
     activeItemMaxCharges >= 2 &&
     activeCharge === activeItemMaxCharges &&
     batteryCharge === activeItemMaxCharges
   ) {
-    v.run.giveExtraChargePlayerIndex = getPlayerIndex(player);
+    v.run.giveExtraChargePlayerIndex = playerIndex;
     v.run.giveExtraChargeActiveSlot = activeSlot;
   }
 }
 
-// Fix The Battery + 9 Volt synergy (2/2)
+// ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.battery9VoltSynergy) {
     return;
