@@ -218,7 +218,6 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
-  Isaac.DebugString("GETTING HERE");
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
