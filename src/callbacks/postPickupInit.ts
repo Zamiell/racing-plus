@@ -1,3 +1,4 @@
+import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
@@ -96,6 +97,7 @@ function coin(pickup: EntityPickup) {
 function collectible(pickup: EntityPickup) {
   fastKrampus.postPickupInitCollectible(pickup);
   fastAngels.postPickupInitCollectible(pickup);
+  flipCustom.postPickupInitCollectible(pickup);
   flyItemSprites.postPickupInit(pickup);
   twentyTwenty.postPickupInit(pickup);
   starOfBethlehem.postPickupInit(pickup);

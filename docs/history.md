@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.23* - January 10th, 2022
+
+- Fixed the bug where the custom Flip could give an item from the wrong item pool under certain circumstances. (Thanks Fallenfor)
+
 ### *v0.74.22* - January 10th, 2022
 
 - In order to prevent confusion, Guppy's Eye will now be automatically removed if it about to show you a Red Chest that has Devil Room item that does not match the displayed graphic. Guppy's Eye will be returned upon entering a new room.
@@ -8,7 +12,7 @@
 
 - Death's Heads will no longer deal damage during their death animation. (This matches the vanilla behavior in Repentance.) (Thanks cutifire)
 - You can no longer start seeded races as Tainted Lazarus.
-- You can no longer start seeded races with an character + item anti-synergy.
+- You can no longer start seeded races with a character + item anti-synergy.
 - In seeded races, Tainted Magdalene will now revive with 1 red heart container instead of 1.5 soul hearts (similar to Bethany). (Thanks KiraKeepKool)
 - In seeded races, shadows of other players are now disabled by default.
 - The custom console can now only be opened if you are in a race.

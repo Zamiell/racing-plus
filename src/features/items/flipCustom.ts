@@ -95,6 +95,40 @@ export function postPEffectUpdate(player: EntityPlayer) {
   }
 }
 
+// ModCallbacks.MC_POST_PICKUP_INIT (34)
+export function postPickupInitCollectible(collectible: EntityPickup): void {
+  if (!config.flipCustom) {
+    return;
+  }
+
+  if (!anyPlayerHasCollectible(NEW_ITEM)) {
+    return;
+  }
+
+  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
+    collectible.InitSeed,
+  );
+  if (flippedCollectibleType !== undefined) {
+    return;
+  }
+
+  const newCollectibleType = getNewFlippedCollectibleType(collectible);
+  v.level.flippedCollectibleTypes.set(collectible.InitSeed, newCollectibleType);
+}
+
+function getNewFlippedCollectibleType(collectible: EntityPickup) {
+  const isFirstVisit = g.r.IsFirstVisit();
+  const roomFrameCount = g.r.GetFrameCount();
+
+  // The Flip effect is only supposed to happen to items that are part of the room layout
+  if (!isFirstVisit || roomFrameCount > 0) {
+    return CollectibleType.COLLECTIBLE_NULL;
+  }
+
+  const itemPoolType = getCollectibleItemPoolType(collectible);
+  return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
+}
+
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export function postPickupRenderCollectible(
@@ -105,22 +139,17 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  if (!anyPlayerHasCollectible(CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM)) {
+  if (!anyPlayerHasCollectible(NEW_ITEM)) {
     return;
   }
 
-  let flippedCollectibleType = v.level.flippedCollectibleTypes.get(
+  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
     collectible.InitSeed,
   );
-  if (flippedCollectibleType === undefined) {
-    flippedCollectibleType = getNewFlippedCollectibleType(collectible);
-    v.level.flippedCollectibleTypes.set(
-      collectible.InitSeed,
-      flippedCollectibleType,
-    );
-  }
-
-  if (flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL) {
+  if (
+    flippedCollectibleType === undefined ||
+    flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
+  ) {
     return;
   }
 
@@ -136,19 +165,6 @@ export function postPickupRenderCollectible(
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);
   flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
-}
-
-function getNewFlippedCollectibleType(collectible: EntityPickup) {
-  const isFirstVisit = g.r.IsFirstVisit();
-  const roomFrameCount = g.r.GetFrameCount();
-
-  // The Flip effect is only supposed to happen to items that are part of the room layout
-  if (!isFirstVisit || roomFrameCount > 0) {
-    return CollectibleType.COLLECTIBLE_NULL;
-  }
-
-  const itemPoolType = getCollectibleItemPoolType(collectible);
-  return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
 }
 
 function initFlippedSprite(collectibleType: CollectibleType) {
