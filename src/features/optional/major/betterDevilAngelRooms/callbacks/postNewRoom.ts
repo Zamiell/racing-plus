@@ -1,4 +1,10 @@
-import { emptyRoom, inAngelShop } from "isaacscript-common";
+import {
+  arrayEmpty,
+  emptyRoom,
+  getPlayerFromIndex,
+  getRoomListIndex,
+  inAngelShop,
+} from "isaacscript-common";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { angel } from "../angel";
@@ -10,6 +16,11 @@ export function betterDevilAngelRoomsPostNewRoom(): void {
     return;
   }
 
+  checkDevilAngelRoomReplacement();
+  checkRegiveGuppysEye();
+}
+
+function checkDevilAngelRoomReplacement() {
   const roomType = g.r.GetType();
   const isFirstVisit = g.r.IsFirstVisit();
 
@@ -42,4 +53,26 @@ export function betterDevilAngelRoomsPostNewRoom(): void {
   } else if (roomType === RoomType.ROOM_ANGEL) {
     angel();
   }
+}
+
+function checkRegiveGuppysEye() {
+  if (v.run.regiveGuppysEyePlayers.length === 0) {
+    return;
+  }
+
+  // Wait until we switch rooms before giving back the Guppy's Eye that we took away
+  const roomListIndex = getRoomListIndex();
+  if (roomListIndex === v.run.regiveGuppysEyeRoomListIndex) {
+    return;
+  }
+
+  for (const playerIndex of v.run.regiveGuppysEyePlayers) {
+    const player = getPlayerFromIndex(playerIndex);
+    if (player !== undefined) {
+      player.AddCollectible(CollectibleType.COLLECTIBLE_GUPPYS_EYE, 0, false);
+    }
+  }
+
+  arrayEmpty(v.run.regiveGuppysEyePlayers);
+  v.run.regiveGuppysEyeRoomListIndex = null;
 }

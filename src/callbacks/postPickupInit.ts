@@ -7,6 +7,7 @@ import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem"
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
+import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
@@ -49,6 +50,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_POST_PICKUP_INIT,
     trinket,
     PickupVariant.PICKUP_TRINKET, // 350
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_POST_PICKUP_INIT,
+    redChest,
+    PickupVariant.PICKUP_REDCHEST, // 360
   );
 
   mod.AddCallback(
@@ -108,6 +115,11 @@ function bigChest(pickup: EntityPickup) {
 function trinket(pickup: EntityPickup) {
   removePerfectionVelocity.postPickupInitTrinket(pickup);
   removePerfectionOnEndFloors.postPickupInitTrinket(pickup);
+}
+
+// PickupVariant.PICKUP_REDCHEST (360)
+function redChest(_pickup: EntityPickup) {
+  betterDevilAngelRoomsPostPickupInitRedChest();
 }
 
 // PickupVariant.PICKUP_TROPHY (370)

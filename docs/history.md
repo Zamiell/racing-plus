@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.22* - January 10th, 2022
+
+- In order to prevent confusion, Guppy's Eye will now be automatically removed if it about to show you a Red Chest that has Devil Room item that does not match the displayed graphic. Guppy's Eye will be returned upon entering a new room.
+
 ### *v0.74.21* - January 10th, 2022
 
 - Death's Heads will no longer deal damage during their death animation. (This matches the vanilla behavior in Repentance.) (Thanks cutifire)

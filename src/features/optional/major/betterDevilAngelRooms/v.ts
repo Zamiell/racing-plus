@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 
@@ -22,6 +22,9 @@ const v = {
 
     /** Other mod features can request that a Devil Room or Angel Room is kept completely empty. */
     intentionallyLeaveEmpty: false,
+
+    regiveGuppysEyePlayers: [] as PlayerIndex[],
+    regiveGuppysEyeRoomListIndex: null as int | null,
   },
 
   level: {
