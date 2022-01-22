@@ -73,9 +73,6 @@ export function before(stage: int, stageType: int): void {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const eternalHearts = player.GetEternalHearts();
-  const onRepentanceStage =
-    stageType === StageType.STAGETYPE_REPENTANCE ||
-    stageType === StageType.STAGETYPE_REPENTANCE_B;
   let seed = g.l.GetDungeonPlacementSeed();
 
   // Record the current inventory and health values
@@ -101,7 +98,7 @@ export function before(stage: int, stageType: int): void {
   v.run.playerHealth.eternalHearts = 0;
 
   // Modification 1: Devil Room visited
-  if (stage < 3 && !(stage === 2 && onRepentanceStage)) {
+  if (stage < 3 && !(stage === 2 && isRepentanceStage(stageType))) {
     g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, false);
   } else {
     g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
