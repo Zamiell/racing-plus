@@ -28,7 +28,6 @@ interface Inventory {
 
 const v = {
   run: {
-    swapping: false,
     gameStateFlags: null as GameStateFlags | null,
     inventory: null as Inventory | null,
     playerHealth: null as PlayerHealth | null,
@@ -65,7 +64,7 @@ export function postGameStarted(): void {
 // Thus, we arbitrarily set inventory and health conditions before going to the next floor,
 // and then swap them back
 // https://bindingofisaacrebirth.gamepedia.com/Level_Generation
-export function before(stage: int): void {
+export function before(stage: int, stageType: int): void {
   // Only swap things if we are playing a specific seed
   if (!onSetSeed()) {
     return;
@@ -77,7 +76,6 @@ export function before(stage: int): void {
   let seed = g.l.GetDungeonPlacementSeed();
 
   // Record the current inventory and health values
-  v.run.swapping = true;
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
@@ -100,7 +98,7 @@ export function before(stage: int): void {
   v.run.playerHealth.eternalHearts = 0;
 
   // Modification 1: Devil Room visited
-  if (stage < 3) {
+  if (stage < 3 && !(stage === 2 && isRepentanceStage(stageType))) {
     g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, false);
   } else {
     g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
@@ -180,7 +178,6 @@ export function after(): void {
   const player = Isaac.GetPlayer();
 
   // Set everything back to the way it was before
-  v.run.swapping = false;
   if (v.run.gameStateFlags !== null) {
     setGameStateFlags(v.run.gameStateFlags);
   }

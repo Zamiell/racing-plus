@@ -43,7 +43,7 @@ export function goto(upwards: boolean): void {
   // it will use the same floor layout as the previous floor
   // Thus, in these cases, we need to mark to perform a "reseed" command before doing the "stage"
   // command
-  // However, when we travel to the same floor layout from an Repentance exit,
+  // However, when we travel to the same floor layout from a Repentance exit,
   // floors do not need to be reseeded for some reason
   v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
 
@@ -58,7 +58,7 @@ export function goto(upwards: boolean): void {
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications
-  seededFloors.before(nextStage);
+  seededFloors.before(nextStage, nextStageType);
 
   // Use the console to manually travel to the floor
   travelStage(nextStage, nextStageType);
