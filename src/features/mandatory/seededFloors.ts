@@ -28,7 +28,6 @@ interface Inventory {
 
 const v = {
   run: {
-    swapping: false,
     gameStateFlags: null as GameStateFlags | null,
     inventory: null as Inventory | null,
     playerHealth: null as PlayerHealth | null,
@@ -77,7 +76,6 @@ export function before(stage: int): void {
   let seed = g.l.GetDungeonPlacementSeed();
 
   // Record the current inventory and health values
-  v.run.swapping = true;
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
@@ -180,7 +178,6 @@ export function after(): void {
   const player = Isaac.GetPlayer();
 
   // Set everything back to the way it was before
-  v.run.swapping = false;
   if (v.run.gameStateFlags !== null) {
     setGameStateFlags(v.run.gameStateFlags);
   }
