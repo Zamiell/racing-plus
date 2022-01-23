@@ -6,6 +6,7 @@ import {
   characterGetsBlackHeartFromEternalHeart,
   getPlayerHealth,
   getRandom,
+  isRepentanceStage,
   nextSeed,
   onSetSeed,
   PlayerHealth,
