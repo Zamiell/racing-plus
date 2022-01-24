@@ -8,6 +8,7 @@ import {
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
   isFirstPlayer,
+  isJacobOrEsau,
   PickingUpItem,
   PlayerIndex,
   saveDataManager,
@@ -21,6 +22,7 @@ import {
   COINS_Y,
   COLLECTIBLE_TO_PICKUP_DROPS_MAP,
   FRAMES_BEFORE_FADE,
+  JACOB_ESAU_Y_OFFSET,
   KEYS_Y,
   PICKUP_VARIANT_CARD_OR_PILL,
   UI_X,
@@ -86,13 +88,15 @@ function drawCoinsDelta() {
     }
 
     const player = Isaac.GetPlayer();
+    const isJacobAndEsau = isJacobOrEsau(player);
     const hasDeepPockets = player.HasCollectible(
       CollectibleType.COLLECTIBLE_DEEP_POCKETS,
     );
     const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
+    const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, x, COINS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
   }
 }
 
@@ -108,8 +112,12 @@ function drawKeysDelta() {
       return;
     }
 
+    const player = Isaac.GetPlayer();
+    const isJacobAndEsau = isJacobOrEsau(player);
+    const y = isJacobAndEsau ? KEYS_Y + JACOB_ESAU_Y_OFFSET : KEYS_Y;
+
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, UI_X, KEYS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
   }
 }
 
@@ -125,8 +133,12 @@ function drawBombsDelta() {
       return;
     }
 
+    const player = Isaac.GetPlayer();
+    const isJacobAndEsau = isJacobOrEsau(player);
+    const y = isJacobAndEsau ? BOMBS_Y + JACOB_ESAU_Y_OFFSET : BOMBS_Y;
+
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, UI_X, BOMBS_Y, color, 0, true);
+    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
   }
 }
 
@@ -134,6 +146,12 @@ function drawPocketItemsDelta() {
   if (v.run.delta.pocketItem !== null && v.run.delta.pocketItemFrame !== null) {
     const string = v.run.delta.pocketItem.toString();
     const text = `+${string}`;
+
+    // Don't show pocket items delta on J&E since their HUD is different
+    const player = Isaac.GetPlayer();
+    if (isJacobOrEsau(player)) {
+      return;
+    }
 
     const fade = getFade(v.run.delta.pocketItemFrame);
     if (fade <= 0) {
