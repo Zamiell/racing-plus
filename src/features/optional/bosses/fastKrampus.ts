@@ -68,8 +68,7 @@ function getKrampusItemSubType() {
     return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
   }
 
-  getRandomInt(1, 2, startSeed);
-  const seededChoice = math.random(1, 2);
+  const seededChoice = getRandomInt(1, 2, startSeed);
   const coal = seededChoice === 1;
   if (coal) {
     return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
