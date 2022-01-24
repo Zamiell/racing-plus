@@ -5,8 +5,9 @@ import {
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
+import g from "../../../../globals";
+import { config } from "../../../../modConfigMenu";
+import { EXEMPTED_BOSSES } from "./constants";
 
 const HP_MULTIPLIER = 0.75; // Matches vanilla
 
@@ -112,6 +113,13 @@ export function postNewRoom(): void {
     return;
   }
   const boss = bosses[0];
+  const bossID = boss.GetBossID();
+
+  for (const exemptedBossID of EXEMPTED_BOSSES) {
+    if (bossID === exemptedBossID) {
+      return;
+    }
+  }
 
   const vanishingTwins = Isaac.FindByType(
     EntityType.ENTITY_FAMILIAR,

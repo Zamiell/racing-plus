@@ -21,7 +21,7 @@ import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/cal
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
-import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
+import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin/fastVanishingTwin";
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
