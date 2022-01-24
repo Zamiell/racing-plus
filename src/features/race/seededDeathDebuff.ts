@@ -140,12 +140,18 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
   // We do it in this order to prevent bugs with removing items on the wrong slot
   // (e.g. Isaac with the double D6)
   for (const activeSlot of getEnumValues(ActiveSlot)) {
-    const collectibleType = player.GetActiveItem(activeSlot);
-    if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
-      continue;
-    }
+    const activeItemDescription = activesMap.get(activeSlot);
 
-    removeCollectible(player, collectibleType);
+    if (activeItemDescription !== undefined) {
+      if (
+        activeItemDescription.collectibleType ===
+        CollectibleType.COLLECTIBLE_NULL
+      ) {
+        continue;
+      }
+
+      removeCollectible(player, activeItemDescription.collectibleType);
+    }
   }
 }
 
