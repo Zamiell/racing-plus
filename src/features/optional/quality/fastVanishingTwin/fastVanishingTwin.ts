@@ -116,6 +116,7 @@ export function postNewRoom(): void {
   const bossID = boss.GetBossID();
 
   if (EXEMPTED_BOSSES.has(bossID)) {
+    // Vanishing Twin don't apply to final bosses
     return;
   }
 
