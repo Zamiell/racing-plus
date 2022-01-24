@@ -8,7 +8,7 @@ import * as trophy from "../features/mandatory/trophy";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
-import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin/fastVanishingTwin";
+import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";

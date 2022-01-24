@@ -2,12 +2,12 @@ import {
   findFreePosition,
   getBosses,
   getCollectibles,
+  isStoryBoss,
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
-import g from "../../../../globals";
-import { config } from "../../../../modConfigMenu";
-import { STORY_BOSSES } from "./constants";
+import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 
 const HP_MULTIPLIER = 0.75; // Matches vanilla
 
@@ -121,10 +121,9 @@ export function postNewRoom(): void {
     return;
   }
   const boss = bosses[0];
-  const bossID = boss.GetBossID();
 
   // Vanishing Twin does not apply to story bosses
-  if (STORY_BOSSES.has(bossID)) {
+  if (isStoryBoss(boss)) {
     return;
   }
 
