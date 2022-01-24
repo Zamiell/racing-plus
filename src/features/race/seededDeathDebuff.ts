@@ -142,14 +142,10 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const activeItemDescription = activesMap.get(activeSlot);
 
-    if (activeItemDescription !== undefined) {
-      if (
-        activeItemDescription.collectibleType ===
-        CollectibleType.COLLECTIBLE_NULL
-      ) {
-        continue;
-      }
-
+    if (
+      activeItemDescription !== undefined &&
+      activeItemDescription.collectibleType === CollectibleType.COLLECTIBLE_NULL
+    ) {
       removeCollectible(player, activeItemDescription.collectibleType);
     }
   }
