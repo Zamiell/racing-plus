@@ -18,6 +18,7 @@ import {
   getCollectibleMaxCharges,
   getPlayerIndex,
   getPlayers,
+  getPlayersOfType,
   hasOpenActiveItemSlot,
   inGenesisRoom,
   isJacobOrEsau,
@@ -195,8 +196,9 @@ function changedCharacterInSomeWay(
   player: EntityPlayer,
   gotHereFromEsauJr = false,
 ) {
-  if (isJacobOrEsau(player)) {
-    for (const newPlayer of getPlayers()) {
+  const character = player.GetPlayerType();
+  if (character === PlayerType.PLAYER_JACOB) {
+    for (const newPlayer of getPlayersOfType(PlayerType.PLAYER_ESAU)) {
       giveD6(newPlayer, gotHereFromEsauJr);
     }
   }
