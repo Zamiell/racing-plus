@@ -259,8 +259,11 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   // Jacob & Esau (19, 20) are a special case;
   // since pocket actives do not work on them properly, give each of them a normal D6
   // Don't give a D6 to Jacob if we transformed to them with Clicker
-  if (isJacobOrEsau(player) && hasOpenActiveItemSlot(player)) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+  if (isJacobOrEsau(player)) {
+    if (hasOpenActiveItemSlot(player)) {
+      player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+    }
+
     return;
   }
 
@@ -287,15 +290,12 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
     d6Charge = D6_STARTING_CHARGE;
   }
 
-  // Jacob and Esau can't have pocket active items
-  if (!isJacobOrEsau(player)) {
-    // The "SetPocketActiveItem()" method also removes it from item pools
-    player.SetPocketActiveItem(
-      CollectibleType.COLLECTIBLE_D6,
-      ActiveSlot.SLOT_POCKET,
-    );
-    player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
-  }
+  // The "SetPocketActiveItem()" method also removes it from item pools
+  player.SetPocketActiveItem(
+    CollectibleType.COLLECTIBLE_D6,
+    ActiveSlot.SLOT_POCKET,
+  );
+  player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
   // If they previously had a pocket active item, move it to the normal active item slot
   if (pocketItem !== CollectibleType.COLLECTIBLE_NULL && !gotHereFromEsauJr) {
