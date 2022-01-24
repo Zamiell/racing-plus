@@ -144,7 +144,7 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
 
     if (
       activeItemDescription !== undefined &&
-      activeItemDescription.collectibleType === CollectibleType.COLLECTIBLE_NULL
+      activeItemDescription.collectibleType !== CollectibleType.COLLECTIBLE_NULL
     ) {
       removeCollectible(player, activeItemDescription.collectibleType);
     }
