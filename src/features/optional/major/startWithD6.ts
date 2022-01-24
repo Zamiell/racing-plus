@@ -198,7 +198,8 @@ function changedCharacterInSomeWay(
 ) {
   const character = player.GetPlayerType();
   if (character === PlayerType.PLAYER_JACOB) {
-    // Calling giveD6 on Jacob doesn't work for an unknown reason so we have to call the function on Esau
+    // Calling giveD6 on Jacob doesn't grant the D6 to Esau for an unknown reason so we have
+    // to call the function on Esau
     for (const newPlayer of getPlayersOfType(PlayerType.PLAYER_ESAU)) {
       giveD6(newPlayer, gotHereFromEsauJr);
     }
