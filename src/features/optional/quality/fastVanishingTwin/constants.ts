@@ -1,6 +1,6 @@
 // cspell:disable
 // Mini-bosses aren't affected by the reworked Vanishing Twin so it's better to work with boss IDs
-export const EXEMPTED_BOSSES = [
+export const EXEMPTED_BOSSES = new Set([
   BossID.MOM, // 6
   BossID.MOMS_HEART, // 8
   BossID.SATAN, // 24
@@ -17,4 +17,4 @@ export const EXEMPTED_BOSSES = [
   BossID.MAUSOLEUM_MOMS_HEART, // 90
   BossID.DOGMA, // 99
   BossID.BEAST, // 100
-];
+]);

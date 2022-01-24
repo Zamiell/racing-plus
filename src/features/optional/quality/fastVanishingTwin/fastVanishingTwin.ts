@@ -115,10 +115,8 @@ export function postNewRoom(): void {
   const boss = bosses[0];
   const bossID = boss.GetBossID();
 
-  for (const exemptedBossID of EXEMPTED_BOSSES) {
-    if (bossID === exemptedBossID) {
-      return;
-    }
+  if (EXEMPTED_BOSSES.has(bossID)) {
+    return;
   }
 
   const vanishingTwins = Isaac.FindByType(
