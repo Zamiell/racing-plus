@@ -7,7 +7,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { EXEMPTED_BOSSES } from "./constants";
+import { STORY_BOSSES } from "./constants";
 
 const HP_MULTIPLIER = 0.75; // Matches vanilla
 
@@ -105,26 +105,26 @@ export function postNewRoom(): void {
     return;
   }
 
-  const bosses = getBosses();
-  if (bosses.length !== 1) {
-    // It is difficult to properly duplicate double champion bosses
-    // It is difficult to properly duplicate multi-segment bosses
-    // Use the vanilla behavior in these cases
-    return;
-  }
-  const boss = bosses[0];
-  const bossID = boss.GetBossID();
-
-  if (EXEMPTED_BOSSES.has(bossID)) {
-    // Vanishing Twin don't apply to final bosses
-    return;
-  }
-
   const vanishingTwins = Isaac.FindByType(
     EntityType.ENTITY_FAMILIAR,
     FamiliarVariant.VANISHING_TWIN,
   );
   if (vanishingTwins.length === 0) {
+    return;
+  }
+
+  // It is difficult to properly duplicate double champion bosses
+  // It is difficult to properly duplicate multi-segment bosses
+  // Use the vanilla behavior in these cases
+  const bosses = getBosses();
+  if (bosses.length !== 1) {
+    return;
+  }
+  const boss = bosses[0];
+  const bossID = boss.GetBossID();
+
+  // Vanishing Twin does not apply to story bosses
+  if (STORY_BOSSES.has(bossID)) {
     return;
   }
 
