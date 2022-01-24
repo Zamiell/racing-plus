@@ -200,6 +200,7 @@ function changedCharacterInSomeWay(
       giveD6(newPlayer, gotHereFromEsauJr);
     }
   }
+
   // In some cases, switching the character will delete the D6, so we may need to give another one
   giveD6(player, gotHereFromEsauJr);
 }
