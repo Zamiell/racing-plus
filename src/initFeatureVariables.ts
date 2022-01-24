@@ -37,7 +37,7 @@ import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
-import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
+import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin/fastVanishingTwin";
 import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChargeBar";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
