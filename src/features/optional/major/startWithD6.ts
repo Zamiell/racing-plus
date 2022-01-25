@@ -195,6 +195,14 @@ function changedCharacterInSomeWay(
   player: EntityPlayer,
   gotHereFromEsauJr = false,
 ) {
+  const character = player.GetPlayerType();
+  if (character === PlayerType.PLAYER_JACOB) {
+    const esau = player.GetOtherTwin();
+    if (esau !== undefined) {
+      giveD6(esau, gotHereFromEsauJr);
+    }
+  }
+
   // In some cases, switching the character will delete the D6, so we may need to give another one
   giveD6(player, gotHereFromEsauJr);
 }
@@ -248,8 +256,12 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
 
   // Jacob & Esau (19, 20) are a special case;
   // since pocket actives do not work on them properly, give each of them a normal D6
+  // Don't give a D6 to Jacob if we transformed to them with Clicker
   if (isJacobOrEsau(player)) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+    if (hasOpenActiveItemSlot(player)) {
+      player.AddCollectible(CollectibleType.COLLECTIBLE_D6, D6_STARTING_CHARGE);
+    }
+
     return;
   }
 
