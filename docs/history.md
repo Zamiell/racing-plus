@@ -1,12 +1,13 @@
 # Racing+ Version History and News
 
-### *v0.74.24* - February ?, 2022
+### *v0.74.24* - February 2nd, 2022
 
 - Fixed the bug where the free devil deal mechanic would apply to the Dark Room starting room items. Thanks to Gamonymous for fixing this.
 - Fixed the bug where Jacob & Esau would not have the D6 if you used Clicker. Thanks to Gamonymous for fixing this.
 - Fixed the bug where fast insertion deltas were not aligned correctly on Jacob & Esau. Thanks to Gamonymous for fixing this.
 - Fixed the bug where Krampus' drop was not seeded correctly. Thanks to Gamonymous for fixing this.
 - Fixed the bug where Vanishing Twin would apply on final bosses. Thanks to Gamonymous for fixing this.
+- Fixed the bug with seeded death where it would incorrectly trigger when dying with a revival item while berserk. Thanks to Gamonymous for fixing this.
 - Fixed the bug with seeded death where it would not trigger properly after taking a devil deal under certain circumstances. Thanks to Gamonymous for fixing this.
 - Fixed the bug with seeded death where active items would not be deleted properly under certain conditions. Thanks to Gamonymous for fixing this.
 - Fixed the bug with seeded death where it would not work properly if you had item wisps. Thanks to Gamonymous for fixing this.
