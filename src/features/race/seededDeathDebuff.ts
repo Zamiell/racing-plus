@@ -15,6 +15,7 @@ import {
 import g from "../../globals";
 import { TRANSFORMATION_TO_HELPER_MAP } from "../../maps/transformationToHelperMap";
 import { ActiveItemDescription } from "../../types/ActiveItemDescription";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { TRANSFORMATION_HELPERS } from "../../types/transformationHelpers";
 import v from "./v";
 
@@ -29,7 +30,7 @@ export function debuffOn(player: EntityPlayer): void {
   debuffOnRemoveActiveItems(player);
   debuffOnRemoveAllItems(player);
   debuffOnRemoveGoldenBombsAndKeys(player);
-  debuffOnRemoveAllWisps();
+  debuffOnRemoveAllWisps(player);
   removeDeadEyeMultiplier(player);
   debuffOnRemoveDarkEsau();
 }
@@ -192,8 +193,19 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   player.RemoveGoldenKey();
 }
 
-function debuffOnRemoveAllWisps() {
+function debuffOnRemoveAllWisps(player: EntityPlayer) {
   removeAllFamiliars(FamiliarVariant.WISP);
+  removeAllFamiliars(FamiliarVariant.ITEM_WISP);
+
+  // After removing item wisps, the items related to the wisps will not disappear
+  // We can work around this by spawning an item wisp that does nothing,
+  // which will remove all other item wisps
+  player.AddItemWisp(
+    CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
+    Vector(0, 0),
+  );
+
+  // Then remove that item wisp again
   removeAllFamiliars(FamiliarVariant.ITEM_WISP);
 }
 
