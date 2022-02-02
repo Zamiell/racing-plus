@@ -7,6 +7,7 @@
 - Fixed the bug where fast insertion deltas were not aligned correctly on Jacob & Esau. Thanks to Gamonymous for fixing this.
 - Fixed the bug where Krampus' drop was not seeded correctly. Thanks to Gamonymous for fixing this.
 - Fixed the bug where Vanishing Twin would apply on final bosses. Thanks to Gamonymous for fixing this.
+- Fixed the bug with seeded death where it would not trigger properly after taking a devil deal under certain circumstances. Thanks to Gamonymous for fixing this.
 - Fixed the bug with seeded death where active items would not be deleted properly under certain conditions. Thanks to Gamonymous for fixing this.
 - Fixed the bug with seeded death where it would not work properly if you had item wisps. Thanks to Gamonymous for fixing this.
 
