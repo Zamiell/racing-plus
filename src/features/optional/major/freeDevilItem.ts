@@ -1,7 +1,9 @@
 import {
   anyPlayerIs,
+  inStartingRoom,
   isChildPlayer,
   isSelfDamage,
+  onDarkRoom,
   saveDataManager,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../../constants";
@@ -90,6 +92,8 @@ function shouldGetFreeDevilItem() {
     // Black Market deals do not count as "locking in" Devil Deals,
     // so we exclude this mechanic from applying to them
     roomType !== RoomType.ROOM_BLACK_MARKET &&
+    // Dark Room starting room deals also don't count as "locking in" Devil Deals
+    !(onDarkRoom() && inStartingRoom()) &&
     !anyPlayerIsTheLost &&
     // We might be travelling to a Devil Room for run-initialization-related tasks
     gameFrameCount > 0
