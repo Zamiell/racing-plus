@@ -17,6 +17,7 @@ import {
   MAX_PLAYER_TRINKET_SLOTS,
   removeGridEntity,
   runNextFrame,
+  willPlayerRevive,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -272,6 +273,10 @@ export function preCustomRevive(player: EntityPlayer): int | void {
 
   // Do not revive the player if they have Spirit Shackles and it is activated
   if (willReviveFromSpiritShackles(player)) {
+    return undefined;
+  }
+
+  if (willPlayerRevive(player)) {
     return undefined;
   }
 
