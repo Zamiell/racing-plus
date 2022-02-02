@@ -83,6 +83,7 @@ function shouldGetFreeDevilItem() {
     PlayerType.PLAYER_THELOST_B,
   );
   const roomType = g.r.GetType();
+  const stage = g.l.GetStage();
 
   return (
     !v.run.tookDamage &&
@@ -90,6 +91,8 @@ function shouldGetFreeDevilItem() {
     // Black Market deals do not count as "locking in" Devil Deals,
     // so we exclude this mechanic from applying to them
     roomType !== RoomType.ROOM_BLACK_MARKET &&
+    // Dark Room deals also don't count as "locking in" Devil Deals
+    stage !== 11 &&
     !anyPlayerIsTheLost &&
     // We might be travelling to a Devil Room for run-initialization-related tasks
     gameFrameCount > 0
