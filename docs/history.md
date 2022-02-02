@@ -1,5 +1,14 @@
 # Racing+ Version History and News
 
+### *v0.74.24* - February ?, 2022
+
+- Fixed the bug where Jacob & Esau would not have the D6 if you used Clicker. Thanks to Gamonymous for fixing this.
+- Fixed the bug where fast insertion deltas were not aligned correctly on Jacob & Esau. Thanks to Gamonymous for fixing this.
+- Fixed the bug where Krampus' drop was not seeded correctly. Thanks to Gamonymous for fixing this.
+- Fixed the bug where Vanishing Twin would apply on final bosses. Thanks to Gamonymous for fixing this.
+- Fixed the bug with seeded death where active items would not be deleted properly under certain conditions. Thanks to Gamonymous for fixing this.
+- Fixed the bug with seeded death where it would not work properly if you had item wisps. Thanks to Gamonymous for fixing this.
+
 ### *v0.74.23* - January 10th, 2022
 
 - Fixed the bug where the custom Flip could give an item from the wrong item pool under certain circumstances. (Thanks Fallenfor)
