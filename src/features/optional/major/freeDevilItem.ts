@@ -92,8 +92,8 @@ function shouldGetFreeDevilItem() {
     // Black Market deals do not count as "locking in" Devil Deals,
     // so we exclude this mechanic from applying to them
     roomType !== RoomType.ROOM_BLACK_MARKET &&
-    // Dark Room deals also don't count as "locking in" Devil Deals
-    !(stage === 11 && stageType === 0) &&
+    // Dark Room starting room deals also don't count as "locking in" Devil Deals
+    !(stage === 11 && stageType === 0 && roomType !== RoomType.ROOM_DEVIL) &&
     !anyPlayerIsTheLost &&
     // We might be travelling to a Devil Room for run-initialization-related tasks
     gameFrameCount > 0
