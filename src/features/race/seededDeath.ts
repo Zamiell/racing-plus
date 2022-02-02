@@ -2,7 +2,6 @@ import {
   disableAllInputs,
   enableAllInputs,
   findFreePosition,
-  GAME_FRAMES_PER_SECOND,
   getDeathAnimationName,
   getFinalFrameOfAnimation,
   getPlayerFromIndex,
@@ -33,7 +32,6 @@ import v from "./v";
 
 const DEBUG = true;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
-const DEVIL_DEAL_BUFFER_FRAMES = 5 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -77,11 +75,9 @@ function postUpdateGhostForm() {
 
 function postUpdateCheckTakingDevilItem() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
-  const gameFrameCount = g.g.GetFrameCount();
 
   if (devilRoomDeals !== v.run.seededDeath.devilRoomDeals) {
     v.run.seededDeath.devilRoomDeals = devilRoomDeals;
-    v.run.seededDeath.frameOfLastDevilDeal = gameFrameCount;
   }
 }
 
@@ -266,7 +262,6 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     return undefined;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const playerIndex = getPlayerIndex(player);
 
@@ -275,14 +270,10 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     return undefined;
   }
 
-  // Do not revive the player if they took a devil deal within the past few seconds
+  // Do not revive the player if they took a devil deal
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
-  if (
-    v.run.seededDeath.frameOfLastDevilDeal !== null &&
-    gameFrameCount <=
-      v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES
-  ) {
+  if (roomType === RoomType.ROOM_DEVIL) {
     return undefined;
   }
 
