@@ -270,7 +270,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     return undefined;
   }
 
-  // Do not revive the player if they took a devil deal within the past few seconds
+  // Do not revive the player if they took a devil deal
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
   if (roomType === RoomType.ROOM_DEVIL) {
