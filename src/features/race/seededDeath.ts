@@ -1,4 +1,5 @@
 import {
+  canTakeFreeDevilDeals,
   disableAllInputs,
   enableAllInputs,
   findFreePosition,
@@ -12,7 +13,6 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isJacobOrEsau,
   isKeeper,
-  isLost,
   log,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
@@ -285,7 +285,8 @@ export function preCustomRevive(player: EntityPlayer): int | void {
     v.run.seededDeath.frameOfLastDevilDeal !== null &&
     gameFrameCount <=
       v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
-    !isLost(player)
+    !canTakeFreeDevilDeals(player) &&
+    !isKeeper(player)
   ) {
     return undefined;
   }
