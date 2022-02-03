@@ -12,6 +12,7 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isJacobOrEsau,
   isKeeper,
+  isLost,
   log,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
@@ -33,7 +34,7 @@ import v from "./v";
 
 const DEBUG = true;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
-const DEVIL_DEAL_BUFFER_FRAMES = 2 * GAME_FRAMES_PER_SECOND;
+const DEVIL_DEAL_BUFFER_FRAMES = 4 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -278,10 +279,12 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
+  // Add a check on both Losts because they can't die from taking a devil deal
   if (
     v.run.seededDeath.frameOfLastDevilDeal !== null &&
     gameFrameCount <=
-      v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES
+      v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
+    !isLost(player)
   ) {
     return undefined;
   }
