@@ -34,7 +34,7 @@ import v from "./v";
 
 const DEBUG = true;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
-// The holding item animation lasts 1.3 seconds so we round it up to 2 seconds
+/** The holding item animation lasts 1.3 seconds, so we round up to 2 seconds to be safe. */
 const DEVIL_DEAL_BUFFER_FRAMES = 2 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
