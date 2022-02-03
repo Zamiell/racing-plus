@@ -79,7 +79,6 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
     if (!player.HasCollectible(collectibleType)) {
       v.run.seeded3DollarBillItem = collectibleType;
       player.AddCollectible(collectibleType, 0, false);
-      removeCollectibleFromItemTracker(collectibleType);
       return;
     }
 
