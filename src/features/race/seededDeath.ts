@@ -280,7 +280,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
-  // In order to reduce false positives, we can safely ignore characters that cannot die om taking a
+  // In order to reduce false positives, we can safely ignore characters that cannot die on taking a
   // devil deal
   if (
     v.run.seededDeath.frameOfLastDevilDeal !== null &&
