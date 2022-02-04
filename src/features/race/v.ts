@@ -18,6 +18,7 @@ const v = {
       debuffEndFrame: null as int | null,
 
       devilRoomDeals: 0,
+      frameOfLastDevilDeal: null as int | null,
       deferringDeathUntilForgottenSwitch: false,
 
       // Variables for tracking player state

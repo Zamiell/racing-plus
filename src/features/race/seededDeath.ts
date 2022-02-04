@@ -1,7 +1,9 @@
 import {
+  canTakeFreeDevilDeals,
   disableAllInputs,
   enableAllInputs,
   findFreePosition,
+  GAME_FRAMES_PER_SECOND,
   getDeathAnimationName,
   getFinalFrameOfAnimation,
   getPlayerFromIndex,
@@ -32,6 +34,8 @@ import v from "./v";
 
 const DEBUG = true;
 const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+/** The holding item animation lasts 1.3 seconds, so we round up to 2 seconds to be safe. */
+const DEVIL_DEAL_BUFFER_FRAMES = 2 * GAME_FRAMES_PER_SECOND;
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
@@ -75,9 +79,11 @@ function postUpdateGhostForm() {
 
 function postUpdateCheckTakingDevilItem() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
+  const gameFrameCount = g.g.GetFrameCount();
 
   if (devilRoomDeals !== v.run.seededDeath.devilRoomDeals) {
     v.run.seededDeath.devilRoomDeals = devilRoomDeals;
+    v.run.seededDeath.frameOfLastDevilDeal = gameFrameCount;
   }
 }
 
@@ -264,16 +270,24 @@ export function preCustomRevive(player: EntityPlayer): int | void {
 
   const roomType = g.r.GetType();
   const playerIndex = getPlayerIndex(player);
+  const gameFrameCount = g.g.GetFrameCount();
 
   // Do not revive the player if they have Spirit Shackles and it is activated
   if (willReviveFromSpiritShackles(player)) {
     return undefined;
   }
 
-  // Do not revive the player if they took a devil deal
+  // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
-  if (roomType === RoomType.ROOM_DEVIL) {
+  // In order to reduce false positives, we can safely ignore characters that cannot die on taking a
+  // devil deal
+  if (
+    v.run.seededDeath.frameOfLastDevilDeal !== null &&
+    gameFrameCount <=
+      v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
+    !canCharacterDieFromTakingADevilDeal(player)
+  ) {
     return undefined;
   }
 
@@ -306,6 +320,10 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   logStateChange();
 
   return RevivalType.SEEDED_DEATH;
+}
+
+function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
+  return !canTakeFreeDevilDeals(player) && !isKeeper(player);
 }
 
 function seededDeathFeatureShouldApply() {
