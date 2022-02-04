@@ -322,7 +322,7 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   return RevivalType.SEEDED_DEATH;
 }
 
-function canCharacterDieFromTakingADevilDeal() {
+function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
   return !canTakeFreeDevilDeals(player) && !isKeeper(player);
 }
 
