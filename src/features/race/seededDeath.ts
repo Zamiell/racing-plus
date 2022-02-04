@@ -280,13 +280,13 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
   // taken a devil deal and died to a fire / spikes / etc.)
-  // Both Losts cannot die from taking a devil deal, so they are exempt from this check
+  // In order to reduce false positives, we can safely ignore characters that cannot die om taking a
+  // devil deal
   if (
     v.run.seededDeath.frameOfLastDevilDeal !== null &&
     gameFrameCount <=
       v.run.seededDeath.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
-    !canTakeFreeDevilDeals(player) &&
-    !isKeeper(player)
+    !canCharacterDieFromTakingADevilDeal(player)
   ) {
     return undefined;
   }
@@ -320,6 +320,10 @@ export function preCustomRevive(player: EntityPlayer): int | void {
   logStateChange();
 
   return RevivalType.SEEDED_DEATH;
+}
+
+function canCharacterDieFromTakingADevilDeal() {
+  return !canTakeFreeDevilDeals(player) && !isKeeper(player);
 }
 
 function seededDeathFeatureShouldApply() {
