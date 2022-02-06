@@ -22,7 +22,7 @@
   - 0 - Isaac
   - 3 - Judas
   - 7 - Azazel
-  - 10 - Lost
+  - 10 - The Lost
   - 12 - Keeper
   - 13 - Apollyon
   - 15 - Bethany
