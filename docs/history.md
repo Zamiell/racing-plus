@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.74.25* - February ?rd, 2022
+
+- In seeded races, you will now be able to see what the 3 Dollar Bill item is for the current room on the item tracker. Thanks to Gamonymous for coding this.
+
 ### *v0.74.24* - February 2nd, 2022
 
 - Fixed the bug where the free devil deal mechanic would apply to the Dark Room starting room items. Thanks to Gamonymous for fixing this.

@@ -1,9 +1,8 @@
 import {
   isKeyboardPressed,
   log,
+  logNewGlobals,
   printConsole,
-  saveDataManagerSetGlobal,
-  setLogFunctionsGlobal,
 } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
@@ -14,12 +13,14 @@ const DEBUG_HOTKEY2 = Keyboard.KEY_F3;
 let debugHotkeyPressed = false;
 let debugHotkey2Pressed = false;
 
-function debugCode() {}
+function debugCode() {
+  logNewGlobals();
+}
 
 export function debugFunction(): void {
   g.debug = true;
-  saveDataManagerSetGlobal();
-  setLogFunctionsGlobal();
+  // saveDataManagerSetGlobal();
+  // setLogFunctionsGlobal();
 
   log("Entering debug function.");
   debugCode();
