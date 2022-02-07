@@ -71,7 +71,9 @@ import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
 import { initFeatureVariables } from "./initFeatureVariables";
 
-export default function main(): void {
+main();
+
+function main() {
   const modVanilla = RegisterMod(MOD_NAME, 1);
   const mod = upgradeMod(modVanilla);
 
