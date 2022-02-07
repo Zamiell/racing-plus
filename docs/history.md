@@ -3,6 +3,8 @@
 ### *v0.74.25* - February ?rd, 2022
 
 - In seeded races, you will now be able to see what the 3 Dollar Bill item is for the current room on the item tracker. Thanks to Gamonymous for coding this.
+- Fixed the bug with two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where Dark Esau would prevent fast-clear from working properly. (Thanks Fallenfor)
 
 ### *v0.74.24* - February 2nd, 2022
 

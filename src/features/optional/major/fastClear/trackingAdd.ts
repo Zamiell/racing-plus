@@ -58,11 +58,11 @@ function checkAdd(entity: Entity, parentCallback: string) {
   }
 
   // We don't care if this is a non-battle NPC
-  // (for some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false)
   const npc = entity.ToNPC();
   if (
     npc !== undefined &&
     !npc.CanShutDoors &&
+    // For some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false
     npc.Type !== EntityType.ENTITY_DEEP_GAPER
   ) {
     return;
