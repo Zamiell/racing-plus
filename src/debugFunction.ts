@@ -6,6 +6,7 @@ import {
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
+  useActiveItemTemp,
 } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
@@ -20,13 +21,7 @@ function debugCode() {
   const bossIndexes = getRoomGridIndexesForType(RoomType.ROOM_BOSS);
   changeRoom(bossIndexes[0]);
   const player = Isaac.GetPlayer();
-  player.UseActiveItem(
-    CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
-    false,
-    false,
-    false,
-    false,
-  );
+  useActiveItemTemp(player, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS);
 }
 
 export function debugFunction(): void {
