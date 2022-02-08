@@ -14,7 +14,7 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^1.0.333",
-    "isaacscript": "1.2.1",
+    "isaacscript": "1.2.2",
     "isaacscript-common": "1.2.0",
     "isaacscript-lint": "^1.0.79"
   }

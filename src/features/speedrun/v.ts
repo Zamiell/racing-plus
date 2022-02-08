@@ -33,8 +33,8 @@ const v = {
 };
 export default v;
 
-// declare let speedrun: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-// speedrun = v; // eslint-disable-line
+declare let speedrun: typeof v;
+speedrun = v; // eslint-disable-line
 
 export function init(): void {
   saveDataManager("speedrun", v, featureEnabled);

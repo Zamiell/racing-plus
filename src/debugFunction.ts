@@ -1,8 +1,10 @@
 import {
+  collectibleHasTag,
   isKeyboardPressed,
   log,
-  logNewGlobals,
   printConsole,
+  saveDataManagerSetGlobal,
+  setLogFunctionsGlobal,
 } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
@@ -14,13 +16,13 @@ let debugHotkeyPressed = false;
 let debugHotkey2Pressed = false;
 
 function debugCode() {
-  logNewGlobals();
+  print(collectibleHasTag(238, ItemConfigTag.NO_EDEN));
 }
 
 export function debugFunction(): void {
   g.debug = true;
-  // saveDataManagerSetGlobal();
-  // setLogFunctionsGlobal();
+  saveDataManagerSetGlobal();
+  setLogFunctionsGlobal();
 
   log("Entering debug function.");
   debugCode();
