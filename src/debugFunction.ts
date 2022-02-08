@@ -1,5 +1,6 @@
 import {
-  collectibleHasTag,
+  changeRoom,
+  getRoomGridIndexesForType,
   isKeyboardPressed,
   log,
   printConsole,
@@ -16,7 +17,16 @@ let debugHotkeyPressed = false;
 let debugHotkey2Pressed = false;
 
 function debugCode() {
-  print(collectibleHasTag(238, ItemConfigTag.NO_EDEN));
+  const bossIndexes = getRoomGridIndexesForType(RoomType.ROOM_BOSS);
+  changeRoom(bossIndexes[0]);
+  const player = Isaac.GetPlayer();
+  player.UseActiveItem(
+    CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
+    false,
+    false,
+    false,
+    false,
+  );
 }
 
 export function debugFunction(): void {
