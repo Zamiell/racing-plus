@@ -32,7 +32,7 @@ export function main(isContinued: boolean): void {
   const isaacFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - IsaacFrame: ${isaacFrameCount} - Continued: ${isContinued}`,
+    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Isaac frame: ${isaacFrameCount} - Continued: ${isContinued}`,
   );
 
   // Make sure that the MinimapAPI is enabled (we may have disabled it in a previous run)

@@ -14,9 +14,10 @@ export function main(): void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
+  const isaacFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_NEW_LEVEL - ${stage}.${stageType} (game frame ${gameFrameCount})`,
+    `MC_POST_NEW_LEVEL - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
   );
 
   // Mandatory

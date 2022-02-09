@@ -18,6 +18,7 @@ import {
   MAX_PLAYER_TRINKET_SLOTS,
   removeGridEntity,
   runNextFrame,
+  useActiveItemTemp,
   willReviveFromSpiritShackles,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -387,10 +388,7 @@ export function postFlip(player: EntityPlayer): void {
   } else {
     runNextFrame(() => {
       v.run.seededDeath.switchingBackToGhostLazarus = true;
-      player.UseActiveItem(
-        CollectibleType.COLLECTIBLE_FLIP,
-        UseFlag.USE_NOANIM,
-      );
+      useActiveItemTemp(player, CollectibleType.COLLECTIBLE_FLIP);
     });
   }
 }

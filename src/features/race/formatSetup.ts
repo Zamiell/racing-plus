@@ -1,6 +1,7 @@
 import {
   CHARACTERS_WITH_AN_ACTIVE_ITEM,
   ensureAllCases,
+  useActiveItemTemp,
 } from "isaacscript-common";
 import g from "../../globals";
 import { serverCollectibleIDToCollectibleType } from "../../util";
@@ -210,13 +211,7 @@ function diversity(player: EntityPlayer) {
       }
 
       player.AddTrinket(itemOrTrinketID);
-      player.UseActiveItem(
-        CollectibleType.COLLECTIBLE_SMELTER,
-        false,
-        false,
-        false,
-        false,
-      );
+      useActiveItemTemp(player, CollectibleType.COLLECTIBLE_SMELTER);
 
       // Re-give Paper Clip to Cain, for example
       if (trinket1 !== 0) {

@@ -8,6 +8,7 @@ import {
   removeCollectibleFromItemTracker,
   saveDataManager,
   setCollectibleSubType,
+  useActiveItemTemp,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../constants";
 import g from "../../globals";
@@ -65,14 +66,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
   if (isTaintedLazarus(player)) {
-    player.UseActiveItem(
-      CollectibleType.COLLECTIBLE_FLIP,
-      false,
-      false,
-      false,
-      false,
-      -1,
-    );
+    useActiveItemTemp(player, CollectibleType.COLLECTIBLE_FLIP);
   }
 
   // Display the "Use" animation

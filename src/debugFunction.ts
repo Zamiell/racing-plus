@@ -1,28 +1,20 @@
 import {
-  changeRoom,
-  getRoomGridIndexesForType,
   isKeyboardPressed,
   log,
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
-  useActiveItemTemp,
 } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
-const DEBUG_HOTKEY = Keyboard.KEY_F2;
-const DEBUG_HOTKEY2 = Keyboard.KEY_F3;
+const DEBUG_HOTKEY_1 = Keyboard.KEY_F2;
+const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 
 let debugHotkeyPressed = false;
 let debugHotkey2Pressed = false;
 
-function debugCode() {
-  const bossIndexes = getRoomGridIndexesForType(RoomType.ROOM_BOSS);
-  changeRoom(bossIndexes[0]);
-  const player = Isaac.GetPlayer();
-  useActiveItemTemp(player, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS);
-}
+function debugCode() {}
 
 export function debugFunction(): void {
   g.debug = true;
@@ -40,16 +32,16 @@ export function postUpdate(): void {
     return;
   }
 
-  if (isKeyboardPressed(DEBUG_HOTKEY)) {
+  if (isKeyboardPressed(DEBUG_HOTKEY_1)) {
     if (!debugHotkeyPressed) {
-      hotkeyFunction();
+      hotkey1Function();
     }
     debugHotkeyPressed = true;
   } else {
     debugHotkeyPressed = false;
   }
 
-  if (isKeyboardPressed(DEBUG_HOTKEY2)) {
+  if (isKeyboardPressed(DEBUG_HOTKEY_2)) {
     if (!debugHotkey2Pressed) {
       hotkey2Function();
     }
@@ -59,7 +51,9 @@ export function postUpdate(): void {
   }
 }
 
-function hotkeyFunction() {}
+function hotkey1Function() {
+  debugCode();
+}
 
 function hotkey2Function() {
   hotkeys.fastDropAll = Keyboard.KEY_Z;
