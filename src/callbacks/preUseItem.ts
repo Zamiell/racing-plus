@@ -1,3 +1,4 @@
+import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -20,6 +21,12 @@ export function init(mod: Mod): void {
     ModCallbacks.MC_PRE_USE_ITEM,
     deadSeaScrolls,
     CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS, // 124
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_PRE_USE_ITEM,
+    d100,
+    CollectibleType.COLLECTIBLE_D100, // 283
   );
 
   mod.AddCallback(
@@ -71,9 +78,14 @@ function deadSeaScrolls(
   return streakText.preUseItemDeadSeaScrolls(player, activeSlot);
 }
 
+function d100() {
+  setCollectiblesRerolledForItemTracker();
+}
+
 // CollectibleType.COLLECTIBLE_D4 (284)
 function d4() {
   betterDevilAngelRoomsPreUseItemD4();
+  setCollectiblesRerolledForItemTracker();
 }
 
 // CollectibleType.COLLECTIBLE_FLIP (711)
