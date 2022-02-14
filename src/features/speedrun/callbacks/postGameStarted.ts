@@ -7,6 +7,7 @@ import {
 } from "../../util/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import * as season1 from "../season1";
+import * as season2 from "../season2";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -40,6 +41,7 @@ export function speedrunPostGameStarted(): void {
   giveMoreOptionsBuff();
   characterProgress.postGameStarted();
   season1.postGameStarted();
+  season2.postGameStarted();
 }
 
 function liveSplitReset() {

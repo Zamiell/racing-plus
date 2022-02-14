@@ -1,154 +1,111 @@
-/*
-import { DEFAULT_KCOLOR, Vector } from "../constants";
-import g from "../globals";
-import * as misc from "../misc";
-import { CollectibleTypeCustom } from "../types/enums";
-import {
-  BIG_4_ITEMS,
-  SEASON_6_ITEM_LOCK_MILLISECONDS,
-  SEASON_6_STARTING_BUILDS,
-  SEASON_6_VETO_BUTTON_LENGTH,
-} from "./constants";
+import { arrayEmpty, getDefaultKColor, gridToPos } from "isaacscript-common";
+import g from "../../globals";
+import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
+import { getRoomsEntered } from "../util/roomsEntered";
+import { BIG_4_ITEMS, SEASON_6_VETO_BUTTON_LENGTH } from "./constants";
 import { ChallengeCustom } from "./enums";
-import * as speedrun from "./speedrun";
+import { checkValidCharOrder } from "./speedrun";
+import v from "./v";
 
-// Called from the "CheckEntities.Grid()" function
-export function checkVetoButton(gridEntity: GridEntity): void {
-  // Local variables
-  const challenge = Isaac.GetChallenge();
-
-  if (
-    challenge !== ChallengeCustom.R7_SEASON_6 ||
-    g.speedrun.characterNum !== 1 ||
-    g.run.roomsEntered !== 1 ||
-    gridEntity.GetSaveState().State !== 3 // Pressed
-  ) {
-    return;
-  }
-
-  // Add the item to the veto list
-  g.season6.vetoList.push(g.season6.lastBuildItem);
-  if (g.season6.vetoList.length > 5) {
-    // Remove the first element
-    g.season6.vetoList.splice(0, 1);
-  }
-
-  // Add the sprite to the sprite list
-  g.season6.vetoSprites = [];
-  for (let i = 0; i < g.season6.vetoList.length; i++) {
-    const vetoItem = g.season6.vetoList[i];
-
-    const vetoSprite = Sprite();
-    vetoSprite.Load("gfx/schoolbag_item.anm2", false);
-    const fileName = g.itemConfig.GetCollectible(vetoItem).GfxFileName;
-    vetoSprite.ReplaceSpritesheet(0, fileName);
-    vetoSprite.LoadGraphics();
-    vetoSprite.SetFrame("Default", 1);
-    vetoSprite.Scale = Vector(0.75, 0.75);
-
-    g.season6.vetoSprites.push(vetoSprite);
-  }
-
-  // Play a poop sound
-  g.sfx.Play(SoundEffect.SOUND_FART, 1, 0, false, 1);
-
-  // Reset the timer && restart the game
-  g.season6.vetoTimer = Isaac.GetTime() + SEASON_6_VETO_BUTTON_LENGTH;
-  g.season6.timeItemAssigned = 0;
-  g.run.restart = true;
-  Isaac.DebugString(
-    `Restarting because we vetoed item: ${g.season6.lastBuildItem}`,
-  );
-}
+const VETO_TEXT = "Veto";
 
 // ModCallbacks.MC_POST_RENDER (2)
-// Draw the "Veto" button
 export function postRender(): void {
-  // Local variables
   const challenge = Isaac.GetChallenge();
 
-  if (
-    challenge !== ChallengeCustom.R7_SEASON_6 ||
-    g.speedrun.characterNum !== 1 ||
-    g.run.roomsEntered !== 1
-  ) {
+  if (challenge !== ChallengeCustom.SEASON_2) {
     return;
   }
 
-  // Don't draw the Veto text if there is not a valid order set
-  if (!speedrun.checkValidCharOrder()) {
+  drawVetoButton();
+}
+
+function drawVetoButton() {
+  if (v.persistent.characterNum !== 1 || getRoomsEntered() !== 1) {
+    return;
+  }
+
+  if (!checkValidCharOrder()) {
     return;
   }
 
   // Draw the sprites that correspond to the items that are currently on the veto list
   let x = -45;
-  for (let i = 0; i < g.season6.vetoList.length; i++) {
-    const itemPosGame = misc.gridToPos(11, 7);
+  for (let i = 0; i < v.persistent.vetoList.length; i++) {
+    const itemPosGame = gridToPos(11, 7);
     const itemPos = Isaac.WorldToRenderPosition(itemPosGame);
     x += 15;
-    const modifiedItemPos = Vector(itemPos.X + x, itemPos.Y);
-    g.season6.vetoSprites[i].Render(modifiedItemPos, Vector.Zero, Vector.Zero);
+    const modifiedItemPos = itemPos.add(Vector(x, 0));
+    v.persistent.vetoSprites[i].Render(
+      modifiedItemPos,
+      Vector.Zero,
+      Vector.Zero,
+    );
   }
 
-  if (g.season6.vetoTimer === 0) {
-    // Draw the "Veto" text
-    const posGame = misc.gridToPos(11, 5);
+  // Draw the "Veto" text
+  if (v.persistent.vetoTimer === null) {
+    const posGame = gridToPos(11, 5);
     const pos = Isaac.WorldToRenderPosition(posGame);
-    const text = "Veto";
-    const length = g.font.GetStringWidthUTF8(text);
-    g.font.DrawString(text, pos.X - length / 2, pos.Y, DEFAULT_KCOLOR, 0, true);
-  }
-}
-
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStartedFirstCharacter(): void {
-  g.season6.remainingStartingBuilds = [];
-  for (const startingBuild of SEASON_6_STARTING_BUILDS) {
-    g.season6.remainingStartingBuilds.push(startingBuild);
-  }
-  if (
-    Isaac.GetTime() - g.season6.timeItemAssigned >=
-    SEASON_6_ITEM_LOCK_MILLISECONDS
-  ) {
-    g.season6.selectedStartingBuilds = [];
+    const font = g.fonts.droid;
+    const length = font.GetStringWidthUTF8(VETO_TEXT);
+    font.DrawString(
+      VETO_TEXT,
+      pos.X - length / 2,
+      pos.Y,
+      getDefaultKColor(),
+      0,
+      true,
+    );
   }
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  // Local variables
-  const character = g.p.GetPlayerType();
+  const challenge = Isaac.GetChallenge();
 
-  Isaac.DebugString("In the R+7 (Season 6) challenge.");
-
-  // If Eden starts with The Compass as the random passive item or a banned trinket,
-  // restart the game
-  if (
-    character === PlayerType.PLAYER_EDEN &&
-    (g.p.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS) ||
-      g.p.HasTrinket(TrinketType.TRINKET_CAINS_EYE) ||
-      g.p.HasTrinket(TrinketType.TRINKET_BROKEN_ANKH))
-  ) {
-    g.run.restart = true;
-    g.speedrun.fastReset = true;
-    Isaac.DebugString(
-      "Restarting because Eden started with either The Compass, Cain's Eye, or Broken Ankh.",
-    );
+  if (challenge !== ChallengeCustom.SEASON_2) {
     return;
   }
 
-  // Everyone starts with the Schoolbag in this season
-  misc.giveItemAndRemoveFromPools(
-    CollectibleTypeCustom.COLLECTIBLE_SCHOOLBAG_CUSTOM,
-  );
+  removeBuildsOnFirstCharacter();
+  giveStartingItems();
+}
+
+function removeBuildsOnFirstCharacter() {
+  if (v.persistent.characterNum !== 1) {
+    return;
+  }
+
+  arrayEmpty(v.persistent.remainingStartingBuilds);
+  for (const startingBuild of SEASON_2_STARTING_BUILDS) {
+    v.persistent.remainingStartingBuilds.push(startingBuild);
+  }
+
+  if (
+    Isaac.GetTime() - v.persistent.timeItemAssigned >=
+    SEASON_2_ITEM_LOCK_MILLISECONDS
+  ) {
+    arrayEmpty(v.persistent.selectedStartingBuilds);
+  }
+}
+
+function giveStartingItems() {
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
 
   // Everyone starts with the Compass in this season
-  misc.giveItemAndRemoveFromPools(CollectibleType.COLLECTIBLE_COMPASS);
+  giveCollectibleAndRemoveFromPools(
+    player,
+    CollectibleType.COLLECTIBLE_COMPASS,
+  );
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 
   // Since this season has a custom death mechanic, we also want to remove the Broken Ankh
   // (since we need the custom revival to always take priority over random revivals)
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
+  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
+  // TODO is this needed?
 
   // Check to see if the player has played a run with one of the big 4
   let alreadyStartedBig4 = false;
@@ -185,7 +142,7 @@ export function postGameStarted(): void {
       return;
     }
 
-    misc.giveItemAndRemoveFromPools(itemID);
+    util.giveItemAndRemoveFromPools(itemID);
 
     if (itemID === CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) {
       // Also remove the additional soul hearts from Crown of Light
@@ -202,7 +159,7 @@ export function postGameStarted(): void {
     g.season6.vetoTimer = 0;
   }
   if (g.speedrun.characterNum === 1 && g.season6.vetoTimer === 0) {
-    const pos = misc.gridToPos(11, 6);
+    const pos = util.gridToPos(11, 6);
     Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, pos, true);
   }
 }
@@ -214,7 +171,7 @@ function getNewStartingBuild(alreadyStartedBig4: boolean) {
   let startingBuildIndex: int;
   let randomAttempts = 0;
   do {
-    seed = misc.incrementRNG(seed);
+    seed = util.incrementRNG(seed);
     // TODO GET SEED PROPERLY
 
     if (alreadyStartedBig4) {
@@ -409,7 +366,7 @@ function isValidStartingBuild(
 // Delete the veto button if we are re-entering the starting room
 export function postNewRoom(): void {
   // Local variables
-  const roomIndex = misc.getRoomIndex();
+  const roomIndex = util.getRoomIndex();
   const stage = g.l.GetStage();
   const startingRoomIndex = g.l.GetStartingRoomIndex();
   const challenge = Isaac.GetChallenge();
@@ -461,19 +418,67 @@ export function postBombUpdate(bomb: EntityBomb): void {
   bomb.Flags &= ~TearFlags.TEAR_HOMING;
 }
 
-// Reset the starting item timer if we just killed the Basement 2 boss
-export function postClearRoom(): void {
-  // Local variables
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
+// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+export function postGridEntityUpdate(gridEntity: GridEntity): void {
   const challenge = Isaac.GetChallenge();
 
   if (
-    challenge === ChallengeCustom.R7_SEASON_6 &&
-    stage === 2 &&
-    roomType === RoomType.ROOM_BOSS
+    challenge !== ChallengeCustom.SEASON_2 ||
+    g.speedrun.characterNum !== 1 ||
+    g.run.roomsEntered !== 1 ||
+    gridEntity.GetSaveState().State !== 3 // Pressed
   ) {
-    g.season6.timeItemAssigned = 0;
+    return;
+  }
+
+  // Add the item to the veto list
+  g.season6.vetoList.push(g.season6.lastBuildItem);
+  if (g.season6.vetoList.length > 5) {
+    // Remove the first element
+    g.season6.vetoList.splice(0, 1);
+  }
+
+  // Add the sprite to the sprite list
+  g.season6.vetoSprites = [];
+  for (let i = 0; i < g.season6.vetoList.length; i++) {
+    const vetoItem = g.season6.vetoList[i];
+
+    const vetoSprite = Sprite();
+    vetoSprite.Load("gfx/schoolbag_item.anm2", false);
+    const fileName = g.itemConfig.GetCollectible(vetoItem).GfxFileName;
+    vetoSprite.ReplaceSpritesheet(0, fileName);
+    vetoSprite.LoadGraphics();
+    vetoSprite.SetFrame("Default", 1);
+    vetoSprite.Scale = Vector(0.75, 0.75);
+
+    g.season6.vetoSprites.push(vetoSprite);
+  }
+
+  // Play a poop sound
+  g.sfx.Play(SoundEffect.SOUND_FART, 1, 0, false, 1);
+
+  // Reset the timer && restart the game
+  g.season6.vetoTimer = Isaac.GetTime() + SEASON_6_VETO_BUTTON_LENGTH;
+  g.season6.timeItemAssigned = 0;
+  g.run.restart = true;
+  Isaac.DebugString(
+    `Restarting because we vetoed item: ${g.season6.lastBuildItem}`,
+  );
+}
+
+// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
+export function preSpawnClearAward(): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_2) {
+    return;
+  }
+
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+
+  // Reset the starting item timer if we just killed the Basement 2 boss
+  if (stage === 2 && roomType === RoomType.ROOM_BOSS) {
+    v.persistent.timeItemAssigned = null;
   }
 }
-*/

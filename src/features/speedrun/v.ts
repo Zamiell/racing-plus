@@ -12,6 +12,13 @@ const v = {
     startedFrame: null as int | null,
     startedCharFrame: null as int | null,
     characterRunFrames: [] as int[],
+
+    // For season 2
+    timeItemAssigned: null as int | null,
+    vetoList: [] as CollectibleType[],
+    vetoTimer: null as int | null,
+    vetoSprites: [] as Sprite[],
+    remainingStartingBuilds: [] as CollectibleType[],
   },
 
   level: {
