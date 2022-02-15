@@ -6,6 +6,9 @@ const v = {
   persistent: {
     /** Indexed by speedrun abbreviation. */
     charOrders: new Map<string, PlayerType[]>(),
+
+    // Season 2
+    buildVetos: [] as int[],
   },
 
   room: {
@@ -15,6 +18,7 @@ const v = {
       | null,
     createButtonsFrame: null as int | null,
     charOrder: [] as PlayerType[],
+    buildsChosen: [] as int[],
     sprites: {
       seasons: new Map<string, Sprite>(),
       characters: [] as Sprite[],

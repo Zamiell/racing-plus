@@ -13,17 +13,26 @@ const v = {
     startedCharFrame: null as int | null,
     characterRunFrames: [] as int[],
 
-    // For season 2
-    timeItemAssigned: null as int | null,
-    vetoList: [] as CollectibleType[],
-    vetoTimer: null as int | null,
-    vetoSprites: [] as Sprite[],
-    remainingStartingBuilds: [] as CollectibleType[],
+    // Season 2
+    selectedCharacters: [] as PlayerType[],
+    remainingCharacters: [] as PlayerType[],
+    /** Never start the same character twice in a row. */
+    lastSelectedCharacter: null as PlayerType | null,
+
+    selectedBuildIndexes: [] as int[],
+    remainingBuildIndexes: [] as int[],
+    /** Never start the same build twice in a row. */
+    lastSelectedBuildIndex: null as int | null,
   },
 
-  level: {
-    previousRoomType: RoomType.ROOM_DEFAULT,
-    repentanceDoorState: RepentanceDoorState.INITIAL,
+  nonpersistent: {
+    // Season 2
+    /**
+     * The time that the randomly selected character & build were assigned. This is set to 0 when
+     * the Basement 2 boss is defeated.
+     */
+    timeAssigned: null as int | null,
+    timeConsoleOpened: null as int | null,
   },
 
   run: {
@@ -32,6 +41,16 @@ const v = {
 
     finished: false,
     finishedFrames: null as int | null,
+
+    errors: {
+      gameRecentlyOpened: false,
+      consoleRecentlyOpened: false,
+    },
+  },
+
+  level: {
+    previousRoomType: RoomType.ROOM_DEFAULT,
+    repentanceDoorState: RepentanceDoorState.INITIAL,
   },
 
   room: {
@@ -39,9 +58,6 @@ const v = {
   },
 };
 export default v;
-
-declare let speedrun: typeof v;
-speedrun = v; // eslint-disable-line
 
 export function init(): void {
   saveDataManager("speedrun", v, featureEnabled);

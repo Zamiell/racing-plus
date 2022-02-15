@@ -1,14 +1,150 @@
-import { arrayEmpty, getDefaultKColor, gridToPos } from "isaacscript-common";
+import {
+  arrayCopy,
+  arrayEmpty,
+  getRandomArrayElementAndRemove,
+  log,
+  MINUTE_IN_MILLISECONDS,
+} from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
-import { getRoomsEntered } from "../util/roomsEntered";
-import { BIG_4_ITEMS, SEASON_6_VETO_BUTTON_LENGTH } from "./constants";
+import { drawErrorText } from "../mandatory/errors";
+import {
+  restartOnNextFrame,
+  setRestartCharacter,
+} from "../util/restartOnNextFrame";
 import { ChallengeCustom } from "./enums";
-import { checkValidCharOrder } from "./speedrun";
 import v from "./v";
 
-const VETO_TEXT = "Veto";
+const SEASON_2_CHARACTERS = [
+  PlayerType.PLAYER_CAIN, // 2
+  PlayerType.PLAYER_EVE, // 5
+  PlayerType.PLAYER_BLACKJUDAS, // 12
+  PlayerType.PLAYER_THEFORGOTTEN, // 16
+  PlayerType.PLAYER_ISAAC_B, // 21
+  PlayerType.PLAYER_SAMSON_B, // 27
+  PlayerType.PLAYER_AZAZEL_B, // 28
+];
+
+/** Roughly matches the builds for online races in "builds.json". */
+const SEASON_2_STARTING_BUILDS = [
+  // Treasure Room items
+  [CollectibleType.COLLECTIBLE_CRICKETS_HEAD], // 4
+  [CollectibleType.COLLECTIBLE_CRICKETS_BODY], // 224
+  [CollectibleType.COLLECTIBLE_DEAD_EYE], // 373
+  [CollectibleType.COLLECTIBLE_DEATHS_TOUCH], // 237
+  [CollectibleType.COLLECTIBLE_DR_FETUS], // 52
+  [CollectibleType.COLLECTIBLE_IPECAC], // 149
+  [CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM], // 12
+  // [CollectibleType.COLLECTIBLE_MOMS_KNIFE], // 114
+  // (Mom's Knife is banned due to being too powerful)
+  [CollectibleType.COLLECTIBLE_POLYPHEMUS], // 169
+  [CollectibleType.COLLECTIBLE_PROPTOSIS], // 261
+  [CollectibleType.COLLECTIBLE_TECH_5], // 244
+  [CollectibleType.COLLECTIBLE_TECH_X], // 395
+  [CollectibleType.COLLECTIBLE_C_SECTION], // 678
+
+  // Devil Room items
+  [CollectibleType.COLLECTIBLE_BRIMSTONE], // 118
+  [CollectibleType.COLLECTIBLE_MAW_OF_THE_VOID], // 399
+
+  // Angel Room items
+  [CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT], // 415
+  [CollectibleType.COLLECTIBLE_SACRED_HEART], // 182
+  // [CollectibleType.COLLECTIBLE_SPIRIT_SWORD], // 579
+  // (Spirit Sword is banned due to being too powerful)
+  [CollectibleType.COLLECTIBLE_REVELATION], // 643
+
+  // Secret Room items
+  [CollectibleType.COLLECTIBLE_EPIC_FETUS], // 168
+
+  // Custom items
+  // [CollectibleTypeCustom.COLLECTIBLE_SAWBLADE],
+  // (Sawblade is banned due to not being powerful enough)
+
+  // Custom builds
+  [
+    CollectibleType.COLLECTIBLE_20_20, // 245
+    CollectibleType.COLLECTIBLE_INNER_EYE, // 2
+  ],
+  [
+    CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
+    CollectibleType.COLLECTIBLE_STEVEN, // 50
+  ],
+  [
+    CollectibleType.COLLECTIBLE_GODHEAD, // 331
+    CollectibleType.COLLECTIBLE_CUPIDS_ARROW, // 48
+  ],
+  [
+    CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
+    CollectibleType.COLLECTIBLE_SAD_ONION, // 1
+  ],
+  [
+    CollectibleType.COLLECTIBLE_INCUBUS, // 360
+    CollectibleType.COLLECTIBLE_INCUBUS, // 360
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
+    CollectibleType.COLLECTIBLE_SAD_ONION, // 1
+  ],
+  [
+    CollectibleType.COLLECTIBLE_TECHNOLOGY, // 68
+    CollectibleType.COLLECTIBLE_LUMP_OF_COAL, // 132
+  ],
+  [
+    CollectibleType.COLLECTIBLE_TWISTED_PAIR, // 698
+    CollectibleType.COLLECTIBLE_TWISTED_PAIR, // 698
+  ],
+  [
+    CollectibleType.COLLECTIBLE_POINTY_RIB, // 544
+    CollectibleType.COLLECTIBLE_EVES_MASCARA, // 310
+  ],
+  [
+    CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
+    CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID, // 317
+    CollectibleTypeCustom.COLLECTIBLE_13_LUCK, // Custom
+  ],
+  [
+    CollectibleType.COLLECTIBLE_EYE_OF_THE_OCCULT, // 572
+    CollectibleType.COLLECTIBLE_LOKIS_HORNS, // 87
+    CollectibleTypeCustom.COLLECTIBLE_15_LUCK,
+  ],
+  /*
+  [
+    CollectibleType.COLLECTIBLE_DISTANT_ADMIRATION, // 57
+    CollectibleType.COLLECTIBLE_FRIEND_ZONE, // 364
+    CollectibleType.COLLECTIBLE_FOREVER_ALONE, // 128
+    CollectibleType.COLLECTIBLE_BFFS, // 247
+  ],
+  */
+  // (the fly build is banned due to not being fun)
+];
+
+const SEASON_2_FORGOTTEN_BUILDS = new Set<
+  CollectibleType | CollectibleTypeCustom
+>([
+  CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, // 12
+  CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
+  CollectibleType.COLLECTIBLE_POLYPHEMUS, // 169
+  CollectibleType.COLLECTIBLE_SACRED_HEART, // 182
+  CollectibleType.COLLECTIBLE_PROPTOSIS, // 261
+  CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
+]);
+
+/** An array containing every index that is not on the above build whitelist. */
+const SEASON_2_FORGOTTEN_EXCEPTIONS: int[] = [];
+for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
+  const build = SEASON_2_STARTING_BUILDS[i];
+  const firstCollectible = build[0];
+  if (!SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible)) {
+    SEASON_2_FORGOTTEN_EXCEPTIONS.push(i);
+  }
+}
+
+/** How long the randomly-selected character & build combination is "locked-in". */
+const SEASON_2_LOCK_MINUTES = 1.5;
+const SEASON_2_LOCK_MILLISECONDS =
+  SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -18,452 +154,204 @@ export function postRender(): void {
     return;
   }
 
-  drawVetoButton();
+  drawErrors();
 }
 
-function drawVetoButton() {
-  if (v.persistent.characterNum !== 1 || getRoomsEntered() !== 1) {
-    return;
+function drawErrors() {
+  if (v.run.errors.gameRecentlyOpened) {
+    const text = getSeason2ErrorMessage("opening the game");
+    drawErrorText(text);
+    return true;
   }
 
-  if (!checkValidCharOrder()) {
-    return;
+  if (v.run.errors.consoleRecentlyOpened) {
+    const text = getSeason2ErrorMessage("opening the console");
+    drawErrorText(text);
+    return true;
   }
 
-  // Draw the sprites that correspond to the items that are currently on the veto list
-  let x = -45;
-  for (let i = 0; i < v.persistent.vetoList.length; i++) {
-    const itemPosGame = gridToPos(11, 7);
-    const itemPos = Isaac.WorldToRenderPosition(itemPosGame);
-    x += 15;
-    const modifiedItemPos = itemPos.add(Vector(x, 0));
-    v.persistent.vetoSprites[i].Render(
-      modifiedItemPos,
-      Vector.Zero,
-      Vector.Zero,
-    );
-  }
+  return false;
+}
 
-  // Draw the "Veto" text
-  if (v.persistent.vetoTimer === null) {
-    const posGame = gridToPos(11, 5);
-    const pos = Isaac.WorldToRenderPosition(posGame);
-    const font = g.fonts.droid;
-    const length = font.GetStringWidthUTF8(VETO_TEXT);
-    font.DrawString(
-      VETO_TEXT,
-      pos.X - length / 2,
-      pos.Y,
-      getDefaultKColor(),
-      0,
-      true,
-    );
-  }
+function getSeason2ErrorMessage(action: string) {
+  const suffix = SEASON_2_LOCK_MINUTES > 1 ? "s" : "";
+  const waitLength = `${SEASON_2_LOCK_MINUTES} minute${suffix}`;
+  return `You are not allowed to start a new Season 2 run so soon after ${action}. Please wait ${waitLength} and then restart.`;
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const challenge = Isaac.GetChallenge();
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
 
   if (challenge !== ChallengeCustom.SEASON_2) {
     return;
   }
 
-  removeBuildsOnFirstCharacter();
-  giveStartingItems();
+  if (checkErrors()) {
+    return;
+  }
+
+  checkFirstCharacterRefresh();
+
+  const startingCharacter = getStartingCharacter();
+  if (character !== startingCharacter) {
+    restartOnNextFrame();
+    setRestartCharacter(startingCharacter);
+    log(
+      `Restarting because we are on character ${character} and we need to be on character ${startingCharacter} (for season 2).`,
+    );
+    return;
+  }
+
+  const startingBuildIndex = getStartingBuildIndex(player);
+  giveStartingItems(player, startingBuildIndex);
 }
 
-function removeBuildsOnFirstCharacter() {
+function checkErrors() {
+  const time = Isaac.GetTime();
+
+  // Game recently opened
+  if (time <= SEASON_2_LOCK_MILLISECONDS) {
+    v.run.errors.gameRecentlyOpened = true;
+    return true;
+  }
+
+  // Console recently opened
+  if (v.nonpersistent.timeConsoleOpened !== null) {
+    const newSpeedrunsLockedUntilTime =
+      v.nonpersistent.timeConsoleOpened + SEASON_2_LOCK_MILLISECONDS;
+    if (time <= newSpeedrunsLockedUntilTime) {
+      v.run.errors.consoleRecentlyOpened = true;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function checkFirstCharacterRefresh() {
   if (v.persistent.characterNum !== 1) {
     return;
   }
 
-  arrayEmpty(v.persistent.remainingStartingBuilds);
-  for (const startingBuild of SEASON_2_STARTING_BUILDS) {
-    v.persistent.remainingStartingBuilds.push(startingBuild);
+  if (v.nonpersistent.timeAssigned === null) {
+    return;
   }
 
-  if (
-    Isaac.GetTime() - v.persistent.timeItemAssigned >=
-    SEASON_2_ITEM_LOCK_MILLISECONDS
-  ) {
-    arrayEmpty(v.persistent.selectedStartingBuilds);
+  const time = Isaac.GetTime();
+  const newSpeedrunsLockedUntilTime =
+    v.nonpersistent.timeAssigned + SEASON_2_LOCK_MILLISECONDS;
+  if (time <= newSpeedrunsLockedUntilTime) {
+    return;
+  }
+
+  refreshStartingCharactersAndBuilds();
+}
+
+function refreshStartingCharactersAndBuilds() {
+  arrayEmpty(v.persistent.selectedCharacters);
+  v.persistent.remainingCharacters = arrayCopy(SEASON_2_CHARACTERS);
+
+  arrayEmpty(v.persistent.selectedBuildIndexes);
+  arrayEmpty(v.persistent.remainingBuildIndexes);
+  for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
+    v.persistent.remainingBuildIndexes.push(i);
   }
 }
 
-function giveStartingItems() {
-  const player = Isaac.GetPlayer();
+function getStartingCharacter() {
+  // First, handle the case where there is no old starting character at all
+  const oldStartingCharacter =
+    v.persistent.selectedCharacters[v.persistent.characterNum];
+  if (oldStartingCharacter !== undefined) {
+    return oldStartingCharacter;
+  }
+
+  const characterExceptions =
+    v.persistent.lastSelectedCharacter === null
+      ? []
+      : [v.persistent.lastSelectedCharacter];
+  const startingCharacter = getRandomArrayElementAndRemove(
+    v.persistent.remainingCharacters,
+    undefined,
+    characterExceptions,
+  );
+  v.persistent.selectedCharacters.push(startingCharacter);
+  v.persistent.lastSelectedCharacter = startingCharacter;
+  v.nonpersistent.timeAssigned = Isaac.GetTime();
+  return startingCharacter;
+}
+
+function getStartingBuildIndex(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
+  // First, handle the case where there is no old starting build at all
+  const oldStartingBuildIndex =
+    v.persistent.selectedBuildIndexes[v.persistent.characterNum];
+  if (oldStartingBuildIndex !== undefined) {
+    return oldStartingBuildIndex;
+  }
+
+  const buildExceptions: int[] = [];
+
+  // Don't get the same starting build as the one we just played
+  if (v.persistent.lastSelectedBuildIndex !== null) {
+    buildExceptions.push(v.persistent.lastSelectedBuildIndex);
+  }
+
+  // Don't get starting builds that we have banned
+  // TODO
+
+  // Don't get starting builds that don't synergize with the current character
+  if (character === PlayerType.PLAYER_EVE) {
+    const buildIndex = getBuildIndexFor(
+      CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT,
+    );
+    buildExceptions.push(buildIndex);
+  } else if (character === PlayerType.PLAYER_THEFORGOTTEN) {
+    buildExceptions.push(...SEASON_2_FORGOTTEN_EXCEPTIONS);
+  }
+
+  const startingBuildIndex = getRandomArrayElementAndRemove(
+    v.persistent.remainingBuildIndexes,
+    undefined,
+    buildExceptions,
+  );
+  v.persistent.selectedBuildIndexes.push(startingBuildIndex);
+  v.persistent.lastSelectedBuildIndex = startingBuildIndex;
+  return startingBuildIndex;
+}
+
+function getBuildIndexFor(collectibleType: CollectibleType) {
+  for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
+    const build = SEASON_2_STARTING_BUILDS[i];
+    const firstCollectible = build[0];
+    if (firstCollectible === collectibleType) {
+      return i;
+    }
+  }
+
+  return error(
+    `Failed to find the season 2 build index for: ${collectibleType}`,
+  );
+}
+
+function giveStartingItems(player: EntityPlayer, startingBuildIndex: int) {
   // Everyone starts with the Compass in this season
   giveCollectibleAndRemoveFromPools(
     player,
     CollectibleType.COLLECTIBLE_COMPASS,
   );
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 
-  // Since this season has a custom death mechanic, we also want to remove the Broken Ankh
-  // (since we need the custom revival to always take priority over random revivals)
-  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH);
-  // TODO is this needed?
-
-  // Check to see if the player has played a run with one of the big 4
-  let alreadyStartedBig4 = false;
-  for (const selectedStartingBuild of g.season6.selectedStartingBuilds) {
-    const primaryItem = selectedStartingBuild[0];
-    if (BIG_4_ITEMS.includes(primaryItem as CollectibleType)) {
-      alreadyStartedBig4 = true;
-      break;
-    }
-  }
-
-  // Disable starting a big 4 item on the first character
-  if (g.speedrun.characterNum === 1) {
-    alreadyStartedBig4 = true;
-  }
-
-  // Everyone starts with a random passive item / build
-  // Check to see if a start is already assigned for this character number
-  // (dying and resetting should not reassign the selected starting item)
-  let startingBuild = g.season6.selectedStartingBuilds[g.speedrun.characterNum];
-  if (startingBuild === undefined) {
-    startingBuild = getNewStartingBuild(alreadyStartedBig4);
-  }
-
-  // Give the items to the player (and remove the items from the pools)
+  const startingBuild = SEASON_2_STARTING_BUILDS[startingBuildIndex];
   for (const itemID of startingBuild) {
-    // Eden might have already started with this item, so reset the run if so
-    if (character === PlayerType.PLAYER_EDEN && g.p.HasCollectible(itemID)) {
-      g.run.restart = true;
-      g.speedrun.fastReset = true;
-      Isaac.DebugString(
-        `Restarting because Eden naturally started with the selected starting item of: ${itemID}`,
-      );
-      return;
-    }
-
-    util.giveItemAndRemoveFromPools(itemID);
-
-    if (itemID === CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) {
-      // Also remove the additional soul hearts from Crown of Light
-      g.p.AddSoulHearts(-4);
-
-      // Re-heal Judas back to 1 red heart so that they can properly use the Crown of Light
-      // (this should do nothing on all of the other characters)
-      g.p.AddHearts(1);
-    }
+    giveCollectibleAndRemoveFromPools(player, itemID);
   }
 
-  // Spawn a "Veto" button on the first character
-  if (g.season6.vetoTimer !== 0 && Isaac.GetTime() >= g.season6.vetoTimer) {
-    g.season6.vetoTimer = 0;
-  }
-  if (g.speedrun.characterNum === 1 && g.season6.vetoTimer === 0) {
-    const pos = util.gridToPos(11, 6);
-    Isaac.GridSpawn(GridEntityType.GRID_PRESSURE_PLATE, 0, pos, true);
-  }
-}
-
-function getNewStartingBuild(alreadyStartedBig4: boolean) {
-  let seed = g.seeds.GetStartSeed();
-  let valid = false;
-  let startingBuild: Array<CollectibleType | CollectibleTypeCustom>;
-  let startingBuildIndex: int;
-  let randomAttempts = 0;
-  do {
-    seed = util.incrementRNG(seed);
-    // TODO GET SEED PROPERLY
-
-    if (alreadyStartedBig4) {
-      startingBuildIndex = math.random(
-        4,
-        g.season6.remainingStartingBuilds.length - 1,
-      );
-    } else if (g.speedrun.characterNum >= 2 && g.speedrun.characterNum <= 6) {
-      const startBig4Chance = math.random(1, 8 - g.speedrun.characterNum);
-      if (startBig4Chance === 1) {
-        startingBuildIndex = math.random(0, 3);
-      } else {
-        startingBuildIndex = math.random(
-          4,
-          g.season6.remainingStartingBuilds.length - 1,
-        );
-      }
-    } else if (g.speedrun.characterNum === 7) {
-      // Guarantee at least one big 4 start
-      startingBuildIndex = math.random(0, 3);
-    } else {
-      startingBuildIndex = math.random(
-        0,
-        g.season6.remainingStartingBuilds.length - 1,
-      );
-    }
-
-    startingBuild = g.season6.remainingStartingBuilds[startingBuildIndex];
-    valid = isValidStartingBuild(startingBuild);
-    randomAttempts += 1;
-  } while (!valid && randomAttempts < 100);
-  // (check for random attempts to prevent the possibility of having an infinite loop, just in case)
-
-  // Keep track of what item we start so that we don't get the same two starts in a row
-  g.season6.lastBuildItem = startingBuild[1];
-  if (g.speedrun.characterNum === 1) {
-    g.season6.lastBuildItemOnFirstChar = startingBuild[1];
-  }
-  Isaac.DebugString(
-    `Set the last starting build to: ${g.season6.lastBuildItem}`,
-  );
-
-  // Remove it from the remaining builds left
-  g.season6.remainingStartingBuilds.splice(startingBuildIndex, 1);
-
-  // Keep track of what item we are supposed to be starting on this character / run
-  g.season6.selectedStartingBuilds.push(startingBuild);
-
-  // Mark down the time that we assigned this item
-  g.season6.timeItemAssigned = Isaac.GetTime();
-
-  // Break out of the infinite loop
-  Isaac.DebugString(`Assigned a starting item of: ${startingBuild[0]}`);
-
-  return startingBuild;
-}
-
-function isValidStartingBuild(
-  startingBuild: Array<CollectibleType | CollectibleTypeCustom>,
-) {
-  // Local variables
-  const character = g.p.GetPlayerType();
-  const primaryItem = startingBuild[0];
-
-  // If we are on the first character,
-  // we do not want to play a build that we have already played recently
-  if (
-    g.speedrun.characterNum === 1 &&
-    (primaryItem === g.season6.lastBuildItem ||
-      primaryItem === g.season6.lastBuildItemOnFirstChar)
-  ) {
-    return false;
-  }
-
-  // Check to see if we already started this item
-  for (const pastSelectedBuild of g.season6.selectedStartingBuilds) {
-    const pastSelectedPrimaryItem = pastSelectedBuild[0];
-    if (pastSelectedPrimaryItem === primaryItem) {
-      return false;
-    }
-  }
-
-  // Check to see if we banned this item
-  const charOrder = RacingPlusData.Get("charOrder-R7S6") as int[];
-  for (let i = 7; i < charOrder.length; i++) {
-    // We start at 7 because the banned items are placed after the character IDs
-    let itemID = charOrder[i];
-
-    // Convert builds to the primary item
-    switch (itemID) {
-      case 1001: {
-        itemID = CollectibleType.COLLECTIBLE_MUTANT_SPIDER;
-        break;
-      }
-
-      case 1002: {
-        itemID = CollectibleType.COLLECTIBLE_TECHNOLOGY;
-        break;
-      }
-
-      case 1003: {
-        itemID = CollectibleType.COLLECTIBLE_FIRE_MIND;
-        break;
-      }
-
-      case 1005: {
-        itemID = CollectibleType.COLLECTIBLE_JACOBS_LADDER;
-        break;
-      }
-
-      case 1006: {
-        itemID = CollectibleType.COLLECTIBLE_CHOCOLATE_MILK;
-        break;
-      }
-
-      default: {
-        break;
-      }
-    }
-
-    if (primaryItem === itemID) {
-      return false;
-    }
-  }
-
-  // Check to see if this start is an anti-synergy with this character (character/item bans)
-  switch (character) {
-    // 3
-    case PlayerType.PLAYER_JUDAS: {
-      if (primaryItem === CollectibleType.COLLECTIBLE_JUDAS_SHADOW) {
-        return false;
-      }
-      break;
-    }
-
-    // 5
-    case PlayerType.PLAYER_EVE: {
-      if (primaryItem === CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) {
-        return false;
-      }
-      break;
-    }
-
-    // 7
-    case PlayerType.PLAYER_AZAZEL: {
-      if (
-        primaryItem === CollectibleType.COLLECTIBLE_IPECAC || // 149
-        primaryItem === CollectibleType.COLLECTIBLE_MUTANT_SPIDER || // 153
-        primaryItem === CollectibleType.COLLECTIBLE_CRICKETS_BODY || // 224
-        primaryItem === CollectibleType.COLLECTIBLE_DEAD_EYE || // 373
-        primaryItem === CollectibleType.COLLECTIBLE_JUDAS_SHADOW || // 331
-        primaryItem === CollectibleType.COLLECTIBLE_FIRE_MIND || // 257
-        primaryItem === CollectibleType.COLLECTIBLE_JACOBS_LADDER // 494
-      ) {
-        return false;
-      }
-      break;
-    }
-
-    // 16
-    case PlayerType.PLAYER_THEFORGOTTEN: {
-      if (
-        primaryItem === CollectibleType.COLLECTIBLE_DEATHS_TOUCH || // 237
-        primaryItem === CollectibleType.COLLECTIBLE_FIRE_MIND || // 257
-        primaryItem === CollectibleType.COLLECTIBLE_LIL_BRIMSTONE || // 275
-        primaryItem === CollectibleType.COLLECTIBLE_JUDAS_SHADOW || // 311
-        primaryItem === CollectibleType.COLLECTIBLE_INCUBUS // 350
-      ) {
-        return false;
-      }
-      break;
-    }
-
-    default: {
-      break;
-    }
-  }
-
-  // Check to see if we vetoed this item and we are on the first character
-  if (g.speedrun.characterNum === 1) {
-    for (const veto of g.season6.vetoList) {
-      if (veto === primaryItem) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-// Delete the veto button if we are re-entering the starting room
-export function postNewRoom(): void {
-  // Local variables
-  const roomIndex = util.getRoomIndex();
-  const stage = g.l.GetStage();
-  const startingRoomIndex = g.l.GetStartingRoomIndex();
-  const challenge = Isaac.GetChallenge();
-
-  if (
-    challenge === ChallengeCustom.R7_SEASON_6 &&
-    stage === 1 &&
-    roomIndex === startingRoomIndex &&
-    g.run.roomsEntered !== 1
-  ) {
-    g.r.RemoveGridEntity(117, 0, false);
-  }
-}
-
-// ModCallbacks.MC_POST_BOMB_UPDATE (58)
-export function postBombUpdate(bomb: EntityBomb): void {
-  // Local variables
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.R7_SEASON_6) {
-    return;
-  }
-
-  if (bomb.SpawnerType !== EntityType.ENTITY_PLAYER || bomb.FrameCount !== 1) {
-    return;
-  }
-
-  // Find out if this bomb has the homing flag
-  const homing = (bomb.Flags & (1 << 2)) >>> 2;
-  if (homing === 0) {
-    return;
-  }
-
-  // Don't do anything if we do not have Sacred Heart
-  if (!g.p.HasCollectible(CollectibleType.COLLECTIBLE_SACRED_HEART)) {
-    return;
-  }
-
-  // Don't do anything if we have Dr. Fetus or Bobby Bomb (normal homing bombs)
-  if (
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_DR_FETUS) ||
-    g.p.HasCollectible(CollectibleType.COLLECTIBLE_BOBBY_BOMB)
-  ) {
-    return;
-  }
-
-  // Remove the homing bombs from Sacred Heart
-  // (bombs use tear flags for some reason)
-  bomb.Flags &= ~TearFlags.TEAR_HOMING;
-}
-
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-export function postGridEntityUpdate(gridEntity: GridEntity): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (
-    challenge !== ChallengeCustom.SEASON_2 ||
-    g.speedrun.characterNum !== 1 ||
-    g.run.roomsEntered !== 1 ||
-    gridEntity.GetSaveState().State !== 3 // Pressed
-  ) {
-    return;
-  }
-
-  // Add the item to the veto list
-  g.season6.vetoList.push(g.season6.lastBuildItem);
-  if (g.season6.vetoList.length > 5) {
-    // Remove the first element
-    g.season6.vetoList.splice(0, 1);
-  }
-
-  // Add the sprite to the sprite list
-  g.season6.vetoSprites = [];
-  for (let i = 0; i < g.season6.vetoList.length; i++) {
-    const vetoItem = g.season6.vetoList[i];
-
-    const vetoSprite = Sprite();
-    vetoSprite.Load("gfx/schoolbag_item.anm2", false);
-    const fileName = g.itemConfig.GetCollectible(vetoItem).GfxFileName;
-    vetoSprite.ReplaceSpritesheet(0, fileName);
-    vetoSprite.LoadGraphics();
-    vetoSprite.SetFrame("Default", 1);
-    vetoSprite.Scale = Vector(0.75, 0.75);
-
-    g.season6.vetoSprites.push(vetoSprite);
-  }
-
-  // Play a poop sound
-  g.sfx.Play(SoundEffect.SOUND_FART, 1, 0, false, 1);
-
-  // Reset the timer && restart the game
-  g.season6.vetoTimer = Isaac.GetTime() + SEASON_6_VETO_BUTTON_LENGTH;
-  g.season6.timeItemAssigned = 0;
-  g.run.restart = true;
-  Isaac.DebugString(
-    `Restarting because we vetoed item: ${g.season6.lastBuildItem}`,
-  );
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH); // TODO is this needed?
 }
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
@@ -474,11 +362,15 @@ export function preSpawnClearAward(): void {
     return;
   }
 
+  checkResetTimeAssigned();
+}
+
+/** Reset the starting character/build timer if we just killed the Basement 2 boss. */
+function checkResetTimeAssigned() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
-  // Reset the starting item timer if we just killed the Basement 2 boss
   if (stage === 2 && roomType === RoomType.ROOM_BOSS) {
-    v.persistent.timeItemAssigned = null;
+    v.nonpersistent.timeAssigned = 0;
   }
 }

@@ -1,9 +1,8 @@
 import { SeasonDescription } from "./types/SeasonDescription";
 
-// The format of "charPosition" is: character ID, X, Y
 export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
   R7S1: {
-    X: 6,
+    X: 4,
     Y: 2,
     numChars: 7,
     charPositions: [
@@ -28,5 +27,14 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
       [PlayerType.PLAYER_BETHANY, 10, 5], // 18
       [PlayerType.PLAYER_BETHANY_B, 12, 5],
     ],
+  },
+
+  R7S2: {
+    X: 8,
+    Y: 2,
+    numChars: 7,
+    charPositions: [],
+    buildPositions: [[0, 0, 0]],
+    numBuildVetos: 3,
   },
 };

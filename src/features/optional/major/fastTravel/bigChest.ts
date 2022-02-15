@@ -20,11 +20,13 @@ import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { ChallengeCustom } from "../../../speedrun/enums";
+import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import { isOnFinalCharacter } from "../../../speedrun/speedrun";
 import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 
 enum ReplacementAction {
+  /** Leave the Big Chest there. */
   LEAVE_ALONE,
   TRAPDOOR,
   HEAVEN_DOOR,
@@ -48,7 +50,7 @@ function getReplacementAction() {
   const challenge = Isaac.GetChallenge();
 
   // First, handle the common case of Cathedral and Sheol
-  // (this avoids lots of duplication below)
+  // (this avoids duplication below)
 
   if (
     onCathedral() &&
@@ -66,6 +68,10 @@ function getReplacementAction() {
 
   if (challenge === ChallengeCustom.SEASON_1) {
     return speedrunUp();
+  }
+
+  if (challenge === ChallengeCustom.SEASON_2) {
+    return speedrunAlternate();
   }
 
   if (g.raceVars.finished) {
@@ -119,55 +125,58 @@ function speedrunUp() {
   }
 
   if (onChest()) {
-    if (isOnFinalCharacter()) {
-      return ReplacementAction.TROPHY;
-    }
-
-    return ReplacementAction.CHECKPOINT;
+    return speedrunKilledFinalBoss();
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
 }
 
-/*
+enum SpeedrunDirection {
+  /** To The Chest & Blue Baby. */
+  UP,
+
+  /** The the Dark Room & The Lamb. */
+  DOWN,
+}
+
 function speedrunAlternate() {
   // Some seasons alternate between directions,
   // so we need to make sure we only handle the intended direction
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  let direction = g.speedrun.characterNum % 2; // 1 is up, 2 is down
-  if (direction === 0) {
-    direction = 2;
-  }
+  const characterNum = speedrunGetCharacterNum();
+  const modulus = characterNum % 2;
+  const direction =
+    modulus === 1 ? SpeedrunDirection.UP : SpeedrunDirection.DOWN;
 
   // The Polaroid / The Negative is optional in seasons that alternate direction
-  if (onCathedral() && direction === 1) {
-    return ReplacementAction.BeamOfLightUp;
+  if (onCathedral()) {
+    return direction === SpeedrunDirection.UP
+      ? ReplacementAction.HEAVEN_DOOR
+      : ReplacementAction.LEAVE_ALONE;
   }
 
-  if (onSheol() && direction === 2) {
-    return ReplacementAction.TrapdoorDown;
+  if (onSheol()) {
+    return direction === SpeedrunDirection.DOWN
+      ? ReplacementAction.TRAPDOOR
+      : ReplacementAction.LEAVE_ALONE;
   }
 
   if (
-    (onChest() && direction === 1) || // The Chest
-    (onDarkRoom() && direction === 2) // Dark Room
+    (onChest() && direction === SpeedrunDirection.UP) ||
+    (onDarkRoom() && direction === SpeedrunDirection.DOWN)
   ) {
-    // Sometimes the vanilla end of challenge trophy does not appear
-    // Thus, we need to handle replacing both the trophy and the big chest
-    // So replace the big chest with either a checkpoint flag or a custom trophy,
-    // depending on if we are on the last character or not
-    if (isOnFinalCharacter()) {
-      return ReplacementAction.Trophy;
-    }
-
-    return ReplacementAction.Checkpoint;
+    return speedrunKilledFinalBoss();
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
 }
-*/
+
+function speedrunKilledFinalBoss() {
+  if (isOnFinalCharacter()) {
+    return ReplacementAction.TROPHY;
+  }
+
+  return ReplacementAction.CHECKPOINT;
+}
 
 function blueBaby() {
   const roomSafeGridIndex = getRoomSafeGridIndex();

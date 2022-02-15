@@ -43,6 +43,32 @@
 
 <br />
 
+## R+7 Season 2 Beta (Instant-Start) (Proposal)
+
+- You must complete the game with the following 7 characters:
+  - 2 - Cain
+  - 5 - Eve
+  - 12 - Dark Judas
+  - 15 - The Forgotten
+  - 21 - Tainted Isaac (with Birthright)
+  - 27 - Tainted Samson
+  - 28 - Tainted Azazel
+- The 1st, 3rd, 5th, and 7th runs will go to The Chest. The 2nd, 4th, and 6th runs will go to the Dark Room.
+- Tainted Isaac starts with Birthright.
+- All characters start with the Compass.
+- Each character will be randomly assigned a starting item or build. (You can find the full list in the "Change Char Order" custom challenge.)
+- The Treasure Room on Basement 1 is removed.
+- Resetting the game will change the seed, but not change the randomly assigned starting item.
+- Duplicate starting items will never be given over the course of a 7 character run.
+- After character selection, players must ban three other items/builds.
+- The randomly selected item for the first character will expire after 1 minute or when a Basement 2 boss dies, whichever happens first.
+- Cain's Eye is removed from the trinket pool.
+- Sol is removed from the Planetarium pool.
+- We Need to Go Deeper! will not work on Womb 2.
+- Teleporting to the Dark Room via a Sacrifice Room on floors 1 through 8 will send you to the next floor instead.
+
+<br />
+
 ## Races
 
 - If you want to do a multiplayer race of one of the above seasons, then you can create a race with a format of "Custom" and a race goal of "Custom".

@@ -179,34 +179,36 @@ function areOtherModsEnabled() {
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): boolean {
   if (REPENTANCE === undefined) {
-    drawNoRepentance();
+    drawErrorText(
+      "You must have the Repentance DLC installed in order to use Racing+.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.",
+    );
     return true;
   }
 
   if (v.run.corrupted) {
-    drawText(
-      "Error: You must completely close and re-open the game after enabling or disabling any mods.\n\nIf this error persists after re-opening the game, then your Racing+ mod is corrupted and needs to be redownloaded/reinstalled.",
+    drawErrorText(
+      "You must completely close and re-open the game after enabling or disabling any mods.\n\nIf this error persists after re-opening the game, then your Racing+ mod is corrupted and needs to be redownloaded/reinstalled.",
     );
     return true;
   }
 
   if (v.run.incompleteSave) {
-    drawText(
-      "Error: You must use a fully unlocked save file to play the Racing+ mod. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources",
+    drawErrorText(
+      "You must use a fully unlocked save file to play the Racing+ mod. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources",
     );
     return true;
   }
 
   if (v.run.otherModsEnabled) {
-    drawText(
-      "Error: You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
+    drawErrorText(
+      "You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
     );
     return true;
   }
 
   if (inSpeedrun() && !checkValidCharOrder()) {
-    drawText(
-      'Error: You must set a character order first by using the "Change Char Order" custom challenge.',
+    drawErrorText(
+      'You must set a character order first by using the "Change Char Order" custom challenge.',
     );
     return true;
   }
@@ -224,8 +226,8 @@ export function postRender(): boolean {
       roomVisitedCount === 1 &&
       character !== randomBabyID
     ) {
-      drawText(
-        "Error: You must turn off The Babies Mod when playing characters other than Random Baby.",
+      drawErrorText(
+        "You must turn off The Babies Mod when playing characters other than Random Baby.",
       );
       return true;
     }
@@ -234,40 +236,11 @@ export function postRender(): boolean {
   return false;
 }
 
-function drawNoRepentance() {
-  let x = STARTING_X;
-  let y = STARTING_Y;
-  Isaac.RenderText(
-    "Error: You must have the Repentance DLC installed",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  x += 42;
-  y += 10;
-  Isaac.RenderText("in order to use Racing+.", x, y, 2, 2, 2, 2);
-  y += 20;
-  Isaac.RenderText(
-    "If you want to use the Afterbirth+ version",
-    x,
-    y,
-    2,
-    2,
-    2,
-    2,
-  );
-  y += 10;
-  Isaac.RenderText("of the mod, then you must download it", x, y, 2, 2, 2, 2);
-  y += 10;
-  Isaac.RenderText("manually from GitHub.", x, y, 2, 2, 2, 2);
-}
-
-function drawText(text: string) {
+export function drawErrorText(text: string): void {
   const x = STARTING_X;
   let y = STARTING_Y;
+
+  text = `Error: ${text}`;
 
   for (const line of text.split("\n")) {
     const splitLines = getSplitLines(line);

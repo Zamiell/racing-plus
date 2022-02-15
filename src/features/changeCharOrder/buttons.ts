@@ -1,8 +1,10 @@
 import {
+  arrayCopy,
   ensureAllCases,
   getDefaultColor,
   getPlayers,
   gridToPos,
+  isEven,
   log,
   removeAllMatchingGridEntities,
   removeGridEntity,
@@ -119,6 +121,11 @@ function checkPressed(gridEntity: GridEntity) {
       break;
     }
 
+    case ChangeCharOrderPhase.BUILD_VETO: {
+      checkPressedPhaseBuildVeto(gridEntity);
+      break;
+    }
+
     default: {
       ensureAllCases(v.room.phase);
       break;
@@ -164,7 +171,7 @@ function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {
     const [, x, y] = season.charPositions[i];
     const buttonPosition = gridToPos(x, y);
     if (
-      gridEntity.State === 3 &&
+      gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
       gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it
       gridEntity.Position.X === buttonPosition.X &&
       gridEntity.Position.Y === buttonPosition.Y
@@ -180,17 +187,19 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   }
   const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
   const characterID = season.charPositions[i][0];
+  v.room.charOrder.push(characterID);
 
   // Mark that we have pressed this button
   gridEntity.VarData = 1;
-  v.room.charOrder.push(characterID);
 
   // Change the graphic to that of a number
   v.room.sprites.characters[i].Load("gfx/timer/timer.anm2", true);
   v.room.sprites.characters[i].SetFrame("Default", v.room.charOrder.length);
   v.room.sprites.characters[i].Color = getDefaultColor(); // Remove the fade
 
-  season1DeleteOtherCharButton(i);
+  if (v.room.seasonChosenAbbreviation === "R7S1") {
+    season1DeleteOtherCharButton(i);
+  }
 
   // Check to see if this is our last character
   if (v.room.charOrder.length === season.numChars) {
@@ -218,10 +227,6 @@ function season1DeleteOtherCharButton(i: int) {
   deleteCharacterButtonAtIndex(otherCharIndex);
 }
 
-function isEven(num: int) {
-  return num % 2 === 0;
-}
-
 function deleteCharacterButtonAtIndex(i: int) {
   if (v.room.seasonChosenAbbreviation === null) {
     error("seasonChosen is nil.");
@@ -236,4 +241,54 @@ function deleteCharacterButtonAtIndex(i: int) {
 
   // We also need to remove the sprite
   v.room.sprites.characters[i] = Sprite();
+}
+
+function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
+  if (v.room.seasonChosenAbbreviation === null) {
+    error("seasonChosen is null.");
+  }
+  const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
+
+  if (season.buildPositions === undefined) {
+    error("buildPositions is undefined.");
+  }
+
+  for (let i = 0; i < season.buildPositions.length; i++) {
+    const [, x, y] = season.buildPositions[i];
+    const buttonPosition = gridToPos(x, y);
+    if (
+      gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
+      gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it
+      gridEntity.Position.X === buttonPosition.X &&
+      gridEntity.Position.Y === buttonPosition.Y
+    ) {
+      buildButtonPressed(gridEntity, i);
+    }
+  }
+}
+
+function buildButtonPressed(gridEntity: GridEntity, i: int) {
+  if (v.room.seasonChosenAbbreviation === null) {
+    error("seasonChosen is nil.");
+  }
+  const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
+
+  if (season.buildPositions === undefined) {
+    error("buildPositions is undefined.");
+  }
+  const buildIndex = season.buildPositions[i][0];
+  v.room.buildsChosen.push(buildIndex);
+
+  // Mark that we have pressed this button
+  gridEntity.VarData = 1;
+
+  // Check to see if this is our last build
+  if (season.numBuildVetos === undefined) {
+    error("numBuildVetos is undefined.");
+  }
+  if (v.room.buildsChosen.length === season.numBuildVetos) {
+    // We are done, so write the changes to persistent storage
+    v.persistent.buildVetos = arrayCopy(v.room.buildsChosen);
+    g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+  }
 }
