@@ -1,5 +1,6 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorTreasureRoom";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
   restartOnNextFrame,
@@ -108,6 +109,11 @@ function goBackToFirstCharacter() {
 
 function giveMoreOptionsBuff() {
   const player = Isaac.GetPlayer();
+
+  // Only seasons with Treasure Rooms need the More Options buff
+  if (shouldBanFirstFloorTreasureRoom()) {
+    return;
+  }
 
   // The first character of the speedrun always gets More Options to speed up the process of getting
   // a run going

@@ -13,6 +13,7 @@ import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyB
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as roomVisiter from "./features/mandatory/roomVisiter";
 import * as runTimer from "./features/mandatory/runTimer";
+import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
@@ -96,6 +97,7 @@ export function initFeatureVariables(): void {
   errors.init();
   roomVisiter.init();
   preventSacrificeRoomTeleport.init();
+  seededDeath.init();
 
   // Major
   startWithD6.init();

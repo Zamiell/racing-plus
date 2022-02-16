@@ -62,7 +62,7 @@ export function postNewRoom(): void {
   }
 }
 
-function shouldBanFirstFloorTreasureRoom() {
+export function shouldBanFirstFloorTreasureRoom(): boolean {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
