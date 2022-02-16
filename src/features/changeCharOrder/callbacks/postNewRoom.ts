@@ -68,7 +68,7 @@ function setupButtonRoom() {
 
   // Spawn buttons for each type of speedrun
   // (and a graphic over each button)
-  for (const [key, seasonDescription] of Object.entries(
+  for (const [seasonAbbreviation, seasonDescription] of Object.entries(
     CHANGE_CHAR_ORDER_POSITIONS,
   )) {
     if (seasonDescription.hidden !== undefined) {
@@ -85,8 +85,11 @@ function setupButtonRoom() {
     );
 
     const seasonSprite = Sprite();
-    seasonSprite.Load(`gfx/changeCharOrder/buttons/${key}.anm2`, true);
+    seasonSprite.Load(
+      `gfx/changeCharOrder/buttons/${seasonAbbreviation}.anm2`,
+      true,
+    );
     seasonSprite.SetFrame("Default", 0);
-    v.room.sprites.seasons.set(key, seasonSprite);
+    v.room.sprites.seasons.set(seasonAbbreviation, seasonSprite);
   }
 }

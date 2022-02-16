@@ -233,8 +233,7 @@ function getDoorStateForMinesDoor(door: GridEntityDoor) {
     }
 
     default: {
-      error("A Mines door had an unknown state.");
-      return RepentanceDoorState.INITIAL;
+      return error("A Mines door had an unknown state.");
     }
   }
 }

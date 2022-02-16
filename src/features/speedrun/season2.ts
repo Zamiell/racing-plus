@@ -27,7 +27,7 @@ const SEASON_2_CHARACTERS = [
 ];
 
 /** Roughly matches the builds for online races in "builds.json". */
-const SEASON_2_STARTING_BUILDS = [
+export const SEASON_2_STARTING_BUILDS = [
   // Treasure Room items
   [CollectibleType.COLLECTIBLE_CRICKETS_HEAD], // 4
   [CollectibleType.COLLECTIBLE_CRICKETS_BODY], // 224

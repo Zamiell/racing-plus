@@ -151,13 +151,8 @@ function getCharacterOrderSafe() {
 
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();
-  for (const key of CHALLENGE_DEFINITIONS.keys()) {
-    if (key === challenge) {
-      return true;
-    }
-  }
-
-  return false;
+  const speedrunChallenges = [...CHALLENGE_DEFINITIONS.keys()];
+  return speedrunChallenges.includes(challenge);
 }
 
 export function isOnFinalCharacter(): boolean {
