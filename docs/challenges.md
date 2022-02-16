@@ -63,15 +63,19 @@
 - The 1st, 3rd, 5th, and 7th runs will go to The Chest.
 - The 2nd, 4th, and 6th runs will go to the Dark Room.
 
-### Instant Start
+### Random Characters & Instant Start
 
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 - You are randomly assigned a build at the beginning of the run. (You can find the full list in the "Change Char Order" custom challenge.)
 - Resetting the game will change the seed, but not change the randomly assigned character or build.
 - The randomly selected character & build for the first character will expire after 1.5 minutes or when a Basement 2 boss dies, whichever happens first.
 - Instead of choosing a character order, players must ban 3 builds.
-- When resetting on the first character, you will never be given the same character twice or the same build twice.
+- When resetting on the first character, you will never be given the same character or build twice in a row.
 - Duplicate starting builds will never be given over the course of a 7 character run.
+
+### Seeded Death
+
+- The custom death mechanic from seeded races is applied.
 
 ### Other
 

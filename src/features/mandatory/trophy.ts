@@ -9,9 +9,9 @@ import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { EntityLocation } from "../../types/EntityLocation";
 import { EntityTypeCustom } from "../../types/EntityTypeCustom";
 import { raceFinish } from "../race/raceFinish";
-import { isSeededDeathActive } from "../race/v";
 import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";
+import { isSeededDeathActive } from "./seededDeath/v";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
 

@@ -3,6 +3,7 @@ import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
+import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
@@ -17,6 +18,7 @@ import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 export function main(): void {
   // Mandatory
   trophy.postUpdate();
+  seededDeathPostUpdate();
   fireworks.postUpdate();
   showLevelText.postUpdate();
   runTimer.postUpdate();

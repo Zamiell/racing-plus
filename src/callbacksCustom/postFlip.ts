@@ -1,7 +1,10 @@
+import { seededDeathPostFlip } from "../features/mandatory/seededDeath/callbacks/postFlip";
 import * as startWithD6 from "../features/optional/major/startWithD6";
-import { racePostFlip } from "../features/race/callbacks/postFlip";
 
 export function main(player: EntityPlayer): void {
+  // Mandatory
+  seededDeathPostFlip(player);
+
+  // Major
   startWithD6.postFlip(player);
-  racePostFlip(player);
 }

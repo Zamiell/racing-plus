@@ -8,6 +8,7 @@ import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as roomVisiter from "../features/mandatory/roomVisiter";
+import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
@@ -60,6 +61,7 @@ export function main(): void {
   roomVisiter.postNewRoom();
   banFirstFloorTreasureRoom.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
+  seededDeathPostNewRoom();
 
   // Major
   racePostNewRoom();

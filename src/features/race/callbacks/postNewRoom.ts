@@ -8,7 +8,6 @@ import * as removeStrangeDoor from "../removeStrangeDoor";
 import * as removeVoidDoor from "../removeVoidDoor";
 import * as replaceScolex from "../replaceScolex";
 import * as seeded3DollarBill from "../seeded3DollarBill";
-import * as seededDeath from "../seededDeath";
 import * as socket from "../socket";
 import * as spawnCorpseTrapdoor from "../spawnCorpseTrapdoor";
 import * as startingRoom from "../startingRoom";
@@ -33,7 +32,6 @@ export function racePostNewRoom(): void {
   removeRepentanceDoor.postNewRoom();
   removeVoidDoor.postNewRoom();
   replaceScolex.postNewRoom();
-  seededDeath.postNewRoom();
   seeded3DollarBill.postNewRoom();
   endOfRaceButtons.postNewRoom();
   victoryLap.postNewRoom();

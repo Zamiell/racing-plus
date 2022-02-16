@@ -1,5 +1,5 @@
-import { racePreCustomRevive } from "../features/race/callbacks/preCustomRevive";
+import { seededDeathPreCustomRevive } from "../features/mandatory/seededDeath/callbacks/preCustomRevive";
 
 export function main(player: EntityPlayer): int | void {
-  return racePreCustomRevive(player);
+  return seededDeathPreCustomRevive(player);
 }

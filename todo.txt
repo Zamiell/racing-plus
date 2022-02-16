@@ -4,3 +4,4 @@ TODO Racing+ new features:
 - add icons for starting build + char
 - seeded death
 - test broken ankh
+- fix SEASON_2_LOCK_MINUTES

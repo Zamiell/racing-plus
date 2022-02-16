@@ -4,6 +4,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+import { config } from "../../modConfigMenu";
 import { RaceGoal } from "../race/types/RaceGoal";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";
@@ -52,6 +53,7 @@ function shouldDeleteSpikes() {
 
 function inRaceToDarkRoom() {
   return (
+    config.clientCommunication &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     (g.race.goal === RaceGoal.THE_LAMB || g.race.goal === RaceGoal.MEGA_SATAN)

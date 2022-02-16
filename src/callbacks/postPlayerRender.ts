@@ -1,15 +1,17 @@
 import { isChildPlayer } from "isaacscript-common";
 import * as debugFunction from "../debugFunction";
+import { seededDeathPostPlayerRender } from "../features/mandatory/seededDeath/callbacks/postPlayerRender";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
-import { racePostPlayerRender } from "../features/race/callbacks/postPlayerRender";
 
 export function main(player: EntityPlayer): void {
   if (isChildPlayer(player)) {
     return;
   }
 
+  // Mandatory
+  seededDeathPostPlayerRender(player);
+
   // Major
-  racePostPlayerRender(player);
   debugFunction.postPlayerRender(player);
 
   // Cutscenes

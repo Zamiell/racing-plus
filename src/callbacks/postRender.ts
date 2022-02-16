@@ -6,6 +6,7 @@ import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as roomVisiter from "../features/mandatory/roomVisiter";
 import * as runTimer from "../features/mandatory/runTimer";
+import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
@@ -50,6 +51,7 @@ export function main(): void {
   topLeftText.postRender();
   drawVersion.postRender();
   roomVisiter.postRender();
+  seededDeathPostRender();
 
   // Major
   racePostRender();

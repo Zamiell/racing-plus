@@ -1,6 +1,6 @@
 import * as centerStart from "../features/mandatory/centerStart";
+import { seededDeathPostEffectInitBloodDrop } from "../features/mandatory/seededDeath/callbacks/postEffectInit";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
-import * as racePostEffectInit from "../features/race/callbacks/postEffectInit";
 import { EffectVariantCustom } from "../types/EffectVariantCustom";
 
 export function init(mod: Mod): void {
@@ -52,7 +52,7 @@ function playerCreepGreen(effect: EntityEffect) {
 
 // EffectVariant.BLOOD_DROP (70)
 function bloodDrop(effect: EntityEffect) {
-  racePostEffectInit.bloodDrop(effect);
+  seededDeathPostEffectInitBloodDrop(effect);
 }
 
 // EffectVariantCustom.INVISIBLE_EFFECT
