@@ -14,6 +14,7 @@ import {
   setRestartCharacter,
 } from "../util/restartOnNextFrame";
 import { ChallengeCustom } from "./enums";
+import { getCharacterOrderSafe } from "./speedrun";
 import v from "./v";
 
 const SEASON_2_CHARACTERS = [
@@ -142,9 +143,11 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
 }
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = 1.5;
+const SEASON_2_LOCK_MINUTES = 0.2; // 1.5;
 const SEASON_2_LOCK_MILLISECONDS =
   SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;
+
+const timeGameOpened = Isaac.GetTime();
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -159,13 +162,11 @@ export function postRender(): void {
 
 function drawErrors() {
   if (v.run.errors.gameRecentlyOpened) {
-    const text = getSeason2ErrorMessage("opening the game");
-    drawErrorText(text);
-    return true;
-  }
-
-  if (v.run.errors.consoleRecentlyOpened) {
-    const text = getSeason2ErrorMessage("opening the console");
+    const time = Isaac.GetTime();
+    const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
+    const millisecondsRemaining = endTime - time;
+    const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
+    const text = getSeason2ErrorMessage("opening the game", secondsRemaining);
     drawErrorText(text);
     return true;
   }
@@ -173,10 +174,14 @@ function drawErrors() {
   return false;
 }
 
-function getSeason2ErrorMessage(action: string) {
-  const suffix = SEASON_2_LOCK_MINUTES > 1 ? "s" : "";
-  const waitLength = `${SEASON_2_LOCK_MINUTES} minute${suffix}`;
-  return `You are not allowed to start a new Season 2 run so soon after ${action}. Please wait ${waitLength} and then restart.`;
+function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
+  const suffix = secondsRemaining > 1 ? "s" : "";
+  const secondsRemainingText = `${secondsRemaining} second${suffix}`;
+  const secondSentence =
+    secondsRemaining > 0
+      ? `Please wait ${secondsRemainingText} and then restart.`
+      : "Please restart.";
+  return `You are not allowed to start a new Season 2 run so soon after ${action}. ${secondSentence}`;
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -193,9 +198,12 @@ export function postGameStarted(): void {
     return;
   }
 
+  removeItemsFromPools();
   checkFirstCharacterRefresh();
 
   const startingCharacter = getStartingCharacter();
+  const startingBuildIndex = getStartingBuildIndex(startingCharacter);
+
   if (character !== startingCharacter) {
     restartOnNextFrame();
     setRestartCharacter(startingCharacter);
@@ -205,7 +213,6 @@ export function postGameStarted(): void {
     return;
   }
 
-  const startingBuildIndex = getStartingBuildIndex(player);
   giveStartingItems(player, startingBuildIndex);
 }
 
@@ -213,22 +220,16 @@ function checkErrors() {
   const time = Isaac.GetTime();
 
   // Game recently opened
-  if (time <= SEASON_2_LOCK_MILLISECONDS) {
-    v.run.errors.gameRecentlyOpened = true;
-    return true;
-  }
+  const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
+  v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
-  // Console recently opened
-  if (v.nonpersistent.timeConsoleOpened !== null) {
-    const newSpeedrunsLockedUntilTime =
-      v.nonpersistent.timeConsoleOpened + SEASON_2_LOCK_MILLISECONDS;
-    if (time <= newSpeedrunsLockedUntilTime) {
-      v.run.errors.consoleRecentlyOpened = true;
-      return true;
-    }
-  }
+  return v.run.errors.gameRecentlyOpened;
+}
 
-  return false;
+function removeItemsFromPools() {
+  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
+  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
+  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH); // TODO is this needed?
 }
 
 function checkFirstCharacterRefresh() {
@@ -236,14 +237,21 @@ function checkFirstCharacterRefresh() {
     return;
   }
 
-  if (v.nonpersistent.timeAssigned === null) {
-    return;
+  const time = Isaac.GetTime();
+  if (v.persistent.timeAssigned === null || v.persistent.timeAssigned > time) {
+    // It is possible for the time assignment to be in the future, since it is based on the time
+    // since the operating system started
+    v.persistent.timeAssigned = time;
+    log(`Season 2 - Reset timeAssigned to: ${v.persistent.timeAssigned}`);
   }
 
-  const time = Isaac.GetTime();
-  const newSpeedrunsLockedUntilTime =
-    v.nonpersistent.timeAssigned + SEASON_2_LOCK_MILLISECONDS;
-  if (time <= newSpeedrunsLockedUntilTime) {
+  const buildLockedUntilTime =
+    v.persistent.timeAssigned + SEASON_2_LOCK_MILLISECONDS;
+  if (
+    time <= buildLockedUntilTime &&
+    v.persistent.selectedCharacters.length > 0 &&
+    v.persistent.selectedBuildIndexes.length > 0
+  ) {
     return;
   }
 
@@ -259,6 +267,8 @@ function refreshStartingCharactersAndBuilds() {
   for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
     v.persistent.remainingBuildIndexes.push(i);
   }
+
+  log("Season 2 - refreshed starting characters and builds.");
 }
 
 function getStartingCharacter() {
@@ -266,6 +276,9 @@ function getStartingCharacter() {
   const oldStartingCharacter =
     v.persistent.selectedCharacters[v.persistent.characterNum];
   if (oldStartingCharacter !== undefined) {
+    log(
+      `Season 2 - Using previously selected character: ${oldStartingCharacter}`,
+    );
     return oldStartingCharacter;
   }
 
@@ -273,24 +286,28 @@ function getStartingCharacter() {
     v.persistent.lastSelectedCharacter === null
       ? []
       : [v.persistent.lastSelectedCharacter];
+
   const startingCharacter = getRandomArrayElementAndRemove(
     v.persistent.remainingCharacters,
     undefined,
     characterExceptions,
   );
+
   v.persistent.selectedCharacters.push(startingCharacter);
   v.persistent.lastSelectedCharacter = startingCharacter;
-  v.nonpersistent.timeAssigned = Isaac.GetTime();
+  v.persistent.timeAssigned = Isaac.GetTime();
+
+  log(`Season 2 - Selected character: ${startingCharacter}`);
+
   return startingCharacter;
 }
 
-function getStartingBuildIndex(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
+function getStartingBuildIndex(character: PlayerType) {
   // First, handle the case where there is no old starting build at all
   const oldStartingBuildIndex =
     v.persistent.selectedBuildIndexes[v.persistent.characterNum];
   if (oldStartingBuildIndex !== undefined) {
+    log(`Season 2 - Using previously selected build: ${oldStartingBuildIndex}`);
     return oldStartingBuildIndex;
   }
 
@@ -301,8 +318,9 @@ function getStartingBuildIndex(player: EntityPlayer) {
     buildExceptions.push(v.persistent.lastSelectedBuildIndex);
   }
 
-  // Don't get starting builds that we have banned
-  // TODO
+  // Don't get starting builds that we have vetoed
+  const vetoedBuilds = getCharacterOrderSafe();
+  buildExceptions.push(...vetoedBuilds);
 
   // Don't get starting builds that don't synergize with the current character
   if (character === PlayerType.PLAYER_EVE) {
@@ -321,6 +339,9 @@ function getStartingBuildIndex(player: EntityPlayer) {
   );
   v.persistent.selectedBuildIndexes.push(startingBuildIndex);
   v.persistent.lastSelectedBuildIndex = startingBuildIndex;
+
+  log(`Season 2 - Selected build index: ${startingBuildIndex}`);
+
   return startingBuildIndex;
 }
 
@@ -349,9 +370,18 @@ function giveStartingItems(player: EntityPlayer, startingBuildIndex: int) {
   for (const itemID of startingBuild) {
     giveCollectibleAndRemoveFromPools(player, itemID);
   }
+}
 
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH); // TODO is this needed?
+// InputHook.IS_ACTION_TRIGGERED (1)
+// ButtonAction.ACTION_CONSOLE (28)
+export function isActionTriggeredConsole(): boolean | void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_2) {
+    return undefined;
+  }
+
+  return false;
 }
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
@@ -371,6 +401,6 @@ function checkResetTimeAssigned() {
   const roomType = g.r.GetType();
 
   if (stage === 2 && roomType === RoomType.ROOM_BOSS) {
-    v.nonpersistent.timeAssigned = 0;
+    v.persistent.timeAssigned = 0;
   }
 }

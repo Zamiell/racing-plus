@@ -1,9 +1,7 @@
 import { FINAL_STAGE, getRoomSafeGridIndex } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import * as banFirstFloorTreasureRoom from "../banFirstFloorTreasureRoom";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
-import * as preventSacrificeRoomTeleport from "../preventSacrificeRoomTeleport";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
@@ -29,12 +27,10 @@ export function racePostNewRoom(): void {
   raceRoom.postNewRoom();
   startingRoom.postNewRoom();
   topSprite.postNewRoom();
-  banFirstFloorTreasureRoom.postNewRoom();
   spawnCorpseTrapdoor.postNewRoom();
   makeBossRushItemsFree.postNewRoom();
   removeStrangeDoor.postNewRoom();
   removeRepentanceDoor.postNewRoom();
-  preventSacrificeRoomTeleport.postNewRoom();
   removeVoidDoor.postNewRoom();
   replaceScolex.postNewRoom();
   seededDeath.postNewRoom();

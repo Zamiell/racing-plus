@@ -1,2 +1,6 @@
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
+
+- add icons for starting build + char
+- seeded death
+- test broken ankh

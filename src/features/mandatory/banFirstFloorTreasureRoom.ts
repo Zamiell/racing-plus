@@ -6,9 +6,10 @@ import {
   removeAllCollectibles,
 } from "isaacscript-common";
 import g from "../../globals";
-import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
+import { RaceFormat } from "../race/types/RaceFormat";
+import { RacerStatus } from "../race/types/RacerStatus";
+import { RaceStatus } from "../race/types/RaceStatus";
+import { ChallengeCustom } from "../speedrun/enums";
 
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
@@ -61,12 +62,14 @@ export function postNewRoom(): void {
 }
 
 function shouldBanFirstFloorTreasureRoom() {
+  const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
   return (
     effectiveStage === 1 &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED
+    ((g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.format === RaceFormat.SEEDED) ||
+      challenge === ChallengeCustom.SEASON_2)
   );
 }

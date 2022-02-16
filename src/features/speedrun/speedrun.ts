@@ -101,7 +101,7 @@ export function getFirstCharacter(): PlayerType {
   return character;
 }
 
-function getCharacterOrderSafe() {
+export function getCharacterOrderSafe(): PlayerType[] {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
   if (challengeDefinition === undefined) {

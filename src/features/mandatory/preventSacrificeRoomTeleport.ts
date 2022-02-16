@@ -1,14 +1,25 @@
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeGridEntity,
+  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
-import { RaceGoal } from "./types/RaceGoal";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
-import v from "./v";
+import { RaceGoal } from "../race/types/RaceGoal";
+import { RacerStatus } from "../race/types/RacerStatus";
+import { RaceStatus } from "../race/types/RaceStatus";
+import { ChallengeCustom } from "../speedrun/enums";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
+
+const v = {
+  level: {
+    numSacrifices: 0,
+  },
+};
+
+export function init(): void {
+  saveDataManager("preventSacrificeRoomTeleport", v);
+}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -31,11 +42,18 @@ function checkDeleteSpikes() {
 }
 
 function shouldDeleteSpikes() {
+  const challenge = Isaac.GetChallenge();
+
+  return (
+    v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL &&
+    (inRaceToDarkRoom() || challenge === ChallengeCustom.SEASON_2)
+  );
+}
+
+function inRaceToDarkRoom() {
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
-    (g.race.goal === RaceGoal.THE_LAMB ||
-      g.race.goal === RaceGoal.MEGA_SATAN) &&
-    v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL
+    (g.race.goal === RaceGoal.THE_LAMB || g.race.goal === RaceGoal.MEGA_SATAN)
   );
 }

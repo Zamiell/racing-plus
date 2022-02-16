@@ -7,6 +7,7 @@ import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
+import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
@@ -94,6 +95,7 @@ export function initFeatureVariables(): void {
   debugPowers.init();
   errors.init();
   roomVisiter.init();
+  preventSacrificeRoomTeleport.init();
 
   // Major
   startWithD6.init();

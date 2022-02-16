@@ -59,7 +59,7 @@ export function getSeasonDescription(): SeasonDescription {
 }
 
 export function setCharacterOrderDebug(): void {
-  const order = [
+  const characterOrder = [
     PlayerType.PLAYER_APOLLYON,
     PlayerType.PLAYER_BETHANY_B,
     PlayerType.PLAYER_THELOST,
@@ -68,5 +68,10 @@ export function setCharacterOrderDebug(): void {
     PlayerType.PLAYER_KEEPER_B,
     PlayerType.PLAYER_AZAZEL,
   ];
-  v.persistent.charOrders.set("R7S1", order);
+  v.persistent.charOrders.set("R7S1", characterOrder);
+}
+
+export function setBuildVetosDebug(): void {
+  const buildVetos = [0, 1, 2];
+  v.persistent.charOrders.set("R7S2", buildVetos);
 }

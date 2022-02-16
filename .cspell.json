@@ -316,6 +316,7 @@
         "seededracecharacter",
         "seededraceitem",
         "seededraceoff",
+        "setbuildvetos",
         "setcharorder",
         "setmetatable",
         "settimeout",

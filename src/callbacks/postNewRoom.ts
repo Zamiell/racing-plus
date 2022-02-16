@@ -1,9 +1,11 @@
 import { getRoomStageID, getRoomVariant, log } from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
+import * as banFirstFloorTreasureRoom from "../features/mandatory/banFirstFloorTreasureRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
+import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as roomVisiter from "../features/mandatory/roomVisiter";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -56,6 +58,8 @@ export function main(): void {
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
   roomVisiter.postNewRoom();
+  banFirstFloorTreasureRoom.postNewRoom();
+  preventSacrificeRoomTeleport.postNewRoom();
 
   // Major
   racePostNewRoom();

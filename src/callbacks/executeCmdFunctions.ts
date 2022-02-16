@@ -11,7 +11,10 @@ import {
 } from "isaacscript-common";
 import { VERSION } from "../constants";
 import { debugFunction } from "../debugFunction";
-import { setCharacterOrderDebug } from "../features/changeCharOrder/v";
+import {
+  setBuildVetosDebug,
+  setCharacterOrderDebug,
+} from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
 import { RaceData } from "../features/race/types/RaceData";
@@ -509,6 +512,11 @@ executeCmdFunctions.set("s1", (_params: string) => {
   consoleCommand("setcharorder");
 });
 
+executeCmdFunctions.set("s2", (_params: string) => {
+  consoleCommand(`challenge ${ChallengeCustom.SEASON_2}`);
+  consoleCommand("setbuildvetos");
+});
+
 executeCmdFunctions.set("save", (_params: string) => {
   saveDataManagerSave();
   printConsole('Saved variables to the "save#.dat" file.');
@@ -586,6 +594,11 @@ executeCmdFunctions.set("seededraceoff", (_params: string) => {
 executeCmdFunctions.set("seeds", (_params: string) => {
   logAllSeedEffects();
   printConsole('Logged the seed effects to the "log.txt" file.');
+});
+
+executeCmdFunctions.set("setbuildvetos", (_params: string) => {
+  setBuildVetosDebug();
+  restartOnNextFrame();
 });
 
 executeCmdFunctions.set("setcharorder", (_params: string) => {

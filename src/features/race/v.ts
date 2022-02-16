@@ -44,8 +44,6 @@ const v = {
   },
 
   level: {
-    numSacrifices: 0,
-
     dpsButton: null as ButtonDescription | null,
     victoryLapButton: null as ButtonDescription | null,
   },

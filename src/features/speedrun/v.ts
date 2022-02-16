@@ -23,16 +23,12 @@ const v = {
     remainingBuildIndexes: [] as int[],
     /** Never start the same build twice in a row. */
     lastSelectedBuildIndex: null as int | null,
-  },
 
-  nonpersistent: {
-    // Season 2
     /**
      * The time that the randomly selected character & build were assigned. This is set to 0 when
      * the Basement 2 boss is defeated.
      */
     timeAssigned: null as int | null,
-    timeConsoleOpened: null as int | null,
   },
 
   run: {
@@ -44,7 +40,6 @@ const v = {
 
     errors: {
       gameRecentlyOpened: false,
-      consoleRecentlyOpened: false,
     },
   },
 
