@@ -155,7 +155,7 @@ export const SEASON_2_STARTING_BUILDS = [
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
  * characters, so to compensate for this, he is guaranteed a good starting item.
  */
-export const SEASON_2_FORGOTTEN_BUILDS = new Set<
+const SEASON_2_FORGOTTEN_BUILDS = new Set<
   CollectibleType | CollectibleTypeCustom
 >([
   CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, // 12
@@ -177,6 +177,6 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
 }
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-export const SEASON_2_LOCK_MINUTES = 1.5;
+const SEASON_2_LOCK_MINUTES = 1.5;
 export const SEASON_2_LOCK_MILLISECONDS =
   SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;
