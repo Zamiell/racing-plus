@@ -51,7 +51,7 @@
   - 2 - Cain
   - 5 - Eve
   - 12 - Dark Judas
-  - 15 - The Forgotten
+  - 16 - The Forgotten
   - 21 - Tainted Isaac (with Birthright)
   - 27 - Tainted Samson
   - 28 - Tainted Azazel
@@ -76,6 +76,33 @@
 ### Seeded Death
 
 - The custom death mechanic from seeded races is applied.
+
+### Builds
+
+The starting builds for this season are the same as [the builds for seeded races](https://github.com/Zamiell/isaac-racing-common/blob/main/src/builds.json), except for the following changes.
+
+Removed builds:
+- 57 - Distant Admiration (not fun / not consistent)
+- 114 - Mom's Knife (too powerful)
+- 168 - Epic Fetus (too powerful)
+- 360 - Incubus x2 (too weak)
+- 579 - Spirit Sword  (too powerful)
+- 698 - Twisted Pair x2 (too weak)
+- 572 - Eye of the Occult (too powerful)
+
+Added builds:
+- Incubus + Twisted Pair + Forgotten Lullaby
+
+Changed items/builds:
+- 224 - Cricket's Body (added Steven)
+- 229 - Monstro's Lung (removed Sad Onion, added Cupid's Arrow)
+- 237 - Death's Touch (added Sad Onion)
+- 244 - Tech.5 (added Jesus Juice)
+- 257 - Fire Mind (removed Mysterious Liquid)
+- 331 - Godhead (removed Cupid's Arrow)
+- 373 - Dead Eye (added Jesus Juice)
+- 643 - Revelation (removed soul hearts + flight)
+- 739 - Sawblade (added Transcendence)
 
 ### Other
 

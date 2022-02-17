@@ -63,6 +63,7 @@ function hotkey2Function() {
   printConsole("Test hotkeys set.");
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender() {
   /*
   // Log all keyboard presses
@@ -73,6 +74,9 @@ export function postRender() {
   }
   */
 }
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted() {}
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {

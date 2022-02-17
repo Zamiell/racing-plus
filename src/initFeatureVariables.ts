@@ -1,3 +1,4 @@
+import { saveDataManagerLoad } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
@@ -141,4 +142,9 @@ export function initFeatureVariables(): void {
   // Other
   customConsole.init();
   roll.init();
+
+  // Now that all of the features have been initialized, we can get the save data manager to load
+  // data from disk before the first run begins
+  // (this prevents bugs with isaacscript-watcher when reloading the mod in the middle of a run)
+  saveDataManagerLoad();
 }

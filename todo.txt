@@ -1,8 +1,5 @@
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
+- Change builds once Racing+ Ranked Solo Season 3 is over
 
-- add icons for starting build + char
-
-- Tainted isaac with no Birthright
-- fix SEASON_2_LOCK_MINUTES
-- fix SEASON_2_CONSOLE COMMENT
+- add Forgotten Lullaby
