@@ -75,6 +75,10 @@ export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
   v.run.dyingPlayerIndex = playerIndex;
   logSeededDeathStateChange();
 
+  // The custom revive works by awarding a 1-Up, which is confusing
+  // Thus, hide the health UI with Curse of the Unknown for the duration of the revive
+  g.l.AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false);
+
   return RevivalType.SEEDED_DEATH;
 }
 

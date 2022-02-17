@@ -13,10 +13,12 @@ isActionTriggeredFunctions.set(
   (_entity: Entity | undefined) => {
     let returnValue: boolean | void;
 
+    /*
     returnValue = season2.isActionTriggeredConsole();
     if (returnValue !== undefined) {
       return returnValue;
     }
+    */
 
     returnValue = raceInputAction.isActionTriggeredConsole();
     if (returnValue !== undefined) {

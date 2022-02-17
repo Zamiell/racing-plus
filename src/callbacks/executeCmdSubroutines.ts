@@ -224,8 +224,7 @@ function getModificationVector(amount: float, direction: Direction) {
     }
 
     default: {
-      error("Invalid direction.");
-      return Vector.Zero;
+      return error("Invalid direction.");
     }
   }
 }

@@ -124,19 +124,10 @@ function draw(text: string, fade: float) {
   const x = bottomRightPos.X * 0.5;
   const y = bottomRightPos.Y * 0.25;
 
+  const font = g.fonts.droid;
+  const length = font.GetStringWidthUTF8(text);
   const color = KColor(1, 1, 1, fade);
-  const scale = 1;
-  const length = g.fonts.droid.GetStringWidthUTF8(text) * scale;
-  g.fonts.droid.DrawStringScaled(
-    text,
-    x - length / 2,
-    y,
-    scale,
-    scale,
-    color,
-    0,
-    true,
-  );
+  font.DrawString(text, x - length / 2, y, color);
 }
 
 // ModCallbacks.MC_USE_ITEM (3)

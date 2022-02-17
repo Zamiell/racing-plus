@@ -1,11 +1,15 @@
 import {
   arrayCopy,
   arrayEmpty,
+  getDefaultKColor,
   getRandomArrayElementAndRemove,
   log,
+  logArray,
   MINUTE_IN_MILLISECONDS,
+  range,
 } from "isaacscript-common";
 import g from "../../globals";
+import { initGlowingItemSprite, initSprite } from "../../sprite";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
 import { drawErrorText } from "../mandatory/errors";
@@ -13,6 +17,7 @@ import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../util/restartOnNextFrame";
+import { getRoomsEntered } from "../util/roomsEntered";
 import { ChallengeCustom } from "./enums";
 import { getCharacterOrderSafe } from "./speedrun";
 import v from "./v";
@@ -30,86 +35,116 @@ const SEASON_2_CHARACTERS = [
 /** Roughly matches the builds for online races in "builds.json". */
 export const SEASON_2_STARTING_BUILDS = [
   // Treasure Room items
+  // 0
   [CollectibleType.COLLECTIBLE_CRICKETS_HEAD], // 4
+  // 1
   [CollectibleType.COLLECTIBLE_CRICKETS_BODY], // 224
+  // 2
   [CollectibleType.COLLECTIBLE_DEAD_EYE], // 373
+  // 3
   [CollectibleType.COLLECTIBLE_DEATHS_TOUCH], // 237
+  // 4
   [CollectibleType.COLLECTIBLE_DR_FETUS], // 52
+  // 5
   [CollectibleType.COLLECTIBLE_IPECAC], // 149
+  // 6
   [CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM], // 12
+  // Mom's Knife is banned due to being too powerful
   // [CollectibleType.COLLECTIBLE_MOMS_KNIFE], // 114
-  // (Mom's Knife is banned due to being too powerful)
+  // 7
   [CollectibleType.COLLECTIBLE_POLYPHEMUS], // 169
+  // 8
   [CollectibleType.COLLECTIBLE_PROPTOSIS], // 261
+  // 9
   [CollectibleType.COLLECTIBLE_TECH_5], // 244
+  // 10
   [CollectibleType.COLLECTIBLE_TECH_X], // 395
+  // 11
   [CollectibleType.COLLECTIBLE_C_SECTION], // 678
 
   // Devil Room items
+  // 12
   [CollectibleType.COLLECTIBLE_BRIMSTONE], // 118
+  // 13
   [CollectibleType.COLLECTIBLE_MAW_OF_THE_VOID], // 399
 
   // Angel Room items
+  // 14
   [CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT], // 415
+  // 15
   [CollectibleType.COLLECTIBLE_SACRED_HEART], // 182
+  // Spirit Sword is banned due to being too powerful
   // [CollectibleType.COLLECTIBLE_SPIRIT_SWORD], // 579
-  // (Spirit Sword is banned due to being too powerful)
+  // 16
   [CollectibleType.COLLECTIBLE_REVELATION], // 643
 
   // Secret Room items
+  // 17
   [CollectibleType.COLLECTIBLE_EPIC_FETUS], // 168
 
   // Custom items
+  // Sawblade is banned due to not being powerful enough
   // [CollectibleTypeCustom.COLLECTIBLE_SAWBLADE],
-  // (Sawblade is banned due to not being powerful enough)
 
   // Custom builds
+  // 18
   [
     CollectibleType.COLLECTIBLE_20_20, // 245
     CollectibleType.COLLECTIBLE_INNER_EYE, // 2
   ],
+  // 19
   [
     CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
     CollectibleType.COLLECTIBLE_STEVEN, // 50
   ],
+  // 20
   [
     CollectibleType.COLLECTIBLE_GODHEAD, // 331
     CollectibleType.COLLECTIBLE_CUPIDS_ARROW, // 48
   ],
+  // 21
   [
     CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
     CollectibleType.COLLECTIBLE_SAD_ONION, // 1
   ],
+  // 22
   [
     CollectibleType.COLLECTIBLE_INCUBUS, // 360
     CollectibleType.COLLECTIBLE_INCUBUS, // 360
   ],
+  // 23
   [
     CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
     CollectibleType.COLLECTIBLE_SAD_ONION, // 1
   ],
+  // 24
   [
     CollectibleType.COLLECTIBLE_TECHNOLOGY, // 68
     CollectibleType.COLLECTIBLE_LUMP_OF_COAL, // 132
   ],
+  // 25
   [
     CollectibleType.COLLECTIBLE_TWISTED_PAIR, // 698
     CollectibleType.COLLECTIBLE_TWISTED_PAIR, // 698
   ],
+  // 26
   [
     CollectibleType.COLLECTIBLE_POINTY_RIB, // 544
     CollectibleType.COLLECTIBLE_EVES_MASCARA, // 310
   ],
+  // 27
   [
     CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
     CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID, // 317
     CollectibleTypeCustom.COLLECTIBLE_13_LUCK, // Custom
   ],
+  // 28
   [
     CollectibleType.COLLECTIBLE_EYE_OF_THE_OCCULT, // 572
     CollectibleType.COLLECTIBLE_LOKIS_HORNS, // 87
     CollectibleTypeCustom.COLLECTIBLE_15_LUCK,
   ],
+  // The fly build is banned due to not being fun
   /*
   [
     CollectibleType.COLLECTIBLE_DISTANT_ADMIRATION, // 57
@@ -118,7 +153,6 @@ export const SEASON_2_STARTING_BUILDS = [
     CollectibleType.COLLECTIBLE_BFFS, // 247
   ],
   */
-  // (the fly build is banned due to not being fun)
 ];
 
 const SEASON_2_FORGOTTEN_BUILDS = new Set<
@@ -143,11 +177,28 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
 }
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = 0.2; // 1.5; // TODO
+const SEASON_2_LOCK_MINUTES = 0.1; // 1.5; // TODO
 const SEASON_2_LOCK_MILLISECONDS =
   SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;
 
+const TOP_LEFT_GRID_INDEX = 32;
+const TOP_RIGHT_GRID_INDEX = 42;
+const GFX_PATH = "gfx/race/starting-room";
+const SPRITE_TITLE_OFFSET = Vector(0, -30);
+const SPRITE_ITEM_OFFSET = 15;
+
 const timeGameOpened = Isaac.GetTime();
+
+const sprites: Record<string, Sprite | null> = {
+  characterTitle: null,
+
+  seededStartingTitle: null, // "Starting Item" or "Starting Build"
+  seededItemCenter: null,
+  seededItemLeft: null,
+  seededItemRight: null,
+  seededItemFarLeft: null,
+  seededItemFarRight: null,
+};
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -157,7 +208,12 @@ export function postRender(): void {
     return;
   }
 
-  drawErrors();
+  if (drawErrors()) {
+    return;
+  }
+
+  drawStartingRoomSprites();
+  drawStartingRoomText();
 }
 
 function drawErrors() {
@@ -172,6 +228,83 @@ function drawErrors() {
   }
 
   return false;
+}
+
+function drawStartingRoomSprites() {
+  for (const [spriteName, sprite] of Object.entries(sprites)) {
+    if (sprite !== null) {
+      const position = getPosition(spriteName);
+      sprite.RenderLayer(0, position);
+    }
+  }
+}
+
+function drawStartingRoomText() {
+  const roomsEntered = getRoomsEntered();
+
+  if (roomsEntered !== 1) {
+    return;
+  }
+
+  const player = Isaac.GetPlayer();
+  const characterName = player.GetName();
+
+  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  let position = Isaac.WorldToRenderPosition(positionGame);
+  position = position.add(Vector(0, -11));
+
+  const font = g.fonts.droid;
+  const length = font.GetStringWidthUTF8(characterName);
+
+  font.DrawString(
+    characterName,
+    position.X - length / 2,
+    position.Y,
+    getDefaultKColor(),
+  );
+}
+
+function getPosition(spriteName: keyof typeof sprites) {
+  const topLeftPositionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const topLeftPosition = Isaac.WorldToRenderPosition(topLeftPositionGame);
+  const topRightPositionGame = g.r.GetGridPosition(TOP_RIGHT_GRID_INDEX);
+  const topRightPosition = Isaac.WorldToRenderPosition(topRightPositionGame);
+
+  switch (spriteName) {
+    case "characterTitle": {
+      return topLeftPosition.add(SPRITE_TITLE_OFFSET);
+    }
+
+    case "seededStartingTitle": {
+      return topRightPosition.add(SPRITE_TITLE_OFFSET);
+    }
+
+    case "seededItemCenter": {
+      return topRightPosition;
+    }
+
+    case "seededItemLeft": {
+      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * -1, 0));
+    }
+
+    case "seededItemRight": {
+      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET, 0));
+    }
+
+    case "seededItemFarLeft": {
+      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * -3, 0));
+    }
+
+    case "seededItemFarRight": {
+      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * 3, 0));
+    }
+
+    default: {
+      return error(
+        `Starting room sprites named "${spriteName}" are unsupported.`,
+      );
+    }
+  }
 }
 
 function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
@@ -213,7 +346,14 @@ export function postGameStarted(): void {
     return;
   }
 
-  giveStartingItems(player, startingBuildIndex);
+  const startingBuild = SEASON_2_STARTING_BUILDS[startingBuildIndex];
+  if (startingBuild === undefined) {
+    error(`Failed to get the starting build for index: ${startingBuildIndex}`);
+  }
+
+  giveStartingItems(player, startingBuild);
+  resetSprites();
+  initSprites(startingBuild);
 }
 
 function checkErrors() {
@@ -229,7 +369,6 @@ function checkErrors() {
 function removeItemsFromPools() {
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
-  // g.itemPool.RemoveTrinket(TrinketType.TRINKET_BROKEN_ANKH); // TODO is this needed?
 }
 
 function checkFirstCharacterRefresh() {
@@ -259,22 +398,34 @@ function checkFirstCharacterRefresh() {
 }
 
 function refreshStartingCharactersAndBuilds() {
+  const time = Isaac.GetTime();
+
   arrayEmpty(v.persistent.selectedCharacters);
   v.persistent.remainingCharacters = arrayCopy(SEASON_2_CHARACTERS);
 
   arrayEmpty(v.persistent.selectedBuildIndexes);
   arrayEmpty(v.persistent.remainingBuildIndexes);
-  for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
-    v.persistent.remainingBuildIndexes.push(i);
-  }
+  const buildIndexes = range(0, SEASON_2_STARTING_BUILDS.length - 1);
+  v.persistent.remainingBuildIndexes.push(...buildIndexes);
 
-  log("Season 2 - refreshed starting characters and builds.");
+  // We will assign the character and the build in the next function
+  v.persistent.timeAssigned = time;
+
+  log("Season 2 - Refreshed starting characters and builds.");
 }
 
 function getStartingCharacter() {
   // First, handle the case where there is no old starting character at all
   const oldStartingCharacter =
     v.persistent.selectedCharacters[v.persistent.characterNum];
+  Isaac.DebugString(`oldStartingCharacter: ${oldStartingCharacter}`);
+  Isaac.DebugString(`characterNum: ${v.persistent.characterNum}`);
+  Isaac.DebugString(
+    `selectedCharacters.length: ${v.persistent.selectedCharacters.length}`,
+  );
+  Isaac.DebugString(
+    `selectedCharacters: ${logArray(v.persistent.selectedCharacters)}`,
+  );
   if (oldStartingCharacter !== undefined) {
     log(
       `Season 2 - Using previously selected character: ${oldStartingCharacter}`,
@@ -295,7 +446,6 @@ function getStartingCharacter() {
 
   v.persistent.selectedCharacters.push(startingCharacter);
   v.persistent.lastSelectedCharacter = startingCharacter;
-  v.persistent.timeAssigned = Isaac.GetTime();
 
   log(`Season 2 - Selected character: ${startingCharacter}`);
 
@@ -359,16 +509,81 @@ function getBuildIndexFor(collectibleType: CollectibleType) {
   );
 }
 
-function giveStartingItems(player: EntityPlayer, startingBuildIndex: int) {
+function giveStartingItems(
+  player: EntityPlayer,
+  startingBuild: Array<CollectibleType | CollectibleTypeCustom>,
+) {
   // Everyone starts with the Compass in this season
   giveCollectibleAndRemoveFromPools(
     player,
     CollectibleType.COLLECTIBLE_COMPASS,
   );
 
-  const startingBuild = SEASON_2_STARTING_BUILDS[startingBuildIndex];
   for (const itemID of startingBuild) {
     giveCollectibleAndRemoveFromPools(player, itemID);
+  }
+}
+
+function initSprites(
+  startingBuild: Array<CollectibleType | CollectibleTypeCustom>,
+) {
+  sprites.characterTitle = initSprite(`${GFX_PATH}/character.anm2`);
+
+  const title = startingBuild.length === 1 ? "item" : "build";
+  sprites.seededStartingTitle = initSprite(
+    `${GFX_PATH}/seeded-starting-${title}.anm2`,
+  );
+
+  if (startingBuild.length === 1) {
+    sprites.seededItemCenter = initGlowingItemSprite(
+      startingBuild[0] as CollectibleType,
+    );
+  } else if (startingBuild.length === 2) {
+    sprites.seededItemLeft = initGlowingItemSprite(
+      startingBuild[0] as CollectibleType,
+    );
+    sprites.seededItemRight = initGlowingItemSprite(
+      startingBuild[1] as CollectibleType,
+    );
+  } else if (startingBuild.length === 3) {
+    sprites.seededItemCenter = initGlowingItemSprite(
+      startingBuild[0] as CollectibleType,
+    );
+    sprites.seededItemFarLeft = initGlowingItemSprite(
+      startingBuild[1] as CollectibleType,
+    );
+    sprites.seededItemFarRight = initGlowingItemSprite(
+      startingBuild[2] as CollectibleType,
+    );
+  } else if (startingBuild.length === 4) {
+    sprites.seededItemLeft = initGlowingItemSprite(
+      startingBuild[1] as CollectibleType,
+    );
+    sprites.seededItemRight = initGlowingItemSprite(
+      startingBuild[2] as CollectibleType,
+    );
+    sprites.seededItemFarLeft = initGlowingItemSprite(
+      startingBuild[0] as CollectibleType,
+    );
+    sprites.seededItemFarRight = initGlowingItemSprite(
+      startingBuild[3] as CollectibleType,
+    );
+  }
+}
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  const roomsEntered = getRoomsEntered();
+
+  if (roomsEntered !== 1) {
+    resetSprites();
+  }
+}
+
+function resetSprites() {
+  for (const key of Object.keys(sprites)) {
+    const property = key;
+    sprites[property] = null;
   }
 }
 

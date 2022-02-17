@@ -9,6 +9,7 @@ import {
 import g from "../../../globals";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
+import * as season2 from "../season2";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
 
@@ -20,6 +21,7 @@ export function speedrunPostNewRoom(): void {
   checkFirstCharacterFirstFloorDevilRoom();
   checkWomb2IAMERROR();
   allowVanillaPathsInRepentanceChallenge.postNewRoom();
+  season2.postNewRoom();
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {

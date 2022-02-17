@@ -6,6 +6,12 @@ import {
 import * as timer from "../../../../timer";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
 import { TimerType } from "../../../../types/TimerType";
+import { ChallengeCustom } from "../../../speedrun/enums";
+import {
+  SEEDED_DEATH_TIMER_SEASON_OFFSET_X,
+  SEEDED_DEATH_TIMER_STARTING_X,
+  SEEDED_DEATH_TIMER_STARTING_Y,
+} from "../constants";
 import {
   logSeededDeathStateChange,
   shouldSeededDeathApply,
@@ -52,10 +58,17 @@ function postRenderCheckDisplayTimer() {
   }
 
   const isaacFrameCount = Isaac.GetFrameCount();
+  const challenge = Isaac.GetChallenge();
+
   const remainingFrames = v.run.debuffEndFrame - isaacFrameCount;
   const seconds = remainingFrames / ISAAC_FRAMES_PER_SECOND;
 
-  const startingX = 65;
-  const startingY = 79;
+  let startingX = SEEDED_DEATH_TIMER_STARTING_X;
+  const startingY = SEEDED_DEATH_TIMER_STARTING_Y;
+
+  if (challenge === ChallengeCustom.SEASON_2) {
+    startingX += SEEDED_DEATH_TIMER_SEASON_OFFSET_X;
+  }
+
   timer.display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
 }

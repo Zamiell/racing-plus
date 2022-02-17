@@ -1,4 +1,5 @@
 import { updateCachedAPIFunctions } from "../cache";
+import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
@@ -52,6 +53,7 @@ export function main(): void {
   drawVersion.postRender();
   roomVisiter.postRender();
   seededDeathPostRender();
+  debugFunction.postRender();
 
   // Major
   racePostRender();

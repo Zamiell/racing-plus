@@ -7,6 +7,7 @@
 - Fixed the bug where Dark Esau would prevent fast-clear from working properly. (Thanks Fallenfor)
 - Fixed the bug where the server was not validating seeded races properly. (Thanks AshDown)
 - Fixed the bug where having Dream Catcher would count as having entered the Treasure Room (for the purposes of Planetarium spawning chances). (Thanks Gamonymous)
+- Fixed the bug with seeded death where the health was incorrectly shown when you were dying.
 
 ### *v0.74.24* - February 2nd, 2022
 

@@ -2,6 +2,7 @@ TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
 
 - add icons for starting build + char
-- seeded death
-- test broken ankh
+
+- Tainted isaac with no Birthright
 - fix SEASON_2_LOCK_MINUTES
+- fix SEASON_2_CONSOLE COMMENT

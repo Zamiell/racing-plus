@@ -63,6 +63,17 @@ function hotkey2Function() {
   printConsole("Test hotkeys set.");
 }
 
+export function postRender() {
+  /*
+  // Log all keyboard presses
+  for (const keyboard of getEnumValues(Keyboard)) {
+    if (isKeyboardPressed(keyboard)) {
+      log(`Key is pressed: ${keyboardToString(keyboard)} - ${keyboard}`);
+    }
+  }
+  */
+}
+
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {
   /*
