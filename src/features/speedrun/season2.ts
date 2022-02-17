@@ -478,8 +478,7 @@ export function isActionTriggeredConsole(): boolean | void {
     return undefined;
   }
 
-  // return false;
-  return undefined; // TODO
+  return false;
 }
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
