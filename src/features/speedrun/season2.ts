@@ -28,11 +28,11 @@ import {
 import { getCharacterOrderSafe } from "./speedrun";
 import v from "./v";
 
-export const TOP_LEFT_GRID_INDEX = 32;
-export const TOP_RIGHT_GRID_INDEX = 42;
-export const GFX_PATH = "gfx/race/starting-room";
-export const SPRITE_TITLE_OFFSET = Vector(0, -30);
-export const SPRITE_ITEM_OFFSET = 15;
+const TOP_LEFT_GRID_INDEX = 32;
+const TOP_RIGHT_GRID_INDEX = 42;
+const GFX_PATH = "gfx/race/starting-room";
+const SPRITE_TITLE_OFFSET = Vector(0, -30);
+const SPRITE_ITEM_OFFSET = 15;
 
 const timeGameOpened = Isaac.GetTime();
 
