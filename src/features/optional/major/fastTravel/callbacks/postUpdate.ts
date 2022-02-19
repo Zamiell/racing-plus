@@ -27,7 +27,7 @@ export function fastTravelPostUpdate(): void {
  *
  * The logic here is copied from the "setGoingToNewFloor()" function.
  */
-export function resumeFastTravel(): void {
+function resumeFastTravel() {
   nextFloor.goto(v.run.upwards);
   setNewState(FastTravelState.FADING_IN);
 }
