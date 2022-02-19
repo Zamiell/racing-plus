@@ -26,7 +26,6 @@ import { spawnHoles } from "../../../major/fastTravel/setNewState";
 import * as sprites from "../sprites";
 import v from "../v";
 
-const ROOM_TYPES_TO_VISIT = [RoomType.ROOM_TREASURE, RoomType.ROOM_BOSS];
 const STAIRWAY_GRID_INDEX = 25;
 
 export function showDreamCatcherItemPostNewRoom(): void {
@@ -108,12 +107,10 @@ function checkWarpStateInitial() {
 }
 
 function startWarp() {
-  for (const roomType of ROOM_TYPES_TO_VISIT) {
-    const roomGridIndexesForThisRoomType = getRoomGridIndexesForType(roomType);
-    for (const gridIndex of roomGridIndexesForThisRoomType) {
-      v.level.warpRoomGridIndexes.push(gridIndex);
-    }
-  }
+  v.level.warpRoomGridIndexes = getRoomGridIndexesForType(
+    RoomType.ROOM_TREASURE,
+    RoomType.ROOM_BOSS,
+  );
 
   if (v.level.warpRoomGridIndexes.length === 0) {
     return;

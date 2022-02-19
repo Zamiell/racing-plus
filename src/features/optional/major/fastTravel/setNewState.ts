@@ -11,6 +11,7 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { moveEsauNextToJacob } from "../../../../util";
+import { planetariumFix } from "../../../race/planetariumFix";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
@@ -234,6 +235,7 @@ function setGoingToNewFloor() {
   // We arbitrarily use the starting room for this
   // Even if a player is using a trapdoor in the starting room from a shovel,
   // this should not make any difference
+  planetariumFix();
   changeRoom(startingRoomGridIndex);
   decrementRoomsEntered(); // This should not count as entering a room
 
