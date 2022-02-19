@@ -1,6 +1,6 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
-import * as season2 from "../features/speedrun/season2";
+import { speedrunEvaluateCacheFlying } from "../features/speedrun/callbacks/evaluateCache";
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export const evaluateCacheFunctions = new Map<
@@ -40,7 +40,7 @@ evaluateCacheFunctions.set(
 
 // 0x80
 evaluateCacheFunctions.set(CacheFlag.CACHE_FLYING, (player: EntityPlayer) => {
-  season2.evaluateCacheFlying(player);
+  speedrunEvaluateCacheFlying(player);
 });
 
 // 0x400

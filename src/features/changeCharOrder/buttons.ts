@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
-import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2constants";
+import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "./v";

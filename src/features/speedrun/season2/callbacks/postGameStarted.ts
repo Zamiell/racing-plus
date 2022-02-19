@@ -1,216 +1,40 @@
 import {
   arrayCopy,
   arrayEmpty,
-  getDefaultKColor,
-  getFlyingCollectibles,
-  getPlayerName,
   getRandomArrayElementAndRemove,
-  hasFlyingTemporaryEffect,
-  hasFlyingTransformation,
-  isFlyingCharacter,
   log,
   range,
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
-import g from "../../globals";
-import { initGlowingItemSprite, initSprite } from "../../sprite";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
-import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
-import { drawErrorText } from "../mandatory/errors";
+import g from "../../../../globals";
+import { initGlowingItemSprite, initSprite } from "../../../../sprite";
+import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
+import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../util/restartOnNextFrame";
-import { getRoomsEntered } from "../util/roomsEntered";
-import { ChallengeCustom } from "./enums";
+} from "../../../util/restartOnNextFrame";
+import { ChallengeCustom } from "../../enums";
+import { speedrunGetCharacterNum } from "../../exported";
+import { getCharacterOrderSafe } from "../../speedrun";
 import {
   SEASON_2_CHARACTERS,
-  SEASON_2_DEBUG,
   SEASON_2_FORGOTTEN_EXCEPTIONS,
   SEASON_2_LOCK_MILLISECONDS,
   SEASON_2_STARTING_BUILDS,
-} from "./season2constants";
-import { getCharacterOrderSafe } from "./speedrun";
-import v from "./v";
+} from "../constants";
+import sprites, { resetSprites } from "../sprites";
+import v, {
+  getTimeGameOpened,
+  season2GetCurrentBuildIndex,
+  season2GetCurrentCharacter,
+} from "../v";
 
-const NUM_REVELATION_SOUL_HEARTS = 4;
-const TOP_LEFT_GRID_INDEX = 32;
-const TOP_RIGHT_GRID_INDEX = 42;
 const GFX_PATH = "gfx/race/starting-room";
-const SPRITE_TITLE_OFFSET = Vector(0, -30);
-const SPRITE_ITEM_OFFSET = 15;
+const NUM_REVELATION_SOUL_HEARTS = 4;
 
-const timeGameOpened = Isaac.GetTime();
-
-const sprites: Record<string, Sprite | null> = {
-  characterTitle: null,
-
-  seededStartingTitle: null, // "Starting Item" or "Starting Build"
-  seededItemCenter: null,
-  seededItemLeft: null,
-  seededItemRight: null,
-  seededItemFarLeft: null,
-  seededItemFarRight: null,
-};
-
-// ModCallbacks.MC_POST_RENDER (2)
-export function postRender(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_2) {
-    return;
-  }
-
-  if (drawErrors()) {
-    return;
-  }
-
-  drawStartingRoomSprites();
-  drawStartingRoomText();
-}
-
-function drawErrors() {
-  if (v.run.errors.gameRecentlyOpened) {
-    const time = Isaac.GetTime();
-    const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
-    const millisecondsRemaining = endTime - time;
-    const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
-    const text = getSeason2ErrorMessage("opening the game", secondsRemaining);
-    drawErrorText(text);
-    return true;
-  }
-
-  return false;
-}
-
-function drawStartingRoomSprites() {
-  for (const [spriteName, sprite] of Object.entries(sprites)) {
-    if (sprite !== null) {
-      const position = getPosition(spriteName);
-      sprite.RenderLayer(0, position);
-    }
-  }
-}
-
-function drawStartingRoomText() {
-  const roomsEntered = getRoomsEntered();
-
-  if (roomsEntered !== 1) {
-    return;
-  }
-
-  const player = Isaac.GetPlayer();
-  const characterName = getPlayerName(player);
-
-  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  let position = Isaac.WorldToRenderPosition(positionGame);
-  position = position.add(Vector(0, -11));
-
-  const font = g.fonts.droid;
-  const length = font.GetStringWidthUTF8(characterName);
-
-  font.DrawString(
-    characterName,
-    position.X - length / 2,
-    position.Y,
-    getDefaultKColor(),
-  );
-}
-
-function getPosition(spriteName: keyof typeof sprites) {
-  const topLeftPositionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  const topLeftPosition = Isaac.WorldToRenderPosition(topLeftPositionGame);
-  const topRightPositionGame = g.r.GetGridPosition(TOP_RIGHT_GRID_INDEX);
-  const topRightPosition = Isaac.WorldToRenderPosition(topRightPositionGame);
-
-  switch (spriteName) {
-    case "characterTitle": {
-      return topLeftPosition.add(SPRITE_TITLE_OFFSET);
-    }
-
-    case "seededStartingTitle": {
-      return topRightPosition.add(SPRITE_TITLE_OFFSET);
-    }
-
-    case "seededItemCenter": {
-      return topRightPosition;
-    }
-
-    case "seededItemLeft": {
-      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * -1, 0));
-    }
-
-    case "seededItemRight": {
-      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET, 0));
-    }
-
-    case "seededItemFarLeft": {
-      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * -3, 0));
-    }
-
-    case "seededItemFarRight": {
-      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * 3, 0));
-    }
-
-    default: {
-      return error(
-        `Starting room sprites named "${spriteName}" are unsupported.`,
-      );
-    }
-  }
-}
-
-function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
-  const suffix = secondsRemaining > 1 ? "s" : "";
-  const secondsRemainingText = `${secondsRemaining} second${suffix}`;
-  const secondSentence =
-    secondsRemaining > 0
-      ? `Please wait ${secondsRemainingText} and then restart.`
-      : "Please restart.";
-  return `You are not allowed to start a new Season 2 run so soon after ${action}. ${secondSentence}`;
-}
-
-// ModCallbacks.MC_EVALUATE_CACHE (8)
-// CacheFlag.CACHE_FLYING (0x80)
-export function evaluateCacheFlying(player: EntityPlayer): void {
-  const buildIndex =
-    v.persistent.selectedBuildIndexes[v.persistent.characterNum - 1];
-  if (buildIndex === undefined) {
-    return;
-  }
-  const build = SEASON_2_STARTING_BUILDS[buildIndex];
-  const firstCollectibleType = build[0];
-  if (firstCollectibleType !== CollectibleType.COLLECTIBLE_REVELATION) {
-    return;
-  }
-
-  // Only remove the flight if the player does not have another flight item or effect
-  if (
-    !isFlyingCharacter(player) &&
-    !hasFlyingTransformation(player) &&
-    !hasFlyingTemporaryEffect(player) &&
-    !hasFlyingCollectibleExceptForRevelation(player)
-  ) {
-    player.CanFly = false;
-  }
-}
-
-function hasFlyingCollectibleExceptForRevelation(player: EntityPlayer) {
-  const flyingCollectibles = getFlyingCollectibles(true);
-  flyingCollectibles.delete(CollectibleType.COLLECTIBLE_REVELATION);
-
-  for (const collectibleType of flyingCollectibles.values()) {
-    if (player.HasCollectible(collectibleType)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-// ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {
+export function season2PostGameStarted(): void {
   const challenge = Isaac.GetChallenge();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
@@ -252,6 +76,7 @@ function checkErrors() {
   const time = Isaac.GetTime();
 
   // Game recently opened
+  const timeGameOpened = getTimeGameOpened();
   const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
@@ -264,7 +89,8 @@ function removeItemsFromPools() {
 }
 
 function checkFirstCharacterRefresh() {
-  if (v.persistent.characterNum !== 1) {
+  const characterNum = speedrunGetCharacterNum();
+  if (characterNum !== 1) {
     return;
   }
 
@@ -308,8 +134,7 @@ function refreshStartingCharactersAndBuilds() {
 
 function getStartingCharacter() {
   // First, handle the case where there is no old starting character at all
-  const oldStartingCharacter =
-    v.persistent.selectedCharacters[v.persistent.characterNum - 1];
+  const oldStartingCharacter = season2GetCurrentCharacter();
   if (oldStartingCharacter !== undefined) {
     log(
       `Season 2 - Using previously selected character: ${oldStartingCharacter}`,
@@ -338,8 +163,7 @@ function getStartingCharacter() {
 
 function getStartingBuildIndex(character: PlayerType) {
   // First, handle the case where there is no old starting build at all
-  const oldStartingBuildIndex =
-    v.persistent.selectedBuildIndexes[v.persistent.characterNum - 1];
+  const oldStartingBuildIndex = season2GetCurrentBuildIndex();
   if (oldStartingBuildIndex !== undefined) {
     log(`Season 2 - Using previously selected build: ${oldStartingBuildIndex}`);
     return oldStartingBuildIndex;
@@ -501,58 +325,5 @@ function initSprites(
     sprites.seededItemFarRight = initGlowingItemSprite(
       startingBuild[3] as CollectibleType,
     );
-  }
-}
-
-// ModCallbacks.MC_POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  const roomsEntered = getRoomsEntered();
-
-  if (roomsEntered !== 1) {
-    resetSprites();
-  }
-}
-
-function resetSprites() {
-  for (const key of Object.keys(sprites)) {
-    const property = key;
-    sprites[property] = null;
-  }
-}
-
-// InputHook.IS_ACTION_TRIGGERED (1)
-// ButtonAction.ACTION_CONSOLE (28)
-export function isActionTriggeredConsole(): boolean | void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_2) {
-    return undefined;
-  }
-
-  if (SEASON_2_DEBUG) {
-    return undefined;
-  }
-
-  return false;
-}
-
-// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
-export function preSpawnClearAward(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_2) {
-    return;
-  }
-
-  checkResetTimeAssigned();
-}
-
-/** Reset the starting character/build timer if we just killed the Basement 2 boss. */
-function checkResetTimeAssigned() {
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-
-  if (stage === 2 && roomType === RoomType.ROOM_BOSS) {
-    v.persistent.timeAssigned = 0;
   }
 }

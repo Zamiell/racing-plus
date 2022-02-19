@@ -1,6 +1,6 @@
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as raceInputAction from "../features/race/callbacks/inputAction";
-import * as season2 from "../features/speedrun/season2";
+import { speedrunIsActionTriggeredConsole } from "../features/speedrun/callbacks/inputAction";
 
 export const isActionTriggeredFunctions = new Map<
   ButtonAction,
@@ -13,7 +13,7 @@ isActionTriggeredFunctions.set(
   (_entity: Entity | undefined) => {
     let returnValue: boolean | void;
 
-    returnValue = season2.isActionTriggeredConsole();
+    returnValue = speedrunIsActionTriggeredConsole();
     if (returnValue !== undefined) {
       return returnValue;
     }

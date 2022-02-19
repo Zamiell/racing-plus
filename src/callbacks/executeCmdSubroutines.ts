@@ -178,8 +178,9 @@ export function listEntities(includeAll: boolean): void {
     }
 
     debugString += ` (InitSeed: ${entity.InitSeed})`;
+    debugString += ` (DropSeed: ${entity.DropSeed})`;
     debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
-    debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
+    debugString += ` (Velocity: ${entity.Velocity.X}, ${entity.Velocity.Y})`;
     log(debugString);
   }
   printConsole('Logged the entities in the room to the "log.txt" file.');

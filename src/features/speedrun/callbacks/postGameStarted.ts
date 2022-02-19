@@ -9,7 +9,7 @@ import {
 import * as characterProgress from "../characterProgress";
 import { ChallengeCustom } from "../enums";
 import * as season1 from "../season1";
-import * as season2 from "../season2";
+import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -43,7 +43,7 @@ export function speedrunPostGameStarted(): void {
   giveMoreOptionsBuff();
   characterProgress.postGameStarted();
   season1.postGameStarted();
-  season2.postGameStarted();
+  season2PostGameStarted();
 }
 
 function liveSplitReset() {

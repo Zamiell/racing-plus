@@ -1,5 +1,5 @@
 import { MINUTE_IN_MILLISECONDS } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 export const SEASON_2_CHARACTERS = [
   PlayerType.PLAYER_CAIN, // 2
