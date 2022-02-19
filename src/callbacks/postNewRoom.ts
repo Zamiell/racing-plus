@@ -1,4 +1,9 @@
-import { getRoomStageID, getRoomVariant, log } from "isaacscript-common";
+import {
+  getRoomStageID,
+  getRoomSubType,
+  getRoomVariant,
+  log,
+} from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as banFirstFloorTreasureRoom from "../features/mandatory/banFirstFloorTreasureRoom";
@@ -27,6 +32,7 @@ import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTw
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
+import * as planetariumFix from "../features/race/planetariumFix";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
 import * as roomsEntered from "../features/util/roomsEntered";
@@ -41,9 +47,10 @@ export function main(): void {
   const isaacFrameCount = Isaac.GetFrameCount();
   const roomStageID = getRoomStageID();
   const roomVariant = getRoomVariant();
+  const roomSubType = getRoomSubType();
 
   log(
-    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant}.${roomSubType} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
   );
 
   // Util
@@ -66,6 +73,7 @@ export function main(): void {
 
   // Major
   racePostNewRoom();
+  planetariumFix.postNewRoom();
   speedrunPostNewRoom();
   charCharOrderPostNewRoom();
   startWithD6.postNewRoom();

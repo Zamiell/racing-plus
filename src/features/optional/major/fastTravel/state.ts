@@ -230,7 +230,7 @@ function playerCloseAfterBoss(position: Vector) {
   // killing the boss of the floor, we use a wider open distance for X frames
   if (
     roomType !== RoomType.ROOM_BOSS ||
-    v.room.clearFrame === -1 ||
+    v.room.clearFrame === null ||
     gameFrameCount >= v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
   ) {
     return false;

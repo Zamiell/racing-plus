@@ -47,6 +47,7 @@ import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars"
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
+import * as planetariumFix from "./features/race/planetariumFix";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
@@ -67,6 +68,7 @@ export function initFeatureVariables(): void {
   raceVars.init();
   socketClient.init();
   shadows.init();
+  planetariumFix.init();
   speedrunVars.init();
   season2.init();
   changeCharOrderVars.init();

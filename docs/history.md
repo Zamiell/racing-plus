@@ -1,8 +1,9 @@
 # Racing+ Version History and News
 
-### *v0.74.25* - February ?rd, 2022
+### *v0.75.0* - February 19th, 2022
 
 - In seeded races, you will now be able to see what the 3 Dollar Bill item is for the current room on the item tracker. Thanks to Gamonymous for coding this.
+- Fixed the bug where in seeded races, some players would get Planetariums and other players would not. (Thanks Moucheron Quipet)
 - Fixed the bug where having Dream Catcher would count as having entered the Treasure Room (for the purposes of Planetarium spawning chances). As a result of this, there is a significantly more lag upon reaching a new floor whenever you have Dream Catcher. (Thanks Gamonymous)
 - Fixed the bug with two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
 - Fixed the bug where Dark Esau would prevent fast-clear from working properly. (Thanks Fallenfor)

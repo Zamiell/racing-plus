@@ -33,6 +33,10 @@ export function postRender(): void {
 }
 
 function drawSprites() {
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   if (
     g.race.myStatus === RacerStatus.FINISHED ||
     g.race.myStatus === RacerStatus.QUIT ||

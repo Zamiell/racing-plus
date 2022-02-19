@@ -69,6 +69,9 @@ const v = {
      * trinket.
      */
     tookDamage: false,
+
+    /** Used by other mod features to resume fast-travel when fast-travel is interrupted. */
+    resumeGameFrame: null as int | null,
   },
 
   room: {
@@ -79,7 +82,7 @@ const v = {
     amChangingRooms: false,
 
     /** Equal to the game frame count that the room was cleared. */
-    clearFrame: -1,
+    clearFrame: null as int | null,
 
     /** Indexed by grid index. */
     crawlspaces: new Map<int, FastTravelEntityDescription>(),
@@ -106,7 +109,7 @@ function featureEnabled() {
   return config.fastTravel;
 }
 
-export function fastTravelSetClearFrame(): void {
+export function setFastTravelClearFrame(): void {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.clearFrame = gameFrameCount;
@@ -114,4 +117,8 @@ export function fastTravelSetClearFrame(): void {
 
 export function isFastTravelHappening(): boolean {
   return v.run.state > FastTravelState.DISABLED;
+}
+
+export function setFastTravelResumeGameFrame(resumeGameFrame: int): void {
+  v.level.resumeGameFrame = resumeGameFrame;
 }

@@ -22,6 +22,7 @@ import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import { shouldRemoveEndGamePortals } from "../../../../mandatory/nerfCardReading";
+import { decrementRoomsEntered } from "../../../../util/roomsEntered";
 import { spawnHoles } from "../../../major/fastTravel/setNewState";
 import * as sprites from "../sprites";
 import v from "../v";
@@ -159,10 +160,11 @@ function checkWarpStateWarping() {
 }
 
 function warpToNextRoom() {
-  const firstRoomGridIndex = v.level.warpRoomGridIndexes.shift();
-  if (firstRoomGridIndex !== undefined) {
-    log(`Dream Catcher - Warping to room: ${firstRoomGridIndex}`);
-    changeRoom(firstRoomGridIndex);
+  const roomGridIndex = v.level.warpRoomGridIndexes.shift();
+  if (roomGridIndex !== undefined) {
+    log(`Dream Catcher - Warping to room: ${roomGridIndex}`);
+    changeRoom(roomGridIndex);
+    decrementRoomsEntered(); // This should not count as entering a room
     return;
   }
 
