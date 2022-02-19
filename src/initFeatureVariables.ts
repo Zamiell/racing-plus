@@ -52,6 +52,7 @@ import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
+import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as detectSlideAnimation from "./features/util/detectSlideAnimation";
 import * as restartOnNextFrame from "./features/util/restartOnNextFrame";
@@ -68,6 +69,7 @@ export function initFeatureVariables(): void {
   socketClient.init();
   shadows.init();
   speedrunVars.init();
+  season2.init();
   changeCharOrderVars.init();
   characterProgress.init();
   passiveItemsForEden.init();
