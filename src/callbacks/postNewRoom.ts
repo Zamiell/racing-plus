@@ -7,7 +7,6 @@ import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
-import * as roomVisiter from "../features/mandatory/roomVisiter";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
@@ -51,6 +50,9 @@ export function main(): void {
   detectSlideAnimation.postNewRoom();
   roomsEntered.postNewRoom();
 
+  // Special features that must be executed first
+  showDreamCatcherItemPostNewRoom(); // 566
+
   // Mandatory
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
@@ -58,7 +60,6 @@ export function main(): void {
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
-  roomVisiter.postNewRoom();
   banFirstFloorTreasureRoom.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
   seededDeathPostNewRoom();
@@ -81,7 +82,6 @@ export function main(): void {
   removeTreasureRoomEnemies.postNewRoom();
 
   // QoL
-  showDreamCatcherItemPostNewRoom(); // 566
   fastVanishingTwin.postNewRoom(); // 697
   subvertTeleport.postNewRoom();
 

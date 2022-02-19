@@ -1,4 +1,4 @@
-export enum RoomVisitorWarpState {
+export enum DreamCatcherWarpState {
   INITIAL,
   WARPING,
   REPOSITIONING_PLAYER,

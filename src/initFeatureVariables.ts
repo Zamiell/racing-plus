@@ -12,7 +12,6 @@ import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacri
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
-import * as roomVisiter from "./features/mandatory/roomVisiter";
 import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
@@ -98,7 +97,6 @@ export function initFeatureVariables(): void {
   dummyDPS.init();
   debugPowers.init();
   errors.init();
-  roomVisiter.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
 

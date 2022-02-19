@@ -1,6 +1,7 @@
 import { getEffects, getPlayers } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
+import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { FastTravelState } from "./enums";
 import { setNewState, setPlayersVisible } from "./setNewState";
@@ -59,9 +60,16 @@ function incrementFramesPassed() {
   // Only increment the fade timer if the game is not paused
   // To avoid this, we could base the timer on game frames, but that does not result in a smooth
   // enough fade out (because it is only updated on every other render frame)
-  if (!g.g.IsPaused()) {
-    v.run.framesPassed += 1;
+  if (g.g.IsPaused()) {
+    return;
   }
+
+  // Defer the jump animation until later if we are warping to new rooms
+  if (isDreamCatcherWarping()) {
+    return;
+  }
+
+  v.run.framesPassed += 1;
 }
 
 function resetPlayerCollision(players: EntityPlayer[]) {

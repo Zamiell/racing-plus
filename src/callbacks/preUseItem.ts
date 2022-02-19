@@ -30,6 +30,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallbacks.MC_PRE_USE_ITEM,
+    eternalD6,
+    CollectibleType.COLLECTIBLE_ETERNAL_D6, // 609
+  );
+
+  mod.AddCallback(
+    ModCallbacks.MC_PRE_USE_ITEM,
     flip,
     CollectibleType.COLLECTIBLE_FLIP, // 711
   );
@@ -74,6 +80,18 @@ function deadSeaScrolls(
 // CollectibleType.COLLECTIBLE_D4 (284)
 function d4() {
   betterDevilAngelRoomsPreUseItemD4();
+}
+
+// CollectibleType.COLLECTIBLE_ETERNAL_D6 (609)
+function eternalD6(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: int,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+) {
+  return speedrunPreUseItem.eternalD6(player);
 }
 
 // CollectibleType.COLLECTIBLE_FLIP (711)

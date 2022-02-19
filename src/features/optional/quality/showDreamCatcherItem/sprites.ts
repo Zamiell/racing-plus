@@ -1,19 +1,16 @@
-import {
-  anyPlayerHasCollectible,
-  getRoomSafeGridIndex,
-} from "isaacscript-common";
+import { arrayEmpty, getRoomSafeGridIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 
-// Near the top-left of the room
+const TOP_LEFT_GRID_INDEX = 32;
 const SPRITE_SPACING = 30;
 
 let dreamCatcherSprite: Sprite | null = null;
-let itemSprites: Sprite[] = [];
-let bossSprites: Sprite[] = [];
+const itemSprites: Sprite[] = [];
+const bossSprites: Sprite[] = [];
 
 export function set(): void {
   if (!shouldShowSprites()) {
@@ -59,21 +56,21 @@ function initBossSprite(entityType: EntityType, variant: int) {
 
 export function reset(): void {
   dreamCatcherSprite = null;
-  itemSprites = [];
-  bossSprites = [];
+  arrayEmpty(itemSprites);
+  arrayEmpty(bossSprites);
 }
 
 function shouldShowSprites() {
+  const isGreedMode = g.g.IsGreedMode();
   const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
-    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER) &&
     (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
     // Only show the sprites in the starting room
     roomSafeGridIndex === startingRoomGridIndex &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
-    !g.g.IsGreedMode()
+    !isGreedMode
   );
 }
 
@@ -81,13 +78,18 @@ export function draw(): void {
   const player = Isaac.GetPlayer();
   const playerSprite = player.GetSprite();
   const playerAnimation = playerSprite.GetAnimation();
+  const topLeftRoomPosition = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const nextToDreamCatcherPosition = g.r.GetGridPosition(
+    TOP_LEFT_GRID_INDEX + 1,
+  );
+
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
 
   if (isSlideAnimationActive() && playerAnimation !== "Appear") {
     return;
   }
-
-  const topLeftRoomPosition = g.r.GetGridPosition(32);
-  const nextToDreamCatcherPosition = g.r.GetGridPosition(33);
 
   if (dreamCatcherSprite !== null) {
     const renderPosition = Isaac.WorldToRenderPosition(topLeftRoomPosition);

@@ -35,6 +35,13 @@ export function preUseItemD6(player: EntityPlayer): boolean | void {
   return undefined;
 }
 
+// ModCallbacks.MC_PRE_USE_ITEM (23)
+// CollectibleType.COLLECTIBLE_ETERNAL_D6 (609)
+export function preUseItemEternalD6(player: EntityPlayer): boolean | void {
+  // Use the same logic as the normal D6
+  return preUseItemD6(player);
+}
+
 function respawnCheckpoint() {
   const checkpoints = getCollectibles(
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,

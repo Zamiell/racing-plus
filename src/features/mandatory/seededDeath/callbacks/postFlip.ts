@@ -1,4 +1,4 @@
-import { runNextFrame, useActiveItemTemp } from "isaacscript-common";
+import { runNextGameFrame, useActiveItemTemp } from "isaacscript-common";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
 import { applySeededGhostFade, shouldSeededDeathApply } from "../seededDeath";
 import v from "../v";
@@ -25,7 +25,7 @@ export function seededDeathPostFlip(player: EntityPlayer): void {
     // so we have to reapply it
     applySeededGhostFade(player, true);
   } else {
-    runNextFrame(() => {
+    runNextGameFrame(() => {
       v.run.switchingBackToGhostLazarus = true;
       useActiveItemTemp(player, CollectibleType.COLLECTIBLE_FLIP);
     });

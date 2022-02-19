@@ -31,6 +31,10 @@ export function postRender(): void {
     return;
   }
 
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   const spriteLayer = socketClient.isActive()
     ? SpriteLayer.GREEN
     : SpriteLayer.BLUE;

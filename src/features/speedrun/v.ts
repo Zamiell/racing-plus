@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { arrayEmpty, saveDataManager } from "isaacscript-common";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
 
 const v = {
@@ -44,7 +44,7 @@ export function resetPersistentVars(): void {
 
   v.persistent.startedFrame = null;
   v.persistent.startedCharFrame = null;
-  v.persistent.characterRunFrames = [];
+  arrayEmpty(v.persistent.characterRunFrames);
 }
 
 export function resetFirstCharacterVars(): void {
@@ -54,5 +54,5 @@ export function resetFirstCharacterVars(): void {
 
   v.persistent.startedFrame = null;
   v.persistent.startedCharFrame = null;
-  v.persistent.characterRunFrames = [];
+  arrayEmpty(v.persistent.characterRunFrames);
 }

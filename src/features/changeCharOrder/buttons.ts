@@ -1,4 +1,5 @@
 import {
+  arrayEmpty,
   ensureAllCases,
   getDefaultColor,
   getPlayers,
@@ -60,7 +61,7 @@ function createCharacterButtons() {
 
   const seasonDescription = getSeasonDescription();
 
-  v.room.sprites.characters = [];
+  arrayEmpty(v.room.sprites.characters);
   for (const [characterID, x, y] of seasonDescription.charPositions) {
     // Spawn buttons for each characters
     const position = gridToPos(x, y);
@@ -99,7 +100,7 @@ function createBuildVetoButtons() {
   }
 
   // We use the "characters" array for the builds to avoid making a new data structure
-  v.room.sprites.characters = [];
+  arrayEmpty(v.room.sprites.characters);
   for (const [buildIndex, x, y] of seasonDescription.buildPositions) {
     // Spawn buttons for each characters
     const position = gridToPos(x, y);
