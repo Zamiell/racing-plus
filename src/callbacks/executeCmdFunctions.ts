@@ -19,6 +19,7 @@ import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
 import { RaceData } from "../features/race/types/RaceData";
 import { RaceFormat } from "../features/race/types/RaceFormat";
+import { RaceGoal } from "../features/race/types/RaceGoal";
 import { RacerStatus } from "../features/race/types/RacerStatus";
 import { RaceStatus } from "../features/race/types/RaceStatus";
 import { ChallengeCustom } from "../features/speedrun/enums";
@@ -562,6 +563,7 @@ executeCmdFunctions.set("seededracecharacter", (params: string) => {
   }
 
   g.race.character = num;
+  printConsole(`Set the seeded race character to: ${g.race.character}`);
 });
 
 executeCmdFunctions.set("seededracebuild", (_params: string) => {
@@ -581,6 +583,12 @@ executeCmdFunctions.set("seededraceitem", (params: string) => {
   }
 
   g.race.startingItems = [num];
+  printConsole(`Set the seeded race item to: ${num}`);
+});
+
+executeCmdFunctions.set("seededracegoal", (params: string) => {
+  g.race.goal = params as RaceGoal;
+  printConsole(`Set the seeded race goal to: ${g.race.goal}`);
 });
 
 executeCmdFunctions.set("seededraceoff", (_params: string) => {

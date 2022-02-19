@@ -315,6 +315,7 @@
         "seededracebuild",
         "seededracechar",
         "seededracecharacter",
+        "seededracegoal",
         "seededraceitem",
         "seededraceoff",
         "setbuildvetos",

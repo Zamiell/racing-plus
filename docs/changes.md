@@ -169,7 +169,7 @@ Post-flip actions:
 - `0306` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
 - `0307` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
 - `0308` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
-- `0309` <!-- consistentAngels 271, 272 --> Two of the same angel type will no longer appear in a single room.
+- `0309` <!-- consistentAngels 271, 272 --> Angel types are now properly seeded and are no longer duplicated. Uriel is always given first.
 - `0310` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.

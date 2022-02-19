@@ -1,11 +1,22 @@
 # Racing+ Version History and News
 
+### *v0.76.0* - February ?th, 2022
+
+- Removed some pits in Angel Room #5, #8, #10, #13, and #52.
+- The first angel in a run is now always Uriel.
+- Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
+- Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
+- Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
+- Fixed the bug where you would only need to kill The Lamb's body to get a trophy under certain conditions. (Thanks Fallenfor & Gamonymous)
+- Fixed the bug where Perfection would disappear if you drop it on the end floor. (Thanks sisuka)
+- Fixed the bug where Flip would incorrectly get first floor placeholder items. (Thanks Gamonymous)
+
 ### *v0.75.0* - February 19th, 2022
 
 - In seeded races, you will now be able to see what the 3 Dollar Bill item is for the current room on the item tracker. Thanks to Gamonymous for coding this.
 - Fixed the bug where in seeded races, some players would get Planetariums and other players would not. (Thanks Moucheron Quipet)
 - Fixed the bug where having Dream Catcher would count as having entered the Treasure Room (for the purposes of Planetarium spawning chances). As a result of this, there is a significantly more lag upon reaching a new floor whenever you have Dream Catcher. (Thanks Gamonymous)
-- Fixed the bug with two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
 - Fixed the bug where Dark Esau would prevent fast-clear from working properly. (Thanks Fallenfor)
 - Fixed the bug where the server was not validating seeded races properly. (Thanks AshDown)
 - Fixed the bug with seeded death where the health was incorrectly shown when you were dying.

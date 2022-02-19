@@ -3,6 +3,7 @@ import {
   getNPCs,
   log,
   onDarkRoom,
+  openAllDoors,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -38,7 +39,7 @@ export function postEntityKillLamb(_entity: Entity): void {
 function allLambEntitiesDead() {
   const lambs = getNPCs(EntityType.ENTITY_THE_LAMB);
   for (const lamb of lambs) {
-    if (lamb.IsInvincible()) {
+    if (lamb.Variant === LambVariant.BODY && lamb.IsInvincible()) {
       continue;
     }
 
@@ -54,6 +55,7 @@ function emulateRoomClear() {
   // Emulate the room being cleared
   g.r.SetClear(true);
   addRoomClearCharges();
+  openAllDoors();
   g.sfx.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)

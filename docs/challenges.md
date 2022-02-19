@@ -28,18 +28,6 @@
   - 15 - Bethany
 - For each character, you can choose to play as either the normal version or the tainted version.
 - Bethany & Tainted Bethany start with Duality in addition to their other items.
-- In order to help players get starts faster, the Treasure Room pool has the following changes:
-  - ➕ 12 - Magic Mushroom (to 1.0 weight from 0.5 weight)
-  - ➕ 182 - Sacred Heart
-  - ➕ 237 - Death's Touch (to 1.0 weight from 0.2 weight)
-  - ➕ 311 - Judas Shadow
-  - ➕ 331 - Godhead
-  - ➕ 360 - Incubus
-  - ➕ 399 - Maw of the Void
-  - ➕ 415 - Crown of Light
-  - ➕ 698 - Twisted Pair
-  - ➕ 730 - Sawblade (a custom orbital with the same speed as AB+ orbitals & 11 contact damage)
-  - ➖ 114 - Mom's Knife (to 0 weight from 0.2 weight)
 
 <br />
 

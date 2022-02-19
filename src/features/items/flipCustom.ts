@@ -15,6 +15,7 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { initItemSprite } from "../../sprite";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
 const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
 const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
@@ -123,7 +124,17 @@ function getNewFlippedCollectibleType(collectible: EntityPickup) {
   }
 
   const itemPoolType = getCollectibleItemPoolType(collectible);
-  return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
+  const collectibleType = g.itemPool.GetCollectible(
+    itemPoolType,
+    true,
+    collectible.InitSeed,
+  );
+
+  const replacementCollectibleType =
+    COLLECTIBLE_REPLACEMENT_MAP.get(collectibleType);
+  return replacementCollectibleType === undefined
+    ? collectibleType
+    : replacementCollectibleType;
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)

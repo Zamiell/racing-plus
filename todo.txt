@@ -1,3 +1,4 @@
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
-- Change builds once Racing+ Ranked Solo Season 3 is over
+- Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
+- Seeded runs change to being consistent with Devil/Angels
