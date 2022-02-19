@@ -15,6 +15,7 @@ export const CARD_MAP = new Map<string, Card>([
   ["wheeloffortune", 11],
   ["fortune", 11],
   ["strength", 12],
+  ["hanged", 13],
   ["hangedman", 13],
   ["death", 14],
   ["temperance", 15],

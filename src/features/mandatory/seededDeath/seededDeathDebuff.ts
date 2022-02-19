@@ -3,7 +3,7 @@ import {
   getEnumValues,
   getNPCs,
   getPlayerCollectibleMap,
-  getTransformationsForItem,
+  getTransformationsForCollectibleType,
   removeAllFamiliars,
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
@@ -305,8 +305,8 @@ function giveTransformationHelper(
   player: EntityPlayer,
   collectibleType: CollectibleType,
 ) {
-  const transformations = getTransformationsForItem(collectibleType);
-  for (const transformation of transformations) {
+  const transformations = getTransformationsForCollectibleType(collectibleType);
+  for (const transformation of transformations.values()) {
     const helperCollectibleType =
       TRANSFORMATION_TO_HELPER_MAP.get(transformation);
     if (helperCollectibleType !== undefined) {

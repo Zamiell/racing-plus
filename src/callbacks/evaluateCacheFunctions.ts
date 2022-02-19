@@ -1,5 +1,6 @@
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
+import * as season2 from "../features/speedrun/season2";
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export const evaluateCacheFunctions = new Map<
@@ -7,7 +8,7 @@ export const evaluateCacheFunctions = new Map<
   (player: EntityPlayer) => void
 >();
 
-// 1 << 2
+// 0x4
 evaluateCacheFunctions.set(
   CacheFlag.CACHE_SHOTSPEED,
   (player: EntityPlayer) => {
@@ -24,12 +25,12 @@ function magic8BallSeeded(player: EntityPlayer) {
   }
 }
 
-// 1 << 4
+// 0x10
 evaluateCacheFunctions.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
   debugPowers.evaluateCacheSpeed(player);
 });
 
-// 1 << 6
+// 0x40
 evaluateCacheFunctions.set(
   CacheFlag.CACHE_TEARCOLOR,
   (player: EntityPlayer) => {
@@ -37,7 +38,12 @@ evaluateCacheFunctions.set(
   },
 );
 
-// 1 << 10
+// 0x80
+evaluateCacheFunctions.set(CacheFlag.CACHE_FLYING, (player: EntityPlayer) => {
+  season2.evaluateCacheFlying(player);
+});
+
+// 0x400
 evaluateCacheFunctions.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {
   thirteenLuck(player);
   fifteenLuck(player);

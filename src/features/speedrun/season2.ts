@@ -2,10 +2,15 @@ import {
   arrayCopy,
   arrayEmpty,
   getDefaultKColor,
+  getFlyingCollectibles,
   getPlayerName,
   getRandomArrayElementAndRemove,
+  hasFlyingTemporaryEffect,
+  hasFlyingTransformation,
+  isFlyingCharacter,
   log,
   range,
+  removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -21,6 +26,7 @@ import { getRoomsEntered } from "../util/roomsEntered";
 import { ChallengeCustom } from "./enums";
 import {
   SEASON_2_CHARACTERS,
+  SEASON_2_DEBUG,
   SEASON_2_FORGOTTEN_EXCEPTIONS,
   SEASON_2_LOCK_MILLISECONDS,
   SEASON_2_STARTING_BUILDS,
@@ -28,6 +34,7 @@ import {
 import { getCharacterOrderSafe } from "./speedrun";
 import v from "./v";
 
+const NUM_REVELATION_SOUL_HEARTS = 4;
 const TOP_LEFT_GRID_INDEX = 32;
 const TOP_RIGHT_GRID_INDEX = 42;
 const GFX_PATH = "gfx/race/starting-room";
@@ -162,6 +169,44 @@ function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
       ? `Please wait ${secondsRemainingText} and then restart.`
       : "Please restart.";
   return `You are not allowed to start a new Season 2 run so soon after ${action}. ${secondSentence}`;
+}
+
+// ModCallbacks.MC_EVALUATE_CACHE (8)
+// CacheFlag.CACHE_FLYING (0x80)
+export function evaluateCacheFlying(player: EntityPlayer): void {
+  const buildIndex =
+    v.persistent.selectedBuildIndexes[v.persistent.characterNum - 1];
+  if (buildIndex === undefined) {
+    return;
+  }
+  const build = SEASON_2_STARTING_BUILDS[buildIndex];
+  const firstCollectibleType = build[0];
+  if (firstCollectibleType !== CollectibleType.COLLECTIBLE_REVELATION) {
+    return;
+  }
+
+  // Only remove the flight if the player does not have another flight item or effect
+  if (
+    !isFlyingCharacter(player) &&
+    !hasFlyingTransformation(player) &&
+    !hasFlyingTemporaryEffect(player) &&
+    !hasFlyingCollectibleExceptForRevelation(player)
+  ) {
+    player.CanFly = false;
+  }
+}
+
+function hasFlyingCollectibleExceptForRevelation(player: EntityPlayer) {
+  const flyingCollectibles = getFlyingCollectibles(true);
+  flyingCollectibles.delete(CollectibleType.COLLECTIBLE_REVELATION);
+
+  for (const collectibleType of flyingCollectibles.values()) {
+    if (player.HasCollectible(collectibleType)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -346,7 +391,6 @@ function getAntiSynergyBuilds(character: PlayerType): int[] {
         CollectibleType.COLLECTIBLE_CRICKETS_BODY,
         CollectibleType.COLLECTIBLE_DEAD_EYE,
         CollectibleType.COLLECTIBLE_FIRE_MIND,
-        CollectibleType.COLLECTIBLE_EYE_OF_THE_OCCULT,
       );
     }
 
@@ -399,10 +443,17 @@ function giveStartingItems(
     giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
-  // Handle builds with smelted trinkets
   const firstCollectibleType = startingBuild[0];
+
+  // Handle builds with smelted trinkets
   if (firstCollectibleType === CollectibleType.COLLECTIBLE_INCUBUS) {
     smeltTrinket(player, TrinketType.TRINKET_FORGOTTEN_LULLABY);
+  }
+
+  // Handle builds with custom nerfs
+  if (firstCollectibleType === CollectibleType.COLLECTIBLE_REVELATION) {
+    player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
+    removeCollectibleCostume(player, CollectibleType.COLLECTIBLE_REVELATION);
   }
 }
 
@@ -475,6 +526,10 @@ export function isActionTriggeredConsole(): boolean | void {
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_2) {
+    return undefined;
+  }
+
+  if (SEASON_2_DEBUG) {
     return undefined;
   }
 
