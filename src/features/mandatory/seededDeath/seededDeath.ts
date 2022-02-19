@@ -4,12 +4,8 @@ import {
   isJacobOrEsau,
   log,
 } from "isaacscript-common";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
 import { SeededDeathState } from "../../../types/SeededDeathState";
-import { RaceFormat } from "../../race/types/RaceFormat";
-import { RacerStatus } from "../../race/types/RacerStatus";
-import { RaceStatus } from "../../race/types/RaceStatus";
+import { inSeededRace } from "../../race/util";
 import { ChallengeCustom } from "../../speedrun/enums";
 import { QUARTER_FADED_COLOR, SEEDED_DEATH_DEBUG } from "./constants";
 import v from "./v";
@@ -49,13 +45,4 @@ export function shouldSeededDeathApply(): boolean {
   const challenge = Isaac.GetChallenge();
 
   return inSeededRace() || challenge === ChallengeCustom.SEASON_2;
-}
-
-function inSeededRace() {
-  return (
-    config.clientCommunication &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED
-  );
 }

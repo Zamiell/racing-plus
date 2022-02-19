@@ -6,10 +6,7 @@ import {
   removeAllCollectibles,
 } from "isaacscript-common";
 import g from "../../globals";
-import { config } from "../../modConfigMenu";
-import { RaceFormat } from "../race/types/RaceFormat";
-import { RacerStatus } from "../race/types/RacerStatus";
-import { RaceStatus } from "../race/types/RaceStatus";
+import { inSeededRace } from "../race/util";
 import { ChallengeCustom } from "../speedrun/enums";
 
 export function postNewRoom(): void {
@@ -69,14 +66,5 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
   return (
     effectiveStage === 1 &&
     (inSeededRace() || challenge === ChallengeCustom.SEASON_2)
-  );
-}
-
-function inSeededRace() {
-  return (
-    config.clientCommunication &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED
   );
 }

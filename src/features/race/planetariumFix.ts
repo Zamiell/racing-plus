@@ -1,9 +1,6 @@
 import { changeRoom, getRoomGridIndexesForType } from "isaacscript-common";
-import g from "../../globals";
 import { decrementRoomsEntered } from "../util/roomsEntered";
-import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
+import { inSeededRace } from "./util";
 
 /**
  * Planetariums have a greater chance of occurring if a Treasure Room is skipped, which can cause a
@@ -11,11 +8,7 @@ import { RaceStatus } from "./types/RaceStatus";
  * Treasure Room and Planetarium in seeded races.
  */
 export function planetariumFix(): void {
-  if (
-    g.race.format === RaceFormat.SEEDED &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
-  ) {
+  if (!inSeededRace()) {
     return;
   }
 
