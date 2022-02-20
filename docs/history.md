@@ -2,8 +2,11 @@
 
 ### *v0.76.0* - February ?th, 2022
 
-- Removed some pits in Angel Rooms #5, #8, #10, #13, and #52.
 - The first angel in a run is now always Uriel.
+- Removed some pits in Angel Rooms #5, #8, #10, #13 (to make it easier to fight two angels at the same time).
+- Deleted Angel Room #4 (with the TNT barrels).
+- Deleted Angel Room #12 (with the White Poop).
+- Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
 - Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
