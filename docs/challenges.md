@@ -60,6 +60,13 @@
 - Instead of choosing a character order, players must ban 3 builds.
 - When resetting on the first character, you will never be given the same character or build twice in a row.
 - Duplicate starting builds will never be given over the course of a 7 character run.
+- Forgotten is guaranteed to get one of the following builds:
+  - 12 - Magic Mushroom
+  - 69 - Chocolate Milk + Stephen
+  - 169 - Polyphemus
+  - 182 - Sacred Heart
+  - 261 - Proptosis
+  - 531 - Haemolacria
 
 ### Seeded Death
 

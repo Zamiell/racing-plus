@@ -61,13 +61,11 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
       [21, 10, 2],
       [22, 11, 2],
 
-      [23, 3, 4],
-      [24, 4, 4],
-      [25, 5, 4],
+      [23, 4, 4],
+      [24, 5, 4],
       // Skip center column
-      [26, 7, 4],
-      [27, 8, 4],
-      [28, 9, 4],
+      [25, 7, 4],
+      [26, 8, 4],
     ],
     numBuildVetos: 3,
   },

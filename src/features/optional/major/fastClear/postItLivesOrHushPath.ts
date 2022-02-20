@@ -1,6 +1,7 @@
 import {
   ensureAllCases,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  isOdd,
   isRoomInsideMap,
   log,
   removeAllMatchingEntities,
@@ -13,6 +14,7 @@ import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { ChallengeCustom } from "../../../speedrun/enums";
+import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 
 enum ItLivesSituation {
   NEITHER,
@@ -66,6 +68,12 @@ function getItLivesSituation() {
   // Speedrun seasons have set goals
   if (challenge === ChallengeCustom.SEASON_1) {
     return ItLivesSituation.HEAVEN_DOOR;
+  }
+  if (challenge === ChallengeCustom.SEASON_2) {
+    const characterNum = speedrunGetCharacterNum();
+    return isOdd(characterNum)
+      ? ItLivesSituation.HEAVEN_DOOR
+      : ItLivesSituation.TRAPDOOR;
   }
 
   if (

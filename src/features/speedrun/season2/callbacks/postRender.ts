@@ -23,6 +23,10 @@ export function season2PostRender(): void {
     return;
   }
 
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   drawStartingRoomSprites();
   drawStartingRoomText();
 }

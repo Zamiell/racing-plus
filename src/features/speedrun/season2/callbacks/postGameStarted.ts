@@ -16,7 +16,7 @@ import {
   setRestartCharacter,
 } from "../../../util/restartOnNextFrame";
 import { ChallengeCustom } from "../../enums";
-import { speedrunGetCharacterNum } from "../../exported";
+import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { getCharacterOrderSafe } from "../../speedrun";
 import {
   SEASON_2_CHARACTERS,
@@ -54,6 +54,7 @@ export function season2PostGameStarted(): void {
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
 
   if (character !== startingCharacter) {
+    speedrunSetFastReset();
     restartOnNextFrame();
     setRestartCharacter(startingCharacter);
     log(

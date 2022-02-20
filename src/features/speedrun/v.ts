@@ -15,7 +15,10 @@ const v = {
   },
 
   run: {
+    /** Used to fade out the screen after the player takes a Checkpoint. */
     fadeFrame: null as int | null,
+
+    /** Used to reset the game after the player takes a Checkpoint. */
     resetFrame: null as int | null,
 
     finished: false,

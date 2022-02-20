@@ -16,7 +16,6 @@ let debugHotkey2Pressed = false;
 
 function debugCode() {
   // Add code here
-  Isaac.ExecuteCommand("error");
 }
 
 export function debugFunction(): void {
