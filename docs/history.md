@@ -16,6 +16,7 @@
 - Fixed the bug where Flip would incorrectly get first floor placeholder items. (Thanks Gamonymous)
 - Fixed the bug where GB Bug would incorrectly have a chance to spawn pedestal items. (Thanks Gamonymous)
 - Fixed the bug where glitched pedestal item replacement wasn't working correctly.
+- Fixed the bug where moving diagonally into a combined duality door would not grant the right room under certain conditions. (Thanks Shiny)
 
 ### *v0.75.0* - February 19th, 2022
 
