@@ -153,7 +153,11 @@ function seeded(player: EntityPlayer) {
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE);
 
   // Remove Birthright on Cain, since it changes floor generation
-  if (character === PlayerType.PLAYER_CAIN) {
+  // Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed
+  if (
+    character === PlayerType.PLAYER_CAIN ||
+    character === PlayerType.PLAYER_THELOST
+  ) {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
