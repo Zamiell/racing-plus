@@ -61,7 +61,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
 
     // 16
     case PlayerType.PLAYER_THEFORGOTTEN: {
-      // One filled bone heart
+      // One half-filled bone heart
       player.AddMaxHearts(2, true);
       player.AddHearts(1);
       break;
@@ -78,9 +78,9 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 18, 22
     case PlayerType.PLAYER_BETHANY:
     case PlayerType.PLAYER_MAGDALENE_B: {
-      // One heart container
-      player.AddMaxHearts(2, true);
-      player.AddHearts(2);
+      // 1.5 filled red heart containers
+      player.AddMaxHearts(4, true);
+      player.AddHearts(3);
       break;
     }
 
