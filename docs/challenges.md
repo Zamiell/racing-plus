@@ -31,7 +31,7 @@
 
 <br />
 
-## R+7 Season 2 Beta (Instant-Start) (Proposal)
+## R+7 Season 2 Beta (Instant-Start)
 
 ### Characters
 
