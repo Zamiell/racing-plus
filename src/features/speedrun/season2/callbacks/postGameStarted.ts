@@ -85,8 +85,15 @@ function checkErrors() {
 }
 
 function removeItemsFromPools() {
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
+
+  if (character === PlayerType.PLAYER_BLACKJUDAS) {
+    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW);
+  }
 }
 
 function checkFirstCharacterRefresh() {
@@ -213,9 +220,12 @@ function getAntiSynergyBuilds(character: PlayerType): int[] {
     // 28
     case PlayerType.PLAYER_AZAZEL_B: {
       return getBuildIndexesFor(
-        CollectibleType.COLLECTIBLE_CRICKETS_BODY,
-        CollectibleType.COLLECTIBLE_DEAD_EYE,
-        CollectibleType.COLLECTIBLE_FIRE_MIND,
+        CollectibleType.COLLECTIBLE_DR_FETUS, // 52
+        CollectibleType.COLLECTIBLE_CRICKETS_BODY, // 224
+        CollectibleType.COLLECTIBLE_DEATHS_TOUCH, // 237
+        CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
+        CollectibleType.COLLECTIBLE_DEAD_EYE, // 373
+        CollectibleType.COLLECTIBLE_TECH_X, // 395
       );
     }
 

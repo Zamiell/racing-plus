@@ -160,10 +160,14 @@ const SEASON_2_FORGOTTEN_BUILDS = new Set<
 >([
   CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, // 12
   CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
+  CollectibleType.COLLECTIBLE_IPECAC, // 149
   CollectibleType.COLLECTIBLE_POLYPHEMUS, // 169
   CollectibleType.COLLECTIBLE_SACRED_HEART, // 182
+  CollectibleType.COLLECTIBLE_20_20, // 245
   CollectibleType.COLLECTIBLE_PROPTOSIS, // 261
   CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
+  CollectibleType.COLLECTIBLE_POINTY_RIB, // 544
+  CollectibleType.COLLECTIBLE_C_SECTION, // 678
 ]);
 
 /** An array containing every index that is not on the above build whitelist. */
