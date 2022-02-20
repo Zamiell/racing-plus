@@ -1,5 +1,8 @@
 TODO Racing+ new features:
 - Implement time offsets, show on the first room of each floor
+
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
+  - Ranked Solo Season 3 ended:   April 2nd, 2022 (estimated)
+  - Ranked Solo Season 3 length:  120 days
 - Seeded runs change to being consistent with Devil/Angels
-- Nerf Angel Rooms to have only 1 pedestal per room
+  - After tournament is over in 1 week

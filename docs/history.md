@@ -7,6 +7,7 @@
 - Deleted Angel Room #4 (with the TNT barrels).
 - Deleted Angel Room #12 (with the White Poop).
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
+- In seeded races, Birthright is now removed from pools if you start as The Lost.
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
 - Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
