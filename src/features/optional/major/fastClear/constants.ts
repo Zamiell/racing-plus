@@ -1,4 +1,4 @@
-export const FAST_CLEAR_DEBUG = true;
+export const FAST_CLEAR_DEBUG = false;
 
 export const CREEP_VARIANTS_TO_KILL = new Set([
   EffectVariant.CREEP_RED, // 22

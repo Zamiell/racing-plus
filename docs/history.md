@@ -2,7 +2,7 @@
 
 ### *v0.76.0* - February ?th, 2022
 
-- Removed some pits in Angel Room #5, #8, #10, #13, and #52.
+- Removed some pits in Angel Rooms #5, #8, #10, #13, and #52.
 - The first angel in a run is now always Uriel.
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
@@ -10,6 +10,8 @@
 - Fixed the bug where you would only need to kill The Lamb's body to get a trophy under certain conditions. (Thanks Fallenfor & Gamonymous)
 - Fixed the bug where Perfection would disappear if you drop it on the end floor. (Thanks sisuka)
 - Fixed the bug where Flip would incorrectly get first floor placeholder items. (Thanks Gamonymous)
+- Fixed the bug where GB Bug would incorrectly have a chance to spawn pedestal items. (Thanks Gamonymous)
+- Fixed the bug where glitched pedestal item replacement wasn't working correctly.
 
 ### *v0.75.0* - February 19th, 2022
 

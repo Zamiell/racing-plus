@@ -11,11 +11,12 @@ import { hotkeys } from "./modConfigMenu";
 const DEBUG_HOTKEY_1 = Keyboard.KEY_F2;
 const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 
-let debugHotkeyPressed = false;
+let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
 function debugCode() {
   // Add code here
+  Isaac.ExecuteCommand("error");
 }
 
 export function debugFunction(): void {
@@ -35,12 +36,12 @@ export function postUpdate(): void {
   }
 
   if (isKeyboardPressed(DEBUG_HOTKEY_1)) {
-    if (!debugHotkeyPressed) {
+    if (!debugHotkey1Pressed) {
       hotkey1Function();
     }
-    debugHotkeyPressed = true;
+    debugHotkey1Pressed = true;
   } else {
-    debugHotkeyPressed = false;
+    debugHotkey1Pressed = false;
   }
 
   if (isKeyboardPressed(DEBUG_HOTKEY_2)) {

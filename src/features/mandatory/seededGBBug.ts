@@ -86,7 +86,9 @@ function getLastSpawnedPickup() {
 function spawnGBBugPickup(oldPickup: EntityPickup) {
   // https://bindingofisaacrebirth.fandom.com/wiki/GB_Bug#Algorithm
   // In vanilla, a chest has a greater chance of morphing into another chest,
-  // but we ignore this since we want morphs to go in order
+  // but we ignore this since we want the new pickups to go in order
+  // We can't use the "EntityPickup.Morph()" method because then the results would not be seeded
+  // properly
   v.run.seed = nextSeed(v.run.seed);
   const shouldRollIntoChest = v.run.seed % 10 === 0;
   if (shouldRollIntoChest) {
@@ -107,11 +109,11 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
   } else {
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
-      0,
+      PickupVariant.PICKUP_NULL,
       oldPickup.Position,
       oldPickup.Velocity,
       oldPickup.SpawnerEntity,
-      0,
+      PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS,
       v.run.seed,
     );
   }
