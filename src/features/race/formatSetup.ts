@@ -142,16 +142,6 @@ function seeded(player: EntityPlayer) {
     );
   }
 
-  // Remove Sol, since it is mostly useless
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
-
-  // Remove Glyph of Balance, since it is useless
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GLYPH_OF_BALANCE);
-
-  // Remove Damocles, since it is unseeded
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE);
-
   // Remove Birthright on Cain, since it changes floor generation
   // Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed
   if (
@@ -161,8 +151,7 @@ function seeded(player: EntityPlayer) {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
-  // Remove Cain's Eye, since it is useless
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
+  // Other collectible/trinket pool removals are done in the "removeGloballyBannedItems" feature
 }
 
 function diversity(player: EntityPlayer) {

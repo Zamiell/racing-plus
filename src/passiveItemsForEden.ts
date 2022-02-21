@@ -3,7 +3,7 @@ import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extra
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 
-export const passiveItemsForEden: Array<
+export const PASSIVE_ITEMS_FOR_EDEN: Array<
   CollectibleType | CollectibleTypeCustom
 > = [];
 
@@ -16,9 +16,9 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
       !itemConfigItem.Hidden &&
       !PLACEHOLDER_COLLECTIBLES_SET.has(i)
     ) {
-      passiveItemsForEden.push(itemConfigItem.ID);
+      PASSIVE_ITEMS_FOR_EDEN.push(itemConfigItem.ID);
     }
   }
 
-  return passiveItemsForEden;
+  return PASSIVE_ITEMS_FOR_EDEN;
 }

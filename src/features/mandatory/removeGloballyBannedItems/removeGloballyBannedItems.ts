@@ -6,10 +6,13 @@ import {
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { inSeededRace } from "../../race/util";
 import {
   BANNED_COLLECTIBLES,
+  BANNED_COLLECTIBLES_ON_SEEDED_RACES,
   BANNED_COLLECTIBLES_WITH_VOID,
   BANNED_TRINKETS,
+  BANNED_TRINKETS_ON_SEEDED_RACES,
 } from "./constants";
 
 // Racing+ removes some items from the game for various reasons
@@ -43,8 +46,18 @@ export function postGameStarted(): void {
     }
   }
 
+  if (inSeededRace()) {
+    for (const bannedCollectible of BANNED_COLLECTIBLES_ON_SEEDED_RACES.values()) {
+      g.itemPool.RemoveCollectible(bannedCollectible);
+    }
+
+    for (const bannedTrinket of BANNED_TRINKETS_ON_SEEDED_RACES.values()) {
+      g.itemPool.RemoveTrinket(bannedTrinket);
+    }
+  }
+
+  // Tainted Magdalene is invincible with Sharp Plug
   if (anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B)) {
-    // Tainted Magdalene is invincible with Sharp Plug
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
   }
 }
@@ -80,6 +93,12 @@ function isBannedCollectible(entity: Entity) {
     BANNED_COLLECTIBLES_WITH_VOID.has(entity.SubType)
   ) {
     return true;
+  }
+
+  if (inSeededRace()) {
+    if (BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(entity.SubType)) {
+      return true;
+    }
   }
 
   if (
