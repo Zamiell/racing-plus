@@ -9,6 +9,7 @@ import * as seededFloors from "../../../mandatory/seededFloors";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
+import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import v from "./v";
 
 export function goto(upwards: boolean): void {
@@ -65,6 +66,9 @@ export function goto(upwards: boolean): void {
 
   // Revert the health and inventory modifications
   seededFloors.after();
+
+  // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp
+  setDreamCatcherArrivedOnNewFloor();
 }
 
 function getNextStage() {

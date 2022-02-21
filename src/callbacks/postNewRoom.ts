@@ -57,9 +57,6 @@ export function main(): void {
   detectSlideAnimation.postNewRoom();
   roomsEntered.postNewRoom();
 
-  // Special features that must be executed first
-  showDreamCatcherItemPostNewRoom(); // 566
-
   // Mandatory
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
@@ -90,6 +87,7 @@ export function main(): void {
   removeTreasureRoomEnemies.postNewRoom();
 
   // QoL
+  showDreamCatcherItemPostNewRoom(); // 566
   fastVanishingTwin.postNewRoom(); // 697
   subvertTeleport.postNewRoom();
 

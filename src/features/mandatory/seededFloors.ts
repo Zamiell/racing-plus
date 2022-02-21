@@ -7,6 +7,7 @@ import {
   getPlayerHealth,
   getRandom,
   isRepentanceStage,
+  log,
   nextSeed,
   onSetSeed,
   PlayerHealth,
@@ -24,6 +25,7 @@ interface GameStateFlags {
 
 interface Inventory {
   coins: int;
+  bombs: int;
   keys: int;
 }
 
@@ -70,6 +72,8 @@ export function before(stage: int, stageType: int): void {
   if (!onSetSeed()) {
     return;
   }
+
+  log("seededFloors - Before going to a new floor.");
 
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
@@ -176,6 +180,8 @@ export function after(): void {
     return;
   }
 
+  log("seededFloors - After going to a new floor.");
+
   const player = Isaac.GetPlayer();
 
   // Set everything back to the way it was before
@@ -218,10 +224,12 @@ function setGameStateFlags(gameStateFlags: GameStateFlags) {
 
 function getInventory(player: EntityPlayer): Inventory {
   const coins = player.GetNumCoins();
+  const bombs = player.GetNumBombs();
   const keys = player.GetNumKeys();
 
   return {
     coins,
+    bombs,
     keys,
   };
 }
@@ -229,6 +237,8 @@ function getInventory(player: EntityPlayer): Inventory {
 function setInventory(player: EntityPlayer, inventory: Inventory) {
   player.AddCoins(-99);
   player.AddCoins(inventory.coins);
+  player.AddBombs(-99);
+  player.AddBombs(inventory.bombs);
   player.AddKeys(-99);
   player.AddKeys(inventory.keys);
 }

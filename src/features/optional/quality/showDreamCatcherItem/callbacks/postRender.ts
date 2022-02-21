@@ -1,4 +1,4 @@
-import { getEffects, getPlayers } from "isaacscript-common";
+import { getEffects, getPlayers, setPlayerHealth } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../types/EffectVariantCustom";
@@ -6,14 +6,25 @@ import { centerPlayers } from "../../../../mandatory/centerStart";
 import { restoreMinimapDisplayFlags, setMinimapVisible } from "../minimap";
 import * as sprites from "../sprites";
 import v from "../v";
+import { checkStartDreamCatcherWarp } from "../warp";
 
 export function showDreamCatcherItemPostRender(): void {
   if (!config.showDreamCatcherItem) {
     return;
   }
 
+  checkArrivedFloor();
   sprites.draw();
   repositionPlayer();
+}
+
+function checkArrivedFloor() {
+  if (!v.level.arrivedOnNewFloor) {
+    return;
+  }
+  v.level.arrivedOnNewFloor = false;
+
+  checkStartDreamCatcherWarp();
 }
 
 function repositionPlayer() {
@@ -37,6 +48,13 @@ function repositionPlayer() {
     }
   }
 
+  // Restore the minimap
   restoreMinimapDisplayFlags(v.level.displayFlagsMap);
   setMinimapVisible(true);
+
+  // Restore the player's health
+  const player = Isaac.GetPlayer();
+  if (v.level.health !== null) {
+    setPlayerHealth(player, v.level.health);
+  }
 }
