@@ -19,6 +19,7 @@
 - Fixed the bug where glitched pedestal item replacement wasn't working correctly.
 - Fixed the bug where moving diagonally into a combined duality door would not grant the right room under certain conditions. (Thanks Shiny)
 - Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
+- !Fixed the bug where using Mega Blast would make you move incorrectly when interacting with a trapdoor or beam of light.
 
 ### *v0.75.0* - February 19th, 2022
 
