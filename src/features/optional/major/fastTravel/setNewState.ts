@@ -73,7 +73,13 @@ export function setFadingToBlack(
   v.run.repentanceSecretExit =
     roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  const whitelist = new Set([ButtonAction.ACTION_MAP]);
+  const whitelist = new Set([
+    // Allow the player to toggle the map
+    ButtonAction.ACTION_MAP,
+
+    // Allow the player to save & quit in order to e.g. get a soul heart from a Monstro
+    ButtonAction.ACTION_PAUSE,
+  ]);
   disableAllInputsExceptFor(whitelist);
 
   setGameStateFlags();
