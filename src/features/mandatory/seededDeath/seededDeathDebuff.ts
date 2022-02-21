@@ -1,6 +1,7 @@
 import {
   arrayEmpty,
   getEnumValues,
+  getFamiliars,
   getNPCs,
   getPlayerCollectibleMap,
   getTransformationsForCollectibleType,
@@ -8,6 +9,7 @@ import {
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
+  runInNGameFrames,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelperMap";
@@ -16,6 +18,8 @@ import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { TRANSFORMATION_HELPERS } from "../../../types/transformationHelpers";
 import { applySeededGhostFade } from "./seededDeath";
 import v from "./v";
+
+const NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES = 4;
 
 export function debuffOn(player: EntityPlayer): void {
   // Make them take "red heart damage" for the purposes of getting a Devil Deal
@@ -298,7 +302,8 @@ function debuffOffAddAllItems(player: EntityPlayer) {
   player.AddCacheFlags(CacheFlag.CACHE_ALL);
   player.EvaluateItems();
 
-  disableSpiritShackles(player);
+  disableLostSoul(); // 612
+  disableSpiritShackles(player); // 674
 }
 
 function giveTransformationHelper(
@@ -312,6 +317,31 @@ function giveTransformationHelper(
     if (helperCollectibleType !== undefined) {
       player.AddCollectible(helperCollectibleType);
     }
+  }
+}
+
+function disableLostSoul() {
+  // When we re-give the Lost Soul item to the player,
+  // it will re-create the familiar in an alive state
+  // After a seeded death, the familiar state should always be set to being dead
+  const lostSouls = getFamiliars(FamiliarVariant.LOST_SOUL);
+  for (const lostSoul of lostSouls) {
+    lostSoul.State = LostSoulState.DEAD;
+
+    // For some reason, it takes N game frames after changing the state for the Lost Soul to
+    // actually die
+    const lostSoulPointer = EntityPtr(lostSoul);
+    runInNGameFrames(() => {
+      // Changing the state will make the death animation play, so make it invisible
+      // The invisibility will automatically be removed by the game upon reaching the next floor
+      const lostSoulReference = lostSoulPointer.Ref;
+      if (lostSoulReference === undefined || !lostSoulReference.Exists()) {
+        return;
+      }
+
+      lostSoulReference.Visible = false;
+      g.sfx.Stop(SoundEffect.SOUND_ISAACDIES);
+    }, NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES);
   }
 }
 

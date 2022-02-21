@@ -3,8 +3,9 @@ import {
   ISAAC_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 
-export const SEEDED_DEATH_DEBUG = true;
-export const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+export const SEEDED_DEATH_DEBUG = false;
+// export const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
+export const SEEDED_DEATH_DEBUFF_FRAMES = 5 * ISAAC_FRAMES_PER_SECOND;
 
 export const SEEDED_DEATH_TIMER_STARTING_X = 65;
 export const SEEDED_DEATH_TIMER_STARTING_Y = 79;
