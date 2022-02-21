@@ -160,6 +160,7 @@ const SEASON_2_FORGOTTEN_BUILDS = new Set<
 >([
   CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, // 12
   CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
+  CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
   CollectibleType.COLLECTIBLE_IPECAC, // 149
   CollectibleType.COLLECTIBLE_POLYPHEMUS, // 169
   CollectibleType.COLLECTIBLE_SACRED_HEART, // 182
@@ -180,9 +181,9 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
   }
 }
 
-export const SEASON_2_DEBUG = true;
+export const SEASON_2_DEBUG = false;
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = 0.1;
+const SEASON_2_LOCK_MINUTES = 1.5;
 export const SEASON_2_LOCK_MILLISECONDS =
   SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;

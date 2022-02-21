@@ -85,6 +85,9 @@ function spawnDPSButton() {
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,
   );
+  if (button === undefined) {
+    error("Failed to spawn the DPS button.");
+  }
   const spritePosition = button.Position.add(SPRITE_OFFSET_SHOPKEEPER);
 
   v.level.dpsButton = {
@@ -115,6 +118,9 @@ export function spawnVictoryLapButton(center?: boolean): void {
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,
   );
+  if (button === undefined) {
+    error("Failed to spawn the Victory Lap button.");
+  }
   const spritePosition = button.Position.add(SPRITE_OFFSET_COLLECTIBLE);
 
   v.level.victoryLapButton = {

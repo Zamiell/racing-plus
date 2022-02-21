@@ -147,7 +147,9 @@ function spawnTrapdoorInBossRooms() {
 
   // Emulate the feature of vanilla where surrounding rocks will be destroyed and surrounding pits
   // will be filled
-  clearSurroundingTiles(trapdoor);
+  if (trapdoor !== undefined) {
+    clearSurroundingTiles(trapdoor);
+  }
 }
 
 // In challenges with 'secretpath="true"', trapdoors will only spawn on certain floors

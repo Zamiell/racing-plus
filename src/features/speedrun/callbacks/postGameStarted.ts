@@ -63,12 +63,12 @@ function setCorrectCharacter() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const challenge = Isaac.GetChallenge();
-  const currentCharacter = getCurrentCharacter();
 
   if (challenge === ChallengeCustom.SEASON_2) {
     return false; // This is handled explicitly later
   }
 
+  const currentCharacter = getCurrentCharacter();
   if (character !== currentCharacter) {
     v.persistent.performedFastReset = true;
     restartOnNextFrame();

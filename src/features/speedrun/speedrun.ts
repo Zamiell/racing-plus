@@ -5,6 +5,7 @@ import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
+import { ChallengeCustom } from "./enums";
 import v from "./v";
 
 export function checkValidCharOrder(): boolean {
@@ -140,7 +141,10 @@ export function getCharacterOrderSafe(): PlayerType[] {
     );
   }
 
-  if (v.persistent.characterNum > characterOrder.length) {
+  if (
+    v.persistent.characterNum > characterOrder.length &&
+    challenge !== ChallengeCustom.SEASON_2
+  ) {
     error(
       `The character number of "${v.persistent.characterNum}" is greater than ${characterOrder.length} (i.e. the amount of characters in this speedrun).`,
     );

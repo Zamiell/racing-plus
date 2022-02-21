@@ -22,8 +22,8 @@ import { RaceFormat } from "../features/race/types/RaceFormat";
 import { RaceGoal } from "../features/race/types/RaceGoal";
 import { RacerStatus } from "../features/race/types/RacerStatus";
 import { RaceStatus } from "../features/race/types/RaceStatus";
+import { speedrunSetNextCharacterAndRestart } from "../features/speedrun/callbacks/postRender";
 import { ChallengeCustom } from "../features/speedrun/enums";
-import { speedrunSetNext } from "../features/speedrun/exported";
 import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
 import g from "../globals";
 import { CARD_MAP } from "../maps/cardMap";
@@ -348,7 +348,7 @@ executeCmdFunctions.set("move", (_params: string) => {
 });
 
 executeCmdFunctions.set("next", (_params: string) => {
-  speedrunSetNext();
+  speedrunSetNextCharacterAndRestart();
 });
 
 executeCmdFunctions.set("pill", (params: string) => {
@@ -443,8 +443,12 @@ executeCmdFunctions.set("pos", (_params: string) => {
   }
 });
 
+executeCmdFunctions.set("prev", (_params: string) => {
+  speedrunSetNextCharacterAndRestart(false);
+});
+
 executeCmdFunctions.set("previous", (_params: string) => {
-  speedrunSetNext(true);
+  speedrunSetNextCharacterAndRestart(false);
 });
 
 executeCmdFunctions.set("rankedsoloreset", (_params: string) => {
