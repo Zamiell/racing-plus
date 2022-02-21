@@ -4,6 +4,7 @@ import {
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
+import { ChallengeCustom } from "./features/speedrun/enums";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 import { serverCollectibleIDToCollectibleType } from "./util";
 
@@ -32,6 +33,12 @@ export function initGlowingItemSprite(
 }
 
 function getDirectory(itemID: int) {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER) {
+    return "season2builds";
+  }
+
   return isCustomCollectible(itemID) ? "items-glowing-custom" : "items-glowing";
 }
 

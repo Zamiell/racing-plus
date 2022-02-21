@@ -92,7 +92,7 @@ export const SEASON_2_STARTING_BUILDS = [
   // 17
   [
     CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
-    CollectibleType.COLLECTIBLE_CUPIDS_ARROW, // 48
+    CollectibleType.COLLECTIBLE_SAD_ONION, // 1
   ],
 
   // 18
