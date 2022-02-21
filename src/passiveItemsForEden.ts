@@ -7,7 +7,7 @@ export const PASSIVE_ITEMS_FOR_EDEN: Array<
   CollectibleType | CollectibleTypeCustom
 > = [];
 
-export function init(): Array<CollectibleType | CollectibleTypeCustom> {
+export function init(): void {
   for (let i = 1; i <= getMaxCollectibleID(); i++) {
     const itemConfigItem = g.itemConfig.GetCollectible(i);
     if (
@@ -19,6 +19,4 @@ export function init(): Array<CollectibleType | CollectibleTypeCustom> {
       PASSIVE_ITEMS_FOR_EDEN.push(itemConfigItem.ID);
     }
   }
-
-  return PASSIVE_ITEMS_FOR_EDEN;
 }

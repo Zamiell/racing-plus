@@ -32,6 +32,10 @@ export function checkStartDreamCatcherWarp(): void {
     return;
   }
 
+  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+    return;
+  }
+
   // We only need to visit rooms upon reaching a new floor for the first time
   if (
     roomSafeGridIndex !== startingRoomGridIndex ||

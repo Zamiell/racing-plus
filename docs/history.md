@@ -24,7 +24,7 @@
 - Fixed the bug where using Mega Blast would make you move incorrectly when interacting with a trapdoor or beam of light.
 - Fixed the bug where the minimap would reveal extra information during floor transitions in the player had Dream Catcher.
 - Fixed the bug where the player's health could be set to the wrong amount when going to a new floor and having Dream Catcher while playing on a set seed. (Thanks Gamonymous)
-- Fixed ? (Thanks caesar)
+- Fixed the bug where Eden and Tainted Eden could start with The Compass, Glyph of Balance, Damocles, or Sol in seeded races. (Thanks Monkeypot)
 
 ### *v0.75.0* - February 19th, 2022
 

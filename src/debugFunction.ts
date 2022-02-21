@@ -66,16 +66,7 @@ function hotkey2Function() {
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
-export function postRender() {
-  /*
-  // Log all keyboard presses
-  for (const keyboard of getEnumValues(Keyboard)) {
-    if (isKeyboardPressed(keyboard)) {
-      log(`Key is pressed: ${keyboardToString(keyboard)} - ${keyboard}`);
-    }
-  }
-  */
-}
+export function postRender() {}
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted() {}

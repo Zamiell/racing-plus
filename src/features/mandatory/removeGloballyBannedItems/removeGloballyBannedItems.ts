@@ -2,10 +2,14 @@ import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   getCollectibles,
+  getPlayersOfType,
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
+import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
+import { getEdenReplacementCollectibleType } from "../../optional/gameplay/extraStartingItems/replacePlaceholdersOnEden";
 import { inSeededRace } from "../../race/util";
 import {
   BANNED_COLLECTIBLES,
@@ -21,6 +25,7 @@ import {
 const v = {
   run: {
     startedWithVoid: false,
+    startedWithCompass: false,
   },
 };
 
@@ -30,6 +35,11 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
+  removeBannedItemsFromPools();
+  replaceEdenBannedItems();
+}
+
+function removeBannedItemsFromPools() {
   for (const bannedCollectible of BANNED_COLLECTIBLES.values()) {
     g.itemPool.RemoveCollectible(bannedCollectible);
   }
@@ -60,6 +70,40 @@ export function postGameStarted(): void {
   if (anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B)) {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
   }
+}
+
+/**
+ * Mercurius and TMTRAINER have the "noeden" tag added in "items_metadata.xml", so we do not have to
+ * worry about those.
+ */
+function replaceEdenBannedItems() {
+  // The only items to worry about are the ones that are conditionally banned in seeded races
+  if (inSeededRace()) {
+    return;
+  }
+
+  const edens = getPlayersOfType(
+    PlayerType.PLAYER_EDEN,
+    PlayerType.PLAYER_EDEN_B,
+  );
+  for (const player of edens) {
+    for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES.values()) {
+      if (player.HasCollectible(collectibleType)) {
+        player.RemoveCollectible(collectibleType);
+        addNewRandomPassiveToEden(player);
+      }
+    }
+
+    if (v.run.startedWithCompass) {
+      addNewRandomPassiveToEden(player);
+    }
+  }
+}
+
+function addNewRandomPassiveToEden(player: EntityPlayer) {
+  const replacementCollectibleType = getEdenReplacementCollectibleType(player);
+  showEdenStartingItems.changeStartingPassiveItem(replacementCollectibleType);
+  giveCollectibleAndRemoveFromPools(player, replacementCollectibleType);
 }
 
 // ModCallbacks.MC_USE_ITEM (3)
@@ -109,4 +153,8 @@ function isBannedCollectible(entity: Entity) {
   }
 
   return false;
+}
+
+export function setStartedWithCompass(): void {
+  v.run.startedWithCompass = true;
 }

@@ -6,6 +6,7 @@ import {
 import g from "../../globals";
 import { serverCollectibleIDToCollectibleType } from "../../util";
 import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
+import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
@@ -107,8 +108,11 @@ function seeded(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   // All seeded races start with the Compass to reduce mapping RNG
-  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
-    // Eden can start with The Compass
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
+    // Eden started with The Compass, so mark to replace it with another random passive item later
+    // on
+    setStartedWithCompass();
+  } else {
     giveCollectibleAndRemoveFromPools(
       player,
       CollectibleType.COLLECTIBLE_COMPASS,
