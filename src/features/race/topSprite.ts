@@ -30,6 +30,10 @@ export function postRender(): void {
 }
 
 function drawSprite() {
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   if (sprite !== null) {
     const position = getPosition();
     sprite.RenderLayer(0, position);

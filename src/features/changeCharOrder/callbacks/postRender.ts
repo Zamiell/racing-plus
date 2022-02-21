@@ -1,10 +1,13 @@
-import { getDefaultKColor, gridToPos } from "isaacscript-common";
+import {
+  ensureAllCases,
+  getDefaultKColor,
+  gridToPos,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { ChallengeCustom } from "../../speedrun/enums";
-import * as buttons from "../buttons";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";
-import v from "../v";
+import v, { getSeasonDescription } from "../v";
 
 export function changeCharOrderPostRender(): void {
   const challenge = Isaac.GetChallenge();
@@ -14,8 +17,9 @@ export function changeCharOrderPostRender(): void {
 
   disableControls();
   drawCurrentChoosingActivity();
-  buttons.postRender();
+  drawSeasonSprites();
   drawCharacterSprites();
+  drawBuildVetoSprites();
 }
 
 function disableControls() {
@@ -24,11 +28,7 @@ function disableControls() {
 
   // Disable the controls or else the player will be able to move around while the screen is still
   // black
-  if (gameFrameCount < 1) {
-    player.ControlsEnabled = false;
-  } else {
-    player.ControlsEnabled = true;
-  }
+  player.ControlsEnabled = gameFrameCount >= 1;
 }
 
 function drawCurrentChoosingActivity() {
@@ -36,14 +36,13 @@ function drawCurrentChoosingActivity() {
   const position = Isaac.WorldToScreen(bottomCenterOfRoom);
   position.Y -= 15;
   const text = getTextForCurrentActivity(v.room.phase);
-  const length = g.fonts.droid.GetStringWidthUTF8(text);
-  g.fonts.droid.DrawString(
+  const font = g.fonts.droid;
+  const length = font.GetStringWidthUTF8(text);
+  font.DrawString(
     text,
     position.X - length / 2,
     position.Y,
     getDefaultKColor(),
-    0,
-    true,
   );
 }
 
@@ -57,34 +56,68 @@ function getTextForCurrentActivity(phase: ChangeCharOrderPhase) {
       return "Choose your character order";
     }
 
+    case ChangeCharOrderPhase.BUILD_VETO: {
+      return "Choose your build vetos";
+    }
+
     default: {
-      return "Unknown";
+      return ensureAllCases(phase);
     }
   }
 }
 
-function drawCharacterSprites() {
-  if (v.room.seasonChosenAbbreviation === null) {
+function drawSeasonSprites() {
+  if (v.room.phase !== ChangeCharOrderPhase.SEASON_SELECT) {
     return;
   }
-  const season = CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
 
-  // Render the character sprites
+  for (const [
+    seasonAbbreviation,
+    seasonSprite,
+  ] of v.room.sprites.seasons.entries()) {
+    const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
+    if (position === undefined) {
+      error(`Failed to find the positions for season: ${seasonAbbreviation}`);
+    }
+    const posButton = gridToPos(position.X, position.Y - 1);
+    const posRender = Isaac.WorldToScreen(posButton);
+    seasonSprite.RenderLayer(0, posRender);
+  }
+}
+
+function drawCharacterSprites() {
+  if (v.room.phase !== ChangeCharOrderPhase.CHARACTER_SELECT) {
+    return;
+  }
+
+  const seasonDescription = getSeasonDescription();
+
   for (let i = 0; i < v.room.sprites.characters.length; i++) {
     const characterSprite = v.room.sprites.characters[i];
-    const [, x, y] = season.charPositions[i];
+    const [, x, y] = seasonDescription.charPositions[i];
+    const oneTileAboveButton = gridToPos(x, y - 1);
+    const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
+    renderPosition.Y += 10; // Nudge it a bit upwards to make it look better
+    characterSprite.Render(renderPosition, Vector.Zero, Vector.Zero);
+  }
+}
 
-    let posCharGame;
-    if (v.room.sprites.characters.length === 1) {
-      const nextToBottomDoor = g.r.GetGridPosition(97);
-      posCharGame = nextToBottomDoor;
-    } else {
-      posCharGame = gridToPos(x, y - 1); // We want it to be one tile above the button
-    }
+function drawBuildVetoSprites() {
+  if (v.room.phase !== ChangeCharOrderPhase.BUILD_VETO) {
+    return;
+  }
 
-    const posChar = Isaac.WorldToScreen(posCharGame);
-    posChar.Y += 10; // Nudge it a bit upwards to make it look better
+  const seasonDescription = getSeasonDescription();
 
-    characterSprite.Render(posChar, Vector.Zero, Vector.Zero);
+  if (seasonDescription.buildPositions === undefined) {
+    error("buildPositions was undefined.");
+  }
+
+  for (let i = 0; i < v.room.sprites.characters.length; i++) {
+    const characterSprite = v.room.sprites.characters[i];
+    const [, x, y] = seasonDescription.buildPositions[i];
+    const oneTileAboveButton = gridToPos(x, y - 1);
+    const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
+    characterSprite.Render(renderPosition, Vector.Zero, Vector.Zero);
   }
 }

@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { arrayEmpty, saveDataManager } from "isaacscript-common";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
 
 const v = {
@@ -14,17 +14,20 @@ const v = {
     characterRunFrames: [] as int[],
   },
 
-  level: {
-    previousRoomType: RoomType.ROOM_DEFAULT,
-    repentanceDoorState: RepentanceDoorState.INITIAL,
-  },
-
   run: {
+    /** Used to fade out the screen after the player takes a Checkpoint. */
     fadeFrame: null as int | null,
+
+    /** Used to reset the game after the player takes a Checkpoint. */
     resetFrame: null as int | null,
 
     finished: false,
     finishedFrames: null as int | null,
+  },
+
+  level: {
+    previousRoomType: RoomType.ROOM_DEFAULT,
+    repentanceDoorState: RepentanceDoorState.INITIAL,
   },
 
   room: {
@@ -33,16 +36,8 @@ const v = {
 };
 export default v;
 
-declare let speedrun: typeof v;
-speedrun = v; // eslint-disable-line
-
 export function init(): void {
-  saveDataManager("speedrun", v, featureEnabled);
-}
-
-function featureEnabled() {
-  const challenge = Isaac.GetChallenge();
-  return challenge !== Challenge.CHALLENGE_NULL;
+  saveDataManager("speedrun", v);
 }
 
 export function resetPersistentVars(): void {
@@ -52,7 +47,7 @@ export function resetPersistentVars(): void {
 
   v.persistent.startedFrame = null;
   v.persistent.startedCharFrame = null;
-  v.persistent.characterRunFrames = [];
+  arrayEmpty(v.persistent.characterRunFrames);
 }
 
 export function resetFirstCharacterVars(): void {
@@ -62,5 +57,5 @@ export function resetFirstCharacterVars(): void {
 
   v.persistent.startedFrame = null;
   v.persistent.startedCharFrame = null;
-  v.persistent.characterRunFrames = [];
+  arrayEmpty(v.persistent.characterRunFrames);
 }

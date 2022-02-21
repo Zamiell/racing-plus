@@ -1,12 +1,15 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorTreasureRoom";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../util/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
+import { ChallengeCustom } from "../enums";
 import * as season1 from "../season1";
+import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -40,6 +43,7 @@ export function speedrunPostGameStarted(): void {
   giveMoreOptionsBuff();
   characterProgress.postGameStarted();
   season1.postGameStarted();
+  season2PostGameStarted();
 }
 
 function liveSplitReset() {
@@ -58,8 +62,13 @@ function liveSplitReset() {
 function setCorrectCharacter() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
-  const currentCharacter = getCurrentCharacter();
+  const challenge = Isaac.GetChallenge();
 
+  if (challenge === ChallengeCustom.SEASON_2) {
+    return false; // This is handled explicitly later
+  }
+
+  const currentCharacter = getCurrentCharacter();
   if (character !== currentCharacter) {
     v.persistent.performedFastReset = true;
     restartOnNextFrame();
@@ -100,6 +109,11 @@ function goBackToFirstCharacter() {
 
 function giveMoreOptionsBuff() {
   const player = Isaac.GetPlayer();
+
+  // Only seasons with Treasure Rooms need the More Options buff
+  if (shouldBanFirstFloorTreasureRoom()) {
+    return;
+  }
 
   // The first character of the speedrun always gets More Options to speed up the process of getting
   // a run going

@@ -25,3 +25,12 @@ export function d6(player: EntityPlayer): boolean | void {
 
   return preserveCheckpoint.preUseItemD6(player);
 }
+
+// CollectibleType.COLLECTIBLE_ETERNAL_D6 (609)
+export function eternalD6(player: EntityPlayer): boolean | void {
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  return preserveCheckpoint.preUseItemEternalD6(player);
+}

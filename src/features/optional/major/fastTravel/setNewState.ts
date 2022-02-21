@@ -11,6 +11,10 @@ import {
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { moveEsauNextToJacob } from "../../../../util";
+import {
+  planetariumFix,
+  shouldApplyPlanetariumFix,
+} from "../../../race/planetariumFix";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
@@ -69,7 +73,7 @@ export function setFadingToBlack(
   v.run.repentanceSecretExit =
     roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
-  const whitelist = new Set<ButtonAction>([ButtonAction.ACTION_MAP]);
+  const whitelist = new Set([ButtonAction.ACTION_MAP]);
   disableAllInputsExceptFor(whitelist);
 
   setGameStateFlags();
@@ -229,6 +233,12 @@ function setGoingToNewFloor() {
 
   blackSprite.setFullyOpaque();
 
+  // Defer going to the next floor if we are in a seeded race
+  if (shouldApplyPlanetariumFix()) {
+    planetariumFix();
+    return;
+  }
+
   // Before moving to the next floor, we need to change the room so that health from a Strength
   // card is properly decremented
   // We arbitrarily use the starting room for this
@@ -238,7 +248,6 @@ function setGoingToNewFloor() {
   decrementRoomsEntered(); // This should not count as entering a room
 
   nextFloor.goto(v.run.upwards);
-
   setNewState(FastTravelState.FADING_IN);
 }
 
@@ -303,7 +312,7 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
   }
 }
 
-function spawnHoles(players: EntityPlayer[]) {
+export function spawnHoles(players: EntityPlayer[]): void {
   // Spawn a hole for each player to jump out of
   for (const player of players) {
     Isaac.Spawn(

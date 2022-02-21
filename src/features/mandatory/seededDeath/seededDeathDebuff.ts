@@ -1,25 +1,21 @@
 import {
   arrayEmpty,
-  getDefaultColor,
   getEnumValues,
-  getFamiliars,
   getNPCs,
   getPlayerCollectibleMap,
-  getTransformationsForItem,
-  isJacobOrEsau,
+  getTransformationsForCollectibleType,
   removeAllFamiliars,
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
 } from "isaacscript-common";
-import g from "../../globals";
-import { TRANSFORMATION_TO_HELPER_MAP } from "../../maps/transformationToHelperMap";
-import { ActiveItemDescription } from "../../types/ActiveItemDescription";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
-import { TRANSFORMATION_HELPERS } from "../../types/transformationHelpers";
+import g from "../../../globals";
+import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelperMap";
+import { ActiveItemDescription } from "../../../types/ActiveItemDescription";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { TRANSFORMATION_HELPERS } from "../../../types/transformationHelpers";
+import { applySeededGhostFade } from "./seededDeath";
 import v from "./v";
-
-const QUARTER_FADED_COLOR = Color(1, 1, 1, 0.25);
 
 export function debuffOn(player: EntityPlayer): void {
   // Make them take "red heart damage" for the purposes of getting a Devil Deal
@@ -41,9 +37,9 @@ function debuffOnRemoveSize(player: EntityPlayer) {
   // Store their size for later and reset it to default
   // (in case they had items like Magic Mushroom and so forth)
   if (character === PlayerType.PLAYER_ESAU) {
-    v.run.seededDeath.spriteScale2 = player.SpriteScale;
+    v.run.spriteScale2 = player.SpriteScale;
   } else {
-    v.run.seededDeath.spriteScale = player.SpriteScale;
+    v.run.spriteScale = player.SpriteScale;
   }
   player.SpriteScale = Vector(1, 1);
 }
@@ -65,7 +61,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
 
     // 16
     case PlayerType.PLAYER_THEFORGOTTEN: {
-      // One filled bone heart
+      // One half-filled bone heart
       player.AddMaxHearts(2, true);
       player.AddHearts(1);
       break;
@@ -82,9 +78,9 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 18, 22
     case PlayerType.PLAYER_BETHANY:
     case PlayerType.PLAYER_MAGDALENE_B: {
-      // One heart container
-      player.AddMaxHearts(2, true);
-      player.AddHearts(2);
+      // 1.5 filled red heart containers
+      player.AddMaxHearts(4, true);
+      player.AddHearts(3);
       break;
     }
 
@@ -99,14 +95,12 @@ function debuffOnSetHealth(player: EntityPlayer) {
 function debuffOnRemoveActiveItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const activesMap =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.seededDeath.actives2
-      : v.run.seededDeath.actives;
+    character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
 
   // Before we iterate over the active items, we need to remove the book that is sitting under the
   // active item, if any
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES)) {
-    v.run.seededDeath.hasBookOfVirtues = true;
+    v.run.hasBookOfVirtues = true;
     removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES);
   }
   if (
@@ -114,7 +108,7 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
     player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) &&
     player.HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
   ) {
-    v.run.seededDeath.hasBookOfBelialBirthrightCombo = true;
+    v.run.hasBookOfBelialBirthrightCombo = true;
     removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL);
     removeCollectible(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
@@ -150,9 +144,7 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
 function debuffOnRemoveAllItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const items =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.seededDeath.items2
-      : v.run.seededDeath.items;
+    character === PlayerType.PLAYER_ESAU ? v.run.items2 : v.run.items;
 
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
@@ -181,12 +173,12 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   }
 
   // Store their golden bomb / key status
-  v.run.seededDeath.goldenBomb = player.HasGoldenBomb();
-  v.run.seededDeath.goldenKey = player.HasGoldenKey();
+  v.run.goldenBomb = player.HasGoldenBomb();
+  v.run.goldenKey = player.HasGoldenKey();
 
   // The golden bomb / key are tied to the particular stage
-  v.run.seededDeath.stage = stage;
-  v.run.seededDeath.stageType = stageType;
+  v.run.stage = stage;
+  v.run.stageType = stageType;
 
   // Remove any golden bombs and keys
   player.RemoveGoldenBomb();
@@ -218,7 +210,7 @@ function debuffOnRemoveDarkEsau() {
   );
   for (const darkEsau of darkEsaus) {
     darkEsau.Remove();
-    v.run.seededDeath.removedDarkEsau = true;
+    v.run.removedDarkEsau = true;
   }
 }
 
@@ -236,35 +228,33 @@ function debuffOffRestoreSize(player: EntityPlayer) {
 
   // Set their size to the way it was before the debuff was applied
   if (character === PlayerType.PLAYER_ESAU) {
-    if (v.run.seededDeath.spriteScale2 !== null) {
-      player.SpriteScale = v.run.seededDeath.spriteScale2;
+    if (v.run.spriteScale2 !== null) {
+      player.SpriteScale = v.run.spriteScale2;
     }
-    v.run.seededDeath.spriteScale2 = null;
+    v.run.spriteScale2 = null;
   } else {
-    if (v.run.seededDeath.spriteScale !== null) {
-      player.SpriteScale = v.run.seededDeath.spriteScale;
+    if (v.run.spriteScale !== null) {
+      player.SpriteScale = v.run.spriteScale;
     }
-    v.run.seededDeath.spriteScale = null;
+    v.run.spriteScale = null;
   }
 }
 
 function debuffOffAddActiveItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const activesMap =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.seededDeath.actives2
-      : v.run.seededDeath.actives;
+    character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
 
   // Before we restore the active items, we need to restore the book that was sitting under the
   // active item, if any
-  if (v.run.seededDeath.hasBookOfVirtues) {
-    v.run.seededDeath.hasBookOfVirtues = false;
+  if (v.run.hasBookOfVirtues) {
+    v.run.hasBookOfVirtues = false;
 
     // We set "firstTimePickingUp" to true since it needs to count towards Bookworm
     player.AddCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, 0, true);
   }
-  if (v.run.seededDeath.hasBookOfBelialBirthrightCombo) {
-    v.run.seededDeath.hasBookOfBelialBirthrightCombo = false;
+  if (v.run.hasBookOfBelialBirthrightCombo) {
+    v.run.hasBookOfBelialBirthrightCombo = false;
 
     player.AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT, 0, false);
 
@@ -295,9 +285,7 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
 function debuffOffAddAllItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const items =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.seededDeath.items2
-      : v.run.seededDeath.items;
+    character === PlayerType.PLAYER_ESAU ? v.run.items2 : v.run.items;
 
   for (const collectibleType of items) {
     player.AddCollectible(collectibleType, 0, false);
@@ -317,8 +305,8 @@ function giveTransformationHelper(
   player: EntityPlayer,
   collectibleType: CollectibleType,
 ) {
-  const transformations = getTransformationsForItem(collectibleType);
-  for (const transformation of transformations) {
+  const transformations = getTransformationsForCollectibleType(collectibleType);
+  for (const transformation of transformations.values()) {
     const helperCollectibleType =
       TRANSFORMATION_TO_HELPER_MAP.get(transformation);
     if (helperCollectibleType !== undefined) {
@@ -352,34 +340,28 @@ function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
     return;
   }
 
-  if (v.run.seededDeath.goldenBomb) {
-    v.run.seededDeath.goldenBomb = false;
+  if (v.run.goldenBomb) {
+    v.run.goldenBomb = false;
 
-    if (
-      stage === v.run.seededDeath.stage &&
-      stageType === v.run.seededDeath.stageType
-    ) {
+    if (stage === v.run.stage && stageType === v.run.stageType) {
       player.AddGoldenBomb();
     }
   }
 
-  if (v.run.seededDeath.goldenKey) {
-    v.run.seededDeath.goldenKey = false;
+  if (v.run.goldenKey) {
+    v.run.goldenKey = false;
 
-    if (
-      stage === v.run.seededDeath.stage &&
-      stageType === v.run.seededDeath.stageType
-    ) {
+    if (stage === v.run.stage && stageType === v.run.stageType) {
       player.AddGoldenKey();
     }
   }
 }
 
 function debuffOffAddDarkEsau() {
-  if (!v.run.seededDeath.removedDarkEsau) {
+  if (!v.run.removedDarkEsau) {
     return;
   }
-  v.run.seededDeath.removedDarkEsau = false;
+  v.run.removedDarkEsau = false;
 
   const centerPos = g.r.GetCenterPos();
   Isaac.Spawn(
@@ -390,31 +372,6 @@ function debuffOffAddDarkEsau() {
     Vector.Zero,
     undefined,
   );
-}
-
-export function applySeededGhostFade(
-  player: EntityPlayer,
-  enabled: boolean,
-): void {
-  const character = player.GetPlayerType();
-
-  const sprite = player.GetSprite();
-  const newColor = enabled ? QUARTER_FADED_COLOR : getDefaultColor();
-  sprite.Color = newColor;
-
-  if (character === PlayerType.PLAYER_THESOUL) {
-    const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
-    for (const forgottenBody of forgottenBodies) {
-      const forgottenSprite = forgottenBody.GetSprite();
-      forgottenSprite.Color = newColor;
-    }
-  } else if (isJacobOrEsau(player)) {
-    const twin = player.GetOtherTwin();
-    if (twin !== undefined) {
-      const twinSprite = twin.GetSprite();
-      twinSprite.Color = newColor;
-    }
-  }
 }
 
 function removeCollectible(

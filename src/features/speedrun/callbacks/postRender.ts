@@ -5,6 +5,8 @@ import {
   setRestartCharacter,
 } from "../../util/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
+import { ChallengeCustom } from "../enums";
+import { season2PostRender } from "../season2/callbacks/postRender";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
 import v from "../v";
@@ -21,6 +23,8 @@ export function speedrunPostRender(): void {
 
   speedrunTimer.postRender();
   characterProgress.postRender();
+
+  season2PostRender();
 }
 
 function checkBeginFadeOutAfterCheckpoint() {
@@ -48,14 +52,26 @@ function checkManualResetAtEndOfFadeout() {
   if (v.run.resetFrame === null || isaacFrameCount < v.run.resetFrame) {
     return;
   }
+  v.run.resetFrame = null;
 
   // The screen is now black, so move us to the next character for the speedrun
-  v.run.resetFrame = null;
+  speedrunSetNextCharacterAndRestart();
+}
+
+export function speedrunSetNextCharacterAndRestart(goForward = true): void {
+  const challenge = Isaac.GetChallenge();
+
   v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
-  v.persistent.characterNum += 1;
+  const adjustment = goForward ? 1 : -1;
+  v.persistent.characterNum += adjustment;
   restartOnNextFrame();
-  const character = getCurrentCharacter();
-  setRestartCharacter(character);
+
+  // Season 2 will set the next character using its own code
+  if (challenge !== ChallengeCustom.SEASON_2) {
+    const character = getCurrentCharacter();
+    setRestartCharacter(character);
+  }
+
   log(
     `Switching to the next character for the speedrun: ${v.persistent.characterNum}`,
   );

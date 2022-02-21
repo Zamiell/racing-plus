@@ -1,11 +1,18 @@
-import { getRoomStageID, getRoomVariant, log } from "isaacscript-common";
+import {
+  getRoomStageID,
+  getRoomSubType,
+  getRoomVariant,
+  log,
+} from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
+import * as banFirstFloorTreasureRoom from "../features/mandatory/banFirstFloorTreasureRoom";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
+import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
-import * as roomVisiter from "../features/mandatory/roomVisiter";
+import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
@@ -25,6 +32,7 @@ import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTw
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
+import * as planetariumFix from "../features/race/planetariumFix";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
 import * as roomsEntered from "../features/util/roomsEntered";
@@ -39,14 +47,18 @@ export function main(): void {
   const isaacFrameCount = Isaac.GetFrameCount();
   const roomStageID = getRoomStageID();
   const roomVariant = getRoomVariant();
+  const roomSubType = getRoomSubType();
 
   log(
-    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant}.${roomSubType} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
   );
 
   // Util
   detectSlideAnimation.postNewRoom();
   roomsEntered.postNewRoom();
+
+  // Special features that must be executed first
+  showDreamCatcherItemPostNewRoom(); // 566
 
   // Mandatory
   removeGloballyBannedItems.postNewRoom();
@@ -55,10 +67,13 @@ export function main(): void {
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
-  roomVisiter.postNewRoom();
+  banFirstFloorTreasureRoom.postNewRoom();
+  preventSacrificeRoomTeleport.postNewRoom();
+  seededDeathPostNewRoom();
 
   // Major
   racePostNewRoom();
+  planetariumFix.postNewRoom();
   speedrunPostNewRoom();
   charCharOrderPostNewRoom();
   startWithD6.postNewRoom();
@@ -75,7 +90,6 @@ export function main(): void {
   removeTreasureRoomEnemies.postNewRoom();
 
   // QoL
-  showDreamCatcherItemPostNewRoom(); // 566
   fastVanishingTwin.postNewRoom(); // 697
   subvertTeleport.postNewRoom();
 

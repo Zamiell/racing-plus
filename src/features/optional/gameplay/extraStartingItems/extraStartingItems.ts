@@ -65,6 +65,7 @@ export function postNewRoom(): void {
 
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
+
   const numDeathTouches = Isaac.CountEntities(
     undefined,
     EntityType.ENTITY_PICKUP,
@@ -72,6 +73,7 @@ function rollDuplicateItems() {
     CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
   );
   const deathsTouchExists = numDeathTouches > 0;
+
   const numMagicMushrooms = Isaac.CountEntities(
     undefined,
     EntityType.ENTITY_PICKUP,

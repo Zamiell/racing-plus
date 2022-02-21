@@ -15,6 +15,7 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { initItemSprite } from "../../sprite";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
 const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
 const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
@@ -23,9 +24,17 @@ const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
 const v = {
   level: {
-    /** Indexed by collectible InitSeed. */
-    flippedCollectibleTypes: new Map<int, CollectibleType>(),
-    flippedSprites: new Map<int, Sprite>(),
+    /**
+     * Indexed by collectible PtrHash.
+     * (PtrHash is consistent across rerolls, while InitSeed is not.)
+     */
+    flippedCollectibleTypes: new Map<PtrHash, CollectibleType>(),
+
+    /**
+     * Indexed by collectible PtrHash.
+     * (PtrHash is consistent across rerolls, while InitSeed is not.)
+     */
+    flippedSprites: new Map<PtrHash, Sprite>(),
   },
 };
 
@@ -45,9 +54,8 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
   }
 
   for (const collectible of getCollectibles()) {
-    const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
-      collectible.InitSeed,
-    );
+    const ptrHash = GetPtrHash(collectible);
+    const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
 
     // Do not convert items back to an empty pedestal
     // (this matches the behavior of the vanilla Flip)
@@ -58,10 +66,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     // Flip the items
     const oldCollectibleType = collectible.SubType;
     setCollectibleSubType(collectible, flippedCollectibleType);
-    v.level.flippedCollectibleTypes.set(
-      collectible.InitSeed,
-      oldCollectibleType,
-    );
+    v.level.flippedCollectibleTypes.set(ptrHash, oldCollectibleType);
   }
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
@@ -99,15 +104,14 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
     return;
   }
 
-  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
-    collectible.InitSeed,
-  );
+  const ptrHash = GetPtrHash(collectible);
+  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
   if (flippedCollectibleType !== undefined) {
     return;
   }
 
   const newCollectibleType = getNewFlippedCollectibleType(collectible);
-  v.level.flippedCollectibleTypes.set(collectible.InitSeed, newCollectibleType);
+  v.level.flippedCollectibleTypes.set(ptrHash, newCollectibleType);
 }
 
 function getNewFlippedCollectibleType(collectible: EntityPickup) {
@@ -120,7 +124,17 @@ function getNewFlippedCollectibleType(collectible: EntityPickup) {
   }
 
   const itemPoolType = getCollectibleItemPoolType(collectible);
-  return g.itemPool.GetCollectible(itemPoolType, true, collectible.InitSeed);
+  const collectibleType = g.itemPool.GetCollectible(
+    itemPoolType,
+    true,
+    collectible.InitSeed,
+  );
+
+  const replacementCollectibleType =
+    COLLECTIBLE_REPLACEMENT_MAP.get(collectibleType);
+  return replacementCollectibleType === undefined
+    ? collectibleType
+    : replacementCollectibleType;
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
@@ -137,9 +151,8 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
-    collectible.InitSeed,
-  );
+  const ptrHash = GetPtrHash(collectible);
+  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
   if (
     flippedCollectibleType === undefined ||
     flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
@@ -147,7 +160,7 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  let flippedSprite = v.level.flippedSprites.get(collectible.InitSeed);
+  let flippedSprite = v.level.flippedSprites.get(ptrHash);
   if (flippedSprite === undefined) {
     flippedSprite = initFlippedSprite(flippedCollectibleType);
   }

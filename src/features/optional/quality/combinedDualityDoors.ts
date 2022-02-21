@@ -71,19 +71,24 @@ function getPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor) {
   const useYAxis = door.Slot % 2 === 0;
   const invertDirection = shouldInvertDirection(door.Slot);
 
+  // We combine position and velocity to project where the player will be a frame from now
+  // We do this instead of simply using the position in order to be more accurate when the player is
+  // moving diagonally
+  const projectedPosition = player.Position.add(player.Velocity);
+
   if (useYAxis) {
     if (invertDirection) {
-      return player.Position.Y < door.Position.Y;
+      return projectedPosition.Y < door.Position.Y;
     }
 
-    return player.Position.Y > door.Position.Y;
+    return projectedPosition.Y > door.Position.Y;
   }
 
   if (invertDirection) {
-    return player.Position.X > door.Position.X;
+    return projectedPosition.X > door.Position.X;
   }
 
-  return player.Position.X < door.Position.X;
+  return projectedPosition.X < door.Position.X;
 }
 
 function shouldInvertDirection(slot: DoorSlot) {

@@ -33,6 +33,10 @@ export function postRender(): void {
 }
 
 function drawSprites() {
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   if (
     g.race.myStatus === RacerStatus.FINISHED ||
     g.race.myStatus === RacerStatus.QUIT ||
@@ -41,9 +45,8 @@ function drawSprites() {
     return;
   }
 
-  for (const [key, sprite] of Object.entries(sprites)) {
+  for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const spriteName = key;
       const position = getPosition(spriteName);
       sprite.RenderLayer(0, position);
     }
@@ -118,8 +121,9 @@ function getPosition(spriteName: keyof typeof sprites) {
     }
 
     default: {
-      error(`Starting room sprites named "${spriteName}" are unsupported.`);
-      return Vector.Zero;
+      return error(
+        `Starting room sprites named "${spriteName}" are unsupported.`,
+      );
     }
   }
 }
@@ -172,44 +176,46 @@ export function initSprites(): void {
 }
 
 function initSeededSprites() {
-  const title = g.race.startingItems.length === 1 ? "item" : "build";
+  const { startingItems } = g.race;
+
+  const title = startingItems.length === 1 ? "item" : "build";
   sprites.seededStartingTitle = initSprite(
     `${GFX_PATH}/seeded-starting-${title}.anm2`,
   );
 
-  if (g.race.startingItems.length === 1) {
+  if (startingItems.length === 1) {
     sprites.seededItemCenter = initGlowingItemSprite(
-      g.race.startingItems[0] as CollectibleType,
+      startingItems[0] as CollectibleType,
     );
-  } else if (g.race.startingItems.length === 2) {
+  } else if (startingItems.length === 2) {
     sprites.seededItemLeft = initGlowingItemSprite(
-      g.race.startingItems[0] as CollectibleType,
+      startingItems[0] as CollectibleType,
     );
     sprites.seededItemRight = initGlowingItemSprite(
-      g.race.startingItems[1] as CollectibleType,
+      startingItems[1] as CollectibleType,
     );
-  } else if (g.race.startingItems.length === 3) {
+  } else if (startingItems.length === 3) {
     sprites.seededItemCenter = initGlowingItemSprite(
-      g.race.startingItems[0] as CollectibleType,
+      startingItems[0] as CollectibleType,
     );
     sprites.seededItemFarLeft = initGlowingItemSprite(
-      g.race.startingItems[1] as CollectibleType,
+      startingItems[1] as CollectibleType,
     );
     sprites.seededItemFarRight = initGlowingItemSprite(
-      g.race.startingItems[2] as CollectibleType,
+      startingItems[2] as CollectibleType,
     );
-  } else if (g.race.startingItems.length === 4) {
+  } else if (startingItems.length === 4) {
     sprites.seededItemLeft = initGlowingItemSprite(
-      g.race.startingItems[1] as CollectibleType,
+      startingItems[1] as CollectibleType,
     );
     sprites.seededItemRight = initGlowingItemSprite(
-      g.race.startingItems[2] as CollectibleType,
+      startingItems[2] as CollectibleType,
     );
     sprites.seededItemFarLeft = initGlowingItemSprite(
-      g.race.startingItems[0] as CollectibleType,
+      startingItems[0] as CollectibleType,
     );
     sprites.seededItemFarRight = initGlowingItemSprite(
-      g.race.startingItems[3] as CollectibleType,
+      startingItems[3] as CollectibleType,
     );
   }
 }

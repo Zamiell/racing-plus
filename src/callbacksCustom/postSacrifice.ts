@@ -1,9 +1,9 @@
+import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as showNumSacrifices from "../features/optional/quality/showNumSacrifices";
-import { racePostSacrifice } from "../features/race/callbacks/postSacrifice";
 
 export function main(player: EntityPlayer, numSacrifices: int): void {
-  // Major
-  racePostSacrifice(player, numSacrifices);
+  // Mandatory
+  preventSacrificeRoomTeleport.postSacrifice(numSacrifices);
 
   // QoL
   showNumSacrifices.postSacrifice(numSacrifices);

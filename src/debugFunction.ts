@@ -11,10 +11,12 @@ import { hotkeys } from "./modConfigMenu";
 const DEBUG_HOTKEY_1 = Keyboard.KEY_F2;
 const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 
-let debugHotkeyPressed = false;
+let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
-function debugCode() {}
+function debugCode() {
+  // Add code here
+}
 
 export function debugFunction(): void {
   g.debug = true;
@@ -33,12 +35,12 @@ export function postUpdate(): void {
   }
 
   if (isKeyboardPressed(DEBUG_HOTKEY_1)) {
-    if (!debugHotkeyPressed) {
+    if (!debugHotkey1Pressed) {
       hotkey1Function();
     }
-    debugHotkeyPressed = true;
+    debugHotkey1Pressed = true;
   } else {
-    debugHotkeyPressed = false;
+    debugHotkey1Pressed = false;
   }
 
   if (isKeyboardPressed(DEBUG_HOTKEY_2)) {
@@ -62,6 +64,21 @@ function hotkey2Function() {
 
   printConsole("Test hotkeys set.");
 }
+
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender() {
+  /*
+  // Log all keyboard presses
+  for (const keyboard of getEnumValues(Keyboard)) {
+    if (isKeyboardPressed(keyboard)) {
+      log(`Key is pressed: ${keyboardToString(keyboard)} - ${keyboard}`);
+    }
+  }
+  */
+}
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted() {}
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {

@@ -1,5 +1,5 @@
 import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
-import { racePostCustomRevive } from "../features/race/callbacks/postCustomRevive";
+import { seededDeathPostCustomRevive } from "../features/mandatory/seededDeath/callbacks/postCustomRevive";
 import { RevivalType } from "../features/race/types/RevivalType";
 
 export function init(mod: ModUpgraded): void {
@@ -11,5 +11,5 @@ export function init(mod: ModUpgraded): void {
 }
 
 function seededDeath(player: EntityPlayer, _revivalType: int) {
-  racePostCustomRevive(player);
+  seededDeathPostCustomRevive(player);
 }

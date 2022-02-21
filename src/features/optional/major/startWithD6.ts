@@ -23,7 +23,7 @@ import {
   isJacobOrEsau,
   log,
   PlayerIndex,
-  runNextFrame,
+  runNextGameFrame,
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
@@ -168,7 +168,7 @@ export function postFlip(player: EntityPlayer): void {
   // We cannot simply set the active charge, because Tainted Lazarus will get an additional charge
   // on the next frame, causing them to get a double-charge for clearing a room
   // Thus, defer setting the charge for a frame
-  runNextFrame(() => {
+  runNextGameFrame(() => {
     player.SetActiveCharge(v.run.currentFlipCharge, flipActiveSlot);
   });
 }

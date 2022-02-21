@@ -13,8 +13,9 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   }
 
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
 
-  if (stage >= 11) {
+  if (stage >= 11 && roomType === RoomType.ROOM_BOSS) {
     pickup.Remove();
   }
 }

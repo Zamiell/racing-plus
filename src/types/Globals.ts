@@ -18,7 +18,7 @@ export class Globals {
     pf: Font(),
   };
 
-  chatMessages: ChatMessage[] = [];
+  readonly chatMessages: ChatMessage[] = [];
 
   /** Race variables that are set via the client communicating with us over a socket. */
   race = new RaceData();

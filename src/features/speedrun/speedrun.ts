@@ -5,6 +5,7 @@ import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS } from "./constants";
+import { ChallengeCustom } from "./enums";
 import v from "./v";
 
 export function checkValidCharOrder(): boolean {
@@ -101,7 +102,7 @@ export function getFirstCharacter(): PlayerType {
   return character;
 }
 
-function getCharacterOrderSafe() {
+export function getCharacterOrderSafe(): PlayerType[] {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
   if (challengeDefinition === undefined) {
@@ -140,7 +141,10 @@ function getCharacterOrderSafe() {
     );
   }
 
-  if (v.persistent.characterNum > characterOrder.length) {
+  if (
+    v.persistent.characterNum > characterOrder.length &&
+    challenge !== ChallengeCustom.SEASON_2
+  ) {
     error(
       `The character number of "${v.persistent.characterNum}" is greater than ${characterOrder.length} (i.e. the amount of characters in this speedrun).`,
     );
@@ -151,13 +155,8 @@ function getCharacterOrderSafe() {
 
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();
-  for (const key of CHALLENGE_DEFINITIONS.keys()) {
-    if (key === challenge) {
-      return true;
-    }
-  }
-
-  return false;
+  const speedrunChallenges = [...CHALLENGE_DEFINITIONS.keys()];
+  return speedrunChallenges.includes(challenge);
 }
 
 export function isOnFinalCharacter(): boolean {

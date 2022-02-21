@@ -204,8 +204,6 @@ function drawTextAndSprite() {
     x - 10,
     baseY - 9 + 20,
     getDefaultKColor(),
-    0,
-    true,
   );
 
   baseY += 20;
@@ -226,14 +224,7 @@ function drawTextAndSprite() {
     if (pillEffectName === "Feels like I'm walking on sunshine!") {
       pillEffectName = "Walking on sunshine!";
     }
-    g.fonts.droid.DrawString(
-      pillEffectName,
-      x + 15,
-      y - 9,
-      getDefaultKColor(),
-      0,
-      true,
-    );
+    g.fonts.droid.DrawString(pillEffectName, x + 15, y - 9, getDefaultKColor());
   }
 }
 

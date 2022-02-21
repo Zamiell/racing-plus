@@ -9,7 +9,7 @@ import {
   isRoomInsideMap,
   log,
   removeGridEntity,
-  runNextFrame,
+  runNextGameFrame,
   spawnGridEntity,
   teleport,
 } from "isaacscript-common";
@@ -268,7 +268,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
   // the teleporter will immediately despawn for some reason
   // Work around this by simply spawning it on the next game frame
   const gridIndex = gridEntity.GetGridIndex();
-  runNextFrame(() => {
+  runNextGameFrame(() => {
     spawnGridEntity(GridEntityType.GRID_TELEPORTER, gridIndex);
     v.room.teleporterSpawned = true;
   });

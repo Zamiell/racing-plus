@@ -1,3 +1,4 @@
+import { saveDataManagerLoad } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
@@ -7,11 +8,12 @@ import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
 import * as errors from "./features/mandatory/errors";
 import * as fireworks from "./features/mandatory/fireworks";
+import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
-import * as roomVisiter from "./features/mandatory/roomVisiter";
 import * as runTimer from "./features/mandatory/runTimer";
+import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
@@ -45,10 +47,12 @@ import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars"
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
+import * as planetariumFix from "./features/race/planetariumFix";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
+import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as detectSlideAnimation from "./features/util/detectSlideAnimation";
 import * as restartOnNextFrame from "./features/util/restartOnNextFrame";
@@ -64,7 +68,9 @@ export function initFeatureVariables(): void {
   raceVars.init();
   socketClient.init();
   shadows.init();
+  planetariumFix.init();
   speedrunVars.init();
+  season2.init();
   changeCharOrderVars.init();
   characterProgress.init();
   passiveItemsForEden.init();
@@ -93,7 +99,8 @@ export function initFeatureVariables(): void {
   dummyDPS.init();
   debugPowers.init();
   errors.init();
-  roomVisiter.init();
+  preventSacrificeRoomTeleport.init();
+  seededDeath.init();
 
   // Major
   startWithD6.init();
@@ -137,4 +144,9 @@ export function initFeatureVariables(): void {
   // Other
   customConsole.init();
   roll.init();
+
+  // Now that all of the features have been initialized, we can get the save data manager to load
+  // data from disk before the first run begins
+  // (this prevents bugs with isaacscript-watcher when reloading the mod in the middle of a run)
+  saveDataManagerLoad();
 }

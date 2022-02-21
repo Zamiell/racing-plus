@@ -18,6 +18,7 @@ import {
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
+import { ChallengeCustom } from "./enums";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
@@ -32,6 +33,7 @@ export function preUseItemWeNeedToGoDeeper(
   player: EntityPlayer,
 ): boolean | void {
   const stage = g.l.GetStage();
+  const challenge = Isaac.GetChallenge();
 
   const trapdoorChance = rng.RandomFloat();
   const gridEntityType =
@@ -40,7 +42,12 @@ export function preUseItemWeNeedToGoDeeper(
       : GridEntityType.GRID_TRAPDOOR;
 
   // Do not allow trapdoors on stage 9 and above
-  if (stage >= 9 && gridEntityType === GridEntityType.GRID_TRAPDOOR) {
+  // (or stage 8 for seasons that go to the Dark Room)
+  const finalFloorForTrapdoors = challenge === ChallengeCustom.SEASON_2 ? 7 : 8;
+  if (
+    stage > finalFloorForTrapdoors &&
+    gridEntityType === GridEntityType.GRID_TRAPDOOR
+  ) {
     return undefined;
   }
 
@@ -140,7 +147,9 @@ function spawnTrapdoorInBossRooms() {
 
   // Emulate the feature of vanilla where surrounding rocks will be destroyed and surrounding pits
   // will be filled
-  clearSurroundingTiles(trapdoor);
+  if (trapdoor !== undefined) {
+    clearSurroundingTiles(trapdoor);
+  }
 }
 
 // In challenges with 'secretpath="true"', trapdoors will only spawn on certain floors
@@ -233,8 +242,7 @@ function getDoorStateForMinesDoor(door: GridEntityDoor) {
     }
 
     default: {
-      error("A Mines door had an unknown state.");
-      return RepentanceDoorState.INITIAL;
+      return error("A Mines door had an unknown state.");
     }
   }
 }

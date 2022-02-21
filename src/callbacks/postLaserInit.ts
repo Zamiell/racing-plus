@@ -1,4 +1,4 @@
-import * as racePostLaserInit from "../features/race/callbacks/postLaserInit";
+import { seededDeathPostLaserInitGiantRed } from "../features/mandatory/seededDeath/callbacks/postLaserInit";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
@@ -10,5 +10,5 @@ export function init(mod: Mod): void {
 
 // LaserVariant.GIANT_RED (6)
 function giantRed(laser: EntityLaser) {
-  racePostLaserInit.giantRed(laser);
+  seededDeathPostLaserInitGiantRed(laser);
 }

@@ -1,6 +1,7 @@
 import { saveDataManager } from "isaacscript-common";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
+import { SeasonDescription } from "./types/SeasonDescription";
 
 const v = {
   persistent: {
@@ -15,7 +16,9 @@ const v = {
       | null,
     createButtonsFrame: null as int | null,
     charOrder: [] as PlayerType[],
+    buildsChosen: [] as int[],
     sprites: {
+      /** Indexed by season abbreviation. */
       seasons: new Map<string, Sprite>(),
       characters: [] as Sprite[],
       items: [] as Sprite[],
@@ -39,8 +42,24 @@ export function getCharacterOrder(key: string): PlayerType[] | undefined {
   return v.persistent.charOrders.get(key);
 }
 
+export function getSeasonDescription(): SeasonDescription {
+  if (v.room.seasonChosenAbbreviation === null) {
+    error("seasonChosenAbbreviation is null.");
+  }
+
+  const seasonDescription =
+    CHANGE_CHAR_ORDER_POSITIONS[v.room.seasonChosenAbbreviation];
+  if (seasonDescription === undefined) {
+    error(
+      `Failed to get the season description for: ${v.room.seasonChosenAbbreviation}`,
+    );
+  }
+
+  return seasonDescription;
+}
+
 export function setCharacterOrderDebug(): void {
-  const order = [
+  const characterOrder = [
     PlayerType.PLAYER_APOLLYON,
     PlayerType.PLAYER_BETHANY_B,
     PlayerType.PLAYER_THELOST,
@@ -49,5 +68,10 @@ export function setCharacterOrderDebug(): void {
     PlayerType.PLAYER_KEEPER_B,
     PlayerType.PLAYER_AZAZEL,
   ];
-  v.persistent.charOrders.set("R7S1", order);
+  v.persistent.charOrders.set("R7S1", characterOrder);
+}
+
+export function setBuildVetosDebug(): void {
+  const buildVetos = [0, 1, 2];
+  v.persistent.charOrders.set("R7S2", buildVetos);
 }

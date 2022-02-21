@@ -1,11 +1,12 @@
 import { updateCachedAPIFunctions } from "../cache";
+import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as errors from "../features/mandatory/errors";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
-import * as roomVisiter from "../features/mandatory/roomVisiter";
 import * as runTimer from "../features/mandatory/runTimer";
+import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
@@ -49,7 +50,8 @@ export function main(): void {
   runTimer.postRender();
   topLeftText.postRender();
   drawVersion.postRender();
-  roomVisiter.postRender();
+  seededDeathPostRender();
+  debugFunction.postRender();
 
   // Major
   racePostRender();

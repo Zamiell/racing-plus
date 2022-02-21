@@ -1,12 +1,35 @@
 # Racing+ Version History and News
 
-### *v0.74.25* - February ?rd, 2022
+### *v0.76.0* - February ?th, 2022
+
+- The first angel in a run is now always Uriel.
+- Removed some pits in Angel Rooms #5, #8, #10, #13 (to make it easier to fight two angels at the same time).
+- Deleted Angel Room #4 (with the TNT barrels).
+- Deleted Angel Room #12 (with the White Poop).
+- Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
+- In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
+- In seeded races, Birthright is now removed from pools if you start as The Lost.
+- Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
+- Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
+- Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
+- Fixed the bug where you would only need to kill The Lamb's body to get a trophy under certain conditions. (Thanks Fallenfor & Gamonymous)
+- Fixed the bug where Perfection would disappear if you drop it on the end floor. (Thanks sisuka)
+- Fixed the bug where Flip would incorrectly get first floor placeholder items. (Thanks Gamonymous)
+- Fixed the bug where GB Bug would incorrectly have a chance to spawn pedestal items. (Thanks Gamonymous)
+- Fixed the bug where glitched pedestal item replacement wasn't working correctly.
+- Fixed the bug where moving diagonally into a combined duality door would not grant the right room under certain conditions. (Thanks Shiny)
+
+### *v0.75.0* - February 19th, 2022
 
 - In seeded races, you will now be able to see what the 3 Dollar Bill item is for the current room on the item tracker. Thanks to Gamonymous for coding this.
-- Fixed the bug with two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where in seeded races, some players would get Planetariums and other players would not. (Thanks Moucheron Quipet)
+- Fixed the bug where having Dream Catcher would count as having entered the Treasure Room (for the purposes of Planetarium spawning chances). As a result of this, there is a significantly more lag upon reaching a new floor whenever you have Dream Catcher. (Thanks Gamonymous)
+- Fixed the bug where two Dark Esaus could spawn under certain conditions. (Thanks Fallenfor)
 - Fixed the bug where Dark Esau would prevent fast-clear from working properly. (Thanks Fallenfor)
 - Fixed the bug where the server was not validating seeded races properly. (Thanks AshDown)
-- Fixed the bug where having Dream Catcher would count as having entered the Treasure Room (for the purposes of Planetarium spawning chances). (Thanks Gamonymous)
+- Fixed the bug with seeded death where the health was incorrectly shown when you were dying.
+- Fixed the bug where you could roll a Checkpoint with an Eternal D6.
+- Fixed the bug where rolling a pedestal item would delete the flipped item. (Thanks Po4ti)
 
 ### *v0.74.24* - February 2nd, 2022
 

@@ -7,7 +7,6 @@ import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import { raceStart } from "../raceStart";
 import * as raceTimer from "../raceTimer";
-import * as seededDeath from "../seededDeath";
 import * as shadows from "../shadows/shadows";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
@@ -23,7 +22,6 @@ export function racePostRender(): void {
   socket.postRender();
   raceTimer.postRender();
   placeLeft.postRender();
-  seededDeath.postRender();
   endOfRaceButtons.postRender();
   shadows.postRender();
 
