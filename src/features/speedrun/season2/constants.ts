@@ -181,7 +181,7 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
   }
 }
 
-export const SEASON_2_DEBUG = false;
+export const SEASON_2_DEBUG = true;
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_2_LOCK_MINUTES = 1.5;

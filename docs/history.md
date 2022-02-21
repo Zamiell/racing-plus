@@ -2,6 +2,7 @@
 
 ### *v0.76.0* - February ?th, 2022
 
+- R+7 Season 2 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start
 - The first angel in a run is now always Uriel.
 - Removed some pits in Angel Rooms #5, #8, #10, #13 (to make it easier to fight two angels at the same time).
 - Deleted Angel Room #4 (with the TNT barrels).
@@ -9,6 +10,7 @@
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
 - In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
 - In seeded races, Birthright is now removed from pools if you start as The Lost.
+- Needles will now jump at you after 8 frames (instead of 7).
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
 - Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
@@ -19,7 +21,7 @@
 - Fixed the bug where glitched pedestal item replacement wasn't working correctly.
 - Fixed the bug where moving diagonally into a combined duality door would not grant the right room under certain conditions. (Thanks Shiny)
 - Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
-- !Fixed the bug where using Mega Blast would make you move incorrectly when interacting with a trapdoor or beam of light.
+- Fixed the bug where using Mega Blast would make you move incorrectly when interacting with a trapdoor or beam of light.
 
 ### *v0.75.0* - February 19th, 2022
 

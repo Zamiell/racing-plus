@@ -3,6 +3,7 @@ import { config } from "../../../../../modConfigMenu";
 import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../types/EffectVariantCustom";
 import { centerPlayers } from "../../../../mandatory/centerStart";
+import { restoreMinimapDisplayFlags, setMinimapVisible } from "../minimap";
 import * as sprites from "../sprites";
 import v from "../v";
 
@@ -35,4 +36,7 @@ function repositionPlayer() {
       pitfall.Position = player.Position;
     }
   }
+
+  restoreMinimapDisplayFlags(v.level.displayFlagsMap);
+  setMinimapVisible(true);
 }

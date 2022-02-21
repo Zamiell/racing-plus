@@ -27,7 +27,9 @@ const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
     return;
   }
 

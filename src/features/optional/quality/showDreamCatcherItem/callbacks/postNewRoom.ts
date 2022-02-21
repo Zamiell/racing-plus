@@ -24,6 +24,7 @@ import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpStat
 import { shouldRemoveEndGamePortals } from "../../../../mandatory/nerfCardReading";
 import { decrementRoomsEntered } from "../../../../util/roomsEntered";
 import { spawnHoles } from "../../../major/fastTravel/setNewState";
+import { setMinimapVisible } from "../minimap";
 import * as sprites from "../sprites";
 import v from "../v";
 
@@ -117,12 +118,12 @@ function startWarp() {
     return;
   }
 
-  // Minimap API is bugged such that it does not properly reset when Glowing Hour Glass is used
-  // Thus, we need to record the level's display flags and manually reset it when we are done
-  // warping
-  if (MinimapAPI !== undefined) {
-    v.level.displayFlagsMap = getMinimapDisplayFlagsMap();
-  }
+  setMinimapVisible(false);
+
+  // After using Glowing Hour Glass, the minimap will be bugged
+  // We can work around this by manually recording all of the minimap state beforehand,
+  // and then restoring it later
+  v.level.displayFlagsMap = getMinimapDisplayFlagsMap();
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are
   // (Glowing Hour Glass does not properly restore Card Reading portals)
@@ -145,6 +146,10 @@ function startWarp() {
 function getMinimapDisplayFlagsMap() {
   const displayFlags = new Map<int, int>();
   for (const roomDesc of getRooms()) {
+    if (roomDesc.SafeGridIndex < 0) {
+      continue;
+    }
+
     displayFlags.set(roomDesc.SafeGridIndex, roomDesc.DisplayFlags);
   }
 
@@ -160,6 +165,8 @@ function checkWarpStateWarping() {
 }
 
 function warpToNextRoom() {
+  const players = getPlayers();
+
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
   if (roomGridIndex !== undefined) {
     log(`Dream Catcher - Warping to room: ${roomGridIndex}`);
@@ -169,6 +176,10 @@ function warpToNextRoom() {
   }
 
   log("Dream Catcher - Finished warping.");
+
+  // At this point, the player will show the animation of holding the Glowing Hour Glass above their
+  // head
+  // However, there does not seem to be a way to cancel this
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
   // so respawn it if necessary
@@ -183,9 +194,6 @@ function warpToNextRoom() {
       undefined,
     );
   }
-
-  // Reset the map display flags for MinimapAPI
-  restoreMinimapAPIDisplayFlags(v.level.displayFlagsMap);
 
   // If the player has Card Reading, moving away from the room would delete the portals,
   // so respawn them if necessary
@@ -207,7 +215,6 @@ function warpToNextRoom() {
   // (this is not just an artifact of the warping; it does this on vanilla too if you use Glowing
   // Hour Glass after walking into a new room)
   // Thus, add it back manually
-  const players = getPlayers();
   for (const player of players) {
     if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
       player.AddSoulHearts(1);
@@ -221,19 +228,6 @@ function warpToNextRoom() {
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame
   v.level.warpState = DreamCatcherWarpState.REPOSITIONING_PLAYER;
-}
-
-function restoreMinimapAPIDisplayFlags(displayFlagsMap: Map<int, int>) {
-  if (MinimapAPI === undefined) {
-    return;
-  }
-
-  for (const [roomGridIndex, displayFlags] of displayFlagsMap.entries()) {
-    const roomDesc = MinimapAPI.GetRoomByIdx(roomGridIndex);
-    if (roomDesc !== undefined) {
-      roomDesc.DisplayFlags = displayFlags;
-    }
-  }
 }
 
 function gatherInfoAndGlowingHourGlass() {

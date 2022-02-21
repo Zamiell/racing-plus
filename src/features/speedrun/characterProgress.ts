@@ -39,7 +39,9 @@ export function postRender(): void {
 }
 
 function displayCharacterProgress() {
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
     return;
   }
 

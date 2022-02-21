@@ -6,7 +6,7 @@
 import { config } from "../../../modConfigMenu";
 
 // Adjust the counter for multiple Needles so that each one jumps individually
-const FRAME_DELAY_BEFORE_JUMPING = -7;
+const FRAME_DELAY_BEFORE_JUMPING = -8;
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_NEEDLE (881)

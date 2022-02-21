@@ -37,6 +37,9 @@ function gotoButtonRoom() {
 
 function setupButtonRoom() {
   const player = Isaac.GetPlayer();
+  const hud = g.g.GetHUD();
+
+  hud.SetVisible(false);
 
   const npcs = getNPCs();
   removeEntities(npcs);
@@ -62,9 +65,6 @@ function setupButtonRoom() {
   if (itemConfigItem !== undefined) {
     player.RemoveCostume(itemConfigItem);
   }
-
-  // Get rid of the HUD
-  g.seeds.AddSeedEffect(SeedEffect.SEED_NO_HUD);
 
   // Spawn buttons for each type of speedrun
   // (and a graphic over each button)

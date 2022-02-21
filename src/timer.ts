@@ -25,11 +25,13 @@ export function display(
   startingX?: int,
   startingY?: int,
 ): void {
+  const hud = g.g.GetHUD();
+
   if (seconds < 0) {
     return;
   }
 
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_NO_HUD)) {
+  if (!hud.IsVisible()) {
     return;
   }
 
