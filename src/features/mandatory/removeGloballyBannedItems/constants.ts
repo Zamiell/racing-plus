@@ -26,5 +26,12 @@ export const BANNED_TRINKETS = new Set<TrinketType>([
 
 export const BANNED_TRINKETS_ON_SEEDED_RACES = new Set<TrinketType>([
   // Cain's Eye is useless if you start with the Compass
-  TrinketType.TRINKET_CAINS_EYE,
+  TrinketType.TRINKET_CAINS_EYE, // 59
+
+  // Remove certain trinkets that mess up floor generation
+  TrinketType.TRINKET_SILVER_DOLLAR, // 110
+  TrinketType.TRINKET_BLOODY_CROWN, // 111
+  TrinketType.TRINKET_TELESCOPE_LENS, // 152
+  TrinketType.TRINKET_HOLY_CROWN, // 155
+  TrinketType.TRINKET_WICKED_CROWN, // 161
 ]);

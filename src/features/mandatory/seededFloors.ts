@@ -50,15 +50,6 @@ export function postGameStarted(): void {
   // We may have had the Curse of the Unknown seed enabled in a previous run,
   // so ensure that it is removed
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
-
-  if (onSetSeed()) {
-    // Remove certain trinkets that mess up floor generation
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_SILVER_DOLLAR); // 110
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_BLOODY_CROWN); // 111
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_TELESCOPE_LENS); // 152
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_HOLY_CROWN); // 155
-    g.itemPool.RemoveTrinket(TrinketType.TRINKET_WICKED_CROWN); // 161
-  }
 }
 
 // Different inventory and health conditions can affect special room generation
