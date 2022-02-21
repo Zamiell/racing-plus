@@ -86,7 +86,7 @@ The randomly assigned starting builds are as follows:
 - 14 - Technology + A Lump of Coal
 - 15 - Chocolate Milk + Steven
 - 16 - Cricket's Body + Steven
-- 17 - Monstro's Lung + Cupid's Arrow
+- 17 - Monstro's Lung + Sad Onion
 - 18 - Death's Touch + Sad Onion
 - 19 - Tech.5 + Jesus Juice
 - 20 - 20/20 + The Inner Eye
