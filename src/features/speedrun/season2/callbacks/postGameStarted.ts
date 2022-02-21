@@ -226,6 +226,7 @@ function getAntiSynergyBuilds(character: PlayerType): int[] {
         CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
         CollectibleType.COLLECTIBLE_DEAD_EYE, // 373
         CollectibleType.COLLECTIBLE_TECH_X, // 395
+        CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
       );
     }
 

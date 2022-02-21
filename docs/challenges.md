@@ -109,7 +109,7 @@ The Forgotten is guaranteed to get one of the following builds:
 - Sacred Heart
 - 20/20 + The Inner Eye
 - Proptosis
-- Haemolacria
+- Haemolacria + Sad Onion
 - Pointy Rib + Eve's Mascara
 - C Section
 
@@ -126,6 +126,7 @@ Some builds are banned on certain characters:
   - Fire Mind + 13 Luck
   - Dead Eye + Jesus Juice
   - Tech X
+  - Haemolacria + Sad Onion
 
 ### Other
 
