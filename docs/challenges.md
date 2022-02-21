@@ -54,19 +54,12 @@
 ### Random Characters & Instant Start
 
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
-- You are randomly assigned a build at the beginning of the run. (You can find the full list in the "Change Char Order" custom challenge.)
+- You are randomly assigned a build at the beginning of the run.
 - Resetting the game will change the seed, but not change the randomly assigned character or build.
 - The randomly selected character & build for the first character will expire after 1.5 minutes or when a Basement 2 boss dies, whichever happens first.
 - Instead of choosing a character order, players must ban 3 builds.
 - When resetting on the first character, you will never be given the same character or build twice in a row.
 - Duplicate starting builds will never be given over the course of a 7 character run.
-- Forgotten is guaranteed to get one of the following builds:
-  - 12 - Magic Mushroom
-  - 69 - Chocolate Milk + Stephen
-  - 169 - Polyphemus
-  - 182 - Sacred Heart
-  - 261 - Proptosis
-  - 531 - Haemolacria
 
 ### Seeded Death
 
@@ -74,30 +67,65 @@
 
 ### Builds
 
-The starting builds for this season are the same as [the builds for seeded races](https://github.com/Zamiell/isaac-racing-common/blob/main/src/builds.json), except for the following changes.
+The randomly assigned starting builds are as follows:
 
-Removed builds:
-- 57 - Distant Admiration (not fun / not consistent)
-- 114 - Mom's Knife (too powerful)
-- 168 - Epic Fetus (too powerful)
-- 360 - Incubus x2 (too weak)
-- 579 - Spirit Sword  (too powerful)
-- 698 - Twisted Pair x2 (too weak)
-- 572 - Eye of the Occult (too powerful)
+- 0 - Cricket's Head
+- 1 - Dr. Fetus
+- 2 - Ipecac
+- 3 - Magic Mushroom
+- 4 - Polyphemus
+- 5 - Proptosis
+- 6 - Tech X
+- 7 - C Section
+- 8 - Brimstone
+- 9 - Maw of the Void
+- 10 - Crown of Light
+- 11 - Godhead
+- 12 - Sacred Heart
+- 13 - Revelation (w/ no soul hearts & no flight)
+- 14 - Technology + A Lump of Coal
+- 15 - Chocolate Milk + Steven
+- 16 - Cricket's Body + Steven
+- 17 - Monstro's Lung + Cupid's Arrow
+- 18 - Death's Touch + Sad Onion
+- 19 - Tech.5 + Jesus Juice
+- 20 - 20/20 + The Inner Eye
+- 21 - Fire Mind + 13 Luck
+- 22 - Incubus + Twisted Pair + Forgotten Lullaby
+- 23 - Dead Eye + Jesus Juice
+- 24 - Haemolacria + Sad Onion
+- 25 - Pointy Rib + Eve's Mascara
+- 26 - Sawblade + Transcendence
 
-Added builds:
-- Incubus + Twisted Pair + Forgotten Lullaby
+### Forgotten Builds
 
-Changed items/builds:
-- 224 - Cricket's Body (added Steven)
-- 229 - Monstro's Lung (removed Sad Onion, added Cupid's Arrow)
-- 237 - Death's Touch (added Sad Onion)
-- 244 - Tech.5 (added Jesus Juice)
-- 257 - Fire Mind (removed Mysterious Liquid)
-- 331 - Godhead (removed Cupid's Arrow)
-- 373 - Dead Eye (added Jesus Juice)
-- 643 - Revelation (removed soul hearts + flight)
-- 739 - Sawblade (added Transcendence)
+The Forgotten is guaranteed to get one of the following builds:
+
+- Magic Mushroom
+- Chocolate Milk + Stephen
+- Brimstone
+- Ipecac
+- Polyphemus
+- Sacred Heart
+- 20/20 + The Inner Eye
+- Proptosis
+- Haemolacria
+- Pointy Rib + Eve's Mascara
+- C Section
+
+### Anti-Synergies
+
+Some builds are banned on certain characters:
+
+- Eve
+  - Crown of Light
+- Tainted Azazel
+  - Dr. Fetus
+  - Cricket's Body + Steven
+  - Death's Touch + Sad Onion
+  - Fire Mind + 13 Luck
+  - Dead Eye + Jesus Juice
+  - Tech X
 
 ### Other
 
