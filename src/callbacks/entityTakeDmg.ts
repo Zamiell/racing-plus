@@ -1,7 +1,3 @@
-import {
-  isSelfDamage,
-  setCollectiblesRerolledForItemTracker,
-} from "isaacscript-common";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
@@ -46,7 +42,6 @@ function entityTakeDmgPlayer(
 
   // Other
   roll.entityTakeDmgPlayer(player);
-  setCollectiblesRerolled(player, damageFlags);
 
   return undefined;
 }
@@ -59,12 +54,4 @@ function dummy(
   _damageCountdownFrames: int,
 ) {
   dummyDPS.entityTakeDmgDummy(damageAmount);
-}
-
-function setCollectiblesRerolled(player: EntityPlayer, damageFlags: int) {
-  const character = player.GetPlayerType();
-
-  if (character === PlayerType.PLAYER_EDEN_B && !isSelfDamage(damageFlags)) {
-    setCollectiblesRerolledForItemTracker();
-  }
 }
