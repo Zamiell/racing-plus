@@ -3,6 +3,13 @@ import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
 
+const v = {
+  room: {
+    numGlobinRegenerations: new Map<PtrHash, int>(),
+    globinStates: new Map<PtrHash, NpcState>(),
+  },
+};
+
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_GLOBIN (24)
 export function postNPCUpdateGlobin(npc: EntityNPC): void {
@@ -10,27 +17,34 @@ export function postNPCUpdateGlobin(npc: EntityNPC): void {
     return;
   }
 
-  const data = npc.GetData();
+  checkGlobinStateTransition(npc);
+}
+
+function checkGlobinStateTransition(npc: EntityNPC) {
+  const ptrHash = GetPtrHash(npc);
+  const lastState = v.room.globinStates.get(ptrHash);
 
   // Globins are always in NpcState.STATE_MOVE (when chasing) or NpcState.STATE_IDLE (when dead)
-  if (npc.State === data.lastState) {
+  if (npc.State === lastState) {
     return;
   }
+  v.room.globinStates.set(ptrHash, npc.State);
 
-  data.lastState = npc.State;
+  if (npc.State === NpcState.STATE_IDLE) {
+    globinTransitionedToFleshPile(npc, ptrHash);
+  }
+}
 
-  if (npc.State !== NpcState.STATE_IDLE) {
-    return;
+function globinTransitionedToFleshPile(npc: EntityNPC, ptrHash: PtrHash) {
+  let numGlobinRegenerations = v.room.numGlobinRegenerations.get(ptrHash);
+  if (numGlobinRegenerations === undefined) {
+    numGlobinRegenerations = 0;
   }
 
-  // The Globin is now in a flesh-pile
-  // Increment the number of regenerations
-  if (data.numRegenerations === undefined) {
-    data.numRegenerations = 0;
-  }
-  (data.numRegenerations as int) += 1;
+  numGlobinRegenerations += 1;
+  v.room.numGlobinRegenerations.set(ptrHash, numGlobinRegenerations);
 
-  if (data.numRegenerations === MAX_REGENERATIONS) {
+  if (numGlobinRegenerations === MAX_REGENERATIONS) {
     npc.Kill();
     log("Manually killed a Globin to prevent a softlock.");
   }
