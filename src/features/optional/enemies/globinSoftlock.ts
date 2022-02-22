@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { log, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
@@ -9,6 +9,10 @@ const v = {
     globinStates: new Map<PtrHash, NpcState>(),
   },
 };
+
+export function init(): void {
+  saveDataManager("globinSoftlock", v);
+}
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_GLOBIN (24)

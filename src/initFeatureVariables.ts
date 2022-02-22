@@ -26,7 +26,9 @@ import * as fastPin from "./features/optional/bosses/fastPin";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
+import * as globinSoftlock from "./features/optional/enemies/globinSoftlock";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
+import * as stickyNickel from "./features/optional/graphics/stickyNickel";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
@@ -113,6 +115,9 @@ export function initFeatureVariables(): void {
   // Hotkeys
   autofire.init();
 
+  // Enemies
+  globinSoftlock.init();
+
   // Boss
   killExtraEnemies.init();
   fastPin.init();
@@ -137,6 +142,9 @@ export function initFeatureVariables(): void {
 
   // Bug fixes
   battery9VoltSynergy.init();
+
+  // Graphics fixes
+  stickyNickel.init();
 
   // Items
   flipCustom.init();

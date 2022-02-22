@@ -1,9 +1,15 @@
-import { getFinalFrameOfAnimation } from "isaacscript-common";
+import { getFinalFrameOfAnimation, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
-interface StickyNickelEffectData {
-  associatedCoinPtr: EntityPtr | undefined;
+const v = {
+  room: {
+    effectToNickelPtrMap: new Map<PtrHash, EntityPtr>(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("stickyNickel", v);
 }
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
@@ -17,6 +23,10 @@ export function postPickupInitCoin(pickup: EntityPickup): void {
     return;
   }
 
+  postPickupInitStickyNickel(pickup);
+}
+
+function postPickupInitStickyNickel(pickup: EntityPickup) {
   const effect = Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
     EffectVariantCustom.STICKY_NICKEL,
@@ -26,16 +36,18 @@ export function postPickupInitCoin(pickup: EntityPickup): void {
     pickup,
   );
 
+  // Make it render below most things
+  effect.RenderZOffset = -10000;
+
   const sprite = pickup.GetSprite();
   const effectSprite = effect.GetSprite();
   const animation = sprite.IsPlaying("Appear") ? "Appear" : "Idle";
   effectSprite.Play(animation, true);
 
-  const effectData = effect.GetData() as unknown as StickyNickelEffectData;
-  effectData.associatedCoinPtr = EntityPtr(pickup);
-
-  // Make it render below most things
-  effect.RenderZOffset = -10000;
+  // Store the relationship between this coin and effect
+  const effectPtrHash = GetPtrHash(effect);
+  const pickupEntityPtr = EntityPtr(pickup);
+  v.room.effectToNickelPtrMap.set(effectPtrHash, pickupEntityPtr);
 }
 
 // ModCallbacks.MC_POST_EFFECT_UPDATE (55)
@@ -46,13 +58,39 @@ export function postEffectUpdateStickyNickel(effect: EntityEffect): void {
   }
 
   const success = tryUpdateEffectPosition(effect);
-  if (success) {
-    return;
+  if (!success) {
+    // The sticky nickel is gone, so we should delete the associated effect
+    fadeOutStickyNickelEffect(effect);
+  }
+}
+
+function tryUpdateEffectPosition(effect: EntityEffect) {
+  const effectPtrHash = GetPtrHash(effect);
+  const nickelPtr = v.room.effectToNickelPtrMap.get(effectPtrHash);
+
+  if (nickelPtr === undefined) {
+    return false;
   }
 
-  // The sticky nickel is now gone, so delete the associated effect
-  const data = effect.GetData() as unknown as StickyNickelEffectData;
-  data.associatedCoinPtr = undefined;
+  const stickyNickel = nickelPtr.Ref;
+  if (
+    stickyNickel === undefined ||
+    !stickyNickel.Exists() ||
+    stickyNickel.SubType !== CoinSubType.COIN_STICKYNICKEL
+  ) {
+    return false;
+  }
+
+  // Update our position to the nickel's position (in case it moved)
+  effect.Position = stickyNickel.Position;
+
+  // We do not want to remove the effect yet, since the nickel is still sticky
+  return true;
+}
+
+function fadeOutStickyNickelEffect(effect: EntityEffect) {
+  const effectPtrHash = GetPtrHash(effect);
+  v.room.effectToNickelPtrMap.delete(effectPtrHash);
 
   const sprite = effect.GetSprite();
   if (!sprite.IsPlaying("Disappear")) {
@@ -65,31 +103,4 @@ export function postEffectUpdateStickyNickel(effect: EntityEffect): void {
   if (frame === finalFrame) {
     effect.Remove();
   }
-}
-
-function tryUpdateEffectPosition(effect: EntityEffect) {
-  const data = effect.GetData() as unknown as StickyNickelEffectData;
-
-  if (data.associatedCoinPtr === undefined) {
-    return false;
-  }
-
-  const stickyNickel = data.associatedCoinPtr.Ref;
-  if (stickyNickel === undefined) {
-    return false;
-  }
-
-  if (!stickyNickel.Exists()) {
-    return false;
-  }
-
-  if (stickyNickel.SubType !== CoinSubType.COIN_STICKYNICKEL) {
-    return false;
-  }
-
-  // Update our position to the nickel's position (in case it moved)
-  effect.Position = stickyNickel.Position;
-
-  // We do not want to remove the effect yet, since the nickel is still sticky
-  return true;
 }
