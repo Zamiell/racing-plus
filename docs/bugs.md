@@ -16,7 +16,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Guppy's Eye will not work correctly when it needs to show a Red Chest that gives a Devil Room item. (Reported by Moucheron Quipet)
 - Season 1 will always have Clean Bedrooms (instead of having a 50% chance for a Clean Bedroom). (Reported by Finalkids)
 - Custom fortunes and custom Rules Card text no longer works as of vanilla patch 1.7.5 (due to localization).
-- If you touch the edge of a crawlspace, you can sometimes trigger the vanilla animation. If this happens, you might return to the starting room of the floor. This should be fixed in the next vanilla patch, since it has to do with the vanilla game not reading the state correctly. (Reported by KiraKeepKool)
+- If you touch the edge of a crawlspace, you can sometimes trigger the vanilla animation. If this happens, you might return to the starting room of the floor. This has to do with the vanilla game not reading the state of the crawlspace correctly. (Reported by KiraKeepKool)
 
 <br />
 
