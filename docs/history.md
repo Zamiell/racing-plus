@@ -8,6 +8,7 @@
 - Deleted Angel Room #4 (with the TNT barrels).
 - Deleted Angel Room #12 (with the White Poop).
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
+- In seeded races, R Key is now removed from all pools (and Eden can no longer start with it). (Thanks Moucheron Quipet)
 - In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
 - In seeded races, Birthright is now removed from pools if you start as The Lost.
 - Needles will now jump at you after 8 frames (instead of 7).
@@ -29,7 +30,7 @@
 - Fixed the bug where the character number would change to 1 after finishing a speedrun.
 - Fixed the bug where the Sawblades beyond the second would be exactly aligned with the first Sawblade.
 - Fixed the bug where Sawblade would not work properly with Spin to Win. (Thanks Monkeypot)
-- !Fixed the bug where Sawblade would not work properly with Box of Friends.
+- Fixed the bug where Sawblade would not work properly with Box of Friends.
 
 ### *v0.75.0* - February 19th, 2022
 

@@ -5,7 +5,10 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { serverCollectibleIDToCollectibleType } from "../../util";
-import { giveCollectibleAndRemoveFromPools } from "../../utilGlobals";
+import {
+  giveCollectibleAndRemoveFromPools,
+  giveTrinketAndRemoveFromPools,
+} from "../../utilGlobals";
 import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import { RaceFormat } from "./types/RaceFormat";
@@ -30,6 +33,17 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
   PlayerType.PLAYER_LAZARUS2_B, // 38
   PlayerType.PLAYER_JACOB2_B, // 39
 ]);
+
+const BANNED_DIVERSITY_COLLECTIBLES = [
+  CollectibleType.COLLECTIBLE_MOMS_KNIFE,
+  CollectibleType.COLLECTIBLE_D4,
+  CollectibleType.COLLECTIBLE_D100,
+  CollectibleType.COLLECTIBLE_D_INFINITY,
+  CollectibleType.COLLECTIBLE_GENESIS,
+  CollectibleType.COLLECTIBLE_ESAU_JR,
+];
+
+const BANNED_DIVERSITY_TRINKETS = [TrinketType.TRINKET_DICE_BAG];
 
 export function formatSetup(player: EntityPlayer): void {
   if (
@@ -207,16 +221,13 @@ function diversity(player: EntityPlayer) {
         player.TryRemoveTrinket(trinket1);
       }
 
-      player.AddTrinket(itemOrTrinketID);
+      giveTrinketAndRemoveFromPools(player, itemOrTrinketID);
       useActiveItemTemp(player, CollectibleType.COLLECTIBLE_SMELTER);
 
       // Re-give Paper Clip to Cain, for example
       if (trinket1 !== 0) {
         player.AddTrinket(trinket1);
       }
-
-      // Remove it from the trinket pool
-      g.itemPool.RemoveTrinket(itemOrTrinketID);
     }
   }
 
@@ -232,16 +243,13 @@ function diversity(player: EntityPlayer) {
     );
   }
 
-  // Add item bans for diversity races
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D4);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D100);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_D_INFINITY);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_GENESIS);
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_ESAU_JR);
+  for (const collectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
+    g.itemPool.RemoveCollectible(collectibleType);
+  }
 
-  // Trinket bans for diversity races
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_DICE_BAG);
+  for (const trinketType of BANNED_DIVERSITY_TRINKETS) {
+    g.itemPool.RemoveTrinket(trinketType);
+  }
 }
 
 function shouldGetSchoolbagInDiversity(player: EntityPlayer) {

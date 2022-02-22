@@ -13,6 +13,9 @@ export const BANNED_COLLECTIBLES_ON_SEEDED_RACES = new Set<CollectibleType>([
 
   // Sol is mostly useless if you start with the Compass
   CollectibleType.COLLECTIBLE_SOL, // 588
+
+  // R Key allows players to play a different seed
+  CollectibleType.COLLECTIBLE_R_KEY, // 636
 ]);
 
 export const BANNED_COLLECTIBLES_WITH_VOID = new Set<CollectibleType>([
