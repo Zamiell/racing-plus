@@ -3,6 +3,7 @@ import {
   getPlayers,
   isKeyboardPressed,
 } from "isaacscript-common";
+import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
 
 enum FastDropTarget {
@@ -13,6 +14,11 @@ enum FastDropTarget {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
+  // Don't check for inputs when the game is paused or the console is open
+  if (g.g.IsPaused()) {
+    return;
+  }
+
   // Normally, we would iterate over the players and check for inputs corresponding to their
   // ControllerIndex
   // However, some Xbox controller inputs are not read by the game,

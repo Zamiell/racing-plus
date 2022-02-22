@@ -1,6 +1,7 @@
 import { saveDataManagerLoad } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
+import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
@@ -148,6 +149,7 @@ export function initFeatureVariables(): void {
 
   // Items
   flipCustom.init();
+  sawblade.init();
 
   // Other
   customConsole.init();

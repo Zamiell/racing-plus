@@ -9,7 +9,11 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("stickyNickel", v);
+  saveDataManager("stickyNickel", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.stickyNickel;
 }
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)

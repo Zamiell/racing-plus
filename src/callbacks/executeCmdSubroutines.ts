@@ -108,11 +108,34 @@ export function IAMERROR(): void {
   teleport(GridRooms.ROOM_ERROR_IDX);
 }
 
-export function listEntities(includeAll: boolean): void {
-  log("Entities in the room:");
+export function listEntities(params: string, includeAll: boolean): void {
+  let entityTypeFilter: int | undefined;
+  if (params !== "") {
+    entityTypeFilter = validateNumber(params);
+    if (entityTypeFilter === undefined) {
+      return;
+    }
+  }
+
+  let headerMsg = "Entities in the room";
+  if (entityTypeFilter !== undefined) {
+    headerMsg += ` (filtered to entity type ${entityTypeFilter})`;
+  }
+  if (includeAll) {
+    headerMsg += " (not excluding background effects)";
+  }
+  headerMsg += ":";
+  log(headerMsg);
+
   const entities = getEntities();
+  let numMatchedEntities = 0;
   for (let i = 0; i < entities.length; i++) {
     const entity = entities[i];
+
+    // If a filter was specified, exclude all entities outside of the filter
+    if (entityTypeFilter !== undefined && entity.Type !== entityTypeFilter) {
+      continue;
+    }
 
     // Exclude background effects
     if (
@@ -182,7 +205,14 @@ export function listEntities(includeAll: boolean): void {
     debugString += ` (Position: ${entity.Position.X}, ${entity.Position.Y})`;
     debugString += ` (Velocity: ${entity.Velocity.X}, ${entity.Velocity.Y})`;
     log(debugString);
+
+    numMatchedEntities += 1;
   }
+
+  if (numMatchedEntities === 0) {
+    log("(no entities matched)");
+  }
+
   printConsole('Logged the entities in the room to the "log.txt" file.');
 }
 

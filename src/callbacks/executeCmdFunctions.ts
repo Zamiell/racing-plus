@@ -320,12 +320,12 @@ executeCmdFunctions.set("keys", (_params: string) => {
   }
 });
 
-executeCmdFunctions.set("list", (_params: string) => {
-  listEntities(false);
+executeCmdFunctions.set("list", (params: string) => {
+  listEntities(params, false);
 });
 
-executeCmdFunctions.set("listall", (_params: string) => {
-  listEntities(true);
+executeCmdFunctions.set("listall", (params: string) => {
+  listEntities(params, true);
 });
 
 executeCmdFunctions.set("lowhp", (_params: string) => {

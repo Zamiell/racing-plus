@@ -45,6 +45,11 @@ export function postRender(): void {
 }
 
 function checkInput() {
+  // Don't check for inputs when the game is paused or the console is open
+  if (g.g.IsPaused()) {
+    return;
+  }
+
   const player = getRollPlayer();
 
   if (!playerCanRoll(player)) {

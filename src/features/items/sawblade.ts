@@ -54,7 +54,7 @@ Sawblade stats:
 
 */
 
-import { getFamiliars } from "isaacscript-common";
+import { getFamiliars, saveDataManager } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../types/FamiliarVariantCustom";
 
@@ -67,8 +67,20 @@ const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
 const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
 
+const v = {
+  run: {
+    /** Indexed by sawblade InitSeed. */
+    sawbladeAngles: new Map<int, int>(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("sawblade", v);
+}
+
 // ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
+  // Automatically handle adding and removing familiars with the "CheckFamiliar()" method
   const numSawbladeCollectibles = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
   );
@@ -85,12 +97,27 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 // ModCallbacks.MC_FAMILIAR_UPDATE (6)
 // FamiliarVariantCustom.SAWBLADE
 export function postFamiliarUpdateSawblade(familiar: EntityFamiliar): void {
-  setPosition(familiar);
+  const angle = getAndIncrementAngle(familiar);
+  setPosition(familiar, angle);
 }
 
-// It should rotate around the player like a Cube of Meat or Sacrificial Dagger does
-function setPosition(familiar: EntityFamiliar) {
-  const position = getPosition(familiar);
+function getAndIncrementAngle(familiar: EntityFamiliar) {
+  const angle = v.run.sawbladeAngles.get(familiar.InitSeed);
+  if (angle === undefined) {
+    const initialAngle = 0;
+    v.run.sawbladeAngles.set(familiar.InitSeed, initialAngle);
+    return initialAngle;
+  }
+
+  // We subtract because the sawblade should rotate counter-clockwise
+  const rotatedAngle = angle - SAWBLADE_ROTATION_SPEED;
+  v.run.sawbladeAngles.set(familiar.InitSeed, rotatedAngle);
+  return rotatedAngle;
+}
+
+/** Sawblades should rotate around the player like a Cube of Meat or Sacrificial Dagger does. */
+function setPosition(familiar: EntityFamiliar, angle: float) {
+  const position = getPositionFromAngle(familiar, angle);
   if (position === undefined) {
     return;
   }
@@ -103,22 +130,14 @@ function setPosition(familiar: EntityFamiliar) {
   familiar.Velocity = Vector.Zero;
 }
 
-function getPosition(familiar: EntityFamiliar) {
+function getPositionFromAngle(familiar: EntityFamiliar, angle: float) {
   const player = familiar.SpawnerEntity;
   if (player === undefined) {
     return undefined;
   }
 
-  let frameCount = familiar.FrameCount;
-  const data = familiar.GetData() as unknown as SawbladeData;
-  if (data.frameCountModifier !== undefined) {
-    frameCount += data.frameCountModifier;
-  }
-
   const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
-  const rotatedVector = baseVector.Rotated(
-    frameCount * SAWBLADE_ROTATION_SPEED * -1,
-  );
+  const rotatedVector = baseVector.Rotated(angle);
 
   return player.Position.add(rotatedVector);
 }

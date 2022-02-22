@@ -1,4 +1,5 @@
 import { getPlayers, isKeyboardPressed } from "isaacscript-common";
+import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
 
 let isPressed = false;
@@ -14,6 +15,11 @@ export function postRender(): void {
 }
 
 function checkInput() {
+  // Don't check for inputs when the game is paused or the console is open
+  if (g.g.IsPaused()) {
+    return;
+  }
+
   if (!isKeyboardPressed(hotkeys.schoolbagSwitch)) {
     isPressed = false;
     return;

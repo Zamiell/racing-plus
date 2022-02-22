@@ -38,6 +38,11 @@ export function postRender(): void {
 }
 
 function checkInput() {
+  // Don't check for inputs when the game is paused or the console is open
+  if (g.g.IsPaused()) {
+    return;
+  }
+
   if (!isKeyboardPressed(hotkeys.autofire)) {
     isPressed = false;
     return;

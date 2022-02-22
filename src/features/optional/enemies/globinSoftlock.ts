@@ -11,7 +11,11 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("globinSoftlock", v);
+  saveDataManager("globinSoftlock", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.globinSoftlock;
 }
 
 // ModCallbacks.MC_NPC_UPDATE (0)
