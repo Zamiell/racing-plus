@@ -32,7 +32,6 @@ export function init(
   shouldSpawnOpen: (entity: GridEntity | EntityEffect) => boolean,
 ): void {
   const gameFrameCount = g.g.GetFrameCount();
-  const roomFrameCount = g.r.GetFrameCount();
 
   const sprite = entity.GetSprite();
   const fileName = sprite.GetFilename();
@@ -42,7 +41,7 @@ export function init(
   }
 
   log(
-    `Initializing a ${FastTravelEntityType[fastTravelEntityType]} fast-travel entity on frame: ${gameFrameCount}`,
+    `Initializing a ${FastTravelEntityType[fastTravelEntityType]} fast-travel entity on game frame: ${gameFrameCount}`,
   );
 
   sprite.Load(customFileName, true);
@@ -52,12 +51,6 @@ export function init(
     state.open(entity, fastTravelEntityType, true);
   } else {
     state.close(entity, fastTravelEntityType);
-  }
-
-  if (fastTravelEntityType === FastTravelEntityType.HEAVEN_DOOR) {
-    const effect = entity as EntityEffect;
-    const data = effect.GetData();
-    data.onInitialRoom = roomFrameCount === 0;
   }
 }
 

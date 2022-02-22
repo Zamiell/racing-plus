@@ -60,10 +60,10 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
 
   if (FAST_CLEAR_DEBUG) {
     log(
-      `Removed fast-clear entity to track on frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash} (${parentCallback})`,
+      `Removed fast-clear entity to track on game frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash} (${parentCallback})`,
     );
     log(
-      `Total fast-clear entities tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
+      `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
 

@@ -77,7 +77,7 @@ function earlyClearRoom() {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.earlyClearedRoom = true;
-  log(`Early clearing the room on frame ${gameFrameCount} (fast-clear).`);
+  log(`Early clearing the room on game frame: ${gameFrameCount} (fast-clear)`);
 
   // The "TriggerClear()" method must be before other logic because extra doors can be spawned by
   // clearing the room

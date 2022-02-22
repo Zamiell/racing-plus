@@ -92,7 +92,7 @@ function add(entity: Entity, ptrHash: PtrHash, parentCallback: string) {
       `Added fast-clear entity to track to frame ${gameFrameCount}: ${entity.Type}.${entity.Variant}.${entity.SubType} - ${ptrHash} (${parentCallback})`,
     );
     log(
-      `Total fast-clear entities tracked on frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
+      `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
     );
   }
 }
