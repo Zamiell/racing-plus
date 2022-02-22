@@ -96,7 +96,7 @@ function getAndIncrementAngle(familiar: EntityFamiliar) {
   }
 
   // We subtract because the sawblade should rotate counter-clockwise
-  const rotatedAngle = angle - getAngleChange(familiar.Player);
+  const rotatedAngle = (angle - getAngleChange(familiar.Player)) % 360;
   v.run.sawbladeAngles.set(familiar.InitSeed, rotatedAngle);
   return rotatedAngle;
 }
