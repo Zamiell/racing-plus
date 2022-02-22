@@ -25,6 +25,11 @@ export function speedrunPostGameStarted(): void {
     return;
   }
 
+  if (v.persistent.resetAllVarsOnNextReset) {
+    v.persistent.resetAllVarsOnNextReset = false;
+    resetPersistentVars();
+  }
+
   liveSplitReset();
 
   if (!checkValidCharOrder()) {

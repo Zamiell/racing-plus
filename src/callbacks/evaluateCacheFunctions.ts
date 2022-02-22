@@ -1,3 +1,4 @@
+import * as sawblade from "../features/items/sawblade";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import { speedrunEvaluateCacheFlying } from "../features/speedrun/callbacks/evaluateCache";
@@ -8,7 +9,7 @@ export const evaluateCacheFunctions = new Map<
   (player: EntityPlayer) => void
 >();
 
-// 0x4
+// 1 << 2
 evaluateCacheFunctions.set(
   CacheFlag.CACHE_SHOTSPEED,
   (player: EntityPlayer) => {
@@ -25,12 +26,12 @@ function magic8BallSeeded(player: EntityPlayer) {
   }
 }
 
-// 0x10
+// 1 << 4
 evaluateCacheFunctions.set(CacheFlag.CACHE_SPEED, (player: EntityPlayer) => {
   debugPowers.evaluateCacheSpeed(player);
 });
 
-// 0x40
+// 1 << 6
 evaluateCacheFunctions.set(
   CacheFlag.CACHE_TEARCOLOR,
   (player: EntityPlayer) => {
@@ -38,12 +39,20 @@ evaluateCacheFunctions.set(
   },
 );
 
-// 0x80
+// 1 << 7
 evaluateCacheFunctions.set(CacheFlag.CACHE_FLYING, (player: EntityPlayer) => {
   speedrunEvaluateCacheFlying(player);
 });
 
-// 0x400
+// 1 << 9
+evaluateCacheFunctions.set(
+  CacheFlag.CACHE_FAMILIARS,
+  (player: EntityPlayer) => {
+    sawblade.evaluateCacheFamiliars(player);
+  },
+);
+
+// 1 << 10
 evaluateCacheFunctions.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {
   thirteenLuck(player);
   fifteenLuck(player);

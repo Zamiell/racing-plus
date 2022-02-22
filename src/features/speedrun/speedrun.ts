@@ -52,11 +52,12 @@ export function finish(player: EntityPlayer): void {
 
   // Finish the speedrun
   v.run.finished = true;
-  v.persistent.characterNum = 1;
 
   if (v.persistent.startedFrame !== null) {
     v.run.finishedFrames = isaacFrameCount - v.persistent.startedFrame;
   }
+
+  v.persistent.resetAllVarsOnNextReset = true;
 
   // Fireworks will play on the next frame (from the PostUpdate callback)
 }

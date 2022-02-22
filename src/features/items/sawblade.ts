@@ -54,18 +54,20 @@ Sawblade stats:
 
 */
 
-import { getFamiliars, saveDataManager } from "isaacscript-common";
+import { checkFamiliar, saveDataManager } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../types/FamiliarVariantCustom";
-
-interface SawbladeData {
-  frameCountModifier: int | undefined;
-}
 
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
 // const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
 const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
+
+/**
+ * This roughly matches what happens on vanilla, but is hard to get perfectly because the base
+ * Sawblade rotation speed does not match the base rotation speed of the Spin to Win familiar.
+ */
+const SPIN_TO_WIN_ROTATION_MULTIPLIER = 10;
 
 const v = {
   run: {
@@ -78,22 +80,6 @@ export function init(): void {
   saveDataManager("sawblade", v);
 }
 
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
-export function postPEffectUpdate(player: EntityPlayer): void {
-  // Automatically handle adding and removing familiars with the "CheckFamiliar()" method
-  const numSawbladeCollectibles = player.GetCollectibleNum(
-    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
-  );
-  const sawbladeRNG = player.GetCollectibleRNG(
-    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
-  );
-  player.CheckFamiliar(
-    FamiliarVariantCustom.SAWBLADE,
-    numSawbladeCollectibles,
-    sawbladeRNG,
-  );
-}
-
 // ModCallbacks.MC_FAMILIAR_UPDATE (6)
 // FamiliarVariantCustom.SAWBLADE
 export function postFamiliarUpdateSawblade(familiar: EntityFamiliar): void {
@@ -104,15 +90,40 @@ export function postFamiliarUpdateSawblade(familiar: EntityFamiliar): void {
 function getAndIncrementAngle(familiar: EntityFamiliar) {
   const angle = v.run.sawbladeAngles.get(familiar.InitSeed);
   if (angle === undefined) {
-    const initialAngle = 0;
+    const initialAngle = getInitialAngle();
     v.run.sawbladeAngles.set(familiar.InitSeed, initialAngle);
     return initialAngle;
   }
 
   // We subtract because the sawblade should rotate counter-clockwise
-  const rotatedAngle = angle - SAWBLADE_ROTATION_SPEED;
+  const rotatedAngle = angle - getAngleChange(familiar.Player);
   v.run.sawbladeAngles.set(familiar.InitSeed, rotatedAngle);
   return rotatedAngle;
+}
+
+function getAngleChange(player: EntityPlayer) {
+  return isSpinToWinActive(player)
+    ? SAWBLADE_ROTATION_SPEED * SPIN_TO_WIN_ROTATION_MULTIPLIER
+    : SAWBLADE_ROTATION_SPEED;
+}
+
+function isSpinToWinActive(player: EntityPlayer) {
+  const effects = player.GetEffects();
+  return effects.HasNullEffect(NullItemID.ID_SPIN_TO_WIN);
+}
+
+function getInitialAngle() {
+  // Default the second Sawblade to the opposite side of the first Sawblade
+  if (v.run.sawbladeAngles.size === 1) {
+    // There is an existing Sawblade
+    // Start the 2nd Sawblade on the opposite side
+    const existingSawbladeAngles = [...v.run.sawbladeAngles.values()];
+    const firstSawbladeAngle = existingSawbladeAngles[0];
+    return firstSawbladeAngle + 180;
+  }
+
+  // Otherwise, default the Sawblade to being below the player
+  return 0;
 }
 
 /** Sawblades should rotate around the player like a Cube of Meat or Sacrificial Dagger does. */
@@ -131,22 +142,16 @@ function setPosition(familiar: EntityFamiliar, angle: float) {
 }
 
 function getPositionFromAngle(familiar: EntityFamiliar, angle: float) {
-  const player = familiar.SpawnerEntity;
-  if (player === undefined) {
-    return undefined;
-  }
-
   const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
   const rotatedVector = baseVector.Rotated(angle);
 
-  return player.Position.add(rotatedVector);
+  return familiar.Player.Position.add(rotatedVector);
 }
 
 // ModCallbacks.MC_FAMILIAR_INIT (7)
 // FamiliarVariantCustom.SAWBLADE
 export function postFamiliarInitSawblade(familiar: EntityFamiliar): void {
   setSpriteOffset(familiar);
-  offsetSecondSawblade(familiar);
 }
 
 function setSpriteOffset(familiar: EntityFamiliar) {
@@ -154,46 +159,15 @@ function setSpriteOffset(familiar: EntityFamiliar) {
   sprite.Offset = Vector(0, -16);
 }
 
-function offsetSecondSawblade(familiar: EntityFamiliar) {
-  if (familiar.SpawnerEntity === undefined) {
-    return;
-  }
-
-  const player = familiar.SpawnerEntity.ToPlayer();
-  if (player === undefined) {
-    return;
-  }
-
-  const playerHash = GetPtrHash(player);
-  const sawblades = getFamiliars(FamiliarVariantCustom.SAWBLADE);
-
-  const otherSawbladesAttachedToSamePlayer: EntityFamiliar[] = [];
-  for (const sawblade of sawblades) {
-    if (sawblade.SpawnerEntity === undefined) {
-      continue;
-    }
-
-    const sawbladePlayer = sawblade.SpawnerEntity.ToPlayer();
-    if (sawbladePlayer === undefined) {
-      continue;
-    }
-
-    const sawbladePlayerHash = GetPtrHash(sawbladePlayer);
-    if (sawbladePlayerHash === playerHash) {
-      otherSawbladesAttachedToSamePlayer.push(sawblade);
-    }
-  }
-
-  if (otherSawbladesAttachedToSamePlayer.length === 0) {
-    return;
-  }
-
-  // This is the second Sawblade spawning;
-  // initialize it such that it will rotate opposite to the first one
-  const framesPerRotation = 360 / SAWBLADE_ROTATION_SPEED;
-  const frameCountModifier = sawblades[0].FrameCount + framesPerRotation / 2;
-  const data = familiar.GetData() as unknown as SawbladeData;
-  data.frameCountModifier = frameCountModifier;
+// ModCallbacks.MC_EVALUATE_CACHE (8)
+// CacheFlag.CACHE_FAMILIARS (1 << 9)
+export function evaluateCacheFamiliars(player: EntityPlayer): void {
+  // Automatically handle adding and removing familiars with the "checkFamiliar()" helper function
+  checkFamiliar(
+    player,
+    CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
+    FamiliarVariantCustom.SAWBLADE,
+  );
 }
 
 // ModCallbacks.MC_PRE_FAMILIAR_COLLISION (26)

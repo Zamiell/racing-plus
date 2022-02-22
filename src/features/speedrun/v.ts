@@ -12,6 +12,9 @@ const v = {
     startedFrame: null as int | null,
     startedCharFrame: null as int | null,
     characterRunFrames: [] as int[],
+
+    /** Used after a speedrun is finished. */
+    resetAllVarsOnNextReset: false,
   },
 
   run: {

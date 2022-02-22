@@ -26,6 +26,10 @@
 - Fixed the bug where the player's health could be set to the wrong amount when going to a new floor and having Dream Catcher while playing on a set seed. (Thanks Gamonymous)
 - Fixed the bug where Eden and Tainted Eden could start with The Compass, Glyph of Balance, Damocles, or Sol in seeded races. (Thanks Monkeypot)
 - Fixed the bug where you were not able to pause the game during a fast-travel animation.
+- Fixed the bug where the character number would change to 1 after finishing a speedrun.
+- Fixed the bug where the Sawblades beyond the second would be exactly aligned with the first Sawblade.
+- !Fixed the bug where Sawblade would not work properly with Spin to Win. (Thanks Monkeypot)
+- !Fixed the bug where Sawblade would not work properly with Box of Friends.
 
 ### *v0.75.0* - February 19th, 2022
 
