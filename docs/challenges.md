@@ -103,7 +103,6 @@ The Forgotten is guaranteed to get one of the following builds:
 
 - Magic Mushroom
 - Chocolate Milk + Stephen
-- Brimstone
 - Ipecac
 - Polyphemus
 - Sacred Heart
@@ -117,9 +116,11 @@ The Forgotten is guaranteed to get one of the following builds:
 
 Some builds are banned on certain characters:
 
-- Eve
+- 5 - Eve
   - Crown of Light
-- Tainted Azazel
+- 27 - Tainted Samson
+  - Dr. Fetus
+- 28 - Tainted Azazel
   - Dr. Fetus
   - Cricket's Body + Steven
   - Death's Touch + Sad Onion

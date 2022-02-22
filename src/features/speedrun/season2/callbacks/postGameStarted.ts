@@ -220,6 +220,11 @@ function getAntiSynergyBuilds(character: PlayerType): int[] {
       return SEASON_2_FORGOTTEN_EXCEPTIONS;
     }
 
+    // 27
+    case PlayerType.PLAYER_SAMSON_B: {
+      return getBuildIndexesFor(CollectibleType.COLLECTIBLE_DR_FETUS);
+    }
+
     // 28
     case PlayerType.PLAYER_AZAZEL_B: {
       return getBuildIndexesFor(
