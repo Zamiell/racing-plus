@@ -10,7 +10,10 @@ import {
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
-import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
+import {
+  giveCollectibleAndRemoveFromPools,
+  giveTrinketAndRemoveFromPools,
+} from "../../../../utilGlobals";
 import {
   restartOnNextFrame,
   setRestartCharacter,
@@ -268,11 +271,35 @@ function giveStartingItems(
     CollectibleType.COLLECTIBLE_COMPASS,
   );
 
-  if (character === PlayerType.PLAYER_ISAAC_B) {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
-    );
+  switch (character) {
+    // 2
+    case PlayerType.PLAYER_CAIN: {
+      // Cain does not automatically start with the Paper Clip in custom challenges
+      giveTrinketAndRemoveFromPools(player, TrinketType.TRINKET_PAPER_CLIP);
+      break;
+    }
+
+    // 5
+    case PlayerType.PLAYER_EVE: {
+      // Eve does not automatically start with the Razor in custom challenges
+      giveCollectibleAndRemoveFromPools(
+        player,
+        CollectibleType.COLLECTIBLE_RAZOR_BLADE,
+      );
+      break;
+    }
+
+    case PlayerType.PLAYER_ISAAC_B: {
+      giveCollectibleAndRemoveFromPools(
+        player,
+        CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+      );
+      break;
+    }
+
+    default: {
+      break;
+    }
   }
 
   for (const collectibleType of startingBuild) {
