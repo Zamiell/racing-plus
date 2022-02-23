@@ -54,7 +54,10 @@ Sawblade stats:
 
 */
 
-import { checkFamiliar, saveDataManager } from "isaacscript-common";
+import {
+  checkFamiliarFromCollectibles,
+  saveDataManager,
+} from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../types/FamiliarVariantCustom";
 
@@ -162,8 +165,8 @@ function setSpriteOffset(familiar: EntityFamiliar) {
 // ModCallbacks.MC_EVALUATE_CACHE (8)
 // CacheFlag.CACHE_FAMILIARS (1 << 9)
 export function evaluateCacheFamiliars(player: EntityPlayer): void {
-  // Automatically handle adding and removing familiars with the "checkFamiliar()" helper function
-  checkFamiliar(
+  // Automatically handle adding and removing familiars with the "checkFamiliarFromCollectibles()" helper function
+  checkFamiliarFromCollectibles(
     player,
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
     FamiliarVariantCustom.SAWBLADE,
