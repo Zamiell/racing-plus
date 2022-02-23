@@ -1,6 +1,10 @@
 import { arrayCopy, MINUTE_IN_MILLISECONDS } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
+export const SEASON_2_DEBUG = true;
+
+export const SEASON_2_NUM_BANS = 3;
+
 export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
   PlayerType.PLAYER_CAIN, // 2
   PlayerType.PLAYER_EVE, // 5
@@ -184,8 +188,6 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
 /** An array containing every index that is not on the above build whitelist. */
 export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
   arrayCopy(forgottenExceptions);
-
-export const SEASON_2_DEBUG = true;
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_2_LOCK_MINUTES = 1.5;

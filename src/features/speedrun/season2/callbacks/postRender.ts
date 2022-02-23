@@ -3,7 +3,7 @@ import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getRoomsEntered } from "../../../util/roomsEntered";
 import { ChallengeCustom } from "../../enums";
-import { SEASON_2_LOCK_MILLISECONDS } from "../constants";
+import { SEASON_2_LOCK_MILLISECONDS, SEASON_2_NUM_BANS } from "../constants";
 import sprites from "../sprites";
 import v, { getTimeGameOpened } from "../v";
 
@@ -32,18 +32,25 @@ export function season2PostRender(): void {
 }
 
 function drawErrors() {
+  let action: string | null = null;
   if (v.run.errors.gameRecentlyOpened) {
-    const time = Isaac.GetTime();
-    const timeGameOpened = getTimeGameOpened();
-    const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
-    const millisecondsRemaining = endTime - time;
-    const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
-    const text = getSeason2ErrorMessage("opening the game", secondsRemaining);
-    drawErrorText(text);
-    return true;
+    action = "opening the game";
+  } else if (v.run.errors.bansRecentlySet) {
+    action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
   }
 
-  return false;
+  if (action === null) {
+    return false;
+  }
+
+  const time = Isaac.GetTime();
+  const timeGameOpened = getTimeGameOpened();
+  const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
+  const millisecondsRemaining = endTime - time;
+  const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
+  const text = getSeason2ErrorMessage(action, secondsRemaining);
+  drawErrorText(text);
+  return true;
 }
 
 function drawStartingRoomSprites() {

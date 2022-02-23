@@ -23,6 +23,7 @@ const v = {
   run: {
     errors: {
       gameRecentlyOpened: false,
+      bansRecentlySet: false,
     },
   },
 };

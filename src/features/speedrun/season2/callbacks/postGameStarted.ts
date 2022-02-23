@@ -84,7 +84,11 @@ function checkErrors() {
   const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
-  return v.run.errors.gameRecentlyOpened;
+  // Bans recently assigned
+  const bansUnlockTime = timeBansSet + SEASON_2_LOCK_MILLISECONDS;
+  v.run.errors.bansRecentlySet = time <= bansUnlockTime;
+
+  return v.run.errors.gameRecentlyOpened || v.run.errors.bansRecentlySet;
 }
 
 function removeItemsFromPools() {
