@@ -2,7 +2,7 @@ import { setCollectibleSprite } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const PNG_DIRECTORY = "gfx/items/collectibles";
-const CUSTOM_PNG_MAP = new Map<CollectibleType, string>([
+const CUSTOM_PNG_MAP: ReadonlyMap<CollectibleType, string> = new Map([
   [
     CollectibleType.COLLECTIBLE_DISTANT_ADMIRATION,
     "collectibles_057_distantadmiration_custom.png", // cspell:disable-line

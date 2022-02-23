@@ -11,7 +11,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../util";
 
-const ENTITIES_THAT_CAUSE_TELEPORT = new Set([
+const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_GURDY, // 36
   EntityType.ENTITY_MOM, // 45
   EntityType.ENTITY_MOMS_HEART, // 78

@@ -1,9 +1,10 @@
+import { copyMap } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 
-export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
+export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
   CollectibleTypeCustom,
   CollectibleType
->([
+> = new Map([
   [
     CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
     CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
@@ -42,14 +43,18 @@ export const COLLECTIBLE_REPLACEMENT_MAP = new Map<
   ],
 ]);
 
-export const COLLECTIBLE_PLACEHOLDER_REVERSE_MAP = new Map<
+const collectiblePlaceholderReverseMap = new Map<
   CollectibleType,
   CollectibleTypeCustom
 >();
 for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
-  COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.set(value, key);
+  collectiblePlaceholderReverseMap.set(value, key);
 }
 
-export const PLACEHOLDER_COLLECTIBLES_SET = new Set(
-  COLLECTIBLE_REPLACEMENT_MAP.keys(),
-);
+export const COLLECTIBLE_PLACEHOLDER_REVERSE_MAP: ReadonlyMap<
+  CollectibleType,
+  CollectibleTypeCustom
+> = copyMap(collectiblePlaceholderReverseMap);
+
+export const PLACEHOLDER_COLLECTIBLES_SET: ReadonlySet<CollectibleTypeCustom> =
+  new Set(COLLECTIBLE_REPLACEMENT_MAP.keys());

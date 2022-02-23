@@ -12,7 +12,7 @@ import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import g from "../globals";
 
-const IGNORE_EFFECT_VARIANTS = new Set([
+const IGNORE_EFFECT_VARIANTS: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.BLOOD_EXPLOSION, // 2
   EffectVariant.BLOOD_PARTICLE, // 5
   EffectVariant.TINY_BUG, // 21

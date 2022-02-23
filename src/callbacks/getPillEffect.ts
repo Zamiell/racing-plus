@@ -3,7 +3,7 @@
 // I can see forever!, or Lemon Party
 // If this happens, convert them to specific other pills
 
-const BANNED_PILLS = new Map<PillEffect, PillEffect>([
+const BANNED_PILLS: ReadonlyMap<PillEffect, PillEffect> = new Map([
   [PillEffect.PILLEFFECT_AMNESIA, PillEffect.PILLEFFECT_HORF], // 25
   [PillEffect.PILLEFFECT_QUESTIONMARK, PillEffect.PILLEFFECT_IM_EXCITED], // 31
 ]);

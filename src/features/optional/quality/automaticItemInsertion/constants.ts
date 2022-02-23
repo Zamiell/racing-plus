@@ -1,9 +1,9 @@
 export const PICKUP_VARIANT_CARD_OR_PILL = -1;
 
-export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
+export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
   CollectibleType,
   PickupVariant[]
->([
+> = new Map([
   [CollectibleType.COLLECTIBLE_PHD, [PickupVariant.PICKUP_PILL]], // 75
   [CollectibleType.COLLECTIBLE_MOMS_PURSE, [PickupVariant.PICKUP_TRINKET]], // 139
   [
@@ -97,7 +97,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new Map<
   [CollectibleType.COLLECTIBLE_MOMS_RING, [PickupVariant.PICKUP_TAROTCARD]], // 732
 ]);
 
-export const DETRIMENTAL_TRINKETS = new Set<TrinketType>([
+export const DETRIMENTAL_TRINKETS: ReadonlySet<TrinketType> = new Set([
   TrinketType.TRINKET_PURPLE_HEART, // 5
   TrinketType.TRINKET_MOMS_TOENAIL, // 16
   TrinketType.TRINKET_MATCH_STICK, // 41

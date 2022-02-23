@@ -1,9 +1,9 @@
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
-export const TRANSFORMATION_TO_HELPER_MAP = new Map<
+export const TRANSFORMATION_TO_HELPER_MAP: ReadonlyMap<
   PlayerForm,
   CollectibleTypeCustom
->([
+> = new Map([
   [
     PlayerForm.PLAYERFORM_GUPPY, // 0
     CollectibleTypeCustom.COLLECTIBLE_GUPPY_TRANSFORMATION_HELPER,

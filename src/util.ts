@@ -18,7 +18,7 @@ export function consoleCommand(command: string): void {
 
 export function getPartialMatchFromMap<T>(
   searchText: string,
-  map: Map<string, T>,
+  map: ReadonlyMap<string, T>,
 ): T | undefined {
   const keys = [...map.keys()];
   keys.sort();

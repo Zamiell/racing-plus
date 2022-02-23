@@ -19,22 +19,23 @@ import { RaceStatus } from "./types/RaceStatus";
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in
  * Racing+.
  */
-const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new Set<PlayerType>([
-  PlayerType.PLAYER_JACOB, // 19
-  PlayerType.PLAYER_ESAU, // 20
-  PlayerType.PLAYER_MAGDALENE_B, // 22
-  PlayerType.PLAYER_JUDAS_B, // 24
-  PlayerType.PLAYER_BLUEBABY_B, // 25
-  PlayerType.PLAYER_EVE_B, // 26
-  PlayerType.PLAYER_LAZARUS_B, // 29
-  PlayerType.PLAYER_APOLLYON_B, // 34
-  PlayerType.PLAYER_BETHANY_B, // 36
-  PlayerType.PLAYER_JACOB_B, // 37
-  PlayerType.PLAYER_LAZARUS2_B, // 38
-  PlayerType.PLAYER_JACOB2_B, // 39
-]);
+const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS: ReadonlySet<PlayerType> =
+  new Set([
+    PlayerType.PLAYER_JACOB, // 19
+    PlayerType.PLAYER_ESAU, // 20
+    PlayerType.PLAYER_MAGDALENE_B, // 22
+    PlayerType.PLAYER_JUDAS_B, // 24
+    PlayerType.PLAYER_BLUEBABY_B, // 25
+    PlayerType.PLAYER_EVE_B, // 26
+    PlayerType.PLAYER_LAZARUS_B, // 29
+    PlayerType.PLAYER_APOLLYON_B, // 34
+    PlayerType.PLAYER_BETHANY_B, // 36
+    PlayerType.PLAYER_JACOB_B, // 37
+    PlayerType.PLAYER_LAZARUS2_B, // 38
+    PlayerType.PLAYER_JACOB2_B, // 39
+  ]);
 
-const BANNED_DIVERSITY_COLLECTIBLES = [
+const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_MOMS_KNIFE,
   CollectibleType.COLLECTIBLE_D4,
   CollectibleType.COLLECTIBLE_D100,
@@ -43,7 +44,9 @@ const BANNED_DIVERSITY_COLLECTIBLES = [
   CollectibleType.COLLECTIBLE_ESAU_JR,
 ];
 
-const BANNED_DIVERSITY_TRINKETS = [TrinketType.TRINKET_DICE_BAG];
+const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
+  TrinketType.TRINKET_DICE_BAG,
+];
 
 export function formatSetup(player: EntityPlayer): void {
   if (

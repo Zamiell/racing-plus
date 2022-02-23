@@ -2,7 +2,7 @@ import { setCollectibleSprite } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const CUSTOM_PNG_PATH =
-  "gfx/items/collectibles/collectibles_651_starofbethlehem_custom.png"; // cspell:disable-line
+  "gfx/items/collectibles/collectibles_651_starofbethlehem_custom.png";
 
 export function postPickupInit(pickup: EntityPickup): void {
   if (!config.starOfBethlehem) {

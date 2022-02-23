@@ -1,7 +1,7 @@
-import { MINUTE_IN_MILLISECONDS } from "isaacscript-common";
+import { arrayCopy, MINUTE_IN_MILLISECONDS } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
-export const SEASON_2_CHARACTERS = [
+export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
   PlayerType.PLAYER_CAIN, // 2
   PlayerType.PLAYER_EVE, // 5
   PlayerType.PLAYER_BLACKJUDAS, // 12
@@ -11,7 +11,9 @@ export const SEASON_2_CHARACTERS = [
   PlayerType.PLAYER_AZAZEL_B, // 28
 ];
 
-export const SEASON_2_STARTING_BUILDS = [
+export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
+  ReadonlyArray<CollectibleType | CollectibleTypeCustom>
+> = [
   // -------------------
   // Treasure Room items
   // -------------------
@@ -155,9 +157,9 @@ export const SEASON_2_STARTING_BUILDS = [
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
  * characters, so to compensate for this, he is guaranteed a good starting item.
  */
-const SEASON_2_FORGOTTEN_BUILDS = new Set<
+const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<
   CollectibleType | CollectibleTypeCustom
->([
+> = new Set([
   CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, // 12
   CollectibleType.COLLECTIBLE_CHOCOLATE_MILK, // 69
   CollectibleType.COLLECTIBLE_IPECAC, // 149
@@ -170,15 +172,18 @@ const SEASON_2_FORGOTTEN_BUILDS = new Set<
   CollectibleType.COLLECTIBLE_C_SECTION, // 678
 ]);
 
-/** An array containing every index that is not on the above build whitelist. */
-export const SEASON_2_FORGOTTEN_EXCEPTIONS: int[] = [];
+const forgottenExceptions: int[] = [];
 for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
   const build = SEASON_2_STARTING_BUILDS[i];
   const firstCollectible = build[0];
   if (!SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible)) {
-    SEASON_2_FORGOTTEN_EXCEPTIONS.push(i);
+    forgottenExceptions.push(i);
   }
 }
+
+/** An array containing every index that is not on the above build whitelist. */
+export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
+  arrayCopy(forgottenExceptions);
 
 export const SEASON_2_DEBUG = true;
 

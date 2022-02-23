@@ -15,7 +15,7 @@ pack/unpack reference:
 import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 
 export const BEACON_INTERVAL = 10 * ISAAC_FRAMES_PER_SECOND;
-export const BEACON_FIELDS = ["raceID", "userID", "message"];
+export const BEACON_FIELDS: readonly string[] = ["raceID", "userID", "message"];
 export const BEACON_DATA_FORMAT = "IIc5";
 export const BEACON_MESSAGE = "HELLO";
 

@@ -7,7 +7,7 @@
 import { getNPCs, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const BUGGED_NPC_TYPES = new Set<EntityType>([
+const BUGGED_NPC_TYPES: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_GLOBIN, // 24
   EntityType.ENTITY_BOIL, // 30
   EntityType.ENTITY_FISTULA_BIG, // 71 (also includes Teratoma)

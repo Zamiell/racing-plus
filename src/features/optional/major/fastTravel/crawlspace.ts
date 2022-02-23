@@ -27,14 +27,14 @@ const TOP_OF_LADDER_POSITION = Vector(120, 160);
 
 const TELEPORTER_ACTIVATION_DISTANCE = 20; // Exactly the same as a vanilla teleporter
 
-const DEVIL_ANGEL_EXIT_MAP = new Map<int, Direction>([
+const DEVIL_ANGEL_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
   [7, Direction.UP], // Top door
   [74, Direction.RIGHT], // Right door
   [127, Direction.DOWN], // Bottom door
   [60, Direction.LEFT], // Left door
 ]);
 
-const BOSS_RUSH_EXIT_MAP = new Map<int, Direction>([
+const BOSS_RUSH_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
   // Even though the Boss Rush is a 2x2 room,
   // it is not possible for doors to spawn in other locations than these 4 spots
   [7, Direction.UP], // Top left door
@@ -43,7 +43,7 @@ const BOSS_RUSH_EXIT_MAP = new Map<int, Direction>([
   [427, Direction.DOWN], // Bottom left door
 ]);
 
-const ONE_BY_ONE_ROOM_ENTER_MAP = new Map<Direction, int>([
+const ONE_BY_ONE_ROOM_ENTER_MAP: ReadonlyMap<Direction, int> = new Map([
   [Direction.LEFT, 73], // 0 (returning from the right door)
   [Direction.UP, 112], // 1 (returning from the bottom door)
   [Direction.RIGHT, 61], // 2 (returning from the left door)

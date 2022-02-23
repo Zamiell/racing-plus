@@ -2,9 +2,10 @@
 // In vanilla, the fuse is: 45 + random(1, 2147483647) % 30
 // Note that game physics occur at 30 frames per second instead of 60
 
+import { GAME_FRAMES_PER_SECOND } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const TWO_SECONDS_IN_GAME_FRAMES = 2 * 30;
+const CONSISTENT_EXPLOSION_TIME_IN_SECONDS = 2;
 
 export function postBombInitTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
@@ -31,5 +32,7 @@ export function postBombInitGoldenTroll(bomb: EntityBomb): void {
 }
 
 function setFuse(bomb: EntityBomb) {
-  bomb.SetExplosionCountdown(TWO_SECONDS_IN_GAME_FRAMES);
+  bomb.SetExplosionCountdown(
+    CONSISTENT_EXPLOSION_TIME_IN_SECONDS * GAME_FRAMES_PER_SECOND,
+  );
 }

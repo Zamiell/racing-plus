@@ -21,7 +21,7 @@ const FRAMES_BEFORE_FADE = 50;
 
 // Listed in order of the wiki (32 in total)
 // https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
-const DEAD_SEA_SCROLL_EFFECTS = [
+const DEAD_SEA_SCROLL_EFFECTS: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK,
   CollectibleType.COLLECTIBLE_BEST_FRIEND,
   CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD,

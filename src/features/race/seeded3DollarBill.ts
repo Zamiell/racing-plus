@@ -16,7 +16,7 @@ const REPLACEMENT_ITEM = CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED;
 
 // Listed in alphabetical order to match the wiki page
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
-const THREE_DOLLAR_BILL_ITEMS: CollectibleType[] = [
+const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_20_20, // 245
   CollectibleType.COLLECTIBLE_APPLE, // 443
   CollectibleType.COLLECTIBLE_BALL_OF_TAR, // 231

@@ -5,7 +5,7 @@ import { config } from "../../../modConfigMenu";
 const FADE_AMOUNT = 0.4;
 const FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 
-const MULTI_SEGMENT_BOSSES = new Set<EntityType>([
+const MULTI_SEGMENT_BOSSES: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_LARRYJR, // 19 (and The Hollow / Tuff Twins / The Shell)
   EntityType.ENTITY_PIN, // 62 (and Scolex / Frail / Wormwood)
   EntityType.ENTITY_GEMINI, // 79 (and Steven / Blighted Ovum)

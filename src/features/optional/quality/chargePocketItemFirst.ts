@@ -39,7 +39,7 @@ enum ChargeType {
   N_CHARGES,
 }
 
-const ACTIVE_SLOTS_PRECEDENCE = [
+const ACTIVE_SLOTS_PRECEDENCE: readonly ActiveSlot[] = [
   ActiveSlot.SLOT_POCKET,
   ActiveSlot.SLOT_PRIMARY,
   ActiveSlot.SLOT_SECONDARY,

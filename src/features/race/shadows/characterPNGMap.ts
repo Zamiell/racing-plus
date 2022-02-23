@@ -1,4 +1,4 @@
-export const CHARACTER_PNG_MAP = new Map<PlayerType, string>([
+export const CHARACTER_PNG_MAP: ReadonlyMap<PlayerType, string> = new Map([
   [PlayerType.PLAYER_ISAAC, "characters/costumes/character_001_isaac.png"], // 0
   [
     PlayerType.PLAYER_MAGDALENE,

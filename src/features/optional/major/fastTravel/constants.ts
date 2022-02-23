@@ -7,15 +7,17 @@ export interface FastTravelEntityDescription {
   state: FastTravelEntityState;
 }
 
-export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL = new Set([
-  "Happy",
-  "Sad",
-  "Jump",
-  "RollingLeft",
-  "RollingRight",
-  "RollingDown",
-  "RollingUp",
-]);
+export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL: ReadonlySet<string> = new Set(
+  [
+    "Happy",
+    "Sad",
+    "Jump",
+    "RollingLeft",
+    "RollingRight",
+    "RollingDown",
+    "RollingUp",
+  ],
+);
 
 /** This also applies to crawlspaces. The value was determined through trial and error. */
 export const TRAPDOOR_OPEN_DISTANCE = 60;

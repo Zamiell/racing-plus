@@ -1,7 +1,8 @@
+import { copyMap } from "isaacscript-common";
 import { PlayerTypeCustom } from "../types/PlayerTypeCustom";
 
 // cspell:disable
-export const CHARACTER_MAP = new Map<string, PlayerType | PlayerTypeCustom>([
+const characterMap = new Map<string, PlayerType | PlayerTypeCustom>([
   ["isaac", 0],
   ["magdalene", 1],
   ["maggy", 1],
@@ -85,10 +86,13 @@ export const CHARACTER_MAP = new Map<string, PlayerType | PlayerTypeCustom>([
   // 40 is Tainted Soul, which is the same as Tainted Forgotten
 ]);
 
-const RANDOM_BABY_KEYS = ["baby", "randombaby"];
+const RANDOM_BABY_KEYS: readonly string[] = ["baby", "randombaby"];
 
 if (PlayerTypeCustom.PLAYER_RANDOM_BABY !== -1) {
   for (const key of RANDOM_BABY_KEYS) {
-    CHARACTER_MAP.set(key, PlayerTypeCustom.PLAYER_RANDOM_BABY);
+    characterMap.set(key, PlayerTypeCustom.PLAYER_RANDOM_BABY);
   }
 }
+
+export const CHARACTER_MAP: ReadonlyMap<string, PlayerType | PlayerTypeCustom> =
+  copyMap(characterMap);

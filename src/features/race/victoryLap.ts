@@ -8,7 +8,9 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import v from "./v";
 
-const VICTORY_LAP_BOSSES: Array<[int, int, int]> = [
+const VICTORY_LAP_BOSSES: ReadonlyArray<
+  [entityType: int, variant: int, subType: int]
+> = [
   [19, 0, 0], // Larry Jr.
   [19, 0, 1], // Larry Jr. (green)
   [19, 0, 2], // Larry Jr. (blue)

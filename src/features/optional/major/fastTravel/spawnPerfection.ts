@@ -4,7 +4,7 @@ import v from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 
-const SPLITTING_BOSSES = new Set<EntityType>([
+const SPLITTING_BOSSES: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_FISTULA_BIG, // 71
   EntityType.ENTITY_FISTULA_MEDIUM, // 72
 ]);

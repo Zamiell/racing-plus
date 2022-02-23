@@ -208,7 +208,7 @@ function getStartingBuildIndex(character: PlayerType) {
   return startingBuildIndex;
 }
 
-function getAntiSynergyBuilds(character: PlayerType): int[] {
+function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
   switch (character) {
     // 5
     case PlayerType.PLAYER_EVE: {
@@ -266,7 +266,7 @@ function getBuildIndexFor(collectibleType: CollectibleType) {
 
 function giveStartingItems(
   player: EntityPlayer,
-  startingBuild: Array<CollectibleType | CollectibleTypeCustom>,
+  startingBuild: ReadonlyArray<CollectibleType | CollectibleTypeCustom>,
 ) {
   const character = player.GetPlayerType();
 
@@ -326,7 +326,7 @@ function giveStartingItems(
 }
 
 function initSprites(
-  startingBuild: Array<CollectibleType | CollectibleTypeCustom>,
+  startingBuild: ReadonlyArray<CollectibleType | CollectibleTypeCustom>,
 ) {
   sprites.characterTitle = initSprite(`${GFX_PATH}/character.anm2`);
 

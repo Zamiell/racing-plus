@@ -8,7 +8,7 @@ import g from "../../globals";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.COLLECTIBLE_SAD_ONION;
 
-const ROOM_TYPES_TO_CHECK = new Set([
+const ROOM_TYPES_TO_CHECK: ReadonlySet<RoomType> = new Set([
   RoomType.ROOM_SECRET,
   RoomType.ROOM_ERROR,
 ]);

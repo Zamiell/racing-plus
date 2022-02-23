@@ -1,7 +1,7 @@
 import { Config } from "./types/Config";
 import { Hotkeys } from "./types/Hotkeys";
 
-export type ConfigDescriptions = Array<
+export type ConfigDescriptions = ReadonlyArray<
   [
     keyof Config | keyof Hotkeys | null,
     [ModConfigMenuOptionType, string, string, string],
@@ -1196,7 +1196,7 @@ export const OTHER_FEATURES: ConfigDescriptions = [
   ],
 ];
 
-export const ALL_CONFIG_DESCRIPTIONS = [
+export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
   ...MAJOR_CHANGES,
   ...CHARACTER_CHANGES,
   ...BOSS_CHANGES_1,
@@ -1215,4 +1215,4 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...OTHER_FEATURES,
 ];
 
-export const ALL_HOTKEY_DESCRIPTIONS = [...CUSTOM_HOTKEYS];
+export const ALL_HOTKEY_DESCRIPTIONS: ConfigDescriptions = [...CUSTOM_HOTKEYS];

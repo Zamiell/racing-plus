@@ -1,5 +1,5 @@
 // cspell:disable
-export const PILL_MAP = new Map<string, PillEffect>([
+export const PILL_MAP: ReadonlyMap<string, PillEffect> = new Map([
   ["badgas", 0],
   ["gas", 0],
   ["badtrip", 1],
