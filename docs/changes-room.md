@@ -53,9 +53,8 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 
 On Sheol, there exists a room with a trapdoor that takes you directly to the Dark Room without having to fight Satan. This puts too much of an extreme lower bound on the clear time of the floor.
 
-(There are also other rooms with trapdoors, but they are earlier on in the game and are not as impactful to the balance.)
+(There are also other rooms with trapdoors, but they are earlier on in the game and are not as impactful.)
 
-The deleted room is as follows:
 - Sheol: #290
 
 <br />
@@ -79,7 +78,6 @@ There are several softlocks in the vanilla game.
 
 Low range builds softlock in certain rooms. The rooms are fixed by moving the enemies closer.
 
-The changed rooms are as follows:
 - Caves: #226, #305
 - Catacombs: #305
 - Flooded: #226, #305
@@ -96,7 +94,6 @@ The changed rooms are as follows:
 
 On certain rooms in the Basement/Cellar, some Pooters can fly over rocks, causing a pseudo-softlock.
 
-The changed rooms are as follows:
 - Basement: #132, #391 (moved the Pooters)
 - Basement: #811 (replaced with Gapers)
 - Burning: #132, #405 (moved the Pooters)
@@ -108,7 +105,6 @@ The changed rooms are as follows:
 
 In certain rooms, having very large tears causes a softlock in rooms with Stone Grimaces next to poops and/or fires. This is because the Stone Grimace hitbox takes priority.
 
-The changed rooms are as follows:
 - Necropolis: #885 (deleted the fire)
 - Womb: #692 (moved the Red Poops to the side)
 - Utero: #680 (moved the Red Poops to the side)
@@ -121,7 +117,6 @@ The changed rooms are as follows:
 
 In one room, Round Worms can cause a pseudo-softlock if they continue to appear behind rocks. Some rocks were replaced with poops to mitigate this.
 
-The changed room is as follows:
 - Basement: #301
 - Burning: #301
 
@@ -131,7 +126,6 @@ The changed room is as follows:
 
 In L rooms and 2x2 rooms, Tar Boys and Lumps can pseudo-softlock the player by constantly appearing outside of vision. This results in the clear time of the room being highly reliant on RNG. In these rooms, Tar Boys are replaced with Black Bonies, Dank Globins, Dank Chargers, or Sticky Leapers. Lumps are replaced with Mr. Red Maws, Tumors, or Swingers.
 
-The changed rooms are as follows:
 - Dank Depths: #893, #894, #896, #905, #906, #907, #908, #962, #1091
 - Womb: #398, #419, #430, #514, #667, #731, #745
 - Utero: #398, #419, #430, #655, #729, #743
@@ -143,7 +137,6 @@ The changed rooms are as follows:
 
 In some rooms, it is impossible to kill a Bishop if it is surrounded by enemies.
 
-The changed room is as follows:
 - Cathedral: #430
 
 <br />
@@ -151,8 +144,6 @@ The changed room is as follows:
 ### Swarm Spider Fix
 
 In some rooms, Swarm Spiders can get stuck in inaccessible parts of the room.
-
-The changed rooms are as follows:
 
 - Cellar: #1023
 - Burning: #1192
@@ -163,7 +154,6 @@ The changed rooms are as follows:
 
 In one room, Trites can get stuck in the top part of the room.
 
-The changed room is as follows:
 - Cellar: #1021
 
 <br />
@@ -182,7 +172,6 @@ Racing+ is somewhat conservative with what it classifies as unavoidable damage. 
 
 While not technically unavoidable, many narrow rooms have near-impossible attack patterns, especially on Dr. Fetus builds.
 
-The changed rooms are as follows:
 - Depths: #638 (Mom's Dead Hand) (deleted)
 - Necropolis: #616 (Mom's Dead Hand) (deleted)
 - Womb: #598 (Mom's Dead Hand) (deleted)
@@ -208,7 +197,6 @@ The changed rooms are as follows:
 
 Some rooms are so packed with entities that they are unavoidable damage on Dr. Fetus and Ipecac. In such rooms, space has been cleared near the doors.
 
-The changed room is as follows:
 - Womb: #787 (narrow room with Nerve Endings)
 - Utero: #776 (narrow room with Nerve Endings)
 - Scarred: #787 (narrow room with Nerve Endings)
@@ -219,7 +207,6 @@ The changed room is as follows:
 
 The puzzle rooms with the red fires along the sides of the room have no consistent strategy with which to avoid the random shots.
 
-The deleted room is as follows:
 - Basement: #771
 - Cellar: #771
 - Burning: #785
@@ -230,7 +217,6 @@ The deleted room is as follows:
 
 In one room, fires spawn close to the entrance. If the fire becomes a champion red fire, then the player can take unavoidable damage. This bug has been fixed by replacing the Fire with Fire Places, which are guaranteed to not spawn as red fires.
 
-The changed rooms are as follows:
 - Depths: #826
 - Necropolis: #812
 - Dank: #826
@@ -241,7 +227,6 @@ The changed rooms are as follows:
 
 In one room, the Drowned Chargers that spawn from a Hive can be unavoidable damage. The Hives have been slightly moved to accommodate for this.
 
-The changed room is as follows:
 - Caves: #519
 - Flooded: #527
 
@@ -251,7 +236,6 @@ The changed room is as follows:
 
 In one room, a Slide causes unavoidable damage.
 
-The deleted room is as follows:
 - Depths: #708
 - Necropolis: #684
 - Dank: #706
@@ -287,11 +271,20 @@ If you have Duality and there is only 2 entrances to a boss room, the Angel Room
 
 <br />
 
+### Boss Item Fixes
+
+In some boss rooms, it is not possible to enter a Devil Room / Angel Room on the bottom without taking the boss item.
+
+- #2031 (Loki)
+- #3311 (Lokii)
+- #4041 (Death)
+
+<br />
+
 ### Door Fixes
 
 On certain rooms, doors are disabled for no good reason.
 
-The changed rooms are as follows:
 - Chest: #39 (double Mega Maw)
 
 <br />
@@ -300,7 +293,6 @@ The changed rooms are as follows:
 
 On one room with a black heart, [Edmund forgot to implement entity stacking](http://bindingofisaac.com/post/90431619124/insert-size-matters-joke-here).
 
-The changed rooms are as follows:
 - Caves: #267
 - Flooded: #267
 
@@ -310,7 +302,6 @@ The changed rooms are as follows:
 
 In some rooms, entities are placed out of bounds, which causes glitchy behavior.
 
-The changed room is as follows:
 - Necropolis: #1092
 
 
@@ -325,7 +316,6 @@ The changed room is as follows:
 
 Due to bug fixes in May 2018, most enemies that spawn near an entrance are no longer completely unavoidable damage. However, enemies that spawn very close to doors are unfair in certain circumstances, and it is more reasonable to have enemies spawn at least 2 tiles away from the player.
 
-The changed rooms are as follows:
 - Basement: #126 (Mulligan/Mulligoon)
 - Basement: #359 (Mulligan)
 - Basement: #393 (Mulligan)
@@ -373,7 +363,6 @@ The changed rooms are as follows:
 
 Some rooms in the game do not have anything in them. These types of rooms rob the player of interesting gameplay.
 
-The deleted rooms are as follows:
 - Basement: #36, #315
 - Cellar: #36
 - Burning: #36, #315
@@ -391,7 +380,6 @@ The deleted rooms are as follows:
 
 Some rooms in the game only have a few rocks, pits, etc. These types of rooms rob the player of interesting gameplay.
 
-The deleted rooms are as follows:
 - Basement: #13, #15, #26, #27, #29, #89, #141, #144, #217, #218, #223, #226, #229, #230, #281, #282, #286, #287, #288, #291, #292, #338, #384, #520, #600, #601, #617, #619, #621, #622, #623, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #976, #979, #1072, #1084
 - Cellar: #21, #26, #27, #29, #52, #89, #141, #144, #210, #211, #212, #213, #214, #254, #255, #256, #257, #258, #299, #304, #305, #306, #308, #338, #520, #600, #601, #617, #621, #622, #636, #749, #753, #760, #761, #768, #900, #951, #952, #954, #1044
 - Burning: #13, #15, #26, #27, #29, #89, #141, #144, #217, #218, #223, #226, #229, #230, #281, #282, #286, #287, #288, #291, #292, #338, #398, #534, #614, #615, #631, #633, #635, #636, #637, #650, #763, #767, #774, #775, #782, #914, #965, #966, #968, #988, #991, #1225
@@ -423,7 +411,6 @@ The deleted rooms are as follows:
 
 Some rooms have the chance to be empty because of stacked entities.
 
-The changed rooms are as follows:
 - Basement: #875 (Portal)
 - Cellar: #875 (Portal)
 - Burning: #889 (Portal)
@@ -434,7 +421,6 @@ The changed rooms are as follows:
 
 One room in the Necropolis has a donation machine in it. Since removing curses also removes donation machines from the game, this room is largely useless.
 
-The deleted room is as follows:
 - Necropolis: #467
 
 <br />
@@ -443,7 +429,6 @@ The deleted room is as follows:
 
 Beggars are moved out of the way in all angel shops. This is a quality-of-life change.
 
-The changed rooms are as follows:
 - #40
 - #41
 - #42
@@ -457,7 +442,6 @@ The changed rooms are as follows:
 
 The Hush Flies that are placed in some rooms are given the same armor scaling that Hush is, so they have been replaced with Attack Flies.
 
-The changed rooms are as follows:
 - Depths: #829, #857
 - Necropolis: #815, #843
 - Dank: #829, #857
@@ -468,7 +452,6 @@ The changed rooms are as follows:
 
 There are some Bumbino Rooms where players have to sit and wait for him to break out of his rock cage. This is a waste of time.
 
-The deleted rooms are as follows:
 - Cathedral: #360
 - Bumbino: #5273, #5274
 
@@ -478,7 +461,6 @@ The deleted rooms are as follows:
 
 Certain rooms in the game were probably meant to be symmetrical, but one entity was incorrectly placed. This is fixed.
 
-The changed rooms are as follows:
 - Treasure: #30, #32
 - Basement: #581
 - Burning: #405, #595

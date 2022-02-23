@@ -12,6 +12,10 @@
 - In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
 - In seeded races, Birthright is now removed from pools if you start as The Lost.
 - Needles will now jump at you after 8 frames (instead of 7).
+- Removed the pits next to the Devil Room / Angel Room in the following rooms:
+  - #2031 (Loki)
+  - #3311 (Lokii)
+  - #4041 (Death)
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
 - Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
