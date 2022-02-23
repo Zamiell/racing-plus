@@ -13,6 +13,7 @@ import {
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
+import { season2SetBansTime } from "../speedrun/season2/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "./v";
@@ -315,6 +316,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.seasonChosenAbbreviation,
       v.room.buildsChosen,
     );
+    season2SetBansTime();
     g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
   }
 }

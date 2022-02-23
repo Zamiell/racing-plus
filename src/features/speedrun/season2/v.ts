@@ -13,6 +13,9 @@ const v = {
     /** Never start the same build twice in a row. */
     lastSelectedBuildIndex: null as int | null,
 
+    /** The time that the bans were set in the "Change Char Order" custom challenge. */
+    timeBansSet: null as int | null,
+
     /**
      * The time that the randomly selected character & build were assigned. This is set to 0 when
      * the Basement 2 boss is defeated.
@@ -35,7 +38,7 @@ export function init(): void {
   saveDataManager("season2", v);
 }
 
-export function getTimeGameOpened(): int {
+export function season2GetTimeGameOpened(): int {
   return timeGameOpened;
 }
 
@@ -47,4 +50,8 @@ export function season2GetCurrentBuildIndex(): int | undefined {
 export function season2GetCurrentCharacter(): PlayerType | undefined {
   const characterNum = speedrunGetCharacterNum();
   return v.persistent.selectedCharacters[characterNum - 1];
+}
+
+export function season2SetBansTime(): void {
+  v.persistent.timeBansSet = Isaac.GetTime();
 }

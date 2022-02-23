@@ -29,9 +29,9 @@ import {
 } from "../constants";
 import sprites, { resetSprites } from "../sprites";
 import v, {
-  getTimeGameOpened,
   season2GetCurrentBuildIndex,
   season2GetCurrentCharacter,
+  season2GetTimeGameOpened,
 } from "../v";
 
 const GFX_PATH = "gfx/race/starting-room";
@@ -80,13 +80,18 @@ function checkErrors() {
   const time = Isaac.GetTime();
 
   // Game recently opened
-  const timeGameOpened = getTimeGameOpened();
+  const timeGameOpened = season2GetTimeGameOpened();
   const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
   // Bans recently assigned
-  // const bansUnlockTime = timeBansSet + SEASON_2_LOCK_MILLISECONDS;
-  // v.run.errors.bansRecentlySet = time <= bansUnlockTime;
+  if (v.persistent.timeBansSet === null) {
+    v.run.errors.bansRecentlySet = false;
+  } else {
+    const bansUnlockTime =
+      v.persistent.timeBansSet + SEASON_2_LOCK_MILLISECONDS;
+    v.run.errors.bansRecentlySet = time <= bansUnlockTime;
+  }
 
   return v.run.errors.gameRecentlyOpened || v.run.errors.bansRecentlySet;
 }

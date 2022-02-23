@@ -5,7 +5,7 @@ import { getRoomsEntered } from "../../../utils/roomsEntered";
 import { ChallengeCustom } from "../../enums";
 import { SEASON_2_LOCK_MILLISECONDS, SEASON_2_NUM_BANS } from "../constants";
 import sprites from "../sprites";
-import v, { getTimeGameOpened } from "../v";
+import v, { season2GetTimeGameOpened } from "../v";
 
 const TOP_LEFT_GRID_INDEX = 32;
 const TOP_RIGHT_GRID_INDEX = 42;
@@ -44,7 +44,7 @@ function drawErrors() {
   }
 
   const time = Isaac.GetTime();
-  const timeGameOpened = getTimeGameOpened();
+  const timeGameOpened = season2GetTimeGameOpened();
   const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   const millisecondsRemaining = endTime - time;
   const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
