@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.76.0* - February ?th, 2022
+### *v0.76.0* - February 20th, 2022
 
 - R+7 Season 2 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start
 - The first angel in a run is now always Uriel.
