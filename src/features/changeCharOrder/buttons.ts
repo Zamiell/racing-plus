@@ -133,23 +133,19 @@ export function postGridEntityUpdatePressurePlate(
 function checkPressed(gridEntity: GridEntity) {
   switch (v.room.phase) {
     case ChangeCharOrderPhase.SEASON_SELECT: {
-      checkPressedPhaseSeasonSelect(gridEntity);
-      break;
+      return checkPressedPhaseSeasonSelect(gridEntity);
     }
 
     case ChangeCharOrderPhase.CHARACTER_SELECT: {
-      checkPressedPhaseCharacterSelect(gridEntity);
-      break;
+      return checkPressedPhaseCharacterSelect(gridEntity);
     }
 
     case ChangeCharOrderPhase.BUILD_VETO: {
-      checkPressedPhaseBuildVeto(gridEntity);
-      break;
+      return checkPressedPhaseBuildVeto(gridEntity);
     }
 
     default: {
-      ensureAllCases(v.room.phase);
-      break;
+      return ensureAllCases(v.room.phase);
     }
   }
 }

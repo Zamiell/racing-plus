@@ -357,6 +357,8 @@ function getChargeSituationForBattery(batterySubType: BatterySubType) {
 
     default: {
       ensureAllCases(batterySubType);
+
+      // Handle modded battery types
       return {
         chargeType: ChargeType.NONE,
       };

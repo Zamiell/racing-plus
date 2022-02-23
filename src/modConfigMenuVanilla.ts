@@ -236,8 +236,7 @@ function getAnnounceVoiceModeText() {
     }
 
     default: {
-      ensureAllCases(Options.AnnouncerVoiceMode);
-      return "Unknown";
+      return ensureAllCases(Options.AnnouncerVoiceMode);
     }
   }
 }
@@ -257,8 +256,7 @@ function getConsoleFontText() {
     }
 
     default: {
-      ensureAllCases(Options.ConsoleFont);
-      return "Unknown";
+      return ensureAllCases(Options.ConsoleFont);
     }
   }
 }

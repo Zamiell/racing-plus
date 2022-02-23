@@ -140,8 +140,7 @@ function getRollingAnimation(direction: Direction) {
     }
 
     default: {
-      ensureAllCases(direction);
-      return "RollingDown";
+      return ensureAllCases(direction);
     }
   }
 }

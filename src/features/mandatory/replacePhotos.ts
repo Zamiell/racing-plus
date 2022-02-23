@@ -157,8 +157,7 @@ function getPhotoSituationRace(goal: RaceGoal) {
     }
 
     default: {
-      ensureAllCases(goal);
-      return PhotoSituation.POLAROID;
+      return ensureAllCases(goal);
     }
   }
 }

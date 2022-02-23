@@ -60,8 +60,7 @@ function getHolidayCostumeID(holiday: Holiday) {
     }
 
     default: {
-      ensureAllCases(holiday);
-      return -1;
+      return ensureAllCases(holiday);
     }
   }
 }

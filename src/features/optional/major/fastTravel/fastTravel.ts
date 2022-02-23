@@ -148,8 +148,7 @@ function getCustomSpriteFilename(
     }
 
     default: {
-      ensureAllCases(fastTravelEntityType);
-      return "";
+      return ensureAllCases(fastTravelEntityType);
     }
   }
 }

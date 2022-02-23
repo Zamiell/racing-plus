@@ -80,98 +80,56 @@ function set(
   entityDescription.state = state;
 }
 
+function getFastTravelMap(fastTravelEntityType: FastTravelEntityType) {
+  switch (fastTravelEntityType) {
+    case FastTravelEntityType.TRAPDOOR: {
+      return v.room.trapdoors;
+    }
+
+    case FastTravelEntityType.CRAWLSPACE: {
+      return v.room.crawlspaces;
+    }
+
+    case FastTravelEntityType.HEAVEN_DOOR: {
+      return v.room.heavenDoors;
+    }
+
+    default: {
+      return ensureAllCases(fastTravelEntityType);
+    }
+  }
+}
+
 export function initDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
   const roomFrameCount = g.r.GetFrameCount();
+  const fastTravelMap = getFastTravelMap(fastTravelEntityType);
   const index = getIndex(entity, fastTravelEntityType);
   const description = {
     initial: roomFrameCount === 0,
     state: FastTravelEntityState.OPEN,
   };
-
-  switch (fastTravelEntityType) {
-    case FastTravelEntityType.TRAPDOOR: {
-      v.room.trapdoors.set(index, description);
-      break;
-    }
-
-    case FastTravelEntityType.CRAWLSPACE: {
-      v.room.crawlspaces.set(index, description);
-      break;
-    }
-
-    case FastTravelEntityType.HEAVEN_DOOR: {
-      v.room.heavenDoors.set(index, description);
-      break;
-    }
-
-    default: {
-      ensureAllCases(fastTravelEntityType);
-    }
-  }
+  fastTravelMap.set(index, description);
 }
 
 export function getDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): FastTravelEntityDescription | undefined {
+  const fastTravelMap = getFastTravelMap(fastTravelEntityType);
   const index = getIndex(entity, fastTravelEntityType);
 
-  let description: FastTravelEntityDescription | undefined;
-  switch (fastTravelEntityType) {
-    case FastTravelEntityType.TRAPDOOR: {
-      description = v.room.trapdoors.get(index);
-      break;
-    }
-
-    case FastTravelEntityType.CRAWLSPACE: {
-      description = v.room.crawlspaces.get(index);
-      break;
-    }
-
-    case FastTravelEntityType.HEAVEN_DOOR: {
-      description = v.room.heavenDoors.get(index);
-      break;
-    }
-
-    default: {
-      ensureAllCases(fastTravelEntityType);
-    }
-  }
-
-  if (description === undefined) {
-    return undefined;
-  }
-
-  return description;
+  return fastTravelMap.get(index);
 }
 
 export function deleteDescription(
   index: int,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
-  switch (fastTravelEntityType) {
-    case FastTravelEntityType.TRAPDOOR: {
-      v.room.trapdoors.delete(index);
-      break;
-    }
-
-    case FastTravelEntityType.CRAWLSPACE: {
-      v.room.crawlspaces.delete(index);
-      break;
-    }
-
-    case FastTravelEntityType.HEAVEN_DOOR: {
-      v.room.heavenDoors.delete(index);
-      break;
-    }
-
-    default: {
-      ensureAllCases(fastTravelEntityType);
-    }
-  }
+  const fastTravelMap = getFastTravelMap(fastTravelEntityType);
+  fastTravelMap.delete(index);
 }
 
 function getIndex(
@@ -196,8 +154,7 @@ function getIndex(
     }
 
     default: {
-      ensureAllCases(fastTravelEntityType);
-      return -1;
+      return ensureAllCases(fastTravelEntityType);
     }
   }
 }

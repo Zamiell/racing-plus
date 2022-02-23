@@ -339,7 +339,6 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
 
     default: {
       ensureAllCases(replacementAction);
-      break;
     }
   }
 }

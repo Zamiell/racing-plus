@@ -131,8 +131,7 @@ function getItLivesSituationRace(goal: RaceGoal) {
     }
 
     default: {
-      ensureAllCases(goal);
-      return ItLivesSituation.NEITHER;
+      return ensureAllCases(goal);
     }
   }
 }
