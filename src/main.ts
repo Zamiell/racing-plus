@@ -49,6 +49,7 @@ import * as preUseItem from "./callbacks/preUseItem";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
+import * as postBoneSwing from "./callbacksCustom/postBoneSwing";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstEsauJr from "./callbacksCustom/postFirstEsauJr";
@@ -241,6 +242,11 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_CURSED_TELEPORT,
     postCursedTeleport.main,
+  );
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_BONE_SWING,
+    postBoneSwing.main,
   );
 }
 

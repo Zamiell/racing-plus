@@ -85,23 +85,17 @@ executeCmdFunctions.set("bomb", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddBombs(bombs);
-  }
+  player.AddBombs(bombs);
 });
 
 executeCmdFunctions.set("bombs", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddBombs(99);
-  }
+  player.AddBombs(99);
 });
 
 executeCmdFunctions.set("boss", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.UseCard(Card.CARD_EMPEROR);
-  }
+  player.UseCard(Card.CARD_EMPEROR);
 });
 
 executeCmdFunctions.set("bm", (_params: string) => {
@@ -208,16 +202,12 @@ executeCmdFunctions.set("coin", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddCoins(coins);
-  }
+  player.AddCoins(coins);
 });
 
 executeCmdFunctions.set("coins", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddCoins(99);
-  }
+  player.AddCoins(99);
 });
 
 executeCmdFunctions.set("connect", (_params: string) => {
@@ -259,9 +249,7 @@ executeCmdFunctions.set("down", (params: string) => {
 
 executeCmdFunctions.set("fool", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.UseCard(Card.CARD_FOOL);
-  }
+  player.UseCard(Card.CARD_FOOL);
 });
 
 executeCmdFunctions.set("effects", (_params: string) => {
@@ -308,16 +296,12 @@ executeCmdFunctions.set("key", (params: string) => {
   }
 
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddKeys(keys);
-  }
+  player.AddKeys(keys);
 });
 
 executeCmdFunctions.set("keys", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.AddKeys(99);
-  }
+  player.AddKeys(99);
 });
 
 executeCmdFunctions.set("list", (params: string) => {
@@ -620,9 +604,7 @@ executeCmdFunctions.set("setcharorder", (_params: string) => {
 
 executeCmdFunctions.set("shop", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.UseCard(Card.CARD_HERMIT);
-  }
+  player.UseCard(Card.CARD_HERMIT);
 });
 
 executeCmdFunctions.set("sound", (params: string) => {
@@ -669,9 +651,7 @@ executeCmdFunctions.set("trapdoor", (_params: string) => {
 
 executeCmdFunctions.set("treasure", (_params: string) => {
   const player = Isaac.GetPlayer();
-  if (player !== undefined) {
-    player.UseCard(Card.CARD_STARS);
-  }
+  player.UseCard(Card.CARD_STARS);
 });
 
 executeCmdFunctions.set("unseed", (_params: string) => {

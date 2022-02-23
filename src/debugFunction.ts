@@ -1,4 +1,6 @@
 import {
+  getPlayerIndex,
+  getPlayers,
   isKeyboardPressed,
   log,
   printConsole,
@@ -16,6 +18,17 @@ let debugHotkey2Pressed = false;
 
 function debugCode() {
   // Add code here
+  for (let i = -20; i <= 20; i++) {
+    const player = Isaac.GetPlayer(i);
+    Isaac.DebugString(
+      `GETTING HERE ${i} - ${player.GetPlayerType()} - ${getPlayerIndex(
+        player,
+      )}`,
+    );
+  }
+
+  const players = getPlayers();
+  Isaac.DebugString(`GETTING HERE - LEN ${players.length}`);
 }
 
 export function debugFunction(): void {

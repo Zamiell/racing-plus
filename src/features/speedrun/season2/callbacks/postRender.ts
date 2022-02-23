@@ -33,19 +33,21 @@ export function season2PostRender(): void {
 
 function drawErrors() {
   let action: string | null = null;
+  let errorEventTime: int | null = null;
   if (v.run.errors.gameRecentlyOpened) {
     action = "opening the game";
+    errorEventTime = season2GetTimeGameOpened();
   } else if (v.run.errors.bansRecentlySet) {
     action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
+    errorEventTime = v.persistent.timeBansSet;
   }
 
-  if (action === null) {
+  if (action === null || errorEventTime === null) {
     return false;
   }
 
   const time = Isaac.GetTime();
-  const timeGameOpened = season2GetTimeGameOpened();
-  const endTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
+  const endTime = errorEventTime + SEASON_2_LOCK_MILLISECONDS;
   const millisecondsRemaining = endTime - time;
   const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
   const text = getSeason2ErrorMessage(action, secondsRemaining);

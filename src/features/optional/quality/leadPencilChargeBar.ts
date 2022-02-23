@@ -1,4 +1,9 @@
-import { getPlayers, saveDataManager } from "isaacscript-common";
+import {
+  getPlayerIndex,
+  getPlayers,
+  PlayerIndex,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -8,15 +13,15 @@ const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
 export const VANILLA_CHARGE_BAR_X_OFFSET = 19;
 export const VANILLA_CHARGE_BAR_Y_OFFSET = 54;
 
-const sprite = Sprite();
-sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
-
 const v = {
   run: {
-    firedTears: 0,
-    lastFiredTearFrame: null as int | null,
+    playerNumFiredTearsMap: new Map<PlayerIndex, int>(),
+    playerLastFiredFrameMap: new Map<PlayerIndex, int>(),
   },
 };
+
+const sprite = Sprite();
+sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 
 export function init(): void {
   saveDataManager("leadPencilChargeBar", v, featureEnabled);
@@ -50,7 +55,6 @@ function drawChargeBar(player: EntityPlayer) {
   if (
     character === PlayerType.PLAYER_AZAZEL || // 7
     character === PlayerType.PLAYER_LILITH || // 13
-    character === PlayerType.PLAYER_THEFORGOTTEN || // 16
     player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) || // 68
     player.HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) || // 114
     player.HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) || // 118
@@ -68,6 +72,14 @@ function drawChargeBar(player: EntityPlayer) {
     return;
   }
 
+  const playerIndex = getPlayerIndex(player);
+  let numFiredTears = v.run.playerNumFiredTearsMap.get(playerIndex);
+  if (numFiredTears === undefined) {
+    const initialValue = 0;
+    numFiredTears = initialValue;
+    v.run.playerNumFiredTearsMap.set(playerIndex, initialValue);
+  }
+
   // The vanilla charge bars appear to the top-right of the player
   // We place the lead pencil charge bar to the top-left
   const adjustX = VANILLA_CHARGE_BAR_X_OFFSET * -1 * player.SpriteScale.X;
@@ -79,9 +91,9 @@ function drawChargeBar(player: EntityPlayer) {
   );
 
   // Render it
-  const tearNum = v.run.firedTears % NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
+  const tearsLeft = numFiredTears % NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
   let barFrame =
-    tearNum *
+    tearsLeft *
     (NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES);
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
@@ -90,21 +102,53 @@ function drawChargeBar(player: EntityPlayer) {
 }
 
 // ModCallbacks.MC_POST_FIRE_TEAR (61)
-export function postFireTear(): void {
+export function postFireTear(tear: EntityTear): void {
   if (!config.leadPencilChargeBar) {
     return;
   }
 
-  // Lead Pencil fires every N tears
-  // The counter needs to be incremented even if the player does not have Lead Pencil,
-  // so that the charge bar will be accurate if they pick up the item mid-run
-  const gameFrameCount = g.g.GetFrameCount();
+  incrementLeadPencilCounter(tear.Parent);
+}
 
-  // The second tear of multi-shots don't count towards the Lead Pencil counter
-  if (gameFrameCount === v.run.lastFiredTearFrame) {
+// ModCallbacksCustom.MC_POST_BONE_SWING
+export function postBoneSwing(boneClub: EntityKnife): void {
+  if (!config.leadPencilChargeBar) {
     return;
   }
-  v.run.lastFiredTearFrame = gameFrameCount;
 
-  v.run.firedTears += 1;
+  incrementLeadPencilCounter(boneClub.Parent);
+}
+
+/**
+ * Lead Pencil fires every N tears. The counter needs to be incremented even if the player does not
+ * have Lead Pencil, so that the charge bar will be accurate if they pick up the item mid-run.
+ */
+function incrementLeadPencilCounter(parent: Entity | undefined) {
+  if (parent === undefined) {
+    return;
+  }
+
+  const player = parent.ToPlayer();
+  if (player === undefined) {
+    return;
+  }
+
+  const gameFrameCount = g.g.GetFrameCount();
+  const playerIndex = getPlayerIndex(player);
+
+  // The second tear of multi-shots does not count towards the Lead Pencil counter
+  // Furthermore, if Forgotten has two bone clubs, the second swing does not count towards the Lead
+  // Pencil counter
+  const lastFiredTearFrame = v.run.playerLastFiredFrameMap.get(playerIndex);
+  if (gameFrameCount === lastFiredTearFrame) {
+    return;
+  }
+  v.run.playerLastFiredFrameMap.set(playerIndex, gameFrameCount);
+
+  let numFiredTears = v.run.playerNumFiredTearsMap.get(playerIndex);
+  if (numFiredTears === undefined) {
+    numFiredTears = 0;
+  }
+  numFiredTears += 1;
+  v.run.playerNumFiredTearsMap.set(playerIndex, numFiredTears);
 }
