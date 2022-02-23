@@ -1,6 +1,10 @@
 import { saveDataManager } from "isaacscript-common";
+import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { ButtonDescription } from "../../types/ButtonDescription";
+import { RaceFormat } from "./types/RaceFormat";
+import { RacerStatus } from "./types/RacerStatus";
+import { RaceStatus } from "./types/RaceStatus";
 
 const v = {
   run: {
@@ -30,4 +34,13 @@ export function init(): void {
 
 function featureEnabled() {
   return config.clientCommunication;
+}
+
+export function inSeededRace(): boolean {
+  return (
+    config.clientCommunication &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED
+  );
 }

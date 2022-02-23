@@ -5,7 +5,7 @@ import {
   log,
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../types/SeededDeathState";
-import { inSeededRace } from "../../race/util";
+import { inSeededRace } from "../../race/v";
 import { ChallengeCustom } from "../../speedrun/enums";
 import { QUARTER_FADED_COLOR, SEEDED_DEATH_DEBUG } from "./constants";
 import v from "./v";

@@ -85,8 +85,8 @@ function checkErrors() {
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
   // Bans recently assigned
-  const bansUnlockTime = timeBansSet + SEASON_2_LOCK_MILLISECONDS;
-  v.run.errors.bansRecentlySet = time <= bansUnlockTime;
+  // const bansUnlockTime = timeBansSet + SEASON_2_LOCK_MILLISECONDS;
+  // v.run.errors.bansRecentlySet = time <= bansUnlockTime;
 
   return v.run.errors.gameRecentlyOpened || v.run.errors.bansRecentlySet;
 }

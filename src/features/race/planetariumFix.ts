@@ -9,7 +9,7 @@ import {
 import g from "../../globals";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { decrementRoomsEntered } from "../util/roomsEntered";
-import { inSeededRace } from "./util";
+import { inSeededRace } from "./v";
 
 enum PlanetariumFixWarpState {
   INITIAL,

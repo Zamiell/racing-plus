@@ -13,7 +13,7 @@ import g from "../../../globals";
 import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { getEdenReplacementCollectibleType } from "../../optional/gameplay/extraStartingItems/replacePlaceholdersOnEden";
-import { inSeededRace } from "../../race/util";
+import { inSeededRace } from "../../race/v";
 import {
   BANNED_COLLECTIBLES,
   BANNED_COLLECTIBLES_ON_SEEDED_RACES,

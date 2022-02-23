@@ -6,7 +6,7 @@ import {
   removeAllCollectibles,
 } from "isaacscript-common";
 import g from "../../globals";
-import { inSeededRace } from "../race/util";
+import { inSeededRace } from "../race/v";
 import { ChallengeCustom } from "../speedrun/enums";
 
 export function postNewRoom(): void {
