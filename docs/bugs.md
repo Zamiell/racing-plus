@@ -12,9 +12,8 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Monster Manual will not ever spawn Sawblade. (Reported by Gamonymous)
 - The charges from killing enemies with 4.5 Volt will not prioritize the pocket active item. (Reported by Gamonymous)
 - The Lead Pencil charge bar will not work properly with Incubus and other familiars that copy the player's tears. (Reported by ez_duke)
-- In seeded races, it is possible to get The Fallen as a boss without having taken a Devil Deal. (Reported by Gamonymous)
 - Guppy's Eye will not work correctly when it needs to show a Red Chest that gives a Devil Room item. (Reported by Moucheron Quipet)
-- Season 1 will always have Clean Bedrooms (instead of having a 50% chance for a Clean Bedroom). (Reported by Finalkids)
+- Custom challenges will always have Clean Bedrooms (instead of having a 50% chance for a Clean Bedroom). (Reported by Finalkids)
 - Custom fortunes and custom Rules Card text no longer works as of vanilla patch 1.7.5 (due to localization).
 - If you touch the edge of a crawlspace, you can sometimes trigger the vanilla animation. If this happens, you might return to the starting room of the floor. This has to do with the vanilla game not reading the state of the crawlspace correctly. (Reported by KiraKeepKool)
 
