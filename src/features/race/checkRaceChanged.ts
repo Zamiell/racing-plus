@@ -6,8 +6,11 @@ import {
   log,
 } from "isaacscript-common";
 import g from "../../globals";
-import { unseed } from "../../utilGlobals";
-import { restartOnNextFrame, setRestartSeed } from "../util/restartOnNextFrame";
+import { unseed } from "../../utilsGlobals";
+import {
+  restartOnNextFrame,
+  setRestartSeed,
+} from "../utils/restartOnNextFrame";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import { raceStart } from "./raceStart";

@@ -1,5 +1,5 @@
 import { config } from "../../modConfigMenu";
-import { consoleCommand } from "../../util";
+import { consoleCommand } from "../../utils";
 
 export function postEntityKillDogma(entity: Entity): void {
   if (!config.fastDogma) {

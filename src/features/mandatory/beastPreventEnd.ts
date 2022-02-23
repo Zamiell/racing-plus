@@ -1,6 +1,6 @@
 import { saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import { consoleCommand } from "../../util";
+import { consoleCommand } from "../../utils";
 
 const v = {
   run: {

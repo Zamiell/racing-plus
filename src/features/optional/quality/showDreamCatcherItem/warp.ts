@@ -13,7 +13,7 @@ import {
 import g from "../../../../globals";
 import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
-import { decrementRoomsEntered } from "../../../util/roomsEntered";
+import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { setMinimapVisible } from "./minimap";
 import v from "./v";

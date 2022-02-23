@@ -14,7 +14,9 @@ const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
-function debugCode() {}
+function debugCode() {
+  // Add code here
+}
 
 export function debugFunction(): void {
   g.debug = true;

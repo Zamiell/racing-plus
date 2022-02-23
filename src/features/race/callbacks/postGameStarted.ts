@@ -1,13 +1,13 @@
 import { log, onSetSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { unseed } from "../../../utilGlobals";
+import { unseed } from "../../../utilsGlobals";
 import {
   restartOnNextFrame,
   setRestartChallenge,
   setRestartCharacter,
   setRestartSeed,
-} from "../../util/restartOnNextFrame";
+} from "../../utils/restartOnNextFrame";
 import { formatSetup } from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";

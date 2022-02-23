@@ -9,7 +9,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { isSlideAnimationActive } from "../../util/detectSlideAnimation";
+import { isSlideAnimationActive } from "../../utils/detectSlideAnimation";
 import * as socket from "../socket";
 import { RaceFormat } from "../types/RaceFormat";
 import { RacerStatus } from "../types/RacerStatus";

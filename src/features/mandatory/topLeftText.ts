@@ -18,7 +18,7 @@ import {
   isOnFinalCharacter,
   shouldShowEndOfRunTextSpeedrun,
 } from "../speedrun/speedrun";
-import { getRoomsEntered } from "../util/roomsEntered";
+import { getRoomsEntered } from "../utils/roomsEntered";
 
 const STARTING_X = 55;
 const STARTING_Y = 10;

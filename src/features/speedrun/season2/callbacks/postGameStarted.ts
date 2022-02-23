@@ -13,11 +13,11 @@ import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
-} from "../../../../utilGlobals";
+} from "../../../../utilsGlobals";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../../util/restartOnNextFrame";
+} from "../../../utils/restartOnNextFrame";
 import { ChallengeCustom } from "../../enums";
 import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { getCharacterOrderSafe } from "../../speedrun";

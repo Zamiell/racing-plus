@@ -9,7 +9,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { moveEsauNextToJacob } from "../../../util";
+import { moveEsauNextToJacob } from "../../../utils";
 
 const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_GURDY, // 36

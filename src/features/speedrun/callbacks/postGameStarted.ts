@@ -5,7 +5,7 @@ import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../util/restartOnNextFrame";
+} from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { ChallengeCustom } from "../enums";
 import * as season1 from "../season1";

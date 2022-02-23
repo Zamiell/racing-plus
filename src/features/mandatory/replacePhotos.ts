@@ -8,7 +8,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { PickupVariantCustom } from "../../types/PickupVariantCustom";
-import { hasPolaroidOrNegative } from "../../util";
+import { hasPolaroidOrNegative } from "../../utils";
 import { RaceGoal } from "../race/types/RaceGoal";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";

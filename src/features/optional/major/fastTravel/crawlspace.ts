@@ -14,7 +14,7 @@ import {
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../util";
+import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../utils";
 import { DEBUG } from "./constants";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";

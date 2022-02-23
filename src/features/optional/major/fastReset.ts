@@ -5,9 +5,9 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { restart } from "../../../util";
+import { restart } from "../../../utils";
 import { speedrunSetFastReset } from "../../speedrun/exported";
-import { getRoomsEntered } from "../../util/roomsEntered";
+import { getRoomsEntered } from "../../utils/roomsEntered";
 
 const v = {
   run: {

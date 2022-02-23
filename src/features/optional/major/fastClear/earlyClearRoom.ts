@@ -7,7 +7,7 @@ import {
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { inBeastDebugRoom } from "../../../../util";
+import { inBeastDebugRoom } from "../../../../utils";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,

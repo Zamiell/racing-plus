@@ -26,8 +26,8 @@ import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
-import * as detectSlideAnimation from "../features/util/detectSlideAnimation";
-import * as restartOnNextFrame from "../features/util/restartOnNextFrame";
+import * as detectSlideAnimation from "../features/utils/detectSlideAnimation";
+import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 
 export function main(): void {
   updateCachedAPIFunctions();

@@ -6,7 +6,7 @@ import {
 import { COLLECTIBLE_LAYER } from "./constants";
 import { ChallengeCustom } from "./features/speedrun/enums";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
-import { serverCollectibleIDToCollectibleType } from "./util";
+import { serverCollectibleIDToCollectibleType } from "./utils";
 
 const COLLECTIBLE_TYPE_CUSTOM_ARRAY: readonly CollectibleTypeCustom[] =
   getEnumValues(CollectibleTypeCustom);

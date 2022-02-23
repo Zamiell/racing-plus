@@ -24,7 +24,7 @@ import { RacerStatus } from "../features/race/types/RacerStatus";
 import { RaceStatus } from "../features/race/types/RaceStatus";
 import { speedrunSetNextCharacterAndRestart } from "../features/speedrun/callbacks/postRender";
 import { ChallengeCustom } from "../features/speedrun/enums";
-import { restartOnNextFrame } from "../features/util/restartOnNextFrame";
+import { restartOnNextFrame } from "../features/utils/restartOnNextFrame";
 import g from "../globals";
 import { CARD_MAP } from "../maps/cardMap";
 import { CHARACTER_MAP } from "../maps/characterMap";
@@ -34,8 +34,8 @@ import {
   getPartialMatchFromMap,
   restart,
   restartAsCharacter,
-} from "../util";
-import { unseed } from "../utilGlobals";
+} from "../utils";
+import { unseed } from "../utilsGlobals";
 import {
   angel,
   blackMarket,

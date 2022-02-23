@@ -2,7 +2,7 @@ import { getPlayersOfType, getRandomArrayElement } from "isaacscript-common";
 import g from "../../../../globals";
 import { PASSIVE_ITEMS_FOR_EDEN } from "../../../../passiveItemsForEden";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
-import { giveCollectibleAndRemoveFromPools } from "../../../../utilGlobals";
+import { giveCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import * as showEdenStartingItems from "../../characters/showEdenStartingItems";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 

@@ -8,8 +8,8 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { moveEsauNextToJacob } from "../../../util";
-import { enteredRoomViaTeleport } from "../../../utilGlobals";
+import { moveEsauNextToJacob } from "../../../utils";
+import { enteredRoomViaTeleport } from "../../../utilsGlobals";
 
 export function postNewRoom(): void {
   if (!config.teleportInvalidEntrance) {

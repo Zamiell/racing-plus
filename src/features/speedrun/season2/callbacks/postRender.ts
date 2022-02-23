@@ -1,7 +1,7 @@
 import { getDefaultKColor, getPlayerName } from "isaacscript-common";
 import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
-import { getRoomsEntered } from "../../../util/roomsEntered";
+import { getRoomsEntered } from "../../../utils/roomsEntered";
 import { ChallengeCustom } from "../../enums";
 import { SEASON_2_LOCK_MILLISECONDS, SEASON_2_NUM_BANS } from "../constants";
 import sprites from "../sprites";

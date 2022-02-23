@@ -4,11 +4,11 @@ import {
   useActiveItemTemp,
 } from "isaacscript-common";
 import g from "../../globals";
-import { serverCollectibleIDToCollectibleType } from "../../util";
+import { serverCollectibleIDToCollectibleType } from "../../utils";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
-} from "../../utilGlobals";
+} from "../../utilsGlobals";
 import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 import { RaceFormat } from "./types/RaceFormat";

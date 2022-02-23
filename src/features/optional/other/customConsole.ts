@@ -14,7 +14,7 @@ import { KEYBOARD_MAP } from "../../../maps/keyboardMap";
 import { config, hotkeys } from "../../../modConfigMenu";
 import { Colors } from "../../../types/Colors";
 import { TextSegment } from "../../../types/TextSegment";
-import { consoleCommand } from "../../../util";
+import { consoleCommand } from "../../../utils";
 import * as socket from "../../race/socket";
 import { RaceStatus } from "../../race/types/RaceStatus";
 

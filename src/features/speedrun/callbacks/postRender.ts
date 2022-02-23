@@ -3,7 +3,7 @@ import g from "../../../globals";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../util/restartOnNextFrame";
+} from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { ChallengeCustom } from "../enums";
 import { season2PostRender } from "../season2/callbacks/postRender";

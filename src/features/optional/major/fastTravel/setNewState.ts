@@ -10,7 +10,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
-import { moveEsauNextToJacob } from "../../../../util";
+import { moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFix,
   shouldApplyPlanetariumFix,
@@ -18,7 +18,7 @@ import {
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
-import { decrementRoomsEntered } from "../../../util/roomsEntered";
+import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";

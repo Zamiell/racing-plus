@@ -8,7 +8,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
-import { decrementRoomsEntered } from "../util/roomsEntered";
+import { decrementRoomsEntered } from "../utils/roomsEntered";
 import { inSeededRace } from "./v";
 
 enum PlanetariumFixWarpState {

@@ -12,8 +12,8 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
-import { consoleCommand } from "../../util";
-import { getRoomsEntered } from "../util/roomsEntered";
+import { consoleCommand } from "../../utils";
+import { getRoomsEntered } from "../utils/roomsEntered";
 import {
   RACE_ROOM_POSITION,
   RACE_ROOM_STAGE_ARGUMENT,

@@ -2,7 +2,7 @@ import g from "../../globals";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
-} from "../../utilGlobals";
+} from "../../utilsGlobals";
 import { ChallengeCustom } from "./enums";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)

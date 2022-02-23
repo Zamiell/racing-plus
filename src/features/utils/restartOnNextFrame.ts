@@ -6,7 +6,7 @@ import {
   restartAsCharacter,
   restartChallenge,
   restartSeed,
-} from "../../util";
+} from "../../utils";
 
 // This feature is used because the game prevents you from executing a "restart" console command
 // while in the PostGameStarted callback

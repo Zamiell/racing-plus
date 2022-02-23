@@ -10,7 +10,7 @@ import {
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { giveCollectibleAndRemoveFromPools } from "../../../utilGlobals";
+import { giveCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { getEdenReplacementCollectibleType } from "../../optional/gameplay/extraStartingItems/replacePlaceholdersOnEden";
 import { inSeededRace } from "../../race/v";

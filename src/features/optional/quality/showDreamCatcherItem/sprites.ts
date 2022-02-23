@@ -1,7 +1,7 @@
 import { arrayEmpty, getRoomSafeGridIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
-import { isSlideAnimationActive } from "../../../util/detectSlideAnimation";
+import { isSlideAnimationActive } from "../../../utils/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 

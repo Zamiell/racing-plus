@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
-import { inBeastDebugRoom } from "../../../../util";
+import { inBeastDebugRoom } from "../../../../utils";
 import { RevivalType } from "../../../race/types/RevivalType";
 import { DEVIL_DEAL_BUFFER_FRAMES } from "../constants";
 import {

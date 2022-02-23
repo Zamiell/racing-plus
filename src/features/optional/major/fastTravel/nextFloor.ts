@@ -4,7 +4,7 @@ import {
   removeAllMatchingEntities,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { consoleCommand } from "../../../../util";
+import { consoleCommand } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";

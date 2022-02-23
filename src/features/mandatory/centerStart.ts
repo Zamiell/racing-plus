@@ -4,7 +4,7 @@
 
 import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
 import g from "../../globals";
-import { movePlayersAndFamiliars } from "../../util";
+import { movePlayersAndFamiliars } from "../../utils";
 
 const CIRCLE_RADIUS_BETWEEN_PLAYERS = 50;
 

@@ -8,7 +8,7 @@ import {
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
-import { isSlideAnimationActive } from "../util/detectSlideAnimation";
+import { isSlideAnimationActive } from "../utils/detectSlideAnimation";
 import v from "./v";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);
