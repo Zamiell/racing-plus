@@ -115,7 +115,7 @@ In certain rooms, having very large tears causes a softlock in rooms with Stone 
 
 ### Round Worm Fix
 
-In one room, Round Worms can cause a pseudo-softlock if they continue to appear behind rocks. Some rocks were replaced with poops to mitigate this.
+In some rooms, Round Worms can cause a pseudo-softlock if they continue to appear behind rocks. Some rocks were replaced with poops to mitigate this.
 
 - Basement: #301
 - Burning: #301
@@ -215,7 +215,7 @@ The puzzle rooms with the red fires along the sides of the room have no consiste
 
 ### Close Fires Fix
 
-In one room, fires spawn close to the entrance. If the fire becomes a champion red fire, then the player can take unavoidable damage. This bug has been fixed by replacing the Fire with Fire Places, which are guaranteed to not spawn as red fires.
+In some rooms, fires spawn close to the entrance. If the fire becomes a champion red fire, then the player can take unavoidable damage. This bug has been fixed by replacing the Fire with Fire Places, which are guaranteed to not spawn as red fires.
 
 - Depths: #826
 - Necropolis: #812
@@ -225,7 +225,7 @@ In one room, fires spawn close to the entrance. If the fire becomes a champion r
 
 ### Hive Fix
 
-In one room, the Drowned Chargers that spawn from a Hive can be unavoidable damage. The Hives have been slightly moved to accommodate for this.
+In some rooms, the Drowned Chargers that spawn from a Hive can be unavoidable damage. The Hives have been slightly moved to accommodate for this.
 
 - Caves: #519
 - Flooded: #527
@@ -234,7 +234,7 @@ In one room, the Drowned Chargers that spawn from a Hive can be unavoidable dama
 
 ### Spikes Fix
 
-In one room, a Slide causes unavoidable damage.
+In some rooms, a Slide causes unavoidable damage.
 
 - Depths: #708
 - Necropolis: #684
@@ -291,7 +291,7 @@ On certain rooms, doors are disabled for no good reason.
 
 ### Entity Stacking Fixes
 
-On one room with a black heart, [Edmund forgot to implement entity stacking](http://bindingofisaac.com/post/90431619124/insert-size-matters-joke-here).
+On some rooms with a black heart, [Edmund forgot to implement entity stacking](http://bindingofisaac.com/post/90431619124/insert-size-matters-joke-here).
 
 - Caves: #267
 - Flooded: #267

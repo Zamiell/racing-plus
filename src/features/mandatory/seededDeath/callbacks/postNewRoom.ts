@@ -13,7 +13,7 @@ import {
   logSeededDeathStateChange,
   shouldSeededDeathApply,
 } from "../seededDeath";
-import { debuffOn } from "../seededDeathDebuff";
+import { debuffOn, setCheckpointCollision } from "../seededDeathDebuff";
 import v from "../v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
@@ -22,6 +22,7 @@ export function seededDeathPostNewRoom(): void {
     return;
   }
 
+  // Handle seeded death states
   postNewRoomWaitingForNewRoom();
   postNewRoomGhostForm();
 }
@@ -66,6 +67,11 @@ function postNewRoomGhostForm() {
     return;
   }
 
+  removeSpikesInSacrificeRoom();
+  setCheckpointCollision(false);
+}
+
+function removeSpikesInSacrificeRoom() {
   // Prevent people from abusing the death mechanic to use a Sacrifice Room
   const roomType = g.r.GetType();
   const player = Isaac.GetPlayer();

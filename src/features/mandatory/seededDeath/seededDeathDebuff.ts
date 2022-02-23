@@ -1,5 +1,6 @@
 import {
   arrayEmpty,
+  getCollectibles,
   getEnumValues,
   getFamiliars,
   getNPCs,
@@ -33,6 +34,7 @@ export function debuffOn(player: EntityPlayer): void {
   debuffOnRemoveAllWisps(player);
   removeDeadEyeMultiplier(player);
   debuffOnRemoveDarkEsau();
+  setCheckpointCollision(false);
 }
 
 function debuffOnRemoveSize(player: EntityPlayer) {
@@ -218,6 +220,19 @@ function debuffOnRemoveDarkEsau() {
   }
 }
 
+export function setCheckpointCollision(enabled: boolean): void {
+  const newCollisionClass = enabled
+    ? EntityCollisionClass.ENTCOLL_ALL
+    : EntityCollisionClass.ENTCOLL_NONE;
+
+  const checkpoints = getCollectibles(
+    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+  );
+  for (const checkpoint of checkpoints) {
+    checkpoint.EntityCollisionClass = newCollisionClass;
+  }
+}
+
 export function debuffOff(player: EntityPlayer): void {
   applySeededGhostFade(player, false);
   debuffOffRestoreSize(player);
@@ -225,6 +240,7 @@ export function debuffOff(player: EntityPlayer): void {
   debuffOffAddAllItems(player);
   debuffOffAddGoldenBombAndKey(player);
   debuffOffAddDarkEsau();
+  setCheckpointCollision(true);
 }
 
 function debuffOffRestoreSize(player: EntityPlayer) {
