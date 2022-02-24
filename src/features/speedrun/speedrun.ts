@@ -1,4 +1,4 @@
-import { arraySum, ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
+import { ISAAC_FRAMES_PER_SECOND, sumArray } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
@@ -63,7 +63,7 @@ export function finish(player: EntityPlayer): void {
 }
 
 export function getAverageTimePerCharacter(): string {
-  const totalFrames = arraySum(v.persistent.characterRunFrames);
+  const totalFrames = sumArray(v.persistent.characterRunFrames);
   const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
   const averageSeconds = averageFrames / ISAAC_FRAMES_PER_SECOND;
 

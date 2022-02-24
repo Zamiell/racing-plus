@@ -1,5 +1,5 @@
 import {
-  arrayEmpty,
+  emptyArray,
   getCollectibles,
   getEnumValues,
   getFamiliars,
@@ -312,7 +312,7 @@ function debuffOffAddAllItems(player: EntityPlayer) {
     giveTransformationHelper(player, collectibleType);
   }
 
-  arrayEmpty(items);
+  emptyArray(items);
 
   // Now that we have add every item, update the players stats
   player.AddCacheFlags(CacheFlag.CACHE_ALL);

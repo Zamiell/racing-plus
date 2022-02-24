@@ -1,4 +1,4 @@
-import { arrayCopy, MINUTE_IN_MILLISECONDS } from "isaacscript-common";
+import { copyArray, MINUTE_IN_MILLISECONDS } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 export const SEASON_2_DEBUG = true;
@@ -187,7 +187,7 @@ for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
 
 /** An array containing every index that is not on the above build whitelist. */
 export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
-  arrayCopy(forgottenExceptions);
+  copyArray(forgottenExceptions);
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_2_LOCK_MINUTES = 1.5;

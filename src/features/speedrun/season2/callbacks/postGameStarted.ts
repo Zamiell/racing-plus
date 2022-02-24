@@ -1,6 +1,6 @@
 import {
-  arrayCopy,
-  arrayEmpty,
+  copyArray,
+  emptyArray,
   getRandomArrayElementAndRemove,
   log,
   range,
@@ -138,11 +138,11 @@ function checkFirstCharacterRefresh() {
 function refreshStartingCharactersAndBuilds() {
   const time = Isaac.GetTime();
 
-  arrayEmpty(v.persistent.selectedCharacters);
-  v.persistent.remainingCharacters = arrayCopy(SEASON_2_CHARACTERS);
+  emptyArray(v.persistent.selectedCharacters);
+  v.persistent.remainingCharacters = copyArray(SEASON_2_CHARACTERS);
 
-  arrayEmpty(v.persistent.selectedBuildIndexes);
-  arrayEmpty(v.persistent.remainingBuildIndexes);
+  emptyArray(v.persistent.selectedBuildIndexes);
+  emptyArray(v.persistent.remainingBuildIndexes);
   const buildIndexes = range(0, SEASON_2_STARTING_BUILDS.length - 1);
   v.persistent.remainingBuildIndexes.push(...buildIndexes);
 

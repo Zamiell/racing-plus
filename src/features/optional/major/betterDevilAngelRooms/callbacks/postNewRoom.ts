@@ -1,5 +1,5 @@
 import {
-  arrayEmpty,
+  emptyArray,
   emptyRoom,
   getPlayerFromIndex,
   getRoomListIndex,
@@ -73,6 +73,6 @@ function checkRegiveGuppysEye() {
     }
   }
 
-  arrayEmpty(v.run.regiveGuppysEyePlayers);
+  emptyArray(v.run.regiveGuppysEyePlayers);
   v.run.regiveGuppysEyeRoomListIndex = null;
 }

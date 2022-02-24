@@ -5,5 +5,6 @@ export function main(
   playerForm: PlayerForm,
   hasForm: boolean,
 ): void {
+  Isaac.DebugString(`GETTING HERE - ${playerForm} - ${hasForm}`);
   streakText.postTransformation(playerForm, hasForm);
 }

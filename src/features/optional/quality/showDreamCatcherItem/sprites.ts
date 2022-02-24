@@ -1,4 +1,4 @@
-import { arrayEmpty, getRoomSafeGridIndex } from "isaacscript-common";
+import { emptyArray, getRoomSafeGridIndex } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { isSlideAnimationActive } from "../../../utils/detectSlideAnimation";
@@ -56,8 +56,8 @@ function initBossSprite(entityType: EntityType, variant: int) {
 
 export function reset(): void {
   dreamCatcherSprite = null;
-  arrayEmpty(itemSprites);
-  arrayEmpty(bossSprites);
+  emptyArray(itemSprites);
+  emptyArray(bossSprites);
 }
 
 function shouldShowSprites() {

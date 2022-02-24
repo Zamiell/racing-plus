@@ -1,9 +1,9 @@
 import {
   anyPlayerHasCollectible,
-  arrayInArray,
   getBosses,
   getCollectibles,
   inStartingRoom,
+  isArrayInArray,
   log,
   runNextGameFrame,
   runNextRenderFrame,
@@ -112,7 +112,7 @@ function getRoomBosses(): Array<[int, int]> {
   for (const boss of getBosses()) {
     if (!isBossException(boss.Type, boss.Variant)) {
       const bossArray: [int, int] = [boss.Type, boss.Variant];
-      if (!arrayInArray(bossArray, bosses)) {
+      if (!isArrayInArray(bossArray, bosses)) {
         bosses.push(bossArray);
       }
     }
