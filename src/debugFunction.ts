@@ -1,6 +1,8 @@
 import {
+  DefaultMap,
   isKeyboardPressed,
   log,
+  logMap,
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
@@ -16,6 +18,10 @@ let debugHotkey2Pressed = false;
 
 function debugCode() {
   // Add code here
+  const myMap = new DefaultMap<number, string>("lol");
+  myMap.set(1, "foo");
+  myMap.set(2, "bar");
+  logMap(myMap);
 }
 
 export function debugFunction(): void {

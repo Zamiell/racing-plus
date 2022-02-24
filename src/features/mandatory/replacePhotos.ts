@@ -40,12 +40,7 @@ export function init(): void {
 export function preEntitySpawnCollectible(
   subType: int,
 ): [EntityType, int, int, int] | void {
-  const returnArray = preventVanillaPhotos(subType);
-  if (returnArray !== undefined) {
-    return returnArray;
-  }
-
-  return undefined;
+  return preventVanillaPhotos(subType);
 }
 
 // We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those

@@ -1,4 +1,8 @@
-import { hasOpenPocketItemSlot, hasOpenTrinketSlot } from "isaacscript-common";
+import {
+  ensureAllCases,
+  hasOpenPocketItemSlot,
+  hasOpenTrinketSlot,
+} from "isaacscript-common";
 import { DETRIMENTAL_TRINKETS } from "./constants";
 
 export function insertPickup(
@@ -37,9 +41,7 @@ export function insertPickup(
     }
 
     default: {
-      error(
-        `The automatic item insertion feature encountered an unknown pickup of variant: ${pickup.Variant}`,
-      );
+      // Ignore other pickups
       return undefined;
     }
   }
@@ -50,7 +52,9 @@ function insertCoin(
   coin: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  switch (coin.SubType) {
+  const coinSubType = coin.SubType as CoinSubType;
+
+  switch (coinSubType) {
     // 1
     case CoinSubType.COIN_PENNY: {
       const value = 1;
@@ -93,15 +97,16 @@ function insertCoin(
       return undefined;
     }
 
+    // 7
     case CoinSubType.COIN_GOLDEN: {
       // Don't put Golden Coins in our inventory automatically
       return undefined;
     }
 
     default: {
-      error(
-        `The automatic item insertion feature encountered an unknown coin sub-type of: ${coin.SubType}`,
-      );
+      ensureAllCases(coinSubType);
+
+      // Ignore modded coin sub-types
       return undefined;
     }
   }
@@ -112,7 +117,9 @@ function insertKey(
   key: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  switch (key.SubType) {
+  const keySubType = key.SubType as KeySubType;
+
+  switch (keySubType) {
     // 1
     case KeySubType.KEY_NORMAL: {
       const value = 1;
@@ -143,9 +150,9 @@ function insertKey(
     }
 
     default: {
-      error(
-        `The automatic item insertion feature encountered an unknown key sub-type of: ${key.SubType}`,
-      );
+      ensureAllCases(keySubType);
+
+      // Ignore modded key sub-types
       return undefined;
     }
   }
@@ -156,7 +163,9 @@ function insertBomb(
   bomb: EntityPickup,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  switch (bomb.SubType) {
+  const bombSubType = bomb.SubType as BombSubType;
+
+  switch (bombSubType) {
     // 1
     case BombSubType.BOMB_NORMAL: {
       const value = 1;
@@ -203,9 +212,9 @@ function insertBomb(
     }
 
     default: {
-      error(
-        `The automatic item insertion feature encountered an unknown key sub-type of: ${bomb.SubType}`,
-      );
+      ensureAllCases(bombSubType);
+
+      // Ignore modded bomb sub-types
       return undefined;
     }
   }

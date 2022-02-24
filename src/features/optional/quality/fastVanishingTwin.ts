@@ -63,13 +63,8 @@ function checkRoomCleared() {
 }
 
 function getFreshlySpawnedCollectible(): EntityPickup | undefined {
-  for (const collectible of getCollectibles()) {
-    if (collectible.FrameCount === 0) {
-      return collectible;
-    }
-  }
-
-  return undefined;
+  const collectibles = getCollectibles();
+  return collectibles.find((collectible) => collectible.FrameCount === 0);
 }
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)

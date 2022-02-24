@@ -142,13 +142,7 @@ export function useItemLemegeton(): void {
 
 function getItemWispThatJustSpawned() {
   const wisps = getFamiliars(FamiliarVariant.ITEM_WISP);
-  for (const wisp of wisps) {
-    if (wisp.FrameCount === 0) {
-      return wisp;
-    }
-  }
-
-  return undefined;
+  return wisps.find((wisp) => wisp.FrameCount === 0);
 }
 
 // ModCallbacks.MC_USE_CARD (5)
