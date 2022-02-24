@@ -440,13 +440,13 @@ function checkIfItemDropsPickups(
   pickingUpItem: PickingUpItem,
 ) {
   if (
-    pickingUpItem.type === ItemType.ITEM_NULL ||
-    pickingUpItem.type === ItemType.ITEM_TRINKET
+    pickingUpItem.itemType === ItemType.ITEM_NULL ||
+    pickingUpItem.itemType === ItemType.ITEM_TRINKET
   ) {
     return;
   }
 
-  const collectibleType = pickingUpItem.id as CollectibleType;
+  const collectibleType = pickingUpItem.subType as CollectibleType;
 
   // First, check to see if this is our 3rd Spun item so that we can insert the pill
   checkIfThirdSpunItem(collectibleType, player);

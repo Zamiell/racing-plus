@@ -100,8 +100,8 @@ export function postItemPickup(
   // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill
   if (
     player.HasCollectible(REPLACEMENT_ITEM) &&
-    pickingUpItem.type === ItemType.ITEM_PASSIVE &&
-    pickingUpItem.id === v.run.seeded3DollarBillItem
+    pickingUpItem.itemType === ItemType.ITEM_PASSIVE &&
+    pickingUpItem.subType === v.run.seeded3DollarBillItem
   ) {
     // Unset the variable so that the new item does not get blown away after a room change
     v.run.seeded3DollarBillItem = null;

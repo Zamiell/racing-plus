@@ -248,10 +248,10 @@ export function preUseItemDeadSeaScrolls(
 
 // ModCallbacksCustom.MC_PRE_ITEM_PICKUP
 export function preItemPickup(pickingUpItem: PickingUpItem): void {
-  const trinket = pickingUpItem.type === ItemType.ITEM_TRINKET;
+  const trinket = pickingUpItem.itemType === ItemType.ITEM_TRINKET;
   const name = trinket
-    ? getTrinketName(pickingUpItem.id)
-    : getCollectibleName(pickingUpItem.id);
+    ? getTrinketName(pickingUpItem.subType)
+    : getCollectibleName(pickingUpItem.subType);
 
   set(name);
 }

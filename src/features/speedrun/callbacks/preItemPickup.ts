@@ -22,8 +22,8 @@ function checkCheckpointTouched(
   pickingUpItem: PickingUpItem,
 ) {
   if (
-    pickingUpItem.type !== ItemType.ITEM_PASSIVE ||
-    pickingUpItem.id !== CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT
+    pickingUpItem.itemType !== ItemType.ITEM_PASSIVE ||
+    pickingUpItem.subType !== CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT
   ) {
     return;
   }
