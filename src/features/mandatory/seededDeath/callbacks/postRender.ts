@@ -8,6 +8,7 @@ import { SeededDeathState } from "../../../../types/SeededDeathState";
 import { TimerType } from "../../../../types/TimerType";
 import { ChallengeCustom } from "../../../speedrun/enums";
 import {
+  SEEDED_DEATH_FEATURE_NAME,
   SEEDED_DEATH_TIMER_SEASON_OFFSET_X,
   SEEDED_DEATH_TIMER_STARTING_X,
   SEEDED_DEATH_TIMER_STARTING_Y,
@@ -43,7 +44,7 @@ function postRenderFetalPosition() {
   v.run.state = SeededDeathState.GHOST_FORM;
   logSeededDeathStateChange();
 
-  enableAllInputs();
+  enableAllInputs(SEEDED_DEATH_FEATURE_NAME);
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
   // We grant it here so that it does not cancel the "AppearVanilla" animation

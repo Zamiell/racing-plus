@@ -84,7 +84,7 @@ export function inputActionIsActionPressedShoot(
     return undefined;
   }
 
-  if (autofireShouldReleaseKey()) {
+  if (autofireShouldReleaseKey(player)) {
     return false;
   }
 
@@ -113,16 +113,15 @@ export function inputActionGetActionValueShoot(
     return undefined;
   }
 
-  if (autofireShouldReleaseKey()) {
+  if (autofireShouldReleaseKey(player)) {
     return 0;
   }
 
   return undefined;
 }
 
-function autofireShouldReleaseKey() {
+function autofireShouldReleaseKey(player: EntityPlayer) {
   const gameFrameCount = g.g.GetFrameCount();
-  const player = Isaac.GetPlayer();
   const hasSpiritSword = player.HasCollectible(
     CollectibleType.COLLECTIBLE_SPIRIT_SWORD,
   );

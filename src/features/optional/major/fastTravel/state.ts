@@ -1,8 +1,8 @@
 import { anyPlayerCloserThan, ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
 import {
-  DEBUG,
   FastTravelEntityDescription,
+  FAST_TRAVEL_DEBUG,
   TRAPDOOR_BOSS_REACTION_FRAMES,
   TRAPDOOR_OPEN_DISTANCE,
   TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS,
@@ -48,7 +48,7 @@ function setOpenClose(
   const animation = `${animationPrefix} Custom`;
   sprite.Play(animation, true);
 
-  if (DEBUG) {
+  if (FAST_TRAVEL_DEBUG) {
     log(
       `${animationPrefix} a fast travel entity: ${FastTravelEntityType[fastTravelEntityType]}`,
     );

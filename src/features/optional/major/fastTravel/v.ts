@@ -1,7 +1,10 @@
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { FastTravelEntityDescription } from "./constants";
+import {
+  FastTravelEntityDescription,
+  FAST_TRAVEL_FEATURE_NAME,
+} from "./constants";
 import { FastTravelState } from "./enums";
 
 const v = {
@@ -102,7 +105,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("fastTravel", v, featureEnabled);
+  saveDataManager(FAST_TRAVEL_FEATURE_NAME, v, featureEnabled);
 }
 
 function featureEnabled() {

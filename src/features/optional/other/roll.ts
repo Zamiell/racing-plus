@@ -10,8 +10,8 @@ import {
 import g from "../../../globals";
 import { config, hotkeys } from "../../../modConfigMenu";
 
+const FEATURE_NAME = "roll";
 const ROLL_STOP_FRAME = 17; // The total length of each roll animation is 25 frames
-
 const VANILLA_SPEED = 4.4;
 const ROLL_SPEED = VANILLA_SPEED * 2;
 
@@ -27,7 +27,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("roll", v, featureEnabled);
+  saveDataManager(FEATURE_NAME, v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -84,7 +84,7 @@ function startRoll(player: EntityPlayer) {
     return;
   }
 
-  disableAllInputs();
+  disableAllInputs(FEATURE_NAME);
 
   // The player's velocity is stored so that it can be restored when the roll is over
   v.run.rolling = true;
@@ -199,7 +199,7 @@ function stopRoll(player: EntityPlayer) {
   v.run.originalVelocity = Vector.Zero;
   v.run.originalVelocity2 = Vector.Zero;
 
-  enableAllInputs();
+  enableAllInputs(FEATURE_NAME);
 }
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

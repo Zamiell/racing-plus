@@ -1,6 +1,7 @@
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { ActiveItemDescription } from "../../../types/ActiveItemDescription";
 import { SeededDeathState } from "../../../types/SeededDeathState";
+import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
 const v = {
   run: {
@@ -34,7 +35,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("seededDeath", v);
+  saveDataManager(SEEDED_DEATH_FEATURE_NAME, v);
 }
 
 export function isSeededDeathActive(): boolean {

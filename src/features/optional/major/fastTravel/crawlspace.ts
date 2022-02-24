@@ -15,7 +15,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../utils";
-import { DEBUG } from "./constants";
+import { FAST_TRAVEL_DEBUG } from "./constants";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
@@ -363,7 +363,7 @@ function touched(entity: GridEntity | EntityEffect) {
   const roomSafeGridIndex = getRoomSafeGridIndex();
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 
-  if (DEBUG) {
+  if (FAST_TRAVEL_DEBUG) {
     log("Touched a crawlspace.");
   }
 

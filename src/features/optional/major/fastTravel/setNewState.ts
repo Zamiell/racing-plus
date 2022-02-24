@@ -20,6 +20,7 @@ import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import * as blackSprite from "./blackSprite";
+import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
 import v from "./v";
@@ -80,7 +81,7 @@ export function setFadingToBlack(
     // Allow the player to save & quit in order to e.g. get a soul heart from a Monstro
     ButtonAction.ACTION_PAUSE,
   ]);
-  disableAllInputsExceptFor(whitelist);
+  disableAllInputsExceptFor(FAST_TRAVEL_FEATURE_NAME, whitelist);
 
   setGameStateFlags();
   setPlayerAttributes(player, position);
@@ -343,5 +344,5 @@ export function setPlayersVisible(
 
 function setDisabled() {
   blackSprite.setFullyTransparent();
-  enableAllInputs();
+  enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
 }

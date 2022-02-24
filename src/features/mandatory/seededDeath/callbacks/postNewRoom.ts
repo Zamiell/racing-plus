@@ -7,7 +7,10 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
-import { SEEDED_DEATH_DEBUFF_FRAMES } from "../constants";
+import {
+  SEEDED_DEATH_DEBUFF_FRAMES,
+  SEEDED_DEATH_FEATURE_NAME,
+} from "../constants";
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,
@@ -47,7 +50,7 @@ function postNewRoomWaitingForNewRoom() {
   v.run.debuffEndFrame = isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
   logSeededDeathStateChange();
 
-  disableAllInputs();
+  disableAllInputs(SEEDED_DEATH_FEATURE_NAME);
   applySeededGhostFade(player, true);
 
   // Play the animation where Isaac lies in the fetal position

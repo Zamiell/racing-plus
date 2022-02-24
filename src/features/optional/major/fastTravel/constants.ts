@@ -1,6 +1,7 @@
 import { FastTravelEntityState } from "./enums";
 
-export const DEBUG = false;
+export const FAST_TRAVEL_DEBUG = false;
+export const FAST_TRAVEL_FEATURE_NAME = "fastTravel";
 
 export interface FastTravelEntityDescription {
   initial: boolean;

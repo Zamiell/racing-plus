@@ -18,6 +18,7 @@ import { consoleCommand } from "../../../utils";
 import * as socket from "../../race/socket";
 import { RaceStatus } from "../../race/types/RaceStatus";
 
+const FEATURE_NAME = "customConsole";
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
 const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = ISAAC_FRAMES_PER_SECOND * 0.5;
@@ -40,7 +41,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("customConsole", v);
+  saveDataManager(FEATURE_NAME, v);
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
@@ -161,7 +162,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
 
 function open() {
   consoleOpen = true;
-  disableAllInputs();
+  disableAllInputs(FEATURE_NAME);
   AwaitingTextInput = true;
 
   log("Console opened.");
@@ -173,7 +174,7 @@ function close(execute = true) {
   }
 
   consoleOpen = false;
-  enableAllInputs();
+  enableAllInputs(FEATURE_NAME);
   AwaitingTextInput = false;
 
   if (!execute || inputText === "") {
