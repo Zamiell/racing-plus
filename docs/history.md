@@ -35,6 +35,7 @@
 - Fixed the bug where the Sawblades beyond the second would be exactly aligned with the first Sawblade.
 - Fixed the bug where Sawblade would not work properly with Spin to Win. (Thanks Monkeypot)
 - Fixed the bug where Sawblade would not work properly with Box of Friends.
+- Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith.
 
 ### *v0.75.0* - February 19th, 2022
 

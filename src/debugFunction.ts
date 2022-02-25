@@ -1,9 +1,8 @@
 import {
-  DefaultMap,
   isKeyboardPressed,
   log,
-  logMap,
   printConsole,
+  saveDataManager,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
 } from "isaacscript-common";
@@ -16,12 +15,14 @@ const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
+const v = {};
+
+export function init() {
+  saveDataManager("debugFunction", v);
+}
+
 function debugCode() {
   // Add code here
-  const myMap = new DefaultMap<number, string>("lol");
-  myMap.set(1, "foo");
-  myMap.set(2, "bar");
-  logMap(myMap);
 }
 
 export function debugFunction(): void {

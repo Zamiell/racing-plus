@@ -1,4 +1,5 @@
 import { saveDataManagerLoad } from "isaacscript-common";
+import * as debugFunction from "./debugFunction";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as sawblade from "./features/items/sawblade";
@@ -68,6 +69,7 @@ export function initFeatureVariables(): void {
   // Core
   modConfigMenu.init();
   modConfigMenuVanilla.init();
+  debugFunction.init();
   raceVars.init();
   socketClient.init();
   shadows.init();

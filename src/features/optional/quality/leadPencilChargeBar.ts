@@ -13,6 +13,16 @@ const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
 export const VANILLA_CHARGE_BAR_X_OFFSET = 19;
 export const VANILLA_CHARGE_BAR_Y_OFFSET = 54;
 
+const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
+  CollectibleType.COLLECTIBLE_DR_FETUS, // 52
+  CollectibleType.COLLECTIBLE_TECHNOLOGY, // 68
+  CollectibleType.COLLECTIBLE_MOMS_KNIFE, // 114
+  CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
+  CollectibleType.COLLECTIBLE_TECHNOLOGY_2, // 152
+  CollectibleType.COLLECTIBLE_EPIC_FETUS, // 168
+  CollectibleType.COLLECTIBLE_TECH_X, // 395
+];
+
 const v = {
   run: {
     playerNumFiredTearsMap: new Map<PlayerIndex, int>(),
@@ -43,36 +53,14 @@ export function postRender(): void {
 }
 
 function drawChargeBar(player: EntityPlayer) {
-  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LEAD_PENCIL)) {
+  if (!shouldDrawChargeBar(player)) {
     return;
   }
 
-  const character = player.GetPlayerType();
   const flyingOffset = player.GetFlyingOffset();
 
-  // Lead Pencil is a useless item in some situations (the barrage will never fire)
-  // In these situations, don't clutter the screen with the charge bar
-  if (
-    character === PlayerType.PLAYER_AZAZEL || // 7
-    character === PlayerType.PLAYER_LILITH || // 13
-    player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) || // 68
-    player.HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) || // 114
-    player.HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) || // 118
-    player.HasCollectible(CollectibleType.COLLECTIBLE_EPIC_FETUS) || // 168
-    player.HasCollectible(CollectibleType.COLLECTIBLE_TECH_X) // 395
-  ) {
-    return;
-  }
-
-  // In other situations, the barrage will fire, but we have no way of tracking it
-  if (
-    player.HasCollectible(CollectibleType.COLLECTIBLE_DR_FETUS) || // 52
-    player.HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) // 152
-  ) {
-    return;
-  }
-
-  const playerIndex = getPlayerIndex(player);
+  // The Forgotten and The Soul have different Lead Pencil counters
+  const playerIndex = getPlayerIndex(player, true);
   let numFiredTears = v.run.playerNumFiredTearsMap.get(playerIndex);
   if (numFiredTears === undefined) {
     const initialValue = 0;
@@ -99,6 +87,31 @@ function drawChargeBar(player: EntityPlayer) {
   sprite.SetFrame("Charging", barFrame);
   const position = g.r.WorldToScreenPosition(adjustedPosition);
   sprite.Render(position, Vector.Zero, Vector.Zero);
+}
+
+function shouldDrawChargeBar(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
+  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LEAD_PENCIL)) {
+    return false;
+  }
+
+  // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
+  // (because there is no PostLaserFired callback)
+  if (
+    character === PlayerType.PLAYER_AZAZEL || // 7
+    playerHasUntrackableCollectible(player)
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+function playerHasUntrackableCollectible(player: EntityPlayer) {
+  return UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
+    player.HasCollectible(collectibleType),
+  );
 }
 
 // ModCallbacks.MC_POST_FIRE_TEAR (61)
@@ -134,11 +147,13 @@ function incrementLeadPencilCounter(parent: Entity | undefined) {
   }
 
   const gameFrameCount = g.g.GetFrameCount();
-  const playerIndex = getPlayerIndex(player);
 
-  // The second tear of multi-shots does not count towards the Lead Pencil counter
-  // Furthermore, if Forgotten has two bone clubs, the second swing does not count towards the Lead
-  // Pencil counter
+  // The Forgotten and The Soul have different Lead Pencil counters
+  const playerIndex = getPlayerIndex(player, true);
+
+  // The second tear of a multi-tear-shot does not count towards the Lead Pencil counter
+  // In the same way, if Forgotten has two bone clubs, the second swing does not count towards the
+  // Lead Pencil counter
   const lastFiredTearFrame = v.run.playerLastFiredFrameMap.get(playerIndex);
   if (gameFrameCount === lastFiredTearFrame) {
     return;
