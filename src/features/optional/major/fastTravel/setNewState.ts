@@ -67,7 +67,7 @@ export function setFadingToBlack(
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
   // the travelling animation
   v.run.state = FastTravelState.FADING_TO_BLACK;
-  v.run.framesPassed = 0;
+  v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
   v.run.blueWomb = roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   v.run.theVoid = roomSafeGridIndex === GridRooms.ROOM_THE_VOID_IDX;
@@ -261,7 +261,7 @@ function setGoingToNewFloor() {
 function setFadingIn() {
   const players = getPlayers();
 
-  v.run.framesPassed = 0;
+  v.run.renderFramesPassed = 0;
 
   adjustJacobAndEsau(players);
   adjustTaintedForgotten(players);

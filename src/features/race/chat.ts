@@ -42,7 +42,7 @@ function drawChat() {
   for (const chatMessage of g.chatMessages) {
     // Make chat messages slowly fade away (if the console is closed)
     let modifiedAlpha = alpha;
-    const framesElapsed = isaacFrameCount - chatMessage.frameReceived;
+    const framesElapsed = isaacFrameCount - chatMessage.renderFrameReceived;
     if (!consoleOpen && framesElapsed > FRAMES_FOR_CHAT_TO_SHOW) {
       const framesOverThreshold = framesElapsed - FRAMES_FOR_CHAT_TO_SHOW;
       modifiedAlpha -= framesOverThreshold / (FRAMES_FOR_CHAT_TO_SHOW * 2);

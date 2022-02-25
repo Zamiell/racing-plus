@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   copyColor,
+  DefaultMap,
   getCollectibleItemPoolType,
   getCollectibleMaxCharges,
   getCollectibles,
@@ -28,15 +29,63 @@ const v = {
      * Indexed by collectible PtrHash.
      * (PtrHash is consistent across rerolls, while InitSeed is not.)
      */
-    flippedCollectibleTypes: new Map<PtrHash, CollectibleType>(),
+    flippedCollectibleTypes: new DefaultMap<
+      PtrHash,
+      CollectibleType,
+      [collectible: EntityPickup]
+    >((_key: PtrHash, collectible: EntityPickup) =>
+      getNewFlippedCollectibleType(collectible),
+    ),
+  },
+
+  room: {
+    /**
+     * Indexed by collectible PtrHash.
+     * (PtrHash is consistent across rerolls, while InitSeed is not.)
+     * This cannot be on the "level" object because sprites are not serializable.
+     */
+    flippedSprites: new DefaultMap<
+      PtrHash,
+      Sprite,
+      [flippedCollectibleType: CollectibleType]
+    >((_key: PtrHash, flippedCollectibleType: CollectibleType) =>
+      getNewFlippedSprite(flippedCollectibleType),
+    ),
   },
 };
 
-/**
- * Indexed by collectible PtrHash. (PtrHash is consistent across rerolls, while InitSeed is not.)
- * This cannot be on the "v" object because sprites are not serializable.
- */
-const flippedSprites = new Map<PtrHash, Sprite>();
+function getNewFlippedCollectibleType(collectible: EntityPickup) {
+  const isFirstVisit = g.r.IsFirstVisit();
+  const roomFrameCount = g.r.GetFrameCount();
+
+  // The Flip effect is only supposed to happen to items that are part of the room layout
+  if (!isFirstVisit || roomFrameCount > 0) {
+    return CollectibleType.COLLECTIBLE_NULL;
+  }
+
+  const itemPoolType = getCollectibleItemPoolType(collectible);
+  const collectibleType = g.itemPool.GetCollectible(
+    itemPoolType,
+    true,
+    collectible.InitSeed,
+  );
+
+  const replacementCollectibleType =
+    COLLECTIBLE_REPLACEMENT_MAP.get(collectibleType);
+  return replacementCollectibleType === undefined
+    ? collectibleType
+    : replacementCollectibleType;
+}
+
+function getNewFlippedSprite(collectibleType: CollectibleType) {
+  const sprite = initItemSprite(collectibleType);
+
+  const faded = copyColor(sprite.Color);
+  faded.A = FADE_AMOUNT;
+  sprite.Color = faded;
+
+  return sprite;
+}
 
 export function init(): void {
   saveDataManager("flipCustom", v, featureEnabled);
@@ -97,11 +146,6 @@ export function postPEffectUpdate(player: EntityPlayer) {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
-export function postNewLevel(): void {
-  flippedSprites.clear();
-}
-
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 export function postPickupInitCollectible(collectible: EntityPickup): void {
   if (!config.flipCustom) {
@@ -113,34 +157,7 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
   }
 
   const ptrHash = GetPtrHash(collectible);
-  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
-  if (flippedCollectibleType === undefined) {
-    const newCollectibleType = getNewFlippedCollectibleType(collectible);
-    v.level.flippedCollectibleTypes.set(ptrHash, newCollectibleType);
-  }
-}
-
-function getNewFlippedCollectibleType(collectible: EntityPickup) {
-  const isFirstVisit = g.r.IsFirstVisit();
-  const roomFrameCount = g.r.GetFrameCount();
-
-  // The Flip effect is only supposed to happen to items that are part of the room layout
-  if (!isFirstVisit || roomFrameCount > 0) {
-    return CollectibleType.COLLECTIBLE_NULL;
-  }
-
-  const itemPoolType = getCollectibleItemPoolType(collectible);
-  const collectibleType = g.itemPool.GetCollectible(
-    itemPoolType,
-    true,
-    collectible.InitSeed,
-  );
-
-  const replacementCollectibleType =
-    COLLECTIBLE_REPLACEMENT_MAP.get(collectibleType);
-  return replacementCollectibleType === undefined
-    ? collectibleType
-    : replacementCollectibleType;
+  v.level.flippedCollectibleTypes.getAndSetDefault(ptrHash, collectible);
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
@@ -166,12 +183,10 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  let flippedSprite = flippedSprites.get(ptrHash);
-  if (flippedSprite === undefined) {
-    flippedSprite = initFlippedSprite(flippedCollectibleType);
-    flippedSprites.set(ptrHash, flippedSprite);
-  }
-
+  const flippedSprite = v.room.flippedSprites.getAndSetDefault(
+    ptrHash,
+    flippedCollectibleType,
+  );
   const pickupRenderPosition = Isaac.WorldToRenderPosition(
     collectible.Position,
   );
@@ -179,14 +194,4 @@ export function postPickupRenderCollectible(
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);
   flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
-}
-
-function initFlippedSprite(collectibleType: CollectibleType) {
-  const sprite = initItemSprite(collectibleType);
-
-  const faded = copyColor(sprite.Color);
-  faded.A = FADE_AMOUNT;
-  sprite.Color = faded;
-
-  return sprite;
 }

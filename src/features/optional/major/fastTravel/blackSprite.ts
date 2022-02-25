@@ -14,10 +14,10 @@ export function draw(): void {
 
   // Conditionally adjust the opacity
   if (v.run.state === FastTravelState.FADING_TO_BLACK) {
-    const opacity = v.run.framesPassed / FADE_TO_BLACK_FRAMES;
+    const opacity = v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
     sprite.Color = Color(1, 1, 1, opacity);
   } else if (v.run.state === FastTravelState.FADING_IN) {
-    const opacity = 1 - v.run.framesPassed / FADE_TO_BLACK_FRAMES;
+    const opacity = 1 - v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
     sprite.Color = Color(1, 1, 1, opacity);
   }
 

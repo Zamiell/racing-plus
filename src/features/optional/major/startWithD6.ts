@@ -14,6 +14,7 @@
 // active slot)
 
 import {
+  DefaultMap,
   findFreePosition,
   getCollectibleMaxCharges,
   getPlayerIndex,
@@ -35,7 +36,9 @@ const D6_STARTING_CHARGE = 6;
 
 const v = {
   run: {
-    pocketActiveD6Charge: new Map<PlayerIndex, int>(),
+    playersPocketActiveD6Charge: new DefaultMap<PlayerIndex, int>(
+      D6_STARTING_CHARGE,
+    ),
     currentFlipCharge: 0,
   },
 };
@@ -132,9 +135,9 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const index = getPlayerIndex(player);
+  const playerIndex = getPlayerIndex(player);
   const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-  v.run.pocketActiveD6Charge.set(index, pocketActiveCharge);
+  v.run.playersPocketActiveD6Charge.set(playerIndex, pocketActiveCharge);
 }
 
 // ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
@@ -228,11 +231,9 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
     return;
   }
 
-  const index = getPlayerIndex(player);
-  let d6Charge = v.run.pocketActiveD6Charge.get(index);
-  if (d6Charge === undefined) {
-    d6Charge = D6_STARTING_CHARGE;
-  }
+  const playerIndex = getPlayerIndex(player);
+  const d6Charge =
+    v.run.playersPocketActiveD6Charge.getAndSetDefault(playerIndex);
 
   player.SetPocketActiveItem(
     CollectibleType.COLLECTIBLE_D6,
@@ -282,11 +283,9 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   }
 
   // If they are switching characters, get the charge from the D6 on the previous frame
-  const index = getPlayerIndex(player);
-  let d6Charge = v.run.pocketActiveD6Charge.get(index);
-  if (d6Charge === undefined) {
-    d6Charge = D6_STARTING_CHARGE;
-  }
+  const playerIndex = getPlayerIndex(player);
+  const d6Charge =
+    v.run.playersPocketActiveD6Charge.getAndSetDefault(playerIndex);
 
   // The "SetPocketActiveItem()" method also removes it from item pools
   player.SetPocketActiveItem(

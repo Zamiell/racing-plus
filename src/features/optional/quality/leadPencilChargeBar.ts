@@ -2,6 +2,7 @@
 // However, we don't draw an extra charge bar for every Incubus, since that would clutter the screen
 
 import {
+  DefaultMap,
   getPlayerIndex,
   getPlayers,
   PlayerIndex,
@@ -29,8 +30,8 @@ const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
 
 const v = {
   run: {
-    playerNumFiredTearsMap: new Map<PlayerIndex, int>(),
-    playerLastFiredFrameMap: new Map<PlayerIndex, int>(),
+    playersNumFiredTearsMap: new DefaultMap<PlayerIndex, int>(0),
+    playersLastFiredFrameMap: new Map<PlayerIndex, int>(),
   },
 };
 
@@ -65,12 +66,8 @@ function drawChargeBar(player: EntityPlayer) {
 
   // The Forgotten and The Soul have different Lead Pencil counters
   const playerIndex = getPlayerIndex(player, true);
-  let numFiredTears = v.run.playerNumFiredTearsMap.get(playerIndex);
-  if (numFiredTears === undefined) {
-    const initialValue = 0;
-    numFiredTears = initialValue;
-    v.run.playerNumFiredTearsMap.set(playerIndex, initialValue);
-  }
+  const numFiredTears =
+    v.run.playersNumFiredTearsMap.getAndSetDefault(playerIndex);
 
   // The vanilla charge bars appear to the top-right of the player
   // We place the lead pencil charge bar to the top-left
@@ -158,16 +155,14 @@ function incrementLeadPencilCounter(parent: Entity | undefined) {
   // The second tear of a multi-tear-shot does not count towards the Lead Pencil counter
   // In the same way, if Forgotten has two bone clubs, the second swing does not count towards the
   // Lead Pencil counter
-  const lastFiredTearFrame = v.run.playerLastFiredFrameMap.get(playerIndex);
+  const lastFiredTearFrame = v.run.playersLastFiredFrameMap.get(playerIndex);
   if (gameFrameCount === lastFiredTearFrame) {
     return;
   }
-  v.run.playerLastFiredFrameMap.set(playerIndex, gameFrameCount);
+  v.run.playersLastFiredFrameMap.set(playerIndex, gameFrameCount);
 
-  let numFiredTears = v.run.playerNumFiredTearsMap.get(playerIndex);
-  if (numFiredTears === undefined) {
-    numFiredTears = 0;
-  }
-  numFiredTears += 1;
-  v.run.playerNumFiredTearsMap.set(playerIndex, numFiredTears);
+  const oldNumFiredTears =
+    v.run.playersNumFiredTearsMap.getAndSetDefault(playerIndex);
+  const newNumFiredTears = oldNumFiredTears + 1;
+  v.run.playersNumFiredTearsMap.set(playerIndex, newNumFiredTears);
 }

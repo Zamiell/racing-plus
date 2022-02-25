@@ -1,10 +1,12 @@
 import {
+  DefaultMap,
   disableAllInputs,
   enableAllInputs,
   getEnumValues,
   getScreenBottomRightPos,
   hexToKColor,
   ISAAC_FRAMES_PER_SECOND,
+  isEven,
   isKeyboardPressed,
   log,
   saveDataManager,
@@ -31,8 +33,10 @@ let inputTextIndex = 0;
 let savedText = ""; // Used to save a partially completed message when recalling history
 let historyIndex = -1;
 
-/** Values are the Isaac frame that the key was pressed. */
-const keysPressed = new Map<Keyboard, int>();
+/** Values are the render frame that the key was pressed. */
+const keysPressed = new DefaultMap<Keyboard, int, [isaacFrameCount: int]>(
+  (_key: Keyboard, isaacFrameCount: int) => isaacFrameCount,
+);
 
 const v = {
   persistent: {
@@ -96,18 +100,17 @@ function checkKeyboardInput(
     return;
   }
 
-  let framePressed = keysPressed.get(keyboardValue);
-  if (framePressed === undefined) {
-    framePressed = isaacFrameCount;
-    keysPressed.set(keyboardValue, framePressed);
-  }
+  const framePressed = keysPressed.getAndSetDefault(
+    keyboardValue,
+    isaacFrameCount,
+  );
 
   // We want the key to be repeated if they are holding down the key (after a short delay)
   const pressedOnThisFrame = framePressed === isaacFrameCount;
   const framesSinceKeyPressed = isaacFrameCount - framePressed;
   const shouldTriggerRepeatPress =
     framesSinceKeyPressed > REPEAT_KEY_DELAY_IN_RENDER_FRAMES &&
-    framesSinceKeyPressed % 2 === 0 && // Every other frame
+    isEven(framesSinceKeyPressed) && // Every other frame
     keyboardValue !== consoleOpenInput;
   const shouldPress = pressedOnThisFrame || shouldTriggerRepeatPress;
 

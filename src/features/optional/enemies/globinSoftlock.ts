@@ -1,11 +1,11 @@
-import { log, saveDataManager } from "isaacscript-common";
+import { DefaultMap, log, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
 
 const v = {
   room: {
-    numGlobinRegenerations: new Map<PtrHash, int>(),
+    numGlobinRegenerations: new DefaultMap<PtrHash, int>(0),
     globinStates: new Map<PtrHash, NpcState>(),
   },
 };
@@ -44,15 +44,12 @@ function checkGlobinStateTransition(npc: EntityNPC) {
 }
 
 function globinTransitionedToFleshPile(npc: EntityNPC, ptrHash: PtrHash) {
-  let numGlobinRegenerations = v.room.numGlobinRegenerations.get(ptrHash);
-  if (numGlobinRegenerations === undefined) {
-    numGlobinRegenerations = 0;
-  }
+  const numOldGlobinRegenerations =
+    v.room.numGlobinRegenerations.getAndSetDefault(ptrHash);
+  const numNewGlobinRegenerations = numOldGlobinRegenerations + 1;
+  v.room.numGlobinRegenerations.set(ptrHash, numNewGlobinRegenerations);
 
-  numGlobinRegenerations += 1;
-  v.room.numGlobinRegenerations.set(ptrHash, numGlobinRegenerations);
-
-  if (numGlobinRegenerations === MAX_REGENERATIONS) {
+  if (numNewGlobinRegenerations === MAX_REGENERATIONS) {
     npc.Kill();
     log("Manually killed a Globin to prevent a softlock.");
   }

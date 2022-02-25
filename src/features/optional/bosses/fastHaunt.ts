@@ -67,17 +67,9 @@ function getAttachedLilHaunts(haunt: EntityNPC) {
 }
 
 function getLowestIndexLilHaunt(lilHaunts: EntityNPC[]) {
-  let lowestIndexLilHaunt: EntityNPC | null = null;
-  for (const lilHaunt of lilHaunts) {
-    if (
-      lowestIndexLilHaunt === null ||
-      lilHaunt.Index < lowestIndexLilHaunt.Index
-    ) {
-      lowestIndexLilHaunt = lilHaunt;
-    }
-  }
-
-  return lowestIndexLilHaunt;
+  return lilHaunts.reduce((lowestIndexLilHaunt, lilHaunt) =>
+    lilHaunt.Index < lowestIndexLilHaunt.Index ? lilHaunt : lowestIndexLilHaunt,
+  );
 }
 
 function detachLilHaunt(npc: EntityNPC) {

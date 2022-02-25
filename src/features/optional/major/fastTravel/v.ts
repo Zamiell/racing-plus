@@ -9,10 +9,8 @@ import { FastTravelState } from "./enums";
 
 const v = {
   run: {
-    /** These are Isaac frames, not game frames. */
-    framesPassed: 0,
-
     state: FastTravelState.DISABLED,
+    renderFramesPassed: 0,
 
     upwards: false,
     blueWomb: false,

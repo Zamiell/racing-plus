@@ -1,5 +1,6 @@
 import {
   anyPlayerIs,
+  DefaultMap,
   inStartingRoom,
   isChildPlayer,
   isSelfDamage,
@@ -20,9 +21,16 @@ const v = {
   },
 
   room: {
-    spriteMap: new Map<PtrHash, Sprite>(),
+    spriteMap: new DefaultMap<PtrHash, Sprite>(() => getNewMysteryGiftSprite()),
   },
 };
+
+function getNewMysteryGiftSprite() {
+  const sprite = initItemSprite(CollectibleType.COLLECTIBLE_MYSTERY_GIFT);
+  sprite.Scale = Vector(0.666, 0.666);
+
+  return sprite;
+}
 
 export function init(): void {
   saveDataManager("freeDevilItem", v, featureEnabled);
@@ -139,14 +147,7 @@ export function postPickupRenderCollectible(
   }
 
   const ptrHash = GetPtrHash(pickup);
-  let sprite = v.room.spriteMap.get(ptrHash);
-  if (sprite === undefined) {
-    sprite = initItemSprite(CollectibleType.COLLECTIBLE_MYSTERY_GIFT);
-    sprite.Scale = Vector(0.666, 0.666);
-
-    v.room.spriteMap.set(ptrHash, sprite);
-  }
-
+  const sprite = v.room.spriteMap.getAndSetDefault(ptrHash);
   const worldPosition = Isaac.WorldToRenderPosition(pickup.Position);
   const position = worldPosition.add(renderOffset).add(ITEM_OFFSET);
   sprite.RenderLayer(COLLECTIBLE_LAYER, position);

@@ -17,10 +17,12 @@
 // 8) Battery Pack
 
 import {
+  DefaultMap,
   ensureAllCases,
   getCollectibleMaxCharges,
   getPlayerIndex,
   getTotalCharge,
+  log,
   playChargeSoundEffect,
   PlayerIndex,
   saveDataManager,
@@ -54,7 +56,9 @@ const MICRO_BATTERY_CHARGES = 2;
 
 const v = {
   run: {
-    activeItemChargesMap: new Map<PlayerIndex, Map<ActiveSlot, int>>(),
+    activeItemChargesMap: new DefaultMap<PlayerIndex, Map<ActiveSlot, int>>(
+      () => new Map(),
+    ),
     checkForBatteryBumChargesUntilFrame: null as int | null,
   },
 
@@ -130,11 +134,8 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
   // On every frame, we need to track the current charges for each active item that a player has for
   // the purposes of rewinding the charges
   const playerIndex = getPlayerIndex(player);
-  let activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
-  if (activeItemCharges === undefined) {
-    activeItemCharges = new Map();
-    v.run.activeItemChargesMap.set(playerIndex, activeItemCharges);
-  }
+  const activeItemCharges =
+    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     const activeItem = player.GetActiveItem(activeSlot);
@@ -384,11 +385,13 @@ function checkSwitchCharge(
 
 function checkActiveItemsChargeChange(player: EntityPlayer) {
   const playerIndex = getPlayerIndex(player);
-  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
-  if (activeItemCharges === undefined) {
-    error(
-      `Failed to get the stored active item charges for player: ${playerIndex}`,
+  const activeItemCharges =
+    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
+  if (activeItemCharges.size === 0) {
+    log(
+      'Error: The activeItemCharges map was not initialized yet in the "checkActiveItemsChargeChange" function.',
     );
+    return false;
   }
 
   const activeItemsChanged = new Set<ActiveSlot>();
@@ -416,9 +419,13 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
 
 function rewindActiveChargesToLastFrame(player: EntityPlayer) {
   const playerIndex = getPlayerIndex(player);
-  const activeItemCharges = v.run.activeItemChargesMap.get(playerIndex);
-  if (activeItemCharges === undefined) {
-    error(`Failed to get the active charges for player: ${playerIndex}`);
+  const activeItemCharges =
+    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
+  if (activeItemCharges.size === 0) {
+    log(
+      'Error: The activeItemCharges map was not initialized yet in the "rewindActiveChargesToLastFrame" function.',
+    );
+    return;
   }
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {

@@ -1,5 +1,4 @@
 import { log } from "isaacscript-common";
-import * as flipCustom from "../features/items/flipCustom";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -18,7 +17,7 @@ export function main(): void {
   const isaacFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_NEW_LEVEL - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_LEVEL - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
   );
 
   // Mandatory
@@ -39,7 +38,4 @@ export function main(): void {
 
   // Sounds
   silenceMomDad.postNewLevel();
-
-  // Items
-  flipCustom.postNewLevel();
 }

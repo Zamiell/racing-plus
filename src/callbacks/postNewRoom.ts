@@ -50,7 +50,7 @@ export function main(): void {
   const roomSubType = getRoomSubType();
 
   log(
-    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant}.${roomSubType} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Isaac frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant}.${roomSubType} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
   );
 
   // Util

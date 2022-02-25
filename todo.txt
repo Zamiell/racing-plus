@@ -6,4 +6,4 @@ TODO Racing+ new features:
   - Ranked Solo Season 3 length:  120 days
 - Seeded runs change to being consistent with Devil/Angels
   - After tournament is over in 1 week
-- refactor flipCustom Map with DefaultMap (maybe)
+  - fix all bugs

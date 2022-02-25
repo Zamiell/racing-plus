@@ -29,7 +29,7 @@ export function postRender(): void {
 function postRenderFadingToBlack() {
   incrementFramesPassed();
 
-  if (v.run.framesPassed < FADE_TO_BLACK_FRAMES) {
+  if (v.run.renderFramesPassed < FADE_TO_BLACK_FRAMES) {
     return;
   }
 
@@ -40,7 +40,7 @@ function postRenderFadingToBlack() {
 function postRenderFadingIn() {
   incrementFramesPassed();
 
-  if (v.run.framesPassed === FRAMES_BEFORE_JUMP) {
+  if (v.run.renderFramesPassed === FRAMES_BEFORE_JUMP) {
     const players = getPlayers();
 
     resetPlayerCollision(players);
@@ -48,7 +48,7 @@ function postRenderFadingIn() {
     makePlayersJump(players);
   }
 
-  if (v.run.framesPassed < FADE_TO_BLACK_FRAMES) {
+  if (v.run.renderFramesPassed < FADE_TO_BLACK_FRAMES) {
     return;
   }
 
@@ -69,7 +69,7 @@ function incrementFramesPassed() {
     return;
   }
 
-  v.run.framesPassed += 1;
+  v.run.renderFramesPassed += 1;
 }
 
 function resetPlayerCollision(players: EntityPlayer[]) {
