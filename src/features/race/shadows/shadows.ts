@@ -2,6 +2,7 @@
 // This is accomplished via UDP datagrams that are sent to the client, and then to the server
 
 import {
+  DefaultMap,
   getRoomListIndex,
   ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
@@ -66,8 +67,16 @@ interface ShadowMessage {
 let lastBeaconFrame: int | null = null;
 
 /** Indexed by user ID. */
-const spriteMap = new Map<int, Sprite>();
-const spriteCharacterMap = new Map<int, PlayerType>();
+const spriteMap = new DefaultMap<int, Sprite>(() => getNewShadowSprite());
+const spriteCharacterMap = new DefaultMap<int, PlayerType>(-1);
+
+function getNewShadowSprite() {
+  const sprite = Sprite();
+  sprite.Load("gfx/001.000_Player.anm2", true);
+  sprite.Color = SHADOW_FADED_COLOR;
+
+  return sprite;
+}
 
 const v = {
   run: {
@@ -200,8 +209,8 @@ function unpackShadowMessage(rawData: string) {
   for (let i = 0; i < SHADOW_FIELDS.length; i++) {
     const field = SHADOW_FIELDS[i];
     let fieldData = dataArray[i];
-    if (type(fieldData) === "string") {
-      fieldData = (fieldData as string).trim();
+    if (typeof fieldData === "string") {
+      fieldData = fieldData.trim();
     }
     shadowMessage[field] = fieldData;
   }
@@ -258,31 +267,17 @@ function drawShadows() {
       continue;
     }
 
-    const sprite = getShadowSprite(shadowData);
+    const sprite = spriteMap.getAndSetDefault(shadowData.userID);
     setSpriteCharacter(sprite, shadowData);
     setSpriteAnimation(sprite, shadowData);
     drawSprite(sprite, shadowData);
   }
 }
 
-function getShadowSprite(shadowData: ShadowData) {
-  let sprite = spriteMap.get(shadowData.userID);
-  if (sprite === undefined) {
-    sprite = Sprite();
-    sprite.Load("gfx/001.000_Player.anm2", true);
-    sprite.Color = SHADOW_FADED_COLOR;
-    spriteMap.set(shadowData.userID, sprite);
-  }
-
-  return sprite;
-}
-
 function setSpriteCharacter(sprite: Sprite, shadowData: ShadowData) {
-  let spriteCharacter = spriteCharacterMap.get(shadowData.userID);
-  if (spriteCharacter === undefined) {
-    spriteCharacter = -1;
-  }
-
+  const spriteCharacter = spriteCharacterMap.getAndSetDefault(
+    shadowData.userID,
+  );
   if (spriteCharacter !== shadowData.character) {
     spriteCharacterMap.set(shadowData.userID, shadowData.character);
 

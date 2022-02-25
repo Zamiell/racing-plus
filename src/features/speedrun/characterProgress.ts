@@ -109,7 +109,7 @@ function displayCharacterProgress() {
     digit4Sprite.RenderLayer(0, digit4Position);
   }
 
-  let posSeason;
+  let posSeason: Vector;
   const spacing = 17;
   if (digit4Position === undefined) {
     posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
