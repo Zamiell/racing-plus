@@ -3,11 +3,13 @@
 ### *v0.76.0* - February 20th, 2022
 
 - R+7 Season 2 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start
-- The first angel in a run is now always Uriel.
+- Sawblade has been removed from the Treasure Room pool.
+- The first angel that you fight in a run will now always be Uriel.
 - Removed some pits in Angel Rooms #5, #8, #10, #13 (to make it easier to fight two angels at the same time).
 - Deleted Angel Room #4 (with the TNT barrels).
 - Deleted Angel Room #12 (with the White Poop).
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
+  - This changes the average pedestal amount from 1.16 to 1.00. (This is a 14.8% difference.)
 - In seeded races, R Key is now removed from all pools (and Eden can no longer start with it). (Thanks Moucheron Quipet)
 - In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
 - In seeded races, Birthright is now removed from pools if you start as The Lost.
@@ -16,6 +18,7 @@
   - #2031 (Loki)
   - #3311 (Lokii)
   - #4041 (Death)
+- The lead pencil charge bar will no longer show when you have Monstro's Lung. (Thanks Gamonymous)
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
 - Fixed the bug where fast-clear was not applied to the second phase of Mother. (Thanks Gamonymous)
@@ -37,6 +40,7 @@
 - Fixed the bug where Sawblade would not work properly with Box of Friends.
 - Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith. (Thanks Gamonymous)
 - Fixed the bug where in multi-character speedruns, you could use We Need to Go Deeper! in a crawlspace. (Thanks Gamonymous)
+- Fixed the bug where in multi-character speedruns, We Need to Go Deeper! would trigger twice under certain circumstances. (Thanks caesar)
 
 ### *v0.75.0* - February 19th, 2022
 

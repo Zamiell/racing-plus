@@ -1,4 +1,5 @@
 import {
+  DefaultMap,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
@@ -17,7 +18,30 @@ interface Sprites {
 const DIGIT_LENGTH = 7.25;
 const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
-const spriteCollectionMap = new Map<int, Sprites>();
+const spriteCollectionMap = new DefaultMap<int, Sprites>(() =>
+  getNewTimerSprites(),
+);
+
+function getNewTimerSprites() {
+  const sprites: Sprites = {
+    clock: initSprite("gfx/timer/clock.anm2"),
+    colons: [],
+    digits: [],
+    digitMini: initSprite("gfx/timer/timer_mini.anm2"),
+  };
+
+  for (let i = 0; i < 2; i++) {
+    const colonSprite = initSprite("gfx/timer/colon.anm2");
+    sprites.colons.push(colonSprite);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const digitSprite = initSprite("gfx/timer/timer.anm2");
+    sprites.digits.push(digitSprite);
+  }
+
+  return sprites;
+}
 
 export function display(
   timerType: TimerType,
@@ -60,11 +84,7 @@ export function display(
   const hourAdjustment = 2;
   let hourAdjustment2 = 0;
 
-  let sprites = spriteCollectionMap.get(timerType);
-  if (sprites === undefined) {
-    sprites = getNewTimerSprites();
-    spriteCollectionMap.set(timerType, sprites);
-  }
+  const sprites = spriteCollectionMap.getAndSetDefault(timerType);
 
   const [hours, minute1, minute2, second1, second2, tenths] =
     convertSecondsToTimerValues(seconds);
@@ -129,27 +149,6 @@ export function display(
   );
   sprites.digitMini.SetFrame("Default", tenths);
   sprites.digitMini.RenderLayer(0, positionTenths);
-}
-
-function getNewTimerSprites() {
-  const sprites: Sprites = {
-    clock: initSprite("gfx/timer/clock.anm2"),
-    colons: [],
-    digits: [],
-    digitMini: initSprite("gfx/timer/timer_mini.anm2"),
-  };
-
-  for (let i = 0; i < 2; i++) {
-    const colonSprite = initSprite("gfx/timer/colon.anm2");
-    sprites.colons.push(colonSprite);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    const digitSprite = initSprite("gfx/timer/timer.anm2");
-    sprites.digits.push(digitSprite);
-  }
-
-  return sprites;
 }
 
 export function convertSecondsToTimerValues(

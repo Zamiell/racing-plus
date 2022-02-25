@@ -29,14 +29,14 @@ const v = {
      * (PtrHash is consistent across rerolls, while InitSeed is not.)
      */
     flippedCollectibleTypes: new Map<PtrHash, CollectibleType>(),
-
-    /**
-     * Indexed by collectible PtrHash.
-     * (PtrHash is consistent across rerolls, while InitSeed is not.)
-     */
-    flippedSprites: new Map<PtrHash, Sprite>(),
   },
 };
+
+/**
+ * Indexed by collectible PtrHash. (PtrHash is consistent across rerolls, while InitSeed is not.)
+ * This cannot be on the "v" object because sprites are not serializable.
+ */
+const flippedSprites = new Map<PtrHash, Sprite>();
 
 export function init(): void {
   saveDataManager("flipCustom", v, featureEnabled);
@@ -59,7 +59,10 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
 
     // Do not convert items back to an empty pedestal
     // (this matches the behavior of the vanilla Flip)
-    if (flippedCollectibleType === undefined || flippedCollectibleType === 0) {
+    if (
+      flippedCollectibleType === undefined ||
+      flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
+    ) {
       continue;
     }
 
@@ -94,6 +97,11 @@ export function postPEffectUpdate(player: EntityPlayer) {
   }
 }
 
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
+export function postNewLevel(): void {
+  flippedSprites.clear();
+}
+
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 export function postPickupInitCollectible(collectible: EntityPickup): void {
   if (!config.flipCustom) {
@@ -106,12 +114,10 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
 
   const ptrHash = GetPtrHash(collectible);
   const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
-  if (flippedCollectibleType !== undefined) {
-    return;
+  if (flippedCollectibleType === undefined) {
+    const newCollectibleType = getNewFlippedCollectibleType(collectible);
+    v.level.flippedCollectibleTypes.set(ptrHash, newCollectibleType);
   }
-
-  const newCollectibleType = getNewFlippedCollectibleType(collectible);
-  v.level.flippedCollectibleTypes.set(ptrHash, newCollectibleType);
 }
 
 function getNewFlippedCollectibleType(collectible: EntityPickup) {
@@ -160,9 +166,10 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  let flippedSprite = v.level.flippedSprites.get(ptrHash);
+  let flippedSprite = flippedSprites.get(ptrHash);
   if (flippedSprite === undefined) {
     flippedSprite = initFlippedSprite(flippedCollectibleType);
+    flippedSprites.set(ptrHash, flippedSprite);
   }
 
   const pickupRenderPosition = Isaac.WorldToRenderPosition(

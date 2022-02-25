@@ -1,7 +1,5 @@
 <ItemPools>
 	<Pool Name="treasure">
-		<Item Name="Sawblade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 730 -->
-
 		<Item Name="Magic Mushroom Placeholder" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/> <!-- 12 -->
 		<Item Name="Sacred Heart Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> <!-- 182 -->
 		<Item Name="Death's Touch Placeholder" Weight="0.8" DecreaseBy="0.8" RemoveOn="0.08"/> <!-- 237 -->

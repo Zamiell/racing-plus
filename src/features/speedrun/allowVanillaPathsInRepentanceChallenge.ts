@@ -33,13 +33,21 @@ export function preUseItemWeNeedToGoDeeper(
   rng: RNG,
   player: EntityPlayer,
 ): boolean | void {
-  // In vanilla, We Need to Go Deeper will do nothing in a crawlspace
-  if (inCrawlspace()) {
-    return undefined;
-  }
-
+  const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
+
+  // Rarely, the shovel will trigger two times on the same frame
+  // It is unknown why this happens
+  // Prevent this bug by preventing the shovel from being used two or more times on the same frame
+  if (gameFrameCount === v.room.usedShovelFrame) {
+    return true;
+  }
+
+  // In vanilla, We Need to Go Deeper will do nothing in a crawlspace
+  if (inCrawlspace()) {
+    return true;
+  }
 
   const trapdoorChance = rng.RandomFloat();
   const gridEntityType =
@@ -64,6 +72,9 @@ export function preUseItemWeNeedToGoDeeper(
     CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
     PlayerItemAnimation.USE_ITEM,
   );
+
+  // Keep track of when we use the shovel to prevent bugs (see above)
+  v.room.usedShovelFrame = gameFrameCount;
 
   return true;
 }

@@ -35,6 +35,9 @@ const v = {
 
   room: {
     showEndOfRunText: false,
+
+    /** Used to fix a bug with We Need to Go Deeper! */
+    usedShovelFrame: null as int | null,
   },
 };
 export default v;
