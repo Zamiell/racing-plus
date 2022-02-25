@@ -35,7 +35,8 @@
 - Fixed the bug where the Sawblades beyond the second would be exactly aligned with the first Sawblade.
 - Fixed the bug where Sawblade would not work properly with Spin to Win. (Thanks Monkeypot)
 - Fixed the bug where Sawblade would not work properly with Box of Friends.
-- Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith.
+- Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith. (Thanks Gamonymous)
+- Fixed the bug where in multi-character speedruns, you could use We Need to Go Deeper! in a crawlspace. (Thanks Gamonymous)
 
 ### *v0.75.0* - February 19th, 2022
 

@@ -136,6 +136,7 @@ Some builds are banned on certain characters:
 - Cain's Eye is removed from the trinket pool.
 - We Need to Go Deeper! will not work on Womb 2.
 - The spikes in a Sacrifice Room are removed after Gabriel spawns.
+- On the first character, if you enter a Curse Room attached to the starting room, all of the pickups will be removed. (This is to prevent people from resetting for a Curse Room item.)
 
 <br />
 
