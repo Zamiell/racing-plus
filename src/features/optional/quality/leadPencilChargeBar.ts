@@ -1,3 +1,6 @@
+// Incubus has its own counter that is independent of the player
+// However, we don't draw an extra charge bar for every Incubus, since that would clutter the screen
+
 import {
   getPlayerIndex,
   getPlayers,

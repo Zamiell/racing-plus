@@ -11,7 +11,6 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
 - Monster Manual will not ever spawn Sawblade. (Reported by Gamonymous)
 - The charges from killing enemies with 4.5 Volt will not prioritize the pocket active item. (Reported by Gamonymous)
-- The Lead Pencil charge bar will not work properly with Incubus and other familiars that copy the player's tears. (Reported by ez_duke)
 - In seeded races, it is possible to get The Fallen as a boss without having taken a Devil Deal. (Reported by Gamonymous)
 - Guppy's Eye will not work correctly when it needs to show a Red Chest that gives a Devil Room item. (Reported by Moucheron Quipet)
 - Custom challenges will always have Clean Bedrooms (instead of having a 50% chance for a Clean Bedroom). (Reported by Finalkids)
