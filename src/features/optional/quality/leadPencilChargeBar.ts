@@ -23,6 +23,7 @@ const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
   CollectibleType.COLLECTIBLE_TECHNOLOGY_2, // 152
   CollectibleType.COLLECTIBLE_EPIC_FETUS, // 168
+  CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
   CollectibleType.COLLECTIBLE_TECH_X, // 395
 ];
 
