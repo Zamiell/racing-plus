@@ -1,6 +1,7 @@
 import {
   getRepentanceDoor,
   getSurroundingGridEntities,
+  inCrawlspace,
   isDoorToDownpour,
   isDoorToMausoleum,
   isDoorToMines,
@@ -32,6 +33,11 @@ export function preUseItemWeNeedToGoDeeper(
   rng: RNG,
   player: EntityPlayer,
 ): boolean | void {
+  // In vanilla, We Need to Go Deeper will do nothing in a crawlspace
+  if (inCrawlspace()) {
+    return undefined;
+  }
+
   const stage = g.l.GetStage();
   const challenge = Isaac.GetChallenge();
 
