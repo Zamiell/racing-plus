@@ -2,7 +2,7 @@ import {
   getRepentanceDoor,
   getRoomSafeGridIndex,
   onRepentanceStage,
-  removeDoors,
+  removeDoor,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
@@ -28,6 +28,6 @@ export function postNewRoom(): void {
 
   const repentanceDoor = getRepentanceDoor();
   if (repentanceDoor !== undefined) {
-    removeDoors(repentanceDoor);
+    removeDoor(repentanceDoor);
   }
 }

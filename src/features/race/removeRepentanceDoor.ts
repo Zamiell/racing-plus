@@ -2,7 +2,7 @@ import {
   getEffectiveStage,
   getEffects,
   getRepentanceDoor,
-  removeDoors,
+  removeDoor,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
@@ -65,7 +65,7 @@ function removeRepentanceDoor() {
     return;
   }
 
-  removeDoors(repentanceDoor);
+  removeDoor(repentanceDoor);
 
   // When the door is spawned, the game creates dust clouds
   for (const effect of getEffects(EffectVariant.DUST_CLOUD)) {
