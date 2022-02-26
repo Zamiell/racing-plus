@@ -15,3 +15,4 @@ TODO Racing+ new features:
 - refactor postUpdate.ts grid entities in babies mod
 - explicitly state all affected grid entity types in RockState comment
 - warn about LockState.UNLOCKED pitfall in isGridEntityDestroyed
+- search for all "for (" in all 3 repositories, replace with forEach

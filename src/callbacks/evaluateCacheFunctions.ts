@@ -1,3 +1,4 @@
+import { repeat } from "isaacscript-common";
 import * as sawblade from "../features/items/sawblade";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
@@ -21,9 +22,9 @@ function magic8BallSeeded(player: EntityPlayer) {
   const numMagic8BallSeeded = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_MAGIC_8_BALL_SEEDED,
   );
-  for (let i = 0; i < numMagic8BallSeeded; i++) {
+  repeat(numMagic8BallSeeded, () => {
     player.ShotSpeed += 0.16;
-  }
+  });
 }
 
 // 1 << 4
