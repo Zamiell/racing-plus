@@ -116,12 +116,10 @@ function drawKeysDelta() {
     }
 
     const player = Isaac.GetPlayer();
-    const isJacobAndEsau = isJacobOrEsau(player);
-    const isBethanyOrTBethany = isBethany(player);
     let y = KEYS_Y;
-    if (isJacobAndEsau) {
+    if (isJacobOrEsau(player)) {
       y = KEYS_Y + JACOB_ESAU_Y_OFFSET;
-    } else if (isBethanyOrTBethany) {
+    } else if (isBethany(player)) {
       y = KEYS_Y + BETHANY_Y_KEY_OFFSET;
     }
 
