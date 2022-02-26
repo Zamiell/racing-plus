@@ -29,7 +29,7 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
   );
 }
 
-export function shouldBanFirstFloorCurseRoom(): boolean {
+function shouldBanFirstFloorCurseRoom(): boolean {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
