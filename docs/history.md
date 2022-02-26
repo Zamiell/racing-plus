@@ -28,7 +28,6 @@
 - Fixed the bug where GB Bug would incorrectly have a chance to spawn pedestal items. (Thanks Gamonymous)
 - Fixed the bug where glitched pedestal item replacement wasn't working correctly.
 - Fixed the bug where moving diagonally into a combined duality door would not grant the right room under certain conditions. (Thanks Shiny)
-- Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
 - Fixed the bug where using Mega Blast would make you move incorrectly when interacting with a trapdoor or beam of light.
 - Fixed the bug where the minimap would reveal extra information during floor transitions in the player had Dream Catcher.
 - Fixed the bug where the player's health could be set to the wrong amount when going to a new floor and having Dream Catcher while playing on a set seed. (Thanks Gamonymous)
@@ -41,6 +40,9 @@
 - Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith. (Thanks Gamonymous)
 - Fixed the bug where in multi-character speedruns, you could use We Need to Go Deeper! in a crawlspace. (Thanks Gamonymous)
 - Fixed the bug where in multi-character speedruns, We Need to Go Deeper! would trigger twice under certain circumstances. (Thanks caesar)
+- Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
+- Fixed the bug where seeded death would not work properly if you died with a Dead Cat queued. (Thanks Moucheron Quipet)
+- Fixed the bug where seeded death would allow you to steal Devil Room items under certain conditions.
 
 ### *v0.75.0* - February 19th, 2022
 

@@ -6,13 +6,13 @@ import {
 import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
   logSeededDeathStateChange,
-  shouldSeededDeathApply,
+  shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import v from "../v";
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
 export function seededDeathPostPlayerRender(player: EntityPlayer): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

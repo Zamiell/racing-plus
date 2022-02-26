@@ -41,7 +41,7 @@ export function logSeededDeathStateChange() {
   }
 }
 
-export function shouldSeededDeathApply(): boolean {
+export function shouldSeededDeathFeatureApply(): boolean {
   const challenge = Isaac.GetChallenge();
 
   return inSeededRace() || challenge === ChallengeCustom.SEASON_2;

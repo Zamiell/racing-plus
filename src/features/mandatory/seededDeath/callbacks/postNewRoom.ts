@@ -14,14 +14,14 @@ import {
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,
-  shouldSeededDeathApply,
+  shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import { debuffOn, setCheckpointCollision } from "../seededDeathDebuff";
 import v from "../v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function seededDeathPostNewRoom(): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

@@ -7,7 +7,7 @@ import {
   isKeeper,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
-  willReviveFromSpiritShackles,
+  range,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
@@ -16,24 +16,28 @@ import { RevivalType } from "../../../race/types/RevivalType";
 import { DEVIL_DEAL_BUFFER_FRAMES } from "../constants";
 import {
   logSeededDeathStateChange,
-  shouldSeededDeathApply,
+  shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import v from "../v";
 
 // ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE
 export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return undefined;
   }
 
+  if (!shouldSeededDeathRevive(player)) {
+    return undefined;
+  }
+
+  seededDeathRevive(player);
+
+  return RevivalType.SEEDED_DEATH;
+}
+
+function shouldSeededDeathRevive(player: EntityPlayer) {
   const roomType = g.r.GetType();
-  const playerIndex = getPlayerIndex(player);
   const gameFrameCount = g.g.GetFrameCount();
-
-  // Do not revive the player if they have Spirit Shackles and it is activated
-  if (willReviveFromSpiritShackles(player)) {
-    return undefined;
-  }
 
   // Do not revive the player if they took a devil deal within the past few seconds
   // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
@@ -43,9 +47,9 @@ export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
   if (
     v.run.frameOfLastDevilDeal !== null &&
     gameFrameCount <= v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
-    !canCharacterDieFromTakingADevilDeal(player)
+    canCharacterDieFromTakingADevilDeal(player)
   ) {
-    return undefined;
+    return false;
   }
 
   // Do not revive the player if they are trying to get a "free" item from a particular special room
@@ -53,15 +57,21 @@ export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
     roomType === RoomType.ROOM_SACRIFICE || // 13
     roomType === RoomType.ROOM_BOSSRUSH // 17
   ) {
-    return undefined;
+    return false;
   }
 
   // Do not revive the player in The Beast room
   // Handling this special case would be too complicated and the player would probably lose the race
   // anyway
   if (inBeastRoom() || inBeastDebugRoom()) {
-    return undefined;
+    return false;
   }
+
+  return true;
+}
+
+function seededDeathRevive(player: EntityPlayer) {
+  const playerIndex = getPlayerIndex(player);
 
   dropEverything(player);
   if (isJacobOrEsau(player)) {
@@ -78,8 +88,6 @@ export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
   // The custom revive works by awarding a 1-Up, which is confusing
   // Thus, hide the health UI with Curse of the Unknown for the duration of the revive
   g.l.AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false);
-
-  return RevivalType.SEEDED_DEATH;
 }
 
 function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
@@ -87,21 +95,17 @@ function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
 }
 
 function dropEverything(player: EntityPlayer) {
-  for (
-    let pocketItemSlot = 0;
-    pocketItemSlot < MAX_PLAYER_POCKET_ITEM_SLOTS;
-    pocketItemSlot++
-  ) {
+  for (const pocketItemSlot of range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
     const position = findFreePosition(player.Position);
     player.DropPocketItem(pocketItemSlot, position);
   }
 
-  for (
-    let trinketSlot = 0;
-    trinketSlot < MAX_PLAYER_TRINKET_SLOTS;
-    trinketSlot++
-  ) {
+  for (const trinketSlot of range(0, MAX_PLAYER_TRINKET_SLOTS - 1)) {
     const trinketType = player.GetTrinket(trinketSlot);
+    if (trinketType === TrinketType.TRINKET_NULL) {
+      continue;
+    }
+
     if (trinketType === TrinketType.TRINKET_PERFECTION) {
       // In the special case of the Perfection trinket, it should be deleted instead of dropped
       player.TryRemoveTrinket(TrinketType.TRINKET_PERFECTION);

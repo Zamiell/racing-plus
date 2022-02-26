@@ -15,13 +15,13 @@ import {
 } from "../constants";
 import {
   logSeededDeathStateChange,
-  shouldSeededDeathApply,
+  shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import v from "../v";
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function seededDeathPostRender(): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

@@ -1,9 +1,9 @@
 import g from "../../../../globals";
-import { shouldSeededDeathApply } from "../seededDeath";
+import { shouldSeededDeathFeatureApply } from "../seededDeath";
 
 // ModCallbacksCustom.MC_POST_CUSTOM_REVIVE
 export function seededDeathPostCustomRevive(player: EntityPlayer): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

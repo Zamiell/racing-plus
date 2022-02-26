@@ -1,10 +1,10 @@
-import { shouldSeededDeathApply } from "../seededDeath";
+import { shouldSeededDeathFeatureApply } from "../seededDeath";
 import v from "../v";
 
 // ModCallbacks.MC_POST_LASER_INIT (47)
 // LaserVariant.GIANT_RED (6)
 export function seededDeathPostLaserInitGiantRed(laser: EntityLaser): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

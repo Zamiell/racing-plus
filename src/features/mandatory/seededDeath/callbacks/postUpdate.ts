@@ -4,14 +4,14 @@ import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,
-  shouldSeededDeathApply,
+  shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import { debuffOff } from "../seededDeathDebuff";
 import v from "../v";
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function seededDeathPostUpdate(): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

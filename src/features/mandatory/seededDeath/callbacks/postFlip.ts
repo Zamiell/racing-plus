@@ -1,11 +1,14 @@
 import { runNextGameFrame, useActiveItemTemp } from "isaacscript-common";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
-import { applySeededGhostFade, shouldSeededDeathApply } from "../seededDeath";
+import {
+  applySeededGhostFade,
+  shouldSeededDeathFeatureApply,
+} from "../seededDeath";
 import v from "../v";
 
 // ModCallbacksCustom.MC_POST_FLIP
 export function seededDeathPostFlip(player: EntityPlayer): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

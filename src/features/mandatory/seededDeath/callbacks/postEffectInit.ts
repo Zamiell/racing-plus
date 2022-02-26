@@ -1,10 +1,10 @@
-import { shouldSeededDeathApply } from "../seededDeath";
+import { shouldSeededDeathFeatureApply } from "../seededDeath";
 import v from "../v";
 
 // ModCallbacks.MC_POST_EFFECT_INIT (54)
 // EffectVariant.BLOOD_DROP (70)
 export function seededDeathPostEffectInitBloodDrop(effect: EntityEffect): void {
-  if (!shouldSeededDeathApply()) {
+  if (!shouldSeededDeathFeatureApply()) {
     return;
   }
 

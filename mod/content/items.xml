@@ -8,9 +8,9 @@
 	<!-- Custom items -->
 	<!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 	<!-- Server Collectible ID: 1001 -->
-	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" cache="luck" hidden="true" id="2"/>
+	<passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" quality="4" cache="luck" hidden="true" id="2"/>
 	<!-- Server Collectible ID: 1002 -->
-	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" cache="luck" hidden="true" id="3" />
+	<passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" quality="4" cache="luck" hidden="true" id="3" />
 	<!-- Server Collectible ID: 1003 -->
 	<familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" hidden="true" id="4" />
 
