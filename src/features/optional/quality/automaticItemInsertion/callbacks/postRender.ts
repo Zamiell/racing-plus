@@ -188,5 +188,5 @@ function getTextColor(fade: float) {
 function getDeltaText(delta: int) {
   const deltaString = delta.toString();
   const paddedDeltaString = deltaString.padStart(2, "0");
-  return `+${string}`;
+  return paddedDeltaString;
 }
