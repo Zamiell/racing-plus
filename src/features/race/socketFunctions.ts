@@ -33,7 +33,7 @@ socketFunctions.set("set", (rawData: string) => {
     case "string": {
       // No type conversion is necessary
       setRace(property, data);
-      break;
+      return;
     }
 
     case "boolean": {
@@ -48,7 +48,7 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, bool);
-      break;
+      return;
     }
 
     case "number": {
@@ -59,15 +59,14 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, num);
-
-      break;
+      return;
     }
 
     case "table": {
       // "startingItems" is the only property that is a table
       const newArray = jsonDecode(data) as unknown as int[];
       g.race.startingItems = newArray;
-      break;
+      return;
     }
 
     default: {

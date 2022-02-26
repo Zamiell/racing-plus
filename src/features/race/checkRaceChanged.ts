@@ -95,7 +95,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       }
 
       sprites.resetAll();
-      break;
+      return;
     }
 
     case RaceStatus.OPEN: {
@@ -107,7 +107,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
       placeLeft.statusOrMyStatusChanged();
       topSprite.statusChanged();
-      break;
+      return;
     }
 
     case RaceStatus.STARTING: {
@@ -115,7 +115,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       placeLeft.statusOrMyStatusChanged();
       topSprite.statusChanged();
 
-      break;
+      return;
     }
 
     case RaceStatus.IN_PROGRESS: {
@@ -127,12 +127,11 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
       raceStart();
 
-      break;
+      return;
     }
 
     default: {
       ensureAllCases(newStatus);
-      break;
     }
   }
 });

@@ -48,7 +48,7 @@ function drawChat() {
       modifiedAlpha -= framesOverThreshold / (FRAMES_FOR_CHAT_TO_SHOW * 2);
     }
     if (modifiedAlpha <= 0) {
-      break;
+      return;
     }
 
     const textSegments: TextSegment[] = [
@@ -69,7 +69,7 @@ function drawChat() {
 
     numMessagesDrawn += 1;
     if (numMessagesDrawn > MAX_CHAT_MESSAGES) {
-      break;
+      return;
     }
   }
 }

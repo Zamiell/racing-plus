@@ -15,6 +15,7 @@ export function postNewRoom(): void {
   if (shouldBanFirstFloorTreasureRoom()) {
     postNewRoomCheckForRoomType(RoomType.ROOM_TREASURE);
   } else if (shouldBanFirstFloorCurseRoom()) {
+    Isaac.DebugString("GETTING HERE");
     postNewRoomCheckForRoomType(RoomType.ROOM_CURSE);
   }
 }
@@ -29,7 +30,7 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
   );
 }
 
-export function shouldBanFirstFloorCurseRoom(): boolean {
+function shouldBanFirstFloorCurseRoom() {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 

@@ -2,6 +2,7 @@ import {
   changeRoom,
   disableAllInputsExceptFor,
   enableAllInputs,
+  ensureAllCases,
   forgottenSwitch,
   getFamiliars,
   getPlayers,
@@ -32,26 +33,26 @@ export function setNewState(fastTravelState: FastTravelState): void {
   switch (fastTravelState) {
     case FastTravelState.FADING_TO_BLACK: {
       // "setFadingToBlack()" is manually called by other functions since it has extra arguments
-      break;
+      return;
     }
 
     case FastTravelState.GOING_TO_NEW_FLOOR: {
       setGoingToNewFloor();
-      break;
+      return;
     }
 
     case FastTravelState.FADING_IN: {
       setFadingIn();
-      break;
+      return;
     }
 
     case FastTravelState.DISABLED: {
       setDisabled();
-      break;
+      return;
     }
 
     default: {
-      break;
+      ensureAllCases(fastTravelState);
     }
   }
 }

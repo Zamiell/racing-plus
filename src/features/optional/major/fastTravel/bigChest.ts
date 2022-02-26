@@ -275,7 +275,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       // Hijack the normally-unused "Touched" property to signify that we should leave it here
       // (so that we ignore it on subsequent frames)
       pickup.Touched = true;
-      break;
+      return;
     }
 
     case ReplacementAction.TRAPDOOR: {
@@ -285,7 +285,8 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         TrapdoorVariant.NORMAL,
         gridIndex,
       );
-      break;
+
+      return;
     }
 
     case ReplacementAction.HEAVEN_DOOR: {
@@ -309,7 +310,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         );
       }
 
-      break;
+      return;
     }
 
     case ReplacementAction.CHECKPOINT: {
@@ -320,21 +321,21 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         seed,
       );
       removeCollectiblePickupDelay(checkpoint);
-      break;
+      return;
     }
 
     case ReplacementAction.TROPHY: {
       trophy.spawn(pickup.Position);
-      break;
+      return;
     }
 
     case ReplacementAction.VICTORY_LAP: {
       spawnVictoryLapButton(true);
-      break;
+      return;
     }
 
     case ReplacementAction.REMOVE: {
-      break;
+      return;
     }
 
     default: {

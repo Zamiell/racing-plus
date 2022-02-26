@@ -18,15 +18,11 @@ export function preRoomEntitySpawn(
   const roomFrameCount = g.r.GetFrameCount();
   const roomVariant = getRoomVariant();
 
-  if (roomFrameCount !== -1) {
-    return undefined;
-  }
-
-  if (effectiveStage !== 1) {
-    return undefined;
-  }
-
-  if (roomType !== RoomType.ROOM_TREASURE) {
+  if (
+    roomFrameCount !== -1 ||
+    effectiveStage !== 1 ||
+    roomType !== RoomType.ROOM_TREASURE
+  ) {
     return undefined;
   }
 
@@ -40,7 +36,7 @@ export function preRoomEntitySpawn(
         }
       }
 
-      break;
+      return undefined;
     }
 
     // Left item surrounded by rocks
@@ -60,7 +56,7 @@ export function preRoomEntitySpawn(
         }
       }
 
-      break;
+      return undefined;
     }
 
     // Left item surrounded by spikes
@@ -73,7 +69,7 @@ export function preRoomEntitySpawn(
         }
       }
 
-      break;
+      return undefined;
     }
 
     // Left item surrounded by pots/mushrooms/skulls
@@ -85,13 +81,11 @@ export function preRoomEntitySpawn(
         }
       }
 
-      break;
+      return undefined;
     }
 
     default: {
-      break;
+      return undefined;
     }
   }
-
-  return undefined;
 }

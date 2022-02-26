@@ -154,7 +154,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; no paths will be spawned.`,
       );
-      break;
+      return;
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
@@ -162,7 +162,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; going up.`,
       );
-      break;
+      return;
     }
 
     case ItLivesSituation.TRAPDOOR: {
@@ -170,7 +170,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; going down.`,
       );
-      break;
+      return;
     }
 
     case ItLivesSituation.BOTH: {
@@ -179,7 +179,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; spawning both paths.`,
       );
-      break;
+      return;
     }
 
     default: {
