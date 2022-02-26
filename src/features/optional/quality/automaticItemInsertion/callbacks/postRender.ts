@@ -37,7 +37,6 @@ export function automaticItemInsertionPostRender(): void {
 function drawCoinsDelta() {
   if (v.run.delta.coins !== null && v.run.delta.coinsFrame !== null) {
     const text = getDeltaText(v.run.delta.coins);
-
     const fade = getFade(v.run.delta.coinsFrame);
     if (fade <= 0) {
       v.run.delta.coins = null;
@@ -51,8 +50,8 @@ function drawCoinsDelta() {
       CollectibleType.COLLECTIBLE_DEEP_POCKETS,
     );
     const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
-    // Bethany's coins are at the same place than other chars so no need to set an
-    // additional offset for her
+    // Note that Bethany's coins are in the same place as the other characters, so there is no need to
+    // account for her offset in this function
     const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
     const color = getTextColor(fade);
@@ -63,7 +62,6 @@ function drawCoinsDelta() {
 function drawKeysDelta() {
   if (v.run.delta.keys !== null && v.run.delta.keysFrame !== null) {
     const text = getDeltaText(v.run.delta.keys);
-
     const fade = getFade(v.run.delta.keysFrame);
     if (fade <= 0) {
       v.run.delta.keys = null;
@@ -87,7 +85,6 @@ function drawKeysDelta() {
 function drawBombsDelta() {
   if (v.run.delta.bombs !== null && v.run.delta.bombsFrame !== null) {
     const text = getDeltaText(v.run.delta.bombs);
-
     const fade = getFade(v.run.delta.bombsFrame);
     if (fade <= 0) {
       v.run.delta.bombs = null;
@@ -114,7 +111,6 @@ function drawBloodOrSoulChargeDelta() {
     v.run.delta.bloodOrSoulChargeFrame !== null
   ) {
     const text = getDeltaText(v.run.delta.bloodOrSoulCharge);
-
     const fade = getFade(v.run.delta.bloodOrSoulChargeFrame);
     if (fade <= 0) {
       v.run.delta.bloodOrSoulCharge = null;
@@ -190,6 +186,7 @@ function getTextColor(fade: float) {
 }
 
 function getDeltaText(delta: int) {
-  const string = delta.toString().padStart(2, "0");
+  const deltaString = delta.toString();
+  const paddedDeltaString = deltaString.padStart(2, "0");
   return `+${string}`;
 }
