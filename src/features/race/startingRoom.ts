@@ -155,22 +155,21 @@ export function initSprites(): void {
   switch (g.race.format) {
     case RaceFormat.SEEDED: {
       initSeededSprites();
-      break;
+      return;
     }
 
     case RaceFormat.DIVERSITY: {
       initDiversitySprites();
-      break;
+      return;
     }
 
     case RaceFormat.UNSEEDED:
     case RaceFormat.CUSTOM: {
-      break;
+      return;
     }
 
     default: {
       ensureAllCases(g.race.format);
-      break;
     }
   }
 }

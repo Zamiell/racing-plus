@@ -1,4 +1,4 @@
-import { getPickups } from "isaacscript-common";
+import { getPickups, inRectangle } from "isaacscript-common";
 
 const MOSTLY_FADED_COLOR = Color(1, 1, 1, 0.3, 0, 0, 0);
 const X_DISTANCE = 35;
@@ -8,20 +8,20 @@ const Y_DISTANCE_ABOVE = 78;
 // EffectVariant.DEVIL (6)
 export function postEffectUpdateDevil(effect: EntityEffect): void {
   // Fade the statue if there are any collectibles in a rectangle above the effect
-  let pickupIsClose = false;
-  for (const pickup of getPickups()) {
-    if (
-      pickup.Position.X >= effect.Position.X - X_DISTANCE &&
-      pickup.Position.X <= effect.Position.X + X_DISTANCE &&
-      pickup.Position.Y >= effect.Position.Y - Y_DISTANCE_ABOVE &&
-      pickup.Position.Y <= effect.Position.Y
-    ) {
-      pickupIsClose = true;
-      break;
-    }
-  }
+  const rectangleTopLeft = Vector(
+    effect.Position.X - X_DISTANCE,
+    effect.Position.Y - Y_DISTANCE_ABOVE,
+  );
+  const rectangleBottomRight = Vector(
+    effect.Position.X + X_DISTANCE,
+    effect.Position.Y, // Below the statue does not block visibility
+  );
 
-  if (pickupIsClose) {
+  const pickups = getPickups();
+  const isAnyPickupInRectangle = pickups.some((pickup) =>
+    inRectangle(pickup.Position, rectangleTopLeft, rectangleBottomRight),
+  );
+  if (isAnyPickupInRectangle) {
     effect.SetColor(MOSTLY_FADED_COLOR, 1000, 0, true, true);
   }
 }

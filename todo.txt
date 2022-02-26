@@ -6,6 +6,12 @@ TODO Racing+ new features:
 
 - Seeded runs change to being consistent with Devil/Angels
   - After tournament is over in 1 week
-- remove curse room from s2
 - fix all bugs
 - Apply fast insertion with hierophant on Bethany/Lovers on T Bethany
+- finish testing s2 curse room
+
+- search for ++ in racing+ and replace with repeat
+- add PoopState enum
+- refactor postUpdate.ts grid entities in babies mod
+- explicitly state all affected grid entity types in RockState comment
+- warn about LockState.UNLOCKED pitfall in isGridEntityDestroyed

@@ -167,7 +167,8 @@ function doPhotoSituation(situation: PhotoSituation) {
         PEDESTAL_POSITION_CENTER,
         roomSeed,
       );
-      break;
+
+      return;
     }
 
     case PhotoSituation.NEGATIVE: {
@@ -176,7 +177,8 @@ function doPhotoSituation(situation: PhotoSituation) {
         PEDESTAL_POSITION_CENTER,
         roomSeed,
       );
-      break;
+
+      return;
     }
 
     case PhotoSituation.BOTH: {
@@ -197,7 +199,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         true,
       );
 
-      break;
+      return;
     }
 
     case PhotoSituation.RANDOM_BOSS_ITEM: {
@@ -229,7 +231,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         );
       }
 
-      break;
+      return;
     }
 
     default: {

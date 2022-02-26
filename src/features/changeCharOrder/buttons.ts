@@ -5,7 +5,6 @@ import {
   getPlayers,
   gridToPos,
   isEven,
-  log,
   removeAllMatchingGridEntities,
   removeGridEntity,
   spawnGridEntityWithVariant,
@@ -29,26 +28,30 @@ function checkCreateButtons() {
   const gameFrameCount = g.g.GetFrameCount();
 
   if (
-    v.room.createButtonsFrame !== null &&
-    gameFrameCount >= v.room.createButtonsFrame
+    v.room.createButtonsFrame === null ||
+    gameFrameCount < v.room.createButtonsFrame
   ) {
-    v.room.createButtonsFrame = null;
+    return;
+  }
+  v.room.createButtonsFrame = null;
 
-    switch (v.room.phase) {
-      case ChangeCharOrderPhase.CHARACTER_SELECT: {
-        createCharacterButtons();
-        break;
-      }
+  switch (v.room.phase) {
+    case ChangeCharOrderPhase.SEASON_SELECT: {
+      return;
+    }
 
-      case ChangeCharOrderPhase.BUILD_VETO: {
-        createBuildVetoButtons();
-        break;
-      }
+    case ChangeCharOrderPhase.CHARACTER_SELECT: {
+      createCharacterButtons();
+      return;
+    }
 
-      default: {
-        log(`Unknown ChangeCharOrderPhase: ${v.room.phase}`);
-        break;
-      }
+    case ChangeCharOrderPhase.BUILD_VETO: {
+      createBuildVetoButtons();
+      return;
+    }
+
+    default: {
+      ensureAllCases(v.room.phase);
     }
   }
 }

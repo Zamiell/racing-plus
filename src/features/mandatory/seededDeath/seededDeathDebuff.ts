@@ -62,7 +62,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
       // One filled coin container
       player.AddMaxHearts(2, true);
       player.AddHearts(2);
-      break;
+      return;
     }
 
     // 16
@@ -70,7 +70,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
       // One half-filled bone heart
       player.AddMaxHearts(2, true);
       player.AddHearts(1);
-      break;
+      return;
     }
 
     // 17
@@ -78,7 +78,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
       // One empty bone heart + one half soul heart
       player.AddBoneHearts(1);
       player.AddSoulHearts(1);
-      break;
+      return;
     }
 
     // 18, 22
@@ -87,13 +87,12 @@ function debuffOnSetHealth(player: EntityPlayer) {
       // 1.5 filled red heart containers
       player.AddMaxHearts(4, true);
       player.AddHearts(3);
-      break;
+      return;
     }
 
     default: {
       // One and a half soul hearts
       player.AddSoulHearts(3);
-      break;
     }
   }
 }

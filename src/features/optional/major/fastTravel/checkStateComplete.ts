@@ -1,4 +1,4 @@
-import { getEffects, getPlayers } from "isaacscript-common";
+import { ensureAllCases, getEffects, getPlayers } from "isaacscript-common";
 import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
@@ -10,18 +10,26 @@ import v from "./v";
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   switch (v.run.state) {
+    case FastTravelState.DISABLED: {
+      return;
+    }
+
     case FastTravelState.FADING_TO_BLACK: {
       postRenderFadingToBlack();
-      break;
+      return;
+    }
+
+    case FastTravelState.GOING_TO_NEW_FLOOR: {
+      return;
     }
 
     case FastTravelState.FADING_IN: {
       postRenderFadingIn();
-      break;
+      return;
     }
 
     default: {
-      break;
+      ensureAllCases(v.run.state);
     }
   }
 }

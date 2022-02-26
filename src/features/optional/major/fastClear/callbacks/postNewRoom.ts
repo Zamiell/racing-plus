@@ -1,4 +1,8 @@
-import { getEffects, GRID_INDEX_CENTER_OF_1X1_ROOM } from "isaacscript-common";
+import {
+  getEffects,
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
+  removeEntities,
+} from "isaacscript-common";
 import g from "../../../../../globals";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
@@ -24,21 +28,15 @@ function checkBugTwoHeavenDoors() {
   // vanilla Heaven Door spawns
   // Delete all of the heaven doors except for one
   // By default, prefer the heaven door that is in in the center of the room
-  let heavenDoorIndexToKeep: int | undefined;
-  for (const heavenDoor of heavenDoors) {
+  const heavenDoorInCenter = heavenDoors.find((heavenDoor) => {
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
-    if (gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM) {
-      heavenDoorIndexToKeep = heavenDoor.Index;
-      break;
-    }
-  }
-  if (heavenDoorIndexToKeep === undefined) {
-    heavenDoorIndexToKeep = heavenDoors[0].Index;
-  }
-
-  for (const heavenDoor of heavenDoors) {
-    if (heavenDoor.Index !== heavenDoorIndexToKeep) {
-      heavenDoor.Remove();
-    }
-  }
+    return gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM;
+  });
+  const firstHeavenDoor = heavenDoors[0];
+  const heavenDoorToKeep =
+    heavenDoorInCenter === undefined ? firstHeavenDoor : heavenDoorInCenter;
+  const heavenDoorsToRemove = heavenDoors.filter(
+    (heavenDoor) => heavenDoor.Index !== heavenDoorToKeep.Index,
+  );
+  removeEntities(heavenDoorsToRemove);
 }

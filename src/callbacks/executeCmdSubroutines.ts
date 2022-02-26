@@ -129,12 +129,10 @@ export function listEntities(params: string, includeAll: boolean): void {
 
   const entities = getEntities();
   let numMatchedEntities = 0;
-  for (let i = 0; i < entities.length; i++) {
-    const entity = entities[i];
-
+  entities.forEach((entity, i) => {
     // If a filter was specified, exclude all entities outside of the filter
     if (entityTypeFilter !== undefined && entity.Type !== entityTypeFilter) {
-      continue;
+      return;
     }
 
     // Exclude background effects
@@ -143,7 +141,7 @@ export function listEntities(params: string, includeAll: boolean): void {
       entity.Type === EntityType.ENTITY_EFFECT &&
       IGNORE_EFFECT_VARIANTS.has(entity.Variant)
     ) {
-      continue;
+      return;
     }
 
     let debugString = `${i + 1} - ${entity.Type}.${entity.Variant}.${
@@ -207,7 +205,7 @@ export function listEntities(params: string, includeAll: boolean): void {
     log(debugString);
 
     numMatchedEntities += 1;
-  }
+  });
 
   if (numMatchedEntities === 0) {
     log("(no entities matched)");

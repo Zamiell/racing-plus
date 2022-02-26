@@ -15,6 +15,7 @@ export function postNewRoom(): void {
   if (shouldBanFirstFloorTreasureRoom()) {
     postNewRoomCheckForRoomType(RoomType.ROOM_TREASURE);
   } else if (shouldBanFirstFloorCurseRoom()) {
+    Isaac.DebugString("GETTING HERE");
     postNewRoomCheckForRoomType(RoomType.ROOM_CURSE);
   }
 }
