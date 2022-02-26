@@ -14,6 +14,7 @@ const COINS_Y = 33;
 const Y_OFFSET = 12;
 const BOMBS_Y = COINS_Y + Y_OFFSET;
 const KEYS_Y = BOMBS_Y + Y_OFFSET;
+const BLOOD_SOUL_CHARGE_Y = KEYS_Y + Y_OFFSET - 3;
 const FRAMES_BEFORE_FADE = 100;
 const BOTTOM_CORNER_OFFSET = 40;
 const BETHANY_Y_BOMB_OFFSET = -1;
@@ -28,6 +29,7 @@ export function automaticItemInsertionPostRender(): void {
   drawCoinsDelta();
   drawBombsDelta();
   drawKeysDelta();
+  drawBloodAndSoulChargeDelta();
   drawPocketItemsDelta();
   drawTrinketsDelta();
 }
@@ -104,6 +106,26 @@ function drawBombsDelta() {
 
     const color = getTextColor(fade);
     g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
+  }
+}
+
+function drawBloodAndSoulChargeDelta() {
+  if (
+    v.run.delta.bloodAndSoulCharge !== null &&
+    v.run.delta.bloodAndSoulChargeFrame !== null
+  ) {
+    const string = v.run.delta.bloodAndSoulCharge.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.bloodAndSoulChargeFrame);
+    if (fade <= 0) {
+      v.run.delta.bloodAndSoulCharge = null;
+      v.run.delta.bloodAndSoulChargeFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    g.fonts.pf.DrawString(text, UI_X, BLOOD_SOUL_CHARGE_Y, color, 0, true);
   }
 }
 

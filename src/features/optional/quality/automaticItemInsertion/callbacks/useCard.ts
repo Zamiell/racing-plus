@@ -1,6 +1,64 @@
-import { getPickups } from "isaacscript-common";
+import { getPickups, isBethany } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
+
+// Card.CARD_HIEROPHANT (6)
+export function automaticItemInsertionUseCardHierophant(
+  player: EntityPlayer,
+): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
+  const character = player.GetPlayerType();
+
+  if (character !== PlayerType.PLAYER_BETHANY) {
+    return;
+  }
+
+  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
+  // to automatically insert items
+  // Instead, find the nearest hearts to the player
+  const pickupVariants = [
+    PickupVariant.PICKUP_HEART,
+    PickupVariant.PICKUP_HEART,
+  ];
+  for (const pickupVariant of pickupVariants) {
+    const pickup = getClosestPickup(player, pickupVariant);
+    if (pickup !== null) {
+      insertPickupAndUpdateDelta(pickup, player);
+    }
+  }
+}
+
+// Card.CARD_LOVERS (7)
+export function automaticItemInsertionUseCardLovers(
+  player: EntityPlayer,
+): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
+  const character = player.GetPlayerType();
+
+  if (character !== PlayerType.PLAYER_BETHANY_B) {
+    return;
+  }
+
+  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
+  // to automatically insert items
+  // Instead, find the nearest hearts to the player
+  const pickupVariants = [
+    PickupVariant.PICKUP_HEART,
+    PickupVariant.PICKUP_HEART,
+  ];
+  for (const pickupVariant of pickupVariants) {
+    const pickup = getClosestPickup(player, pickupVariant);
+    if (pickup !== null) {
+      insertPickupAndUpdateDelta(pickup, player);
+    }
+  }
+}
 
 // Card.CARD_JUSTICE (9)
 export function automaticItemInsertionUseCardJustice(
@@ -18,6 +76,9 @@ export function automaticItemInsertionUseCardJustice(
     PickupVariant.PICKUP_BOMB,
     PickupVariant.PICKUP_KEY,
   ];
+  if (isBethany(player)) {
+    pickupVariants.push(PickupVariant.PICKUP_HEART);
+  }
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickup(player, pickupVariant);
     if (pickup !== null) {
