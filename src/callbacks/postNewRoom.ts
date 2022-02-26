@@ -6,7 +6,7 @@ import {
 } from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
-import * as banFirstFloorTreasureRoom from "../features/mandatory/banFirstFloorTreasureRoom";
+import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
@@ -64,7 +64,7 @@ export function main(): void {
   trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
-  banFirstFloorTreasureRoom.postNewRoom();
+  banFirstFloorRoomType.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
   seededDeathPostNewRoom();
 

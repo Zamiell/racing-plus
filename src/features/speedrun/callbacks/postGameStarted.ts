@@ -1,6 +1,6 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
-import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorTreasureRoom";
+import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
   restartOnNextFrame,
