@@ -141,13 +141,11 @@ function drawBombsDelta() {
     }
 
     const player = Isaac.GetPlayer();
-    const isJacobAndEsau = isJacobOrEsau(player);
-    const isBethanyOrTBethany = isBethany(player);
     let y = BOMBS_Y;
-    if (isJacobAndEsau) {
-      y = BOMBS_Y + JACOB_ESAU_Y_OFFSET;
-    } else if (isBethanyOrTBethany) {
-      y = BOMBS_Y + BETHANY_Y_BOMB_OFFSET;
+    if (isJacobOrEsau(player)) {
+      y += JACOB_ESAU_Y_OFFSET;
+    } else if (isBethany(player)) {
+      y += BETHANY_Y_BOMB_OFFSET;
     }
 
     const color = getTextColor(fade);
