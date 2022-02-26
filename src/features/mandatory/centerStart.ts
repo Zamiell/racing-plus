@@ -38,9 +38,9 @@ export function centerPlayers(): void {
       1,
       Direction.LEFT,
     );
-    for (let i = 0; i < players.length; i++) {
-      players[i].Position = circlePoints[i];
-    }
+    players.forEach((player, i) => {
+      player.Position = circlePoints[i];
+    });
   }
 }
 

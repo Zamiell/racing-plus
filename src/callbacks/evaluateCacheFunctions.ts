@@ -63,24 +63,22 @@ function thirteenLuck(player: EntityPlayer) {
   const num13Luck = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_13_LUCK,
   );
-  const characterLuckModifier = getCharacterLuckModifier(player);
 
-  for (let i = 0; i < num13Luck; i++) {
+  player.Luck += getCharacterLuckModifier(player);
+  repeat(num13Luck, () => {
     player.Luck += 13;
-    player.Luck += characterLuckModifier;
-  }
+  });
 }
 
 function fifteenLuck(player: EntityPlayer) {
   const num15Luck = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_15_LUCK,
   );
-  const characterLuckModifier = getCharacterLuckModifier(player);
 
-  for (let i = 0; i < num15Luck; i++) {
+  player.Luck += getCharacterLuckModifier(player);
+  repeat(num15Luck, () => {
     player.Luck += 15;
-    player.Luck += characterLuckModifier;
-  }
+  });
 }
 
 function getCharacterLuckModifier(player: EntityPlayer) {

@@ -190,8 +190,8 @@ function seasonButtonPressed(seasonChosenAbbreviation: string) {
 function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {
   const seasonDescription = getSeasonDescription();
 
-  for (let i = 0; i < seasonDescription.charPositions.length; i++) {
-    const [, x, y] = seasonDescription.charPositions[i];
+  seasonDescription.charPositions.forEach((tuple, i) => {
+    const [, x, y] = tuple;
     const buttonPosition = gridToPos(x, y);
     if (
       gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
@@ -201,7 +201,7 @@ function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {
     ) {
       characterButtonPressed(gridEntity, i);
     }
-  }
+  });
 }
 
 function characterButtonPressed(gridEntity: GridEntity, i: int) {
@@ -272,8 +272,8 @@ function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
     error("buildPositions is undefined.");
   }
 
-  for (let i = 0; i < seasonDescription.buildPositions.length; i++) {
-    const [, x, y] = seasonDescription.buildPositions[i];
+  seasonDescription.buildPositions.forEach((tuple, i) => {
+    const [, x, y] = tuple;
     const buttonPosition = gridToPos(x, y);
     if (
       gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
@@ -283,7 +283,7 @@ function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
     ) {
       buildButtonPressed(gridEntity, i);
     }
-  }
+  });
 }
 
 function buildButtonPressed(gridEntity: GridEntity, i: int) {

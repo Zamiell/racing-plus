@@ -285,7 +285,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   }
 
   // Keep it closed on every frame so that we can implement our own custom functionality
-  gridEntity.State = TrapdoorState.CLOSED;
+  gridEntity.State = StairsState.CLOSED;
 
   checkShouldClose(gridEntity);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);

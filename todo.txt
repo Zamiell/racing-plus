@@ -11,8 +11,3 @@ TODO Racing+ new features:
 - finish testing s2 curse room
 
 - search for ++ in racing+ and replace with repeat
-- add PoopState enum
-- refactor postUpdate.ts grid entities in babies mod
-- explicitly state all affected grid entity types in RockState comment
-- warn about LockState.UNLOCKED pitfall in isGridEntityDestroyed
-- search for all "for (" in all 3 repositories, replace with forEach

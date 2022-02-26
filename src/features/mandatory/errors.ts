@@ -11,6 +11,7 @@ import {
   log,
   MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
+  repeat,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -78,7 +79,8 @@ function isIncompleteSave() {
     return false;
   }
 
-  // Before checking item pools, we must remove Chaos, TMTRAINER, and the No! trinket
+  // Before checking the item pools, we must remove Chaos, TMTRAINER, Sacred Orb, and the No!
+  // trinket, since they affect the retrieved collectible types
   const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
   const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
@@ -86,15 +88,16 @@ function isIncompleteSave() {
 
     const removedItems: CollectibleType[] = [];
     for (const itemToRemove of [
-      CollectibleType.COLLECTIBLE_CHAOS,
-      CollectibleType.COLLECTIBLE_TMTRAINER,
+      CollectibleType.COLLECTIBLE_CHAOS, // 402
+      CollectibleType.COLLECTIBLE_SACRED_ORB, // 691
+      CollectibleType.COLLECTIBLE_TMTRAINER, // 721
     ]) {
       if (player.HasCollectible(itemToRemove)) {
         const numCollectibles = player.GetCollectibleNum(itemToRemove);
-        for (let i = 0; i < numCollectibles; i++) {
+        repeat(numCollectibles, () => {
           player.RemoveCollectible(itemToRemove);
           removedItems.push(itemToRemove);
-        }
+        });
       }
     }
 

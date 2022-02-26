@@ -3,6 +3,7 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  repeat,
 } from "isaacscript-common";
 import g from "./globals";
 import { initSprite } from "./sprite";
@@ -30,15 +31,15 @@ function getNewTimerSprites() {
     digitMini: initSprite("gfx/timer/timer_mini.anm2"),
   };
 
-  for (let i = 0; i < 2; i++) {
+  repeat(2, () => {
     const colonSprite = initSprite("gfx/timer/colon.anm2");
     sprites.colons.push(colonSprite);
-  }
+  });
 
-  for (let i = 0; i < 5; i++) {
+  repeat(5, () => {
     const digitSprite = initSprite("gfx/timer/timer.anm2");
     sprites.digits.push(digitSprite);
-  }
+  });
 
   return sprites;
 }
