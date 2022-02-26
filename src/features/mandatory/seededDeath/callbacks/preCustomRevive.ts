@@ -96,6 +96,12 @@ function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
 
 function dropEverything(player: EntityPlayer) {
   for (const pocketItemSlot of range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
+    const card = player.GetCard(pocketItemSlot);
+    const pillColor = player.GetPill(pocketItemSlot);
+    if (card === Card.CARD_NULL && pillColor === PillColor.PILL_NULL) {
+      continue;
+    }
+
     const position = findFreePosition(player.Position);
     player.DropPocketItem(pocketItemSlot, position);
   }
