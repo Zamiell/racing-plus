@@ -36,6 +36,24 @@ export function automaticItemInsertionUseCardLovers(
   addHeartsOnBethanys(player);
 }
 
+function addHeartsOnBethanys(player: EntityPlayer) {
+  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
+  // to automatically insert items
+  // Instead, find the nearest hearts to the player
+  const hasTarotCloth = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
+  );
+  const numHearts = hasTarotCloth ? 3 : 2;
+  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
+
+  for (const pickupVariant of pickupVariants) {
+    const pickup = getClosestPickup(player, pickupVariant);
+    if (pickup !== null) {
+      insertPickupAndUpdateDelta(pickup, player);
+    }
+  }
+}
+
 // Card.CARD_JUSTICE (9)
 export function automaticItemInsertionUseCardJustice(
   player: EntityPlayer,
@@ -104,22 +122,4 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
   }
 
   return closestPickup;
-}
-
-function addHeartsOnBethanys(player: EntityPlayer) {
-  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items
-  // Instead, find the nearest hearts to the player
-  const hasTarotCloth = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-  );
-  const numHearts = hasTarotCloth ? 3 : 2;
-  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
-
-  for (const pickupVariant of pickupVariants) {
-    const pickup = getClosestPickup(player, pickupVariant);
-    if (pickup !== null) {
-      insertPickupAndUpdateDelta(pickup, player);
-    }
-  }
 }
