@@ -2,6 +2,7 @@ import {
   getEffectiveStage,
   getEffects,
   getRepentanceDoor,
+  removeDoors,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
@@ -64,7 +65,7 @@ function removeRepentanceDoor() {
     return;
   }
 
-  g.r.RemoveDoor(repentanceDoor.Slot);
+  removeDoors(repentanceDoor);
 
   // When the door is spawned, the game creates dust clouds
   for (const effect of getEffects(EffectVariant.DUST_CLOUD)) {

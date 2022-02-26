@@ -94,10 +94,10 @@ function seededTelepills() {
 export function postNewLevel(): void {
   const levelSeed = g.l.GetDungeonPlacementSeed();
 
+  // Increment the RNG 100 times so that players cannot use knowledge of Teleport! teleports
+  // to determine where the Telepills destination will be
   let incrementedLevelSeed = levelSeed;
   for (let i = 0; i < 100; i++) {
-    // Increment the RNG 100 times so that players cannot use knowledge of Teleport! teleports
-    // to determine where the Telepills destination will be
     incrementedLevelSeed = nextSeed(incrementedLevelSeed);
   }
 

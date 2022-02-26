@@ -3,7 +3,7 @@ import {
   anyPlayerIs,
   getCollectibleSet,
   getEffectiveStage,
-  getMaxCollectibleID,
+  getMaxCollectibleType,
   getPlayerIndex,
   getPlayers,
   getRoomVisitedCount,
@@ -159,16 +159,16 @@ function isIncompleteSave() {
 // Check to see if there are any mods enabled that have added custom items
 // (it is difficult to detect other mods in other ways)
 function areOtherModsEnabled() {
-  const maxCollectibleID = getMaxCollectibleID();
+  const maxCollectibleType = getMaxCollectibleType();
   let correctMaxCollectibleID =
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
   if (BabiesModGlobals !== undefined) {
     correctMaxCollectibleID += NUM_BABIES_MOD_ITEMS;
   }
 
-  if (maxCollectibleID !== correctMaxCollectibleID) {
+  if (maxCollectibleType !== correctMaxCollectibleID) {
     log(
-      `Error: Other mods detected. (The highest collectible ID is ${maxCollectibleID}, but it should be ${correctMaxCollectibleID}.)`,
+      `Error: Other mods detected. (The highest collectible ID is ${maxCollectibleType}, but it should be ${correctMaxCollectibleID}.)`,
     );
     v.run.otherModsEnabled = true;
   }

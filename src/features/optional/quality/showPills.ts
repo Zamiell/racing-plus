@@ -4,6 +4,7 @@ import {
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
+  range,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -97,11 +98,7 @@ const v = {
 export function init(): void {
   saveDataManager("showPills", v, featureEnabled);
 
-  for (
-    let pillColor = 1;
-    pillColor < PillColor.NUM_STANDARD_PILLS;
-    pillColor++
-  ) {
+  for (const pillColor of range(1, PillColor.NUM_STANDARD_PILLS - 1)) {
     const sprite = initSprite(
       "gfx/pills/pill.anm2",
       `gfx/pills/${pillColor}.png`,

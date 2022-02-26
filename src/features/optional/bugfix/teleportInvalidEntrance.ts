@@ -4,7 +4,6 @@ import {
   getFamiliars,
   getPlayers,
   log,
-  MAX_NUM_DOORS,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -80,18 +79,18 @@ function isPlayerNextToADoor() {
 }
 
 function getFirstDoorSlotAndPosition(): [int | undefined, Vector | undefined] {
-  for (let i = 0; i < MAX_NUM_DOORS; i++) {
-    const door = g.r.GetDoor(i);
-    if (
-      door !== undefined &&
-      door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
-      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
-    ) {
-      return [i, door.Position];
-    }
+  const doors = getDoors();
+  const nonSecretRoomDoors = doors.filter(
+    (door) =>
+      door.TargetRoomType !== RoomType.ROOM_SECRET &&
+      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET,
+  );
+  if (nonSecretRoomDoors.length === 0) {
+    return [undefined, undefined];
   }
 
-  return [undefined, undefined];
+  const firstDoor = nonSecretRoomDoors[0];
+  return [firstDoor.Slot, firstDoor.Position];
 }
 
 function getDoorEnterPosition(doorSlot: DoorSlot, doorPosition: Vector) {

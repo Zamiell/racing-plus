@@ -8,6 +8,7 @@ import { RaceStatus } from "./types/RaceStatus";
 
 const SCOLEX_TYPE = EntityType.ENTITY_PIN;
 const SCOLEX_VARIANT = PinVariant.SCOLEX;
+const NUM_FRAILS = 2;
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -40,7 +41,7 @@ export function postNewRoom(): void {
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
   let seed = roomSeed;
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < NUM_FRAILS; i++) {
     // We don't want to spawn both of them on top of each other since that would make them behave
     // a little glitchy
     // Note that pos.X += 200 causes the hitbox to appear too close to the left/right side,

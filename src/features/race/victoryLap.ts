@@ -8,6 +8,8 @@ import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import v from "./v";
 
+const NUM_LARRY_JR_SEGMENTS = 6;
+
 const VICTORY_LAP_BOSSES: ReadonlyArray<
   [entityType: int, variant: int, subType: int]
 > = [
@@ -201,7 +203,7 @@ function checkVictoryLapBossReplace() {
     const randomBossType = randomBoss[0];
     if (randomBossType === EntityType.ENTITY_LARRYJR) {
       // Larry Jr. and The Hollow require multiple segments
-      for (let j = 1; j <= 6; j++) {
+      for (let j = 0; j < NUM_LARRY_JR_SEGMENTS; j++) {
         spawnBoss(randomBoss);
       }
     } else {

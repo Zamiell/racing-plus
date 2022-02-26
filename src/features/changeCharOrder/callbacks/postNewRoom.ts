@@ -2,6 +2,7 @@ import {
   forceNewRoomCallback,
   getNPCs,
   gridToPos,
+  removeAllDoors,
   removeCollectibleFromItemTracker,
   removeEntities,
   spawnGridEntityWithVariant,
@@ -44,10 +45,7 @@ function setupButtonRoom() {
   const npcs = getNPCs();
   removeEntities(npcs);
   g.r.SetClear(true);
-
-  for (let i = 0; i < 4; i++) {
-    g.r.RemoveDoor(i);
-  }
+  removeAllDoors();
 
   const nextToBottomDoor = g.r.GetGridPosition(97);
   player.Position = nextToBottomDoor;

@@ -1,6 +1,8 @@
 import {
   getEffectiveStage,
+  getMaxCollectibleType,
   getRoomSafeGridIndex,
+  range,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -120,7 +122,7 @@ function storeItemIdentities() {
 
   v.run.active = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
   const passive = getEdenPassiveItem(player);
-  if (passive === null) {
+  if (passive === undefined) {
     error("Failed to find Eden's passive item.");
   }
   v.run.passive = passive;
@@ -128,19 +130,19 @@ function storeItemIdentities() {
 
 function getEdenPassiveItem(player: EntityPlayer) {
   const activeItem = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
-  const highestCollectible = g.itemConfig.GetCollectibles().Size - 1;
+  const maxCollectibleType = getMaxCollectibleType();
 
-  for (let i = 1; i <= highestCollectible; i++) {
+  for (const collectibleType of range(1, maxCollectibleType)) {
     if (
-      player.HasCollectible(i) &&
-      i !== activeItem &&
-      i !== CollectibleType.COLLECTIBLE_D6
+      player.HasCollectible(collectibleType) &&
+      collectibleType !== activeItem &&
+      collectibleType !== CollectibleType.COLLECTIBLE_D6
     ) {
-      return i;
+      return collectibleType;
     }
   }
 
-  return null;
+  return undefined;
 }
 
 export function changeStartingPassiveItem(

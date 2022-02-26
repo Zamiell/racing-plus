@@ -8,6 +8,7 @@ import {
   getRoomSafeGridIndex,
   getRoomStageID,
   getRoomVariant,
+  removeAllDoors,
   removeEntities,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -183,11 +184,7 @@ function setupRaceRoom() {
   const npcs = getNPCs();
   removeEntities(npcs);
   g.r.SetClear(true);
-
-  // We want to trap the player in the room, so delete all 4 doors
-  for (let i = 0; i <= 3; i++) {
-    g.r.RemoveDoor(i);
-  }
+  removeAllDoors();
 
   // Put the player next to the bottom door
   for (const player of getPlayers()) {
