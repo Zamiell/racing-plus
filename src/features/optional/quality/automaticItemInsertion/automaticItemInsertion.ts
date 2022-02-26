@@ -7,6 +7,7 @@ import {
   getPlayerNumTransformationCollectibles,
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
+  isBethany,
   isFirstPlayer,
   isJacobOrEsau,
   PickingUpItem,
@@ -16,6 +17,8 @@ import {
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import {
+  BETHANY_Y_BOMB_OFFSET,
+  BETHANY_Y_KEY_OFFSET,
   BOMBS_Y,
   BOTTOM_CORNER_OFFSET,
   COINS_X_OFFSET,
@@ -114,7 +117,13 @@ function drawKeysDelta() {
 
     const player = Isaac.GetPlayer();
     const isJacobAndEsau = isJacobOrEsau(player);
-    const y = isJacobAndEsau ? KEYS_Y + JACOB_ESAU_Y_OFFSET : KEYS_Y;
+    const isBethanyOrTBethany = isBethany(player);
+    let y = KEYS_Y;
+    if (isJacobAndEsau) {
+      y = KEYS_Y + JACOB_ESAU_Y_OFFSET;
+    } else if (isBethanyOrTBethany) {
+      y = KEYS_Y + BETHANY_Y_KEY_OFFSET;
+    }
 
     const color = getTextColor(fade);
     g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
@@ -135,7 +144,13 @@ function drawBombsDelta() {
 
     const player = Isaac.GetPlayer();
     const isJacobAndEsau = isJacobOrEsau(player);
-    const y = isJacobAndEsau ? BOMBS_Y + JACOB_ESAU_Y_OFFSET : BOMBS_Y;
+    const isBethanyOrTBethany = isBethany(player);
+    let y = BOMBS_Y;
+    if (isJacobAndEsau) {
+      y = BOMBS_Y + JACOB_ESAU_Y_OFFSET;
+    } else if (isBethanyOrTBethany) {
+      y = BOMBS_Y + BETHANY_Y_BOMB_OFFSET;
+    }
 
     const color = getTextColor(fade);
     g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
