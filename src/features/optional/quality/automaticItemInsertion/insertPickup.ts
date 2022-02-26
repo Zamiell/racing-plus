@@ -10,6 +10,11 @@ export function insertPickup(
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
   switch (pickup.Variant) {
+    // 10
+    case PickupVariant.PICKUP_HEART: {
+      return insertBloodOrSoulCharge(pickup, player);
+    }
+
     // 20
     case PickupVariant.PICKUP_COIN: {
       return insertCoin(pickup, player);
@@ -42,6 +47,89 @@ export function insertPickup(
 
     default: {
       // Ignore other pickups
+      return undefined;
+    }
+  }
+}
+
+// PickupVariant.PICKUP_HEART (10)
+function insertBloodOrSoulCharge(
+  heart: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | undefined {
+  const heartSubType = heart.SubType as HeartSubType;
+  const character = player.GetPlayerType();
+
+  switch (heartSubType) {
+    // 1
+    case HeartSubType.HEART_FULL: {
+      if (character !== PlayerType.PLAYER_BETHANY_B) {
+        return undefined;
+      }
+
+      const value = 2;
+      player.AddBloodCharge(value);
+      return [PickupVariant.PICKUP_HEART, value];
+    }
+
+    // 2
+    case HeartSubType.HEART_HALF: {
+      if (character !== PlayerType.PLAYER_BETHANY_B) {
+        return undefined;
+      }
+
+      const value = 1;
+      player.AddBloodCharge(value);
+      return [PickupVariant.PICKUP_HEART, value];
+    }
+
+    // 3, 6
+    case HeartSubType.HEART_SOUL:
+    case HeartSubType.HEART_BLACK: {
+      if (character !== PlayerType.PLAYER_BETHANY) {
+        return undefined;
+      }
+
+      const value = 2;
+      player.AddSoulCharge(value);
+      return [PickupVariant.PICKUP_HEART, value];
+    }
+
+    // 5
+    case HeartSubType.HEART_DOUBLEPACK: {
+      if (character !== PlayerType.PLAYER_BETHANY_B) {
+        return undefined;
+      }
+
+      const value = 4;
+      player.AddBloodCharge(value);
+      return [PickupVariant.PICKUP_HEART, value];
+    }
+
+    // 8
+    case HeartSubType.HEART_HALF_SOUL: {
+      if (character !== PlayerType.PLAYER_BETHANY) {
+        return undefined;
+      }
+
+      const value = 1;
+      player.AddSoulCharge(value);
+      return [PickupVariant.PICKUP_HEART, value];
+    }
+
+    case HeartSubType.HEART_ETERNAL:
+    case HeartSubType.HEART_GOLDEN:
+    case HeartSubType.HEART_SCARED:
+    case HeartSubType.HEART_BLENDED:
+    case HeartSubType.HEART_BONE:
+    case HeartSubType.HEART_ROTTEN: {
+      return undefined;
+    }
+
+    default: {
+      ensureAllCases(heartSubType);
+
+      // Ignore modded heart sub-types
       return undefined;
     }
   }

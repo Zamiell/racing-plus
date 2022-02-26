@@ -32,6 +32,16 @@ function updateDelta(
 
   const [pickupType, value] = pickupInserted;
   switch (pickupType) {
+    case PickupVariant.PICKUP_HEART: {
+      if (v.run.delta.bloodOrSoulCharge === null) {
+        v.run.delta.bloodOrSoulCharge = 0;
+      }
+      v.run.delta.bloodOrSoulCharge += value;
+      v.run.delta.bloodOrSoulChargeFrame = gameFrameCount;
+
+      return;
+    }
+
     case PickupVariant.PICKUP_COIN: {
       if (v.run.delta.coins === null) {
         v.run.delta.coins = 0;
