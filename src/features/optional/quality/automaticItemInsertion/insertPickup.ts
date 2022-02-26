@@ -61,7 +61,7 @@ function insertBloodOrSoulCharge(
   const character = player.GetPlayerType();
 
   switch (heartSubType) {
-    // 1, 9
+    // 1
     case HeartSubType.HEART_FULL: {
       if (character !== PlayerType.PLAYER_BETHANY_B) {
         return undefined;
@@ -83,8 +83,9 @@ function insertBloodOrSoulCharge(
       return [PickupVariant.PICKUP_HEART, value];
     }
 
-    // 3
-    case HeartSubType.HEART_SOUL: {
+    // 3, 6
+    case HeartSubType.HEART_SOUL:
+    case HeartSubType.HEART_BLACK: {
       if (character !== PlayerType.PLAYER_BETHANY) {
         return undefined;
       }
@@ -117,7 +118,6 @@ function insertBloodOrSoulCharge(
     }
 
     case HeartSubType.HEART_ETERNAL:
-    case HeartSubType.HEART_BLACK:
     case HeartSubType.HEART_GOLDEN:
     case HeartSubType.HEART_SCARED:
     case HeartSubType.HEART_BLENDED:

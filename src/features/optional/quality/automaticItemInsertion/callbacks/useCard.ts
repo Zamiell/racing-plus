@@ -23,6 +23,11 @@ export function automaticItemInsertionUseCardHierophant(
     PickupVariant.PICKUP_HEART,
     PickupVariant.PICKUP_HEART,
   ];
+
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)) {
+    pickupVariants.push(PickupVariant.PICKUP_HEART);
+  }
+
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickup(player, pickupVariant);
     if (pickup !== null) {
@@ -52,6 +57,11 @@ export function automaticItemInsertionUseCardLovers(
     PickupVariant.PICKUP_HEART,
     PickupVariant.PICKUP_HEART,
   ];
+
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)) {
+    pickupVariants.push(PickupVariant.PICKUP_HEART);
+  }
+
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickup(player, pickupVariant);
     if (pickup !== null) {
@@ -76,9 +86,20 @@ export function automaticItemInsertionUseCardJustice(
     PickupVariant.PICKUP_BOMB,
     PickupVariant.PICKUP_KEY,
   ];
+
   if (isBethany(player)) {
     pickupVariants.push(PickupVariant.PICKUP_HEART);
   }
+
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)) {
+    pickupVariants.push(PickupVariant.PICKUP_COIN);
+    pickupVariants.push(PickupVariant.PICKUP_BOMB);
+    pickupVariants.push(PickupVariant.PICKUP_KEY);
+    if (isBethany(player)) {
+      pickupVariants.push(PickupVariant.PICKUP_HEART);
+    }
+  }
+
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickup(player, pickupVariant);
     if (pickup !== null) {
