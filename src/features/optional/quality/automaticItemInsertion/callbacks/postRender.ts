@@ -29,15 +29,14 @@ export function automaticItemInsertionPostRender(): void {
   drawCoinsDelta();
   drawBombsDelta();
   drawKeysDelta();
-  drawbloodOrSoulChargeDelta();
+  drawBloodOrSoulChargeDelta();
   drawPocketItemsDelta();
   drawTrinketsDelta();
 }
 
 function drawCoinsDelta() {
   if (v.run.delta.coins !== null && v.run.delta.coinsFrame !== null) {
-    const string = v.run.delta.coins.toString().padStart(2, "0");
-    const text = `+${string}`;
+    const text = getDeltaText(v.run.delta.coins);
 
     const fade = getFade(v.run.delta.coinsFrame);
     if (fade <= 0) {
@@ -61,8 +60,7 @@ function drawCoinsDelta() {
 
 function drawKeysDelta() {
   if (v.run.delta.keys !== null && v.run.delta.keysFrame !== null) {
-    const string = v.run.delta.keys.toString().padStart(2, "0");
-    const text = `+${string}`;
+    const text = getDeltaText(v.run.delta.keys);
 
     const fade = getFade(v.run.delta.keysFrame);
     if (fade <= 0) {
@@ -86,8 +84,7 @@ function drawKeysDelta() {
 
 function drawBombsDelta() {
   if (v.run.delta.bombs !== null && v.run.delta.bombsFrame !== null) {
-    const string = v.run.delta.bombs.toString().padStart(2, "0");
-    const text = `+${string}`;
+    const text = getDeltaText(v.run.delta.bombs);
 
     const fade = getFade(v.run.delta.bombsFrame);
     if (fade <= 0) {
@@ -109,13 +106,12 @@ function drawBombsDelta() {
   }
 }
 
-function drawbloodOrSoulChargeDelta() {
+function drawBloodOrSoulChargeDelta() {
   if (
     v.run.delta.bloodOrSoulCharge !== null &&
     v.run.delta.bloodOrSoulChargeFrame !== null
   ) {
-    const string = v.run.delta.bloodOrSoulCharge.toString().padStart(2, "0");
-    const text = `+${string}`;
+    const text = getDeltaText(v.run.delta.bloodOrSoulCharge);
 
     const fade = getFade(v.run.delta.bloodOrSoulChargeFrame);
     if (fade <= 0) {
@@ -189,4 +185,9 @@ function getFade(frame: int) {
 
 function getTextColor(fade: float) {
   return KColor(0, 0.75, 0, fade);
+}
+
+function getDeltaText(delta: int) {
+  const string = delta.toString().padStart(2, "0");
+  return `+${string}`;
 }
