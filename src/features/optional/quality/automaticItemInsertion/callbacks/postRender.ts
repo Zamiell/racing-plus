@@ -29,7 +29,7 @@ export function automaticItemInsertionPostRender(): void {
   drawCoinsDelta();
   drawBombsDelta();
   drawKeysDelta();
-  drawBloodAndSoulChargeDelta();
+  drawbloodOrSoulChargeDelta();
   drawPocketItemsDelta();
   drawTrinketsDelta();
 }
@@ -109,18 +109,18 @@ function drawBombsDelta() {
   }
 }
 
-function drawBloodAndSoulChargeDelta() {
+function drawbloodOrSoulChargeDelta() {
   if (
-    v.run.delta.bloodAndSoulCharge !== null &&
-    v.run.delta.bloodAndSoulChargeFrame !== null
+    v.run.delta.bloodOrSoulCharge !== null &&
+    v.run.delta.bloodOrSoulChargeFrame !== null
   ) {
-    const string = v.run.delta.bloodAndSoulCharge.toString().padStart(2, "0");
+    const string = v.run.delta.bloodOrSoulCharge.toString().padStart(2, "0");
     const text = `+${string}`;
 
-    const fade = getFade(v.run.delta.bloodAndSoulChargeFrame);
+    const fade = getFade(v.run.delta.bloodOrSoulChargeFrame);
     if (fade <= 0) {
-      v.run.delta.bloodAndSoulCharge = null;
-      v.run.delta.bloodAndSoulChargeFrame = null;
+      v.run.delta.bloodOrSoulCharge = null;
+      v.run.delta.bloodOrSoulChargeFrame = null;
       return;
     }
 
