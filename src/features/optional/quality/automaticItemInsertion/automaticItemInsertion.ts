@@ -118,9 +118,9 @@ function drawKeysDelta() {
     const player = Isaac.GetPlayer();
     let y = KEYS_Y;
     if (isJacobOrEsau(player)) {
-      y = KEYS_Y + JACOB_ESAU_Y_OFFSET;
+      y += JACOB_ESAU_Y_OFFSET;
     } else if (isBethany(player)) {
-      y = KEYS_Y + BETHANY_Y_KEY_OFFSET;
+      y += BETHANY_Y_KEY_OFFSET;
     }
 
     const color = getTextColor(fade);
