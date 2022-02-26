@@ -119,6 +119,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     const oldCollectibleType = collectible.SubType;
     setCollectibleSubType(collectible, flippedCollectibleType);
     v.level.flippedCollectibleTypes.set(ptrHash, oldCollectibleType);
+    v.room.flippedSprites.delete(ptrHash);
   }
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
