@@ -51,6 +51,8 @@ function drawCoinsDelta() {
       CollectibleType.COLLECTIBLE_DEEP_POCKETS,
     );
     const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
+    // Bethany's coins are at the same place than other chars so no need to set an
+    // additional offset for her
     const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
     const color = getTextColor(fade);
