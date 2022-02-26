@@ -16,21 +16,7 @@ export function automaticItemInsertionUseCardHierophant(
     return;
   }
 
-  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items
-  // Instead, find the nearest hearts to the player
-  const hasTarotCloth = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-  );
-  const numHearts = hasTarotCloth ? 3 : 2;
-  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
-
-  for (const pickupVariant of pickupVariants) {
-    const pickup = getClosestPickup(player, pickupVariant);
-    if (pickup !== null) {
-      insertPickupAndUpdateDelta(pickup, player);
-    }
-  }
+  addHeartsOnBethanys(player);
 }
 
 // Card.CARD_LOVERS (7)
@@ -47,21 +33,7 @@ export function automaticItemInsertionUseCardLovers(
     return;
   }
 
-  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items
-  // Instead, find the nearest hearts to the player
-  const hasTarotCloth = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-  );
-  const numHearts = hasTarotCloth ? 3 : 2;
-  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
-
-  for (const pickupVariant of pickupVariants) {
-    const pickup = getClosestPickup(player, pickupVariant);
-    if (pickup !== null) {
-      insertPickupAndUpdateDelta(pickup, player);
-    }
-  }
+  addHeartsOnBethanys(player);
 }
 
 // Card.CARD_JUSTICE (9)
@@ -134,4 +106,22 @@ function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
   }
 
   return closestPickup;
+}
+
+function addHeartsOnBethanys(player: EntityPlayer) {
+  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
+  // to automatically insert items
+  // Instead, find the nearest hearts to the player
+  const hasTarotCloth = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
+  );
+  const numHearts = hasTarotCloth ? 3 : 2;
+  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
+
+  for (const pickupVariant of pickupVariants) {
+    const pickup = getClosestPickup(player, pickupVariant);
+    if (pickup !== null) {
+      insertPickupAndUpdateDelta(pickup, player);
+    }
+  }
 }
