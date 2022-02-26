@@ -8,17 +8,17 @@ import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import v from "../v";
 
-export const UI_X = 35;
-export const COINS_X_OFFSET = 10; // For Deep Pockets
-export const COINS_Y = 33;
-const yOffset = 12;
-export const BOMBS_Y = COINS_Y + yOffset;
-export const KEYS_Y = BOMBS_Y + yOffset;
-export const FRAMES_BEFORE_FADE = 100;
-export const BOTTOM_CORNER_OFFSET = 40;
-export const BETHANY_Y_BOMB_OFFSET = -1;
-export const BETHANY_Y_KEY_OFFSET = -2;
-export const JACOB_ESAU_Y_OFFSET = 14;
+const UI_X = 35;
+const COINS_X_OFFSET = 10; // For Deep Pockets
+const COINS_Y = 33;
+const Y_OFFSET = 12;
+const BOMBS_Y = COINS_Y + Y_OFFSET;
+const KEYS_Y = BOMBS_Y + Y_OFFSET;
+const FRAMES_BEFORE_FADE = 100;
+const BOTTOM_CORNER_OFFSET = 40;
+const BETHANY_Y_BOMB_OFFSET = -1;
+const BETHANY_Y_KEY_OFFSET = -2;
+const JACOB_ESAU_Y_OFFSET = 14;
 
 export function automaticItemInsertionPostRender(): void {
   if (!config.automaticItemInsertion) {
