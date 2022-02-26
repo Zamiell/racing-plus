@@ -115,4 +115,6 @@ export const BOMBS_Y = COINS_Y + yOffset;
 export const KEYS_Y = BOMBS_Y + yOffset;
 export const FRAMES_BEFORE_FADE = 100;
 export const BOTTOM_CORNER_OFFSET = 40;
+export const BETHANY_Y_BOMB_OFFSET = -1;
+export const BETHANY_Y_KEY_OFFSET = -2;
 export const JACOB_ESAU_Y_OFFSET = 14;
