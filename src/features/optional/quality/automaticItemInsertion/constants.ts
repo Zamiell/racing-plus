@@ -1,3 +1,6 @@
+/**
+ * We use an arbitrary value of -1 to indicate that the collectible drops either a card or a pill.
+ */
 export const PICKUP_VARIANT_CARD_OR_PILL = -1;
 
 export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
@@ -106,15 +109,3 @@ export const DETRIMENTAL_TRINKETS: ReadonlySet<TrinketType> = new Set([
   TrinketType.TRINKET_OUROBOROS_WORM, // 96
   TrinketType.TRINKET_M, // 138
 ]);
-
-export const UI_X = 35;
-export const COINS_X_OFFSET = 10; // For Deep Pockets
-export const COINS_Y = 33;
-const yOffset = 12;
-export const BOMBS_Y = COINS_Y + yOffset;
-export const KEYS_Y = BOMBS_Y + yOffset;
-export const FRAMES_BEFORE_FADE = 100;
-export const BOTTOM_CORNER_OFFSET = 40;
-export const BETHANY_Y_BOMB_OFFSET = -1;
-export const BETHANY_Y_KEY_OFFSET = -2;
-export const JACOB_ESAU_Y_OFFSET = 14;

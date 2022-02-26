@@ -1,0 +1,170 @@
+import {
+  getScreenBottomLeftPos,
+  getScreenBottomRightPos,
+  isBethany,
+  isJacobOrEsau,
+} from "isaacscript-common";
+import g from "../../../../../globals";
+import { config } from "../../../../../modConfigMenu";
+import v from "../v";
+
+export const UI_X = 35;
+export const COINS_X_OFFSET = 10; // For Deep Pockets
+export const COINS_Y = 33;
+const yOffset = 12;
+export const BOMBS_Y = COINS_Y + yOffset;
+export const KEYS_Y = BOMBS_Y + yOffset;
+export const FRAMES_BEFORE_FADE = 100;
+export const BOTTOM_CORNER_OFFSET = 40;
+export const BETHANY_Y_BOMB_OFFSET = -1;
+export const BETHANY_Y_KEY_OFFSET = -2;
+export const JACOB_ESAU_Y_OFFSET = 14;
+
+export function automaticItemInsertionPostRender(): void {
+  if (!config.automaticItemInsertion) {
+    return;
+  }
+
+  drawCoinsDelta();
+  drawBombsDelta();
+  drawKeysDelta();
+  drawPocketItemsDelta();
+  drawTrinketsDelta();
+}
+
+function drawCoinsDelta() {
+  if (v.run.delta.coins !== null && v.run.delta.coinsFrame !== null) {
+    const string = v.run.delta.coins.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.coinsFrame);
+    if (fade <= 0) {
+      v.run.delta.coins = null;
+      v.run.delta.coinsFrame = null;
+      return;
+    }
+
+    const player = Isaac.GetPlayer();
+    const isJacobAndEsau = isJacobOrEsau(player);
+    const hasDeepPockets = player.HasCollectible(
+      CollectibleType.COLLECTIBLE_DEEP_POCKETS,
+    );
+    const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
+    const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
+
+    const color = getTextColor(fade);
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+  }
+}
+
+function drawKeysDelta() {
+  if (v.run.delta.keys !== null && v.run.delta.keysFrame !== null) {
+    const string = v.run.delta.keys.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.keysFrame);
+    if (fade <= 0) {
+      v.run.delta.keys = null;
+      v.run.delta.keysFrame = null;
+      return;
+    }
+
+    const player = Isaac.GetPlayer();
+    let y = KEYS_Y;
+    if (isJacobOrEsau(player)) {
+      y += JACOB_ESAU_Y_OFFSET;
+    } else if (isBethany(player)) {
+      y += BETHANY_Y_KEY_OFFSET;
+    }
+
+    const color = getTextColor(fade);
+    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
+  }
+}
+
+function drawBombsDelta() {
+  if (v.run.delta.bombs !== null && v.run.delta.bombsFrame !== null) {
+    const string = v.run.delta.bombs.toString().padStart(2, "0");
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.bombsFrame);
+    if (fade <= 0) {
+      v.run.delta.bombs = null;
+      v.run.delta.bombsFrame = null;
+      return;
+    }
+
+    const player = Isaac.GetPlayer();
+    let y = BOMBS_Y;
+    if (isJacobOrEsau(player)) {
+      y += JACOB_ESAU_Y_OFFSET;
+    } else if (isBethany(player)) {
+      y += BETHANY_Y_BOMB_OFFSET;
+    }
+
+    const color = getTextColor(fade);
+    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
+  }
+}
+
+function drawPocketItemsDelta() {
+  if (v.run.delta.pocketItem !== null && v.run.delta.pocketItemFrame !== null) {
+    const string = v.run.delta.pocketItem.toString();
+    const text = `+${string}`;
+
+    // Don't show pocket items delta on J&E since their HUD is different
+    const player = Isaac.GetPlayer();
+    if (isJacobOrEsau(player)) {
+      return;
+    }
+
+    const fade = getFade(v.run.delta.pocketItemFrame);
+    if (fade <= 0) {
+      v.run.delta.pocketItem = null;
+      v.run.delta.pocketItemFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    const bottomRightPos = getScreenBottomRightPos();
+    const x = bottomRightPos.X - BOTTOM_CORNER_OFFSET;
+    const y = bottomRightPos.Y - BOTTOM_CORNER_OFFSET;
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+  }
+}
+
+function drawTrinketsDelta() {
+  if (v.run.delta.trinket !== null && v.run.delta.trinketFrame !== null) {
+    const string = v.run.delta.trinket.toString();
+    const text = `+${string}`;
+
+    const fade = getFade(v.run.delta.trinketFrame);
+    if (fade <= 0) {
+      v.run.delta.trinket = null;
+      v.run.delta.trinketFrame = null;
+      return;
+    }
+
+    const color = getTextColor(fade);
+    const bottomLeftPos = getScreenBottomLeftPos();
+    const x = bottomLeftPos.X + BOTTOM_CORNER_OFFSET;
+    const y = bottomLeftPos.Y - BOTTOM_CORNER_OFFSET;
+    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+  }
+}
+
+function getFade(frame: int) {
+  const gameFrameCount = g.g.GetFrameCount();
+  const elapsedFrames = gameFrameCount - frame;
+
+  if (elapsedFrames <= FRAMES_BEFORE_FADE) {
+    return 1;
+  }
+
+  const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
+  return 1 - 0.02 * fadeFrames;
+}
+
+function getTextColor(fade: float) {
+  return KColor(0, 0.75, 0, fade);
+}

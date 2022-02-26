@@ -10,7 +10,7 @@ import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
-import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
@@ -80,7 +80,7 @@ export function main(pickup: EntityPickup): void {
   */
 
   seededGBBug.postPickupInit(pickup);
-  automaticItemInsertion.postPickupInit(pickup);
+  automaticItemInsertionPostPickupInit(pickup);
 }
 
 // PickupVariant.PICKUP_HEART (10)

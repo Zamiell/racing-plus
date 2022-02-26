@@ -120,6 +120,8 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     setCollectibleSubType(collectible, flippedCollectibleType);
     v.level.flippedCollectibleTypes.set(ptrHash, oldCollectibleType);
     v.room.flippedSprites.delete(ptrHash);
+    // (the sprite will be reinitialized on the next render frame if there is still an item in the
+    // alternate world)
   }
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus

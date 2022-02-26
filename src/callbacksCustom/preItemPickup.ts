@@ -1,6 +1,6 @@
 import { PickingUpItem } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
-import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import { automaticItemInsertionPreItemPickup } from "../features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
 import { speedrunPreItemPickup } from "../features/speedrun/callbacks/preItemPickup";
 
 export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
@@ -17,5 +17,5 @@ export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
   speedrunPreItemPickup(player, pickingUpItem);
 
   // QoL
-  automaticItemInsertion.preItemPickup(player, pickingUpItem);
+  automaticItemInsertionPreItemPickup(player, pickingUpItem);
 }

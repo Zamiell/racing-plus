@@ -17,7 +17,7 @@ import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
-import * as automaticItemInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
@@ -70,7 +70,7 @@ export function main(): void {
   azazelsRageChargeBar.postRender(); // 699
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority
-  automaticItemInsertion.postRender();
+  automaticItemInsertionPostRender();
   showPills.postRender();
 
   // Hotkeys

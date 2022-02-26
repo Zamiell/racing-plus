@@ -40,7 +40,7 @@ import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
 import * as customConsole from "./features/optional/other/customConsole";
 import * as roll from "./features/optional/other/roll";
-import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";

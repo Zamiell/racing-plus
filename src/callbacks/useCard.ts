@@ -1,5 +1,5 @@
 import * as streakText from "../features/mandatory/streakText";
-import * as automaticInsertion from "../features/optional/quality/automaticItemInsertion/automaticItemInsertion";
+import { automaticItemInsertionUseCardJustice } from "../features/optional/quality/automaticItemInsertion/callbacks/useCard";
 import * as speedrunUseCard from "../features/speedrun/callbacks/useCard";
 
 export function init(mod: Mod): void {
@@ -22,7 +22,7 @@ export function main(card: Card): void {
 
 // Card.CARD_JUSTICE (9)
 function justice(_card: Card, player: EntityPlayer, _useFlags: int) {
-  automaticInsertion.useCardJustice(player);
+  automaticItemInsertionUseCardJustice(player);
 }
 
 // Card.RUNE_BLACK (41)

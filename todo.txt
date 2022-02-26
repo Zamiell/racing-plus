@@ -9,3 +9,4 @@ TODO Racing+ new features:
 - remove curse room from s2
 - fix all bugs
 - Apply fast insertion with hierophant on Bethany/Lovers on T Bethany
+- search for ++
