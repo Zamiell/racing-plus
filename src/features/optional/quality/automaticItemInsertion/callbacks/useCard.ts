@@ -1,4 +1,4 @@
-import { getPickups, initArray, isBethany } from "isaacscript-common";
+import { getPickups, initArray, isBethany, repeat } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 
@@ -47,24 +47,22 @@ export function automaticItemInsertionUseCardJustice(
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
   // to automatically insert items
   // Instead, find the nearest coin, bomb, and key to the player
-  const pickupVariants = [
-    PickupVariant.PICKUP_COIN,
-    PickupVariant.PICKUP_BOMB,
-    PickupVariant.PICKUP_KEY,
-  ];
+  const hasTarotCloth = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
+  );
+  const numEachPickup = hasTarotCloth ? 2 : 1;
+  const pickupVariants: PickupVariant[] = [];
+  repeat(numEachPickup, () => {
+    pickupVariants.push(
+      PickupVariant.PICKUP_COIN, // 20
+      PickupVariant.PICKUP_KEY, // 30
+      PickupVariant.PICKUP_BOMB, // 40
+    );
 
-  if (isBethany(player)) {
-    pickupVariants.push(PickupVariant.PICKUP_HEART);
-  }
-
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)) {
-    pickupVariants.push(PickupVariant.PICKUP_COIN);
-    pickupVariants.push(PickupVariant.PICKUP_BOMB);
-    pickupVariants.push(PickupVariant.PICKUP_KEY);
     if (isBethany(player)) {
       pickupVariants.push(PickupVariant.PICKUP_HEART);
     }
-  }
+  });
 
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickup(player, pickupVariant);
