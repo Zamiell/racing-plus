@@ -37,6 +37,7 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
     insertPickupAndUpdateDelta(pickup, player);
     v.room.pickupQueue.splice(i, 1);
 
+    // Since we found the pickup to insert, we are done searching
     return;
   }
 }
