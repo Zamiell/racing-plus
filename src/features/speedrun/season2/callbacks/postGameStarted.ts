@@ -3,7 +3,6 @@ import {
   emptyArray,
   getRandomArrayElementAndRemove,
   log,
-  range,
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
@@ -144,8 +143,7 @@ function refreshStartingCharactersAndBuilds() {
 
   emptyArray(v.persistent.selectedBuildIndexes);
   emptyArray(v.persistent.remainingBuildIndexes);
-  const buildIndexes = range(0, SEASON_2_STARTING_BUILDS.length - 1);
-  v.persistent.remainingBuildIndexes.push(...buildIndexes);
+  v.persistent.remainingBuildIndexes.push(...SEASON_2_STARTING_BUILD_INDEXES);
 
   // We will assign the character and the build in the next function
   v.persistent.timeAssigned = time;
@@ -261,19 +259,17 @@ function getBuildIndexesFor(...collectibleTypes: CollectibleType[]) {
 }
 
 function getBuildIndexFor(collectibleType: CollectibleType) {
-  const matchingBuildIndex = SEASON_2_STARTING_BUILD_INDEXES.find(
-    (buildIndex, i) => {
-      const build = SEASON_2_STARTING_BUILDS[i];
-      const firstCollectible = build[0];
-      return firstCollectible === collectibleType;
-    },
-  );
-
-  if (matchingBuildIndex === undefined) {
-    error(`Failed to find the season 2 build index for: ${collectibleType}`);
+  for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
+    const build = SEASON_2_STARTING_BUILDS[i];
+    const firstCollectible = build[0];
+    if (firstCollectible === collectibleType) {
+      return i;
+    }
   }
 
-  return matchingBuildIndex;
+  return error(
+    `Failed to find the season 2 build index for: ${collectibleType}`,
+  );
 }
 
 function giveStartingItems(

@@ -1,6 +1,7 @@
 import {
   getCollectibleGfxFilename,
   getEnumValues,
+  getLastElement,
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
@@ -52,8 +53,7 @@ function getFilename(itemID: int) {
     if (pathSegments.length === 0) {
       return "questionmark.png";
     }
-    const finalSegment = pathSegments[pathSegments.length - 1];
-    return finalSegment;
+    return getLastElement(pathSegments);
   }
 
   const fileNum = getFileNum(itemID);

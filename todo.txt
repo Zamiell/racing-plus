@@ -9,6 +9,3 @@ TODO Racing+ new features:
 - fix all bugs
 - Apply fast insertion with hierophant on Bethany/Lovers on T Bethany
 - finish testing s2 curse room
-
-- search for ++ in racing+ and replace with repeat
-- search for ".length - 1" in racing+
