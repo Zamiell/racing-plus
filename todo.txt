@@ -8,4 +8,7 @@ TODO Racing+ new features:
   - After tournament is over in 1 week
 - fix all bugs
 - Apply fast insertion with hierophant on Bethany/Lovers on T Bethany
+- fix fast insertion with tarot cloth
 - finish testing s2 curse room
+
+- put pickup functions in entity.ts --> pickups.ts (and solve circular dep problem)

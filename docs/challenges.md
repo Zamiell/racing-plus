@@ -12,7 +12,7 @@
 
 - In all seasons, the first character will get More Options. After the Treasure Room is entered, More Options will be removed. (This is to speed up the process of finding an item and getting a run going.)
 - In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
-- In all seasons, on the first character, Devil Rooms and Angel Rooms will have nothing in them if you teleport to one from a Curse Room on Basement 1. (This prevents resetting for a Devil Room item.)
+- In all seasons, on the first character, Devil Rooms and Angel Rooms will have nothing in them if you teleport to one from a Curse Room on the first floor. (This prevents resetting for a Devil Room item.)
 
 <br />
 
@@ -131,12 +131,12 @@ Some builds are banned on certain characters:
 
 ### Other
 
-- The Treasure Room on Basement 1 is removed.
+- The Treasure Room on the first floor is removed.
 - Sol is removed from the Planetarium pool.
 - Cain's Eye is removed from the trinket pool.
 - We Need to Go Deeper! will not work on Womb 2.
 - The spikes in a Sacrifice Room are removed after Gabriel spawns.
-- On the first character, if you enter a Curse Room attached to the starting room, all of the pickups will be removed. (This is to prevent people from resetting for a Curse Room item.)
+- On the first character, Curse Rooms and Planetariums on the first floor are removed.
 
 <br />
 

@@ -1,4 +1,10 @@
-import { getPickups, initArray, isBethany, repeat } from "isaacscript-common";
+import {
+  getClosestEntityTo,
+  getPickups,
+  initArray,
+  isBethany,
+  repeat,
+} from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 
@@ -47,7 +53,7 @@ function addHeartsOnBethanys(player: EntityPlayer) {
   const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
 
   for (const pickupVariant of pickupVariants) {
-    const pickup = getClosestPickup(player, pickupVariant);
+    const pickup = getClosestPickupToPlayer(player, pickupVariant);
     if (pickup !== null) {
       insertPickupAndUpdateDelta(pickup, player);
     }
@@ -83,43 +89,25 @@ export function automaticItemInsertionUseCardJustice(
   });
 
   for (const pickupVariant of pickupVariants) {
-    const pickup = getClosestPickup(player, pickupVariant);
+    const pickup = getClosestPickupToPlayer(player, pickupVariant);
     if (pickup !== null) {
       insertPickupAndUpdateDelta(pickup, player);
     }
   }
 }
 
-function getClosestPickup(entity: Entity, pickupVariant: PickupVariant) {
+function getClosestPickupToPlayer(
+  player: EntityPlayer,
+  pickupVariant: PickupVariant,
+) {
   const pickups = getPickups(pickupVariant);
+  const filteredPickups = pickups.filter(
+    (pickup) =>
+      pickup.Price === 0 &&
+      // We set the vanilla "Touched" property to true if we have already inserted this pickup
+      !pickup.Touched &&
+      !pickup.GetSprite().IsPlaying("Collect"),
+  );
 
-  let closestPickup: EntityPickup | null = null;
-  let closestDistance: int | null = null;
-  for (const pickup of pickups) {
-    // Skip over pickups that have a price
-    if (pickup.Price !== 0) {
-      continue;
-    }
-
-    // Skip over pickups that have already been collected
-    const sprite = pickup.GetSprite();
-    if (sprite.IsPlaying("Collect")) {
-      continue;
-    }
-
-    const distance = entity.Position.Distance(pickup.Position);
-
-    if (closestPickup === null || closestDistance === null) {
-      closestPickup = pickup;
-      closestDistance = distance;
-      continue;
-    }
-
-    if (distance < closestDistance) {
-      closestPickup = pickup;
-      closestDistance = distance;
-    }
-  }
-
-  return closestPickup;
+  return getClosestEntityTo(player, filteredPickups);
 }

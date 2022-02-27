@@ -14,9 +14,14 @@ import { ChallengeCustom } from "../speedrun/enums";
 export function postNewRoom(): void {
   if (shouldBanFirstFloorTreasureRoom()) {
     postNewRoomCheckForRoomType(RoomType.ROOM_TREASURE);
-  } else if (shouldBanFirstFloorCurseRoom()) {
-    Isaac.DebugString("GETTING HERE");
+  }
+
+  if (shouldBanFirstFloorCurseRoom()) {
     postNewRoomCheckForRoomType(RoomType.ROOM_CURSE);
+  }
+
+  if (shouldBanFirstFloorPlanetarium()) {
+    postNewRoomCheckForRoomType(RoomType.ROOM_PLANETARIUM);
   }
 }
 
@@ -31,6 +36,13 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
 }
 
 function shouldBanFirstFloorCurseRoom() {
+  const challenge = Isaac.GetChallenge();
+  const effectiveStage = getEffectiveStage();
+
+  return effectiveStage === 1 && challenge === ChallengeCustom.SEASON_2;
+}
+
+function shouldBanFirstFloorPlanetarium() {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
