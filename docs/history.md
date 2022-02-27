@@ -18,6 +18,7 @@
   - #2031 (Loki)
   - #3311 (Lokii)
   - #4041 (Death)
+- The automatic insertion feature will now automatically insert soul hearts on Bethany and red hearts on Tainted Bethany. (Thanks Gamonymous)
 - The lead pencil charge bar will no longer show when you have Monstro's Lung. (Thanks Gamonymous)
 - Fixed the bug where angel types were not seeded under certain circumstances. (Thanks Moucheron Quipet)
 - Fixed the bug where the doors would not open after defeating the Lamb under certain conditions. (Thanks AshDown)
@@ -43,6 +44,7 @@
 - Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
 - Fixed the bug where seeded death would not work properly if you died with a Dead Cat queued. (Thanks Moucheron Quipet)
 - Fixed the bug where seeded death would allow you to steal Devil Room items under certain conditions.
+- Fixed the bug where the automatic-insertion feature would not work properly with Tarot Cloth. (Thanks Gamonymous)
 
 ### *v0.75.0* - February 19th, 2022
 

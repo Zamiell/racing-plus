@@ -3,12 +3,8 @@ TODO Racing+ new features:
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
   - Ranked Solo Season 3 ended:   April 2nd, 2022 (estimated)
   - Ranked Solo Season 3 length:  120 days
+- put pickup functions in entity.ts --> pickups.ts (and solve circular dep problem)
 
 - Seeded runs change to being consistent with Devil/Angels
   - After tournament is over in 1 week
 - fix all bugs
-- Apply fast insertion with hierophant on Bethany/Lovers on T Bethany
-- fix fast insertion with tarot cloth
-- finish testing s2 curse room
-
-- put pickup functions in entity.ts --> pickups.ts (and solve circular dep problem)
