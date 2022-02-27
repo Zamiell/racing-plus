@@ -1,4 +1,4 @@
-import { copyArray, MINUTE_IN_MILLISECONDS } from "isaacscript-common";
+import { MINUTE_IN_MILLISECONDS, range } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 export const SEASON_2_DEBUG = true;
@@ -176,18 +176,16 @@ const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<
   CollectibleType.COLLECTIBLE_C_SECTION, // 678
 ]);
 
-const forgottenExceptions: int[] = [];
-for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
-  const build = SEASON_2_STARTING_BUILDS[i];
-  const firstCollectible = build[0];
-  if (!SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible)) {
-    forgottenExceptions.push(i);
-  }
-}
-
-/** An array containing every index that is not on the above build whitelist. */
+export const SEASON_2_STARTING_BUILD_INDEXES: readonly int[] = range(
+  0,
+  SEASON_2_STARTING_BUILDS.length - 1,
+);
 export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
-  copyArray(forgottenExceptions);
+  SEASON_2_STARTING_BUILD_INDEXES.filter((buildIndex, i) => {
+    const build = SEASON_2_STARTING_BUILDS[i];
+    const [firstCollectible] = build;
+    return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
+  });
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_2_LOCK_MINUTES = 1.5;

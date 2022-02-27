@@ -4,6 +4,7 @@ import {
   getRooms,
   log,
   nextSeed,
+  repeat,
   saveDataManager,
   teleport,
 } from "isaacscript-common";
@@ -97,9 +98,9 @@ export function postNewLevel(): void {
   // Increment the RNG 100 times so that players cannot use knowledge of Teleport! teleports
   // to determine where the Telepills destination will be
   let incrementedLevelSeed = levelSeed;
-  for (let i = 0; i < 100; i++) {
+  repeat(100, () => {
     incrementedLevelSeed = nextSeed(incrementedLevelSeed);
-  }
+  });
 
   v.level.teleportSeed = levelSeed;
   v.level.telepillsSeed = incrementedLevelSeed;

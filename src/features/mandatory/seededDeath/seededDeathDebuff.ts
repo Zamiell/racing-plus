@@ -10,6 +10,7 @@ import {
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
+  repeat,
   runInNGameFrames,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -153,13 +154,13 @@ function debuffOnRemoveAllItems(player: EntityPlayer) {
 
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
-    for (let i = 0; i < collectibleNum; i++) {
+    repeat(collectibleNum, () => {
       if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
         items.push(collectibleType);
       }
 
       removeCollectible(player, collectibleType);
-    }
+    });
   }
 
   // Now that we have deleted every item, update the players stats

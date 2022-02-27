@@ -9,6 +9,8 @@ import { config } from "../../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../../types/CollectibleTypeCustom";
 import v from "../v";
 
+const MAX_GET_COLLECTIBLE_ATTEMPTS = 100;
+
 export function betterDevilAngelRoomsPreGetCollectible(
   itemPoolType: ItemPoolType,
   _decrease: boolean,
@@ -65,7 +67,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   );
 
   // Only attempt to find a valid item for 100 iterations in case something goes wrong
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < MAX_GET_COLLECTIBLE_ATTEMPTS; i++) {
     v.run.gettingCollectible = true;
     const subType = getNewSubType(itemPoolType);
     v.run.gettingCollectible = false;

@@ -1,6 +1,8 @@
 import {
   CHARACTERS_WITH_AN_ACTIVE_ITEM,
+  copyArray,
   ensureAllCases,
+  getLastElement,
   useActiveItemTemp,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -205,33 +207,28 @@ function diversity(player: EntityPlayer) {
   }
 
   // Give the player their five random diversity starting items
-  for (let i = 0; i < g.race.startingItems.length; i++) {
-    const itemOrTrinketID = g.race.startingItems[i];
+  if (g.race.startingItems.length !== 5) {
+    error("A diversity race does not have 5 starting items.");
+  }
+  const collectibleTypes = copyArray(g.race.startingItems, 4);
+  const trinketType = getLastElement(g.race.startingItems);
 
-    if (i === 0) {
-      // The first item is the active
-      const collectibleType =
-        serverCollectibleIDToCollectibleType(itemOrTrinketID);
-      giveCollectibleAndRemoveFromPools(player, collectibleType);
-    } else if (i === 1 || i === 2 || i === 3) {
-      // The second, third, and fourth items are the passives
-      const collectibleType =
-        serverCollectibleIDToCollectibleType(itemOrTrinketID);
-      giveCollectibleAndRemoveFromPools(player, collectibleType);
-    } else if (i === 4) {
-      // The fifth item is the trinket
-      if (trinket1 !== 0) {
-        player.TryRemoveTrinket(trinket1);
-      }
+  for (const serverCollectibleID of collectibleTypes) {
+    const collectibleType =
+      serverCollectibleIDToCollectibleType(serverCollectibleID);
+    giveCollectibleAndRemoveFromPools(player, collectibleType);
+  }
 
-      giveTrinketAndRemoveFromPools(player, itemOrTrinketID);
-      useActiveItemTemp(player, CollectibleType.COLLECTIBLE_SMELTER);
+  if (trinket1 !== 0) {
+    player.TryRemoveTrinket(trinket1);
+  }
 
-      // Re-give Paper Clip to Cain, for example
-      if (trinket1 !== 0) {
-        player.AddTrinket(trinket1);
-      }
-    }
+  giveTrinketAndRemoveFromPools(player, trinketType);
+  useActiveItemTemp(player, CollectibleType.COLLECTIBLE_SMELTER);
+
+  // Re-give Paper Clip to Cain, for example
+  if (trinket1 !== 0) {
+    player.AddTrinket(trinket1);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
@@ -246,12 +243,12 @@ function diversity(player: EntityPlayer) {
     );
   }
 
-  for (const collectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
-    g.itemPool.RemoveCollectible(collectibleType);
+  for (const bannedCollectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
+    g.itemPool.RemoveCollectible(bannedCollectibleType);
   }
 
-  for (const trinketType of BANNED_DIVERSITY_TRINKETS) {
-    g.itemPool.RemoveTrinket(trinketType);
+  for (const bannedTrinketType of BANNED_DIVERSITY_TRINKETS) {
+    g.itemPool.RemoveTrinket(bannedTrinketType);
   }
 }
 

@@ -11,3 +11,4 @@ TODO Racing+ new features:
 - finish testing s2 curse room
 
 - search for ++ in racing+ and replace with repeat
+- search for ".length - 1" in racing+

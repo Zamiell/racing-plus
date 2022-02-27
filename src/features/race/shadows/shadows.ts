@@ -206,14 +206,13 @@ function getShadows() {
 function unpackShadowMessage(rawData: string) {
   const dataArray = [...struct.unpack(SHADOW_DATA_FORMAT, rawData)];
   const shadowMessage: Record<string, unknown> = {};
-  for (let i = 0; i < SHADOW_FIELDS.length; i++) {
-    const field = SHADOW_FIELDS[i];
+  SHADOW_FIELDS.forEach((field, i) => {
     let fieldData = dataArray[i];
     if (typeof fieldData === "string") {
       fieldData = fieldData.trim();
     }
     shadowMessage[field] = fieldData;
-  }
+  });
 
   return shadowMessage as unknown as ShadowMessage;
 }

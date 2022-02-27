@@ -212,9 +212,7 @@ function drawTextAndSprite() {
   );
 
   baseY += 20;
-  for (let i = 0; i < v.run.pillsIdentified.length; i++) {
-    const pillEntry = v.run.pillsIdentified[i];
-
+  v.run.pillsIdentified.forEach((pillEntry, i) => {
     // Show the pill sprite
     const y = baseY + 20 * (i + 1);
     const position = Vector(x, y);
@@ -230,7 +228,7 @@ function drawTextAndSprite() {
       pillEffectName = "Walking on sunshine!";
     }
     g.fonts.droid.DrawString(pillEffectName, x + 15, y - 9, getDefaultKColor());
-  }
+  });
 }
 
 // ModCallbacks.MC_USE_PILL (10)

@@ -3,6 +3,7 @@ import {
   inBossRoomOf,
   nextSeed,
   removeAllMatchingEntities,
+  repeat,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
@@ -194,22 +195,23 @@ function checkVictoryLapBossReplace() {
 
   let randomBossSeed = roomSeed;
   const numBosses = v.run.numVictoryLaps + 1;
-  for (let i = 1; i <= numBosses; i++) {
+  repeat(numBosses, () => {
     randomBossSeed = nextSeed(randomBossSeed);
     const randomBoss = getRandomArrayElement(
       VICTORY_LAP_BOSSES,
       randomBossSeed,
     );
-    const randomBossType = randomBoss[0];
+
+    const [randomBossType] = randomBoss;
     if (randomBossType === EntityType.ENTITY_LARRYJR) {
       // Larry Jr. and The Hollow require multiple segments
-      for (let j = 0; j < NUM_LARRY_JR_SEGMENTS; j++) {
+      repeat(NUM_LARRY_JR_SEGMENTS, () => {
         spawnBoss(randomBoss);
-      }
+      });
     } else {
       spawnBoss(randomBoss);
     }
-  }
+  });
 }
 
 function spawnBoss(bossArray: [int, int, int]) {

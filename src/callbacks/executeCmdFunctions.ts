@@ -7,6 +7,7 @@ import {
   logTemporaryEffects,
   onSetSeed,
   printConsole,
+  range,
   saveDataManagerSave,
 } from "isaacscript-common";
 import { VERSION } from "../constants";
@@ -617,9 +618,9 @@ executeCmdFunctions.set("sound", (params: string) => {
 });
 
 executeCmdFunctions.set("sounds", (_params: string) => {
-  for (let i = 0; i < SoundEffect.NUM_SOUND_EFFECTS; i++) {
-    if (g.sfx.IsPlaying(i)) {
-      log(`Currently playing sound effect: ${i}`);
+  for (const soundEffect of range(0, SoundEffect.NUM_SOUND_EFFECTS - 1)) {
+    if (g.sfx.IsPlaying(soundEffect)) {
+      log(`Currently playing sound effect: ${soundEffect}`);
     }
   }
 

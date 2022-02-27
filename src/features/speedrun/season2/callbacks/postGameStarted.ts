@@ -26,6 +26,7 @@ import {
   SEASON_2_FORGOTTEN_EXCEPTIONS,
   SEASON_2_LOCK_MILLISECONDS,
   SEASON_2_STARTING_BUILDS,
+  SEASON_2_STARTING_BUILD_INDEXES,
 } from "../constants";
 import sprites, { resetSprites } from "../sprites";
 import v, {
@@ -260,17 +261,19 @@ function getBuildIndexesFor(...collectibleTypes: CollectibleType[]) {
 }
 
 function getBuildIndexFor(collectibleType: CollectibleType) {
-  for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
-    const build = SEASON_2_STARTING_BUILDS[i];
-    const firstCollectible = build[0];
-    if (firstCollectible === collectibleType) {
-      return i;
-    }
+  const matchingBuildIndex = SEASON_2_STARTING_BUILD_INDEXES.find(
+    (buildIndex, i) => {
+      const build = SEASON_2_STARTING_BUILDS[i];
+      const firstCollectible = build[0];
+      return firstCollectible === collectibleType;
+    },
+  );
+
+  if (matchingBuildIndex === undefined) {
+    error(`Failed to find the season 2 build index for: ${collectibleType}`);
   }
 
-  return error(
-    `Failed to find the season 2 build index for: ${collectibleType}`,
-  );
+  return matchingBuildIndex;
 }
 
 function giveStartingItems(

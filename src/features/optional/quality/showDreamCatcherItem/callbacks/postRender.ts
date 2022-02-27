@@ -40,13 +40,12 @@ function repositionPlayer() {
   // player's position was updated
   const players = getPlayers();
   const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
-  for (let i = 0; i < customPitfalls.length; i++) {
-    const pitfall = customPitfalls[i];
+  customPitfalls.forEach((pitfall, i) => {
     const player = players[i];
-    if (pitfall !== undefined && player !== undefined) {
+    if (player !== undefined) {
       pitfall.Position = player.Position;
     }
-  }
+  });
 
   // Restore the minimap
   restoreMinimapDisplayFlags(v.level.displayFlagsMap);

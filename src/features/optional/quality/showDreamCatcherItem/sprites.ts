@@ -96,8 +96,7 @@ export function draw(): void {
     dreamCatcherSprite.RenderLayer(0, renderPosition);
   }
 
-  for (let i = 0; i < itemSprites.length; i++) {
-    const sprite = itemSprites[i];
+  itemSprites.forEach((sprite, i) => {
     const renderPosition = Isaac.WorldToRenderPosition(
       nextToDreamCatcherPosition,
     );
@@ -105,10 +104,9 @@ export function draw(): void {
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
     sprite.RenderLayer(0, position);
-  }
+  });
 
-  for (let i = 0; i < bossSprites.length; i++) {
-    const sprite = bossSprites[i];
+  bossSprites.forEach((sprite, i) => {
     const renderPosition = Isaac.WorldToRenderPosition(
       nextToDreamCatcherPosition,
     );
@@ -116,5 +114,5 @@ export function draw(): void {
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
     sprite.RenderLayer(0, position);
-  }
+  });
 }

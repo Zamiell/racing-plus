@@ -1,6 +1,10 @@
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
-import { nextSeed, removeAllMatchingEntities } from "isaacscript-common";
+import {
+  nextSeed,
+  removeAllMatchingEntities,
+  repeat,
+} from "isaacscript-common";
 import g from "../../globals";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
@@ -41,7 +45,7 @@ export function postNewRoom(): void {
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
   let seed = roomSeed;
-  for (let i = 0; i < NUM_FRAILS; i++) {
+  repeat(NUM_FRAILS, (i) => {
     // We don't want to spawn both of them on top of each other since that would make them behave
     // a little glitchy
     // Note that pos.X += 200 causes the hitbox to appear too close to the left/right side,
@@ -67,5 +71,5 @@ export function postNewRoom(): void {
     // It will show the head on the first frame after spawning unless we hide it
     // The game will automatically make the entity visible later on
     frail.Visible = false;
-  }
+  });
 }

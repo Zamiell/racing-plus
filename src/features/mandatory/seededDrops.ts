@@ -9,6 +9,7 @@ import {
   log,
   nextSeed,
   onSetSeed,
+  repeat,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -38,9 +39,9 @@ function initVariables() {
   // We want to ensure that the second RNG counter does not overlap with the first one
   // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
   const rng = initRNG(startSeed);
-  for (let i = 0; i < 500; i++) {
+  repeat(500, () => {
     rng.Next();
-  }
+  });
   v.run.seedDevilAngel = rng.GetSeed();
 }
 
@@ -147,7 +148,7 @@ function spawnSeededDrop() {
     const numBrokenModems = getTotalPlayerCollectibles(
       CollectibleType.COLLECTIBLE_BROKEN_MODEM,
     );
-    for (let i = 0; i < numBrokenModems; i++) {
+    repeat(numBrokenModems, () => {
       if (
         rng.RandomInt(4) === 0 &&
         (pickupVariant === PickupVariant.PICKUP_HEART || // 10
@@ -158,12 +159,12 @@ function spawnSeededDrop() {
       ) {
         pickupCount += 1;
       }
-    }
+    });
   }
 
   if (pickupCount > 0 && pickupVariant !== PickupVariant.PICKUP_NULL) {
     let subType = 0;
-    for (let i = 1; i <= pickupCount; i++) {
+    repeat(pickupCount, () => {
       const position = findFreePosition(centerPos);
       const pickup = g.g.Spawn(
         EntityType.ENTITY_PICKUP,
@@ -178,7 +179,7 @@ function spawnSeededDrop() {
       // Pickups with a sub-type of 0 can morph into the various kinds of other pickups
       // If we are spawning a 2nd copy of this pickup, make sure that it is the same type
       subType = pickup.SubType;
-    }
+    });
   }
 }
 

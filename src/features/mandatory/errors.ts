@@ -25,6 +25,12 @@ const STARTING_X = 115;
 const STARTING_Y = 70;
 const MAX_CHARACTERS = 50;
 
+const COLLECTIBLES_THAT_AFFECT_ITEM_POOLS: readonly CollectibleType[] = [
+  CollectibleType.COLLECTIBLE_CHAOS, // 402
+  CollectibleType.COLLECTIBLE_SACRED_ORB, // 691
+  CollectibleType.COLLECTIBLE_TMTRAINER, // 721
+];
+
 const v = {
   run: {
     corrupted: false,
@@ -87,11 +93,7 @@ function isIncompleteSave() {
     const playerIndex = getPlayerIndex(player);
 
     const removedItems: CollectibleType[] = [];
-    for (const itemToRemove of [
-      CollectibleType.COLLECTIBLE_CHAOS, // 402
-      CollectibleType.COLLECTIBLE_SACRED_ORB, // 691
-      CollectibleType.COLLECTIBLE_TMTRAINER, // 721
-    ]) {
+    for (const itemToRemove of COLLECTIBLES_THAT_AFFECT_ITEM_POOLS) {
       if (player.HasCollectible(itemToRemove)) {
         const numCollectibles = player.GetCollectibleNum(itemToRemove);
         repeat(numCollectibles, () => {
@@ -257,15 +259,14 @@ export function drawErrorText(text: string): void {
 function getSplitLines(line: string): string[] {
   let spaceLeft = MAX_CHARACTERS;
   const words = line.split(" ");
-  for (let i = 0; i < words.length; i++) {
-    const word = words[i];
+  words.forEach((word, i) => {
     if (word.length + 1 > spaceLeft) {
       words[i] = `\n${word}`;
       spaceLeft = MAX_CHARACTERS - word.length;
     } else {
       spaceLeft -= word.length + 1;
     }
-  }
+  });
 
   return words.join(" ").split("\n");
 }

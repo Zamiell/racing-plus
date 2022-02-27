@@ -2,6 +2,7 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  repeat,
 } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
@@ -20,7 +21,7 @@ const sprites = {
 };
 
 export function init(): void {
-  for (let i = 0; i < 4; i++) {
+  repeat(4, () => {
     const sprite = Sprite();
     sprite.Load("gfx/timer/timer.anm2", true);
     sprite.Scale = Vector(0.9, 0.9);
@@ -28,7 +29,7 @@ export function init(): void {
     sprite.SetFrame("Default", 0);
 
     sprites.digit.push(sprite);
-  }
+  });
 
   sprites.slash.Load("gfx/timer/slash.anm2", true);
   sprites.slash.SetFrame("Default", 0);

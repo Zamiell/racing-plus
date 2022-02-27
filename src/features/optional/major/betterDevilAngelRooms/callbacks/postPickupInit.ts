@@ -2,6 +2,7 @@ import {
   getPlayerIndex,
   getPlayers,
   getRoomListIndex,
+  repeat,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import v from "../v";
@@ -24,7 +25,7 @@ export function betterDevilAngelRoomsPostPickupInitRedChest(): void {
     const numGuppysEye = player.GetCollectibleNum(
       CollectibleType.COLLECTIBLE_GUPPYS_EYE,
     );
-    for (let i = 0; i < numGuppysEye; i++) {
+    repeat(numGuppysEye, () => {
       player.RemoveCollectible(
         CollectibleType.COLLECTIBLE_GUPPYS_EYE,
         false,
@@ -35,6 +36,6 @@ export function betterDevilAngelRoomsPostPickupInitRedChest(): void {
       const playerIndex = getPlayerIndex(player);
       v.run.regiveGuppysEyePlayers.push(playerIndex);
       v.run.regiveGuppysEyeRoomListIndex = roomListIndex;
-    }
+    });
   }
 }
