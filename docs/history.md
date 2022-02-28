@@ -45,6 +45,7 @@
 - Fixed the bug where seeded death would not work properly if you died with a Dead Cat queued. (Thanks Moucheron Quipet)
 - Fixed the bug where seeded death would allow you to steal Devil Room items under certain conditions.
 - Fixed the bug where the automatic-insertion feature would not work properly with Tarot Cloth. (Thanks Gamonymous)
+- Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 
 ### *v0.75.0* - February 19th, 2022
 
