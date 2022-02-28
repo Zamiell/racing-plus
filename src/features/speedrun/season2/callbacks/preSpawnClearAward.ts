@@ -1,3 +1,4 @@
+import { getEffectiveStage } from "isaacscript-common";
 import g from "../../../../globals";
 import { ChallengeCustom } from "../../enums";
 import v from "../v";
@@ -14,10 +15,10 @@ export function season2PreSpawnClearAward(): void {
 
 /** Reset the starting character/build timer if we just killed the Basement 2 boss. */
 function checkResetTimeAssigned() {
-  const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const effectiveStage = getEffectiveStage();
 
-  if (stage === 2 && roomType === RoomType.ROOM_BOSS) {
+  if (effectiveStage === 2 && roomType === RoomType.ROOM_BOSS) {
     v.persistent.timeAssigned = 0;
   }
 }
