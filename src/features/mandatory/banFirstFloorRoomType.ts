@@ -10,18 +10,23 @@ import g from "../../globals";
 import { inSeededRace } from "../race/v";
 import { ChallengeCustom } from "../speedrun/enums";
 
+const SEASON_2_BANNED_ROOM_TYPES: readonly RoomType[] = [
+  RoomType.ROOM_MINIBOSS, // 6
+  RoomType.ROOM_CURSE, // 10
+  RoomType.ROOM_LIBRARY, // 12
+  RoomType.ROOM_PLANETARIUM, // 24
+];
+
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (shouldBanFirstFloorTreasureRoom()) {
     postNewRoomCheckForRoomType(RoomType.ROOM_TREASURE);
   }
 
-  if (shouldBanFirstFloorCurseRoom()) {
-    postNewRoomCheckForRoomType(RoomType.ROOM_CURSE);
-  }
-
-  if (shouldBanFirstFloorPlanetarium()) {
-    postNewRoomCheckForRoomType(RoomType.ROOM_PLANETARIUM);
+  if (shouldBanSpecialRoomsSeason2()) {
+    for (const roomType of SEASON_2_BANNED_ROOM_TYPES) {
+      postNewRoomCheckForRoomType(roomType);
+    }
   }
 }
 
@@ -35,14 +40,7 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
   );
 }
 
-function shouldBanFirstFloorCurseRoom() {
-  const challenge = Isaac.GetChallenge();
-  const effectiveStage = getEffectiveStage();
-
-  return effectiveStage === 1 && challenge === ChallengeCustom.SEASON_2;
-}
-
-function shouldBanFirstFloorPlanetarium() {
+function shouldBanSpecialRoomsSeason2() {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
