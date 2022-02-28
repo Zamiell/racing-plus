@@ -230,7 +230,10 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
 
     // 27
     case PlayerType.PLAYER_SAMSON_B: {
-      return getBuildIndexesFor(CollectibleType.COLLECTIBLE_DR_FETUS);
+      return getBuildIndexesFor(
+        CollectibleType.COLLECTIBLE_DR_FETUS, // 52
+        CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
+      );
     }
 
     // 28

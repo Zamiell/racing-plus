@@ -9,6 +9,7 @@ import {
 import g from "../../globals";
 import { inSeededRace } from "../race/v";
 import { ChallengeCustom } from "../speedrun/enums";
+import { isOnFirstCharacter } from "../speedrun/speedrun";
 
 const SEASON_2_BANNED_ROOM_TYPES: readonly RoomType[] = [
   RoomType.ROOM_MINIBOSS, // 6
@@ -44,7 +45,11 @@ function shouldBanSpecialRoomsSeason2() {
   const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
 
-  return effectiveStage === 1 && challenge === ChallengeCustom.SEASON_2;
+  return (
+    effectiveStage === 1 &&
+    challenge === ChallengeCustom.SEASON_2 &&
+    isOnFirstCharacter()
+  );
 }
 
 function postNewRoomCheckForRoomType(bannedRoomType: RoomType) {

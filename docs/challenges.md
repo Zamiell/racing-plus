@@ -106,7 +106,6 @@ The Forgotten is guaranteed to get one of the following builds:
 - Ipecac
 - Polyphemus
 - Sacred Heart
-- 20/20 + The Inner Eye
 - Proptosis
 - Haemolacria + Sad Onion
 - Pointy Rib + Eve's Mascara
@@ -120,6 +119,7 @@ Some builds are banned on certain characters:
   - Crown of Light
 - 27 - Tainted Samson
   - Dr. Fetus
+  - Brimstone
 - 28 - Tainted Azazel
   - Dr. Fetus
   - Cricket's Body + Steven

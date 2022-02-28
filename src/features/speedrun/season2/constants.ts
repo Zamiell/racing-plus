@@ -169,7 +169,6 @@ const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<
   CollectibleType.COLLECTIBLE_IPECAC, // 149
   CollectibleType.COLLECTIBLE_POLYPHEMUS, // 169
   CollectibleType.COLLECTIBLE_SACRED_HEART, // 182
-  CollectibleType.COLLECTIBLE_20_20, // 245
   CollectibleType.COLLECTIBLE_PROPTOSIS, // 261
   CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
   CollectibleType.COLLECTIBLE_POINTY_RIB, // 544
