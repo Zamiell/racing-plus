@@ -1,34 +1,11 @@
 import {
   getCollectibleInitCharges,
   getCollectibleMaxCharges,
-  getRoomSafeGridIndex,
-  inCrawlspace,
 } from "isaacscript-common";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
-import { isFastTravelHappening } from "./features/optional/major/fastTravel/v";
 import g from "./globals";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
-
-export function enteredRoomViaTeleport(): boolean {
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
-  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
-  const isFirstVisit = g.r.IsFirstVisit();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-  const justReachedThisFloor =
-    roomSafeGridIndex === startingRoomGridIndex && isFirstVisit;
-  const cameFromCrawlspace =
-    previousRoomGridIndex === GridRooms.ROOM_DUNGEON_IDX ||
-    previousRoomGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
-
-  return (
-    g.l.LeaveDoor === -1 &&
-    !justReachedThisFloor &&
-    !inCrawlspace() &&
-    !cameFromCrawlspace &&
-    !isFastTravelHappening()
-  );
-}
 
 export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,

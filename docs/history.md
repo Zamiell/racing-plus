@@ -5,7 +5,7 @@
 - R+7 Season 2 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start
 - Sawblade has been removed from the Treasure Room pool.
 - The first angel that you fight in a run will now always be Uriel.
-- Removed some pits in Angel Rooms #5, #8, #10, #13 (to make it easier to fight two angels at the same time).
+- Removed some pits in Angel Rooms #5, #8, #10, #13.
 - Deleted Angel Room #4 (with the TNT barrels).
 - Deleted Angel Room #12 (with the White Poop).
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).

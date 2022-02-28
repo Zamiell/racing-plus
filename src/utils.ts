@@ -2,8 +2,6 @@ import {
   getEntities,
   getFamiliars,
   getPlayers,
-  getRoomSafeGridIndex,
-  getRoomSubType,
   log,
   logArray,
 } from "isaacscript-common";
@@ -55,16 +53,6 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   }
 
   return [hasPolaroid, hasNegative];
-}
-
-export function inBeastDebugRoom(): boolean {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-  const roomSubType = getRoomSubType();
-
-  return (
-    roomSafeGridIndex === GridRooms.ROOM_DEBUG_IDX &&
-    roomSubType === HomeRoomSubType.BEAST_ROOM
-  );
 }
 
 export function moveEsauNextToJacob(): void {

@@ -1,7 +1,6 @@
 import {
   getRepentanceDoor,
   getSurroundingGridEntities,
-  inCrawlspace,
   isDoorToDownpour,
   isDoorToMausoleum,
   isDoorToMines,
@@ -35,6 +34,7 @@ export function preUseItemWeNeedToGoDeeper(
 ): boolean | void {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const challenge = Isaac.GetChallenge();
 
   // Rarely, the shovel will trigger two times on the same frame
@@ -44,8 +44,8 @@ export function preUseItemWeNeedToGoDeeper(
     return true;
   }
 
-  // In vanilla, We Need to Go Deeper will do nothing in a crawlspace
-  if (inCrawlspace()) {
+  // In vanilla, We Need to Go Deeper will do nothing in a dungeon
+  if (roomType === RoomType.ROOM_DUNGEON) {
     return true;
   }
 

@@ -3,6 +3,8 @@ import {
   getRoomGridIndexesForType,
   getRoomListIndex,
   getRoomSafeGridIndex,
+  getRoomSubType,
+  getRoomVariant,
   log,
   printConsole,
   spawnGridEntityWithVariant,
@@ -273,10 +275,14 @@ export function planetarium(): void {
 
 export function roomInfo(): void {
   const roomType = g.r.GetType();
+  const roomVariant = getRoomVariant();
+  const roomSubType = getRoomSubType();
   const roomSafeGridIndex = getRoomSafeGridIndex();
   const roomListIndex = getRoomListIndex();
 
-  printConsole(`Current room type: ${roomType}`);
+  printConsole(
+    `Current room type/variant/sub-type: ${roomType}.${roomVariant}.${roomSubType}`,
+  );
   printConsole(`Current room safe grid index: ${roomSafeGridIndex}`);
   printConsole(`Current room list index: ${roomListIndex}`);
 }

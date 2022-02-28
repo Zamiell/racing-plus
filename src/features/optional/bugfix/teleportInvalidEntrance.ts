@@ -3,12 +3,13 @@ import {
   getDoors,
   getFamiliars,
   getPlayers,
+  getRoomSafeGridIndex,
   log,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
-import { enteredRoomViaTeleport } from "../../../utilsGlobals";
+import { isFastTravelHappening } from "../major/fastTravel/v";
 
 export function postNewRoom(): void {
   if (!config.teleportInvalidEntrance) {
@@ -61,6 +62,28 @@ export function postNewRoom(): void {
   }
 
   log("Fixed teleporting a player to an invalid entrance.");
+}
+
+function enteredRoomViaTeleport() {
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
+  const roomType = g.r.GetType();
+  const isFirstVisit = g.r.IsFirstVisit();
+  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const justReachedThisFloor =
+    roomSafeGridIndex === startingRoomGridIndex && isFirstVisit;
+  const inDungeon = roomType === RoomType.ROOM_DUNGEON;
+  const cameFromDungeon =
+    previousRoomGridIndex === GridRooms.ROOM_DUNGEON_IDX ||
+    previousRoomGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
+
+  return (
+    g.l.LeaveDoor === -1 &&
+    !justReachedThisFloor &&
+    !inDungeon &&
+    !cameFromDungeon &&
+    !isFastTravelHappening()
+  );
 }
 
 function isPlayerNextToADoor() {

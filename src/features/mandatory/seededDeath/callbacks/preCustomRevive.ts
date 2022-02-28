@@ -11,7 +11,6 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
-import { inBeastDebugRoom } from "../../../../utils";
 import { RevivalType } from "../../../race/types/RevivalType";
 import { DEVIL_DEAL_BUFFER_FRAMES } from "../constants";
 import {
@@ -63,7 +62,7 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
   // Do not revive the player in The Beast room
   // Handling this special case would be too complicated and the player would probably lose the race
   // anyway
-  if (inBeastRoom() || inBeastDebugRoom()) {
+  if (inBeastRoom()) {
     return false;
   }
 

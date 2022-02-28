@@ -7,7 +7,6 @@ import {
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { inBeastDebugRoom } from "../../../../utils";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
@@ -50,7 +49,7 @@ function checkEarlyClearRoom() {
 
   // The Beast fight is exempt from the fast-clear feature
   // (since it will prevent the trophy logic from working correctly)
-  if (inBeastRoom() || inBeastDebugRoom()) {
+  if (inBeastRoom()) {
     return;
   }
 

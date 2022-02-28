@@ -1,4 +1,5 @@
 import {
+  inGenesisRoom,
   isKeyboardPressed,
   log,
   printConsole,
@@ -25,6 +26,8 @@ function debugCode() {
   // Add code here
   // const player = Isaac.GetPlayer();
   // Isaac.DebugString(`GETTING HERE - ${isPonyActive(player)}`);
+
+  Isaac.DebugString(`GETTING HERE - ${inGenesisRoom()}`);
 }
 
 export function debugFunction(): void {

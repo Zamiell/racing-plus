@@ -4,8 +4,8 @@ import {
   DISTANCE_OF_GRID_TILE,
   getPlayerCloserThan,
   getRoomSafeGridIndex,
-  inBeastRoom,
   inCrawlspace,
+  inSecretShop,
   isRoomInsideMap,
   log,
   removeGridEntity,
@@ -14,7 +14,7 @@ import {
   teleport,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { inBeastDebugRoom, movePlayersAndFamiliars } from "../../../../utils";
+import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
@@ -59,13 +59,12 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 
   checkMovedAwayFromSecretShopLadder(player);
-  checkTopOfCrawlspaceLadder(player);
+  checkTouchingLadderExitTile(player);
   checkExitSoftlock(player);
 }
 
 function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-  if (roomSafeGridIndex !== GridRooms.ROOM_SECRET_SHOP_IDX) {
+  if (!inSecretShop()) {
     return;
   }
 
@@ -75,65 +74,55 @@ function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
   }
 }
 
-function checkTopOfCrawlspaceLadder(player: EntityPlayer) {
+function checkTouchingLadderExitTile(player: EntityPlayer) {
+  if (!inCrawlspace() && !inSecretShop()) {
+    return;
+  }
+
+  if (!playerIsTouchingExitTile(player)) {
+    return;
+  }
+
   const startingRoomGridIndex = g.l.GetStartingRoomIndex();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  // The Beast room shares the grid index of a crawlspace
-  if (inBeastRoom() || inBeastDebugRoom()) {
-    return;
-  }
+  v.room.amChangingRooms = true;
+  v.level.crawlspace.amExiting = true;
 
-  if (
-    roomSafeGridIndex !== GridRooms.ROOM_DUNGEON_IDX &&
-    roomSafeGridIndex !== GridRooms.ROOM_SECRET_SHOP_IDX
-  ) {
-    return;
-  }
+  const returnRoomGridIndex =
+    v.level.crawlspace.returnRoomGridIndex === null
+      ? startingRoomGridIndex
+      : v.level.crawlspace.returnRoomGridIndex;
 
-  if (
-    roomSafeGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX &&
-    !v.room.movedAwayFromSecretShopLadder
-  ) {
-    return;
-  }
-
-  if (playerIsTouchingExitSquare(player)) {
-    v.room.amChangingRooms = true;
-    v.level.crawlspace.amExiting = true;
-
-    const returnRoomGridIndex =
-      v.level.crawlspace.returnRoomGridIndex === null
-        ? startingRoomGridIndex
-        : v.level.crawlspace.returnRoomGridIndex;
-
-    teleport(returnRoomGridIndex, Direction.UP, RoomTransitionAnim.WALK);
-  }
+  teleport(returnRoomGridIndex, Direction.UP, RoomTransitionAnim.WALK);
 }
 
-function playerIsTouchingExitSquare(player: EntityPlayer) {
+function playerIsTouchingExitTile(player: EntityPlayer) {
   const roomSafeGridIndex = getRoomSafeGridIndex();
 
-  if (roomSafeGridIndex === GridRooms.ROOM_DUNGEON_IDX) {
-    const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
-    return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
+  // First, handle the special case of being in a secret shop
+  if (roomSafeGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX) {
+    const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
+    return (
+      // The vanilla hitbox seems to be half of a grid square,
+      // so we need to specify our hitbox to be bigger than this
+      // (0.6 is not big enough to consistently work when coming from the left side)
+      player.Position.Distance(ladderPosition) < DISTANCE_OF_GRID_TILE * 0.75
+    );
   }
 
-  const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
-  return (
-    // The vanilla hitbox seems to be half of a grid square,
-    // so we need to specify our hitbox to be bigger than this
-    // (0.6 is not big enough to consistently work when coming from the left side)
-    player.Position.Distance(ladderPosition) < DISTANCE_OF_GRID_TILE * 0.75
-  );
+  const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
+  return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
 }
 
+/**
+ * By default, if you return from a crawlspace to a room outside of the grid (e.g. the Boss Rush),
+ * leaving the room will cause you to go back to the crawlspace again (because the game is
+ * programmed to send you to the previous room).
+ *
+ * Fix this by checking to see if the player is about to touch a loading zone and if so, subvert
+ * their interaction.
+ */
 function checkExitSoftlock(player: EntityPlayer) {
-  // By default, if you return from a crawlspace to a room outside of the grid (e.g. the Boss Rush),
-  // then leaving the room will cause you to go back to the crawlspace again
-  // (because the game is programmed to send you to the previous room)
-  // Fix this by checking to see if the player is about to touch a loading zone and if so,
-  // subvert their interaction
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex(); // We need the unsafe version here
   const roomType = g.r.GetType();
 
@@ -186,27 +175,31 @@ export function postNewRoom(): void {
 }
 
 function checkEnteringCrawlspace() {
-  if (inCrawlspace() && v.level.crawlspace.amEntering) {
-    v.level.crawlspace.amEntering = false;
-
-    // When a player manually teleports into a crawlspace, they will not consistently be placed at
-    // the top of the ladder
-    // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
-    movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
-    log(
-      "Manually repositioned a player to the top of the ladder after returning to a crawlspace after a Black Market.",
-    );
+  if (!inCrawlspace()) {
+    return;
   }
+
+  if (!v.level.crawlspace.amEntering) {
+    return;
+  }
+  v.level.crawlspace.amEntering = false;
+
+  // When a player manually teleports into a crawlspace, they will not consistently be placed at
+  // the top of the ladder
+  // Thus, manually moving the player to the top of the ladder every time they enter a crawlspace
+  movePlayersAndFamiliars(TOP_OF_LADDER_POSITION);
+  log(
+    "Manually repositioned a player to the top of the ladder after returning to a crawlspace after a Black Market.",
+  );
 }
 
 function checkExitingCrawlspace() {
-  if (v.level.crawlspace.amExiting) {
-    v.level.crawlspace.amExiting = false;
+  if (!v.level.crawlspace.amExiting) {
+    return;
+  }
+  v.level.crawlspace.amExiting = false;
 
-    if (v.level.crawlspace.returnRoomPosition === null) {
-      return;
-    }
-
+  if (v.level.crawlspace.returnRoomPosition !== null) {
     movePlayersAndFamiliars(v.level.crawlspace.returnRoomPosition);
   }
 }
