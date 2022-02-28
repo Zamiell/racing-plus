@@ -2,11 +2,13 @@
 // This takes too long, so manually spawn the key pieces as soon as the angel dies
 // This also prevents the situation where a player can leave the room before the death animation
 // is finished and miss out on a key piece
+// Furthermore, this feature nerfs angels such that it forces players to fight one of them at a time
 
 import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   findFreePosition,
+  getAliveNPCs,
   spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -49,12 +51,24 @@ export function postEntityKillGabriel(entity: Entity): void {
 }
 
 function spawnKeyPiece(entity: Entity) {
-  // Fallen Angels do not drop key pieces
-  if (entity.Variant !== AngelVariant.NORMAL) {
+  if (!shouldSpawnKeyPiece(entity)) {
     return;
   }
 
+  // Spawn the item
+  // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
+  const position = findFreePosition(entity.Position);
+  const collectibleType = getKeySubType(entity);
+  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
+}
+
+function shouldSpawnKeyPiece(entity: Entity) {
   const roomType = g.r.GetType();
+
+  // Fallen Angels do not drop key pieces
+  if (entity.Variant !== AngelVariant.NORMAL) {
+    return false;
+  }
 
   // We don't want to drop key pieces from angels in Victory Lap bosses or the Boss Rush
   if (
@@ -63,7 +77,7 @@ function spawnKeyPiece(entity: Entity) {
     roomType !== RoomType.ROOM_ANGEL // 15
   ) {
     // Key pieces dropping from angels in non-Angel Rooms was introduced in Booster Pack 4
-    return;
+    return false;
   }
 
   // Do not drop any key pieces if the player already has both of them
@@ -73,14 +87,18 @@ function spawnKeyPiece(entity: Entity) {
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) && // 239
     !anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS) // 123
   ) {
-    return;
+    return false;
   }
 
-  // Spawn the item
-  // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
-  const position = findFreePosition(entity.Position);
-  const collectibleType = getKeySubType(entity);
-  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
+  // Do not drop any key pieces if another angel in the room is still alive
+  const aliveUriels = getAliveNPCs(EntityType.ENTITY_URIEL);
+  const aliveGabriels = getAliveNPCs(EntityType.ENTITY_GABRIEL);
+  const aliveAngels = [...aliveUriels, ...aliveGabriels];
+  if (aliveAngels.length > 0) {
+    return false;
+  }
+
+  return true;
 }
 
 function getKeySubType(entity: Entity) {
