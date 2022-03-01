@@ -11,6 +11,6 @@ cloc \
   --exclude-dir="node_modules" \
   --include-lang="TypeScript" \
   "$DIR/src" \
-  #"$DIR/node_modules/isaacscript" \
-  #"$DIR/node_modules/isaac-typescript-definitions" \
-  #"$DIR/node_modules/isaacscript-common"
+  "$DIR/node_modules/isaacscript" \
+  "$DIR/node_modules/isaac-typescript-definitions" \
+  "$DIR/node_modules/isaacscript-common"
