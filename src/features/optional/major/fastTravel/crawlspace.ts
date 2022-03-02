@@ -3,7 +3,7 @@
 import {
   DISTANCE_OF_GRID_TILE,
   getPlayerCloserThan,
-  getRoomSafeGridIndex,
+  getRoomGridIndex,
   inCrawlspace,
   inSecretShop,
   isRoomInsideMap,
@@ -97,10 +97,8 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
 }
 
 function playerIsTouchingExitTile(player: EntityPlayer) {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-
   // First, handle the special case of being in a secret shop
-  if (roomSafeGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX) {
+  if (inSecretShop()) {
     const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
     return (
       // The vanilla hitbox seems to be half of a grid square,
@@ -353,7 +351,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 function touched(entity: GridEntity | EntityEffect) {
   const gridEntity = entity as GridEntity;
   const variant = gridEntity.GetVariant();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 
   if (FAST_TRAVEL_DEBUG) {
@@ -362,7 +360,7 @@ function touched(entity: GridEntity | EntityEffect) {
 
   // Save the current room information so that we can return here once we exit the top of the
   // crawlspace ladder
-  v.level.crawlspace.returnRoomGridIndex = roomSafeGridIndex;
+  v.level.crawlspace.returnRoomGridIndex = roomGridIndex;
   v.level.crawlspace.returnRoomPosition = entity.Position;
 
   // Additionally, save the previous room information so that we can avoid a softlock when returning

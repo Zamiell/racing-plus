@@ -3,7 +3,7 @@
 // Some code is borrowed from Revelations / StageAPI
 // This feature is not configurable because we destroy the original starting room graphic file
 
-import { getEffectiveStage, getRoomSafeGridIndex } from "isaacscript-common";
+import { getEffectiveStage, inStartingRoom } from "isaacscript-common";
 import g from "../../globals";
 import { CreepRedSubTypeCustom } from "../../types/CreepRedSubTypeCustom";
 import { RaceFormat } from "../race/types/RaceFormat";
@@ -59,13 +59,11 @@ function shouldDrawControlsGraphic() {
   // (even though on vanilla the sprite will display in Greed Mode)
   const isGreedMode = g.g.IsGreedMode();
   const effectiveStage = getEffectiveStage();
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     !isGreedMode &&
     effectiveStage === 1 &&
-    roomSafeGridIndex === startingRoomGridIndex &&
+    inStartingRoom() &&
     !inSeededOrDiversityRace()
   );
 }

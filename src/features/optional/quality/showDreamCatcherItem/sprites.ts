@@ -1,4 +1,4 @@
-import { emptyArray, getRoomSafeGridIndex } from "isaacscript-common";
+import { emptyArray, inStartingRoom } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { isSlideAnimationActive } from "../../../utils/detectSlideAnimation";
@@ -62,13 +62,11 @@ export function reset(): void {
 
 function shouldShowSprites() {
   const isGreedMode = g.g.IsGreedMode();
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
     // Only show the sprites in the starting room
-    roomSafeGridIndex === startingRoomGridIndex &&
+    inStartingRoom() &&
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
     !isGreedMode
   );

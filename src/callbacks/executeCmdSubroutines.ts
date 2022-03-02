@@ -2,6 +2,7 @@ import {
   getEntities,
   getRoomGridIndexesForType,
   log,
+  logRoom,
   printConsole,
   spawnGridEntityWithVariant,
   teleport,
@@ -270,7 +271,7 @@ export function planetarium(): void {
 }
 
 export function roomInfo(): void {
-  // logRoom(); // TODO
+  logRoom();
 }
 
 export function trapdoor(): void {

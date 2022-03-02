@@ -3,8 +3,9 @@
 import {
   ensureAllCases,
   getPlayers,
-  getRoomSafeGridIndex,
+  getRoomGridIndex,
   isChildPlayer,
+  isPonyActive,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -63,7 +64,7 @@ function getCustomSpriteFilename(
     GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
   );
   const stage = g.l.GetStage();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
 
@@ -77,12 +78,12 @@ function getCustomSpriteFilename(
       }
 
       // -8
-      if (roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
+      if (roomGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
 
       // -10
-      if (roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
+      if (roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
         if (!repentanceStage && (stage === 1 || stage === 2)) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
@@ -171,7 +172,7 @@ export function checkShouldOpen(
 // TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
 export function anyPlayerUsingPony() {
   for (const player of getPlayers()) {
-    if (isUsingPony(player)) {
+    if (isPonyActive(player)) {
       return true;
     }
   }
@@ -209,7 +210,7 @@ export function checkPlayerTouched(
 
     if (
       // We don't want a Pony dash to transition to a new floor or a crawlspace
-      !isUsingPony(player) &&
+      !isPonyActive(player) &&
       !isChildPlayer(player) &&
       canInteractWith(player)
     ) {
@@ -217,16 +218,6 @@ export function checkPlayerTouched(
       return; // Prevent two players from touching the same entity
     }
   }
-}
-
-function isUsingPony(player: EntityPlayer): boolean {
-  const temporaryEffects = player.GetEffects();
-  return (
-    temporaryEffects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_PONY) ||
-    temporaryEffects.HasCollectibleEffect(
-      CollectibleType.COLLECTIBLE_WHITE_PONY,
-    )
-  );
 }
 
 function canInteractWith(player: EntityPlayer) {

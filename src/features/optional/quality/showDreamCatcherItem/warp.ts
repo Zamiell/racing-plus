@@ -7,7 +7,7 @@ import {
   getPlayers,
   getRoomGridIndexesForType,
   getRooms,
-  getRoomSafeGridIndex,
+  inStartingRoom,
   log,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -23,9 +23,7 @@ const STAIRWAY_GRID_INDEX = 25;
 export function checkStartDreamCatcherWarp(): void {
   const isGreedMode = g.g.IsGreedMode();
   const onTheAscent = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const isFirstVisit = g.r.IsFirstVisit();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
   const effectiveStage = getEffectiveStage();
 
   if (v.level.warpState !== DreamCatcherWarpState.INITIAL) {
@@ -37,11 +35,7 @@ export function checkStartDreamCatcherWarp(): void {
   }
 
   // We only need to visit rooms upon reaching a new floor for the first time
-  if (
-    roomSafeGridIndex !== startingRoomGridIndex ||
-    !isFirstVisit ||
-    effectiveStage === 1
-  ) {
+  if (!inStartingRoom() || !isFirstVisit || effectiveStage === 1) {
     return;
   }
 

@@ -46,11 +46,12 @@ export function main(): void {
   const stageType = g.l.GetStageType();
   const isaacFrameCount = Isaac.GetFrameCount();
   const roomStageID = getRoomStageID();
+  const roomType = g.r.GetType();
   const roomVariant = getRoomVariant();
   const roomSubType = getRoomSubType();
 
   log(
-    `MC_POST_NEW_ROOM - Room: ${roomStageID}.${roomVariant}.${roomSubType} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_ROOM - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
   );
 
   // Util

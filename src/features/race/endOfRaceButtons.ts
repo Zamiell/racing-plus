@@ -1,7 +1,7 @@
 import {
   getClosestPlayer,
   getRoomListIndex,
-  getRoomSafeGridIndex,
+  inMegaSatanRoom,
   openAllDoors,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -72,10 +72,9 @@ export function spawnEndOfRaceButtons(): void {
 
 function spawnDPSButton() {
   const roomListIndex = getRoomListIndex();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   let gridIndex = 32; // Top-left
-  if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (inMegaSatanRoom()) {
     // The normal position is out of bounds inside of the Mega Satan room
     gridIndex = 107;
   }
@@ -100,10 +99,9 @@ function spawnDPSButton() {
 
 export function spawnVictoryLapButton(center?: boolean): void {
   const roomListIndex = getRoomListIndex();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   let gridIndex = 42; // Top right
-  if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (inMegaSatanRoom()) {
     // The normal position is out of bounds inside of the Mega Satan room
     gridIndex = 117;
   }

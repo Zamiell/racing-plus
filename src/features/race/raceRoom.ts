@@ -5,7 +5,7 @@ import {
   getFamiliars,
   getNPCs,
   getPlayers,
-  getRoomSafeGridIndex,
+  getRoomGridIndex,
   getRoomStageID,
   getRoomVariant,
   removeAllDoors,
@@ -227,12 +227,12 @@ function shouldSetupRaceRoom() {
 export function inRaceRoom(): boolean {
   const roomStageID = getRoomStageID();
   const roomVariant = getRoomVariant();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
 
   return (
     roomStageID === RACE_ROOM_STAGE_ID &&
     roomVariant === RACE_ROOM_VARIANT &&
-    roomSafeGridIndex === GridRooms.ROOM_DEBUG_IDX
+    roomGridIndex === GridRooms.ROOM_DEBUG_IDX
   );
 }
 

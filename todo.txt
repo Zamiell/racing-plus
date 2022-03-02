@@ -12,8 +12,4 @@ TODO Racing+ new features:
 - test inGenesisRoom code again, why is variant == -1 ?
 - test new inCrawlspace function
 
-isaacscript-common TODO:
-- Re-add Pony feature
-- Uncomment logRoom
-- Move pickup functions from entity.ts --> pickup.ts
-- move logic in postPlayerChangeHealth.ts to player functions
+- fix member card ladder room

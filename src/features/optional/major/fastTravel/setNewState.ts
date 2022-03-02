@@ -6,7 +6,7 @@ import {
   forgottenSwitch,
   getFamiliars,
   getPlayers,
-  getRoomSafeGridIndex,
+  getRoomGridIndex,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -62,7 +62,7 @@ export function setFadingToBlack(
   position: Vector,
   upwards: boolean,
 ): void {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
 
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
@@ -70,10 +70,9 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
-  v.run.blueWomb = roomSafeGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
-  v.run.theVoid = roomSafeGridIndex === GridRooms.ROOM_THE_VOID_IDX;
-  v.run.repentanceSecretExit =
-    roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+  v.run.blueWomb = roomGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
+  v.run.theVoid = roomGridIndex === GridRooms.ROOM_THE_VOID_IDX;
+  v.run.repentanceSecretExit = roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
 
   const whitelist = new Set([
     // Allow the player to toggle the map
@@ -95,13 +94,13 @@ function setGameStateFlags() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
 
   // If the player has gone through the trapdoor past the strange door
   if (
     !repentanceStage &&
     stage === 6 &&
-    roomSafeGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX
+    roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it
     g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);

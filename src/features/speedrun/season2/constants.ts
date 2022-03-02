@@ -1,7 +1,7 @@
 import { MINUTE_IN_MILLISECONDS, range } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
-export const SEASON_2_DEBUG = true;
+export const SEASON_2_DEBUG = false;
 
 export const SEASON_2_NUM_BANS = 3;
 

@@ -1,5 +1,5 @@
 import {
-  getRoomSafeGridIndex,
+  getRoomGridIndex,
   isPostBossVoidPortal,
   log,
   onRepentanceStage,
@@ -92,7 +92,7 @@ function shouldRemove() {
   const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
+  const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2
@@ -114,7 +114,7 @@ function shouldRemove() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === 8 &&
-    roomSafeGridIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
+    roomGridIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
   ) {
     log(
       `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
@@ -128,7 +128,7 @@ function shouldRemove() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === 9 &&
-    roomSafeGridIndex !== GridRooms.ROOM_THE_VOID_IDX
+    roomGridIndex !== GridRooms.ROOM_THE_VOID_IDX
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
@@ -179,7 +179,7 @@ function shouldRemove() {
   if (
     stage < 7 &&
     backwardPath &&
-    roomSafeGridIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
+    roomGridIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
   ) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,

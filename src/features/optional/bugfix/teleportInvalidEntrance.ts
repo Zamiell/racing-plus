@@ -3,7 +3,7 @@ import {
   getDoors,
   getFamiliars,
   getPlayers,
-  getRoomSafeGridIndex,
+  inStartingRoom,
   log,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -65,13 +65,10 @@ export function postNewRoom(): void {
 }
 
 function enteredRoomViaTeleport() {
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
   const roomType = g.r.GetType();
   const isFirstVisit = g.r.IsFirstVisit();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-  const justReachedThisFloor =
-    roomSafeGridIndex === startingRoomGridIndex && isFirstVisit;
+  const justReachedThisFloor = inStartingRoom() && isFirstVisit;
   const inDungeon = roomType === RoomType.ROOM_DUNGEON;
   const cameFromDungeon =
     previousRoomGridIndex === GridRooms.ROOM_DUNGEON_IDX ||

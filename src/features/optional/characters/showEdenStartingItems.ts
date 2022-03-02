@@ -1,11 +1,10 @@
 import {
   getEffectiveStage,
   getMaxCollectibleType,
-  getRoomSafeGridIndex,
+  inStartingRoom,
   range,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
@@ -87,16 +86,14 @@ function setItemSprites() {
 // Only show the sprites in the starting room of the first floor
 function shouldShowSprites() {
   const effectiveStage = getEffectiveStage();
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
-  const roomSafeGridIndex = getRoomSafeGridIndex();
 
   return (
     (character === PlayerType.PLAYER_EDEN ||
       character === PlayerType.PLAYER_EDEN_B) &&
     effectiveStage === 1 &&
-    roomSafeGridIndex === startingRoomGridIndex
+    inStartingRoom()
   );
 }
 

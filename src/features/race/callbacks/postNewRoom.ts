@@ -1,4 +1,4 @@
-import { FINAL_STAGE, getRoomSafeGridIndex } from "isaacscript-common";
+import { FINAL_STAGE, inMegaSatanRoom } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
@@ -39,9 +39,7 @@ export function racePostNewRoom(): void {
 }
 
 function recordMegaSatanRoom() {
-  const roomSafeGridIndex = getRoomSafeGridIndex();
-
-  if (roomSafeGridIndex === GridRooms.ROOM_MEGA_SATAN_IDX) {
+  if (inMegaSatanRoom()) {
     socket.send("level", `${MEGA_SATAN_FAKE_STAGE_NUM}-0-false`);
   }
 }
