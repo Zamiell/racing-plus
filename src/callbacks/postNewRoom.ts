@@ -1,6 +1,7 @@
 import {
   getRoomStageID,
   getRoomSubType,
+  getRoomType,
   getRoomVariant,
   log,
 } from "isaacscript-common";
@@ -46,7 +47,7 @@ export function main(): void {
   const stageType = g.l.GetStageType();
   const isaacFrameCount = Isaac.GetFrameCount();
   const roomStageID = getRoomStageID();
-  const roomType = g.r.GetType();
+  const roomType = getRoomType();
   const roomVariant = getRoomVariant();
   const roomSubType = getRoomSubType();
 

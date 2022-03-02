@@ -19,7 +19,7 @@ export function postNewRoom(): void {
     g.race.goal !== RaceGoal.THE_BEAST ||
     repentanceStage ||
     stage !== 6 ||
-    inStartingRoom()
+    !inStartingRoom()
   ) {
     return;
   }
