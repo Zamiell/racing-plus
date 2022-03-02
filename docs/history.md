@@ -2,6 +2,7 @@
 
 ### *v0.76.1* - March 1st, 2022
 
+- In season 2, Terra is now removed from the Planetarium pool. (Thanks mgln)
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 
 ### *v0.76.0* - February 28th, 2022

@@ -9,7 +9,5 @@ TODO Racing+ new features:
 - You still die permanently on Forgotten with heartbreak
 - Also you die permanently if you have only have 1 hp remaining and remove mother's kiss (see gamon dm)
 - icon for free devil deal as present / mystery gift
-- test inGenesisRoom code again, why is variant == -1 ?
-- test new inCrawlspace function
 
 - fix member card ladder room
