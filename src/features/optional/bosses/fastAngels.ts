@@ -2,13 +2,11 @@
 // This takes too long, so manually spawn the key pieces as soon as the angel dies
 // This also prevents the situation where a player can leave the room before the death animation
 // is finished and miss out on a key piece
-// Furthermore, this feature nerfs angels such that it forces players to fight one of them at a time
 
 import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   findFreePosition,
-  getAliveNPCs,
   spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -87,14 +85,6 @@ function shouldSpawnKeyPiece(entity: Entity) {
     anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) && // 239
     !anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS) // 123
   ) {
-    return false;
-  }
-
-  // Do not drop any key pieces if another angel in the room is still alive
-  const aliveUriels = getAliveNPCs(EntityType.ENTITY_URIEL);
-  const aliveGabriels = getAliveNPCs(EntityType.ENTITY_GABRIEL);
-  const aliveAngels = [...aliveUriels, ...aliveGabriels];
-  if (aliveAngels.length > 0) {
     return false;
   }
 
