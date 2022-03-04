@@ -80,6 +80,10 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
     return;
   }
 
+  if (inSecretShop() && !v.room.movedAwayFromSecretShopLadder) {
+    return;
+  }
+
   if (!playerIsTouchingExitTile(player)) {
     return;
   }

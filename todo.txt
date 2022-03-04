@@ -14,5 +14,4 @@ TODO Racing+ new features:
 - make card type map for isaacscript-common
 - Double coins heal Keeper for their proper amount.
 
-- fix member card ladder room
 - make seeded floors visiting mechanic apply to s2
