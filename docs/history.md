@@ -6,6 +6,7 @@
 - In season 2, the build refresh time is lowered from 90 seconds to 75 seconds.
 - In season 2, Terra is now removed from the Planetarium pool. (Thanks mgln)
 - In season 2, Tainted Samson can no longer start with the Fire Mind build. (Thanks toooschi)
+- In season 2, Tainted Azazel can no longer start with Revelation.
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 - Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
 - Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)

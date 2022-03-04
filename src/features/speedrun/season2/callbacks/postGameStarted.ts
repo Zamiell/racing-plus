@@ -251,6 +251,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
         CollectibleType.COLLECTIBLE_DEAD_EYE, // 373
         CollectibleType.COLLECTIBLE_TECH_X, // 395
         CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
+        CollectibleType.COLLECTIBLE_REVELATION, // 643
       );
     }
 
