@@ -237,6 +237,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
       return getBuildIndexesFor(
         CollectibleType.COLLECTIBLE_DR_FETUS, // 52
         CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
+        CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
       );
     }
 

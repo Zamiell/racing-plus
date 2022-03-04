@@ -122,6 +122,7 @@ Some builds are banned on certain characters:
   - Brimstone
 - 28 - Tainted Azazel
   - Dr. Fetus
+  - Revelation
   - Cricket's Body + Steven
   - Death's Touch + Sad Onion
   - Fire Mind + 13 Luck

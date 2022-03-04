@@ -11,3 +11,5 @@ TODO Racing+ new features:
 - icon for free devil deal as present / mystery gift
 
 - fix member card ladder room
+- check s2 high seconds number over threshold and set it down
+- make card type map for isaacscript-common

@@ -187,6 +187,6 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
   });
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = 1.5;
+const SEASON_2_LOCK_MINUTES = 1.25;
 export const SEASON_2_LOCK_MILLISECONDS =
   SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;

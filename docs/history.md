@@ -2,9 +2,13 @@
 
 ### *v0.76.2* - March ?th, 2022
 
+- Reverted the angel key piece change from the previous patch.
+- In season 2, the build refresh time is lowered from 90 seconds to 75 seconds.
 - In season 2, Terra is now removed from the Planetarium pool. (Thanks mgln)
+- In season 2, Tainted Samson can no longer start with the Fire Mind build. (Thanks toooschi)
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 - Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
+- Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)
 
 ### *v0.76.0* - February 28th, 2022
 
@@ -16,6 +20,7 @@
 - Deleted Angel Room #12 (with the White Poop).
 - Deleted Angel Rooms #51, #52, and #53 (the rooms with double pedestals).
   - This changes the average pedestal amount from 1.16 to 1.00. (This is a 14.8% difference.)
+- Angels will no longer drop key pieces if you there is another alive angel in the room.
 - In seeded races, R Key is now removed from all pools (and Eden can no longer start with it). (Thanks Moucheron Quipet)
 - In seeded races, Bethany and Tainted Magdalene now get 1.5 filled red heart containers instead of 1. (Thanks Hispa)
 - In seeded races, Birthright is now removed from pools if you start as The Lost.
