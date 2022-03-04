@@ -36,6 +36,7 @@ export function preUseItemWeNeedToGoDeeper(
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const challenge = Isaac.GetChallenge();
+  const isMirrorWorld = g.r.IsMirrorWorld();
 
   // Rarely, the shovel will trigger two times on the same frame
   // It is unknown why this happens
@@ -63,6 +64,11 @@ export function preUseItemWeNeedToGoDeeper(
     gridEntityType === GridEntityType.GRID_TRAPDOOR
   ) {
     return undefined;
+  }
+
+  // In vanilla, We Need to Go Deeper will not spawn any trapdoors in mirror world
+  if (isMirrorWorld && gridEntityType === GridEntityType.GRID_TRAPDOOR) {
+    return true;
   }
 
   const gridIndex = g.r.GetGridIndex(player.Position);
@@ -145,6 +151,13 @@ function setRepentanceDoors() {
 }
 
 function spawnTrapdoorInBossRooms() {
+  const isMirrorWorld = g.r.IsMirrorWorld();
+
+  // Normal trapdoors don't spawn in mirror world
+  if (isMirrorWorld) {
+    return;
+  }
+
   if (doesSecretPathChallengeSpawnTrapdoorOnThisFloor()) {
     return;
   }
