@@ -33,14 +33,14 @@ export function postGameStarted(): void {
     return;
   }
 
-  const controllerIndexes: int[] = [];
+  const controllerIndexes = new Set<int>();
   for (const player of getPlayers()) {
-    if (!controllerIndexes.includes(player.ControllerIndex)) {
-      controllerIndexes.push(player.ControllerIndex);
+    if (!controllerIndexes.has(player.ControllerIndex)) {
+      controllerIndexes.add(player.ControllerIndex);
     }
   }
 
-  if (controllerIndexes.length > 1) {
+  if (controllerIndexes.size > 1) {
     endRun();
   }
 }

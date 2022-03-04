@@ -1,6 +1,6 @@
 import { enableAllInputs } from "isaacscript-common";
 import { FAST_TRAVEL_FEATURE_NAME } from "../constants";
-import { FastTravelState } from "../enums";
+import { FastTravelState } from "../types/FastTravelState";
 import v from "../v";
 
 export function fastTravelPostGameStartedContinued(): void {

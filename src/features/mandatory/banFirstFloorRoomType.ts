@@ -7,8 +7,8 @@ import {
   removeDoors,
 } from "isaacscript-common";
 import g from "../../globals";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { inSeededRace } from "../race/v";
-import { ChallengeCustom } from "../speedrun/enums";
 import { isOnFirstCharacter } from "../speedrun/speedrun";
 
 const SEASON_2_BANNED_ROOM_TYPES: readonly RoomType[] = [

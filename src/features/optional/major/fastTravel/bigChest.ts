@@ -13,17 +13,17 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
-import { ChallengeCustom } from "../../../speedrun/enums";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import { isOnFinalCharacter } from "../../../speedrun/speedrun";
-import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
 
 enum ReplacementAction {
   /** Leave the Big Chest there. */

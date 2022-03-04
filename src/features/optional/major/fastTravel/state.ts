@@ -1,13 +1,14 @@
 import { anyPlayerCloserThan, ensureAllCases, log } from "isaacscript-common";
 import g from "../../../../globals";
 import {
-  FastTravelEntityDescription,
   FAST_TRAVEL_DEBUG,
   TRAPDOOR_BOSS_REACTION_FRAMES,
   TRAPDOOR_OPEN_DISTANCE,
   TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS,
 } from "./constants";
-import { FastTravelEntityState, FastTravelEntityType } from "./enums";
+import { FastTravelEntityDescription } from "./types/FastTravelEntityDescription";
+import { FastTravelEntityState } from "./types/FastTravelEntityState";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
 import v from "./v";
 
 export function open(

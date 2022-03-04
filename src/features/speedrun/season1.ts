@@ -1,9 +1,9 @@
 import g from "../../globals";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../utilsGlobals";
-import { ChallengeCustom } from "./enums";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {

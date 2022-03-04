@@ -3,10 +3,11 @@ import g from "../../../../globals";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
-import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
+import { FastTravelEntityState } from "./types/FastTravelEntityState";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 

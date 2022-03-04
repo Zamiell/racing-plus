@@ -3,7 +3,7 @@ import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import * as blackSprite from "../blackSprite";
 import * as checkStateComplete from "../checkStateComplete";
-import { FastTravelState } from "../enums";
+import { FastTravelState } from "../types/FastTravelState";
 import v from "../v";
 
 export function fastTravelPostRender(): void {

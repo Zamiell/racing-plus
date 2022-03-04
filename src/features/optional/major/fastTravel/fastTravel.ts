@@ -17,12 +17,10 @@ import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
 } from "./constants";
-import {
-  FastTravelEntityState,
-  FastTravelEntityType,
-  FastTravelState,
-} from "./enums";
 import * as state from "./state";
+import { FastTravelEntityState } from "./types/FastTravelEntityState";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
+import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 export function init(

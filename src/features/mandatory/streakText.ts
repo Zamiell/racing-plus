@@ -14,8 +14,8 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { goingToRaceRoom } from "../race/raceRoom";
-import { ChallengeCustom } from "../speedrun/enums";
 
 const FRAMES_BEFORE_FADE = 50;
 

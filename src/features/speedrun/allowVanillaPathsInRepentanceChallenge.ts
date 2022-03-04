@@ -17,8 +17,8 @@ import {
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
-import { ChallengeCustom } from "./enums";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

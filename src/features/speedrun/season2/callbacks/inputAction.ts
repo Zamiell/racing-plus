@@ -1,4 +1,4 @@
-import { ChallengeCustom } from "../../enums";
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { SEASON_2_DEBUG } from "../constants";
 
 // InputHook.IS_ACTION_TRIGGERED (1)

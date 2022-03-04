@@ -22,8 +22,8 @@ import { RaceStatus } from "../../../race/types/RaceStatus";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
-import { FastTravelState } from "./enums";
 import * as nextFloor from "./nextFloor";
+import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 export function setNewState(fastTravelState: FastTravelState): void {

@@ -4,7 +4,7 @@ import {
   gridToPos,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { ChallengeCustom } from "../../speedrun/enums";
+import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "../v";

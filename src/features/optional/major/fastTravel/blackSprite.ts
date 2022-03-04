@@ -2,7 +2,7 @@
 
 import { initSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
-import { FastTravelState } from "./enums";
+import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 const sprite = initSprite("gfx/black.anm2");

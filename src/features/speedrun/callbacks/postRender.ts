@@ -1,11 +1,11 @@
 import { log } from "isaacscript-common";
 import g from "../../../globals";
+import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
-import { ChallengeCustom } from "../enums";
 import { season2PostRender } from "../season2/callbacks/postRender";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";

@@ -1,5 +1,5 @@
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
-import { ChallengeCustom } from "../../enums";
 import { resetSprites } from "../sprites";
 
 export function season2PostNewRoom(): void {

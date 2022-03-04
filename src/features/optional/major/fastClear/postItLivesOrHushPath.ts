@@ -9,11 +9,11 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { hasPolaroidOrNegative } from "../../../../utils";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
-import { ChallengeCustom } from "../../../speedrun/enums";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 
 enum ItLivesSituation {

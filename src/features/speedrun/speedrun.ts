@@ -1,11 +1,11 @@
 import { ISAAC_FRAMES_PER_SECOND, sumArray } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
-import { CHALLENGE_DEFINITIONS } from "./constants";
-import { ChallengeCustom } from "./enums";
+import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
 import v from "./v";
 
 export function checkValidCharOrder(): boolean {
@@ -156,8 +156,7 @@ export function getCharacterOrderSafe(): PlayerType[] {
 
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();
-  const speedrunChallenges = [...CHALLENGE_DEFINITIONS.keys()];
-  return speedrunChallenges.includes(challenge);
+  return CUSTOM_CHALLENGES_SET.has(challenge);
 }
 
 export function isOnFinalCharacter(): boolean {

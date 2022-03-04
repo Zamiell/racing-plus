@@ -1,4 +1,5 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
+import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
@@ -7,7 +8,6 @@ import {
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
-import { ChallengeCustom } from "../enums";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import {

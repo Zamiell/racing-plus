@@ -11,10 +11,10 @@ import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import { FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
 import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;

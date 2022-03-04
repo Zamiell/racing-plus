@@ -2,6 +2,7 @@
 // or It Lives!
 
 import {
+  countEntities,
   forgottenSwitch,
   getFamiliars,
   getPlayers,
@@ -41,9 +42,8 @@ function shouldSubvertTeleport() {
   }
 
   for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT.values()) {
-    // We cannot use "Isaac.CountEntities()" for this since we need to ignore charmed entities
-    const entities = Isaac.FindByType(entityType, -1, -1, false, true);
-    if (entities.length > 0) {
+    const numEntities = countEntities(entityType, -1, -1, true);
+    if (numEntities > 0) {
       return true;
     }
   }

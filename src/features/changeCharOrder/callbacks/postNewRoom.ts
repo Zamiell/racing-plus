@@ -8,8 +8,8 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import { consoleCommand } from "../../../utils";
-import { ChallengeCustom } from "../../speedrun/enums";
 import { getRoomsEntered } from "../../utils/roomsEntered";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import v from "../v";

@@ -1,8 +1,8 @@
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import { FastTravelState } from "../enums";
 import * as nextFloor from "../nextFloor";
 import { setNewState } from "../setNewState";
+import { FastTravelState } from "../types/FastTravelState";
 import v from "../v";
 
 export function fastTravelPostUpdate(): void {

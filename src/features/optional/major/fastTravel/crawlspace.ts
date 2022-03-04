@@ -16,9 +16,10 @@ import {
 import g from "../../../../globals";
 import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import { FastTravelEntityState, FastTravelEntityType } from "./enums";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
+import { FastTravelEntityState } from "./types/FastTravelEntityState";
+import { FastTravelEntityType } from "./types/FastTravelEntityType";
 import v from "./v";
 
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;

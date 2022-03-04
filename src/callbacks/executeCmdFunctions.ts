@@ -24,12 +24,12 @@ import { RaceGoal } from "../features/race/types/RaceGoal";
 import { RacerStatus } from "../features/race/types/RacerStatus";
 import { RaceStatus } from "../features/race/types/RaceStatus";
 import { speedrunSetNextCharacterAndRestart } from "../features/speedrun/callbacks/postRender";
-import { ChallengeCustom } from "../features/speedrun/enums";
 import { restartOnNextFrame } from "../features/utils/restartOnNextFrame";
 import g from "../globals";
 import { CARD_MAP } from "../maps/cardMap";
 import { CHARACTER_MAP } from "../maps/characterMap";
 import { PILL_MAP } from "../maps/pillMap";
+import { ChallengeCustom } from "../types/ChallengeCustom";
 import {
   consoleCommand,
   getPartialMatchFromMap,

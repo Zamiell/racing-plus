@@ -3,8 +3,8 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
-import { FastTravelState } from "./enums";
 import { setNewState, setPlayersVisible } from "./setNewState";
+import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 // ModCallbacks.MC_POST_RENDER (2)

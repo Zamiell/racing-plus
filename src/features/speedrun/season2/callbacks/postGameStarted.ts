@@ -8,6 +8,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import {
   giveCollectibleAndRemoveFromPools,
@@ -17,7 +18,6 @@ import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../../utils/restartOnNextFrame";
-import { ChallengeCustom } from "../../enums";
 import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { getCharacterOrderSafe } from "../../speedrun";
 import {

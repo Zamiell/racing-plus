@@ -1,8 +1,8 @@
 import { getDefaultKColor, getPlayerName } from "isaacscript-common";
 import g from "../../../../globals";
+import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
-import { ChallengeCustom } from "../../enums";
 import { SEASON_2_LOCK_MILLISECONDS, SEASON_2_NUM_BANS } from "../constants";
 import sprites from "../sprites";
 import v, { season2GetTimeGameOpened } from "../v";
