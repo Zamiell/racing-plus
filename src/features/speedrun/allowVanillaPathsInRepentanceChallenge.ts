@@ -153,7 +153,7 @@ function setRepentanceDoors() {
 function spawnTrapdoorInBossRooms() {
   const isMirrorWorld = g.r.IsMirrorWorld();
 
-  // Normal trapdoors don't spawn in mirror world
+  // Trapdoors do not spawn in the mirror world
   if (isMirrorWorld) {
     return;
   }
