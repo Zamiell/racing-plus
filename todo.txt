@@ -13,3 +13,4 @@ TODO Racing+ new features:
 - fix member card ladder room
 - check s2 high seconds number over threshold and set it down
 - make card type map for isaacscript-common
+- Double coins heal Keeper for their proper amount.

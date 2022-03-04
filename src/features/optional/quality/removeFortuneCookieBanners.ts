@@ -1,3 +1,9 @@
+// The Fortune Cookie text is annoying and blocks gameplay,
+// so we want to remove it entirely
+// Racing+ removes the files that show the vanilla streak text
+// Thus, we can override the Fortune Cookie text by immediately showing normal streak text after a
+// Fortune Cookie use
+
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -8,12 +14,7 @@ export function useItem(): void {
     return;
   }
 
-  // The Fortune Cookie text is annoying and blocks gameplay,
-  // so we want to remove it entirely
-  // Racing+ removes the files that show the vanilla streak text
-  // Thus, we can override the Fortune Cookie text by immediately showing normal streak text after a
-  // Fortune Cookie use
-  // However, this will only work if they do not have the "VanillaStreakText" mod enabled
+  // We can't abuse the HUD method if the player has the "VanillaStreakText" mod enabled
   if (VanillaStreakText !== undefined) {
     return;
   }

@@ -584,7 +584,7 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
       ModConfigMenuOptionType.BOOLEAN,
       "0509",
       "Remove Fortune Cookie UI",
-      "Remove the banners that occur when Fortune Cookie does not grant a pickup.",
+      "Remove the banners that occur when you use Fortune Cookie.",
     ],
   ],
   [
@@ -750,15 +750,6 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
       "0603",
       "Pills cancel animations",
       "Make Power Pill and Horf! cancel animations like all the other pills do.",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Sawblade",
-      "An extra orbital item is added to the Treasure Room pool.",
     ],
   ],
   [
@@ -958,15 +949,6 @@ export const BUG_FIXES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "",
-      "Fix infinite Genesis",
-      "Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the Genesis bug.",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "",
       "Seeded GB Bug",
       "Make morphed GB Bug pickups seeded in order.",
     ],
@@ -1061,14 +1043,23 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
-      "Fix Locust of Famine",
-      "Make the Locust of Famine sprite match the color of the flies.",
+      "Fix Heart UI",
+      "Make empty red hearts easier to see.",
     ],
   ],
 ];
 
 // 1011-1020
 export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Fix Locust of Famine",
+      "Make the Locust of Famine sprite match the color of the flies.",
+    ],
+  ],
   [
     null,
     [
@@ -1139,6 +1130,15 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
       "",
       "Reduce opacity of fortunes",
       "Set the opacity for fortunes and custom seeds to 15%.",
+    ],
+  ],
+  [
+    null,
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove fog",
+      "Make elements on the screen easier to see and increase performance.",
     ],
   ],
 ];

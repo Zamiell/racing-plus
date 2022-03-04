@@ -74,6 +74,10 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 > Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play well for the first two floors).
 
+- <!-- doubleAngelNerf --> Uriel and Gabriel can no longer damage each other.
+
+> Why? This greatly increases the RNG having to do with Angel Rooms.
+
 ### 5) Fast-Reset
 
 - `0006` <!-- fastReset --> The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
@@ -182,13 +186,13 @@ Post-flip actions:
 - `0313` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
 - `0314` <!-- fastColostomia 917 --> Colostomia will instantly appear.
 - `0315` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
-- <!-- 274 --> Some of the animations in the Mega Satan fight have been removed.
-- <!-- 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
+- <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274 --> Some of the animations in the Mega Satan fight have been removed.
+- <!-- megaSatanPreventEnd 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 
-- <!-- 407 --> Hush no longer plays an appear animation.
-- <!-- 951 --> Defeating The Beast no longer immediately ends the run.
+- <!-- "407.000_hush.anm2" 407 --> Hush no longer plays an appear animation.
+- <!-- beastPreventEnd 951 --> Defeating The Beast no longer immediately ends the run.
 
 > Why? This gives players a chance to touch a trophy.
 
@@ -275,7 +279,7 @@ Post-flip actions:
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
 - `0520` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
-- Players will start in the center of the room (instead of at the bottom).
+- <!-- centerStart --> Players will start in the center of the room (instead of at the bottom).
 
 > Why? This is convenient because it makes the player equidistant to all of the doors.
 
@@ -284,6 +288,7 @@ Post-flip actions:
 - `0601` <!-- extraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
   - 12 - Magic Mushroom (from 0.5)
   - 237 - Death's Touch (from 0.2)
+
 - `0601` <!-- extraStartingItems --> The following extra starting items will appear in the Treasure Room on the first floor:
   - 182 - Sacred Heart
   - 311 - Judas' Shadow
@@ -303,68 +308,58 @@ Post-flip actions:
 
 > Why? This allows skilled players to gain time by canceling more animations.
 
-- `0604` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
-- Sawblade is added to the Treasure Room pool. Sawblade is a custom orbital that has the same rotation speed, hitbox, and tick rate of the Sacrificial Dagger from Afterbirth+. It does 10 contact damage.
-
-> Why? Historically, orbitals have been a big part of speedrunning at the highest level. In Repentance, orbitals were nerfed in damage, rotation, and hitbox, making their usage much more infrequent. Sawblade is an attempt to restore historical orbital play by providing a relatively-strong orbital as a possible starting item.
-
-- Card Reading no longer spawns portals on Womb 2 and beyond.
+- <!-- nerfCardReading --> Card Reading no longer spawns portals on Womb 2 and beyond.
 
 > Why? Similar to Mercurius, this item increases the variance of a run by too much without containing any skill-based component.
 
 ### 7) Gameplay Removals
 
-- Mercurius is removed.
+- <!-- removeGloballyBannedItems --> Mercurius is removed.
 
 > Why? This item has a nasty combination of being incredibly powerful and not very skill-based. Having Mercurius in the game helps worse players win races more often.
 
-- TMTRAINER is removed.
+- <!-- removeGloballyBannedItems --> TMTRAINER is removed.
 
 > Why? This item has several problems. First, it can completely trivialize a run by taking you to the end. Second, it can cause softlocks or crashes. Third, it greatly increases the RNG in any particular run.
 
-- Glitched items are replaced by normal items.
+- <!-- removeGlitchedItems --> Glitched items are replaced by normal items.
 
 > Why? The same reasoning as for removing TMTRAINER.
 
-- The Karma trinket is removed.
+- <!-- removeGloballyBannedItems --> The Karma trinket is removed.
 
 > Why? Since all Donation Machines are removed, it has no effect.
 
-- The Amnesia and ??? pills are removed.
+- <!-- removeBannedPillEffects --> The Amnesia and ??? pills are removed.
 
 > Why? Since curses are automatically removed, these pills have no effect.
 
-- Mega Blast and Mega Mush are removed from all pools if the player starts with Void.
+- <!-- removeGloballyBannedItems --> Mega Blast and Mega Mush are removed from all pools if the player starts with Void.
 
 > Why? The combination of Void with these items trivializes the game and is too powerful.
 
-- Mom's Knife is removed from the Treasure Room pool.
+- <!-- "itempools.xml" --> Mom's Knife is removed from the Treasure Room pool.
 
 > Why? The vanilla weight of 0.2 means that powerful runs are more reliant on RNG than skill. Furthermore, it is much more powerful than any other item in the Treasure Room pool, so it can lead to lopsided races.
 
 ### 8) Cutscenes & Animations
 
 - `0801` <!-- fastTeleports --> Teleport animations are sped up by a factor of 2.
-- The intro that occurs when you launch the game is removed.
-- The cutscenes that occur when finishing a run are removed.
-- The cutscenes that occur before each boss are removed.
-- All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
-- The pause and unpause animations are removed.
+- <!-- speedUpFadeIn --> The intro that occurs when you launch the game is removed.
+- <!-- "cutscenes.xml" --> The cutscenes that occur when finishing a run are removed.
+- <!-- "versusscreen.anm2", "versusscreen_dogma.anm2", "versusscreen_mother.anm2" --> The cutscenes that occur before each boss are removed.
+- <!-- "giantbook.xml" --> All "giantbook" animations are removed (with the exception of Book of Revelations, Satanic Bible, eternal hearts, and rainbow poop).
+- <!-- "pausescreen.anm2" --> The pause and unpause animations are removed.
 
 ### 9) Bug Fixes
 
 - `0901` <!-- battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
 - `0902` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
 - `0903` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
-- Restock Machines will now appear in shops 25% of the time.
-
-> Why? According to the patch notes, this is the way that vanilla is supposed to be, but they messed up and no Restock Machines will ever appear.
-
-- Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
-- The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
-- Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
-- Saving & quitting in a Genesis room will now delete all collectibles in the room to prevent players from exploiting the bug where the options property is deleted.
-- Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.
+- <!-- fastTravel --> Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
+- <!-- fastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
+- <!-- seededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
+- <!-- seededGBBug --> Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.
 
 ### 10) Graphics Fixes
 
@@ -380,9 +375,9 @@ Post-flip actions:
 > Why? This is how it was in Afterbirth+ and is likely the intended default value.
 
 - `1009` <!-- holidayHats --> Show a festive hat during a holiday.
-- The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
-- The Locust of Famine sprite now matches the color of the flies.
-- The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
+- <!-- "ui_hearts.png" --> The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
+- <!-- "trinket_115_locustoffamine_custom.png" --> The Locust of Famine sprite now matches the color of the flies.
+- <!-- "trinket_075_error_custom.png" --> The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
 - Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - The color of some pills are changed to make them easier to identify at a glance:
   - <!-- PILL_ORANGE_ORANGE (3) --> Orange / Orange --> Full purple
@@ -392,12 +387,12 @@ Post-flip actions:
   - <!-- PILL_WHITE_AZURE (10) --> White / Cyan --> White / Green
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
-- The controls graphic in the start room is changed to be speedrunning-themed.
-- The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
+- <!-- controlsGraphic --> The controls graphic in the start room is changed to be speedrunning-themed.
+- <!-- "teammeatfont10.fnt", "teammeatfont10_0.png" --> The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
 
 > Why? The text blocks gameplay.
 
-- The graphics for fortunes and custom seeds are set to 15% opacity.
+- <!-- removeFortuneCookieBanner --> The banner for fortune cookies graphics for fortunes and custom seeds is removed.
 
 > Why? So that gameplay is not blocked when you use Rules card.
 
@@ -412,6 +407,8 @@ Post-flip actions:
 ### 12) Other
 
 - `1201` <!-- customConsole --> A custom console is provided that is better than the vanilla console.
+- `1202` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
+- `1203` <!-- chat --> Draw chat from other racers on the screen.
 
 > Why? The vanilla console has an annoying animation and is inconvenient to use.
 
@@ -422,10 +419,3 @@ Post-flip actions:
 Racing+ has [several custom challenges](challenges.md), each of which introduces additional changes to the game.
 
 <br />
-
-<!--
-- Some things that are unseeded are now seeded:
-  - cards from Sloth, Super Sloth, Pride, and Super Pride
-- Pin's first attack happens on the 15th frame (instead of the 73rd frame).
-- Double coins and nickels heal Keeper for their proper amount.
--->
