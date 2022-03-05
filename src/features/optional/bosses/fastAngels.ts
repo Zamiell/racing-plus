@@ -55,9 +55,12 @@ function spawnKeyPiece(entity: Entity) {
 
   // Spawn the item
   // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
+  // We use the start seed instead of "entity.InitSeed" so that the code remains consistent with the
+  // fastKrampus feature code
+  const startSeed = g.seeds.GetStartSeed();
   const position = findFreePosition(entity.Position);
   const collectibleType = getKeySubType(entity);
-  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
+  spawnCollectible(collectibleType, position, startSeed, false, true);
 }
 
 function shouldSpawnKeyPiece(entity: Entity) {

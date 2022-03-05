@@ -42,9 +42,12 @@ export function postEntityKillFallen(entity: Entity): void {
 
 function spawnKrampusDrop(entity: Entity) {
   // Spawn the item
+  // We must use the start seed instead of "entity.InitSeed" to prevent bugs with items rotating on
+  // Tainted Isaac
+  const startSeed = g.seeds.GetStartSeed();
   const position = findFreePosition(entity.Position);
   const collectibleType = getKrampusItemSubType();
-  spawnCollectible(collectibleType, position, entity.InitSeed, false, true);
+  spawnCollectible(collectibleType, position, startSeed, false, true);
 }
 
 function getKrampusItemSubType() {

@@ -15,6 +15,7 @@ const ROOM_TYPES_TO_CHECK: ReadonlySet<RoomType> = new Set([
 
 const v = {
   room: {
+    /** Indexed by InitSeed. */
     collectibleMap: new Map<int, CollectibleType>(),
   },
 };
