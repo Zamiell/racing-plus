@@ -56,9 +56,11 @@ import {
   validateNumber,
 } from "./executeCmdSubroutines";
 
-const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_JUDAS;
-const DEFAULT_SEEDED_RACE_STARTING_ITEM =
-  CollectibleType.COLLECTIBLE_MOMS_KNIFE;
+const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_ISAAC_B;
+const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
+  CollectibleType.COLLECTIBLE_20_20,
+  CollectibleType.COLLECTIBLE_INNER_EYE,
+];
 
 export const executeCmdFunctions = new Map<string, (params: string) => void>();
 
@@ -536,7 +538,7 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
   g.race.character = DEFAULT_SEEDED_RACE_STARTING_CHARACTER;
-  g.race.startingItems = [DEFAULT_SEEDED_RACE_STARTING_ITEM];
+  g.race.startingItems = DEFAULT_SEEDED_RACE_STARTING_ITEMS;
 
   printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
   restart();
@@ -555,19 +557,27 @@ executeCmdFunctions.set("seededracebuild", (_params: string) => {
 });
 
 executeCmdFunctions.set("seededraceitem", (params: string) => {
+  const ERROR_MESSAGE =
+    "You must enter an item number. (For example, 114 for Mom's Knife.)";
+
   if (params === "") {
-    printConsole(
-      "You must enter an item number. (For example, 114 for Mom's Knife.)",
-    );
+    printConsole(ERROR_MESSAGE);
   }
 
-  const num = validateNumber(params);
-  if (num === undefined) {
-    return;
+  const startingItemStrings = params.split(",");
+  const startingItems: int[] = [];
+  for (const startingItemString of startingItemStrings) {
+    const num = validateNumber(startingItemString);
+    if (num === undefined) {
+      return;
+    }
+    startingItems.push(num);
   }
 
-  g.race.startingItems = [num];
-  printConsole(`Set the seeded race item to: ${num}`);
+  g.race.startingItems = startingItems;
+  printConsole(
+    `Set the seeded race item(s) to: [${g.race.startingItems.join(",")}]`,
+  );
 });
 
 executeCmdFunctions.set("seededracegoal", (params: string) => {
