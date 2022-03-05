@@ -23,6 +23,7 @@ import {
   getPlayerIndex,
   getTotalCharge,
   log,
+  PickupDescription,
   playChargeSoundEffect,
   PlayerIndex,
   saveDataManager,
@@ -239,16 +240,15 @@ export function postItemPickupBatteryPack(player: EntityPlayer): void {
 // ModCallbacksCustom.MC_POST_PURCHASE
 export function postPurchase(
   player: EntityPlayer,
-  pickupVariant: PickupVariant,
-  pickupSubType: int,
+  pickupDescription: PickupDescription,
 ): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
   const chargeSituation = getChargeSituationForPickup(
-    pickupVariant,
-    pickupSubType,
+    pickupDescription.variant,
+    pickupDescription.subType,
     player,
   );
   checkSwitchCharge(player, chargeSituation);

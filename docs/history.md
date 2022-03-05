@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.77.0* - March ?th, 2022
+### *v0.77.0* - March 5th, 2022
 
 - There is now an icon that shows if you still have a free Devil Deal available.
 - Reverted the angel key piece change from the previous patch.
@@ -12,8 +12,9 @@
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 - Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
 - Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)
-- Fixed the bug where in seeded races, The Forgotten would die permanently in seeded races with Heartbreak. (Thanks Gamonymous)
 - Fixed the bug where some characters started with more luck than they should. (Thanks KiraKeepKool)
+- Fixed the bug where in seeded races, The Forgotten would die permanently in seeded races with Heartbreak. (Thanks Gamonymous)
+- Fixed the bug where in seeded races, Tainted Isaac would get unseeded items from rotated Krampus drops. (Thanks Gamonymous)
 
 ### *v0.76.0* - February 28th, 2022
 

@@ -6,9 +6,11 @@ import {
   getCollectibleMaxCharges,
   getCollectibles,
   isTaintedLazarus,
+  PickupDescription,
   removeCollectibleFromItemTracker,
   saveDataManager,
   setCollectibleSubType,
+  spawnEmptyCollectible,
   useActiveItemTemp,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../constants";
@@ -18,8 +20,8 @@ import { initItemSprite } from "../../sprite";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
-const OLD_ITEM = CollectibleType.COLLECTIBLE_FLIP;
-const NEW_ITEM = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
+const OLD_COLLECTIBLE_TYPE = CollectibleType.COLLECTIBLE_FLIP;
+const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
@@ -141,11 +143,11 @@ export function postPEffectUpdate(player: EntityPlayer) {
 
   // Automatically replace the vanilla flip with the custom one
   // (this handles Tainted Lazarus correctly, since he is given Flip in the normal active item slot)
-  if (player.HasCollectible(OLD_ITEM)) {
-    player.RemoveCollectible(OLD_ITEM);
-    removeCollectibleFromItemTracker(OLD_ITEM);
-    const charges = getCollectibleMaxCharges(NEW_ITEM);
-    player.AddCollectible(NEW_ITEM, charges, false);
+  if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
+    player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
+    removeCollectibleFromItemTracker(OLD_COLLECTIBLE_TYPE);
+    const charges = getCollectibleMaxCharges(NEW_COLLECTIBLE_TYPE);
+    player.AddCollectible(NEW_COLLECTIBLE_TYPE, charges, false);
   }
 }
 
@@ -155,7 +157,7 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
     return;
   }
 
-  if (!anyPlayerHasCollectible(NEW_ITEM)) {
+  if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
     return;
   }
 
@@ -173,7 +175,7 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  if (!anyPlayerHasCollectible(NEW_ITEM)) {
+  if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
     return;
   }
 
@@ -197,4 +199,27 @@ export function postPickupRenderCollectible(
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);
   flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
+}
+
+// ModCallbacksCustom.MC_POST_PURCHASE
+export function postPurchase(
+  player: EntityPlayer,
+  pickupDescription: PickupDescription,
+) {
+  if (!config.flipCustom) {
+    return;
+  }
+
+  // TODO
+  return;
+
+  if (
+    player.HasCollectible(NEW_COLLECTIBLE_TYPE) &&
+    pickupDescription.variant === PickupVariant.PICKUP_COLLECTIBLE
+  ) {
+    spawnEmptyCollectible(
+      pickupDescription.position,
+      pickupDescription.initSeed,
+    );
+  }
 }
