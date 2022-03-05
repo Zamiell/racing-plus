@@ -64,6 +64,11 @@ function thirteenLuck(player: EntityPlayer) {
     CollectibleTypeCustom.COLLECTIBLE_13_LUCK,
   );
 
+  // Don't change base player's negative luck if he doesn't have 13 Luck
+  if (num13Luck === 0) {
+    return;
+  }
+
   player.Luck += getCharacterLuckModifier(player);
   repeat(num13Luck, () => {
     player.Luck += 13;
@@ -74,6 +79,11 @@ function fifteenLuck(player: EntityPlayer) {
   const num15Luck = player.GetCollectibleNum(
     CollectibleTypeCustom.COLLECTIBLE_15_LUCK,
   );
+
+  // Don't change base player's negative luck if he doesn't have 15 Luck
+  if (num15Luck === 0) {
+    return;
+  }
 
   player.Luck += getCharacterLuckModifier(player);
   repeat(num15Luck, () => {
