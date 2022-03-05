@@ -1,4 +1,8 @@
-import { anyPlayerIs, getPlayersOfType } from "isaacscript-common";
+import {
+  anyPlayerIs,
+  countEntities,
+  getPlayersOfType,
+} from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 export function racePostNPCInitDarkEsau(npc: EntityNPC): void {
@@ -17,8 +21,7 @@ function checkDuplicatedDarkEsau(npc: EntityNPC) {
     return;
   }
 
-  const numDarkEsaus = Isaac.CountEntities(
-    undefined,
+  const numDarkEsaus = countEntities(
     EntityType.ENTITY_DARK_ESAU,
     DarkEsauVariant.DARK_ESAU,
   );

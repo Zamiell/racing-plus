@@ -1,4 +1,5 @@
 import {
+  countEntities,
   getCollectibles,
   getEffectiveStage,
   saveDataManager,
@@ -66,16 +67,14 @@ export function postNewRoom(): void {
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
 
-  const numDeathTouches = Isaac.CountEntities(
-    undefined,
+  const numDeathTouches = countEntities(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
   );
   const deathsTouchExists = numDeathTouches > 0;
 
-  const numMagicMushrooms = Isaac.CountEntities(
-    undefined,
+  const numMagicMushrooms = countEntities(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,

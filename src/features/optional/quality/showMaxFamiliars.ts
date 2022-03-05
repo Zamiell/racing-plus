@@ -1,4 +1,8 @@
-import { MAX_NUM_FAMILIARS, saveDataManager } from "isaacscript-common";
+import {
+  countEntities,
+  MAX_NUM_FAMILIARS,
+  saveDataManager,
+} from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 
@@ -26,10 +30,7 @@ export function postUpdate(): void {
     return;
   }
 
-  const numFamiliars = Isaac.CountEntities(
-    undefined,
-    EntityType.ENTITY_FAMILIAR,
-  );
+  const numFamiliars = countEntities(EntityType.ENTITY_FAMILIAR);
   v.run.haveMaxFamiliars = numFamiliars >= MAX_NUM_FAMILIARS;
 }
 

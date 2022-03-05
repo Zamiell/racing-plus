@@ -1,4 +1,5 @@
 import {
+  countEntities,
   getCollectibles,
   removeCollectiblePickupDelay,
 } from "isaacscript-common";
@@ -21,8 +22,7 @@ export function useCardBlackRune(): void {
 // CollectibleType.COLLECTIBLE_D6 (105)
 export function preUseItemD6(player: EntityPlayer): boolean | void {
   // The Checkpoint custom item is about to be deleted, so spawn another one
-  const numCheckpoints = Isaac.CountEntities(
-    undefined,
+  const numCheckpoints = countEntities(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_COLLECTIBLE,
     CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,

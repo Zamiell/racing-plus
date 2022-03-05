@@ -1,4 +1,5 @@
 import {
+  countEntities,
   getEntities,
   getRoomListIndex,
   log,
@@ -115,10 +116,7 @@ function checkRespawn() {
   // Don't do anything if a trophy already exists in the room
   // (this can happen if code earlier on in the PostNewRoom callback spawned a Big Chest or a
   // trophy)
-  const numTrophies = Isaac.CountEntities(
-    undefined,
-    EntityTypeCustom.ENTITY_RACE_TROPHY,
-  );
+  const numTrophies = countEntities(EntityTypeCustom.ENTITY_RACE_TROPHY);
   if (numTrophies > 0) {
     return;
   }

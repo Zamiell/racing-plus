@@ -11,6 +11,7 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
+import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
@@ -33,7 +34,6 @@ import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTw
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
-import * as planetariumFix from "../features/race/planetariumFix";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import * as detectSlideAnimation from "../features/utils/detectSlideAnimation";
 import * as roomsEntered from "../features/utils/roomsEntered";
@@ -69,10 +69,10 @@ export function main(): void {
   banFirstFloorRoomType.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
   seededDeathPostNewRoom();
+  planetariumFix.postNewRoom();
 
   // Major
   racePostNewRoom();
-  planetariumFix.postNewRoom();
   speedrunPostNewRoom();
   charCharOrderPostNewRoom();
   startWithD6.postNewRoom();

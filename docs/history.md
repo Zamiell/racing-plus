@@ -1,15 +1,18 @@
 # Racing+ Version History and News
 
-### *v0.76.2* - March ?th, 2022
+### *v0.77.0* - March ?th, 2022
 
+- There is now an icon that shows if you still have a free Devil Deal available.
 - Reverted the angel key piece change from the previous patch.
 - In season 2, the build refresh time is lowered from 90 seconds to 75 seconds.
-- In season 2, Terra is now removed from the Planetarium pool. (Thanks mgln)
+- In season 2, not entering a Treasure Room no longer increases the chance of a Planetarium appearing.
 - In season 2, Tainted Samson can no longer start with the Fire Mind build. (Thanks toooschi)
 - In season 2, Tainted Azazel can no longer start with Revelation.
+- Fixed the (vanilla) bug where double coins would not heal Keeper for the correct amount.
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
 - Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
 - Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)
+- Fixed the bug where in seeded races, The Forgotten would die permanently in seeded races with Heartbreak. (Thanks Gamonymous)
 
 ### *v0.76.0* - February 28th, 2022
 

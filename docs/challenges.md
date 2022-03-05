@@ -133,10 +133,11 @@ Some builds are banned on certain characters:
 ### Other
 
 - The Treasure Room on the first floor is removed.
-- Sol and Terra are removed from the Planetarium pool.
+- Sol is removed from the Planetarium pool.
 - Cain's Eye is removed from the trinket pool.
 - We Need to Go Deeper! will not work on Womb 2.
 - The spikes in a Sacrifice Room are removed after Gabriel spawns.
+- Not entering a Treasure Room no longer increases the chance of a Planetarium appearing.
 - On the first character, the following room types are removed on the first floor:
   - Miniboss Rooms
   - Curse Rooms

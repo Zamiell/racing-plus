@@ -274,6 +274,20 @@ export function roomInfo(): void {
   logRoom();
 }
 
+export function seededRaceChar(params: string): void {
+  if (params === "") {
+    printConsole("You must enter a character number.");
+  }
+
+  const num = validateNumber(params);
+  if (num === undefined) {
+    return;
+  }
+
+  g.race.character = num;
+  printConsole(`Set the seeded race character to: ${g.race.character}`);
+}
+
 export function trapdoor(): void {
   const player = Isaac.GetPlayer();
   const position = g.r.FindFreeTilePosition(player.Position, 0);

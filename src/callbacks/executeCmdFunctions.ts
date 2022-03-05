@@ -51,6 +51,7 @@ import {
   movePlayer,
   planetarium,
   roomInfo,
+  seededRaceChar,
   trapdoor,
   validateNumber,
 } from "./executeCmdSubroutines";
@@ -541,18 +542,12 @@ executeCmdFunctions.set("seededrace", (_params: string) => {
   restart();
 });
 
+executeCmdFunctions.set("seededracechar", (params: string) => {
+  seededRaceChar(params);
+});
+
 executeCmdFunctions.set("seededracecharacter", (params: string) => {
-  if (params === "") {
-    printConsole("You must enter a character number.");
-  }
-
-  const num = validateNumber(params);
-  if (num === undefined) {
-    return;
-  }
-
-  g.race.character = num;
-  printConsole(`Set the seeded race character to: ${g.race.character}`);
+  seededRaceChar(params);
 });
 
 executeCmdFunctions.set("seededracebuild", (_params: string) => {

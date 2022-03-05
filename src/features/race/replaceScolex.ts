@@ -1,6 +1,7 @@
 // In seeded races, we replace Scolex with two Frails to reduce RNG
 
 import {
+  countEntities,
   nextSeed,
   removeAllMatchingEntities,
   repeat,
@@ -32,11 +33,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  const numScolexes = Isaac.CountEntities(
-    undefined,
-    SCOLEX_TYPE,
-    SCOLEX_VARIANT,
-  );
+  const numScolexes = countEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
   if (numScolexes === 0) {
     return;
   }

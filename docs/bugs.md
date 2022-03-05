@@ -16,6 +16,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - Custom challenges will always have Clean Bedrooms (instead of having a 50% chance for a Clean Bedroom). (Reported by Finalkids)
 - Custom fortunes and custom Rules Card text no longer works as of vanilla patch 1.7.5 (due to localization).
 - If you touch the edge of a crawlspace, you can sometimes trigger the vanilla animation. If this happens, you might return to the starting room of the floor. This has to do with the vanilla game not reading the state of the crawlspace correctly. (Reported by KiraKeepKool)
+- The effects of an Empress? card will be cut short if you enter a trapdoor.
 
 <br />
 

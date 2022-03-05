@@ -1,4 +1,4 @@
-import { MINUTE_IN_MILLISECONDS, range } from "isaacscript-common";
+import { range } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 export const SEASON_2_DEBUG = false;
@@ -188,5 +188,5 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_2_LOCK_MINUTES = 1.25;
-export const SEASON_2_LOCK_MILLISECONDS =
-  SEASON_2_LOCK_MINUTES * MINUTE_IN_MILLISECONDS;
+export const SEASON_2_LOCK_SECONDS = SEASON_2_LOCK_MINUTES * 60;
+export const SEASON_2_LOCK_MILLISECONDS = SEASON_2_LOCK_SECONDS * 1000;

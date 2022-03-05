@@ -353,9 +353,10 @@ Post-flip actions:
 
 ### 9) Bug Fixes
 
-- `0901` <!-- battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
-- `0902` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
-- `0903` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- `0901` <!-- keeperHeal --> Double pennies will now heal Keeper for the proper amount.
+- `0902` <!-- battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
+- `0903` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
+- `0904` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - <!-- fastTravel --> Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - <!-- fastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- seededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.

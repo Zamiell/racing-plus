@@ -13,7 +13,11 @@ import { config } from "../../../modConfigMenu";
 import { initItemSprite } from "../../../sprite";
 import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
 
-const ITEM_OFFSET = Vector(0, 30);
+const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
+const COLLECTIBLE_OFFSET = Vector(0, 30);
+
+const iconSprite = getNewMysteryGiftSprite();
+iconSprite.Scale = Vector(0.5, 0.5);
 
 const v = {
   run: {
@@ -38,6 +42,17 @@ export function init(): void {
 
 function featureEnabled() {
   return config.freeDevilItem;
+}
+
+// ModCallbacks.MC_POST_RENDER (2)
+export function postRender(): void {
+  if (!config.freeDevilItem) {
+    return;
+  }
+
+  if (shouldGetFreeDevilItemOnThisRun()) {
+    iconSprite.RenderLayer(COLLECTIBLE_LAYER, ICON_SPRITE_POSITION);
+  }
 }
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
@@ -72,11 +87,11 @@ export function postPickupUpdateCollectible(pickup: EntityPickup) {
     return;
   }
 
-  if (!shouldGetFreeDevilItem()) {
-    return;
-  }
-
-  if (isDevilDealStyleCollectible(pickup)) {
+  if (
+    shouldGetFreeDevilItemOnThisRun() &&
+    shouldGetFreeDevilItemInThisRoom() &&
+    isDevilDealStyleCollectible(pickup)
+  ) {
     // Update the price of the item on every frame
     // We deliberately do not change "AutoUpdatePrice" so that as soon as the player is no longer
     // eligible for the free item, the price will immediately change back to what it is supposed to
@@ -85,26 +100,32 @@ export function postPickupUpdateCollectible(pickup: EntityPickup) {
   }
 }
 
-function shouldGetFreeDevilItem() {
+function shouldGetFreeDevilItemOnThisRun() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
   const gameFrameCount = g.g.GetFrameCount();
   const anyPlayerIsTheLost = anyPlayerIs(
     PlayerType.PLAYER_THELOST,
     PlayerType.PLAYER_THELOST_B,
   );
-  const roomType = g.r.GetType();
 
   return (
     !v.run.tookDamage &&
     devilRoomDeals === 0 &&
+    !anyPlayerIsTheLost &&
+    // We might be travelling to a Devil Room for run-initialization-related tasks
+    gameFrameCount > 0
+  );
+}
+
+function shouldGetFreeDevilItemInThisRoom() {
+  const roomType = g.r.GetType();
+
+  return (
     // Black Market deals do not count as "locking in" Devil Deals,
     // so we exclude this mechanic from applying to them
     roomType !== RoomType.ROOM_BLACK_MARKET &&
     // Dark Room starting room deals also don't count as "locking in" Devil Deals
-    !(onDarkRoom() && inStartingRoom()) &&
-    !anyPlayerIsTheLost &&
-    // We might be travelling to a Devil Room for run-initialization-related tasks
-    gameFrameCount > 0
+    !(onDarkRoom() && inStartingRoom())
   );
 }
 
@@ -149,6 +170,6 @@ export function postPickupRenderCollectible(
   const ptrHash = GetPtrHash(pickup);
   const sprite = v.room.spriteMap.getAndSetDefault(ptrHash);
   const worldPosition = Isaac.WorldToRenderPosition(pickup.Position);
-  const position = worldPosition.add(renderOffset).add(ITEM_OFFSET);
+  const position = worldPosition.add(renderOffset).add(COLLECTIBLE_OFFSET);
   sprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }

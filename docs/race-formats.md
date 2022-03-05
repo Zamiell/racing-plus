@@ -57,8 +57,6 @@ Regardless of the format:
 - 3 Dollar Bill is seeded per room.
 - Magic 8 Ball no longer increases the chance for a Planetarium to spawn, because level generation is always the same.
 - Not entering a Treasure Room no longer increases the chance of a Planetarium appearing, because level generation is always the same.
-- Entering a Planetarium no longer decreases the chance of a Planetarium appearing, because level generation is always the same.
-- The effects of an Empress? card will be cut short if you enter a trapdoor.
 
 <br />
 

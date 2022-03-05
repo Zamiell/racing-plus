@@ -15,6 +15,7 @@ import * as fastDrop from "../features/optional/hotkeys/fastDrop";
 import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
+import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
@@ -59,6 +60,7 @@ export function main(): void {
   changeCharOrderPostRender();
   fastTravelPostRender();
   fastReset.postRender();
+  freeDevilItem.postRender();
 
   // Chars
   showEdenStartingItems.postRender();

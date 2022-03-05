@@ -1,4 +1,5 @@
 import {
+  countEntities,
   getPlayers,
   nextSeed,
   repeat,
@@ -40,8 +41,7 @@ function makeFireworksQuieter() {
     return;
   }
 
-  const numFireworks = Isaac.CountEntities(
-    undefined,
+  const numFireworks = countEntities(
     EntityType.ENTITY_EFFECT,
     EffectVariant.FIREWORKS,
   );

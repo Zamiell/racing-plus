@@ -81,6 +81,7 @@ export class Config {
   fastTeleports = true;
 
   // Bug fixes
+  keeperHeal = true;
   battery9VoltSynergy = true;
   teleportInvalidEntrance = true;
   removeInvalidPitfalls = true;

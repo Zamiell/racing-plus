@@ -15,7 +15,7 @@ import { moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFix,
   shouldApplyPlanetariumFix,
-} from "../../../race/planetariumFix";
+} from "../../../mandatory/planetariumFix";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
@@ -240,7 +240,7 @@ function setGoingToNewFloor() {
 
   blackSprite.setFullyOpaque();
 
-  // Defer going to the next floor if we are in a seeded race
+  // Defer going to the next floor if we need to visit other rooms first
   if (shouldApplyPlanetariumFix()) {
     planetariumFix();
     return;

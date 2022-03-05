@@ -7,9 +7,10 @@ import {
   stopAllSoundEffects,
 } from "isaacscript-common";
 import g from "../../globals";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
+import { inSeededRace } from "../race/v";
 import { decrementRoomsEntered } from "../utils/roomsEntered";
-import { inSeededRace } from "./v";
 
 enum PlanetariumFixWarpState {
   INITIAL,
@@ -29,7 +30,8 @@ export function init(): void {
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
-  if (!inSeededRace()) {
+  const challenge = Isaac.GetChallenge();
+  if (!inSeededRace() && challenge !== ChallengeCustom.SEASON_2) {
     return false;
   }
 

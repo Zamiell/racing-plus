@@ -27,6 +27,7 @@ export function goto(upwards: boolean): void {
     const effects = player.GetEffects();
     effects.RemoveNullEffect(NullItemID.ID_REVERSE_EMPRESS);
   }
+
   // The effect of Sun? cards are supposed to end upon reaching a new floor, so we can remove the
   // effect now so that it will not interfere with the recording of the player's current health
   for (const player of getPlayers()) {

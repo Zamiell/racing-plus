@@ -3,7 +3,11 @@ import g from "../../../../globals";
 import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
-import { SEASON_2_LOCK_MILLISECONDS, SEASON_2_NUM_BANS } from "../constants";
+import {
+  SEASON_2_LOCK_MILLISECONDS,
+  SEASON_2_LOCK_SECONDS,
+  SEASON_2_NUM_BANS,
+} from "../constants";
 import sprites from "../sprites";
 import v, { season2GetTimeGameOpened } from "../v";
 
@@ -19,11 +23,11 @@ export function season2PostRender(): void {
     return;
   }
 
-  if (drawErrors()) {
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
     return;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  if (drawErrors()) {
     return;
   }
 
@@ -133,6 +137,10 @@ function getPosition(spriteName: keyof typeof sprites) {
 }
 
 function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
+  if (secondsRemaining > SEASON_2_LOCK_SECONDS) {
+    return 'Please set your item vetos for Season 2 again in the "Change Char Order" custom challenge.';
+  }
+
   const suffix = secondsRemaining > 1 ? "s" : "";
   const secondsRemainingText = `${secondsRemaining} second${suffix}`;
   const secondSentence =

@@ -891,10 +891,19 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
 // 0901-0910
 export const BUG_FIXES: ConfigDescriptions = [
   [
-    "battery9VoltSynergy",
+    "keeperHeal",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0901",
+      "Fix Keeper + double pennies ",
+      "Make double pennies heal Keeper and Tainted Keeper for the proper amount.",
+    ],
+  ],
+  [
+    "battery9VoltSynergy",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0902",
       "Fix The Battery + 9 Volt synergy",
       "Make these items work together properly.",
     ],
@@ -903,7 +912,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0902",
+      "0903",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -912,7 +921,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0903",
+      "0904",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],

@@ -107,9 +107,6 @@ function removeItemsFromPools() {
   if (character === PlayerType.PLAYER_BLACKJUDAS) {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW);
   }
-
-  // Extra bans
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_TERRA);
 }
 
 function checkFirstCharacterRefresh() {
