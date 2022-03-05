@@ -28,6 +28,7 @@ import * as consistentAngels from "./features/optional/bosses/consistentAngels";
 import * as fastPin from "./features/optional/bosses/fastPin";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
+import * as keeperHeal from "./features/optional/bugfix/keeperHeal";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as globinSoftlock from "./features/optional/enemies/globinSoftlock";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
@@ -144,6 +145,7 @@ export function initFeatureVariables(): void {
   extraStartingItems.init();
 
   // Bug fixes
+  keeperHeal.init();
   battery9VoltSynergy.init();
 
   // Graphics fixes
