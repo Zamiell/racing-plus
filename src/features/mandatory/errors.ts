@@ -31,6 +31,10 @@ const COLLECTIBLES_THAT_AFFECT_ITEM_POOLS: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_TMTRAINER, // 721
 ];
 
+const TRINKETS_THAT_AFFECT_ITEM_POOLS: readonly TrinketType[] = [
+  TrinketType.TRINKET_NO,
+];
+
 const v = {
   run: {
     corrupted: false,
@@ -85,8 +89,8 @@ function isIncompleteSave() {
     return false;
   }
 
-  // Before checking the item pools, we must remove Chaos, TMTRAINER, Sacred Orb, and the No!
-  // trinket, since they affect the retrieved collectible types
+  // Before checking the item pools, remove any items or trinkets that affect retrieved collectible
+  // types
   const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
   const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
@@ -106,10 +110,11 @@ function isIncompleteSave() {
     removedItemsMap.set(playerIndex, removedItems);
 
     const removedTrinkets: TrinketType[] = [];
-    const trinketToRemove = TrinketType.TRINKET_NO;
-    if (player.HasTrinket(trinketToRemove)) {
-      player.TryRemoveTrinket(trinketToRemove);
-      removedTrinkets.push(trinketToRemove);
+    for (const trinketToRemove of TRINKETS_THAT_AFFECT_ITEM_POOLS) {
+      if (player.HasTrinket(trinketToRemove)) {
+        player.TryRemoveTrinket(trinketToRemove);
+        removedTrinkets.push(trinketToRemove);
+      }
     }
 
     removedTrinketsMap.set(playerIndex, removedTrinkets);

@@ -70,11 +70,9 @@ function getKrampusItemSubType() {
 
   const seededChoice = getRandomInt(1, 2, startSeed);
   const coal = seededChoice === 1;
-  if (coal) {
-    return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
-  }
-
-  return CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS;
+  return coal
+    ? CollectibleType.COLLECTIBLE_LUMP_OF_COAL
+    : CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS;
 }
 
 function getKrampusBans() {

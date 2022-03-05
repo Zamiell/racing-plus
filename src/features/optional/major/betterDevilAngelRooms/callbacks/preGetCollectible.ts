@@ -66,7 +66,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
     TrinketType.TRINKET_NO,
   );
 
-  // Only attempt to find a valid item for 100 iterations in case something goes wrong
+  // Only attempt to find a valid item for N iterations in case something goes wrong
   for (let i = 0; i < MAX_GET_COLLECTIBLE_ATTEMPTS; i++) {
     v.run.gettingCollectible = true;
     const subType = getNewSubType(itemPoolType);
