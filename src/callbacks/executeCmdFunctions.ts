@@ -558,7 +558,7 @@ executeCmdFunctions.set("seededracebuild", (_params: string) => {
 
 executeCmdFunctions.set("seededraceitem", (params: string) => {
   const ERROR_MESSAGE =
-    "You must enter an item number. (For example, 114 for Mom's Knife.)";
+    'You must enter an item number. (For example, "114" for Mom\'s Knife, or "245,2" for 20/20 + The Inner Eye.)';
 
   if (params === "") {
     printConsole(ERROR_MESSAGE);
