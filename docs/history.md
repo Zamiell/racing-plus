@@ -13,6 +13,7 @@
 - Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
 - Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)
 - Fixed the bug where in seeded races, The Forgotten would die permanently in seeded races with Heartbreak. (Thanks Gamonymous)
+- Fixed the bug where some characters started with more luck than they should. (Thanks KiraKeepKool)
 
 ### *v0.76.0* - February 28th, 2022
 

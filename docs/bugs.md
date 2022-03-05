@@ -29,5 +29,6 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
   - Mega Blast (#441) - Being a ghost while the blast is active will show the animation playing and have knockback, but the blast itself will be removed. (Reported by Gamonymous)
   - Red Stew (#621) - The temporary damage buff will not be affected by dying. (Reported by Hispa)
   - Esau Jr. (#703) - Using it while being a ghost will give the items back to the wrong character. (Reported by Gamonymous)
+- You will die permanently if you have one red hp left and remove Mother's Kiss. (Reported by Gamonymous)
 
 <br />
