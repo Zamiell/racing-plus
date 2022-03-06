@@ -152,7 +152,7 @@ export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
   // 26
   [
     CollectibleTypeCustom.COLLECTIBLE_SAWBLADE,
-    CollectibleType.COLLECTIBLE_TRANSCENDENCE,
+    CollectibleType.COLLECTIBLE_FATE, // 179
   ],
 ];
 

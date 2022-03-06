@@ -210,6 +210,7 @@ function getStartingBuildIndex(character: PlayerType) {
     undefined,
     buildExceptions,
   );
+
   v.persistent.selectedBuildIndexes.push(startingBuildIndex);
   v.persistent.lastSelectedBuildIndex = startingBuildIndex;
 
@@ -235,6 +236,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
       return getBuildIndexesFor(
         CollectibleType.COLLECTIBLE_DR_FETUS, // 52
         CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
+        CollectibleType.COLLECTIBLE_IPECAC, // 148
         CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
       );
     }
@@ -337,6 +339,10 @@ function giveStartingItems(
   if (firstCollectibleType === CollectibleType.COLLECTIBLE_REVELATION) {
     player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
     removeCollectibleCostume(player, CollectibleType.COLLECTIBLE_REVELATION);
+  } else if (
+    firstCollectibleType === CollectibleTypeCustom.COLLECTIBLE_SAWBLADE
+  ) {
+    player.AddEternalHearts(-1);
   }
 }
 
