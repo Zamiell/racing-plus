@@ -8,7 +8,7 @@ import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { SEASON_2_STARTING_BUILDS } from "../constants";
 import { season2GetCurrentBuildIndex } from "../v";
 
-// CacheFlag.CACHE_FLYING (0x80)
+// CacheFlag.CACHE_FLYING (1 << 7)
 export function season2EvaluateCacheFlying(player: EntityPlayer): void {
   const challenge = Isaac.GetChallenge();
 

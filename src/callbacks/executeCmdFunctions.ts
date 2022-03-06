@@ -236,6 +236,10 @@ executeCmdFunctions.set("crawlspace", (_params: string) => {
   crawlspace();
 });
 
+executeCmdFunctions.set("damage", (_params: string) => {
+  debugPowers.toggleDamage();
+});
+
 executeCmdFunctions.set("dd", (params: string) => {
   devil(params);
 });

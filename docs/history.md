@@ -8,6 +8,9 @@
 - Fixed the bug where the custom flip would not produce a poof animation when using it.
 - Fixed the bug where the automatic item insertion feature would have an incorrect coin delta when playing as Keeper or Tainted Keeper with unfilled coin containers. (Thanks Gamonymous)
 - Fixed the bug where seeded death would not count as taking damage for the purposes of a Perfection trinket spawning at the end of the floor. (Thanks Fallenfor)
+- Fixed the bug where the room would be incorrectly cleared if you dealt fatal damage to The Lamb in phase 1. (Thanks Hispa)
+- Fixed the bug where The Lamb would be incorrectly faded if you dealt fatal damage to it in phase 1. (Thanks Hispa)
+- Fixed the bug where batteries sold in stores would always charge the active item. (Thanks makia)
 
 ### *v0.77.0* - March 5th, 2022
 

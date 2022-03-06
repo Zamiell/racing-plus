@@ -7,6 +7,7 @@ const v = {
     chaosCard: false,
     spam: false,
     speed: false,
+    damage: false,
   },
 };
 
@@ -40,6 +41,12 @@ export function toggleSpeed(): void {
   player.EvaluateItems();
 }
 
+export function toggleDamage(): void {
+  v.run.damage = !v.run.damage;
+  const enabled = v.run.damage ? "Enabled" : "Disabled";
+  printConsole(`${enabled} debug damage.`);
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   const player = Isaac.GetPlayer();
@@ -50,7 +57,7 @@ export function postUpdate(): void {
 }
 
 // ModCallbacks.MC_EVALUATE_CACHE (8)
-// CacheFlag.CACHE_SPEED (16)
+// CacheFlag.CACHE_SPEED (1 << 4)
 export function evaluateCacheSpeed(player: EntityPlayer): void {
   if (v.run.speed) {
     player.MoveSpeed = MAX_SPEED;
@@ -71,5 +78,14 @@ export function entityTakeDmgPlayer(): boolean | void {
 export function postFireTear(tear: EntityTear): void {
   if (v.run.chaosCard) {
     tear.ChangeVariant(TearVariant.CHAOS_CARD);
+  }
+
+  if (v.run.damage) {
+    // If we increase the damage stat too high, then the tears will become bigger than the screen
+    // Instead, increase the collision damage of the tear
+    tear.CollisionDamage *= 1000;
+
+    // Change the visual of the tear so that it is more clear that we have debug-damage turned on
+    tear.ChangeVariant(TearVariant.TOOTH);
   }
 }

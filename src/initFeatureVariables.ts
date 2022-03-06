@@ -123,9 +123,9 @@ export function initFeatureVariables(): void {
   globinSoftlock.init();
 
   // Boss
-  killExtraEnemies.init();
-  fastPin.init();
-  consistentAngels.init();
+  killExtraEnemies.init(); // 45, 78
+  fastPin.init(); // 62
+  consistentAngels.init(); // 271, 272
 
   // QoL
   showPills.init();
