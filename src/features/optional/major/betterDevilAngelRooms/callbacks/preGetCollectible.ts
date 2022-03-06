@@ -1,6 +1,7 @@
 import {
   giveTrinketsBack,
   inAngelShop,
+  inGenesisRoom,
   nextSeed,
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
@@ -21,6 +22,12 @@ export function betterDevilAngelRoomsPreGetCollectible(
   }
 
   if (v.run.gettingCollectible) {
+    return undefined;
+  }
+
+  // There is an unknown bug that causes items in Genesis rooms to come from incorrect item pools
+  // Work around this by disabling this feature when the player is in a Genesis room
+  if (inGenesisRoom()) {
     return undefined;
   }
 

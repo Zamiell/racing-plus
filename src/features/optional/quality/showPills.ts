@@ -223,7 +223,10 @@ function drawTextAndSprite() {
     const position = Vector(x, y);
     const sprite = pillSprites.get(pillEntry.color);
     if (sprite === undefined) {
-      error(`Failed to find the sprite for pill color: ${pillEntry.color}`);
+      log(
+        `Error: Failed to find the sprite for pill color: ${pillEntry.color}, effect: ${pillEntry.effect}, i: ${i}`,
+      );
+      return;
     }
     sprite.RenderLayer(0, position);
 
