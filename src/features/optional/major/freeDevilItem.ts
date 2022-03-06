@@ -15,6 +15,7 @@ import { initItemSprite } from "../../../sprite";
 import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
+const TAINTED_ISAAC_OFFSET = Vector(4, 24);
 const COLLECTIBLE_OFFSET = Vector(0, 30);
 
 const iconSprite = getNewMysteryGiftSprite();
@@ -51,9 +52,14 @@ export function postRender(): void {
     return;
   }
 
-  if (shouldGetFreeDevilItemOnThisRun()) {
-    iconSprite.RenderLayer(COLLECTIBLE_LAYER, ICON_SPRITE_POSITION);
+  if (!shouldGetFreeDevilItemOnThisRun()) {
+    return;
   }
+
+  const position = anyPlayerIs(PlayerType.PLAYER_ISAAC_B)
+    ? ICON_SPRITE_POSITION.add(TAINTED_ISAAC_OFFSET)
+    : ICON_SPRITE_POSITION;
+  iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
 
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
@@ -147,7 +153,7 @@ export function postPickupUpdateCollectible(pickup: EntityPickup) {
   }
 }
 
-function shouldGetFreeDevilItemOnThisRun() {
+export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
   const gameFrameCount = g.g.GetFrameCount();
   const anyPlayerIsTheLost = anyPlayerIs(

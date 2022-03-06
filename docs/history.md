@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.77.1* - March ?th, 2022
+### *v0.77.1* - March 6th, 2022
 
 - Tainted Magdalene will no longer lose her free devil deal if she takes damage and it depletes her one her temporary red heart containers. (Thanks Fallenfor)
 - Fixed the (vanilla) bug where you can be softlocked in certain specific Ultra Secret Rooms.
@@ -11,6 +11,10 @@
 - Fixed the bug where the room would be incorrectly cleared if you dealt fatal damage to The Lamb in phase 1. (Thanks Hispa)
 - Fixed the bug where The Lamb would be incorrectly faded if you dealt fatal damage to it in phase 1. (Thanks Hispa)
 - Fixed the bug where batteries sold in stores would always charge the active item. (Thanks makia)
+- Fixed the bug where the wait time for season 2 would greater than the normal lock time in some situations. (Thanks Gamonymous)
+- Fixed the bug where the free devil deal icon overlapped with Tainted Isaac's inventory. (Thanks Gamonymous)
+- Fixed the bug where the free devil deal icon overlapped with maximum familiar icon. (Thanks Gamonymous)
+- Fixed the bug where the maximum familiar icon overlapped with Tainted Isaac's inventory.
 
 ### *v0.77.0* - March 5th, 2022
 
