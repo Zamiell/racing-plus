@@ -37,6 +37,7 @@ export function init(): void {
   sprites.slash.SetFrame("Default", 0);
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   drawCharacterProgressAndSeasonIcon();
 }
@@ -127,6 +128,7 @@ function drawCharacterProgressAndSeasonIcon() {
   sprites.seasonIcon.RenderLayer(0, posSeason);
 }
 
+// ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   initSeasonIconSprite();
 }

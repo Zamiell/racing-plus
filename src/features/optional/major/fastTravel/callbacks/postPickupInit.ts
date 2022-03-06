@@ -6,5 +6,5 @@ export function bigChest(pickup: EntityPickup): void {
     return;
   }
 
-  bc.postPickupInit(pickup);
+  bc.postPickupInitBigChest(pickup);
 }

@@ -21,6 +21,7 @@ function featureEnabled() {
   return config.speedUpFadeIn;
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!config.speedUpFadeIn) {
     return;

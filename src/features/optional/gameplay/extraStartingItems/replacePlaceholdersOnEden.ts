@@ -6,6 +6,7 @@ import { giveCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import * as showEdenStartingItems from "../../characters/showEdenStartingItems";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
 
+// ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const edens = getPlayersOfType(
     PlayerType.PLAYER_EDEN,

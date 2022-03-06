@@ -5,6 +5,7 @@ import {
   getPlayerFromIndex,
   getPlayerIndex,
   getTotalCharge,
+  hasFlag,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -25,12 +26,18 @@ function featureEnabled() {
   return config.battery9VoltSynergy;
 }
 
+// ModCallbacks.MC_USE_ITEM (3)
 export function useItem(
   collectibleType: CollectibleType | int,
   player: EntityPlayer,
+  useFlags: int,
   activeSlot: ActiveSlot,
 ): void {
   if (!config.battery9VoltSynergy) {
+    return;
+  }
+
+  if (!hasFlag(useFlags, UseFlag.USE_OWNED)) {
     return;
   }
 

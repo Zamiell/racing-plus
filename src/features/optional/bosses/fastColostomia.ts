@@ -1,6 +1,8 @@
 // In vanilla, Colostomia takes a second or two to drop down from the ceiling
 // Instead, just make it appear on the ground like every other boss in the game does
 
+// ModCallbacks.MC_POST_NPC_INIT (27)
+// EntityType.ENTITY_COLOSTOMIA (917)
 export function postNPCInitColostomia(npc: EntityNPC): void {
   // The state starts at ColostomiaState.IDLE_PHASE_1 and then always transitions to
   // ColostomiaState.SPIT_POOP_BOMB

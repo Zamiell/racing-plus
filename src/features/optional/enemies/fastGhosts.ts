@@ -7,7 +7,7 @@ export function postNPCUpdateWizoob(npc: EntityNPC): void {
     return;
   }
 
-  speedUp(npc);
+  speedUpGhost(npc);
 }
 
 // ModCallbacks.MC_NPC_UPDATE (0)
@@ -17,10 +17,10 @@ export function postNPCUpdateRedGhost(npc: EntityNPC): void {
     return;
   }
 
-  speedUp(npc);
+  speedUpGhost(npc);
 }
 
-function speedUp(npc: EntityNPC) {
+function speedUpGhost(npc: EntityNPC) {
   // Speed up the attack pattern of Wizoobs & Red Ghosts
   if (
     npc.State === NpcState.STATE_IDLE && // This is when they are disappeared and doing nothing

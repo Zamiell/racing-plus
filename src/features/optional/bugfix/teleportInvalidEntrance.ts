@@ -11,6 +11,7 @@ import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 import { isFastTravelHappening } from "../major/fastTravel/v";
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.teleportInvalidEntrance) {
     return;

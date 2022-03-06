@@ -9,5 +9,5 @@ export function init(mod: Mod): void {
 }
 
 function blood(tear: EntityTear) {
-  fadeVasculitisTears.postTearUpdateBloodParticle(tear);
+  fadeVasculitisTears.postTearUpdateBlood(tear);
 }

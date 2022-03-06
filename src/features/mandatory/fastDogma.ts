@@ -1,6 +1,8 @@
 import { config } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
 
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_DOGMA (950)
 export function postEntityKillDogma(entity: Entity): void {
   if (!config.fastDogma) {
     return;

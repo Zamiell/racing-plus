@@ -5,6 +5,7 @@ import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
   const player = Isaac.GetPlayer();

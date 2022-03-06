@@ -24,6 +24,7 @@ function featureEnabled() {
   return config.fastReset;
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   if (!config.fastReset) {
     return;

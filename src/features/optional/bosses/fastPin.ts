@@ -25,6 +25,8 @@ function featureEnabled() {
   return config.fastPin;
 }
 
+// ModCallbacks.MC_NPC_UPDATE (0)
+// EntityType.ENTITY_PIN (62)
 export function postNPCUpdatePin(npc: EntityNPC): void {
   if (!config.fastPin) {
     return;

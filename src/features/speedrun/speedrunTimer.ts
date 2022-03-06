@@ -1,13 +1,21 @@
 import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
+import { shouldDrawRaceTimer } from "../race/raceTimer";
 import v from "./v";
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  checkDraw();
+  // The speedrun timer is superfluous if we are doing a race, since the race timer will be shown on
+  // the screen
+  if (shouldDrawRaceTimer()) {
+    return;
+  }
+
+  drawSpeedrunTimer();
 }
 
-function checkDraw() {
+function drawSpeedrunTimer() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
   // Find out how much time has passed since the speedrun started

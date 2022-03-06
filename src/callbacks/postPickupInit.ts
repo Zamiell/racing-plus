@@ -97,9 +97,9 @@ function collectible(pickup: EntityPickup) {
   fastKrampus.postPickupInitCollectible(pickup);
   fastAngels.postPickupInitCollectible(pickup);
   flipCustom.postPickupInitCollectible(pickup);
-  flyItemSprites.postPickupInit(pickup);
-  twentyTwenty.postPickupInit(pickup);
-  starOfBethlehem.postPickupInit(pickup);
+  flyItemSprites.postPickupInitCollectible(pickup);
+  twentyTwenty.postPickupInitCollectible(pickup);
+  starOfBethlehem.postPickupInitCollectible(pickup);
 }
 
 // PickupVariant.PICKUP_TAROTCARD (300)

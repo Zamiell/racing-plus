@@ -9,6 +9,7 @@ import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();

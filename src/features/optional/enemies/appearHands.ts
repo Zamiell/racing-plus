@@ -8,7 +8,7 @@ export function postNPCUpdateMomsHand(npc: EntityNPC): void {
     return;
   }
 
-  postNPCUpdate(npc);
+  checkFirstSpawn(npc);
 }
 
 // ModCallbacks.MC_NPC_UPDATE (0)
@@ -18,14 +18,16 @@ export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
     return;
   }
 
-  postNPCUpdate(npc);
+  checkFirstSpawn(npc);
 }
 
-function postNPCUpdate(npc: EntityNPC) {
-  // Play a custom "Appear" animation when they first spawn
-  // This cannot be in the PostNPCInit callback because when done there,
-  // a shadow will appear below the hand, which does not look very good,
-  // and I don't know of a way to remove the shadow
+/**
+ * Play a custom "Appear" animation when Hands first spawn.
+ *
+ * This cannot be in the PostNPCInit callback because if it is done there, a shadow will appear
+ * below the hand, which does not look very good, and I don't know of a way to remove the shadow.
+ */
+function checkFirstSpawn(npc: EntityNPC) {
   if (npc.FrameCount === 0) {
     const sprite = npc.GetSprite();
     sprite.Play("Appear", true);

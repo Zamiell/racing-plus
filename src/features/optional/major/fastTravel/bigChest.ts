@@ -38,7 +38,9 @@ enum ReplacementAction {
 
 const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LEAVE_ALONE;
 
-export function postPickupInit(pickup: EntityPickup): void {
+// ModCallbacks.MC_POST_PICKUP_INIT (34)
+// PickupVariant.PICKUP_BIGCHEST (340)
+export function postPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
   log(

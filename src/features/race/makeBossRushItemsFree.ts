@@ -5,6 +5,7 @@ import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
     return;

@@ -161,6 +161,7 @@ export function postPEffectUpdate(player: EntityPlayer) {
 }
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
+// PickupVariant.PICKUP_COLLECTIBLE (100)
 export function postPickupInitCollectible(collectible: EntityPickup): void {
   if (!config.flipCustom) {
     return;

@@ -48,6 +48,7 @@ const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_TOUGH_LOVE, // 150
 ];
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   for (const player of getPlayers()) {
     checkApplySeeded3DollarBillItem(player);

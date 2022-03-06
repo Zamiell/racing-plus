@@ -9,8 +9,10 @@ const FADE_AMOUNT = 0.15;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 const DURATION = 1000;
 
+// ModCallbacks.MC_POST_TEAR_UPDATE (40)
+// TearVariant.BLOOD (1)
 // Setting the tear color does not work in the PostTearInit callback, so we have to do it here
-export function postTearUpdateBloodParticle(tear: EntityTear): void {
+export function postTearUpdateBlood(tear: EntityTear): void {
   if (!config.fadeVasculitisTears) {
     return;
   }

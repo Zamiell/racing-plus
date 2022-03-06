@@ -67,6 +67,7 @@ function warpToNextRoom() {
   setFastTravelResumeGameFrame(gameFrameCount);
 }
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (v.level.warpState !== PlanetariumFixWarpState.WARPING) {
     return;

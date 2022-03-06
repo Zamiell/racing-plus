@@ -19,7 +19,6 @@ import {
 } from "../seededDeath";
 import v from "../v";
 
-// ModCallbacks.MC_POST_RENDER (2)
 export function seededDeathPostRender(): void {
   if (!shouldSeededDeathFeatureApply()) {
     return;

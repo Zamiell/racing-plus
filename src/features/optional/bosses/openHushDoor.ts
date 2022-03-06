@@ -3,6 +3,7 @@
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   if (!config.openHushDoor) {
     return;

@@ -23,6 +23,7 @@ import { getRoomsEntered } from "../utils/roomsEntered";
 const STARTING_X = 55;
 const STARTING_Y = 10;
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   const hud = g.g.GetHUD();
   if (!hud.IsVisible()) {

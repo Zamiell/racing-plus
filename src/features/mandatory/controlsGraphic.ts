@@ -12,6 +12,7 @@ import { RaceStatus } from "../race/types/RaceStatus";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   drawControlsGraphic();
 }

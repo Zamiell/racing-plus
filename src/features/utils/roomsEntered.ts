@@ -10,6 +10,7 @@ export function init(): void {
   saveDataManager("roomsEntered", v);
 }
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   v.run.roomsEntered += 1;
 }

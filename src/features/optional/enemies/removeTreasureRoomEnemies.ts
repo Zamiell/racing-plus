@@ -7,6 +7,7 @@ const ENTITY_TYPES_EXEMPT_FROM_REMOVAL: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_DARK_ESAU,
 ]);
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.removeTreasureRoomEnemies) {
     return;

@@ -23,6 +23,7 @@ const LEFT_DOOR_POSITION = Vector(80, 280);
 const RIGHT_DOOR_POSITION = Vector(560, 280);
 const BOTTOM_DOOR_POSITION = Vector(320, 400);
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.subvertTeleport) {
     return;

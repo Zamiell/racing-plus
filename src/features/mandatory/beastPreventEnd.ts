@@ -12,19 +12,7 @@ export function init(): void {
   saveDataManager("beastPreventEnd", v);
 }
 
-export function postEntityKillTheBeast(entity: Entity): void {
-  const variant = entity.Variant;
-
-  if (variant !== BeastVariant.BEAST) {
-    return;
-  }
-
-  v.run.beastDefeated = true;
-
-  // Reload the Beast room again
-  consoleCommand("goto x.itemdungeon.666");
-}
-
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
@@ -54,4 +42,19 @@ export function postNewRoom(): void {
     Vector.Zero,
     undefined,
   );
+}
+
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_BEAST (951)
+export function postEntityKillTheBeast(entity: Entity): void {
+  const variant = entity.Variant;
+
+  if (variant !== BeastVariant.BEAST) {
+    return;
+  }
+
+  v.run.beastDefeated = true;
+
+  // Reload the Beast room again
+  consoleCommand("goto x.itemdungeon.666");
 }

@@ -84,6 +84,7 @@ function checkGenesisRoom() {
 }
 
 // ModCallbacks.MC_PRE_USE_ITEM (23)
+// CollectibleType.COLLECTIBLE_FLIP (711)
 export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
   const character = player.GetPlayerType();
   if (

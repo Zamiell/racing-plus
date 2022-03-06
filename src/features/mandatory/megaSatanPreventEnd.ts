@@ -6,6 +6,8 @@
 import { addRoomClearCharges } from "isaacscript-common";
 import g from "../../globals";
 
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_MEGA_SATAN_2 (275)
 export function postEntityKillMegaSatan2(_entity: Entity): void {
   emulateRoomClear();
 }

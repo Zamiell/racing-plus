@@ -18,6 +18,7 @@ export function init(): void {
   saveDataManager("drawVersion", v);
 }
 
+// ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
   const hud = g.g.GetHUD();
   const gameFrameCount = g.g.GetFrameCount();

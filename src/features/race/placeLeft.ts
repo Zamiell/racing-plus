@@ -53,6 +53,7 @@ function getPosition() {
   return racingPlusSprite.getPosition().add(SPRITE_OFFSET);
 }
 
+// ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   resetSprite();
   statusOrMyStatusChanged();

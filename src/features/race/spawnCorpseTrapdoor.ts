@@ -9,6 +9,7 @@ import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
+// ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
   const mausoleumHeartKilled = g.g.GetStateFlag(

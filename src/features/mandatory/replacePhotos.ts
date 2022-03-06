@@ -37,6 +37,8 @@ export function init(): void {
 }
 
 // ModCallbacks.MC_PRE_ENTITY_SPAWN (24)
+// EntityType.ENTITY_PICKUP (5)
+// PickupVariant.PICKUP_COLLECTIBLE (100)
 export function preEntitySpawnCollectible(
   subType: int,
 ): [EntityType, int, int, int] | void {
@@ -75,6 +77,7 @@ function preventVanillaPhotos(
 }
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
+// EntityType.ENTITY_MOM (45)
 export function postEntityKillMom(_entity: Entity): void {
   if (!v.room.manuallySpawnedPhotos) {
     v.room.manuallySpawnedPhotos = true;

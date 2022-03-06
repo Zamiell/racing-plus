@@ -38,6 +38,8 @@ export function postEffectUpdateTarget(effect: EntityEffect): void {
   }
 }
 
+// ModCallbacks.MC_POST_PROJECTILE_INIT (43)
+// ProjectileVariant.PROJECTILE_ROCK (9)
 export function postProjectileInitRock(projectile: EntityProjectile): void {
   spawnTarget(projectile);
 }

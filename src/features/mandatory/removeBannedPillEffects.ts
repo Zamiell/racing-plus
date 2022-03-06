@@ -8,6 +8,7 @@ const BANNED_PILLS: ReadonlyMap<PillEffect, PillEffect> = new Map([
   [PillEffect.PILLEFFECT_QUESTIONMARK, PillEffect.PILLEFFECT_IM_EXCITED], // 31
 ]);
 
+// ModCallbacks.MC_GET_PILL_EFFECT (65)
 export function getPillEffect(pillEffect: PillEffect): PillEffect | void {
   return BANNED_PILLS.get(pillEffect);
 }

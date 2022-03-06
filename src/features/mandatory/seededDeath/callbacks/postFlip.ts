@@ -6,7 +6,6 @@ import {
 } from "../seededDeath";
 import v from "../v";
 
-// ModCallbacksCustom.MC_POST_FLIP
 export function seededDeathPostFlip(player: EntityPlayer): void {
   if (!shouldSeededDeathFeatureApply()) {
     return;

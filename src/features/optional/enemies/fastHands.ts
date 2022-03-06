@@ -12,7 +12,7 @@ export function postNPCUpdateMomsHand(npc: EntityNPC): void {
     return;
   }
 
-  postNPCUpdate(npc);
+  checkSpeedUpHand(npc);
 }
 
 // ModCallbacks.MC_NPC_UPDATE (0)
@@ -22,10 +22,10 @@ export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
     return;
   }
 
-  postNPCUpdate(npc);
+  checkSpeedUpHand(npc);
 }
 
-function postNPCUpdate(npc: EntityNPC) {
+function checkSpeedUpHand(npc: EntityNPC) {
   // NpcState.STATE_MOVE is when they are following the player
   if (npc.State === NpcState.STATE_MOVE) {
     speedUpInitialDelay(npc);

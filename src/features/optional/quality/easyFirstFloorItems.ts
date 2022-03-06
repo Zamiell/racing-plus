@@ -6,6 +6,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
+// ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN (71)
 export function preRoomEntitySpawn(
   gridIndex: int,
 ): [EntityType, int, int] | void {

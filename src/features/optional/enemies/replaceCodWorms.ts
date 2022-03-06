@@ -1,6 +1,10 @@
 import { config } from "../../../modConfigMenu";
 
-export function preEntitySpawn(initSeed: int): [int, int, int, int] | void {
+// ModCallbacks.MC_PRE_ENTITY_SPAWN (24)
+// EntityType.ENTITY_COD_WORM (221)
+export function preEntitySpawnCodWorm(
+  initSeed: int,
+): [int, int, int, int] | void {
   if (!config.replaceCodWorms) {
     return undefined;
   }

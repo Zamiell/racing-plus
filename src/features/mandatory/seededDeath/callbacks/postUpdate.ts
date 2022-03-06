@@ -9,7 +9,6 @@ import {
 import { debuffOff } from "../seededDeathDebuff";
 import v from "../v";
 
-// ModCallbacks.MC_POST_UPDATE (1)
 export function seededDeathPostUpdate(): void {
   if (!shouldSeededDeathFeatureApply()) {
     return;

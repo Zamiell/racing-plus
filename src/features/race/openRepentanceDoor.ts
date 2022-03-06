@@ -6,6 +6,7 @@ import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 
+// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {
   openRepentanceDoor();
 }

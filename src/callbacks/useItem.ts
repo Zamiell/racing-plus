@@ -63,11 +63,11 @@ export function main(
   collectibleType: CollectibleType | int,
   _rng: RNG,
   player: EntityPlayer,
-  _useFlags: int,
+  useFlags: int,
   activeSlot: int,
   _customVarData: int,
 ): boolean | void {
-  battery9VoltSynergy.useItem(collectibleType, player, activeSlot);
+  battery9VoltSynergy.useItem(collectibleType, player, useFlags, activeSlot);
 }
 
 // CollectibleType.COLLECTIBLE_TELEPORT (44)
@@ -82,7 +82,7 @@ function voidItem() {
 
 // CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
 function fortuneCookie() {
-  removeFortuneCookieBanners.useItem();
+  removeFortuneCookieBanners.useItemFortuneCookie();
 }
 
 // CollectibleType.COLLECTIBLE_MEAT_CLEAVER (631)

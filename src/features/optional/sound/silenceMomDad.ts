@@ -8,6 +8,7 @@ const MOM_AND_DAD_SOUND_EFFECTS: ReadonlySet<SoundEffect> = new Set([
   SoundEffect.SOUND_MOM_AND_DAD_4,
 ]);
 
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   if (!config.silenceMomDad) {
     return;

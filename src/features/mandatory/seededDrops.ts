@@ -25,7 +25,7 @@ export function init(): void {
   saveDataManager("seededDrops", v);
 }
 
-// MC_POST_GAME_STARTED (14)
+// ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   initVariables();
   removeSeededItemsTrinkets();

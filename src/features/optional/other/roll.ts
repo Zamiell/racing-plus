@@ -159,10 +159,13 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 
   if (character === PlayerType.PLAYER_ESAU) {
-    postPlayerUpdateEsau(player);
-    return;
+    checkRollEsau(player);
+  } else {
+    checkRoll(player);
   }
+}
 
+function checkRoll(player: EntityPlayer) {
   if (!v.run.rolling) {
     return;
   }
@@ -178,7 +181,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   player.Velocity = v.run.originalVelocity.Normalized().mul(rollSpeed);
 }
 
-function postPlayerUpdateEsau(player: EntityPlayer) {
+function checkRollEsau(player: EntityPlayer) {
   if (!v.run.rolling2) {
     return;
   }

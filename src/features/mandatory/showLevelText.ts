@@ -1,6 +1,7 @@
 import { isActionPressedOnAnyInput } from "isaacscript-common";
 import * as streakText from "./streakText";
 
+// ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   // Players who prefer the vanilla streak text will have a separate mod enabled
   if (VanillaStreakText !== undefined) {

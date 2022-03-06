@@ -9,6 +9,7 @@ const SPLITTING_BOSSES: ReadonlySet<EntityType> = new Set([
   EntityType.ENTITY_FISTULA_MEDIUM, // 72
 ]);
 
+// ModCallbacks.MC_POST_ENTITY_KILL (68)
 export function postEntityKill(entity: Entity): void {
   if (v.run.perfection.spawned) {
     return;

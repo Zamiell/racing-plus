@@ -7,6 +7,8 @@ import { config } from "../../../modConfigMenu";
 
 const CONSISTENT_EXPLOSION_TIME_IN_SECONDS = 2;
 
+// ModCallbacks.MC_POST_BOMB_INIT (57)
+// BombVariant.BOMB_TROLL (3)
 export function postBombInitTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;
@@ -15,6 +17,8 @@ export function postBombInitTroll(bomb: EntityBomb): void {
   setFuse(bomb);
 }
 
+// ModCallbacks.MC_POST_BOMB_INIT (57)
+// BombVariant.BOMB_SUPERTROLL (4)
 export function postBombInitMegaTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;
@@ -23,6 +27,8 @@ export function postBombInitMegaTroll(bomb: EntityBomb): void {
   setFuse(bomb);
 }
 
+// ModCallbacks.MC_POST_BOMB_INIT (57)
+// BombVariant.BOMB_GOLDENTROLL (18)
 export function postBombInitGoldenTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;

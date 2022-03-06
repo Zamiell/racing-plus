@@ -7,7 +7,9 @@
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-export function useItem(): void {
+// ModCallbacks.MC_USE_ITEM (3)
+// CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
+export function useItemFortuneCookie(): void {
   const HUD = g.g.GetHUD();
 
   if (!config.removeFortuneCookieBanners) {

@@ -19,7 +19,6 @@ import {
 } from "../seededDeath";
 import v from "../v";
 
-// ModCallbacksCustom.MC_PRE_CUSTOM_REVIVE
 export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
   if (!shouldSeededDeathFeatureApply()) {
     return undefined;

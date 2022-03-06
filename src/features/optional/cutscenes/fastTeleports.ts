@@ -3,6 +3,7 @@ import { config } from "../../../modConfigMenu";
 
 const ANIMATION_SPEED_MULTIPLIER = 1.66;
 
+// ModCallbacks.MC_POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.fastTeleports) {
     return;

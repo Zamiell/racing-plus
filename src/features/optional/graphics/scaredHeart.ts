@@ -1,5 +1,7 @@
 import { config } from "../../../modConfigMenu";
 
+// ModCallbacks.MC_POST_PICKUP_INIT (34)
+// PickupVariant.PICKUP_HEART (10)
 export function postPickupInitHeart(pickup: EntityPickup): void {
   if (!config.scaredHeart) {
     return;
