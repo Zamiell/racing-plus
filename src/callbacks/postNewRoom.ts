@@ -81,7 +81,7 @@ export function main(): void {
   fastClearPostNewRoom();
   fastTravelPostNewRoom();
 
-  // Chars
+  // Characters
   showEdenStartingItems.postNewRoom();
 
   // Enemies

@@ -33,7 +33,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  const numScolexes = countEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
+  const numScolexes = countEntities(SCOLEX_TYPE, SCOLEX_VARIANT, -1, true);
   if (numScolexes === 0) {
     return;
   }
