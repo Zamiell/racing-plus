@@ -8,6 +8,8 @@
 - Fixed the bug where a Checkpoint could rotate if you were playing as Tainted Isaac and you re-entered the room with the Checkpoint. (Thanks 91)
 - Fixed the bug where the free devil deal icon would not show properly when resetting the game.
 - Fixed the bug in season 2 where you could pick up a Checkpoint if you killed a final boss while the seeded death mechanic was active. (Thanks Gamonymous)
+- Fixed the bug with seeded death where you would be granted an incorrect amount of hearts if you died on The Soul.
+- Fixed the bug with seeded death where you would gain extra red hearts and rotten hearts on Tainted Magdalene. (Thanks Gamonymous)
 
 ### *v0.77.1* - March 6th, 2022
 

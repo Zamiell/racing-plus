@@ -43,7 +43,7 @@ export function goto(upwards: boolean): void {
 
   // If we do a "stage" command to go to the same floor that we are already on,
   // it will use the same floor layout as the previous floor
-  // Thus, in these cases, we need to mark to perform a "reseed" command before doing the "stage"
+  // Thus, in these cases, we need to mark to perform a "reseed" command after doing the "stage"
   // command
   // However, when we travel to the same floor layout from a Repentance exit,
   // floors do not need to be reseeded for some reason
