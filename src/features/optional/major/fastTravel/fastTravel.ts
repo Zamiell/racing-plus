@@ -139,7 +139,7 @@ function getCustomSpriteFilename(
         return "gfx/grid/door_20_secrettrapdoor_shop_custom.anm2";
       }
 
-      return "gfx/grid/door_20_secrettrapdoor_custom.anm2"; // cspell:disable-line
+      return "gfx/grid/door_20_secrettrapdoor_custom.anm2";
     }
 
     case FastTravelEntityType.HEAVEN_DOOR: {

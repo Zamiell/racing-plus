@@ -368,7 +368,7 @@ Post-flip actions:
 
 - `1001` <!-- flyItemSprites --> The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
 - `1002` <!-- twentyTwenty --> The 20/20 sprite is now easier to see.
-- `1003` <!-- starOfBethlehem --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- cspell:disable-line -->
+- `1003` <!-- starOfBethlehem --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).)
 - `1004` <!-- paschalCandle --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
 - `1005` <!-- scaredHeart --> Scared Hearts now have a custom animation so that they are easier to identify.
 - `1006` <!-- stickyNickel --> Sticky Nickels now have a custom effect so that they are easier to identify.
