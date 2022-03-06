@@ -38,8 +38,10 @@ export function postRender(): void {
 }
 
 function checkInput() {
+  const isPaused = g.g.IsPaused();
+
   // Don't check for inputs when the game is paused or the console is open
-  if (g.g.IsPaused()) {
+  if (isPaused) {
     return;
   }
 

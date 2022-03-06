@@ -18,6 +18,15 @@ export function postRender(): void {
     return;
   }
 
+  drawChargeBars();
+}
+
+function drawChargeBars() {
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   for (const player of getPlayers()) {
     drawChargeBar(player);
   }

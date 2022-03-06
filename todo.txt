@@ -6,3 +6,5 @@ TODO Racing+ new features:
 
 - Seeded runs change to being consistent with Devil/Angels
 - fix all bugs in #bugs
+
+- check for isPaused again, does not necessary have to check for this for room sprites

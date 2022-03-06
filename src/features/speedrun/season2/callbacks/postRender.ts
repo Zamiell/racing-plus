@@ -18,7 +18,6 @@ const SPRITE_ITEM_OFFSET = 15;
 
 export function season2PostRender(): void {
   const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_2) {
@@ -29,9 +28,10 @@ export function season2PostRender(): void {
     return;
   }
 
-  if (isPaused) {
-    return;
-  }
+  // We do not have to check if the game is paused because the pause menu will be drawn on top of
+  // the starting room sprites
+  // (and we do not have to worry about the room slide animation because the starting room sprites
+  // are not shown once we re-enter the room)
 
   if (drawErrors()) {
     return;

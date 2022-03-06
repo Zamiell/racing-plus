@@ -180,13 +180,18 @@ export function postRender(): void {
     return;
   }
 
-  // Only show pill identification if someone is pressing the map button
-  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
     return;
   }
 
   // Don't do anything if we have not taken any pills yet
   if (v.run.pillsIdentified.length === 0) {
+    return;
+  }
+
+  // Only show pill identification if someone is pressing the map button
+  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
     return;
   }
 

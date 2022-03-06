@@ -26,6 +26,11 @@ export function automaticItemInsertionPostRender(): void {
     return;
   }
 
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   drawCoinsDelta();
   drawBombsDelta();
   drawKeysDelta();

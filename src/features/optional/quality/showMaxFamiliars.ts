@@ -4,6 +4,7 @@ import {
   MAX_NUM_FAMILIARS,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { shouldGetFreeDevilItemOnThisRun } from "../major/freeDevilItem";
@@ -49,6 +50,11 @@ export function postRender(): void {
 
 function drawSprite() {
   if (!v.run.haveMaxFamiliars) {
+    return;
+  }
+
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
     return;
   }
 

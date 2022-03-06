@@ -47,7 +47,15 @@ export function postRender(): void {
 }
 
 function drawItemSprites() {
+  const hud = g.g.GetHUD();
   const isPaused = g.g.IsPaused();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  // We don't care if the sprites show when the game is paused,
+  // but we do not want the sprites to show during room slide animations
   if (isPaused) {
     return;
   }

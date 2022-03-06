@@ -253,6 +253,7 @@ function drawShadows() {
     return;
   }
 
+  // We do not want shadows to be drawn during room slide animations
   if (isPaused) {
     return;
   }

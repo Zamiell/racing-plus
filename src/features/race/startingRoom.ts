@@ -34,15 +34,15 @@ export function postRender(): void {
 
 function drawSprites() {
   const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
 
   if (!hud.IsVisible()) {
     return;
   }
 
-  if (isPaused) {
-    return;
-  }
+  // We do not have to check if the game is paused because the pause menu will be drawn on top of
+  // the starting room sprites
+  // (and we do not have to worry about the room slide animation because the starting room sprites
+  // are not shown once we re-enter the room)
 
   if (
     g.race.myStatus === RacerStatus.FINISHED ||

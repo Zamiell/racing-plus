@@ -56,6 +56,16 @@ export function postRender(): void {
     return;
   }
 
+  drawIconSprite();
+}
+
+function drawIconSprite() {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   const position = anyPlayerIs(PlayerType.PLAYER_ISAAC_B)
     ? ICON_SPRITE_POSITION.add(TAINTED_ISAAC_OFFSET)
     : ICON_SPRITE_POSITION;

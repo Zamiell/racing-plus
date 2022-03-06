@@ -21,15 +21,13 @@ export function init(): void {
 export function postRender(): void {
   const hud = g.g.GetHUD();
   const gameFrameCount = g.g.GetFrameCount();
-  const isPaused = g.g.IsPaused();
 
   if (!hud.IsVisible()) {
     return;
   }
 
-  if (isPaused) {
-    return;
-  }
+  // We do not have to check to see if the game is paused because the text will not be drawn on top
+  // of the pause menu
 
   // Make the version persist for at least 2 seconds after the player presses the hotkey
   if (isKeyboardPressed(SHOW_VERSION_ACTIVATION_HOTKEY)) {

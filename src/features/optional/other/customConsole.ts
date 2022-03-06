@@ -59,11 +59,13 @@ export function postRender(): void {
   const isaacFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
-  if (isPaused) {
+  // Don't check for inputs or draw the console when Mod Config Menu is open
+  if (!hud.IsVisible()) {
     return;
   }
 
-  if (!hud.IsVisible()) {
+  // Don't check for inputs or draw the console when the game is paused or the console is open
+  if (isPaused) {
     return;
   }
 

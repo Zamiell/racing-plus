@@ -65,15 +65,13 @@ function emulateGapingMaws() {
 
 function drawSprites() {
   const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
 
   if (!hud.IsVisible()) {
     return;
   }
 
-  if (isPaused) {
-    return;
-  }
+  // We do not have to check if the game is paused because the pause menu will be drawn on top of
+  // the race room sprites
 
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {

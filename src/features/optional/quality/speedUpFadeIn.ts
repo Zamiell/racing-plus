@@ -1,3 +1,5 @@
+// Get rid of the slow fade-in at the beginning of a run
+
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -34,7 +36,6 @@ function shouldSpeedUpFadeIn() {
   return !v.run.spedUpFadeIn && gameFrameCount === 0;
 }
 
-// Get rid of the slow fade-in at the beginning of a run
 function speedUpFadeIn() {
   v.run.spedUpFadeIn = true;
   g.g.Fadein(FADE_IN_SPEED);

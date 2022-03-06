@@ -83,6 +83,8 @@ export function draw(): void {
     return;
   }
 
+  // We don't care if the sprites show when the game is paused,
+  // but we do not want the sprites to show during room slide animations
   if (isPaused) {
     return;
   }

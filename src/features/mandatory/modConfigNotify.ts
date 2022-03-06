@@ -29,10 +29,8 @@ export function postRender(): void {
     return;
   }
 
-  const isPaused = g.g.IsPaused();
-  if (isPaused) {
-    return;
-  }
+  // We do not have to check to see if the game is paused because the text will not be drawn on top
+  // of the pause menu
 
   const bottomRightPos = getScreenBottomRightPos();
   const closeToBottom = bottomRightPos.Y - 28;
