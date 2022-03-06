@@ -64,6 +64,17 @@ function emulateGapingMaws() {
 }
 
 function drawSprites() {
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  if (isPaused) {
+    return;
+  }
+
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
       const spriteName = key;

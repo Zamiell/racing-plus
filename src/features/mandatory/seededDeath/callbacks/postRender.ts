@@ -26,7 +26,7 @@ export function seededDeathPostRender(): void {
   }
 
   postRenderFetalPosition();
-  postRenderCheckDisplayTimer();
+  postRenderCheckDrawTimer();
 }
 
 function postRenderFetalPosition() {
@@ -53,7 +53,7 @@ function postRenderFetalPosition() {
   }
 }
 
-function postRenderCheckDisplayTimer() {
+function postRenderCheckDrawTimer() {
   if (v.run.debuffEndFrame === null) {
     return;
   }
@@ -71,5 +71,5 @@ function postRenderCheckDisplayTimer() {
     startingX += SEEDED_DEATH_TIMER_SEASON_OFFSET_X;
   }
 
-  timer.display(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
+  timer.draw(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
 }

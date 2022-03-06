@@ -9,15 +9,17 @@ import {
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
 import g from "../../globals";
+import { shouldDrawPlaceLeftSprite } from "../race/placeLeft";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
 
 const STARTING_POSITION = Vector(23, 79);
+const RACE_PLACE_OFFSET = Vector(20, 0);
 
 const sprites = {
   digit: [] as Sprite[],
   slash: Sprite(),
-  season: Sprite(),
+  seasonIcon: Sprite(),
 };
 
 export function init(): void {
@@ -36,10 +38,10 @@ export function init(): void {
 }
 
 export function postRender(): void {
-  displayCharacterProgress();
+  drawCharacterProgressAndSeasonIcon();
 }
 
-function displayCharacterProgress() {
+function drawCharacterProgressAndSeasonIcon() {
   const hud = g.g.GetHUD();
 
   if (!hud.IsVisible()) {
@@ -49,6 +51,10 @@ function displayCharacterProgress() {
   let position = STARTING_POSITION;
   const HUDOffsetVector = getHUDOffsetVector();
   position = position.add(HUDOffsetVector);
+
+  if (shouldDrawPlaceLeftSprite()) {
+    position = position.add(RACE_PLACE_OFFSET);
+  }
 
   const digitLength = 7.25;
   let adjustment1 = 0;
@@ -66,7 +72,7 @@ function displayCharacterProgress() {
     position = position.add(SPRITE_JACOB_ESAU_OFFSET);
   }
 
-  // Display the sprites
+  // Draw the sprites for the character progress
   let digit1 = v.persistent.characterNum;
   let digit2 = -1;
   if (v.persistent.characterNum > 9) {
@@ -110,6 +116,7 @@ function displayCharacterProgress() {
     digit4Sprite.RenderLayer(0, digit4Position);
   }
 
+  // Draw the sprite for the season icon
   let posSeason: Vector;
   const spacing = 17;
   if (digit4Position === undefined) {
@@ -117,15 +124,14 @@ function displayCharacterProgress() {
   } else {
     posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
   }
-  sprites.season.SetFrame("Default", 0);
-  sprites.season.RenderLayer(0, posSeason);
+  sprites.seasonIcon.RenderLayer(0, posSeason);
 }
 
 export function postGameStarted(): void {
-  initSeasonSprite();
+  initSeasonIconSprite();
 }
 
-function initSeasonSprite() {
+function initSeasonIconSprite() {
   const challenge = Isaac.GetChallenge();
   const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
   if (challengeDefinition === undefined) {
@@ -133,6 +139,6 @@ function initSeasonSprite() {
   }
   const abbreviation = challengeDefinition[0];
 
-  sprites.season.Load(`gfx/speedrun/${abbreviation}.anm2`, true);
-  sprites.season.SetFrame("Default", 0);
+  sprites.seasonIcon.Load(`gfx/speedrun/${abbreviation}.anm2`, true);
+  sprites.seasonIcon.SetFrame("Default", 0);
 }

@@ -1,7 +1,6 @@
 import { emptyArray, inStartingRoom } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
-import { isSlideAnimationActive } from "../../../utils/detectSlideAnimation";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 
@@ -73,19 +72,18 @@ function shouldShowSprites() {
 }
 
 export function draw(): void {
-  const player = Isaac.GetPlayer();
-  const playerSprite = player.GetSprite();
-  const playerAnimation = playerSprite.GetAnimation();
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
   const topLeftRoomPosition = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
   const nextToDreamCatcherPosition = g.r.GetGridPosition(
     TOP_LEFT_GRID_INDEX + 1,
   );
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  if (!hud.IsVisible()) {
     return;
   }
 
-  if (isSlideAnimationActive() && playerAnimation !== "Appear") {
+  if (isPaused) {
     return;
   }
 

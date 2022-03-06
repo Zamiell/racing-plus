@@ -27,7 +27,6 @@ import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
-import * as detectSlideAnimation from "../features/utils/detectSlideAnimation";
 import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 
 export function main(): void {
@@ -43,10 +42,14 @@ export function main(): void {
     return;
   }
 
+  // For mod features that draw UI elements to the screen,
+  // we should early return if the HUD is not visible
+  // However, the game is considered to be paused during the room slide animation, so in most cases,
+  // we do not want to check to see if the game is paused
+
   // Mandatory
   modConfigNotify.postRender();
   racingPlusSprite.postRender();
-  detectSlideAnimation.postRender();
   streakText.postRender();
   runTimer.postRender();
   topLeftText.postRender();

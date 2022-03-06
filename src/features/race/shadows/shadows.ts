@@ -10,7 +10,6 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { isSlideAnimationActive } from "../../utils/detectSlideAnimation";
 import * as socket from "../socket";
 import { RaceFormat } from "../types/RaceFormat";
 import { RacerStatus } from "../types/RacerStatus";
@@ -243,14 +242,20 @@ function updateShadow(shadowMessage: ShadowMessage) {
 }
 
 function drawShadows() {
-  if (isSlideAnimationActive()) {
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
+  const isaacFrameCount = Isaac.GetFrameCount();
+  const roomListIndex = getRoomListIndex();
+
+  if (!hud.IsVisible()) {
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomListIndex = getRoomListIndex();
+  if (isPaused) {
+    return;
+  }
 
   for (const shadowData of v.run.shadows.values()) {
     const framesSinceLastUpdate = isaacFrameCount - shadowData.frameUpdated;

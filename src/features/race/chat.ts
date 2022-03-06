@@ -28,6 +28,12 @@ export function postRender(): void {
 }
 
 function drawChat() {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   // If the console is open, display the last N messages with default opacity
   // Otherwise, only display recent messages,
   // and fade them so that they do not interfere with gameplay as much

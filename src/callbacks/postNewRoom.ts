@@ -36,7 +36,6 @@ import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/sh
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
-import * as detectSlideAnimation from "../features/utils/detectSlideAnimation";
 import * as roomsEntered from "../features/utils/roomsEntered";
 import g from "../globals";
 
@@ -57,7 +56,6 @@ export function main(): void {
   );
 
   // Util
-  detectSlideAnimation.postNewRoom();
   roomsEntered.postNewRoom();
 
   // Mandatory

@@ -9,6 +9,7 @@ import {
   isActionPressedOnAnyInput,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../globals";
 import * as timer from "../../timer";
 import { TimerType } from "../../types/TimerType";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
@@ -40,10 +41,16 @@ function checkStartTimer() {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  checkDisplay();
+  checkDraw();
 }
 
-function checkDisplay() {
+function checkDraw() {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
     return;
   }
@@ -69,5 +76,5 @@ function checkDisplay() {
     y += RUN_TIMER_Y_TAINTED_ISAAC_MOD;
   }
 
-  timer.display(TimerType.RUN_REAL_TIME, seconds, x, y);
+  timer.draw(TimerType.RUN_REAL_TIME, seconds, x, y);
 }

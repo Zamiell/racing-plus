@@ -4,10 +4,10 @@ import { TimerType } from "../../types/TimerType";
 import v from "./v";
 
 export function postRender(): void {
-  checkDisplay();
+  checkDraw();
 }
 
-function checkDisplay() {
+function checkDraw() {
   const isaacFrameCount = Isaac.GetFrameCount();
 
   // Find out how much time has passed since the speedrun started
@@ -21,5 +21,5 @@ function checkDisplay() {
   }
   const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
 
-  timer.display(TimerType.RACE_OR_SPEEDRUN, seconds);
+  timer.draw(TimerType.RACE_OR_SPEEDRUN, seconds);
 }

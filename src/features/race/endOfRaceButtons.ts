@@ -8,7 +8,6 @@ import {
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
-import { isSlideAnimationActive } from "../utils/detectSlideAnimation";
 import v from "./v";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);
@@ -24,11 +23,18 @@ const victoryLapSprite = initGlowingItemSprite(
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (isSlideAnimationActive()) {
+  drawSprites();
+}
+
+function drawSprites() {
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
+
+  if (!hud.IsVisible()) {
     return;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  if (isPaused) {
     return;
   }
 

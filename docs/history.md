@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.77.1* - March ?th, 2022
+
+- !Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
+
 ### *v0.77.1* - March 6th, 2022
 
 - Tainted Magdalene will no longer lose her free devil deal if she takes damage and it depletes her one her temporary red heart containers. (Thanks Fallenfor)

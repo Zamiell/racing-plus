@@ -5,10 +5,10 @@ import { inRaceRoom } from "./raceRoom";
 import { RacerStatus } from "./types/RacerStatus";
 
 export function postRender(): void {
-  checkDisplay();
+  checkDraw();
 }
 
-function checkDisplay() {
+function checkDraw() {
   if (
     g.race.myStatus !== RacerStatus.RACING &&
     g.race.myStatus !== RacerStatus.FINISHED
@@ -35,5 +35,5 @@ function checkDisplay() {
   }
   const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
 
-  timer.display(TimerType.RACE_OR_SPEEDRUN, seconds);
+  timer.draw(TimerType.RACE_OR_SPEEDRUN, seconds);
 }

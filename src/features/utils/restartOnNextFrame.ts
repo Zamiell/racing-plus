@@ -13,7 +13,7 @@ import {
 
 const v = {
   run: {
-    restartOnNextFrame: false,
+    restartOnNextRenderFrame: false,
     restartCharacter: null as PlayerType | PlayerTypeCustom | null,
     restartChallenge: null as Challenge | null,
     restartSeed: null as string | null,
@@ -26,11 +26,11 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  if (!v.run.restartOnNextFrame) {
+  if (!v.run.restartOnNextRenderFrame) {
     return;
   }
 
-  v.run.restartOnNextFrame = false;
+  v.run.restartOnNextRenderFrame = false;
   checkSpecialRestart();
 }
 
@@ -60,11 +60,11 @@ function checkSpecialRestart() {
 }
 
 export function restartOnNextFrame(): void {
-  v.run.restartOnNextFrame = true;
+  v.run.restartOnNextRenderFrame = true;
 }
 
 export function isRestartingOnNextFrame(): boolean {
-  return v.run.restartOnNextFrame;
+  return v.run.restartOnNextRenderFrame;
 }
 
 export function setRestartCharacter(

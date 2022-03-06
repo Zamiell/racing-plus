@@ -30,7 +30,9 @@ export function postRender(): void {
 }
 
 function drawSprite() {
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  const hud = g.g.GetHUD();
+
+  if (!hud.IsVisible()) {
     return;
   }
 

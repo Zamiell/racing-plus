@@ -83,8 +83,13 @@ function checkDraw() {
     return;
   }
 
-  // We don't check for "IsPaused()" because it looks buggy if the text disappears when changing
-  // rooms
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  // We don't check for the game being paused because it looks buggy if the text disappears when
+  // changing rooms
 
   if (v.run.frameSet === null) {
     // Only draw the tab text if there is no normal streak text showing

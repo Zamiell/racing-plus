@@ -19,31 +19,34 @@ export function postRender(): void {
 }
 
 function drawSprite() {
-  const hud = g.g.GetHUD();
+  if (shouldDrawPlaceLeftSprite() && sprite !== null) {
+    const position = getPosition();
+    sprite.RenderLayer(0, position);
+  }
+}
 
-  if (!hud.IsVisible()) {
-    return;
+export function shouldDrawPlaceLeftSprite(): boolean {
+  if (sprite === null) {
+    return false;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
-    return;
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return false;
   }
 
   // In the pre-race room, we have full graphics for "ready" and "not ready",
   // so the indicator on the left side of the screen is not necessary
   if (inRaceRoom()) {
-    return;
+    return false;
   }
 
   // We don't want place graphics to show in solo races
   if (g.race.solo) {
-    return;
+    return false;
   }
 
-  if (sprite !== null) {
-    const position = getPosition();
-    sprite.RenderLayer(0, position);
-  }
+  return true;
 }
 
 function getPosition() {

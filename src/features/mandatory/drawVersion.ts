@@ -6,6 +6,8 @@ import {
 import { VERSION } from "../../constants";
 import g from "../../globals";
 
+const SHOW_VERSION_ACTIVATION_HOTKEY = Keyboard.KEY_F1;
+
 const v = {
   run: {
     showVersionFrame: null as int | null,
@@ -17,15 +19,20 @@ export function init(): void {
 }
 
 export function postRender(): void {
+  const hud = g.g.GetHUD();
   const gameFrameCount = g.g.GetFrameCount();
   const isPaused = g.g.IsPaused();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
 
   if (isPaused) {
     return;
   }
 
-  // Make the version persist for at least 2 seconds after the player presses "v"
-  if (isKeyboardPressed(Keyboard.KEY_F1)) {
+  // Make the version persist for at least 2 seconds after the player presses the hotkey
+  if (isKeyboardPressed(SHOW_VERSION_ACTIVATION_HOTKEY)) {
     v.run.showVersionFrame = gameFrameCount + 60;
   }
 

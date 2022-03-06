@@ -11,11 +11,19 @@ import v, { getSeasonDescription } from "../v";
 
 export function changeCharOrderPostRender(): void {
   const challenge = Isaac.GetChallenge();
+
   if (challenge !== ChallengeCustom.CHANGE_CHAR_ORDER) {
     return;
   }
 
   disableControls();
+
+  // We can't check for "HUD.IsVisible()" because we explicitly disable the HUD in this challenge
+  // Thus, we explicitly check for Mod Config Menu
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   drawCurrentChoosingActivity();
   drawSeasonSprites();
   drawCharacterSprites();

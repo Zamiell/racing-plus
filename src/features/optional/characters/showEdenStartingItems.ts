@@ -5,10 +5,10 @@ import {
   range,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
-import { isSlideAnimationActive } from "../../utils/detectSlideAnimation";
 
 // Near the top-left
 const SPRITE_X = 123;
@@ -47,7 +47,8 @@ export function postRender(): void {
 }
 
 function drawItemSprites() {
-  if (isSlideAnimationActive()) {
+  const isPaused = g.g.IsPaused();
+  if (isPaused) {
     return;
   }
 

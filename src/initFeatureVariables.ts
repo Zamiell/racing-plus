@@ -59,7 +59,6 @@ import * as raceVars from "./features/race/v";
 import * as characterProgress from "./features/speedrun/characterProgress";
 import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
-import * as detectSlideAnimation from "./features/utils/detectSlideAnimation";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
 import * as roomsEntered from "./features/utils/roomsEntered";
 import * as modConfigMenu from "./modConfigMenu";
@@ -82,7 +81,6 @@ export function initFeatureVariables(): void {
   passiveItemsForEden.init();
 
   // Util
-  detectSlideAnimation.init();
   restartOnNextFrame.init();
   roomsEntered.init();
 

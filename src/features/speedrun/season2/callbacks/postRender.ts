@@ -17,13 +17,19 @@ const SPRITE_TITLE_OFFSET = Vector(0, -30);
 const SPRITE_ITEM_OFFSET = 15;
 
 export function season2PostRender(): void {
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_2) {
     return;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  if (isPaused) {
     return;
   }
 

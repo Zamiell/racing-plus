@@ -24,6 +24,11 @@ export function postRender(): void {
     return;
   }
 
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   const isPaused = g.g.IsPaused();
   if (isPaused) {
     return;

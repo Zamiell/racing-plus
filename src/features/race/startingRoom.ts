@@ -33,7 +33,14 @@ export function postRender(): void {
 }
 
 function drawSprites() {
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  const hud = g.g.GetHUD();
+  const isPaused = g.g.IsPaused();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  if (isPaused) {
     return;
   }
 

@@ -55,17 +55,18 @@ export function postRender(): void {
   }
 
   const isPaused = g.g.IsPaused();
+  const hud = g.g.GetHUD();
   const isaacFrameCount = Isaac.GetFrameCount();
+  const player = Isaac.GetPlayer();
 
   if (isPaused) {
     return;
   }
 
-  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+  if (!hud.IsVisible()) {
     return;
   }
 
-  const player = Isaac.GetPlayer();
   if (player.IsDead()) {
     close(false);
     return;

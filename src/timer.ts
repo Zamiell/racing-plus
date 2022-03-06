@@ -44,7 +44,7 @@ function getNewTimerSprites() {
   return sprites;
 }
 
-export function display(
+export function draw(
   timerType: TimerType,
   seconds: int,
   startingX?: int,
@@ -52,11 +52,14 @@ export function display(
 ): void {
   const hud = g.g.GetHUD();
 
-  if (seconds < 0) {
+  if (!hud.IsVisible()) {
     return;
   }
 
-  if (!hud.IsVisible()) {
+  // We want the timers to be drawn when the game is paused so that players can continue to see the
+  // seeded death countdown if they tab out of the game
+
+  if (seconds < 0) {
     return;
   }
 

@@ -24,6 +24,11 @@ const STARTING_X = 55;
 const STARTING_Y = 10;
 
 export function postRender(): void {
+  const hud = g.g.GetHUD();
+  if (!hud.IsVisible()) {
+    return;
+  }
+
   const seedString = g.seeds.GetStartSeedString();
   const HUDOffsetVector = getHUDOffsetVector();
   const heartsUIWidth = getHeartsUIWidth();
