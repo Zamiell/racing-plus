@@ -1,12 +1,15 @@
 import {
+  getCollectibles,
   getEffectiveStage,
   getEffects,
   getPlayers,
   getRandomInt,
+  preventCollectibleRotate,
   removeAllCollectibles,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
@@ -20,6 +23,7 @@ export function speedrunPostNewRoom(): void {
 
   checkFirstCharacterFirstFloorDevilRoom();
   checkWomb2IAMERROR();
+  checkEnteringRoomWithCheckpoint();
   allowVanillaPathsInRepentanceChallenge.postNewRoom();
   season2PostNewRoom();
 }
@@ -92,6 +96,23 @@ function checkWomb2IAMERROR() {
       GridEntityType.GRID_TRAPDOOR,
       TrapdoorVariant.NORMAL,
       gridIndex,
+    );
+  }
+}
+
+/**
+ * If Tainted Isaac re-enters a room with a checkpoint in it, it will no longer have the
+ * "preventCollectibleRotate" property from the standard library. Thus, we need to reapply this
+ * every time we re-enter the room.
+ */
+function checkEnteringRoomWithCheckpoint() {
+  const checkpoints = getCollectibles(
+    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+  );
+  for (const checkpoint of checkpoints) {
+    preventCollectibleRotate(
+      checkpoint,
+      CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
     );
   }
 }

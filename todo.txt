@@ -6,3 +6,5 @@ TODO Racing+ new features:
 
 - Seeded runs change to being consistent with Devil/Angels
 - fix all bugs in #bugs
+
+- test shovel on stage 8 on S1 + S2 after converting challenge from repentance --> vanilla

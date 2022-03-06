@@ -165,22 +165,16 @@ export function postPickupUpdateCollectible(pickup: EntityPickup) {
 
 export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
-  const gameFrameCount = g.g.GetFrameCount();
   const anyPlayerIsTheLost = anyPlayerIs(
     PlayerType.PLAYER_THELOST,
     PlayerType.PLAYER_THELOST_B,
   );
 
-  return (
-    !v.run.tookDamage &&
-    devilRoomDeals === 0 &&
-    !anyPlayerIsTheLost &&
-    // We might be travelling to a Devil Room for run-initialization-related tasks
-    gameFrameCount > 0
-  );
+  return !v.run.tookDamage && devilRoomDeals === 0 && !anyPlayerIsTheLost;
 }
 
 function shouldGetFreeDevilItemInThisRoom() {
+  const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
 
   return (
@@ -188,7 +182,9 @@ function shouldGetFreeDevilItemInThisRoom() {
     // so we exclude this mechanic from applying to them
     roomType !== RoomType.ROOM_BLACK_MARKET &&
     // Dark Room starting room deals also don't count as "locking in" Devil Deals
-    !(onDarkRoom() && inStartingRoom())
+    !(onDarkRoom() && inStartingRoom()) &&
+    // We might be travelling to a Devil Room for run-initialization-related tasks
+    gameFrameCount > 0
   );
 }
 

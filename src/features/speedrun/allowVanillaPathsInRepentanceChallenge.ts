@@ -17,8 +17,8 @@ import {
 } from "../../constants";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
+import { onSpeedrunWithDarkRoomGoal } from "./speedrun";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
@@ -35,7 +35,6 @@ export function preUseItemWeNeedToGoDeeper(
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const challenge = Isaac.GetChallenge();
   const isMirrorWorld = g.r.IsMirrorWorld();
 
   // Rarely, the shovel will trigger two times on the same frame
@@ -56,9 +55,10 @@ export function preUseItemWeNeedToGoDeeper(
       ? GridEntityType.GRID_STAIRS
       : GridEntityType.GRID_TRAPDOOR;
 
-  // Do not allow trapdoors on stage 9 and above
-  // (or stage 8 for seasons that go to the Dark Room)
-  const finalFloorForTrapdoors = challenge === ChallengeCustom.SEASON_2 ? 7 : 8;
+  // Do not allow trapdoors on stage 9 and above, meaning the final floor for trapdoors is stage 8
+  // (for seasons that go to the Dark Room, we don't want to allow skipping Womb 2, so the final
+  // floor is stage 7)
+  const finalFloorForTrapdoors = onSpeedrunWithDarkRoomGoal() ? 7 : 8;
   if (
     stage > finalFloorForTrapdoors &&
     gridEntityType === GridEntityType.GRID_TRAPDOOR

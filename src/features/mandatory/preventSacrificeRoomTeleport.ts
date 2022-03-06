@@ -5,10 +5,10 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { RaceGoal } from "../race/types/RaceGoal";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";
+import { inSpeedrun, onSpeedrunWithDarkRoomGoal } from "../speedrun/speedrun";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
 
@@ -43,11 +43,9 @@ function checkDeleteSpikes() {
 }
 
 function shouldDeleteSpikes() {
-  const challenge = Isaac.GetChallenge();
-
   return (
     v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL &&
-    (inRaceToDarkRoom() || challenge === ChallengeCustom.SEASON_2)
+    (inRaceToDarkRoom() || (inSpeedrun() && onSpeedrunWithDarkRoomGoal()))
   );
 }
 

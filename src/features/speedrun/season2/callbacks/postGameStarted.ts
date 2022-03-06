@@ -53,6 +53,7 @@ export function season2PostGameStarted(): void {
   removeItemsFromPools();
   checkFirstCharacterRefresh();
 
+  log(`Season 2 - On character: ${speedrunGetCharacterNum()}/7`);
   const startingCharacter = getStartingCharacter();
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
 

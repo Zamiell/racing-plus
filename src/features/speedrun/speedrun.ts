@@ -1,4 +1,4 @@
-import { ISAAC_FRAMES_PER_SECOND, sumArray } from "isaacscript-common";
+import { ISAAC_FRAMES_PER_SECOND, isEven, sumArray } from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { ChallengeCustom } from "../../types/ChallengeCustom";
@@ -6,6 +6,7 @@ import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
+import { speedrunGetCharacterNum } from "./exported";
 import v from "./v";
 
 export function checkValidCharOrder(): boolean {
@@ -154,17 +155,28 @@ export function getCharacterOrderSafe(): PlayerType[] {
   return characterOrder;
 }
 
-export function inSpeedrun(): boolean {
-  const challenge = Isaac.GetChallenge();
-  return CUSTOM_CHALLENGES_SET.has(challenge);
-}
-
 export function isOnFinalCharacter(): boolean {
   return v.persistent.characterNum === 7;
 }
 
 export function isOnFirstCharacter(): boolean {
   return v.persistent.characterNum === 1;
+}
+
+export function inSpeedrun(): boolean {
+  const challenge = Isaac.GetChallenge();
+  return CUSTOM_CHALLENGES_SET.has(challenge);
+}
+
+export function onSpeedrunWithDarkRoomGoal(): boolean {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge === ChallengeCustom.SEASON_2) {
+    const characterNum = speedrunGetCharacterNum();
+    return isEven(characterNum);
+  }
+
+  return false;
 }
 
 export function shouldShowEndOfRunTextSpeedrun(): boolean {

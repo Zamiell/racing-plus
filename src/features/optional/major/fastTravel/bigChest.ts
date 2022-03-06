@@ -21,7 +21,10 @@ import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
-import { isOnFinalCharacter } from "../../../speedrun/speedrun";
+import {
+  isOnFinalCharacter,
+  onSpeedrunWithDarkRoomGoal,
+} from "../../../speedrun/speedrun";
 import * as fastTravel from "./fastTravel";
 import { FastTravelEntityType } from "./types/FastTravelEntityType";
 
@@ -144,10 +147,14 @@ enum SpeedrunDirection {
 function speedrunAlternate() {
   // Some seasons alternate between directions,
   // so we need to make sure we only handle the intended direction
-  const characterNum = speedrunGetCharacterNum();
-  const modulus = characterNum % 2;
-  const direction =
-    modulus === 1 ? SpeedrunDirection.UP : SpeedrunDirection.DOWN;
+  const direction = onSpeedrunWithDarkRoomGoal()
+    ? SpeedrunDirection.DOWN
+    : SpeedrunDirection.UP;
+  log(
+    `Season 2 - Big chest situation, character number: ${speedrunGetCharacterNum()}, direction: ${
+      SpeedrunDirection[direction]
+    } (${direction})`,
+  );
 
   // The Polaroid / The Negative is optional in seasons that alternate direction
   if (onCathedral()) {

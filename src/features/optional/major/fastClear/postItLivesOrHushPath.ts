@@ -1,7 +1,6 @@
 import {
   ensureAllCases,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
-  isOdd,
   isRoomInsideMap,
   log,
   removeAllMatchingEntities,
@@ -9,12 +8,15 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { hasPolaroidOrNegative } from "../../../../utils";
 import { RaceGoal } from "../../../race/types/RaceGoal";
 import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
+import {
+  inSpeedrun,
+  onSpeedrunWithDarkRoomGoal,
+} from "../../../speedrun/speedrun";
 
 enum ItLivesSituation {
   NEITHER,
@@ -63,17 +65,17 @@ function manuallySpawn() {
 
 // Figure out if we need to spawn either a trapdoor, a heaven door, or both
 function getItLivesSituation() {
-  const challenge = Isaac.GetChallenge();
-
   // Speedrun seasons have set goals
-  if (challenge === ChallengeCustom.SEASON_1) {
-    return ItLivesSituation.HEAVEN_DOOR;
-  }
-  if (challenge === ChallengeCustom.SEASON_2) {
-    const characterNum = speedrunGetCharacterNum();
-    return isOdd(characterNum)
-      ? ItLivesSituation.HEAVEN_DOOR
-      : ItLivesSituation.TRAPDOOR;
+  if (inSpeedrun()) {
+    const itLivesSituation = onSpeedrunWithDarkRoomGoal()
+      ? ItLivesSituation.TRAPDOOR
+      : ItLivesSituation.HEAVEN_DOOR;
+    log(
+      `Season 2 - It Lives! situation, character number: ${speedrunGetCharacterNum()}, situation: ${
+        ItLivesSituation[itLivesSituation]
+      } (${itLivesSituation})`,
+    );
+    return itLivesSituation;
   }
 
   if (
