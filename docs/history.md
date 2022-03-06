@@ -2,7 +2,8 @@
 
 ### *v0.77.1* - March ?th, 2022
 
-- !Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
+- Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
+- Fixed the bug where the speedrun timer would overlap with the race timer if you were racing a multi-character speedrun. (The race timer will take precedence.) (Thanks Gamonymous)
 
 ### *v0.77.1* - March 6th, 2022
 
