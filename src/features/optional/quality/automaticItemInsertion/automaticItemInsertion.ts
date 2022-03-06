@@ -1,4 +1,4 @@
-import { isFirstPlayer } from "isaacscript-common";
+import { isFirstPlayer, isKeeper } from "isaacscript-common";
 import g from "../../../../globals";
 import { insertPickup } from "./insertPickup";
 import v from "./v";
@@ -7,6 +7,8 @@ export function insertPickupAndUpdateDelta(
   pickup: EntityPickup,
   player: EntityPlayer,
 ): void {
+  const hearts = player.GetHearts();
+
   // Some pickups cannot be automatically inserted
   const pickupInserted = insertPickup(pickup, player);
   if (pickupInserted !== undefined) {
@@ -18,13 +20,14 @@ export function insertPickupAndUpdateDelta(
     pickup.Remove();
 
     // Track what it inserted so that we can display it on the UI
-    updateDelta(player, pickupInserted);
+    updateDelta(player, pickupInserted, hearts);
   }
 }
 
 function updateDelta(
   player: EntityPlayer,
   pickupInserted: [PickupVariant, int],
+  oldHearts: int,
 ) {
   const gameFrameCount = g.g.GetFrameCount();
 
@@ -47,6 +50,13 @@ function updateDelta(
     }
 
     case PickupVariant.PICKUP_COIN: {
+      const hearts = player.GetHearts();
+      const heartDelta = hearts - oldHearts;
+      if (isKeeper(player) && heartDelta > 0) {
+        // The coin that we just inserted healed Keeper by one or more coin containers
+        return;
+      }
+
       if (v.run.delta.coins === null) {
         v.run.delta.coins = 0;
       }

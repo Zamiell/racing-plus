@@ -1,16 +1,26 @@
 # Racing+ Version History and News
 
+### *v0.77.1* - March ?th, 2022
+
+- Tainted Magdalene will no longer lose her free devil deal if she takes damage and it depletes her one her temporary red heart containers. (Thanks Fallenfor)
+- Fixed the (vanilla) bug where you can be softlocked in certain specific Ultra Secret Rooms.
+- Fixed the bug where the custom flip would not generate an empty pedestal if the player purchased a pedestal item. (Thanks Gamonymous)
+- Fixed the bug where the custom flip would not produce a poof animation when using it.
+- Fixed the bug where the automatic item insertion feature would have an incorrect coin delta when playing as Keeper or Tainted Keeper with unfilled coin containers. (Thanks Gamonymous)
+- !Fixed the bug where Perfect trinket ? (Thanks Fallenfor)
+
 ### *v0.77.0* - March 5th, 2022
 
-- There is now an icon that shows if you still have a free Devil Deal available.
+- If you are fighting two angels at once, they will no longer be able to damage each other.
 - Reverted the angel key piece change from the previous patch.
+- There is now an icon that shows if you still have a free Devil Deal available.
 - In season 2, the build refresh time is lowered from 90 seconds to 75 seconds.
 - In season 2, not entering a Treasure Room no longer increases the chance of a Planetarium appearing.
 - In season 2, Tainted Samson can no longer start with the Fire Mind build. (Thanks toooschi)
 - In season 2, Tainted Azazel can no longer start with Revelation.
 - Fixed the (vanilla) bug where double coins would not heal Keeper for the correct amount.
 - Fixed the bug where you could travel down a trapdoor or crawlspace when A Pony or White Pony was active after having performed a room transition. (Thanks cutifire)
-- Fixed the bug where trapdoors could spawn in the mirror world in speedruns. (Thanks Gamonymous)
+- Fixed the bug where trapdoors could spawn in the mirror world in multi-character speedruns. (Thanks Gamonymous)
 - Fixed the bug where you could use the console in season 2. (Thanks Gamonymous)
 - Fixed the bug where some characters started with more luck than they should. (Thanks KiraKeepKool)
 - Fixed the bug where in seeded races, The Forgotten would die permanently in seeded races with Heartbreak. (Thanks Gamonymous)

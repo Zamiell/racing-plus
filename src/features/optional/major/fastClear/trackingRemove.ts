@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { getEntityID, log } from "isaacscript-common";
 import g from "../../../../globals";
 import { FAST_CLEAR_DEBUG } from "./constants";
 import v from "./v";
@@ -59,8 +59,9 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   v.room.aliveEnemies.delete(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
+    const entityID = getEntityID(npc);
     log(
-      `Removed fast-clear entity to track on game frame ${gameFrameCount}: ${npc.Type}.${npc.Variant}.${npc.SubType} - ${ptrHash} (${parentCallback})`,
+      `Removed fast-clear entity to track on game frame ${gameFrameCount}: ${entityID} - ${ptrHash} (${parentCallback})`,
     );
     log(
       `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,

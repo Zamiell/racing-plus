@@ -74,8 +74,9 @@ export function init(mod: Mod): void {
 
 export function main(pickup: EntityPickup): void {
   /*
+  const entityID = getEntityID(pickup);
   log(
-    `MC_POST_PICKUP_INIT - ${pickup.Type}.${pickup.Variant}.${pickup.SubType} - Seed: ${pickup.InitSeed}`,
+    `MC_POST_PICKUP_INIT - ${entityID} - Seed: ${pickup.InitSeed}`,
   );
   */
 

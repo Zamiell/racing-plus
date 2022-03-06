@@ -1,18 +1,14 @@
-import { PickupDescription } from "isaacscript-common";
+import { getEntityID } from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 
-export function main(
-  player: EntityPlayer,
-  pickupDescription: PickupDescription,
-): void {
-  Isaac.DebugString(
-    `MC_POST_PURCHASE - ${EntityType.ENTITY_PICKUP}.${pickupDescription.variant}.${pickupDescription.subType} - (${pickupDescription.position.X}, ${pickupDescription.position.Y}) - ${pickupDescription.initSeed}`,
-  );
+export function main(player: EntityPlayer, pickup: EntityPickup): void {
+  const entityID = getEntityID(pickup);
+  Isaac.DebugString(`MC_POST_PURCHASE - ${entityID}`);
 
   // QoL
-  chargePocketItemFirst.postPurchase(player, pickupDescription);
+  chargePocketItemFirst.postPurchase(player, pickup);
 
   // Items
-  flipCustom.postPurchase(player, pickupDescription);
+  flipCustom.postPurchase(player, pickup);
 }

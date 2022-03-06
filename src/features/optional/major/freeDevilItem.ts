@@ -1,6 +1,7 @@
 import {
   anyPlayerIs,
   DefaultMap,
+  getTaintedMagdaleneNonTemporaryMaxHearts,
   inStartingRoom,
   isChildPlayer,
   isSelfDamage,
@@ -58,6 +59,7 @@ export function postRender(): void {
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
   tookDamage: Entity,
+  damageAmount: float,
   damageFlags: int,
 ): void {
   if (!config.freeDevilItem) {
@@ -77,7 +79,52 @@ export function entityTakeDmgPlayer(
     return;
   }
 
+  // As an exception, Tainted Magdalene is allowed to get damaged on her temporary heart containers
+  const character = player.GetPlayerType();
+  if (character === PlayerType.PLAYER_MAGDALENE_B) {
+    if (
+      wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
+        player,
+        damageAmount,
+      )
+    ) {
+      v.run.tookDamage = true;
+    }
+
+    return;
+  }
+
   v.run.tookDamage = true;
+}
+
+function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
+  player: EntityPlayer,
+  damageAmount: float,
+) {
+  // Regardless of the damage amount, damage to a player cannot remove a soul heart and a red heart
+  // at the same time
+  const soulHearts = player.GetSoulHearts();
+  if (soulHearts > 0) {
+    return false;
+  }
+
+  // Regardless of the damage amount, damage to a player cannot remove a bone heart and a red heart
+  // at the same time
+  const boneHearts = player.GetBoneHearts();
+  if (boneHearts > 0) {
+    return false;
+  }
+
+  // Account for rotten hearts eating away at more red hearts than usual
+  const hearts = player.GetHearts();
+  const rottenHearts = player.GetRottenHearts();
+  const effectiveDamageAmount =
+    damageAmount + Math.min(rottenHearts, damageAmount);
+
+  const heartsAfterDamage = hearts - effectiveDamageAmount;
+  const nonTemporaryMaxHearts =
+    getTaintedMagdaleneNonTemporaryMaxHearts(player);
+  return heartsAfterDamage < nonTemporaryMaxHearts;
 }
 
 // ModCallbacks.MC_POST_PICKUP_UPDATE (35)

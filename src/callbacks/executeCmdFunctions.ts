@@ -1,6 +1,7 @@
 import {
   getNPCs,
   getPlayers,
+  getRoomGridIndexesForType,
   gridToPos,
   log,
   logAllSeedEffects,
@@ -9,6 +10,7 @@ import {
   printConsole,
   range,
   saveDataManagerSave,
+  teleport,
 } from "isaacscript-common";
 import { VERSION } from "../constants";
 import { debugFunction } from "../debugFunction";
@@ -658,6 +660,19 @@ executeCmdFunctions.set("trapdoor", (_params: string) => {
 executeCmdFunctions.set("treasure", (_params: string) => {
   const player = Isaac.GetPlayer();
   player.UseCard(Card.CARD_STARS);
+});
+
+executeCmdFunctions.set("ultra", (_params: string) => {
+  const ultraSecretGridIndexes = getRoomGridIndexesForType(
+    RoomType.ROOM_ULTRASECRET,
+  );
+  if (ultraSecretGridIndexes.length === 0) {
+    printConsole("There are no Ultra Secret Rooms on this floor.");
+    return;
+  }
+
+  const ultraSecretGridIndex = ultraSecretGridIndexes[0];
+  teleport(ultraSecretGridIndex);
 });
 
 executeCmdFunctions.set("unseed", (_params: string) => {

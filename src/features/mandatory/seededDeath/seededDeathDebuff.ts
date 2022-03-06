@@ -15,7 +15,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelperMap";
-import { ActiveItemDescription } from "../../../types/ActiveItemDescription";
+import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { TRANSFORMATION_HELPERS } from "../../../types/transformationHelpers";
 import { applySeededGhostFade } from "./seededDeath";
@@ -29,8 +29,8 @@ export function debuffOn(player: EntityPlayer): void {
 
   debuffOnRemoveSize(player);
   debuffOnSetHealth(player);
-  debuffOnRemoveActiveItems(player);
-  debuffOnRemoveAllItems(player);
+  debuffOnRemoveActiveCollectibles(player);
+  debuffOnRemoveAllCollectibles(player);
   debuffOnRemoveGoldenBombsAndKeys(player);
   debuffOnRemoveAllWisps(player);
   removeDeadEyeMultiplier(player);
@@ -42,7 +42,7 @@ function debuffOnRemoveSize(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   // Store their size for later and reset it to default
-  // (in case they had items like Magic Mushroom and so forth)
+  // (in case they had collectibles like Magic Mushroom and so forth)
   if (character === PlayerType.PLAYER_ESAU) {
     v.run.spriteScale2 = player.SpriteScale;
   } else {
@@ -98,13 +98,13 @@ function debuffOnSetHealth(player: EntityPlayer) {
   }
 }
 
-function debuffOnRemoveActiveItems(player: EntityPlayer) {
+function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const activesMap =
     character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
 
-  // Before we iterate over the active items, we need to remove the book that is sitting under the
-  // active item, if any
+  // Before we iterate over the active collectibles, we need to remove the book that is sitting
+  // under the active collectible, if any
   if (player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES)) {
     v.run.hasBookOfVirtues = true;
     removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES);
@@ -119,7 +119,7 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
     removeCollectible(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT);
   }
 
-  // Go through all of their active items
+  // Go through all of their active collectibles
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     const collectibleType = player.GetActiveItem(activeSlot);
     if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
@@ -129,41 +129,46 @@ function debuffOnRemoveActiveItems(player: EntityPlayer) {
     const charge = player.GetActiveCharge(activeSlot);
     const batteryCharge = player.GetBatteryCharge(activeSlot);
 
-    const activeItemDescription: ActiveItemDescription = {
+    const activeCollectibleDescription: ActiveCollectibleDescription = {
       collectibleType,
       charge,
       batteryCharge,
     };
-    activesMap.set(activeSlot, activeItemDescription);
+    activesMap.set(activeSlot, activeCollectibleDescription);
   }
 
-  // Now that we have gathered information about all of the active items, remove them
-  // We do it in this order to prevent bugs with removing items on the wrong slot
+  // Now that we have gathered information about all of the active collectibles, remove them
+  // We do it in this order to prevent bugs with removing collectibles on the wrong slot
   // (e.g. Isaac with the double D6)
-  for (const activeItem of activesMap.values()) {
-    if (activeItem.collectibleType !== CollectibleType.COLLECTIBLE_NULL) {
-      removeCollectible(player, activeItem.collectibleType);
+  for (const activeCollectibleDescription of activesMap.values()) {
+    if (
+      activeCollectibleDescription.collectibleType !==
+      CollectibleType.COLLECTIBLE_NULL
+    ) {
+      removeCollectible(player, activeCollectibleDescription.collectibleType);
     }
   }
 }
 
-function debuffOnRemoveAllItems(player: EntityPlayer) {
+function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
   const character = player.GetPlayerType();
-  const items =
-    character === PlayerType.PLAYER_ESAU ? v.run.items2 : v.run.items;
+  const collectibles =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.collectibles2
+      : v.run.collectibles;
 
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
     repeat(collectibleNum, () => {
       if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
-        items.push(collectibleType);
+        collectibles.push(collectibleType);
       }
 
       removeCollectible(player, collectibleType);
     });
   }
 
-  // Now that we have deleted every item, update the players stats
+  // Now that we have deleted every collectible, update the players stats
   player.AddCacheFlags(CacheFlag.CACHE_ALL);
   player.EvaluateItems();
 }
@@ -236,8 +241,8 @@ export function setCheckpointCollision(enabled: boolean): void {
 export function debuffOff(player: EntityPlayer): void {
   applySeededGhostFade(player, false);
   debuffOffRestoreSize(player);
-  debuffOffAddActiveItems(player);
-  debuffOffAddAllItems(player);
+  debuffOffAddActiveCollectibles(player);
+  debuffOffAddAllCollectibles(player);
   debuffOffAddGoldenBombAndKey(player);
   debuffOffAddDarkEsau();
   setCheckpointCollision(true);
@@ -260,13 +265,13 @@ function debuffOffRestoreSize(player: EntityPlayer) {
   }
 }
 
-function debuffOffAddActiveItems(player: EntityPlayer) {
+function debuffOffAddActiveCollectibles(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const activesMap =
     character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
 
-  // Before we restore the active items, we need to restore the book that was sitting under the
-  // active item, if any
+  // Before we restore the active collectibles, we need to restore the book that was sitting under
+  // the active collectible, if any
   if (v.run.hasBookOfVirtues) {
     v.run.hasBookOfVirtues = false;
 
@@ -282,39 +287,45 @@ function debuffOffAddActiveItems(player: EntityPlayer) {
     player.AddCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, 0, true);
   }
 
-  // Restore all of their active items
+  // Restore all of their active collectibles
   for (const activeSlot of getEnumValues(ActiveSlot)) {
-    const activeItemDescription = activesMap.get(activeSlot);
-    if (activeItemDescription === undefined) {
+    const activeCollectibleDescription = activesMap.get(activeSlot);
+    if (activeCollectibleDescription === undefined) {
       continue;
     }
     activesMap.delete(activeSlot);
 
     const totalCharge =
-      activeItemDescription.charge + activeItemDescription.batteryCharge;
+      activeCollectibleDescription.charge +
+      activeCollectibleDescription.batteryCharge;
     player.AddCollectible(
-      activeItemDescription.collectibleType,
+      activeCollectibleDescription.collectibleType,
       totalCharge,
       false,
       activeSlot,
     );
-    giveTransformationHelper(player, activeItemDescription.collectibleType);
+    giveTransformationHelper(
+      player,
+      activeCollectibleDescription.collectibleType,
+    );
   }
 }
 
-function debuffOffAddAllItems(player: EntityPlayer) {
+function debuffOffAddAllCollectibles(player: EntityPlayer) {
   const character = player.GetPlayerType();
-  const items =
-    character === PlayerType.PLAYER_ESAU ? v.run.items2 : v.run.items;
+  const collectibles =
+    character === PlayerType.PLAYER_ESAU
+      ? v.run.collectibles2
+      : v.run.collectibles;
 
-  for (const collectibleType of items) {
+  for (const collectibleType of collectibles) {
     player.AddCollectible(collectibleType, 0, false);
     giveTransformationHelper(player, collectibleType);
   }
 
-  emptyArray(items);
+  emptyArray(collectibles);
 
-  // Now that we have add every item, update the players stats
+  // Now that we have added every collectible, update the players stats
   player.AddCacheFlags(CacheFlag.CACHE_ALL);
   player.EvaluateItems();
 
@@ -337,7 +348,7 @@ function giveTransformationHelper(
 }
 
 function disableLostSoul() {
-  // When we re-give the Lost Soul item to the player,
+  // When we re-give the Lost Soul collectible to the player,
   // it will re-create the familiar in an alive state
   // After a seeded death, the familiar state should always be set to being dead
   const lostSouls = getFamiliars(FamiliarVariant.LOST_SOUL);

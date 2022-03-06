@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { getEntityID, log } from "isaacscript-common";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as fastDogma from "../features/mandatory/fastDogma";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
@@ -78,11 +78,10 @@ export function init(mod: Mod): void {
 
 export function main(entity: Entity): void {
   if (DEBUG) {
-    log(
-      `MC_POST_ENTITY_KILL - ${entity.Type}.${entity.Variant}.${
-        entity.SubType
-      } (on game frame ${Game().GetFrameCount()})`,
-    );
+    const game = Game();
+    const gameFrameCount = game.GetFrameCount();
+    const entityID = getEntityID(entity);
+    log(`MC_POST_ENTITY_KILL - ${entityID} (on game frame ${gameFrameCount})`);
   }
 
   fastClearPostEntityKill(entity);

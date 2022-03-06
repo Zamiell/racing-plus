@@ -33,7 +33,7 @@ export function init(mod: Mod): void {
 
 function entityTakeDmgPlayer(
   tookDamage: Entity,
-  _damageAmount: float,
+  damageAmount: float,
   damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
@@ -50,7 +50,7 @@ function entityTakeDmgPlayer(
   }
 
   // Major
-  freeDevilItem.entityTakeDmgPlayer(tookDamage, damageFlags);
+  freeDevilItem.entityTakeDmgPlayer(tookDamage, damageAmount, damageFlags);
   fastTravelEntityTakeDmgPlayer(damageFlags);
 
   // Other

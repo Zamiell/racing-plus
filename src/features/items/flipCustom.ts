@@ -6,7 +6,6 @@ import {
   getCollectibleMaxCharges,
   getCollectibles,
   isTaintedLazarus,
-  PickupDescription,
   removeCollectibleFromItemTracker,
   saveDataManager,
   setCollectibleSubType,
@@ -124,6 +123,16 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     v.room.flippedSprites.delete(ptrHash);
     // (the sprite will be reinitialized on the next render frame if there is still an item in the
     // alternate world)
+
+    // Copy the vanilla poof animation
+    Isaac.Spawn(
+      EntityType.ENTITY_EFFECT,
+      EffectVariant.POOF01,
+      PoofSubType.NORMAL,
+      collectible.Position,
+      Vector.Zero,
+      undefined,
+    );
   }
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
@@ -202,24 +211,30 @@ export function postPickupRenderCollectible(
 }
 
 // ModCallbacksCustom.MC_POST_PURCHASE
-export function postPurchase(
-  player: EntityPlayer,
-  pickupDescription: PickupDescription,
-) {
+export function postPurchase(player: EntityPlayer, pickup: EntityPickup) {
   if (!config.flipCustom) {
     return;
   }
 
-  // TODO
-  return;
-
+  // Normally, when a collectible is purchased, the empty pedestal will despawn on the next frame
+  // The vanilla flip has a feature where if you purchase a collectible, it will keep the empty
+  // pedestal around (so that you can use Flip on the other item if you want)
+  // Emulate this feature with the custom flip
   if (
     player.HasCollectible(NEW_COLLECTIBLE_TYPE) &&
-    pickupDescription.variant === PickupVariant.PICKUP_COLLECTIBLE
+    pickup.Variant === PickupVariant.PICKUP_COLLECTIBLE
   ) {
-    spawnEmptyCollectible(
-      pickupDescription.position,
-      pickupDescription.initSeed,
+    // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now
+    const emptyCollectible = spawnEmptyCollectible(
+      pickup.Position,
+      pickup.InitSeed,
     );
+
+    // Transfer the old flipped item to the new empty pedestal
+    const oldPtrHash = GetPtrHash(pickup);
+    const oldFlippedCollectibleType =
+      v.level.flippedCollectibleTypes.getAndSetDefault(oldPtrHash, pickup);
+    const newPtrHash = GetPtrHash(emptyCollectible);
+    v.level.flippedCollectibleTypes.set(newPtrHash, oldFlippedCollectibleType);
   }
 }

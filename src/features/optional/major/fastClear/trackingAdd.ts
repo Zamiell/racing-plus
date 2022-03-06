@@ -1,4 +1,5 @@
 import {
+  getEntityID,
   isAliveExceptionNPC,
   isDyingEggyWithNoSpidersLeft,
   log,
@@ -88,8 +89,9 @@ function add(entity: Entity, ptrHash: PtrHash, parentCallback: string) {
   v.room.aliveEnemies.add(ptrHash);
 
   if (FAST_CLEAR_DEBUG) {
+    const entityID = getEntityID(entity);
     log(
-      `Added fast-clear entity to track to frame ${gameFrameCount}: ${entity.Type}.${entity.Variant}.${entity.SubType} - ${ptrHash} (${parentCallback})`,
+      `Added fast-clear entity to track to frame ${gameFrameCount}: ${entityID} - ${ptrHash} (${parentCallback})`,
     );
     log(
       `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,

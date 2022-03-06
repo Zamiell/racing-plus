@@ -1,5 +1,5 @@
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
-import { ActiveItemDescription } from "../../../types/ActiveItemDescription";
+import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { SeededDeathState } from "../../../types/SeededDeathState";
 import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
@@ -17,10 +17,10 @@ const v = {
     // All are explicitly set back to false after reading them as true
     hasBookOfVirtues: false,
     hasBookOfBelialBirthrightCombo: false,
-    actives: new Map<ActiveSlot, ActiveItemDescription>(),
-    actives2: new Map<ActiveSlot, ActiveItemDescription>(),
-    items: [] as CollectibleType[],
-    items2: [] as CollectibleType[],
+    actives: new Map<ActiveSlot, ActiveCollectibleDescription>(),
+    actives2: new Map<ActiveSlot, ActiveCollectibleDescription>(),
+    collectibles: [] as CollectibleType[],
+    collectibles2: [] as CollectibleType[],
     spriteScale: null as Vector | null,
     spriteScale2: null as Vector | null,
     goldenBomb: false,

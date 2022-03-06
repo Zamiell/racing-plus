@@ -1,5 +1,6 @@
 import {
   getEntities,
+  getEntityID,
   getRoomGridIndexesForType,
   log,
   logRoom,
@@ -143,9 +144,8 @@ export function listEntities(params: string, includeAll: boolean): void {
       return;
     }
 
-    let debugString = `${i + 1} - ${entity.Type}.${entity.Variant}.${
-      entity.SubType
-    }`;
+    const entityID = getEntityID(entity);
+    let debugString = `${i + 1} - ${entityID}`;
 
     const bomb = entity.ToBomb();
     if (bomb !== undefined) {

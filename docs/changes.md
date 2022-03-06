@@ -71,6 +71,7 @@ Furthermore, the mod attempts to remove all situations where the placer is force
 
 - `0005` <!-- freeDevilItem --> As long as players have not taken any damage, players will get their first Devil Deal item free.
   - Self-damage (e.g. from a Curse Room door) does not count.
+  - On Tainted Magdalene, damage to temporary hearts does not count.
 
 > Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play well for the first two floors).
 
@@ -355,8 +356,9 @@ Post-flip actions:
 
 - `0901` <!-- keeperHeal --> Double pennies will now heal Keeper for the proper amount.
 - `0902` <!-- battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
-- `0903` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
-- `0904` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- `0903` <!-- preventUltraSecretRoomSoftlock --> You can no longer be softlocked in Ultra Secret Rooms.
+- `0904` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
+- `0905` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
 - <!-- fastTravel --> Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - <!-- fastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- seededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
