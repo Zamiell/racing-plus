@@ -21,14 +21,14 @@ export class Config {
   fadeBosses = true;
   killExtraEnemies = true; // 45, 78
   fastPin = true; // 62
-  stopDeathSlow = true; // 66
+  preventDeathSlow = true; // 66
   fastKrampus = true; // 81
   fastSatan = true; // 84
   fastHaunt = true; // 260
   fastAngels = true; // 271, 272
   consistentAngels = true; // 271, 272
   removeLambBody = true; // 273
-  stopVictoryLapPopup = true; // 273
+  preventVictoryLapPopup = true; // 273
   openHushDoor = true; // 407
   fastBigHorn = true; // 411
   fastColostomia = true; // 917

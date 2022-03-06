@@ -10,7 +10,7 @@ import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 export function postEntityKillLamb(_entity: Entity): void {
-  if (!config.stopVictoryLapPopup) {
+  if (!config.preventVictoryLapPopup) {
     return;
   }
 

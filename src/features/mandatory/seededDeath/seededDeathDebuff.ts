@@ -18,6 +18,7 @@ import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelp
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { TRANSFORMATION_HELPERS } from "../../../types/transformationHelpers";
+import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
 import v from "./v";
 
@@ -26,6 +27,9 @@ const NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES = 4;
 export function debuffOn(player: EntityPlayer): void {
   // Make them take "red heart damage" for the purposes of getting a Devil Deal
   g.l.SetRedHeartDamage();
+
+  // Make them take damage for the purposes of getting a Perfection Trinket
+  setFastTravelTookDamage();
 
   debuffOnRemoveSize(player);
   debuffOnSetHealth(player);

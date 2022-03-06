@@ -7,7 +7,7 @@ import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
-import * as stopVictoryLapPopup from "../features/optional/bosses/stopVictoryLapPopup";
+import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
@@ -107,7 +107,7 @@ function fallen(entity: Entity) {
 
 // EntityType.ENTITY_THE_LAMB (273)
 function lamb(entity: Entity) {
-  stopVictoryLapPopup.postEntityKillLamb(entity);
+  preventVictoryLapPopup.postEntityKillLamb(entity);
 }
 
 // EntityType.ENTITY_URIEL (271)

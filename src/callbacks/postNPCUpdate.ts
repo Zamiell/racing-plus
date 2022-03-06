@@ -2,8 +2,8 @@ import * as fixHushCollision from "../features/mandatory/fixHushCollision";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
+import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
-import * as stopDeathSlow from "../features/optional/bosses/stopDeathSlow";
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
 import * as fastDusts from "../features/optional/enemies/fastDusts";
@@ -127,7 +127,7 @@ function pin(npc: EntityNPC) {
 
 // EntityType.ENTITY_DEATH (66)
 function death(npc: EntityNPC) {
-  stopDeathSlow.postNPCUpdateDeath(npc);
+  preventDeathSlow.postNPCUpdateDeath(npc);
 }
 
 // EntityType.ENTITY_MOMS_HAND (213)

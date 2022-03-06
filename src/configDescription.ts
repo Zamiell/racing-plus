@@ -243,7 +243,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "stopDeathSlow", // 66
+    "preventDeathSlow", // 66
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0304",
@@ -310,7 +310,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
 // 0311-0320
 export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
-    "stopVictoryLapPopup", // 273
+    "preventVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",

@@ -7,7 +7,7 @@
 - Fixed the bug where the custom flip would not generate an empty pedestal if the player purchased a pedestal item. (Thanks Gamonymous)
 - Fixed the bug where the custom flip would not produce a poof animation when using it.
 - Fixed the bug where the automatic item insertion feature would have an incorrect coin delta when playing as Keeper or Tainted Keeper with unfilled coin containers. (Thanks Gamonymous)
-- !Fixed the bug where Perfect trinket ? (Thanks Fallenfor)
+- Fixed the bug where seeded death would not count as taking damage for the purposes of a Perfection trinket spawning at the end of the floor. (Thanks Fallenfor)
 
 ### *v0.77.0* - March 5th, 2022
 
