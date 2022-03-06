@@ -1,5 +1,5 @@
+import g from "../../../../globals";
 import { ChallengeCustom } from "../../../../types/ChallengeCustom";
-import { SEASON_2_DEBUG } from "../constants";
 
 // InputHook.IS_ACTION_TRIGGERED (1)
 // ButtonAction.ACTION_CONSOLE (28)
@@ -10,7 +10,7 @@ export function season2IsActionTriggeredConsole(): boolean | void {
     return undefined;
   }
 
-  if (SEASON_2_DEBUG) {
+  if (g.debug) {
     return undefined;
   }
 

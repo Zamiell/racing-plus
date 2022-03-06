@@ -1,10 +1,7 @@
-import {
-  countEntities,
-  getCollectibles,
-  removeCollectiblePickupDelay,
-} from "isaacscript-common";
+import { countEntities, getCollectibles } from "isaacscript-common";
 import g from "../../globals";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { postSpawnCheckpoint } from "./speedrun";
 
 // ModCallbacks.MC_USE_ITEM (3)
 // CollectibleType.COLLECTIBLE_VOID (477)
@@ -60,7 +57,7 @@ function respawnCheckpoint() {
       )
       .ToPickup();
     if (newCheckpoint !== undefined) {
-      removeCollectiblePickupDelay(newCheckpoint);
+      postSpawnCheckpoint(newCheckpoint);
     }
   }
 }

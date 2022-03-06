@@ -55,9 +55,10 @@ export function preUseItemWeNeedToGoDeeper(
       ? GridEntityType.GRID_STAIRS
       : GridEntityType.GRID_TRAPDOOR;
 
-  // Do not allow trapdoors on stage 9 and above, meaning the final floor for trapdoors is stage 8
-  // (for seasons that go to the Dark Room, we don't want to allow skipping Womb 2, so the final
-  // floor is stage 7)
+  // Do not allow trapdoors on stage 9 and above,
+  // meaning that the final floor for trapdoors should be stage 8
+  // (for seasons that go to the Dark Room, we don't want to allow skipping Womb 2,
+  // so the final floor for trapdoors is stage 7)
   const finalFloorForTrapdoors = onSpeedrunWithDarkRoomGoal() ? 7 : 8;
   if (
     stage > finalFloorForTrapdoors &&

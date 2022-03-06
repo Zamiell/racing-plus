@@ -2,10 +2,12 @@
 
 ### *v0.77.1* - March ?th, 2022
 
+- The seeded death mechanic will now grant you one bone heart, one half red heart, and half a soul heart regardless of whether you die on The Forgotten or The Soul. (Thanks Gamonymous)
 - Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
 - Fixed the bug where the speedrun timer would overlap with the race timer if you were racing a multi-character speedrun. (The race timer will take precedence.) (Thanks Gamonymous)
 - Fixed the bug where a Checkpoint could rotate if you were playing as Tainted Isaac and you re-entered the room with the Checkpoint. (Thanks 91)
 - Fixed the bug where the free devil deal icon would not show properly when resetting the game.
+- Fixed the bug in season 2 where you could pick up a Checkpoint if you killed a final boss while the seeded death mechanic was active. (Thanks Gamonymous)
 
 ### *v0.77.1* - March 6th, 2022
 

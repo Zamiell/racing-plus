@@ -1,10 +1,19 @@
-import { ISAAC_FRAMES_PER_SECOND, isEven, sumArray } from "isaacscript-common";
+import {
+  ISAAC_FRAMES_PER_SECOND,
+  isEven,
+  preventCollectibleRotate,
+  removeCollectibleFromItemTracker,
+  removeCollectiblePickupDelay,
+  runInNGameFrames,
+  sumArray,
+} from "isaacscript-common";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../types/SoundEffectCustom";
 import { getCharacterOrder } from "../changeCharOrder/v";
+import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
 import { speedrunGetCharacterNum } from "./exported";
 import v from "./v";
@@ -41,6 +50,9 @@ export function finish(player: EntityPlayer): void {
   // Give them the Checkpoint custom item
   // (this is used by the AutoSplitter to know when to split)
   player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT);
+  removeCollectibleFromItemTracker(
+    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+  );
 
   // Record how long this run took
   if (v.persistent.startedCharFrame !== null) {
@@ -177,6 +189,33 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
   }
 
   return false;
+}
+
+export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
+  removeCollectiblePickupDelay(checkpoint);
+  preventCollectibleRotate(
+    checkpoint,
+    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+  );
+
+  // If the player kills the final boss while the seeded death mechanic is active, they should not
+  // be able to take the checkpoint
+  if (isSeededDeathActive()) {
+    // The collision class on the collectible will be updated 4 frames from now, so if we set a new
+    // collision class now, it will be overwritten
+    // Thus, we have to wait at least 4 frames
+
+    // First, set the "Wait" property to an arbitrary value longer than 4 frames to prevent the
+    // player from picking up the Checkpoint
+    checkpoint.Wait = 10;
+
+    const checkpointPtr = EntityPtr(checkpoint);
+    runInNGameFrames(() => {
+      if (checkpointPtr.Ref !== undefined && checkpointPtr.Ref.Exists()) {
+        checkpoint.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+      }
+    }, 4);
+  }
 }
 
 export function shouldShowEndOfRunTextSpeedrun(): boolean {

@@ -8,7 +8,6 @@ import {
   onDarkRoom,
   onRepentanceStage,
   onSheol,
-  removeCollectiblePickupDelay,
   spawnCollectible,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -24,6 +23,7 @@ import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import {
   isOnFinalCharacter,
   onSpeedrunWithDarkRoomGoal,
+  postSpawnCheckpoint,
 } from "../../../speedrun/speedrun";
 import * as fastTravel from "./fastTravel";
 import { FastTravelEntityType } from "./types/FastTravelEntityType";
@@ -324,7 +324,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         pickup.Position,
         seed,
       );
-      removeCollectiblePickupDelay(checkpoint);
+      postSpawnCheckpoint(checkpoint);
       return;
     }
 

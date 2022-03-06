@@ -70,18 +70,12 @@ function debuffOnSetHealth(player: EntityPlayer) {
       return;
     }
 
-    // 16
-    case PlayerType.PLAYER_THEFORGOTTEN: {
-      // One half-filled bone heart
-      player.AddMaxHearts(2, true);
-      player.AddHearts(1);
-      return;
-    }
-
-    // 17
+    // 16, 17
+    case PlayerType.PLAYER_THEFORGOTTEN:
     case PlayerType.PLAYER_THESOUL: {
-      // One empty bone heart + one half soul heart
+      // One half-filled bone heart + one half soul heart
       player.AddBoneHearts(1);
+      player.AddHearts(1);
       player.AddSoulHearts(1);
       return;
     }
