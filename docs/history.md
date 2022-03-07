@@ -15,6 +15,7 @@
 - Fixed the bug with seeded death where you would gain extra red hearts and rotten hearts on Tainted Magdalene. (Thanks Gamonymous)
 - Fixed the bug with seeded death where Sumptorium familiars would not be deleted after you died. (Thanks Seb)
 - Fixed the bug with seeded death where dying to a Pitfall would never trigger the debuff. (Thanks TNTerminator)
+- Fixed the bug with seeded death where Tainted Magdalene's non-temporary heart containers were not be calculated correctly under certain circumstances. (Thanks Gamonymous)
 - Fixed the bug where Genesis rooms would offer the wrong types of items under certain conditions. (Thanks Echiqueur)
 - Fixed the bug where using Gold Pills would incorrectly cause a pill to be remembered.
 - Fixed the bug where having Dream Catcher on seeded races would cause the player's inventory to be modified upon reaching a new floor under certain conditions. (Thanks Gamonymous)

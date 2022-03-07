@@ -388,7 +388,8 @@ executeCmdFunctions.set("pills", (_params: string) => {
         pillColor = 1;
       }
 
-      const subType = horse ? pillColor + PillColor.PILL_GIANT_FLAG : pillColor;
+      const horsePillColor = pillColor + (PillColor.PILL_GIANT_FLAG as number);
+      const subType = horse ? horsePillColor : pillColor;
       const position = gridToPos(x, y);
       Isaac.Spawn(
         EntityType.ENTITY_PICKUP,
