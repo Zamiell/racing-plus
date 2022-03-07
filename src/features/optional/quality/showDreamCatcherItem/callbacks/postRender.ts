@@ -1,11 +1,16 @@
-import { getEffects, getPlayers, setPlayerHealth } from "isaacscript-common";
+import {
+  enableAllSound,
+  getEffects,
+  getPlayers,
+  setPlayerHealth,
+} from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../types/EffectVariantCustom";
 import { centerPlayers } from "../../../../mandatory/centerStart";
 import { restoreMinimapDisplayFlags, setMinimapVisible } from "../minimap";
 import * as sprites from "../sprites";
-import v from "../v";
+import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
 
 export function showDreamCatcherItemPostRender(): void {
@@ -56,4 +61,6 @@ function repositionPlayer() {
   if (v.level.health !== null) {
     setPlayerHealth(player, v.level.health);
   }
+
+  enableAllSound(DREAM_CATCHER_FEATURE_NAME);
 }

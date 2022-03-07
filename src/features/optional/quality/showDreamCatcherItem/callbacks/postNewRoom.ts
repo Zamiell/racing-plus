@@ -6,8 +6,6 @@ import {
   isArrayInArray,
   log,
   runNextGameFrame,
-  runNextRenderFrame,
-  stopAllSoundEffects,
   useActiveItemTemp,
 } from "isaacscript-common";
 import g from "../../../../../globals";
@@ -68,12 +66,6 @@ function gatherInfoAndGlowingHourGlass() {
     boss.AddEntityFlags(EntityFlag.FLAG_DONT_COUNT_BOSS_HP);
   }
 
-  // Cancel any sound effects relating to the room
-  stopAllSoundEffects();
-  runNextRenderFrame(() => {
-    stopAllSoundEffects();
-  });
-
   // In order to reset all of the state properly, we need to use Glowing Hour Glass
   // (because it is not possible to modify the Planetarium chances via Lua)
   // This has the disadvantage of having to wait 10 frames before the previous room is entered
@@ -87,12 +79,6 @@ function gatherInfoAndGlowingHourGlass() {
     // Cancel the "use item" animation to speed up returning to the starting room
     const sprite = player.GetSprite();
     sprite.Stop();
-
-    // Cancel the Glowing Hour Glass sound effect and any sound effects relating to the room
-    stopAllSoundEffects();
-    runNextRenderFrame(() => {
-      stopAllSoundEffects();
-    });
   });
 }
 

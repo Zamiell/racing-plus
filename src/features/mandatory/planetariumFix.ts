@@ -1,16 +1,19 @@
 import {
   changeRoom,
+  disableAllSound,
+  enableAllSound,
   getRoomGridIndexesForType,
   log,
   runNextGameFrame,
   saveDataManager,
-  stopAllSoundEffects,
 } from "isaacscript-common";
 import g from "../../globals";
 import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
 import { decrementRoomsEntered } from "../utils/roomsEntered";
+
+const FEATURE_NAME = "planetariumFix";
 
 enum PlanetariumFixWarpState {
   INITIAL,
@@ -22,11 +25,12 @@ const v = {
   level: {
     warpRoomGridIndexes: [] as int[],
     warpState: PlanetariumFixWarpState.INITIAL,
+    disableMusic: false,
   },
 };
 
 export function init(): void {
-  saveDataManager("planetariumFix", v);
+  saveDataManager(FEATURE_NAME, v);
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
@@ -49,6 +53,7 @@ export function shouldApplyPlanetariumFix(): boolean {
  */
 export function planetariumFix(): void {
   v.level.warpState = PlanetariumFixWarpState.WARPING;
+  disableAllSound(FEATURE_NAME);
   warpToNextRoom();
 }
 
@@ -58,12 +63,11 @@ function warpToNextRoom() {
     log(`Planetarium Fix - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
     decrementRoomsEntered(); // This should not count as entering a room
-    stopAllSoundEffects();
     return;
   }
 
   log("Planetarium Fix - Finished warping.");
-  stopAllSoundEffects();
+  enableAllSound(FEATURE_NAME);
   const gameFrameCount = g.g.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
 }

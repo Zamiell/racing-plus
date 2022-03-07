@@ -3,6 +3,7 @@
 ### *v0.78.0* - March 7th, 2022
 
 - In seeded races, players will now always get all Devil Rooms or all Angel Rooms. Each seed has a 50% chance of either option.
+- Random sound effects should play less often when travelling between floors on seeded races or with Dream Catcher.
 - Fixed the bug where clean bedrooms would never appear in multi-character speedruns.
 
 ### *v0.77.2* - March 6th, 2022

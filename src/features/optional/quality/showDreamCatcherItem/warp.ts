@@ -1,6 +1,7 @@
 import {
   anyPlayerHasCollectible,
   changeRoom,
+  disableAllSound,
   getEffectiveStage,
   getEffects,
   getPlayers,
@@ -17,7 +18,7 @@ import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { setMinimapVisible } from "./minimap";
-import v from "./v";
+import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
 
@@ -88,6 +89,8 @@ function startWarp() {
 
   const hud = g.g.GetHUD();
   hud.SetVisible(false);
+
+  disableAllSound(DREAM_CATCHER_FEATURE_NAME);
 
   warpToNextDreamCatcherRoom();
 }

@@ -2,6 +2,8 @@ import { PlayerHealth, saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 
+export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
+
 const v = {
   level: {
     warpState: DreamCatcherWarpState.INITIAL,
@@ -22,7 +24,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("showDreamCatcherItem", v, featureEnabled);
+  saveDataManager(DREAM_CATCHER_FEATURE_NAME, v, featureEnabled);
 }
 
 function featureEnabled() {
