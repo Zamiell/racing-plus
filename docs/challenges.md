@@ -95,7 +95,7 @@ The randomly assigned starting builds are as follows:
 - 23 - Dead Eye + Jesus Juice
 - 24 - Haemolacria + Sad Onion
 - 25 - Pointy Rib + Eve's Mascara
-- 26 - Sawblade + Transcendence
+- 26 - Sawblade + Fate (w/ no eternal heart)
 
 ### Forgotten Builds
 
@@ -119,6 +119,7 @@ Some builds are banned on certain characters:
   - Crown of Light
 - 27 - Tainted Samson
   - Dr. Fetus
+  - Ipecac
   - Brimstone
 - 28 - Tainted Azazel
   - Dr. Fetus
