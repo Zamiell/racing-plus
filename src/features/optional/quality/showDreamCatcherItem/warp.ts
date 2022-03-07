@@ -9,6 +9,7 @@ import {
   inStartingRoom,
   log,
   onSetSeed,
+  stopAllSoundEffects,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
@@ -127,6 +128,7 @@ export function warpToNextDreamCatcherRoom(): void {
 
   hud.SetVisible(true);
 
+  stopAllSoundEffects();
   Options.SFXVolume = v.level.sfxVolume;
   Options.MusicVolume = v.level.musicVolume;
 
