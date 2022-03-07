@@ -44,6 +44,7 @@ Regardless of the format:
 
 ### Other Specific Technical Changes
 
+- Players will get either all Devil Rooms or all Angel Rooms, with a 50% chance of each based on the starting seed of the run.
 - The following things are guaranteed to be seeded:
   - Room drops (given in order, regardless of luck)
   - Level generation (consistent special rooms, regardless of inventory status)
