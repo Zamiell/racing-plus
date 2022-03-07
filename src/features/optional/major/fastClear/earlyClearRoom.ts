@@ -75,6 +75,7 @@ function checkEarlyClearRoom() {
 
 function earlyClearRoom() {
   const gameFrameCount = g.g.GetFrameCount();
+  const roomType = g.r.GetType();
 
   v.room.earlyClearedRoom = true;
   log(`Early clearing the room on game frame: ${gameFrameCount} (fast-clear)`);
@@ -92,7 +93,7 @@ function earlyClearRoom() {
   // Thus, spawn the path manually if we are on a custom challenge
   // This will be a no-op if we are not in a Boss Room or if we are not on a floor that is supposed
   // to have a Repentance secret exit
-  if (inSpeedrun()) {
+  if (inSpeedrun() && roomType === RoomType.ROOM_BOSS) {
     g.r.TrySpawnSecretExit(true, true);
   }
 }

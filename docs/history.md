@@ -6,7 +6,7 @@
 - In seeded races, if you are in second place, you will now see how many seconds behind you are upon reaching a new floor.
 - Random sound effects should play less often when travelling between floors on seeded races or on unseeded runs with Dream Catcher.
 - Fixed the bug where dirty bedrooms would never appear in multi-character speedruns.
-- Fixed the bug where the game would crash when starting as Eden under certain conditions.
+- Fixed the bug where the game would crash when starting as Eden under certain conditions. (Thanks Gamonymous)
 - Fixed the bug where items with the "noeden" tag could be given to Eden or Tainted Eden under certain circumstances.
 
 ### *v0.77.2* - March 6th, 2022
