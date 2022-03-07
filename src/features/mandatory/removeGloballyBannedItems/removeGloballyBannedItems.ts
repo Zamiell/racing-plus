@@ -6,13 +6,14 @@ import {
   anyPlayerIs,
   getCollectibles,
   getPlayersOfType,
+  getRandomArrayElement,
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { PASSIVE_ITEMS_FOR_EDEN } from "../../../passiveItemsForEden";
 import { giveCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
-import { getEdenReplacementCollectibleType } from "../../optional/gameplay/extraStartingItems/replacePlaceholdersOnEden";
 import { inSeededRace } from "../../race/v";
 import {
   BANNED_COLLECTIBLES,
@@ -111,6 +112,22 @@ function addNewRandomPassiveToEden(player: EntityPlayer) {
   const replacementCollectibleType = getEdenReplacementCollectibleType(player);
   showEdenStartingItems.changeStartingPassiveItem(replacementCollectibleType);
   giveCollectibleAndRemoveFromPools(player, replacementCollectibleType);
+}
+
+function getEdenReplacementCollectibleType(
+  player: EntityPlayer,
+): CollectibleType {
+  const startSeed = g.seeds.GetStartSeed();
+
+  let replacementCollectible: CollectibleType;
+  do {
+    replacementCollectible = getRandomArrayElement(
+      PASSIVE_ITEMS_FOR_EDEN,
+      startSeed,
+    );
+  } while (player.HasCollectible(replacementCollectible));
+
+  return replacementCollectible;
 }
 
 // ModCallbacks.MC_USE_ITEM (3)

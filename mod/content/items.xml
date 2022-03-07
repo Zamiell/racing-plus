@@ -43,6 +43,8 @@
 	<passive description="" gfx="questionmark.png" name="Twisted Pair Placeholder" quality="4" tags="noeden offensive" />
 
 	<!-- Transformation helpers -->
+	<!-- (we specify the "quest" tag so that they cannot be rerolled by D4 / etc.)-->
+	<!-- (we don't need to specify the "noeden" tag because hidden items are never given to Eden)-->
 	<!-- 0 -->
 	<passive description="" gfx="questionmark.png" name="Guppy Transformation Helper" hidden="true" tags="guppy quest" />
 	<!-- 1 -->
