@@ -10,6 +10,7 @@ import g from "../../globals";
 import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter } from "../speedrun/speedrun";
+import { isPlanetariumFixWarping } from "./planetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES: readonly RoomType[] = [
   RoomType.ROOM_MINIBOSS, // 6
@@ -64,6 +65,10 @@ function postNewRoomCheckForRoomType(bannedRoomType: RoomType) {
 
 function inBannedRoom() {
   removeAllPickups();
+
+  if (isPlanetariumFixWarping()) {
+    return;
+  }
 
   // Signal that we are not supposed to get the pickups in this room
   // If they are teleporting into the banned room, the animation will not actually play,

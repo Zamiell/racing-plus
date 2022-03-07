@@ -522,18 +522,17 @@ executeCmdFunctions.set("save", (_params: string) => {
 });
 
 executeCmdFunctions.set("seededrace", (_params: string) => {
-  if (!onSetSeed()) {
-    printConsole(
-      'You must be on a set seed in order to use the "seededrace" command.',
-    );
-    return;
-  }
-
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
     printConsole(
       'You must have the Racing+ client open and be in the lobby in order to use the "seededrace" command.',
     );
     return;
+  }
+
+  if (!onSetSeed()) {
+    printConsole(
+      "You are not on a set seed; assuming that you want to use the current seed for the fake seeded race.",
+    );
   }
 
   const startSeedString = g.seeds.GetStartSeedString();

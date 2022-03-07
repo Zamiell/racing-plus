@@ -4034,9 +4034,9 @@ Changes:
 ### *v0.2.45* - February 21st, 2017
 
 - Co-op baby detection has been rewritten (thanks to Inschato). Now when you spawn a baby, it will:
-  1. play AnimateSad
-  2. automatically kill the baby
-  3. delete all item pedestals in the room
+  - play AnimateSad
+  - automatically kill the baby
+  - delete all item pedestals in the room
 - The new detection also fixes the bug where co-op babies would make the game crash under certain conditions.
 - The new detection also fixes the bug where trying to skip cutscenes would damage you and/or kill you.
 - Solo races now start in 3 seconds instead of 10. If this seems too fast for you, remember that you can use the Alt+R hotkey to ready up while inside the game.

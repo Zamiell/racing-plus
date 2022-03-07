@@ -2,6 +2,3 @@ TODO Racing+ new features:
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
   - Ranked Solo Season 3 ended:   April 2nd, 2022 (estimated)
   - Ranked Solo Season 3 length:  120 days
-
-- investigate why error noise sounds in seeded race when going from b1 --> b2
-- change treasure room error sound to only play conditionally if entered and not in warping sequence

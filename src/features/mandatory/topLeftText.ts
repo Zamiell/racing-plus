@@ -98,7 +98,7 @@ export function postRender(): void {
 function shouldShowSeededRaceTimeOffset() {
   return (
     inSeededRace() &&
-    getEffectiveStage() !== 0 && // TODO > 1
+    getEffectiveStage() > 1 &&
     inStartingRoom() &&
     g.r.IsFirstVisit() &&
     g.race.placeMid === 2 // Only show it when we are in second place

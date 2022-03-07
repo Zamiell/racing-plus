@@ -84,3 +84,7 @@ export function postNewRoom(): void {
     warpToNextRoom();
   });
 }
+
+export function isPlanetariumFixWarping(): boolean {
+  return v.level.warpState === PlanetariumFixWarpState.WARPING;
+}

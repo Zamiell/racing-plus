@@ -5,11 +5,12 @@ import {
   getPlayers,
   getRandomInt,
   preventCollectibleRotate,
-  removeAllCollectibles,
+  removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
@@ -55,10 +56,14 @@ function checkFirstCharacterFirstFloorDevilRoom() {
 }
 
 function emptyDevilAngelRoom() {
-  removeAllCollectibles();
+  removeAllPickups();
+
+  if (isPlanetariumFixWarping()) {
+    return;
+  }
 
   // Signal that we are not supposed to get the items in this room
-  // If they are teleporting into the Treasure Room, the animation will not actually play,
+  // Since they are teleporting into the room, the animation will not actually play,
   // but they will still be able to hear the sound effect
   for (const player of getPlayers()) {
     player.AnimateSad();
