@@ -1,7 +1,13 @@
 // We want to place informational text for the player to the right of the heart containers
 // (which will depend on how many heart containers we have)
 
-import { getHeartsUIWidth, getHUDOffsetVector } from "isaacscript-common";
+import {
+  getEffectiveStage,
+  getHeartsUIWidth,
+  getHUDOffsetVector,
+  inStartingRoom,
+  SECOND_IN_MILLISECONDS,
+} from "isaacscript-common";
 import { VERSION } from "../../constants";
 import g from "../../globals";
 import {
@@ -9,7 +15,7 @@ import {
   shouldShowNumSacrifices,
 } from "../optional/quality/showNumSacrifices";
 import { shouldShowRaceID } from "../race/raceStart";
-import { raceShouldShowEndOfRunText } from "../race/v";
+import { inSeededRace, raceShouldShowEndOfRunText } from "../race/v";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
 import {
   speedrunGetFinishedFrames,
@@ -71,6 +77,14 @@ export function postRender(): void {
     }
   } else if (shouldShowRaceID()) {
     lines.push(`Race ID: ${g.race.raceID}`);
+  } else if (shouldShowSeededRaceTimeOffset() && g.race.timeBehindLeader > 0) {
+    const seconds = Math.round(
+      g.race.timeBehindLeader / SECOND_IN_MILLISECONDS,
+    );
+    if (seconds > 0) {
+      const suffix = seconds > 0 ? "s" : "";
+      lines.push(`Behind by: ${seconds} second${suffix}`);
+    }
   } else if (shouldShowNumSacrifices()) {
     lines.push(`Sacrifices: ${getNumSacrifices()}`);
   }
@@ -79,4 +93,14 @@ export function postRender(): void {
     Isaac.RenderText(line, x, y, 2, 2, 2, 2);
     y += lineLength;
   }
+}
+
+function shouldShowSeededRaceTimeOffset() {
+  return (
+    inSeededRace() &&
+    getEffectiveStage() !== 0 && // TODO > 1
+    inStartingRoom() &&
+    g.r.IsFirstVisit() &&
+    g.race.placeMid === 2 // Only show it when we are in second place
+  );
 }

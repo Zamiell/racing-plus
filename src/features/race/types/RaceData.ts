@@ -11,8 +11,10 @@ export type RaceDataType = boolean | number | string | int[];
 export class RaceData {
   userID = -1;
   username = "";
+
   /** -1 if a race is not going on. */
   raceID = -1;
+
   status = RaceStatus.NONE;
   myStatus = RacerStatus.NOT_READY;
   ranked = false;
@@ -21,23 +23,32 @@ export class RaceData {
   difficulty = RaceDifficulty.NORMAL;
   character = PlayerType.PLAYER_JUDAS;
   goal = RaceGoal.BLUE_BABY;
-  /** Corresponds to the seed that is the race goal. */
+
+  /** Corresponds to the seed that is the race goal or "-". */
   seed = "-";
+
   /** The starting items for this race, if any. */
   startingItems: int[] = [];
+
   /** This corresponds to the graphic to draw on the screen. */
   countdown = -1;
+
   /**
-   * This is either the number of people ready (in a pre-race)
-   * or the non-finished place (in a race).
+   * This is either the number of people ready (in a pre-race) or the non-finished place (in a
+   * race).
    */
   placeMid = 0;
+
   /** This is the final place. */
   place = -1;
+
   /** In a pre-race, the number of people who have readied up. */
   numReady = 0;
+
   /** The number of people in the race. */
   numEntrants = 1;
+
+  timeBehindLeader = 0;
 }
 
 export function cloneRaceData(raceData: RaceData): RaceData {
