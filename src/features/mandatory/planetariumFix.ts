@@ -63,6 +63,7 @@ function warpToNextRoom() {
   }
 
   log("Planetarium Fix - Finished warping.");
+  stopAllSoundEffects();
   const gameFrameCount = g.g.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
 }

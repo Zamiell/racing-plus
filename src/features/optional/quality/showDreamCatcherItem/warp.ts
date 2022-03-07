@@ -89,12 +89,6 @@ function startWarp() {
   const hud = g.g.GetHUD();
   hud.SetVisible(false);
 
-  v.level.sfxVolume = Options.SFXVolume;
-  v.level.musicVolume = Options.MusicVolume;
-
-  Options.SFXVolume = 0;
-  Options.MusicVolume = 0;
-
   warpToNextDreamCatcherRoom();
 }
 
@@ -126,9 +120,6 @@ export function warpToNextDreamCatcherRoom(): void {
   log("Dream Catcher - Finished warping.");
 
   hud.SetVisible(true);
-
-  Options.SFXVolume = v.level.sfxVolume;
-  Options.MusicVolume = v.level.musicVolume;
 
   // At this point, the player will briefly show the animation of holding the Glowing Hour Glass
   // above their head

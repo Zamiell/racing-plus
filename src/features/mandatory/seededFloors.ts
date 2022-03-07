@@ -74,7 +74,6 @@ export function before(stage: int, stageType: int): void {
   // Record the current inventory and health values
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
-  Isaac.DebugString(`GETTING HERE SET - ${v.run.inventory.keys}`);
   v.run.playerHealth = getPlayerHealth(player);
 
   // Eternal Hearts will be lost since we are about to change floors,
@@ -233,7 +232,6 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
   player.AddBombs(inventory.bombs);
   player.AddKeys(-99);
   player.AddKeys(inventory.keys);
-  Isaac.DebugString(`GETTING HERE - REMOVED KEYS AND ADDED ${inventory.keys}`);
 }
 
 function addExtraHealthFromItems(player: EntityPlayer) {
