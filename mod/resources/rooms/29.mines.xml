@@ -67457,7 +67457,7 @@
 			<entity type="818" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5001" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40001" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67544,7 +67544,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5002" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40002" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67613,7 +67613,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5003" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40003" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -67688,7 +67688,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5004" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40004" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67781,7 +67781,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5005" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40005" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67814,7 +67814,7 @@
 			<entity type="827" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5006" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40006" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67868,7 +67868,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5007" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40007" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -67991,7 +67991,7 @@
 			<entity type="6000" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5008" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40008" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68111,7 +68111,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5009" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40009" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68249,7 +68249,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5010" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40010" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68312,7 +68312,7 @@
 			<entity type="1500" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5011" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
+	<room variant="40011" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68420,7 +68420,7 @@
 			<entity type="6000" variant="10" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5012" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.25">
+	<room variant="40012" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.25">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -68531,7 +68531,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5013" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
+	<room variant="40013" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68603,7 +68603,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5014" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40014" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68636,7 +68636,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5015" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40015" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68705,7 +68705,7 @@
 			<entity type="5" variant="30" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5016" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40016" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68732,7 +68732,7 @@
 			<entity type="819" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5017" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40017" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68774,7 +68774,7 @@
 			<entity type="1940" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5018" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40018" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -68918,7 +68918,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5019" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40019" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69002,7 +69002,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5020" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40020" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69047,7 +69047,7 @@
 			<entity type="1500" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5021" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40021" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69116,7 +69116,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5022" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40022" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -69152,7 +69152,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5023" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40023" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69236,7 +69236,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5024" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40024" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69269,7 +69269,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5025" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40025" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69326,7 +69326,7 @@
 			<entity type="4500" variant="3" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5026" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
+	<room variant="40026" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69362,7 +69362,7 @@
 			<entity type="818" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5027" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40027" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69410,7 +69410,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5028" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40028" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -69482,7 +69482,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="5029" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="40029" name="Button Room" type="1" subtype="1" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69539,7 +69539,7 @@
 			<entity type="827" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10000" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50000" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -69868,7 +69868,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10001" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50001" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -70143,7 +70143,7 @@
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10002" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50002" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -70382,7 +70382,7 @@
 			<entity type="823" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10003" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="0.10000000149011612">
+	<room variant="50003" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="0.10000000149011612">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -70645,7 +70645,7 @@
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10004" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50004" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -70959,7 +70959,7 @@
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10005" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50005" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -71252,7 +71252,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10006" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50006" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -71560,7 +71560,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10007" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50007" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
@@ -71871,7 +71871,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="10008" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
+	<room variant="50008" name="Secret Entrance" type="1" subtype="10" shape="4" width="13" height="14" difficulty="0" weight="1.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>

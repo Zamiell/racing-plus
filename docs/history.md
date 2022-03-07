@@ -4,7 +4,8 @@
 
 - The seeded death mechanic will now grant you one bone heart, one half red heart, and half a soul heart regardless of whether you die on The Forgotten or The Soul. (Thanks Gamonymous)
 - In season 2, Ipecac is now banned on Tainted Samson. (Thanks elgirs)
-- In season 2, the Sawblade build now grants Fate instead of Transcendence. The eternal heart from Fate will be automatically removed. (This makes it easier to see where the character is.) (Thanks elgirs)
+- In season 2, the Sawblade build now has Fate instead of Transcendence. The eternal heart from Fate will be automatically removed. (This makes it easier to see where the character is easier to see.) (Thanks elgirs)
+- Dream Catcher will now briefly make the HUD disappear upon reaching a new floor so that having heart/inventory values changing is not confusing.
 - Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
 - Fixed the bug where the speedrun timer would overlap with the race timer if you were racing a multi-character speedrun. (The race timer will take precedence.) (Thanks Gamonymous)
 - Fixed the bug where a Checkpoint could rotate if you were playing as Tainted Isaac and you re-entered the room with the Checkpoint. (Thanks 91)
@@ -15,7 +16,7 @@
 - Fixed the bug where Genesis rooms would offer the wrong types of items under certain conditions. (Thanks Echiqueur)
 - Fixed the bug where using Gold Pills would incorrectly cause a pill to be remembered.
 - Fixed the bug where having Dream Catcher on seeded races would cause the player's inventory to be modified upon reaching a new floor under certain conditions. (Thanks Gamonymous)
-- Fixed the bug where having Dream Catcher would cause inappropriate sound effects to play upon reaching a new floor.
+- Fixed the bug where saving & quitting in certain specific rooms could cause different entities to appear. (Thanks AshDown)
 
 ### *v0.77.1* - March 6th, 2022
 
