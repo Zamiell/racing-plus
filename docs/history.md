@@ -1,11 +1,11 @@
 # Racing+ Version History and News
 
-### *v0.77.1* - March ?th, 2022
+### *v0.77.2* - March 6th, 2022
 
-- The seeded death mechanic will now grant you one bone heart, one half red heart, and half a soul heart regardless of whether you die on The Forgotten or The Soul. (Thanks Gamonymous)
+- The seeded death mechanic will now grant you one bone heart, one half red heart, and half a soul heart when you die on The Forgotten or The Soul. (Thanks Gamonymous)
 - In season 2, Ipecac is now banned on Tainted Samson. (Thanks elgirs)
-- In season 2, the Sawblade build now has Fate instead of Transcendence. The eternal heart from Fate will be automatically removed. (This makes it easier to see where the character is easier to see.) (Thanks elgirs)
-- Dream Catcher will now briefly make the HUD disappear upon reaching a new floor so that having heart/inventory values changing is not confusing.
+- In season 2, the Sawblade build now has Fate instead of Transcendence. The eternal heart from Fate will be automatically removed. (This makes it easier to see where the character is.) (Thanks elgirs)
+- Dream Catcher will now briefly make the HUD disappear upon reaching a new floor to avoid making players confused by changing heart/inventory values.
 - Fixed the bug where the HUD had overlapping sprites if you were racing a multi-character speedrun. (Thanks Gamonymous)
 - Fixed the bug where the speedrun timer would overlap with the race timer if you were racing a multi-character speedrun. (The race timer will take precedence.) (Thanks Gamonymous)
 - Fixed the bug where a Checkpoint could rotate if you were playing as Tainted Isaac and you re-entered the room with the Checkpoint. (Thanks 91)
