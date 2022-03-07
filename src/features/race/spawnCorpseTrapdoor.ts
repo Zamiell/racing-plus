@@ -8,7 +8,7 @@ import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
-export const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
+const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
