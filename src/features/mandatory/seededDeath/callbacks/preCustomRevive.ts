@@ -12,7 +12,7 @@ import {
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
 import { RevivalType } from "../../../race/types/RevivalType";
-import { DEVIL_DEAL_BUFFER_FRAMES } from "../constants";
+import { DEVIL_DEAL_BUFFER_GAME_FRAMES } from "../constants";
 import {
   logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,
@@ -44,7 +44,8 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
   // devil deal
   if (
     v.run.frameOfLastDevilDeal !== null &&
-    gameFrameCount <= v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_FRAMES &&
+    gameFrameCount <=
+      v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_GAME_FRAMES &&
     canCharacterDieFromTakingADevilDeal(player)
   ) {
     return false;

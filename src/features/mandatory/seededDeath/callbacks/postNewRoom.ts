@@ -8,7 +8,7 @@ import {
 import g from "../../../../globals";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
-  SEEDED_DEATH_DEBUFF_FRAMES,
+  SEEDED_DEATH_DEBUFF_RENDER_FRAMES,
   SEEDED_DEATH_FEATURE_NAME,
 } from "../constants";
 import {
@@ -53,7 +53,8 @@ function postNewRoomWaitingForPostCustomRevive() {
   playAppearAnimationAndFade(player);
 
   debuffOn(player);
-  v.run.debuffEndFrame = Isaac.GetFrameCount() + SEEDED_DEATH_DEBUFF_FRAMES;
+  v.run.debuffEndFrame =
+    Isaac.GetFrameCount() + SEEDED_DEATH_DEBUFF_RENDER_FRAMES;
 }
 
 export function playAppearAnimationAndFade(player: EntityPlayer): void {
