@@ -3,16 +3,17 @@ import {
   changeRoom,
   getEffectiveStage,
   getEffects,
-  getPlayerHealth,
   getPlayers,
   getRoomGridIndexesForType,
   getRooms,
   inStartingRoom,
   log,
+  onSetSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
+import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { setMinimapVisible } from "./minimap";
@@ -80,15 +81,19 @@ function startWarp() {
     v.level.cardReadingPortalDescriptions.push(tuple);
   }
 
-  // Using the Glowing Hour Glass can remove health that was granted by the seeded floors feature
-  // To work around this, manually store the health and restore it later
-  const player = Isaac.GetPlayer();
-  v.level.health = getPlayerHealth(player);
-
   log(
     `Dream Catcher - Starting warp sequence (with ${v.level.warpRoomGridIndexes.length} rooms).`,
   );
   v.level.warpState = DreamCatcherWarpState.WARPING;
+
+  const hud = g.g.GetHUD();
+  hud.SetVisible(false);
+
+  v.level.sfxVolume = Options.SFXVolume;
+  v.level.musicVolume = Options.MusicVolume;
+
+  Options.SFXVolume = 0;
+  Options.MusicVolume = 0;
 
   warpToNextDreamCatcherRoom();
 }
@@ -107,6 +112,7 @@ function getMinimapDisplayFlagsMap() {
 }
 
 export function warpToNextDreamCatcherRoom(): void {
+  const hud = g.g.GetHUD();
   const players = getPlayers();
 
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
@@ -119,8 +125,13 @@ export function warpToNextDreamCatcherRoom(): void {
 
   log("Dream Catcher - Finished warping.");
 
-  // At this point, the player will show the animation of holding the Glowing Hour Glass above their
-  // head
+  hud.SetVisible(true);
+
+  Options.SFXVolume = v.level.sfxVolume;
+  Options.MusicVolume = v.level.musicVolume;
+
+  // At this point, the player will briefly show the animation of holding the Glowing Hour Glass
+  // above their head
   // However, there does not seem to be a way to cancel this
 
   // If the player has The Stairway, moving away from the room would delete the ladder,
@@ -153,19 +164,28 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
+  // Since we warped away from the starting room, the custom fast-travel pitfalls will be gone
+  // Manually respawn them
+  spawnHoles(players);
+
+  // Using the Glowing Hour Glass will reset any health or inventory modifications that were set by
+  // the seeded floors feature
+  // To work around this, re-run the "after" function
+  seededFloors.after();
+
   // Using the Glowing Hour Glass will remove the half soul heart that the Dream Catcher granted
   // (this is not just an artifact of the warping; it does this on vanilla too if you use Glowing
   // Hour Glass after walking into a new room)
   // Thus, add it back manually
-  for (const player of players) {
-    if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
-      player.AddSoulHearts(1);
+  // For some reason, this is not needed if the "seededFloors.after()" function performed
+  // modifications
+  if (!onSetSeed()) {
+    for (const player of players) {
+      if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+        player.AddSoulHearts(1);
+      }
     }
   }
-
-  // Since we warped away from the starting room, the custom fast-travel pitfalls will be gone
-  // Manually respawn them
-  spawnHoles(players);
 
   // We cannot reposition the player in the PostNewRoom callback for some reason,
   // so mark to do it on the next render frame

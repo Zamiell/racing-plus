@@ -17,6 +17,9 @@ const v = {
 
     /** Used so that the fast-travel feature can communicate with this feature. */
     arrivedOnNewFloor: false,
+
+    sfxVolume: 0,
+    musicVolume: 0,
   },
 };
 export default v;
