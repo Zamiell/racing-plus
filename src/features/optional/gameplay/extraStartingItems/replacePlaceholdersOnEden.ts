@@ -1,4 +1,8 @@
-import { getPlayersOfType, getRandomArrayElement } from "isaacscript-common";
+import {
+  getPlayersOfType,
+  getRandomArrayElement,
+  log,
+} from "isaacscript-common";
 import g from "../../../../globals";
 import { PASSIVE_ITEMS_FOR_EDEN } from "../../../../passiveItemsForEden";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
@@ -13,12 +17,15 @@ export function postGameStarted(): void {
     PlayerType.PLAYER_EDEN_B,
   );
   for (const player of edens) {
-    for (const placeholderItem of COLLECTIBLE_REPLACEMENT_MAP.keys()) {
-      if (!player.HasCollectible(placeholderItem)) {
+    for (const placeholderCollectibleType of COLLECTIBLE_REPLACEMENT_MAP.keys()) {
+      if (!player.HasCollectible(placeholderCollectibleType)) {
         continue;
       }
 
-      player.RemoveCollectible(placeholderItem);
+      log(
+        `Swapping the following collectible on Eden: ${placeholderCollectibleType}`,
+      );
+      player.RemoveCollectible(placeholderCollectibleType);
       const replacementCollectibleType =
         getEdenReplacementCollectibleType(player);
       showEdenStartingItems.changeStartingPassiveItem(
@@ -40,7 +47,7 @@ export function getEdenReplacementCollectibleType(
       PASSIVE_ITEMS_FOR_EDEN,
       startSeed,
     );
-  } while (!player.HasCollectible(replacementCollectible));
+  } while (player.HasCollectible(replacementCollectible));
 
   return replacementCollectible;
 }

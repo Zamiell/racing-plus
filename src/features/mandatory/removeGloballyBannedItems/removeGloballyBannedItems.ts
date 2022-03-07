@@ -97,6 +97,13 @@ function replaceEdenBannedItems() {
     if (v.run.startedWithCompass) {
       addNewRandomPassiveToEden(player);
     }
+
+    for (const trinketType of BANNED_TRINKETS_ON_SEEDED_RACES.values()) {
+      if (player.HasTrinket(trinketType)) {
+        player.TryRemoveTrinket(trinketType);
+        // (don't reward them with a new trinket, since Eden doesn't always start with a trinket)
+      }
+    }
   }
 }
 
