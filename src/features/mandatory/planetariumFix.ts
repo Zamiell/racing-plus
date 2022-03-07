@@ -22,8 +22,6 @@ const v = {
   level: {
     warpRoomGridIndexes: [] as int[],
     warpState: PlanetariumFixWarpState.INITIAL,
-    sfxVolume: 0,
-    musicVolume: 0,
   },
 };
 
@@ -51,13 +49,6 @@ export function shouldApplyPlanetariumFix(): boolean {
  */
 export function planetariumFix(): void {
   v.level.warpState = PlanetariumFixWarpState.WARPING;
-
-  v.level.sfxVolume = Options.SFXVolume;
-  v.level.musicVolume = Options.MusicVolume;
-
-  Options.SFXVolume = 0;
-  Options.MusicVolume = 0;
-
   warpToNextRoom();
 }
 
@@ -72,11 +63,6 @@ function warpToNextRoom() {
   }
 
   log("Planetarium Fix - Finished warping.");
-
-  stopAllSoundEffects();
-  Options.SFXVolume = v.level.sfxVolume;
-  Options.MusicVolume = v.level.musicVolume;
-
   const gameFrameCount = g.g.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
 }
