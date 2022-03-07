@@ -253,6 +253,11 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
     return;
   }
 
+  // Don't bother recording information about gold pills
+  if (pillColor === PillColor.PILL_GOLD) {
+    return;
+  }
+
   // Account for Horse Pills (i.e. giant pills)
   let effectivePillColor = pillColor;
   if (pillColor > PillColor.PILL_GIANT_FLAG) {
