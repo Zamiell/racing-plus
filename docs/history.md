@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.1* - March 7th, 2022
+
+- Fixed the bug where the Repentance secret exit should show up in rooms that it wasn't supposed to. (Thanks leo_ze_tron)
+
 ### *v0.78.0* - March 7th, 2022
 
 - In seeded races, players will now always get all Devil Rooms or all Angel Rooms. Each seed has a 50% chance of either option.
