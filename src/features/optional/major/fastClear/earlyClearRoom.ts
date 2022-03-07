@@ -91,8 +91,8 @@ function earlyClearRoom() {
 
   // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby
   // Thus, spawn the path manually if we are on a custom challenge
-  // This will be a no-op if we are not in a Boss Room or if we are not on a floor that is supposed
-  // to have a Repentance secret exit
+  // This will be a no-op if we are not in a Boss Room that is supposed to have a Repentance secret
+  // exit
   if (inSpeedrun() && roomType === RoomType.ROOM_BOSS) {
     g.r.TrySpawnSecretExit(true, true);
   }
