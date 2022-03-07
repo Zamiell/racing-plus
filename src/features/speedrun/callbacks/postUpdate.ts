@@ -10,7 +10,7 @@ export function speedrunPostUpdate(): void {
 }
 
 function checkStartTimer() {
-  if (v.persistent.startedFrame !== null) {
+  if (v.persistent.startedSpeedrunFrame !== null) {
     return;
   }
 
@@ -20,6 +20,6 @@ function checkStartTimer() {
   // (as opposed to when the screen is fading in)
   // Thus, we must check for this on every frame
   // This is to keep the timing consistent with historical timing of speedruns
-  v.persistent.startedFrame = isaacFrameCount;
-  v.persistent.startedCharFrame = isaacFrameCount;
+  v.persistent.startedSpeedrunFrame = isaacFrameCount;
+  v.persistent.startedCharacterFrame = isaacFrameCount;
 }

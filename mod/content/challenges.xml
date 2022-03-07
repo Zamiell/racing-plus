@@ -8,7 +8,7 @@ Notes:
 -->
 
 <challenges version="1">
-	<challenge name="R+7 Season 1" endstage="11" altpath="true" secretpath="true"/>
-	<challenge name="R+7 Season 2 (Beta)" endstage="11" altpath="true" secretpath="true"/>
+	<challenge name="R+7 Season 1" endstage="11" altpath="true" />
+	<challenge name="R+7 Season 2 (Beta)" endstage="11" altpath="true" />
 	<challenge name="Change Char Order" endstage="11" canshoot="false" />
 </challenges>

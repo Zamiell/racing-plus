@@ -11,7 +11,6 @@ import {
 import g from "../../../globals";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
-import * as allowVanillaPathsInRepentanceChallenge from "../allowVanillaPathsInRepentanceChallenge";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
@@ -24,7 +23,6 @@ export function speedrunPostNewRoom(): void {
   checkFirstCharacterFirstFloorDevilRoom();
   checkWomb2IAMERROR();
   checkEnteringRoomWithCheckpoint();
-  allowVanillaPathsInRepentanceChallenge.postNewRoom();
   season2PostNewRoom();
 }
 

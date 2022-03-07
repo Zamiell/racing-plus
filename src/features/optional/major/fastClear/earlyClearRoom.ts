@@ -7,6 +7,7 @@ import {
   openAllDoors,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import { inSpeedrun } from "../../../speedrun/speedrun";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
@@ -86,6 +87,14 @@ function earlyClearRoom() {
   openAllDoors();
   killExtraEntities();
   checkPostItLivesOrHushPath();
+
+  // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby
+  // Thus, spawn the path manually if we are on a custom challenge
+  // This will be a no-op if we are not in a Boss Room or if we are not on a floor that is supposed
+  // to have a Repentance secret exit
+  if (inSpeedrun()) {
+    g.r.TrySpawnSecretExit(true, true);
+  }
 }
 
 function killExtraEntities() {

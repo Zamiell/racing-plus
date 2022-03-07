@@ -3,15 +3,8 @@ import * as changeCharOrderPostGridEntityUpdate from "../features/changeCharOrde
 import * as fastTravelPostGridEntityUpdate from "../features/optional/major/fastTravel/callbacks/postGridEntityUpdate";
 import * as deleteVoidPortals from "../features/optional/quality/deleteVoidPortals";
 import * as racePostGridEntityUpdate from "../features/race/callbacks/postGridEntityUpdate";
-import * as speedrunPostGridEntityUpdate from "../features/speedrun/callbacks/postGridEntityUpdate";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
-    door,
-    GridEntityType.GRID_DOOR, // 16
-  );
-
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
     trapdoor,
@@ -35,11 +28,6 @@ export function init(mod: ModUpgraded): void {
     teleporter,
     GridEntityType.GRID_TELEPORTER, // 23
   );
-}
-
-// GridEntityType.GRID_DOOR (16)
-function door(gridEntity: GridEntity) {
-  speedrunPostGridEntityUpdate.door(gridEntity);
 }
 
 // GridEntityType.GRID_TRAPDOOR (17)

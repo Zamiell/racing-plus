@@ -19,7 +19,3 @@ export function raceFinish(): void {
 
   spawnEndOfRaceButtons();
 }
-
-export function shouldShowEndOfRunTextRace(): boolean {
-  return v.room.showEndOfRunText;
-}

@@ -55,8 +55,8 @@ export function finish(player: EntityPlayer): void {
   );
 
   // Record how long this run took
-  if (v.persistent.startedCharFrame !== null) {
-    const elapsedFrames = isaacFrameCount - v.persistent.startedCharFrame;
+  if (v.persistent.startedCharacterFrame !== null) {
+    const elapsedFrames = isaacFrameCount - v.persistent.startedCharacterFrame;
     v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
@@ -66,8 +66,8 @@ export function finish(player: EntityPlayer): void {
   // Finish the speedrun
   v.run.finished = true;
 
-  if (v.persistent.startedFrame !== null) {
-    v.run.finishedFrames = isaacFrameCount - v.persistent.startedFrame;
+  if (v.persistent.startedSpeedrunFrame !== null) {
+    v.run.finishedFrames = isaacFrameCount - v.persistent.startedSpeedrunFrame;
   }
 
   v.persistent.resetAllVarsOnNextReset = true;
@@ -216,8 +216,4 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
       }
     }, 4);
   }
-}
-
-export function shouldShowEndOfRunTextSpeedrun(): boolean {
-  return v.room.showEndOfRunText;
 }

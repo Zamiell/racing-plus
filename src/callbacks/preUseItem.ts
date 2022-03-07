@@ -7,12 +7,6 @@ import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
 export function init(mod: Mod): void {
   mod.AddCallback(
     ModCallbacks.MC_PRE_USE_ITEM,
-    weNeedToGoDeeper,
-    CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER, // 84
-  );
-
-  mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
     d6,
     CollectibleType.COLLECTIBLE_D6, // 105
   );
@@ -46,18 +40,6 @@ export function init(mod: Mod): void {
     flip,
     CollectibleType.COLLECTIBLE_FLIP, // 711
   );
-}
-
-// CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER (84)
-function weNeedToGoDeeper(
-  _collectibleType: CollectibleType,
-  rng: RNG,
-  player: EntityPlayer,
-  _useFlags: int,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-) {
-  return speedrunPreUseItem.weNeedToGoDeeper(rng, player);
 }
 
 // CollectibleType.COLLECTIBLE_D6 (105)

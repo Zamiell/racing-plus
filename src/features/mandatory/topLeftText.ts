@@ -8,15 +8,17 @@ import {
   getNumSacrifices,
   shouldShowNumSacrifices,
 } from "../optional/quality/showNumSacrifices";
-import { shouldShowEndOfRunTextRace } from "../race/raceFinish";
 import { shouldShowRaceID } from "../race/raceStart";
+import { raceShouldShowEndOfRunText } from "../race/v";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
-import { speedrunGetFinishedFrames } from "../speedrun/exported";
+import {
+  speedrunGetFinishedFrames,
+  speedrunShouldShowEndOfRunText,
+} from "../speedrun/exported";
 import {
   getAverageTimePerCharacter,
   inSpeedrun,
   isOnFinalCharacter,
-  shouldShowEndOfRunTextSpeedrun,
 } from "../speedrun/speedrun";
 import { getRoomsEntered } from "../utils/roomsEntered";
 
@@ -44,12 +46,12 @@ export function postRender(): void {
     // (this should have priority over showing the seed)
     const victoryLaps = getNumVictoryLaps();
     lines.push(`Victory Lap #${victoryLaps}`);
-  } else if (shouldShowEndOfRunTextSpeedrun() || shouldShowEndOfRunTextRace()) {
+  } else if (speedrunShouldShowEndOfRunText() || raceShouldShowEndOfRunText()) {
     // Show some run summary information
     // (it will be removed if they exit the room)
     lines.push(`R+ ${VERSION} - ${seedString}`);
 
-    if (shouldShowEndOfRunTextSpeedrun()) {
+    if (speedrunShouldShowEndOfRunText()) {
       lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
       const roomsEntered = getRoomsEntered();

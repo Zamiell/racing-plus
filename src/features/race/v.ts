@@ -44,3 +44,7 @@ export function inSeededRace(): boolean {
     g.race.format === RaceFormat.SEEDED
   );
 }
+
+export function raceShouldShowEndOfRunText(): boolean {
+  return v.room.showEndOfRunText;
+}

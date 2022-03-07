@@ -22,10 +22,10 @@ function drawSpeedrunTimer() {
   let elapsedFrames: int;
   if (v.run.finished && v.run.finishedFrames !== null) {
     elapsedFrames = v.run.finishedFrames;
-  } else if (v.persistent.startedFrame === null) {
+  } else if (v.persistent.startedSpeedrunFrame === null) {
     elapsedFrames = 0;
   } else {
-    elapsedFrames = isaacFrameCount - v.persistent.startedFrame;
+    elapsedFrames = isaacFrameCount - v.persistent.startedSpeedrunFrame;
   }
   const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
 
