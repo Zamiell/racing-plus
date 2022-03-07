@@ -13,7 +13,6 @@ import {
 } from "../constants";
 import {
   applySeededGhostFade,
-  logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import { debuffOn, setCheckpointCollision } from "../seededDeathDebuff";
@@ -25,12 +24,12 @@ export function seededDeathPostNewRoom(): void {
   }
 
   // Handle seeded death states
-  postNewRoomWaitingForNewRoom();
+  postNewRoomWaitingForPostCustomRevive();
   postNewRoomGhostForm();
 }
 
-function postNewRoomWaitingForNewRoom() {
-  if (v.run.state !== SeededDeathState.WAITING_FOR_NEW_ROOM) {
+function postNewRoomWaitingForPostCustomRevive() {
+  if (v.run.state !== SeededDeathState.WAITING_FOR_POST_CUSTOM_REVIVE) {
     return;
   }
 
@@ -43,18 +42,26 @@ function postNewRoomWaitingForNewRoom() {
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
+  // It is possible to perform a room transition before the player has actually died
+  // (e.g. if they die via running into a Curse Room door at full speed)
+  // However, we don't need to handle this case, since the death animation will happen immediately
+  // after the new room is entered (and during this time, the player is not able to move)
+  if (player.HasCollectible(CollectibleType.COLLECTIBLE_1UP)) {
+    return;
+  }
 
-  v.run.state = SeededDeathState.FETAL_POSITION;
-  v.run.debuffEndFrame = isaacFrameCount + SEEDED_DEATH_DEBUFF_FRAMES;
-  logSeededDeathStateChange();
+  playAppearAnimationAndFade(player);
 
+  debuffOn(player);
+  v.run.debuffEndFrame = Isaac.GetFrameCount() + SEEDED_DEATH_DEBUFF_FRAMES;
+}
+
+export function playAppearAnimationAndFade(player: EntityPlayer): void {
   disableAllInputs(SEEDED_DEATH_FEATURE_NAME);
   applySeededGhostFade(player, true);
 
   // Play the animation where Isaac lies in the fetal position
   player.PlayExtraAnimation("AppearVanilla");
-  debuffOn(player);
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
     if (twin !== undefined) {

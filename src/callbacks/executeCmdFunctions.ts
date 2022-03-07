@@ -58,10 +58,9 @@ import {
   validateNumber,
 } from "./executeCmdSubroutines";
 
-const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_ISAAC_B;
+const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_ISAAC;
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
-  CollectibleType.COLLECTIBLE_20_20,
-  CollectibleType.COLLECTIBLE_INNER_EYE,
+  CollectibleType.COLLECTIBLE_CRICKETS_HEAD,
 ];
 
 export const executeCmdFunctions = new Map<string, (params: string) => void>();

@@ -28,7 +28,7 @@ export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
     return undefined;
   }
 
-  seededDeathRevive(player);
+  preRevivalDeathAnimation(player);
 
   return RevivalType.SEEDED_DEATH;
 }
@@ -68,7 +68,7 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
   return true;
 }
 
-function seededDeathRevive(player: EntityPlayer) {
+function preRevivalDeathAnimation(player: EntityPlayer) {
   const playerIndex = getPlayerIndex(player);
 
   dropEverything(player);
@@ -79,7 +79,7 @@ function seededDeathRevive(player: EntityPlayer) {
     }
   }
 
-  v.run.state = SeededDeathState.WAITING_FOR_DEATH_ANIMATION_TO_FINISH;
+  v.run.state = SeededDeathState.WAITING_FOR_POST_CUSTOM_REVIVE;
   v.run.dyingPlayerIndex = playerIndex;
   logSeededDeathStateChange();
 

@@ -36,6 +36,7 @@ export function debuffOn(player: EntityPlayer): void {
   debuffOnRemoveActiveCollectibles(player);
   debuffOnRemoveAllCollectibles(player);
   debuffOnRemoveGoldenBombsAndKeys(player);
+  debuffOnRemoveSomeFamiliars();
   debuffOnRemoveAllWisps(player);
   removeDeadEyeMultiplier(player);
   debuffOnRemoveDarkEsau();
@@ -192,6 +193,12 @@ function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   // Remove any golden bombs and keys
   player.RemoveGoldenBomb();
   player.RemoveGoldenKey();
+}
+
+function debuffOnRemoveSomeFamiliars() {
+  // Remove all Sumptorium familiars
+  // (this includes familiars created by red hearts, soul hearts, black hearts, etc.)
+  removeAllFamiliars(FamiliarVariant.BLOOD_BABY);
 }
 
 function debuffOnRemoveAllWisps(player: EntityPlayer) {

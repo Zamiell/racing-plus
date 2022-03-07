@@ -3,7 +3,7 @@ import {
   ISAAC_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 
-export const SEEDED_DEATH_DEBUG = false;
+export const SEEDED_DEATH_DEBUG = true;
 export const SEEDED_DEATH_FEATURE_NAME = "seededDeath";
 export const SEEDED_DEATH_DEBUFF_FRAMES = 45 * ISAAC_FRAMES_PER_SECOND;
 
