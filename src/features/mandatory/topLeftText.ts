@@ -77,9 +77,12 @@ export function postRender(): void {
     }
   } else if (shouldShowRaceID()) {
     lines.push(`Race ID: ${g.race.raceID}`);
-  } else if (shouldShowSeededRaceTimeOffset() && g.race.timeBehindLeader > 0) {
+  } else if (
+    shouldShowSeededRaceTimeOffset() &&
+    g.race.millisecondsBehindLeader > 0
+  ) {
     const seconds = Math.round(
-      g.race.timeBehindLeader / SECOND_IN_MILLISECONDS,
+      g.race.millisecondsBehindLeader / SECOND_IN_MILLISECONDS,
     );
     if (seconds > 0) {
       const suffix = seconds > 0 ? "s" : "";

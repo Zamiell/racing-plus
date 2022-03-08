@@ -49,8 +49,7 @@ export class RaceData {
   /** The number of people in the race. */
   numEntrants = 1;
 
-  /** In milliseconds. */
-  timeBehindLeader = 0;
+  millisecondsBehindLeader = 0;
 }
 
 export function cloneRaceData(raceData: RaceData): RaceData {
