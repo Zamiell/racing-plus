@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.2* - March 7th, 2022
+
+- Fixed the bug where the Repentance secret exit would disappear in multi-character speedruns when you left the room. (Thanks TNTerminator)
+
 ### *v0.78.1* - March 7th, 2022
 
 - Fixed the bug where the Repentance secret exit should show up in rooms that it wasn't supposed to. (Thanks leo_ze_tron)

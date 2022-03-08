@@ -9,4 +9,4 @@ export const SPRITE_BETHANY_OFFSET = Vector(0, 10);
 export const SPRITE_JACOB_ESAU_OFFSET = Vector(0, 15);
 
 /** The version is updated automatically by the pre-publish script. */
-export const VERSION = "0.78.1";
+export const VERSION = "0.78.2";
