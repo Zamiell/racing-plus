@@ -24,6 +24,11 @@ function setSeededRaceConsistentDevilAngelRooms() {
     return;
   }
 
+  // This mechanic should not apply to Ranked Solo runs
+  if (g.race.ranked && g.race.solo) {
+    return;
+  }
+
   const startSeed = g.seeds.GetStartSeed();
   const randomChance = getRandom(startSeed);
   const devil = randomChance < 0.5;

@@ -35,6 +35,7 @@ Regardless of the format:
 
 - Sol is removed from all pools (since it is practically useless if you already have the Compass).
 - Glyph of Balance is removed from all pools (since it changes drop-generation).
+- Duality is removed from all pools (since Devil Rooms and Angel Rooms are seeded).
 - Damocles is removed from all pools (since the killing mechanic is unseeded).
 - Birthright is removed from all pools if the starting character is Cain (since it changes floor-generation).
 - Birthright is removed from all pools if the starting character is The Lost (since it changes pools and causes Judas' Shadow to be removed).
