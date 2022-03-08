@@ -1,3 +1,5 @@
+import { getRepentanceDoor } from "isaacscript-common";
+import { RepentanceDoorState } from "../../../types/RepentanceDoorState";
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 
@@ -7,6 +9,7 @@ export function speedrunPostUpdate(): void {
   }
 
   checkStartTimer();
+  checkRepentanceDoorState();
 }
 
 function checkStartTimer() {
@@ -22,4 +25,24 @@ function checkStartTimer() {
   // This is to keep the timing consistent with historical timing of speedruns
   v.persistent.startedSpeedrunFrame = isaacFrameCount;
   v.persistent.startedCharacterFrame = isaacFrameCount;
+}
+
+function checkRepentanceDoorState() {
+  const repentanceDoorState = getRepentanceDoorState();
+  if (repentanceDoorState !== undefined) {
+    v.level.repentanceDoorState = repentanceDoorState;
+  }
+}
+
+function getRepentanceDoorState() {
+  const repentanceDoor = getRepentanceDoor();
+  if (repentanceDoor === undefined) {
+    return undefined;
+  }
+
+  if (repentanceDoor.IsLocked()) {
+    return RepentanceDoorState.INITIAL;
+  }
+
+  return RepentanceDoorState.UNLOCKED;
 }

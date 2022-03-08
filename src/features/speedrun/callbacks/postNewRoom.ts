@@ -1,15 +1,18 @@
 import {
+  ensureAllCases,
   getCollectibles,
   getEffectiveStage,
   getEffects,
   getPlayers,
   getRandomInt,
+  getRepentanceDoor,
   preventCollectibleRotate,
   removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { RepentanceDoorState } from "../../../types/RepentanceDoorState";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
@@ -29,21 +32,20 @@ export function speedrunPostNewRoom(): void {
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {
-  // Prevent players from resetting for a Devil Room item on the first character
-  if (!isOnFirstCharacter()) {
-    return;
-  }
-
-  const effectiveStage = getEffectiveStage();
   const roomType = g.r.GetType();
+  const previousRoomType = v.level.previousRoomType;
+  const effectiveStage = getEffectiveStage();
 
-  if (effectiveStage !== 1) {
+  v.level.previousRoomType = roomType;
+
+  // Prevent players from resetting for a Devil Room item on the first character
+  if (!isOnFirstCharacter() || effectiveStage !== 1) {
     return;
   }
 
   if (
     (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL) &&
-    v.level.previousRoomType === RoomType.ROOM_CURSE
+    previousRoomType === RoomType.ROOM_CURSE
   ) {
     emptyDevilAngelRoom();
 
@@ -52,8 +54,6 @@ function checkFirstCharacterFirstFloorDevilRoom() {
     // Notify the seeded rooms feature to keep the room empty
     setDevilAngelEmpty();
   }
-
-  v.level.previousRoomType = roomType;
 }
 
 function emptyDevilAngelRoom() {
@@ -113,7 +113,37 @@ function checkEnteringClearedBossRoom() {
   const roomClear = g.r.IsClear();
 
   if (roomType === RoomType.ROOM_BOSS && roomClear) {
-    // g.r.TrySpawnSecretExit(false, true);
+    g.r.TrySpawnSecretExit(false, true);
+    setRepentanceDoorState();
+  }
+}
+
+function setRepentanceDoorState() {
+  const repentanceDoor = getRepentanceDoor();
+  if (repentanceDoor === undefined) {
+    return;
+  }
+
+  switch (v.level.repentanceDoorState) {
+    case RepentanceDoorState.INITIAL: {
+      if (!repentanceDoor.IsLocked()) {
+        repentanceDoor.SetLocked(true);
+      }
+
+      break;
+    }
+
+    case RepentanceDoorState.UNLOCKED: {
+      if (repentanceDoor.IsLocked()) {
+        repentanceDoor.SetLocked(false);
+      }
+
+      break;
+    }
+
+    default: {
+      ensureAllCases(v.level.repentanceDoorState);
+    }
   }
 }
 
