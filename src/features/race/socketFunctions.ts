@@ -27,7 +27,7 @@ socketFunctions.set("set", (rawData: string) => {
   const previousValue = g.race[property];
   if (previousValue === undefined) {
     error(
-      `Got a set command from the Racing+ client for a property of that does not exist: ${property}`,
+      `Got a set command from the Racing+ client for a property that does not exist: ${property}`,
     );
   }
   const previousValueType = type(previousValue);
