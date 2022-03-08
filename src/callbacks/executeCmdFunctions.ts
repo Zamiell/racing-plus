@@ -20,7 +20,7 @@ import {
 } from "../features/changeCharOrder/v";
 import * as debugPowers from "../features/mandatory/debugPowers";
 import * as socketClient from "../features/race/socketClient";
-import { RaceData } from "../features/race/types/RaceData";
+import { logRaceData, RaceData } from "../features/race/types/RaceData";
 import { RaceFormat } from "../features/race/types/RaceFormat";
 import { RaceGoal } from "../features/race/types/RaceGoal";
 import { RacerStatus } from "../features/race/types/RacerStatus";
@@ -443,6 +443,10 @@ executeCmdFunctions.set("prev", (_params: string) => {
 
 executeCmdFunctions.set("previous", (_params: string) => {
   speedrunSetNextCharacterAndRestart(false);
+});
+
+executeCmdFunctions.set("race", (_params: string) => {
+  logRaceData(g.race);
 });
 
 executeCmdFunctions.set("rankedsoloreset", (_params: string) => {

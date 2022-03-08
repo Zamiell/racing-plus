@@ -1,9 +1,11 @@
-import { jsonDecode } from "isaacscript-common";
+import { jsonDecode, log } from "isaacscript-common";
 import g from "../../globals";
 import { ChatMessage } from "../../types/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import { cloneRaceData, RaceData } from "./types/RaceData";
+
+export const SOCKET_DEBUG = true;
 
 export const socketFunctions = new Map<
   SocketCommandIn,
@@ -15,6 +17,7 @@ export function reset(): void {
   const oldRaceData = cloneRaceData(g.race);
   g.race = new RaceData();
   g.race.userID = oldRaceData.userID;
+  g.race.username = oldRaceData.username;
   checkRaceChanged(oldRaceData, g.race);
 }
 
@@ -96,4 +99,7 @@ function setRace<K extends keyof RaceData, V extends RaceData[K]>(
   value: V,
 ) {
   g.race[key] = value;
+  if (SOCKET_DEBUG) {
+    log(`Set race value: ${key} --> ${value}`);
+  }
 }

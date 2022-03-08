@@ -100,11 +100,11 @@ export function postRender(): void {
   drawShadows();
 }
 
+/** The config option for shadows is only used in the render function. */
 function shadowsEnabled() {
   const startSeedString = g.seeds.GetStartSeedString();
 
   return (
-    config.shadows &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED &&
@@ -248,6 +248,10 @@ function drawShadows() {
   const stageType = g.l.GetStageType();
   const isaacFrameCount = Isaac.GetFrameCount();
   const roomListIndex = getRoomListIndex();
+
+  if (!config.shadows) {
+    return;
+  }
 
   if (!hud.IsVisible()) {
     return;

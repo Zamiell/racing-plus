@@ -62,6 +62,10 @@ function warpToNextRoom() {
   if (roomGridIndex !== undefined) {
     log(`Planetarium Fix - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
+    const roomType = g.r.GetType();
+    log(
+      `Planetarium Fix - Arrived at room: ${roomGridIndex} (room type: ${roomType})`,
+    );
     decrementRoomsEntered(); // This should not count as entering a room
     return;
   }

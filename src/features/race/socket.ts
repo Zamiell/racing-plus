@@ -4,11 +4,9 @@ import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import * as socketClient from "./socketClient";
-import { reset, socketFunctions } from "./socketFunctions";
+import { reset, socketFunctions, SOCKET_DEBUG } from "./socketFunctions";
 import { cloneRaceData, RaceData } from "./types/RaceData";
 import { RaceStatus } from "./types/RaceStatus";
-
-const DEBUG = false;
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
@@ -100,7 +98,7 @@ function read() {
   }
 
   const [command, data] = unpackSocketMsg(rawData);
-  if (DEBUG) {
+  if (SOCKET_DEBUG) {
     log(`Got socket data: ${rawData}`);
   }
 

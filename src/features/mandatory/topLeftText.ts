@@ -101,6 +101,6 @@ function shouldShowSeededRaceTimeOffset() {
     getEffectiveStage() > 1 &&
     inStartingRoom() &&
     g.r.IsFirstVisit() &&
-    g.race.placeMid === 2 // Only show it when we are in second place
+    g.race.placeMid !== 1 // Only show it if we are not in first place
   );
 }

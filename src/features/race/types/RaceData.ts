@@ -1,3 +1,4 @@
+import { arrayToString, isArray, log } from "isaacscript-common";
 import { RaceDifficulty } from "./RaceDifficulty";
 import { RaceFormat } from "./RaceFormat";
 import { RaceGoal } from "./RaceGoal";
@@ -48,6 +49,7 @@ export class RaceData {
   /** The number of people in the race. */
   numEntrants = 1;
 
+  /** In milliseconds. */
   timeBehindLeader = 0;
 }
 
@@ -55,4 +57,18 @@ export function cloneRaceData(raceData: RaceData): RaceData {
   const copiedRaceData = { ...raceData }; // Shallow copy
   copiedRaceData.startingItems = [...raceData.startingItems]; // Copy nested arrays
   return copiedRaceData;
+}
+
+export function logRaceData(raceData: RaceData): void {
+  log("Race data:");
+  const keys = Object.keys(raceData);
+  keys.sort();
+  for (const key of keys) {
+    const property = key as keyof RaceData;
+    const value = raceData[property];
+    const valueString = isArray(value)
+      ? arrayToString(value as int[])
+      : `${value}`;
+    log(`- ${key} - ${valueString}`);
+  }
 }
