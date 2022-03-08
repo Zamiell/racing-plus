@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.6* - March ?th, 2022
+
+-
+
 ### *v0.78.5* - March 8th, 2022
 
 - In seeded races, Bethany and Tainted Magdalene will now always receive Angel Rooms. (Thanks Monkeypot)
@@ -55,7 +59,7 @@
 
 ### *v0.77.1* - March 6th, 2022
 
-- Tainted Magdalene will no longer lose her free devil deal if she takes damage and it depletes her one her temporary red heart containers. (Thanks Fallenfor)
+- Tainted Magdalene will no longer lose her free devil deal if she takes damage and it depletes one of her temporary red heart containers. (Thanks Fallenfor)
 - Fixed the (vanilla) bug where you can be softlocked in certain specific Ultra Secret Rooms.
 - Fixed the bug where the custom flip would not generate an empty pedestal if the player purchased a pedestal item. (Thanks Gamonymous)
 - Fixed the bug where the custom flip would not produce a poof animation when using it.
