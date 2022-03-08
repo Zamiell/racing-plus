@@ -1,9 +1,14 @@
-import { getRandom } from "isaacscript-common";
+import { anyPlayerIs, getRandom } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as megaSatan from "../megaSatan";
 import * as socket from "../socket";
 import { inSeededRace } from "../v";
+
+const CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS = [
+  PlayerType.PLAYER_BETHANY,
+  PlayerType.PLAYER_MAGDALENE_B,
+];
 
 export function racePostNewLevel(): void {
   if (!config.clientCommunication) {
@@ -31,7 +36,10 @@ function setSeededRaceConsistentDevilAngelRooms() {
 
   const startSeed = g.seeds.GetStartSeed();
   const randomChance = getRandom(startSeed);
-  const devil = randomChance < 0.5;
+  let devil = randomChance < 0.5;
+  if (anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS)) {
+    devil = false;
+  }
 
   if (devil) {
     g.l.InitializeDevilAngelRoom(false, true);

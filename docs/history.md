@@ -1,6 +1,10 @@
 # Racing+ Version History and News
 
-### *v0.78.3* - March 8th, 2022
+### *v0.78.5* - March 8th, 2022
+
+- In seeded races, Bethany and Tainted Magdalene will now always receive Angel Rooms. (Thanks Monkeypot)
+
+### *v0.78.4* - March 8th, 2022
 
 - Duality is now removed from all pools in seeded races.
 - Fixed the bug where the new seeded Devil Room & Angel Room mechanic was incorrectly applied to ranked solo races. (Thanks Cyber_1)
