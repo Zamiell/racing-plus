@@ -111,8 +111,13 @@ function checkWomb2IAMERROR() {
 function checkEnteringClearedBossRoom() {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
+  const effectiveStage = getEffectiveStage();
 
-  if (roomType === RoomType.ROOM_BOSS && roomClear) {
+  if (
+    roomType === RoomType.ROOM_BOSS &&
+    (effectiveStage === 1 || effectiveStage === 2) &&
+    roomClear
+  ) {
     g.r.TrySpawnSecretExit(false, true);
     setRepentanceDoorState();
   }

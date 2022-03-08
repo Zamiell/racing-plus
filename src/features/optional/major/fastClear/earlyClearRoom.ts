@@ -1,4 +1,5 @@
 import {
+  getEffectiveStage,
   getNPCs,
   inBeastRoom,
   inBossRoomOf,
@@ -76,6 +77,7 @@ function checkEarlyClearRoom() {
 function earlyClearRoom() {
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
+  const effectiveStage = getEffectiveStage();
 
   v.room.earlyClearedRoom = true;
   log(`Early clearing the room on game frame: ${gameFrameCount} (fast-clear)`);
@@ -91,9 +93,14 @@ function earlyClearRoom() {
 
   // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby
   // Thus, spawn the path manually if we are on a custom challenge
-  // This will be a no-op if we are not in a Boss Room that is supposed to have a Repentance secret
-  // exit
-  if (inSpeedrun() && roomType === RoomType.ROOM_BOSS) {
+  // We only spawn them the Downpour/Dross doors to avoid this bug:
+  // https://clips.twitch.tv/WittyUnsightlyStarStrawBeary-LsPINfzBGVT593oZ
+  // (seed G8KS NX4C)
+  if (
+    inSpeedrun() &&
+    roomType === RoomType.ROOM_BOSS &&
+    (effectiveStage === 1 || effectiveStage === 2)
+  ) {
     g.r.TrySpawnSecretExit(true, true);
   }
 }

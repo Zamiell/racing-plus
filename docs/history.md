@@ -2,6 +2,8 @@
 
 ### *v0.78.3* - March 8th, 2022
 
+- In multi-character speedruns, Repentance doors will only be spawned if they go to Downpour/Dross. (Thanks thereisnofuture)
+- In season 2, the Pointy Rib build is now banned on Tainted Azazel.
 - Fixed the bug where the extra Treasure Room starting items were not removed from pools if you were playing a run where the first floor Treasure Room was banned. (Thanks Fallenfor)
 
 ### *v0.78.2* - March 7th, 2022

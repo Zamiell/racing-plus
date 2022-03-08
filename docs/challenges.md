@@ -130,6 +130,7 @@ Some builds are banned on certain characters:
   - Dead Eye + Jesus Juice
   - Tech X
   - Haemolacria + Sad Onion
+  - Pointy Rib + Eve's Mascara
 
 ### Other
 
