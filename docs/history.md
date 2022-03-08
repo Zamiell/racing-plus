@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.78.6* - March ?th, 2022
+### *v0.78.6* - March 8th, 2022
 
 - In seeded races, you will now see how many seconds you are behind upon reaching a new floor as long as you are not in 1st place.
 - Fixed the bug where you would always show as last place.

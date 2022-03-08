@@ -447,6 +447,7 @@ executeCmdFunctions.set("previous", (_params: string) => {
 
 executeCmdFunctions.set("race", (_params: string) => {
   logRaceData(g.race);
+  printConsole('Logged the race statistics to the "log.txt" file.');
 });
 
 executeCmdFunctions.set("rankedsoloreset", (_params: string) => {

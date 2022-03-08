@@ -100,7 +100,7 @@ export function postRender(): void {
   drawShadows();
 }
 
-/** The config option for shadows is only used in the render function. */
+/** We only check for the config option in the render function. */
 function shadowsEnabled() {
   const startSeedString = g.seeds.GetStartSeedString();
 

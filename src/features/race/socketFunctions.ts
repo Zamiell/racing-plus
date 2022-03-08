@@ -5,7 +5,7 @@ import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import { cloneRaceData, RaceData } from "./types/RaceData";
 
-export const SOCKET_DEBUG = true;
+export const SOCKET_DEBUG = false;
 
 export const socketFunctions = new Map<
   SocketCommandIn,
