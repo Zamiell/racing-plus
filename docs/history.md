@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.3* - March 8th, 2022
+
+- Fixed the bug where the extra Treasure Room starting items were not removed from pools if you were playing a run where the first floor Treasure Room was banned. (Thanks Fallenfor)
+
 ### *v0.78.2* - March 7th, 2022
 
 - Fixed the bug where the Repentance secret exit would disappear in multi-character speedruns when you left the room. (Thanks TNTerminator)

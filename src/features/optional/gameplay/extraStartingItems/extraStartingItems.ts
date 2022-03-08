@@ -8,6 +8,7 @@ import {
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
+import { shouldBanFirstFloorTreasureRoom } from "../../../mandatory/banFirstFloorRoomType";
 import {
   COLLECTIBLE_REPLACEMENT_MAP,
   PLACEHOLDER_COLLECTIBLES_SET,
@@ -31,7 +32,7 @@ export function postUpdate(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.extraStartingItems) {
+  if (!config.extraStartingItems && shouldBanFirstFloorTreasureRoom()) {
     removePlaceholdersFromPools();
   }
 }
