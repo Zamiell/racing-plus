@@ -8,7 +8,10 @@ import {
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "./constants";
+import {
+  COLLECTIBLE_REPLACEMENT_MAP,
+  PLACEHOLDER_COLLECTIBLES_SET,
+} from "./constants";
 
 const v = {
   run: {
@@ -134,33 +137,9 @@ function replacePlaceholderItems() {
 }
 
 function removePlaceholdersFromPools() {
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_SACRED_HEART_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_JUDAS_SHADOW_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_GODHEAD_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_MAW_OF_THE_VOID_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER,
-  );
-  g.itemPool.RemoveCollectible(
-    CollectibleTypeCustom.COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER,
-  );
+  for (const collectibleType of PLACEHOLDER_COLLECTIBLES_SET.values()) {
+    g.itemPool.RemoveCollectible(collectibleType);
+  }
 
   v.run.placeholdersRemoved = true;
 }
