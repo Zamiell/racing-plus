@@ -13,6 +13,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initItemSprite } from "../../../sprite";
 import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
+import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
 const TAINTED_ISAAC_OFFSET = Vector(4, 24);
@@ -53,6 +54,12 @@ export function postRender(): void {
   }
 
   if (!shouldGetFreeDevilItemOnThisRun()) {
+    return;
+  }
+
+  // In seeded races, we might be guaranteed to be getting Angel Rooms
+  // If so, then showing the free item icon is superfluous
+  if (inSeededRaceWithAllAngelRooms()) {
     return;
   }
 

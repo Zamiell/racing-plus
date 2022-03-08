@@ -2,7 +2,7 @@
 
 ### *v0.78.6* - March 8th, 2022
 
-- In seeded races, you will now see how many seconds you are behind upon reaching a new floor as long as you are not in 1st place.
+- In seeded races, you will now see how many seconds behind you are upon reaching a new floor as long as you are not in 1st place.
 - Fixed the bug where you would always show as last place.
 
 ### *v0.78.5* - March 8th, 2022

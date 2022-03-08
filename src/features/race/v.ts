@@ -20,6 +20,8 @@ const v = {
   level: {
     dpsButton: null as ButtonDescription | null,
     victoryLapButton: null as ButtonDescription | null,
+
+    allAngelRooms: false,
   },
 
   room: {
