@@ -23,6 +23,7 @@ export function speedrunPostNewRoom(): void {
 
   checkFirstCharacterFirstFloorDevilRoom();
   checkWomb2IAMERROR();
+  checkEnteringClearedBossRoom();
   checkEnteringRoomWithCheckpoint();
   season2PostNewRoom();
 }
@@ -100,6 +101,19 @@ function checkWomb2IAMERROR() {
       TrapdoorVariant.NORMAL,
       gridIndex,
     );
+  }
+}
+
+/**
+ * The Repentance door spawned with the "TrySpawnSecretExit" method is ephemeral in that it will be
+ * deleted if you leave the room. Thus, attempt to respawn it if we re-enter a cleared Boss Room.
+ */
+function checkEnteringClearedBossRoom() {
+  const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
+
+  if (roomType === RoomType.ROOM_BOSS && roomClear) {
+    // g.r.TrySpawnSecretExit(false, true);
   }
 }
 

@@ -56,7 +56,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
     (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL) &&
     !inAngelShop()
   ) {
-    return CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER;
+    return CollectibleTypeCustom.COLLECTIBLE_DEBUG;
   }
 
   return getDevilOrAngelItemInOrder(itemPoolType);

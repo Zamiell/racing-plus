@@ -208,10 +208,7 @@ function debuffOnRemoveAllWisps(player: EntityPlayer) {
   // After removing item wisps, the items related to the wisps will not disappear
   // We can work around this by spawning an item wisp that does nothing,
   // which will remove all other item wisps
-  player.AddItemWisp(
-    CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
-    Vector(0, 0),
-  );
+  player.AddItemWisp(CollectibleTypeCustom.COLLECTIBLE_DEBUG, Vector(0, 0));
 
   // Then remove that item wisp again
   removeAllFamiliars(FamiliarVariant.ITEM_WISP);
