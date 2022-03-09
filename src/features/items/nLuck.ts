@@ -35,12 +35,16 @@ export function evaluateCacheLuck(player: EntityPlayer): void {
   }
 
   const targetLuck = has15Luck ? 15 : 13;
-  const luckModifier = getCharacterLuckModifier(player, targetLuck);
+  const luckModifier = getCharacterLuckModifier(player);
   const totalLuck = targetLuck + luckModifier;
   player.Luck += totalLuck;
 }
 
-function getCharacterLuckModifier(player: EntityPlayer, targetLuck: int) {
+/**
+ * Some characters start with negative luck. We give those players extra luck to compensate,
+ * depending on the amount of negative luck that they start with.
+ */
+function getCharacterLuckModifier(player: EntityPlayer) {
   const character = player.GetPlayerType();
   switch (character) {
     // 8
@@ -53,7 +57,7 @@ function getCharacterLuckModifier(player: EntityPlayer, targetLuck: int) {
     case PlayerType.PLAYER_EDEN_B: {
       const playerIndex = getPlayerIndex(player);
       const baseLuck = v.run.edenBaseLuckMap.get(playerIndex);
-      return baseLuck === undefined ? 0 : targetLuck - baseLuck;
+      return baseLuck === undefined ? 0 : baseLuck * -1;
     }
 
     // 14
