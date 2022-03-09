@@ -58,7 +58,7 @@ const DEAD_SEA_SCROLL_EFFECTS: readonly CollectibleType[] = [
 
 const v = {
   run: {
-    deadSeaScrollsSeed: 0,
+    deadSeaScrollsSeed: 0 as Seed,
     text: null as string | null,
 
     /** Text of less importance that is only shown if there is no main text. */

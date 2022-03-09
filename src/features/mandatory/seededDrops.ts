@@ -16,8 +16,8 @@ import g from "../../globals";
 
 const v = {
   run: {
-    seed: 0,
-    seedDevilAngel: 0,
+    seed: 0 as Seed,
+    seedDevilAngel: 0 as Seed,
   },
 };
 

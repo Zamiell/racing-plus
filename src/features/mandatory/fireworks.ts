@@ -12,7 +12,7 @@ import { speedrunIsFinished } from "../speedrun/exported";
 const v = {
   run: {
     numFireworksSpawned: 0,
-    seed: 0,
+    seed: 0 as Seed,
   },
 };
 

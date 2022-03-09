@@ -7,13 +7,13 @@ const v = {
     metKrampus: false,
 
     seeds: {
-      krampus: 0,
-      devilSelection: 0,
-      devilEntities: 0,
-      devilCollectibles: 0,
-      angelSelection: 0,
-      angelEntities: 0,
-      angelCollectibles: 0,
+      krampus: 0 as Seed,
+      devilSelection: 0 as Seed,
+      devilEntities: 0 as Seed,
+      devilCollectibles: 0 as Seed,
+      angelSelection: 0 as Seed,
+      angelEntities: 0 as Seed,
+      angelCollectibles: 0 as Seed,
     },
 
     debugRoomNum: null as int | null,

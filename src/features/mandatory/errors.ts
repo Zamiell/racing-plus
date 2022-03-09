@@ -132,7 +132,7 @@ function isIncompleteSave() {
   const itemPoolCollectible = g.itemPool.GetCollectible(
     ITEM_POOL_TO_CHECK,
     false,
-    1,
+    1 as Seed, // We can use any arbitrary value since it should not influence the result
   );
   if (itemPoolCollectible !== COLLECTIBLE_TO_CHECK_FOR) {
     log(

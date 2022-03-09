@@ -12,8 +12,8 @@ import g from "../../globals";
 
 const v = {
   level: {
-    teleportSeed: 0,
-    telepillsSeed: 0,
+    teleportSeed: 0 as Seed,
+    telepillsSeed: 0 as Seed,
   },
 };
 

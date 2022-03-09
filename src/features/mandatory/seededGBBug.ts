@@ -11,7 +11,7 @@ import g from "../../globals";
 
 const v = {
   run: {
-    seed: 0,
+    seed: 0 as Seed,
     GBBugVisibleMap: new Map<PtrHash, boolean>(),
     lastSpawnedPickupPtrHash: null as PtrHash | null,
     lastSpawnedPickupFrame: null as int | null,
