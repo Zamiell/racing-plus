@@ -1,5 +1,13 @@
 # Racing+ Version History and News
 
+### *v0.78.11* - March 9th, 2022
+
+-
+
+### *v0.78.10* - March 8th, 2022
+
+- Fixed the bug where 13 Luck and 15 Luck would not work properly with Eden and Tainted Eden. (Thanks Moucheron Quipet)
+
 ### *v0.78.9* - March 8th, 2022
 
 - Fixed the (vanilla) bug where using a Justice? card would needlessly remove items from the current room's item pool. (Thanks KiraKeepKool)
