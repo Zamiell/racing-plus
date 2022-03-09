@@ -526,7 +526,12 @@ executeCmdFunctions.set("save", (_params: string) => {
   printConsole('Saved variables to the "save#.dat" file.');
 });
 
-executeCmdFunctions.set("seededrace", (_params: string) => {
+executeCmdFunctions.set("seededrace", (params: string) => {
+  if (params !== "") {
+    printConsole('The "seededrace" command does not take any arguments.');
+    return;
+  }
+
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
     printConsole(
       'You must have the Racing+ client open and be in the lobby in order to use the "seededrace" command.',

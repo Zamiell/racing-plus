@@ -909,10 +909,19 @@ export const BUG_FIXES: ConfigDescriptions = [
     ],
   ],
   [
-    "preventUltraSecretRoomSoftlock",
+    "reverseJusticeFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0903",
+      "Fix Justice? cards",
+      "Prevent Justice? cards from needlessly removing items from pools.",
+    ],
+  ],
+  [
+    "preventUltraSecretRoomSoftlock",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0904",
       "Prevent softlocks in Ultra Secret Rooms",
       "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
@@ -921,7 +930,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0904",
+      "0905",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -930,7 +939,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0906",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],

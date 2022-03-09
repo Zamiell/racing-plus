@@ -1,5 +1,13 @@
 # Racing+ Version History and News
 
+### *v0.78.9* - March 8th, 2022
+
+- Fixed the (vanilla) bug where using a Justice? card would needlessly remove items from the current room's item pool. (Thanks KiraKeepKool)
+
+### *v0.78.8* - March 8th, 2022
+
+- In seeded races, the free devil deal icon will no longer show up if you are on a race with guaranteed Angel Rooms. (Thanks KiraKeepKool)
+
 ### *v0.78.6* - March 8th, 2022
 
 - In seeded races, you will now see how many seconds behind you are upon reaching a new floor as long as you are not in 1st place.

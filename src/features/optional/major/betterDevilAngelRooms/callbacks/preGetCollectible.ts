@@ -1,7 +1,9 @@
 import {
+  getCollectibleName,
   giveTrinketsBack,
   inAngelShop,
   inGenesisRoom,
+  log,
   nextSeed,
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
@@ -25,12 +27,6 @@ export function betterDevilAngelRoomsPreGetCollectible(
     return undefined;
   }
 
-  // There is an unknown bug that causes items in Genesis rooms to come from incorrect item pools
-  // Work around this by disabling this feature when the player is in a Genesis room
-  if (inGenesisRoom()) {
-    return undefined;
-  }
-
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
 
@@ -45,8 +41,15 @@ export function betterDevilAngelRoomsPreGetCollectible(
     return undefined;
   }
 
-  // As soon as we enter a Devil Room or an Angel Room,
-  // vanilla items may spawn before we have had a chance to delete them
+  // There is an unknown bug that causes collectibles in Genesis rooms to come from incorrect item
+  // pools
+  // Work around this by disabling this feature when the player is in a Genesis room
+  if (inGenesisRoom()) {
+    return undefined;
+  }
+
+  // As soon as we enter a Devil Room or an Angel Room, vanilla collectibles may spawn before we
+  // have had a chance to delete them
   // This will modify the item pool relating to the room
   // To counteract this, replace all vanilla items with an arbitrary placeholder item,
   // which should not affect pools
@@ -59,7 +62,15 @@ export function betterDevilAngelRoomsPreGetCollectible(
     return CollectibleTypeCustom.COLLECTIBLE_DEBUG;
   }
 
-  return getDevilOrAngelItemInOrder(itemPoolType);
+  const collectibleTypeInOrder = getDevilOrAngelItemInOrder(itemPoolType);
+  const collectibleName =
+    collectibleTypeInOrder === undefined
+      ? "Unknown"
+      : getCollectibleName(collectibleTypeInOrder);
+  log(
+    `Custom Devil/Angel room in-order collectible: ${collectibleName} (${collectibleTypeInOrder})`,
+  );
+  return collectibleTypeInOrder;
 }
 
 function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
@@ -124,8 +135,7 @@ function getNewSubType(itemPoolType: ItemPoolType) {
     }
 
     default: {
-      error("Unknown item pool type.");
-      return CollectibleType.COLLECTIBLE_NULL;
+      return error("Unknown item pool type.");
     }
   }
 }

@@ -26,11 +26,14 @@ function setDevilAngelRoom() {
   }
 
   const startSeed = g.seeds.GetStartSeed();
+  Isaac.DebugString(`GETTING HERE - startSeed: ${startSeed}`);
   const randomChance = getRandom(startSeed);
+  Isaac.DebugString(`GETTING HERE - randomChance: ${randomChance}`);
   let devil = randomChance < 0.5;
   if (anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS)) {
     devil = false;
   }
+  Isaac.DebugString(`GETTING HERE - devil: ${devil}`);
 
   if (devil) {
     g.l.InitializeDevilAngelRoom(false, true);

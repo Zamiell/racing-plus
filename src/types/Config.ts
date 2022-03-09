@@ -83,6 +83,7 @@ export class Config {
   // Bug fixes
   keeperHeal = true;
   battery9VoltSynergy = true;
+  reverseJusticeFix = true;
   preventUltraSecretRoomSoftlock = true;
   teleportInvalidEntrance = true;
   removeInvalidPitfalls = true;
