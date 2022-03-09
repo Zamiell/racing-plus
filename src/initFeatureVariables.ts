@@ -2,6 +2,7 @@ import { saveDataManagerLoad } from "isaacscript-common";
 import * as debugFunction from "./debugFunction";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
+import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as debugPowers from "./features/mandatory/debugPowers";
@@ -150,6 +151,7 @@ export function initFeatureVariables(): void {
   stickyNickel.init();
 
   // Items
+  nLuck.init();
   flipCustom.init();
   sawblade.init();
 
