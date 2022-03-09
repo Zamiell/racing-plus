@@ -7,6 +7,7 @@ import {
   logAllSeedEffects,
   logTemporaryEffects,
   onSetSeed,
+  PILL_GIANT_FLAG,
   printConsole,
   range,
   saveDataManagerSave,
@@ -388,7 +389,7 @@ executeCmdFunctions.set("pills", (_params: string) => {
         pillColor = 1;
       }
 
-      const horsePillColor = pillColor + (PillColor.PILL_GIANT_FLAG as number);
+      const horsePillColor = pillColor + PILL_GIANT_FLAG;
       const subType = horse ? horsePillColor : pillColor;
       const position = gridToPos(x, y);
       Isaac.Spawn(

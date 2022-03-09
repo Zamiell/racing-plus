@@ -4,6 +4,7 @@ import {
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
+  PILL_GIANT_FLAG,
   range,
   saveDataManager,
 } from "isaacscript-common";
@@ -259,10 +260,8 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
   }
 
   // Account for Horse Pills (i.e. giant pills)
-  let effectivePillColor = pillColor;
-  if (pillColor > PillColor.PILL_GIANT_FLAG) {
-    effectivePillColor = pillColor - PillColor.PILL_GIANT_FLAG;
-  }
+  const effectivePillColor =
+    pillColor > PILL_GIANT_FLAG ? pillColor - PILL_GIANT_FLAG : pillColor;
 
   // See if we have already used this particular pill color on this run
   for (const pill of v.run.pillsIdentified) {
