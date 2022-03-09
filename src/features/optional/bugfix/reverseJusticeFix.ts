@@ -6,9 +6,10 @@
 
 import {
   DefaultMap,
-  getPlayerIndex,
   getPlayers,
   log,
+  mapGetPlayer,
+  mapSetPlayer,
   PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
@@ -22,13 +23,13 @@ const v = {
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   for (const player of getPlayers()) {
-    const playerIndex = getPlayerIndex(player);
     const firstCard = player.GetCard(PocketItemSlot.SLOT_1);
     const hasReverseJusticeInFirstSlot =
       firstCard === Card.CARD_REVERSE_JUSTICE;
 
-    v.run.playersReverseJusticeMap.set(
-      playerIndex,
+    mapSetPlayer(
+      v.run.playersReverseJusticeMap,
+      player,
       hasReverseJusticeInFirstSlot,
     );
   }
@@ -48,9 +49,10 @@ function anyPlayerUsedReverseJusticeCardOnThisFrame() {
   const players = getPlayers();
 
   return players.some((player) => {
-    const playerIndex = getPlayerIndex(player);
-    const hadReverseJusticeEarlierOnThisFrame =
-      v.run.playersReverseJusticeMap.get(playerIndex);
+    const hadReverseJusticeEarlierOnThisFrame = mapGetPlayer(
+      v.run.playersReverseJusticeMap,
+      player,
+    );
     const firstCard = player.GetCard(PocketItemSlot.SLOT_1);
     const hasReverseJusticeCard = firstCard === Card.CARD_REVERSE_JUSTICE;
     return (

@@ -4,11 +4,12 @@ import {
   getCollectibleSet,
   getEffectiveStage,
   getMaxCollectibleType,
-  getPlayerIndex,
   getPlayers,
   getRoomVisitedCount,
   inStartingRoom,
   log,
+  mapGetPlayer,
+  mapSetPlayer,
   MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
   repeat,
@@ -94,8 +95,6 @@ function isIncompleteSave() {
   const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
   const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
-    const playerIndex = getPlayerIndex(player);
-
     const removedItems: CollectibleType[] = [];
     for (const itemToRemove of COLLECTIBLES_THAT_AFFECT_ITEM_POOLS) {
       if (player.HasCollectible(itemToRemove)) {
@@ -107,7 +106,7 @@ function isIncompleteSave() {
       }
     }
 
-    removedItemsMap.set(playerIndex, removedItems);
+    mapSetPlayer(removedItemsMap, player, removedItems);
 
     const removedTrinkets: TrinketType[] = [];
     for (const trinketToRemove of TRINKETS_THAT_AFFECT_ITEM_POOLS) {
@@ -117,7 +116,7 @@ function isIncompleteSave() {
       }
     }
 
-    removedTrinketsMap.set(playerIndex, removedTrinkets);
+    mapSetPlayer(removedTrinketsMap, player, removedTrinkets);
   }
 
   // Add every item in the game to the blacklist
@@ -146,16 +145,14 @@ function isIncompleteSave() {
 
   // Give back items/trinkets, if necessary
   for (const player of getPlayers()) {
-    const playerIndex = getPlayerIndex(player);
-
-    const removedItems = removedItemsMap.get(playerIndex);
+    const removedItems = mapGetPlayer(removedItemsMap, player);
     if (removedItems !== undefined) {
       for (const collectibleType of removedItems) {
         player.AddCollectible(collectibleType, 0, false); // Prevent Chaos from spawning pickups
       }
     }
 
-    const removedTrinkets = removedTrinketsMap.get(playerIndex);
+    const removedTrinkets = mapGetPlayer(removedTrinketsMap, player);
     if (removedTrinkets !== undefined) {
       for (const trinketType of removedTrinkets) {
         player.AddTrinket(trinketType, false);

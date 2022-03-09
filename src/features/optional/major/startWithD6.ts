@@ -15,14 +15,15 @@
 
 import {
   DefaultMap,
+  defaultMapGetPlayer,
   findFreePosition,
   getCollectibleMaxCharges,
-  getPlayerIndex,
   getPlayers,
   hasOpenActiveItemSlot,
   inGenesisRoom,
   isJacobOrEsau,
   log,
+  mapSetPlayer,
   PlayerIndex,
   runNextGameFrame,
   saveDataManager,
@@ -136,9 +137,8 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const playerIndex = getPlayerIndex(player);
   const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-  v.run.playersPocketActiveD6Charge.set(playerIndex, pocketActiveCharge);
+  mapSetPlayer(v.run.playersPocketActiveD6Charge, player, pocketActiveCharge);
 }
 
 // ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
@@ -232,9 +232,10 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
     return;
   }
 
-  const playerIndex = getPlayerIndex(player);
-  const d6Charge =
-    v.run.playersPocketActiveD6Charge.getAndSetDefault(playerIndex);
+  const d6Charge = defaultMapGetPlayer(
+    v.run.playersPocketActiveD6Charge,
+    player,
+  );
 
   player.SetPocketActiveItem(
     CollectibleType.COLLECTIBLE_D6,
@@ -284,9 +285,10 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   }
 
   // If they are switching characters, get the charge from the D6 on the previous frame
-  const playerIndex = getPlayerIndex(player);
-  const d6Charge =
-    v.run.playersPocketActiveD6Charge.getAndSetDefault(playerIndex);
+  const d6Charge = defaultMapGetPlayer(
+    v.run.playersPocketActiveD6Charge,
+    player,
+  );
 
   // The "SetPocketActiveItem()" method also removes it from item pools
   player.SetPocketActiveItem(

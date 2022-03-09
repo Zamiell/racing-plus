@@ -18,9 +18,9 @@
 
 import {
   DefaultMap,
+  defaultMapGetPlayer,
   ensureAllCases,
   getCollectibleMaxCharges,
-  getPlayerIndex,
   getTotalCharge,
   log,
   playChargeSoundEffect,
@@ -133,9 +133,10 @@ function checkHairpinCharge(player: EntityPlayer) {
 function updateActiveItemChargesMap(player: EntityPlayer) {
   // On every frame, we need to track the current charges for each active item that a player has for
   // the purposes of rewinding the charges
-  const playerIndex = getPlayerIndex(player);
-  const activeItemCharges =
-    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
+  const activeItemCharges = defaultMapGetPlayer(
+    v.run.activeItemChargesMap,
+    player,
+  );
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     const activeItem = player.GetActiveItem(activeSlot);
@@ -381,9 +382,10 @@ function checkSwitchCharge(
 }
 
 function checkActiveItemsChargeChange(player: EntityPlayer) {
-  const playerIndex = getPlayerIndex(player);
-  const activeItemCharges =
-    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
+  const activeItemCharges = defaultMapGetPlayer(
+    v.run.activeItemChargesMap,
+    player,
+  );
   if (activeItemCharges.size === 0) {
     log(
       'Error: The activeItemCharges map was not initialized yet in the "checkActiveItemsChargeChange" function.',
@@ -415,9 +417,10 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
 }
 
 function rewindActiveChargesToLastFrame(player: EntityPlayer) {
-  const playerIndex = getPlayerIndex(player);
-  const activeItemCharges =
-    v.run.activeItemChargesMap.getAndSetDefault(playerIndex);
+  const activeItemCharges = defaultMapGetPlayer(
+    v.run.activeItemChargesMap,
+    player,
+  );
   if (activeItemCharges.size === 0) {
     log(
       'Error: The activeItemCharges map was not initialized yet in the "rewindActiveChargesToLastFrame" function.',

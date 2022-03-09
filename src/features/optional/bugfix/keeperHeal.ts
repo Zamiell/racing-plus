@@ -2,8 +2,9 @@
 
 import {
   DefaultMap,
-  getPlayerIndex,
+  defaultMapGetPlayer,
   isKeeper,
+  mapSetPlayer,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -29,13 +30,11 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 
 function checkPlayerCoinsChanged(player: EntityPlayer) {
   const coins = player.GetNumCoins();
-  const playerIndex = getPlayerIndex(player);
-  const oldCoins = v.run.playersCoinMap.getAndSetDefault(playerIndex, player);
-
+  const oldCoins = defaultMapGetPlayer(v.run.playersCoinMap, player, player);
   if (coins === oldCoins) {
     return;
   }
-  v.run.playersCoinMap.set(playerIndex, coins);
+  mapSetPlayer(v.run.playersCoinMap, player, coins);
 
   const delta = coins - oldCoins;
   playerCoinsChanged(player, delta);

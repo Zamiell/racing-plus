@@ -3,8 +3,9 @@
 // should be impossible and it makes the code more complicated
 
 import {
-  getPlayerIndex,
   isEden,
+  mapGetPlayer,
+  mapSetPlayer,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
@@ -55,8 +56,7 @@ function getCharacterLuckModifier(player: EntityPlayer) {
     // 9, 30
     case PlayerType.PLAYER_EDEN:
     case PlayerType.PLAYER_EDEN_B: {
-      const playerIndex = getPlayerIndex(player);
-      const baseLuck = v.run.edenBaseLuckMap.get(playerIndex);
+      const baseLuck = mapGetPlayer(v.run.edenBaseLuckMap, player);
       return baseLuck === undefined ? 0 : baseLuck * -1;
     }
 
@@ -92,6 +92,5 @@ export function postPlayerInit(player: EntityPlayer) {
     return;
   }
 
-  const playerIndex = getPlayerIndex(player);
-  v.run.edenBaseLuckMap.set(playerIndex, player.Luck);
+  mapSetPlayer(v.run.edenBaseLuckMap, player, player.Luck);
 }
