@@ -6,7 +6,6 @@ import {
   log,
 } from "isaacscript-common";
 import g from "../../globals";
-import { unseed } from "../../utilsGlobals";
 import {
   restartOnNextFrame,
   setRestartSeed,
@@ -18,7 +17,6 @@ import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
 import { RaceData, RaceDataType } from "./types/RaceData";
 import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";
 
 export function checkRaceChanged(
@@ -136,11 +134,11 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
 functionMap.set(
   "myStatus",
-  (oldValue: RaceDataType, _newValue: RaceDataType) => {
-    if (oldValue === RacerStatus.RACING) {
-      // After racing on a set seed, automatically reset the game state to that of an unseeded run
-      unseed();
-    }
+  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
+    // It is possible for "myStatus" to flip between "racing" and "ready" during the middle of a
+    // seeded run
+    // Thus, since we cannot rely on the variable, we cannot automatically reset the game status to
+    // that of an unseeded run after a seeded race is finished
 
     raceRoom.myStatusChanged();
     placeLeft.statusOrMyStatusChanged();

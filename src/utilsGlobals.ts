@@ -44,5 +44,5 @@ export function unseed(): void {
 
   // Resetting the "Seeds" class will also remove any Easter Eggs that have been enabled,
   // so we must manually reactivate them
-  racingPlusSprite.postGameStarted();
+  racingPlusSprite.disableAchievements();
 }

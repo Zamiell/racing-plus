@@ -26,7 +26,9 @@ function setDevilAngelRoom() {
   }
 
   const startSeed = g.seeds.GetStartSeed();
-  Isaac.DebugString(`GETTING HERE - startSeed: ${startSeed}`);
+  const startSeedString = g.seeds.GetStartSeedString();
+  Isaac.DebugString(`GETTING HERE - startSeed (int): ${startSeed}`);
+  Isaac.DebugString(`GETTING HERE - startSeed (string): ${startSeedString}`);
   const randomChance = getRandom(startSeed);
   Isaac.DebugString(`GETTING HERE - randomChance: ${randomChance}`);
   let devil = randomChance < 0.5;

@@ -2,6 +2,7 @@
 
 ### *v0.78.11* - March 9th, 2022
 
+- After finishing a seeded race, the mod will no longer automatically revert you to being on an unseeded seed. (This prevents bugs where lag can cause your seed can be reset in the middle of a seeded race.) (Thanks Moucheron Quipet)
 - Fixed the bug where after defeating It Lives!, the game would not intuit the direction properly on races without a set direction.
 - Fixed the bug where the free devil deal icon would overlap with Tainted Blue Baby's UI.
 

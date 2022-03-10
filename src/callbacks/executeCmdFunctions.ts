@@ -530,7 +530,9 @@ executeCmdFunctions.set("save", (_params: string) => {
 
 executeCmdFunctions.set("seededrace", (params: string) => {
   if (params !== "") {
-    printConsole('The "seededrace" command does not take any arguments.');
+    printConsole(
+      'The "seededrace" command does not take any arguments. (Set the seed first before using this command.)',
+    );
     return;
   }
 
@@ -595,11 +597,13 @@ executeCmdFunctions.set("seededraceitem", (params: string) => {
   printConsole(
     `Set the seeded race item(s) to: [${g.race.startingItems.join(",")}]`,
   );
+  restart();
 });
 
 executeCmdFunctions.set("seededracegoal", (params: string) => {
   g.race.goal = params as RaceGoal;
   printConsole(`Set the seeded race goal to: ${g.race.goal}`);
+  restart();
 });
 
 executeCmdFunctions.set("seededraceoff", (_params: string) => {

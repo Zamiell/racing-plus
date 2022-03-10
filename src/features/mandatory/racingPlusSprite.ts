@@ -72,10 +72,17 @@ export function getPosition(): Vector {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  // We want this sprite to appear on all runs, so we need to disable achievements on all runs
-  // The easiest way to do this without affecting gameplay is to enable an easter egg that prevents
-  // a curse from appearing
-  // (this will have no effect since all curses are removed in the "PostCurseEval" callback anyway)
-  // Note that not all easter eggs prevent achievements, but this one does
+  disableAchievements();
+}
+
+/**
+ * We want this sprite to appear on all runs, so we need to disable achievements on all runs. The
+ * easiest way to do this without affecting gameplay is to enable an easter egg that prevents a
+ * curse from appearing. (This will have no effect since all curses are removed in the
+ * "PostCurseEval" callback anyway.)
+ *
+ * Note that not all easter eggs prevent achievements, but this one does.
+ */
+export function disableAchievements(): void {
   g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
 }

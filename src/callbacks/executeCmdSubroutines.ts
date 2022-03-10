@@ -11,6 +11,7 @@ import {
 import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import g from "../globals";
+import { restart } from "../utils";
 
 const IGNORE_EFFECT_VARIANTS: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.BLOOD_EXPLOSION, // 2
@@ -286,6 +287,7 @@ export function seededRaceChar(params: string): void {
 
   g.race.character = num;
   printConsole(`Set the seeded race character to: ${g.race.character}`);
+  restart();
 }
 
 export function trapdoor(): void {
