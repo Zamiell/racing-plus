@@ -83,6 +83,9 @@ socketFunctions.set("chat", (rawData: string) => {
   const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
   chatMessage.renderFrameReceived = isaacFrameCount;
   g.chatMessages.unshift(chatMessage);
+  log(
+    `Chat: [${chatMessage.time}] <${chatMessage.username}> ${chatMessage.msg}`,
+  );
 });
 
 // Mostly copied from the "unpackSocketMsg()" function

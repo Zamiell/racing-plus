@@ -3,6 +3,7 @@
 ### *v0.78.11* - March 9th, 2022
 
 - Fixed the bug where after defeating It Lives!, the game would not intuit the direction properly on races without a set direction.
+- Fixed the bug where the free devil deal icon would overlap with Tainted Blue Baby's UI.
 
 ### *v0.78.10* - March 8th, 2022
 

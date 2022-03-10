@@ -16,7 +16,7 @@ import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
-const TAINTED_ISAAC_OFFSET = Vector(4, 24);
+const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);
 const COLLECTIBLE_OFFSET = Vector(0, 30);
 
 const iconSprite = getNewMysteryGiftSprite();
@@ -73,8 +73,12 @@ function drawIconSprite() {
     return;
   }
 
-  const position = anyPlayerIs(PlayerType.PLAYER_ISAAC_B)
-    ? ICON_SPRITE_POSITION.add(TAINTED_ISAAC_OFFSET)
+  const hasTaintedCharacterUI = anyPlayerIs(
+    PlayerType.PLAYER_ISAAC_B, // 21
+    PlayerType.PLAYER_BLUEBABY_B, // 25
+  );
+  const position = hasTaintedCharacterUI
+    ? ICON_SPRITE_POSITION.add(TAINTED_CHARACTER_UI_OFFSET)
     : ICON_SPRITE_POSITION;
   iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
