@@ -11,6 +11,7 @@ import {
   printConsole,
   range,
   saveDataManagerSave,
+  sfxManager,
   teleport,
 } from "isaacscript-common";
 import { VERSION } from "../constants";
@@ -635,12 +636,12 @@ executeCmdFunctions.set("sound", (params: string) => {
     return;
   }
 
-  g.sfx.Play(soundEffect);
+  sfxManager.Play(soundEffect);
 });
 
 executeCmdFunctions.set("sounds", (_params: string) => {
   for (const soundEffect of range(0, SoundEffect.NUM_SOUND_EFFECTS - 1)) {
-    if (g.sfx.IsPlaying(soundEffect)) {
+    if (sfxManager.IsPlaying(soundEffect)) {
       log(`Currently playing sound effect: ${soundEffect}`);
     }
   }

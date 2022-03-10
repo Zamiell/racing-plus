@@ -5,9 +5,9 @@ import {
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
   runInNGameFrames,
+  sfxManager,
   sumArray,
 } from "isaacscript-common";
-import g from "../../globals";
 import * as timer from "../../timer";
 import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
@@ -45,7 +45,7 @@ export function checkValidCharOrder(): boolean {
 export function finish(player: EntityPlayer): void {
   const isaacFrameCount = Isaac.GetFrameCount();
 
-  g.sfx.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
+  sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
 
   // Give them the Checkpoint custom item
   // (this is used by the AutoSplitter to know when to split)

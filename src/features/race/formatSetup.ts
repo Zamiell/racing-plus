@@ -3,6 +3,7 @@ import {
   copyArray,
   ensureAllCases,
   getLastElement,
+  sfxManager,
   useActiveItemTemp,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -86,12 +87,11 @@ export function formatSetup(player: EntityPlayer): void {
 
     default: {
       ensureAllCases(g.race.format);
-      break;
     }
   }
 
   // Mute the transformation sound, if present
-  g.sfx.Stop(SoundEffect.SOUND_POWERUP_SPEWER);
+  sfxManager.Stop(SoundEffect.SOUND_POWERUP_SPEWER);
 }
 
 function unseeded(player: EntityPlayer) {

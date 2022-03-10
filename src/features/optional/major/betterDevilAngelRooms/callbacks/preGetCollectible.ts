@@ -3,6 +3,7 @@ import {
   giveTrinketsBack,
   inAngelShop,
   inGenesisRoom,
+  itemConfig,
   log,
   nextSeed,
   temporarilyRemoveTrinket,
@@ -96,7 +97,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
     }
 
     // Otherwise, check to see if this is an active item
-    const itemConfigItem = g.itemConfig.GetCollectible(subType);
+    const itemConfigItem = itemConfig.GetCollectible(subType);
     if (itemConfigItem === undefined) {
       continue;
     }

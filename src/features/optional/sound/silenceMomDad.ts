@@ -1,4 +1,4 @@
-import g from "../../../globals";
+import { sfxManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const MOM_AND_DAD_SOUND_EFFECTS: ReadonlySet<SoundEffect> = new Set([
@@ -15,6 +15,6 @@ export function postNewLevel(): void {
   }
 
   for (const soundEffect of MOM_AND_DAD_SOUND_EFFECTS.values()) {
-    g.sfx.Stop(soundEffect);
+    sfxManager.Stop(soundEffect);
   }
 }

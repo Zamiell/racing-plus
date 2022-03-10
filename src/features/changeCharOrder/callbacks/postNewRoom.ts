@@ -2,6 +2,7 @@ import {
   forceNewRoomCallback,
   getNPCs,
   gridToPos,
+  itemConfig,
   removeAllDoors,
   removeCollectibleFromItemTracker,
   removeEntities,
@@ -57,7 +58,7 @@ function setupButtonRoom() {
   removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
   player.AddCollectible(CollectibleType.COLLECTIBLE_BELT, 0, false);
   removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
-  const itemConfigItem = g.itemConfig.GetCollectible(
+  const itemConfigItem = itemConfig.GetCollectible(
     CollectibleType.COLLECTIBLE_BELT,
   );
   if (itemConfigItem !== undefined) {

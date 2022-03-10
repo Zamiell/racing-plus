@@ -12,6 +12,7 @@ import {
   removeDeadEyeMultiplier,
   repeat,
   runInNGameFrames,
+  sfxManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelperMap";
@@ -369,7 +370,7 @@ function disableLostSoul() {
       }
 
       lostSoulReference.Visible = false;
-      g.sfx.Stop(SoundEffect.SOUND_ISAACDIES);
+      sfxManager.Stop(SoundEffect.SOUND_ISAACDIES);
     }, NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES);
   }
 }

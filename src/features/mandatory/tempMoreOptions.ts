@@ -2,6 +2,7 @@
 
 import {
   getEffectiveStage,
+  itemConfig,
   removeCollectibleFromItemTracker,
   saveDataManager,
 } from "isaacscript-common";
@@ -52,7 +53,7 @@ export function give(player: EntityPlayer): void {
   removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_MORE_OPTIONS);
 
   // We don't want the costume to show
-  const itemConfigItem = g.itemConfig.GetCollectible(
+  const itemConfigItem = itemConfig.GetCollectible(
     CollectibleType.COLLECTIBLE_MORE_OPTIONS,
   );
   if (itemConfigItem === undefined) {

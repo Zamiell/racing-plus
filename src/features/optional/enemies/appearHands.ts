@@ -1,4 +1,4 @@
-import g from "../../../globals";
+import { sfxManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_NPC_UPDATE (0)
@@ -72,5 +72,5 @@ export function postNewRoom(): void {
   }
 
   // Mute the audio tell of Mom laughing, since it is obnoxious
-  g.sfx.Stop(SoundEffect.SOUND_MOM_VOX_EVILLAUGH);
+  sfxManager.Stop(SoundEffect.SOUND_MOM_VOX_EVILLAUGH);
 }

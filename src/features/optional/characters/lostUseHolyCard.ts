@@ -2,8 +2,8 @@ import {
   getPlayersOfType,
   MAX_PLAYER_POCKET_ITEM_SLOTS,
   range,
+  sfxManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -18,7 +18,7 @@ export function postGameStarted(): void {
     if (slotWithHolyCard !== undefined) {
       player.SetCard(slotWithHolyCard, Card.CARD_NULL);
       player.UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM);
-      g.sfx.Stop(SoundEffect.SOUND_HOLY_CARD);
+      sfxManager.Stop(SoundEffect.SOUND_HOLY_CARD);
     }
   }
 }

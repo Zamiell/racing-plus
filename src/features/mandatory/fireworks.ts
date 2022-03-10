@@ -4,6 +4,7 @@ import {
   nextSeed,
   repeat,
   saveDataManager,
+  sfxManager,
 } from "isaacscript-common";
 import g from "../../globals";
 import { RaceStatus } from "../race/types/RaceStatus";
@@ -37,7 +38,7 @@ export function postUpdate(): void {
 }
 
 function makeFireworksQuieter() {
-  if (!g.sfx.IsPlaying(SoundEffect.SOUND_BOSS1_EXPLOSIONS)) {
+  if (!sfxManager.IsPlaying(SoundEffect.SOUND_BOSS1_EXPLOSIONS)) {
     return;
   }
 
@@ -46,7 +47,7 @@ function makeFireworksQuieter() {
     EffectVariant.FIREWORKS,
   );
   if (numFireworks > 0) {
-    g.sfx.AdjustVolume(SoundEffect.SOUND_BOSS1_EXPLOSIONS, 0.2);
+    sfxManager.AdjustVolume(SoundEffect.SOUND_BOSS1_EXPLOSIONS, 0.2);
   }
 }
 

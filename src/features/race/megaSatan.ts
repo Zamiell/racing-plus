@@ -1,5 +1,6 @@
 // Automatically open the Mega Satan door on races with a Mega Satan goal
 
+import { sfxManager } from "isaacscript-common";
 import g from "../../globals";
 import { RaceGoal } from "./types/RaceGoal";
 import { RacerStatus } from "./types/RacerStatus";
@@ -22,6 +23,6 @@ export function postNewLevel(): void {
   const topDoor = g.r.GetDoor(DoorSlot.UP0);
   if (topDoor !== undefined) {
     topDoor.TryUnlock(player, true);
-    g.sfx.Stop(SoundEffect.SOUND_UNLOCK00);
+    sfxManager.Stop(SoundEffect.SOUND_UNLOCK00);
   }
 }

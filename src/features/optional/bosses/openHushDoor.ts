@@ -1,5 +1,6 @@
 // Automatically open the Hush door to speed things up
 
+import { sfxManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -17,6 +18,6 @@ export function postNewLevel(): void {
     if (hushDoor !== undefined) {
       hushDoor.TryUnlock(player, true);
     }
-    g.sfx.Stop(SoundEffect.SOUND_BOSS_LITE_ROAR);
+    sfxManager.Stop(SoundEffect.SOUND_BOSS_LITE_ROAR);
   }
 }

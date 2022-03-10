@@ -6,6 +6,7 @@ import {
   onDarkRoom,
   openAllDoors,
   runNextGameFrame,
+  sfxManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -93,7 +94,7 @@ function emulateRoomClear() {
   g.r.SetClear(true);
   addRoomClearCharges();
   openAllDoors();
-  g.sfx.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
+  sfxManager.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   const position = g.r.GetCenterPos();
