@@ -49,7 +49,6 @@ export function main(): void {
 
   // Mandatory
   modConfigNotify.postRender();
-  racingPlusSprite.postRender();
   streakText.postRender();
   runTimer.postRender();
   topLeftText.postRender();
@@ -84,4 +83,7 @@ export function main(): void {
   autofire.postRender();
   customConsole.postRender();
   roll.postRender();
+
+  // We want the "R+" sprite to be drawn on top of everything
+  racingPlusSprite.postRender();
 }

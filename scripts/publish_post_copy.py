@@ -1,16 +1,10 @@
-#!/bin/bash
-# http://stackoverflow.com/questions/18993438/shebang-env-preferred-python-version
-# http://stackoverflow.com/questions/12070516/conditional-shebang-line-for-different-versions-of-python
-""":"
-which python3 >/dev/null 2>&1 && exec python3 "$0" "$@"
-which python  >/dev/null 2>&1 && exec python  "$0" "$@"
-exec echo "Error: requires python"
-":"""
-
 import hashlib
 import json
 import os
 import shutil
+
+from set_debug_variable import set_debug_variable
+from utils import printf
 
 MOD_NAME = "racing-plus"
 SCRIPT_PATH = os.path.realpath(__file__)
@@ -36,7 +30,7 @@ PRE_FLIPPED_DIRECTORY = os.path.join(
 def main():
     # Remove the "pre-flipped" directory, since it isn't necessary to send this to the end-user
     printf("Removing the pre-flipped directory...")
-    removePreFlippedDirectory()
+    remove_pre_flipped_directory()
 
     # Make SHA1 hashes of every file so that the client can validate the mod's integrity
     printf("Getting SHA1 hashes of every file...")
@@ -44,10 +38,12 @@ def main():
     printf('Writing the hashes to "{}"...'.format(SHA1_FILE_PATH))
     write_hashes_to_file(sha1_hashes, SHA1_FILE_PATH)
 
+    set_debug_variable(True)
+
     printf("Complete!")
 
 
-def removePreFlippedDirectory():
+def remove_pre_flipped_directory():
     if os.path.exists(PRE_FLIPPED_DIRECTORY):
         shutil.rmtree(PRE_FLIPPED_DIRECTORY)
 
@@ -83,10 +79,6 @@ def get_file_hash(file_path):
             sha.update(data)
 
     return sha.hexdigest()
-
-
-def printf(*args):
-    print(*args, flush=True)
 
 
 if __name__ == "__main__":

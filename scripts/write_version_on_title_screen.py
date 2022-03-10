@@ -1,11 +1,8 @@
-# This script draw the version number on the title menu graphic
-
-import json
 import os
-import sys
 
 from PIL import Image, ImageFont, ImageDraw
 from get_version_from_package_json import get_version_from_package_json
+from utils import printf
 
 SCRIPT_NAME = os.path.basename(__file__)
 SCRIPT_PATH = os.path.realpath(__file__)
@@ -80,15 +77,6 @@ def write_version(version):
         title_image.save(title_menu_file_2_path)
 
     printf("The title screen image was updated to version: {}".format(version))
-
-
-def error(msg):
-    printf("Error: {}".format(msg))
-    sys.exit(1)
-
-
-def printf(*args):
-    print(*args, flush=True)
 
 
 if __name__ == "__main__":
