@@ -82,7 +82,13 @@ function getItLivesSituation() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING
   ) {
-    return getItLivesSituationRace(g.race.goal);
+    // On races that have a specific direction, force that direction
+    // On races that give the player an option between going up or down, intuit the desired
+    // direction from the Polaroid/Negative status
+    const itLivesSituationRace = getItLivesSituationRace(g.race.goal);
+    if (itLivesSituationRace !== ItLivesSituation.BOTH) {
+      return itLivesSituationRace;
+    }
   }
 
   const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();
