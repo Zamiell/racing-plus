@@ -101,8 +101,10 @@ function earlyClearRoom() {
     roomType === RoomType.ROOM_BOSS &&
     (effectiveStage === 1 || effectiveStage === 2)
   ) {
+    Isaac.DebugString("GETTING HERE 1");
     g.r.TrySpawnSecretExit(true, true);
   }
+  Isaac.DebugString("GETTING HERE 2");
 }
 
 function killExtraEntities() {

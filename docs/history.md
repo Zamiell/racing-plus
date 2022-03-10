@@ -3,6 +3,7 @@
 ### *v0.78.12* - March 10th, 2022
 
 - Fixed the bug where the R+ icon would fade out when you traveled to a new floor.
+- Fixed the bug where you could not go to Repentance floors in ranked solo races. (Thanks Cyber_1)
 
 ### *v0.78.11* - March 9th, 2022
 

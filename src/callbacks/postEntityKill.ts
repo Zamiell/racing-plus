@@ -1,10 +1,10 @@
 import { getEntityID, log } from "isaacscript-common";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
-import * as fastDogma from "../features/mandatory/fastDogma";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
+import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";

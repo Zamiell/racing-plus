@@ -1,5 +1,5 @@
-import { config } from "../../modConfigMenu";
-import { consoleCommand } from "../../utils";
+import { config } from "../../../modConfigMenu";
+import { consoleCommand } from "../../../utils";
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 // EntityType.ENTITY_DOGMA (950)
