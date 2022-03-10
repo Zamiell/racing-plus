@@ -4,7 +4,7 @@ import { RaceVars } from "../features/race/types/RaceVars";
 import { ChatMessage } from "./ChatMessage";
 
 export class Globals {
-  debug = true;
+  debug = false;
 
   // Cached API functions
   g = game;
