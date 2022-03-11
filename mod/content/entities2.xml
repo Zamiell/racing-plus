@@ -23,6 +23,9 @@
 
   <!-- PICKUPS (5) -->
 
+  <!-- We need to specify a dummy pickup to take variant 0, which will cause the game to crash when used. -->
+  <entity name="Placeholder Pickup" id="5" />
+
   <!-- For replacing the photos -->
   <entity
     name="Invisible Pickup"

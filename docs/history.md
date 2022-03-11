@@ -2,6 +2,10 @@
 
 ### *v0.78.13* - March 11th, 2022
 
+- Fixed the bug where defeating Mom would crash the game. (Thanks Finalkids)
+
+### *v0.78.13* - March 11th, 2022
+
 - Fixed the bug where saving and continuing in a Satan room would cause a duplicate Fallen to appear. (Thanks Fallenfor)
 
 ### *v0.78.12* - March 10th, 2022
