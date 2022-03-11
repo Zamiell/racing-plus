@@ -162,7 +162,6 @@ function getPhotoSituationRace(goal: RaceGoal) {
 
 function doPhotoSituation(situation: PhotoSituation) {
   const roomSeed = g.r.GetSpawnSeed();
-  Isaac.DebugString(`GETTING HERE - roomSeed: ${roomSeed}`);
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
