@@ -27,7 +27,6 @@
   <entity
     name="Invisible Pickup"
     id="5"
-    variant="500"
     baseHP="0"
     boss="0"
     champion="0"
@@ -49,7 +48,6 @@
   <entity
     name="Invisible Effect"
     id="1000"
-    variant="0"
     baseHP="0"
     boss="0"
     champion="0"
@@ -69,7 +67,6 @@
   <entity
     name="Pitfall (Custom)"
     id="1000"
-    variant="301"
     anm2path="291.000_Pitfall.anm2"
     baseHP="0"
     boss="0"
@@ -90,7 +87,6 @@
   <entity
     name="Room Clear Delay Effect"
     id="1000"
-    variant="302"
     baseHP="0"
     boss="0"
     champion="0"
@@ -109,7 +105,6 @@
   <entity
     name="Sticky Nickel Effect"
     id="1000"
-    variant="3330"
     anm2path="items/pick ups/sticky_nickel_effect.anm2"
     baseHP="0"
     stageHP="0"
@@ -131,7 +126,6 @@
   <entity
     name="Race Trophy"
     id="1001"
-    variant="0"
     anm2path="005.370_Trophy.anm2"
     baseHP="0"
     boss="0"
