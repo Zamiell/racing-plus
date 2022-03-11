@@ -1,12 +1,34 @@
 // There is an annoying delay before The Fallen and the leeches spawn
 // To fix this, we manually spawn it as soon as the room is entered
 
-import { getNPCs, inBossRoomOf, nextSeed } from "isaacscript-common";
+import {
+  getNPCs,
+  inBossRoomOf,
+  log,
+  nextSeed,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
+const v = {
+  room: {
+    isContinuingRun: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("fastSatan", v);
+}
+
 // ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStartedContinued(): void {}
+export function postGameStartedContinued(): void {
+  if (!config.fastSatan) {
+    return;
+  }
+
+  v.room.isContinuingRun = true;
+}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -14,23 +36,21 @@ export function postNewRoom(): void {
     return;
   }
 
-  instantlySpawnSatan();
+  // Prevent the bug where saving and continuing will cause a second Fallen to spawn
+  if (v.room.isContinuingRun) {
+    return;
+  }
+
+  if (inUnclearedSatanRoom()) {
+    spawnEnemies();
+    primeStatue();
+    log("Sped up Satan.");
+  }
 }
 
-function instantlySpawnSatan() {
+function inUnclearedSatanRoom() {
   const roomClear = g.r.IsClear();
-
-  if (roomClear) {
-    return;
-  }
-
-  // There is only one Satan room
-  if (!inBossRoomOf(BossID.SATAN)) {
-    return;
-  }
-
-  spawnEnemies();
-  primeStatue();
+  return !roomClear && inBossRoomOf(BossID.SATAN);
 }
 
 function spawnEnemies() {

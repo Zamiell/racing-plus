@@ -27,6 +27,7 @@ import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as consistentAngels from "./features/optional/bosses/consistentAngels";
 import * as fastPin from "./features/optional/bosses/fastPin";
+import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as keeperHeal from "./features/optional/bugfix/keeperHeal";
@@ -124,6 +125,7 @@ export function initFeatureVariables(): void {
   // Boss
   killExtraEnemies.init(); // 45, 78
   fastPin.init(); // 62
+  fastSatan.init(); // 84
   consistentAngels.init(); // 271, 272
 
   // QoL

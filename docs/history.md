@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.13* - March 11th, 2022
+
+- Fixed the bug where saving and continuing in a Satan room would cause a duplicate Fallen to appear. (Thanks Fallenfor)
+
 ### *v0.78.12* - March 10th, 2022
 
 - Fixed the bug where the R+ icon would fade out when you traveled to a new floor.
