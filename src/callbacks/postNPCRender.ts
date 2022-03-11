@@ -2,6 +2,8 @@ import * as debugFunction from "../debugFunction";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, main);
+
   mod.AddCallback(
     ModCallbacks.MC_POST_NPC_RENDER,
     dummy,
@@ -9,7 +11,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(npc: EntityNPC): void {
+function main(npc: EntityNPC) {
   debugFunction.postNPCRender(npc);
 }
 

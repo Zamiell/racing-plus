@@ -10,6 +10,8 @@ import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_USE_ITEM, main);
+
   mod.AddCallback(
     ModCallbacks.MC_USE_ITEM,
     teleport,
@@ -59,7 +61,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(
+function main(
   collectibleType: CollectibleType | int,
   _rng: RNG,
   player: EntityPlayer,

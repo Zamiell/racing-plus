@@ -156,7 +156,7 @@ function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
 
 // ModCallbacks.MC_POST_PICKUP_UPDATE (35)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
-export function postPickupUpdateCollectible(pickup: EntityPickup) {
+export function postPickupUpdateCollectible(pickup: EntityPickup): void {
   if (!config.freeDevilItem) {
     return;
   }
@@ -228,7 +228,7 @@ function isDevilDealStyleCollectible(pickup: EntityPickup) {
 export function postPickupRenderCollectible(
   pickup: EntityPickup,
   renderOffset: Vector,
-) {
+): void {
   if (!config.freeDevilItem) {
     return;
   }

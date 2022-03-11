@@ -145,7 +145,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
 }
 
 // ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
-export function postPEffectUpdate(player: EntityPlayer) {
+export function postPEffectUpdate(player: EntityPlayer): void {
   if (!config.flipCustom) {
     return;
   }
@@ -212,7 +212,7 @@ export function postPickupRenderCollectible(
 }
 
 // ModCallbacksCustom.MC_POST_PURCHASE
-export function postPurchase(player: EntityPlayer, pickup: EntityPickup) {
+export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
   if (!config.flipCustom) {
     return;
   }

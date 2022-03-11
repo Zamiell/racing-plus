@@ -1,6 +1,10 @@
 import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloorItems";
 
-export function main(
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, main);
+}
+
+function main(
   _entityType: EntityType | int,
   _variant: int,
   _subType: int,

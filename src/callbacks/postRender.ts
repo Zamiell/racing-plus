@@ -29,7 +29,11 @@ import { racePostRender } from "../features/race/callbacks/postRender";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
 import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 
-export function main(): void {
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_RENDER, main);
+}
+
+function main() {
   updateCachedAPIFunctions();
 
   if (restartOnNextFrame.isRestartingOnNextFrame()) {

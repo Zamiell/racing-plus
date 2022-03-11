@@ -17,7 +17,7 @@ let debugHotkey2Pressed = false;
 
 const v = {};
 
-export function init() {
+export function init(): void {
   saveDataManager("debugFunction", v);
 }
 
@@ -73,10 +73,10 @@ function hotkey2Function() {
 }
 
 // ModCallbacks.MC_POST_RENDER (2)
-export function postRender() {}
+export function postRender(): void {}
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted() {}
+export function postGameStarted(): void {}
 
 // ModCallbacks.MC_POST_FAMILIAR_RENDER (25)
 export function postFamiliarRender(_familiar: EntityFamiliar): void {

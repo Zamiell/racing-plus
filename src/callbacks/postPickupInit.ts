@@ -17,6 +17,8 @@ import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPick
 import { PickupVariantCustom } from "../types/PickupVariantCustom";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, main);
+
   mod.AddCallback(
     ModCallbacks.MC_POST_PICKUP_INIT,
     heart,
@@ -72,7 +74,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(pickup: EntityPickup): void {
+function main(pickup: EntityPickup) {
   /*
   const entityID = getEntityID(pickup);
   log(`MC_POST_PICKUP_INIT - ${entityID} - Seed: ${pickup.InitSeed}`);

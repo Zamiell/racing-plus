@@ -308,7 +308,7 @@ function getDisplayTextKeyboardController(
   }
 }
 
-export function onOff(setting: boolean) {
+export function onOff(setting: boolean): string {
   return setting ? "ON" : "OFF";
 }
 

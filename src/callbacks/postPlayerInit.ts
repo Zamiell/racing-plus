@@ -4,7 +4,11 @@
 import * as nLuck from "../features/items/nLuck";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 
-export function main(player: EntityPlayer): void {
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, main);
+}
+
+function main(player: EntityPlayer) {
   /*
   const character = player.GetPlayerType();
   log(

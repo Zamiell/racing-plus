@@ -6,6 +6,7 @@ import {
   logArray,
 } from "isaacscript-common";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
+import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "./types/PlayerTypeCustom";
 
 export function consoleCommand(command: string): void {
@@ -117,7 +118,9 @@ export function restartSeed(seed: string): void {
   consoleCommand(`seed ${seed}`);
 }
 
-export function serverCollectibleIDToCollectibleType(serverCollectibleID: int) {
+export function serverCollectibleIDToCollectibleType(
+  serverCollectibleID: int,
+): CollectibleType | CollectibleTypeCustom {
   // 1001-1999 is reserved for server collectible IDs
   if (serverCollectibleID <= 1000 || serverCollectibleID >= 2000) {
     return serverCollectibleID;

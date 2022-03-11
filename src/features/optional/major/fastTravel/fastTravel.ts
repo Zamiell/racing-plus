@@ -168,14 +168,9 @@ export function checkShouldOpen(
 }
 
 // TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
-export function anyPlayerUsingPony() {
-  for (const player of getPlayers()) {
-    if (isPonyActive(player)) {
-      return true;
-    }
-  }
-
-  return false;
+export function anyPlayerUsingPony(): boolean {
+  const players = getPlayers();
+  return players.some((player) => isPonyActive(player));
 }
 
 export function checkPlayerTouched(

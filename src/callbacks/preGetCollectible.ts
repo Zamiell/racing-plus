@@ -1,7 +1,11 @@
 import * as reverseJusticeFix from "../features/optional/bugfix/reverseJusticeFix";
 import { betterDevilAngelRoomsPreGetCollectible } from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
 
-export function main(
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, main);
+}
+
+function main(
   itemPoolType: ItemPoolType,
   decrease: boolean,
   seed: int,

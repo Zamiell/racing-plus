@@ -8,6 +8,8 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 
 export function init(mod: ModUpgraded): void {
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_ITEM_PICKUP, main);
+
   mod.AddCallbackCustom(
     ModCallbacksCustom.MC_POST_ITEM_PICKUP,
     nineVolt,
@@ -44,7 +46,7 @@ export function init(mod: ModUpgraded): void {
   );
 }
 
-export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
+function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {
   racePostItemPickup.main(player, pickingUpItem);
 }
 

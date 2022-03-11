@@ -1,7 +1,11 @@
 import { log, printConsole } from "isaacscript-common";
 import { executeCmdFunctions } from "./executeCmdFunctions";
 
-export function main(command: string, parameters: string): void {
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_EXECUTE_CMD, main);
+}
+
+function main(command: string, parameters: string) {
   // Record every command
   let debugString = `MC_EXECUTE_CMD - ${command}`;
   if (parameters !== "") {

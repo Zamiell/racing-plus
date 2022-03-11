@@ -87,7 +87,7 @@ function getCharacterLuckModifier(player: EntityPlayer) {
 }
 
 // ModCallbacks.MC_POST_PLAYER_INIT (9)
-export function postPlayerInit(player: EntityPlayer) {
+export function postPlayerInit(player: EntityPlayer): void {
   if (!isEden(player)) {
     return;
   }

@@ -1,4 +1,8 @@
-import { isChildPlayer } from "isaacscript-common";
+import {
+  isChildPlayer,
+  ModCallbacksCustom,
+  ModUpgraded,
+} from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
 import * as keeperHeal from "../features/optional/bugfix/keeperHeal";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
@@ -7,7 +11,14 @@ import * as roll from "../features/optional/other/roll";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 
-export function main(player: EntityPlayer): void {
+export function init(mod: ModUpgraded): void {
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PEFFECT_UPDATE_REORDERED,
+    main,
+  );
+}
+
+function main(player: EntityPlayer) {
   if (isChildPlayer(player)) {
     return;
   }

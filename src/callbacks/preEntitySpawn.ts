@@ -15,7 +15,11 @@ Notes:
 
 import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
 
-export function main(
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, main);
+}
+
+function main(
   entityType: EntityType | int,
   variant: int,
   subType: int,

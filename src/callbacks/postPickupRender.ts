@@ -1,7 +1,7 @@
 import * as flipCustom from "../features/items/flipCustom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
-export function init(mod: Mod) {
+export function init(mod: Mod): void {
   mod.AddCallback(
     ModCallbacks.MC_POST_PICKUP_RENDER,
     collectible,

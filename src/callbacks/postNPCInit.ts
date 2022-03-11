@@ -5,6 +5,8 @@ import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callb
 import { racePostNPCInitDarkEsau } from "../features/race/callbacks/postNPCInit";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_NPC_INIT, main);
+
   mod.AddCallback(
     ModCallbacks.MC_POST_NPC_INIT,
     daddyLongLegs,
@@ -30,7 +32,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(npc: EntityNPC): void {
+function main(npc: EntityNPC) {
   fastClearPostNPCInit(npc);
 }
 

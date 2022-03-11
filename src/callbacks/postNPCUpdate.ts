@@ -14,6 +14,8 @@ import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, main);
+
   mod.AddCallback(
     ModCallbacks.MC_NPC_UPDATE,
     globin,
@@ -111,7 +113,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(npc: EntityNPC): void {
+function main(npc: EntityNPC) {
   fastClearPostNPCUpdate.main(npc);
 }
 

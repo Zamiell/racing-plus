@@ -7,6 +7,8 @@ import {
 import * as speedrunUseCard from "../features/speedrun/callbacks/useCard";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_USE_CARD, main);
+
   mod.AddCallback(
     ModCallbacks.MC_USE_CARD,
     hierophant,
@@ -32,7 +34,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(card: Card): void {
+function main(card: Card) {
   streakText.useCard(card);
 }
 

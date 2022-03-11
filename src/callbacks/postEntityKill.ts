@@ -16,6 +16,8 @@ import g from "../globals";
 const POST_ENTITY_KILL_DEBUG = false;
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, main);
+
   mod.AddCallback(
     ModCallbacks.MC_POST_ENTITY_KILL,
     mom,
@@ -77,7 +79,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(entity: Entity): void {
+function main(entity: Entity) {
   if (POST_ENTITY_KILL_DEBUG) {
     const gameFrameCount = g.g.GetFrameCount();
     const entityID = getEntityID(entity);

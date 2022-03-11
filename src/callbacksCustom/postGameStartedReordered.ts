@@ -1,4 +1,4 @@
-import { log } from "isaacscript-common";
+import { log, ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
 import * as debugFunction from "../debugFunction";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
@@ -28,7 +28,14 @@ import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGame
 import { isRestartingOnNextFrame } from "../features/utils/restartOnNextFrame";
 import g from "../globals";
 
-export function main(isContinued: boolean): void {
+export function init(mod: ModUpgraded): void {
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_GAME_STARTED_REORDERED,
+    main,
+  );
+}
+
+function main(isContinued: boolean) {
   const startSeedString = g.seeds.GetStartSeedString();
   const isaacFrameCount = Isaac.GetFrameCount();
 

@@ -35,7 +35,7 @@ export function applySeededGhostFade(
   }
 }
 
-export function logSeededDeathStateChange() {
+export function logSeededDeathStateChange(): void {
   if (SEEDED_DEATH_DEBUG) {
     log(`Changed seeded death state: ${SeededDeathState[v.run.state]}`);
   }

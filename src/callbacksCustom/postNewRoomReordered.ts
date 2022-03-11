@@ -4,6 +4,8 @@ import {
   getRoomType,
   getRoomVariant,
   log,
+  ModCallbacksCustom,
+  ModUpgraded,
 } from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
@@ -39,7 +41,11 @@ import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom"
 import * as roomsEntered from "../features/utils/roomsEntered";
 import g from "../globals";
 
-export function main(): void {
+export function init(mod: ModUpgraded): void {
+  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_ROOM_REORDERED, main);
+}
+
+function main() {
   updateCachedAPIFunctions();
 
   const gameFrameCount = g.g.GetFrameCount();
@@ -52,7 +58,7 @@ export function main(): void {
   const roomSubType = getRoomSubType();
 
   log(
-    `MC_POST_NEW_ROOM - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
   );
 
   // Util

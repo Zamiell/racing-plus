@@ -6,7 +6,11 @@ import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTw
 import { racePreSpawnClearAward } from "../features/race/callbacks/preSpawnClearAward";
 import { speedrunPreSpawnClearAward } from "../features/speedrun/callbacks/preSpawnClearAward";
 
-export function main(_rng: RNG, _spawnPosition: Vector): boolean | void {
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, main);
+}
+
+function main(_rng: RNG, _spawnPosition: Vector): boolean | void {
   // Major
   fastTravelPreSpawnClearAward();
   racePreSpawnClearAward();

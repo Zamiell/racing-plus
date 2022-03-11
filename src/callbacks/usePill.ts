@@ -5,6 +5,8 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 import * as showPills from "../features/optional/quality/showPills";
 
 export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_USE_PILL, main);
+
   mod.AddCallback(
     ModCallbacks.MC_USE_PILL,
     telepills,
@@ -30,11 +32,7 @@ export function init(mod: Mod): void {
   );
 }
 
-export function main(
-  pillEffect: PillEffect,
-  player: EntityPlayer,
-  _useFlags: int,
-): void {
+function main(pillEffect: PillEffect, player: EntityPlayer, _useFlags: int) {
   showPills.usePill(player, pillEffect);
   streakText.usePill(pillEffect);
 }

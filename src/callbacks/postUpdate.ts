@@ -17,7 +17,11 @@ import * as showPills from "../features/optional/quality/showPills";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 
-export function main(): void {
+export function init(mod: Mod): void {
+  mod.AddCallback(ModCallbacks.MC_POST_UPDATE, main);
+}
+
+function main() {
   // Mandatory
   trophy.postUpdate();
   seededDeathPostUpdate();
