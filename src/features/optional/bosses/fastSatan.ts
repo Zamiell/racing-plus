@@ -6,7 +6,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
-export function postGameStarted(): void {}
+export function postGameStartedContinued(): void {}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {

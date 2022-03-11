@@ -11,6 +11,7 @@ import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as streakText from "../features/mandatory/streakText";
+import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as judasAddBomb from "../features/optional/characters/judasAddBomb";
 import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCard";
 import * as samsonDropHeart from "../features/optional/characters/samsonDropHeart";
@@ -112,4 +113,5 @@ function main(isContinued: boolean) {
 
 function postGameStartedContinued() {
   fastTravelPostGameStartedContinued();
+  fastSatan.postGameStartedContinued();
 }
