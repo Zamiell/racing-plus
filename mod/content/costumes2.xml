@@ -1,5 +1,5 @@
 <costumes anm2root="gfx/characters/">
-	<costume anm2path="n016_halloween.anm2" type="none" />
-	<costume anm2path="n016_newyears.anm2" type="none" />
-	<costume anm2path="n016_thanksgiving.anm2" type="none" />
+  <costume anm2path="n016_halloween.anm2" type="none" />
+  <costume anm2path="n016_newyears.anm2" type="none" />
+  <costume anm2path="n016_thanksgiving.anm2" type="none" />
 </costumes>

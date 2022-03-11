@@ -1,6 +1,12 @@
+// There is an annoying delay before The Fallen and the leeches spawn
+// To fix this, we manually spawn it as soon as the room is entered
+
 import { getNPCs, inBossRoomOf, nextSeed } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+
+// ModCallbacks.MC_POST_GAME_STARTED (15)
+export function postGameStarted(): void {}
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -11,8 +17,6 @@ export function postNewRoom(): void {
   instantlySpawnSatan();
 }
 
-// There is an annoying delay before The Fallen and the leeches spawn
-// To fix this, we manually spawn it as soon as the room is entered
 function instantlySpawnSatan() {
   const roomClear = g.r.IsClear();
 

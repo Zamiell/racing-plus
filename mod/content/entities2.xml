@@ -1,36 +1,150 @@
 <entities anm2root="gfx/" version="5">
-	<!-- Custom familiars -->
-	<!-- collisionInterval is tick rate in game frames -->
-	<entity anm2path="familiar/sawblade.anm2" baseHP="0" boss="0" champion="0" collisionDamage="10" collisionInterval="2" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Sawblade" numGridCollisionPoints="12" shadowSize="10" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	</entity>
+  <!-- FAMILIARS (3) -->
 
-	<!-- For replacing the photos -->
-	<entity name="Invisible Pickup" id="5" variant="500" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
-	</entity>
+  <!-- collisionInterval is tick rate in game frames -->
+  <entity
+    name="Sawblade"
+    id="3"
+    anm2path="familiar/sawblade.anm2"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="10"
+    collisionInterval="2"
+    collisionMass="3"
+    collisionRadius="13"
+    friction="1"
+    numGridCollisionPoints="12"
+    shadowSize="10"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+  </entity>
 
-	<!-- For replacing grid entities -->
-	<entity name="Invisible Effect" id="1000" variant="0" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
-	</entity>
+  <!-- PICKUPS (5) -->
 
-	<!-- For fast-travel -->
-	<entity name="Pitfall (Custom)" id="1000" variant="301" anm2path="291.000_Pitfall.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
-	</entity>
+  <!-- For replacing the photos -->
+  <entity
+    name="Invisible Pickup"
+    id="5"
+    variant="500"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="0"
+    collisionRadius="0"
+    friction="0"
+    numGridCollisionPoints="0"
+    shadowSize="0"
+    shutdoors="false"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+  </entity>
 
-	<!-- For The Lamb -->
-	<entity name="Room Clear Delay Effect" id="1000" variant="302" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
-	</entity>
+  <!-- EFFECTS (1000) -->
 
-	<entity name="Sticky Nickel Effect" anm2path="items/pick ups/sticky_nickel_effect.anm2" id="1000" variant="3330" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	</entity>
+  <!-- For replacing grid entities -->
+  <entity
+    name="Invisible Effect"
+    id="1000"
+    variant="0"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="0"
+    collisionRadius="0"
+    friction="0"
+    numGridCollisionPoints="0"
+    shadowSize="0"
+    shutdoors="false"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+  </entity>
 
-	<!-- For races -->
-	<entity name="Race Trophy" id="1001" variant="0" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
-	</entity>
+  <!-- For fast-travel -->
+  <entity
+    name="Pitfall (Custom)"
+    id="1000"
+    variant="301"
+    anm2path="291.000_Pitfall.anm2"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="0"
+    collisionRadius="0"
+    friction="1"
+    numGridCollisionPoints="0"
+    shadowSize="0"
+    shutdoors="false"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+  </entity>
+
+  <!-- For The Lamb -->
+  <entity
+    name="Room Clear Delay Effect"
+    id="1000"
+    variant="302"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="0"
+    collisionRadius="0"
+    friction="0"
+    numGridCollisionPoints="0"
+    shadowSize="0"
+    shutdoors="true"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+  </entity>
+
+  <entity
+    name="Sticky Nickel Effect"
+    id="1000"
+    variant="3330"
+    anm2path="items/pick ups/sticky_nickel_effect.anm2"
+    baseHP="0"
+    stageHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="0"
+    collisionRadius="1"
+    friction="1"
+    numGridCollisionPoints="0"
+    shadowSize="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+  </entity>
+
+  <!-- OTHER -->
+
+  <!-- For races -->
+  <entity
+    name="Race Trophy"
+    id="1001"
+    variant="0"
+    anm2path="005.370_Trophy.anm2"
+    baseHP="0"
+    boss="0"
+    champion="0"
+    collisionDamage="0"
+    collisionMass="3"
+    collisionRadius="13"
+    friction="1"
+    numGridCollisionPoints="24"
+    shadowSize="16"
+    shutdoors="false"
+    stageHP="0"
+  >
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
+  </entity>
 </entities>

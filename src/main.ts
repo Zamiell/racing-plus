@@ -75,7 +75,9 @@ function main() {
 
   welcomeBanner();
   initFeatureVariables();
-  registerCallbacks(mod);
+
+  registerCallbacksVanilla(mod);
+  registerCallbacksCustom(mod);
 }
 
 function welcomeBanner() {
@@ -85,11 +87,6 @@ function welcomeBanner() {
   log(welcomeTextBorder);
   log(`| ${welcomeText} |`);
   log(welcomeTextBorder);
-}
-
-function registerCallbacks(mod: ModUpgraded) {
-  registerCallbacksVanilla(mod);
-  registerCallbacksCustom(mod);
 }
 
 function registerCallbacksVanilla(mod: ModUpgraded) {
