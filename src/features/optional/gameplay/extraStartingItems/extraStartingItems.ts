@@ -26,13 +26,22 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
+  if (!config.extraStartingItems) {
+    return;
+  }
+
   rollDuplicateItems();
   replacePlaceholderItems();
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.extraStartingItems && shouldBanFirstFloorTreasureRoom()) {
+  if (!config.extraStartingItems) {
+    return;
+  }
+
+  // If the player is not supposed to get a Treasure Room on the first floor, then the feature should not apply
+  if (!shouldBanFirstFloorTreasureRoom()) {
     removePlaceholdersFromPools();
   }
 }
