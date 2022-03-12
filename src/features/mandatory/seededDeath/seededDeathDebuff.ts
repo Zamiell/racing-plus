@@ -322,6 +322,11 @@ function debuffOffAddAllCollectibles(player: EntityPlayer) {
       : v.run.collectibles;
 
   for (const collectibleType of collectibles) {
+    // If the player had Experimental Treatment (240), when it was removed, none of the stat
+    // modifications were removed, since they are not connected to the collectible
+    // When we re-add Experimental Treatment again, we do not have to worry about it granting more
+    // stats, because passing false to the "firstTimePickingUp" argument ensures that it will do
+    // nothing
     player.AddCollectible(collectibleType, 0, false);
     giveTransformationHelper(player, collectibleType);
   }
