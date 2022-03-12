@@ -2,7 +2,7 @@
 
 ### *v0.78.16* - March 12th, 2022
 
-- Fixed the bug where in seeded races, floors wouldn't be seeded properly if you had Deep Pockets and more than 100 coins.
+- Fixed the bug where in seeded races, you would gain coins upon reaching a new floor if you had Deep Pockets and more than 100 coins. (Thanks Gamonymous)
 
 ### *v0.78.15* - March 12th, 2022
 
