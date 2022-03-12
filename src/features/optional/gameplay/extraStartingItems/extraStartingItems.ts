@@ -24,6 +24,12 @@ export function init(): void {
   saveDataManager("extraStartingItems", v);
 }
 
+function shouldGetExtraStartingItems() {
+  // If the player is not supposed to get a Treasure Room on the first floor, then they do not need
+  // to get extra items inserted into the Treasure Room pool
+  return !shouldBanFirstFloorTreasureRoom();
+}
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.extraStartingItems) {
@@ -40,8 +46,7 @@ export function postGameStarted(): void {
     return;
   }
 
-  // If the player is not supposed to get a Treasure Room on the first floor, then the feature should not apply
-  if (!shouldBanFirstFloorTreasureRoom()) {
+  if (!shouldGetExtraStartingItems()) {
     removePlaceholdersFromPools();
   }
 }
