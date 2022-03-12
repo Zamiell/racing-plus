@@ -60,7 +60,7 @@ export function goto(upwards: boolean): void {
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications
-  seededFloors.before(nextStage, nextStageType);
+  seededFloors.before();
 
   // Use the console to manually travel to the floor
   travelStage(nextStage, nextStageType);

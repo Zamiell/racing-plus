@@ -11,6 +11,7 @@ import {
   setRoomUncleared,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import { shouldConsistentDevilAngelRoomsApply } from "../../../race/consistentDevilAngelRooms";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 
@@ -63,7 +64,13 @@ function checkSpawnKrampus() {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
   const centerPos = g.r.GetCenterPos();
 
-  if (v.run.metKrampus || devilRoomDeals === 0) {
+  // In seeded races, we arbitrarily increase the Devil Room deals counter by one,
+  // so account for this
+  const effectiveDealRoomDeals = shouldConsistentDevilAngelRoomsApply()
+    ? devilRoomDeals - 1
+    : devilRoomDeals;
+
+  if (v.run.metKrampus || effectiveDealRoomDeals === 0) {
     return false;
   }
 

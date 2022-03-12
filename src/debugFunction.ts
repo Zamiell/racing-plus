@@ -37,6 +37,10 @@ export function debugFunction(): void {
 
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
+  checkHotkeysPressed();
+}
+
+function checkHotkeysPressed() {
   if (!g.debug) {
     return;
   }

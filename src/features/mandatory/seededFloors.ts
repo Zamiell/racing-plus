@@ -1,3 +1,9 @@
+// Different inventory and health conditions can affect special room generation
+// Different special rooms can also sometimes change the actual room selection of non-special rooms
+// This is bad for seeded races; we want to ensure consistent floors
+// Thus, we arbitrarily set inventory and health conditions before going to the next floor,
+// and then swap them back
+// https://bindingofisaacrebirth.gamepedia.com/Level_Generation
 // This feature is not configurable because it could change floors, causing a seed to be different
 // This feature relies on fast travel to function
 
@@ -6,7 +12,6 @@ import {
   characterGetsBlackHeartFromEternalHeart,
   getPlayerHealth,
   getRandom,
-  isRepentanceStage,
   log,
   nextSeed,
   onSetSeed,
@@ -52,13 +57,7 @@ export function postGameStarted(): void {
   g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
 }
 
-// Different inventory and health conditions can affect special room generation
-// Different special rooms can also sometimes change the actual room selection of non-special rooms
-// This is bad for seeded races; we want to ensure consistent floors
-// Thus, we arbitrarily set inventory and health conditions before going to the next floor,
-// and then swap them back
-// https://bindingofisaacrebirth.gamepedia.com/Level_Generation
-export function before(stage: int, stageType: int): void {
+export function before(): void {
   // Only swap things if we are playing a specific seed
   if (!onSetSeed()) {
     return;
@@ -94,11 +93,12 @@ export function before(stage: int, stageType: int): void {
   v.run.playerHealth.eternalHearts = 0;
 
   // Modification 1: Devil Room visited
-  if (stage < 3 && !(stage === 2 && isRepentanceStage(stageType))) {
-    g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, false);
-  } else {
-    g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
-  }
+  // "GameStateFlag.STATE_DEVILROOM_VISITED" affects the chance of a Curse Room being generated
+  // However, in seeded races, we always start off the player with one Devil Room item taken
+  // (for the consistent Devil/Angel room feature)
+  // Thus, default to always having this flag set to true, which will result in slightly more Curse
+  // Rooms on the first two floors than normal, but that is okay
+  g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
 
   // Modification 2: Book touched
   seed = nextSeed(seed);
