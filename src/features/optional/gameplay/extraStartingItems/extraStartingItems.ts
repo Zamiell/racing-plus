@@ -32,7 +32,7 @@ export function postUpdate(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.extraStartingItems && shouldBanFirstFloorTreasureRoom()) {
+  if (!config.extraStartingItems || shouldBanFirstFloorTreasureRoom()) {
     removePlaceholdersFromPools();
   }
 }
