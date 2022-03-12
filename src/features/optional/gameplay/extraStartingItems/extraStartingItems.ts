@@ -53,6 +53,10 @@ export function postGameStarted(): void {
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
+  if (!config.extraStartingItems) {
+    return;
+  }
+
   const effectiveStage = getEffectiveStage();
 
   // Ensure that the placeholders are removed beyond Basement 1
@@ -65,6 +69,10 @@ export function postNewLevel(): void {
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  if (!config.extraStartingItems) {
+    return;
+  }
+
   if (!v.run.placeholdersRemoved) {
     const lastRoomDesc = g.l.GetLastRoomDesc();
     const lastRoomData = lastRoomDesc.Data;
