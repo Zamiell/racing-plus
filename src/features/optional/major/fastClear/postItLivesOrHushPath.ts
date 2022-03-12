@@ -1,5 +1,7 @@
 import {
+  countEntities,
   ensureAllCases,
+  getGridEntities,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRoomInsideMap,
   log,
@@ -30,23 +32,21 @@ enum ItLivesSituation {
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
 export function checkPostItLivesOrHushPath(): void {
+  if (inItLivesOrHushBossRoom()) {
+    manuallySpawn();
+  }
+}
+
+function inItLivesOrHushBossRoom() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
-  if (stage !== 8 && stage !== 9) {
-    return;
-  }
-
-  if (roomType !== RoomType.ROOM_BOSS) {
-    return;
-  }
-
-  // Don't do anything if we just killed the It Lives! in an Emperor? Card room
-  if (!isRoomInsideMap()) {
-    return;
-  }
-
-  manuallySpawn();
+  return (
+    (stage === 8 || stage === 9) &&
+    roomType === RoomType.ROOM_BOSS &&
+    // Don't do anything if we just killed the It Lives! in an Emperor? Card room
+    isRoomInsideMap()
+  );
 }
 
 function manuallySpawn() {
@@ -214,4 +214,68 @@ function spawnTrapdoor(position: Vector) {
     TrapdoorVariant.NORMAL,
     gridIndex,
   );
+}
+
+// ModCallbacks.MC_POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  checkItLivesWrongPath();
+}
+
+/**
+ * Killing It Lives! should always trigger fast-clear. If for some reason it does not, then the
+ * correct path will never be spawned, and the player can be potentially soft-locked.
+ *
+ * Check for this situation and spawn the appropriate path if needed.
+ */
+function checkItLivesWrongPath() {
+  if (!inItLivesOrHushBossRoom()) {
+    return;
+  }
+
+  const situation = getItLivesSituation();
+  const positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+
+  switch (situation) {
+    case ItLivesSituation.NEITHER: {
+      return;
+    }
+
+    case ItLivesSituation.HEAVEN_DOOR: {
+      const numHeavenDoors = countEntities(
+        EntityType.ENTITY_EFFECT,
+        EffectVariant.HEAVEN_LIGHT_DOOR,
+      );
+      if (numHeavenDoors === 0) {
+        spawnHeavenDoor(positionCenter);
+        log(
+          "Manually spawned a heaven door to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
+        );
+      }
+
+      return;
+    }
+
+    case ItLivesSituation.TRAPDOOR: {
+      const trapdoors = getGridEntities(GridEntityType.GRID_TRAPDOOR);
+      if (trapdoors.length === 0) {
+        spawnTrapdoor(positionCenter);
+        log(
+          "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
+        );
+      }
+
+      return;
+    }
+
+    case ItLivesSituation.BOTH: {
+      // In vanilla, both paths appear by default, so we don't have to do anything
+      // The exception is if we are on a custom challenge that allows both paths,
+      // but ignore this edge-case
+      return;
+    }
+
+    default: {
+      ensureAllCases(situation);
+    }
+  }
 }

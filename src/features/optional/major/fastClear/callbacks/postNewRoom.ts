@@ -4,6 +4,7 @@ import {
   removeEntities,
 } from "isaacscript-common";
 import g from "../../../../../globals";
+import * as postItLivesOrHushPath from "../postItLivesOrHushPath";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
 export function fastClearPostNewRoom(): void {
@@ -12,8 +13,17 @@ export function fastClearPostNewRoom(): void {
   }
 
   checkBugTwoHeavenDoors();
+  postItLivesOrHushPath.postNewRoom();
 }
 
+/**
+ * Check for two or more heaven doors in the room, which is assumed to be a bug. For example, this
+ * can happen if you die on the It Lives! fight on the save frame that the vanilla Heaven Door
+ * spawns.
+ *
+ * If this is the case, we delete all of the heaven doors except for one. By default, we prefer the
+ * heaven door that is in in the center of the room.
+ */
 function checkBugTwoHeavenDoors() {
   const heavenDoors = getEffects(
     EffectVariant.HEAVEN_LIGHT_DOOR,
@@ -23,11 +33,6 @@ function checkBugTwoHeavenDoors() {
     return;
   }
 
-  // There are two or more heaven doors in this room, which is assumed to be a bug
-  // For example, this can happen if you die on the It Lives! fight on the save frame that the
-  // vanilla Heaven Door spawns
-  // Delete all of the heaven doors except for one
-  // By default, prefer the heaven door that is in in the center of the room
   const heavenDoorInCenter = heavenDoors.find((heavenDoor) => {
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
     return gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM;
