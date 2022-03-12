@@ -112,7 +112,7 @@ export function before(): void {
   // Modification 3: Coins
   seed = nextSeed(seed);
   const coinMod = getRandom(seed);
-  player.AddCoins(-99);
+  player.AddCoins(-999);
   if (coinMod < 0.5) {
     // 50% chance to have 5 coins
     // (we give 20 in case Greed's Gullet and empty heart containers)
