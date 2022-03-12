@@ -1,12 +1,16 @@
 # Racing+ Version History and News
 
-### *v0.78.14* - March 11th, 2022
+### *v0.78.16* - March 12th, 2022
+
+-
+
+### *v0.78.15* - March 12th, 2022
 
 - Monstro's Lung is now added to the anti-synergy list for Tainted Lilith.
 - Fixed the bug where in seeded races, one player could incorrectly miss a devil deal under certain circumstances. (Thanks thereisnofuture)
 - Fixed the bug with seeded death where it would not work properly if you took fatal damage that activated Tainted Samson's berserk state. (Thanks TNTerminator)
 
-### *v0.78.13* - March 11th, 2022
+### *v0.78.14* - March 11th, 2022
 
 - Fixed the bug where defeating Mom would crash the game. (Thanks Finalkids)
 
