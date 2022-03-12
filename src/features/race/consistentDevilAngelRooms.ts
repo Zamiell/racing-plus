@@ -21,19 +21,11 @@ const CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS: readonly PlayerType[] = [
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (shouldConsistentDevilAngelRoomsApply()) {
-    game.AddDevilRoomDeal(); // See above explanation
+  if (!shouldConsistentDevilAngelRoomsApply()) {
+    return;
   }
-}
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
-export function postNewLevel(): void {
-  if (shouldConsistentDevilAngelRoomsApply()) {
-    setDevilAngelRoom();
-  }
-}
-
-function setDevilAngelRoom() {
+  // Calculate whether we should get all Devil Rooms or all Angel Rooms
   const startSeed = g.seeds.GetStartSeed();
   const startSeedString = g.seeds.GetStartSeedString();
   Isaac.DebugString(`GETTING HERE - startSeed (int): ${startSeed}`);
@@ -45,11 +37,23 @@ function setDevilAngelRoom() {
     devil = false;
   }
   Isaac.DebugString(`GETTING HERE - devil: ${devil}`);
+  v.run.allAngelRooms = !devil;
 
-  if (devil) {
-    g.l.InitializeDevilAngelRoom(false, true);
-  } else {
+  // Set the player's vanilla Angel Room chances to 0%
+  // (see above explanation)
+  game.AddDevilRoomDeal();
+}
+
+// ModCallbacks.MC_POST_NEW_LEVEL (18)
+export function postNewLevel(): void {
+  if (!shouldConsistentDevilAngelRoomsApply()) {
+    return;
+  }
+
+  if (v.run.allAngelRooms) {
     g.l.InitializeDevilAngelRoom(true, false);
+  } else {
+    g.l.InitializeDevilAngelRoom(false, true);
   }
 }
 
@@ -59,5 +63,5 @@ export function shouldConsistentDevilAngelRoomsApply(): boolean {
 }
 
 export function inSeededRaceWithAllAngelRooms(): boolean {
-  return v.level.allAngelRooms;
+  return v.run.allAngelRooms;
 }

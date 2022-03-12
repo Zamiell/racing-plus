@@ -8,6 +8,7 @@ import {
   setRestartCharacter,
   setRestartSeed,
 } from "../../utils/restartOnNextFrame";
+import * as consistentDevilAngelRooms from "../consistentDevilAngelRooms";
 import { formatSetup } from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -42,6 +43,7 @@ export function racePostGameStarted(): void {
   startingRoom.initSprites();
   topSprite.postGameStarted();
   placeLeft.postGameStarted();
+  consistentDevilAngelRooms.postGameStarted();
 }
 
 function resetRaceVars() {

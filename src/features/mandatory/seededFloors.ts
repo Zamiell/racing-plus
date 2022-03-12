@@ -14,7 +14,6 @@ import {
   getRandom,
   log,
   nextSeed,
-  onSetSeed,
   PlayerHealth,
   removeAllPlayerHealth,
   saveDataManager,
@@ -22,6 +21,7 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
+import { inSeededRace } from "../race/v";
 
 interface GameStateFlags {
   devilVisited: boolean;
@@ -58,8 +58,8 @@ export function postGameStarted(): void {
 }
 
 export function before(): void {
-  // Only swap things if we are playing a specific seed
-  if (!onSetSeed()) {
+  // Only swap things if we are playing on a seeded race
+  if (!inSeededRace()) {
     return;
   }
 
@@ -93,7 +93,7 @@ export function before(): void {
   v.run.playerHealth.eternalHearts = 0;
 
   // Modification 1: Devil Room visited
-  // "GameStateFlag.STATE_DEVILROOM_VISITED" affects the chance of a Curse Room being generated
+  // "GameStateFlag.STATE_DEVILROOM_VISITED" affects the chances of a Curse Room being generated
   // However, in seeded races, we always start off the player with one Devil Room item taken
   // (for the consistent Devil/Angel room feature)
   // Thus, default to always having this flag set to true, which will result in slightly more Curse
@@ -166,8 +166,8 @@ export function before(): void {
 }
 
 export function after(): void {
-  // Only swap things if we are playing a specific seed
-  if (!onSetSeed()) {
+  // Only swap things if we are playing on a seeded race
+  if (!inSeededRace()) {
     return;
   }
 
