@@ -31,7 +31,8 @@ enum ItLivesSituation {
 // they are near the top wall
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
-export function checkPostItLivesOrHushPath(): void {
+/** Triggered when a room is fast-cleared. */
+export function fastClear(): void {
   if (inItLivesOrHushBossRoom()) {
     manuallySpawn();
   }
@@ -231,6 +232,11 @@ export function postNewRoom(): void {
  */
 function checkItLivesWrongPath() {
   if (!inItLivesOrHushBossRoom()) {
+    return;
+  }
+
+  const roomClear = g.r.IsClear();
+  if (!roomClear) {
     return;
   }
 

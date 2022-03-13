@@ -8,7 +8,6 @@ import {
   spawnGridEntityWithVariant,
   teleport,
 } from "isaacscript-common";
-import * as debugPowers from "../features/mandatory/debugPowers";
 import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import g from "../globals";
 import { restart } from "../utils";
@@ -24,38 +23,6 @@ const IGNORE_EFFECT_VARIANTS: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.LIGHT, // 121
   EffectVariant.TADPOLE, // 158
 ]);
-
-export function angel(params: string): void {
-  const player = Isaac.GetPlayer();
-  const hasEucharist = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_EUCHARIST,
-  );
-  if (!hasEucharist) {
-    player.AddCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, 0, false);
-  }
-  player.UseCard(Card.CARD_JOKER);
-  if (!hasEucharist) {
-    player.RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST);
-  }
-
-  if (params !== "") {
-    const num = tonumber(params);
-    if (num === undefined) {
-      printConsole("That is an invalid Angel Room number.");
-      return;
-    }
-
-    setDevilAngelDebugRoom(num);
-  }
-}
-
-export function blackMarket(): void {
-  teleport(GridRooms.ROOM_BLACK_MARKET_IDX);
-}
-
-export function chaosCardTears(): void {
-  debugPowers.toggleChaosCard();
-}
 
 export function crawlspace(): void {
   const player = Isaac.GetPlayer();

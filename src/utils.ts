@@ -1,10 +1,4 @@
-import {
-  getEntities,
-  getFamiliars,
-  getPlayers,
-  log,
-  logArray,
-} from "isaacscript-common";
+import { getEntities, getFamiliars, getPlayers, log } from "isaacscript-common";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "./types/PlayerTypeCustom";
@@ -13,30 +7,6 @@ export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
   Isaac.ExecuteCommand(command);
   log(`Finished executing console command: ${command}`);
-}
-
-export function getPartialMatchFromMap<T>(
-  searchText: string,
-  map: ReadonlyMap<string, T>,
-): T | undefined {
-  const keys = [...map.keys()];
-  keys.sort();
-
-  searchText = searchText.toLowerCase();
-  searchText = searchText.replaceAll(" ", "");
-
-  const matchingKeys = keys.filter((key) =>
-    key.toLowerCase().startsWith(searchText),
-  );
-  matchingKeys.sort();
-  logArray(matchingKeys);
-
-  const matchingKey = matchingKeys[0];
-  if (matchingKey === undefined) {
-    return undefined;
-  }
-
-  return map.get(matchingKey);
 }
 
 export function hasPolaroidOrNegative(): [boolean, boolean] {
@@ -103,6 +73,10 @@ export function restartAsCharacter(
   // Doing a "restart 40" causes the player to spawn as Tainted Soul without a Forgotten companion
   if (character === PlayerType.PLAYER_THESOUL_B) {
     character = PlayerType.PLAYER_THEFORGOTTEN_B;
+  }
+
+  if (character === -1) {
+    error("Restarting as a character of -1 would crash the game.");
   }
 
   consoleCommand(`restart ${character}`);

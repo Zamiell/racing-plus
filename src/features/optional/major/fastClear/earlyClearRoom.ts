@@ -13,7 +13,7 @@ import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
 } from "./constants";
-import { checkPostItLivesOrHushPath } from "./postItLivesOrHushPath";
+import * as postItLivesOrHushPath from "./postItLivesOrHushPath";
 import v from "./v";
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -89,7 +89,7 @@ function earlyClearRoom() {
 
   openAllDoors();
   killExtraEntities();
-  checkPostItLivesOrHushPath();
+  postItLivesOrHushPath.fastClear();
 
   // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby
   // Thus, spawn the path manually if we are on a custom challenge

@@ -1,4 +1,5 @@
 import {
+  getGridEntities,
   getNPCs,
   getPlayers,
   getRoomGridIndexesForType,
@@ -20,7 +21,7 @@ import {
   setBuildVetosDebug,
   setCharacterOrderDebug,
 } from "../features/changeCharOrder/v";
-import * as debugPowers from "../features/mandatory/debugPowers";
+import { setDevilAngelDebugRoom } from "../features/optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../features/race/socketClient";
 import { logRaceData, RaceData } from "../features/race/types/RaceData";
 import { RaceFormat } from "../features/race/types/RaceFormat";
@@ -30,21 +31,10 @@ import { RaceStatus } from "../features/race/types/RaceStatus";
 import { speedrunSetNextCharacterAndRestart } from "../features/speedrun/callbacks/postRender";
 import { restartOnNextFrame } from "../features/utils/restartOnNextFrame";
 import g from "../globals";
-import { CARD_MAP } from "../maps/cardMap";
-import { CHARACTER_MAP } from "../maps/characterMap";
-import { PILL_MAP } from "../maps/pillMap";
 import { ChallengeCustom } from "../types/ChallengeCustom";
-import {
-  consoleCommand,
-  getPartialMatchFromMap,
-  restart,
-  restartAsCharacter,
-} from "../utils";
+import { consoleCommand, restart } from "../utils";
 import { unseed } from "../utilsGlobals";
 import {
-  angel,
-  blackMarket,
-  chaosCardTears,
   commands,
   crawlspace,
   devil,
@@ -67,113 +57,25 @@ const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
 
 export const executeCmdFunctions = new Map<string, (params: string) => void>();
 
-executeCmdFunctions.set("angel", (params: string) => {
-  angel(params);
-});
-
-executeCmdFunctions.set("ascent", (_params: string) => {
-  g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true);
-  g.g.SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH, true);
-
-  printConsole("Set Ascent flags.");
-});
-
-executeCmdFunctions.set("blackmarket", (_params: string) => {
-  blackMarket();
-});
-
-executeCmdFunctions.set("bomb", (params: string) => {
-  let bombs = 1;
-  if (params !== "") {
-    const num = validateNumber(params);
-    if (num !== undefined) {
-      bombs = num;
-    }
-  }
-
-  const player = Isaac.GetPlayer();
-  player.AddBombs(bombs);
-});
-
-executeCmdFunctions.set("bombs", (_params: string) => {
-  const player = Isaac.GetPlayer();
-  player.AddBombs(99);
-});
-
-executeCmdFunctions.set("boss", (_params: string) => {
-  const player = Isaac.GetPlayer();
-  player.UseCard(Card.CARD_EMPEROR);
-});
-
-executeCmdFunctions.set("bm", (_params: string) => {
-  blackMarket();
-});
-
-executeCmdFunctions.set("card", (params: string) => {
+executeCmdFunctions.set("angelset", (params: string) => {
   if (params === "") {
-    printConsole("You must specify a card name or number.");
-    return;
+    printConsole("You must provide an Angel Room number.");
   }
 
   const num = tonumber(params);
-  if (num !== undefined) {
-    // Validate the card ID
-    if (num < 1 || num >= Card.NUM_CARDS) {
-      printConsole("That is an invalid card ID.");
-      return;
-    }
-
-    // They entered a number instead of a name, so just give the card corresponding to this number
-    consoleCommand(`g k${num}`);
-    printConsole(`Gave card: #${num}`);
+  if (num === undefined) {
+    printConsole("That is an invalid Angel Room number.");
     return;
   }
 
-  const match = getPartialMatchFromMap(params, CARD_MAP);
-  if (match === undefined) {
-    printConsole("Unknown card.");
-    return;
-  }
-  const card = match;
-
-  consoleCommand(`g k${card}`);
-  printConsole(`Gave card: #${card}`);
-});
-
-executeCmdFunctions.set("cards", (_params: string) => {
-  let cardNum = 1;
-  for (let y = 0; y <= 6; y++) {
-    for (let x = 0; x <= 12; x++) {
-      if (cardNum === Card.NUM_CARDS) {
-        return;
-      }
-
-      const position = gridToPos(x, y);
-      Isaac.Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_TAROTCARD,
-        cardNum,
-        position,
-        Vector.Zero,
-        undefined,
-      );
-      cardNum += 1;
-    }
-  }
-});
-
-executeCmdFunctions.set("cc", (_params: string) => {
-  chaosCardTears();
+  setDevilAngelDebugRoom(num);
 });
 
 executeCmdFunctions.set("changechar", (_params: string) => {
   consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
 });
 
-executeCmdFunctions.set("chaos", (_params: string) => {
-  chaosCardTears();
-});
-
+/*
 executeCmdFunctions.set("char", (params: string) => {
   if (params === "") {
     printConsole("You must specify a character name or number.");
@@ -198,6 +100,7 @@ executeCmdFunctions.set("char", (params: string) => {
   restartAsCharacter(character);
   printConsole(`Restarting as character: ${character}`);
 });
+*/
 
 executeCmdFunctions.set("coin", (params: string) => {
   let coins = 1;
@@ -235,14 +138,6 @@ executeCmdFunctions.set("crawl", (_params: string) => {
 
 executeCmdFunctions.set("crawlspace", (_params: string) => {
   crawlspace();
-});
-
-executeCmdFunctions.set("damage", (_params: string) => {
-  debugPowers.toggleDamage();
-});
-
-executeCmdFunctions.set("dd", (params: string) => {
-  devil(params);
 });
 
 executeCmdFunctions.set("debug", (_params: string) => {
@@ -323,6 +218,95 @@ executeCmdFunctions.set("listall", (params: string) => {
   listEntities(params, true);
 });
 
+executeCmdFunctions.set("listgrid", (params: string) => {
+  let entityTypeFilter: int | undefined;
+  if (params !== "") {
+    entityTypeFilter = validateNumber(params);
+    if (entityTypeFilter === undefined) {
+      return;
+    }
+  }
+
+  let headerMsg = "Grid entities in the room";
+  if (entityTypeFilter !== undefined) {
+    headerMsg += ` (filtered to entity type ${entityTypeFilter})`;
+  }
+  headerMsg += " (not excluding walls)";
+  log(headerMsg);
+
+  const gridEntities = getGridEntities();
+  let numMatchedEntities = 0;
+  for (const gridEntity of gridEntities) {
+    const gridEntityIndex = gridEntity.GetGridIndex();
+    const gridEntityType = gridEntity.GetType();
+    const gridEntityVariant = gridEntity.GetVariant();
+    const gridEntityDesc = gridEntity.GetSaveState();
+
+    // If a filter was specified, exclude all entities outside of the filter
+    if (entityTypeFilter !== undefined && gridEntityType !== entityTypeFilter) {
+      continue;
+    }
+
+    // Exclude walls (unless they were specifically requested)
+    if (
+      gridEntityType === GridEntityType.GRID_WALL &&
+      entityTypeFilter !== GridEntityType.GRID_WALL
+    ) {
+      continue;
+    }
+
+    let debugString = `${gridEntityIndex} - ${gridEntityType}.${gridEntityVariant}.${gridEntity.State}`;
+
+    const door = gridEntity.ToDoor();
+    if (door !== undefined) {
+      debugString += ` (door) (Slot: ${door.Slot}, Direction: ${door.Direction}, TargetRoomIndex: ${door.TargetRoomIndex}, TargetRoomType: ${door.TargetRoomType})`;
+    }
+
+    const pit = gridEntity.ToPit();
+    if (pit !== undefined) {
+      debugString += " (pit)";
+    }
+
+    const poop = gridEntity.ToPoop();
+    if (poop !== undefined) {
+      debugString += " (poop)";
+    }
+
+    const pressurePlate = gridEntity.ToPressurePlate();
+    if (pressurePlate !== undefined) {
+      debugString += " (pressurePlate)";
+    }
+
+    const rock = gridEntity.ToRock();
+    if (rock !== undefined) {
+      debugString += " (rock)";
+    }
+
+    const spikes = gridEntity.ToSpikes();
+    if (spikes !== undefined) {
+      debugString += " (spikes)";
+    }
+
+    const tnt = gridEntity.ToTNT();
+    if (tnt !== undefined) {
+      debugString += " (tnt)";
+    }
+
+    debugString += ` (VarData: ${gridEntity.VarData})`;
+    debugString += ` (Position: ${gridEntity.Position.X}, ${gridEntity.Position.Y})`;
+    debugString += ` (SpawnSeed: ${gridEntityDesc.SpawnSeed}, VariableSeed: ${gridEntityDesc.VariableSeed})`;
+    log(debugString);
+
+    numMatchedEntities += 1;
+  }
+
+  if (numMatchedEntities === 0) {
+    log("(no grid entities matched)");
+  }
+
+  printConsole('Logged the grid entities in the room to the "log.txt" file.');
+});
+
 executeCmdFunctions.set("lowhp", (_params: string) => {
   for (const npc of getNPCs()) {
     npc.HitPoints = 1;
@@ -346,6 +330,7 @@ executeCmdFunctions.set("next", (_params: string) => {
   speedrunSetNextCharacterAndRestart();
 });
 
+/*
 executeCmdFunctions.set("pill", (params: string) => {
   if (params === "") {
     printConsole("You must specify a pill name or number.");
@@ -376,6 +361,7 @@ executeCmdFunctions.set("pill", (params: string) => {
   consoleCommand(`g p${pillEffect}`);
   printConsole(`Gave pill: #${pillEffect}`);
 });
+*/
 
 executeCmdFunctions.set("pills", (_params: string) => {
   let pillColor = 1;
@@ -653,14 +639,6 @@ executeCmdFunctions.set("sounds", (_params: string) => {
   printConsole(
     'Logged the currently playing sound effects to the "log.txt" file.',
   );
-});
-
-executeCmdFunctions.set("spam", (_params: string) => {
-  debugPowers.toggleSpam();
-});
-
-executeCmdFunctions.set("speed", (_params: string) => {
-  debugPowers.toggleSpeed();
 });
 
 executeCmdFunctions.set("stick", (_params: string) => {
