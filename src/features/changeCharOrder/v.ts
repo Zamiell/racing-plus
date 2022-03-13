@@ -57,21 +57,3 @@ export function getSeasonDescription(): SeasonDescription {
 
   return seasonDescription;
 }
-
-export function setCharacterOrderDebug(): void {
-  const characterOrder = [
-    PlayerType.PLAYER_APOLLYON,
-    PlayerType.PLAYER_BETHANY_B,
-    PlayerType.PLAYER_THELOST,
-    PlayerType.PLAYER_JUDAS,
-    PlayerType.PLAYER_ISAAC,
-    PlayerType.PLAYER_KEEPER_B,
-    PlayerType.PLAYER_AZAZEL,
-  ];
-  v.persistent.charOrders.set("R7S1", characterOrder);
-}
-
-export function setBuildVetosDebug(): void {
-  const buildVetos = [0, 1, 2];
-  v.persistent.charOrders.set("R7S2", buildVetos);
-}

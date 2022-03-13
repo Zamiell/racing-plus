@@ -116,7 +116,7 @@ function seededRace(params: string) {
 
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
     printConsole(
-      'You must have the Racing+ client open and be in the lobby in order to use the "seededrace" command.',
+      'You must be connected to the Racing+ client in order to use the "seededrace" command. (The R+ icon should be green.)',
     );
     return;
   }
