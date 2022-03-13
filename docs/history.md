@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.17* - March 12th, 2022
+
+- Fixed the bug where paths after defeating It Lives! would show up before the room was cleared. (Thanks olo70009)
+
 ### *v0.78.16* - March 12th, 2022
 
 - If the fast-clear system does not trigger after defeating It Lives! for whatever reason, you should no longer be softlocked. (Thanks mgln)

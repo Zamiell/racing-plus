@@ -1,4 +1,9 @@
-import { log, ModUpgraded, upgradeMod } from "isaacscript-common";
+import {
+  enableExtraConsoleCommands,
+  log,
+  ModUpgraded,
+  upgradeMod,
+} from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as executeCmd from "./callbacks/executeCmd";
@@ -65,6 +70,7 @@ import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
+import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
 import { initFeatureVariables } from "./initFeatureVariables";
 
 main();
@@ -75,6 +81,9 @@ function main() {
 
   welcomeBanner();
   initFeatureVariables();
+
+  enableExtraConsoleCommands(mod); // Initialize extra console commands from the standard library
+  enableExtraConsoleCommandsRacingPlus(); // Initialize extra console commands from Racing+
 
   registerCallbacksVanilla(mod);
   registerCallbacksCustom(mod);

@@ -1,12 +1,6 @@
-import { MAX_VANILLA_CHARACTER, saveDataManager } from "isaacscript-common";
+import { log, restart, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
-import { PlayerTypeCustom } from "../../types/PlayerTypeCustom";
-import {
-  restart,
-  restartAsCharacter,
-  restartChallenge,
-  restartSeed,
-} from "../../utils";
+import { restartChallenge, restartSeed } from "../../utils";
 
 // This feature is used because the game prevents you from executing a "restart" console command
 // while in the PostGameStarted callback
@@ -14,7 +8,7 @@ import {
 const v = {
   run: {
     restartOnNextRenderFrame: false,
-    restartCharacter: null as PlayerType | PlayerTypeCustom | null,
+    restartCharacter: null as PlayerType | null,
     restartChallenge: null as Challenge | null,
     restartSeed: null as string | null,
   },
@@ -41,7 +35,7 @@ function checkSpecialRestart() {
   const challenge = Isaac.GetChallenge();
 
   if (v.run.restartCharacter !== null && character !== v.run.restartCharacter) {
-    restartAsCharacter(v.run.restartCharacter);
+    restart(v.run.restartCharacter);
     return;
   }
 
@@ -67,15 +61,10 @@ export function isRestartingOnNextFrame(): boolean {
   return v.run.restartOnNextRenderFrame;
 }
 
-export function setRestartCharacter(
-  character: PlayerType | PlayerTypeCustom,
-): void {
-  if (
-    character < 0 ||
-    (character > MAX_VANILLA_CHARACTER &&
-      character !== PlayerTypeCustom.PLAYER_RANDOM_BABY)
-  ) {
-    // Prevent crashing the game when switching to a custom character that does not exist
+export function setRestartCharacter(character: PlayerType): void {
+  // Prevent crashing the game when switching to a character that does not exist
+  if (character < 0 || character >= PlayerType.NUM_PLAYER_TYPES) {
+    log(`Preventing restarting to character: ${character}`);
     return;
   }
 

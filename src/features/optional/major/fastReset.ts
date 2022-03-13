@@ -1,11 +1,11 @@
 import {
   isActionTriggeredOnAnyInput,
   isKeyboardPressed,
+  restart,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { restart } from "../../../utils";
 import { speedrunSetFastReset } from "../../speedrun/exported";
 import { getRoomsEntered } from "../../utils/roomsEntered";
 

@@ -1,7 +1,6 @@
 import { getEntities, getFamiliars, getPlayers, log } from "isaacscript-common";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
-import { PlayerTypeCustom } from "./types/PlayerTypeCustom";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -61,25 +60,6 @@ export function movePlayersAndFamiliars(position: Vector): void {
   for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }
-}
-
-export function restart(): void {
-  consoleCommand("restart");
-}
-
-export function restartAsCharacter(
-  character: PlayerType | PlayerTypeCustom,
-): void {
-  // Doing a "restart 40" causes the player to spawn as Tainted Soul without a Forgotten companion
-  if (character === PlayerType.PLAYER_THESOUL_B) {
-    character = PlayerType.PLAYER_THEFORGOTTEN_B;
-  }
-
-  if (character === -1) {
-    error("Restarting as a character of -1 would crash the game.");
-  }
-
-  consoleCommand(`restart ${character}`);
 }
 
 export function restartChallenge(challenge: Challenge): void {
