@@ -44,7 +44,9 @@ function inItLivesOrHushBossRoom() {
   return (
     (stage === 8 || stage === 9) &&
     roomType === RoomType.ROOM_BOSS &&
-    // Don't do anything if we just killed the It Lives! in an Emperor? Card room
+    // If the player is fighting It Lives! from an Emperor? Card room,
+    // then the room will be outside the grid
+    // Paths are not supposed to spawn in this situation
     isRoomInsideMap()
   );
 }

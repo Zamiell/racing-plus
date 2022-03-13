@@ -2,6 +2,7 @@
 
 ### *v0.78.16* - March 12th, 2022
 
+- If the fast-clear system does not trigger after defeating It Lives! for whatever reason, you should no longer be softlocked. (Thanks mgln)
 - Fixed the bug where in seeded races, you would gain coins upon reaching a new floor if you had Deep Pockets and more than 100 coins. (Thanks Gamonymous)
 - Fixed the bug where extra starting items for the first floor were not properly being removed in situations where the Treasure Room was banned. (Thanks Gamonymous)
 

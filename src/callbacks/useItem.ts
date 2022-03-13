@@ -1,4 +1,4 @@
-import { debugFunction } from "../debugFunction";
+import * as debug from "../features/items/debug";
 import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
@@ -113,6 +113,5 @@ function useItemFlipCustom(
 
 // CollectibleTypeCustom.COLLECTIBLE_DEBUG
 function debugItem() {
-  debugFunction();
-  return true; // Display the "use" animation
+  return debug.useItemDebug();
 }
