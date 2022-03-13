@@ -1,4 +1,3 @@
-import * as debugPowers from "../features/mandatory/debugPowers";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
@@ -41,12 +40,6 @@ function entityTakeDmgPlayer(
   const player = tookDamage.ToPlayer();
   if (player === undefined) {
     return undefined;
-  }
-
-  // Features that prevent damage
-  const sustainDamage = debugPowers.entityTakeDmgPlayer();
-  if (sustainDamage !== undefined) {
-    return sustainDamage;
   }
 
   // Major

@@ -5,7 +5,6 @@ import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
-import * as debugPowers from "./features/mandatory/debugPowers";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
@@ -103,7 +102,6 @@ export function initFeatureVariables(): void {
   disableMultiplayer.init();
   drawVersion.init();
   dummyDPS.init();
-  debugPowers.init();
   errors.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();

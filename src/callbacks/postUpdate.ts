@@ -1,6 +1,5 @@
 import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
-import * as debugPowers from "../features/mandatory/debugPowers";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
@@ -28,7 +27,6 @@ function main() {
   fireworks.postUpdate();
   showLevelText.postUpdate();
   runTimer.postUpdate();
-  debugPowers.postUpdate();
   debugFunction.postUpdate();
 
   // Major

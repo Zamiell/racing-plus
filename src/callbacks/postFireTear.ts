@@ -1,4 +1,3 @@
-import * as debugPowers from "../features/mandatory/debugPowers";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 
 export function init(mod: Mod): void {
@@ -6,9 +5,6 @@ export function init(mod: Mod): void {
 }
 
 function main(tear: EntityTear) {
-  // Mandatory
-  debugPowers.postFireTear(tear);
-
   // QoL
   leadPencilChargeBar.postFireTear(tear);
 }
