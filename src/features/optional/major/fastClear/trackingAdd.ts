@@ -1,13 +1,9 @@
 import {
-  getEntityID,
   isAliveExceptionNPC,
   isDyingEggyWithNoSpidersLeft,
-  log,
 } from "isaacscript-common";
-import g from "../../../../globals";
-import { FAST_CLEAR_DEBUG } from "./constants";
 import * as trackingRemove from "./trackingRemove";
-import v from "./v";
+import v, { logFastClear } from "./v";
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {
@@ -84,17 +80,6 @@ function checkAdd(entity: Entity, parentCallback: string) {
 }
 
 function add(entity: Entity, ptrHash: PtrHash, parentCallback: string) {
-  const gameFrameCount = g.g.GetFrameCount();
-
   v.room.aliveEnemies.add(ptrHash);
-
-  if (FAST_CLEAR_DEBUG) {
-    const entityID = getEntityID(entity);
-    log(
-      `Added fast-clear entity to track to frame ${gameFrameCount}: ${entityID} - ${ptrHash} (${parentCallback})`,
-    );
-    log(
-      `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
-    );
-  }
+  logFastClear(true, entity, ptrHash, parentCallback);
 }

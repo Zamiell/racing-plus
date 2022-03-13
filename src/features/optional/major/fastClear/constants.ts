@@ -1,9 +1,3 @@
-/**
- * Currently set to true until I can find out the cause of It Lives! not triggering fast-clear for
- * some reason.
- */
-export const FAST_CLEAR_DEBUG = true;
-
 export const CREEP_VARIANTS_TO_KILL: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.CREEP_RED, // 22
   EffectVariant.CREEP_GREEN, // 23

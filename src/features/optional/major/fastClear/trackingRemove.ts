@@ -1,7 +1,5 @@
-import { getEntityID, log } from "isaacscript-common";
 import g from "../../../../globals";
-import { FAST_CLEAR_DEBUG } from "./constants";
-import v from "./v";
+import v, { logFastClear } from "./v";
 
 // ModCallbacks.MC_POST_ENTITY_REMOVE (67)
 export function postEntityRemove(entity: Entity): void {
@@ -57,16 +55,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   const gameFrameCount = g.g.GetFrameCount();
 
   v.room.aliveEnemies.delete(ptrHash);
-
-  if (FAST_CLEAR_DEBUG) {
-    const entityID = getEntityID(npc);
-    log(
-      `Removed fast-clear entity to track on game frame ${gameFrameCount}: ${entityID} - ${ptrHash} (${parentCallback})`,
-    );
-    log(
-      `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
-    );
-  }
+  logFastClear(false, npc, ptrHash, parentCallback);
 
   // If this was the last NPC in the room that died,
   // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
