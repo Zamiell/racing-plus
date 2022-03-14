@@ -18,8 +18,11 @@ import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../../utils/restartOnNextFrame";
+import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
+import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { getCharacterOrderSafe } from "../../speedrun";
+import { resetPersistentVars } from "../../v";
 import {
   SEASON_2_CHARACTERS,
   SEASON_2_FORGOTTEN_EXCEPTIONS,
@@ -31,7 +34,6 @@ import sprites, { resetSprites } from "../sprites";
 import v, {
   season2GetCurrentBuildIndex,
   season2GetCurrentCharacter,
-  season2GetTimeGameOpened,
 } from "../v";
 
 const GFX_PATH = "gfx/race/starting-room";
@@ -81,9 +83,23 @@ function checkErrors() {
   const time = Isaac.GetTime();
 
   // Game recently opened
-  const timeGameOpened = season2GetTimeGameOpened();
+  const timeGameOpened = getTimeGameOpened();
   const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
+
+  // Console recently used
+  const timeConsoleUsed = getTimeConsoleUsed();
+  if (timeConsoleUsed === null) {
+    v.run.errors.consoleRecentlyUsed = false;
+  } else {
+    const consoleUnlockTime = timeConsoleUsed + SEASON_2_LOCK_MILLISECONDS;
+    v.run.errors.consoleRecentlyUsed = time <= consoleUnlockTime;
+
+    // Force them back on the first character if they used the console
+    if (v.run.errors.consoleRecentlyUsed) {
+      resetPersistentVars();
+    }
+  }
 
   // Bans recently assigned
   if (v.persistent.timeBansSet === null) {

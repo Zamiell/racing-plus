@@ -26,20 +26,15 @@ const v = {
   run: {
     errors: {
       gameRecentlyOpened: false,
+      consoleRecentlyUsed: false,
       bansRecentlySet: false,
     },
   },
 };
 export default v;
 
-const timeGameOpened = Isaac.GetTime();
-
 export function init(): void {
   saveDataManager("season2", v);
-}
-
-export function season2GetTimeGameOpened(): int {
-  return timeGameOpened;
 }
 
 export function season2GetCurrentBuildIndex(): int | undefined {

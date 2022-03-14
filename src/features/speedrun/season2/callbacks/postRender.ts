@@ -1,4 +1,5 @@
 import { getDefaultKColor, getPlayerName } from "isaacscript-common";
+import { getTimeLastConsoleCommandExecuted } from "../../../../callbacks/executeCmd";
 import g from "../../../../globals";
 import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
@@ -47,6 +48,9 @@ function drawErrors() {
   if (v.run.errors.gameRecentlyOpened) {
     action = "opening the game";
     errorEventTime = season2GetTimeGameOpened();
+  } else if (v.run.errors.consoleRecentlyUsed) {
+    action = "using the console";
+    errorEventTime = getTimeLastConsoleCommandExecuted();
   } else if (v.run.errors.bansRecentlySet) {
     action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
     errorEventTime = v.persistent.timeBansSet;
