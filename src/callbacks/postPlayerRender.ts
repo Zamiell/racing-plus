@@ -11,7 +11,7 @@ function main(player: EntityPlayer) {
     return;
   }
 
-  // Major
+  // Mandatory
   debugDisplay.postPlayerRender(player);
 
   // Cutscenes

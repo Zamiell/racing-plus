@@ -15,11 +15,7 @@ const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
-const v = {
-  run: {
-    debug,
-  },
-};
+const v = {};
 
 export function init(): void {
   saveDataManager("debugFunction", v, () => false);
