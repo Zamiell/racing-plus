@@ -1,4 +1,4 @@
-import { printConsole, round, saveDataManager } from "isaacscript-common";
+import { printConsole, saveDataManager } from "isaacscript-common";
 
 const v = {
   run: {
@@ -74,9 +74,16 @@ export function postPlayerRender(player: EntityPlayer): void {
     return;
   }
 
-  const velocityX = round(player.Velocity.X, 1);
-  const velocityY = round(player.Velocity.Y, 1);
-  const text = `Velocity: (${velocityX}, ${velocityY})`;
+  // const positionX = round(player.Position.X, 1);
+  // const positionY = round(player.Position.Y, 1);
+  // const text = `Position: (${positionX}, ${positionY})`;
+  // const velocityX = round(player.Velocity.X, 1);
+  // const velocityY = round(player.Velocity.Y, 1);
+  // const text = `Velocity: (${velocityX}, ${velocityY})`;
+  const sprite = player.GetSprite();
+  const animation = sprite.GetAnimation();
+  const overlayAnimation = sprite.GetOverlayAnimation();
+  const text = `Anim: ${animation}, ${overlayAnimation}`;
   const position = Isaac.WorldToScreen(player.Position);
   Isaac.RenderText(text, position.X, position.Y, 1, 1, 1, 1);
 }

@@ -393,7 +393,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
 ];
 
 // 0401-0410
-export const ENEMY_CHANGES: ConfigDescriptions = [
+export const ENEMY_CHANGES_1: ConfigDescriptions = [
   [
     "removeTreasureRoomEnemies",
     [
@@ -484,6 +484,10 @@ export const ENEMY_CHANGES: ConfigDescriptions = [
       "Make Polties & Kinetis show themselves immediately upon entering the room.",
     ],
   ],
+];
+
+// 0411-0420
+export const ENEMY_CHANGES_2: ConfigDescriptions = [
   [
     "fastNeedles", // 881
     [
@@ -889,7 +893,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
 ];
 
 // 0901-0910
-export const BUG_FIXES: ConfigDescriptions = [
+export const BUG_FIXES_1: ConfigDescriptions = [
   [
     "keeperHeal",
     [
@@ -922,15 +926,24 @@ export const BUG_FIXES: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0904",
-      "Prevent softlocks in Ultra Secret Rooms",
+      "Fix Ultra Secret Rooms softlocks",
       "A fool card will be spawned in Ultra Secret Rooms with no doors.",
+    ],
+  ],
+  [
+    "batteryBumFix",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0905",
+      "Fix Battery Bums",
+      "Make Battery Bums properly charge pocket active items.",
     ],
   ],
   [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0906",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -939,7 +952,7 @@ export const BUG_FIXES: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
+      "0907",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
@@ -971,6 +984,10 @@ export const BUG_FIXES: ConfigDescriptions = [
       "Make Teleport!, Cursed Eye, Broken Remote, and Telepills teleports seeded properly.",
     ],
   ],
+];
+
+// 0911-0920
+export const BUG_FIXES_2: ConfigDescriptions = [
   [
     null,
     [
@@ -1228,14 +1245,16 @@ export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
   ...CHARACTER_CHANGES,
   ...BOSS_CHANGES_1,
   ...BOSS_CHANGES_2,
-  ...ENEMY_CHANGES,
+  ...ENEMY_CHANGES_1,
+  ...ENEMY_CHANGES_2,
   ...QUALITY_OF_LIFE_CHANGES_1,
   ...QUALITY_OF_LIFE_CHANGES_2,
   ...QUALITY_OF_LIFE_CHANGES_3,
   ...GAMEPLAY_CHANGES,
   ...CUTSCENE_CHANGES,
   ...REMOVALS,
-  ...BUG_FIXES,
+  ...BUG_FIXES_1,
+  ...BUG_FIXES_2,
   ...GRAPHIC_CHANGES_1,
   ...GRAPHIC_CHANGES_2,
   ...SOUND_CHANGES,

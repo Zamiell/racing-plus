@@ -2,6 +2,11 @@
 
 ### *v0.78.18* - March 14th, 2022
 
+- R+7 Season 1 is finished!
+  - Congratulations to Finalkids for the best time of 1:01:09, mgln for the second best time of 1:01:27, and Greg420 for the third best time of 1:03:49.
+  - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
+  - If you want to beat these times, the R+7 (S7) category will continue to be tracked on speedrun.com, but the official competition will move on to season 2.
+- [Season 2](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start) has officially begun!
 - The console is now enabled in season 2 by default.
 - !Fixed the bug where Battery Bums would not charge The Forgotten's pocket item first. (Thanks Fallenfor)
 

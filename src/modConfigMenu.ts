@@ -9,12 +9,14 @@ import {
   ALL_HOTKEY_DESCRIPTIONS,
   BOSS_CHANGES_1,
   BOSS_CHANGES_2,
-  BUG_FIXES,
+  BUG_FIXES_1,
+  BUG_FIXES_2,
   CHARACTER_CHANGES,
   ConfigDescriptions,
   CUSTOM_HOTKEYS,
   CUTSCENE_CHANGES,
-  ENEMY_CHANGES,
+  ENEMY_CHANGES_1,
+  ENEMY_CHANGES_2,
   GAMEPLAY_CHANGES,
   GRAPHIC_CHANGES_1,
   GRAPHIC_CHANGES_2,
@@ -57,14 +59,16 @@ export function init(): void {
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
   registerSubMenuConfig("Boss (1)", BOSS_CHANGES_1);
   registerSubMenuConfig("Boss (2)", BOSS_CHANGES_2);
-  registerSubMenuConfig("Enemies", ENEMY_CHANGES);
+  registerSubMenuConfig("NPCs (1)", ENEMY_CHANGES_1);
+  registerSubMenuConfig("NPCs (2)", ENEMY_CHANGES_2);
   registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
   registerSubMenuConfig("QoL (2)", QUALITY_OF_LIFE_CHANGES_2);
   registerSubMenuConfig("QoL (3)", QUALITY_OF_LIFE_CHANGES_3);
   registerSubMenuConfig("Gameplay", GAMEPLAY_CHANGES);
   registerSubMenuConfig("Removals", REMOVALS);
   registerSubMenuConfig("Cutscenes", CUTSCENE_CHANGES);
-  registerSubMenuConfig("Bug Fixes", BUG_FIXES);
+  registerSubMenuConfig("Fixes (1)", BUG_FIXES_1);
+  registerSubMenuConfig("Fixes (2)", BUG_FIXES_2);
   registerSubMenuConfig("GFX (1)", GRAPHIC_CHANGES_1);
   registerSubMenuConfig("GFX (2)", GRAPHIC_CHANGES_2);
   registerSubMenuConfig("Sounds", SOUND_CHANGES);

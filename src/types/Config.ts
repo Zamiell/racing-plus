@@ -85,6 +85,7 @@ export class Config {
   battery9VoltSynergy = true;
   reverseJusticeFix = true;
   preventUltraSecretRoomSoftlock = true;
+  batteryBumFix = true;
   teleportInvalidEntrance = true;
   removeInvalidPitfalls = true;
 
