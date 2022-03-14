@@ -61,7 +61,7 @@ function main() {
     `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
   );
 
-  // Util
+  // Utils
   roomsEntered.postNewRoom();
 
   // Mandatory

@@ -28,6 +28,7 @@ import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
 import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
+import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallbacks.MC_POST_RENDER, main);
@@ -50,6 +51,9 @@ function main() {
   // we should early return if the HUD is not visible
   // However, the game is considered to be paused during the room slide animation, so in most cases,
   // we do not want to check to see if the game is paused
+
+  // Utils
+  timeConsoleUsed.postRender();
 
   // Mandatory
   modConfigNotify.postRender();
