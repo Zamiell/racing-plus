@@ -1,4 +1,5 @@
 import { emptyArray, saveDataManager } from "isaacscript-common";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { RepentanceDoorState } from "../../types/RepentanceDoorState";
 
 const v = {
@@ -15,6 +16,8 @@ const v = {
 
     /** Used after a speedrun is finished. */
     resetAllVarsOnNextReset: false,
+
+    currentlyPlayingChallenge: null as ChallengeCustom | null,
   },
 
   run: {

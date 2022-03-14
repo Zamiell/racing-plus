@@ -35,7 +35,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("devilset", devilSet);
   addConsoleCommand("move", move);
   addConsoleCommand("next", next);
-  addConsoleCommand("previous", previous);
+  // addConsoleCommand("previous", previous);
   addConsoleCommand("race", race);
   addConsoleCommand("rankedsoloreset", rankedSoloReset);
   addConsoleCommand("s0", s0);
@@ -79,9 +79,12 @@ function next() {
   speedrunSetNextCharacterAndRestart(true);
 }
 
+/*
+// Commented out since it allows people to cheat in Season 2
 function previous() {
   speedrunSetNextCharacterAndRestart(false);
 }
+*/
 
 function race() {
   logRaceData(g.race);

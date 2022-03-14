@@ -30,6 +30,12 @@ export function speedrunPostGameStarted(): void {
     resetPersistentVars();
   }
 
+  const challenge = Isaac.GetChallenge();
+  if (challenge !== v.persistent.currentlyPlayingChallenge) {
+    v.persistent.currentlyPlayingChallenge = challenge;
+    resetPersistentVars();
+  }
+
   liveSplitReset();
 
   if (!checkValidCharOrder()) {
