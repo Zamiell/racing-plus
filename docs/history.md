@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.78.18* - March 14th, 2022
+
+- The console is now enabled in season 2 by default.
+
 ### *v0.78.17* - March 12th, 2022
 
 - Fixed the bug where paths after defeating It Lives! would show up before the room was cleared. (Thanks olo70009)

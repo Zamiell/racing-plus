@@ -1,16 +1,17 @@
 import { getDefaultKColor, getPlayerName } from "isaacscript-common";
-import { getTimeLastConsoleCommandExecuted } from "../../../../callbacks/executeCmd";
 import g from "../../../../globals";
 import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
+import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
+import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import {
   SEASON_2_LOCK_MILLISECONDS,
   SEASON_2_LOCK_SECONDS,
   SEASON_2_NUM_BANS,
 } from "../constants";
 import sprites from "../sprites";
-import v, { season2GetTimeGameOpened } from "../v";
+import v from "../v";
 
 const TOP_LEFT_GRID_INDEX = 32;
 const TOP_RIGHT_GRID_INDEX = 42;
@@ -47,10 +48,10 @@ function drawErrors() {
   let errorEventTime: int | null = null;
   if (v.run.errors.gameRecentlyOpened) {
     action = "opening the game";
-    errorEventTime = season2GetTimeGameOpened();
+    errorEventTime = getTimeGameOpened();
   } else if (v.run.errors.consoleRecentlyUsed) {
     action = "using the console";
-    errorEventTime = getTimeLastConsoleCommandExecuted();
+    errorEventTime = getTimeConsoleUsed();
   } else if (v.run.errors.bansRecentlySet) {
     action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
     errorEventTime = v.persistent.timeBansSet;
