@@ -1,6 +1,7 @@
 import {
   addConsoleCommand,
   CHARACTER_MAP,
+  getCharacterName,
   getEnumValues,
   getMapPartialMatch,
   log,
@@ -30,7 +31,7 @@ const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("angelset", angelSet);
-  addConsoleCommand("changechar", changeChar);
+  addConsoleCommand("changecharorder", changeCharOrder);
   addConsoleCommand("debug", debug);
   addConsoleCommand("devilset", devilSet);
   addConsoleCommand("move", move);
@@ -59,7 +60,7 @@ function devilSet(params: string) {
   devilAngelSet(params, true);
 }
 
-function changeChar() {
+function changeCharOrder() {
   consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
 }
 
@@ -150,29 +151,32 @@ function seededRaceCharacter(params: string) {
     return;
   }
 
+  let character: PlayerType;
   const num = tonumber(params);
-  if (num !== undefined) {
-    // Validate the character sub-type
-    if (num < 0 || num >= PlayerType.NUM_PLAYER_TYPES) {
-      printConsole("That is an invalid player sub-type.");
+  if (num === undefined) {
+    const match = getMapPartialMatch(params, CHARACTER_MAP);
+    if (match === undefined) {
+      printConsole(`Unknown character: ${params}`);
       return;
     }
 
-    g.race.character = num;
-    printConsole(`Set the seeded race character to: ${g.race.character}`);
-    restart(g.race.character);
-    return;
+    character = match[1];
+  } else {
+    if (num < 0 || num >= PlayerType.NUM_PLAYER_TYPES) {
+      printConsole(`Invalid player sub-type: ${num}`);
+      return;
+    }
+
+    character = num;
   }
 
-  const match = getMapPartialMatch(params, CHARACTER_MAP);
-  if (match === undefined) {
-    printConsole(`Unknown character: ${params}`);
-    return;
-  }
+  g.race.character = character;
 
-  g.race.character = match;
-  printConsole(`Set the seeded race character to: ${g.race.character}`);
+  const characterName = getCharacterName(character);
   restart(g.race.character);
+  printConsole(
+    `Set the seeded race character to: ${characterName} (${character})`,
+  );
 }
 
 function seededRaceBuild() {
