@@ -1,5 +1,5 @@
 import { isChildPlayer } from "isaacscript-common";
-import * as debugFunction from "../debugFunction";
+import * as debugDisplay from "../features/mandatory/debugDisplay";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
 
 export function init(mod: Mod): void {
@@ -12,7 +12,7 @@ function main(player: EntityPlayer) {
   }
 
   // Major
-  debugFunction.postPlayerRender(player);
+  debugDisplay.postPlayerRender(player);
 
   // Cutscenes
   fastTeleports.postPlayerRender(player);

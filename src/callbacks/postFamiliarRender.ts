@@ -1,4 +1,4 @@
-import * as debugFunction from "../debugFunction";
+import * as debugDisplay from "../features/mandatory/debugDisplay";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 
 export function init(mod: Mod): void {
@@ -12,7 +12,7 @@ export function init(mod: Mod): void {
 }
 
 function main(familiar: EntityFamiliar) {
-  debugFunction.postFamiliarRender(familiar);
+  debugDisplay.postFamiliarRender(familiar);
 }
 
 function GBBug(familiar: EntityFamiliar) {

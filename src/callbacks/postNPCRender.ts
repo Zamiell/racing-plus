@@ -1,4 +1,4 @@
-import * as debugFunction from "../debugFunction";
+import * as debugDisplay from "../features/mandatory/debugDisplay";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 
 export function init(mod: Mod): void {
@@ -12,7 +12,7 @@ export function init(mod: Mod): void {
 }
 
 function main(npc: EntityNPC) {
-  debugFunction.postNPCRender(npc);
+  debugDisplay.postNPCRender(npc);
 }
 
 function dummy(npc: EntityNPC) {

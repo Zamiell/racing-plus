@@ -65,6 +65,7 @@ import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
+import * as postSlotRender from "./callbacksCustom/postSlotRender";
 import * as postSlotUpdate from "./callbacksCustom/postSlotUpdate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
@@ -163,6 +164,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postSacrifice.init(mod);
   postCursedTeleport.init(mod);
   postSlotUpdate.init(mod);
+  postSlotRender.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);

@@ -5,6 +5,7 @@ import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
+import * as debugDisplay from "./features/mandatory/debugDisplay";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
@@ -105,6 +106,7 @@ export function initFeatureVariables(): void {
   errors.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
+  debugDisplay.init();
 
   // Major
   startWithD6.init();

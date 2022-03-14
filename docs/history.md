@@ -3,6 +3,7 @@
 ### *v0.78.18* - March 14th, 2022
 
 - The console is now enabled in season 2 by default.
+- !Fixed the bug where Battery Bums would not charge The Forgotten's pocket item first. (Thanks Fallenfor)
 
 ### *v0.78.17* - March 12th, 2022
 
@@ -1619,7 +1620,7 @@ Mod changes:
 
 ### *v0.47.3* - November 26th, 2019
 
-- The Lead Pencil charge bar will no longer show up on Lilith and Forgotten. (Thanks Pingouin23 & Fawkeyes)
+- The Lead Pencil charge bar will no longer show up on Lilith and The Forgotten. (Thanks Pingouin23 & Fawkeyes)
 - The devil statue will be faded if there is an item pedestal hiding behind it. (Thanks mgln)
 - Fixed the bug where the boss item after Ultra Greed would show up for a frame. (Thanks NorBro)
 - Fixed the bug where the Lead Pencil charge bar would be wrong if you picked it up in the middle of a run. (Thanks Pingouin23)
@@ -1834,7 +1835,7 @@ Mod changes:
 
 - Pin, Frail, and Scolex are now only sped up if there is only one of them in the room. (Thanks Dea1h)
 - Reverted the Mini-Boss room nerf in Season 6. (Thanks Dea1h)
-- Fixed the bug where the Forgotten softlock check was not running properly under certain circumstances.
+- Fixed the bug where the The Forgotten softlock check was not running properly under certain circumstances.
 - Fixed the bug where the sad sound effect would play when typing into the console.
 
 ### *v0.40.0* - June 7th, 2019
@@ -1863,7 +1864,7 @@ Mod changes:
 ### *v0.37.14* - May 31st, 2019
 
 - Changed the Mysterious Liquid costume and tears effect from green to red in order to match the new creep color. Thanks to Thoday for creating the graphics for this.
-- Added Caves / Catacombs / Flooded Caves room #488 to the Forgotten softlock list. (Thanks AshDown)
+- Added Caves / Catacombs / Flooded Caves room #488 to the The Forgotten softlock list. (Thanks AshDown)
 - Fixed the bug where the Basement 1 Treasure Room icon would appear on the map when it was banned and attached to the starting room.
 - Fixed the bug where replaced pedestal sprites would not match the original sprite.
 - Fixed the bug where an empty pedestal was not generated when you put an item in the Schoolbag.
@@ -1878,11 +1879,11 @@ Mod changes:
 
 - In formats where the Treasure Room is banned on Basement 1, the room will no longer appear on the minimap and the doors will be deleted.
 - In Season 6, Mini-Boss rooms are now emptied on the first character and on the first floor in the same manner as Curse Rooms and Sacrifice Rooms.
-- In Season 6, Forgotten will no longer be randomly given Incubus. (Thanks Gamonymous)
+- In Season 6, The Forgotten will no longer be randomly given Incubus. (Thanks Gamonymous)
 - Trapdoors will now be automatically close if you are near one when you switch from The Forgotten to The Soul (or vice versa). (Thanks Xelnas)
 - Marbles will no longer put a trinket into your inventory.
 - Blank runes will now show the effect if you use the Vanilla Streak Text mod. (Thanks Gamonymous)
-- Added Depths / Necropolis / Dank Depths room #227 to the Forgotten softlock list. (Thanks Gamonymous)
+- Added Depths / Necropolis / Dank Depths room #227 to The Forgotten softlock list. (Thanks Gamonymous)
 - Fixed the bug where you could take a Checkpoint when in ghost form. (Thanks NorBro)
 - Fixed the bug where Troll Bombs, Mega Troll Bombs, and Sticky Nickels would get deleted in automatic inventory management. (Thanks Dea1h)
 
@@ -1901,11 +1902,11 @@ Mod changes:
 
 ### *v0.37.5* - May 16th, 2019
 
-- Added Depths / Necropolis / Dank Depths room #492 to the Forgotten softlock list. (Thanks Gamonymous)
+- Added Depths / Necropolis / Dank Depths room #492 to The Forgotten softlock list. (Thanks Gamonymous)
 
 ### *v0.37.4* - May 15th, 2019
 
-- Fixed the bug where fast-travel would cause Forgotten to die after using a Strength card under certain conditions. (Thanks NorBro)
+- Fixed the bug where fast-travel would cause The Forgotten to die after using a Strength card under certain conditions. (Thanks NorBro)
 
 ### *v0.37.3* - May 15th, 2019
 
@@ -1929,10 +1930,10 @@ Mod changes:
 - Changed the sprite for spotted red pills to all red so that they are easier to distinguish from other pills.
 - Fast-reset is now disabled if you have entered 3 or more rooms.
 - Enabled both doors in Curse Rooms #10, #18, and #19.
-- Added Caves / Catacombs / Flooded Caves room #754 to the Forgotten softlock list. (Thanks Gamonymous)
-- Added Catacombs room #224 to the Forgotten softlock list.
+- Added Caves / Catacombs / Flooded Caves room #754 to The Forgotten softlock list. (Thanks Gamonymous)
+- Added Catacombs room #224 to The Forgotten softlock list.
 - Fixed the bug where Sacred Heart would cause bombs to lose special abilities in season 6. (Thanks NorBro)
-- Fixed the bug where Forgotten would not get soul hearts and black hearts upon seeded revival. (Thanks InvaderTim)
+- Fixed the bug where The Forgotten would not get soul hearts and black hearts upon seeded revival. (Thanks InvaderTim)
 - Fixed the bug where enemy creep would show as red creep on the first frame after spawning under certain circumstances.
 - Fixed the vanilla spelling of Maw of the Void, Spear of Destiny, and Crown of Light.
 - Fixed the bug where Eden could start with Broken Ankh and Cain's Eye in season 6. (Thanks Moucheron Quipet)
@@ -1956,7 +1957,7 @@ Mod changes:
 
 - Necronomicon, Monster Manual, Whore of Babylon, Dead Sea Scrolls, Mom's Bra, Mom's Pad, Anarchist Cookbook, The Bible, The Hourglass, D4, D10, Flush!, D100, A Missing Page, Missing Page 2, Spider Butt, Book of Belial, D8, D12, Clicker, Mama Mega!, and Dry Baby no longer have "giantbook" animations. (The animations are deliberately kept for Book of Revelations and Satanic Bible.)
 - Sun cards, Death cards, and runes no longer have "giantbook" animations. (The animations are deliberately kept for eternal hearts, black hearts, rainbow poops, sleeping in a bed, and Super Bum.)
-- Added Cursed Eye to the Forgotten softlock prevention check. (Thanks Gamonymous)
+- Added Cursed Eye to The Forgotten softlock prevention check. (Thanks Gamonymous)
 
 ### *v0.35.1* - May 10th, 2019
 
@@ -1994,7 +1995,7 @@ Mod changes:
 - Removed Broken Ankh from the trinket pool for seeded races and season 6. (Thanks mgln)
 - If The Soul enters a trapdoor or beam of light, the game will now automatically switch to The Forgotten (to prevent bugs with teleporting the body).
 - If The Soul enters a room with Mom, Gurdy, or It Lives!, the game will now automatically switch to The Forgotten (to prevent bugs with teleporting the body).
-- Fixed the bug where The Soul would not switch back to the Forgotten if they died in a seeded race / season 6 speedrun. (Thanks NorBro)
+- Fixed the bug where The Soul would not switch back to The Forgotten if they died in a seeded race / season 6 speedrun. (Thanks NorBro)
 - Fixed the bug where some rooms were incorrectly flipped. (Thanks thereisnofuture)
 - Fixed the bug where duplicate items could be started in season 6. (Thanks NorBro)
 - Fixed the bug where the death timer was overlapping with the "S6" icon in season 6.
@@ -2590,7 +2591,7 @@ Mod Changes:
 ### *v0.18.10* - May 3rd, 2018
 
 - Fixed the (vanilla) bug where Flat Stone was not in the Treasure Room item pool. (Thanks StoneAgeMarcus)
-- Fixed the bug where Samael would spawn as the Forgotten in R+7 season 2. (Thanks Cyber_1)
+- Fixed the bug where Samael would spawn as The Forgotten in R+7 season 2. (Thanks Cyber_1)
 - Fixed the bug where the Strength card would not work properly with fast-travel. (Thanks Blumpkin Idaho)
 - Fixed the bug where familiars and flies are teleported under Gurdy and It Lives! (Thanks Moucheron Quipet)
 
@@ -2612,7 +2613,7 @@ Mod Changes:
 - Devil Room and Angel Room changes are reflected in the spreadsheet: https://docs.google.com/spreadsheets/d/1f47LetK5U9g4uX6UuBPiwciKzFqrTOSwozk0VEC0B4k/edit#gid=1040362406
 - Added 3x Red Poops to Devil Room #18 (as a small reference to the Jud6s mod).
 - Fixed the bug where diversity races with the Booster Pack #5 trinkets would crash the client. (Thanks Gamonymous)
-- Fixed the bug in the client where the Forgotten graphic was not showing up properly.
+- Fixed the bug in the client where The Forgotten graphic was not showing up properly.
 
 ### *v0.18.5* - May 1st, 2018
 
