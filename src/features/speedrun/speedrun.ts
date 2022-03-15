@@ -43,7 +43,7 @@ export function checkValidCharOrder(): boolean {
 }
 
 export function finish(player: EntityPlayer): void {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
 
@@ -56,7 +56,7 @@ export function finish(player: EntityPlayer): void {
 
   // Record how long this run took
   if (v.persistent.startedCharacterFrame !== null) {
-    const elapsedFrames = isaacFrameCount - v.persistent.startedCharacterFrame;
+    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
     v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
@@ -67,7 +67,7 @@ export function finish(player: EntityPlayer): void {
   v.run.finished = true;
 
   if (v.persistent.startedSpeedrunFrame !== null) {
-    v.run.finishedFrames = isaacFrameCount - v.persistent.startedSpeedrunFrame;
+    v.run.finishedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
   }
 
   v.persistent.resetAllVarsOnNextReset = true;

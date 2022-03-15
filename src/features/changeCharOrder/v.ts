@@ -1,4 +1,5 @@
 import { saveDataManager } from "isaacscript-common";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import { SeasonDescription } from "./types/SeasonDescription";
@@ -23,6 +24,10 @@ const v = {
       characters: [] as Sprite[],
       items: [] as Sprite[],
     },
+
+    // For fading out after the user has finished picking
+    challengeTarget: null as ChallengeCustom | null,
+    resetRenderFrame: null as int | null,
   },
 };
 

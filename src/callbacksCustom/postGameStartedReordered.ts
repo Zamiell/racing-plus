@@ -38,10 +38,10 @@ export function init(mod: ModUpgraded): void {
 
 function main(isContinued: boolean) {
   const startSeedString = g.seeds.GetStartSeedString();
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Render frame: ${isaacFrameCount} - Continued: ${isContinued}`,
+    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued}`,
   );
 
   // Make sure that the MinimapAPI is enabled (we may have disabled it in a previous run)

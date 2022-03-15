@@ -64,7 +64,7 @@ const v = {
     /** Text of less importance that is only shown if there is no main text. */
     tabText: null as string | null,
 
-    frameSet: null as int | null,
+    renderFrameSet: null as int | null,
   },
 };
 
@@ -91,7 +91,7 @@ function checkDraw() {
   // We don't check for the game being paused because it looks buggy if the text disappears when
   // changing rooms
 
-  if (v.run.frameSet === null) {
+  if (v.run.renderFrameSet === null) {
     // Only draw the tab text if there is no normal streak text showing
     if (v.run.tabText !== null) {
       draw(v.run.tabText, 1);
@@ -101,9 +101,9 @@ function checkDraw() {
   }
 
   // The streak text will slowly fade out
-  const fade = getFade(v.run.frameSet);
+  const fade = getFade(v.run.renderFrameSet);
   if (fade <= 0) {
-    v.run.frameSet = null;
+    v.run.renderFrameSet = null;
     return;
   }
 
@@ -112,9 +112,9 @@ function checkDraw() {
   }
 }
 
-function getFade(frame: int) {
-  const isaacFrameCount = Isaac.GetFrameCount();
-  const elapsedFrames = isaacFrameCount - frame;
+function getFade(renderFrame: int) {
+  const renderFrameCount = Isaac.GetFrameCount();
+  const elapsedFrames = renderFrameCount - renderFrame;
 
   if (elapsedFrames <= FRAMES_BEFORE_FADE) {
     return 1;
@@ -270,7 +270,7 @@ export function postTransformation(
 
 export function set(text: string): void {
   v.run.text = text;
-  v.run.frameSet = Isaac.GetFrameCount();
+  v.run.renderFrameSet = Isaac.GetFrameCount();
 }
 
 export function setTab(value: string | null): void {

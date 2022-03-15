@@ -1,6 +1,10 @@
 # Racing+ Version History and News
 
-### *v0.78.18* - March 14th, 2022
+### *v0.79.1* - March 14th, 2022
+
+-
+
+### *v0.79.0* - March 14th, 2022
 
 - R+7 Season 1 is finished!
   - Congratulations to Finalkids for the best time of 1:01:09, mgln for the second best time of 1:01:27, and Greg420 for the third best time of 1:03:49.

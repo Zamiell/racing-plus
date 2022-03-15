@@ -114,15 +114,15 @@ function shadowsEnabled() {
 }
 
 function sendBeacon() {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   if (
     lastBeaconFrame !== null &&
-    isaacFrameCount < lastBeaconFrame + BEACON_INTERVAL
+    renderFrameCount < lastBeaconFrame + BEACON_INTERVAL
   ) {
     return;
   }
-  lastBeaconFrame = isaacFrameCount;
+  lastBeaconFrame = renderFrameCount;
 
   const structObject = {
     raceID: g.race.raceID,
@@ -142,9 +142,9 @@ function sendBeacon() {
 }
 
 function sendShadow() {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
-  if (isaacFrameCount % SHADOW_INTERVAL === 0) {
+  if (renderFrameCount % SHADOW_INTERVAL === 0) {
     return;
   }
 
@@ -221,7 +221,7 @@ function updateShadow(shadowMessage: ShadowMessage) {
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   const shadowData: ShadowData = {
     userID: shadowMessage.userID,
@@ -236,7 +236,7 @@ function updateShadow(shadowMessage: ShadowMessage) {
     overlayAnimation: shadowMessage.overlayAnimation,
     overlayAnimationFrame: shadowMessage.overlayAnimationFrame,
     username: shadowMessage.username,
-    frameUpdated: isaacFrameCount,
+    frameUpdated: renderFrameCount,
   };
   v.run.shadows.set(shadowMessage.userID, shadowData);
 }
@@ -246,7 +246,7 @@ function drawShadows() {
   const isPaused = g.g.IsPaused();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   const roomListIndex = getRoomListIndex();
 
   if (!config.shadows) {
@@ -263,7 +263,7 @@ function drawShadows() {
   }
 
   for (const shadowData of v.run.shadows.values()) {
-    const framesSinceLastUpdate = isaacFrameCount - shadowData.frameUpdated;
+    const framesSinceLastUpdate = renderFrameCount - shadowData.frameUpdated;
     if (framesSinceLastUpdate > 1 * ISAAC_FRAMES_PER_SECOND) {
       continue;
     }

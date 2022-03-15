@@ -5,6 +5,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { ChallengeCustom } from "../../../types/ChallengeCustom";
+import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "../v";
@@ -17,7 +18,32 @@ export function changeCharOrderPostRender(): void {
   }
 
   disableControls();
+  checkReset();
+  draw();
+}
 
+function disableControls() {
+  const gameFrameCount = g.g.GetFrameCount();
+  const player = Isaac.GetPlayer();
+
+  // Disable the controls or else the player will be able to move around while the screen is still
+  // black
+  player.ControlsEnabled = gameFrameCount >= 1;
+}
+
+function checkReset() {
+  const renderFrameCount = Isaac.GetFrameCount();
+  if (
+    v.room.resetRenderFrame === null ||
+    renderFrameCount < v.room.resetRenderFrame
+  ) {
+    return;
+  }
+  v.room.resetRenderFrame = null;
+  consoleCommand(`challenge ${v.room.challengeTarget}`);
+}
+
+function draw() {
   // We can't check for "HUD.IsVisible()" because we explicitly disable the HUD in this challenge
   // Thus, we explicitly check for Mod Config Menu
   if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
@@ -28,15 +54,6 @@ export function changeCharOrderPostRender(): void {
   drawSeasonSprites();
   drawCharacterSprites();
   drawBuildVetoSprites();
-}
-
-function disableControls() {
-  const gameFrameCount = g.g.GetFrameCount();
-  const player = Isaac.GetPlayer();
-
-  // Disable the controls or else the player will be able to move around while the screen is still
-  // black
-  player.ControlsEnabled = gameFrameCount >= 1;
 }
 
 function drawCurrentChoosingActivity() {

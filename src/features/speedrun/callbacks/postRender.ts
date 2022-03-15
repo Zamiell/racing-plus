@@ -28,9 +28,9 @@ export function speedrunPostRender(): void {
 }
 
 function checkBeginFadeOutAfterCheckpoint() {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
-  if (v.run.fadeFrame === null || isaacFrameCount < v.run.fadeFrame) {
+  if (v.run.fadeFrame === null || renderFrameCount < v.run.fadeFrame) {
     return;
   }
 
@@ -43,13 +43,13 @@ function checkBeginFadeOutAfterCheckpoint() {
   // 69 is the latest frame that works, determined via trial and error
   // Doing this is necessary because we do not want the player to be able to reset to skip having to
   // watch the fade out animation
-  v.run.resetFrame = isaacFrameCount + 69;
+  v.run.resetFrame = renderFrameCount + 69;
 }
 
 function checkManualResetAtEndOfFadeout() {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
-  if (v.run.resetFrame === null || isaacFrameCount < v.run.resetFrame) {
+  if (v.run.resetFrame === null || renderFrameCount < v.run.resetFrame) {
     return;
   }
   v.run.resetFrame = null;

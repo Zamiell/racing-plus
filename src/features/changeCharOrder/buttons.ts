@@ -11,12 +11,14 @@ import {
 } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
+import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { season2SetBansTime } from "../speedrun/season2/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "./v";
 
+const FADE_RENDER_FRAMES = 38; // 38 is the largest value that works
 const HALF_FADED_COLOR = Color(1, 1, 1, 0.5, 0, 0, 0);
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -233,6 +235,8 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.charOrder,
     );
     g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+    v.room.challengeTarget = ChallengeCustom.SEASON_1;
+    v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
   }
 }
 
@@ -321,5 +325,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
     );
     season2SetBansTime();
     g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+    v.room.challengeTarget = ChallengeCustom.SEASON_2;
+    v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
   }
 }

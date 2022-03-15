@@ -47,18 +47,18 @@ export function connect(): boolean {
 
   // To minimize lag,
   // don't attempt to connect if we have recently tried to connect and it has failed
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   if (
     connectionAttemptFrame !== null &&
-    isaacFrameCount <
+    renderFrameCount <
       connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
   ) {
     // Reset the connection attempt frame to this one so that resetting over and over never triggers
     // a connection attempt
-    connectionAttemptFrame = isaacFrameCount;
+    connectionAttemptFrame = renderFrameCount;
     return false;
   }
-  connectionAttemptFrame = isaacFrameCount;
+  connectionAttemptFrame = renderFrameCount;
 
   clientTCP = sandbox.connectLocalhost(TCP_PORT, true);
   if (clientTCP === null) {

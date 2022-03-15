@@ -17,14 +17,14 @@ function checkStartTimer() {
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   // We want to start the timer on the first game frame
   // (as opposed to when the screen is fading in)
   // Thus, we must check for this on every frame
   // This is to keep the timing consistent with historical timing of speedruns
-  v.persistent.startedSpeedrunFrame = isaacFrameCount;
-  v.persistent.startedCharacterFrame = isaacFrameCount;
+  v.persistent.startedSpeedrunFrame = renderFrameCount;
+  v.persistent.startedCharacterFrame = renderFrameCount;
 }
 
 function checkRepentanceDoorState() {

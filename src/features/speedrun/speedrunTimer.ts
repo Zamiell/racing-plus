@@ -16,7 +16,7 @@ export function postRender(): void {
 }
 
 function drawSpeedrunTimer() {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   // Find out how much time has passed since the speedrun started
   let elapsedFrames: int;
@@ -25,7 +25,7 @@ function drawSpeedrunTimer() {
   } else if (v.persistent.startedSpeedrunFrame === null) {
     elapsedFrames = 0;
   } else {
-    elapsedFrames = isaacFrameCount - v.persistent.startedSpeedrunFrame;
+    elapsedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
   }
   const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
 

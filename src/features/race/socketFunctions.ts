@@ -79,9 +79,9 @@ socketFunctions.set("set", (rawData: string) => {
 });
 
 socketFunctions.set("chat", (rawData: string) => {
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
-  chatMessage.renderFrameReceived = isaacFrameCount;
+  chatMessage.renderFrameReceived = renderFrameCount;
   g.chatMessages.unshift(chatMessage);
   log(
     `Chat: [${chatMessage.time}] <${chatMessage.username}> ${chatMessage.msg}`,

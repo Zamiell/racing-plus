@@ -52,12 +52,6 @@ function checkInput() {
     return;
   }
 
-  const player = getRollPlayer();
-
-  if (!playerCanRoll(player)) {
-    return;
-  }
-
   if (!isKeyboardPressed(hotkeys.roll)) {
     isPressed = false;
     return;
@@ -68,13 +62,22 @@ function checkInput() {
   }
   isPressed = true;
 
-  startRoll(player);
+  checkStartRoll();
+}
+
+function checkStartRoll() {
+  const player = getRollPlayer();
+
+  if (playerCanRoll(player)) {
+    startRoll(player);
+  }
 }
 
 function playerCanRoll(player: EntityPlayer) {
   const effects = player.GetEffects();
 
   return (
+    !v.run.rolling &&
     !player.IsHoldingItem() &&
     !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) &&
     !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS)
@@ -82,10 +85,6 @@ function playerCanRoll(player: EntityPlayer) {
 }
 
 function startRoll(player: EntityPlayer) {
-  if (v.run.rolling) {
-    return;
-  }
-
   disableAllInputs(FEATURE_NAME);
 
   // The player's velocity is stored so that it can be restored when the roll is over

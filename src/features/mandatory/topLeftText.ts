@@ -70,7 +70,7 @@ export function postRender(): void {
       if (inSpeedrun()) {
         frames = speedrunGetFinishedFrames();
       } else {
-        frames = g.raceVars.finishedFrames;
+        frames = g.raceVars.finishedRenderFrames;
       }
       const seconds = Math.floor(frames / 60);
       lines.push(`${frames} frames (${seconds}s)`);

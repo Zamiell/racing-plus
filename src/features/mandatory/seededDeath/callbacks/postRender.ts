@@ -57,10 +57,10 @@ function postRenderCheckDrawTimer() {
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   const challenge = Isaac.GetChallenge();
 
-  const remainingFrames = v.run.debuffEndFrame - isaacFrameCount;
+  const remainingFrames = v.run.debuffEndFrame - renderFrameCount;
   const seconds = remainingFrames / ISAAC_FRAMES_PER_SECOND;
 
   let startingX = SEEDED_DEATH_TIMER_STARTING_X;

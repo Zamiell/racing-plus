@@ -56,7 +56,7 @@ export function postRender(): void {
 
   const isPaused = g.g.IsPaused();
   const hud = g.g.GetHUD();
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
   // Don't check for inputs or draw the console when Mod Config Menu is open
@@ -78,11 +78,11 @@ export function postRender(): void {
     hotkeys.console === -1 ? DEFAULT_CONSOLE_OPEN_INPUT : hotkeys.console;
 
   if (!consoleOpen) {
-    checkKeyboardInput(consoleOpenInput, isaacFrameCount, consoleOpenInput);
+    checkKeyboardInput(consoleOpenInput, renderFrameCount, consoleOpenInput);
     return;
   }
 
-  checkAllKeyboardInput(isaacFrameCount, consoleOpenInput);
+  checkAllKeyboardInput(renderFrameCount, consoleOpenInput);
   drawConsole();
 }
 

@@ -18,10 +18,10 @@ function main() {
   const gameFrameCount = g.g.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_NEW_LEVEL_REORDERED - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${isaacFrameCount}`,
+    `MC_POST_NEW_LEVEL_REORDERED - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
 
   // Mandatory

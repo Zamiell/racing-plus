@@ -28,7 +28,7 @@ function checkCheckpointTouched(
     return;
   }
 
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
 
   // Give them the Checkpoint custom item
   // (this is used by the AutoSplitter to know when to split)
@@ -38,16 +38,16 @@ function checkCheckpointTouched(
   player.ControlsEnabled = false;
 
   // Mark to fade out after the "Checkpoint" text has displayed on the screen for a little bit
-  v.run.fadeFrame = isaacFrameCount + DELAY_FRAMES_BEFORE_STARTING_FADEOUT;
+  v.run.fadeFrame = renderFrameCount + DELAY_FRAMES_BEFORE_STARTING_FADEOUT;
 
   // Record how long this run took
   if (v.persistent.startedCharacterFrame !== null) {
-    const elapsedFrames = isaacFrameCount - v.persistent.startedCharacterFrame;
+    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
     v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
   // Mark our current frame as the starting time for the next character
-  v.persistent.startedCharacterFrame = isaacFrameCount;
+  v.persistent.startedCharacterFrame = renderFrameCount;
 
   // Show the run summary (including the average time per character for the run so far)
   v.room.showEndOfRunText = true;

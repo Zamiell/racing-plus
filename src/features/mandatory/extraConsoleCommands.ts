@@ -38,6 +38,7 @@ const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("angelset", angelSet);
+  addConsoleCommand("cco", cco);
   addConsoleCommand("changecharorder", changeCharOrder);
   addConsoleCommand("debug", debug);
   addConsoleCommand("devilset", devilSet);
@@ -66,6 +67,11 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
 
 function angelSet(params: string) {
   devilAngelSet(params, false);
+}
+
+/** Alias for the "changecharorder" command. */
+function cco() {
+  changeCharOrder();
 }
 
 function devilSet(params: string) {

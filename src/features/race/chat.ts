@@ -37,7 +37,7 @@ function drawChat() {
   // If the console is open, display the last N messages with default opacity
   // Otherwise, only display recent messages,
   // and fade them so that they do not interfere with gameplay as much
-  const isaacFrameCount = Isaac.GetFrameCount();
+  const renderFrameCount = Isaac.GetFrameCount();
   const consoleOpen = isConsoleOpen();
   const alpha = consoleOpen ? DEFAULT_CONSOLE_OPACITY : FADED_CHAT_OPACITY;
 
@@ -48,7 +48,7 @@ function drawChat() {
   for (const chatMessage of g.chatMessages) {
     // Make chat messages slowly fade away (if the console is closed)
     let modifiedAlpha = alpha;
-    const framesElapsed = isaacFrameCount - chatMessage.renderFrameReceived;
+    const framesElapsed = renderFrameCount - chatMessage.renderFrameReceived;
     if (!consoleOpen && framesElapsed > FRAMES_FOR_CHAT_TO_SHOW) {
       const framesOverThreshold = framesElapsed - FRAMES_FOR_CHAT_TO_SHOW;
       modifiedAlpha -= framesOverThreshold / (FRAMES_FOR_CHAT_TO_SHOW * 2);
