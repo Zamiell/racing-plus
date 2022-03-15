@@ -22,6 +22,7 @@ import {
   ensureAllCases,
   getCollectibleMaxCharges,
   getTotalCharge,
+  isActiveSlotEmpty,
   log,
   playChargeSoundEffect,
   PlayerIndex,
@@ -31,14 +32,8 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 interface ChargeSituation {
-  chargeType: ChargeType;
-  numCharges?: int;
+  numCharges: int;
   overcharge?: boolean;
-}
-
-enum ChargeType {
-  NONE,
-  N_CHARGES,
 }
 
 const ACTIVE_SLOTS_PRECEDENCE: readonly ActiveSlot[] = [
@@ -63,10 +58,6 @@ const v = {
     ),
     checkForBatteryBumChargesUntilFrame: null as int | null,
   },
-
-  room: {
-    batteryBumAnimationMap: new Map<PtrHash, string>(),
-  },
 };
 
 export function init(): void {
@@ -75,6 +66,17 @@ export function init(): void {
 
 function featureEnabled() {
   return config.chargePocketItemFirst;
+}
+
+function chargePocketFeatureShouldApply(player: EntityPlayer) {
+  return config.chargePocketItemFirst && !dropButtonPressed(player);
+}
+
+function dropButtonPressed(player: EntityPlayer) {
+  return Input.IsActionPressed(
+    ButtonAction.ACTION_DROP,
+    player.ControllerIndex,
+  );
 }
 
 // ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
@@ -100,7 +102,6 @@ function checkBatteryBumCharge(player: EntityPlayer) {
   }
 
   const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
     numCharges: 1,
     overcharge: true,
   };
@@ -126,7 +127,6 @@ function checkHairpinCharge(player: EntityPlayer) {
   // Thus, we have to perform this check in the PostPEffectUpdate callback instead of the
   // PostNewRoom callback
   const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
@@ -141,8 +141,7 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
   );
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+    if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
     }
 
@@ -159,7 +158,6 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
   }
 
   const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
@@ -219,7 +217,6 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
   }
 
   const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
@@ -234,7 +231,6 @@ export function postItemPickupBatteryPack(player: EntityPlayer): void {
   }
 
   const chargeSituation: ChargeSituation = {
-    chargeType: ChargeType.N_CHARGES,
     numCharges: LIL_BATTERY_CHARGES,
   };
   checkSwitchCharge(player, chargeSituation);
@@ -284,13 +280,12 @@ function getChargeSituationForPickup(
     case PickupVariant.PICKUP_COIN: {
       if (player.HasTrinket(TrinketType.TRINKET_CHARGED_PENNY)) {
         return {
-          chargeType: ChargeType.N_CHARGES,
           numCharges: 1,
         };
       }
 
       return {
-        chargeType: ChargeType.NONE,
+        numCharges: 0,
       };
     }
 
@@ -298,13 +293,12 @@ function getChargeSituationForPickup(
     case PickupVariant.PICKUP_KEY: {
       if (pickupSubType === KeySubType.KEY_CHARGED) {
         return {
-          chargeType: ChargeType.N_CHARGES,
           numCharges: LIL_BATTERY_CHARGES,
         };
       }
 
       return {
-        chargeType: ChargeType.NONE,
+        numCharges: 0,
       };
     }
 
@@ -315,24 +309,24 @@ function getChargeSituationForPickup(
 
     default: {
       return {
-        chargeType: ChargeType.NONE,
+        numCharges: 0,
       };
     }
   }
 }
 
-function getChargeSituationForBattery(batterySubType: BatterySubType) {
+function getChargeSituationForBattery(
+  batterySubType: BatterySubType,
+): ChargeSituation {
   switch (batterySubType) {
     case BatterySubType.BATTERY_NORMAL: {
       return {
-        chargeType: ChargeType.N_CHARGES,
         numCharges: LIL_BATTERY_CHARGES,
       };
     }
 
     case BatterySubType.BATTERY_MICRO: {
       return {
-        chargeType: ChargeType.N_CHARGES,
         numCharges: MICRO_BATTERY_CHARGES,
       };
     }
@@ -340,13 +334,12 @@ function getChargeSituationForBattery(batterySubType: BatterySubType) {
     case BatterySubType.BATTERY_MEGA: {
       // This fully-charges every active item, so this feature does not need to handle it
       return {
-        chargeType: ChargeType.NONE,
+        numCharges: 0,
       };
     }
 
     case BatterySubType.BATTERY_GOLDEN: {
       return {
-        chargeType: ChargeType.N_CHARGES,
         numCharges: LIL_BATTERY_CHARGES,
       };
     }
@@ -356,7 +349,7 @@ function getChargeSituationForBattery(batterySubType: BatterySubType) {
 
       // Handle modded battery types
       return {
-        chargeType: ChargeType.NONE,
+        numCharges: 0,
       };
     }
   }
@@ -366,7 +359,7 @@ function checkSwitchCharge(
   player: EntityPlayer,
   chargeSituation: ChargeSituation,
 ) {
-  if (chargeSituation.chargeType === ChargeType.NONE) {
+  if (chargeSituation.numCharges === 0) {
     return;
   }
 
@@ -392,8 +385,7 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
 
   const activeItemsChanged = new Set<ActiveSlot>();
   for (const [activeSlot, oldTotalCharge] of activeItemCharges.entries()) {
-    const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+    if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
     }
 
@@ -426,8 +418,7 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
   }
 
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
-    const activeItem = player.GetActiveItem(activeSlot);
-    if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+    if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
     }
 
@@ -449,29 +440,26 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
       continue;
     }
 
-    if (chargeSituation.chargeType === ChargeType.N_CHARGES) {
-      const totalCharge = getTotalCharge(player, activeSlot);
-      if (chargeSituation.numCharges === undefined) {
-        error(
-          "Failed to find the number of charges in the charge situation object.",
-        );
-      }
-      let newCharge = totalCharge + chargeSituation.numCharges;
-      const activeItem = player.GetActiveItem(activeSlot);
-      let maxCharges = getCollectibleMaxCharges(activeItem);
-      const hasBattery = player.HasCollectible(
-        CollectibleType.COLLECTIBLE_BATTERY,
+    const totalCharge = getTotalCharge(player, activeSlot);
+    if (chargeSituation.numCharges === undefined) {
+      error(
+        "Failed to find the number of charges in the charge situation object.",
       );
-      if (hasBattery || chargeSituation.overcharge === true) {
-        maxCharges *= 2;
-      }
-      if (newCharge > maxCharges) {
-        newCharge = maxCharges;
-      }
-
-      player.SetActiveCharge(newCharge, activeSlot);
+    }
+    let newCharge = totalCharge + chargeSituation.numCharges;
+    const activeItem = player.GetActiveItem(activeSlot);
+    let maxCharges = getCollectibleMaxCharges(activeItem);
+    const hasBattery = player.HasCollectible(
+      CollectibleType.COLLECTIBLE_BATTERY,
+    );
+    if (hasBattery || chargeSituation.overcharge === true) {
+      maxCharges *= 2;
+    }
+    if (newCharge > maxCharges) {
+      newCharge = maxCharges;
     }
 
+    player.SetActiveCharge(newCharge, activeSlot);
     hud.FlashChargeBar(player, activeSlot);
     playChargeSoundEffect(player, activeSlot);
 
@@ -489,27 +477,16 @@ function needsCharge(
   activeSlot: ActiveSlot,
   overcharge?: boolean,
 ) {
-  const activeItem = player.GetActiveItem(activeSlot);
-  if (activeItem === CollectibleType.COLLECTIBLE_NULL) {
+  if (isActiveSlotEmpty(player, activeSlot)) {
     return false;
   }
 
   const totalCharge = getTotalCharge(player, activeSlot);
+  const activeItem = player.GetActiveItem(activeSlot);
   const maxCharges = getCollectibleMaxCharges(activeItem);
   const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
   const adjustedMaxCharges =
     hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
 
   return totalCharge < adjustedMaxCharges;
-}
-
-function chargePocketFeatureShouldApply(player: EntityPlayer) {
-  return config.chargePocketItemFirst && !dropButtonPressed(player);
-}
-
-function dropButtonPressed(player: EntityPlayer) {
-  return Input.IsActionPressed(
-    ButtonAction.ACTION_DROP,
-    player.ControllerIndex,
-  );
 }

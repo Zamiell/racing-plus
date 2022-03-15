@@ -7,6 +7,7 @@ import {
   getPlayerCollectibleMap,
   getTotalCharge,
   getTransformationsForCollectibleType,
+  isActiveSlotEmpty,
   removeAllFamiliars,
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
@@ -122,13 +123,12 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
 
   // Go through all of their active collectibles
   for (const activeSlot of getEnumValues(ActiveSlot)) {
-    const collectibleType = player.GetActiveItem(activeSlot);
-    if (collectibleType === CollectibleType.COLLECTIBLE_NULL) {
+    if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
     }
 
+    const collectibleType = player.GetActiveItem(activeSlot);
     const charge = getTotalCharge(player, activeSlot);
-
     const activeCollectibleDescription: ActiveCollectibleDescription = {
       collectibleType,
       charge,

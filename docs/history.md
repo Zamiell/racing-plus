@@ -10,6 +10,7 @@
 - The console is now enabled in season 2 by default.
 - Fixed the (vanilla) bug where Battery Bums will not charge pocket items if you do not have an active item. (Thanks Fallenfor)
 - Fixed the bug where the seeded death mechanic would not work properly if you killed yourself with an active item. (Thanks mgln)
+- Fixed the bug where purchasing a battery would not charge the pocket item. (Thanks elgirs)
 
 ### *v0.78.17* - March 12th, 2022
 
