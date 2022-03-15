@@ -47,8 +47,10 @@ const ACTIVE_SLOTS_PRECEDENCE: readonly ActiveSlot[] = [
   ActiveSlot.SLOT_SECONDARY,
 ];
 
-// The maximum amount of charges that a Battery Bum can grant is 3
-// The third charge occurs on the 40th frame after the "Prize" animation begins
+/**
+ * The maximum amount of charges that a Battery Bum can grant is 3. The third charge occurs on this
+ * many frames after the "Prize" animation begins.
+ */
 const BATTERY_BUM_CHARGE_DELAY_FRAMES = 40;
 
 const LIL_BATTERY_CHARGES = 6;

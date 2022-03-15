@@ -17,8 +17,10 @@ import {
   DefaultMap,
   defaultMapGetPlayer,
   findFreePosition,
+  getActiveCharge,
   getCollectibleMaxCharges,
   getPlayers,
+  hasFlag,
   hasOpenActiveItemSlot,
   inGenesisRoom,
   isJacobOrEsau,
@@ -106,12 +108,9 @@ export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
     return;
   }
 
-  const flipCharge = player.GetActiveCharge(flipActiveSlot);
-
-  // UseFlag.USE_OWNED will be set if this is a manual invocation
-  const flipTriggeredByRoomClear = useFlags === 0;
-
-  v.run.currentFlipCharge = flipTriggeredByRoomClear ? flipCharge : 0;
+  const flipCharge = getActiveCharge(player, flipActiveSlot);
+  const manualUse = hasFlag(useFlags, UseFlag.USE_OWNED);
+  v.run.currentFlipCharge = manualUse ? 0 : flipCharge;
 }
 
 function getFlipActiveSlot(player: EntityPlayer) {
@@ -137,7 +136,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const pocketActiveCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
+  const pocketActiveCharge = getActiveCharge(player, ActiveSlot.SLOT_POCKET);
   mapSetPlayer(v.run.playersPocketActiveD6Charge, player, pocketActiveCharge);
 }
 
@@ -250,11 +249,7 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
 function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   const character = player.GetPlayerType();
   const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
-  const pocketItemCharge = player.GetActiveCharge(ActiveSlot.SLOT_POCKET);
-  const pocketItemBatteryCharge = player.GetBatteryCharge(
-    ActiveSlot.SLOT_POCKET,
-  );
-  const pocketItemTotalCharge = pocketItemCharge + pocketItemBatteryCharge;
+  const pocketItemCharge = getActiveCharge(player, ActiveSlot.SLOT_POCKET);
   const hasPocketD6 = pocketItem === CollectibleType.COLLECTIBLE_D6;
 
   // Jacob & Esau (19, 20) are a special case;
@@ -299,7 +294,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
 
   // If they previously had a pocket active item, move it to the normal active item slot
   if (pocketItem !== CollectibleType.COLLECTIBLE_NULL && !gotHereFromEsauJr) {
-    giveActiveItem(player, pocketItem, pocketItemTotalCharge);
+    giveActiveItem(player, pocketItem, pocketItemCharge);
   }
 
   log("Awarded a pocket active D6.");

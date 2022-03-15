@@ -1,5 +1,6 @@
 import {
   emptyArray,
+  getActiveCharge,
   getCollectibles,
   getEnumValues,
   getFamiliars,
@@ -126,13 +127,11 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
       continue;
     }
 
-    const charge = player.GetActiveCharge(activeSlot);
-    const batteryCharge = player.GetBatteryCharge(activeSlot);
+    const charge = getActiveCharge(player, activeSlot);
 
     const activeCollectibleDescription: ActiveCollectibleDescription = {
       collectibleType,
       charge,
-      batteryCharge,
     };
     activesMap.set(activeSlot, activeCollectibleDescription);
   }
@@ -298,12 +297,9 @@ function debuffOffAddActiveCollectibles(player: EntityPlayer) {
     }
     activesMap.delete(activeSlot);
 
-    const totalCharge =
-      activeCollectibleDescription.charge +
-      activeCollectibleDescription.batteryCharge;
     player.AddCollectible(
       activeCollectibleDescription.collectibleType,
-      totalCharge,
+      activeCollectibleDescription.charge,
       false,
       activeSlot,
     );
