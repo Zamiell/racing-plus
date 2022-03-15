@@ -1,4 +1,4 @@
-import * as fixHushCollision from "../features/mandatory/fixHushCollision";
+import * as hushCollisionFix from "../features/mandatory/hushCollisionFix";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
@@ -184,7 +184,7 @@ function stoney(npc: EntityNPC) {
 
 // EntityType.ENTITY_HUSH (407)
 function hush(npc: EntityNPC) {
-  fixHushCollision.postNPCUpdateHush(npc);
+  hushCollisionFix.postNPCUpdateHush(npc);
 }
 
 // EntityType.ENTITY_BIG_HORN (411)

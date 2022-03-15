@@ -1,7 +1,12 @@
-// In vanilla, Battery Bums will ignore pocket actives,
-// even if the player does not have a normal active item
+// In vanilla, Battery Bums will not charge the pocket active item if the player has no active item
+// (this is not the case if the player has an active item; if the active item is already fully
+// double-charged, then the pocket item will be charged properly)
 
-import { getActiveCharge, isActiveSlotDoubleCharged } from "isaacscript-common";
+import {
+  getTotalCharge,
+  isActiveSlotDoubleCharged,
+  isActiveSlotEmpty,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -36,29 +41,14 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  // Battery Bum only charges the primary slot
-  // (it ignores the Schoolbag slot and the pocket active slot)
-  // Thus, detect whether the primary slot is empty or double-charged
-  // (we can't use the "EntityPlayer.NeedsCharge" method because it will not account for Battery Bum
-  // over-charging active items)
-  if (isActiveSlotEmptyOrDoubleCharged(player, ActiveSlot.SLOT_PRIMARY)) {
-    // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames
-    // Default to giving 1 charge immediately to minimize the surface for bugs and other
-    // interactions
-    addChargesToActiveItem(player, 1, ActiveSlot.SLOT_POCKET);
-  }
-}
-
-function isActiveSlotEmptyOrDoubleCharged(
-  player: EntityPlayer,
-  activeSlot: ActiveSlot,
-) {
-  const activeCollectibleType = player.GetActiveItem(activeSlot);
-  if (activeCollectibleType === CollectibleType.COLLECTIBLE_NULL) {
-    return true;
+  // Battery Bum is only bugged when the active slot is missing entirely
+  if (!isActiveSlotEmpty(player, ActiveSlot.SLOT_PRIMARY)) {
+    return;
   }
 
-  return isActiveSlotDoubleCharged(player, activeSlot);
+  // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames
+  // Default to giving 1 charge immediately to minimize the surface for bugs and other interactions
+  addChargesToActiveItem(player, 1, ActiveSlot.SLOT_POCKET);
 }
 
 function isBeginningHappyAnimation(player: EntityPlayer) {
@@ -79,7 +69,7 @@ function addChargesToActiveItem(
     return;
   }
 
-  const charge = getActiveCharge(player, activeSlot);
+  const charge = getTotalCharge(player, activeSlot);
   const newCharge = charge + numCharges;
   player.SetActiveCharge(newCharge, activeSlot);
   const hud = g.g.GetHUD();

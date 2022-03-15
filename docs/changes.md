@@ -192,7 +192,7 @@ Post-flip actions:
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 
-- <!-- "407.000_hush.anm2" 407 --> Hush no longer plays an appear animation.
+- <!-- "407.000_hush.anm2" & hushCollisionFix 407 --> Hush no longer plays an appear animation.
 - <!-- beastPreventEnd 951 --> Defeating The Beast no longer immediately ends the run.
 
 > Why? This gives players a chance to touch a trophy.

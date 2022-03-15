@@ -17,9 +17,9 @@ import {
   DefaultMap,
   defaultMapGetPlayer,
   findFreePosition,
-  getActiveCharge,
   getCollectibleMaxCharges,
   getPlayers,
+  getTotalCharge,
   hasFlag,
   hasOpenActiveItemSlot,
   inGenesisRoom,
@@ -108,7 +108,7 @@ export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
     return;
   }
 
-  const flipCharge = getActiveCharge(player, flipActiveSlot);
+  const flipCharge = getTotalCharge(player, flipActiveSlot);
   const manualUse = hasFlag(useFlags, UseFlag.USE_OWNED);
   v.run.currentFlipCharge = manualUse ? 0 : flipCharge;
 }
@@ -136,7 +136,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const pocketActiveCharge = getActiveCharge(player, ActiveSlot.SLOT_POCKET);
+  const pocketActiveCharge = getTotalCharge(player, ActiveSlot.SLOT_POCKET);
   mapSetPlayer(v.run.playersPocketActiveD6Charge, player, pocketActiveCharge);
 }
 
@@ -249,7 +249,7 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
 function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   const character = player.GetPlayerType();
   const pocketItem = player.GetActiveItem(ActiveSlot.SLOT_POCKET);
-  const pocketItemCharge = getActiveCharge(player, ActiveSlot.SLOT_POCKET);
+  const pocketItemCharge = getTotalCharge(player, ActiveSlot.SLOT_POCKET);
   const hasPocketD6 = pocketItem === CollectibleType.COLLECTIBLE_D6;
 
   // Jacob & Esau (19, 20) are a special case;

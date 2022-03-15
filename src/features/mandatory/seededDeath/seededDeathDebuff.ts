@@ -1,11 +1,11 @@
 import {
   emptyArray,
-  getActiveCharge,
   getCollectibles,
   getEnumValues,
   getFamiliars,
   getNPCs,
   getPlayerCollectibleMap,
+  getTotalCharge,
   getTransformationsForCollectibleType,
   removeAllFamiliars,
   removeAllPlayerHealth,
@@ -127,7 +127,7 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
       continue;
     }
 
-    const charge = getActiveCharge(player, activeSlot);
+    const charge = getTotalCharge(player, activeSlot);
 
     const activeCollectibleDescription: ActiveCollectibleDescription = {
       collectibleType,
