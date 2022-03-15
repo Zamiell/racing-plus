@@ -71,7 +71,6 @@ function setupButtonRoom() {
     CHANGE_CHAR_ORDER_POSITIONS,
   )) {
     if (seasonDescription.hidden !== undefined) {
-      // This is a beta season that should not be shown quite yet
       continue;
     }
 
