@@ -79,8 +79,9 @@ function playerCanRoll(player: EntityPlayer) {
   return (
     !v.run.rolling &&
     !player.IsHoldingItem() &&
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) &&
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS)
+    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_BLAST) && // 441
+    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) && // 625
+    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS) // 705
   );
 }
 

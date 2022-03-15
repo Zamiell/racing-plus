@@ -2,7 +2,7 @@
 
 ### *v0.79.1* - March 14th, 2022
 
--
+- The "Change Char Order" challenge will now take you directly to the season after you finish choosing.
 
 ### *v0.79.0* - March 14th, 2022
 
