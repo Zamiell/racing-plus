@@ -10,7 +10,7 @@ export enum SeededDeathState {
    * since the death animation will happen immediately after the new room is entered. (And during
    * this time, the player is not able to move.)
    *
-   * As soon as  we enter a new room and the 1-Up collectible is taken away by the game, there is a
+   * As soon as we enter a new room and the 1-Up collectible is taken away by the game, there is a
    * short delay before the player holds the 1-Up collectible over their head and the
    * PostCustomRevive callback is fired. We first set the "Appear" animation and apply the ghost
    * fade here.

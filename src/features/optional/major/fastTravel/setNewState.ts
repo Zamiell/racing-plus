@@ -7,6 +7,7 @@ import {
   getFamiliars,
   getPlayers,
   getRoomGridIndex,
+  log,
   onRepentanceStage,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -21,14 +22,14 @@ import { RacerStatus } from "../../../race/types/RacerStatus";
 import { RaceStatus } from "../../../race/types/RaceStatus";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import * as blackSprite from "./blackSprite";
-import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
+import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import * as nextFloor from "./nextFloor";
 import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
-export function setNewState(fastTravelState: FastTravelState): void {
+export function setNewFastTravelState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
-  // log(`New fast travel state: ${FastTravelState[fastTravelState]}`);
+  logStateChanged();
 
   switch (fastTravelState) {
     case FastTravelState.FADING_TO_BLACK: {
@@ -73,6 +74,8 @@ export function setFadingToBlack(
   v.run.blueWomb = roomGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   v.run.theVoid = roomGridIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
+
+  logStateChanged();
 
   const whitelist = new Set([
     // Allow the player to toggle the map
@@ -255,7 +258,7 @@ function setGoingToNewFloor() {
   decrementRoomsEntered(); // This should not count as entering a room
 
   nextFloor.goto(v.run.upwards);
-  setNewState(FastTravelState.FADING_IN);
+  setNewFastTravelState(FastTravelState.FADING_IN);
 }
 
 function setFadingIn() {
@@ -345,4 +348,14 @@ export function setPlayersVisible(
 function setDisabled() {
   blackSprite.setFullyTransparent();
   enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
+}
+
+function logStateChanged() {
+  if (FAST_TRAVEL_DEBUG) {
+    log(
+      `Fast-travel state changed: ${FastTravelState[v.run.state]} (${
+        v.run.state
+      })`,
+    );
+  }
 }

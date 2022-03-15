@@ -3,7 +3,7 @@ import g from "../../../../globals";
 import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
-import { setNewState, setPlayersVisible } from "./setNewState";
+import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
 import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
@@ -42,7 +42,7 @@ function postRenderFadingToBlack() {
   }
 
   // The FadingToBlack state is completed when the screen is completely black
-  setNewState(FastTravelState.GOING_TO_NEW_FLOOR);
+  setNewFastTravelState(FastTravelState.GOING_TO_NEW_FLOOR);
 }
 
 function postRenderFadingIn() {
@@ -61,7 +61,7 @@ function postRenderFadingIn() {
   }
 
   // The FadingToBlack state is completed when the screen is completely black
-  setNewState(FastTravelState.DISABLED);
+  setNewFastTravelState(FastTravelState.DISABLED);
 }
 
 function incrementFramesPassed() {

@@ -51,7 +51,7 @@ function setOpenClose(
 
   if (FAST_TRAVEL_DEBUG) {
     log(
-      `${animationPrefix} a fast travel entity: ${FastTravelEntityType[fastTravelEntityType]}`,
+      `${animationPrefix} a fast travel entity: ${FastTravelEntityType[fastTravelEntityType]} (${fastTravelEntityType})`,
     );
   }
 }

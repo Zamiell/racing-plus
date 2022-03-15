@@ -9,6 +9,7 @@
 - [Season 2](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start) has officially begun!
 - The console is now enabled in season 2 by default.
 - Fixed the (vanilla) bug where Battery Bums will not charge pocket items if you do not have an active item. (Thanks Fallenfor)
+- Fixed the bug where the seeded death mechanic would not work properly if you killed yourself with an active item. (Thanks mgln)
 
 ### *v0.78.17* - March 12th, 2022
 

@@ -1,7 +1,7 @@
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import * as nextFloor from "../nextFloor";
-import { setNewState } from "../setNewState";
+import { setNewFastTravelState } from "../setNewState";
 import { FastTravelState } from "../types/FastTravelState";
 import v from "../v";
 
@@ -29,5 +29,5 @@ export function fastTravelPostUpdate(): void {
  */
 function resumeFastTravel() {
   nextFloor.goto(v.run.upwards);
-  setNewState(FastTravelState.FADING_IN);
+  setNewFastTravelState(FastTravelState.FADING_IN);
 }
