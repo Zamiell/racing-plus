@@ -29,7 +29,7 @@ import v from "./v";
 
 export function setNewFastTravelState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;
-  logStateChanged();
+  logFastTravelStateChanged();
 
   switch (fastTravelState) {
     case FastTravelState.FADING_TO_BLACK: {
@@ -74,8 +74,7 @@ export function setFadingToBlack(
   v.run.blueWomb = roomGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX;
   v.run.theVoid = roomGridIndex === GridRooms.ROOM_THE_VOID_IDX;
   v.run.repentanceSecretExit = roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX;
-
-  logStateChanged();
+  logFastTravelStateChanged();
 
   const whitelist = new Set([
     // Allow the player to toggle the map
@@ -350,7 +349,7 @@ function setDisabled() {
   enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
 }
 
-function logStateChanged() {
+function logFastTravelStateChanged() {
   if (FAST_TRAVEL_DEBUG) {
     log(
       `Fast-travel state changed: ${FastTravelState[v.run.state]} (${

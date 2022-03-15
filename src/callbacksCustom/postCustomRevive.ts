@@ -11,6 +11,5 @@ export function init(mod: ModUpgraded): void {
 }
 
 function seededDeath(player: EntityPlayer) {
-  Isaac.DebugString("GETTING HERE - MC_POST_CUSTOM_REVIVE");
   seededDeathPostCustomRevive(player);
 }
