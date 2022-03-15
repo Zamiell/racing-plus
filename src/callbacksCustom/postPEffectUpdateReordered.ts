@@ -4,6 +4,7 @@ import {
   ModUpgraded,
 } from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
+import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import * as keeperHeal from "../features/optional/bugfix/keeperHeal";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
@@ -35,6 +36,7 @@ function main(player: EntityPlayer) {
 
   // Bug fixes
   keeperHeal.postPEffectUpdate(player);
+  batteryBumFix.postPEffectUpdate(player);
 
   // Items
   flipCustom.postPEffectUpdate(player);

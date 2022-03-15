@@ -1,4 +1,5 @@
 import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 
 export function init(mod: ModUpgraded): void {
@@ -15,7 +16,15 @@ function batteryBum(
   previousAnimation: string,
   currentAnimation: string,
 ) {
+  // QoL
   chargePocketItemFirst.postSlotAnimationChangedBatteryBum(
+    slot,
+    previousAnimation,
+    currentAnimation,
+  );
+
+  // Bug Fixes
+  batteryBumFix.postSlotAnimationChangedBatteryBum(
     slot,
     previousAnimation,
     currentAnimation,
