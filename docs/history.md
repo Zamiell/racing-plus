@@ -8,7 +8,7 @@
   - If you want to beat these times, the R+7 (S7) category will continue to be tracked on speedrun.com, but the official competition will move on to season 2.
 - [Season 2](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start) has officially begun!
 - The console is now enabled in season 2 by default.
-- Fixed the (vanilla) bug where Battery Bums will not charge pocket items. (Thanks Fallenfor)
+- Fixed the (vanilla) bug where Battery Bums will not charge pocket items if you do not have an active item. (Thanks Fallenfor)
 
 ### *v0.78.17* - March 12th, 2022
 

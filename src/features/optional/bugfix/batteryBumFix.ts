@@ -80,7 +80,7 @@ function addChargesToActiveItem(
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotAnimationChangedBatteryBum(
   _slot: Entity,
-  previousAnimation: string,
+  _previousAnimation: string,
   currentAnimation: string,
 ): void {
   if (!config.batteryBumFix) {

@@ -257,7 +257,7 @@ export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
 // ModCallbacksCustom.MC_POST_SLOT_ANIMATION_CHANGED
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotAnimationChangedBatteryBum(
-  slot: Entity,
+  _slot: Entity,
   _previousAnimation: string,
   currentAnimation: string,
 ): void {

@@ -179,8 +179,8 @@ export const SEASON_2_STARTING_BUILD_INDEXES: readonly int[] = range(
   SEASON_2_STARTING_BUILDS.length - 1,
 );
 export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
-  SEASON_2_STARTING_BUILD_INDEXES.filter((buildIndex, i) => {
-    const build = SEASON_2_STARTING_BUILDS[i];
+  SEASON_2_STARTING_BUILD_INDEXES.filter((buildIndex) => {
+    const build = SEASON_2_STARTING_BUILDS[buildIndex];
     const [firstCollectible] = build;
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });

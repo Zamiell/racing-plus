@@ -6,7 +6,7 @@ export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_SACRIFICE, main);
 }
 
-function main(player: EntityPlayer, numSacrifices: int) {
+function main(_player: EntityPlayer, numSacrifices: int) {
   // Mandatory
   preventSacrificeRoomTeleport.postSacrifice(numSacrifices);
 
