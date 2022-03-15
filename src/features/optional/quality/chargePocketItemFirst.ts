@@ -252,26 +252,21 @@ export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacksCustom.MC_POST_SLOT_UPDATE
+// ModCallbacksCustom.MC_POST_SLOT_ANIMATION_CHANGED
 // SlotVariant.BATTERY_BUM (13)
-export function postSlotUpdateBatteryBum(slot: Entity): void {
+export function postSlotAnimationChangedBatteryBum(
+  slot: Entity,
+  _previousAnimation: string,
+  currentAnimation: string,
+): void {
   const player = Isaac.GetPlayer();
+  const gameFrameCount = g.g.GetFrameCount();
 
   if (!chargePocketFeatureShouldApply(player)) {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
-  const ptrHash = GetPtrHash(slot);
-  const lastAnimation = v.room.batteryBumAnimationMap.get(ptrHash);
-  const sprite = slot.GetSprite();
-  const animation = sprite.GetAnimation();
-  if (animation === lastAnimation) {
-    return;
-  }
-  v.room.batteryBumAnimationMap.set(ptrHash, animation);
-
-  if (animation === "Prize") {
+  if (currentAnimation === "Prize") {
     v.run.checkForBatteryBumChargesUntilFrame =
       gameFrameCount + BATTERY_BUM_CHARGE_DELAY_FRAMES;
   }
