@@ -1,6 +1,6 @@
 # Racing+ Version History and News
 
-### *v0.79.1* - March 14th, 2022
+### *v0.79.1* - March ?th, 2022
 
 - The "Change Char Order" challenge will now take you directly to the season after you finish choosing.
 
