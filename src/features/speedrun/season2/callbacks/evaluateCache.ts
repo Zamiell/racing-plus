@@ -4,7 +4,7 @@ import {
   hasFlyingTransformation,
   isFlyingCharacter,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SEASON_2_STARTING_BUILDS } from "../constants";
 import { season2GetCurrentBuildIndex } from "../v";
 

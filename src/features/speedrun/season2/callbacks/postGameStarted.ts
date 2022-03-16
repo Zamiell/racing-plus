@@ -6,10 +6,10 @@ import {
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,

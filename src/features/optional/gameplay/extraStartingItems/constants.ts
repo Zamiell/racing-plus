@@ -1,5 +1,5 @@
 import { copyMap } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
 export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
   CollectibleTypeCustom,

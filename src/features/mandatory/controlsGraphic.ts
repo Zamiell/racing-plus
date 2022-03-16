@@ -4,8 +4,8 @@
 // This feature is not configurable because we destroy the original starting room graphic file
 
 import { getEffectiveStage, inStartingRoom } from "isaacscript-common";
+import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
 import g from "../../globals";
-import { CreepRedSubTypeCustom } from "../../types/CreepRedSubTypeCustom";
 import { RaceFormat } from "../race/types/RaceFormat";
 import { RacerStatus } from "../race/types/RacerStatus";
 import { RaceStatus } from "../race/types/RaceStatus";

@@ -1,6 +1,6 @@
 import { range } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
 

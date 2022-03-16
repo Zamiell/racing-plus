@@ -5,8 +5,8 @@ import {
   isJacobOrEsau,
   removeGridEntity,
 } from "isaacscript-common";
+import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
-import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
   SEEDED_DEATH_DEBUFF_RENDER_FRAMES,
   SEEDED_DEATH_FEATURE_NAME,

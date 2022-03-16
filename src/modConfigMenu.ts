@@ -4,6 +4,8 @@ import {
   saveDataManager,
   saveDataManagerSave,
 } from "isaacscript-common";
+import { Config } from "./classes/Config";
+import { Hotkeys } from "./classes/Hotkeys";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
@@ -28,8 +30,6 @@ import {
   REMOVALS,
   SOUND_CHANGES,
 } from "./configDescription";
-import { Config } from "./types/Config";
-import { Hotkeys } from "./types/Hotkeys";
 
 const CATEGORY_NAME = "Racing+";
 const PRESETS_NAME = "Presets";

@@ -1,4 +1,4 @@
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
 import { resetSprites } from "../sprites";
 

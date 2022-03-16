@@ -1,6 +1,6 @@
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
-import { ChallengeCustom } from "../../../types/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {

@@ -1,5 +1,5 @@
 import { getRepentanceDoor } from "isaacscript-common";
-import { RepentanceDoorState } from "../../../types/RepentanceDoorState";
+import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 

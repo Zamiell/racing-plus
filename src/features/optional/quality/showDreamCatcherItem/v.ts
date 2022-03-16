@@ -1,6 +1,6 @@
 import { PlayerHealth, saveDataManager } from "isaacscript-common";
+import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { config } from "../../../../modConfigMenu";
-import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 
 export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
 

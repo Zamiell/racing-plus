@@ -9,10 +9,10 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../../constants";
+import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initItemSprite } from "../../../sprite";
-import { PickupPriceCustom } from "../../../types/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count

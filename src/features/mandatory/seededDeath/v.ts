@@ -1,6 +1,6 @@
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
+import { SeededDeathState } from "../../../enums/SeededDeathState";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
-import { SeededDeathState } from "../../../types/SeededDeathState";
 import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
 const v = {

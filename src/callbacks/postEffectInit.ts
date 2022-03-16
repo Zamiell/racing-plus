@@ -1,7 +1,7 @@
+import { EffectVariantCustom } from "../enums/EffectVariantCustom";
 import * as centerStart from "../features/mandatory/centerStart";
 import { seededDeathPostEffectInitBloodDrop } from "../features/mandatory/seededDeath/callbacks/postEffectInit";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
-import { EffectVariantCustom } from "../types/EffectVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

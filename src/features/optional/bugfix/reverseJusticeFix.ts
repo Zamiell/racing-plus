@@ -12,7 +12,7 @@ import {
   mapSetPlayer,
   PlayerIndex,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 const v = {
   run: {

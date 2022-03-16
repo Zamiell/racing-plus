@@ -1,3 +1,4 @@
+import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
@@ -14,7 +15,6 @@ import { automaticItemInsertionPostPickupInit } from "../features/optional/quali
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
-import { PickupVariantCustom } from "../types/PickupVariantCustom";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, main);

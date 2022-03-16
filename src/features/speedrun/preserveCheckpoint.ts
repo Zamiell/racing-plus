@@ -1,6 +1,6 @@
 import { countEntities, getCollectibles } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import g from "../../globals";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { postSpawnCheckpoint } from "./speedrun";
 
 // ModCallbacks.MC_USE_ITEM (3)

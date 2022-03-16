@@ -1,7 +1,7 @@
 // ModCallbacks.MC_EVALUATE_CACHE (8)
 
 import { repeat } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 
 // CacheFlag.CACHE_SHOTSPEED ()
 export function evaluateCacheShotSpeed(player: EntityPlayer): void {

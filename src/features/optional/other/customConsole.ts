@@ -11,10 +11,10 @@ import {
   log,
   saveDataManager,
 } from "isaacscript-common";
+import { Colors } from "../../../enums/Colors";
 import g from "../../../globals";
 import { KEYBOARD_MAP } from "../../../maps/keyboardMap";
 import { config, hotkeys } from "../../../modConfigMenu";
-import { Colors } from "../../../types/Colors";
 import { TextSegment } from "../../../types/TextSegment";
 import { consoleCommand } from "../../../utils";
 import * as socket from "../../race/socket";

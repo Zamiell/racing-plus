@@ -4,9 +4,9 @@ import {
   getPlayers,
   setPlayerHealth,
 } from "isaacscript-common";
+import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
+import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import { config } from "../../../../../modConfigMenu";
-import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
-import { EffectVariantCustom } from "../../../../../types/EffectVariantCustom";
 import { centerPlayers } from "../../../../mandatory/centerStart";
 import { restoreMinimapDisplayFlags, setMinimapVisible } from "../minimap";
 import * as sprites from "../sprites";

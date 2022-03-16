@@ -2,9 +2,9 @@
 // spending a bomb or being forced to walk on spikes
 
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
+import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 // ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN (71)
 export function preRoomEntitySpawn(

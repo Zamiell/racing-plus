@@ -4,8 +4,8 @@ import {
   PickingUpItem,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import g from "../../globals";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { RaceFormat } from "./types/RaceFormat";
 import { RacerStatus } from "./types/RacerStatus";
 import { RaceStatus } from "./types/RaceStatus";

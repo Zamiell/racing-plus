@@ -58,8 +58,8 @@ import {
   checkFamiliarFromCollectibles,
   saveDataManager,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
-import { FamiliarVariantCustom } from "../../types/FamiliarVariantCustom";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
+import { FamiliarVariantCustom } from "../../enums/FamiliarVariantCustom";
 
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;

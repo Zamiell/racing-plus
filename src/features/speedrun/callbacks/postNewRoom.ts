@@ -10,9 +10,9 @@ import {
   removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
 import g from "../../../globals";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
-import { RepentanceDoorState } from "../../../types/RepentanceDoorState";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";

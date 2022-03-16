@@ -5,9 +5,9 @@ import {
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../../mandatory/banFirstFloorRoomType";
 import {
   COLLECTIBLE_REPLACEMENT_MAP,

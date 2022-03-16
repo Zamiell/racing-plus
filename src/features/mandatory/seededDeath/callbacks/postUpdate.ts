@@ -1,6 +1,6 @@
 import { isJacobOrEsau } from "isaacscript-common";
+import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
-import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,

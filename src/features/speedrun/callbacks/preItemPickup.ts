@@ -1,5 +1,5 @@
 import { PickingUpItem } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { inSpeedrun } from "../speedrun";
 import v from "../v";
 

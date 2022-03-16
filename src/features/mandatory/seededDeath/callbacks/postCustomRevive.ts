@@ -1,5 +1,5 @@
+import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
-import { SeededDeathState } from "../../../../types/SeededDeathState";
 import {
   logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,

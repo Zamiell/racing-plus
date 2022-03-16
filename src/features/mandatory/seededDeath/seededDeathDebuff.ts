@@ -16,11 +16,11 @@ import {
   runInNGameFrames,
   sfxManager,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
 import { TRANSFORMATION_TO_HELPERS } from "../../../objects/transformationToHelper";
 import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
 import v from "./v";

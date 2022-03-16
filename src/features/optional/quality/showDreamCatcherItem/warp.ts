@@ -11,8 +11,8 @@ import {
   log,
   onSetSeed,
 } from "isaacscript-common";
+import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import g from "../../../../globals";
-import { DreamCatcherWarpState } from "../../../../types/DreamCatcherWarpState";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";

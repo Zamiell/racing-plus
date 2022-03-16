@@ -13,8 +13,8 @@ import {
   PickingUpItem,
   saveDataManager,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { goingToRaceRoom } from "../race/raceRoom";
 
 const FRAMES_BEFORE_FADE = 50;

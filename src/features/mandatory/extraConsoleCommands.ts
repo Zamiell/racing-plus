@@ -11,8 +11,8 @@ import {
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugFunction";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { consoleCommand } from "../../utils";
 import { unseed } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";

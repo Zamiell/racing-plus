@@ -3,8 +3,8 @@ import {
   getDefaultKColor,
   gridToPos,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
-import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
 import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";

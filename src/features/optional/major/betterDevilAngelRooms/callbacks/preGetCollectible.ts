@@ -8,9 +8,9 @@ import {
   nextSeed,
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import { CollectibleTypeCustom } from "../../../../../types/CollectibleTypeCustom";
 import v from "../v";
 
 const MAX_GET_COLLECTIBLE_ATTEMPTS = 100;

@@ -5,8 +5,8 @@ import {
   MAX_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
-import { ChallengeCustom } from "./types/ChallengeCustom";
-import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
+import { ChallengeCustom } from "./enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { serverCollectibleIDToCollectibleType } from "./utils";
 
 const COLLECTIBLE_TYPE_CUSTOM_ARRAY: readonly CollectibleTypeCustom[] =

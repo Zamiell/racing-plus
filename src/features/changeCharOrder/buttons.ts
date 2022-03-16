@@ -9,9 +9,9 @@ import {
   removeGridEntity,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { season2SetBansTime } from "../speedrun/season2/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";

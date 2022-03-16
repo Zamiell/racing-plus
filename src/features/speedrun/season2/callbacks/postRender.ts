@@ -1,6 +1,6 @@
 import { getDefaultKColor, getPlayerName } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getRoomsEntered } from "../../../utils/roomsEntered";
 import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";

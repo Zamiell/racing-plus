@@ -1,4 +1,4 @@
-import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
 
 export const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP: ReadonlyMap<
   int,

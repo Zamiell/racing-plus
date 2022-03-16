@@ -2,9 +2,9 @@
 // (disabled if it is not currently a holiday)
 
 import { isJacobOrEsau } from "isaacscript-common";
+import { Holiday } from "../../../enums/Holiday";
 import { config } from "../../../modConfigMenu";
 import { HOLIDAY_TO_NULL_ITEM_ID } from "../../../objects/holidayToNullItemID";
-import { Holiday } from "../../../types/Holiday";
 
 const CURRENT_HOLIDAY = Holiday.NONE;
 

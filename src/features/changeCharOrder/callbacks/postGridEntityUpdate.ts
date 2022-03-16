@@ -1,4 +1,4 @@
-import { ChallengeCustom } from "../../../types/ChallengeCustom";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import * as buttons from "../buttons";
 
 export function pressurePlate(gridEntity: GridEntity): void {

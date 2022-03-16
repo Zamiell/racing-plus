@@ -1,6 +1,6 @@
 import { getEntities, getFamiliars, getPlayers, log } from "isaacscript-common";
+import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
-import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);

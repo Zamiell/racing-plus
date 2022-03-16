@@ -4,8 +4,8 @@ import {
   isJacobOrEsau,
   log,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../types/ChallengeCustom";
-import { SeededDeathState } from "../../../types/SeededDeathState";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { SeededDeathState } from "../../../enums/SeededDeathState";
 import { inSeededRace } from "../../race/v";
 import { QUARTER_FADED_COLOR, SEEDED_DEATH_DEBUG } from "./constants";
 import v from "./v";

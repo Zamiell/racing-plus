@@ -1,4 +1,4 @@
-import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
 
 export const TRANSFORMATION_HELPERS_SET: ReadonlySet<CollectibleTypeCustom> =
   new Set([

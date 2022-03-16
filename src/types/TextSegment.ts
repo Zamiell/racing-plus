@@ -1,4 +1,4 @@
-import { Colors } from "./Colors";
+import { Colors } from "../enums/Colors";
 
 export interface TextSegment {
   text: string;

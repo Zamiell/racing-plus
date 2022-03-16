@@ -1,6 +1,6 @@
+import { Colors } from "../../enums/Colors";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { Colors } from "../../types/Colors";
 import { TextSegment } from "../../types/TextSegment";
 import {
   CONSOLE_POSITION,

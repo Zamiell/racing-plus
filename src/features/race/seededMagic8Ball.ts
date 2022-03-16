@@ -1,5 +1,5 @@
 import { removeCollectibleFromItemTracker } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { inSeededRace } from "./v";
 
 const REPLACED_ITEM = CollectibleType.COLLECTIBLE_MAGIC_8_BALL;

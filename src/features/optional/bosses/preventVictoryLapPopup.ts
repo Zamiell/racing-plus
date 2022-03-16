@@ -9,9 +9,9 @@ import {
   saveDataManager,
   sfxManager,
 } from "isaacscript-common";
+import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
 
 const v = {
   room: {

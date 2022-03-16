@@ -13,10 +13,10 @@ import {
   useActiveItemTemp,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../constants";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { initItemSprite } from "../../sprite";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.COLLECTIBLE_FLIP;

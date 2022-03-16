@@ -5,10 +5,10 @@ import {
   log,
   saveDataManager,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
+import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
 import g from "../../globals";
-import { CollectibleTypeCustom } from "../../types/CollectibleTypeCustom";
 import { EntityLocation } from "../../types/EntityLocation";
-import { EntityTypeCustom } from "../../types/EntityTypeCustom";
 import { raceFinish } from "../race/raceFinish";
 import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";

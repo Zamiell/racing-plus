@@ -1,5 +1,5 @@
 import { saveDataManager } from "isaacscript-common";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import { SeasonDescription } from "./types/SeasonDescription";

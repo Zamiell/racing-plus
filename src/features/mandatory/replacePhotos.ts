@@ -6,8 +6,8 @@ import {
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
+import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
 import g from "../../globals";
-import { PickupVariantCustom } from "../../types/PickupVariantCustom";
 import { hasPolaroidOrNegative } from "../../utils";
 import { RaceGoal } from "../race/types/RaceGoal";
 import { RacerStatus } from "../race/types/RacerStatus";

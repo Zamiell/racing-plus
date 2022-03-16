@@ -5,10 +5,10 @@ import {
   range,
   saveDataManager,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
-import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
 
 // Near the top-left
 const SPRITE_X = 123;

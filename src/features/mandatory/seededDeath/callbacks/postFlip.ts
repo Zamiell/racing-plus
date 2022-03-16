@@ -1,5 +1,5 @@
 import { runNextGameFrame, useActiveItemTemp } from "isaacscript-common";
-import { SeededDeathState } from "../../../../types/SeededDeathState";
+import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import {
   applySeededGhostFade,
   shouldSeededDeathFeatureApply,

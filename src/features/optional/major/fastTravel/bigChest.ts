@@ -11,9 +11,9 @@ import {
   spawnCollectible,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
-import { ChallengeCustom } from "../../../../types/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../../../types/CollectibleTypeCustom";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { RaceGoal } from "../../../race/types/RaceGoal";

@@ -1,4 +1,4 @@
-import { ChallengeCustom } from "../../types/ChallengeCustom";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 
 export const CHALLENGE_DEFINITIONS: ReadonlyMap<
   ChallengeCustom,

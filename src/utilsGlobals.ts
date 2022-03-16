@@ -2,10 +2,10 @@ import {
   getCollectibleInitCharges,
   getCollectibleMaxCharges,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import g from "./globals";
-import { CollectibleTypeCustom } from "./types/CollectibleTypeCustom";
 
 export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,

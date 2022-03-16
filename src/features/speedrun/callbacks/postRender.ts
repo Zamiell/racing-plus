@@ -1,6 +1,6 @@
 import { log } from "isaacscript-common";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
-import { ChallengeCustom } from "../../../types/ChallengeCustom";
 import {
   restartOnNextFrame,
   setRestartCharacter,

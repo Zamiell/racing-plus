@@ -1,6 +1,6 @@
 import { emptyArray, saveDataManager } from "isaacscript-common";
-import { ChallengeCustom } from "../../types/ChallengeCustom";
-import { RepentanceDoorState } from "../../types/RepentanceDoorState";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { RepentanceDoorState } from "../../enums/RepentanceDoorState";
 
 const v = {
   persistent: {

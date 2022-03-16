@@ -1,6 +1,6 @@
 import { ensureAllCases, getEffects, getPlayers } from "isaacscript-common";
+import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import g from "../../../../globals";
-import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { setNewFastTravelState, setPlayersVisible } from "./setNewState";

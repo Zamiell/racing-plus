@@ -8,9 +8,9 @@ import {
   runNextGameFrame,
   useActiveItemTemp,
 } from "isaacscript-common";
+import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import { DreamCatcherWarpState } from "../../../../../types/DreamCatcherWarpState";
 import * as sprites from "../sprites";
 import v from "../v";
 import { warpToNextDreamCatcherRoom } from "../warp";

@@ -10,8 +10,8 @@ import {
   log,
   onRepentanceStage,
 } from "isaacscript-common";
+import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import g from "../../../../globals";
-import { EffectVariantCustom } from "../../../../types/EffectVariantCustom";
 import { moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFix,
