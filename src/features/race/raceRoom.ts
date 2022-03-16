@@ -11,6 +11,7 @@ import {
   removeAllDoors,
   removeEntities,
 } from "isaacscript-common";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
@@ -21,7 +22,6 @@ import {
   RACE_ROOM_STAGE_ID,
   RACE_ROOM_VARIANT,
 } from "./constants";
-import { RaceStatus } from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race/race-room";
 const X_SPACING = 110;

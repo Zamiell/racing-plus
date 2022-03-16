@@ -1,7 +1,7 @@
 import { game } from "isaacscript-common";
-import { RaceData } from "../features/race/types/RaceData";
-import { RaceVars } from "../features/race/types/RaceVars";
 import { ChatMessage } from "../types/ChatMessage";
+import { RaceData } from "./RaceData";
+import { RaceVars } from "./RaceVars";
 
 export class Globals {
   debug = true;

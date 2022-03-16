@@ -1,4 +1,6 @@
 import { log } from "isaacscript-common";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as chat from "../chat";
@@ -11,8 +13,6 @@ import * as shadows from "../shadows/shadows";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
-import { RacerStatus } from "../types/RacerStatus";
-import { RaceStatus } from "../types/RaceStatus";
 
 export function racePostRender(): void {
   if (!config.clientCommunication) {

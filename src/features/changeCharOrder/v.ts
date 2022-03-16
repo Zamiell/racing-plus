@@ -1,8 +1,8 @@
 import { saveDataManager } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
+import { SeasonDescription } from "../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
-import { SeasonDescription } from "./types/SeasonDescription";
 
 const v = {
   persistent: {

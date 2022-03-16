@@ -12,13 +12,13 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { Colors } from "../../../enums/Colors";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { KEYBOARD_MAP } from "../../../maps/keyboardMap";
 import { config, hotkeys } from "../../../modConfigMenu";
 import { TextSegment } from "../../../types/TextSegment";
 import { consoleCommand } from "../../../utils";
 import * as socket from "../../race/socket";
-import { RaceStatus } from "../../race/types/RaceStatus";
 
 const FEATURE_NAME = "customConsole";
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);

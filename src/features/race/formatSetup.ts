@@ -6,6 +6,9 @@ import {
   sfxManager,
   useActiveItemTemp,
 } from "isaacscript-common";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { serverCollectibleIDToCollectibleType } from "../../utils";
 import {
@@ -14,9 +17,6 @@ import {
 } from "../../utilsGlobals";
 import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
-import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 /**
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in

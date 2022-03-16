@@ -3,12 +3,12 @@ import {
   onRepentanceStage,
   removeAllMatchingEntities,
 } from "isaacscript-common";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { consoleCommand } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import v from "./v";
 

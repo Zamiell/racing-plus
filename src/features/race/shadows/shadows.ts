@@ -8,12 +8,12 @@ import {
   isActionPressedOnAnyInput,
   saveDataManager,
 } from "isaacscript-common";
+import { RaceFormat } from "../../../enums/RaceFormat";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as socket from "../socket";
-import { RaceFormat } from "../types/RaceFormat";
-import { RacerStatus } from "../types/RacerStatus";
-import { RaceStatus } from "../types/RaceStatus";
 import { CHARACTER_PNG_MAP } from "./characterPNGMap";
 import {
   BEACON_DATA_FORMAT,

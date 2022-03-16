@@ -1,9 +1,9 @@
+import { RaceVars } from "../../classes/RaceVars";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { inRaceRoom } from "./raceRoom";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
-import { RaceVars } from "./types/RaceVars";
 
 export function raceStart(): void {
   g.raceVars = new RaceVars();

@@ -1,4 +1,4 @@
-import { SeasonDescription } from "./types/SeasonDescription";
+import { SeasonDescription } from "../../types/SeasonDescription";
 
 export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
   R7S1: {

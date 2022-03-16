@@ -13,13 +13,13 @@ import {
   spawnGridEntity,
   teleport,
 } from "isaacscript-common";
+import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import g from "../../../../globals";
 import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
-import { FastTravelEntityState } from "./types/FastTravelEntityState";
-import { FastTravelEntityType } from "./types/FastTravelEntityType";
 import v from "./v";
 
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;

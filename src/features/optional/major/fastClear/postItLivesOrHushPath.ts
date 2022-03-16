@@ -9,11 +9,11 @@ import {
   removeAllMatchingGridEntities,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../utils";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import {
   inSpeedrun,

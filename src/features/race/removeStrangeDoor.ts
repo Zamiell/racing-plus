@@ -4,10 +4,10 @@ import {
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceGoal } from "./types/RaceGoal";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)
 export function postNewRoom(): void {

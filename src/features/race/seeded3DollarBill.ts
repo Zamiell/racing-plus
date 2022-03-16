@@ -5,10 +5,10 @@ import {
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 const REPLACED_ITEM = CollectibleType.COLLECTIBLE_3_DOLLAR_BILL;

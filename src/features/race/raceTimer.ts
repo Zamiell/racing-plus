@@ -1,8 +1,8 @@
+import { RacerStatus } from "../../enums/RacerStatus";
 import { TimerType } from "../../enums/TimerType";
 import g from "../../globals";
 import * as timer from "../../timer";
 import { inRaceRoom } from "./raceRoom";
-import { RacerStatus } from "./types/RacerStatus";
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {

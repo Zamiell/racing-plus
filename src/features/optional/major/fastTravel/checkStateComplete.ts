@@ -1,10 +1,10 @@
 import { ensureAllCases, getEffects, getPlayers } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
+import { FastTravelState } from "../../../../enums/FastTravelState";
 import g from "../../../../globals";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
-import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 // ModCallbacks.MC_POST_RENDER (2)

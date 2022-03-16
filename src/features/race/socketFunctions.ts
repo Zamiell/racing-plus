@@ -1,9 +1,9 @@
 import { jsonDecode, log } from "isaacscript-common";
+import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import g from "../../globals";
 import { ChatMessage } from "../../types/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
-import { cloneRaceData, RaceData } from "./types/RaceData";
 
 export const SOCKET_DEBUG = false;
 

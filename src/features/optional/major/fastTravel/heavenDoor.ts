@@ -1,13 +1,13 @@
 import { getEffects, inBossRoomOf } from "isaacscript-common";
+import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
-import { FastTravelEntityState } from "./types/FastTravelEntityState";
-import { FastTravelEntityType } from "./types/FastTravelEntityType";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 

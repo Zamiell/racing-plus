@@ -5,6 +5,9 @@ import {
   inStartingRoom,
   log,
 } from "isaacscript-common";
+import { RaceData, RaceDataType } from "../../classes/RaceData";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import {
   restartOnNextFrame,
@@ -15,9 +18,6 @@ import * as raceRoom from "./raceRoom";
 import { raceStart } from "./raceStart";
 import * as sprites from "./sprites";
 import * as topSprite from "./topSprite";
-import { RaceData, RaceDataType } from "./types/RaceData";
-import { RaceFormat } from "./types/RaceFormat";
-import { RaceStatus } from "./types/RaceStatus";
 
 export function checkRaceChanged(
   oldRaceData: RaceData,

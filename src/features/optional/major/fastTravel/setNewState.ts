@@ -11,20 +11,20 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
+import { FastTravelState } from "../../../../enums/FastTravelState";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFix,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import * as nextFloor from "./nextFloor";
-import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 export function setNewFastTravelState(fastTravelState: FastTravelState): void {

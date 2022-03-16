@@ -7,11 +7,11 @@ import {
   spawnCollectible,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { hasPolaroidOrNegative } from "../../utils";
-import { RaceGoal } from "../race/types/RaceGoal";
-import { RacerStatus } from "../race/types/RacerStatus";
-import { RaceStatus } from "../race/types/RaceStatus";
 import { inSpeedrun } from "../speedrun/speedrun";
 
 enum PhotoSituation {

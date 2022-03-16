@@ -13,12 +13,13 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import * as trophy from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import {
   isOnFinalCharacter,
@@ -26,7 +27,6 @@ import {
   postSpawnCheckpoint,
 } from "../../../speedrun/speedrun";
 import * as fastTravel from "./fastTravel";
-import { FastTravelEntityType } from "./types/FastTravelEntityType";
 
 enum ReplacementAction {
   /** Leave the Big Chest there. */

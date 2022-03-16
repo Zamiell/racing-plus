@@ -1,9 +1,9 @@
 import { arrayToString, isArray, log } from "isaacscript-common";
-import { RaceDifficulty } from "./RaceDifficulty";
-import { RaceFormat } from "./RaceFormat";
-import { RaceGoal } from "./RaceGoal";
-import { RacerStatus } from "./RacerStatus";
-import { RaceStatus } from "./RaceStatus";
+import { RaceDifficulty } from "../enums/RaceDifficulty";
+import { RaceFormat } from "../enums/RaceFormat";
+import { RaceGoal } from "../enums/RaceGoal";
+import { RacerStatus } from "../enums/RacerStatus";
+import { RaceStatus } from "../enums/RaceStatus";
 
 // The possible types for values of RaceData
 export type RaceDataType = boolean | number | string | int[];

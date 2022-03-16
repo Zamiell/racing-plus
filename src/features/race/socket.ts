@@ -1,12 +1,12 @@
 import { getRoomVariant, log, PickingUpItem } from "isaacscript-common";
+import { cloneRaceData, RaceData } from "../../classes/RaceData";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import * as socketClient from "./socketClient";
 import { reset, socketFunctions, SOCKET_DEBUG } from "./socketFunctions";
-import { cloneRaceData, RaceData } from "./types/RaceData";
-import { RaceStatus } from "./types/RaceStatus";
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {

@@ -9,10 +9,10 @@ import {
   getRandomInt,
   spawnCollectible,
 } from "isaacscript-common";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { RacerStatus } from "../../race/types/RacerStatus";
-import { RaceStatus } from "../../race/types/RaceStatus";
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 // PickupVariant.PICKUP_COLLECTIBLE (100)

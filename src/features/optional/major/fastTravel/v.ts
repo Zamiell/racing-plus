@@ -1,9 +1,9 @@
 import { saveDataManager } from "isaacscript-common";
+import { FastTravelState } from "../../../../enums/FastTravelState";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
+import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
-import { FastTravelEntityDescription } from "./types/FastTravelEntityDescription";
-import { FastTravelState } from "./types/FastTravelState";
 
 const v = {
   run: {

@@ -3,11 +3,11 @@ import {
   removeGridEntity,
   saveDataManager,
 } from "isaacscript-common";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { RaceGoal } from "../race/types/RaceGoal";
-import { RacerStatus } from "../race/types/RacerStatus";
-import { RaceStatus } from "../race/types/RaceStatus";
 import { inSpeedrun, onSpeedrunWithDarkRoomGoal } from "../speedrun/speedrun";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;

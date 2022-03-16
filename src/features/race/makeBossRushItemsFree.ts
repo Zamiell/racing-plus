@@ -1,8 +1,8 @@
 import { anyPlayerIs, getCollectibles } from "isaacscript-common";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceGoal } from "./types/RaceGoal";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 import v from "./v";
 
 // ModCallbacks.MC_POST_NEW_ROOM (19)

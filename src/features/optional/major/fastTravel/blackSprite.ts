@@ -1,8 +1,8 @@
 // We draw a black sprite on top of the screen in order to fade everything to black
 
+import { FastTravelState } from "../../../../enums/FastTravelState";
 import { initSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
-import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 const sprite = initSprite("gfx/black.anm2");

@@ -9,19 +9,19 @@ import {
   printConsole,
   restart,
 } from "isaacscript-common";
+import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugFunction";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { consoleCommand } from "../../utils";
 import { unseed } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
-import { logRaceData, RaceData } from "../race/types/RaceData";
-import { RaceFormat } from "../race/types/RaceFormat";
-import { RaceGoal } from "../race/types/RaceGoal";
-import { RacerStatus } from "../race/types/RacerStatus";
-import { RaceStatus } from "../race/types/RaceStatus";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
 import {
   toggleEffectDisplay,

@@ -1,10 +1,10 @@
 // Automatically open the Mega Satan door on races with a Mega Satan goal
 
 import { sfxManager } from "isaacscript-common";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceGoal } from "./types/RaceGoal";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
 export function postNewLevel(): void {

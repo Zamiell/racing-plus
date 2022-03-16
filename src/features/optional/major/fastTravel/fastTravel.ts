@@ -9,18 +9,18 @@ import {
   log,
   onRepentanceStage,
 } from "isaacscript-common";
+import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
+import { FastTravelState } from "../../../../enums/FastTravelState";
+import { RaceGoal } from "../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { RaceGoal } from "../../../race/types/RaceGoal";
-import { RacerStatus } from "../../../race/types/RacerStatus";
-import { RaceStatus } from "../../../race/types/RaceStatus";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
 } from "./constants";
 import * as state from "./state";
-import { FastTravelEntityState } from "./types/FastTravelEntityState";
-import { FastTravelEntityType } from "./types/FastTravelEntityType";
-import { FastTravelState } from "./types/FastTravelState";
 import v from "./v";
 
 export function init(

@@ -1,4 +1,8 @@
 import { log, onSetSeed } from "isaacscript-common";
+import { RaceDifficulty } from "../../../enums/RaceDifficulty";
+import { RaceFormat } from "../../../enums/RaceFormat";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { unseed } from "../../../utilsGlobals";
@@ -16,10 +20,6 @@ import * as socket from "../socket";
 import * as sprites from "../sprites";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
-import { RaceDifficulty } from "../types/RaceDifficulty";
-import { RaceFormat } from "../types/RaceFormat";
-import { RacerStatus } from "../types/RacerStatus";
-import { RaceStatus } from "../types/RaceStatus";
 
 export function racePostGameStarted(): void {
   if (!config.clientCommunication) {

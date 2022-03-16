@@ -1,11 +1,11 @@
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen
 
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 const GFX_PATH = "gfx/race/place-left";
 const MAX_PLACE = 16; // There are only small sprites created for places up to 16

@@ -6,8 +6,8 @@ import {
   saveDataManager,
   sfxManager,
 } from "isaacscript-common";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceStatus } from "../race/types/RaceStatus";
 import { speedrunIsFinished } from "../speedrun/exported";
 
 const v = {

@@ -5,10 +5,10 @@
 
 import { getEffectiveStage, inStartingRoom } from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceFormat } from "../race/types/RaceFormat";
-import { RacerStatus } from "../race/types/RacerStatus";
-import { RaceStatus } from "../race/types/RaceStatus";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 

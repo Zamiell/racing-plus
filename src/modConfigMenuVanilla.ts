@@ -1,5 +1,12 @@
-import { ensureAllCases } from "isaacscript-common";
 import { deleteOldConfig, onOff } from "./modConfigMenu";
+import {
+  ANNOUNCER_VOICE_MODE_TO_TEXT,
+  DEFAULT_ANNOUNCER_VOICE_MODE_TEXT,
+} from "./objects/announcerVoiceModeToText";
+import {
+  CONSOLE_FONT_TO_TEXT,
+  DEFAULT_CONSOLE_FONT_TEXT,
+} from "./objects/consoleFontToText";
 
 const CATEGORY_NAME = "Vanilla Options";
 
@@ -15,7 +22,7 @@ export function init(): void {
     CurrentSetting: () => Options.AnnouncerVoiceMode,
     Minimum: 0,
     Maximum: 2,
-    Display: () => `Announcer Voice Mode: ${getAnnounceVoiceModeText()}`,
+    Display: () => `Announcer Voice Mode: ${getAnnouncerVoiceModeText()}`,
     OnChange: (newValue: number | boolean | undefined) => {
       if (
         newValue === undefined ||
@@ -221,42 +228,17 @@ export function init(): void {
   });
 }
 
-function getAnnounceVoiceModeText() {
-  switch (Options.AnnouncerVoiceMode) {
-    case 0: {
-      return "Random";
-    }
-
-    case 1: {
-      return "Always Off";
-    }
-
-    case 2: {
-      return "Always On";
-    }
-
-    default: {
-      return ensureAllCases(Options.AnnouncerVoiceMode);
-    }
-  }
+function getAnnouncerVoiceModeText() {
+  const announcerVoiceModeText =
+    ANNOUNCER_VOICE_MODE_TO_TEXT[Options.AnnouncerVoiceMode];
+  return announcerVoiceModeText === undefined
+    ? DEFAULT_ANNOUNCER_VOICE_MODE_TEXT
+    : announcerVoiceModeText;
 }
 
 function getConsoleFontText() {
-  switch (Options.ConsoleFont) {
-    case 0: {
-      return "Default";
-    }
-
-    case 1: {
-      return "Small";
-    }
-
-    case 2: {
-      return "Tiny";
-    }
-
-    default: {
-      return ensureAllCases(Options.ConsoleFont);
-    }
-  }
+  const consoleFontText = CONSOLE_FONT_TO_TEXT[Options.ConsoleFont];
+  return consoleFontText === undefined
+    ? DEFAULT_CONSOLE_FONT_TEXT
+    : consoleFontText;
 }

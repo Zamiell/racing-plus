@@ -1,13 +1,10 @@
-import {
-  ensureAllCases,
-  getDefaultKColor,
-  gridToPos,
-} from "isaacscript-common";
+import { getDefaultKColor, gridToPos } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
 import g from "../../../globals";
+import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
-import { ChangeCharOrderPhase } from "../types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "../v";
 
 export function changeCharOrderPostRender(): void {
@@ -60,7 +57,7 @@ function drawCurrentChoosingActivity() {
   const bottomCenterOfRoom = g.r.GetGridPosition(112);
   const position = Isaac.WorldToScreen(bottomCenterOfRoom);
   position.Y -= 15;
-  const text = getTextForCurrentActivity(v.room.phase);
+  const text = CHANGE_CHAR_ORDER_PHASE_TEXT[v.room.phase];
   const font = g.fonts.droid;
   const length = font.GetStringWidthUTF8(text);
   font.DrawString(
@@ -70,27 +67,6 @@ function drawCurrentChoosingActivity() {
     getDefaultKColor(),
   );
 }
-
-function getTextForCurrentActivity(phase: ChangeCharOrderPhase) {
-  switch (phase) {
-    case ChangeCharOrderPhase.SEASON_SELECT: {
-      return "Choose your season";
-    }
-
-    case ChangeCharOrderPhase.CHARACTER_SELECT: {
-      return "Choose your character order";
-    }
-
-    case ChangeCharOrderPhase.BUILD_VETO: {
-      return "Choose your build vetos";
-    }
-
-    default: {
-      return ensureAllCases(phase);
-    }
-  }
-}
-
 function drawSeasonSprites() {
   if (v.room.phase !== ChangeCharOrderPhase.SEASON_SELECT) {
     return;

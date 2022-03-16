@@ -1,10 +1,10 @@
 // Automatically open Repentance doors in races to Mother
 
 import { getDoors } from "isaacscript-common";
+import { RaceGoal } from "../../enums/RaceGoal";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceGoal } from "./types/RaceGoal";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 // ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {

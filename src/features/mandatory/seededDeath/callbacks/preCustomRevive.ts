@@ -9,9 +9,9 @@ import {
   MAX_PLAYER_TRINKET_SLOTS,
   range,
 } from "isaacscript-common";
+import { RevivalType } from "../../../../enums/RevivalType";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
-import { RevivalType } from "../../../race/types/RevivalType";
 import { DEVIL_DEAL_BUFFER_GAME_FRAMES } from "../constants";
 import {
   logSeededDeathStateChange,

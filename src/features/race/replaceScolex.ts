@@ -6,10 +6,10 @@ import {
   removeAllMatchingEntities,
   repeat,
 } from "isaacscript-common";
+import { RaceFormat } from "../../enums/RaceFormat";
+import { RacerStatus } from "../../enums/RacerStatus";
+import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { RaceFormat } from "./types/RaceFormat";
-import { RacerStatus } from "./types/RacerStatus";
-import { RaceStatus } from "./types/RaceStatus";
 
 const SCOLEX_TYPE = EntityType.ENTITY_PIN;
 const SCOLEX_VARIANT = PinVariant.SCOLEX;

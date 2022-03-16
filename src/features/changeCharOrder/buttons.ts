@@ -10,12 +10,12 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { season2SetBansTime } from "../speedrun/season2/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import { ChangeCharOrderPhase } from "./types/ChangeCharOrderPhase";
 import v, { getSeasonDescription } from "./v";
 
 const FADE_RENDER_FRAMES = 38; // 38 is the largest value that works

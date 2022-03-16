@@ -1,10 +1,10 @@
 import { findFreePosition } from "isaacscript-common";
+import { RaceGoal } from "../../../enums/RaceGoal";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as trophy from "../../mandatory/trophy";
-import { RaceGoal } from "../types/RaceGoal";
-import { RacerStatus } from "../types/RacerStatus";
-import { RaceStatus } from "../types/RaceStatus";
 
 export function racePostUpdate(): void {
   if (!config.clientCommunication) {
