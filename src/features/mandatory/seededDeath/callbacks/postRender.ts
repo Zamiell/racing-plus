@@ -3,10 +3,10 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isKeeper,
 } from "isaacscript-common";
+import { TimerType } from "../../../../enums/TimerType";
 import * as timer from "../../../../timer";
 import { ChallengeCustom } from "../../../../types/ChallengeCustom";
 import { SeededDeathState } from "../../../../types/SeededDeathState";
-import { TimerType } from "../../../../types/TimerType";
 import {
   SEEDED_DEATH_FEATURE_NAME,
   SEEDED_DEATH_TIMER_SEASON_OFFSET_X,

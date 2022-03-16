@@ -1,6 +1,6 @@
-import { CollectibleTypeCustom } from "./CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
-export const TRANSFORMATION_HELPERS: ReadonlySet<CollectibleTypeCustom> =
+export const TRANSFORMATION_HELPERS_SET: ReadonlySet<CollectibleTypeCustom> =
   new Set([
     CollectibleTypeCustom.COLLECTIBLE_GUPPY_TRANSFORMATION_HELPER,
     CollectibleTypeCustom.COLLECTIBLE_BEELZEBUB_TRANSFORMATION_HELPER,

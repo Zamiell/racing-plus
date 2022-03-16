@@ -5,9 +5,9 @@ import {
   isJacobOrEsau,
   repeat,
 } from "isaacscript-common";
+import { TimerType } from "./enums/TimerType";
 import g from "./globals";
 import { initSprite } from "./sprite";
-import { TimerType } from "./types/TimerType";
 
 interface Sprites {
   clock: Sprite;

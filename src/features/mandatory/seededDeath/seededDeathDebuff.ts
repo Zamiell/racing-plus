@@ -17,10 +17,10 @@ import {
   sfxManager,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { TRANSFORMATION_TO_HELPER_MAP } from "../../../maps/transformationToHelperMap";
+import { TRANSFORMATION_TO_HELPERS } from "../../../objects/transformationToHelper";
+import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { CollectibleTypeCustom } from "../../../types/CollectibleTypeCustom";
-import { TRANSFORMATION_HELPERS } from "../../../types/transformationHelpers";
 import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
 import v from "./v";
@@ -159,7 +159,7 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
     repeat(collectibleNum, () => {
-      if (!TRANSFORMATION_HELPERS.has(collectibleType)) {
+      if (!TRANSFORMATION_HELPERS_SET.has(collectibleType)) {
         collectibles.push(collectibleType);
       }
 
@@ -343,8 +343,7 @@ function giveTransformationHelper(
 ) {
   const transformations = getTransformationsForCollectibleType(collectibleType);
   for (const transformation of transformations.values()) {
-    const helperCollectibleType =
-      TRANSFORMATION_TO_HELPER_MAP.get(transformation);
+    const helperCollectibleType = TRANSFORMATION_TO_HELPERS.get(transformation);
     if (helperCollectibleType !== undefined) {
       player.AddCollectible(helperCollectibleType);
     }

@@ -1,6 +1,6 @@
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
-export const TRANSFORMATION_TO_HELPER_MAP: ReadonlyMap<
+export const TRANSFORMATION_TO_HELPERS: ReadonlyMap<
   PlayerForm,
   CollectibleTypeCustom
 > = new Map([

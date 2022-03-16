@@ -1,6 +1,6 @@
 import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
+import { TimerType } from "../../enums/TimerType";
 import * as timer from "../../timer";
-import { TimerType } from "../../types/TimerType";
 import { shouldDrawRaceTimer } from "../race/raceTimer";
 import v from "./v";
 
