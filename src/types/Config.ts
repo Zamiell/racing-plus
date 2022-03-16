@@ -97,8 +97,6 @@ export class Config {
   twentyTwenty = true; // 5.100.245
   starOfBethlehem = true; // 5.100.651
   uniqueCardBacks = true; // 5.300
-  errorTrinket = true; // 5.350.75
-  locustOfFamine = true; // 5.350.115
   hudOffsetFix = true;
   holidayHats = true;
 

@@ -1065,41 +1065,19 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "errorTrinket", // 5.350.75
-    [
-      ModConfigMenuOptionType.TEXT,
-      "1008",
-      "Better Error trinket",
-      "Make the Error trinket sprite have an outline.",
-    ],
-  ],
-  [
-    "locustOfFamine", // 5.350.115
-    [
-      ModConfigMenuOptionType.TEXT,
-      "1009",
-      "Better Locust of Famine",
-      "Make the Locust of Famine sprite match the color of the flies.",
-    ],
-  ],
-  [
     "hudOffsetFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1010",
+      "1008",
       "Fix HUD offset",
       "Fix the default HUD offset to be the same as it was in Afterbirth+.",
     ],
   ],
-];
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     "holidayHats",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1011",
+      "1009",
       "Holiday hats",
       "Show a festive hat during a holiday.",
     ],
@@ -1113,6 +1091,10 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
       "Make empty red hearts easier to see.",
     ],
   ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     null,
     [
@@ -1138,6 +1120,24 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
       "",
       "Better Purity colors",
       "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.",
+    ],
+  ],
+  [
+    null, // 5.350.75
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better Error trinket",
+      "Make the Error trinket sprite have an outline.",
+    ],
+  ],
+  [
+    null, // 5.350.115
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Better Locust of Famine",
+      "Make the Locust of Famine sprite match the color of the flies.",
     ],
   ],
   [

@@ -1,0 +1,1 @@
+Normally, the updated trinket sprites would be we would be suffixed with "_custom" and be an toggleable feature. However, this is not possible with trinkets, because there is no way to update the UI in the bottom-right-hand corner.

@@ -372,25 +372,25 @@ Post-flip actions:
 - `1002` <!-- scaredHeart 5.10.9 --> Scared Hearts now have a custom animation so that they are easier to identify.
 - `1003` <!-- stickyNickel 5.20.6 --> Sticky Nickels now have a custom effect so that they are easier to identify.
 - `1004` <!-- flyItemSprites 5.100.57, 5.100.128, 5.100.364 --> The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
-- `1005` <!-- twentyTwenty, "collectibles_245_2020_custom.png", 5.100.245 --> The 20/20 sprite is now easier to see.
-- `1006` <!-- starOfBethlehem, "collectibles_651_starofbethlehem_custom.png", 5.100.651 --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).)
+- `1005` <!-- twentyTwenty, 5.100.245, "collectibles_245_2020_custom.png" --> The 20/20 sprite is now easier to see.
+- `1006` <!-- starOfBethlehem, 5.100.651, "collectibles_651_starofbethlehem_custom.png" --> The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).)
 - `1007` <!-- uniqueCardBacks 5.300 --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
-- `1008` <!-- errorTrinket, "trinket_075_error_custom.png", 5.350.75 --> The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
-- `1009` <!-- locustOfFamine, "trinket_115_locustoffamine_custom.png", 5.350.115 --> The Locust of Famine sprite now matches the color of the flies.
-- `1010` <!-- hudOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
+- `1008` <!-- hudOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
 
 > Why? This is how it was in Afterbirth+ and is likely the intended default value.
 
-- `1011` <!-- holidayHats --> Show a festive hat during a holiday.
+- `1009` <!-- holidayHats --> Show a festive hat during a holiday.
 - <!-- "ui_hearts.png" --> The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
-- Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
-- The color of some pills are changed to make them easier to identify at a glance:
+- <!-- 5.70 --> Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
+- <!-- 5.70 --> The color of some pills are changed to make them easier to identify at a glance:
   - <!-- PILL_ORANGE_ORANGE (3) --> Orange / Orange --> Full purple
   - <!-- PILL_REDDOTS_RED (5) --> White-dotted / Red --> Full red
   - <!-- PILL_PINK_RED (6) --> Pink / Red --> White / Red
   - <!-- PILL_ORANGEDOTS_WHITE (9) --> White / White-dotted --> Full white-dotted
   - <!-- PILL_WHITE_AZURE (10) --> White / Cyan --> White / Green
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
+- <!-- 5.350.75, "trinket_075_error.png" (cannot be toggleable) --> The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
+- <!-- 5.350.115, "trinket_115_locustoffamine.png" (cannot be toggleable) --> The Locust of Famine sprite now matches the color of the flies.
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - <!-- controlsGraphic --> The controls graphic in the start room is changed to be speedrunning-themed.
 - <!-- "teammeatfont10.fnt", "teammeatfont10_0.png" --> The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
