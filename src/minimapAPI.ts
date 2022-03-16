@@ -89,20 +89,6 @@ function initMinimapAPICards(customIcons: Sprite) {
     1200,
   );
 
-  // Card.CARD_RULES (44)
-  // New sprite for Rules Card
-  MinimapAPI.AddIcon("Rules", customIcons, "CustomIconRules", 0);
-  MinimapAPI.AddPickup(
-    "Rules",
-    "Rules",
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
-    Card.CARD_RULES,
-    MinimapAPI.PickupNotCollected,
-    "cards",
-    1200,
-  );
-
   // Card.CARD_SUICIDE_KING (46)
   // New sprite for Suicide King
   MinimapAPI.AddIcon("SuicideKing", customIcons, "CustomIconSuicideKing", 0);

@@ -10,6 +10,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config, hotkeys } from "../../../modConfigMenu";
+import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 
 const FEATURE_NAME = "roll";
 const ROLL_STOP_FRAME = 17; // The total length of each roll animation is 25 frames
@@ -46,10 +47,7 @@ export function postRender(): void {
 }
 
 function checkInput() {
-  const isPaused = g.g.IsPaused();
-
-  // Don't check for inputs when the game is paused or the console is open
-  if (isPaused) {
+  if (!shouldCheckForGameplayInputs()) {
     return;
   }
 

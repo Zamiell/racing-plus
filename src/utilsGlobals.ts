@@ -34,6 +34,17 @@ export function giveTrinketAndRemoveFromPools(
   g.itemPool.RemoveTrinket(trinketType);
 }
 
+/**
+ * Don't check for inputs when:
+ * - the game is paused
+ * - the console is open
+ * - Mod Config Menu is open
+ */
+export function shouldCheckForGameplayInputs(): boolean {
+  const isPaused = g.g.IsPaused();
+  return !isPaused && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible);
+}
+
 export function unseed(): void {
   // Invoking the "Reset()" method will cause the log to be spammed with:
   // [ASSERT] - Error: Game Start Seed was not set.

@@ -1,6 +1,6 @@
 import { getPlayers, isKeyboardPressed } from "isaacscript-common";
-import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
+import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 
 let isPressed = false;
 
@@ -15,10 +15,7 @@ export function postRender(): void {
 }
 
 function checkInput() {
-  const isPaused = g.g.IsPaused();
-
-  // Don't check for inputs when the game is paused or the console is open
-  if (isPaused) {
+  if (!shouldCheckForGameplayInputs()) {
     return;
   }
 

@@ -3,8 +3,8 @@ import {
   getPlayers,
   isKeyboardPressed,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
+import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 
 enum FastDropTarget {
   ALL,
@@ -14,10 +14,7 @@ enum FastDropTarget {
 
 // ModCallbacks.MC_POST_RENDER (2)
 export function postRender(): void {
-  const isPaused = g.g.IsPaused();
-
-  // Don't check for inputs when the game is paused or the console is open
-  if (isPaused) {
+  if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
