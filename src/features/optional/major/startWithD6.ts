@@ -18,6 +18,7 @@ import {
   defaultMapGetPlayer,
   findFreePosition,
   getCollectibleMaxCharges,
+  getPlayerName,
   getPlayers,
   getTotalCharge,
   hasOpenActiveItemSlot,
@@ -189,6 +190,8 @@ export function postFirstFlip(player: EntityPlayer): void {
     return;
   }
 
+  // Giving Dead Tainted Lazarus the pocket D6 using the "getTaintedLazarusSubPlayer" function does
+  // not work, so we revert to using the PostFirstFlip callback
   changedCharacterInSomeWay(player);
 }
 
@@ -277,7 +280,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
     return;
   }
 
-  // Tainted Soul (40) is a special case; he cannot pick up items
+  // Tainted Soul (40) is a special case; he cannot use items
   if (character === PlayerType.PLAYER_THESOUL_B) {
     return;
   }
@@ -286,7 +289,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
     return;
   }
 
-  // If they are switching characters, get the charge from the D6 on the previous frame
+  // If we are switching characters, get the charge from the D6 on the previous frame
   const d6Charge = defaultMapGetPlayer(
     v.run.playersPocketActiveD6Charge,
     player,
@@ -299,12 +302,13 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   );
   player.SetActiveCharge(d6Charge, ActiveSlot.SLOT_POCKET);
 
-  // If they previously had a pocket active item, move it to the normal active item slot
+  // If we previously had a pocket active item, move it to the normal active item slot
   if (pocketItem !== CollectibleType.COLLECTIBLE_NULL && !gotHereFromEsauJr) {
     giveActiveItem(player, pocketItem, pocketItemCharge);
   }
 
-  log("Awarded a pocket active D6.");
+  const playerName = getPlayerName(player);
+  log(`Awarded a pocket active D6 to: ${playerName}`);
 }
 
 function giveActiveItem(

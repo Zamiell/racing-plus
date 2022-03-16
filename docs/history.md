@@ -3,6 +3,7 @@
 ### *v0.79.1* - March ?th, 2022
 
 - The "Change Char Order" challenge will now take you directly to the season after you finish choosing.
+- !Fixed the bug in season 2 where two Checkpoints would appear after defeating The Lamb. (Thanks Gamonymous)
 
 ### *v0.79.0* - March 14th, 2022
 
