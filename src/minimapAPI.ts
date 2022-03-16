@@ -61,10 +61,6 @@ function initMinimapAPICards(customIcons: Sprite) {
     return;
   }
 
-  // Card.CARD_EMERGENCY_CONTACT (50)
-  // Cleaner sprite for Emergency Contact
-  MinimapAPI.AddIcon("MomsContract", customIcons, "CustomIconMomsContract", 0);
-
   // Card.RUNE_BLANK (40)
   // New sprite for Blank Rune
   MinimapAPI.AddIcon("BlankRune", customIcons, "CustomIconBlankRune", 0);
