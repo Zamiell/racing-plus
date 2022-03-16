@@ -6,7 +6,6 @@ import {
   getEffects,
   getPlayers,
   getRoomGridIndexesForType,
-  getRooms,
   inStartingRoom,
   log,
   onSetSeed,
@@ -17,7 +16,7 @@ import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementRoomsEntered } from "../../../utils/roomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
-import { setMinimapVisible } from "./minimap";
+import { getMinimapDisplayFlagsMap } from "./minimap";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
@@ -64,8 +63,6 @@ function startWarp() {
     return;
   }
 
-  setMinimapVisible(false);
-
   // After using Glowing Hour Glass, the minimap will be bugged
   // We can work around this by manually recording all of the minimap state beforehand,
   // and then restoring it later
@@ -95,21 +92,7 @@ function startWarp() {
   warpToNextDreamCatcherRoom();
 }
 
-function getMinimapDisplayFlagsMap() {
-  const displayFlags = new Map<int, int>();
-  for (const roomDesc of getRooms()) {
-    if (roomDesc.SafeGridIndex < 0) {
-      continue;
-    }
-
-    displayFlags.set(roomDesc.SafeGridIndex, roomDesc.DisplayFlags);
-  }
-
-  return displayFlags;
-}
-
 export function warpToNextDreamCatcherRoom(): void {
-  const hud = g.g.GetHUD();
   const players = getPlayers();
 
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
@@ -121,8 +104,6 @@ export function warpToNextDreamCatcherRoom(): void {
   }
 
   log("Dream Catcher - Finished warping.");
-
-  hud.SetVisible(true);
 
   // At this point, the player will briefly show the animation of holding the Glowing Hour Glass
   // above their head

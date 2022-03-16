@@ -6,9 +6,10 @@ import {
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
+import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { centerPlayers } from "../../../../mandatory/centerStart";
-import { restoreMinimapDisplayFlags, setMinimapVisible } from "../minimap";
+import { restoreMinimapDisplayFlags } from "../minimap";
 import * as sprites from "../sprites";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
@@ -52,15 +53,16 @@ function repositionPlayer() {
     }
   });
 
-  // Restore the minimap
   restoreMinimapDisplayFlags(v.level.displayFlagsMap);
-  setMinimapVisible(true);
 
   // Restore the player's health
   const player = Isaac.GetPlayer();
   if (v.level.health !== null) {
     setPlayerHealth(player, v.level.health);
   }
+
+  const hud = g.g.GetHUD();
+  hud.SetVisible(true);
 
   enableAllSound(DREAM_CATCHER_FEATURE_NAME);
 }
