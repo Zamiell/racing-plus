@@ -20,7 +20,6 @@ import {
   getCollectibleMaxCharges,
   getPlayers,
   getTotalCharge,
-  hasFlag,
   hasOpenActiveItemSlot,
   inGenesisRoom,
   isJacobOrEsau,
@@ -108,9 +107,17 @@ export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
     return;
   }
 
+  // When using the Flip manually, "useFlags" will be equal to 27, which is the composition of the
+  // following flags:
+  // - UseFlags.USE_NOANIM (1 << 0)
+  // - UseFlags.USE_NOCOSTUME (1 << 1)
+  // - UseFlags.USE_ALLOWNONMAIN (1 << 3)
+  // - UseFlags.USE_REMOVEACTIVE (1 << 4)
+  // When the game uses Flip automatically after clearing a room, "useFlags" will be equal to 0
+  // Since none of these flags correspond highly to using the item, default to checking for 0
   const flipCharge = getTotalCharge(player, flipActiveSlot);
-  const manualUse = hasFlag(useFlags, UseFlag.USE_OWNED);
-  v.run.currentFlipCharge = manualUse ? 0 : flipCharge;
+  const flipTriggeredByRoomClear = useFlags === 0;
+  v.run.currentFlipCharge = flipTriggeredByRoomClear ? flipCharge : 0;
 }
 
 function getFlipActiveSlot(player: EntityPlayer) {
