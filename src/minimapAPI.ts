@@ -16,7 +16,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
   }
 
   // PillColor.PILL_ORANGE_ORANGE (3)
-  // Getting rid of the ugly white pixel
+  // Orange / Orange --> Full purple
   MinimapAPI.AddIcon(
     "PillOrangeOrange",
     customIcons,
@@ -25,7 +25,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
   );
 
   // PillColor.PILL_REDDOTS_RED (5)
-  // Red dots / red --> full red
+  // White-dotted / Red --> Full red
   MinimapAPI.AddIcon(
     "PillReddotsRed",
     customIcons,
@@ -34,7 +34,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
   );
 
   // PillColor.PILL_PINK_RED (6)
-  // Pink red / red --> white / red
+  // Pink / Red --> White / Red
   MinimapAPI.AddIcon("PillPinkRed", customIcons, "CustomIconPillPinkRed", 0);
 
   // PillColor.PILL_YELLOW_ORANGE (8)
@@ -47,11 +47,20 @@ function initMinimapAPIPills(customIcons: Sprite) {
   );
 
   // PillColor.PILL_ORANGEDOTS_WHITE (9)
-  // Orange dots / white --> full white dots
+  // White / White-dotted / Full white-dotted
   MinimapAPI.AddIcon(
     "PillOrangedotsWhite",
     customIcons,
     "CustomIconPillOrangedotsWhite",
+    0,
+  );
+
+  // PillColor.PILL_WHITE_AZURE (10)
+  // White / Cyan --> White / Green
+  MinimapAPI.AddIcon(
+    "PillWhiteAzure",
+    customIcons,
+    "CustomIconPillWhiteAzure",
     0,
   );
 }
@@ -86,20 +95,6 @@ function initMinimapAPICards(customIcons: Sprite) {
     Card.RUNE_BLACK,
     MinimapAPI.PickupNotCollected,
     "runes",
-    1200,
-  );
-
-  // Card.CARD_SUICIDE_KING (46)
-  // New sprite for Suicide King
-  MinimapAPI.AddIcon("SuicideKing", customIcons, "CustomIconSuicideKing", 0);
-  MinimapAPI.AddPickup(
-    "SuicideKing",
-    "SuicideKing",
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
-    Card.CARD_SUICIDE_KING,
-    MinimapAPI.PickupNotCollected,
-    "cards",
     1200,
   );
 
