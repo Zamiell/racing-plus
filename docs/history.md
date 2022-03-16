@@ -2,8 +2,10 @@
 
 ### *v0.79.3* - March 16th, 2022
 
+- Happy Saint Patrick's Day!
 - Fixed the bug where the new Error trinket sprite was not showing correctly. (Thanks Gamonymous)
 - Fixed the bug where the new Locust of Famine sprite was not showing correctly.
+- Fixed the bug where fast-travel would not work properly when leaving the floor as The Soul when The Forgotten was in a different room. (Thanks Hispa)
 
 ### *v0.79.2* - March 15th, 2022
 

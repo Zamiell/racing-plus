@@ -177,19 +177,27 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
 }
 
 function warpForgottenBody(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+
   // If The Soul is travelling to the next floor, the Forgotten body will also need to be teleported
-  if (player.GetPlayerType() !== PlayerType.PLAYER_THESOUL) {
+  if (character !== PlayerType.PLAYER_THESOUL) {
     return;
   }
 
-  // If we change the position of the Forgotten Body manually,
+  // If the player has Birthright, the Forgotten body might not be in this room
+  // If this is the case, do nothing
+  const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
+  if (forgottenBodies.length === 0) {
+    return;
+  }
+
+  // If we change the position of the Forgotten body manually,
   // it will warp back to the same spot on the next frame
   // Instead, manually switch to the Forgotten to avoid this bug
   forgottenSwitch();
 
-  // Also warp the body to where The Soul is so that The Forgotten won't jump down through a normal
-  // floor
-  const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
+  // Also warp the body to where The Soul is so that The Forgotten won't jump down through a
+  // non-trapdoor tile
   for (const forgottenBody of forgottenBodies) {
     forgottenBody.Position = player.Position;
   }
