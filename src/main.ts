@@ -74,6 +74,7 @@ import * as roomClearChanged from "./callbacksCustom/roomClearChanged";
 import { MOD_NAME, VERSION } from "./constants";
 import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
 import { initFeatureVariables } from "./initFeatureVariables";
+import { initMinimapAPI } from "./minimapAPI";
 
 main();
 
@@ -83,6 +84,7 @@ function main() {
 
   welcomeBanner();
   initFeatureVariables();
+  initMinimapAPI();
 
   enableExtraConsoleCommands(mod); // Initialize extra console commands from the standard library
   enableExtraConsoleCommandsRacingPlus(); // Initialize extra console commands from Racing+
