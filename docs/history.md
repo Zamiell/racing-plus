@@ -1,5 +1,10 @@
 # Racing+ Version History and News
 
+### *v0.79.3* - March 16th, 2022
+
+- Fixed the bug where the new Error trinket sprite was not showing correctly. (Thanks Gamonymous)
+- Fixed the bug where the new Locust of Famine sprite was not showing correctly.
+
 ### *v0.79.2* - March 15th, 2022
 
 - Fixed the bug where angels could drop the same key piece under certain conditions. (Thanks thereisnofuture)

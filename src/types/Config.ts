@@ -90,13 +90,15 @@ export class Config {
   removeInvalidPitfalls = true;
 
   // GFX
-  flyItemSprites = true; // 57, 128, 364 (CollectibleType)
-  twentyTwenty = true; // 245 (CollectibleType)
-  starOfBethlehem = true; // 651 (CollectibleType)
-  paschalCandle = true; // 221 (FamiliarVariant)
-  scaredHeart = true; // 10.9 (PickupVariant, HeartSubType)
-  stickyNickel = true; // 20.6 (PickupVariant, CoinSubType)
-  uniqueCardBacks = true; // 300 (PickupVariant)
+  paschalCandle = true; // 3.221
+  scaredHeart = true; // 5.10.9
+  stickyNickel = true; // 5.20.6
+  flyItemSprites = true; // 5.100.57, 5.100.128, 5.100.364
+  twentyTwenty = true; // 5.100.245
+  starOfBethlehem = true; // 5.100.651
+  uniqueCardBacks = true; // 5.300
+  errorTrinket = true; // 5.350.75
+  locustOfFamine = true; // 5.350.115
   hudOffsetFix = true;
   holidayHats = true;
 

@@ -1002,61 +1002,61 @@ export const BUG_FIXES_2: ConfigDescriptions = [
 // 1001-1010
 export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
   [
-    "flyItemSprites",
+    "paschalCandle", // 3.221
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1001",
-      "Fix fly colors",
-      "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
-    ],
-  ],
-  [
-    "twentyTwenty",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1002",
-      "Better 20/20",
-      "Make the 20/20 sprite easier to see.",
-    ],
-  ],
-  [
-    "starOfBethlehem",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1003",
-      "Better Star of Bethlehem",
-      "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
-    ],
-  ],
-  [
-    "paschalCandle",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1004",
       "Better Paschal Candle",
       'Make Paschal Candle "fill up" so that you can easily tell at a glance if it is maxed out.',
     ],
   ],
   [
-    "scaredHeart",
+    "scaredHeart", // 5.10.9
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1005",
+      "1002",
       "Distinct Scared Hearts",
       "Make Sticky Nickels have a custom animation so that they are easier to identify.",
     ],
   ],
   [
-    "stickyNickel",
+    "stickyNickel", // 5.20.6
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1006",
+      "1003",
       "Distinct Sticky Nickels",
       "Make Sticky Nickels have a custom effect so that they are easier to identify.",
     ],
   ],
   [
-    "uniqueCardBacks",
+    "flyItemSprites", // 5.100.57, 5.100.128, 5.100.364
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1004",
+      "Fix fly colors",
+      "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
+    ],
+  ],
+  [
+    "twentyTwenty", // 5.100.245
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1005",
+      "Better 20/20",
+      "Make the 20/20 sprite easier to see.",
+    ],
+  ],
+  [
+    "starOfBethlehem", // 5.100.651
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1006",
+      "Better Star of Bethlehem",
+      "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
+    ],
+  ],
+  [
+    "uniqueCardBacks", // 5.300
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1007",
@@ -1065,19 +1065,41 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
+    "errorTrinket", // 5.350.75
+    [
+      ModConfigMenuOptionType.TEXT,
+      "1008",
+      "Better Error trinket",
+      "Make the Error trinket sprite have an outline.",
+    ],
+  ],
+  [
+    "locustOfFamine", // 5.350.115
+    [
+      ModConfigMenuOptionType.TEXT,
+      "1009",
+      "Better Locust of Famine",
+      "Make the Locust of Famine sprite match the color of the flies.",
+    ],
+  ],
+  [
     "hudOffsetFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1008",
+      "1010",
       "Fix HUD offset",
       "Fix the default HUD offset to be the same as it was in Afterbirth+.",
     ],
   ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     "holidayHats",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1009",
+      "1011",
       "Holiday hats",
       "Show a festive hat during a holiday.",
     ],
@@ -1089,28 +1111,6 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "",
       "Fix Heart UI",
       "Make empty red hearts easier to see.",
-    ],
-  ],
-];
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fix Locust of Famine",
-      "Make the Locust of Famine sprite match the color of the flies.",
-    ],
-  ],
-  [
-    null,
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fix Error",
-      "Make the Error trinket sprite have an outline.",
     ],
   ],
   [
