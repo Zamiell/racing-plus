@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.2* - March 15th, 2022
+
+- Fixed the bug where angels could drop the same key piece under certain conditions. (Thanks thereisnofuture)
+
 ### *v0.79.1* - March 15th, 2022
 
 - The "Change Char Order" challenge will now take you directly to the season after you finish choosing.

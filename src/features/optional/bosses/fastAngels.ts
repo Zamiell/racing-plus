@@ -6,6 +6,7 @@
 import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
+  countEntities,
   findFreePosition,
   spawnCollectible,
 } from "isaacscript-common";
@@ -56,7 +57,7 @@ function spawnKeyPiece(entity: Entity) {
   // Spawn the item
   // (in vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free)
   // We use the start seed instead of "entity.InitSeed" so that the code remains consistent with the
-  // fastKrampus feature code
+  // "fastKrampus" feature code
   const startSeed = g.seeds.GetStartSeed();
   const position = findFreePosition(entity.Position);
   const collectibleType = getKeySubType(entity);
@@ -95,34 +96,68 @@ function shouldSpawnKeyPiece(entity: Entity) {
 }
 
 function getKeySubType(entity: Entity) {
-  if (anyPlayerHasTrinket(TrinketType.TRINKET_FILIGREE_FEATHERS)) {
+  const hasFiligreeFeather = anyPlayerHasTrinket(
+    TrinketType.TRINKET_FILIGREE_FEATHERS,
+  );
+  const hasKeyPiece1 = anyPlayerHasCollectible(
+    CollectibleType.COLLECTIBLE_KEY_PIECE_1,
+  );
+  const hasKeyPiece2 = anyPlayerHasCollectible(
+    CollectibleType.COLLECTIBLE_KEY_PIECE_2,
+  );
+  const numKeyPiece1 = countEntities(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+    CollectibleType.COLLECTIBLE_KEY_PIECE_1,
+  );
+  const keyPiece1Spawned = numKeyPiece1 > 0;
+  const numKeyPiece2 = countEntities(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+    CollectibleType.COLLECTIBLE_KEY_PIECE_2,
+  );
+  const keyPiece2Spawned = numKeyPiece2 > 0;
+
+  // First, handle the special case of the Filigree Feather trinket
+  if (hasFiligreeFeather) {
     // Even if the player has both key pieces,
     // Filigree Feather will still make an angel drop a random item
     return CollectibleType.COLLECTIBLE_NULL; // A random item
   }
 
+  // Second, try to assign key pieces based on the type of angel that was killed
   if (
     entity.Type === EntityType.ENTITY_URIEL &&
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
+    !hasKeyPiece1 &&
+    !keyPiece1Spawned
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
   }
 
   if (
     entity.Type === EntityType.ENTITY_GABRIEL &&
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
+    !hasKeyPiece2 &&
+    !keyPiece2Spawned
   ) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_2;
   }
 
-  // In vanilla, angels will always drop their respective key piece
-  // Since it is possible on Racing+ for two of the same angel to spawn,
-  // ensure that an angel will drop the other key piece instead of dropping nothing
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)) {
+  // Third, try to assign key pieces based on what the players have already
+  if (hasKeyPiece1) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_2;
   }
 
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)) {
+  if (hasKeyPiece2) {
+    return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
+  }
+
+  // Fourth, try to assign key pieces based on the ones that are already dropped
+  // (from fighting multiple angels in the same room)
+  if (keyPiece1Spawned) {
+    return CollectibleType.COLLECTIBLE_KEY_PIECE_2;
+  }
+
+  if (keyPiece2Spawned) {
     return CollectibleType.COLLECTIBLE_KEY_PIECE_1;
   }
 
