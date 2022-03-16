@@ -12,7 +12,7 @@ const v = {
   room: {
     aliveEnemies: new Set<PtrHash>(),
     delayClearUntilFrame: null as int | null,
-    earlyClearedRoom: false,
+    fastClearedRoom: false,
   },
 };
 export default v;

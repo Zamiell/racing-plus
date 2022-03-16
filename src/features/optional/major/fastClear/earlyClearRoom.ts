@@ -28,7 +28,7 @@ function checkEarlyClearRoom() {
   const roomClear = g.r.IsClear();
 
   // Do nothing if we already cleared the room
-  if (v.room.earlyClearedRoom) {
+  if (v.room.fastClearedRoom) {
     return;
   }
 
@@ -79,8 +79,8 @@ function earlyClearRoom() {
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
 
-  v.room.earlyClearedRoom = true;
-  log(`Early clearing the room on game frame: ${gameFrameCount} (fast-clear)`);
+  v.room.fastClearedRoom = true;
+  log(`Fast-clearing the room on game frame: ${gameFrameCount}`);
 
   // The "TriggerClear()" method must be before other logic because extra doors can be spawned by
   // clearing the room

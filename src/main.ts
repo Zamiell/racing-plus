@@ -70,6 +70,7 @@ import * as postSlotRender from "./callbacksCustom/postSlotRender";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
+import * as roomClearChanged from "./callbacksCustom/roomClearChanged";
 import { MOD_NAME, VERSION } from "./constants";
 import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
 import { initFeatureVariables } from "./initFeatureVariables";
@@ -147,6 +148,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postGameStartedReordered.init(mod);
   postNewLevelReordered.init(mod);
   postNewRoomReordered.init(mod);
+  roomClearChanged.init(mod);
   postPEffectUpdateReordered.init(mod);
   postPlayerInitLate.init(mod);
   postNPCInitLate.init(mod);
