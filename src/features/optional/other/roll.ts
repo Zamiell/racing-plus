@@ -1,7 +1,8 @@
 import {
+  capitalizeFirstLetter,
+  DIRECTION_NAMES,
   disableAllInputs,
   enableAllInputs,
-  ensureAllCases,
   isActionPressedOnAnyInput,
   isJacobOrEsau,
   isKeyboardPressed,
@@ -115,36 +116,13 @@ function playRollingAnimation(player: EntityPlayer) {
 }
 
 function getRollingAnimation(direction: Direction) {
-  switch (direction) {
-    // -1
-    case Direction.NO_DIRECTION: {
-      return "RollingDown";
-    }
+  const defaultDirectionName = DIRECTION_NAMES[Direction.DOWN] as string;
+  const directionName = DIRECTION_NAMES[direction];
+  const suffix =
+    directionName === undefined ? defaultDirectionName : directionName;
+  const capitalizedSuffix = capitalizeFirstLetter(suffix);
 
-    // 0
-    case Direction.LEFT: {
-      return "RollingLeft";
-    }
-
-    // 1
-    case Direction.UP: {
-      return "RollingUp";
-    }
-
-    // 2
-    case Direction.RIGHT: {
-      return "RollingRight";
-    }
-
-    // 3
-    case Direction.DOWN: {
-      return "RollingDown";
-    }
-
-    default: {
-      return ensureAllCases(direction);
-    }
-  }
+  return `Rolling${capitalizedSuffix}`;
 }
 
 // ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
