@@ -1,6 +1,7 @@
 import {
   ISAAC_FRAMES_PER_SECOND,
   isEven,
+  log,
   preventCollectibleRotate,
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
@@ -192,6 +193,7 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
 }
 
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
+  log("Spawned a Checkpoint custom collectible.");
   removeCollectiblePickupDelay(checkpoint);
   preventCollectibleRotate(
     checkpoint,

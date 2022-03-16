@@ -29,6 +29,7 @@ import * as consistentAngels from "./features/optional/bosses/consistentAngels";
 import * as fastPin from "./features/optional/bosses/fastPin";
 import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
+import * as preventVictoryLapPopup from "./features/optional/bosses/preventVictoryLapPopup";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as keeperHeal from "./features/optional/bugfix/keeperHeal";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
@@ -127,6 +128,7 @@ export function initFeatureVariables(): void {
   fastPin.init(); // 62
   fastSatan.init(); // 84
   consistentAngels.init(); // 271, 272
+  preventVictoryLapPopup.init(); // 273
 
   // QoL
   showPills.init();

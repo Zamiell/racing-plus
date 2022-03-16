@@ -6,11 +6,26 @@ import {
   onDarkRoom,
   openAllDoors,
   runNextGameFrame,
+  saveDataManager,
   sfxManager,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { EffectVariantCustom } from "../../../types/EffectVariantCustom";
+
+const v = {
+  room: {
+    pseudoClearedRoom: false,
+  },
+};
+
+export function init(): void {
+  saveDataManager("preventVictoryLapPopup", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.preventVictoryLapPopup;
+}
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
 // EntityType.ENTITY_THE_LAMB (273)
@@ -38,6 +53,11 @@ export function postEntityKillLamb(entity: Entity): void {
     if (!isAllLambEntitiesDead()) {
       return;
     }
+
+    if (v.room.pseudoClearedRoom) {
+      return;
+    }
+    v.room.pseudoClearedRoom = true;
 
     spawnRoomClearDelayEffect();
     emulateRoomClear();
