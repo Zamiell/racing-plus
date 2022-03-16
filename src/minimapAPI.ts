@@ -8,6 +8,7 @@ export function initMinimapAPI(): void {
 
   initMinimapAPIPills(customIcons);
   initMinimapAPICards(customIcons);
+  initMinimapAPIRoomIcons(customIcons);
 }
 
 function initMinimapAPIPills(customIcons: Sprite) {
@@ -111,4 +112,12 @@ function initMinimapAPICards(customIcons: Sprite) {
     "cards",
     1200,
   );
+}
+
+function initMinimapAPIRoomIcons(customIcons: Sprite) {
+  if (MinimapAPI === undefined) {
+    return;
+  }
+
+  MinimapAPI.AddIcon("BarrenRoom", customIcons, "CustomBarrenRoom", 0);
 }
