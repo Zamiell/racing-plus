@@ -7,7 +7,7 @@
   />
   <Content>
     <Spritesheets>
-      <Spritesheet Path="costumes\costume_halloweenhat.png" Id="0" />
+      <Spritesheet Path="costumes\costume_halloween_hat.png" Id="0" />
     </Spritesheets>
     <Layers>
       <Layer Name="head5" Id="0" SpritesheetId="0" />

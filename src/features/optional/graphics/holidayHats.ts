@@ -6,7 +6,7 @@ import { Holiday } from "../../../enums/Holiday";
 import { config } from "../../../modConfigMenu";
 import { HOLIDAY_TO_NULL_ITEM_ID } from "../../../objects/holidayToNullItemID";
 
-const CURRENT_HOLIDAY = Holiday.NONE;
+const CURRENT_HOLIDAY = Holiday.SAINT_PATRICKS_DAY;
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -15,8 +15,14 @@ export function postGameStarted(): void {
   }
 
   const holidayCostumeID = HOLIDAY_TO_NULL_ITEM_ID[CURRENT_HOLIDAY];
-  if (holidayCostumeID === -1) {
+  if (holidayCostumeID === undefined) {
     return;
+  }
+
+  if (holidayCostumeID === -1) {
+    error(
+      `Failed to get the null item ID for holiday costume: ${Holiday[CURRENT_HOLIDAY]} (${CURRENT_HOLIDAY})`,
+    );
   }
 
   const player = Isaac.GetPlayer();
