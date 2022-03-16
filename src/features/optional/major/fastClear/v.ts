@@ -11,7 +11,7 @@ const FAST_CLEAR_DEBUG = true;
 const v = {
   room: {
     aliveEnemies: new Set<PtrHash>(),
-    delayClearUntilFrame: null as int | null,
+    delayClearUntilGameFrame: null as int | null,
     fastClearedRoom: false,
   },
 };

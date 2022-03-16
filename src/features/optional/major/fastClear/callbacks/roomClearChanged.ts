@@ -15,6 +15,7 @@ function checkVanillaRoomClear(roomClear: boolean) {
   // (e.g. the player bombed an angel)
   // Ignore these cases
   if (!roomClear) {
+    log("Room state changed to uncleared.");
     return;
   }
 

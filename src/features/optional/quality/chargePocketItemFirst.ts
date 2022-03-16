@@ -56,7 +56,7 @@ const v = {
     activeItemChargesMap: new DefaultMap<PlayerIndex, Map<ActiveSlot, int>>(
       () => new Map(),
     ),
-    checkForBatteryBumChargesUntilFrame: null as int | null,
+    checkForBatteryBumChargesUntilGameFrame: null as int | null,
   },
 };
 
@@ -91,13 +91,13 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 }
 
 function checkBatteryBumCharge(player: EntityPlayer) {
-  if (v.run.checkForBatteryBumChargesUntilFrame === null) {
+  if (v.run.checkForBatteryBumChargesUntilGameFrame === null) {
     return;
   }
 
   const gameFrameCount = g.g.GetFrameCount();
-  if (gameFrameCount > v.run.checkForBatteryBumChargesUntilFrame) {
-    v.run.checkForBatteryBumChargesUntilFrame = null;
+  if (gameFrameCount > v.run.checkForBatteryBumChargesUntilGameFrame) {
+    v.run.checkForBatteryBumChargesUntilGameFrame = null;
     return;
   }
 
@@ -184,7 +184,8 @@ export function isActionTriggeredItem(
   const roomFrameCount = g.r.GetFrameCount();
   const hasHairpin = player.HasTrinket(TrinketType.TRINKET_HAIRPIN);
 
-  const batteryBumCharging = v.run.checkForBatteryBumChargesUntilFrame !== null;
+  const batteryBumCharging =
+    v.run.checkForBatteryBumChargesUntilGameFrame !== null;
   const hairpinActivating = hasHairpin && roomFrameCount <= 1;
   const shouldStopActiveItemUses = batteryBumCharging || hairpinActivating;
 
@@ -265,7 +266,7 @@ export function postSlotAnimationChangedBatteryBum(
   }
 
   if (currentAnimation === "Prize") {
-    v.run.checkForBatteryBumChargesUntilFrame =
+    v.run.checkForBatteryBumChargesUntilGameFrame =
       gameFrameCount + BATTERY_BUM_CHARGE_DELAY_FRAMES;
   }
 }

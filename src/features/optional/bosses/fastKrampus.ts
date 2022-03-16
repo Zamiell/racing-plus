@@ -6,7 +6,9 @@
 import {
   anyPlayerHasCollectible,
   findFreePosition,
+  getCollectibleName,
   getRandomInt,
+  log,
   spawnCollectible,
 } from "isaacscript-common";
 import { RacerStatus } from "../../../enums/RacerStatus";
@@ -25,6 +27,7 @@ function checkRemoveVanillaKrampusDrop(pickup: EntityPickup) {
   // can drop a collectible is Krampus dropping A Lump of Coal or Krampus' Head
   if (pickup.SpawnerType === EntityType.ENTITY_FALLEN) {
     pickup.Remove();
+    log("Removed a vanilla Krampus drop.");
   }
 }
 
@@ -48,6 +51,9 @@ function spawnKrampusDrop(entity: Entity) {
   const position = findFreePosition(entity.Position);
   const collectibleType = getKrampusItemSubType();
   spawnCollectible(collectibleType, position, startSeed, false, true);
+
+  const collectibleName = getCollectibleName(collectibleType);
+  log(`Spawned fast-Krampus item: ${collectibleName} (${collectibleType})`);
 }
 
 function getKrampusItemSubType() {

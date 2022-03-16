@@ -8,6 +8,8 @@ import {
   anyPlayerHasTrinket,
   countEntities,
   findFreePosition,
+  getCollectibleName,
+  log,
   spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -16,6 +18,10 @@ import { config } from "../../../modConfigMenu";
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export function postPickupInitCollectible(pickup: EntityPickup): void {
+  if (!config.fastAngels) {
+    return;
+  }
+
   checkRemoveVanillaAngelDrop(pickup);
 }
 
@@ -26,6 +32,7 @@ function checkRemoveVanillaAngelDrop(pickup: EntityPickup) {
     pickup.SpawnerType === EntityType.ENTITY_GABRIEL // 272
   ) {
     pickup.Remove();
+    log("Removed a vanilla Angel drop.");
   }
 }
 
@@ -62,6 +69,9 @@ function spawnKeyPiece(entity: Entity) {
   const position = findFreePosition(entity.Position);
   const collectibleType = getKeySubType(entity);
   spawnCollectible(collectibleType, position, startSeed, false, true);
+
+  const collectibleName = getCollectibleName(collectibleType);
+  log(`Spawned fast-angel item: ${collectibleName} (${collectibleType})`);
 }
 
 function shouldSpawnKeyPiece(entity: Entity) {

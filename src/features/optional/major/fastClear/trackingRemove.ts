@@ -60,7 +60,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   // If this was the last NPC in the room that died,
   // we want to delay a frame before opening the doors to give time for splitting enemies to spawn
   // their children
-  v.room.delayClearUntilFrame = gameFrameCount + 1;
+  v.room.delayClearUntilGameFrame = gameFrameCount + 1;
 
   // Next, we check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate
   // callback
