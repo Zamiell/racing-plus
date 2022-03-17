@@ -31,6 +31,7 @@ These are mods that interfere with Racing+ and affect gameplay.
 - [Colorful Lasers!](https://steamcommunity.com/sharedfiles/filedetails/?id=1479395410)
 - [Custom Mr Dollys](https://steamcommunity.com/sharedfiles/filedetails/?id=2489635144)
 - [Literal Item Names](https://steamcommunity.com/sharedfiles/filedetails/?id=1397447846)
+- [Rock Angel](https://steamcommunity.com/sharedfiles/filedetails/?id=2773807008)
 - [Unique Birthright Sprites](https://steamcommunity.com/sharedfiles/filedetails/?id=2690434875)
 - [Unique Minisaacs](https://steamcommunity.com/sharedfiles/filedetails/?id=2622137368)
 

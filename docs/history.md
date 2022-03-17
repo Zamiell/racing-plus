@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.6* - March 16th, 2022
+
+- Fixed the bug where key pieces could not be rolled under certain conditions. (Thanks elgirs)
+
 ### *v0.79.3* - March 16th, 2022
 
 - Happy Saint Patrick's Day!
