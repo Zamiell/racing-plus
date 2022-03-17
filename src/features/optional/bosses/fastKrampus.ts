@@ -44,12 +44,16 @@ export function postEntityKillFallen(entity: Entity): void {
 }
 
 function spawnKrampusDrop(entity: Entity) {
-  // Spawn the item
-  // We must use the start seed instead of "entity.InitSeed" to prevent bugs with items rotating on
-  // Tainted Isaac
-  const startSeed = g.seeds.GetStartSeed();
-  const position = findFreePosition(entity.Position);
   const collectibleType = getKrampusItemSubType();
+  const position = findFreePosition(entity.Position);
+
+  // We cannot use "entity.InitSeed" as the seed because it will cause bugs with the
+  // "preventItemRotate" feature of the standard library
+  // For angels, we use a variable to keep track of the seed to use
+  // For Krampus, we can always use the start seed because there should only ever be one Krampus
+  // drop per run
+  const startSeed = g.seeds.GetStartSeed();
+
   spawnCollectible(collectibleType, position, startSeed, false, true);
 
   const collectibleName = getCollectibleName(collectibleType);
