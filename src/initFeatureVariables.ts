@@ -26,6 +26,7 @@ import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as consistentAngels from "./features/optional/bosses/consistentAngels";
+import * as fastAngels from "./features/optional/bosses/fastAngels";
 import * as fastPin from "./features/optional/bosses/fastPin";
 import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
@@ -128,6 +129,7 @@ export function initFeatureVariables(): void {
   fastPin.init(); // 62
   fastSatan.init(); // 84
   consistentAngels.init(); // 271, 272
+  fastAngels.init(); // 271, 272
   preventVictoryLapPopup.init(); // 273
 
   // QoL
