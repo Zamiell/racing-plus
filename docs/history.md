@@ -6,6 +6,7 @@
 - Fixed the bug where the new Error trinket sprite was not showing correctly. (Thanks Gamonymous)
 - Fixed the bug where the new Locust of Famine sprite was not showing correctly.
 - Fixed the bug where fast-travel would not work properly when leaving the floor as The Soul when The Forgotten was in a different room. (Thanks Hispa)
+- Fixed the bug where angel key pieces would change types after they had already dropped under certain conditions. (Thanks Gamonymous)
 - Fixed the bug where MinimapAPI would not show several kinds of pills correctly.
 - Fixed the bug where MinimapAPI would not show Blank Rune, Black Rune, and ? Card correctly.
 - Fixed the bug where MinimapAPI would not show dirty bedrooms correctly. (Thanks Gamonymous)
