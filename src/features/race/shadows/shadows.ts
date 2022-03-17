@@ -66,10 +66,10 @@ interface ShadowMessage {
 let lastBeaconFrame: int | null = null;
 
 /** Indexed by user ID. */
-const spriteMap = new DefaultMap<int, Sprite>(() => getNewShadowSprite());
+const spriteMap = new DefaultMap<int, Sprite>(() => newShadowSprite());
 const spriteCharacterMap = new DefaultMap<int, PlayerType>(-1);
 
-function getNewShadowSprite() {
+function newShadowSprite() {
   const sprite = Sprite();
   sprite.Load("gfx/001.000_Player.anm2", true);
   sprite.Color = SHADOW_FADED_COLOR;

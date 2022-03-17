@@ -19,7 +19,7 @@ const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
 const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);
 const COLLECTIBLE_OFFSET = Vector(0, 30);
 
-const iconSprite = getNewMysteryGiftSprite();
+const iconSprite = newMysteryGiftSprite();
 iconSprite.Scale = Vector(0.5, 0.5);
 
 const v = {
@@ -28,11 +28,11 @@ const v = {
   },
 
   room: {
-    spriteMap: new DefaultMap<PtrHash, Sprite>(() => getNewMysteryGiftSprite()),
+    spriteMap: new DefaultMap<PtrHash, Sprite>(() => newMysteryGiftSprite()),
   },
 };
 
-function getNewMysteryGiftSprite() {
+function newMysteryGiftSprite() {
   const sprite = initItemSprite(CollectibleType.COLLECTIBLE_MYSTERY_GIFT);
   sprite.Scale = Vector(0.666, 0.666);
 

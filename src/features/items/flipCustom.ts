@@ -35,7 +35,7 @@ const v = {
       CollectibleType,
       [collectible: EntityPickup]
     >((_key: PtrHash, collectible: EntityPickup) =>
-      getNewFlippedCollectibleType(collectible),
+      newFlippedCollectibleType(collectible),
     ),
   },
 
@@ -50,12 +50,12 @@ const v = {
       Sprite,
       [flippedCollectibleType: CollectibleType]
     >((_key: PtrHash, flippedCollectibleType: CollectibleType) =>
-      getNewFlippedSprite(flippedCollectibleType),
+      newFlippedSprite(flippedCollectibleType),
     ),
   },
 };
 
-function getNewFlippedCollectibleType(collectible: EntityPickup) {
+function newFlippedCollectibleType(collectible: EntityPickup) {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomFrameCount = g.r.GetFrameCount();
 
@@ -78,7 +78,7 @@ function getNewFlippedCollectibleType(collectible: EntityPickup) {
     : replacementCollectibleType;
 }
 
-function getNewFlippedSprite(collectibleType: CollectibleType) {
+function newFlippedSprite(collectibleType: CollectibleType) {
   const sprite = initItemSprite(collectibleType);
 
   const faded = copyColor(sprite.Color);

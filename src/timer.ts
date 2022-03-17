@@ -20,10 +20,10 @@ const DIGIT_LENGTH = 7.25;
 const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
 const spriteCollectionMap = new DefaultMap<int, Sprites>(() =>
-  getNewTimerSprites(),
+  newTimerSprites(),
 );
 
-function getNewTimerSprites() {
+function newTimerSprites() {
   const sprites: Sprites = {
     clock: initSprite("gfx/timer/clock.anm2"),
     colons: [],
