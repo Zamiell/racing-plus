@@ -27,7 +27,6 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
-import { isRestartingOnNextFrame } from "../features/utils/restartOnNextFrame";
 import g from "../globals";
 
 export function init(mod: ModUpgraded): void {
@@ -81,13 +80,7 @@ function main(isContinued: boolean) {
 
   // Major
   racePostGameStarted();
-  if (isRestartingOnNextFrame()) {
-    return;
-  }
   speedrunPostGameStarted();
-  if (isRestartingOnNextFrame()) {
-    return;
-  }
   startWithD6.postGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 

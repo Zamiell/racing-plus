@@ -7,6 +7,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { unseed } from "../../../utilsGlobals";
 import {
+  isRestartingOnNextFrame,
   restartOnNextFrame,
   setRestartChallenge,
   setRestartCharacter,
@@ -53,6 +54,7 @@ function resetRaceVars() {
 
 function validateRace(player: EntityPlayer) {
   return (
+    !isRestartingOnNextFrame() &&
     validateInRace() &&
     validateChallenge() &&
     validateDifficulty() &&

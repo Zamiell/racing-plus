@@ -4,6 +4,7 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import {
+  isRestartingOnNextFrame,
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
@@ -37,6 +38,10 @@ export function speedrunPostGameStarted(): void {
   }
 
   liveSplitReset();
+
+  if (isRestartingOnNextFrame()) {
+    return;
+  }
 
   if (!checkValidCharOrder()) {
     return;
