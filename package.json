@@ -17,5 +17,8 @@
     "isaacscript": "^1.2.24",
     "isaacscript-common": "^1.2.167",
     "isaacscript-lint": "^1.0.91"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0"
   }
 }
