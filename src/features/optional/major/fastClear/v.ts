@@ -45,4 +45,5 @@ export function logFastClear(
   log(
     `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
   );
+  log(`fastClearedRoom: ${v.room.fastClearedRoom}`);
 }

@@ -15,16 +15,7 @@ const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
 
-interface Thing {
-  foo: string;
-  bar: string;
-}
-
-const v = {
-  run: {
-    thing: null as Thing | null,
-  },
-};
+const v = {};
 
 export function init(): void {
   saveDataManager("debug", v, () => false);
@@ -32,10 +23,6 @@ export function init(): void {
 
 function debugCode() {
   // Add code here
-  v.run.thing = {
-    foo: "lol",
-    bar: "lol",
-  };
 }
 
 export function debugFunction(): void {

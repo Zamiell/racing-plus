@@ -1,6 +1,8 @@
 import {
   getEffectiveStage,
   getNPCs,
+  getRoomData,
+  getRoomName,
   inBeastRoom,
   inBossRoomOf,
   isAllPressurePlatesPushed,
@@ -126,9 +128,17 @@ function earlyClearRoom() {
   const gameFrameCount = g.g.GetFrameCount();
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
+  const roomData = getRoomData();
+  const roomID =
+    roomData === undefined
+      ? "[unknown]"
+      : `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
+  const roomName = getRoomName();
 
   v.room.fastClearedRoom = true;
-  log(`Fast-clearing the room on game frame: ${gameFrameCount}`);
+  log(
+    `Fast-clearing room ${roomID} (${roomName}) on game frame: ${gameFrameCount}`,
+  );
 
   // The "TriggerClear()" method must be before other logic because extra doors can be spawned by
   // clearing the room
