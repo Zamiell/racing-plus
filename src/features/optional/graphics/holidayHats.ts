@@ -6,7 +6,7 @@ import { Holiday } from "../../../enums/Holiday";
 import { config } from "../../../modConfigMenu";
 import { HOLIDAY_TO_NULL_ITEM_ID } from "../../../objects/holidayToNullItemID";
 
-const CURRENT_HOLIDAY = Holiday.SAINT_PATRICKS_DAY;
+const CURRENT_HOLIDAY = Holiday.NONE;
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
