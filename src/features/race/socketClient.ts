@@ -23,7 +23,7 @@ export function init(): void {
   if (sandboxTraceback === undefined) {
     sandbox = null;
     log(
-      'Detected the sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
+      'Error: Detected the sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
     );
     return;
   }
@@ -31,7 +31,7 @@ export function init(): void {
   if (!sandbox.isSocketInitialized()) {
     sandbox = null;
     log(
-      'Detected the sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
+      'Error: Detected the sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
     );
     return;
   }
@@ -78,36 +78,52 @@ export function disconnect(): void {
   clientUDP = null;
 }
 
-export function send(packedMsg: string): [number | undefined, string] {
+export function send(packedMsg: string): {
+  sentBytes: number | undefined;
+  errMsg: string;
+} {
   if (clientTCP === null) {
-    return [undefined, "TCP client is not initialized"];
+    return {
+      sentBytes: undefined,
+      errMsg: "TCP client is not initialized",
+    };
   }
 
-  return clientTCP.send(packedMsg);
+  const [sentBytes, errMsg] = clientTCP.send(packedMsg);
+  return {
+    sentBytes,
+    errMsg,
+  };
 }
 
-export function sendUDP(packedMsg: string): [number | undefined, string] {
+export function sendUDP(packedMsg: string): {
+  sentBytes: number | undefined;
+  errMsg: string;
+} {
   if (clientUDP === null) {
-    return [undefined, "UDP client is not initialized"];
+    return { sentBytes: undefined, errMsg: "UDP client is not initialized" };
   }
 
-  return clientUDP.send(packedMsg);
+  const [sentBytes, errMsg] = clientUDP.send(packedMsg);
+  return { sentBytes, errMsg };
 }
 
-export function receive(): [string | undefined, string] {
+export function receive(): { data: string | undefined; errMsg: string } {
   if (clientTCP === null) {
-    return [undefined, "TCP client is not initialized"];
+    return { data: undefined, errMsg: "TCP client is not initialized" };
   }
 
-  return clientTCP.receive();
+  const [data, errMsg] = clientTCP.receive();
+  return { data, errMsg };
 }
 
-export function receiveUDP(): [string | undefined, string] {
+export function receiveUDP(): { data: string | undefined; errMsg: string } {
   if (clientUDP === null) {
-    return [undefined, "UDP client is not initialized"];
+    return { data: undefined, errMsg: "UDP client is not initialized" };
   }
 
-  return clientUDP.receive();
+  const [data, errMsg] = clientUDP.receive();
+  return { data, errMsg };
 }
 
 export function isActive(): boolean {

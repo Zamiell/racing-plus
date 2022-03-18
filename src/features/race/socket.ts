@@ -86,10 +86,10 @@ function read() {
     return false;
   }
 
-  const [rawData, errMsg] = socketClient.receive();
-  if (rawData === undefined) {
+  const { data, errMsg } = socketClient.receive();
+  if (data === undefined) {
     if (errMsg !== "timeout") {
-      log(`Failed to read data: ${errMsg}`);
+      log(`Error: Failed to read data: ${errMsg}`);
       socketClient.disconnect();
       reset();
     }
@@ -97,14 +97,14 @@ function read() {
     return false;
   }
 
-  const [command, data] = unpackSocketMsg(rawData);
   if (SOCKET_DEBUG) {
-    log(`Got socket data: ${rawData}`);
+    log(`Got socket data: ${data}`);
   }
 
+  const [command, parsedData] = unpackSocketMsg(data);
   const socketFunction = socketFunctions.get(command);
   if (socketFunction !== undefined) {
-    socketFunction(data);
+    socketFunction(parsedData);
   } else {
     log(`Error: Received an unknown socket command: ${command}`);
   }
@@ -117,10 +117,10 @@ export function readUDP(): string | null {
     return null;
   }
 
-  const [rawData, errMsg] = socketClient.receiveUDP();
-  if (rawData === undefined) {
+  const { data, errMsg } = socketClient.receiveUDP();
+  if (data === undefined) {
     if (errMsg !== "timeout") {
-      log(`Failed to read data: ${errMsg}`);
+      log(`Error: Failed to read data: ${errMsg}`);
       socketClient.disconnect();
       reset();
     }
@@ -128,7 +128,7 @@ export function readUDP(): string | null {
     return null;
   }
 
-  return rawData;
+  return data;
 }
 
 export function send(command: SocketCommandOut, data = ""): void {
@@ -141,9 +141,9 @@ export function send(command: SocketCommandOut, data = ""): void {
   }
 
   const packedMsg = packSocketMsg(command, data);
-  const [sentBytes, errMsg] = socketClient.send(packedMsg);
+  const { sentBytes, errMsg } = socketClient.send(packedMsg);
   if (sentBytes === undefined) {
-    log(`Failed to send data over the TCP socket: ${errMsg}`);
+    log(`Error: Failed to send data over the TCP socket: ${errMsg}`);
     socketClient.disconnect();
     reset();
   }
@@ -154,9 +154,9 @@ export function sendUDP(data: string): void {
     return;
   }
 
-  const [sentBytes, errMsg] = socketClient.sendUDP(data);
+  const { sentBytes, errMsg } = socketClient.sendUDP(data);
   if (sentBytes === undefined) {
-    log(`Failed to send data over the UDP socket: ${errMsg}`);
+    log(`Error: Failed to send data over the UDP socket: ${errMsg}`);
     socketClient.disconnect();
     reset();
   }
@@ -172,10 +172,10 @@ function packSocketMsg(command: string, data: string) {
 }
 
 // e.g. "floor 1" or "finish"
-function unpackSocketMsg(rawData: string): [SocketCommandIn, string] {
+function unpackSocketMsg(data: string): [SocketCommandIn, string] {
   const separator = " ";
-  const [command, ...dataArray] = rawData.trim().split(separator);
-  const data = dataArray.join(separator);
+  const [command, ...dataArray] = data.trim().split(separator);
+  const parsedData = dataArray.join(separator);
 
-  return [command as SocketCommandIn, data];
+  return [command as SocketCommandIn, parsedData];
 }

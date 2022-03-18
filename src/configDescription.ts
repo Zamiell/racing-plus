@@ -3,7 +3,7 @@ import { Hotkeys } from "./classes/Hotkeys";
 
 export type ConfigDescriptions = ReadonlyArray<
   [
-    keyof Config | keyof Hotkeys | null,
+    keyof Config | keyof Hotkeys | "",
     [ModConfigMenuOptionType, string, string, string],
   ]
 >;
@@ -83,7 +83,7 @@ export const MAJOR_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -92,7 +92,7 @@ export const MAJOR_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -355,7 +355,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 274
+    "", // 274
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -364,7 +364,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 274
+    "", // 274
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -373,7 +373,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 407
+    "", // 407
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -382,7 +382,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 951
+    "", // 951
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -717,7 +717,7 @@ export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -757,7 +757,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -770,7 +770,7 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
 // n/a
 export const REMOVALS: ConfigDescriptions = [
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -779,7 +779,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -788,7 +788,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -797,7 +797,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -806,7 +806,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -815,7 +815,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -824,7 +824,7 @@ export const REMOVALS: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -846,7 +846,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -855,7 +855,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -864,7 +864,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -873,7 +873,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -882,7 +882,7 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -958,7 +958,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -967,7 +967,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -976,7 +976,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -989,7 +989,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
 // 0911-0920
 export const BUG_FIXES_2: ConfigDescriptions = [
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "",
@@ -1083,7 +1083,7 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1096,7 +1096,7 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
 // 1011-1020
 export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1105,7 +1105,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1114,7 +1114,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1123,7 +1123,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 5.350.75
+    "", // 5.350.75
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1132,7 +1132,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null, // 5.350.115
+    "", // 5.350.115
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1141,7 +1141,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1150,7 +1150,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1159,7 +1159,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1168,7 +1168,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1177,7 +1177,7 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    null,
+    "",
     [
       ModConfigMenuOptionType.TEXT,
       "",
