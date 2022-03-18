@@ -16,6 +16,8 @@ import {
 import * as postItLivesOrHushPath from "./postItLivesOrHushPath";
 import v from "./v";
 
+const EXTRA_FAST_CLEAR_DEBUG = false;
+
 // ModCallbacks.MC_POST_UPDATE (1)
 export function postUpdate(): void {
   checkEarlyClearRoom();
@@ -27,18 +29,22 @@ function checkEarlyClearRoom() {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 1 - gameFrameCount: ${gameFrameCount}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 1 - gameFrameCount: ${gameFrameCount}`,
+    );
+  }
 
   // Do nothing if we already cleared the room
   if (v.room.fastClearedRoom) {
     return;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 2 - gameFrameCount: ${gameFrameCount}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 2 - gameFrameCount: ${gameFrameCount}`,
+    );
+  }
 
   // Under certain conditions, the room can be clear of enemies on the first frame
   // Thus, the earliest possible frame that fast-clear should apply is on frame 1
@@ -46,18 +52,22 @@ function checkEarlyClearRoom() {
     return;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 3 - gameFrameCount: ${gameFrameCount}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 3 - gameFrameCount: ${gameFrameCount}`,
+    );
+  }
 
   // Certain types of rooms are exempt from the fast-clear feature
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
     return;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 4 - gameFrameCount: ${gameFrameCount}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 4 - gameFrameCount: ${gameFrameCount}`,
+    );
+  }
 
   // The Great Gideon is exempt from the fast-clear feature
   // (since it can cause the boss item to spawn on a pit from a Rock Explosion)
@@ -65,9 +75,11 @@ function checkEarlyClearRoom() {
     return;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 5 - gameFrameCount: ${gameFrameCount}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 5 - gameFrameCount: ${gameFrameCount}`,
+    );
+  }
 
   // The Beast fight is exempt from the fast-clear feature
   // (since it will prevent the trophy logic from working correctly)
@@ -75,9 +87,11 @@ function checkEarlyClearRoom() {
     return;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 6 - gameFrameCount: ${gameFrameCount}, v.room.delayClearUntilGameFrame: ${v.room.delayClearUntilGameFrame}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 6 - gameFrameCount: ${gameFrameCount}, v.room.delayClearUntilGameFrame: ${v.room.delayClearUntilGameFrame}`,
+    );
+  }
 
   // If a frame has passed since an enemy died, reset the delay counter
   if (
@@ -87,13 +101,15 @@ function checkEarlyClearRoom() {
     v.room.delayClearUntilGameFrame = null;
   }
 
-  Isaac.DebugString(
-    `GETTING HERE - FAST-CLEAR - 7 - gameFrameCount: ${gameFrameCount}, v.room.delayClearUntilGameFrame: ${
-      v.room.delayClearUntilGameFrame
-    }, v.room.aliveEnemies.size: ${
-      v.room.aliveEnemies.size
-    }, roomClear: ${roomClear}, isAllPressurePlatesPushed: ${isAllPressurePlatesPushed()}`,
-  );
+  if (EXTRA_FAST_CLEAR_DEBUG) {
+    Isaac.DebugString(
+      `GETTING HERE - FAST-CLEAR - 7 - gameFrameCount: ${gameFrameCount}, v.room.delayClearUntilGameFrame: ${
+        v.room.delayClearUntilGameFrame
+      }, v.room.aliveEnemies.size: ${
+        v.room.aliveEnemies.size
+      }, roomClear: ${roomClear}, isAllPressurePlatesPushed: ${isAllPressurePlatesPushed()}`,
+    );
+  }
 
   // Check on every frame to see if we need to open the doors
   if (
