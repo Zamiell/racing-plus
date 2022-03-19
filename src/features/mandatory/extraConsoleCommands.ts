@@ -1,10 +1,12 @@
 import {
   addConsoleCommand,
   CHARACTER_MAP,
+  deepCopyTests,
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
   log,
+  mergeTests,
   onSetSeed,
   printConsole,
   restart,
@@ -61,6 +63,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("seededracegoal", seededRaceGoal);
   addConsoleCommand("seededraceoff", seededRaceOff);
   addConsoleCommand("slotdisplay", slotDisplay);
+  addConsoleCommand("tests", tests);
   addConsoleCommand("unseed", unseedCommand);
   addConsoleCommand("version", version);
 }
@@ -266,6 +269,11 @@ function seededRaceOff() {
 
 function slotDisplay() {
   toggleSlotDisplay();
+}
+
+function tests() {
+  deepCopyTests();
+  mergeTests();
 }
 
 function unseedCommand() {

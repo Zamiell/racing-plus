@@ -25,6 +25,9 @@ function debugCode() {
   // Add code here
 }
 
+saveDataManagerSetGlobal();
+setLogFunctionsGlobal();
+
 export function debugFunction(): void {
   g.debug = true;
   saveDataManagerSetGlobal();
