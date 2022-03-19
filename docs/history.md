@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.6* - March 19th, 2022
+
+- Fixed the bug where trophies would not properly respawn after saving and quitting. (Thanks 91)
+
 ### *v0.79.6* - March 16th, 2022
 
 - Fixed the bug where key pieces could not be rolled under certain conditions. (Thanks elgirs)
