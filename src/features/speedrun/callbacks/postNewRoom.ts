@@ -6,6 +6,7 @@ import {
   getPlayers,
   getRandomInt,
   getRepentanceDoor,
+  isRoomInsideMap,
   preventCollectibleRotate,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -112,11 +113,13 @@ function checkEnteringClearedBossRoom() {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
   const effectiveStage = getEffectiveStage();
+  const roomInsideMap = isRoomInsideMap();
 
   if (
     roomType === RoomType.ROOM_BOSS &&
     (effectiveStage === 1 || effectiveStage === 2) &&
-    roomClear
+    roomClear &&
+    roomInsideMap // Handle the case of Emperor? card rooms
   ) {
     g.r.TrySpawnSecretExit(false, true);
     setRepentanceDoorState();

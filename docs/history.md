@@ -3,6 +3,7 @@
 ### *v0.79.6* - March 19th, 2022
 
 - Fixed the bug where trophies would not properly respawn after saving and quitting. (Thanks 91)
+- Fixed the bug in season 2 where the Repentance door would incorrectly spawn in Emperor? rooms. (Thanks Gamonymous)
 
 ### *v0.79.6* - March 16th, 2022
 
