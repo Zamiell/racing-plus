@@ -128,7 +128,7 @@ function registerPresets() {
       }
 
       const booleanNewValue = newValue as boolean;
-      setAllSettings(booleanNewValue);
+      setAllModConfigMenuSettings(booleanNewValue);
     },
     Info: ["Turn every configurable setting on."],
   });
@@ -143,7 +143,7 @@ function registerPresets() {
       }
 
       const booleanNewValue = newValue as boolean;
-      setAllSettings(!booleanNewValue);
+      setAllModConfigMenuSettings(!booleanNewValue);
     },
     Info: ["Turn every configurable setting off."],
   });
@@ -161,7 +161,7 @@ function isAllConfigSetTo(value: boolean) {
   return true;
 }
 
-function setAllSettings(newValue: boolean) {
+export function setAllModConfigMenuSettings(newValue: boolean): void {
   for (const key of Object.keys(config)) {
     const assertedKey = key as keyof Config;
     config[assertedKey] = newValue;

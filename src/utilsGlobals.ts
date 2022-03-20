@@ -1,5 +1,5 @@
 import {
-  getCollectibleInitCharges,
+  getCollectibleInitCharge,
   getCollectibleMaxCharges,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
@@ -11,7 +11,7 @@ export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType | CollectibleTypeCustom,
 ): void {
-  const initCharges = getCollectibleInitCharges(collectibleType);
+  const initCharges = getCollectibleInitCharge(collectibleType);
   const maxCharges = getCollectibleMaxCharges(collectibleType);
   const charges = initCharges === -1 ? maxCharges : initCharges;
 

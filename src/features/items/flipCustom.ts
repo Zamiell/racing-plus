@@ -5,6 +5,7 @@ import {
   getCollectibleItemPoolType,
   getCollectibleMaxCharges,
   getCollectibles,
+  getRoomListIndex,
   isTaintedLazarus,
   removeCollectibleFromItemTracker,
   saveDataManager,
@@ -24,25 +25,42 @@ const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
+/** See the documentation for the `flippedCollectibleTypes` map. */
+type FlippedCollectibleIndex = string & {
+  __flippedCollectibleIndexBrand: unknown;
+};
+
+function getFlippedCollectibleIndex(collectible: EntityPickup) {
+  const roomListIndex = getRoomListIndex();
+  const gridIndex = g.r.GetGridIndex(collectible.Position);
+
+  return `${roomListIndex},${gridIndex}` as FlippedCollectibleIndex;
+}
+
 const v = {
   level: {
     /**
-     * Indexed by collectible PtrHash.
-     * (PtrHash is consistent across rerolls, while InitSeed is not.)
+     * Indexed by a tuple of room list index and collectible grid index. (In vanilla, rolling a
+     * collectible will not roll the flipped collectible type.)
+     *
+     * - We can't use InitSeed, since that changes after a reroll.
+     * - We can't use CollectibleIndex, since that changes after a reroll.
+     * - We can't use PtrHash, since that is no longer valid once you leave the room.
+     * - We ignore the edge-case of the Flipped collectible type persisting to post-Ascent Treasure
+     * Rooms.
      */
     flippedCollectibleTypes: new DefaultMap<
-      PtrHash,
+      FlippedCollectibleIndex,
       CollectibleType,
       [collectible: EntityPickup]
-    >((_key: PtrHash, collectible: EntityPickup) =>
+    >((_key: FlippedCollectibleIndex, collectible: EntityPickup) =>
       newFlippedCollectibleType(collectible),
     ),
   },
 
   room: {
     /**
-     * Indexed by collectible PtrHash.
-     * (PtrHash is consistent across rerolls, while InitSeed is not.)
+     * Indexed by collectible `PtrHash` (which is safe to use on per-room data structures).
      * This cannot be on the "level" object because sprites are not serializable.
      */
     flippedSprites: new DefaultMap<
@@ -104,8 +122,10 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
   }
 
   for (const collectible of getCollectibles()) {
-    const ptrHash = GetPtrHash(collectible);
-    const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
+    const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
+    const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
+      flippedCollectibleIndex,
+    );
 
     // Do not convert items back to an empty pedestal
     // (this matches the behavior of the vanilla Flip)
@@ -119,7 +139,13 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     // Flip the items
     const oldCollectibleType = collectible.SubType;
     setCollectibleSubType(collectible, flippedCollectibleType);
-    v.level.flippedCollectibleTypes.set(ptrHash, oldCollectibleType);
+    v.level.flippedCollectibleTypes.set(
+      flippedCollectibleIndex,
+      oldCollectibleType,
+    );
+
+    // Delete the flipped sprite
+    const ptrHash = GetPtrHash(collectible);
     v.room.flippedSprites.delete(ptrHash);
     // (the sprite will be reinitialized on the next render frame if there is still an item in the
     // alternate world)
@@ -171,8 +197,11 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
     return;
   }
 
-  const ptrHash = GetPtrHash(collectible);
-  v.level.flippedCollectibleTypes.getAndSetDefault(ptrHash, collectible);
+  const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
+  v.level.flippedCollectibleTypes.getAndSetDefault(
+    flippedCollectibleIndex,
+    collectible,
+  );
 }
 
 // ModCallbacks.MC_POST_PICKUP_RENDER (36)
@@ -189,8 +218,10 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  const ptrHash = GetPtrHash(collectible);
-  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(ptrHash);
+  const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
+  const flippedCollectibleType = v.level.flippedCollectibleTypes.get(
+    flippedCollectibleIndex,
+  );
   if (
     flippedCollectibleType === undefined ||
     flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
@@ -198,6 +229,7 @@ export function postPickupRenderCollectible(
     return;
   }
 
+  const ptrHash = GetPtrHash(collectible);
   const flippedSprite = v.room.flippedSprites.getAndSetDefault(
     ptrHash,
     flippedCollectibleType,
@@ -212,30 +244,41 @@ export function postPickupRenderCollectible(
 }
 
 // ModCallbacksCustom.MC_POST_PURCHASE
-export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
-  if (!config.flipCustom) {
-    return;
-  }
-
+// PickupVariant.PICKUP_COLLECTIBLE (100)
+export function postPurchaseCollectible(
+  player: EntityPlayer,
+  collectible: EntityPickup,
+): void {
   // Normally, when a collectible is purchased, the empty pedestal will despawn on the next frame
   // The vanilla flip has a feature where if you purchase a collectible, it will keep the empty
   // pedestal around (so that you can use Flip on the other item if you want)
   // Emulate this feature with the custom flip
-  if (
-    player.HasCollectible(NEW_COLLECTIBLE_TYPE) &&
-    pickup.Variant === PickupVariant.PICKUP_COLLECTIBLE
-  ) {
-    // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now
-    const emptyCollectible = spawnEmptyCollectible(
-      pickup.Position,
-      pickup.InitSeed,
-    );
-
-    // Transfer the old flipped item to the new empty pedestal
-    const oldPtrHash = GetPtrHash(pickup);
-    const oldFlippedCollectibleType =
-      v.level.flippedCollectibleTypes.getAndSetDefault(oldPtrHash, pickup);
-    const newPtrHash = GetPtrHash(emptyCollectible);
-    v.level.flippedCollectibleTypes.set(newPtrHash, oldFlippedCollectibleType);
+  if (!config.flipCustom) {
+    return;
   }
+
+  if (!player.HasCollectible(NEW_COLLECTIBLE_TYPE)) {
+    return;
+  }
+
+  // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now
+  const emptyCollectible = spawnEmptyCollectible(
+    collectible.Position,
+    collectible.InitSeed,
+  );
+
+  // Transfer the old flipped item to the new empty pedestal
+  // (which may or may not be necessary depending on the indexing scheme that we are using)
+  const oldFlippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
+  const oldFlippedCollectibleType =
+    v.level.flippedCollectibleTypes.getAndSetDefault(
+      oldFlippedCollectibleIndex,
+      collectible,
+    );
+  const newFlippedCollectibleIndex =
+    getFlippedCollectibleIndex(emptyCollectible);
+  v.level.flippedCollectibleTypes.set(
+    newFlippedCollectibleIndex,
+    oldFlippedCollectibleType,
+  );
 }

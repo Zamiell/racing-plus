@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.10* - March 19th, 2022
+
+- Fixed the bug where the Flipped item would disappear if you left the room. (Thanks thereisnofuture)
+
 ### *v0.79.10* - March 18th, 2022
 
 - Fixed the bug where trophies would not properly respawn after saving and quitting. (Thanks 91)

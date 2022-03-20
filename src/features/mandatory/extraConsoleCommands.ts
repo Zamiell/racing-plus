@@ -20,6 +20,7 @@ import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
 import { unseed } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
@@ -44,7 +45,9 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("changecharorder", changeCharOrder);
   addConsoleCommand("debug", debug);
   addConsoleCommand("devilset", devilSet);
+  addConsoleCommand("disable", disable);
   addConsoleCommand("effectdisplay", effectDisplay);
+  addConsoleCommand("enable", enable);
   addConsoleCommand("familiardisplay", familiarDisplay);
   addConsoleCommand("move", move);
   addConsoleCommand("next", next);
@@ -81,8 +84,16 @@ function devilSet(params: string) {
   devilAngelSet(params, true);
 }
 
+function disable() {
+  setAllModConfigMenuSettings(false);
+}
+
 function effectDisplay() {
   toggleEffectDisplay();
+}
+
+function enable() {
+  setAllModConfigMenuSettings(true);
 }
 
 function familiarDisplay() {

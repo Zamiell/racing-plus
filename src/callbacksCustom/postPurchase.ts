@@ -4,12 +4,19 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_PURCHASE, main);
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_PURCHASE,
+    collectible,
+    PickupVariant.PICKUP_COLLECTIBLE, // 100
+  );
 }
 
 function main(player: EntityPlayer, pickup: EntityPickup) {
-  // QoL
   chargePocketItemFirst.postPurchase(player, pickup);
+}
 
-  // Items
-  flipCustom.postPurchase(player, pickup);
+// PickupVariant.PICKUP_COLLECTIBLE (100)
+function collectible(player: EntityPlayer, pickup: EntityPickup) {
+  flipCustom.postPurchaseCollectible(player, pickup);
 }

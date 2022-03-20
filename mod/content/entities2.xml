@@ -22,14 +22,15 @@
   </entity>
 
   <!-- PICKUPS (5) -->
-
-  <!-- We need to specify a dummy pickup to take variant 0, which will cause the game to crash when used. -->
-  <entity name="Placeholder Pickup" id="5" />
+  <!-- We can't use auto-increment because having pickup variant 0 will crash the game under certain conditions -->
+  <!-- https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278 -->
+  <!-- The final vanilla pickup variant is: PickupVariant.PICKUP_MOMSCHEST (390) -->
 
   <!-- For replacing the photos -->
   <entity
     name="Invisible Pickup"
     id="5"
+    variant="400"
     baseHP="0"
     boss="0"
     champion="0"
