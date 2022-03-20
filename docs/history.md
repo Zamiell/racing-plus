@@ -1,8 +1,9 @@
 # Racing+ Version History and News
 
-### *v0.79.10* - March 19th, 2022
+### *v0.79.11* - March 19th, 2022
 
 - Fixed the bug where the Flipped item would disappear if you left the room. (Thanks thereisnofuture)
+- Fixed the bug where the game would crash with Guppy's Eye under certain conditions. (Thanks Gamonymous)
 
 ### *v0.79.10* - March 18th, 2022
 
