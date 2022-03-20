@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.13* - March 20th, 2022
+
+- Fixed the bug in season 2 where White Fires did not make you fly under certain conditions. (Thanks Fallenfor)
+
 ### *v0.79.12* - March 20th, 2022
 
 - Fixed the bug where trapdoors or beams of light could spawn in Corpse under certain conditions. (Thanks Monkeypot)
