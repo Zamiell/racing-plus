@@ -40,10 +40,13 @@ export function fastClear(): void {
 
 function inItLivesOrHushBossRoom() {
   const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
   const roomType = g.r.GetType();
 
   return (
     (stage === 8 || stage === 9) &&
+    // Corpse does not have It Lives! / Hush
+    stageType !== StageType.STAGETYPE_REPENTANCE &&
     roomType === RoomType.ROOM_BOSS &&
     // If the player is fighting It Lives! from an Emperor? Card room,
     // then the room will be outside the grid
