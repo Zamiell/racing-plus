@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.12* - March 20th, 2022
+
+- Fixed the bug where trapdoors or beams of light could spawn in Corpse under certain conditions. (Thanks Monkeypot)
+
 ### *v0.79.11* - March 19th, 2022
 
 - Fixed the bug where the Flipped item would disappear if you left the room. (Thanks thereisnofuture)
