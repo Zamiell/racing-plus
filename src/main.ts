@@ -1,6 +1,5 @@
 import {
   enableExtraConsoleCommands,
-  getCollectibleIndex,
   getRoomData,
   getRoomVisitedCount,
   log,
@@ -196,15 +195,4 @@ function registerCallbacksCustom(mod: ModUpgraded) {
         : `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
     log(`MC_POST_NEW_ROOM_EARLY - ${roomID} (visited: ${roomVisitedCount})`);
   });
-
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_COLLECTIBLE_INIT_FIRST,
-    (collectible: EntityPickup) => {
-      Isaac.DebugString(
-        `GETTING HERE - MC_POST_COLLECTIBLE_INIT_FIRST - ${getCollectibleIndex(
-          collectible,
-        )}`,
-      );
-    },
-  );
 }
