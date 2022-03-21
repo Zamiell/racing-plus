@@ -23,8 +23,12 @@
     "luaTarget": "5.3",
     "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file
     "luaBundleEntry": "./src/main.ts",
-
     "luaPlugins": [
+      // A plugin to emit a helper comment at the top of the compiled "main.lua" file
+      { "name": "./plugins/addIsaacScriptCommentHeader.ts" },
+
+      // Uncomment this and recompile the mod to enable crash debugging, which will tell you the
+      // exact line of the mod that is causing the crash
       // { "name": "./plugins/addCrashDebugStatements.ts" },
     ],
   },
