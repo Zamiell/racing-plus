@@ -1,10 +1,13 @@
 import {
   enableExtraConsoleCommands,
+  getCollectibleIndex,
   getRoomData,
   getRoomVisitedCount,
   log,
   ModCallbacksCustom,
   ModUpgraded,
+  saveDataManagerSetGlobal,
+  setLogFunctionsGlobal,
   upgradeMod,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
@@ -76,6 +79,7 @@ import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import * as roomClearChanged from "./callbacksCustom/roomClearChanged";
 import { MOD_NAME, VERSION } from "./constants";
 import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
+import g from "./globals";
 import { initFeatureVariables } from "./initFeatureVariables";
 import { initMinimapAPI } from "./minimapAPI";
 
@@ -94,6 +98,11 @@ function main() {
 
   registerCallbacksVanilla(mod);
   registerCallbacksCustom(mod);
+
+  if (g.debug) {
+    saveDataManagerSetGlobal();
+    setLogFunctionsGlobal();
+  }
 }
 
 function welcomeBanner() {
@@ -187,4 +196,15 @@ function registerCallbacksCustom(mod: ModUpgraded) {
         : `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
     log(`MC_POST_NEW_ROOM_EARLY - ${roomID} (visited: ${roomVisitedCount})`);
   });
+
+  mod.AddCallbackCustom(
+    ModCallbacksCustom.MC_POST_COLLECTIBLE_INIT_FIRST,
+    (collectible: EntityPickup) => {
+      Isaac.DebugString(
+        `GETTING HERE - MC_POST_COLLECTIBLE_INIT_FIRST - ${getCollectibleIndex(
+          collectible,
+        )}`,
+      );
+    },
+  );
 }
