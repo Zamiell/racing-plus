@@ -13,6 +13,7 @@ import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initItemSprite } from "../../../sprite";
+import { getEffectiveDevilDeals } from "../../../utilsGlobals";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
@@ -175,13 +176,13 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
 }
 
 export function shouldGetFreeDevilItemOnThisRun(): boolean {
-  const devilRoomDeals = g.g.GetDevilRoomDeals();
+  const effectiveDevilDeals = getEffectiveDevilDeals();
   const anyPlayerIsTheLost = anyPlayerIs(
     PlayerType.PLAYER_THELOST,
     PlayerType.PLAYER_THELOST_B,
   );
 
-  return !v.run.tookDamage && devilRoomDeals === 0 && !anyPlayerIsTheLost;
+  return !v.run.tookDamage && effectiveDevilDeals === 0 && !anyPlayerIsTheLost;
 }
 
 function shouldGetFreeDevilItemInThisRoom() {

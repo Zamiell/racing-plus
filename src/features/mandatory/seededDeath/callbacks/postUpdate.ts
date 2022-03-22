@@ -1,6 +1,7 @@
 import { isJacobOrEsau } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
+import { getEffectiveDevilDeals } from "../../../../utilsGlobals";
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,
@@ -53,7 +54,7 @@ function postUpdateGhostForm() {
 }
 
 function postUpdateCheckTakingDevilItem() {
-  const devilRoomDeals = g.g.GetDevilRoomDeals();
+  const devilRoomDeals = getEffectiveDevilDeals();
   const gameFrameCount = g.g.GetFrameCount();
 
   if (devilRoomDeals !== v.run.devilRoomDeals) {

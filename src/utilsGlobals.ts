@@ -5,7 +5,18 @@ import {
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
+import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import g from "./globals";
+
+export function getEffectiveDevilDeals(): int {
+  const devilRoomDeals = g.g.GetDevilRoomDeals();
+
+  // In seeded races, we arbitrarily increase the Devil Room deals counter by one,
+  // so account for this
+  return shouldConsistentDevilAngelRoomsApply()
+    ? devilRoomDeals - 1
+    : devilRoomDeals;
+}
 
 export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
