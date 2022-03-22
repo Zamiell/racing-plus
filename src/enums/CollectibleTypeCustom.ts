@@ -1,4 +1,7 @@
 // EntityType.ENTITY_PICKUP (5)
+
+import { validateCustomEnum } from "isaacscript-common";
+
 // PickupVariant.PICKUP_COLLECTIBLE (100)
 export enum CollectibleTypeCustom {
   // Utility items
@@ -88,3 +91,5 @@ export enum CollectibleTypeCustom {
     "Spider Baby Transformation Helper",
   ),
 }
+
+validateCustomEnum("CollectibleTypeCustom", CollectibleTypeCustom);

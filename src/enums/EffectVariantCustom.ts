@@ -1,3 +1,5 @@
+import { validateCustomEnum } from "isaacscript-common";
+
 // EntityType.ENTITY_EFFECT (1000)
 export enum EffectVariantCustom {
   INVISIBLE_EFFECT = Isaac.GetEntityVariantByName("Invisible Effect"),
@@ -5,3 +7,5 @@ export enum EffectVariantCustom {
   ROOM_CLEAR_DELAY = Isaac.GetEntityVariantByName("Room Clear Delay Effect"),
   STICKY_NICKEL = Isaac.GetEntityVariantByName("Sticky Nickel Effect"),
 }
+
+validateCustomEnum("EffectVariantCustom", EffectVariantCustom);

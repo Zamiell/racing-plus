@@ -1,3 +1,5 @@
+import { validateCustomEnum } from "isaacscript-common";
+
 const COSTUME_PATH_PREFIX = "gfx/characters";
 
 /** These must have a corresponding entry in the "costumes2.xml" file. */
@@ -22,3 +24,5 @@ export enum NullItemIDCustom {
     `${COSTUME_PATH_PREFIX}/n016_thanksgiving.anm2`,
   ),
 }
+
+validateCustomEnum("NullItemIDCustom", NullItemIDCustom);
