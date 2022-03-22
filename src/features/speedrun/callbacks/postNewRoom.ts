@@ -106,8 +106,9 @@ function checkWomb2IAMERROR() {
 }
 
 /**
- * The Repentance door spawned with the "TrySpawnSecretExit" method is ephemeral in that it will be
- * deleted if you leave the room. Thus, attempt to respawn it if we re-enter a cleared Boss Room.
+ * The Repentance door spawned with the "Room.TrySpawnSecretExit" method is ephemeral in that it
+ * will be deleted if you leave the room. Thus, attempt to respawn it if we re-enter a cleared Boss
+ * Room.
  */
 function checkEnteringClearedBossRoom() {
   const roomType = g.r.GetType();

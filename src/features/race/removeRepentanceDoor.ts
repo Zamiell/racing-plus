@@ -47,14 +47,12 @@ function checkRemoveRepentanceDoor() {
  *
  * - Races to Mother, since in that case, the Repentance path is forced.
  * - Races with a custom goal, since that goal could be in the Repentance floors.
- * - Solo races, since we don't care about seed divergence in this case.
  */
 function shouldRemoveRepentanceDoorOnSeededRace() {
   return (
     g.race.format === RaceFormat.SEEDED &&
     g.race.goal !== RaceGoal.MOTHER &&
-    g.race.goal !== RaceGoal.CUSTOM &&
-    !g.race.solo
+    g.race.goal !== RaceGoal.CUSTOM
   );
 }
 
