@@ -4,6 +4,7 @@ import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
 import * as fireworks from "../features/mandatory/fireworks";
+import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
@@ -71,6 +72,7 @@ function main(isContinued: boolean) {
   streakText.postGameStarted();
   seededGBBug.postGameStarted();
   fireworks.postGameStarted();
+  forceFadedConsoleDisplay.postGameStarted();
   debugFunction.postGameStarted();
 
   // Showing Eden starting items is a Quality of Life feature, but it must be performed before

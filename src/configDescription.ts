@@ -1238,6 +1238,15 @@ export const OTHER_FEATURES: ConfigDescriptions = [
       "Turn on experimental rolling, which will invalidate your run for online races and offline leaderboards.",
     ],
   ],
+  [
+    "",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Force faded console display",
+      'Enabled the "faded console display" feature in the "options.ini" file, which allows you to visually see when an error in the game happens.',
+    ],
+  ],
 ];
 
 export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
