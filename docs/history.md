@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.14* - March 20th, 2022
+
+- The mod will now work with the latest vanilla patch (v1.7.8). The room changes are not yet integrated.
+
 ### *v0.79.13* - March 20th, 2022
 
 - Fixed the bug in season 2 where White Fires did not make you fly under certain conditions. (Thanks Fallenfor)

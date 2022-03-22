@@ -86,4 +86,10 @@ Changes from vanilla:
     gfx="GiantBook_Rebirth_010_Sleep.png"
   />
   <entry id="45" />
+  <entry
+    id="46"
+    anm2="GiantBook_EternalHeart.anm2"
+    anim="Appear_BlackHeart"
+    gfx="GiantBook_013_HeartPiece.png"
+  />
 </giantbook>
