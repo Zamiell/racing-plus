@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.16* - March 22nd, 2022
+
+- Fixed the bug where save-data-related errors could happen upon starting a new run under certain conditions. (Thanks Seb)
+
 ### *v0.79.15* - March 22nd, 2022
 
 - Fixed the bug where solo seeded races would not get a free devil item. (Thanks Fallenfor)
