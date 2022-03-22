@@ -1,5 +1,5 @@
 import {
-  canTakeFreeDevilDeals,
+  characterCanTakeFreeDevilDeals,
   findFreePosition,
   getPlayerIndex,
   inBeastRoom,
@@ -90,7 +90,8 @@ function preRevivalDeathAnimation(player: EntityPlayer) {
 }
 
 function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
-  return !canTakeFreeDevilDeals(player) && !isKeeper(player);
+  const character = player.GetPlayerType();
+  return !characterCanTakeFreeDevilDeals(character) && !isKeeper(player);
 }
 
 function dropEverything(player: EntityPlayer) {

@@ -1,8 +1,8 @@
 import {
   capitalizeFirstLetter,
-  DIRECTION_NAMES,
   disableAllInputs,
   enableAllInputs,
+  getDirectionName,
   isActionPressedOnAnyInput,
   isJacobOrEsau,
   isKeyboardPressed,
@@ -114,8 +114,8 @@ function playRollingAnimation(player: EntityPlayer) {
 }
 
 function getRollingAnimation(direction: Direction) {
-  const defaultDirectionName = DIRECTION_NAMES[Direction.DOWN] as string;
-  const directionName = DIRECTION_NAMES[direction];
+  const defaultDirectionName = getDirectionName(Direction.DOWN) as string;
+  const directionName = getDirectionName(direction);
   const suffix =
     directionName === undefined ? defaultDirectionName : directionName;
   const capitalizedSuffix = capitalizeFirstLetter(suffix);

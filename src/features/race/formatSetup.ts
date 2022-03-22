@@ -1,5 +1,5 @@
 import {
-  CHARACTERS_WITH_AN_ACTIVE_ITEM,
+  characterStartsWithActiveItem,
   copyArray,
   ensureAllCases,
   getLastElement,
@@ -37,6 +37,10 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS: ReadonlySet<PlayerType> =
     PlayerType.PLAYER_LAZARUS2_B, // 38
     PlayerType.PLAYER_JACOB2_B, // 39
   ]);
+
+function characterStartsWithActiveItemRacingPlus(character: PlayerType | int) {
+  return CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character);
+}
 
 const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_MOMS_KNIFE,
@@ -254,12 +258,14 @@ function diversity(player: EntityPlayer) {
 
 function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
   const character = player.GetPlayerType();
+  const startsWithActiveItem =
+    characterStartsWithActiveItem(character) ||
+    characterStartsWithActiveItemRacingPlus(character);
 
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item
-    (CHARACTERS_WITH_AN_ACTIVE_ITEM.has(character) ||
-      CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character)) &&
+    startsWithActiveItem &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden

@@ -1,6 +1,10 @@
 # Racing+ Version History and News
 
-### *v0.79.14* - March 20th, 2022
+### *v0.79.15* - March ?st, 2022
+
+-
+
+### *v0.79.14* - March 21st, 2022
 
 - The mod will now work with the latest vanilla patch (v1.7.8). The room changes are not yet integrated.
 
