@@ -5,8 +5,8 @@ import {
   anyPlayerHasCollectible,
   findFreePosition,
   getTotalPlayerCollectibles,
-  initRNG,
   log,
+  newRNG,
   nextSeed,
   onSetSeed,
   repeat,
@@ -38,7 +38,7 @@ function initVariables() {
 
   // We want to ensure that the second RNG counter does not overlap with the first one
   // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
-  const rng = initRNG(startSeed);
+  const rng = newRNG(startSeed);
   repeat(500, () => {
     rng.Next();
   });
@@ -105,7 +105,7 @@ function shouldSpawnSeededDrop(): boolean {
 function spawnSeededDrop() {
   const centerPos = g.r.GetCenterPos();
   const seed = getSeed();
-  const rng = initRNG(seed);
+  const rng = newRNG(seed);
 
   let pickupVariant = getPickupVariant(rng);
 
