@@ -166,6 +166,8 @@ Changes from vanilla:
     <Item Id="124" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Bobby-Bomb-->
     <Item Id="125" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Razor Blade-->
+    <Item Id="126" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Forget Me Now-->
     <Item Id="127" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Forever alone-->
@@ -279,7 +281,7 @@ Changes from vanilla:
     <!--Anti-Gravity-->
     <Item Id="222" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Pyromaniac-->
-    <Item Id="223" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
+    <Item Id="223" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Cricket's Body-->
     <Item Id="224" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Gimpy-->
@@ -881,7 +883,7 @@ Changes from vanilla:
     <!--Black Candle-->
     <Item Id="260" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Blank Card-->
-    <Item Id="286" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
+    <Item Id="286" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Red Candle-->
     <Item Id="289" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--The Jar-->
@@ -1168,8 +1170,6 @@ Changes from vanilla:
     <Item Id="122" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Monster Manual-->
     <Item Id="123" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Razor Blade-->
-    <Item Id="126" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Forget Me Now-->
     <Item Id="127" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
     <!--Guppy's Paw-->
@@ -1186,6 +1186,8 @@ Changes from vanilla:
     <Item Id="163" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Sacrificial Dagger-->
     <Item Id="172" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Blood Rights-->
+    <Item Id="186" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Guppy's Hairball-->
     <Item Id="187" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Guppy's Collar-->
@@ -1254,6 +1256,8 @@ Changes from vanilla:
     <Item Id="477" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Duality-->
     <Item Id="498" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Little Horn-->
+    <Item Id="503" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Lil Delirium-->
     <Item Id="519" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--7 Seals-->
@@ -1832,6 +1836,8 @@ Changes from vanilla:
     <Item Id="80" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Dead Cat-->
     <Item Id="81" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
+    <!--Razor Blade-->
+    <Item Id="126" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Guppy's Paw-->
     <Item Id="133" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Guppy's Tail-->
@@ -1866,8 +1872,6 @@ Changes from vanilla:
     <Item Id="496" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Little Horn-->
     <Item Id="503" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
-    <!--Mom's Razor-->
-    <Item Id="508" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sacrificial Altar-->
     <Item Id="536" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Blood Puppy-->
@@ -2062,8 +2066,6 @@ Changes from vanilla:
     <Item Id="68" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Chocolate Milk-->
     <Item Id="69" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Cube of Meat-->
-    <Item Id="73" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--My Little Unicorn-->
     <Item Id="77" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Book of Revelations-->
@@ -2118,10 +2120,14 @@ Changes from vanilla:
     <Item Id="117" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Odd Mushroom-->
     <Item Id="120" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Odd Mushroom-->
+    <Item Id="121" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Dead Sea Scrolls-->
     <Item Id="124" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Bobby-Bomb-->
     <Item Id="125" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Razor Blade-->
+    <Item Id="126" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Forever alone-->
     <Item Id="128" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Bomb Bag-->
@@ -2207,7 +2213,7 @@ Changes from vanilla:
     <!--Anti-Gravity-->
     <Item Id="222" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Pyromaniac-->
-    <Item Id="223" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
+    <Item Id="223" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Cricket's Body-->
     <Item Id="224" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Black Lotus-->
@@ -2730,6 +2736,8 @@ Changes from vanilla:
     <Item Id="101" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Odd Mushroom-->
     <Item Id="120" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Odd Mushroom-->
+    <Item Id="121" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--A Lump of Coal-->
     <Item Id="132" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Speed Ball-->
@@ -2752,6 +2760,8 @@ Changes from vanilla:
     <Item Id="198" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Mom's Key-->
     <Item Id="199" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Ball of Bandages-->
+    <Item Id="207" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Experimental Treatment-->
     <Item Id="240" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Magic Scab-->
@@ -2867,7 +2877,7 @@ Changes from vanilla:
     <!--D10-->
     <Item Id="285" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Blank Card-->
-    <Item Id="286" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
+    <Item Id="286" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Red Candle-->
     <Item Id="289" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Pandora's Box-->
@@ -2915,7 +2925,7 @@ Changes from vanilla:
     <!--Mama Mega!-->
     <Item Id="483" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Crooked Penny-->
-    <Item Id="485" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
+    <Item Id="485" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Dull Razor-->
     <Item Id="486" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Potato Peeler-->
@@ -2923,7 +2933,7 @@ Changes from vanilla:
     <!--Metronome-->
     <Item Id="488" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--D infinity-->
-    <Item Id="489" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="489" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Sack of Sacks-->
     <Item Id="500" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Poke Go-->
@@ -3004,6 +3014,8 @@ Changes from vanilla:
     <Item Id="80" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Dead Cat-->
     <Item Id="81" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
+    <!--Razor Blade-->
+    <Item Id="126" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Guppy's Paw-->
     <Item Id="133" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Guppy's Tail-->
@@ -3034,8 +3046,6 @@ Changes from vanilla:
     <Item Id="496" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Little Horn-->
     <Item Id="503" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
-    <!--Mom's Razor-->
-    <Item Id="508" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sacrificial Altar-->
     <Item Id="536" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Blood Puppy-->
@@ -3066,8 +3076,6 @@ Changes from vanilla:
     <Item Id="67" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Technology-->
     <Item Id="68" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
-    <!--Cube of Meat-->
-    <Item Id="73" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--A Quarter-->
     <Item Id="74" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--The Mark-->
@@ -3088,10 +3096,6 @@ Changes from vanilla:
     <Item Id="113" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Mom's Knife-->
     <Item Id="114" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Ouija Board-->
-    <Item Id="115" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Dead Bird-->
-    <Item Id="117" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Brimstone-->
     <Item Id="118" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Whore of Babylon-->
@@ -3228,8 +3232,6 @@ Changes from vanilla:
     <Item Id="7" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Rosary-->
     <Item Id="72" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Cube of Meat-->
-    <Item Id="73" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Book of Revelations-->
     <Item Id="78" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Guardian Angel-->
@@ -3338,8 +3340,6 @@ Changes from vanilla:
     <Item Id="20" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--The Necronomicon-->
     <Item Id="35" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Cube of Meat-->
-    <Item Id="73" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--We Need To Go Deeper!-->
     <Item Id="84" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Odd Mushroom-->
@@ -3845,7 +3845,7 @@ Changes from vanilla:
     <!--Hot Bombs-->
     <Item Id="256" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Bomber Boy-->
-    <Item Id="353" Weight="0.2" DecreaseBy="0.1" RemoveOn="0.02" />
+    <Item Id="353" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Scatter Bombs-->
     <Item Id="366" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sticky Bombs-->
