@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.79.18* - March 23rd, 2022
+
+- Updated the item pools to reflect patch 1.7.8. (Thanks Gamonymous)
+
 ### *v0.79.17* - March 22nd, 2022
 
 - The mod now forces the "faded console display" feature to be always turned on.
