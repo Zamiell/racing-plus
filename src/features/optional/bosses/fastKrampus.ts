@@ -100,8 +100,7 @@ function getKrampusItemSubType() {
     return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
   }
 
-  const rng = newRNG(startSeed);
-  const chance = getRandom(rng);
+  const chance = getRandom(startSeed);
   const coal = chance < 0.5;
 
   return coal

@@ -10,7 +10,7 @@
 // This works even for the situation where the run is locked into having Angel Rooms, although the
 // UI will report the wrong percentages
 
-import { anyPlayerIs, game, getRandom, newRNG } from "isaacscript-common";
+import { anyPlayerIs, game, getRandom } from "isaacscript-common";
 import g from "../../globals";
 import v, { inSeededRace } from "./v";
 
@@ -28,10 +28,9 @@ export function postGameStarted(): void {
   // Calculate whether we should get all Devil Rooms or all Angel Rooms
   const startSeed = g.seeds.GetStartSeed();
   const startSeedString = g.seeds.GetStartSeedString();
-  const rng = newRNG(startSeed);
   Isaac.DebugString(`GETTING HERE - startSeed (int): ${startSeed}`);
   Isaac.DebugString(`GETTING HERE - startSeed (string): ${startSeedString}`);
-  const randomChance = getRandom(rng);
+  const randomChance = getRandom(startSeed);
   Isaac.DebugString(`GETTING HERE - randomChance: ${randomChance}`);
   let devil = randomChance < 0.5;
   if (anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS)) {

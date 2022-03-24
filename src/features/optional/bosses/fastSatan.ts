@@ -54,34 +54,35 @@ function inUnclearedSatanRoom() {
 }
 
 function spawnEnemies() {
-  // Spawn 2x Kamikaze Leech (55.1) & 1x Fallen (81.0)
+  const centerPos = g.r.GetCenterPos();
   const roomSeed = g.r.GetSpawnSeed();
   const rng = newRNG(roomSeed);
 
+  // Spawn 2x Kamikaze Leech (55.1)
   for (const gridIndex of [66, 68]) {
     const position = g.r.GetGridPosition(gridIndex);
-    const seed = rng.Next();
+    const leechSeed = rng.Next();
     g.g.Spawn(
       EntityType.ENTITY_LEECH,
-      1,
+      LeechVariant.KAMIKAZE_LEECH,
       position,
       Vector.Zero,
       undefined,
       0,
-      seed,
+      leechSeed,
     );
   }
 
-  const centerPos = g.r.GetCenterPos();
-  const seed = rng.Next();
+  // Spawn 1x Fallen (81.0)
+  const fallenSeed = rng.Next();
   g.g.Spawn(
     EntityType.ENTITY_FALLEN,
-    0,
+    FallenVariant.FALLEN,
     centerPos,
     Vector.Zero,
     undefined,
     0,
-    seed,
+    fallenSeed,
   );
 }
 

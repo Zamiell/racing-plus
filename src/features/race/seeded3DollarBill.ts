@@ -1,7 +1,6 @@
 import {
   getPlayers,
   getRandomArrayIndex,
-  newRNG,
   PickingUpItem,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
@@ -61,15 +60,16 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
     return;
   }
 
-  const roomSeed = g.r.GetSpawnSeed();
-  const rng = newRNG(roomSeed);
-
   if (v.run.seeded3DollarBillItem !== null) {
     player.RemoveCollectible(v.run.seeded3DollarBillItem);
     removeCollectibleFromItemTracker(v.run.seeded3DollarBillItem);
   }
 
-  const initialArrayIndex = getRandomArrayIndex(THREE_DOLLAR_BILL_ITEMS, rng);
+  const roomSeed = g.r.GetSpawnSeed();
+  const initialArrayIndex = getRandomArrayIndex(
+    THREE_DOLLAR_BILL_ITEMS,
+    roomSeed,
+  );
 
   // Iterate through the item array until we find an item that we do not have yet
   let arrayIndex = initialArrayIndex;

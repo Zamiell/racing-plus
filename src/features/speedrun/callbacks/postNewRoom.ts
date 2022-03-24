@@ -7,7 +7,6 @@ import {
   getRandom,
   getRepentanceDoor,
   isRoomInsideMap,
-  newRNG,
   preventCollectibleRotate,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -77,7 +76,6 @@ function checkWomb2IAMERROR() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const levelSeed = g.l.GetDungeonPlacementSeed();
-  const rng = newRNG(levelSeed);
 
   if (stage !== 8 || roomType !== RoomType.ROOM_ERROR) {
     return;
@@ -87,7 +85,7 @@ function checkWomb2IAMERROR() {
   // the game will always spawn a beam of light going to the Cathedral
   // In vanilla, there would be a 50% chance to spawn a trapdoor
   // Emulate the vanilla functionality
-  const trapdoorChance = getRandom(rng);
+  const trapdoorChance = getRandom(levelSeed);
   if (trapdoorChance < 0.5) {
     return;
   }
