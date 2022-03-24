@@ -241,45 +241,47 @@ Post-flip actions:
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 
 - `0506` <!-- showNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `0507` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
-- `0508` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+- `0507` <!-- taintedSamsonChargeBar --> Tainted Samson now has a charge bar for his Berserk! ability.
+- `0508` <!-- bloodyLustChargeBar 157 --> Bloody Lust now shows a charge bar.
+- `0509` <!-- leadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
+- `0510` <!-- azazelsRageChargeBar 699 --> Azazel's Rage now shows a charge bar.
+- `0511` <!-- combinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `0509` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `0512` <!-- removeFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `0510` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `0513` <!-- showDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `0511` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `0512` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `0514` <!-- fastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `0515` <!-- fadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `0513` <!-- azazelsRageChargeBar 699 --> Azazel's Rage now shows a charge bar.
-- `0514` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `0516` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `0515` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `0517` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `0516` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `0517` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
+- `0518` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `0519` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
   - This also fixes the vanilla bug where 48 Hour Energy! and Hairpin will only charge 12-charge items for 3 charges instead of 6.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `0518` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `0519` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `0520` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `0521` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
-- `0520` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
+- `0522` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
 - <!-- centerStart --> Players will start in the center of the room (instead of at the bottom).
 
 > Why? This is convenient because it makes the player equidistant to all of the doors.
@@ -411,11 +413,10 @@ Post-flip actions:
 
 ### 12) Other
 
-- `1201` <!-- customConsole --> A custom console is provided that is better than the vanilla console.
+- `1201` <!-- customConsole --> A custom console is provided that allows you to chat with your race opponents.
 - `1202` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
 - `1203` <!-- chat --> Draw chat from other racers on the screen.
-
-> Why? The vanilla console has an annoying animation and is inconvenient to use.
+- <!-- forceFadedConsoleDisplay --> Enables the "faded console display" feature in the "options.ini" file, which allows you to visually see when an error in the game happens.
 
 <br />
 

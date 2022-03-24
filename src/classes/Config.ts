@@ -55,13 +55,15 @@ export class Config {
   subvertTeleport = true;
   deleteVoidPortals = true;
   showNumSacrifices = true;
-  leadPencilChargeBar = true; // 444
+  taintedSamsonChargeBar = true;
+  bloodyLustChargeBar = true; // 157 (charge bar)
+  leadPencilChargeBar = true; // 444 (charge bar)
+  azazelsRageChargeBar = true; // 669 (charge bar)
   combinedDualityDoors = true; // 498
   removeFortuneCookieBanners = true; // 557
   showDreamCatcherItem = true; // 566
   fastLuna = true; // 589
   fadeVasculitisTears = true; // 657
-  azazelsRageChargeBar = true; // 669
   fastVanishingTwin = true; // 697
   flipCustom = true; // 711
   removePerfectionVelocity = true; // 145

@@ -19,8 +19,6 @@ import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
-import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
-import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
@@ -77,9 +75,7 @@ function main() {
 
   // QoL
   speedUpFadeIn.postRender();
-  leadPencilChargeBar.postRender(); // 444
   showDreamCatcherItemPostRender(); // 566
-  azazelsRageChargeBar.postRender(); // 699
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority
   automaticItemInsertionPostRender();

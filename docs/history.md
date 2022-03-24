@@ -1,5 +1,11 @@
 # Racing+ Version History and News
 
+### *v0.80.0* - March 25th, 2022
+
+- Added a custom charge bar for Tainted Samson.
+- Added a custom charge bar for Bloody Lust.
+- Fixed the bug where the Lead Pencil charge bar and the Azazel's Rage charge bar would overlap.
+
 ### *v0.79.18* - March 23rd, 2022
 
 - Updated the item pools to reflect patch 1.7.8. (Thanks Gamonymous)
