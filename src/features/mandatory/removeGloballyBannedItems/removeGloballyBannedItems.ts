@@ -7,6 +7,7 @@ import {
   getCollectibles,
   getPlayersOfType,
   getRandomArrayElement,
+  newRNG,
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
@@ -118,13 +119,11 @@ function getEdenReplacementCollectibleType(
   player: EntityPlayer,
 ): CollectibleType {
   const startSeed = g.seeds.GetStartSeed();
+  const rng = newRNG(startSeed);
 
   let replacementCollectible: CollectibleType;
   do {
-    replacementCollectible = getRandomArrayElement(
-      PASSIVE_ITEMS_FOR_EDEN,
-      startSeed,
-    );
+    replacementCollectible = getRandomArrayElement(PASSIVE_ITEMS_FOR_EDEN, rng);
   } while (player.HasCollectible(replacementCollectible));
 
   return replacementCollectible;

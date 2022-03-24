@@ -1,7 +1,7 @@
 import {
   getRandomArrayElement,
   inBossRoomOf,
-  nextSeed,
+  newRNG,
   removeAllMatchingEntities,
   repeat,
 } from "isaacscript-common";
@@ -180,6 +180,7 @@ export function postNewRoom(): void {
 function checkVictoryLapBossReplace() {
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
+  const rng = newRNG(roomSeed);
 
   if (
     !g.raceVars.finished ||
@@ -193,14 +194,9 @@ function checkVictoryLapBossReplace() {
   removeAllMatchingEntities(EntityType.ENTITY_ISAAC);
   removeAllMatchingEntities(EntityType.ENTITY_THE_LAMB);
 
-  let randomBossSeed = roomSeed;
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {
-    randomBossSeed = nextSeed(randomBossSeed);
-    const randomBoss = getRandomArrayElement(
-      VICTORY_LAP_BOSSES,
-      randomBossSeed,
-    );
+    const randomBoss = getRandomArrayElement(VICTORY_LAP_BOSSES, rng);
 
     const [randomBossType] = randomBoss;
     if (randomBossType === EntityType.ENTITY_LARRYJR) {

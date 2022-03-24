@@ -1,4 +1,7 @@
 import {
+  getEnumValues,
+  getRoomData,
+  hasFlag,
   isKeyboardPressed,
   log,
   printConsole,
@@ -21,17 +24,17 @@ export function init(): void {
   saveDataManager("debug", v, () => false);
 }
 
-function debugCode() {
+function debugCode(_params?: string) {
   // Add code here
 }
 
-export function debugFunction(): void {
+export function debugFunction(params?: string): void {
   g.debug = true;
   saveDataManagerSetGlobal();
   setLogFunctionsGlobal();
 
   log("Entering debug function.");
-  debugCode();
+  debugCode(params);
   log("Exiting debug function.");
 }
 
@@ -81,3 +84,32 @@ export function postRender(): void {}
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {}
+
+/**
+ * Helper function to get the set of allowed door slots for the room at the supplied grid index.
+ * This corresponds to the doors that are enabled in the STB/XML file for the room.
+ */
+export function getRoomAllowedDoors(roomGridIndex?: int): Set<DoorSlot> {
+  const allowedDoors = new Set<DoorSlot>();
+  const roomData = getRoomData(roomGridIndex);
+  if (roomData === undefined) {
+    return allowedDoors;
+  }
+
+  const doorSlots = getEnumValues(DoorSlot);
+  for (const doorSlot of doorSlots) {
+    if (
+      doorSlot === DoorSlot.NO_DOOR_SLOT ||
+      doorSlot === DoorSlot.NUM_DOOR_SLOTS
+    ) {
+      continue;
+    }
+
+    const doorSlotFlag = 1 << doorSlot;
+    if (hasFlag(roomData.Doors, doorSlotFlag)) {
+      allowedDoors.add(doorSlot);
+    }
+  }
+
+  return allowedDoors;
+}

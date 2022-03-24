@@ -13,7 +13,7 @@ import {
   getPlayerHealth,
   getRandom,
   log,
-  nextSeed,
+  newRNG,
   PlayerHealth,
   removeAllPlayerHealth,
   saveDataManager,
@@ -68,7 +68,8 @@ export function before(): void {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const eternalHearts = player.GetEternalHearts();
-  let seed = g.l.GetDungeonPlacementSeed();
+  const levelSeed = g.l.GetDungeonPlacementSeed();
+  const rng = newRNG(levelSeed);
 
   // Record the current inventory and health values
   v.run.gameStateFlags = getGameStateFlags();
@@ -101,8 +102,7 @@ export function before(): void {
   g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
 
   // Modification 2: Book touched
-  seed = nextSeed(seed);
-  const bookMod = getRandom(seed);
+  const bookMod = getRandom(rng);
   if (bookMod < 0.5) {
     g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, false);
   } else {
@@ -110,8 +110,7 @@ export function before(): void {
   }
 
   // Modification 3: Coins
-  seed = nextSeed(seed);
-  const coinMod = getRandom(seed);
+  const coinMod = getRandom(rng);
   player.AddCoins(-999);
   if (coinMod < 0.5) {
     // 50% chance to have 5 coins
@@ -120,8 +119,7 @@ export function before(): void {
   }
 
   // Modification 4: Keys
-  seed = nextSeed(seed);
-  const keyMod = getRandom(seed);
+  const keyMod = getRandom(rng);
   player.AddKeys(-99);
   if (keyMod < 0.5) {
     // 50% chance to get 2 keys
@@ -136,8 +134,7 @@ export function before(): void {
   if (characterCanHaveRedHearts(character)) {
     player.AddMaxHearts(2, false);
     player.AddHearts(1);
-    seed = nextSeed(seed);
-    const fullHealthMod = getRandom(seed);
+    const fullHealthMod = getRandom(rng);
     if (fullHealthMod < 0.66) {
       // 66% chance to be full health
       player.AddHearts(1);
@@ -149,8 +146,7 @@ export function before(): void {
 
   // Modification 6: Critical health
   // (which is defined as being at 1 heart or less)
-  seed = nextSeed(seed);
-  const criticalHealthMod = getRandom(seed);
+  const criticalHealthMod = getRandom(rng);
   if (criticalHealthMod < 0.75) {
     // 75% chance to not be at critical health
     if (characterCanHaveRedHearts(character)) {

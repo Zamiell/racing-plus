@@ -2,7 +2,7 @@
 
 import {
   countEntities,
-  nextSeed,
+  newRNG,
   removeAllMatchingEntities,
   repeat,
 } from "isaacscript-common";
@@ -28,6 +28,7 @@ export function postNewRoom(): void {
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
   const centerPos = g.r.GetCenterPos();
+  const rng = newRNG(roomSeed);
 
   if (roomClear) {
     return;
@@ -41,7 +42,6 @@ export function postNewRoom(): void {
   // There are 10 Scolex entities for each Scolex
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
-  let seed = roomSeed;
   repeat(NUM_FRAILS, (i) => {
     // We don't want to spawn both of them on top of each other since that would make them behave
     // a little glitchy
@@ -54,7 +54,7 @@ export function postNewRoom(): void {
       modification = Vector(150, 0);
     }
     const position = centerPos.add(modification);
-    seed = nextSeed(seed);
+    const seed = rng.Next();
     const frail = g.g.Spawn(
       EntityType.ENTITY_PIN,
       PinVariant.FRAIL,

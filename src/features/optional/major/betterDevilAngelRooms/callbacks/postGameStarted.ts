@@ -1,10 +1,10 @@
 import { config } from "../../../../../modConfigMenu";
-import { initializeSeeds } from "../v";
+import { initBetterDevilAngelRoomsRNG } from "../v";
 
 export function betterDevilAngelRoomsPostGameStarted(): void {
   if (!config.betterDevilAngelRooms) {
     return;
   }
 
-  initializeSeeds();
+  initBetterDevilAngelRoomsRNG();
 }

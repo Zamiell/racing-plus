@@ -9,9 +9,10 @@ import {
   getScreenBottomRightPos,
   getTransformationName,
   getTrinketName,
-  nextSeed,
+  newRNG,
   PickingUpItem,
   saveDataManager,
+  setSeed,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
@@ -58,7 +59,7 @@ const DEAD_SEA_SCROLL_EFFECTS: readonly CollectibleType[] = [
 
 const v = {
   run: {
-    deadSeaScrollsSeed: 0 as Seed,
+    deadSeaScrollsRNG: newRNG(),
     text: null as string | null,
 
     /** Text of less importance that is only shown if there is no main text. */
@@ -170,7 +171,7 @@ export function usePill(pillEffect: PillEffect): void {
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeed = g.seeds.GetStartSeed();
-  v.run.deadSeaScrollsSeed = startSeed;
+  setSeed(v.run.deadSeaScrollsRNG, startSeed);
 }
 
 // ModCallbacks.MC_POST_NEW_LEVEL (18)
@@ -228,10 +229,9 @@ export function preUseItemDeadSeaScrolls(
 ): boolean | void {
   const hud = g.g.GetHUD();
 
-  v.run.deadSeaScrollsSeed = nextSeed(v.run.deadSeaScrollsSeed);
   const randomCollectible = getRandomArrayElement(
     DEAD_SEA_SCROLL_EFFECTS,
-    v.run.deadSeaScrollsSeed,
+    v.run.deadSeaScrollsRNG,
   );
   player.UseActiveItem(randomCollectible, UseFlag.USE_OWNED, activeSlot);
 

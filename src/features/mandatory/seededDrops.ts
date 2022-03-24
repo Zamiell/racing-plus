@@ -7,17 +7,24 @@ import {
   getTotalPlayerCollectibles,
   log,
   newRNG,
-  nextSeed,
   onSetSeed,
   repeat,
   saveDataManager,
+  setAllRNGToStartSeed,
 } from "isaacscript-common";
 import g from "../../globals";
 
 const v = {
   run: {
-    seed: 0 as Seed,
-    seedDevilAngel: 0 as Seed,
+    rng: {
+      normalRooms: newRNG(),
+
+      /**
+       * Devil Rooms and Angel Rooms use a separate RNG counter so that players cannot get a lucky
+       * battery after killing an angel.
+       */
+      devilAngel: newRNG(),
+    },
   },
 };
 
@@ -27,22 +34,19 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  initVariables();
+  initRNG();
   removeSeededItemsTrinkets();
 }
 
-function initVariables() {
-  const startSeed = g.seeds.GetStartSeed();
+function initRNG() {
+  setAllRNGToStartSeed(v.run.rng);
 
-  v.run.seed = startSeed;
-
-  // We want to ensure that the second RNG counter does not overlap with the first one
+  // We want to ensure that the RNG object for Devil Rooms and Angel Rooms does not overlap with
+  // the normal one
   // (around 175 rooms are cleared in an average speedrun, so 500 is a reasonable upper limit)
-  const rng = newRNG(startSeed);
   repeat(500, () => {
-    rng.Next();
+    v.run.rng.devilAngel.Next();
   });
-  v.run.seedDevilAngel = rng.GetSeed();
 }
 
 function removeSeededItemsTrinkets() {
@@ -86,26 +90,42 @@ function shouldSpawnSeededDrop(): boolean {
   );
 }
 
-// Normally, room drops are based on the room's seed
-// This is undesirable, since someone can go a wrong way in a seeded race and then get rewarded with
-// an Emperor card that the other player does not get
-// Thus, we overwrite the game's room drop system with one that manually spawns awards in order
-// The following code is based on the game's internal logic, documented here:
-// https://bindingofisaacrebirth.gamepedia.com/Room_Clear_Awards
-// (it was reverse engineered by Blade)
-// However, there is some major difference from vanilla
-// We hard-code values of 0 luck so that room drops are completely consistent
-// (otherwise, one player would be able to get a lucky Emperor card by using a Luck Up or Luck Down
-// pill, for example)
-// Furthermore, we ignore the following items, since we remove them from pools:
-// Lucky Foot, Silver Dollar, Bloody Crown, Daemon's Tail, Child's Heart, Rusted Key, Match Stick,
-// Lucky Toe, Safety Cap, Ace of Spades, Watch Battery, and Nuh Uh!
-// (Old Capacitor does not need to be removed, since the Lil Battery chance is independent of the
-// room drop)
+/**
+ * Normally, room drops are based on the room's seed. This is undesirable, since someone can go a
+ * wrong way in a seeded race and then get rewarded with an Emperor card that the other player does
+ * not get.
+ *
+ * Thus, we overwrite the game's room drop system with one that manually spawns awards in order. The
+ * following code is based on the game's internal logic, documented here, which was reverse
+ * engineered by Blade:
+ *
+ * https://bindingofisaacrebirth.gamepedia.com/Room_Clear_Awards
+ *
+ * However, we implement this algorithm differently from vanilla:
+ *
+ * - First, we hard-code values of 0 luck so that room drops are completely consistent. (Otherwise,
+ * one player would be able to get a lucky Emperor card by using a Luck Up or Luck Down pill, for
+ * example.)
+ * - Second, we ignore the following items, since we remove them from pools:
+ *   - Daemon's Tail (22)
+ *   - Child's Heart (34)
+ *   - Rusted Key (36)
+ *   - Match Stick (41)
+ *   - Lucky Toe (42)
+ *   - Safety Cap (44)
+ *   - Ace of Spades (45)
+ *   - Lucky Foot (46)
+ *   - Watch Battery (72)
+ *   - Silver Dollar (110)
+ *   - Bloody Crown (111)
+ *   - Nuh Uh! (165)
+ *
+ * Old Capacitor (143) does not need to be removed, since the Lil Battery chance is independent of
+ * the room drop.
+ */
 function spawnSeededDrop() {
   const centerPos = g.r.GetCenterPos();
-  const seed = getSeed();
-  const rng = newRNG(seed);
+  const rng = getRNGToUse();
 
   let pickupVariant = getPickupVariant(rng);
 
@@ -166,6 +186,7 @@ function spawnSeededDrop() {
     let subType = 0;
     repeat(pickupCount, () => {
       const position = findFreePosition(centerPos);
+      const seed = rng.Next();
       const pickup = g.g.Spawn(
         EntityType.ENTITY_PICKUP,
         pickupVariant,
@@ -173,7 +194,7 @@ function spawnSeededDrop() {
         Vector.Zero,
         undefined,
         subType,
-        rng.Next(),
+        seed,
       );
 
       // Pickups with a sub-type of 0 can morph into the various kinds of other pickups
@@ -231,20 +252,15 @@ function getPickupVariant(rng: RNG) {
   return pickupVariant;
 }
 
-// Find out which seed we should use
-// (Devil Rooms and Angel Rooms use a separate RNG counter so that players cannot get a lucky
-// battery after killing an angel)
-function getSeed() {
+function getRNGToUse() {
   const roomType = g.r.GetType();
 
   if (
     roomType === RoomType.ROOM_DEVIL || // 14
     roomType === RoomType.ROOM_ANGEL // 15
   ) {
-    v.run.seedDevilAngel = nextSeed(v.run.seedDevilAngel);
-    return v.run.seedDevilAngel;
+    return v.run.rng.devilAngel;
   }
 
-  v.run.seed = nextSeed(v.run.seed);
-  return v.run.seed;
+  return v.run.rng.normalRooms;
 }

@@ -2,7 +2,7 @@ import {
   anyPlayerHasCollectible,
   ensureAllCases,
   log,
-  nextSeed,
+  newRNG,
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
@@ -162,13 +162,14 @@ function getPhotoSituationRace(goal: RaceGoal) {
 
 function doPhotoSituation(situation: PhotoSituation) {
   const roomSeed = g.r.GetSpawnSeed();
+  const rng = newRNG(roomSeed);
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
       spawnCollectible(
         CollectibleType.COLLECTIBLE_POLAROID,
         PEDESTAL_POSITION_CENTER,
-        roomSeed,
+        rng,
       );
 
       return;
@@ -178,7 +179,7 @@ function doPhotoSituation(situation: PhotoSituation) {
       spawnCollectible(
         CollectibleType.COLLECTIBLE_NEGATIVE,
         PEDESTAL_POSITION_CENTER,
-        roomSeed,
+        rng,
       );
 
       return;
@@ -188,17 +189,14 @@ function doPhotoSituation(situation: PhotoSituation) {
       spawnCollectible(
         CollectibleType.COLLECTIBLE_POLAROID,
         PEDESTAL_POSITION_LEFT,
-        roomSeed,
+        rng,
         true,
       );
-
-      // We don't want both of the collectibles to have the same RNG
-      const newSeed = nextSeed(roomSeed);
 
       spawnCollectible(
         CollectibleType.COLLECTIBLE_NEGATIVE,
         PEDESTAL_POSITION_RIGHT,
-        newSeed,
+        rng,
         true,
       );
 
@@ -213,24 +211,21 @@ function doPhotoSituation(situation: PhotoSituation) {
         spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_LEFT,
-          roomSeed,
+          rng,
           true,
         );
-
-        // We don't want both of the collectibles to have the same RNG
-        const newSeed = nextSeed(roomSeed);
 
         spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_RIGHT,
-          newSeed,
+          rng,
           true,
         );
       } else {
         spawnCollectible(
           CollectibleType.COLLECTIBLE_NULL,
           PEDESTAL_POSITION_CENTER,
-          roomSeed,
+          rng,
         );
       }
 

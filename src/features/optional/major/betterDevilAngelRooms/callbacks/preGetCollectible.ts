@@ -5,7 +5,6 @@ import {
   inGenesisRoom,
   itemConfig,
   log,
-  nextSeed,
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
@@ -117,22 +116,14 @@ function getNewSubType(itemPoolType: ItemPoolType) {
   switch (itemPoolType) {
     // 3
     case ItemPoolType.POOL_DEVIL: {
-      v.run.seeds.devilCollectibles = nextSeed(v.run.seeds.devilCollectibles);
-      return g.itemPool.GetCollectible(
-        itemPoolType,
-        true,
-        v.run.seeds.devilCollectibles,
-      );
+      const seed = v.run.rng.devilCollectibles.Next();
+      return g.itemPool.GetCollectible(itemPoolType, true, seed);
     }
 
     // 4
     case ItemPoolType.POOL_ANGEL: {
-      v.run.seeds.angelCollectibles = nextSeed(v.run.seeds.angelCollectibles);
-      return g.itemPool.GetCollectible(
-        itemPoolType,
-        true,
-        v.run.seeds.angelCollectibles,
-      );
+      const seed = v.run.rng.angelCollectibles.Next();
+      return g.itemPool.GetCollectible(itemPoolType, true, seed);
     }
 
     default: {

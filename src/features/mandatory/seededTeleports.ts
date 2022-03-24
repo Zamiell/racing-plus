@@ -3,17 +3,20 @@ import {
   getRandomInt,
   getRooms,
   log,
-  nextSeed,
+  newRNG,
   repeat,
   saveDataManager,
+  setSeed,
   teleport,
 } from "isaacscript-common";
 import g from "../../globals";
 
 const v = {
   level: {
-    teleportSeed: 0 as Seed,
-    telepillsSeed: 0 as Seed,
+    rng: {
+      teleport: newRNG(),
+      telepills: newRNG(),
+    },
   },
 };
 
@@ -32,10 +35,9 @@ export function useItemTeleport(): void {
 function seededTeleport() {
   const roomGridIndexes = getAllRoomGridIndexesForNormalRooms();
 
-  v.level.teleportSeed = nextSeed(v.level.teleportSeed);
   const roomGridIndex = getRandomArrayElement(
     roomGridIndexes,
-    v.level.teleportSeed,
+    v.level.rng.teleport,
   );
 
   teleport(roomGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
@@ -66,8 +68,7 @@ function seededTelepills() {
 
     // There is a 2% chance have a Black Market inserted into the list of possibilities
     // (according to Blade)
-    v.level.telepillsSeed = nextSeed(v.level.telepillsSeed);
-    const blackMarketRoll = getRandomInt(1, 100, v.level.telepillsSeed);
+    const blackMarketRoll = getRandomInt(1, 100, v.level.rng.telepills);
     if (blackMarketRoll <= 2) {
       insertBlackMarket = true;
     }
@@ -82,10 +83,9 @@ function seededTelepills() {
   }
 
   // Get a random room index
-  v.level.telepillsSeed = nextSeed(v.level.telepillsSeed);
   const roomGridIndex = getRandomArrayElement(
     roomGridIndexes,
-    v.level.telepillsSeed,
+    v.level.rng.telepills,
   );
 
   teleport(roomGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT);
@@ -95,15 +95,14 @@ function seededTelepills() {
 export function postNewLevel(): void {
   const levelSeed = g.l.GetDungeonPlacementSeed();
 
-  // Increment the RNG 100 times so that players cannot use knowledge of Teleport! teleports
-  // to determine where the Telepills destination will be
-  let incrementedLevelSeed = levelSeed;
-  repeat(100, () => {
-    incrementedLevelSeed = nextSeed(incrementedLevelSeed);
-  });
+  setSeed(v.level.rng.teleport, levelSeed);
+  setSeed(v.level.rng.telepills, levelSeed);
 
-  v.level.teleportSeed = levelSeed;
-  v.level.telepillsSeed = incrementedLevelSeed;
+  // We want to ensure that the RNG object for Telepills does not overlap with the teleport one
+  // (the most teleports that you could do per floor in a typical speedrun would be around 100)
+  repeat(100, () => {
+    v.level.rng.telepills.Next();
+  });
 }
 
 // ModCallbacksCustom.MC_POST_CURSED_TELEPORT

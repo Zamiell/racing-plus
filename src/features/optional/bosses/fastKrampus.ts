@@ -7,14 +7,34 @@ import {
   anyPlayerHasCollectible,
   findFreePosition,
   getCollectibleName,
-  getRandomInt,
+  getRandom,
   log,
+  newRNG,
+  saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
+
+const v = {
+  run: {
+    /**
+     * We cannot use "entity.InitSeed" as the seed for keys because it will cause bugs with the
+     * "preventItemRotate" feature of the standard library.
+     */
+    collectibleRNG: newRNG(),
+  },
+};
+
+export function init(): void {
+  saveDataManager("fastKrampus", v, featureEnabled);
+}
+
+function featureEnabled() {
+  return config.fastAngels;
+}
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
 // PickupVariant.PICKUP_COLLECTIBLE (100)
@@ -47,14 +67,13 @@ function spawnKrampusDrop(entity: Entity) {
   const collectibleType = getKrampusItemSubType();
   const position = findFreePosition(entity.Position);
 
-  // We cannot use "entity.InitSeed" as the seed because it will cause bugs with the
-  // "preventItemRotate" feature of the standard library
-  // For angels, we use a variable to keep track of the seed to use
-  // For Krampus, we can always use the start seed because there should only ever be one Krampus
-  // drop per run
-  const startSeed = g.seeds.GetStartSeed();
-
-  spawnCollectible(collectibleType, position, startSeed, false, true);
+  spawnCollectible(
+    collectibleType,
+    position,
+    v.run.collectibleRNG,
+    false,
+    true,
+  );
 
   const collectibleName = getCollectibleName(collectibleType);
   log(`Spawned fast-Krampus item: ${collectibleName} (${collectibleType})`);
@@ -81,8 +100,10 @@ function getKrampusItemSubType() {
     return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
   }
 
-  const seededChoice = getRandomInt(1, 2, startSeed);
-  const coal = seededChoice === 1;
+  const rng = newRNG(startSeed);
+  const chance = getRandom(rng);
+  const coal = chance < 0.5;
+
   return coal
     ? CollectibleType.COLLECTIBLE_LUMP_OF_COAL
     : CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS;

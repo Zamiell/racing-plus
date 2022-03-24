@@ -58,8 +58,9 @@ function checkRoomCleared() {
   const gridIndex = g.r.GetGridIndex(freshCollectible.Position);
   const newGridIndex = gridIndex + 1; // To the right of the collectible
   const position = g.r.GetGridPosition(newGridIndex);
+  const roomSeed = g.r.GetSpawnSeed();
 
-  spawnCollectible(CollectibleType.COLLECTIBLE_NULL, position);
+  spawnCollectible(CollectibleType.COLLECTIBLE_NULL, position, roomSeed);
 }
 
 function getFreshlySpawnedCollectible(): EntityPickup | undefined {

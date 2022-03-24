@@ -104,9 +104,9 @@ function changeCharOrder() {
   consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
 }
 
-function debug() {
+function debug(params: string) {
   printConsole("Executing debug function.");
-  debugFunction();
+  debugFunction(params);
 }
 
 /** Move the player to a specific position. */

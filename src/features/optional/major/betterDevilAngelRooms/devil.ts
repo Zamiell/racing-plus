@@ -7,7 +7,6 @@ import {
   getRandom,
   getRandomJSONRoom,
   JSONRoom,
-  nextSeed,
   setRoomUncleared,
 } from "isaacscript-common";
 import g from "../../../../globals";
@@ -37,11 +36,7 @@ export function devil(): void {
 
   let jsonRoom: JSONRoom;
   if (v.run.debugRoomNum === null) {
-    v.run.seeds.devilSelection = nextSeed(v.run.seeds.devilSelection);
-    jsonRoom = getRandomJSONRoom(
-      jsonRoomsOfSubType,
-      v.run.seeds.devilSelection,
-    );
+    jsonRoom = getRandomJSONRoom(jsonRoomsOfSubType, v.run.rng.devilSelection);
   } else {
     const roomVariant = v.run.debugRoomNum;
     v.run.debugRoomNum = null;
@@ -53,11 +48,7 @@ export function devil(): void {
     jsonRoom = debugJSONRoom;
   }
 
-  v.run.seeds.devilEntities = nextSeed(v.run.seeds.devilEntities);
-  v.run.seeds.devilEntities = deployJSONRoom(
-    jsonRoom,
-    v.run.seeds.devilEntities,
-  );
+  deployJSONRoom(jsonRoom, v.run.rng.devilEntities);
 }
 
 function checkSpawnKrampus() {
@@ -68,8 +59,7 @@ function checkSpawnKrampus() {
     return false;
   }
 
-  v.run.seeds.krampus = nextSeed(v.run.seeds.krampus);
-  const krampusRoll = getRandom(v.run.seeds.krampus);
+  const krampusRoll = getRandom(v.run.rng.krampus);
   if (krampusRoll > KRAMPUS_CHANCE) {
     return false;
   }
@@ -77,7 +67,7 @@ function checkSpawnKrampus() {
   v.run.metKrampus = true;
   emptyRoom(true);
 
-  v.run.seeds.krampus = nextSeed(v.run.seeds.krampus);
+  const seed = v.run.rng.krampus.Next();
   g.g.Spawn(
     EntityType.ENTITY_FALLEN,
     FallenVariant.KRAMPUS,
@@ -85,7 +75,7 @@ function checkSpawnKrampus() {
     Vector.Zero,
     undefined,
     0,
-    v.run.seeds.krampus,
+    seed,
   );
 
   setRoomUncleared();

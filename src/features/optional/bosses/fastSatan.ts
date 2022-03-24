@@ -5,7 +5,7 @@ import {
   getNPCs,
   inBossRoomOf,
   log,
-  nextSeed,
+  newRNG,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -56,11 +56,11 @@ function inUnclearedSatanRoom() {
 function spawnEnemies() {
   // Spawn 2x Kamikaze Leech (55.1) & 1x Fallen (81.0)
   const roomSeed = g.r.GetSpawnSeed();
+  const rng = newRNG(roomSeed);
 
-  let seed = roomSeed;
   for (const gridIndex of [66, 68]) {
     const position = g.r.GetGridPosition(gridIndex);
-    seed = nextSeed(seed);
+    const seed = rng.Next();
     g.g.Spawn(
       EntityType.ENTITY_LEECH,
       1,
@@ -72,8 +72,8 @@ function spawnEnemies() {
     );
   }
 
-  seed = nextSeed(seed);
   const centerPos = g.r.GetCenterPos();
+  const seed = rng.Next();
   g.g.Spawn(
     EntityType.ENTITY_FALLEN,
     0,

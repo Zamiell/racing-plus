@@ -1,19 +1,23 @@
-import { PlayerIndex, saveDataManager } from "isaacscript-common";
-import g from "../../../../globals";
+import {
+  newRNG,
+  PlayerIndex,
+  saveDataManager,
+  setAllRNGToStartSeed,
+} from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 
 const v = {
   run: {
     metKrampus: false,
 
-    seeds: {
-      krampus: 0 as Seed,
-      devilSelection: 0 as Seed,
-      devilEntities: 0 as Seed,
-      devilCollectibles: 0 as Seed,
-      angelSelection: 0 as Seed,
-      angelEntities: 0 as Seed,
-      angelCollectibles: 0 as Seed,
+    rng: {
+      krampus: newRNG(),
+      devilSelection: newRNG(),
+      devilEntities: newRNG(),
+      devilCollectibles: newRNG(),
+      angelSelection: newRNG(),
+      angelEntities: newRNG(),
+      angelCollectibles: newRNG(),
     },
 
     debugRoomNum: null as int | null,
@@ -45,13 +49,8 @@ function featureEnabled() {
   return config.betterDevilAngelRooms;
 }
 
-export function initializeSeeds(): void {
-  const startSeed = g.seeds.GetStartSeed();
-
-  for (const key of Object.keys(v.run.seeds)) {
-    const property = key as keyof typeof v.run.seeds;
-    v.run.seeds[property] = startSeed;
-  }
+export function initBetterDevilAngelRoomsRNG(): void {
+  setAllRNGToStartSeed(v.run.rng);
 }
 
 export function setDevilAngelEmpty(): void {

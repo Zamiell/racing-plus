@@ -4,9 +4,10 @@ import {
   getEffectiveStage,
   getEffects,
   getPlayers,
-  getRandomInt,
+  getRandom,
   getRepentanceDoor,
   isRoomInsideMap,
+  newRNG,
   preventCollectibleRotate,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -75,7 +76,8 @@ function emptyDevilAngelRoom() {
 function checkWomb2IAMERROR() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const seed = g.l.GetDungeonPlacementSeed();
+  const levelSeed = g.l.GetDungeonPlacementSeed();
+  const rng = newRNG(levelSeed);
 
   if (stage !== 8 || roomType !== RoomType.ROOM_ERROR) {
     return;
@@ -85,8 +87,8 @@ function checkWomb2IAMERROR() {
   // the game will always spawn a beam of light going to the Cathedral
   // In vanilla, there would be a 50% chance to spawn a trapdoor
   // Emulate the vanilla functionality
-  const trapdoorChance = getRandomInt(1, 2, seed);
-  if (trapdoorChance === 1) {
+  const trapdoorChance = getRandom(rng);
+  if (trapdoorChance < 0.5) {
     return;
   }
 

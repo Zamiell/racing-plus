@@ -318,7 +318,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.CHECKPOINT: {
-      const seed = g.r.GetAwardSeed();
+      const seed = g.seeds.GetStartSeed();
       const checkpoint = spawnCollectible(
         CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
         pickup.Position,

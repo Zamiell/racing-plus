@@ -1,9 +1,10 @@
 import {
   countEntities,
   getPlayers,
-  nextSeed,
+  newRNG,
   repeat,
   saveDataManager,
+  setSeed,
   sfxManager,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -13,7 +14,7 @@ import { speedrunIsFinished } from "../speedrun/exported";
 const v = {
   run: {
     numFireworksSpawned: 0,
-    seed: 0 as Seed,
+    rng: newRNG(),
   },
 };
 
@@ -74,8 +75,8 @@ function spawnFireworks() {
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     repeat(5, () => {
       v.run.numFireworksSpawned += 1;
-      v.run.seed = nextSeed(v.run.seed);
-      const randomGridIndex = g.r.GetRandomTileIndex(v.run.seed);
+      const seed = v.run.rng.Next();
+      const randomGridIndex = g.r.GetRandomTileIndex(seed);
       const position = g.r.GetGridPosition(randomGridIndex);
       const firework = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
@@ -94,5 +95,6 @@ function spawnFireworks() {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  v.run.seed = g.seeds.GetStartSeed();
+  const startSeed = g.seeds.GetStartSeed();
+  setSeed(v.run.rng, startSeed);
 }

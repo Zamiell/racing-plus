@@ -6,12 +6,17 @@
 // keep track of the last spawned pickup so that we can morph it from the PostFamiliarRender
 // callback
 
-import { getPickups, nextSeed, saveDataManager } from "isaacscript-common";
+import {
+  getPickups,
+  newRNG,
+  saveDataManager,
+  setSeed,
+} from "isaacscript-common";
 import g from "../../globals";
 
 const v = {
   run: {
-    seed: 0 as Seed,
+    rng: newRNG(),
     GBBugVisibleMap: new Map<PtrHash, boolean>(),
     lastSpawnedPickupPtrHash: null as PtrHash | null,
     lastSpawnedPickupFrame: null as int | null,
@@ -24,7 +29,8 @@ export function init(): void {
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  v.run.seed = g.seeds.GetStartSeed();
+  const startSeed = g.seeds.GetStartSeed();
+  setSeed(v.run.rng, startSeed);
 }
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
@@ -89,14 +95,15 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
   // but we ignore this since we want the new pickups to go in order
   // We can't use the "EntityPickup.Morph()" method because then the results would not be seeded
   // properly
-  v.run.seed = nextSeed(v.run.seed);
-  const shouldRollIntoChest = v.run.seed % 10 === 0;
+  const chestSeed = v.run.rng.Next();
+  const shouldRollIntoChest = chestSeed % 10 === 0;
   if (shouldRollIntoChest) {
-    v.run.seed = nextSeed(v.run.seed);
-    const shouldRollIntoLockedChest = (v.run.seed & 3) === 0;
+    const lockedChestSeed = v.run.rng.Next();
+    const shouldRollIntoLockedChest = (lockedChestSeed & 3) === 0;
     const chestVariant = shouldRollIntoLockedChest
       ? PickupVariant.PICKUP_LOCKEDCHEST
       : PickupVariant.PICKUP_CHEST;
+    const seed = v.run.rng.Next();
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
       chestVariant,
@@ -104,9 +111,10 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
       oldPickup.Velocity,
       oldPickup.SpawnerEntity,
       0,
-      v.run.seed,
+      seed,
     );
   } else {
+    const seed = v.run.rng.Next();
     g.g.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_NULL,
@@ -114,7 +122,7 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
       oldPickup.Velocity,
       oldPickup.SpawnerEntity,
       PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS,
-      v.run.seed,
+      seed,
     );
   }
 }

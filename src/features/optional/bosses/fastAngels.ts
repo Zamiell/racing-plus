@@ -10,8 +10,9 @@ import {
   findFreePosition,
   getCollectibleName,
   log,
-  nextSeed,
+  newRNG,
   saveDataManager,
+  setSeed,
   spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -19,7 +20,11 @@ import { config } from "../../../modConfigMenu";
 
 const v = {
   run: {
-    keySeed: 0 as Seed,
+    /**
+     * We cannot use "entity.InitSeed" as the seed for keys because it will cause bugs with the
+     * "preventItemRotate" feature of the standard library.
+     */
+    collectibleRNG: newRNG(),
   },
 };
 
@@ -34,7 +39,7 @@ function featureEnabled() {
 // ModCallbacks.MC_POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeed = g.seeds.GetStartSeed();
-  v.run.keySeed = startSeed;
+  setSeed(v.run.collectibleRNG, startSeed);
 }
 
 // ModCallbacks.MC_POST_PICKUP_INIT (34)
@@ -86,12 +91,14 @@ function spawnKeyPiece(entity: Entity) {
   const collectibleType = getKeySubType(entity);
   const position = findFreePosition(entity.Position);
 
-  // We cannot use "entity.InitSeed" as the seed because it will cause bugs with the
-  // "preventItemRotate" feature of the standard library
-  v.run.keySeed = nextSeed(v.run.keySeed);
-
   // In vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free
-  spawnCollectible(collectibleType, position, v.run.keySeed, false, true);
+  spawnCollectible(
+    collectibleType,
+    position,
+    v.run.collectibleRNG,
+    false,
+    true,
+  );
 
   const collectibleName = getCollectibleName(collectibleType);
   log(`Spawned fast-angel item: ${collectibleName} (${collectibleType})`);
