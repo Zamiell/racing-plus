@@ -7,6 +7,7 @@ import {
   getPlayers,
   getRoomVisitedCount,
   inStartingRoom,
+  isCharacter,
   log,
   mapGetPlayer,
   mapSetPlayer,
@@ -222,8 +223,8 @@ export function postRender(): boolean {
 
   if (BabiesModGlobals !== undefined) {
     const player = Isaac.GetPlayer();
-    const character = player.GetPlayerType();
-    const randomBabyID = Isaac.GetPlayerTypeByName("Random Baby");
+    const randomBabyPlayerType = Isaac.GetPlayerTypeByName("Random Baby");
+    const isRandomBaby = isCharacter(player, randomBabyPlayerType);
     const effectiveStage = getEffectiveStage();
     const roomVisitedCount = getRoomVisitedCount();
 
@@ -231,7 +232,7 @@ export function postRender(): boolean {
       effectiveStage === 1 &&
       inStartingRoom() &&
       roomVisitedCount === 1 &&
-      character !== randomBabyID
+      !isRandomBaby
     ) {
       drawErrorText(
         "You must turn off The Babies Mod when playing characters other than Random Baby.",

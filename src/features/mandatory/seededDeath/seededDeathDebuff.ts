@@ -8,6 +8,7 @@ import {
   getTotalCharge,
   getTransformationsForCollectibleType,
   isActiveSlotEmpty,
+  isCharacter,
   removeAllFamiliars,
   removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
@@ -47,11 +48,9 @@ export function debuffOn(player: EntityPlayer): void {
 }
 
 function debuffOnRemoveSize(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
   // Store their size for later and reset it to default
   // (in case they had collectibles like Magic Mushroom and so forth)
-  if (character === PlayerType.PLAYER_ESAU) {
+  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
     v.run.spriteScale2 = player.SpriteScale;
   } else {
     v.run.spriteScale = player.SpriteScale;
@@ -101,9 +100,9 @@ function debuffOnSetHealth(player: EntityPlayer) {
 }
 
 function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  const activesMap =
-    character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
+  const activesMap = isCharacter(player, PlayerType.PLAYER_ESAU)
+    ? v.run.actives2
+    : v.run.actives;
 
   // Before we iterate over the active collectibles, we need to remove the book that is sitting
   // under the active collectible, if any
@@ -112,7 +111,7 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
     removeCollectible(player, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES);
   }
   if (
-    character === PlayerType.PLAYER_JUDAS &&
+    isCharacter(player, PlayerType.PLAYER_JUDAS) &&
     player.HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) &&
     player.HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
   ) {
@@ -150,11 +149,9 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
 }
 
 function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  const collectibles =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.collectibles2
-      : v.run.collectibles;
+  const collectibles = isCharacter(player, PlayerType.PLAYER_ESAU)
+    ? v.run.collectibles2
+    : v.run.collectibles;
 
   const collectibleMap = getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
@@ -175,10 +172,9 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
 function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const character = player.GetPlayerType();
 
-  if (character === PlayerType.PLAYER_ESAU) {
-    // Esau can not carry bombs and keys
+  // Esau can not carry bombs and keys
+  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
     return;
   }
 
@@ -251,10 +247,8 @@ export function debuffOff(player: EntityPlayer): void {
 }
 
 function debuffOffRestoreSize(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
   // Set their size to the way it was before the debuff was applied
-  if (character === PlayerType.PLAYER_ESAU) {
+  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
     if (v.run.spriteScale2 !== null) {
       player.SpriteScale = v.run.spriteScale2;
     }
@@ -268,9 +262,9 @@ function debuffOffRestoreSize(player: EntityPlayer) {
 }
 
 function debuffOffAddActiveCollectibles(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  const activesMap =
-    character === PlayerType.PLAYER_ESAU ? v.run.actives2 : v.run.actives;
+  const activesMap = isCharacter(player, PlayerType.PLAYER_ESAU)
+    ? v.run.actives2
+    : v.run.actives;
 
   // Before we restore the active collectibles, we need to restore the book that was sitting under
   // the active collectible, if any
@@ -311,11 +305,9 @@ function debuffOffAddActiveCollectibles(player: EntityPlayer) {
 }
 
 function debuffOffAddAllCollectibles(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  const collectibles =
-    character === PlayerType.PLAYER_ESAU
-      ? v.run.collectibles2
-      : v.run.collectibles;
+  const collectibles = isCharacter(player, PlayerType.PLAYER_ESAU)
+    ? v.run.collectibles2
+    : v.run.collectibles;
 
   for (const collectibleType of collectibles) {
     // If the player had Experimental Treatment (240), when it was removed, none of the stat
@@ -393,10 +385,9 @@ function disableSpiritShackles(player: EntityPlayer) {
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const character = player.GetPlayerType();
 
-  if (character === PlayerType.PLAYER_ESAU) {
-    // Esau can not carry bombs and keys
+  // Esau can not carry bombs and keys
+  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
     return;
   }
 

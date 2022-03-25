@@ -12,6 +12,7 @@ import {
   characterGetsBlackHeartFromEternalHeart,
   getPlayerHealth,
   getRandom,
+  isCharacter,
   log,
   newRNG,
   PlayerHealth,
@@ -279,9 +280,9 @@ function shouldWhoreOfBabylonApply(player: EntityPlayer) {
   const hasWhore = player.HasCollectible(
     CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
   );
-  const character = player.GetPlayerType();
+  const isEve = isCharacter(player, PlayerType.PLAYER_EVE);
   const hearts = player.GetHearts();
-  const redHeartTriggerAmount = character === PlayerType.PLAYER_EVE ? 2 : 1;
+  const redHeartTriggerAmount = isEve ? 2 : 1;
 
   return hasWhore && hearts <= redHeartTriggerAmount;
 }

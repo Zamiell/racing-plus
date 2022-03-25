@@ -1,4 +1,4 @@
-import { getPlayers } from "isaacscript-common";
+import { getPlayersOfType } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -7,10 +7,8 @@ export function postGameStarted(): void {
     return;
   }
 
-  for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === PlayerType.PLAYER_KEEPER_B) {
-      player.AddCoins(15);
-    }
+  const taintedKeepers = getPlayersOfType(PlayerType.PLAYER_KEEPER_B);
+  for (const taintedKeeper of taintedKeepers) {
+    taintedKeeper.AddCoins(15);
   }
 }

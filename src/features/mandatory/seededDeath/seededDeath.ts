@@ -1,6 +1,7 @@
 import {
   getDefaultColor,
   getFamiliars,
+  isCharacter,
   isJacobOrEsau,
   log,
 } from "isaacscript-common";
@@ -14,13 +15,11 @@ export function applySeededGhostFade(
   player: EntityPlayer,
   enabled: boolean,
 ): void {
-  const character = player.GetPlayerType();
-
   const sprite = player.GetSprite();
   const newColor = enabled ? QUARTER_FADED_COLOR : getDefaultColor();
   sprite.Color = newColor;
 
-  if (character === PlayerType.PLAYER_THESOUL) {
+  if (isCharacter(player, PlayerType.PLAYER_THESOUL)) {
     const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
     for (const forgottenBody of forgottenBodies) {
       const forgottenSprite = forgottenBody.GetSprite();

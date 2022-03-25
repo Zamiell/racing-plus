@@ -2,7 +2,11 @@
 // Instead, put the player in the middle of the room so that they have equal access to all 4 doors
 // This feature is not configurable because it could grant an advantage to turn off
 
-import { getCircleDiscretizedPoints, getPlayers } from "isaacscript-common";
+import {
+  getCircleDiscretizedPoints,
+  getPlayers,
+  isCharacter,
+} from "isaacscript-common";
 import g from "../../globals";
 import { movePlayersAndFamiliars } from "../../utils";
 
@@ -49,8 +53,7 @@ function pickUpTaintedForgotten() {
   // and Tainted Soul will automatically pick up Tainted Forgotten after a short delay
   // Speed this up slightly by manually making Tainted Soul pick up Tainted Forgotten
   for (const player of getPlayers()) {
-    const character = player.GetPlayerType();
-    if (character === PlayerType.PLAYER_THESOUL_B) {
+    if (isCharacter(player, PlayerType.PLAYER_THESOUL_B)) {
       const taintedForgotten = player.GetOtherTwin();
       if (taintedForgotten !== undefined) {
         player.TryHoldEntity(taintedForgotten);

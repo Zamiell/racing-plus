@@ -23,7 +23,9 @@ import {
   getTotalCharge,
   hasOpenActiveItemSlot,
   inGenesisRoom,
+  isCharacter,
   isJacobOrEsau,
+  isTaintedLazarus,
   log,
   mapSetPlayer,
   PlayerIndex,
@@ -89,11 +91,7 @@ function checkGenesisRoom() {
 // ModCallbacks.MC_PRE_USE_ITEM (23)
 // CollectibleType.COLLECTIBLE_FLIP (711)
 export function preUseItemFlip(player: EntityPlayer, useFlags: int): void {
-  const character = player.GetPlayerType();
-  if (
-    character !== PlayerType.PLAYER_LAZARUS_B &&
-    character !== PlayerType.PLAYER_LAZARUS2_B
-  ) {
+  if (!isTaintedLazarus(player)) {
     return;
   }
 
@@ -159,11 +157,7 @@ export function postPlayerChangeType(player: EntityPlayer): void {
 
 // ModCallbacksCustom.MC_POST_FLIP
 export function postFlip(player: EntityPlayer): void {
-  const character = player.GetPlayerType();
-  if (
-    character !== PlayerType.PLAYER_LAZARUS_B &&
-    character !== PlayerType.PLAYER_LAZARUS2_B
-  ) {
+  if (!isTaintedLazarus(player)) {
     return;
   }
 
@@ -208,8 +202,7 @@ function changedCharacterInSomeWay(
   player: EntityPlayer,
   gotHereFromEsauJr = false,
 ) {
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_JACOB) {
+  if (isCharacter(player, PlayerType.PLAYER_JACOB)) {
     const esau = player.GetOtherTwin();
     if (esau !== undefined) {
       giveD6(esau, gotHereFromEsauJr);
@@ -228,8 +221,7 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
     return;
   }
 
-  const character = player.GetPlayerType();
-  if (character !== PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (!isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     return;
   }
 

@@ -3,6 +3,7 @@ import {
   DefaultMap,
   getTaintedMagdaleneNonTemporaryMaxHearts,
   inStartingRoom,
+  isCharacter,
   isChildPlayer,
   isSelfDamage,
   onDarkRoom,
@@ -108,8 +109,7 @@ export function entityTakeDmgPlayer(
   }
 
   // As an exception, Tainted Magdalene is allowed to get damaged on her temporary heart containers
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_MAGDALENE_B) {
+  if (isCharacter(player, PlayerType.PLAYER_MAGDALENE_B)) {
     if (
       wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
         player,

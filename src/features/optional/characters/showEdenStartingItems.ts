@@ -2,6 +2,7 @@ import {
   getEffectiveStage,
   getMaxCollectibleType,
   inStartingRoom,
+  isEden,
   range,
   saveDataManager,
 } from "isaacscript-common";
@@ -96,14 +97,8 @@ function setItemSprites() {
 function shouldShowSprites() {
   const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
-  return (
-    (character === PlayerType.PLAYER_EDEN ||
-      character === PlayerType.PLAYER_EDEN_B) &&
-    effectiveStage === 1 &&
-    inStartingRoom()
-  );
+  return isEden(player) && effectiveStage === 1 && inStartingRoom();
 }
 
 // ModCallbacks.MC_POST_GAME_STARTED (15)
@@ -117,19 +112,15 @@ export function postGameStarted(): void {
 
 function storeItemIdentities() {
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
-  if (
-    character !== PlayerType.PLAYER_EDEN &&
-    character !== PlayerType.PLAYER_EDEN_B
-  ) {
+  if (!isEden(player)) {
     return;
   }
 
   v.run.active = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
   const passive = getEdenPassiveItem(player);
   if (passive === undefined) {
-    error("Failed to find Eden's passive item.");
+    error("Failed to find Eden / Tainted Eden passive item.");
   }
   v.run.passive = passive;
 }
