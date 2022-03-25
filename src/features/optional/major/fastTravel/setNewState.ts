@@ -7,6 +7,7 @@ import {
   getFamiliars,
   getPlayers,
   getRoomGridIndex,
+  isCharacter,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -157,9 +158,7 @@ function movePlayerToTrapdoor(player: EntityPlayer, position: Vector) {
 }
 
 function shouldMoveTaintedSoul(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
-  if (character !== PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (!isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     return false;
   }
 
@@ -176,11 +175,11 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
   );
 }
 
+/**
+ * If The Soul is travelling to the next floor, the Forgotten body will also need to be teleported.
+ */
 function warpForgottenBody(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
-  // If The Soul is travelling to the next floor, the Forgotten body will also need to be teleported
-  if (character !== PlayerType.PLAYER_THESOUL) {
+  if (!isCharacter(player, PlayerType.PLAYER_THESOUL)) {
     return;
   }
 
@@ -204,8 +203,7 @@ function warpForgottenBody(player: EntityPlayer) {
 }
 
 function dropTaintedForgotten(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul !== undefined) {
       taintedSoul.ThrowHeldEntity(Vector.Zero);
@@ -214,8 +212,6 @@ function dropTaintedForgotten(player: EntityPlayer) {
 }
 
 function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
-  const character = player.GetPlayerType();
-
   // Playing the vanilla animations results in the player re-appearing,
   // because the animations are not long enough to last for the full fade-out
   // Use custom animations instead that are 40 frames long
@@ -233,7 +229,7 @@ function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
   // playing two jumping animations does not work
   // Instead, just make Tainted Soul invisible
   // (it will automatically become visible again when we reach the next floor)
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (
       taintedSoul !== undefined &&

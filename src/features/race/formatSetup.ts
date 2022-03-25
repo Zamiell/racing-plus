@@ -3,6 +3,8 @@ import {
   copyArray,
   ensureAllCases,
   getLastElement,
+  isCharacter,
+  isEden,
   sfxManager,
   useActiveItemTemp,
 } from "isaacscript-common";
@@ -98,9 +100,11 @@ export function formatSetup(player: EntityPlayer): void {
   sfxManager.Stop(SoundEffect.SOUND_POWERUP_SPEWER);
 }
 
+/**
+ * Unseeded is like vanilla, but the player will still start with More Options to reduce the
+ * resetting time.
+ */
 function unseeded(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
   // If the race has not started yet, don't give the items
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
@@ -109,10 +113,8 @@ function unseeded(player: EntityPlayer) {
     return;
   }
 
-  // Unseeded is like vanilla,
-  // but the player will still start with More Options to reduce the resetting time
   // Avoid giving more options on Tainted Dead Lazarus
-  if (character !== PlayerType.PLAYER_LAZARUS2_B) {
+  if (!isCharacter(player, PlayerType.PLAYER_LAZARUS2_B)) {
     tempMoreOptions.give(player);
   }
 }
@@ -270,8 +272,7 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
     // that rerolls the build (e.g. D4, D100, etc.)
     // (we could manually replace these items, but it is simpler to just have one item on Eden
     // instead of two)
-    character !== PlayerType.PLAYER_EDEN &&
-    character !== PlayerType.PLAYER_EDEN_B &&
+    !isEden(player) &&
     // Esau is not granted any items in diversity races,
     // so there is no need to give him the Schoolbag
     character !== PlayerType.PLAYER_ESAU

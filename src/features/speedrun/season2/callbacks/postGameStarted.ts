@@ -1,4 +1,5 @@
 import {
+  anyPlayerIs,
   copyArray,
   emptyArray,
   getRandomArrayElementAndRemove,
@@ -114,14 +115,11 @@ function checkErrors() {
 }
 
 function removeItemsFromPools() {
-  const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
-
   // From seeded races
   g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
   g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
 
-  if (character === PlayerType.PLAYER_BLACKJUDAS) {
+  if (anyPlayerIs(PlayerType.PLAYER_BLACKJUDAS)) {
     g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW);
   }
 }

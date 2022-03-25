@@ -6,6 +6,7 @@ import {
   forgottenSwitch,
   getFamiliars,
   getPlayers,
+  isCharacter,
   log,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -62,8 +63,7 @@ function subvertTeleport() {
     // However, if we change its position manually,
     // it will just warp back to the same spot on the next frame
     // Thus, just manually switch to the Forgotten to avoid this bug
-    const character = player.GetPlayerType();
-    if (character === PlayerType.PLAYER_THESOUL) {
+    if (isCharacter(player, PlayerType.PLAYER_THESOUL)) {
       forgottenSwitch();
     }
   }

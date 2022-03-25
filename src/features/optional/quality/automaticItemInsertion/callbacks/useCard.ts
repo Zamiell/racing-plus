@@ -3,6 +3,7 @@ import {
   getPickups,
   initArray,
   isBethany,
+  isCharacter,
   repeat,
 } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
@@ -16,9 +17,7 @@ export function automaticItemInsertionUseCardHierophant(
     return;
   }
 
-  const character = player.GetPlayerType();
-
-  if (character !== PlayerType.PLAYER_BETHANY) {
+  if (!isCharacter(player, PlayerType.PLAYER_BETHANY)) {
     return;
   }
 
@@ -33,9 +32,7 @@ export function automaticItemInsertionUseCardLovers(
     return;
   }
 
-  const character = player.GetPlayerType();
-
-  if (character !== PlayerType.PLAYER_BETHANY_B) {
+  if (!isCharacter(player, PlayerType.PLAYER_BETHANY_B)) {
     return;
   }
 

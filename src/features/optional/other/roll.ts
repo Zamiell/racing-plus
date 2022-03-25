@@ -4,6 +4,7 @@ import {
   enableAllInputs,
   getDirectionName,
   isActionPressedOnAnyInput,
+  isCharacter,
   isJacobOrEsau,
   isKeyboardPressed,
   saveDataManager,
@@ -129,12 +130,11 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const character = player.GetPlayerType();
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     return;
   }
 
-  if (character === PlayerType.PLAYER_ESAU) {
+  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
     checkRollEsau(player);
   } else {
     checkRoll(player);
@@ -201,9 +201,8 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 
 function getRollPlayer() {
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
-  if (character === PlayerType.PLAYER_THEFORGOTTEN_B) {
+  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul === undefined) {
       error("Failed to get Tainted Soul from Tainted Forgotten.");
