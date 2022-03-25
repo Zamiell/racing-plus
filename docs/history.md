@@ -160,7 +160,7 @@
 
 - In seeded races, players will now always get all Devil Rooms or all Angel Rooms. Each seed has a 50% chance of either option.
 - In seeded races, if you are in second place, you will now see how many seconds behind you are upon reaching a new floor.
-- Random sound effects should play less often when travelling between floors on seeded races or on unseeded runs with Dream Catcher.
+- Random sound effects should play less often when traveling between floors on seeded races or on unseeded runs with Dream Catcher.
 - Fixed the bug where dirty bedrooms would never appear in multi-character speedruns.
 - Fixed the bug where the game would crash when starting as Eden under certain conditions. (Thanks Gamonymous)
 - Fixed the bug where items with the "noeden" tag could be given to Eden or Tainted Eden under certain circumstances.
@@ -1449,7 +1449,7 @@
 
 - In seeded races, you now have the ability to see your opponent inside your own game as a shadow. Thanks to imps for coding this, which was difficult to do. For more instructions, see this Pastebin: https://pastebin.com/2ZnRxDba
 - The Technology Zero + Pop! + Cupid's Arrow build now grants a -50% damage multiplier.
-- If you are currently jumping into a trapdoor, you can now save & quit in order to cancel travelling to the next floor. (Thanks Dea1h)
+- If you are currently jumping into a trapdoor, you can now save & quit in order to cancel traveling to the next floor. (Thanks Dea1h)
 - The mod will now display your starting items in the starting room when you are playing as Eden.
 - The mod will now display how many sacrifices you have performed when you are in a Sacrifice Room.
 - Entering a room with Pin, Frail, or Scolex will now cause the screen to shake for 20 frames as an indication that there are enemies hidden under the ground. (Thanks Dea1h)
@@ -2061,7 +2061,7 @@ Mod changes:
 
 - Removed Sheol narrow rooms #257, #275, and #308 (with Mom's Dead Hand). (Thanks Dea1h)
 - Added the season 3 Sacrifice Room mechanic to season 6. (Thanks thereisnofuture)
-- Fixed the bug where you could manually change from The Forgotten / The Soul when travelling between floors.
+- Fixed the bug where you could manually change from The Forgotten / The Soul when traveling between floors.
 
 ### *v0.34.5* - May 3rd, 2019
 

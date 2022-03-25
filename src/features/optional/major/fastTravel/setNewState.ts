@@ -68,7 +68,7 @@ export function setFadingToBlack(
 
   // Begin the process of moving the player to the next floor
   // If this is a multiplayer game, only the player who touched the trapdoor / heaven door will play
-  // the travelling animation
+  // the traveling animation
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
@@ -90,7 +90,7 @@ export function setFadingToBlack(
   setPlayerAttributes(player, position);
   warpForgottenBody(player);
   dropTaintedForgotten(player);
-  playTravellingAnimation(player, upwards);
+  playTravelingAnimation(player, upwards);
 }
 
 function setGameStateFlags() {
@@ -176,7 +176,7 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
 }
 
 /**
- * If The Soul is travelling to the next floor, the Forgotten body will also need to be teleported.
+ * If The Soul is traveling to the next floor, the Forgotten body will also need to be teleported.
  */
 function warpForgottenBody(player: EntityPlayer) {
   if (!isCharacter(player, PlayerType.PLAYER_THESOUL)) {
@@ -211,7 +211,7 @@ function dropTaintedForgotten(player: EntityPlayer) {
   }
 }
 
-function playTravellingAnimation(player: EntityPlayer, upwards: boolean) {
+function playTravelingAnimation(player: EntityPlayer, upwards: boolean) {
   // Playing the vanilla animations results in the player re-appearing,
   // because the animations are not long enough to last for the full fade-out
   // Use custom animations instead that are 40 frames long

@@ -1,13 +1,12 @@
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
+  NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE,
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-
-const NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE = 4;
 
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_azazels_rage.anm2", true);

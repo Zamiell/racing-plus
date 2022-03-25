@@ -195,7 +195,7 @@ function shouldGetFreeDevilItemInThisRoom() {
     roomType !== RoomType.ROOM_BLACK_MARKET &&
     // Dark Room starting room deals also don't count as "locking in" Devil Deals
     !(onDarkRoom() && inStartingRoom()) &&
-    // We might be travelling to a Devil Room for run-initialization-related tasks
+    // We might be traveling to a Devil Room for run-initialization-related tasks
     gameFrameCount > 0
   );
 }

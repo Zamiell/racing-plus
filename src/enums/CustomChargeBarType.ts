@@ -1,6 +1,6 @@
 export enum CustomChargeBarType {
-  TAINTED_SAMSON,
+  LEAD_PENCIL, // First because it will never disappear and is the most important to see
   AZAZELS_RAGE,
-  LEAD_PENCIL,
+  TAINTED_SAMSON,
   BLOODY_LUST,
 }

@@ -5,6 +5,7 @@ import g from "./globals";
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
 const OVERLAP_ADJUSTMENT = Vector(-50, 0);
 
+// Lead Pencil constants
 const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_DR_FETUS, // 52
   CollectibleType.COLLECTIBLE_TECHNOLOGY, // 68
@@ -15,6 +16,9 @@ const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
   CollectibleType.COLLECTIBLE_TECH_X, // 395
 ];
+
+// Azazels' Rage constants
+export const NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE = 4;
 
 /**
  * Corresponds to the "Charging" animation in "chargebar.anm2", which is the base for all custom
@@ -61,37 +65,37 @@ function getNumHigherPrecedenceCustomChargeBars(
   player: EntityPlayer,
   chargeBarType: CustomChargeBarType,
 ) {
-  const taintedSamsonShowing = shouldDrawCustomChargeBar(
-    player,
-    CustomChargeBarType.TAINTED_SAMSON,
-  );
-  const taintedSamson = taintedSamsonShowing ? 1 : 0;
-  const azazelsRageShowing = shouldDrawCustomChargeBar(
-    player,
-    CustomChargeBarType.AZAZELS_RAGE,
-  );
-  const azazelsRage = azazelsRageShowing ? 1 : 0;
   const leadPencilShowing = shouldDrawCustomChargeBar(
     player,
     CustomChargeBarType.LEAD_PENCIL,
   );
   const leadPencil = leadPencilShowing ? 1 : 0;
+  const azazelsRageShowing = shouldDrawCustomChargeBar(
+    player,
+    CustomChargeBarType.AZAZELS_RAGE,
+  );
+  const azazelsRage = azazelsRageShowing ? 1 : 0;
+  const taintedSamsonShowing = shouldDrawCustomChargeBar(
+    player,
+    CustomChargeBarType.TAINTED_SAMSON,
+  );
+  const taintedSamson = taintedSamsonShowing ? 1 : 0;
 
   switch (chargeBarType) {
-    case CustomChargeBarType.TAINTED_SAMSON: {
+    case CustomChargeBarType.LEAD_PENCIL: {
       return 0;
     }
 
     case CustomChargeBarType.AZAZELS_RAGE: {
-      return taintedSamson;
+      return leadPencil;
     }
 
-    case CustomChargeBarType.LEAD_PENCIL: {
-      return taintedSamson + azazelsRage;
+    case CustomChargeBarType.TAINTED_SAMSON: {
+      return leadPencil + azazelsRage;
     }
 
     case CustomChargeBarType.BLOODY_LUST: {
-      return taintedSamson + azazelsRage + leadPencil;
+      return leadPencil + azazelsRage + taintedSamson;
     }
 
     default: {
@@ -105,16 +109,16 @@ export function shouldDrawCustomChargeBar(
   chargeBarType: CustomChargeBarType,
 ): boolean {
   switch (chargeBarType) {
-    case CustomChargeBarType.TAINTED_SAMSON: {
-      return shouldDrawTaintedSamsonChargeBar(player);
+    case CustomChargeBarType.LEAD_PENCIL: {
+      return shouldDrawLeadPencilChargeBar(player);
     }
 
     case CustomChargeBarType.AZAZELS_RAGE: {
-      return player.HasCollectible(CollectibleType.COLLECTIBLE_AZAZELS_RAGE);
+      return shouldDrawAzazelsRageChargeBar(player);
     }
 
-    case CustomChargeBarType.LEAD_PENCIL: {
-      return shouldDrawLeadPencilChargeBar(player);
+    case CustomChargeBarType.TAINTED_SAMSON: {
+      return shouldDrawTaintedSamsonChargeBar(player);
     }
 
     case CustomChargeBarType.BLOODY_LUST: {
@@ -125,16 +129,6 @@ export function shouldDrawCustomChargeBar(
       return ensureAllCases(chargeBarType);
     }
   }
-}
-
-function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
-  const isTaintedSamson = isCharacter(player, PlayerType.PLAYER_SAMSON_B);
-  const effects = player.GetEffects();
-  const isBerserk = effects.HasCollectibleEffect(
-    CollectibleType.COLLECTIBLE_BERSERK,
-  );
-
-  return isTaintedSamson && !isBerserk;
 }
 
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
@@ -158,4 +152,29 @@ function playerHasUntrackableCollectible(player: EntityPlayer) {
   return UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
     player.HasCollectible(collectibleType),
   );
+}
+
+function shouldDrawAzazelsRageChargeBar(player: EntityPlayer) {
+  const hasAzazelsRage = player.HasCollectible(
+    CollectibleType.COLLECTIBLE_AZAZELS_RAGE,
+  );
+  const effects = player.GetEffects();
+  const numCharges = effects.GetCollectibleEffectNum(
+    CollectibleType.COLLECTIBLE_AZAZELS_RAGE,
+  );
+
+  // The number of effects goes from 4 to 6 when the blast is firing
+  const isBlastFiring = numCharges > NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE;
+
+  return hasAzazelsRage && !isBlastFiring;
+}
+
+function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
+  const isTaintedSamson = isCharacter(player, PlayerType.PLAYER_SAMSON_B);
+  const effects = player.GetEffects();
+  const isBerserk = effects.HasCollectibleEffect(
+    CollectibleType.COLLECTIBLE_BERSERK,
+  );
+
+  return isTaintedSamson && !isBerserk;
 }
