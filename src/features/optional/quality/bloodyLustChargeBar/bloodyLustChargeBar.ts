@@ -1,37 +1,24 @@
-import {
-  DefaultMap,
-  defaultMapGetPlayer,
-  mapSetPlayer,
-  PlayerIndex,
-  saveDataManager,
-} from "isaacscript-common";
+import { defaultMapGetPlayer, mapSetPlayer } from "isaacscript-common";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
   shouldDrawCustomChargeBar,
-} from "../../../customChargeBar";
-import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
-import g from "../../../globals";
-import { config } from "../../../modConfigMenu";
-
-const MAX_BLOODY_LUST_CHARGES = 6;
+} from "../../../../customChargeBar";
+import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
+import g from "../../../../globals";
+import { config } from "../../../../modConfigMenu";
+import v, { MAX_BLOODY_LUST_CHARGES } from "./v";
 
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_bloody_lust.anm2", true);
 
-const v = {
-  level: {
-    playersNumHits: new DefaultMap<PlayerIndex, int>(0),
-  },
-};
-
-export function init(): void {
-  saveDataManager("bloodyLustChargeBar", v);
-}
-
 // ModCallbacks.MC_ENTITY_TAKE_DMG (11)
 // EntityType.ENTITY_PLAYER (1)
 export function entityTakeDmgPlayer(player: EntityPlayer): void {
+  if (!config.bloodyLustChargeBar) {
+    return;
+  }
+
   const numHits = defaultMapGetPlayer(v.level.playersNumHits, player);
   const newNumHits = numHits + 1;
   mapSetPlayer(v.level.playersNumHits, player, newNumHits);

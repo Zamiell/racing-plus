@@ -3693,7 +3693,7 @@ Changes:
 - All of the character graphics are less faded in the "Change Char Order" custom challenge.
 - Fixed the bug in the speedrun custom challenges where you could touch an item pedestal to advance to the next character under certain conditions. (Thanks ceehe)
 - Fixed the bug where some of the save file graphics had the wrong text color.
-- Fixed the bug where hearts could disappear if they travelled over trapdoors under certain conditions.
+- Fixed the bug where hearts could disappear if they traveled over trapdoors under certain conditions.
 - Fixed the bug in custom challenge speedruns where restarting as The Lost after a death would go back to the first character. (Thanks Dea1h)
 
 ### *v0.5.3* - April 12th, 2017

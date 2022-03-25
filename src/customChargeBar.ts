@@ -1,9 +1,11 @@
 import { ensureAllCases, isCharacter } from "isaacscript-common";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
+import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
 import g from "./globals";
+import { config } from "./modConfigMenu";
 
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
-const OVERLAP_ADJUSTMENT = Vector(-50, 0);
+const OVERLAP_ADJUSTMENT = Vector(-20, 0);
 
 // Lead Pencil constants
 const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
@@ -122,7 +124,7 @@ export function shouldDrawCustomChargeBar(
     }
 
     case CustomChargeBarType.BLOODY_LUST: {
-      return player.HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST);
+      return shouldDrawBloodyLustChargeBar(player);
     }
 
     default: {
@@ -132,20 +134,14 @@ export function shouldDrawCustomChargeBar(
 }
 
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
-  if (!player.HasCollectible(CollectibleType.COLLECTIBLE_LEAD_PENCIL)) {
-    return false;
-  }
-
-  // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
-  // (because there is no PostLaserFired callback)
-  if (
-    isCharacter(player, PlayerType.PLAYER_AZAZEL) ||
-    playerHasUntrackableCollectible(player)
-  ) {
-    return false;
-  }
-
-  return true;
+  return (
+    config.leadPencilChargeBar &&
+    player.HasCollectible(CollectibleType.COLLECTIBLE_LEAD_PENCIL) &&
+    // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
+    // (because there is no PostLaserFired callback)
+    !isCharacter(player, PlayerType.PLAYER_AZAZEL) &&
+    !playerHasUntrackableCollectible(player)
+  );
 }
 
 function playerHasUntrackableCollectible(player: EntityPlayer) {
@@ -166,7 +162,7 @@ function shouldDrawAzazelsRageChargeBar(player: EntityPlayer) {
   // The number of effects goes from 4 to 6 when the blast is firing
   const isBlastFiring = numCharges > NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE;
 
-  return hasAzazelsRage && !isBlastFiring;
+  return config.azazelsRageChargeBar && hasAzazelsRage && !isBlastFiring;
 }
 
 function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
@@ -176,5 +172,13 @@ function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
     CollectibleType.COLLECTIBLE_BERSERK,
   );
 
-  return isTaintedSamson && !isBerserk;
+  return config.taintedSamsonChargeBar && isTaintedSamson && !isBerserk;
+}
+
+function shouldDrawBloodyLustChargeBar(player: EntityPlayer) {
+  return (
+    config.bloodyLustChargeBar &&
+    player.HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST) &&
+    !isMaxBloodyLustCharges(player)
+  );
 }

@@ -3,7 +3,7 @@ import * as dummyDPS from "../features/mandatory/dummyDPS";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
-import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar";
+import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 
 export function init(mod: Mod): void {
   mod.AddCallback(

@@ -2,7 +2,7 @@ import { isChildPlayer } from "isaacscript-common";
 import * as debugDisplay from "../features/mandatory/debugDisplay";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
 import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
-import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar";
+import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import * as taintedSamsonChargeBar from "../features/optional/quality/taintedSamsonChargeBar";
 
