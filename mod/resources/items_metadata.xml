@@ -32,7 +32,7 @@ Changes from vanilla:
   <item
     id="21"
     quality="2"
-    tags="summonable offensive nogreed lazarussharedglobal"
+    tags="summonable offensive lazarussharedglobal nogreed"
   />
   <item id="22" quality="1" tags="nolostbr nocantrip food" />
   <item id="23" quality="1" tags="nolostbr nocantrip food" />
@@ -72,7 +72,7 @@ Changes from vanilla:
   <item
     id="54"
     quality="2"
-    tags="summonable offensive nogreed lazarussharedglobal"
+    tags="summonable offensive lazarussharedglobal nogreed"
   />
   <item id="55" quality="1" tags="summonable mom offensive" />
   <item id="56" quality="1" tags="offensive" />
@@ -488,7 +488,7 @@ Changes from vanilla:
   <item id="432" quality="2" tags="summonable offensive" />
   <item id="433" quality="0" tags="nolostbr summonable" />
   <item id="434" quality="2" tags="offensive nocantrip fly" />
-  <item id="435" quality="1" tags="summonable monstermanual offensive" />
+  <item id="435" quality="1" tags="summonable baby monstermanual offensive" />
   <item id="436" quality="1" tags="uniquefamiliar nolostbr summonable" />
   <item id="437" quality="1" tags="offensive" />
   <item id="438" quality="3" tags="summonable tearsup offensive" />
