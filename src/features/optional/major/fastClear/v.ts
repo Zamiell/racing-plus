@@ -1,12 +1,7 @@
 import { getEntityID, log, saveDataManager } from "isaacscript-common";
 import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-
-/**
- * Currently set to true until I can find out the cause of It Lives! not triggering fast-clear for
- * some reason.
- */
-const FAST_CLEAR_DEBUG = true;
+import { FAST_CLEAR_DEBUG } from "./constants";
 
 const v = {
   room: {

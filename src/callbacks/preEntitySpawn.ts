@@ -12,7 +12,10 @@ Notes:
 
 */
 
+import { log } from "isaacscript-common";
 import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
+
+const DEBUG = false;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, main);
@@ -27,6 +30,12 @@ function main(
   spawner: Entity,
   initSeed: int,
 ): [EntityType, int, int, int] | void {
+  if (DEBUG) {
+    log(
+      `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,
+    );
+  }
+
   const preEntityFunction = preEntitySpawnFunctions.get(entityType);
   if (preEntityFunction !== undefined) {
     return preEntityFunction(variant, subType, position, spawner, initSeed);

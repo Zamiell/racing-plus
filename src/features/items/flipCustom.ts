@@ -40,7 +40,6 @@ const INVALID_COLLECTIBLE_TYPE = -1;
 function getFlippedCollectibleIndex(collectible: EntityPickup) {
   const roomListIndex = getRoomListIndex();
   const gridIndex = g.r.GetGridIndex(collectible.Position);
-
   return `${roomListIndex},${gridIndex}` as FlippedCollectibleIndex;
 }
 
@@ -56,13 +55,10 @@ const v = {
      * - We ignore the edge-case of the Flipped collectible type persisting to post-Ascent Treasure
      * Rooms.
      */
-    flippedCollectibleTypes: new DefaultMap<
+    flippedCollectibleTypes: new Map<
       FlippedCollectibleIndex,
-      CollectibleType,
-      [collectible: EntityPickup]
-    >((_key: FlippedCollectibleIndex, collectible: EntityPickup) =>
-      newFlippedCollectibleType(collectible),
-    ),
+      CollectibleType | CollectibleTypeCustom
+    >(),
   },
 
   room: {
@@ -74,20 +70,22 @@ const v = {
       PtrHash,
       Sprite,
       [
-        flippedCollectibleType: CollectibleType,
+        flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
         nonFlippedCollectible: EntityPickup,
       ]
     >(
       (
         _key: PtrHash,
-        flippedCollectibleType: CollectibleType,
+        flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
         nonFlippedCollectible: EntityPickup,
       ) => newFlippedSprite(flippedCollectibleType, nonFlippedCollectible),
     ),
   },
 };
 
-function newFlippedCollectibleType(collectible: EntityPickup) {
+function newFlippedCollectibleType(
+  collectible: EntityPickup,
+): CollectibleType | CollectibleTypeCustom {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomFrameCount = g.r.GetFrameCount();
 
@@ -111,7 +109,7 @@ function newFlippedCollectibleType(collectible: EntityPickup) {
 }
 
 function newFlippedSprite(
-  flippedCollectibleType: CollectibleType,
+  flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
   nonFlippedCollectible: EntityPickup,
 ) {
   const collectibleTypeToUse = isBlindCollectible(nonFlippedCollectible)
@@ -217,10 +215,25 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
     return;
   }
 
+  // If the collectible is rolled, the PostPickupInit callback will fire again, but we do not want
+  // to get a new flipped collectible type in this case
+  // Thus, we only set a new collectible type if the index does not exist already
   const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
-  v.level.flippedCollectibleTypes.getAndSetDefault(
+  if (v.level.flippedCollectibleTypes.has(flippedCollectibleIndex)) {
+    return;
+  }
+
+  // Handle the special case of a temporary item being spawned in a Devil Room / Angel Room
+  // In this case, we do not have to assign a new flipped collectible, since the item will be
+  // respawned later on this frame
+  const flippedCollectibleType = newFlippedCollectibleType(collectible);
+  if (flippedCollectibleType === CollectibleTypeCustom.COLLECTIBLE_DEBUG) {
+    return;
+  }
+
+  v.level.flippedCollectibleTypes.set(
     flippedCollectibleIndex,
-    collectible,
+    flippedCollectibleType,
   );
 }
 
@@ -283,23 +296,8 @@ export function postPurchaseCollectible(
   }
 
   // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now
-  const emptyCollectible = spawnEmptyCollectible(
-    collectible.Position,
-    collectible.InitSeed,
-  );
+  spawnEmptyCollectible(collectible.Position, collectible.InitSeed);
 
-  // Transfer the old flipped item to the new empty pedestal
-  // (which may or may not be necessary depending on the indexing scheme that we are using)
-  const oldFlippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
-  const oldFlippedCollectibleType =
-    v.level.flippedCollectibleTypes.getAndSetDefault(
-      oldFlippedCollectibleIndex,
-      collectible,
-    );
-  const newFlippedCollectibleIndex =
-    getFlippedCollectibleIndex(emptyCollectible);
-  v.level.flippedCollectibleTypes.set(
-    newFlippedCollectibleIndex,
-    oldFlippedCollectibleType,
-  );
+  // We do not have to transfer the entry in the "flippedCollectibleTypes" map to the new pedestal,
+  // because it will have the same index (i.e. it will have the same room list index and grid index)
 }

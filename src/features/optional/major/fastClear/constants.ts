@@ -1,3 +1,5 @@
+export const FAST_CLEAR_DEBUG = false;
+
 export const CREEP_VARIANTS_TO_KILL: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.CREEP_RED, // 22
   EffectVariant.CREEP_GREEN, // 23

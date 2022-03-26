@@ -107,7 +107,7 @@ function getFileNum(itemID: int) {
 }
 
 export function initCollectibleSprite(
-  collectibleType: CollectibleType,
+  collectibleType: CollectibleType | CollectibleTypeCustom,
 ): Sprite {
   const sprite = Sprite();
   sprite.Load("gfx/005.100_collectible.anm2", false);

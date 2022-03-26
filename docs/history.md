@@ -6,6 +6,7 @@
 - Added a custom charge bar for Bloody Lust.
 - Fixed the bug where the Lead Pencil charge bar and the Azazel's Rage charge bar would overlap.
 - Fixed the bug where Flip would not work properly on question mark item pedestals. (Thanks Fallenfor)
+- Fixed the bug where flipped items would not be initialized correctly in Devil Rooms and Angel Rooms under certain circumstances. (Thanks Fallenfor)
 
 ### *v0.79.18* - March 23rd, 2022
 

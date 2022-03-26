@@ -27,16 +27,11 @@ export function postGameStarted(): void {
 
   // Calculate whether we should get all Devil Rooms or all Angel Rooms
   const startSeed = g.seeds.GetStartSeed();
-  const startSeedString = g.seeds.GetStartSeedString();
-  Isaac.DebugString(`GETTING HERE - startSeed (int): ${startSeed}`);
-  Isaac.DebugString(`GETTING HERE - startSeed (string): ${startSeedString}`);
   const randomChance = getRandom(startSeed);
-  Isaac.DebugString(`GETTING HERE - randomChance: ${randomChance}`);
   let devil = randomChance < 0.5;
   if (anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS)) {
     devil = false;
   }
-  Isaac.DebugString(`GETTING HERE - devil: ${devil}`);
   v.run.allAngelRooms = !devil;
 
   // Set the player's vanilla Angel Room chances to 0%
