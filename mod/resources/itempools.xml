@@ -150,8 +150,6 @@ Changes from vanilla:
     <Item Id="111" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Demon Baby-->
     <Item Id="113" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    <!--Mom's Knife-->
-    <!--<Item Id="114" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>-->
     <!--Ouija Board-->
     <Item Id="115" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Dead Bird-->
@@ -3331,119 +3329,119 @@ Changes from vanilla:
   </Pool>
   <Pool Name="greedSecret">
     <!--1up!-->
-    <Item Id="11" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="11" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Raw Liver-->
-    <Item Id="16" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="16" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Skeleton Key-->
-    <Item Id="17" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="17" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Transcendence-->
-    <Item Id="20" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="20" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--The Necronomicon-->
-    <Item Id="35" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="35" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--We Need To Go Deeper!-->
-    <Item Id="84" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="84" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Odd Mushroom-->
-    <Item Id="120" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="120" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Odd Mushroom-->
-    <Item Id="121" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="121" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Forget Me Now-->
-    <Item Id="127" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="127" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Epic Fetus-->
-    <Item Id="168" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="168" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Pyro-->
-    <Item Id="190" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="190" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Lost Contact-->
-    <Item Id="213" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="213" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Black Lotus-->
-    <Item Id="226" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="226" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Infamy-->
-    <Item Id="242" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="242" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Missing No.-->
-    <Item Id="258" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="258" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Missing Page 2-->
-    <Item Id="262" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="262" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Clear Rune-->
-    <Item Id="263" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="263" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Mystery Sack-->
-    <Item Id="271" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="271" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Blank Card-->
-    <Item Id="286" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="286" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Cursed Eye-->
-    <Item Id="316" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="316" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Samson's Chains-->
-    <Item Id="321" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="321" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Placebo-->
-    <Item Id="348" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="348" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Rune Bag-->
-    <Item Id="389" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="389" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Chaos-->
-    <Item Id="402" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="402" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--GB Bug-->
-    <Item Id="405" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="405" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sack Head-->
-    <Item Id="424" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="424" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Eye of Greed-->
-    <Item Id="450" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="450" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--D infinity-->
-    <Item Id="489" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="489" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sack of Sacks-->
-    <Item Id="500" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="500" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Greed's Gullet-->
-    <Item Id="501" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="501" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Dad's Ring-->
-    <Item Id="546" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="546" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Rock Bottom-->
-    <Item Id="562" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="562" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Orphan Socks-->
-    <Item Id="571" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="571" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Wavy Cap-->
-    <Item Id="582" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="582" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Eternal D6-->
-    <Item Id="609" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="609" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Lost Soul-->
-    <Item Id="612" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="612" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Mega Mush-->
-    <Item Id="625" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="625" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Death Certificate-->
-    <Item Id="628" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="628" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Evil Charm-->
-    <Item Id="632" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="632" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--R Key-->
-    <Item Id="636" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="636" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Binge Eater-->
-    <Item Id="664" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="664" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Strawman-->
-    <Item Id="667" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="667" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sausage-->
-    <Item Id="669" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="669" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Spirit Shackles-->
-    <Item Id="674" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="674" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Astral Projection-->
-    <Item Id="677" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="677" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Inner Child-->
-    <Item Id="688" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="688" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Glitched Crown-->
-    <Item Id="689" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="689" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Sacred Orb-->
-    <Item Id="691" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
+    <Item Id="691" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05" />
     <!--Echo Chamber-->
-    <Item Id="700" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="700" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Isaac's Tomb-->
-    <Item Id="701" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="701" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Esau Jr.-->
-    <Item Id="703" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="703" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Flip-->
-    <Item Id="711" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="711" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Keeper's Sack-->
-    <Item Id="716" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="716" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Keeper's Kin-->
-    <Item Id="717" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="717" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Keeper's Box-->
-    <Item Id="719" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="719" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--TMTRAINER-->
-    <Item Id="721" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="721" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
     <!--Spindown Dice-->
-    <Item Id="723" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <Item Id="723" Weight="1" DecreaseBy="0.5" RemoveOn="0.1" />
   </Pool>
   <Pool Name="craneGame">
     <!--The Sad Onion-->
