@@ -6,6 +6,7 @@ import {
   getCollectibleMaxCharges,
   getCollectibles,
   getRoomListIndex,
+  isBlindCollectible,
   isTaintedLazarus,
   removeCollectibleFromItemTracker,
   saveDataManager,
@@ -17,18 +18,24 @@ import { COLLECTIBLE_LAYER } from "../../constants";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
-import { initItemSprite } from "../../sprite";
+import { initCollectibleSprite } from "../../sprite";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
+
+/** See the documentation for the `flippedCollectibleTypes` map. */
+type FlippedCollectibleIndex = string & {
+  __flippedCollectibleIndexBrand: unknown;
+};
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.COLLECTIBLE_FLIP;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
-/** See the documentation for the `flippedCollectibleTypes` map. */
-type FlippedCollectibleIndex = string & {
-  __flippedCollectibleIndexBrand: unknown;
-};
+/**
+ * An intentionally invalid collectible type. This will result in the `getCollectibleGfxFilename`
+ * function returning the path to the question mark PNG file.
+ */
+const INVALID_COLLECTIBLE_TYPE = -1;
 
 function getFlippedCollectibleIndex(collectible: EntityPickup) {
   const roomListIndex = getRoomListIndex();
@@ -66,9 +73,16 @@ const v = {
     flippedSprites: new DefaultMap<
       PtrHash,
       Sprite,
-      [flippedCollectibleType: CollectibleType]
-    >((_key: PtrHash, flippedCollectibleType: CollectibleType) =>
-      newFlippedSprite(flippedCollectibleType),
+      [
+        flippedCollectibleType: CollectibleType,
+        nonFlippedCollectible: EntityPickup,
+      ]
+    >(
+      (
+        _key: PtrHash,
+        flippedCollectibleType: CollectibleType,
+        nonFlippedCollectible: EntityPickup,
+      ) => newFlippedSprite(flippedCollectibleType, nonFlippedCollectible),
     ),
   },
 };
@@ -96,8 +110,14 @@ function newFlippedCollectibleType(collectible: EntityPickup) {
     : replacementCollectibleType;
 }
 
-function newFlippedSprite(collectibleType: CollectibleType) {
-  const sprite = initItemSprite(collectibleType);
+function newFlippedSprite(
+  flippedCollectibleType: CollectibleType,
+  nonFlippedCollectible: EntityPickup,
+) {
+  const collectibleTypeToUse = isBlindCollectible(nonFlippedCollectible)
+    ? INVALID_COLLECTIBLE_TYPE
+    : flippedCollectibleType;
+  const sprite = initCollectibleSprite(collectibleTypeToUse);
 
   const faded = copyColor(sprite.Color);
   faded.A = FADE_AMOUNT;
@@ -233,6 +253,7 @@ export function postPickupRenderCollectible(
   const flippedSprite = v.room.flippedSprites.getAndSetDefault(
     ptrHash,
     flippedCollectibleType,
+    collectible,
   );
   const pickupRenderPosition = Isaac.WorldToRenderPosition(
     collectible.Position,

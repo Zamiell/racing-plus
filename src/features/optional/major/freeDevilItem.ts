@@ -13,7 +13,7 @@ import { COLLECTIBLE_LAYER } from "../../../constants";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { initItemSprite } from "../../../sprite";
+import { initCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utilsGlobals";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
@@ -35,7 +35,9 @@ const v = {
 };
 
 function newMysteryGiftSprite() {
-  const sprite = initItemSprite(CollectibleType.COLLECTIBLE_MYSTERY_GIFT);
+  const sprite = initCollectibleSprite(
+    CollectibleType.COLLECTIBLE_MYSTERY_GIFT,
+  );
   sprite.Scale = Vector(0.666, 0.666);
 
   return sprite;
