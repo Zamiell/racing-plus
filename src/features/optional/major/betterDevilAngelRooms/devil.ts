@@ -8,6 +8,7 @@ import {
   getRandomJSONRoom,
   JSONRoom,
   setRoomUncleared,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { getEffectiveDevilDeals } from "../../../../utilsGlobals";
@@ -72,7 +73,7 @@ function checkSpawnKrampus() {
     EntityType.ENTITY_FALLEN,
     FallenVariant.KRAMPUS,
     centerPos,
-    Vector.Zero,
+    VectorZero,
     undefined,
     0,
     seed,

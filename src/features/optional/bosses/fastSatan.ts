@@ -7,6 +7,7 @@ import {
   log,
   newRNG,
   saveDataManager,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -66,7 +67,7 @@ function spawnEnemies() {
       EntityType.ENTITY_LEECH,
       LeechVariant.KAMIKAZE_LEECH,
       position,
-      Vector.Zero,
+      VectorZero,
       undefined,
       0,
       leechSeed,
@@ -79,7 +80,7 @@ function spawnEnemies() {
     EntityType.ENTITY_FALLEN,
     FallenVariant.FALLEN,
     centerPos,
-    Vector.Zero,
+    VectorZero,
     undefined,
     0,
     fallenSeed,

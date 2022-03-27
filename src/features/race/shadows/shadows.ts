@@ -7,6 +7,7 @@ import {
   ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
   saveDataManager,
+  VectorZero,
 } from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { RacerStatus } from "../../../enums/RacerStatus";
@@ -315,7 +316,7 @@ function setSpriteAnimation(sprite: Sprite, shadowData: ShadowData) {
 function drawSprite(sprite: Sprite, shadowData: ShadowData) {
   const positionGame = Vector(shadowData.x, shadowData.y);
   const position = Isaac.WorldToScreen(positionGame);
-  sprite.Render(position, Vector.Zero, Vector.Zero);
+  sprite.Render(position, VectorZero, VectorZero);
 
   // Additionally, show the username of the player above the sprite if they are holding down the map
   // button

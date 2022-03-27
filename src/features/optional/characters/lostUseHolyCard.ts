@@ -24,7 +24,7 @@ export function postGameStarted(): void {
 }
 
 function getPocketItemSlotWithHolyCard(player: EntityPlayer) {
-  const pocketItemSlots = range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1);
+  const pocketItemSlots = range(MAX_PLAYER_POCKET_ITEM_SLOTS - 1);
   return pocketItemSlots.find((pocketItemSlot) => {
     const card = player.GetCard(pocketItemSlot);
     return card === Card.CARD_HOLY;

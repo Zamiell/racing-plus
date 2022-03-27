@@ -1,3 +1,4 @@
+import { VectorZero } from "isaacscript-common";
 import { inSpeedrun } from "../speedrun";
 
 export function trophy(pickup: EntityPickup): void {
@@ -16,7 +17,7 @@ function removeAndSpawnBigChest(pickup: EntityPickup) {
     PickupVariant.PICKUP_BIGCHEST,
     0,
     pickup.Position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

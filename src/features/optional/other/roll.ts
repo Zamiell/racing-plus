@@ -8,6 +8,7 @@ import {
   isJacobOrEsau,
   isKeyboardPressed,
   saveDataManager,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config, hotkeys } from "../../../modConfigMenu";
@@ -24,8 +25,8 @@ const v = {
   run: {
     rolling: false,
     rolling2: false,
-    originalVelocity: Vector.Zero,
-    originalVelocity2: Vector.Zero,
+    originalVelocity: VectorZero,
+    originalVelocity2: VectorZero,
   },
 };
 
@@ -177,8 +178,8 @@ function stopRoll(player: EntityPlayer) {
 
   v.run.rolling = false;
   v.run.rolling2 = false;
-  v.run.originalVelocity = Vector.Zero;
-  v.run.originalVelocity2 = Vector.Zero;
+  v.run.originalVelocity = VectorZero;
+  v.run.originalVelocity2 = VectorZero;
 
   enableAllInputs(FEATURE_NAME);
 }

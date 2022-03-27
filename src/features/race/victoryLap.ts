@@ -4,6 +4,7 @@ import {
   newRNG,
   removeAllMatchingEntities,
   repeat,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
@@ -217,7 +218,7 @@ function spawnBoss(bossArray: [int, int, int]) {
     variant,
     subType,
     g.r.GetCenterPos(),
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

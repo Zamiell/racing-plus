@@ -1,7 +1,11 @@
 // Since the Perfection trinket spawns with a velocity,
 // it can sometimes go over pits and become inaccessible
 
-import { findFreePosition, saveDataManager } from "isaacscript-common";
+import {
+  findFreePosition,
+  saveDataManager,
+  VectorZero,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -46,7 +50,7 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   // Normally, the Perfection trinket will be flung outward from the location of the boss
   // Instead, set it to be a free tile near the center of the room
   pickup.Position = getPerfectionPosition();
-  pickup.Velocity = Vector.Zero;
+  pickup.Velocity = VectorZero;
 
   v.run.spawnedPerfection = true;
 }

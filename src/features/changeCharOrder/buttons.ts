@@ -3,11 +3,12 @@ import {
   ensureAllCases,
   getDefaultColor,
   getPlayers,
-  gridToPos,
+  gridCoordinatesToWorldPosition,
   isEven,
   removeAllMatchingGridEntities,
   removeGridEntity,
   spawnGridEntityWithVariant,
+  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
@@ -62,7 +63,7 @@ function createCharacterButtons() {
   const nextToBottomDoor = g.r.GetGridPosition(97);
   for (const player of getPlayers()) {
     player.Position = nextToBottomDoor;
-    player.Velocity = Vector.Zero;
+    player.Velocity = VectorZero;
   }
 
   const seasonDescription = getSeasonDescription();
@@ -70,7 +71,7 @@ function createCharacterButtons() {
   emptyArray(v.room.sprites.characters);
   for (const [characterID, x, y] of seasonDescription.charPositions) {
     // Spawn buttons for each characters
-    const position = gridToPos(x, y);
+    const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
@@ -97,7 +98,7 @@ function createBuildVetoButtons() {
   const nextToBottomDoor = g.r.GetGridPosition(97);
   for (const player of getPlayers()) {
     player.Position = nextToBottomDoor;
-    player.Velocity = Vector.Zero;
+    player.Velocity = VectorZero;
   }
 
   const seasonDescription = getSeasonDescription();
@@ -109,7 +110,7 @@ function createBuildVetoButtons() {
   emptyArray(v.room.sprites.characters);
   for (const [buildIndex, x, y] of seasonDescription.buildPositions) {
     // Spawn buttons for each characters
-    const position = gridToPos(x, y);
+    const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
@@ -158,7 +159,10 @@ function checkPressed(gridEntity: GridEntity) {
 
 function checkPressedPhaseSeasonSelect(gridEntity: GridEntity) {
   for (const [key, position] of Object.entries(CHANGE_CHAR_ORDER_POSITIONS)) {
-    const buttonPosition = gridToPos(position.X, position.Y);
+    const buttonPosition = gridCoordinatesToWorldPosition(
+      position.X,
+      position.Y,
+    );
     if (
       gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
       gridEntity.Position.X === buttonPosition.X &&
@@ -194,7 +198,7 @@ function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {
 
   seasonDescription.charPositions.forEach((tuple, i) => {
     const [, x, y] = tuple;
-    const buttonPosition = gridToPos(x, y);
+    const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
       gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
       gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it
@@ -259,7 +263,7 @@ function deleteCharacterButtonAtIndex(i: int) {
   const seasonDescription = getSeasonDescription();
 
   const [, x, y] = seasonDescription.charPositions[i];
-  const position = gridToPos(x, y);
+  const position = gridCoordinatesToWorldPosition(x, y);
   const gridEntity = g.r.GetGridEntityFromPos(position);
   if (gridEntity !== undefined) {
     removeGridEntity(gridEntity);
@@ -278,7 +282,7 @@ function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
 
   seasonDescription.buildPositions.forEach((tuple, i) => {
     const [, x, y] = tuple;
-    const buttonPosition = gridToPos(x, y);
+    const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
       gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
       gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it

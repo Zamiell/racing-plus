@@ -4,6 +4,7 @@ import {
   inMegaSatanRoom,
   openAllDoors,
   spawnGridEntityWithVariant,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
 import { initGlowingItemSprite } from "../../sprite";
@@ -49,8 +50,8 @@ function drawSprites() {
   ) {
     DPSSprite.Render(
       g.r.WorldToScreenPosition(v.level.dpsButton.spritePosition),
-      Vector.Zero,
-      Vector.Zero,
+      VectorZero,
+      VectorZero,
     );
   }
 
@@ -61,8 +62,8 @@ function drawSprites() {
   ) {
     victoryLapSprite.Render(
       g.r.WorldToScreenPosition(v.level.victoryLapButton.spritePosition),
-      Vector.Zero,
-      Vector.Zero,
+      VectorZero,
+      VectorZero,
     );
   }
 }
@@ -193,7 +194,7 @@ function touchedDPSButton() {
     0,
     0,
     g.r.GetCenterPos(),
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

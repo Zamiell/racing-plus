@@ -1,4 +1,4 @@
-import { getPlayers } from "isaacscript-common";
+import { getPlayers, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
@@ -33,6 +33,6 @@ function keepPlayerInPosition() {
     const gridIndex = g.r.GetGridIndex(player.Position);
     const gridPosition = g.r.GetGridPosition(gridIndex);
     player.Position = gridPosition;
-    player.Velocity = Vector.Zero;
+    player.Velocity = VectorZero;
   }
 }

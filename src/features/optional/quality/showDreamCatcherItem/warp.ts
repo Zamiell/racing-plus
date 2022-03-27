@@ -9,6 +9,7 @@ import {
   inStartingRoom,
   log,
   onSetSeed,
+  VectorZero,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import g from "../../../../globals";
@@ -118,7 +119,7 @@ export function warpToNextDreamCatcherRoom(): void {
       EffectVariant.TALL_LADDER,
       LadderSubType.STAIRWAY,
       position,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
   }
@@ -133,7 +134,7 @@ export function warpToNextDreamCatcherRoom(): void {
         EffectVariant.PORTAL_TELEPORT,
         subType,
         position,
-        Vector.Zero,
+        VectorZero,
         undefined,
       );
     }

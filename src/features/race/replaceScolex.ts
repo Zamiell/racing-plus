@@ -5,6 +5,7 @@ import {
   newRNG,
   removeAllMatchingEntities,
   repeat,
+  VectorZero,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -59,7 +60,7 @@ export function postNewRoom(): void {
       EntityType.ENTITY_PIN,
       PinVariant.FRAIL,
       position,
-      Vector.Zero,
+      VectorZero,
       undefined,
       0,
       seed,

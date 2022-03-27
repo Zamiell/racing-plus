@@ -6,6 +6,7 @@ import {
   saveDataManager,
   setSeed,
   sfxManager,
+  VectorZero,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -61,7 +62,7 @@ function spawnSparkleOnPlayer() {
       EffectVariant.ULTRA_GREED_BLING,
       0,
       blingPosition,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
   }
@@ -83,7 +84,7 @@ function spawnFireworks() {
         EffectVariant.FIREWORKS,
         0,
         position,
-        Vector.Zero,
+        VectorZero,
         undefined,
       ).ToEffect();
       if (firework !== undefined) {

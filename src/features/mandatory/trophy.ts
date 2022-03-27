@@ -4,6 +4,7 @@ import {
   getRoomListIndex,
   log,
   saveDataManager,
+  VectorZero,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
@@ -34,7 +35,7 @@ export function spawn(position: Vector): void {
     0,
     0,
     position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 
@@ -128,7 +129,7 @@ function checkRespawn() {
     0,
     0,
     v.level.trophy.position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
   log("Respawned a Race Trophy since we re-entered the room.");

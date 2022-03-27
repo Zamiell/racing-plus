@@ -10,6 +10,7 @@ import {
   getRoomVariant,
   removeAllDoors,
   removeEntities,
+  VectorZero,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -213,7 +214,7 @@ function setupRaceRoom() {
       0,
       0,
       position,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
     gapingMaw.ClearEntityFlags(EntityFlag.FLAG_APPEAR); // Make them appear instantly

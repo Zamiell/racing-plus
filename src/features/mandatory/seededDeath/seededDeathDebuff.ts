@@ -16,6 +16,7 @@ import {
   repeat,
   runInNGameFrames,
   sfxManager,
+  VectorZero,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
@@ -420,7 +421,7 @@ function debuffOffAddDarkEsau() {
     DarkEsauVariant.DARK_ESAU,
     0,
     centerPos,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

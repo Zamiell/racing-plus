@@ -1,5 +1,6 @@
 // We draw a black sprite on top of the screen in order to fade everything to black
 
+import { VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { initSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
@@ -21,7 +22,7 @@ export function draw(): void {
     sprite.Color = Color(1, 1, 1, opacity);
   }
 
-  sprite.RenderLayer(0, Vector.Zero);
+  sprite.RenderLayer(0, VectorZero);
 }
 
 export function setFullyOpaque(): void {

@@ -10,6 +10,7 @@ import {
   isCharacter,
   log,
   onRepentanceStage,
+  VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -136,7 +137,7 @@ function setPlayerAttributes(
 
   for (const player of getPlayers()) {
     // Freeze all players
-    player.Velocity = Vector.Zero;
+    player.Velocity = VectorZero;
 
     // We don't want enemy attacks to move the players
     player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
@@ -206,7 +207,7 @@ function dropTaintedForgotten(player: EntityPlayer) {
   if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul !== undefined) {
-      taintedSoul.ThrowHeldEntity(Vector.Zero);
+      taintedSoul.ThrowHeldEntity(VectorZero);
     }
   }
 }
@@ -333,7 +334,7 @@ export function spawnHoles(players: EntityPlayer[]): void {
       EffectVariantCustom.PITFALL_CUSTOM,
       0,
       player.Position,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
   }

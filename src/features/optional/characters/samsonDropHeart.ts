@@ -1,4 +1,4 @@
-import { getPlayersOfType } from "isaacscript-common";
+import { getPlayersOfType, VectorZero } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -24,7 +24,7 @@ export function postGameStarted(): void {
       PickupVariant.PICKUP_TRINKET,
       TrinketType.TRINKET_CHILDS_HEART,
       bottomRightPosition,
-      Vector.Zero,
+      VectorZero,
       samson,
     );
     const sprite = childsHeart.GetSprite();

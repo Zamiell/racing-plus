@@ -95,7 +95,7 @@ function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
 }
 
 function dropEverything(player: EntityPlayer) {
-  for (const pocketItemSlot of range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
+  for (const pocketItemSlot of range(MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
     const card = player.GetCard(pocketItemSlot);
     const pillColor = player.GetPill(pocketItemSlot);
     if (card === Card.CARD_NULL && pillColor === PillColor.PILL_NULL) {
@@ -106,7 +106,7 @@ function dropEverything(player: EntityPlayer) {
     player.DropPocketItem(pocketItemSlot, position);
   }
 
-  for (const trinketSlot of range(0, MAX_PLAYER_TRINKET_SLOTS - 1)) {
+  for (const trinketSlot of range(MAX_PLAYER_TRINKET_SLOTS - 1)) {
     const trinketType = player.GetTrinket(trinketSlot);
     if (trinketType === TrinketType.TRINKET_NULL) {
       continue;

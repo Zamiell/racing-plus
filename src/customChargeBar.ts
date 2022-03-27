@@ -1,4 +1,4 @@
-import { ensureAllCases, isCharacter } from "isaacscript-common";
+import { ensureAllCases, isCharacter, VectorZero } from "isaacscript-common";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
 import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
 import g from "./globals";
@@ -60,7 +60,7 @@ export function drawCustomChargeBar(
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
   const position = g.r.WorldToScreenPosition(adjustedPosition);
-  sprite.Render(position, Vector.Zero, Vector.Zero);
+  sprite.Render(position, VectorZero, VectorZero);
 }
 
 function getNumHigherPrecedenceCustomChargeBars(

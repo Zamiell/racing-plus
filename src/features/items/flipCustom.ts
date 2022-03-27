@@ -13,6 +13,7 @@ import {
   setCollectibleSubType,
   spawnEmptyCollectible,
   useActiveItemTemp,
+  VectorZero,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../constants";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
@@ -174,7 +175,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
       EffectVariant.POOF01,
       PoofSubType.NORMAL,
       collectible.Position,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
   }

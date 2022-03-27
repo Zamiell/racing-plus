@@ -1,4 +1,8 @@
-import { getDefaultKColor, gridToPos } from "isaacscript-common";
+import {
+  getDefaultKColor,
+  gridCoordinatesToWorldPosition,
+  VectorZero,
+} from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
 import g from "../../../globals";
@@ -80,7 +84,10 @@ function drawSeasonSprites() {
     if (position === undefined) {
       error(`Failed to find the positions for season: ${seasonAbbreviation}`);
     }
-    const posButton = gridToPos(position.X, position.Y - 1);
+    const posButton = gridCoordinatesToWorldPosition(
+      position.X,
+      position.Y - 1,
+    );
     const posRender = Isaac.WorldToScreen(posButton);
     seasonSprite.RenderLayer(0, posRender);
   }
@@ -96,10 +103,10 @@ function drawCharacterSprites() {
   v.room.sprites.characters.forEach((characterSprite, i) => {
     const tuple = seasonDescription.charPositions[i];
     const [, x, y] = tuple;
-    const oneTileAboveButton = gridToPos(x, y - 1);
+    const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
     renderPosition.Y += 10; // Nudge it a bit upwards to make it look better
-    characterSprite.Render(renderPosition, Vector.Zero, Vector.Zero);
+    characterSprite.Render(renderPosition, VectorZero, VectorZero);
   });
 }
 
@@ -117,8 +124,8 @@ function drawBuildVetoSprites() {
 
     const tuple = seasonDescription.buildPositions[i];
     const [, x, y] = tuple;
-    const oneTileAboveButton = gridToPos(x, y - 1);
+    const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
-    characterSprite.Render(renderPosition, Vector.Zero, Vector.Zero);
+    characterSprite.Render(renderPosition, VectorZero, VectorZero);
   });
 }

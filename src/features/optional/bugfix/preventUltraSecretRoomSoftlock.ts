@@ -1,7 +1,11 @@
 // Rarely, Ultra Secret Rooms can have no doors
 // Work around this by spawning a Fool card for the player
 
-import { getDoors, gridToPos } from "isaacscript-common";
+import {
+  getDoors,
+  gridCoordinatesToWorldPosition,
+  VectorZero,
+} from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -24,13 +28,13 @@ export function postNewRoom(): void {
   // We need to spawn the card in a spot that won't be blocked
   // The center of the room can be blocked in one specific Ultra Secret Room
   // Use the left side of the room instead (which is free in all Ultra Secret Rooms)
-  const position = gridToPos(2, 3);
+  const position = gridCoordinatesToWorldPosition(2, 3);
   Isaac.Spawn(
     EntityType.ENTITY_PICKUP,
     PickupVariant.PICKUP_TAROTCARD,
     Card.CARD_FOOL,
     position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

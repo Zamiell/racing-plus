@@ -5,6 +5,7 @@ import {
   isStoryBoss,
   saveDataManager,
   spawnCollectible,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -85,7 +86,7 @@ export function postNewLevel(): void {
     FamiliarVariant.VANISHING_TWIN,
     0,
     player.Position,
-    Vector.Zero,
+    VectorZero,
     player,
   );
 }
@@ -130,7 +131,7 @@ export function postNewRoom(): void {
       EffectVariant.POOF01,
       PoofSubType.SMALL,
       vanishingTwin.Position,
-      Vector.Zero,
+      VectorZero,
       undefined,
     );
   }

@@ -3,7 +3,7 @@
 // By simply setting the room to be cleared when Mega Satan 2 dies,
 // the game will never go on to make the 50% roll
 
-import { addRoomClearCharges } from "isaacscript-common";
+import { addRoomClearCharges, VectorZero } from "isaacscript-common";
 import g from "../../globals";
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
@@ -24,7 +24,7 @@ function emulateRoomClear() {
     PickupVariant.PICKUP_BIGCHEST,
     0,
     position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

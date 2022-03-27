@@ -3,7 +3,11 @@
 // Some code is borrowed from Revelations / StageAPI
 // This feature is not configurable because we destroy the original starting room graphic file
 
-import { getEffectiveStage, inStartingRoom } from "isaacscript-common";
+import {
+  getEffectiveStage,
+  inStartingRoom,
+  VectorZero,
+} from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -31,7 +35,7 @@ function drawControlsGraphic() {
     EffectVariant.PLAYER_CREEP_RED,
     CreepRedSubTypeCustom.FLOOR_EFFECT_CREEP,
     centerPos,
-    Vector.Zero,
+    VectorZero,
     undefined,
   ).ToEffect();
   if (controlsEffect === undefined) {

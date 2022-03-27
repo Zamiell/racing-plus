@@ -1,4 +1,8 @@
-import { getFinalFrameOfAnimation, saveDataManager } from "isaacscript-common";
+import {
+  getFinalFrameOfAnimation,
+  saveDataManager,
+  VectorZero,
+} from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import { config } from "../../../modConfigMenu";
 
@@ -36,7 +40,7 @@ function postPickupInitStickyNickel(pickup: EntityPickup) {
     EffectVariantCustom.STICKY_NICKEL,
     0,
     pickup.Position,
-    Vector.Zero,
+    VectorZero,
     pickup,
   );
 

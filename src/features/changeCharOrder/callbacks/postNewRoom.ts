@@ -1,7 +1,7 @@
 import {
   forceNewRoomCallback,
   getNPCs,
-  gridToPos,
+  gridCoordinatesToWorldPosition,
   itemConfig,
   removeAllDoors,
   removeCollectibleFromItemTracker,
@@ -74,7 +74,10 @@ function setupButtonRoom() {
       continue;
     }
 
-    const position = gridToPos(seasonDescription.X, seasonDescription.Y);
+    const position = gridCoordinatesToWorldPosition(
+      seasonDescription.X,
+      seasonDescription.Y,
+    );
     const gridIndex = g.r.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,

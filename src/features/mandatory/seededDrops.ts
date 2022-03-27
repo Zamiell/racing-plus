@@ -11,6 +11,7 @@ import {
   repeat,
   saveDataManager,
   setAllRNGToStartSeed,
+  VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
 
@@ -191,7 +192,7 @@ function spawnSeededDrop() {
         EntityType.ENTITY_PICKUP,
         pickupVariant,
         position,
-        Vector.Zero,
+        VectorZero,
         undefined,
         subType,
         seed,

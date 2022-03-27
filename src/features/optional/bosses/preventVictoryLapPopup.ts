@@ -8,6 +8,7 @@ import {
   runNextGameFrame,
   saveDataManager,
   sfxManager,
+  VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import g from "../../../globals";
@@ -100,8 +101,8 @@ function spawnRoomClearDelayEffect() {
     EntityType.ENTITY_EFFECT,
     EffectVariantCustom.ROOM_CLEAR_DELAY,
     0,
-    Vector.Zero,
-    Vector.Zero,
+    VectorZero,
+    VectorZero,
     undefined,
   );
   log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
@@ -123,7 +124,7 @@ function emulateRoomClear() {
     PickupVariant.PICKUP_BIGCHEST,
     0,
     position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

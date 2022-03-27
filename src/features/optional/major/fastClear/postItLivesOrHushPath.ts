@@ -8,6 +8,7 @@ import {
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
   spawnGridEntityWithVariant,
+  VectorZero,
 } from "isaacscript-common";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
@@ -208,7 +209,7 @@ function spawnHeavenDoor(position: Vector) {
     EffectVariant.HEAVEN_LIGHT_DOOR,
     HeavenLightDoorSubType.HEAVEN_DOOR,
     position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

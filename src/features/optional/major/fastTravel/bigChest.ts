@@ -10,6 +10,7 @@ import {
   onSheol,
   spawnCollectible,
   spawnGridEntityWithVariant,
+  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -299,7 +300,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         EffectVariant.HEAVEN_LIGHT_DOOR,
         HeavenLightDoorSubType.HEAVEN_DOOR,
         pickup.Position,
-        Vector.Zero,
+        VectorZero,
         undefined,
       ).ToEffect();
 

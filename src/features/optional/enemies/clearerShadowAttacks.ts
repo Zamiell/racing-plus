@@ -3,6 +3,7 @@
 // - Reap Creep (900) (rock projectiles)
 // - Bumbino (916) (rock projectiles)
 
+import { VectorZero } from "isaacscript-common";
 import { TargetSubTypeCustom } from "../../../enums/TargetSubTypeCustom";
 
 const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
@@ -50,7 +51,7 @@ function spawnTarget(spawner: Entity) {
     EffectVariant.TARGET,
     TargetSubTypeCustom.SHADOW_ATTACKS,
     spawner.Position,
-    Vector.Zero,
+    VectorZero,
     spawner,
   ).ToEffect();
   if (target !== undefined) {

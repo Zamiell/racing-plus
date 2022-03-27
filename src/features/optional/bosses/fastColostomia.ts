@@ -1,6 +1,8 @@
 // In vanilla, Colostomia takes a second or two to drop down from the ceiling
 // Instead, just make it appear on the ground like every other boss in the game does
 
+import { VectorZero } from "isaacscript-common";
+
 // ModCallbacks.MC_POST_NPC_INIT (27)
 // EntityType.ENTITY_COLOSTOMIA (917)
 export function postNPCInitColostomia(npc: EntityNPC): void {
@@ -16,7 +18,7 @@ export function postNPCInitColostomia(npc: EntityNPC): void {
     EffectVariant.POOF01,
     PoofSubType.LARGE, // This is the sub-type that the Monstro poof has
     npc.Position,
-    Vector.Zero,
+    VectorZero,
     undefined,
   );
 }

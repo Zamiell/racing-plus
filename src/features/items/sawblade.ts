@@ -57,6 +57,7 @@ Sawblade stats:
 import {
   checkFamiliarFromCollectibles,
   saveDataManager,
+  VectorZero,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../enums/FamiliarVariantCustom";
@@ -141,7 +142,7 @@ function setPosition(familiar: EntityFamiliar, angle: float) {
   // Sometimes, when the familiar collides with things, it can pick up some velocity,
   // which will cause the sprite to glitch out
   // Zero out the velocity on every frame
-  familiar.Velocity = Vector.Zero;
+  familiar.Velocity = VectorZero;
 }
 
 function getPositionFromAngle(familiar: EntityFamiliar, angle: float) {
