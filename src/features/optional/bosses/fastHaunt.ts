@@ -4,7 +4,9 @@ import { getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
-const BLACK_CHAMPION_COLOR_IDX = 17;
+
+/** After patch 1.7.8, all Haunt champions have a color index of -1 except for the black one. */
+const BLACK_CHAMPION_COLOR_IDX = 0;
 
 // ModCallbacks.MC_NPC_UPDATE (0)
 // EntityType.ENTITY_THE_HAUNT (260)
@@ -13,8 +15,7 @@ export function postNPCUpdateHaunt(npc: EntityNPC): void {
     return;
   }
 
-  // Only target Haunts
-  if (npc.Variant !== 0) {
+  if (npc.Variant !== HauntVariant.HAUNT) {
     return;
   }
 
@@ -31,6 +32,7 @@ function checkDetachLilHaunts(npc: EntityNPC) {
   }
 
   const colorIdx = npc.GetBossColorIdx();
+  Isaac.DebugString(`GETTING HERE - ${colorIdx}`);
   const attachedLilHaunts = getAttachedLilHaunts(npc);
   if (colorIdx === BLACK_CHAMPION_COLOR_IDX) {
     // The black champion Haunt detaches all of his children at the same time
