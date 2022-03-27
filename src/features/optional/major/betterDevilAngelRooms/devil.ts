@@ -8,7 +8,7 @@ import {
   getRandomJSONRoom,
   JSONRoom,
   setRoomUncleared,
-  VectorZero,
+  spawnWithSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { getEffectiveDevilDeals } from "../../../../utilsGlobals";
@@ -69,13 +69,11 @@ function checkSpawnKrampus() {
   emptyRoom(true);
 
   const seed = v.run.rng.krampus.Next();
-  g.g.Spawn(
+  spawnWithSeed(
     EntityType.ENTITY_FALLEN,
     FallenVariant.KRAMPUS,
-    centerPos,
-    VectorZero,
-    undefined,
     0,
+    centerPos,
     seed,
   );
 

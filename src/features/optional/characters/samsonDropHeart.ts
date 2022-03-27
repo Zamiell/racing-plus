@@ -1,4 +1,4 @@
-import { getPlayersOfType, VectorZero } from "isaacscript-common";
+import { getPlayersOfType, spawnTrinket, VectorZero } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -19,13 +19,12 @@ export function postGameStarted(): void {
     }
 
     const bottomRightPosition = g.r.GetGridPosition(BOTTOM_RIGHT_GRID_INDEX);
-    const childsHeart = Isaac.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_TRINKET,
+    const childsHeart = spawnTrinket(
       TrinketType.TRINKET_CHILDS_HEART,
       bottomRightPosition,
       VectorZero,
       samson,
+      samson.InitSeed,
     );
     const sprite = childsHeart.GetSprite();
     sprite.Play("Idle", true);

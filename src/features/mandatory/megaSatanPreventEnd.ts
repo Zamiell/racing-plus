@@ -3,7 +3,7 @@
 // By simply setting the room to be cleared when Mega Satan 2 dies,
 // the game will never go on to make the 50% roll
 
-import { addRoomClearCharges, VectorZero } from "isaacscript-common";
+import { addRoomClearCharges, spawnPickup } from "isaacscript-common";
 import g from "../../globals";
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)
@@ -19,12 +19,5 @@ function emulateRoomClear() {
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   const position = g.r.GetCenterPos();
-  Isaac.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_BIGCHEST,
-    0,
-    position,
-    VectorZero,
-    undefined,
-  );
+  spawnPickup(PickupVariant.PICKUP_BIGCHEST, 0, position);
 }

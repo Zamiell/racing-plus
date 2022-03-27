@@ -4,7 +4,7 @@
 import {
   getDoors,
   gridCoordinatesToWorldPosition,
-  VectorZero,
+  spawnCard,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -29,12 +29,5 @@ export function postNewRoom(): void {
   // The center of the room can be blocked in one specific Ultra Secret Room
   // Use the left side of the room instead (which is free in all Ultra Secret Rooms)
   const position = gridCoordinatesToWorldPosition(2, 3);
-  Isaac.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
-    Card.CARD_FOOL,
-    position,
-    VectorZero,
-    undefined,
-  );
+  spawnCard(Card.CARD_FOOL, position);
 }

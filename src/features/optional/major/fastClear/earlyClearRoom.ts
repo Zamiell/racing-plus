@@ -8,6 +8,7 @@ import {
   isAllPressurePlatesPushed,
   log,
   openAllDoors,
+  spawnNPC,
 } from "isaacscript-common";
 import g from "../../../../globals";
 import { inSpeedrun } from "../../../speedrun/speedrun";
@@ -157,20 +158,16 @@ function killFleshDeathsHeads() {
     // so just kill it and spawn another one, which will immediately die
     fleshDeathsHead.Visible = false;
     fleshDeathsHead.Kill();
-    const newHead = g.g
-      .Spawn(
-        fleshDeathsHead.Type,
-        fleshDeathsHead.Variant,
-        fleshDeathsHead.Position,
-        fleshDeathsHead.Velocity,
-        fleshDeathsHead.Parent,
-        fleshDeathsHead.SubType,
-        fleshDeathsHead.InitSeed,
-      )
-      .ToNPC();
-    if (newHead !== undefined) {
-      newHead.State = NpcState.STATE_DEATH;
-    }
+    const newHead = spawnNPC(
+      fleshDeathsHead.Type,
+      fleshDeathsHead.Variant,
+      fleshDeathsHead.SubType,
+      fleshDeathsHead.Position,
+      fleshDeathsHead.Velocity,
+      fleshDeathsHead.Parent,
+      fleshDeathsHead.InitSeed,
+    );
+    newHead.State = NpcState.STATE_DEATH;
   }
 }
 

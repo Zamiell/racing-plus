@@ -11,9 +11,9 @@ import {
   removeCollectibleFromItemTracker,
   saveDataManager,
   setCollectibleSubType,
+  spawnEffect,
   spawnEmptyCollectible,
   useActiveItemTemp,
-  VectorZero,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../constants";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
@@ -170,14 +170,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     // alternate world)
 
     // Copy the vanilla poof animation
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.POOF01,
-      PoofSubType.NORMAL,
-      collectible.Position,
-      VectorZero,
-      undefined,
-    );
+    spawnEffect(EffectVariant.POOF01, PoofSubType.NORMAL, collectible.Position);
   }
 
   // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus

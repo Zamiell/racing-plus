@@ -1,4 +1,9 @@
-import { saveDataManager, VectorZero } from "isaacscript-common";
+import {
+  saveDataManager,
+  spawn,
+  spawnPickup,
+  VectorZero,
+} from "isaacscript-common";
 import g from "../../globals";
 import { consoleCommand } from "../../utils";
 
@@ -24,17 +29,10 @@ export function postNewRoom(): void {
   // If we do nothing, The Beast fight will begin again
   // If we remove all of the Beast entities, it will trigger the credits
   // Instead, we spawn another Beast to prevent the fight from beginning
-  Isaac.Spawn(EntityType.ENTITY_BEAST, 0, 0, VectorZero, VectorZero, undefined);
+  spawn(EntityType.ENTITY_BEAST, BeastVariant.BEAST, 0, VectorZero);
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
-  Isaac.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_BIGCHEST,
-    0,
-    centerPos,
-    VectorZero,
-    undefined,
-  );
+  spawnPickup(PickupVariant.PICKUP_BIGCHEST, 0, centerPos);
 }
 
 // ModCallbacks.MC_POST_ENTITY_KILL (68)

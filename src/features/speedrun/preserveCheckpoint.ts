@@ -1,6 +1,9 @@
-import { countEntities, getCollectibles } from "isaacscript-common";
+import {
+  countEntities,
+  getCollectibles,
+  spawnCollectible,
+} from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import g from "../../globals";
 import { postSpawnCheckpoint } from "./speedrun";
 
 // ModCallbacks.MC_USE_ITEM (3)
@@ -45,19 +48,11 @@ function respawnCheckpoint() {
   );
   for (const checkpoint of checkpoints) {
     // The Checkpoint custom item is about to be deleted, so spawn another one
-    const newCheckpoint = g.g
-      .Spawn(
-        EntityType.ENTITY_PICKUP,
-        PickupVariant.PICKUP_COLLECTIBLE,
-        checkpoint.Position,
-        checkpoint.Velocity,
-        checkpoint.SpawnerEntity,
-        CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-        checkpoint.InitSeed,
-      )
-      .ToPickup();
-    if (newCheckpoint !== undefined) {
-      postSpawnCheckpoint(newCheckpoint);
-    }
+    const newCheckpoint = spawnCollectible(
+      CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+      checkpoint.Position,
+      checkpoint.InitSeed,
+    );
+    postSpawnCheckpoint(newCheckpoint);
   }
 }

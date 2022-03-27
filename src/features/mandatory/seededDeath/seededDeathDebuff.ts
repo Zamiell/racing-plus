@@ -16,7 +16,7 @@ import {
   repeat,
   runInNGameFrames,
   sfxManager,
-  VectorZero,
+  spawn,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
@@ -416,14 +416,7 @@ function debuffOffAddDarkEsau() {
   v.run.removedDarkEsau = false;
 
   const centerPos = g.r.GetCenterPos();
-  Isaac.Spawn(
-    EntityType.ENTITY_DARK_ESAU,
-    DarkEsauVariant.DARK_ESAU,
-    0,
-    centerPos,
-    VectorZero,
-    undefined,
-  );
+  spawn(EntityType.ENTITY_DARK_ESAU, DarkEsauVariant.DARK_ESAU, 0, centerPos);
 }
 
 function removeCollectible(

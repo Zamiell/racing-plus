@@ -9,8 +9,8 @@ import {
   onRepentanceStage,
   onSheol,
   spawnCollectible,
+  spawnEffect,
   spawnGridEntityWithVariant,
-  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -19,7 +19,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import * as trophy from "../../../mandatory/trophy";
+import { spawnTrophy } from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import {
@@ -295,25 +295,16 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.HEAVEN_DOOR: {
-      const heavenDoor = Isaac.Spawn(
-        EntityType.ENTITY_EFFECT,
+      const heavenDoor = spawnEffect(
         EffectVariant.HEAVEN_LIGHT_DOOR,
         HeavenLightDoorSubType.HEAVEN_DOOR,
         pickup.Position,
-        VectorZero,
-        undefined,
-      ).ToEffect();
+      );
 
       // This will get naturally initialized by the fast-travel system on the next frame
       // However, we explicitly initialize it now to prevent indexing errors later on this frame
       // (when the room is cleared)
-      if (heavenDoor !== undefined) {
-        fastTravel.init(
-          heavenDoor,
-          FastTravelEntityType.HEAVEN_DOOR,
-          () => true,
-        );
-      }
+      fastTravel.init(heavenDoor, FastTravelEntityType.HEAVEN_DOOR, () => true);
 
       return;
     }
@@ -330,7 +321,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     }
 
     case ReplacementAction.TROPHY: {
-      trophy.spawn(pickup.Position);
+      spawnTrophy(pickup.Position);
       return;
     }
 

@@ -1,4 +1,4 @@
-import { getAliveBosses } from "isaacscript-common";
+import { getAliveBosses, spawnTrinket } from "isaacscript-common";
 import g from "../../../../globals";
 import v from "./v";
 
@@ -49,13 +49,11 @@ export function postEntityKill(entity: Entity): void {
   }
 
   const velocity = RandomVector().mul(PERFECTION_VELOCITY_MULTIPLIER);
-  g.g.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TRINKET,
+  spawnTrinket(
+    TrinketType.TRINKET_PERFECTION,
     npc.Position,
     velocity,
     undefined,
-    TrinketType.TRINKET_PERFECTION,
     startSeed,
   );
 

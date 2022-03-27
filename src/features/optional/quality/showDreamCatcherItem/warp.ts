@@ -9,7 +9,7 @@ import {
   inStartingRoom,
   log,
   onSetSeed,
-  VectorZero,
+  spawnEffect,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import g from "../../../../globals";
@@ -114,14 +114,7 @@ export function warpToNextDreamCatcherRoom(): void {
   // so respawn it if necessary
   if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STAIRWAY)) {
     const position = g.r.GetGridPosition(STAIRWAY_GRID_INDEX);
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.TALL_LADDER,
-      LadderSubType.STAIRWAY,
-      position,
-      VectorZero,
-      undefined,
-    );
+    spawnEffect(EffectVariant.TALL_LADDER, LadderSubType.STAIRWAY, position);
   }
 
   // If the player has Card Reading, moving away from the room would delete the portals,
@@ -129,14 +122,7 @@ export function warpToNextDreamCatcherRoom(): void {
   if (!shouldRemoveEndGamePortals()) {
     for (const portalDescription of v.level.cardReadingPortalDescriptions) {
       const [subType, position] = portalDescription;
-      Isaac.Spawn(
-        EntityType.ENTITY_EFFECT,
-        EffectVariant.PORTAL_TELEPORT,
-        subType,
-        position,
-        VectorZero,
-        undefined,
-      );
+      spawnEffect(EffectVariant.PORTAL_TELEPORT, subType, position);
     }
   }
 

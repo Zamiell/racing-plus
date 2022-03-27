@@ -4,7 +4,7 @@ import {
   newRNG,
   removeAllMatchingEntities,
   repeat,
-  VectorZero,
+  spawn,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
@@ -213,14 +213,8 @@ function checkVictoryLapBossReplace() {
 
 function spawnBoss(bossArray: [int, int, int]) {
   const [entityType, variant, subType] = bossArray;
-  Isaac.Spawn(
-    entityType,
-    variant,
-    subType,
-    g.r.GetCenterPos(),
-    VectorZero,
-    undefined,
-  );
+  const centerPos = g.r.GetCenterPos();
+  spawn(entityType, variant, subType, centerPos);
 }
 
 export function shouldShowVictoryLaps(): boolean {

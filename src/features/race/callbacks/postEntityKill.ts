@@ -3,7 +3,7 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import * as trophy from "../../mandatory/trophy";
+import { spawnTrophy } from "../../mandatory/trophy";
 
 export function hush(_entity: Entity): void {
   if (!config.clientCommunication) {
@@ -20,6 +20,6 @@ function checkSpawnHushRaceTrophy() {
     g.race.goal === RaceGoal.HUSH
   ) {
     const centerPos = g.r.GetCenterPos();
-    trophy.spawn(centerPos);
+    spawnTrophy(centerPos);
   }
 }

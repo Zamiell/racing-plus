@@ -6,7 +6,7 @@ import {
   saveDataManager,
   setSeed,
   sfxManager,
-  VectorZero,
+  spawnEffect,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -57,14 +57,7 @@ function spawnSparkleOnPlayer() {
   for (const player of getPlayers()) {
     const randomVector = RandomVector().mul(10);
     const blingPosition = player.Position.add(randomVector);
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.ULTRA_GREED_BLING,
-      0,
-      blingPosition,
-      VectorZero,
-      undefined,
-    );
+    spawnEffect(EffectVariant.ULTRA_GREED_BLING, 0, blingPosition);
   }
 }
 
@@ -79,17 +72,8 @@ function spawnFireworks() {
       const seed = v.run.rng.Next();
       const randomGridIndex = g.r.GetRandomTileIndex(seed);
       const position = g.r.GetGridPosition(randomGridIndex);
-      const firework = Isaac.Spawn(
-        EntityType.ENTITY_EFFECT,
-        EffectVariant.FIREWORKS,
-        0,
-        position,
-        VectorZero,
-        undefined,
-      ).ToEffect();
-      if (firework !== undefined) {
-        firework.SetTimeout(20);
-      }
+      const firework = spawnEffect(EffectVariant.FIREWORKS, 0, position);
+      firework.SetTimeout(20);
     });
   }
 }

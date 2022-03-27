@@ -11,6 +11,7 @@ import {
   newRNG,
   saveDataManager,
   setSeed,
+  spawnPickup,
 } from "isaacscript-common";
 import g from "../../globals";
 
@@ -104,24 +105,22 @@ function spawnGBBugPickup(oldPickup: EntityPickup) {
       ? PickupVariant.PICKUP_LOCKEDCHEST
       : PickupVariant.PICKUP_CHEST;
     const seed = v.run.rng.Next();
-    g.g.Spawn(
-      EntityType.ENTITY_PICKUP,
+    spawnPickup(
       chestVariant,
+      0,
       oldPickup.Position,
       oldPickup.Velocity,
       oldPickup.SpawnerEntity,
-      0,
       seed,
     );
   } else {
     const seed = v.run.rng.Next();
-    g.g.Spawn(
-      EntityType.ENTITY_PICKUP,
+    spawnPickup(
       PickupVariant.PICKUP_NULL,
+      PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS,
       oldPickup.Position,
       oldPickup.Velocity,
       oldPickup.SpawnerEntity,
-      PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS,
       seed,
     );
   }

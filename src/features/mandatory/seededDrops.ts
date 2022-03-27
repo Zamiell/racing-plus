@@ -11,7 +11,7 @@ import {
   repeat,
   saveDataManager,
   setAllRNGToStartSeed,
-  VectorZero,
+  spawnPickupWithSeed,
 } from "isaacscript-common";
 import g from "../../globals";
 
@@ -188,13 +188,10 @@ function spawnSeededDrop() {
     repeat(pickupCount, () => {
       const position = findFreePosition(centerPos);
       const seed = rng.Next();
-      const pickup = g.g.Spawn(
-        EntityType.ENTITY_PICKUP,
+      const pickup = spawnPickupWithSeed(
         pickupVariant,
-        position,
-        VectorZero,
-        undefined,
         subType,
+        position,
         seed,
       );
 

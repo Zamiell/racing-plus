@@ -5,7 +5,7 @@ import {
   newRNG,
   removeAllMatchingEntities,
   repeat,
-  VectorZero,
+  spawnWithSeed,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -56,13 +56,11 @@ export function postNewRoom(): void {
     }
     const position = centerPos.add(modification);
     const seed = rng.Next();
-    const frail = g.g.Spawn(
+    const frail = spawnWithSeed(
       EntityType.ENTITY_PIN,
       PinVariant.FRAIL,
-      position,
-      VectorZero,
-      undefined,
       0,
+      position,
       seed,
     );
 

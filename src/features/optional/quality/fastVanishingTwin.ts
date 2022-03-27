@@ -4,7 +4,10 @@ import {
   getCollectibles,
   isStoryBoss,
   saveDataManager,
+  spawn,
   spawnCollectible,
+  spawnEffect,
+  spawnFamiliar,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -81,8 +84,7 @@ export function postNewLevel(): void {
   v.run.shouldRespawnVanishingTwin = false;
 
   const player = Isaac.GetPlayer();
-  Isaac.Spawn(
-    EntityType.ENTITY_FAMILIAR,
+  spawnFamiliar(
     FamiliarVariant.VANISHING_TWIN,
     0,
     player.Position,
@@ -126,13 +128,10 @@ export function postNewRoom(): void {
 
   for (const vanishingTwin of vanishingTwins) {
     vanishingTwin.Remove();
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
+    spawnEffect(
       EffectVariant.POOF01,
       PoofSubType.SMALL,
       vanishingTwin.Position,
-      VectorZero,
-      undefined,
     );
   }
   v.run.shouldRespawnVanishingTwin = true;
@@ -146,13 +145,13 @@ function duplicateBoss(boss: EntityNPC) {
   // If the bosses start on the same tile, it looks buggy
   const position = findFreePosition(boss.Position, true);
 
-  const duplicatedBoss = g.g.Spawn(
+  const duplicatedBoss = spawn(
     boss.Type,
     boss.Variant,
+    boss.SubType,
     position,
     boss.Velocity,
     boss.SpawnerEntity,
-    boss.SubType,
     boss.InitSeed,
   );
 

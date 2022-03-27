@@ -10,6 +10,7 @@ import {
   isCharacter,
   log,
   onRepentanceStage,
+  spawnEffect,
   VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
@@ -329,14 +330,7 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
 export function spawnHoles(players: EntityPlayer[]): void {
   // Spawn a hole for each player to jump out of
   for (const player of players) {
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariantCustom.PITFALL_CUSTOM,
-      0,
-      player.Position,
-      VectorZero,
-      undefined,
-    );
+    spawnEffect(EffectVariantCustom.PITFALL_CUSTOM, 0, player.Position);
   }
 }
 

@@ -3,7 +3,7 @@
 // - Reap Creep (900) (rock projectiles)
 // - Bumbino (916) (rock projectiles)
 
-import { VectorZero } from "isaacscript-common";
+import { spawnEffect, VectorZero } from "isaacscript-common";
 import { TargetSubTypeCustom } from "../../../enums/TargetSubTypeCustom";
 
 const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
@@ -46,16 +46,13 @@ export function postProjectileInitRock(projectile: EntityProjectile): void {
 }
 
 function spawnTarget(spawner: Entity) {
-  const target = Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
+  const target = spawnEffect(
     EffectVariant.TARGET,
     TargetSubTypeCustom.SHADOW_ATTACKS,
     spawner.Position,
     VectorZero,
     spawner,
-  ).ToEffect();
-  if (target !== undefined) {
-    const sprite = target.GetSprite();
-    sprite.Color = LIGHT_BLUE;
-  }
+  );
+  const sprite = target.GetSprite();
+  sprite.Color = LIGHT_BLUE;
 }

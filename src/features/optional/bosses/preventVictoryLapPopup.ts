@@ -8,6 +8,8 @@ import {
   runNextGameFrame,
   saveDataManager,
   sfxManager,
+  spawnEffect,
+  spawnPickup,
   VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
@@ -97,14 +99,7 @@ function isAllLambEntitiesDead() {
 }
 
 function spawnRoomClearDelayEffect() {
-  Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
-    EffectVariantCustom.ROOM_CLEAR_DELAY,
-    0,
-    VectorZero,
-    VectorZero,
-    undefined,
-  );
+  spawnEffect(EffectVariantCustom.ROOM_CLEAR_DELAY, 0, VectorZero);
   log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
   // (this will not work to delay the room clearing if "debug 10" is turned on)
   // (this will not die if the player uses Blood Rights since it is an effect)
@@ -119,12 +114,5 @@ function emulateRoomClear() {
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
   const position = g.r.GetCenterPos();
-  Isaac.Spawn(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_BIGCHEST,
-    0,
-    position,
-    VectorZero,
-    undefined,
-  );
+  spawnPickup(PickupVariant.PICKUP_BIGCHEST, 0, position);
 }

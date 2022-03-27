@@ -7,8 +7,8 @@ import {
   log,
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
+  spawnEffect,
   spawnGridEntityWithVariant,
-  VectorZero,
 } from "isaacscript-common";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
@@ -204,13 +204,10 @@ function doItLivesSituation(situation: ItLivesSituation) {
 }
 
 function spawnHeavenDoor(position: Vector) {
-  Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
+  spawnEffect(
     EffectVariant.HEAVEN_LIGHT_DOOR,
     HeavenLightDoorSubType.HEAVEN_DOOR,
     position,
-    VectorZero,
-    undefined,
   );
 }
 

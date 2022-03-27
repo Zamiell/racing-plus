@@ -6,7 +6,7 @@
 import {
   getEffectiveStage,
   inStartingRoom,
-  VectorZero,
+  spawnEffect,
 } from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
@@ -30,17 +30,11 @@ function drawControlsGraphic() {
   const centerPos = g.r.GetCenterPos();
 
   // Spawn the custom "Floor Effect Creep" entity
-  const controlsEffect = Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
+  const controlsEffect = spawnEffect(
     EffectVariant.PLAYER_CREEP_RED,
     CreepRedSubTypeCustom.FLOOR_EFFECT_CREEP,
     centerPos,
-    VectorZero,
-    undefined,
-  ).ToEffect();
-  if (controlsEffect === undefined) {
-    return;
-  }
+  );
 
   controlsEffect.CollisionDamage = 0;
   controlsEffect.Timeout = 1000000;

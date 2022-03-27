@@ -10,7 +10,7 @@ import {
   getRoomVariant,
   removeAllDoors,
   removeEntities,
-  VectorZero,
+  spawn,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -209,14 +209,7 @@ function setupRaceRoom() {
   // Spawn two Gaping Maws (235.0)
   for (const gridIndex of [96, 98]) {
     const position = g.r.GetGridPosition(gridIndex);
-    const gapingMaw = Isaac.Spawn(
-      EntityType.ENTITY_GAPING_MAW,
-      0,
-      0,
-      position,
-      VectorZero,
-      undefined,
-    );
+    const gapingMaw = spawn(EntityType.ENTITY_GAPING_MAW, 0, 0, position);
     gapingMaw.ClearEntityFlags(EntityFlag.FLAG_APPEAR); // Make them appear instantly
   }
 

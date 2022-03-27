@@ -4,7 +4,7 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import * as trophy from "../../mandatory/trophy";
+import { hasTrophySpawned, spawnTrophy } from "../../mandatory/trophy";
 
 export function racePostUpdate(): void {
   if (!config.clientCommunication) {
@@ -19,7 +19,7 @@ function spawnBossRushTrophy() {
   const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
 
   if (
-    !trophy.trophyHasSpawned() &&
+    !hasTrophySpawned() &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
@@ -29,6 +29,6 @@ function spawnBossRushTrophy() {
   ) {
     const centerPos = g.r.GetCenterPos();
     const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits
-    trophy.spawn(position);
+    spawnTrophy(position);
   }
 }

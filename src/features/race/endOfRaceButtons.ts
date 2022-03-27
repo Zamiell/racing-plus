@@ -3,6 +3,7 @@ import {
   getRoomListIndex,
   inMegaSatanRoom,
   openAllDoors,
+  spawn,
   spawnGridEntityWithVariant,
   VectorZero,
 } from "isaacscript-common";
@@ -189,14 +190,8 @@ function checkDPSButtonPressed(gridEntity: GridEntity) {
 }
 
 function touchedDPSButton() {
-  Isaac.Spawn(
-    EntityType.ENTITY_DUMMY,
-    0,
-    0,
-    g.r.GetCenterPos(),
-    VectorZero,
-    undefined,
-  );
+  const centerPos = g.r.GetCenterPos();
+  spawn(EntityType.ENTITY_DUMMY, 0, 0, centerPos);
 }
 
 function checkVictoryLapButtonPressed(gridEntity: GridEntity) {

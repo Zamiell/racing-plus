@@ -1,6 +1,7 @@
 import {
   getFinalFrameOfAnimation,
   saveDataManager,
+  spawnEffect,
   VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
@@ -35,8 +36,7 @@ export function postPickupInitCoin(pickup: EntityPickup): void {
 }
 
 function postPickupInitStickyNickel(pickup: EntityPickup) {
-  const effect = Isaac.Spawn(
-    EntityType.ENTITY_EFFECT,
+  const effect = spawnEffect(
     EffectVariantCustom.STICKY_NICKEL,
     0,
     pickup.Position,

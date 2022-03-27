@@ -7,7 +7,7 @@ import {
   log,
   newRNG,
   saveDataManager,
-  VectorZero,
+  spawnWithSeed,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -63,26 +63,22 @@ function spawnEnemies() {
   for (const gridIndex of [66, 68]) {
     const position = g.r.GetGridPosition(gridIndex);
     const leechSeed = rng.Next();
-    g.g.Spawn(
+    spawnWithSeed(
       EntityType.ENTITY_LEECH,
       LeechVariant.KAMIKAZE_LEECH,
-      position,
-      VectorZero,
-      undefined,
       0,
+      position,
       leechSeed,
     );
   }
 
   // Spawn 1x Fallen (81.0)
   const fallenSeed = rng.Next();
-  g.g.Spawn(
+  spawnWithSeed(
     EntityType.ENTITY_FALLEN,
     FallenVariant.FALLEN,
-    centerPos,
-    VectorZero,
-    undefined,
     0,
+    centerPos,
     fallenSeed,
   );
 }

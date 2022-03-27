@@ -4,7 +4,7 @@ import {
   getRoomListIndex,
   log,
   saveDataManager,
-  VectorZero,
+  spawn,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
@@ -27,17 +27,10 @@ export function init(): void {
   saveDataManager("trophy", v);
 }
 
-export function spawn(position: Vector): void {
+export function spawnTrophy(position: Vector): void {
   const roomListIndex = getRoomListIndex();
 
-  Isaac.Spawn(
-    EntityTypeCustom.ENTITY_RACE_TROPHY,
-    0,
-    0,
-    position,
-    VectorZero,
-    undefined,
-  );
+  spawn(EntityTypeCustom.ENTITY_RACE_TROPHY, 0, 0, position);
 
   // Keep track that we spawned it so that we can respawn it if the player re-enters the room
   v.level.trophy = {
@@ -124,17 +117,10 @@ function checkRespawn() {
 
   // We are re-entering a room where a trophy spawned (which is a custom entity),
   // so we need to respawn it
-  Isaac.Spawn(
-    EntityTypeCustom.ENTITY_RACE_TROPHY,
-    0,
-    0,
-    v.level.trophy.position,
-    VectorZero,
-    undefined,
-  );
+  spawn(EntityTypeCustom.ENTITY_RACE_TROPHY, 0, 0, v.level.trophy.position);
   log("Respawned a Race Trophy since we re-entered the room.");
 }
 
-export function trophyHasSpawned(): boolean {
+export function hasTrophySpawned(): boolean {
   return v.level.trophy !== null;
 }
