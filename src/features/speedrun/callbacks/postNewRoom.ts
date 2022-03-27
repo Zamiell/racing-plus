@@ -9,7 +9,7 @@ import {
   isRoomInsideMap,
   preventCollectibleRotate,
   removeAllPickups,
-  spawnGridEntityWithVariant,
+  spawnGridWithVariant,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
@@ -97,7 +97,7 @@ function checkWomb2IAMERROR() {
   for (const heavenDoor of heavenDoors) {
     heavenDoor.Remove();
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
-    spawnGridEntityWithVariant(
+    spawnGridWithVariant(
       GridEntityType.GRID_TRAPDOOR,
       TrapdoorVariant.NORMAL,
       gridIndex,

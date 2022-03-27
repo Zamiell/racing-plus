@@ -4,7 +4,7 @@ import {
   log,
   onRepentanceStage,
   onSheol,
-  removeGridEntity,
+  removeGrid,
 } from "isaacscript-common";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -24,7 +24,7 @@ const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
 export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
   // In some situations, trapdoors should be removed entirely
   if (shouldRemove()) {
-    removeGridEntity(gridEntity);
+    removeGrid(gridEntity);
     return;
   }
 

@@ -8,9 +8,9 @@ import {
   inSecretShop,
   isRoomInsideMap,
   log,
-  removeGridEntity,
+  removeGrid,
   runNextGameFrame,
-  spawnGridEntity,
+  spawnGrid,
   teleport,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
@@ -258,14 +258,14 @@ export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
-  removeGridEntity(gridEntity);
+  removeGrid(gridEntity);
 
   // If we remove a crawlspace and spawn a teleporter on the same tile on the same frame,
   // the teleporter will immediately despawn for some reason
   // Work around this by simply spawning it on the next game frame
   const gridIndex = gridEntity.GetGridIndex();
   runNextGameFrame(() => {
-    spawnGridEntity(GridEntityType.GRID_TELEPORTER, gridIndex);
+    spawnGrid(GridEntityType.GRID_TELEPORTER, gridIndex);
     v.room.teleporterSpawned = true;
   });
 }

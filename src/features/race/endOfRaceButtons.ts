@@ -4,7 +4,7 @@ import {
   inMegaSatanRoom,
   openAllDoors,
   spawn,
-  spawnGridEntityWithVariant,
+  spawnGridWithVariant,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -89,7 +89,7 @@ function spawnDPSButton() {
     gridIndex = 107;
   }
 
-  const button = spawnGridEntityWithVariant(
+  const button = spawnGridWithVariant(
     GridEntityType.GRID_PRESSURE_PLATE,
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,
@@ -121,7 +121,7 @@ export function spawnVictoryLapButton(center?: boolean): void {
     gridIndex = g.r.GetGridIndex(centerPos);
   }
 
-  const button = spawnGridEntityWithVariant(
+  const button = spawnGridWithVariant(
     GridEntityType.GRID_PRESSURE_PLATE,
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,

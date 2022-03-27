@@ -6,8 +6,8 @@ import {
   gridCoordinatesToWorldPosition,
   isEven,
   removeAllMatchingGridEntities,
-  removeGridEntity,
-  spawnGridEntityWithVariant,
+  removeGrid,
+  spawnGridWithVariant,
   VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
@@ -73,7 +73,7 @@ function createCharacterButtons() {
     // Spawn buttons for each characters
     const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
-    spawnGridEntityWithVariant(
+    spawnGridWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
       gridIndex,
@@ -112,7 +112,7 @@ function createBuildVetoButtons() {
     // Spawn buttons for each characters
     const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
-    spawnGridEntityWithVariant(
+    spawnGridWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
       gridIndex,
@@ -266,7 +266,7 @@ function deleteCharacterButtonAtIndex(i: int) {
   const position = gridCoordinatesToWorldPosition(x, y);
   const gridEntity = g.r.GetGridEntityFromPos(position);
   if (gridEntity !== undefined) {
-    removeGridEntity(gridEntity);
+    removeGrid(gridEntity);
   }
 
   // We also need to remove the sprite

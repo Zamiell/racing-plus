@@ -1,4 +1,4 @@
-import { spawnGridEntity } from "isaacscript-common";
+import { spawnGrid } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -41,5 +41,5 @@ function deleteVoidDoor() {
 
   // Spawning a wall on top of the door will automatically delete the door
   const gridIndex = voidDoor.GetGridIndex();
-  spawnGridEntity(GridEntityType.GRID_WALL, gridIndex);
+  spawnGrid(GridEntityType.GRID_WALL, gridIndex);
 }

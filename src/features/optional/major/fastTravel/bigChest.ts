@@ -10,7 +10,7 @@ import {
   onSheol,
   spawnCollectible,
   spawnEffect,
-  spawnGridEntityWithVariant,
+  spawnGridWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -285,7 +285,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
 
     case ReplacementAction.TRAPDOOR: {
       const gridIndex = g.r.GetGridIndex(pickup.Position);
-      spawnGridEntityWithVariant(
+      spawnGridWithVariant(
         GridEntityType.GRID_TRAPDOOR,
         TrapdoorVariant.NORMAL,
         gridIndex,

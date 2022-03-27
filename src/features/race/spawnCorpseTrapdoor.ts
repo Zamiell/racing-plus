@@ -1,7 +1,7 @@
 // If the goal of the race is Mother, we need to explicitly spawn a trapdoor after Mom's Heart is
 // defeated (because it was manually removed earlier to avoid the player taking the wrong path)
 
-import { spawnGridEntityWithVariant } from "isaacscript-common";
+import { spawnGridWithVariant } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -27,7 +27,7 @@ export function postNewRoom(): void {
   ) {
     v.run.spawnedCorpseTrapdoor = true;
     const gridIndex = g.r.GetGridIndex(NORMAL_TRAPDOOR_POSITION);
-    spawnGridEntityWithVariant(
+    spawnGridWithVariant(
       GridEntityType.GRID_TRAPDOOR,
       TrapdoorVariant.NORMAL,
       gridIndex,

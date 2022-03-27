@@ -6,7 +6,7 @@ import {
   removeAllDoors,
   removeCollectibleFromItemTracker,
   removeEntities,
-  spawnGridEntityWithVariant,
+  spawnGridWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
@@ -79,7 +79,7 @@ function setupButtonRoom() {
       seasonDescription.Y,
     );
     const gridIndex = g.r.GetGridIndex(position);
-    spawnGridEntityWithVariant(
+    spawnGridWithVariant(
       GridEntityType.GRID_PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
       gridIndex,
