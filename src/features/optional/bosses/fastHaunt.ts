@@ -25,14 +25,12 @@ export function postNPCUpdateHaunt(npc: EntityNPC): void {
 
 function checkDetachLilHaunts(npc: EntityNPC) {
   // In vanilla, the first Lil' Haunt detaches on frame 91
-  // We speed this up so that it happens on frame 19
-  // (which is the first frame that its respective PostNPCUpdate callback fires)
+  // We speed this up so that it happens on the first frame that its PostNPCUpdate callback fires
   if (npc.FrameCount !== FIRST_LIL_HAUNT_UPDATE_FRAME) {
     return;
   }
 
   const colorIdx = npc.GetBossColorIdx();
-  Isaac.DebugString(`GETTING HERE - ${colorIdx}`);
   const attachedLilHaunts = getAttachedLilHaunts(npc);
   if (colorIdx === BLACK_CHAMPION_COLOR_IDX) {
     // The black champion Haunt detaches all of his children at the same time

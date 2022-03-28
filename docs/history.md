@@ -1,5 +1,10 @@
 # Racing+ Version History and News
 
+### *v0.80.1* - March 27th, 2022
+
+- Fixed the bug where the fast-Haunt feature would not work properly with the black champion version. (Thanks Fallenfor)
+- Fixed the bug where grid entities in a Devil Room or Angel Room would be invisible under certain circumstances. (Thanks MaksOuw)
+
 ### *v0.80.0* - March 25th, 2022
 
 - Added a custom charge bar for Tainted Samson.
