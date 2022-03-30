@@ -1,4 +1,8 @@
-import { printConsole, saveDataManager } from "isaacscript-common";
+import {
+  isReflectionRender,
+  printConsole,
+  saveDataManager,
+} from "isaacscript-common";
 
 const v = {
   run: {
@@ -69,8 +73,15 @@ export function postNPCRender(npc: EntityNPC): void {
 }
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
-export function postPlayerRender(player: EntityPlayer): void {
+export function postPlayerRender(
+  player: EntityPlayer,
+  renderOffset: Vector,
+): void {
   if (!v.run.player) {
+    return;
+  }
+
+  if (isReflectionRender(renderOffset)) {
     return;
   }
 

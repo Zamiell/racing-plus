@@ -2,10 +2,10 @@ import { defaultMapGetPlayer, mapSetPlayer } from "isaacscript-common";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
+  shouldDrawAnyCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
-import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import v, { MAX_BLOODY_LUST_CHARGES } from "./v";
 
@@ -25,13 +25,15 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 }
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
-export function postPlayerRender(player: EntityPlayer): void {
+export function postPlayerRender(
+  player: EntityPlayer,
+  renderOffset: Vector,
+): void {
   if (!config.bloodyLustChargeBar) {
     return;
   }
 
-  const hud = g.g.GetHUD();
-  if (!hud.IsVisible()) {
+  if (!shouldDrawAnyCustomChargeBar(renderOffset)) {
     return;
   }
 

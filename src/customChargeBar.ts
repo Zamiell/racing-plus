@@ -1,4 +1,9 @@
-import { ensureAllCases, isCharacter, VectorZero } from "isaacscript-common";
+import {
+  ensureAllCases,
+  isCharacter,
+  isReflectionRender,
+  VectorZero,
+} from "isaacscript-common";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
 import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
 import g from "./globals";
@@ -104,6 +109,16 @@ function getNumHigherPrecedenceCustomChargeBars(
       return ensureAllCases(chargeBarType);
     }
   }
+}
+
+/**
+ * Since this is a UI element, we only want to draw it when the HUD is enabled and if this is not a
+ * water reflection.
+ */
+export function shouldDrawAnyCustomChargeBar(renderOffset: Vector): boolean {
+  const hud = g.g.GetHUD();
+
+  return hud.IsVisible() && !isReflectionRender(renderOffset);
 }
 
 export function shouldDrawCustomChargeBar(
