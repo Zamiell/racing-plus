@@ -17,7 +17,7 @@ import v from "./v";
 
 const NORMAL_ROOM_SUBTYPE = 0;
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
-const KRAMPUS_CHANCE = 0.4;
+const KRAMPUS_CHANCE = 0.4; // Matches vanilla
 
 export function devil(): void {
   const hasNumberMagnet = anyPlayerHasTrinket(
@@ -56,7 +56,12 @@ function checkSpawnKrampus() {
   const centerPos = g.r.GetCenterPos();
   const effectiveDevilDeals = getEffectiveDevilDeals();
 
-  if (v.run.metKrampus || effectiveDevilDeals === 0) {
+  if (
+    v.run.metKrampus ||
+    effectiveDevilDeals === 0 ||
+    // Number Magnet prevents Krampus from appearing
+    anyPlayerHasTrinket(TrinketType.TRINKET_NUMBER_MAGNET)
+  ) {
     return false;
   }
 
