@@ -65,9 +65,7 @@ export function logRaceData(raceData: RaceData): void {
   for (const key of keys) {
     const property = key as keyof RaceData;
     const value = raceData[property];
-    const valueString = isArray(value)
-      ? arrayToString(value as int[])
-      : `${value}`;
+    const valueString = isArray(value) ? arrayToString(value) : `${value}`;
     log(`- ${key} - ${valueString}`);
   }
 }
