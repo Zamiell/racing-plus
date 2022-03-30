@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.80.2* - March 29th, 2022
+
+- Fixed the bug where Number Magnet would not properly prevent Krampus from appearing.
+
 ### *v0.80.1* - March 27th, 2022
 
 - Fixed the bug where the fast-Haunt feature would not work properly with the black champion version. (Thanks Fallenfor)
