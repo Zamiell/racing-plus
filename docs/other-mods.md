@@ -19,6 +19,7 @@ Using **any** other mods alongside Racing+ is forbidden. This is because mods th
 - [The Peeper to DVD Logo](https://steamcommunity.com/sharedfiles/filedetails/?id=2627738945)
 - [Rock Angel](https://steamcommunity.com/sharedfiles/filedetails/?id=2773807008)
 - [Wii Pointer Finger!](https://steamcommunity.com/sharedfiles/filedetails/?id=2712216639)
+- [Chain Chomp replaces Mr. Mine](https://steamcommunity.com/sharedfiles/filedetails/?id=2786723219)
 
 <br />
 
