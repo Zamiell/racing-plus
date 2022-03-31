@@ -1,5 +1,6 @@
 import {
   ensureAllCases,
+  getCoinValue,
   hasOpenPocketItemSlot,
   hasOpenTrinketSlot,
 } from "isaacscript-common";
@@ -141,42 +142,23 @@ function insertCoin(
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
   const coinSubType = coin.SubType as CoinSubType;
+  const coinValue = getCoinValue(coinSubType);
 
   switch (coinSubType) {
-    // 1
-    case CoinSubType.COIN_PENNY: {
-      const value = 1;
-      player.AddCoins(value);
-      return [PickupVariant.PICKUP_COIN, value];
-    }
-
-    // 2
-    case CoinSubType.COIN_NICKEL: {
-      const value = 5;
-      player.AddCoins(value);
-      return [PickupVariant.PICKUP_COIN, value];
-    }
-
-    // 3
-    case CoinSubType.COIN_DIME: {
-      const value = 10;
-      player.AddCoins(value);
-      return [PickupVariant.PICKUP_COIN, value];
-    }
-
-    // 4
+    // 1, 2, 3
+    case CoinSubType.COIN_PENNY:
+    case CoinSubType.COIN_NICKEL:
+    case CoinSubType.COIN_DIME:
     case CoinSubType.COIN_DOUBLEPACK: {
-      const value = 2;
-      player.AddCoins(value);
-      return [PickupVariant.PICKUP_COIN, value];
+      player.AddCoins(coinValue);
+      return [PickupVariant.PICKUP_COIN, coinValue];
     }
 
     // 5
     case CoinSubType.COIN_LUCKYPENNY: {
-      const value = 1;
-      player.AddCoins(value);
+      player.AddCoins(coinValue);
       player.DonateLuck(1);
-      return [PickupVariant.PICKUP_COIN, value];
+      return [PickupVariant.PICKUP_COIN, coinValue];
     }
 
     // 6
