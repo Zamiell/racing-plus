@@ -10,19 +10,19 @@ export function init(mod: Mod): void {
   mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, main);
 }
 
-function main(player: EntityPlayer, renderOffset: Vector) {
+function main(player: EntityPlayer) {
   if (isChildPlayer(player)) {
     return;
   }
 
   // Mandatory
-  debugDisplay.postPlayerRender(player, renderOffset);
+  debugDisplay.postPlayerRender(player);
 
   // QoL
-  taintedSamsonChargeBar.postPlayerRender(player, renderOffset);
-  bloodyLustChargeBar.postPlayerRender(player, renderOffset); // 444
-  leadPencilChargeBar.postPlayerRender(player, renderOffset); // 444
-  azazelsRageChargeBar.postPlayerRender(player, renderOffset); // 699
+  taintedSamsonChargeBar.postPlayerRender(player);
+  bloodyLustChargeBar.postPlayerRender(player); // 444
+  leadPencilChargeBar.postPlayerRender(player); // 444
+  azazelsRageChargeBar.postPlayerRender(player); // 699
 
   // Cutscenes
   fastTeleports.postPlayerRender(player);

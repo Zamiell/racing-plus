@@ -12,15 +12,12 @@ const sprite = Sprite();
 sprite.Load("gfx/chargebar_azazels_rage.anm2", true);
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
-export function postPlayerRender(
-  player: EntityPlayer,
-  renderOffset: Vector,
-): void {
+export function postPlayerRender(player: EntityPlayer): void {
   if (!config.azazelsRageChargeBar) {
     return;
   }
 
-  if (!shouldDrawAnyCustomChargeBar(renderOffset)) {
+  if (!shouldDrawAnyCustomChargeBar()) {
     return;
   }
 

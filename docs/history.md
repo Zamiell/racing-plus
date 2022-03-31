@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.80.4* - March 30th, 2022
+
+- Fixed the bug where custom charge bars would render in water reflections. (Thanks Gamonymous)
+
 ### *v0.80.2* - March 29th, 2022
 
 - Fixed the bug where Number Magnet would not properly prevent Krampus from appearing.

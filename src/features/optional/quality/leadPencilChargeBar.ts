@@ -38,15 +38,12 @@ function featureEnabled() {
 }
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
-export function postPlayerRender(
-  player: EntityPlayer,
-  renderOffset: Vector,
-): void {
+export function postPlayerRender(player: EntityPlayer): void {
   if (!config.leadPencilChargeBar) {
     return;
   }
 
-  if (!shouldDrawAnyCustomChargeBar(renderOffset)) {
+  if (!shouldDrawAnyCustomChargeBar()) {
     return;
   }
 

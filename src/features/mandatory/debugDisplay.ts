@@ -73,15 +73,12 @@ export function postNPCRender(npc: EntityNPC): void {
 }
 
 // ModCallbacks.MC_POST_PLAYER_RENDER (32)
-export function postPlayerRender(
-  player: EntityPlayer,
-  renderOffset: Vector,
-): void {
+export function postPlayerRender(player: EntityPlayer): void {
   if (!v.run.player) {
     return;
   }
 
-  if (isReflectionRender(renderOffset)) {
+  if (isReflectionRender()) {
     return;
   }
 

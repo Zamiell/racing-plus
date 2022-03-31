@@ -115,10 +115,10 @@ function getNumHigherPrecedenceCustomChargeBars(
  * Since this is a UI element, we only want to draw it when the HUD is enabled and if this is not a
  * water reflection.
  */
-export function shouldDrawAnyCustomChargeBar(renderOffset: Vector): boolean {
+export function shouldDrawAnyCustomChargeBar(): boolean {
   const hud = g.g.GetHUD();
 
-  return hud.IsVisible() && !isReflectionRender(renderOffset);
+  return hud.IsVisible() && !isReflectionRender();
 }
 
 export function shouldDrawCustomChargeBar(
