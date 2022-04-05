@@ -122,7 +122,7 @@ export function postNewRoom(): void {
   const boss = bosses[0];
 
   // Vanishing Twin does not apply to story bosses
-  if (isStoryBoss(boss)) {
+  if (isStoryBoss(boss.Type)) {
     return;
   }
 
