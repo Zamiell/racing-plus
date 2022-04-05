@@ -1,4 +1,4 @@
-import { emptyArray, inStartingRoom } from "isaacscript-common";
+import { emptyArray, inStartingRoom, logError } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { bossPNGMap } from "./bossPNGMap";
@@ -31,7 +31,10 @@ export function set(): void {
   for (let i = 0; i < v.level.bosses.length; i++) {
     if (bossSprites[i] === undefined) {
       const [entityType, variant] = v.level.bosses[i];
-      bossSprites[i] = initBossSprite(entityType, variant);
+      const bossSprite = initBossSprite(entityType, variant);
+      if (bossSprite !== undefined) {
+        bossSprites[i] = bossSprite;
+      }
     }
   }
 }
@@ -39,14 +42,18 @@ export function set(): void {
 function initBossSprite(entityType: EntityType, variant: int) {
   const pngArray = bossPNGMap.get(entityType);
   if (pngArray === undefined) {
-    error(`Failed to find the boss of ${entityType} in the boss PNG map.`);
+    logError(
+      `Failed to find the boss of entity type ${entityType} in the boss PNG map.`,
+    );
+    return undefined;
   }
 
   const pngFileName = pngArray[variant];
   if (pngFileName === undefined) {
-    error(
-      `Failed to find the boss of ${entityType}.${variant} in the boss PNG map.`,
+    logError(
+      `Failed to find the entity type & variant of ${entityType}.${variant} in the boss PNG map.`,
     );
+    return undefined;
   }
 
   const pngPath = `gfx/ui/boss/${pngFileName}`;

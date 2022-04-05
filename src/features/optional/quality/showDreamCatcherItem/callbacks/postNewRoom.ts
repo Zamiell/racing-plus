@@ -124,6 +124,14 @@ function isBossException(type: EntityType, variant: int) {
       );
     }
 
+    // 266
+    case EntityType.ENTITY_MAMA_GURDY: {
+      return (
+        variant === MamaGurdyVariant.LEFT_HAND ||
+        variant === MamaGurdyVariant.RIGHT_HAND
+      );
+    }
+
     default: {
       return false;
     }
