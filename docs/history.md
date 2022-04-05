@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.80.5* - April 5th, 2022
+
+- Fixed the bug where Dream Catcher would not work properly with Mama Gurdy. (Thanks Greninja_San)
+
 ### *v0.80.4* - March 30th, 2022
 
 - Fixed the bug where custom charge bars would render in water reflections. (Thanks Gamonymous)
