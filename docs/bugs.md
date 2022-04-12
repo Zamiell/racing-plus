@@ -2,7 +2,7 @@
 
 Some gameplay-related bugs are not fixable due to the limitations of the game's Lua API.
 
-<br />
+<br>
 
 ## Miscellaneous Bugs
 
@@ -17,7 +17,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - In seeded races, it is possible to get The Fallen as a boss without having taken a Devil Deal. (Reported by Gamonymous)
 - In seeded races, the stats HUD will always show Devil Rooms, regardless of whether Devil Rooms or Angel Rooms are locked in to the seed.
 
-<br />
+<br>
 
 ## Bugs with Seeded Death
 
@@ -32,4 +32,4 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
   - You have one red hp left and remove Mother's Kiss. (Reported by Gamonymous)
   - The Bible is used in the Satan fight. (Reported by Adrayon)
 
-<br />
+<br>

@@ -4,7 +4,7 @@
 
 Please visit [the website for Racing+](https://isaacracing.net/) or [subscribe to the mod on the Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=857628390).
 
-<br />
+<br>
 
 ## Description
 
@@ -21,7 +21,7 @@ See also:
 
 You may also be interested in [the client repository](https://github.com/Zamiell/isaac-racing-client) or [the server repository](https://github.com/Zamiell/isaac-racing-server).
 
-<br />
+<br>
 
 ## Installation for Development (Windows)
 
@@ -34,9 +34,9 @@ You may also be interested in [the client repository](https://github.com/Zamiell
   - `refreshenv`
   - `git config --global user.name "Your_Username"`
   - `git config --global user.email "your@email.com"`
-  - `git config --global core.autocrlf false` <br />
+  - `git config --global core.autocrlf false` <br>
   (so that Git does not convert LF to CRLF when cloning repositories)
-  - `git config --global pull.rebase true` <br />
+  - `git config --global pull.rebase true` <br>
   (so that Git automatically rebases when pulling)
 - Clone the repository:
   - `cd [the path where you want the code to live]` (optional)

@@ -9,7 +9,7 @@
 1. [Miscellaneous Changes](#miscellaneous-changes)
 1. [Rooms That Were Deliberately Not Changed](#rooms-that-were-deliberately-not-changed)
 
-<br />
+<br>
 
 
 
@@ -19,7 +19,7 @@
 
 Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that were changed for other reasons are listed in different sections.
 
-<br />
+<br>
 
 ### Devil & Angel Room Rebalancing
 
@@ -47,7 +47,7 @@ Firstly, some rooms were purely changed for balance (racing) reasons. Rooms that
 
 <!-- In vanilla, all of the room shapes are normal and all of the doors are enabled. -->
 
-<br />
+<br>
 
 ### Trapdoor Room
 
@@ -57,7 +57,7 @@ On Sheol, there exists a room with a trapdoor that takes you directly to the Dar
 
 - Sheol: #290
 
-<br />
+<br>
 
 
 
@@ -72,7 +72,7 @@ A softlock is a condition where:
 
 There are several softlocks in the vanilla game.
 
-<br />
+<br>
 
 ### Low Range Fix
 
@@ -88,7 +88,7 @@ Low range builds softlock in certain rooms. The rooms are fixed by moving the en
 - Utero: #458, #459
 - Scarred: #458, #459
 
-<br />
+<br>
 
 ### Pooter Fix
 
@@ -99,7 +99,7 @@ On certain rooms in the Basement/Cellar, some Pooters can fly over rocks, causin
 - Burning: #132, #405 (moved the Pooters)
 - Burning: #825 (replaced with Flaming Gapers)
 
-<br />
+<br>
 
 ### Stone Grimace Fix
 
@@ -111,7 +111,7 @@ In certain rooms, having very large tears causes a softlock in rooms with Stone 
 - Scarred: #705 (moved the Red Poops to the side)
 - Womb: #809 (removed the Red Poop)
 
-<br />
+<br>
 
 ### Round Worm Fix
 
@@ -120,7 +120,7 @@ In some rooms, Round Worms can cause a pseudo-softlock if they continue to appea
 - Basement: #301
 - Burning: #301
 
-<br />
+<br>
 
 ### Lump Fix
 
@@ -131,7 +131,7 @@ In L rooms and 2x2 rooms, Tar Boys and Lumps can pseudo-softlock the player by c
 - Utero: #398, #419, #430, #655, #729, #743
 - Scarred: #398, #419, #430, #514, #680, #753
 
-<br />
+<br>
 
 ### Bishop & Flies Fix
 
@@ -139,7 +139,7 @@ In some rooms, it is impossible to kill a Bishop if it is surrounded by enemies.
 
 - Cathedral: #430
 
-<br />
+<br>
 
 ### Swarm Spider Fix
 
@@ -148,7 +148,7 @@ In some rooms, Swarm Spiders can get stuck in inaccessible parts of the room.
 - Cellar: #1023
 - Burning: #1192
 
-<br />
+<br>
 
 ### Trite Fix
 
@@ -156,7 +156,7 @@ In one room, Trites can get stuck in the top part of the room.
 
 - Cellar: #1021
 
-<br />
+<br>
 
 
 
@@ -166,7 +166,7 @@ In one room, Trites can get stuck in the top part of the room.
 
 Racing+ is somewhat conservative with what it classifies as unavoidable damage. Difficult rooms are not considered unavoidable damage. Many hours have been spent testing the viability of rooms with various builds.
 
-<br />
+<br>
 
 ### Unfair Narrow Room Adjustment
 
@@ -191,7 +191,7 @@ While not technically unavoidable, many narrow rooms have near-impossible attack
 - Boss: #2305 (Krampus) (deleted)
 - Boss: #2306 (Krampus) (deleted)
 
-<br />
+<br>
 
 ### Maneuverability Fix
 
@@ -201,7 +201,7 @@ Some rooms are so packed with entities that they are unavoidable damage on Dr. F
 - Utero: #776 (narrow room with Nerve Endings)
 - Scarred: #787 (narrow room with Nerve Endings)
 
-<br />
+<br>
 
 ### Red Fire Puzzle Room Removal
 
@@ -211,7 +211,7 @@ The puzzle rooms with the red fires along the sides of the room have no consiste
 - Cellar: #771
 - Burning: #785
 
-<br />
+<br>
 
 ### Close Fires Fix
 
@@ -221,7 +221,7 @@ In some rooms, fires spawn close to the entrance. If the fire becomes a champion
 - Necropolis: #812
 - Dank: #826
 
-<br />
+<br>
 
 ### Hive Fix
 
@@ -230,7 +230,7 @@ In some rooms, the Drowned Chargers that spawn from a Hive can be unavoidable da
 - Caves: #519
 - Flooded: #527
 
-<br />
+<br>
 
 ### Spikes Fix
 
@@ -240,7 +240,7 @@ In some rooms, a Slide causes unavoidable damage.
 - Necropolis: #684
 - Dank: #706
 
-<br />
+<br>
 
 
 
@@ -250,7 +250,7 @@ In some rooms, a Slide causes unavoidable damage.
 
 The Racing+ mod tries to fix as many bugs as possible.
 
-<br />
+<br>
 
 ### Boss Room Door Fix
 
@@ -269,7 +269,7 @@ If you have Duality and there is only 2 entrances to a boss room, the Angel Room
 - #5033 (Mega Maw)
 - #5083 (Dark One)
 
-<br />
+<br>
 
 ### Boss Item Fixes
 
@@ -279,7 +279,7 @@ In some boss rooms, it is not possible to enter a Devil Room / Angel Room on the
 - #3311 (Lokii)
 - #4041 (Death)
 
-<br />
+<br>
 
 ### Door Fixes
 
@@ -287,7 +287,7 @@ On certain rooms, doors are disabled for no good reason.
 
 - Chest: #39 (double Mega Maw)
 
-<br />
+<br>
 
 ### Entity Stacking Fixes
 
@@ -296,7 +296,7 @@ On some rooms with a black heart, [Edmund forgot to implement entity stacking](h
 - Caves: #267
 - Flooded: #267
 
-<br />
+<br>
 
 ### Out of Bounds Fixes
 
@@ -310,7 +310,7 @@ In some rooms, entities are placed out of bounds, which causes glitchy behavior.
 
 ## Miscellaneous Changes
 
-<br />
+<br>
 
 ### Close Enemies Fix
 
@@ -357,7 +357,7 @@ Due to bug fixes in May 2018, most enemies that spawn near an entrance are no lo
 - Chub: #1033 (Charger)
 - I AM ERROR: #26 (moved pickups)
 
-<br />
+<br>
 
 ### Empty Room Removal
 
@@ -374,7 +374,7 @@ Some rooms in the game do not have anything in them. These types of rooms rob th
 - Sheol: #87
 - Chest: #42
 
-<br />
+<br>
 
 ### Mostly Empty Room Removal
 
@@ -405,7 +405,7 @@ Some rooms in the game only have a few rocks, pits, etc. These types of rooms ro
 - Sheol: #71, #286, #291, #513, #516, #519
 - Chest: #26, #142, #143, #199
 
-<br />
+<br>
 
 ### Stacked Entity Fix
 
@@ -415,7 +415,7 @@ Some rooms have the chance to be empty because of stacked entities.
 - Cellar: #875 (Portal)
 - Burning: #889 (Portal)
 
-<br />
+<br>
 
 ### Donation Machine Room Removal
 
@@ -423,7 +423,7 @@ One room in the Necropolis has a donation machine in it. Since removing curses a
 
 - Necropolis: #467
 
-<br />
+<br>
 
 ### Beggars in Angel Shops
 
@@ -436,7 +436,7 @@ Beggars are moved out of the way in all angel shops. This is a quality-of-life c
 - #44
 - #45
 
-<br />
+<br>
 
 ### Hush Fly Fix
 
@@ -446,7 +446,7 @@ The Hush Flies that are placed in some rooms are given the same armor scaling th
 - Necropolis: #815, #843
 - Dank: #829, #857
 
-<br />
+<br>
 
 ### Bumbino Fix
 
@@ -455,7 +455,7 @@ There are some Bumbino Rooms where players have to sit and wait for him to break
 - Cathedral: #360
 - Bumbino: #5273, #5274
 
-<br />
+<br>
 
 ### Symmetry Fix
 
@@ -474,11 +474,11 @@ Certain rooms in the game were probably meant to be symmetrical, but one entity 
 - Headless Horseman: #4050
 - The Gate: #5042
 
-<br />
+<br>
 
 ### Miscellaneous
 
 - Wormwood room #5182 was modified to remove the pits next to the doors, which gives the player slightly more time to react to the faster Wormwood mechanic.
 - Double Trouble room #3762 was changed to move the skulls away from the trapdoor (so that spawned Hosts do not interact with the trapdoor).
 
-<br />
+<br>

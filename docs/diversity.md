@@ -14,13 +14,13 @@ Furthermore, characters with an active item (e.g. Magdalene with the Yum Heart) 
 
 In general, the extra power level increase from these 5 items is a fun boost at the beginning of a run. However, you don't always start with "good" items! One of the most interesting things about diversity races is that it forces players to use the items in the game that they would not normally pick up. This puts players in unique situations that they would never otherwise be in.
 
-<br />
+<br>
 
 ## Reset Time Reduction
 
 To cut down on the reset time to get the run going, the first Treasure Room will always have 2 item pedestals. From Basement 2 onwards, the Treasure Rooms will be normal.
 
-<br />
+<br>
 
 ## Item Bans
 
@@ -36,7 +36,7 @@ The following items are also removed from all item pools, because they allow you
 - Genesis
 - Esau Jr.
 
-<br />
+<br>
 
 ## Trinket Bans
 
@@ -44,7 +44,7 @@ The following trinkets are removed, because they allow you to re-roll your build
 
 - Dice Bag
 
-<br />
+<br>
 
 ## Excluded Starting Items
 
@@ -81,4 +81,4 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 668 - Dad's Note
 - 707 - Supper
 
-<br />
+<br>

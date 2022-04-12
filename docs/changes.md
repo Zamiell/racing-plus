@@ -1,12 +1,12 @@
 # Racing+ Mod Changes
 
-<br />
+<br>
 
 ## Website
 
 If you want to learn more about Racing+, you can visit [the official website](https://isaacracing.net). If you want to know the changes that are present in the in-game mod, read on.
 
-<br />
+<br>
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 1. [Additional Changes for Multi-Character Speedruns (Custom Challenges)](#additional-changes-for-multi-character-speedruns-custom-challenges)
 1. [Individual Room Changes](#individual-room-changes)
 
-<br />
+<br>
 
 ## Introduction
 
@@ -28,7 +28,7 @@ Additionally, Racing+ makes some gameplay tweaks and fixes some vanilla bugs. Yo
 
 Most changes on this page are prefixed by a code, like: `0001`. This signifies that the change can be toggled on and off using the [Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787). If a change does not have a prefix, you won't be able to toggle that option, since it is probably accomplished by modifying the game's resource files directly.
 
-<br />
+<br>
 
 ## Design Goals
 
@@ -41,7 +41,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 
 Furthermore, the mod attempts to remove all situations where the player is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for Wizoobs to appear, etc.).
 
-<br />
+<br>
 
 ## List of Major Changes
 
@@ -126,7 +126,7 @@ Post-flip actions:
 
 -->
 
-<br />
+<br>
 
 ## List of Minor Changes
 
@@ -418,10 +418,10 @@ Post-flip actions:
 - `1203` <!-- chat --> Chat from your race opponents will be drawn on the screen.
 - <!-- forceFadedConsoleDisplay --> The "faded console display" feature is automatically enabled in the "options.ini" file, which allows you to visually see when an error in the game happens.
 
-<br />
+<br>
 
 ## Additional Changes for Multi-Character Speedruns (Custom Challenges)
 
 Racing+ has [several custom challenges](challenges.md), each of which introduces additional changes to the game.
 
-<br />
+<br>

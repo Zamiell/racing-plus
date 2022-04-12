@@ -1,7 +1,8 @@
 # Racing+ Version History and News
 
-### *v0.80.6* - April 5th, 2022
+### *v0.80.6* - April 12th, 2022
 
+- Removed room ?
 - Removed the Justice? card bug fix, since it is fixed in the vanilla game.
 - Fixed the bug where using a Justice card on Tainted Blue Baby would not work properly. (Thanks Monkeypot)
 

@@ -6,14 +6,14 @@ Regardless of the format:
 - The Polaroid or The Negative will be automatically removed depending on your run goal.
 - The trapdoor or the beam of light on Womb 2 will be automatically removed depending on your run goal or which photo you have (if you have the Fast-Travel feature enabled).
 
-<br />
+<br>
 
 ## Unseeded
 
 - Historically, most races have been unseeded. This means that both players start with the same character but play on different seeds.
 - Each player is allowed to reset as many times as they want. Typically, each player will reset over and over until they find a good starting item from the Basement 1 Treasure Room.
 
-<br />
+<br>
 
 ## Seeded
 
@@ -61,7 +61,7 @@ Regardless of the format:
 - Magic 8 Ball no longer increases the chance for a Planetarium to spawn, because level generation is always the same.
 - Not entering a Treasure Room no longer increases the chance of a Planetarium appearing, because level generation is always the same.
 
-<br />
+<br>
 
 ## Diversity
 
@@ -69,7 +69,7 @@ Regardless of the format:
 - However, each racer starts with the same five random items. (This is in addition to the character's original passive items and resources.)
 - For additional information, see [the documentation for diversity races](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/README-DIVERSITY.md).
 
-<br />
+<br>
 
 ## Custom
 
@@ -78,27 +78,27 @@ Regardless of the format:
 - Make sure that everyone in the race knows the rules before starting.
 - This option is used for multi-character speedrun races.
 
-<br />
+<br>
 
 # Racing+ Race Goals
 
 On Racing+, players have the option for races to end at different places.
 
-<br />
+<br>
 
 ## Blue Baby
 
 - Historically, most races have had the goal of killing Blue Baby, the boss at the end of The Chest.
 - There are no additional changes to the game for this goal.
 
-<br />
+<br>
 
 ## The Lamb
 
 - The Lamb is the boss at the end of the Dark Room.
 - The spikes in a Sacrifice Room will be deleted after the 11th sacrifice.
 
-<br />
+<br>
 
 ## Mega Satan
 
@@ -106,7 +106,7 @@ On Racing+, players have the option for races to end at different places.
 - The door to Mega Satan will automatically open upon reaching The Chest or the Dark Room.
 - The spikes in a Sacrifice Room will be deleted after the 11th sacrifice.
 
-<br />
+<br>
 
 ## Hush
 
@@ -114,14 +114,14 @@ On Racing+, players have the option for races to end at different places.
 - Trapdoors and beams of light will be deleted on floor 8.
 - After killing Hush, the door to The Void will be deleted.
 
-<br />
+<br>
 
 ## Delirium
 
 - Delirium is the boss in The Void.
 - Trapdoors and beams of light will be deleted on floor 8.
 
-<br />
+<br>
 
 ## Mother
 
@@ -129,21 +129,21 @@ On Racing+, players have the option for races to end at different places.
 - Normal trapdoors will not spawn. The doors to the Repentance alternate floors will be automatically opened.
 - We Need to Go Deeper! will only work on odd numbered floors (because you are supposed to go to the secret passage on even numbered floors).
 
-<br />
+<br>
 
 ## The Beast
 
 - The Beast is the boss at the end of the Ascent.
 - The trapdoor after defeating Mom take you to Mausoleum 2 instead of Womb 1. (There is no need to use a Fool card.)
 
-<br />
+<br>
 
 ## Boss Rush
 
 - Boss Rush is a special encounter at the end of floor 6.
 - Trapdoors will be deleted on floor 6.
 
-<br />
+<br>
 
 ## Custom
 
@@ -152,4 +152,4 @@ On Racing+, players have the option for races to end at different places.
 - Make sure that everyone in the race knows the goal before starting.
 - This option is used for multi-character speedrun races.
 
-<br />
+<br>

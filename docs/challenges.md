@@ -6,7 +6,7 @@
 - You can restart with the current character by tapping R. You can go back to the first character by holding R.
   - On floors 2 and beyond, you can double-tap R to restart with the current character.
 
-<br />
+<br>
 
 ## Shared Speedrun Mechanics
 
@@ -14,7 +14,7 @@
 - In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
 - In all seasons, on the first character, Devil Rooms and Angel Rooms will have nothing in them if you teleport to one from a Curse Room on the first floor. (This prevents resetting for a Devil Room item.)
 
-<br />
+<br>
 
 ## R+7 Season 1 (Normal vs Tainted)
 
@@ -29,7 +29,7 @@
 - For each character, you can choose to play as either the normal version or the tainted version.
 - Bethany & Tainted Bethany start with Duality in addition to their other items.
 
-<br />
+<br>
 
 ## R+7 Season 2 (Instant-Start)
 
@@ -146,10 +146,10 @@ Some builds are banned on certain characters:
   - Libraries
   - Planetariums
 
-<br />
+<br>
 
 ## Races
 
 - If you want to do a multiplayer race of one of the above seasons, then you can create a race with a format of "Custom" and a race goal of "Custom".
 
-<br />
+<br>
