@@ -457,6 +457,14 @@ There are some Bumbino Rooms where players have to sit and wait for him to break
 
 <br>
 
+### Trivial Puzzle Room Removal
+
+There are some puzzle rooms that are completely trivial and just waste the player's time.
+
+- Depths: #944
+- Necropolis: #950
+- Dank Depths: #1039
+
 ### Symmetry Fix
 
 Certain rooms in the game were probably meant to be symmetrical, but one entity was incorrectly placed. This is fixed.
