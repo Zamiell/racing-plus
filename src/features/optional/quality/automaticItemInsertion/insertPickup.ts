@@ -31,6 +31,11 @@ export function insertPickup(
       return insertBomb(pickup, player);
     }
 
+    // 42
+    case PickupVariant.PICKUP_POOP: {
+      return insertPoop(pickup, player);
+    }
+
     // 70
     case PickupVariant.PICKUP_PILL: {
       return insertPill(pickup, player);
@@ -285,6 +290,37 @@ function insertBomb(
       ensureAllCases(bombSubType);
 
       // Ignore modded bomb sub-types
+      return undefined;
+    }
+  }
+}
+
+// PickupVariant.PICKUP_POOP (42)
+function insertPoop(
+  poop: EntityPickup,
+  player: EntityPlayer,
+): [PickupVariant, int] | undefined {
+  const poopSubType = poop.SubType as PoopPickupSubType;
+
+  switch (poopSubType) {
+    // 0
+    case PoopPickupSubType.POOP_SMALL: {
+      const value = 1;
+      player.AddPoopMana(value);
+      return [PickupVariant.PICKUP_BOMB, value];
+    }
+
+    // 1
+    case PoopPickupSubType.POOP_BIG: {
+      const value = 3;
+      player.AddPoopMana(value);
+      return [PickupVariant.PICKUP_BOMB, value];
+    }
+
+    default: {
+      ensureAllCases(poopSubType);
+
+      // Ignore modded poop sub-types
       return undefined;
     }
   }

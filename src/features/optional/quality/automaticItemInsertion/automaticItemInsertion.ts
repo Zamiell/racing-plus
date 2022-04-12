@@ -108,7 +108,9 @@ function updateDelta(
     }
 
     default: {
-      error("Unknown pickup variant in the updateDelta");
+      error(
+        `Unknown pickup variant of "${pickupType}" in the updateDelta function.`,
+      );
     }
   }
 }

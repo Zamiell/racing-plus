@@ -1,4 +1,5 @@
 import {
+  anyPlayerIs,
   getClosestEntityTo,
   getPickups,
   initArray,
@@ -51,7 +52,7 @@ function addHeartsOnBethanys(player: EntityPlayer) {
 
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickupToPlayer(player, pickupVariant);
-    if (pickup !== null) {
+    if (pickup !== undefined) {
       insertPickupAndUpdateDelta(pickup, player);
     }
   }
@@ -68,29 +69,44 @@ export function automaticItemInsertionUseCardJustice(
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
   // to automatically insert items
   // Instead, find the nearest coin, bomb, and key to the player
+  const pickups = getPickupsFromJusticeCard(player);
+  for (const pickup of pickups) {
+    insertPickupAndUpdateDelta(pickup, player);
+  }
+}
+
+function getPickupsFromJusticeCard(player: EntityPlayer) {
   const hasTarotCloth = player.HasCollectible(
     CollectibleType.COLLECTIBLE_TAROT_CLOTH,
   );
   const numEachPickup = hasTarotCloth ? 2 : 1;
+
   const pickupVariants: PickupVariant[] = [];
   repeat(numEachPickup, () => {
     pickupVariants.push(
       PickupVariant.PICKUP_COIN, // 20
       PickupVariant.PICKUP_KEY, // 30
-      PickupVariant.PICKUP_BOMB, // 40
     );
+
+    const bombPickupVariant = anyPlayerIs(PlayerType.PLAYER_BLUEBABY_B)
+      ? PickupVariant.PICKUP_POOP
+      : PickupVariant.PICKUP_BOMB;
+    pickupVariants.push(bombPickupVariant);
 
     if (isBethany(player)) {
       pickupVariants.push(PickupVariant.PICKUP_HEART);
     }
   });
 
+  const pickups: EntityPickup[] = [];
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickupToPlayer(player, pickupVariant);
-    if (pickup !== null) {
-      insertPickupAndUpdateDelta(pickup, player);
+    if (pickup !== undefined) {
+      pickups.push(pickup);
     }
   }
+
+  return pickups;
 }
 
 function getClosestPickupToPlayer(

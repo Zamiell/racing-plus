@@ -3,6 +3,7 @@
 ### *v0.80.6* - April 5th, 2022
 
 - Removed the Justice? card bug fix, since it is fixed in the vanilla game.
+- Fixed the bug where using a Justice card on Tainted Blue Baby would not work properly. (Thanks Monkeypot)
 
 ### *v0.80.5* - April 5th, 2022
 
