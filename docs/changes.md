@@ -39,7 +39,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 1. to fix bugs and imperfections
 1. to keep the game as "vanilla" as possible
 
-Furthermore, the mod attempts to remove all situations where the placer is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for Wizoobs to appear, etc.).
+Furthermore, the mod attempts to remove all situations where the player is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for Wizoobs to appear, etc.).
 
 <br />
 
