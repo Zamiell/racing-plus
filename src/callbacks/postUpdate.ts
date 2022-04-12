@@ -6,7 +6,6 @@ import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbac
 import * as showLevelText from "../features/mandatory/showLevelText";
 import * as trophy from "../features/mandatory/trophy";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
-import * as reverseJusticeFix from "../features/optional/bugfix/reverseJusticeFix";
 import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
@@ -46,5 +45,4 @@ function main() {
 
   // Bug fixes
   battery9VoltSynergy.postUpdate();
-  reverseJusticeFix.postUpdate();
 }

@@ -250,8 +250,7 @@ function getDefaultValue(optionType: ModConfigMenuOptionType) {
     }
 
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
-      return false;
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -306,8 +305,7 @@ function getDisplayTextKeyboardController(
     }
 
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
-      return "Unknown";
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -339,8 +337,7 @@ function popupGetDeviceString(optionType: ModConfigMenuOptionType) {
     }
 
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
-      return "unknown";
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -368,8 +365,7 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
     }
 
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
-      return "unknown";
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }

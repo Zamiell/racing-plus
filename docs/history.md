@@ -1,5 +1,9 @@
 # Racing+ Version History and News
 
+### *v0.80.6* - April 5th, 2022
+
+- Removed the Justice? card bug fix, since it is fixed in the vanilla game.
+
 ### *v0.80.5* - April 5th, 2022
 
 - Fixed the bug where Dream Catcher would not work properly with Mama Gurdy. (Thanks Greninja_San)

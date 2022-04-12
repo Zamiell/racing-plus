@@ -1,9 +1,6 @@
 import {
   enableExtraConsoleCommands,
-  getRoomData,
-  getRoomVisitedCount,
   log,
-  ModCallbacksCustom,
   ModUpgraded,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
@@ -184,15 +181,4 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postGridEntityUpdate.init(mod);
   postGridEntityRemove.init(mod);
   postBoneSwing.init(mod);
-
-  // TODO debug
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_ROOM_EARLY, () => {
-    const roomData = getRoomData();
-    const roomVisitedCount = getRoomVisitedCount();
-    const roomID =
-      roomData === undefined
-        ? "[unknown]"
-        : `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
-    log(`MC_POST_NEW_ROOM_EARLY - ${roomID} (visited: ${roomVisitedCount})`);
-  });
 }
