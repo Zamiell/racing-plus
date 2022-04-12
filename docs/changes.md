@@ -166,7 +166,7 @@ Post-flip actions:
 
 - `0302` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - `0303` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
-- `0304` <!-- preventDeathSlow 66 --> Stop Death from performing his slow attack.
+- `0304` <!-- preventDeathSlow 66 --> Death will no longer perform his "slow" attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
