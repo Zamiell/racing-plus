@@ -405,7 +405,7 @@ Post-flip actions:
 
 - All fog is removed.
 
-> Why? It makes elements on the screen easier to see and it makes the game run better on poor computers.
+> Why? It makes elements on the screen easier to see and it makes the game run better on slower computers.
 
 ### 11) Sound Fixes
 
