@@ -81,7 +81,7 @@ export function deleteOldConfig(categoryName: string): void {
   }
 
   // If we reload the mod, then it will create duplicates of every entry
-  // Thus, we must first purge all settings relating to Racing+
+  // Thus, we must first purge all settings relating to the mod
   const categoryID = ModConfigMenu.GetCategoryIDByName(categoryName);
   if (categoryID !== undefined) {
     ModConfigMenu.MenuData.set(categoryID, {

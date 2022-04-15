@@ -4,13 +4,11 @@ import {
   newRNG,
   removeAllMatchingEntities,
   repeat,
-  spawn,
+  spawnBoss,
 } from "isaacscript-common";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
 import v from "./v";
-
-const NUM_LARRY_JR_SEGMENTS = 6;
 
 const VICTORY_LAP_BOSSES: ReadonlyArray<
   [entityType: int, variant: int, subType: int]
@@ -44,7 +42,7 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [62, 1, 0], // Scolex
   [62, 2, 0], // Frail
   [62, 2, 1], // Frail (black)
-  // Don't include Wormwood (62.3) since it requires throwable bombs
+  // Don't include Wormwood (62.3) since it requires water
   [63, 0, 0], // Famine
   [63, 0, 1], // Famine (blue)
   [64, 0, 0], // Pestilence
@@ -181,6 +179,7 @@ export function postNewRoom(): void {
 function checkVictoryLapBossReplace() {
   const roomClear = g.r.IsClear();
   const roomSeed = g.r.GetSpawnSeed();
+  const centerPos = g.r.GetCenterPos();
   const rng = newRNG(roomSeed);
 
   if (
@@ -198,23 +197,9 @@ function checkVictoryLapBossReplace() {
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {
     const randomBoss = getRandomArrayElement(VICTORY_LAP_BOSSES, rng);
-
-    const [randomBossType] = randomBoss;
-    if (randomBossType === EntityType.ENTITY_LARRYJR) {
-      // Larry Jr. and The Hollow require multiple segments
-      repeat(NUM_LARRY_JR_SEGMENTS, () => {
-        spawnBoss(randomBoss);
-      });
-    } else {
-      spawnBoss(randomBoss);
-    }
+    const [entityType, variant, subType] = randomBoss;
+    spawnBoss(entityType, variant, subType, centerPos);
   });
-}
-
-function spawnBoss(bossArray: [int, int, int]) {
-  const [entityType, variant, subType] = bossArray;
-  const centerPos = g.r.GetCenterPos();
-  spawn(entityType, variant, subType, centerPos);
 }
 
 export function shouldShowVictoryLaps(): boolean {

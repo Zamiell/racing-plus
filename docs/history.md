@@ -2,8 +2,8 @@
 
 ### *v0.80.6* - April 12th, 2022
 
-- Removed room ?
-- Removed the Justice? card bug fix, since it is fixed in the vanilla game.
+- Removed Depths room #944, Necropolis room #950, and Dank Depths room #1039.
+- Removed the Justice? card bug fix, since it is now fixed in the vanilla game.
 - Fixed the bug where using a Justice card on Tainted Blue Baby would not work properly. (Thanks Monkeypot)
 
 ### *v0.80.5* - April 5th, 2022
