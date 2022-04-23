@@ -1,5 +1,4 @@
 import { isChildPlayer } from "isaacscript-common";
-import * as debugDisplay from "../features/mandatory/debugDisplay";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
 import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
@@ -14,9 +13,6 @@ function main(player: EntityPlayer) {
   if (isChildPlayer(player)) {
     return;
   }
-
-  // Mandatory
-  debugDisplay.postPlayerRender(player);
 
   // QoL
   taintedSamsonChargeBar.postPlayerRender(player);

@@ -14,7 +14,6 @@ import * as inputAction from "./callbacks/inputAction";
 import * as postBombInit from "./callbacks/postBombInit";
 import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
-import * as postEffectRender from "./callbacks/postEffectRender";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
@@ -68,7 +67,6 @@ import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postSlotAnimationChanged from "./callbacksCustom/postSlotAnimationChanged";
-import * as postSlotRender from "./callbacksCustom/postSlotRender";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -142,7 +140,6 @@ function registerCallbacksVanilla(mod: ModUpgraded) {
   postLaserInit.init(mod); // 47
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
-  postEffectRender.init(mod); // 56
   postBombInit.init(mod); // 57
   postFireTear.init(mod); // 61
   preGetCollectible.init(mod); // 62
@@ -175,7 +172,6 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postPurchase.init(mod);
   postSacrifice.init(mod);
   postCursedTeleport.init(mod);
-  postSlotRender.init(mod);
   postSlotAnimationChanged.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityUpdate.init(mod);

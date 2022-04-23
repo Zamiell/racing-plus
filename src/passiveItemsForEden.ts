@@ -3,6 +3,7 @@ import {
   getMaxCollectibleType,
   isPassiveCollectible,
   itemConfig,
+  ItemConfigTag,
   range,
 } from "isaacscript-common";
 import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extraStartingItems/constants";

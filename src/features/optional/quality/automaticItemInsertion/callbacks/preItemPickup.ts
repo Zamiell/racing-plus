@@ -1,7 +1,8 @@
 import {
   collectibleHasTag,
   getPlayerIndex,
-  getPlayerNumTransformationCollectibles,
+  getPlayerNumCollectiblesForTransformation,
+  ItemConfigTag,
   PickingUpItem,
   PlayerIndex,
 } from "isaacscript-common";
@@ -69,7 +70,7 @@ function checkIfThirdSpunItem(
     return;
   }
 
-  const numSpunCollectibles = getPlayerNumTransformationCollectibles(
+  const numSpunCollectibles = getPlayerNumCollectiblesForTransformation(
     player,
     PlayerForm.PLAYERFORM_DRUGS,
   );
