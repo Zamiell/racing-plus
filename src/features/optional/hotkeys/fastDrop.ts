@@ -2,6 +2,10 @@ import {
   findFreePosition,
   getPlayers,
   isKeyboardPressed,
+  MAX_PLAYER_POCKET_ITEM_SLOTS,
+  MAX_PLAYER_TRINKET_SLOTS,
+  range,
+  repeat,
 } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
@@ -62,12 +66,11 @@ function fastDrop(target: FastDropTarget) {
     }
 
     // Trinkets
-    // (the Tick is handled properly because "DropTrinket()" won't do anything in that case)
     if (target === FastDropTarget.ALL || target === FastDropTarget.TRINKETS) {
-      const pos1 = findFreePosition(player.Position);
-      player.DropTrinket(pos1, false);
-      const pos2 = findFreePosition(player.Position);
-      player.DropTrinket(pos2, false);
+      repeat(MAX_PLAYER_TRINKET_SLOTS, () => {
+        const pos = findFreePosition(player.Position);
+        player.DropTrinket(pos, false); // We specify that The Tick should not be dropped
+      });
     }
 
     // Pocket items (cards, pills, runes, etc.)
@@ -75,10 +78,10 @@ function fastDrop(target: FastDropTarget) {
       target === FastDropTarget.ALL ||
       target === FastDropTarget.POCKET_ITEMS
     ) {
-      const pos1 = findFreePosition(player.Position);
-      player.DropPocketItem(0, pos1);
-      const pos2 = findFreePosition(player.Position);
-      player.DropPocketItem(1, pos2);
+      for (const pocketItemSlot of range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
+        const pos = findFreePosition(player.Position);
+        player.DropPocketItem(pocketItemSlot, pos);
+      }
     }
   }
 }
