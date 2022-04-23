@@ -26,13 +26,6 @@ import { unseed } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
-import {
-  toggleEffectDisplay,
-  toggleFamiliarDisplay,
-  toggleNPCDisplay,
-  togglePlayerDisplay,
-  toggleSlotDisplay,
-} from "./debugDisplay";
 
 const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_ISAAC;
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
@@ -46,13 +39,9 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("debug", debug);
   addConsoleCommand("devilset", devilSet);
   addConsoleCommand("disable", disable);
-  addConsoleCommand("effectdisplay", effectDisplay);
   addConsoleCommand("enable", enable);
-  addConsoleCommand("familiardisplay", familiarDisplay);
   addConsoleCommand("move", move);
   addConsoleCommand("next", next);
-  addConsoleCommand("npcdisplay", npcDisplay);
-  addConsoleCommand("playerdisplay", playerDisplay);
   // addConsoleCommand("previous", previous);
   addConsoleCommand("race", race);
   addConsoleCommand("rankedsoloreset", rankedSoloReset);
@@ -65,7 +54,6 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("seededraceitem", seededRaceItem);
   addConsoleCommand("seededracegoal", seededRaceGoal);
   addConsoleCommand("seededraceoff", seededRaceOff);
-  addConsoleCommand("slotdisplay", slotDisplay);
   addConsoleCommand("tests", tests);
   addConsoleCommand("unseed", unseedCommand);
   addConsoleCommand("version", version);
@@ -88,16 +76,8 @@ function disable() {
   setAllModConfigMenuSettings(false);
 }
 
-function effectDisplay() {
-  toggleEffectDisplay();
-}
-
 function enable() {
   setAllModConfigMenuSettings(true);
-}
-
-function familiarDisplay() {
-  toggleFamiliarDisplay();
 }
 
 function changeCharOrder() {
@@ -118,14 +98,6 @@ function move() {
 
 function next() {
   speedrunSetNextCharacterAndRestart(true);
-}
-
-function npcDisplay() {
-  toggleNPCDisplay();
-}
-
-function playerDisplay() {
-  togglePlayerDisplay();
 }
 
 /*
@@ -276,10 +248,6 @@ function seededRaceOff() {
   printConsole("Disabled seeded race mode.");
   unseed();
   restart();
-}
-
-function slotDisplay() {
-  toggleSlotDisplay();
 }
 
 function tests() {
