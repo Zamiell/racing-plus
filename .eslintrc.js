@@ -16,7 +16,5 @@ module.exports = {
   },
 
   // We modify the linting rules from the base for some specific things
-  rules: {
-    "@typescript-eslint/naming-convention": ["error"],
-  },
+  rules: {},
 };
