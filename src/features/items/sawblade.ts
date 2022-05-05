@@ -1,12 +1,10 @@
 /*
 
-The Sawblade item is a custom item included in the Treasure Room pool. It is intended to solve two
-specific problems:
+The Sawblade item is a custom item included in the Treasure Room pool.
 
-1) Historically, orbitals have been a big part of speedrunning at the highest level. Since orbitals
+Historically, orbitals have been a big part of speedrunning at the highest level. Since orbitals
 got nerfed in Repentance, orbital play is infrequent. Sawblade is an attempt to restore historical
 orbital play by providing a relatively-strong orbital as a possible starting item.
-2) To decrease the amount of time player spend resetting for an item.
 
 Sacrificial Dagger in Afterbirth+:
 - Radius of the circle hitbox: 13
