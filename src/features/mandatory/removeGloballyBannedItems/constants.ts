@@ -41,6 +41,7 @@ export const BANNED_TRINKETS_ON_SEEDED_RACES: ReadonlySet<TrinketType> =
     TrinketType.TRINKET_SILVER_DOLLAR, // 110
     TrinketType.TRINKET_BLOODY_CROWN, // 111
     TrinketType.TRINKET_TELESCOPE_LENS, // 152
+    TrinketType.TRINKET_DICE_BAG, // 154
     TrinketType.TRINKET_HOLY_CROWN, // 155
     TrinketType.TRINKET_WICKED_CROWN, // 161
   ]);
