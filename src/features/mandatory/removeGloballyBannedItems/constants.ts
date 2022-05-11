@@ -43,4 +43,7 @@ export const BANNED_TRINKETS_ON_SEEDED_RACES: ReadonlySet<TrinketType> =
     TrinketType.TRINKET_TELESCOPE_LENS, // 152
     TrinketType.TRINKET_HOLY_CROWN, // 155
     TrinketType.TRINKET_WICKED_CROWN, // 161
+
+    // Dice Bag is seeded per room entrance instead of per room
+    TrinketType.TRINKET_DICE_BAG, // 154
   ]);
