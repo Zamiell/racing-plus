@@ -1,14 +1,15 @@
-// PostPlayerInit will fire at the beginning of a run and upon continuing a saved run
+// PostPlayerInit will fire at the beginning of a run and upon continuing a saved run.
 
-// Note that checking for "isChildPlayer()" does not work in this callback;
-// use the PostPlayerInitLate for that
+// Note that checking for `isChildPlayer` does not work in this callback; use the PostPlayerInitLate
+// for that.
 
+import { ModCallback } from "isaac-typescript-definitions";
 import { getPlayerIndex, log } from "isaacscript-common";
 import * as nLuck from "../features/items/nLuck";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, main);
+  mod.AddCallback(ModCallback.POST_PLAYER_INIT, main);
 }
 
 function main(player: EntityPlayer) {

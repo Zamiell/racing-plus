@@ -1,3 +1,4 @@
+import { ItemType } from "isaac-typescript-definitions";
 import { PickingUpItem } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { inSpeedrun } from "../speedrun";
@@ -22,17 +23,16 @@ function checkCheckpointTouched(
   pickingUpItem: PickingUpItem,
 ) {
   if (
-    pickingUpItem.itemType !== ItemType.ITEM_PASSIVE ||
-    pickingUpItem.subType !== CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT
+    pickingUpItem.itemType !== ItemType.PASSIVE ||
+    pickingUpItem.subType !== CollectibleTypeCustom.CHECKPOINT
   ) {
     return;
   }
 
   const renderFrameCount = Isaac.GetFrameCount();
 
-  // Give them the Checkpoint custom item
-  // (this is used by the AutoSplitter to know when to split)
-  player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT, 0, false);
+  // Give them the Checkpoint custom item. (This is used by the AutoSplitter to know when to split.)
+  player.AddCollectible(CollectibleTypeCustom.CHECKPOINT, 0, false);
 
   // Freeze the player
   player.ControlsEnabled = false;

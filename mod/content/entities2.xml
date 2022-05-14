@@ -24,7 +24,7 @@
   <!-- PICKUPS (5) -->
   <!-- We can't use auto-increment because having pickup variant 0 will crash the game under certain conditions -->
   <!-- https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278 -->
-  <!-- The final vanilla pickup variant is: PickupVariant.PICKUP_MOMSCHEST (390) -->
+  <!-- The final vanilla pickup variant is: PickupVariant.MOMSCHEST (390) -->
 
   <!-- For replacing the photos -->
   <entity

@@ -1,3 +1,4 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 

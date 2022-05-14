@@ -1,3 +1,8 @@
+import {
+  PickupPrice,
+  PlayerType,
+  RoomType,
+} from "isaac-typescript-definitions";
 import { anyPlayerIs, getCollectibles } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -5,9 +10,9 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import v from "./v";
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) {
+  if (!anyPlayerIs(PlayerType.KEEPER_B)) {
     return;
   }
 
@@ -18,7 +23,7 @@ export function postNewRoom(): void {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
-    roomType === RoomType.ROOM_BOSSRUSH
+    roomType === RoomType.BOSS_RUSH
   ) {
     v.run.madeBossRushItemsFree = true;
     makeBossRushItemsFree();
@@ -28,6 +33,6 @@ export function postNewRoom(): void {
 function makeBossRushItemsFree() {
   for (const collectible of getCollectibles()) {
     collectible.AutoUpdatePrice = false;
-    collectible.Price = PickupPrice.PRICE_FREE;
+    collectible.Price = PickupPrice.FREE;
   }
 }

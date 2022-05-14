@@ -9,8 +9,8 @@ import {
   isConsoleOpen,
 } from "../optional/other/customConsole";
 
-// TODO don't display race chat from previous race
-// TODO send all race chat history upon joining race
+// TODO: Don't display race chat from the previous race.
+// TODO: Send all race chat history upon joining race.
 
 const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));
 const LINE_LENGTH = 13;
@@ -18,7 +18,7 @@ const MAX_CHAT_MESSAGES = 10;
 const FADED_CHAT_OPACITY = 0.15;
 const FRAMES_FOR_CHAT_TO_SHOW = 120;
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.chat) {
     return;
@@ -34,9 +34,9 @@ function drawChat() {
     return;
   }
 
-  // If the console is open, display the last N messages with default opacity
+  // If the console is open, display the last N messages with default opacity.
   // Otherwise, only display recent messages,
-  // and fade them so that they do not interfere with gameplay as much
+  // and fade them so that they do not interfere with gameplay as much.
   const renderFrameCount = Isaac.GetFrameCount();
   const consoleOpen = isConsoleOpen();
   const alpha = consoleOpen ? DEFAULT_CONSOLE_OPACITY : FADED_CHAT_OPACITY;
@@ -46,7 +46,7 @@ function drawChat() {
 
   let numMessagesDrawn = 0;
   for (const chatMessage of g.chatMessages) {
-    // Make chat messages slowly fade away (if the console is closed)
+    // Make chat messages slowly fade away (if the console is closed).
     let modifiedAlpha = alpha;
     const framesElapsed = renderFrameCount - chatMessage.renderFrameReceived;
     if (!consoleOpen && framesElapsed > FRAMES_FOR_CHAT_TO_SHOW) {

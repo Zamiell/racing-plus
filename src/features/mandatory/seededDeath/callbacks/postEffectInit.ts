@@ -11,8 +11,7 @@ export function seededDeathPostEffectInitBloodDrop(effect: EntityEffect): void {
     return;
   }
 
-  // Since there is no way to stop the Mega Blast from firing,
-  // we remove the laser in the PostLaserInit callback
-  // However, blood drops will also spawn when the laser hits a wall
+  // Since there is no way to stop the Mega Blast from firing, we remove the laser in the
+  // PostLaserInit callback. However, blood drops will also spawn when the laser hits a wall.
   effect.Remove();
 }

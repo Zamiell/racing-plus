@@ -1,3 +1,4 @@
+import { Keyboard } from "isaac-typescript-definitions";
 import {
   isKeyboardPressed,
   log,
@@ -9,8 +10,8 @@ import {
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
-const DEBUG_HOTKEY_1 = Keyboard.KEY_F2;
-const DEBUG_HOTKEY_2 = Keyboard.KEY_F3;
+const DEBUG_HOTKEY_1 = Keyboard.F2;
+const DEBUG_HOTKEY_2 = Keyboard.F3;
 
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
@@ -35,7 +36,7 @@ export function debugFunction(params?: string): void {
   log("Exiting debug function.");
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   checkHotkeysPressed();
 }
@@ -69,15 +70,15 @@ function hotkey1Function() {
 }
 
 function hotkey2Function() {
-  hotkeys.fastDropAll = Keyboard.KEY_Z;
-  hotkeys.autofire = Keyboard.KEY_F;
-  hotkeys.roll = Keyboard.KEY_G;
+  hotkeys.fastDropAll = Keyboard.Z;
+  hotkeys.autofire = Keyboard.F;
+  hotkeys.roll = Keyboard.G;
 
   printConsole("Test hotkeys set.");
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {}
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {}

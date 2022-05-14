@@ -1,8 +1,13 @@
-// The game only spawns Krampus' drop after his death animation is over
-// This takes too long, so manually spawn the drop as soon as Krampus dies
-// This also prevents the situation where a player can leave the room before the death animation
-// is finished and miss out on a drop
+// The game only spawns Krampus' drop after his death animation is over. This takes too long, so
+// manually spawn the drop as soon as Krampus dies. This also prevents the situation where a player
+// can leave the room before the death animation is finished and miss out on a drop.
 
+import {
+  CollectibleType,
+  EntityType,
+  FallenVariant,
+  ItemPoolType,
+} from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   findFreePosition,
@@ -36,23 +41,23 @@ function featureEnabled() {
   return config.fastAngels;
 }
 
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.POST_PICKUP_INIT (34)
+// PickupVariant.COLLECTIBLE (100)
 export function postPickupInitCollectible(pickup: EntityPickup): void {
   checkRemoveVanillaKrampusDrop(pickup);
 }
 
 function checkRemoveVanillaKrampusDrop(pickup: EntityPickup) {
   // There is no need to check for the collectible type since the only situation where a Fallen NPC
-  // can drop a collectible is Krampus dropping A Lump of Coal or Krampus' Head
-  if (pickup.SpawnerType === EntityType.ENTITY_FALLEN) {
+  // can drop a collectible is Krampus dropping A Lump of Coal or Krampus' Head.
+  if (pickup.SpawnerType === EntityType.FALLEN) {
     pickup.Remove();
     log("Removed a vanilla Krampus drop.");
   }
 }
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
-// EntityType.ENTITY_FALLEN (81)
+// ModCallback.POST_ENTITY_KILL (68)
+// EntityType.FALLEN (81)
 export function postEntityKillFallen(entity: Entity): void {
   if (!config.fastKrampus) {
     return;
@@ -81,43 +86,41 @@ function spawnKrampusDrop(entity: Entity) {
 
 function getKrampusItemSubType() {
   // Normally, Krampus has a 50% chance of dropping A Lump of Coal and a 50% chance of dropping
-  // Krampus' Head
-  // However, we might be in a special situation where we should always spawn one or the other
+  // Krampus' Head. However, we might be in a special situation where we should always spawn one or
+  // the other.
   const startSeed = g.seeds.GetStartSeed();
 
   const [coalBanned, headBanned] = getKrampusBans();
 
   if (coalBanned && headBanned) {
     // Since both of the items are banned, make Krampus drop a random Devil Room item
-    return g.itemPool.GetCollectible(ItemPoolType.POOL_DEVIL, true, startSeed);
+    return g.itemPool.GetCollectible(ItemPoolType.DEVIL, true, startSeed);
   }
 
   if (coalBanned) {
-    return CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS;
+    return CollectibleType.HEAD_OF_KRAMPUS;
   }
 
   if (headBanned) {
-    return CollectibleType.COLLECTIBLE_LUMP_OF_COAL;
+    return CollectibleType.LUMP_OF_COAL;
   }
 
   const chance = getRandom(startSeed);
   const coal = chance < 0.5;
 
-  return coal
-    ? CollectibleType.COLLECTIBLE_LUMP_OF_COAL
-    : CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS;
+  return coal ? CollectibleType.LUMP_OF_COAL : CollectibleType.HEAD_OF_KRAMPUS;
 }
 
-function getKrampusBans() {
+function getKrampusBans(): [coalBanned: boolean, headBanned: boolean] {
   // We want Krampus' drops to be explicitly contingent upon the items that player 1 has
   let coalBanned = false;
   let headBanned = false;
 
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)) {
+  if (anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL)) {
     coalBanned = true;
   }
 
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS)) {
+  if (anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS)) {
     headBanned = true;
   }
 
@@ -125,14 +128,10 @@ function getKrampusBans() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING
   ) {
-    if (
-      g.race.startingItems.includes(CollectibleType.COLLECTIBLE_LUMP_OF_COAL)
-    ) {
+    if (g.race.startingItems.includes(CollectibleType.LUMP_OF_COAL)) {
       coalBanned = true;
     }
-    if (
-      g.race.startingItems.includes(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS)
-    ) {
+    if (g.race.startingItems.includes(CollectibleType.HEAD_OF_KRAMPUS)) {
       headBanned = true;
     }
   }

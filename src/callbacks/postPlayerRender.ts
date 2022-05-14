@@ -1,3 +1,4 @@
+import { ModCallback } from "isaac-typescript-definitions";
 import { isChildPlayer } from "isaacscript-common";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
 import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
@@ -6,7 +7,7 @@ import * as leadPencilChargeBar from "../features/optional/quality/leadPencilCha
 import * as taintedSamsonChargeBar from "../features/optional/quality/taintedSamsonChargeBar";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, main);
+  mod.AddCallback(ModCallback.POST_PLAYER_RENDER, main);
 }
 
 function main(player: EntityPlayer) {

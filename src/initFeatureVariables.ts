@@ -61,7 +61,6 @@ import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
-import * as characterProgress from "./features/speedrun/characterProgress";
 import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
@@ -82,7 +81,6 @@ export function initFeatureVariables(): void {
   speedrunVars.init();
   season2.init();
   changeCharOrderVars.init();
-  characterProgress.init();
   passiveItemsForEden.init();
 
   // Util
@@ -168,7 +166,7 @@ export function initFeatureVariables(): void {
   roll.init();
 
   // Now that all of the features have been initialized, we can get the save data manager to load
-  // data from disk before the first run begins
-  // (this prevents bugs with isaacscript-watcher when reloading the mod in the middle of a run)
+  // data from disk before the first run begins. (This prevents bugs with `isaacscript-watcher` when
+  // reloading the mod in the middle of a run.)
   saveDataManagerLoad();
 }

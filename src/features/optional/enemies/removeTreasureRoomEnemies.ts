@@ -1,13 +1,14 @@
+import { EntityType, RoomType } from "isaac-typescript-definitions";
 import { getNPCs, setRoomCleared } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 const ENTITY_TYPES_EXEMPT_FROM_REMOVAL: ReadonlySet<EntityType> = new Set([
-  EntityType.ENTITY_ETERNALFLY,
-  EntityType.ENTITY_DARK_ESAU,
+  EntityType.ETERNAL_FLY,
+  EntityType.DARK_ESAU,
 ]);
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.removeTreasureRoomEnemies) {
     return;
@@ -19,7 +20,7 @@ export function postNewRoom(): void {
 function removeTreasureRoomEnemies() {
   const roomType = g.r.GetType();
 
-  if (roomType !== RoomType.ROOM_TREASURE) {
+  if (roomType !== RoomType.TREASURE) {
     return;
   }
 

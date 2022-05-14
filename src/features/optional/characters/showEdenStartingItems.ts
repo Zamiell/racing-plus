@@ -1,9 +1,10 @@
+import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
-  getMaxCollectibleType,
   inStartingRoom,
+  irange,
   isEden,
-  range,
+  MAX_COLLECTIBLE_TYPE,
   saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
@@ -21,12 +22,8 @@ let passiveSprite: Sprite | null = null;
 
 const v = {
   run: {
-    active: CollectibleType.COLLECTIBLE_NULL as
-      | CollectibleType
-      | CollectibleTypeCustom,
-    passive: CollectibleType.COLLECTIBLE_NULL as
-      | CollectibleType
-      | CollectibleTypeCustom,
+    active: CollectibleType.NULL as CollectibleType | CollectibleTypeCustom,
+    passive: CollectibleType.NULL as CollectibleType | CollectibleTypeCustom,
   },
 };
 
@@ -38,7 +35,7 @@ function featureEnabled() {
   return config.showEdenStartingItems;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.showEdenStartingItems) {
     return;
@@ -55,8 +52,8 @@ function drawItemSprites() {
     return;
   }
 
-  // We don't care if the sprites show when the game is paused,
-  // but we do not want the sprites to show during room slide animations
+  // We don't care if the sprites show when the game is paused, but we do not want the sprites to
+  // show during room slide animations.
   if (isPaused) {
     return;
   }
@@ -71,7 +68,7 @@ function drawItemSprites() {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.showEdenStartingItems) {
     return;
@@ -101,7 +98,7 @@ function shouldShowSprites() {
   return isEden(player) && effectiveStage === 1 && inStartingRoom();
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.showEdenStartingItems) {
     return;
@@ -117,7 +114,7 @@ function storeItemIdentities() {
     return;
   }
 
-  v.run.active = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
+  v.run.active = player.GetActiveItem(ActiveSlot.PRIMARY);
   const passive = getEdenPassiveItem(player);
   if (passive === undefined) {
     error("Failed to find Eden / Tainted Eden passive item.");
@@ -126,14 +123,13 @@ function storeItemIdentities() {
 }
 
 function getEdenPassiveItem(player: EntityPlayer) {
-  const activeItem = player.GetActiveItem(ActiveSlot.SLOT_PRIMARY);
-  const maxCollectibleType = getMaxCollectibleType();
+  const activeItem = player.GetActiveItem(ActiveSlot.PRIMARY);
 
-  for (const collectibleType of range(1, maxCollectibleType)) {
+  for (const collectibleType of irange(1, MAX_COLLECTIBLE_TYPE)) {
     if (
       player.HasCollectible(collectibleType) &&
       collectibleType !== activeItem &&
-      collectibleType !== CollectibleType.COLLECTIBLE_D6
+      collectibleType !== CollectibleType.D6
     ) {
       return collectibleType;
     }

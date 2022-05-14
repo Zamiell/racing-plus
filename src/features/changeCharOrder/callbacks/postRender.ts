@@ -27,8 +27,7 @@ function disableControls() {
   const gameFrameCount = g.g.GetFrameCount();
   const player = Isaac.GetPlayer();
 
-  // Disable the controls or else the player will be able to move around while the screen is still
-  // black
+  // Disable the controls to prevent the player from moving around while the screen is still black.
   player.ControlsEnabled = gameFrameCount >= 1;
 }
 
@@ -45,8 +44,8 @@ function checkReset() {
 }
 
 function draw() {
-  // We can't check for "HUD.IsVisible()" because we explicitly disable the HUD in this challenge
-  // Thus, we explicitly check for Mod Config Menu
+  // We can't use the `HUD.IsVisible` method because we explicitly disable the HUD in this
+  // challenge. Thus, we explicitly check for Mod Config Menu.
   if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
     return;
   }
@@ -102,6 +101,9 @@ function drawCharacterSprites() {
 
   v.room.sprites.characters.forEach((characterSprite, i) => {
     const tuple = seasonDescription.charPositions[i];
+    if (tuple === undefined) {
+      error(`Failed to find the positions for character: ${i}`);
+    }
     const [, x, y] = tuple;
     const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
@@ -123,6 +125,9 @@ function drawBuildVetoSprites() {
     }
 
     const tuple = seasonDescription.buildPositions[i];
+    if (tuple === undefined) {
+      error(`Failed to find the positions for build: ${i}`);
+    }
     const [, x, y] = tuple;
     const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);

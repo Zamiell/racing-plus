@@ -22,8 +22,8 @@ export function init(): void {
   saveDataManager("dummyDPS", v);
 }
 
-// ModCallbacks.MC_POST_NPC_RENDER (28)
-// EntityType.ENTITY_DUMMY (964)
+// ModCallback.POST_NPC_RENDER (28)
+// EntityType.DUMMY (964)
 export function postNPCRenderDummy(npc: EntityNPC): void {
   resetDPSIfNSecondsPassed();
   drawDPSText(npc);
@@ -77,8 +77,8 @@ function getDPS() {
   return v.room.totalDamage / elapsedSeconds;
 }
 
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_DUMMY (964)
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.DUMMY (964)
 export function entityTakeDmgDummy(damageAmount: float): void {
   // This entity constantly takes damage for some reason
   if (damageAmount <= 0) {

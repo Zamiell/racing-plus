@@ -1,8 +1,14 @@
 import {
+  CollectibleType,
+  ItemConfigTag,
+  ItemType,
+  PickupVariant,
+  PlayerForm,
+} from "isaac-typescript-definitions";
+import {
   collectibleHasTag,
   getPlayerIndex,
   getPlayerNumCollectiblesForTransformation,
-  ItemConfigTag,
   PickingUpItem,
   PlayerIndex,
 } from "isaacscript-common";
@@ -26,8 +32,8 @@ function checkIfItemDropsPickups(
   pickingUpItem: PickingUpItem,
 ) {
   if (
-    pickingUpItem.itemType === ItemType.ITEM_NULL ||
-    pickingUpItem.itemType === ItemType.ITEM_TRINKET
+    pickingUpItem.itemType === ItemType.NULL ||
+    pickingUpItem.itemType === ItemType.TRINKET
   ) {
     return;
   }
@@ -63,22 +69,20 @@ function checkIfThirdSpunItem(
     return;
   }
 
-  const hasSpunTransformation = player.HasPlayerForm(
-    PlayerForm.PLAYERFORM_DRUGS,
-  );
+  const hasSpunTransformation = player.HasPlayerForm(PlayerForm.SPUN);
   if (hasSpunTransformation) {
     return;
   }
 
   const numSpunCollectibles = getPlayerNumCollectiblesForTransformation(
     player,
-    PlayerForm.PLAYERFORM_DRUGS,
+    PlayerForm.SPUN,
   );
   if (numSpunCollectibles === 2) {
     // We already have two Spun items and we are picking up a third one
     const playerIndex = getPlayerIndex(player);
     const queueArray: [PickupVariant, PlayerIndex] = [
-      PickupVariant.PICKUP_PILL,
+      PickupVariant.PILL,
       playerIndex,
     ];
     v.room.pickupQueue.push(queueArray);

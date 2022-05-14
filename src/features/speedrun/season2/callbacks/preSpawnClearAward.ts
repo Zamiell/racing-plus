@@ -1,3 +1,4 @@
+import { RoomType } from "isaac-typescript-definitions";
 import { getEffectiveStage } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
@@ -18,7 +19,7 @@ function checkResetTimeAssigned() {
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
 
-  if (effectiveStage === 2 && roomType === RoomType.ROOM_BOSS) {
+  if (effectiveStage === 2 && roomType === RoomType.BOSS) {
     v.persistent.timeAssigned = 0;
   }
 }

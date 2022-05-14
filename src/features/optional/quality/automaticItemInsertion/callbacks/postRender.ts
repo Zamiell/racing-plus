@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
@@ -51,12 +52,10 @@ function drawCoinsDelta() {
 
     const player = Isaac.GetPlayer();
     const isJacobAndEsau = isJacobOrEsau(player);
-    const hasDeepPockets = player.HasCollectible(
-      CollectibleType.COLLECTIBLE_DEEP_POCKETS,
-    );
+    const hasDeepPockets = player.HasCollectible(CollectibleType.DEEP_POCKETS);
     const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
-    // Note that Bethany's coins are in the same place as the other characters, so there is no need to
-    // account for her offset in this function
+    // Note that Bethany's coins are in the same place as the other characters, so there is no need
+    // to account for her offset in this function.
     const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
     const color = getTextColor(fade);
@@ -133,7 +132,7 @@ function drawPocketItemsDelta() {
     const string = v.run.delta.pocketItem.toString();
     const text = `+${string}`;
 
-    // Don't show pocket items delta on J&E since their HUD is different
+    // Don't show pocket items delta on Jacob & Esau since their HUD is different.
     const player = Isaac.GetPlayer();
     if (isJacobOrEsau(player)) {
       return;

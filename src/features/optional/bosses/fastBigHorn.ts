@@ -1,7 +1,8 @@
+import { BigHornState } from "isaac-typescript-definitions";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_BIG_HORN (411)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.BIG_HORN (411)
 export function postNPCUpdateBigHorn(npc: EntityNPC): void {
   if (!config.fastBigHorn) {
     return;

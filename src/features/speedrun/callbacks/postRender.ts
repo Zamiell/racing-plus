@@ -1,3 +1,4 @@
+import { FadeoutTarget } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
@@ -34,15 +35,14 @@ function checkBeginFadeOutAfterCheckpoint() {
     return;
   }
 
-  // We grabbed the checkpoint, so fade out the screen before we reset
+  // We grabbed the checkpoint, so fade out the screen before we reset.
   v.run.fadeFrame = null;
   g.g.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
 
-  // If we do nothing, the game will now take us to the main menu
-  // We can interrupt going to the menu by restarting the game on the frame before it happens
-  // 69 is the latest frame that works, determined via trial and error
-  // Doing this is necessary because we do not want the player to be able to reset to skip having to
-  // watch the fade out animation
+  // If we do nothing, the game will now take us to the main menu. We can interrupt going to the
+  // menu by restarting the game on the frame before it happens. 69 is the latest frame that works,
+  // determined via trial and error. Doing this is necessary because we do not want the player to be
+  // able to reset to skip having to watch the fade out animation.
   v.run.resetFrame = renderFrameCount + 69;
 }
 

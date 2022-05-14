@@ -1,3 +1,4 @@
+import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, inStartingRoom, logError } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
@@ -17,23 +18,26 @@ export function set(): void {
     return;
   }
 
-  dreamCatcherSprite = initGlowingItemSprite(
-    CollectibleType.COLLECTIBLE_DREAM_CATCHER,
-  );
+  dreamCatcherSprite = initGlowingItemSprite(CollectibleType.DREAM_CATCHER);
 
   for (let i = 0; i < v.level.collectibles.length; i++) {
     if (itemSprites[i] === undefined) {
       const collectibleType = v.level.collectibles[i];
-      itemSprites[i] = initGlowingItemSprite(collectibleType);
+      if (collectibleType !== undefined) {
+        itemSprites[i] = initGlowingItemSprite(collectibleType);
+      }
     }
   }
 
   for (let i = 0; i < v.level.bosses.length; i++) {
     if (bossSprites[i] === undefined) {
-      const [entityType, variant] = v.level.bosses[i];
-      const bossSprite = initBossSprite(entityType, variant);
-      if (bossSprite !== undefined) {
-        bossSprites[i] = bossSprite;
+      const boss = v.level.bosses[i];
+      if (boss !== undefined) {
+        const [entityType, variant] = boss;
+        const bossSprite = initBossSprite(entityType, variant);
+        if (bossSprite !== undefined) {
+          bossSprites[i] = bossSprite;
+        }
       }
     }
   }
@@ -71,9 +75,9 @@ function shouldShowSprites() {
 
   return (
     (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
-    // Only show the sprites in the starting room
+    // Only show the sprites in the starting room.
     inStartingRoom() &&
-    // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
+    // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
     !isGreedMode
   );
 }
@@ -91,7 +95,7 @@ export function draw(): void {
   }
 
   // We don't care if the sprites show when the game is paused,
-  // but we do not want the sprites to show during room slide animations
+  // but we do not want the sprites to show during room slide animations.
   if (isPaused) {
     return;
   }

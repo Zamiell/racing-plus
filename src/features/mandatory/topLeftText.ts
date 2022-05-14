@@ -1,5 +1,5 @@
-// We want to place informational text for the player to the right of the heart containers
-// (which will depend on how many heart containers we have)
+// We want to place informational text for the player to the right of the heart containers (which
+// will depend on how many heart containers we have).
 
 import {
   getEffectiveStage,
@@ -31,7 +31,7 @@ import { getRoomsEntered } from "../utils/roomsEntered";
 const STARTING_X = 55;
 const STARTING_Y = 10;
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   const hud = g.g.GetHUD();
   if (!hud.IsVisible()) {
@@ -48,13 +48,11 @@ export function postRender(): void {
 
   const lines: string[] = [];
   if (shouldShowVictoryLaps()) {
-    // Display the number of victory laps
-    // (this should have priority over showing the seed)
+    // Display the number of victory laps. (This should have priority over showing the seed.)
     const victoryLaps = getNumVictoryLaps();
     lines.push(`Victory Lap #${victoryLaps}`);
   } else if (speedrunShouldShowEndOfRunText() || raceShouldShowEndOfRunText()) {
-    // Show some run summary information
-    // (it will be removed if they exit the room)
+    // Show some run summary information. (It will be removed if they exit the room.)
     lines.push(`R+ ${VERSION} - ${seedString}`);
 
     if (speedrunShouldShowEndOfRunText()) {
@@ -64,7 +62,7 @@ export function postRender(): void {
       lines.push(`Rooms entered: ${roomsEntered}`);
     }
 
-    // Draw a 3rd line to show the total frames
+    // Draw a 3rd line to show the total frames.
     if (!inSpeedrun() || isOnFinalCharacter()) {
       let frames: int;
       if (inSpeedrun()) {
@@ -104,6 +102,6 @@ function shouldShowSeededRaceTimeOffset() {
     getEffectiveStage() > 1 &&
     inStartingRoom() &&
     g.r.IsFirstVisit() &&
-    g.race.placeMid !== 1 // Only show it if we are not in first place
+    g.race.placeMid !== 1 // Only show it if we are not in first place.
   );
 }

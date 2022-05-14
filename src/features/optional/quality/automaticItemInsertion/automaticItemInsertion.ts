@@ -1,3 +1,4 @@
+import { PickupVariant } from "isaac-typescript-definitions";
 import { isFirstPlayer, isKeeper } from "isaacscript-common";
 import g from "../../../../globals";
 import { insertPickup } from "./insertPickup";
@@ -9,11 +10,11 @@ export function insertPickupAndUpdateDelta(
 ): void {
   const hearts = player.GetHearts();
 
-  // Some pickups cannot be automatically inserted
+  // Some pickups cannot be automatically inserted.
   const pickupInserted = insertPickup(pickup, player);
   if (pickupInserted !== undefined) {
-    // Mark that we are removing this pickup by hijacking the vanilla "Touched" property
-    // This is necessary for inserting multiple pickups from the UseCard callback
+    // Mark that we are removing this pickup by hijacking the vanilla "Touched" property.
+    // This is necessary for inserting multiple pickups from the UseCard callback.
     pickup.Touched = true;
 
     // Only remove the pickup if it has been successfully inserted
@@ -32,14 +33,14 @@ function updateDelta(
   const gameFrameCount = g.g.GetFrameCount();
 
   // Determining where to draw the UI indicators for players other than the first player is too
-  // difficult, so ignore this case
+  // difficult, so ignore this case.
   if (!isFirstPlayer(player)) {
     return;
   }
 
   const [pickupType, value] = pickupInserted;
   switch (pickupType) {
-    case PickupVariant.PICKUP_HEART: {
+    case PickupVariant.HEART: {
       if (v.run.delta.bloodOrSoulCharge === null) {
         v.run.delta.bloodOrSoulCharge = 0;
       }
@@ -49,11 +50,11 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.PICKUP_COIN: {
+    case PickupVariant.COIN: {
       const hearts = player.GetHearts();
       const heartDelta = hearts - oldHearts;
       if (isKeeper(player) && heartDelta > 0) {
-        // The coin that we just inserted healed Keeper by one or more coin containers
+        // The coin that we just inserted healed Keeper by one or more coin containers.
         return;
       }
 
@@ -66,7 +67,7 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.PICKUP_BOMB: {
+    case PickupVariant.BOMB: {
       if (v.run.delta.bombs === null) {
         v.run.delta.bombs = 0;
       }
@@ -76,7 +77,7 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.PICKUP_KEY: {
+    case PickupVariant.KEY: {
       if (v.run.delta.keys === null) {
         v.run.delta.keys = 0;
       }
@@ -86,8 +87,8 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.PICKUP_TAROTCARD:
-    case PickupVariant.PICKUP_PILL: {
+    case PickupVariant.TAROT_CARD:
+    case PickupVariant.PILL: {
       if (v.run.delta.pocketItem === null) {
         v.run.delta.pocketItem = 0;
       }
@@ -97,7 +98,7 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.PICKUP_TRINKET: {
+    case PickupVariant.TRINKET: {
       if (v.run.delta.trinket === null) {
         v.run.delta.trinket = 0;
       }

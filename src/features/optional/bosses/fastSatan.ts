@@ -1,6 +1,12 @@
-// There is an annoying delay before The Fallen and the leeches spawn
-// To fix this, we manually spawn it as soon as the room is entered
+// There is an annoying delay before The Fallen and the leeches spawn. To fix this, we manually
+// spawn it as soon as the room is entered.
 
+import {
+  BossID,
+  EntityType,
+  FallenVariant,
+  LeechVariant,
+} from "isaac-typescript-definitions";
 import {
   getNPCs,
   inBossRoomOf,
@@ -22,7 +28,7 @@ export function init(): void {
   saveDataManager("fastSatan", v);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStartedContinued(): void {
   if (!config.fastSatan) {
     return;
@@ -31,13 +37,13 @@ export function postGameStartedContinued(): void {
   v.room.isContinuingRun = true;
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.fastSatan) {
     return;
   }
 
-  // Prevent the bug where saving and continuing will cause a second Fallen to spawn
+  // Prevent the bug where saving and continuing will cause a second Fallen to spawn.
   if (v.room.isContinuingRun) {
     return;
   }
@@ -64,7 +70,7 @@ function spawnEnemies() {
     const position = g.r.GetGridPosition(gridIndex);
     const leechSeed = rng.Next();
     spawnWithSeed(
-      EntityType.ENTITY_LEECH,
+      EntityType.LEECH,
       LeechVariant.KAMIKAZE_LEECH,
       0,
       position,
@@ -75,7 +81,7 @@ function spawnEnemies() {
   // Spawn 1x Fallen (81.0)
   const fallenSeed = rng.Next();
   spawnWithSeed(
-    EntityType.ENTITY_FALLEN,
+    EntityType.FALLEN,
     FallenVariant.FALLEN,
     0,
     centerPos,
@@ -85,7 +91,7 @@ function spawnEnemies() {
 
 function primeStatue() {
   // Prime the statue to wake up quicker
-  const satans = getNPCs(EntityType.ENTITY_SATAN);
+  const satans = getNPCs(EntityType.SATAN);
   for (const satan of satans) {
     satan.I1 = 1;
   }

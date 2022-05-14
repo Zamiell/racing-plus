@@ -1,6 +1,7 @@
-// In seeded races, the silhouettes of other races are drawn onto the screen
-// This is accomplished via UDP datagrams that are sent to the client, and then to the server
+// In seeded races, the silhouettes of other races are drawn onto the screen.
+// This is accomplished via UDP datagrams that are sent to the client, and then to the server.
 
+import { ButtonAction, PlayerType } from "isaac-typescript-definitions";
 import {
   DefaultMap,
   getRoomListIndex,
@@ -89,7 +90,7 @@ export function init(): void {
   saveDataManager("shadows", v);
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!shadowsEnabled()) {
     return;
@@ -319,8 +320,8 @@ function drawSprite(sprite: Sprite, shadowData: ShadowData) {
   sprite.Render(position, VectorZero, VectorZero);
 
   // Additionally, show the username of the player above the sprite if they are holding down the map
-  // button
-  if (isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+  // button.
+  if (isActionPressedOnAnyInput(ButtonAction.MAP)) {
     const positionText = position.add(Vector(0, -40)); // Above the sprite
     const fadeAmount = 0.5;
     const color = KColor(1, 1, 1, fadeAmount);

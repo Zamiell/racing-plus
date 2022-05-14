@@ -35,11 +35,10 @@ export function racePostRender(): void {
 }
 
 function checkGameOpenedInMiddleOfRace() {
-  // The race variables are normally set when the race status over the socket changes
-  // Thus, if the game is closed and reopened in the middle of a race,
-  // then the race will never become started
-  // Explicitly check for this
-  // (the timer won't be correct, but at least everything else will be functional)
+  // The race variables are normally set when the race status over the socket changes. Thus, if the
+  // game is closed and reopened in the middle of a race, then the race will never become started.
+  // Explicitly check for this. (The timer won't be correct, but at least everything else will be
+  // functional.)
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&

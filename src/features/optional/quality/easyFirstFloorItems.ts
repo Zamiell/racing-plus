@@ -1,15 +1,16 @@
 // We want the player to always be able to take an item on the first floor Treasure Room without
-// spending a bomb or being forced to walk on spikes
+// spending a bomb or being forced to walk on spikes.
 
+import { EntityType, RoomType } from "isaac-typescript-definitions";
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN (71)
+// ModCallback.PRE_ROOM_ENTITY_SPAWN (71)
 export function preRoomEntitySpawn(
   gridIndex: int,
-): [EntityType, int, int] | void {
+): [EntityType | int, int, int] | void {
   if (!config.easyFirstFloorItems) {
     return undefined;
   }
@@ -22,7 +23,7 @@ export function preRoomEntitySpawn(
   if (
     roomFrameCount !== -1 ||
     effectiveStage !== 1 ||
-    roomType !== RoomType.ROOM_TREASURE
+    roomType !== RoomType.TREASURE
   ) {
     return undefined;
   }
@@ -52,7 +53,7 @@ export function preRoomEntitySpawn(
       const rockDeleteIndexes = [20, 47, 48, 62, 77, 78, 82, 95, 109];
       for (const rockIndex of rockDeleteIndexes) {
         if (rockIndex === gridIndex) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.ENTITY_EFFECT)
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT)
           return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }
@@ -65,7 +66,7 @@ export function preRoomEntitySpawn(
       const spikeIndexes = [48, 50, 78, 80];
       for (const spikeIndex of spikeIndexes) {
         if (spikeIndex === gridIndex) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.ENTITY_EFFECT)
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT)
           return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }

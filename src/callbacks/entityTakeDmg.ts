@@ -1,3 +1,8 @@
+import {
+  DamageFlag,
+  EntityType,
+  ModCallback,
+} from "isaac-typescript-definitions";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
@@ -7,34 +12,34 @@ import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustCha
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    ModCallback.ENTITY_TAKE_DMG,
     entityTakeDmgPlayer,
-    EntityType.ENTITY_PLAYER, // 1
+    EntityType.PLAYER, // 1
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    ModCallback.ENTITY_TAKE_DMG,
     uriel,
-    EntityType.ENTITY_URIEL, // 271
+    EntityType.URIEL, // 271
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    ModCallback.ENTITY_TAKE_DMG,
     gabriel,
-    EntityType.ENTITY_GABRIEL, // 272
+    EntityType.GABRIEL, // 272
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_ENTITY_TAKE_DMG,
+    ModCallback.ENTITY_TAKE_DMG,
     dummy,
-    EntityType.ENTITY_DUMMY, // 964
+    EntityType.DUMMY, // 964
   );
 }
 
 function entityTakeDmgPlayer(
   tookDamage: Entity,
   damageAmount: float,
-  damageFlags: int,
+  damageFlags: BitFlags<DamageFlag>,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
@@ -56,33 +61,33 @@ function entityTakeDmgPlayer(
   return undefined;
 }
 
-// EntityType.ENTITY_URIEL (271)
+// EntityType.URIEL (271)
 function uriel(
   _tookDamage: Entity,
   _damageAmount: float,
-  _damageFlags: int,
+  _damageFlags: BitFlags<DamageFlag>,
   damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
   return doubleAngelNerf.entityTakeDmgUriel(damageSource);
 }
 
-// EntityType.ENTITY_GABRIEL (272)
+// EntityType.GABRIEL (272)
 function gabriel(
   _tookDamage: Entity,
   _damageAmount: float,
-  _damageFlags: int,
+  _damageFlags: BitFlags<DamageFlag>,
   damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {
   return doubleAngelNerf.entityTakeDmgGabriel(damageSource);
 }
 
-// EntityType.ENTITY_DUMMY (964)
+// EntityType.DUMMY (964)
 function dummy(
   _tookDamage: Entity,
   damageAmount: float,
-  _damageFlags: int,
+  _damageFlags: BitFlags<DamageFlag>,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
 ) {

@@ -1,18 +1,17 @@
+import { CollectibleType, ItemConfigTag } from "isaac-typescript-definitions";
 import {
   collectibleHasTag,
-  getMaxCollectibleType,
+  irange,
   isPassiveCollectible,
   itemConfig,
-  ItemConfigTag,
-  range,
+  MAX_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extraStartingItems/constants";
 
 export const PASSIVE_ITEMS_FOR_EDEN: CollectibleType[] = [];
 
 export function init(): void {
-  const maxCollectibleType = getMaxCollectibleType();
-  for (const collectibleType of range(1, maxCollectibleType)) {
+  for (const collectibleType of irange(1, MAX_COLLECTIBLE_TYPE)) {
     const itemConfigItem = itemConfig.GetCollectible(collectibleType);
     if (
       itemConfigItem !== undefined &&

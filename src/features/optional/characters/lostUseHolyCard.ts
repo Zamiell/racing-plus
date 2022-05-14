@@ -1,32 +1,38 @@
 import {
+  Card,
+  PlayerType,
+  PocketItemSlot,
+  SoundEffect,
+  UseFlag,
+} from "isaac-typescript-definitions";
+import {
+  getEnumValues,
   getPlayersOfType,
-  MAX_PLAYER_POCKET_ITEM_SLOTS,
-  range,
   sfxManager,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.lostUseHolyCard) {
     return;
   }
 
-  const taintedLosts = getPlayersOfType(PlayerType.PLAYER_THELOST_B);
+  const taintedLosts = getPlayersOfType(PlayerType.THE_LOST_B);
   for (const player of taintedLosts) {
     const slotWithHolyCard = getPocketItemSlotWithHolyCard(player);
     if (slotWithHolyCard !== undefined) {
-      player.SetCard(slotWithHolyCard, Card.CARD_NULL);
-      player.UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM);
-      sfxManager.Stop(SoundEffect.SOUND_HOLY_CARD);
+      player.SetCard(slotWithHolyCard, Card.NULL);
+      player.UseCard(Card.HOLY, UseFlag.NO_ANIMATION);
+      sfxManager.Stop(SoundEffect.HOLY_CARD);
     }
   }
 }
 
 function getPocketItemSlotWithHolyCard(player: EntityPlayer) {
-  const pocketItemSlots = range(MAX_PLAYER_POCKET_ITEM_SLOTS - 1);
+  const pocketItemSlots = getEnumValues(PocketItemSlot);
   return pocketItemSlots.find((pocketItemSlot) => {
     const card = player.GetCard(pocketItemSlot);
-    return card === Card.CARD_HOLY;
+    return card === Card.HOLY;
   });
 }

@@ -1,21 +1,31 @@
 // In vanilla, active items will be charged in the following order:
-// 1) ActiveSlot.SLOT_PRIMARY
-// 2) ActiveSlot.SLOT_SECONDARY
-// 3) ActiveSlot.SLOT_POCKET
-// In Racing+, this behavior is usually not what the player wants,
-// because they have a D6 on the pocket active
-// Change the precedence such that the pocket active has priority
+// 1) ActiveSlot.PRIMARY
+// 2) ActiveSlot.SECONDARY
+// 3) ActiveSlot.POCKET
+
+// In Racing+, this behavior is usually not what the player wants, because they have a D6 on the
+// pocket active. Change the precedence such that the pocket active has priority.
 
 // This feature handles the following situations:
-// 1) Batteries (all sub-types)
-// 2) Charged keys
-// 3) Coins with the Charged Penny trinket
-// 4) 48 Hour Energy! pill
-// 5) Hairpin trinket
-// 6) Battery Bum
-// 7) 9 Volt
-// 8) Battery Pack
+// - Batteries (all sub-types)
+// - Charged keys
+// - Coins with the Charged Penny trinket
+// - 48 Hour Energy! pill
+// - Hairpin trinket
+// - Battery Bum
+// - 9 Volt
+// - Battery Pack
 
+import {
+  ActiveSlot,
+  BatterySubType,
+  ButtonAction,
+  CollectibleType,
+  KeySubType,
+  PickupVariant,
+  RoomType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   DefaultMap,
   defaultMapGetPlayer,
@@ -37,9 +47,9 @@ interface ChargeSituation {
 }
 
 const ACTIVE_SLOTS_PRECEDENCE: readonly ActiveSlot[] = [
-  ActiveSlot.SLOT_POCKET,
-  ActiveSlot.SLOT_PRIMARY,
-  ActiveSlot.SLOT_SECONDARY,
+  ActiveSlot.POCKET,
+  ActiveSlot.PRIMARY,
+  ActiveSlot.SECONDARY,
 ];
 
 /**
@@ -73,13 +83,10 @@ function chargePocketFeatureShouldApply(player: EntityPlayer) {
 }
 
 function dropButtonPressed(player: EntityPlayer) {
-  return Input.IsActionPressed(
-    ButtonAction.ACTION_DROP,
-    player.ControllerIndex,
-  );
+  return Input.IsActionPressed(ButtonAction.DROP, player.ControllerIndex);
 }
 
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+// ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -112,10 +119,10 @@ function checkHairpinCharge(player: EntityPlayer) {
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
   const firstVisit = g.r.IsFirstVisit();
-  const hasHairpin = player.HasTrinket(TrinketType.TRINKET_HAIRPIN);
+  const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   if (
-    roomType !== RoomType.ROOM_BOSS ||
+    roomType !== RoomType.BOSS ||
     roomFrameCount !== 1 ||
     !firstVisit ||
     !hasHairpin
@@ -123,9 +130,8 @@ function checkHairpinCharge(player: EntityPlayer) {
     return;
   }
 
-  // Hairpin charges the active item on the 1st frame of the room
-  // Thus, we have to perform this check in the PostPEffectUpdate callback instead of the
-  // PostNewRoom callback
+  // Hairpin charges the active item on the 1st frame of the room. Thus, we have to perform this
+  // check in the PostPEffectUpdate callback instead of the PostNewRoom callback.
   const chargeSituation: ChargeSituation = {
     numCharges: LIL_BATTERY_CHARGES,
   };
@@ -134,7 +140,7 @@ function checkHairpinCharge(player: EntityPlayer) {
 
 function updateActiveItemChargesMap(player: EntityPlayer) {
   // On every frame, we need to track the current charges for each active item that a player has for
-  // the purposes of rewinding the charges
+  // the purposes of rewinding the charges.
   const activeItemCharges = defaultMapGetPlayer(
     v.run.activeItemChargesMap,
     player,
@@ -150,8 +156,8 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
   }
 }
 
-// ModCallbacks.MC_USE_PILL (10)
-// PillEffect.PILLEFFECT_48HOUR_ENERGY (20)
+// ModCallback.POST_USE_PILL (10)
+// PillEffect.FORTY_EIGHT_HOUR_ENERGY (20)
 export function usePill48HourEnergy(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -163,7 +169,7 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacks.MC_INPUT_ACTION (13)
+// ModCallback.INPUT_ACTION (13)
 export function isActionTriggeredItem(
   entity: Entity | undefined,
 ): boolean | undefined {
@@ -180,9 +186,9 @@ export function isActionTriggeredItem(
     return undefined;
   }
 
-  // Prevent using the active item before the charges have been swapped
+  // Prevent using the active item before the charges have been swapped.
   const roomFrameCount = g.r.GetFrameCount();
-  const hasHairpin = player.HasTrinket(TrinketType.TRINKET_HAIRPIN);
+  const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   const batteryBumCharging =
     v.run.checkForBatteryBumChargesUntilGameFrame !== null;
@@ -210,8 +216,8 @@ export function postPickupCollect(
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
-// ItemType.ITEM_PASSIVE (1)
-// CollectibleType.COLLECTIBLE_9_VOLT (116)
+// ItemType.PASSIVE (1)
+// CollectibleType.9_VOLT (116)
 export function postItemPickup9Volt(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -224,8 +230,8 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
-// ItemType.ITEM_PASSIVE (1)
-// CollectibleType.COLLECTIBLE_BATTERY_PACK (603)
+// ItemType.PASSIVE (1)
+// CollectibleType.BATTERY_PACK (603)
 export function postItemPickupBatteryPack(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -278,8 +284,8 @@ function getChargeSituationForPickup(
 ): ChargeSituation {
   switch (pickupVariant) {
     // 20
-    case PickupVariant.PICKUP_COIN: {
-      if (player.HasTrinket(TrinketType.TRINKET_CHARGED_PENNY)) {
+    case PickupVariant.COIN: {
+      if (player.HasTrinket(TrinketType.CHARGED_PENNY)) {
         return {
           numCharges: 1,
         };
@@ -291,8 +297,8 @@ function getChargeSituationForPickup(
     }
 
     // 30
-    case PickupVariant.PICKUP_KEY: {
-      if (pickupSubType === KeySubType.KEY_CHARGED) {
+    case PickupVariant.KEY: {
+      if (pickupSubType === KeySubType.CHARGED) {
         return {
           numCharges: LIL_BATTERY_CHARGES,
         };
@@ -304,7 +310,7 @@ function getChargeSituationForPickup(
     }
 
     // 90
-    case PickupVariant.PICKUP_LIL_BATTERY: {
+    case PickupVariant.LIL_BATTERY: {
       return getChargeSituationForBattery(pickupSubType);
     }
 
@@ -320,26 +326,32 @@ function getChargeSituationForBattery(
   batterySubType: BatterySubType,
 ): ChargeSituation {
   switch (batterySubType) {
-    case BatterySubType.BATTERY_NORMAL: {
-      return {
-        numCharges: LIL_BATTERY_CHARGES,
-      };
-    }
-
-    case BatterySubType.BATTERY_MICRO: {
-      return {
-        numCharges: MICRO_BATTERY_CHARGES,
-      };
-    }
-
-    case BatterySubType.BATTERY_MEGA: {
-      // This fully-charges every active item, so this feature does not need to handle it
+    case BatterySubType.NULL: {
       return {
         numCharges: 0,
       };
     }
 
-    case BatterySubType.BATTERY_GOLDEN: {
+    case BatterySubType.NORMAL: {
+      return {
+        numCharges: LIL_BATTERY_CHARGES,
+      };
+    }
+
+    case BatterySubType.MICRO: {
+      return {
+        numCharges: MICRO_BATTERY_CHARGES,
+      };
+    }
+
+    case BatterySubType.MEGA: {
+      // This fully-charges every active item, so this feature does not need to handle it.
+      return {
+        numCharges: 0,
+      };
+    }
+
+    case BatterySubType.GOLDEN: {
       return {
         numCharges: LIL_BATTERY_CHARGES,
       };
@@ -348,7 +360,8 @@ function getChargeSituationForBattery(
     default: {
       ensureAllCases(batterySubType);
 
-      // Handle modded battery types
+      // Handle modded battery types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return {
         numCharges: 0,
       };
@@ -396,13 +409,13 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
     }
   }
 
-  if (activeItemsChanged.has(ActiveSlot.SLOT_POCKET)) {
-    // We do not need to reorder any charges if it is the pocket active that got charged
+  if (activeItemsChanged.has(ActiveSlot.POCKET)) {
+    // We do not need to reorder any charges if it is the pocket active that got charged.
     return false;
   }
 
-  // We do not want to reorder charges in situations where all of the active items are charged,
-  // so do nothing if more than one active item changed
+  // We do not want to reorder charges in situations where all of the active items are charged, so
+  // do nothing if more than one active item changed.
   return activeItemsChanged.size === 1;
 }
 
@@ -435,7 +448,7 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
 function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
   const hud = g.g.GetHUD();
 
-  // Now, charge the active items in the proper order
+  // Now, charge the active items in the proper order.
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {
     if (!needsCharge(player, activeSlot, chargeSituation.overcharge)) {
       continue;
@@ -450,9 +463,7 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
     let newCharge = totalCharge + chargeSituation.numCharges;
     const activeItem = player.GetActiveItem(activeSlot);
     let maxCharges = getCollectibleMaxCharges(activeItem);
-    const hasBattery = player.HasCollectible(
-      CollectibleType.COLLECTIBLE_BATTERY,
-    );
+    const hasBattery = player.HasCollectible(CollectibleType.BATTERY);
     if (hasBattery || chargeSituation.overcharge === true) {
       maxCharges *= 2;
     }
@@ -464,14 +475,14 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
     hud.FlashChargeBar(player, activeSlot);
     playChargeSoundEffect(player, activeSlot);
 
-    // Only one item should get charged
+    // Only one item should get charged.
     return;
   }
 }
 
 /**
- * We cannot use the "player.NeedsCharge()" method because we might be overcharging an item from a
- * Battery Bum.
+ * We cannot use the `EntityPlayer.NeedsCharge` method because we might be overcharging an item from
+ * a Battery Bum.
  */
 function needsCharge(
   player: EntityPlayer,
@@ -485,7 +496,7 @@ function needsCharge(
   const totalCharge = getTotalCharge(player, activeSlot);
   const activeItem = player.GetActiveItem(activeSlot);
   const maxCharges = getCollectibleMaxCharges(activeItem);
-  const hasBattery = player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY);
+  const hasBattery = player.HasCollectible(CollectibleType.BATTERY);
   const adjustedMaxCharges =
     hasBattery || overcharge === true ? maxCharges * 2 : maxCharges;
 

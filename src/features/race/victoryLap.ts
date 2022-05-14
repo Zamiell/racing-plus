@@ -1,3 +1,4 @@
+import { BossID, EntityType } from "isaac-typescript-definitions";
 import {
   getRandomArrayElement,
   inBossRoomOf,
@@ -20,8 +21,8 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [19, 1, 1], // The Hollow (green)
   [19, 1, 2], // The Hollow (grey)
   [19, 1, 3], // The Hollow (yellow)
-  // Don't include Tuff Twins (19.2) since it requires throwable bombs
-  // Don't include The Shell (19.3) since it requires throwable bombs
+  // Don't include Tuff Twins (19.2) since it requires throwable bombs.
+  // Don't include The Shell (19.3) since it requires throwable bombs.
   [20, 0, 0], // Monstro
   [20, 0, 1], // Monstro (double red)
   [20, 0, 2], // Monstro (grey)
@@ -36,13 +37,13 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [43, 0, 0], // Monstro II
   [43, 0, 1], // Monstro II (red)
   [43, 1, 0], // Gish
-  // Don't include Mom (45.0) since she is a story boss
+  // Don't include Mom (45.0) since she is a story boss.
   [62, 0, 0], // Pin
   [62, 0, 1], // Pin (black)
   [62, 1, 0], // Scolex
   [62, 2, 0], // Frail
   [62, 2, 1], // Frail (black)
-  // Don't include Wormwood (62.3) since it requires water
+  // Don't include Wormwood (62.3) since it requires water.
   [63, 0, 0], // Famine
   [63, 0, 1], // Famine (blue)
   [64, 0, 0], // Pestilence
@@ -69,16 +70,16 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [71, 0, 1], // Fistula (black)
   [71, 1, 0], // Teratoma
   [74, 0, 0], // Blastocyst
-  // Don't include Mom's Heart (78.0) / It Lives! (78.1) since they are story bosses
+  // Don't include Mom's Heart (78.0) / It Lives! (78.1) since they are story bosses.
   [79, 0, 0], // Gemini
   [79, 0, 1], // Gemini (green, detached)
   [79, 0, 2], // Gemini (blue)
   [79, 1, 0], // Steven
   [79, 2, 0], // The Blighted Ovum
   [81, 0, 0], // The Fallen
-  // Don't include Krampus (81.1) since he too common and he spawns an item
+  // Don't include Krampus (81.1) since he too common and he spawns an item.
   [82, 0, 0], // The Headless Horseman
-  // Don't include Satan (84.0) since he is a story boss
+  // Don't include Satan (84.0) since he is a story boss.
   [97, 0, 0], // Mask of Infamy
   [99, 0, 0], // Gurdy Jr.
   [99, 0, 1], // Gurdy Jr. (double blue)
@@ -89,7 +90,7 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [100, 1, 0], // The Wretched
   [101, 0, 0], // Daddy Long Legs
   [101, 1, 0], // Triachnid
-  // Don't include Isaac (102.0) / Blue Baby (102.1) since they are story bosses
+  // Don't include Isaac (102.0) / Blue Baby (102.1) since they are story bosses.
   [237, 1, 0], // Gurglings
   [237, 1, 1], // Gurglings (double yellow)
   [237, 1, 2], // Gurglings (black)
@@ -125,8 +126,8 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [271, 1, 0], // Uriel (fallen)
   [272, 0, 0], // Gabriel
   [272, 1, 0], // Gabriel (fallen)
-  // Don't include The Lamb (273.0) since it is a story boss
-  // Don't include Mega Satan (274.0) or Mega Satan 2 (275.0) since they are story bosses
+  // Don't include The Lamb (273.0) since it is a story boss.
+  // Don't include Mega Satan (274.0) or Mega Satan 2 (275.0) since they are story bosses.
   [401, 0, 0], // The Stain
   [401, 0, 1], // The Stain (dark)
   [402, 0, 0], // Brownie
@@ -139,11 +140,11 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [405, 0, 0], // Rag Man
   [405, 0, 1], // Rag Man (orange)
   [405, 0, 2], // Rag Man (black)
-  // Don't include Hush (407.0) since it is a story boss
+  // Don't include Hush (407.0) since it is a story boss.
   [409, 0, 0], // Rag Mega
   [410, 0, 0], // Sisters Vis
   [411, 0, 0], // Big Horn
-  // Don't include Delirium (412.0) since it is a story boss
+  // Don't include Delirium (412.0) since it is a story boss.
   [413, 0, 0], // The Matriarch
   [900, 0, 0], // Reap Creep
   [901, 0, 0], // Lil Blub
@@ -151,27 +152,27 @@ const VICTORY_LAP_BOSSES: ReadonlyArray<
   [903, 0, 0], // The Visage
   [904, 0, 0], // The Siren
   [905, 0, 0], // The Heretic
-  // Don't include Hornfel (906.0) since it changes the screen too much
-  // Don't include Great Gideon (907.0) since it is invulnerable
+  // Don't include Hornfel (906.0) since it changes the screen too much.
+  // Don't include Great Gideon (907.0) since it is invulnerable.
   [908, 0, 0], // Baby Plum
   [909, 0, 0], // The Scourge
   [910, 0, 0], // Chimera
-  // Rotgut is exempt since it requires leaving the current screen
-  // Don't include Mother (912.0) it is a story boss
+  // Rotgut is exempt since it requires leaving the current screen.
+  // Don't include Mother (912.0) it is a story boss.
   [913, 0, 0], // Min-Min
   [914, 0, 0], // Clog
   [915, 0, 0], // Singe
   [916, 0, 0], // Bumbino
   [917, 0, 0], // Colostomia
   [918, 0, 0], // Turdlet
-  // Don't include Raglich (919) since it is a cut boss from Repentance
+  // Don't include Raglich (919) since it is a cut boss from Repentance.
   [920, 0, 0], // Horny Boys
-  // Don't include Clutch (921) since it is a cut boss from Repentance
-  // Don't include Dogma (950.0) since it is a story boss
-  // Don't include The Beast (951.0) since it is a story boss
+  [921, 0, 0], // Clutch
+  // Don't include Dogma (950.0) since it is a story boss.
+  // Don't include The Beast (951.0) since it is a story boss.
 ];
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   checkVictoryLapBossReplace();
 }
@@ -191,8 +192,8 @@ function checkVictoryLapBossReplace() {
   }
 
   // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps)
-  removeAllMatchingEntities(EntityType.ENTITY_ISAAC);
-  removeAllMatchingEntities(EntityType.ENTITY_THE_LAMB);
+  removeAllMatchingEntities(EntityType.ISAAC);
+  removeAllMatchingEntities(EntityType.THE_LAMB);
 
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {

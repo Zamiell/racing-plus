@@ -1,51 +1,55 @@
 import {
+  EntityFlag,
+  EntityType,
+  ProjectileVariant,
+} from "isaac-typescript-definitions";
+import {
   isAliveExceptionNPC,
   isDyingEggyWithNoSpidersLeft,
 } from "isaacscript-common";
 import * as trackingRemove from "./trackingRemove";
 import v, { logFastClear } from "./v";
 
-// ModCallbacks.MC_NPC_UPDATE (0)
+// ModCallback.POST_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {
-  // Friendly enemies (from Delirious or Friendly Ball) will be added to the aliveEnemies table
-  // because there are no flags set yet in the PostNPCInit callback
-  // Thus, we have to wait until they are initialized before we remove them from the table
-  if (npc.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
+  // Friendly enemies (from Delirious or Friendly Ball) will be added to the `aliveEnemies` set
+  // because there are no flags set yet in the PostNPCInit callback.
+  // Thus, we have to wait until they are initialized before we remove them from the table.
+  if (npc.HasEntityFlags(EntityFlag.FRIENDLY)) {
     trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_FLAG_FRIENDLY");
     return;
   }
 
   // Eggies will never trigger the PostEntityKill callback,
-  // so we must manually check to see if they are dead on every frame
+  // so we must manually check to see if they are dead on every frame.
   if (isDyingEggyWithNoSpidersLeft(npc)) {
     trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_DYING_EGGY");
     return;
   }
 
-  // In order to keep track of new NPCs,
-  // we can't completely rely on the PostNPCInit callback because it is not fired for certain NPCs
-  // (like when a Gusher emerges from killing a Gaper)
+  // In order to keep track of new NPCs, we cannot completely rely on the PostNPCInit callback,
+  // because it is not fired for certain NPCs (like when a Gusher emerges from killing a Gaper).
   checkAdd(npc, "MC_NPC_UPDATE");
 }
 
-// ModCallbacks.MC_POST_NPC_INIT (27)
+// ModCallback.POST_NPC_INIT (27)
 export function postNPCInit(npc: EntityNPC): void {
   checkAdd(npc, "MC_POST_NPC_INIT");
 }
 
-// ModCallbacks.MC_POST_PROJECTILE_INIT (43)
+// ModCallback.POST_PROJECTILE_INIT (43)
 export function postProjectileInitMeat(projectile: EntityProjectile): void {
   checkAdd(projectile, "MC_POST_PROJECTILE_INIT");
 }
 
 function checkAdd(entity: Entity, parentCallback: string) {
-  // Don't do anything if we are already tracking this entity
+  // Don't do anything if we are already tracking this entity.
   const ptrHash = GetPtrHash(entity);
   if (v.room.aliveEnemies.has(ptrHash)) {
     return;
   }
 
-  // The only projectiles that we want to track are Meat Projectiles from a Cohort
+  // The only projectiles that we want to track are Meat Projectiles from a Cohort.
   const projectile = entity.ToProjectile();
   if (
     projectile !== undefined &&
@@ -54,24 +58,25 @@ function checkAdd(entity: Entity, parentCallback: string) {
     return;
   }
 
-  // We don't care if this is a non-battle NPC
+  // We don't care if this is a non-battle NPC.
   const npc = entity.ToNPC();
   if (
     npc !== undefined &&
     !npc.CanShutDoors &&
-    // For some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false
-    npc.Type !== EntityType.ENTITY_DEEP_GAPER
+    // For some reason, some NPCs incorrectly have their "CanShutDoors" property equal to false.
+    npc.Type !== EntityType.DEEP_GAPER
   ) {
     return;
   }
 
-  // We don't care if the NPC is already dead
-  // (this is needed because we can enter this function from the PostNPCUpdate callback)
+  // We don't care if the NPC is already dead. (This is needed because we can enter this function
+  // from the PostNPCUpdate callback.)
   if (entity.IsDead()) {
     return;
   }
 
-  // We don't care if this is a specific child NPC attached to some other NPC (like Death's scythes)
+  // We don't care if this is a specific child NPC attached to some other NPC (like Death's
+  // scythes).
   if (npc !== undefined && isAliveExceptionNPC(npc)) {
     return;
   }

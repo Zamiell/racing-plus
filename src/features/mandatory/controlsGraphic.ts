@@ -1,8 +1,9 @@
-// Racing+ re-implements the controls graphic in the starting room so that it will not interfere
-// with other kinds of graphics
-// Some code is borrowed from Revelations / StageAPI
-// This feature is not configurable because we destroy the original starting room graphic file
+// Racing+ reimplements the controls graphic in the starting room so that it will not interfere with
+// other kinds of graphics. Some code is borrowed from Revelations / StageAPI.
 
+// This feature is not configurable because we destroy the original starting room graphic file.
+
+import { EffectVariant, StageType } from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
   inStartingRoom,
@@ -16,7 +17,7 @@ import g from "../../globals";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   drawControlsGraphic();
 }
@@ -29,7 +30,7 @@ function drawControlsGraphic() {
   const stageType = g.l.GetStageType();
   const centerPos = g.r.GetCenterPos();
 
-  // Spawn the custom "Floor Effect Creep" entity
+  // Spawn the custom "Floor Effect Creep" entity.
   const controlsEffect = spawnEffect(
     EffectVariant.PLAYER_CREEP_RED,
     CreepRedSubTypeCustom.FLOOR_EFFECT_CREEP,
@@ -42,20 +43,19 @@ function drawControlsGraphic() {
   controlsSprite.Load("gfx/backdrop/controls_custom.anm2", true);
   controlsSprite.Play("Idle", true);
 
-  // Always set the scale to 1 in case the player has an item like Lost Cork
-  // (otherwise, it will have a scale of 1.75)
+  // Always set the scale to 1 in case the player has an item like Lost Cork. (Otherwise, it will
+  // have a scale of 1.75.)
   controlsEffect.Scale = 1;
 
-  // On vanilla, the sprite is a slightly different color on the Burning Basement
-  if (stageType === StageType.STAGETYPE_AFTERBIRTH) {
+  // On vanilla, the sprite is a slightly different color on the Burning Basement.
+  if (stageType === StageType.AFTERBIRTH) {
     controlsSprite.Color = BURNING_BASEMENT_COLOR;
   }
 }
 
 function shouldDrawControlsGraphic() {
-  // Only draw the graphic in the starting room of the first floor
-  // We ignore Greed Mode to simplify things
-  // (even though on vanilla the sprite will display in Greed Mode)
+  // Only draw the graphic in the starting room of the first floor. We ignore Greed Mode to simplify
+  // things, even though on vanilla, the sprite will display in Greed Mode.
   const isGreedMode = g.g.IsGreedMode();
   const effectiveStage = getEffectiveStage();
 

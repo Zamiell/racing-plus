@@ -1,8 +1,9 @@
+import { DisplayFlag } from "isaac-typescript-definitions";
 import { getRooms } from "isaacscript-common";
 import g from "../../../../globals";
 
-export function getMinimapDisplayFlagsMap(): Map<int, int> {
-  const displayFlags = new Map<int, int>();
+export function getMinimapDisplayFlagsMap(): Map<int, BitFlags<DisplayFlag>> {
+  const displayFlags = new Map<int, BitFlags<DisplayFlag>>();
   for (const roomDesc of getRooms()) {
     if (roomDesc.SafeGridIndex < 0) {
       continue;
@@ -15,7 +16,7 @@ export function getMinimapDisplayFlagsMap(): Map<int, int> {
 }
 
 export function restoreMinimapDisplayFlags(
-  displayFlagsMap: Map<int, int>,
+  displayFlagsMap: Map<int, BitFlags<DisplayFlag>>,
 ): void {
   for (const [roomGridIndex, displayFlags] of displayFlagsMap.entries()) {
     if (MinimapAPI === undefined) {

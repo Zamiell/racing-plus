@@ -1,3 +1,4 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { arrayToString, isArray, log } from "isaacscript-common";
 import { RaceDifficulty } from "../enums/RaceDifficulty";
 import { RaceFormat } from "../enums/RaceFormat";
@@ -22,7 +23,7 @@ export class RaceData {
   solo = false;
   format = RaceFormat.UNSEEDED;
   difficulty = RaceDifficulty.NORMAL;
-  character = PlayerType.PLAYER_JUDAS;
+  character = PlayerType.JUDAS;
   goal = RaceGoal.BLUE_BABY;
 
   /** Corresponds to the seed that is the race goal or "-". */

@@ -1,3 +1,4 @@
+import { Controller, Keyboard } from "isaac-typescript-definitions";
 import {
   controllerToString,
   keyboardToString,
@@ -80,8 +81,8 @@ export function deleteOldConfig(categoryName: string): void {
     return;
   }
 
-  // If we reload the mod, then it will create duplicates of every entry
-  // Thus, we must first purge all settings relating to the mod
+  // If we reload the mod, then it will create duplicates of every entry.
+  // Thus, we must first purge all settings relating to the mod.
   const categoryID = ModConfigMenu.GetCategoryIDByName(categoryName);
   if (categoryID !== undefined) {
     ModConfigMenu.MenuData.set(categoryID, {
@@ -91,10 +92,10 @@ export function deleteOldConfig(categoryName: string): void {
   }
 }
 
-// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys"
-// Thus, it is impossible for them to contain any incorrect data
-// However, the inverse is not true (i.e. a config value can be missing a description)
-// So, we check this at runtime
+// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys".
+// Thus, it is impossible for them to contain any incorrect data.
+// However, the inverse is not true (i.e. a config value can be missing a description).
+// So, we check this at runtime.
 function validateConfigDescriptions() {
   for (const key of Object.keys(config)) {
     if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
@@ -244,8 +245,8 @@ function getDefaultValue(optionType: ModConfigMenuOptionType) {
       return true;
     }
 
-    case ModConfigMenuOptionType.KEYBIND_KEYBOARD:
-    case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
+    case ModConfigMenuOptionType.KEY_BIND_KEYBOARD:
+    case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
       return -1;
     }
 
@@ -278,7 +279,7 @@ function getDisplayTextKeyboardController(
   shortDescription: string,
 ) {
   switch (optionType) {
-    case ModConfigMenuOptionType.KEYBIND_KEYBOARD: {
+    case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       const currentValue = hotkeys[configName];
 
       let text: string;
@@ -291,7 +292,7 @@ function getDisplayTextKeyboardController(
       return `${shortDescription}: ${text} (keyboard)`;
     }
 
-    case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
+    case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
       const currentValue = hotkeys[configName];
 
       let text: string;
@@ -328,11 +329,11 @@ function getPopupDescription(
 
 function popupGetDeviceString(optionType: ModConfigMenuOptionType) {
   switch (optionType) {
-    case ModConfigMenuOptionType.KEYBIND_KEYBOARD: {
+    case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       return "keyboard";
     }
 
-    case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
+    case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
       return "controller";
     }
 
@@ -356,11 +357,11 @@ function popupGetKeepSettingString(
 
 function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
   switch (optionType) {
-    case ModConfigMenuOptionType.KEYBIND_KEYBOARD: {
+    case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       return keyboardToString(key);
     }
 
-    case ModConfigMenuOptionType.KEYBIND_CONTROLLER: {
+    case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
       return controllerToString(key);
     }
 
@@ -395,15 +396,15 @@ function getPopupGfx(optionType: ModConfigMenuOptionType) {
     return undefined;
   }
 
-  return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
-    optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
+  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD ||
+    optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
     ? ModConfigMenu.PopupGfx.WIDE_SMALL
     : undefined;
 }
 
 function getPopupWidth(optionType: ModConfigMenuOptionType) {
-  return optionType === ModConfigMenuOptionType.KEYBIND_KEYBOARD ||
-    optionType === ModConfigMenuOptionType.KEYBIND_CONTROLLER
+  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD ||
+    optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
     ? 280
     : undefined;
 }

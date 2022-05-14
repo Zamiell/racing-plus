@@ -1,5 +1,5 @@
-// Incubus has its own counter that is independent of the player
-// However, we don't draw an extra charge bar for every Incubus, since that would clutter the screen
+// Incubus has its own counter that is independent of the player. However, we don't draw an extra
+// charge bar for every Incubus, since that would clutter the screen.
 
 import {
   DefaultMap,
@@ -37,7 +37,7 @@ function featureEnabled() {
   return config.leadPencilChargeBar;
 }
 
-// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+// ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.leadPencilChargeBar) {
     return;
@@ -51,7 +51,7 @@ export function postPlayerRender(player: EntityPlayer): void {
     return;
   }
 
-  // The Forgotten and The Soul have different Lead Pencil counters
+  // The Forgotten and The Soul have different Lead Pencil counters.
   const playerIndex = getPlayerIndex(player, true);
   const numFiredTears =
     v.run.playersNumFiredTearsMap.getAndSetDefault(playerIndex);
@@ -63,7 +63,7 @@ export function postPlayerRender(player: EntityPlayer): void {
   drawCustomChargeBar(player, sprite, frame, CustomChargeBarType.LEAD_PENCIL);
 }
 
-// ModCallbacks.MC_POST_FIRE_TEAR (61)
+// ModCallback.POST_FIRE_TEAR (61)
 export function postFireTear(tear: EntityTear): void {
   if (!config.leadPencilChargeBar) {
     return;
@@ -100,9 +100,9 @@ function incrementLeadPencilCounter(parent: Entity | undefined) {
   // The Forgotten and The Soul have different Lead Pencil counters
   const playerIndex = getPlayerIndex(player, true);
 
-  // The second tear of a multi-tear-shot does not count towards the Lead Pencil counter
-  // In the same way, if Forgotten has two bone clubs, the second swing does not count towards the
-  // Lead Pencil counter
+  // The second tear of a multi-tear-shot does not count towards the Lead Pencil counter. In the
+  // same way, if Forgotten has two bone clubs, the second swing does not count towards the Lead
+  // Pencil counter.
   const lastFiredTearFrame = v.run.playersLastFiredFrameMap.get(playerIndex);
   if (gameFrameCount === lastFiredTearFrame) {
     return;

@@ -23,7 +23,7 @@ export function init(): void {
   saveDataManager("keeperHeal", v);
 }
 
-// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
+// ModCallback.POST_EFFECT_UPDATE (55)
 export function postPEffectUpdate(player: EntityPlayer): void {
   checkPlayerCoinsChanged(player);
 }

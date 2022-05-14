@@ -1,3 +1,4 @@
+import { ModCallback, PillEffect, UseFlag } from "isaac-typescript-definitions";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as pillsCancelAnimations from "../features/optional/gameplay/pillsCancelAnimations";
@@ -5,62 +6,74 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 import * as showPills from "../features/optional/quality/showPills";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_USE_PILL, main);
+  mod.AddCallback(ModCallback.POST_USE_PILL, main);
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_PILL,
+    ModCallback.POST_USE_PILL,
     telepills,
-    PillEffect.PILLEFFECT_TELEPILLS, // 19
+    PillEffect.TELEPILLS, // 19
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_PILL,
+    ModCallback.POST_USE_PILL,
     fortyEightHourEnergy,
-    PillEffect.PILLEFFECT_48HOUR_ENERGY, // 20
+    PillEffect.FORTY_EIGHT_HOUR_ENERGY, // 20
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_PILL,
+    ModCallback.POST_USE_PILL,
     powerPill,
-    PillEffect.PILLEFFECT_POWER, // 36
+    PillEffect.POWER, // 36
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_PILL,
+    ModCallback.POST_USE_PILL,
     horf,
-    PillEffect.PILLEFFECT_HORF, // 44
+    PillEffect.HORF, // 44
   );
 }
 
-function main(pillEffect: PillEffect, player: EntityPlayer, _useFlags: int) {
+function main(
+  pillEffect: PillEffect,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   showPills.usePill(player, pillEffect);
   streakText.usePill(pillEffect);
 }
 
-// PillEffect.PILLEFFECT_TELEPILLS (19)
+// PillEffect.TELEPILLS (19)
 function telepills(
   _pillEffect: PillEffect,
   _player: EntityPlayer,
-  _useFlags: int,
+  _useFlags: BitFlags<UseFlag>,
 ) {
   seededTeleports.usePillTelepills();
 }
 
-// PillEffect.PILLEFFECT_48HOUR_ENERGY (20)
-function fortyEightHourEnergy(_pillEffect: PillEffect, player: EntityPlayer) {
+// PillEffect.FORTY_EIGHT_HOUR_ENERGY (20)
+function fortyEightHourEnergy(
+  _pillEffect: PillEffect,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   chargePocketItemFirst.usePill48HourEnergy(player);
 }
 
-// PillEffect.PILLEFFECT_POWER (36)
+// PillEffect.POWER (36)
 function powerPill(
   _pillEffect: PillEffect,
   player: EntityPlayer,
-  _useFlags: int,
+  _useFlags: BitFlags<UseFlag>,
 ) {
   pillsCancelAnimations.usePillPowerPill(player);
 }
 
-// PillEffect.PILLEFFECT_HORF (44)
-function horf(_pillEffect: PillEffect, player: EntityPlayer, _useFlags: int) {
+// PillEffect.HORF (44)
+function horf(
+  _pillEffect: PillEffect,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   pillsCancelAnimations.usePillHorf(player);
 }

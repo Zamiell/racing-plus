@@ -1,3 +1,8 @@
+import {
+  EntityType,
+  RoomType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import { getAliveBosses, spawnTrinket } from "isaacscript-common";
 import g from "../../../../globals";
 import v from "./v";
@@ -5,11 +10,11 @@ import v from "./v";
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 
 const SPLITTING_BOSSES: ReadonlySet<EntityType> = new Set([
-  EntityType.ENTITY_FISTULA_BIG, // 71
-  EntityType.ENTITY_FISTULA_MEDIUM, // 72
+  EntityType.FISTULA_BIG, // 71
+  EntityType.FISTULA_MEDIUM, // 72
 ]);
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
+// ModCallback.POST_ENTITY_KILL (68)
 export function postEntityKill(entity: Entity): void {
   if (v.run.perfection.spawned) {
     return;
@@ -18,7 +23,7 @@ export function postEntityKill(entity: Entity): void {
   const roomType = g.r.GetType();
   const startSeed = g.seeds.GetStartSeed();
 
-  if (roomType !== RoomType.ROOM_BOSS) {
+  if (roomType !== RoomType.BOSS) {
     return;
   }
 
@@ -35,10 +40,10 @@ export function postEntityKill(entity: Entity): void {
     return;
   }
 
-  // Perfection is spawned after clearing 3 floors in a row without taking any damage
-  // The "floorsWithoutDamage" variable is incremented after going in a trapdoor
+  // Perfection is spawned after clearing 3 floors in a row without taking any damage.
+  // The "floorsWithoutDamage" variable is incremented after going in a trapdoor.
   // So if it is at 2, and we have not taken damage on this floor,
-  // and we have killed the boss for this floor, then we have cleared 3 floors
+  // and we have killed the boss for this floor, then we have cleared 3 floors.
   if (v.run.perfection.floorsWithoutDamage < 2 || v.level.tookDamage) {
     return;
   }
@@ -50,7 +55,7 @@ export function postEntityKill(entity: Entity): void {
 
   const velocity = RandomVector().mul(PERFECTION_VELOCITY_MULTIPLIER);
   spawnTrinket(
-    TrinketType.TRINKET_PERFECTION,
+    TrinketType.PERFECTION,
     npc.Position,
     velocity,
     undefined,

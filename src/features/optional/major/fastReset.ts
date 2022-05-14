@@ -1,3 +1,4 @@
+import { ButtonAction, Keyboard } from "isaac-typescript-definitions";
 import {
   isActionTriggeredOnAnyInput,
   isKeyboardPressed,
@@ -24,7 +25,7 @@ function featureEnabled() {
   return config.fastReset;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.fastReset) {
     return;
@@ -37,8 +38,8 @@ export function postRender(): void {
 function checkResetInput() {
   const isPaused = g.g.IsPaused();
 
-  // Disable the fast-reset feature if the console is open
-  // (this will also disable the feature when the game is paused, but that's okay as well)
+  // Disable the fast-reset feature if the console is open.
+  // (This will also disable the feature when the game is paused, but that's okay as well.)
   if (isPaused) {
     return;
   }
@@ -49,22 +50,22 @@ function checkResetInput() {
   }
 
   // Don't fast-reset if any modifiers are pressed
-  // (with the exception of shift, since the speedrunner MasterOfPotato uses shift)
+  // (with the exception of shift, since the speedrunner MasterOfPotato uses shift).
   if (
-    isKeyboardPressed(Keyboard.KEY_LEFT_CONTROL) || // 341
-    isKeyboardPressed(Keyboard.KEY_LEFT_ALT) || // 342
-    isKeyboardPressed(Keyboard.KEY_LEFT_SUPER) || // 343
-    isKeyboardPressed(Keyboard.KEY_RIGHT_CONTROL) || // 345
-    isKeyboardPressed(Keyboard.KEY_RIGHT_ALT) || // 346
-    isKeyboardPressed(Keyboard.KEY_RIGHT_SUPER) // 347
+    isKeyboardPressed(Keyboard.LEFT_CONTROL) || // 341
+    isKeyboardPressed(Keyboard.LEFT_ALT) || // 342
+    isKeyboardPressed(Keyboard.LEFT_SUPER) || // 343
+    isKeyboardPressed(Keyboard.RIGHT_CONTROL) || // 345
+    isKeyboardPressed(Keyboard.RIGHT_ALT) || // 346
+    isKeyboardPressed(Keyboard.RIGHT_SUPER) // 347
   ) {
     return;
   }
 
-  // Check to see if the player has pressed the restart input
-  // (we check all inputs instead of "player.ControllerIndex" because
-  // a controller player might be using the keyboard to reset)
-  if (isActionTriggeredOnAnyInput(ButtonAction.ACTION_RESTART)) {
+  // Check to see if the player has pressed the restart input.
+  // (We check all inputs instead of "player.ControllerIndex" because
+  // a controller player might be using the keyboard to reset.)
+  if (isActionTriggeredOnAnyInput(ButtonAction.RESTART)) {
     reset();
   }
 }

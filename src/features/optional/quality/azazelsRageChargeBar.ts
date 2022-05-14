@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
@@ -11,7 +12,7 @@ import { config } from "../../../modConfigMenu";
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_azazels_rage.anm2", true);
 
-// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+// ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.azazelsRageChargeBar) {
     return;
@@ -27,10 +28,10 @@ export function postPlayerRender(player: EntityPlayer): void {
 
   const effects = player.GetEffects();
   let numCharges = effects.GetCollectibleEffectNum(
-    CollectibleType.COLLECTIBLE_AZAZELS_RAGE,
+    CollectibleType.AZAZELS_RAGE,
   );
 
-  // The number of effects goes to 6 when the blast is firing
+  // The number of effects goes to 6 when the blast is firing.
   if (numCharges > 4) {
     numCharges = 0;
   }

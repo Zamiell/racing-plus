@@ -1,3 +1,4 @@
+import { LevelCurse } from "isaac-typescript-definitions";
 import { config } from "../../../modConfigMenu";
 
 export function disableCurses(): LevelCurse | undefined {
@@ -5,5 +6,5 @@ export function disableCurses(): LevelCurse | undefined {
     return undefined;
   }
 
-  return LevelCurse.CURSE_NONE;
+  return LevelCurse.NONE;
 }

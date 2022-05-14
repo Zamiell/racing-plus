@@ -1,3 +1,9 @@
+import {
+  CollectibleType,
+  PickupVariant,
+  TrinketType,
+} from "isaac-typescript-definitions";
+
 /**
  * We use an arbitrary value of -1 to indicate that the collectible drops either a card or a pill.
  */
@@ -7,105 +13,95 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
   CollectibleType,
   PickupVariant[]
 > = new Map([
-  [CollectibleType.COLLECTIBLE_PHD, [PickupVariant.PICKUP_PILL]], // 75
-  [CollectibleType.COLLECTIBLE_MOMS_PURSE, [PickupVariant.PICKUP_TRINKET]], // 139
+  [CollectibleType.PHD, [PickupVariant.PILL]], // 75
+  [CollectibleType.MOMS_PURSE, [PickupVariant.TRINKET]], // 139
   [
-    CollectibleType.COLLECTIBLE_PAGEANT_BOY,
+    CollectibleType.PAGEANT_BOY,
     [
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
     ],
   ], // 141
-  [CollectibleType.COLLECTIBLE_MAGIC_8_BALL, [PickupVariant.PICKUP_TAROTCARD]], // 194
+  [CollectibleType.MAGIC_8_BALL, [PickupVariant.TAROT_CARD]], // 194
+  [CollectibleType.MOMS_COIN_PURSE, [PickupVariant.PILL, PickupVariant.PILL]], // 195
   [
-    CollectibleType.COLLECTIBLE_MOMS_COIN_PURSE,
-    [PickupVariant.PICKUP_PILL, PickupVariant.PICKUP_PILL],
-  ], // 195
-  [
-    CollectibleType.COLLECTIBLE_BOX,
+    CollectibleType.BOX,
     [
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_KEY,
-      PickupVariant.PICKUP_BOMB,
-      PickupVariant.PICKUP_TAROTCARD,
+      PickupVariant.COIN,
+      PickupVariant.KEY,
+      PickupVariant.BOMB,
+      PickupVariant.TAROT_CARD,
       // The Box also drops a pill, but since the pill spawns before the card does,
-      // the pill will always be inserted into the players inventory over the card
-      // To work around this and prioritize the card, we deliberately skip specifying the pill here
-      PickupVariant.PICKUP_TRINKET,
+      // the pill will always be inserted into the players inventory over the card.
+      // To work around this and prioritize the card, we deliberately skip specifying the pill here.
+      PickupVariant.TRINKET,
     ],
   ], // 198
-  [CollectibleType.COLLECTIBLE_STARTER_DECK, [PickupVariant.PICKUP_TAROTCARD]], // 251
-  [CollectibleType.COLLECTIBLE_LITTLE_BAGGY, [PickupVariant.PICKUP_PILL]], // 252
-  [CollectibleType.COLLECTIBLE_CLEAR_RUNE, [PickupVariant.PICKUP_TAROTCARD]], // 263
-  [CollectibleType.COLLECTIBLE_CAFFEINE_PILL, [PickupVariant.PICKUP_PILL]], // 340
+  [CollectibleType.STARTER_DECK, [PickupVariant.TAROT_CARD]], // 251
+  [CollectibleType.LITTLE_BAGGY, [PickupVariant.PILL]], // 252
+  [CollectibleType.CLEAR_RUNE, [PickupVariant.TAROT_CARD]], // 263
+  [CollectibleType.CAFFEINE_PILL, [PickupVariant.PILL]], // 340
+  [CollectibleType.LATCH_KEY, [PickupVariant.KEY, PickupVariant.KEY]], // 343
   [
-    CollectibleType.COLLECTIBLE_LATCH_KEY,
-    [PickupVariant.PICKUP_KEY, PickupVariant.PICKUP_KEY],
-  ], // 343
-  [
-    CollectibleType.COLLECTIBLE_MATCH_BOOK,
-    [
-      PickupVariant.PICKUP_BOMB,
-      PickupVariant.PICKUP_BOMB,
-      PickupVariant.PICKUP_BOMB,
-    ],
+    CollectibleType.MATCH_BOOK,
+    [PickupVariant.BOMB, PickupVariant.BOMB, PickupVariant.BOMB],
   ], // 344
-  [CollectibleType.COLLECTIBLE_CRACK_JACKS, [PickupVariant.PICKUP_TRINKET]], // 354
-  // CollectibleType.COLLECTIBLE_CHAOS (402)
+  [CollectibleType.CRACK_JACKS, [PickupVariant.TRINKET]], // 354
+  // CollectibleType.CHAOS (402)
   // Do not automatically insert items for Chaos so that the player gets a visual on what the
-  // randomly chosen pickups were (it spawns between 1-6 random pickups)
-  [CollectibleType.COLLECTIBLE_TAROT_CLOTH, [PickupVariant.PICKUP_TAROTCARD]], // 451
-  [CollectibleType.COLLECTIBLE_POLYDACTYLY, [PICKUP_VARIANT_CARD_OR_PILL]], // 454
-  [CollectibleType.COLLECTIBLE_DADS_LOST_COIN, [PickupVariant.PICKUP_COIN]], // 455
-  [CollectibleType.COLLECTIBLE_BELLY_BUTTON, [PickupVariant.PICKUP_TRINKET]], // 458
-  [CollectibleType.COLLECTIBLE_LIL_SPEWER, [PickupVariant.PICKUP_PILL]], // 537
-  // CollectibleType.COLLECTIBLE_MARBLES (538)
+  // randomly chosen pickups were. (It spawns between 1-6 random pickups.)
+  [CollectibleType.TAROT_CLOTH, [PickupVariant.TAROT_CARD]], // 451
+  [CollectibleType.POLYDACTYLY, [PICKUP_VARIANT_CARD_OR_PILL]], // 454
+  [CollectibleType.DADS_LOST_COIN, [PickupVariant.COIN]], // 455
+  [CollectibleType.BELLY_BUTTON, [PickupVariant.TRINKET]], // 458
+  [CollectibleType.LIL_SPEWER, [PickupVariant.PILL]], // 537
+  // CollectibleType.MARBLES (538)
   // Do not automatically insert trinkets for Marbles so that the player can pick between what they
-  // want
-  [CollectibleType.COLLECTIBLE_DIVORCE_PAPERS, [PickupVariant.PICKUP_TRINKET]], // 547
-  // Booster pack drops 5 cards; we can insert 1 or 2
+  // want.
+  [CollectibleType.DIVORCE_PAPERS, [PickupVariant.TRINKET]], // 547
+  // Booster pack drops 5 cards; we can insert 1 or 2.
   [
-    CollectibleType.COLLECTIBLE_BOOSTER_PACK,
-    [PickupVariant.PICKUP_TAROTCARD, PickupVariant.PICKUP_TAROTCARD],
+    CollectibleType.BOOSTER_PACK,
+    [PickupVariant.TAROT_CARD, PickupVariant.TAROT_CARD],
   ], // 624
   // Consolation Prize drops either 3 coins, 1 key, or 1 bomb,
-  // depending on what the player has the least of
+  // depending on what the player has the least of.
   // However, if there is a tie, it will randomly choose an outcome,
-  // so we must manually check for all 5 drops
+  // so we must manually check for all 5 drops.
   [
-    CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE,
+    CollectibleType.CONSOLATION_PRIZE,
     [
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_BOMB,
-      PickupVariant.PICKUP_KEY,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.BOMB,
+      PickupVariant.KEY,
     ],
   ], // 644
-  [CollectibleType.COLLECTIBLE_FALSE_PHD, [PickupVariant.PICKUP_PILL]], // 654
+  [CollectibleType.FALSE_PHD, [PickupVariant.PILL]], // 654
   [
-    CollectibleType.COLLECTIBLE_KEEPERS_SACK,
+    CollectibleType.KEEPERS_SACK,
     [
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_COIN,
-      PickupVariant.PICKUP_KEY,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.COIN,
+      PickupVariant.KEY,
     ],
   ], // 716
-  [CollectibleType.COLLECTIBLE_MOMS_RING, [PickupVariant.PICKUP_TAROTCARD]], // 732
+  [CollectibleType.MOMS_RING, [PickupVariant.TAROT_CARD]], // 732
 ]);
 
 export const DETRIMENTAL_TRINKETS: ReadonlySet<TrinketType> = new Set([
-  TrinketType.TRINKET_PURPLE_HEART, // 5
-  TrinketType.TRINKET_MOMS_TOENAIL, // 16
-  TrinketType.TRINKET_MATCH_STICK, // 41
-  TrinketType.TRINKET_TICK, // 53
-  TrinketType.TRINKET_FADED_POLAROID, // 69
-  TrinketType.TRINKET_OUROBOROS_WORM, // 96
-  TrinketType.TRINKET_M, // 138
+  TrinketType.PURPLE_HEART, // 5
+  TrinketType.MOMS_TOENAIL, // 16
+  TrinketType.MATCH_STICK, // 41
+  TrinketType.TICK, // 53
+  TrinketType.FADED_POLAROID, // 69
+  TrinketType.OUROBOROS_WORM, // 96
+  TrinketType.M, // 138
 ]);

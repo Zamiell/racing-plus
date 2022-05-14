@@ -1,3 +1,4 @@
+import { GameStateFlag, RoomType } from "isaac-typescript-definitions";
 import { findFreePosition } from "isaacscript-common";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
@@ -16,7 +17,7 @@ export function racePostUpdate(): void {
 
 function spawnBossRushTrophy() {
   const roomType = g.r.GetType();
-  const bossRushDone = g.g.GetStateFlag(GameStateFlag.STATE_BOSSRUSH_DONE);
+  const bossRushDone = g.g.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
     !hasTrophySpawned() &&
@@ -24,11 +25,11 @@ function spawnBossRushTrophy() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
     !g.raceVars.finished &&
-    roomType === RoomType.ROOM_BOSSRUSH &&
+    roomType === RoomType.BOSS_RUSH &&
     bossRushDone
   ) {
     const centerPos = g.r.GetCenterPos();
-    const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits
+    const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits.
     spawnTrophy(position);
   }
 }

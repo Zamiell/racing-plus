@@ -1,4 +1,11 @@
 import {
+  EffectVariant,
+  GridEntityType,
+  HeavenLightDoorSubType,
+  RoomType,
+  TrapdoorVariant,
+} from "isaac-typescript-definitions";
+import {
   ensureAllCases,
   getCollectibles,
   getEffectiveStage,
@@ -45,14 +52,13 @@ function checkFirstCharacterFirstFloorDevilRoom() {
   }
 
   if (
-    (roomType === RoomType.ROOM_DEVIL || roomType === RoomType.ROOM_ANGEL) &&
-    previousRoomType === RoomType.ROOM_CURSE
+    (roomType === RoomType.DEVIL || roomType === RoomType.ANGEL) &&
+    previousRoomType === RoomType.CURSE
   ) {
     emptyDevilAngelRoom();
 
     // Later on in this callback, the Devil Room or Angel Room will be replaced with a seeded
-    // version of the room
-    // Notify the seeded rooms feature to keep the room empty
+    // version of the room. Notify the seeded rooms feature to keep the room empty.
     setDevilAngelEmpty();
   }
 }
@@ -64,9 +70,9 @@ function emptyDevilAngelRoom() {
     return;
   }
 
-  // Signal that we are not supposed to get the items in this room
-  // Since they are teleporting into the room, the animation will not actually play,
-  // but they will still be able to hear the sound effect
+  // Signal that we are not supposed to get the items in this room. Since they are teleporting into
+  // the room, the animation will not actually play, but they will still be able to hear the sound
+  // effect.
   for (const player of getPlayers()) {
     player.AnimateSad();
   }
@@ -77,14 +83,13 @@ function checkWomb2IAMERROR() {
   const roomType = g.r.GetType();
   const levelSeed = g.l.GetDungeonPlacementSeed();
 
-  if (stage !== 8 || roomType !== RoomType.ROOM_ERROR) {
+  if (stage !== 8 || roomType !== RoomType.ERROR) {
     return;
   }
 
-  // Since we are in a challenge that has 'altpath="true"',
-  // the game will always spawn a beam of light going to the Cathedral
-  // In vanilla, there would be a 50% chance to spawn a trapdoor
-  // Emulate the vanilla functionality
+  // Since we are in a challenge that has 'altpath="true"', the game will always spawn a beam of
+  // light going to the Cathedral. In vanilla, there would be a 50% chance to spawn a trapdoor.
+  // Emulate the vanilla functionality.
   const trapdoorChance = getRandom(levelSeed);
   if (trapdoorChance < 0.5) {
     return;
@@ -98,7 +103,7 @@ function checkWomb2IAMERROR() {
     heavenDoor.Remove();
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
     spawnGridWithVariant(
-      GridEntityType.GRID_TRAPDOOR,
+      GridEntityType.TRAPDOOR,
       TrapdoorVariant.NORMAL,
       gridIndex,
     );
@@ -117,7 +122,7 @@ function checkEnteringClearedBossRoom() {
   const roomInsideMap = isRoomInsideMap();
 
   if (
-    roomType === RoomType.ROOM_BOSS &&
+    roomType === RoomType.BOSS &&
     (effectiveStage === 1 || effectiveStage === 2) &&
     roomClear &&
     roomInsideMap // Handle the case of Emperor? card rooms
@@ -162,13 +167,8 @@ function setRepentanceDoorState() {
  * every time we re-enter the room.
  */
 function checkEnteringRoomWithCheckpoint() {
-  const checkpoints = getCollectibles(
-    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-  );
+  const checkpoints = getCollectibles(CollectibleTypeCustom.CHECKPOINT);
   for (const checkpoint of checkpoints) {
-    preventCollectibleRotate(
-      checkpoint,
-      CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-    );
+    preventCollectibleRotate(checkpoint, CollectibleTypeCustom.CHECKPOINT);
   }
 }

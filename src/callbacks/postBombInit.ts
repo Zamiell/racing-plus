@@ -1,22 +1,23 @@
+import { BombVariant, ModCallback } from "isaac-typescript-definitions";
 import * as consistentTrollBombs from "../features/optional/gameplay/consistentTrollBombs";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_POST_BOMB_INIT,
+    ModCallback.POST_BOMB_INIT,
     troll,
-    BombVariant.BOMB_TROLL, // 3
+    BombVariant.TROLL, // 3
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_POST_BOMB_INIT,
+    ModCallback.POST_BOMB_INIT,
     megaTroll,
-    BombVariant.BOMB_SUPERTROLL, // 4
+    BombVariant.MEGA_TROLL, // 4
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_POST_BOMB_INIT,
+    ModCallback.POST_BOMB_INIT,
     goldenTroll,
-    BombVariant.BOMB_GOLDENTROLL, // 18
+    BombVariant.GOLDEN_TROLL, // 18
   );
 }
 

@@ -1,4 +1,8 @@
 import {
+  EffectVariant,
+  HeavenLightDoorSubType,
+} from "isaac-typescript-definitions";
+import {
   getEffects,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeEntities,
@@ -37,7 +41,12 @@ function checkBugTwoHeavenDoors() {
     const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
     return gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM;
   });
+
   const firstHeavenDoor = heavenDoors[0];
+  if (firstHeavenDoor === undefined) {
+    return;
+  }
+
   const heavenDoorToKeep =
     heavenDoorInCenter === undefined ? firstHeavenDoor : heavenDoorInCenter;
   const heavenDoorsToRemove = heavenDoors.filter(

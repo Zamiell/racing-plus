@@ -25,7 +25,7 @@ export function fastTravelPostUpdate(): void {
  * In some situations, we manually interrupt fast-travel before going to the next floor. This allows
  * other features to resume fast-travel.
  *
- * The logic here is copied from the "setGoingToNewFloor()" function.
+ * The logic here is copied from the `setGoingToNewFloor` function.
  */
 function resumeFastTravel() {
   nextFloor.goto(v.run.upwards);

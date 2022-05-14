@@ -1,3 +1,4 @@
+import { Card, ModCallback, UseFlag } from "isaac-typescript-definitions";
 import * as streakText from "../features/mandatory/streakText";
 import {
   automaticItemInsertionUseCardHierophant,
@@ -7,53 +8,69 @@ import {
 import * as speedrunUseCard from "../features/speedrun/callbacks/useCard";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_USE_CARD, main);
+  mod.AddCallback(ModCallback.POST_USE_CARD, main);
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_CARD,
+    ModCallback.POST_USE_CARD,
     hierophant,
-    Card.CARD_HIEROPHANT, // 6
+    Card.HIEROPHANT, // 6
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_CARD,
+    ModCallback.POST_USE_CARD,
     lovers,
-    Card.CARD_LOVERS, // 7
+    Card.LOVERS, // 7
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_CARD,
+    ModCallback.POST_USE_CARD,
     justice,
-    Card.CARD_JUSTICE, // 9
+    Card.JUSTICE, // 9
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_CARD,
+    ModCallback.POST_USE_CARD,
     blackRune,
     Card.RUNE_BLACK, // 41
   );
 }
 
-function main(card: Card) {
+function main(card: Card, _player: EntityPlayer, _useFlags: BitFlags<UseFlag>) {
   streakText.useCard(card);
 }
 
-// Card.CARD_HIEROPHANT (6)
-function hierophant(_card: Card, player: EntityPlayer, _useFlags: int) {
+// Card.HIEROPHANT (6)
+function hierophant(
+  _card: Card,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   automaticItemInsertionUseCardHierophant(player);
 }
 
-// Card.CARD_LOVERS (7)
-function lovers(_card: Card, player: EntityPlayer, _useFlags: int) {
+// Card.LOVERS (7)
+function lovers(
+  _card: Card,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   automaticItemInsertionUseCardLovers(player);
 }
 
-// Card.CARD_JUSTICE (9)
-function justice(_card: Card, player: EntityPlayer, _useFlags: int) {
+// Card.JUSTICE (9)
+function justice(
+  _card: Card,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   automaticItemInsertionUseCardJustice(player);
 }
 
 // Card.RUNE_BLACK (41)
-function blackRune(_card: Card, _player: EntityPlayer, _useFlags: int) {
+function blackRune(
+  _card: Card,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+) {
   speedrunUseCard.blackRune();
 }

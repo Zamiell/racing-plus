@@ -1,3 +1,5 @@
+import { EffectVariant, RoomType } from "isaac-typescript-definitions";
+
 export const FAST_CLEAR_DEBUG = false;
 
 export const CREEP_VARIANTS_TO_KILL: ReadonlySet<EffectVariant> = new Set([
@@ -11,6 +13,6 @@ export const CREEP_VARIANTS_TO_KILL: ReadonlySet<EffectVariant> = new Set([
 ]);
 
 export const EARLY_CLEAR_ROOM_TYPE_BLACKLIST: ReadonlySet<RoomType> = new Set([
-  RoomType.ROOM_CHALLENGE, // 11
-  RoomType.ROOM_BOSSRUSH, // 17
+  RoomType.CHALLENGE, // 11
+  RoomType.BOSS_RUSH, // 17
 ]);

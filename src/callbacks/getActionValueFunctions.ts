@@ -1,3 +1,4 @@
+import { ButtonAction } from "isaac-typescript-definitions";
 import * as autofire from "../features/optional/hotkeys/autofire";
 
 export const getActionValueFunctions = new Map<
@@ -7,28 +8,28 @@ export const getActionValueFunctions = new Map<
 
 // 4
 getActionValueFunctions.set(
-  ButtonAction.ACTION_SHOOTLEFT,
+  ButtonAction.SHOOT_LEFT,
   (entity: Entity | undefined) =>
     autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 5
 getActionValueFunctions.set(
-  ButtonAction.ACTION_SHOOTRIGHT,
+  ButtonAction.SHOOT_RIGHT,
   (entity: Entity | undefined) =>
     autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 6
 getActionValueFunctions.set(
-  ButtonAction.ACTION_SHOOTUP,
+  ButtonAction.SHOOT_UP,
   (entity: Entity | undefined) =>
     autofire.inputActionGetActionValueShoot(entity),
 );
 
 // 7
 getActionValueFunctions.set(
-  ButtonAction.ACTION_SHOOTDOWN,
+  ButtonAction.SHOOT_DOWN,
   (entity: Entity | undefined) =>
     autofire.inputActionGetActionValueShoot(entity),
 );

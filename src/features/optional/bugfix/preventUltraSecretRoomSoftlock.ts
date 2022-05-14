@@ -1,6 +1,7 @@
-// Rarely, Ultra Secret Rooms can have no doors
-// Work around this by spawning a Fool card for the player
+// Rarely, Ultra Secret Rooms can have no doors.
+// Work around this by spawning a Fool card for the player.
 
+import { Card, RoomType } from "isaac-typescript-definitions";
 import {
   getDoors,
   gridCoordinatesToWorldPosition,
@@ -9,14 +10,14 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.preventUltraSecretRoomSoftlock) {
     return;
   }
 
   const roomType = g.r.GetType();
-  if (roomType !== RoomType.ROOM_ULTRASECRET) {
+  if (roomType !== RoomType.ULTRA_SECRET) {
     return;
   }
 
@@ -25,9 +26,9 @@ export function postNewRoom(): void {
     return;
   }
 
-  // We need to spawn the card in a spot that won't be blocked
-  // The center of the room can be blocked in one specific Ultra Secret Room
-  // Use the left side of the room instead (which is free in all Ultra Secret Rooms)
+  // We need to spawn the card in a spot that won't be blocked. The center of the room can be
+  // blocked in one specific Ultra Secret Room. Use the left side of the room instead (which is free
+  // in all Ultra Secret Rooms).
   const position = gridCoordinatesToWorldPosition(2, 3);
-  spawnCard(Card.CARD_FOOL, position);
+  spawnCard(Card.FOOL, position);
 }

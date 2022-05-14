@@ -8,7 +8,7 @@ const NOTIFICATION_TEXT =
 let displayedNotification = false;
 let timer: int | null = null;
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (ModConfigMenu !== undefined) {
     return;
@@ -30,7 +30,7 @@ export function postRender(): void {
   }
 
   // We do not have to check to see if the game is paused because the text will not be drawn on top
-  // of the pause menu
+  // of the pause menu.
 
   const bottomRightPos = getScreenBottomRightPos();
   const closeToBottom = bottomRightPos.Y - 28;
@@ -46,7 +46,7 @@ export function postRender(): void {
   );
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (displayedNotification) {
     return;

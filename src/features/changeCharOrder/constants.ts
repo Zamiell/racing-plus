@@ -1,4 +1,11 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { SeasonDescription } from "../../types/SeasonDescription";
+
+/** We use the Cellar because it is the cleanest floor. */
+export const CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT = "1a";
+
+/** This is a Cellar room with 1 Gaper in it and no grid entities. */
+export const CHANGE_CHAR_ORDER_ROOM_VARIANT = 5;
 
 export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
   R7S1: {
@@ -6,26 +13,26 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
     Y: 2,
     numChars: 7,
     charPositions: [
-      [PlayerType.PLAYER_ISAAC, 0, 1], // 0
-      [PlayerType.PLAYER_ISAAC_B, 2, 1],
+      [PlayerType.ISAAC, 0, 1], // 0
+      [PlayerType.ISAAC_B, 2, 1],
 
-      [PlayerType.PLAYER_JUDAS, 5, 1], // 3
-      [PlayerType.PLAYER_JUDAS_B, 7, 1],
+      [PlayerType.JUDAS, 5, 1], // 3
+      [PlayerType.JUDAS_B, 7, 1],
 
-      [PlayerType.PLAYER_AZAZEL, 10, 1], // 7
-      [PlayerType.PLAYER_AZAZEL_B, 12, 1],
+      [PlayerType.AZAZEL, 10, 1], // 7
+      [PlayerType.AZAZEL_B, 12, 1],
 
-      [PlayerType.PLAYER_THELOST, 0, 3], // 10
-      [PlayerType.PLAYER_THELOST_B, 2, 3],
+      [PlayerType.THE_LOST, 0, 3], // 10
+      [PlayerType.THE_LOST_B, 2, 3],
 
-      [PlayerType.PLAYER_KEEPER, 10, 3], // 12
-      [PlayerType.PLAYER_KEEPER_B, 12, 3],
+      [PlayerType.KEEPER, 10, 3], // 12
+      [PlayerType.KEEPER_B, 12, 3],
 
-      [PlayerType.PLAYER_APOLLYON, 0, 5], // 13
-      [PlayerType.PLAYER_APOLLYON_B, 2, 5],
+      [PlayerType.APOLLYON, 0, 5], // 13
+      [PlayerType.APOLLYON_B, 2, 5],
 
-      [PlayerType.PLAYER_BETHANY, 10, 5], // 18
-      [PlayerType.PLAYER_BETHANY_B, 12, 5],
+      [PlayerType.BETHANY, 10, 5], // 18
+      [PlayerType.BETHANY_B, 12, 5],
     ],
   },
 

@@ -1,4 +1,11 @@
 import {
+  CollectibleType,
+  EffectVariant,
+  GameStateFlag,
+  LadderSubType,
+  RoomType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasCollectible,
   changeRoom,
   disableAllSound,
@@ -24,7 +31,7 @@ const STAIRWAY_GRID_INDEX = 25;
 
 export function checkStartDreamCatcherWarp(): void {
   const isGreedMode = g.g.IsGreedMode();
-  const onTheAscent = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const onTheAscent = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const isFirstVisit = g.r.IsFirstVisit();
   const effectiveStage = getEffectiveStage();
 
@@ -32,21 +39,21 @@ export function checkStartDreamCatcherWarp(): void {
     return;
   }
 
-  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+  if (!anyPlayerHasCollectible(CollectibleType.DREAM_CATCHER)) {
     return;
   }
 
-  // We only need to visit rooms upon reaching a new floor for the first time
+  // We only need to visit rooms upon reaching a new floor for the first time.
   if (!inStartingRoom() || !isFirstVisit || effectiveStage === 1) {
     return;
   }
 
-  // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns
+  // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
   if (isGreedMode) {
     return;
   }
 
-  // Disable this feature on the Ascent, since that is outside of the scope of normal speedruns
+  // Disable this feature on the Ascent, since that is outside of the scope of normal speedruns.
   if (onTheAscent) {
     return;
   }
@@ -56,21 +63,20 @@ export function checkStartDreamCatcherWarp(): void {
 
 function startWarp() {
   v.level.warpRoomGridIndexes = getRoomGridIndexesForType(
-    RoomType.ROOM_TREASURE,
-    RoomType.ROOM_BOSS,
+    RoomType.TREASURE,
+    RoomType.BOSS,
   );
 
   if (v.level.warpRoomGridIndexes.length === 0) {
     return;
   }
 
-  // After using Glowing Hour Glass, the minimap will be bugged
-  // We can work around this by manually recording all of the minimap state beforehand,
-  // and then restoring it later
+  // After using Glowing Hour Glass, the minimap will be bugged. We can work around this by manually
+  // recording all of the minimap state beforehand, and then restoring it later.
   v.level.displayFlagsMap = getMinimapDisplayFlagsMap();
 
-  // Once we warp away, any Card Reading portals will be destroyed, so record what they are
-  // (Glowing Hour Glass does not properly restore Card Reading portals)
+  // Once we warp away, any Card Reading portals will be destroyed, so record what they are.
+  // (Glowing Hour Glass does not properly restore Card Reading portals.)
   const cardReadingPortals = getEffects(EffectVariant.PORTAL_TELEPORT);
   for (const cardReadingPortal of cardReadingPortals) {
     const tuple: [int, Vector] = [
@@ -100,25 +106,24 @@ export function warpToNextDreamCatcherRoom(): void {
   if (roomGridIndex !== undefined) {
     log(`Dream Catcher - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
-    decrementRoomsEntered(); // This should not count as entering a room
+    decrementRoomsEntered(); // This should not count as entering a room.
     return;
   }
 
   log("Dream Catcher - Finished warping.");
 
   // At this point, the player will briefly show the animation of holding the Glowing Hour Glass
-  // above their head
-  // However, there does not seem to be a way to cancel this
+  // above their head. However, there does not seem to be a way to cancel this.
 
-  // If the player has The Stairway, moving away from the room would delete the ladder,
-  // so respawn it if necessary
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STAIRWAY)) {
+  // If the player has The Stairway, moving away from the room would delete the ladder, so respawn
+  // it if necessary.
+  if (anyPlayerHasCollectible(CollectibleType.STAIRWAY)) {
     const position = g.r.GetGridPosition(STAIRWAY_GRID_INDEX);
     spawnEffect(EffectVariant.TALL_LADDER, LadderSubType.STAIRWAY, position);
   }
 
-  // If the player has Card Reading, moving away from the room would delete the portals,
-  // so respawn them if necessary
+  // If the player has Card Reading, moving away from the room would delete the portals, so respawn
+  // them if necessary.
   if (!shouldRemoveEndGamePortals()) {
     for (const portalDescription of v.level.cardReadingPortalDescriptions) {
       const [subType, position] = portalDescription;
@@ -126,30 +131,27 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
-  // Since we warped away from the starting room, the custom fast-travel pitfalls will be gone
-  // Manually respawn them
+  // Since we warped away from the starting room, the custom fast-travel pitfalls will be gone.
+  // Manually respawn them.
   spawnHoles(players);
 
   // Using the Glowing Hour Glass will reset any health or inventory modifications that were set by
-  // the seeded floors feature
-  // To work around this, re-run the "after" function
+  // the seeded floors feature. To work around this, re-run the "after" function.
   seededFloors.after();
 
-  // Using the Glowing Hour Glass will remove the half soul heart that the Dream Catcher granted
-  // (this is not just an artifact of the warping; it does this on vanilla too if you use Glowing
-  // Hour Glass after walking into a new room)
-  // Thus, add it back manually
-  // For some reason, this is not needed if the "seededFloors.after()" function performed
-  // modifications
+  // Using the Glowing Hour Glass will remove the half soul heart that the Dream Catcher granted.
+  // (This is not just an artifact of the warping; it does this on vanilla too if you use Glowing
+  // Hour Glass after walking into a new room.) Thus, add it back manually. For some reason, this is
+  // not needed if the `seededFloors.after` function performed modifications.
   if (!onSetSeed()) {
     for (const player of players) {
-      if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+      if (player.HasCollectible(CollectibleType.DREAM_CATCHER)) {
         player.AddSoulHearts(1);
       }
     }
   }
 
-  // We cannot reposition the player in the PostNewRoom callback for some reason,
-  // so mark to do it on the next render frame
+  // We cannot reposition the player in the PostNewRoom callback for some reason, so mark to do it
+  // on the next render frame.
   v.level.warpState = DreamCatcherWarpState.REPOSITIONING_PLAYER;
 }

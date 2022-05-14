@@ -1,8 +1,9 @@
+import { FamiliarVariant, ModCallback } from "isaac-typescript-definitions";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_POST_FAMILIAR_RENDER,
+    ModCallback.POST_FAMILIAR_RENDER,
     GBBug,
     FamiliarVariant.GB_BUG, // 93
   );

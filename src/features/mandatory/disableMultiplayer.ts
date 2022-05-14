@@ -1,6 +1,7 @@
-// Multiplayer is illegal in Racing+ races and custom challenges, so if multiplayer is detected,
-// the run is forcefully ended
+// Multiplayer is illegal in Racing+ races and custom challenges, so if multiplayer is detected, the
+// run is forcefully ended.
 
+import { FadeoutTarget } from "isaac-typescript-definitions";
 import { getPlayers, isChildPlayer, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 
@@ -16,7 +17,7 @@ export function init(): void {
   saveDataManager("disableMultiplayer", v);
 }
 
-// ModCallbacks.MC_POST_PLAYER_INIT (9)
+// ModCallback.POST_PLAYER_INIT (9)
 export function postPlayerInit(player: EntityPlayer): void {
   if (!ENABLED) {
     return;
@@ -27,7 +28,7 @@ export function postPlayerInit(player: EntityPlayer): void {
   }
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!ENABLED) {
     return;
@@ -45,7 +46,7 @@ export function postGameStarted(): void {
   }
 }
 
-// ModCallbacks.MC_PRE_GAME_EXIT (17)
+// ModCallback.PRE_GAME_EXIT (17)
 export function preGameExit(shouldSave: boolean): void {
   if (!ENABLED) {
     return;
@@ -72,7 +73,7 @@ export function postPlayerInitLate(player: EntityPlayer): void {
 }
 
 function endRun() {
-  // A new player has arrived that is not the first player,
-  // so they must be trying to initiate a multiplayer game
+  // A new player has arrived that is not the first player, so they must be trying to initiate a
+  // multiplayer game.
   g.g.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
 }

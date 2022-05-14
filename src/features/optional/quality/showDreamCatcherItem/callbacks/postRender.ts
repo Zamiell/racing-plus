@@ -43,7 +43,7 @@ function repositionPlayer() {
   centerPlayers();
 
   // Fix the bug where the fast-travel pitfalls will be misaligned due to being spawned before the
-  // player's position was updated
+  // player's position was updated.
   const players = getPlayers();
   const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
   customPitfalls.forEach((pitfall, i) => {
@@ -55,7 +55,7 @@ function repositionPlayer() {
 
   restoreMinimapDisplayFlags(v.level.displayFlagsMap);
 
-  // Restore the player's health
+  // Restore the player's health.
   const player = Isaac.GetPlayer();
   if (v.level.health !== null) {
     setPlayerHealth(player, v.level.health);

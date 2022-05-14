@@ -1,3 +1,4 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
@@ -35,7 +36,7 @@ export default v;
 
 export function init(): void {
   // We must initialize the table with default values or else the merge script will not copy over
-  // old persistent data
+  // old persistent data.
   for (const seasonAbbreviation of Object.keys(CHANGE_CHAR_ORDER_POSITIONS)) {
     v.persistent.charOrders.set(seasonAbbreviation, []);
   }

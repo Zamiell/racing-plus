@@ -13,8 +13,8 @@ export function main(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
   seeded3DollarBill.postItemPickup(player, pickingUpItem);
 }
 
-// ItemType.ITEM_PASSIVE (1)
-// CollectibleType.COLLECTIBLE_3_DOLLAR_BILL (191)
+// ItemType.PASSIVE (1)
+// CollectibleType.3_DOLLAR_BILL (191)
 export function threeDollarBill(player: EntityPlayer): void {
   if (!config.clientCommunication) {
     return;
@@ -23,8 +23,8 @@ export function threeDollarBill(player: EntityPlayer): void {
   seeded3DollarBill.postItemPickup3DollarBill(player);
 }
 
-// ItemType.ITEM_PASSIVE (1)
-// CollectibleType.COLLECTIBLE_MAGIC_8_BALL (194)
+// ItemType.PASSIVE (1)
+// CollectibleType.MAGIC_8_BALL (194)
 export function magic8Ball(player: EntityPlayer): void {
   if (!config.clientCommunication) {
     return;

@@ -1,12 +1,22 @@
-// Different inventory and health conditions can affect special room generation
-// Different special rooms can also sometimes change the actual room selection of non-special rooms
-// This is bad for seeded races; we want to ensure consistent floors
-// Thus, we arbitrarily set inventory and health conditions before going to the next floor,
-// and then swap them back
-// https://bindingofisaacrebirth.gamepedia.com/Level_Generation
-// This feature is not configurable because it could change floors, causing a seed to be different
-// This feature relies on fast travel to function
+// Different inventory and health conditions can affect special room generation. And different
+// special rooms can also sometimes change the actual room selection of non-special rooms. This is
+// bad for seeded races; we want to ensure consistent floors.
 
+// Thus, we arbitrarily set inventory and health conditions before going to the next floor, and then
+// swap them back:
+// https://bindingofisaacrebirth.gamepedia.com/Level_Generation
+
+// This feature is not configurable because it could change floors, causing a seed to be different.
+// This feature relies on fast travel to function.
+
+import {
+  CollectibleType,
+  GameStateFlag,
+  HeartSubType,
+  PlayerType,
+  SeedEffect,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   characterCanHaveRedHearts,
   characterGetsBlackHeartFromEternalHeart,
@@ -17,6 +27,7 @@ import {
   newRNG,
   PlayerHealth,
   removeAllPlayerHealth,
+  repeat,
   saveDataManager,
   setPlayerHealth,
 } from "isaacscript-common";
@@ -25,7 +36,7 @@ import { config } from "../../modConfigMenu";
 import { inSeededRace } from "../race/v";
 
 interface GameStateFlags {
-  devilVisited: boolean;
+  devilRoomVisited: boolean;
   bookTouched: boolean;
 }
 
@@ -51,15 +62,15 @@ function featureEnabled() {
   return config.fastTravel;
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  // We may have had the Curse of the Unknown seed enabled in a previous run,
-  // so ensure that it is removed
-  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
+  // We may have had the Curse of the Unknown seed enabled in a previous run, so ensure that it is
+  // removed.
+  g.seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
 }
 
 export function before(): void {
-  // Only swap things if we are playing on a seeded race
+  // Only swap things if we are playing on a seeded race.
   if (!inSeededRace()) {
     return;
   }
@@ -72,42 +83,47 @@ export function before(): void {
   const levelSeed = g.l.GetDungeonPlacementSeed();
   const rng = newRNG(levelSeed);
 
-  // Record the current inventory and health values
+  // Record the current inventory and health values.
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
 
-  // Eternal Hearts will be lost since we are about to change floors,
-  // so convert it to other types of health
-  // "eternalHearts" will be equal to 1 if we have an Eternal Heart
+  // Eternal Hearts will be lost since we are about to change floors, so convert it to other types
+  // of health. `eternalHearts` will be equal to 1 if we have an Eternal Heart.
   if (characterCanHaveRedHearts(character)) {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
     v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
   } else {
     const heartSubType = characterGetsBlackHeartFromEternalHeart(character)
-      ? HeartSubType.HEART_BLACK
-      : HeartSubType.HEART_SOUL;
-    for (let i = 0; i < v.run.playerHealth.eternalHearts; i++) {
+      ? HeartSubType.BLACK
+      : HeartSubType.SOUL;
+    repeat(v.run.playerHealth.eternalHearts, () => {
+      if (v.run.playerHealth === null) {
+        return;
+      }
+
       v.run.playerHealth.soulHearts += 2;
       v.run.playerHealth.soulHeartTypes.push(heartSubType);
-    }
+    });
   }
   v.run.playerHealth.eternalHearts = 0;
 
+  removeAllPlayerHealth(player);
+
   // Modification 1: Devil Room visited
-  // "GameStateFlag.STATE_DEVILROOM_VISITED" affects the chances of a Curse Room being generated
-  // However, in seeded races, we always start off the player with one Devil Room item taken
-  // (for the consistent Devil/Angel room feature)
-  // Thus, default to always having this flag set to true, which will result in slightly more Curse
-  // Rooms on the first two floors than normal, but that is okay
-  g.g.SetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED, true);
+  // `GameStateFlag.STATE_DEVILROOM_VISITED` affects the chances of a Curse Room being generated.
+  // However, in seeded races, we always start off the player with one Devil Room item taken (for
+  // the consistent Devil/Angel room feature). Thus, default to always having this flag set to true,
+  // which will result in slightly more Curse Rooms on the first two floors than normal, but that is
+  // okay.
+  g.g.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
 
   // Modification 2: Book touched
   const bookMod = getRandom(rng);
   if (bookMod < 0.5) {
-    g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, false);
+    g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, false);
   } else {
-    g.g.SetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP, true);
+    g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, true);
   }
 
   // Modification 3: Coins
@@ -115,8 +131,7 @@ export function before(): void {
   player.AddCoins(-999);
   if (coinMod < 0.5) {
     // 50% chance to have 5 coins
-    // (we give 20 in case Greed's Gullet and empty heart containers)
-    player.AddCoins(20);
+    player.AddCoins(5);
   }
 
   // Modification 4: Keys
@@ -126,9 +141,6 @@ export function before(): void {
     // 50% chance to get 2 keys
     player.AddKeys(2);
   }
-
-  // Remove all health
-  removeAllPlayerHealth(player);
 
   // Modification 5: Full health
   // (which always applies to characters who cannot have red heart containers)
@@ -158,12 +170,12 @@ export function before(): void {
     }
   }
 
-  // Add any eternal hearts back so that the giantbook animation is triggered as per normal
+  // Add any eternal hearts back so that the giantbook animation is triggered as per normal.
   player.AddEternalHearts(eternalHearts);
 }
 
 export function after(): void {
-  // Only swap things if we are playing on a seeded race
+  // Only swap things if we are playing on a seeded race.
   if (!inSeededRace()) {
     return;
   }
@@ -172,7 +184,7 @@ export function after(): void {
 
   const player = Isaac.GetPlayer();
 
-  // Set everything back to the way it was before
+  // Set everything back to the way it was before.
   if (v.run.gameStateFlags !== null) {
     setGameStateFlags(v.run.gameStateFlags);
   }
@@ -186,28 +198,25 @@ export function after(): void {
   addExtraHealthFromItems(player);
   fixWhoreOfBabylon(player);
 
-  g.seeds.RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_UNKNOWN);
+  g.seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
 }
 
 function getGameStateFlags(): GameStateFlags {
-  const devilVisited = g.g.GetStateFlag(GameStateFlag.STATE_DEVILROOM_VISITED);
-  const bookTouched = g.g.GetStateFlag(GameStateFlag.STATE_BOOK_PICKED_UP);
+  const devilVisited = g.g.GetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED);
+  const bookPickedUp = g.g.GetStateFlag(GameStateFlag.BOOK_PICKED_UP);
 
   return {
-    devilVisited,
-    bookTouched,
+    devilRoomVisited: devilVisited,
+    bookTouched: bookPickedUp,
   };
 }
 
 function setGameStateFlags(gameStateFlags: GameStateFlags) {
   g.g.SetStateFlag(
-    GameStateFlag.STATE_DEVILROOM_VISITED,
-    gameStateFlags.devilVisited,
+    GameStateFlag.DEVIL_ROOM_VISITED,
+    gameStateFlags.devilRoomVisited,
   );
-  g.g.SetStateFlag(
-    GameStateFlag.STATE_BOOK_PICKED_UP,
-    gameStateFlags.bookTouched,
-  );
+  g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, gameStateFlags.bookTouched);
 }
 
 function getInventory(player: EntityPlayer): Inventory {
@@ -233,29 +242,23 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
 
 function addExtraHealthFromItems(player: EntityPlayer) {
   // 566
-  // In vanilla, no matter how many Dream Catchers the player has, it will only grant 1 soul heart
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_DREAM_CATCHER)) {
+  if (player.HasCollectible(CollectibleType.DREAM_CATCHER)) {
+    // In vanilla, no matter how many Dream Catchers the player has, it will only grant 1 soul
+    // heart.
     player.AddSoulHearts(1);
   }
 
   // 676
   const redHearts = player.GetHearts();
-  if (
-    player.HasCollectible(CollectibleType.COLLECTIBLE_EMPTY_HEART) &&
-    redHearts <= 2
-  ) {
+  if (player.HasCollectible(CollectibleType.EMPTY_HEART) && redHearts <= 2) {
     player.AddMaxHearts(2, true);
   }
 
   // 55
-  const numMaggysFaith = player.GetTrinketMultiplier(
-    TrinketType.TRINKET_MAGGYS_FAITH,
-  );
+  const numMaggysFaith = player.GetTrinketMultiplier(TrinketType.MAGGYS_FAITH);
   player.AddEternalHearts(numMaggysFaith);
 
-  const numHollowHearts = player.GetTrinketMultiplier(
-    TrinketType.TRINKET_HOLLOW_HEART,
-  );
+  const numHollowHearts = player.GetTrinketMultiplier(TrinketType.HOLLOW_HEART);
   player.AddBoneHearts(numHollowHearts);
 }
 
@@ -263,24 +266,20 @@ function addExtraHealthFromItems(player: EntityPlayer) {
 function fixWhoreOfBabylon(player: EntityPlayer) {
   const effects = player.GetEffects();
   const hasWhoreEffect = effects.HasCollectibleEffect(
-    CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
+    CollectibleType.WHORE_OF_BABYLON,
   );
   const shouldHaveWhoreEffect = shouldWhoreOfBabylonApply(player);
 
   if (shouldHaveWhoreEffect && !hasWhoreEffect) {
-    effects.AddCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON);
+    effects.AddCollectibleEffect(CollectibleType.WHORE_OF_BABYLON);
   } else if (!shouldHaveWhoreEffect && hasWhoreEffect) {
-    effects.RemoveCollectibleEffect(
-      CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
-    );
+    effects.RemoveCollectibleEffect(CollectibleType.WHORE_OF_BABYLON);
   }
 }
 
 function shouldWhoreOfBabylonApply(player: EntityPlayer) {
-  const hasWhore = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON,
-  );
-  const isEve = isCharacter(player, PlayerType.PLAYER_EVE);
+  const hasWhore = player.HasCollectible(CollectibleType.WHORE_OF_BABYLON);
+  const isEve = isCharacter(player, PlayerType.EVE);
   const hearts = player.GetHearts();
   const redHeartTriggerAmount = isEve ? 2 : 1;
 

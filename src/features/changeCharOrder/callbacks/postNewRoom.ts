@@ -1,4 +1,9 @@
 import {
+  CollectibleType,
+  GridEntityType,
+  PressurePlateVariant,
+} from "isaac-typescript-definitions";
+import {
   forceNewRoomCallback,
   getNPCs,
   gridCoordinatesToWorldPosition,
@@ -6,13 +11,18 @@ import {
   removeAllDoors,
   removeCollectibleFromItemTracker,
   removeEntities,
+  repeat,
   spawnGridWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
 import { consoleCommand } from "../../../utils";
 import { getRoomsEntered } from "../../utils/roomsEntered";
-import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
+import {
+  CHANGE_CHAR_ORDER_POSITIONS,
+  CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT,
+  CHANGE_CHAR_ORDER_ROOM_VARIANT,
+} from "../constants";
 import v from "../v";
 
 export function charCharOrderPostNewRoom(): void {
@@ -32,9 +42,10 @@ export function charCharOrderPostNewRoom(): void {
 
 function gotoButtonRoom() {
   forceNewRoomCallback();
-  consoleCommand("stage 1a"); // The Cellar is the cleanest floor
+  consoleCommand(`stage ${CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT}`);
   forceNewRoomCallback();
-  consoleCommand("goto d.5"); // We do more things in the next PostNewRoom callback
+  consoleCommand(`goto d.${CHANGE_CHAR_ORDER_ROOM_VARIANT}`);
+  // We do more things in the next PostNewRoom callback.
 }
 
 function setupButtonRoom() {
@@ -50,23 +61,20 @@ function setupButtonRoom() {
 
   const nextToBottomDoor = g.r.GetGridPosition(97);
   player.Position = nextToBottomDoor;
-  player.RemoveCollectible(CollectibleType.COLLECTIBLE_D6);
+  player.RemoveCollectible(CollectibleType.D6);
   player.AddBombs(-1);
 
-  // Give Isaac's some speed
-  player.AddCollectible(CollectibleType.COLLECTIBLE_BELT, 0, false);
-  removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
-  player.AddCollectible(CollectibleType.COLLECTIBLE_BELT, 0, false);
-  removeCollectibleFromItemTracker(CollectibleType.COLLECTIBLE_BELT);
-  const itemConfigItem = itemConfig.GetCollectible(
-    CollectibleType.COLLECTIBLE_BELT,
-  );
+  // Give Isaac's some speed.
+  repeat(2, () => {
+    player.AddCollectible(CollectibleType.BELT, 0, false);
+    removeCollectibleFromItemTracker(CollectibleType.BELT);
+  });
+  const itemConfigItem = itemConfig.GetCollectible(CollectibleType.BELT);
   if (itemConfigItem !== undefined) {
     player.RemoveCostume(itemConfigItem);
   }
 
-  // Spawn buttons for each type of speedrun
-  // (and a graphic over each button)
+  // Spawn buttons for each type of speedrun (and a graphic over each button).
   for (const [seasonAbbreviation, seasonDescription] of Object.entries(
     CHANGE_CHAR_ORDER_POSITIONS,
   )) {
@@ -80,7 +88,7 @@ function setupButtonRoom() {
     );
     const gridIndex = g.r.GetGridIndex(position);
     spawnGridWithVariant(
-      GridEntityType.GRID_PRESSURE_PLATE,
+      GridEntityType.PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
       gridIndex,
     );

@@ -1,4 +1,11 @@
 import {
+  CollectibleType,
+  EffectVariant,
+  GridEntityType,
+  HeavenLightDoorSubType,
+  TrapdoorVariant,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasCollectible,
   ensureAllCases,
   inMegaSatanRoom,
@@ -42,8 +49,8 @@ enum ReplacementAction {
 
 const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LEAVE_ALONE;
 
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_BIGCHEST (340)
+// ModCallback.POST_PICKUP_INIT (34)
+// PickupVariant.BIG_CHEST (340)
 export function postPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
@@ -55,27 +62,17 @@ export function postPickupInitBigChest(pickup: EntityPickup): void {
 function getReplacementAction() {
   const challenge = Isaac.GetChallenge();
 
-  // First, handle the common case of Cathedral and Sheol
-  // (this avoids duplication below)
-
-  if (
-    onCathedral() &&
-    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_POLAROID)
-  ) {
+  // First, handle the common case of Cathedral and Sheol. (This avoids duplication below.)
+  if (onCathedral() && anyPlayerHasCollectible(CollectibleType.POLAROID)) {
     return ReplacementAction.HEAVEN_DOOR;
   }
-
-  if (
-    onSheol() &&
-    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
-  ) {
+  if (onSheol() && anyPlayerHasCollectible(CollectibleType.NEGATIVE)) {
     return ReplacementAction.TRAPDOOR;
   }
 
   if (challenge === ChallengeCustom.SEASON_1) {
     return speedrunUp();
   }
-
   if (challenge === ChallengeCustom.SEASON_2) {
     return speedrunAlternate();
   }
@@ -146,8 +143,8 @@ enum SpeedrunDirection {
 }
 
 function speedrunAlternate() {
-  // Some seasons alternate between directions,
-  // so we need to make sure we only handle the intended direction
+  // Some seasons alternate between directions, so we need to make sure we only handle the intended
+  // direction.
   const direction = onSpeedrunWithDarkRoomGoal()
     ? SpeedrunDirection.DOWN
     : SpeedrunDirection.UP;
@@ -209,7 +206,7 @@ function megaSatan() {
 
   if (stage === 11 && !inMegaSatanRoom()) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
-    // have to go to Mega Satan
+    // have to go to Mega Satan.
     return ReplacementAction.REMOVE;
   }
 
@@ -277,8 +274,8 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
 
   switch (replacementAction) {
     case ReplacementAction.LEAVE_ALONE: {
-      // Hijack the normally-unused "Touched" property to signify that we should leave it here
-      // (so that we ignore it on subsequent frames)
+      // Hijack the normally-unused "Touched" property to signify that we should leave it here.
+      // (We will ignore it on subsequent frames.)
       pickup.Touched = true;
       return;
     }
@@ -286,7 +283,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     case ReplacementAction.TRAPDOOR: {
       const gridIndex = g.r.GetGridIndex(pickup.Position);
       spawnGridWithVariant(
-        GridEntityType.GRID_TRAPDOOR,
+        GridEntityType.TRAPDOOR,
         TrapdoorVariant.NORMAL,
         gridIndex,
       );
@@ -301,9 +298,9 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         pickup.Position,
       );
 
-      // This will get naturally initialized by the fast-travel system on the next frame
-      // However, we explicitly initialize it now to prevent indexing errors later on this frame
-      // (when the room is cleared)
+      // This will get naturally initialized by the fast-travel system on the next frame. However,
+      // we explicitly initialize it now to prevent indexing errors later on this frame (when the
+      // room is cleared).
       fastTravel.init(heavenDoor, FastTravelEntityType.HEAVEN_DOOR, () => true);
 
       return;
@@ -312,7 +309,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
     case ReplacementAction.CHECKPOINT: {
       const seed = g.seeds.GetStartSeed();
       const checkpoint = spawnCollectible(
-        CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
+        CollectibleTypeCustom.CHECKPOINT,
         pickup.Position,
         seed,
       );

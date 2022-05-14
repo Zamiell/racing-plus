@@ -1,4 +1,11 @@
 import {
+  GameStateFlag,
+  GridRoom,
+  RoomType,
+  SeedEffect,
+  TrapdoorState,
+} from "isaac-typescript-definitions";
+import {
   getRoomGridIndex,
   isPostBossVoidPortal,
   log,
@@ -20,9 +27,9 @@ import v from "./v";
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
-// GridEntityType.GRID_TRAPDOOR (17)
+// GridEntityType.TRAPDOOR (17)
 export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
-  // In some situations, trapdoors should be removed entirely
+  // In some situations, trapdoors should be removed entirely.
   if (shouldRemove()) {
     removeGrid(gridEntity);
     return;
@@ -36,20 +43,20 @@ export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_TRAPDOOR (17)
+// GridEntityType.TRAPDOOR (17)
 export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   if (shouldIgnore(gridEntity)) {
     return;
   }
 
-  // Ensure that the fast-travel entity has been initialized
+  // Ensure that the fast-travel entity has been initialized.
   const gridIndex = gridEntity.GetGridIndex();
   const entry = v.room.trapdoors.get(gridIndex);
   if (entry === undefined) {
     return;
   }
 
-  // Keep it closed on every frame so that we can implement our own custom functionality
+  // Keep it closed on every frame so that we can implement our own custom functionality.
   gridEntity.State = TrapdoorState.CLOSED;
 
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
@@ -57,7 +64,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
-// GridEntityType.GRID_TRAPDOOR (17)
+// GridEntityType.TRAPDOOR (17)
 export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
@@ -71,12 +78,12 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // There is no way to manually travel to the "Infinite Basements" Easter Egg floors,
-  // so just disable the fast-travel feature if this is the case
-  if (g.seeds.HasSeedEffect(SeedEffect.SEED_INFINITE_BASEMENT)) {
+  // so just disable the fast-travel feature if this is the case.
+  if (g.seeds.HasSeedEffect(SeedEffect.INFINITE_BASEMENT)) {
     return true;
   }
 
-  // Don't replace the trap door that leads to Mother
+  // Don't replace the trap door that leads to Mother.
   if (stage === 8 && repentanceStage) {
     return true;
   }
@@ -87,15 +94,15 @@ function shouldIgnore(gridEntity: GridEntity) {
 function shouldRemove() {
   const gameFrameCount = g.g.GetFrameCount();
   const mausoleumHeartKilled = g.g.GetStateFlag(
-    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+    GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
-  const backwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const backwardPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
 
-  // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2
+  // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -114,7 +121,7 @@ function shouldRemove() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === 8 &&
-    roomGridIndex !== GridRooms.ROOM_BLUE_WOOM_IDX
+    roomGridIndex !== GridRoom.BLUE_WOMB
   ) {
     log(
       `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
@@ -122,13 +129,13 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Hush, delete the trapdoor that spawns after Hush
+  // If the goal of the race is Hush, delete the trapdoor that spawns after Hush.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === 9 &&
-    roomGridIndex !== GridRooms.ROOM_THE_VOID_IDX
+    roomGridIndex !== GridRoom.THE_VOID
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
@@ -136,13 +143,13 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, remove trapdoors after bosses on most floors
-  // (but leave trapdoors created by shovels and in I AM ERROR rooms)
+  // If the goal of the race is Mother, remove trapdoors after bosses on most floors.
+  // (But leave trapdoors created by shovels and in I AM ERROR rooms.)
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.MOTHER &&
-    roomType === RoomType.ROOM_BOSS
+    roomType === RoomType.BOSS
   ) {
     if (
       (stage === 1 ||
@@ -173,14 +180,10 @@ function shouldRemove() {
     }
   }
 
-  // Delete the trapdoors on the Ascent
-  // (in vanilla, they stay closed, but instead of emulating this functionality it is simpler to
-  // delete them)
-  if (
-    stage < 7 &&
-    backwardPath &&
-    roomGridIndex !== GridRooms.ROOM_SECRET_EXIT_IDX
-  ) {
+  // Delete the trapdoors on the Ascent.
+  // (In vanilla, they stay closed, but instead of emulating this functionality it is simpler to
+  // delete them.)
+  if (stage < 7 && backwardPath && roomGridIndex !== GridRoom.SECRET_EXIT) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );
@@ -196,27 +199,27 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
   if (roomFrameCount === 0) {
     // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the
-    // player has to defeat the enemies first before using the trapdoor
+    // player has to defeat the enemies first before using the trapdoor.
     if (!roomClear) {
       return false;
     }
 
     // If we just entered a new room that is already cleared,
-    // spawn the trapdoor closed if we are standing close to it, and open otherwise
+    // spawn the trapdoor closed if we are standing close to it, and open otherwise.
     return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
   }
 
   // After defeating Satan, the trapdoor should always spawn open
-  // (because there is no reason to remain in Sheol)
+  // (because there is no reason to remain in Sheol).
   if (onSheol()) {
     return true;
   }
 
-  // Trapdoors created after a room has already initialized should spawn closed by default
-  // e.g. trapdoors created after bosses should spawn closed so that players do not accidentally
-  // jump into them
-  // e.g. trapdoors created by We Need to Go Deeper! should spawn closed because the player will
-  // be standing on top of them
+  // Trapdoors created after a room has already initialized should spawn closed by default:
+  // - Trapdoors created after bosses should spawn closed so that players do not accidentally
+  // jump into them.
+  // - Trapdoors created by We Need to Go Deeper! should spawn closed because the player will
+  // be standing on top of them.
   return false;
 }
 

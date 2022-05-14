@@ -1,3 +1,4 @@
+import { ModCallback } from "isaac-typescript-definitions";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as removeStrayPitfalls from "../features/optional/enemies/removeStrayPitfalls";
 import { fastTravelPreSpawnClearAward } from "../features/optional/major/fastTravel/callbacks/preSpawnClearAward";
@@ -7,7 +8,7 @@ import { racePreSpawnClearAward } from "../features/race/callbacks/preSpawnClear
 import { speedrunPreSpawnClearAward } from "../features/speedrun/callbacks/preSpawnClearAward";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, main);
+  mod.AddCallback(ModCallback.PRE_SPAWN_CLEAN_AWARD, main);
 }
 
 function main(_rng: RNG, _spawnPosition: Vector): boolean | void {

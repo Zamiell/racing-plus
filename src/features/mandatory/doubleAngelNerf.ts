@@ -1,11 +1,14 @@
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_URIEL (271)
+// ModCallback.ENTITY_TAKE_DMG (11)
+
+import { EntityType } from "isaac-typescript-definitions";
+
+// EntityType.URIEL (271)
 export function entityTakeDmgUriel(damageSource: EntityRef): boolean | void {
   return preventDamageFromAngels(damageSource);
 }
 
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_GABRIEL (272)
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.GABRIEL (272)
 export function entityTakeDmgGabriel(damageSource: EntityRef): boolean | void {
   return preventDamageFromAngels(damageSource);
 }
@@ -16,10 +19,7 @@ function preventDamageFromAngels(damageSource: EntityRef): boolean | void {
     return undefined;
   }
 
-  if (
-    entity.Type === EntityType.ENTITY_URIEL ||
-    entity.Type === EntityType.ENTITY_GABRIEL
-  ) {
+  if (entity.Type === EntityType.URIEL || entity.Type === EntityType.GABRIEL) {
     return false;
   }
 

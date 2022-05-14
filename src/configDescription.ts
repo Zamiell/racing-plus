@@ -79,7 +79,7 @@ export const MAJOR_CHANGES: ConfigDescriptions = [
       ModConfigMenuOptionType.BOOLEAN,
       "008",
       "Fast floor travel",
-      "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawlspace animation.",
+      "Replace the fade-in and fade-out with a custom animation where you jump out of a hole. Also, replace the crawl space animation.",
     ],
   ],
   [
@@ -107,7 +107,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "fastDropAll",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Fast drop",
       "Drop all of your items instantaneously.",
@@ -116,7 +116,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "fastDropTrinkets",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Fast drop (trinkets)",
       "Drop your trinkets instantaneously.",
@@ -125,7 +125,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "fastDropPocket",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Fast drop (pocket)",
       "Drop your pocket items instantaneously.",
@@ -134,7 +134,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "schoolbagSwitch",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Switch Schoolbag items",
       "Switch between Schoolbag items without swapping cards or switching to The Soul.",
@@ -143,7 +143,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "autofire",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Toggle autofire",
       "Enable autofire, which toggles the fire input on every frame.",
@@ -152,7 +152,7 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   [
     "console",
     [
-      ModConfigMenuOptionType.KEYBIND_KEYBOARD,
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
       "Toggle chat/console",
       "When in a race, this toggles the chat. When not in a race, this toggles the custom console. If not set, this will default to Enter.",
@@ -160,7 +160,12 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
   ],
   [
     "roll",
-    [ModConfigMenuOptionType.KEYBIND_KEYBOARD, "", "Roll", "Do a barrel roll."],
+    [
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
+      "",
+      "Roll",
+      "Do a barrel roll.",
+    ],
   ],
 ];
 
@@ -980,8 +985,8 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.TEXT,
       "",
-      "Fix crawlspace exits",
-      "Returning from a crawlspace outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
+      "Fix crawl space exits",
+      "Returning from a crawl space outside of the grid will no longer send you to the wrong room. (This is part of Fast-Travel.)",
     ],
   ],
   [

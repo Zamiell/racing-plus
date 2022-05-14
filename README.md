@@ -1,5 +1,7 @@
 # The Racing+ Mod
 
+<!-- markdownlint-disable MD033 -->
+
 ## Download & Additional Information
 
 Please visit [the website for Racing+](https://isaacracing.net/) or [subscribe to the mod on the Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=857628390).
@@ -8,11 +10,12 @@ Please visit [the website for Racing+](https://isaacracing.net/) or [subscribe t
 
 ## Description
 
-This is the mod for Racing+, a *Binding of Isaac: Repentance* racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
+This is the mod for Racing+, a _Binding of Isaac: Repentance_ racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
 
 This mod is written using [IsaacScript](https://isaacscript.github.io/).
 
 See also:
+
 - [Mod changes](docs/changes.md)
 - [Race formats](docs/race-formats.md)
 - [Custom challenges](docs/challenges.md) (i.e. multi-character speedruns)
@@ -25,19 +28,12 @@ You may also be interested in [the client repository](https://github.com/Zamiell
 
 ## Installation for Development (Windows)
 
-- Open a [Command Prompt as an administrator](https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-8.1/).
-- Install the [Chocolatey](https://chocolatey.org/) package manager:
-  - `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
-- Install [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), and [Visual Studio Code](https://code.visualstudio.com/):
-  - `choco install git golang nodejs vscode -y`
-- Configure Git:
-  - `refreshenv`
+- First, follow the steps on [the IsaacScript getting started documentation](https://isaacscript.github.io/docs/getting-started). Once you have created a test mod and verified in-game that everything works the way it should, read on.
+- Download and install [Git](https://git-scm.com/), if you don't have it already.
+- Open a new [command prompt window](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/).
+- Configure Git, if you have not done so already:
   - `git config --global user.name "Your_Username"`
   - `git config --global user.email "your@email.com"`
-  - `git config --global core.autocrlf false` <br>
-  (so that Git does not convert LF to CRLF when cloning repositories)
-  - `git config --global pull.rebase true` <br>
-  (so that Git automatically rebases when pulling)
 - Clone the repository:
   - `cd [the path where you want the code to live]` (optional)
   - If you already have an SSH key pair and have the public key attached to your GitHub profile, then use the following command to clone the repository via SSH:
@@ -45,15 +41,13 @@ You may also be interested in [the client repository](https://github.com/Zamiell
   - If you do not already have an SSH key pair, then use the following command to clone the repository via HTTPS:
     - `git clone https://github.com/Zamiell/racing-plus.git`
   - Or, if you are doing development work, then clone your forked version of the repository. For example:
-    - `git clone https://github.com/[Your_Username]/racing-plus.git`
+    - `git clone https://github.com/Your_Username/racing-plus.git`
 - Enter the cloned repository:
-    - `cd racing-plus`
-- Change from the Windows Command Prompt to Git Bash
-  - `"%PROGRAMFILES%\Git\bin\sh.exe"`
+  - `cd racing-plus`
 - Install dependencies:
   - `npm ci`
 - Run IsaacScript, which will compile the mod and copy it to your "mods" folder:
-  - `./run.sh`
+  - `npx isaacscript`
 
 <!--
 

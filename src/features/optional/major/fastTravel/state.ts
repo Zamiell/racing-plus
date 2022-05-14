@@ -1,3 +1,4 @@
+import { RoomType } from "isaac-typescript-definitions";
 import { anyPlayerCloserThan, ensureAllCases, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -88,7 +89,7 @@ function getFastTravelMap(fastTravelEntityType: FastTravelEntityType) {
     }
 
     case FastTravelEntityType.CRAWLSPACE: {
-      return v.room.crawlspaces;
+      return v.room.crawlSpaces;
     }
 
     case FastTravelEntityType.HEAVEN_DOOR: {
@@ -149,8 +150,8 @@ function getIndex(
     }
 
     case FastTravelEntityType.HEAVEN_DOOR: {
-      // "effect.Index" is not yet initialized in the PostEffectInit callback
-      // Use the grid index as the index for conformity with the other fast-travel entities
+      // "effect.Index" is not yet initialized in the PostEffectInit callback.
+      // Use the grid index as the index for conformity with the other fast-travel entities.
       return g.r.GetGridIndex(entity.Position);
     }
 
@@ -185,9 +186,9 @@ function playerCloseAfterBoss(position: Vector) {
   const roomType = g.r.GetType();
 
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
-  // killing the boss of the floor, we use a wider open distance for X frames
+  // killing the boss of the floor, we use a wider open distance for X frames.
   if (
-    roomType !== RoomType.ROOM_BOSS ||
+    roomType !== RoomType.BOSS ||
     v.room.clearFrame === null ||
     gameFrameCount >= v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
   ) {

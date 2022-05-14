@@ -1,13 +1,21 @@
 import {
+  Card,
+  LevelCurse,
+  PillColor,
+  PocketItemSlot,
+  RoomType,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   characterCanTakeFreeDevilDeals,
+  erange,
   findFreePosition,
+  getEnumValues,
   getPlayerIndex,
   inBeastRoom,
   isJacobOrEsau,
   isKeeper,
-  MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
-  range,
 } from "isaacscript-common";
 import { RevivalType } from "../../../../enums/RevivalType";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
@@ -37,11 +45,10 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
   const roomType = g.r.GetType();
   const gameFrameCount = g.g.GetFrameCount();
 
-  // Do not revive the player if they took a devil deal within the past few seconds
-  // (we cannot use the "DamageFlag.DAMAGE_DEVIL" to determine this because the player could have
-  // taken a devil deal and died to a fire / spikes / etc.)
-  // In order to reduce false positives, we can safely ignore characters that cannot die on taking a
-  // devil deal
+  // Do not revive the player if they took a devil deal within the past few seconds. (We cannot use
+  // the `DamageFlag.DAMAGE_DEVIL` to determine this because the player could have taken a devil
+  // deal and died to a fire / spikes / etc.). In order to reduce false positives, we can safely
+  // ignore characters that cannot die on taking a devil deal.
   if (
     v.run.frameOfLastDevilDeal !== null &&
     gameFrameCount <=
@@ -53,15 +60,14 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
 
   // Do not revive the player if they are trying to get a "free" item from a particular special room
   if (
-    roomType === RoomType.ROOM_SACRIFICE || // 13
-    roomType === RoomType.ROOM_BOSSRUSH // 17
+    roomType === RoomType.SACRIFICE || // 13
+    roomType === RoomType.BOSS_RUSH // 17
   ) {
     return false;
   }
 
-  // Do not revive the player in The Beast room
-  // Handling this special case would be too complicated and the player would probably lose the race
-  // anyway
+  // Do not revive the player in The Beast room. Handling this special case would be too complicated
+  // and the player would probably lose the race anyway.
   if (inBeastRoom()) {
     return false;
   }
@@ -84,9 +90,9 @@ function preRevivalDeathAnimation(player: EntityPlayer) {
   v.run.dyingPlayerIndex = playerIndex;
   logSeededDeathStateChange();
 
-  // The custom revive works by awarding a 1-Up, which is confusing
-  // Thus, hide the health UI with Curse of the Unknown for the duration of the revive
-  g.l.AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false);
+  // The custom revive works by awarding a 1-Up, which is confusing. Thus, hide the health UI with
+  // Curse of the Unknown for the duration of the revive.
+  g.l.AddCurse(LevelCurse.UNKNOWN, false);
 }
 
 function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
@@ -95,10 +101,10 @@ function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
 }
 
 function dropEverything(player: EntityPlayer) {
-  for (const pocketItemSlot of range(MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
+  for (const pocketItemSlot of getEnumValues(PocketItemSlot)) {
     const card = player.GetCard(pocketItemSlot);
     const pillColor = player.GetPill(pocketItemSlot);
-    if (card === Card.CARD_NULL && pillColor === PillColor.PILL_NULL) {
+    if (card === Card.NULL && pillColor === PillColor.NULL) {
       continue;
     }
 
@@ -106,15 +112,15 @@ function dropEverything(player: EntityPlayer) {
     player.DropPocketItem(pocketItemSlot, position);
   }
 
-  for (const trinketSlot of range(MAX_PLAYER_TRINKET_SLOTS - 1)) {
+  for (const trinketSlot of erange(MAX_PLAYER_TRINKET_SLOTS)) {
     const trinketType = player.GetTrinket(trinketSlot);
-    if (trinketType === TrinketType.TRINKET_NULL) {
+    if (trinketType === TrinketType.NULL) {
       continue;
     }
 
-    if (trinketType === TrinketType.TRINKET_PERFECTION) {
-      // In the special case of the Perfection trinket, it should be deleted instead of dropped
-      player.TryRemoveTrinket(TrinketType.TRINKET_PERFECTION);
+    if (trinketType === TrinketType.PERFECTION) {
+      // In the special case of the Perfection trinket, it should be deleted instead of dropped.
+      player.TryRemoveTrinket(TrinketType.PERFECTION);
     } else {
       const position = findFreePosition(player.Position);
       player.DropTrinket(position, true);

@@ -45,12 +45,12 @@ function main(isContinued: boolean) {
     `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued}`,
   );
 
-  // Make sure that the MinimapAPI is enabled (we may have disabled it in a previous run)
+  // Make sure that the MinimapAPI is enabled. (We may have disabled it in a previous run.)
   if (MinimapAPI !== undefined) {
     MinimapAPI.Config.Disable = false;
   }
 
-  // Features that need to run regardless of whether the run is continued or not
+  // Handle features that need to run regardless of whether the run is continued or not.
   disableMultiplayer.postGameStarted();
 
   if (isContinued) {
@@ -58,7 +58,7 @@ function main(isContinued: boolean) {
     return;
   }
 
-  // Check for errors that should prevent the mod from doing anything
+  // Check for errors that should prevent the mod from doing anything.
   if (errors.check()) {
     return;
   }
@@ -75,9 +75,9 @@ function main(isContinued: boolean) {
   forceFadedConsoleDisplay.postGameStarted();
   debugFunction.postGameStarted();
 
-  // Showing Eden starting items is a Quality of Life feature, but it must be performed before
-  // race initialization because we need to find out what the passive item is before other items are
-  // added on top
+  // Showing Eden starting items is a quality of life feature, but it must be performed before race
+  // initialization because we need to find out what the passive item is before other items are
+  // added on top.
   showEdenStartingItems.postGameStarted();
 
   // Major
@@ -105,8 +105,8 @@ function main(isContinued: boolean) {
   hudOffsetFix.postGameStarted();
   holidayHats.postGameStarted();
 
-  // Features that need to be last
-  // (this checks for items, so it has to be after all features that grant items)
+  // Handle features that need to be last.
+  // (This checks for items, so it has to be after all features that grant items.)
   removeGloballyBannedItems.postGameStarted();
 }
 

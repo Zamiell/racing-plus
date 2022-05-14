@@ -1,3 +1,4 @@
+import { NullItemID } from "isaac-typescript-definitions";
 import { Holiday } from "../enums/Holiday";
 import { NullItemIDCustom } from "../enums/NullItemIDCustom";
 
@@ -9,5 +10,5 @@ export const HOLIDAY_TO_NULL_ITEM_ID: {
   [Holiday.SAINT_PATRICKS_DAY]: NullItemIDCustom.SAINT_PATRICKS_DAY,
   [Holiday.HALLOWEEN]: NullItemIDCustom.HALLOWEEN,
   [Holiday.THANKSGIVING]: NullItemIDCustom.THANKSGIVING,
-  [Holiday.CHRISTMAS]: NullItemID.ID_CHRISTMAS,
+  [Holiday.CHRISTMAS]: NullItemID.CHRISTMAS,
 };

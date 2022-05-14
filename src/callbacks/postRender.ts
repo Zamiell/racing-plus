@@ -1,3 +1,4 @@
+import { ModCallback } from "isaac-typescript-definitions";
 import { updateCachedAPIFunctions } from "../cache";
 import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
@@ -29,7 +30,7 @@ import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_POST_RENDER, main);
+  mod.AddCallback(ModCallback.POST_RENDER, main);
 }
 
 function main() {
@@ -46,9 +47,9 @@ function main() {
   }
 
   // For mod features that draw UI elements to the screen,
-  // we should early return if the HUD is not visible
+  // we should early return if the HUD is not visible.
   // However, the game is considered to be paused during the room slide animation, so in most cases,
-  // we do not want to check to see if the game is paused
+  // we do not want to check to see if the game is paused.
 
   // Utils
   timeConsoleUsed.postRender();

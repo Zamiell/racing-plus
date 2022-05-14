@@ -1,4 +1,9 @@
 import {
+  Challenge,
+  CollectibleType,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
 } from "isaacscript-common";
@@ -11,8 +16,8 @@ import g from "./globals";
 export function getEffectiveDevilDeals(): int {
   const devilRoomDeals = g.g.GetDevilRoomDeals();
 
-  // In seeded races, we arbitrarily increase the Devil Room deals counter by one,
-  // so account for this
+  // In seeded races, we arbitrarily increase the Devil Room deals counter by one, so account for
+  // this.
   return shouldConsistentDevilAngelRoomsApply()
     ? devilRoomDeals - 1
     : devilRoomDeals;
@@ -57,14 +62,15 @@ export function shouldCheckForGameplayInputs(): boolean {
 }
 
 export function unseed(): void {
-  // Invoking the "Reset()" method will cause the log to be spammed with:
-  // [ASSERT] - Error: Game Start Seed was not set.
-  // It will also cause the "GetStartSeed()" method to return 0, which can cause crashes
-  // So we must immediately re-initialize the game start seed by using the "Restart()" method
-  g.seeds.Reset();
-  g.seeds.Restart(Challenge.CHALLENGE_NULL);
+  // Invoking the `Seeds.Reset` method will cause the log to be spammed with:
+  // "[ASSERT] - Error: Game Start Seed was not set."
 
-  // Resetting the "Seeds" class will also remove any Easter Eggs that have been enabled,
-  // so we must manually reactivate them
+  // It will also cause the `Seeds.GetStartSeed` method to return 0, which can cause crashes. So, we
+  // must immediately re-initialize the game start seed by using the `Seeds.Restart` method.
+  g.seeds.Reset();
+  g.seeds.Restart(Challenge.NULL);
+
+  // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we
+  // must manually reactivate them.
   racingPlusSprite.disableAchievements();
 }

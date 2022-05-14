@@ -1,6 +1,11 @@
-// In the "hudpickups.png" file, we blank out the "No Achievements" icon
-// For every run, we draw a "R+" icon on top of where the "No Achievements" icon would normally be
+// In the "hudpickups.png" file, we blank out the "No Achievements" icon. For every run, we draw a
+// "R+" icon on top of where the "No Achievements" icon would normally be.
 
+import {
+  Challenge,
+  Difficulty,
+  SeedEffect,
+} from "isaac-typescript-definitions";
 import {
   getHUDOffsetVector,
   isBethany,
@@ -21,11 +26,12 @@ enum SpriteLayer {
   GREEN,
 }
 
-const SPRITE_POSITION = Vector(4, 72); // On top of where the "No Achievements" icon would be
+/** This is on top of where the "No Achievements" icon would be. */
+const SPRITE_POSITION = Vector(4, 72);
 
 const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   const hud = g.g.GetHUD();
 
@@ -47,20 +53,20 @@ export function getPosition(): Vector {
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
-  // On vanilla, being in a challenge shifts the "No Achievements" icon to the left
-  if (challenge !== Challenge.CHALLENGE_NULL) {
+  // On vanilla, being in a challenge shifts the "No Achievements" icon to the left.
+  if (challenge !== Challenge.NULL) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
-  // On vanilla, being in Hard Mode shifts the "No Achievements" icon to the right
-  // Being in greed mode shifts the "No Achievements" icon to the left
-  if (g.g.Difficulty === Difficulty.DIFFICULTY_HARD) {
+  // On vanilla, being in Hard Mode shifts the "No Achievements" icon to the right. Being in greed
+  // mode shifts the "No Achievements" icon to the left.
+  if (g.g.Difficulty === Difficulty.HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
   } else if (g.g.IsGreedMode()) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 
-  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
+  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down.
   if (isBethany(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
   } else if (isJacobOrEsau(player)) {
@@ -70,7 +76,7 @@ export function getPosition(): Vector {
   return position;
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   disableAchievements();
 }
@@ -84,5 +90,5 @@ export function postGameStarted(): void {
  * Note that not all easter eggs prevent achievements, but this one does.
  */
 export function disableAchievements(): void {
-  g.seeds.AddSeedEffect(SeedEffect.SEED_PREVENT_CURSE_DARKNESS);
+  g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
 }

@@ -12,13 +12,14 @@ Notes:
 
 */
 
+import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
 
 const DEBUG = false;
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, main);
+  mod.AddCallback(ModCallback.PRE_ENTITY_SPAWN, main);
 }
 
 function main(
@@ -29,7 +30,7 @@ function main(
   _velocity: Vector,
   spawner: Entity,
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType | int, int, int, int] | void {
   if (DEBUG) {
     log(
       `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,

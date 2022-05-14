@@ -1,7 +1,7 @@
 import * as preserveCheckpoint from "../preserveCheckpoint";
 import { inSpeedrun } from "../speedrun";
 
-// CollectibleType.COLLECTIBLE_D6 (105)
+// CollectibleType.D6 (105)
 export function d6(player: EntityPlayer): boolean | void {
   if (!inSpeedrun()) {
     return undefined;
@@ -10,7 +10,7 @@ export function d6(player: EntityPlayer): boolean | void {
   return preserveCheckpoint.preUseItemD6(player);
 }
 
-// CollectibleType.COLLECTIBLE_ETERNAL_D6 (609)
+// CollectibleType.ETERNAL_D6 (609)
 export function eternalD6(player: EntityPlayer): boolean | void {
   if (!inSpeedrun()) {
     return undefined;

@@ -1,4 +1,10 @@
 import {
+  ButtonAction,
+  CollectibleType,
+  Direction,
+  PlayerType,
+} from "isaac-typescript-definitions";
+import {
   capitalizeFirstLetter,
   disableAllInputs,
   enableAllInputs,
@@ -15,7 +21,10 @@ import { config, hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 
 const FEATURE_NAME = "roll";
-const ROLL_STOP_FRAME = 17; // The total length of each roll animation is 25 frames
+
+/** The total length of each roll animation is 25 frames. */
+const ROLL_STOP_FRAME = 17;
+
 const VANILLA_SPEED = 4.4;
 const ROLL_SPEED = VANILLA_SPEED * 2;
 
@@ -38,13 +47,13 @@ function featureEnabled() {
   return config.roll;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!rollEnabled()) {
     return;
   }
 
-  // See the comment in the "fastDrop.ts" file about reading keyboard inputs
+  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
   checkInput();
 }
 
@@ -80,24 +89,21 @@ function playerCanRoll(player: EntityPlayer) {
   return (
     !v.run.rolling &&
     !player.IsHoldingItem() &&
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_BLAST) && // 441
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) && // 625
-    !effects.HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS) // 705
+    !effects.HasCollectibleEffect(CollectibleType.MEGA_BLAST) && // 441
+    !effects.HasCollectibleEffect(CollectibleType.MEGA_MUSH) && // 625
+    !effects.HasCollectibleEffect(CollectibleType.DARK_ARTS) // 705
   );
 }
 
 function startRoll(player: EntityPlayer) {
   disableAllInputs(FEATURE_NAME);
 
-  // The player's velocity is stored so that it can be restored when the roll is over
+  // The player's velocity is stored so that it can be restored when the roll is over.
   v.run.rolling = true;
   v.run.originalVelocity = player.Velocity;
   playRollingAnimation(player);
 
-  if (
-    isJacobOrEsau(player) &&
-    !isActionPressedOnAnyInput(ButtonAction.ACTION_DROP)
-  ) {
+  if (isJacobOrEsau(player) && !isActionPressedOnAnyInput(ButtonAction.DROP)) {
     const esau = player.GetOtherTwin();
     if (esau !== undefined) {
       v.run.rolling2 = true;
@@ -125,17 +131,17 @@ function getRollingAnimation(direction: Direction) {
   return `Rolling${capitalizedSuffix}`;
 }
 
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+// ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (!rollEnabled()) {
     return;
   }
 
-  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
     return;
   }
 
-  if (isCharacter(player, PlayerType.PLAYER_ESAU)) {
+  if (isCharacter(player, PlayerType.ESAU)) {
     checkRollEsau(player);
   } else {
     checkRoll(player);
@@ -184,7 +190,7 @@ function stopRoll(player: EntityPlayer) {
   enableAllInputs(FEATURE_NAME);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (v.run.rolling) {
     const player = getRollPlayer();
@@ -192,8 +198,8 @@ export function postNewRoom(): void {
   }
 }
 
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_PLAYER (1)
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.PLAYER (1)
 export function entityTakeDmgPlayer(player: EntityPlayer): void {
   if (v.run.rolling) {
     stopRoll(player);
@@ -203,7 +209,7 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 function getRollPlayer() {
   const player = Isaac.GetPlayer();
 
-  if (isCharacter(player, PlayerType.PLAYER_THEFORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul === undefined) {
       error("Failed to get Tainted Soul from Tainted Forgotten.");

@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import { copyMap } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
@@ -6,40 +7,34 @@ export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
   CollectibleType
 > = new Map([
   [
-    CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
+    CollectibleTypeCustom.MAGIC_MUSHROOM_PLACEHOLDER,
+    CollectibleType.MAGIC_MUSHROOM,
   ],
   [
-    CollectibleTypeCustom.COLLECTIBLE_SACRED_HEART_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_SACRED_HEART,
+    CollectibleTypeCustom.SACRED_HEART_PLACEHOLDER,
+    CollectibleType.SACRED_HEART,
   ],
   [
-    CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
+    CollectibleTypeCustom.DEATHS_TOUCH_PLACEHOLDER,
+    CollectibleType.DEATHS_TOUCH,
   ],
   [
-    CollectibleTypeCustom.COLLECTIBLE_JUDAS_SHADOW_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_JUDAS_SHADOW,
+    CollectibleTypeCustom.JUDAS_SHADOW_PLACEHOLDER,
+    CollectibleType.JUDAS_SHADOW,
+  ],
+  [CollectibleTypeCustom.GODHEAD_PLACEHOLDER, CollectibleType.GODHEAD],
+  [CollectibleTypeCustom.INCUBUS_PLACEHOLDER, CollectibleType.INCUBUS],
+  [
+    CollectibleTypeCustom.MAW_OF_THE_VOID_PLACEHOLDER,
+    CollectibleType.MAW_OF_THE_VOID,
   ],
   [
-    CollectibleTypeCustom.COLLECTIBLE_GODHEAD_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_GODHEAD,
+    CollectibleTypeCustom.CROWN_OF_LIGHT_PLACEHOLDER,
+    CollectibleType.CROWN_OF_LIGHT,
   ],
   [
-    CollectibleTypeCustom.COLLECTIBLE_INCUBUS_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_INCUBUS,
-  ],
-  [
-    CollectibleTypeCustom.COLLECTIBLE_MAW_OF_THE_VOID_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_MAW_OF_THE_VOID,
-  ],
-  [
-    CollectibleTypeCustom.COLLECTIBLE_CROWN_OF_LIGHT_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT,
-  ],
-  [
-    CollectibleTypeCustom.COLLECTIBLE_TWISTED_PAIR_PLACEHOLDER,
-    CollectibleType.COLLECTIBLE_TWISTED_PAIR,
+    CollectibleTypeCustom.TWISTED_PAIR_PLACEHOLDER,
+    CollectibleType.TWISTED_PAIR,
   ],
 ]);
 

@@ -2,6 +2,12 @@
 // or It Lives!
 
 import {
+  DoorSlot,
+  EntityType,
+  PlayerType,
+  RoomShape,
+} from "isaac-typescript-definitions";
+import {
   countEntities,
   forgottenSwitch,
   getFamiliars,
@@ -14,17 +20,26 @@ import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 
 const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
-  EntityType.ENTITY_GURDY, // 36
-  EntityType.ENTITY_MOM, // 45
-  EntityType.ENTITY_MOMS_HEART, // 78
+  EntityType.GURDY, // 36
+  EntityType.MOM, // 45
+  EntityType.MOMS_HEART, // 78
 ]);
 
-const TOP_DOOR_POSITION = Vector(320, 160);
-const LEFT_DOOR_POSITION = Vector(80, 280);
-const RIGHT_DOOR_POSITION = Vector(560, 280);
-const BOTTOM_DOOR_POSITION = Vector(320, 400);
+const DOOR_SLOTS_REVERSED: { readonly [key in DoorSlot]: DoorSlot } = {
+  // If we teleported into the room, use the default position.
+  [DoorSlot.NO_DOOR_SLOT]: DoorSlot.DOWN_0,
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+  [DoorSlot.LEFT_0]: DoorSlot.RIGHT_0,
+  [DoorSlot.UP_0]: DoorSlot.DOWN_0,
+  [DoorSlot.RIGHT_0]: DoorSlot.LEFT_0,
+  [DoorSlot.DOWN_0]: DoorSlot.UP_0,
+  [DoorSlot.LEFT_1]: DoorSlot.RIGHT_0,
+  [DoorSlot.UP_1]: DoorSlot.DOWN_0,
+  [DoorSlot.RIGHT_1]: DoorSlot.LEFT_0,
+  [DoorSlot.DOWN_1]: DoorSlot.UP_0,
+};
+
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.subvertTeleport) {
     return;
@@ -39,7 +54,7 @@ function shouldSubvertTeleport() {
   const roomShape = g.r.GetRoomShape();
 
   // There are Double Trouble rooms with Gurdy but they don't cause a teleport
-  if (roomShape !== RoomShape.ROOMSHAPE_1x1) {
+  if (roomShape !== RoomShape.SHAPE_1x1) {
     return false;
   }
 
@@ -54,16 +69,17 @@ function shouldSubvertTeleport() {
 }
 
 function subvertTeleport() {
-  const normalPosition = getNormalRoomEnterPosition();
+  const doorSlot = getRoomEnterDoorSlot();
+  const position = g.r.GetDoorSlotPosition(doorSlot);
 
   for (const player of getPlayers()) {
-    player.Position = normalPosition;
+    player.Position = position;
 
-    // If we are The Soul, the Forgotten body will also need to be teleported
+    // If we are The Soul, the Forgotten body will also need to be teleported.
     // However, if we change its position manually,
-    // it will just warp back to the same spot on the next frame
-    // Thus, just manually switch to the Forgotten to avoid this bug
-    if (isCharacter(player, PlayerType.PLAYER_THESOUL)) {
+    // it will just warp back to the same spot on the next frame.
+    // Thus, just manually switch to the Forgotten to avoid this bug.
+    if (isCharacter(player, PlayerType.THE_SOUL)) {
       forgottenSwitch();
     }
   }
@@ -72,58 +88,13 @@ function subvertTeleport() {
 
   // Also, account for familiars
   for (const familiar of getFamiliars()) {
-    familiar.Position = normalPosition;
+    familiar.Position = position;
   }
 
   log("Subverted a teleport.");
 }
 
-function getNormalRoomEnterPosition() {
-  // We can't use "level.EnterDoor" because it gives a random result when in the Mom room
-  switch (g.l.LeaveDoor) {
-    // 0 (2x2 left top)
-    case DoorSlot.LEFT0: {
-      return RIGHT_DOOR_POSITION;
-    }
-
-    // 1 (2x2 top left)
-    case DoorSlot.UP0: {
-      return BOTTOM_DOOR_POSITION;
-    }
-
-    // 2 (2x2 right top)
-    case DoorSlot.RIGHT0: {
-      return LEFT_DOOR_POSITION;
-    }
-
-    // 3 (2x2 bottom left)
-    case DoorSlot.DOWN0: {
-      return TOP_DOOR_POSITION;
-    }
-
-    // 4 (2x2 left bottom)
-    case DoorSlot.LEFT1: {
-      return RIGHT_DOOR_POSITION;
-    }
-
-    // 5 (2x2 top right)
-    case DoorSlot.UP1: {
-      return BOTTOM_DOOR_POSITION;
-    }
-
-    // 6 (2x2 right bottom)
-    case DoorSlot.RIGHT1: {
-      return LEFT_DOOR_POSITION;
-    }
-
-    // 7 (2x2 bottom right)
-    case DoorSlot.DOWN1: {
-      return TOP_DOOR_POSITION;
-    }
-
-    default: {
-      // If we teleported into the room, use the default position
-      return BOTTOM_DOOR_POSITION;
-    }
-  }
+function getRoomEnterDoorSlot() {
+  // We can't use "level.EnterDoor" because it gives a random result when in the Mom room.
+  return DOOR_SLOTS_REVERSED[g.l.LeaveDoor];
 }

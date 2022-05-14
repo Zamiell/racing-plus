@@ -1,4 +1,12 @@
 import {
+  BossID,
+  DeathsHeadVariant,
+  EntityCollisionClass,
+  EntityType,
+  NpcState,
+  RoomType,
+} from "isaac-typescript-definitions";
+import {
   getEffectiveStage,
   getNPCs,
   getRoomData,
@@ -19,7 +27,7 @@ import {
 import * as postItLivesOrHushPath from "./postItLivesOrHushPath";
 import v from "./v";
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   checkEarlyClearRoom();
 }
@@ -30,35 +38,35 @@ function checkEarlyClearRoom() {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
 
-  // Do nothing if we already cleared the room
+  // Do nothing if we already cleared the room.
   if (v.room.fastClearedRoom) {
     return;
   }
 
-  // Under certain conditions, the room can be clear of enemies on the first frame
-  // Thus, the earliest possible frame that fast-clear should apply is on frame 1
+  // Under certain conditions, the room can be clear of enemies on the first frame. Thus, the
+  // earliest possible frame that fast-clear should apply is on frame 1.
   if (roomFrameCount < 1) {
     return;
   }
 
-  // Certain types of rooms are exempt from the fast-clear feature
+  // Certain types of rooms are exempt from the fast-clear feature.
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
     return;
   }
 
-  // The Great Gideon is exempt from the fast-clear feature
-  // (since it can cause the boss item to spawn on a pit from a Rock Explosion)
+  // The Great Gideon is exempt from the fast-clear feature (since it can cause the boss item to
+  // spawn on a pit from a Rock Explosion).
   if (inBossRoomOf(BossID.GREAT_GIDEON)) {
     return;
   }
 
-  // The Beast fight is exempt from the fast-clear feature
-  // (since it will prevent the trophy logic from working correctly)
+  // The Beast fight is exempt from the fast-clear feature (since it will prevent the trophy logic
+  // from working correctly).
   if (inBeastRoom()) {
     return;
   }
 
-  // If a frame has passed since an enemy died, reset the delay counter
+  // If a frame has passed since an enemy died, reset the delay counter.
   if (
     v.room.delayClearUntilGameFrame !== null &&
     gameFrameCount >= v.room.delayClearUntilGameFrame
@@ -66,7 +74,7 @@ function checkEarlyClearRoom() {
     v.room.delayClearUntilGameFrame = null;
   }
 
-  // Check on every frame to see if we need to open the doors
+  // Check on every frame to see if we need to open the doors.
   if (
     v.room.aliveEnemies.size === 0 &&
     v.room.delayClearUntilGameFrame === null &&
@@ -93,8 +101,8 @@ function earlyClearRoom() {
     `Fast-clearing room ${roomID} (${roomName}) on game frame: ${gameFrameCount}`,
   );
 
-  // The "TriggerClear()" method must be before other logic because extra doors can be spawned by
-  // clearing the room
+  // The `Room.TriggerClear` method must be before other logic because extra doors can be spawned by
+  // clearing the room.
   g.r.TriggerClear();
   g.r.SetClear(true);
 
@@ -102,14 +110,13 @@ function earlyClearRoom() {
   killExtraEntities();
   postItLivesOrHushPath.fastClear();
 
-  // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby
-  // Thus, spawn the path manually if we are on a custom challenge
-  // We only spawn them the Downpour/Dross doors to avoid this bug:
-  // https://clips.twitch.tv/WittyUnsightlyStarStrawBeary-LsPINfzBGVT593oZ
-  // (seed G8KS NX4C)
+  // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby.
+  // Thus, spawn the path manually if we are on a custom challenge. We only spawn them the
+  // Downpour/Dross doors to avoid the bug where picking up Goat Head in a boss room and then
+  // re-entering the room causes the Devil Room to become blocked.
   if (
     inSpeedrun() &&
-    roomType === RoomType.ROOM_BOSS &&
+    roomType === RoomType.BOSS &&
     (effectiveStage === 1 || effectiveStage === 2)
   ) {
     g.r.TrySpawnSecretExit(true, true);
@@ -124,38 +131,38 @@ function killExtraEntities() {
 
 function killDeathsHeads() {
   const deathsHeads = getNPCs(
-    EntityType.ENTITY_DEATHS_HEAD,
+    EntityType.DEATHS_HEAD,
     undefined,
     undefined,
     true,
   );
   for (const deathsHead of deathsHeads) {
     // Death's Dank Head is a "normal" enemy in that it does not rely on other enemies in the room
-    // to be alive
-    // (it is the only variant that has this behavior)
+    // to be alive. (It is the only variant that has this behavior.)
     if (deathsHead.Variant === DeathsHeadVariant.DANK_DEATHS_HEAD) {
       continue;
     }
 
-    // Activate the death state
-    deathsHead.State = NpcState.STATE_DEATH;
-    // (we can't do "deathsHead.Kill()" because then it immediately vanishes)
-    deathsHead.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
-    // (players should be able to run through them as they are dying;
-    // this matches the vanilla behavior)
+    // Activate the death state.
+    // (We can't use the `Entity.Kill` method because it would immediately vanish.)
+    deathsHead.State = NpcState.DEATH;
+
+    // Players should be able to run through them as they are dying; this matches the vanilla
+    // behavior.
+    deathsHead.EntityCollisionClass = EntityCollisionClass.NONE;
   }
 }
 
 function killFleshDeathsHeads() {
   const fleshDeathsHeads = getNPCs(
-    EntityType.ENTITY_FLESH_DEATHS_HEAD,
+    EntityType.FLESH_DEATHS_HEAD,
     undefined,
     undefined,
     true,
   );
   for (const fleshDeathsHead of fleshDeathsHeads) {
-    // Activating the death state won't make the tears explode out of it,
-    // so just kill it and spawn another one, which will immediately die
+    // Activating the death state won't make the tears explode out of it, so just kill it and spawn
+    // another one, which will immediately die.
     fleshDeathsHead.Visible = false;
     fleshDeathsHead.Kill();
     const newHead = spawnNPC(
@@ -167,13 +174,13 @@ function killFleshDeathsHeads() {
       fleshDeathsHead.Parent,
       fleshDeathsHead.InitSeed,
     );
-    newHead.State = NpcState.STATE_DEATH;
+    newHead.State = NpcState.DEATH;
   }
 }
 
 function killCreep() {
   const creepEntities = Isaac.FindByType(
-    EntityType.ENTITY_EFFECT,
+    EntityType.EFFECT,
     -1,
     -1,
     false,

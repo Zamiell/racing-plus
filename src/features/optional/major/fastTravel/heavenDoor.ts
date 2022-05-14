@@ -1,3 +1,9 @@
+import {
+  BossID,
+  EffectVariant,
+  HeavenLightDoorSubType,
+  RoomType,
+} from "isaac-typescript-definitions";
 import { getEffects, inBossRoomOf } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -11,7 +17,7 @@ import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 
-// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
+// ModCallback.POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
   // In some situations, heaven doors should be removed entirely
   if (shouldRemove(effect)) {
@@ -19,13 +25,13 @@ export function postEffectUpdate(effect: EntityEffect): void {
     return;
   }
 
-  // Beams of light start at state 0 and get incremented by 1 on every frame
-  // Players can only get taken up by heaven doors if the state is at a high enough value
-  // Thus, we can disable the vanilla functionality by setting the state to 0 on every frame
+  // Beams of light start at state 0 and get incremented by 1 on every frame.
+  // Players can only get taken up by heaven doors if the state is at a high enough value.
+  // Thus, we can disable the vanilla functionality by setting the state to 0 on every frame.
   effect.State = 0;
 
   // We can't initialize the entity in the PostEffectInit callback because that fires before the
-  // PostNewRoom callback
+  // PostNewRoom callback.
   fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
@@ -37,8 +43,8 @@ function shouldRemove(effect: EntityEffect) {
 
   const stage = g.l.GetStage();
 
-  // If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
-  // If the goal of the race is Hush, delete the heaven door that spawns after Hush
+  // - If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
+  // - If the goal of the race is Hush, delete the heaven door that spawns after Hush.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -56,14 +62,14 @@ function shouldSpawnOpen() {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
 
-  // In almost all cases, beams of light are spawned after defeating a boss
-  // This means that the room will be clear and they should spawn in an open state
-  // Rarely, players can also encounter beams of light in an I AM ERROR room with enemies
+  // In almost all cases, beams of light are spawned after defeating a boss.
+  // This means that the room will be clear and they should spawn in an open state.
+  // Rarely, players can also encounter beams of light in an I AM ERROR room with enemies.
   // If this is the case, spawn the heaven door in a closed state so that the player must defeat
-  // all of the enemies in the room before going up
+  // all of the enemies in the room before going up.
   // However, the room will not be clear yet if this is a manually spawned heaven door after killing
-  // It Lives! or Hush, so account for that first
-  if ((stage === 8 || stage === 9) && roomType === RoomType.ROOM_BOSS) {
+  // It Lives! or Hush, so account for that first.
+  if ((stage === 8 || stage === 9) && roomType === RoomType.BOSS) {
     return true;
   }
 

@@ -1,3 +1,8 @@
+import {
+  CollectibleType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
 import {
@@ -5,7 +10,7 @@ import {
   giveTrinketAndRemoveFromPools,
 } from "../../utilsGlobals";
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const challenge = Isaac.GetChallenge();
 
@@ -23,36 +28,30 @@ function giveStartingItems() {
   // Give extra items to some characters
   switch (character) {
     // 0
-    case PlayerType.PLAYER_ISAAC: {
+    case PlayerType.ISAAC: {
       // Isaac does not get the D6 in challenges
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.COLLECTIBLE_D6);
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.D6);
       break;
     }
 
-    case PlayerType.PLAYER_THELOST: {
+    case PlayerType.THE_LOST: {
       // For some reason, Holy Mantle is not removed from pools while in a custom challenge
-      g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE);
+      g.itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);
       break;
     }
 
     // 14
-    case PlayerType.PLAYER_KEEPER: {
+    case PlayerType.KEEPER: {
       // Keeper does not get the Wooden Nickel in challenges
-      giveCollectibleAndRemoveFromPools(
-        player,
-        CollectibleType.COLLECTIBLE_WOODEN_NICKEL,
-      );
-      giveTrinketAndRemoveFromPools(player, TrinketType.TRINKET_STORE_KEY);
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
+      giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
       break;
     }
 
     // 18, 36
-    case PlayerType.PLAYER_BETHANY:
-    case PlayerType.PLAYER_BETHANY_B: {
-      giveCollectibleAndRemoveFromPools(
-        player,
-        CollectibleType.COLLECTIBLE_DUALITY,
-      );
+    case PlayerType.BETHANY:
+    case PlayerType.BETHANY_B: {
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
       break;
     }
 

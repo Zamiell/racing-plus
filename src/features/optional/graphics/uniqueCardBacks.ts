@@ -1,5 +1,8 @@
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_TAROTCARD (300)
+// ModCallback.POST_PICKUP_INIT (34)
+
+import { Card } from "isaac-typescript-definitions";
+
+// PickupVariant.TAROT_CARD (300)
 export function postPickupInitTarotCard(pickup: EntityPickup): void {
   if (
     pickup.SubType === Card.RUNE_BLANK || // 40
@@ -32,7 +35,7 @@ export function postPickupInitTarotCard(pickup: EntityPickup): void {
     // but this is okay since the King of Hearts is a playing card
     // Get Out of Jail Free Card (47) has a unique card back in vanilla
     // ? Card (48) has a red card back in vanilla
-    pickup.SubType === Card.CARD_QUESTIONMARK // 48
+    pickup.SubType === Card.QUESTION_MARK // 48
     // Dice Shard (49) has a unique graphic in vanilla
     // Emergency Contact (50) has a unique card back in vanilla
     // Holy Card (51) has a unique card back in vanilla

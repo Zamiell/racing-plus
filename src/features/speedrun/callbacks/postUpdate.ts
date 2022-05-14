@@ -19,10 +19,9 @@ function checkStartTimer() {
 
   const renderFrameCount = Isaac.GetFrameCount();
 
-  // We want to start the timer on the first game frame
-  // (as opposed to when the screen is fading in)
-  // Thus, we must check for this on every frame
-  // This is to keep the timing consistent with historical timing of speedruns
+  // We want to start the timer on the first game frame, as opposed to when the screen is fading in.
+  // Thus, we must check for this on every frame. This is to keep the timing consistent with
+  // historical timing of speedruns.
   v.persistent.startedSpeedrunFrame = renderFrameCount;
   v.persistent.startedCharacterFrame = renderFrameCount;
 }

@@ -1,3 +1,4 @@
+import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   ensureAllCases,
@@ -36,54 +37,47 @@ export function init(): void {
   saveDataManager("replacePhotos", v);
 }
 
-// ModCallbacks.MC_PRE_ENTITY_SPAWN (24)
-// EntityType.ENTITY_PICKUP (5)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.PRE_ENTITY_SPAWN (24)
+// EntityType.PICKUP (5)
+// PickupVariant.COLLECTIBLE (100)
 export function preEntitySpawnCollectible(
   subType: int,
-): [EntityType, int, int, int] | void {
+): [EntityType | int, int, int, int] | void {
   return preventVanillaPhotos(subType);
 }
 
 // We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those
-// manually to speed up the Mom fight
+// manually to speed up the Mom fight.
 function preventVanillaPhotos(
   subType: int,
 ): [EntityType | int, int, int, int] | void {
   if (
     v.room.vanillaPhotosLeftToSpawn > 0 &&
-    (subType === CollectibleType.COLLECTIBLE_POLAROID ||
-      subType === CollectibleType.COLLECTIBLE_NEGATIVE)
+    (subType === CollectibleType.POLAROID ||
+      subType === CollectibleType.NEGATIVE)
   ) {
     v.room.vanillaPhotosLeftToSpawn -= 1;
 
     const photoName =
-      subType === CollectibleType.COLLECTIBLE_POLAROID
-        ? "Polaroid"
-        : "Negative";
+      subType === CollectibleType.POLAROID ? "Polaroid" : "Negative";
     const gameFrameCount = g.g.GetFrameCount();
     const text = `Preventing a vanilla ${photoName} from spawning on game frame: ${gameFrameCount}`;
     log(text);
 
-    return [
-      EntityType.ENTITY_PICKUP,
-      PickupVariantCustom.INVISIBLE_PICKUP,
-      0,
-      0,
-    ];
+    return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
   }
 
   return undefined;
 }
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
-// EntityType.ENTITY_MOM (45)
+// ModCallback.POST_ENTITY_KILL (68)
+// EntityType.MOM (45)
 export function postEntityKillMom(_entity: Entity): void {
   if (!v.room.manuallySpawnedPhotos) {
     v.room.manuallySpawnedPhotos = true;
     manuallySpawn();
 
-    // Mark to delete two vanilla photos when they spawn a few frames from now
+    // Mark to delete two vanilla photos when they spawn a few frames from now.
     v.room.vanillaPhotosLeftToSpawn = 2;
   }
 }
@@ -93,9 +87,9 @@ function manuallySpawn() {
   doPhotoSituation(situation);
 }
 
-// Figure out if we need to spawn The Polaroid, The Negative, or both
+// Figure out if we need to spawn The Polaroid, The Negative, or both.
 function getPhotoSituation() {
-  // By default, custom speedrun challenges award both photos
+  // By default, custom speedrun challenges award both photos.
   if (inSpeedrun()) {
     return PhotoSituation.BOTH;
   }
@@ -103,22 +97,22 @@ function getPhotoSituation() {
   const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();
 
   if (hasPolaroid && hasNegative) {
-    // The player has both photos already (which can only occur in a diversity race)
-    // Spawn a random boss item instead of a photo
+    // The player has both photos already (which can only occur in a diversity race).
+    // Spawn a random boss item instead of a photo.
     return PhotoSituation.RANDOM_BOSS_ITEM;
   }
 
   if (hasPolaroid) {
     // The player has The Polaroid already
-    // (which can occur if the player is Eden or is in a diversity race)
-    // Spawn The Negative instead
+    // (which can occur if the player is Eden or is in a diversity race).
+    // Spawn The Negative instead.
     return PhotoSituation.NEGATIVE;
   }
 
   if (hasNegative) {
     // The player has The Negative already
-    // (which can occur if the player is Eden or is in a diversity race)
-    // Spawn The Polaroid instead
+    // (which can occur if the player is Eden or is in a diversity race).
+    // Spawn The Polaroid instead.
     return PhotoSituation.POLAROID;
   }
 
@@ -129,7 +123,7 @@ function getPhotoSituation() {
     return getPhotoSituationRace(g.race.goal);
   }
 
-  // This is a normal run, so spawn both photos by default
+  // This is a normal run, so spawn both photos by default.
   return PhotoSituation.BOTH;
 }
 
@@ -150,7 +144,7 @@ function getPhotoSituationRace(goal: RaceGoal) {
     case RaceGoal.MOTHER:
     case RaceGoal.THE_BEAST:
     case RaceGoal.CUSTOM: {
-      // Give the player a choice between the photos for races to alternate objectives
+      // Give the player a choice between the photos for races to alternate objectives.
       return PhotoSituation.BOTH;
     }
 
@@ -166,35 +160,27 @@ function doPhotoSituation(situation: PhotoSituation) {
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
-      spawnCollectible(
-        CollectibleType.COLLECTIBLE_POLAROID,
-        PEDESTAL_POSITION_CENTER,
-        rng,
-      );
+      spawnCollectible(CollectibleType.POLAROID, PEDESTAL_POSITION_CENTER, rng);
 
       return;
     }
 
     case PhotoSituation.NEGATIVE: {
-      spawnCollectible(
-        CollectibleType.COLLECTIBLE_NEGATIVE,
-        PEDESTAL_POSITION_CENTER,
-        rng,
-      );
+      spawnCollectible(CollectibleType.NEGATIVE, PEDESTAL_POSITION_CENTER, rng);
 
       return;
     }
 
     case PhotoSituation.BOTH: {
       spawnCollectible(
-        CollectibleType.COLLECTIBLE_POLAROID,
+        CollectibleType.POLAROID,
         PEDESTAL_POSITION_LEFT,
         rng,
         true,
       );
 
       spawnCollectible(
-        CollectibleType.COLLECTIBLE_NEGATIVE,
+        CollectibleType.NEGATIVE,
         PEDESTAL_POSITION_RIGHT,
         rng,
         true,
@@ -205,28 +191,24 @@ function doPhotoSituation(situation: PhotoSituation) {
 
     case PhotoSituation.RANDOM_BOSS_ITEM: {
       // If we spawn a boss item using an InitSeed of 0, the item will always be the same,
-      // so use the room seed instead
-      if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_THERES_OPTIONS)) {
-        // If the player has There's Options, they should get two boss items instead of 1
+      // so use the room seed instead.
+      if (anyPlayerHasCollectible(CollectibleType.THERES_OPTIONS)) {
+        // If the player has There's Options, they should get two boss items instead of 1.
         spawnCollectible(
-          CollectibleType.COLLECTIBLE_NULL,
+          CollectibleType.NULL,
           PEDESTAL_POSITION_LEFT,
           rng,
           true,
         );
 
         spawnCollectible(
-          CollectibleType.COLLECTIBLE_NULL,
+          CollectibleType.NULL,
           PEDESTAL_POSITION_RIGHT,
           rng,
           true,
         );
       } else {
-        spawnCollectible(
-          CollectibleType.COLLECTIBLE_NULL,
-          PEDESTAL_POSITION_CENTER,
-          rng,
-        );
+        spawnCollectible(CollectibleType.NULL, PEDESTAL_POSITION_CENTER, rng);
       }
 
       return;

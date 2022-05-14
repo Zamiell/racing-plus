@@ -16,7 +16,7 @@ const MAX_PLACE = 32; // There are only big sprites created for places up to 32
 
 let sprite: Sprite | null = null;
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (
     g.race.myStatus === RacerStatus.QUIT ||
@@ -74,7 +74,7 @@ function shouldHideGoSprite() {
   return false;
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   statusChanged();
 }
@@ -98,7 +98,7 @@ export function countdownChanged(): void {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   // Remove the "1st place!" graphic from the top if we have entered a new room
   if (g.race.status === RaceStatus.NONE || g.raceVars.finished) {

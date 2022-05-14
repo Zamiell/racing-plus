@@ -1,3 +1,4 @@
+import { CollectibleType, DisplayFlag } from "isaac-typescript-definitions";
 import { PlayerHealth, saveDataManager } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { config } from "../../../../modConfigMenu";
@@ -8,7 +9,7 @@ const v = {
   level: {
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
-    displayFlagsMap: new Map<int, int>(),
+    displayFlagsMap: new Map<int, BitFlags<DisplayFlag>>(),
     cardReadingPortalDescriptions: [] as Array<[int, Vector]>,
     health: null as PlayerHealth | null,
 

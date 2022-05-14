@@ -1,48 +1,39 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   DefaultMap,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
-  repeat,
 } from "isaacscript-common";
 import { TimerType } from "./enums/TimerType";
 import g from "./globals";
 import { initSprite } from "./sprite";
 
-interface Sprites {
-  clock: Sprite;
-  colons: Sprite[]; // colon between minutes & seconds, colon between hours & minutes
-  digits: Sprite[]; // minute1, minute2, second1, second2, hour
-  digitMini: Sprite;
+class TimerSprites {
+  clock = initSprite("gfx/timer/clock.anm2");
+
+  colons = {
+    afterMinutes: initSprite("gfx/timer/colon.anm2"),
+    afterHours: initSprite("gfx/timer/colon.anm2"),
+  };
+
+  digits = {
+    minute1: initSprite("gfx/timer/timer.anm2"),
+    minute2: initSprite("gfx/timer/timer.anm2"),
+    second1: initSprite("gfx/timer/timer.anm2"),
+    second2: initSprite("gfx/timer/timer.anm2"),
+    hour: initSprite("gfx/timer/timer.anm2"),
+  };
+
+  digitMini = initSprite("gfx/timer/timer_mini.anm2");
 }
 
 const DIGIT_LENGTH = 7.25;
 const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
-const spriteCollectionMap = new DefaultMap<int, Sprites>(() =>
-  newTimerSprites(),
+const spriteCollectionMap = new DefaultMap<int, TimerSprites>(
+  () => new TimerSprites(),
 );
-
-function newTimerSprites() {
-  const sprites: Sprites = {
-    clock: initSprite("gfx/timer/clock.anm2"),
-    colons: [],
-    digits: [],
-    digitMini: initSprite("gfx/timer/timer_mini.anm2"),
-  };
-
-  repeat(2, () => {
-    const colonSprite = initSprite("gfx/timer/colon.anm2");
-    sprites.colons.push(colonSprite);
-  });
-
-  repeat(5, () => {
-    const digitSprite = initSprite("gfx/timer/timer.anm2");
-    sprites.digits.push(digitSprite);
-  });
-
-  return sprites;
-}
 
 export function draw(
   timerType: TimerType,
@@ -57,7 +48,7 @@ export function draw(
   }
 
   // We want the timers to be drawn when the game is paused so that players can continue to see the
-  // seeded death countdown if they tab out of the game
+  // seeded death countdown if they tab out of the game.
 
   if (seconds < 0) {
     return;
@@ -81,7 +72,7 @@ export function draw(
     startingY += 25;
   }
 
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_DUALITY)) {
+  if (player.HasCollectible(CollectibleType.DUALITY)) {
     startingY -= 10;
   }
 
@@ -105,41 +96,34 @@ export function draw(
       startingX - DIGIT_LENGTH - hourAdjustment,
       startingY,
     );
-    const hoursDigitSprite = sprites.digits[4];
-    hoursDigitSprite.SetFrame("Default", hours);
-    hoursDigitSprite.RenderLayer(0, positionHours);
+    sprites.digits.hour.SetFrame("Default", hours);
+    sprites.digits.hour.RenderLayer(0, positionHours);
 
     const positionColon = Vector(startingX - DIGIT_LENGTH + 7, startingY + 19);
-    const colonHoursSprite = sprites.colons[1];
-    colonHoursSprite.RenderLayer(0, positionColon);
+    sprites.colons.afterHours.RenderLayer(0, positionColon);
   }
 
   const positionMinute1 = Vector(startingX, startingY);
-  const minute1Sprite = sprites.digits[0];
-  minute1Sprite.SetFrame("Default", minute1);
-  minute1Sprite.RenderLayer(0, positionMinute1);
+  sprites.digits.minute1.SetFrame("Default", minute1);
+  sprites.digits.minute1.RenderLayer(0, positionMinute1);
 
   const positionMinute2 = Vector(startingX + DIGIT_LENGTH, startingY);
-  const minute2Sprite = sprites.digits[1];
-  minute2Sprite.SetFrame("Default", minute2);
-  minute2Sprite.RenderLayer(0, positionMinute2);
+  sprites.digits.minute2.SetFrame("Default", minute2);
+  sprites.digits.minute2.RenderLayer(0, positionMinute2);
 
   const positionColon1 = Vector(startingX + DIGIT_LENGTH + 10, startingY + 19);
-  const colonMinutesSprite = sprites.colons[0];
-  colonMinutesSprite.RenderLayer(0, positionColon1);
+  sprites.colons.afterMinutes.RenderLayer(0, positionColon1);
 
   const positionSecond1 = Vector(startingX + DIGIT_LENGTH + 11, startingY);
-  const second1Sprite = sprites.digits[2];
-  second1Sprite.SetFrame("Default", second1);
-  second1Sprite.RenderLayer(0, positionSecond1);
+  sprites.digits.second1.SetFrame("Default", second1);
+  sprites.digits.second1.RenderLayer(0, positionSecond1);
 
   const positionSecond2 = Vector(
     startingX + DIGIT_LENGTH + 11 + DIGIT_LENGTH + 1 - hourAdjustment2,
     startingY,
   );
-  const second2Sprite = sprites.digits[3];
-  second2Sprite.SetFrame("Default", second2);
-  second2Sprite.RenderLayer(0, positionSecond2);
+  sprites.digits.second2.SetFrame("Default", second2);
+  sprites.digits.second2.RenderLayer(0, positionSecond2);
 
   const positionTenths = Vector(
     startingX +

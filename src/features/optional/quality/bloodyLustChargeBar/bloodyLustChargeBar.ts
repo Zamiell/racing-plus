@@ -12,8 +12,8 @@ import v, { MAX_BLOODY_LUST_CHARGES } from "./v";
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_bloody_lust.anm2", true);
 
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
-// EntityType.ENTITY_PLAYER (1)
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.PLAYER (1)
 export function entityTakeDmgPlayer(player: EntityPlayer): void {
   if (!config.bloodyLustChargeBar) {
     return;
@@ -24,7 +24,7 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
   mapSetPlayer(v.level.playersNumHits, player, newNumHits);
 }
 
-// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+// ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.bloodyLustChargeBar) {
     return;

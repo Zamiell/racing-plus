@@ -1,4 +1,9 @@
 import {
+  BeastVariant,
+  EntityType,
+  PickupVariant,
+} from "isaac-typescript-definitions";
+import {
   saveDataManager,
   spawn,
   spawnPickup,
@@ -17,7 +22,7 @@ export function init(): void {
   saveDataManager("beastPreventEnd", v);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
@@ -26,17 +31,16 @@ export function postNewRoom(): void {
     return;
   }
 
-  // If we do nothing, The Beast fight will begin again
-  // If we remove all of the Beast entities, it will trigger the credits
-  // Instead, we spawn another Beast to prevent the fight from beginning
-  spawn(EntityType.ENTITY_BEAST, BeastVariant.BEAST, 0, VectorZero);
+  // If we do nothing, The Beast fight will begin again. If we remove all of the Beast entities, it
+  // will trigger the credits. Instead, we spawn another Beast to prevent the fight from beginning.
+  spawn(EntityType.BEAST, BeastVariant.BEAST, 0, VectorZero);
 
-  // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
-  spawnPickup(PickupVariant.PICKUP_BIGCHEST, 0, centerPos);
+  // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
+  spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
 }
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
-// EntityType.ENTITY_BEAST (951)
+// ModCallback.POST_ENTITY_KILL (68)
+// EntityType.BEAST (951)
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;
 
@@ -46,6 +50,6 @@ export function postEntityKillTheBeast(entity: Entity): void {
 
   v.run.beastDefeated = true;
 
-  // Reload the Beast room again
+  // Reload the Beast room again.
   consoleCommand("goto x.itemdungeon.666");
 }

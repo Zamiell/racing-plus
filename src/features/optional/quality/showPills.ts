@@ -1,11 +1,18 @@
 import {
+  ButtonAction,
+  CollectibleType,
+  PillColor,
+  PillEffect,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasCollectible,
+  erange,
   getDefaultKColor,
+  getNormalPillColorFromHorse,
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
-  PILL_GIANT_FLAG,
-  range,
+  MAX_NORMAL_PILL_COLOR,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -16,71 +23,59 @@ import { PillDescription } from "../../../types/PillDescription";
 const NUM_PILLS_IN_POOL = 13;
 
 const PHD_PILL_CONVERSIONS: ReadonlyMap<PillEffect, PillEffect> = new Map([
-  [PillEffect.PILLEFFECT_BAD_TRIP, PillEffect.PILLEFFECT_BALLS_OF_STEEL], // 1
-  [PillEffect.PILLEFFECT_HEALTH_DOWN, PillEffect.PILLEFFECT_HEALTH_UP], // 6
-  [PillEffect.PILLEFFECT_RANGE_DOWN, PillEffect.PILLEFFECT_RANGE_UP], // 11
-  [PillEffect.PILLEFFECT_SPEED_DOWN, PillEffect.PILLEFFECT_SPEED_UP], // 13
-  [PillEffect.PILLEFFECT_TEARS_DOWN, PillEffect.PILLEFFECT_TEARS_UP], // 15
-  [PillEffect.PILLEFFECT_LUCK_DOWN, PillEffect.PILLEFFECT_LUCK_UP], // 17
-  [PillEffect.PILLEFFECT_PARALYSIS, PillEffect.PILLEFFECT_PHEROMONES], // 22
-  [PillEffect.PILLEFFECT_AMNESIA, PillEffect.PILLEFFECT_SEE_FOREVER], // 25
-  [PillEffect.PILLEFFECT_WIZARD, PillEffect.PILLEFFECT_POWER], // 27
-  [PillEffect.PILLEFFECT_ADDICTED, PillEffect.PILLEFFECT_PERCS], // 29
-  [PillEffect.PILLEFFECT_QUESTIONMARK, PillEffect.PILLEFFECT_TELEPILLS], // 31
-  [PillEffect.PILLEFFECT_RETRO_VISION, PillEffect.PILLEFFECT_SEE_FOREVER], // 37
-  [PillEffect.PILLEFFECT_X_LAX, PillEffect.PILLEFFECT_SOMETHINGS_WRONG], // 39
-  [PillEffect.PILLEFFECT_IM_EXCITED, PillEffect.PILLEFFECT_IM_DROWSY], // 42
-  [PillEffect.PILLEFFECT_HORF, PillEffect.PILLEFFECT_GULP], // 44
-  [PillEffect.PILLEFFECT_SHOT_SPEED_DOWN, PillEffect.PILLEFFECT_SHOT_SPEED_UP], // 47
+  [PillEffect.BAD_TRIP, PillEffect.BALLS_OF_STEEL], // 1
+  [PillEffect.HEALTH_DOWN, PillEffect.HEALTH_UP], // 6
+  [PillEffect.RANGE_DOWN, PillEffect.RANGE_UP], // 11
+  [PillEffect.SPEED_DOWN, PillEffect.SPEED_UP], // 13
+  [PillEffect.TEARS_DOWN, PillEffect.TEARS_UP], // 15
+  [PillEffect.LUCK_DOWN, PillEffect.LUCK_UP], // 17
+  [PillEffect.PARALYSIS, PillEffect.PHEROMONES], // 22
+  [PillEffect.AMNESIA, PillEffect.I_CAN_SEE_FOREVER], // 25
+  [PillEffect.R_U_A_WIZARD, PillEffect.POWER], // 27
+  [PillEffect.ADDICTED, PillEffect.PERCS], // 29
+  [PillEffect.QUESTION_MARKS, PillEffect.TELEPILLS], // 31
+  [PillEffect.RETRO_VISION, PillEffect.I_CAN_SEE_FOREVER], // 37
+  [PillEffect.X_LAX, PillEffect.SOMETHINGS_WRONG], // 39
+  [PillEffect.IM_EXCITED, PillEffect.IM_DROWSY], // 42
+  [PillEffect.HORF, PillEffect.GULP], // 44
+  [PillEffect.SHOT_SPEED_DOWN, PillEffect.SHOT_SPEED_UP], // 47
 ]);
 
 const FALSE_PHD_PILL_CONVERSIONS: ReadonlyMap<PillEffect, PillEffect> = new Map(
   [
-    [PillEffect.PILLEFFECT_BAD_GAS, PillEffect.PILLEFFECT_HEALTH_DOWN], // 0
-    [PillEffect.PILLEFFECT_BALLS_OF_STEEL, PillEffect.PILLEFFECT_BAD_TRIP], // 2
-    [PillEffect.PILLEFFECT_BOMBS_ARE_KEYS, PillEffect.PILLEFFECT_TEARS_DOWN], // 3
-    [
-      PillEffect.PILLEFFECT_EXPLOSIVE_DIARRHEA,
-      PillEffect.PILLEFFECT_RANGE_DOWN,
-    ], // 4
-    [PillEffect.PILLEFFECT_FULL_HEALTH, PillEffect.PILLEFFECT_BAD_TRIP], // 5
-    [PillEffect.PILLEFFECT_HEALTH_UP, PillEffect.PILLEFFECT_HEALTH_DOWN], // 7
-    [PillEffect.PILLEFFECT_PRETTY_FLY, PillEffect.PILLEFFECT_LUCK_DOWN], // 10
-    [PillEffect.PILLEFFECT_RANGE_UP, PillEffect.PILLEFFECT_RANGE_DOWN], // 12
-    [PillEffect.PILLEFFECT_SPEED_UP, PillEffect.PILLEFFECT_SPEED_DOWN], // 14
-    [PillEffect.PILLEFFECT_TEARS_UP, PillEffect.PILLEFFECT_TEARS_DOWN], // 16
-    [PillEffect.PILLEFFECT_LUCK_UP, PillEffect.PILLEFFECT_LUCK_DOWN], // 18
+    [PillEffect.BAD_GAS, PillEffect.HEALTH_DOWN], // 0
+    [PillEffect.BALLS_OF_STEEL, PillEffect.BAD_TRIP], // 2
+    [PillEffect.BOMBS_ARE_KEYS, PillEffect.TEARS_DOWN], // 3
+    [PillEffect.EXPLOSIVE_DIARRHEA, PillEffect.RANGE_DOWN], // 4
+    [PillEffect.FULL_HEALTH, PillEffect.BAD_TRIP], // 5
+    [PillEffect.HEALTH_UP, PillEffect.HEALTH_DOWN], // 7
+    [PillEffect.PRETTY_FLY, PillEffect.LUCK_DOWN], // 10
+    [PillEffect.RANGE_UP, PillEffect.RANGE_DOWN], // 12
+    [PillEffect.SPEED_UP, PillEffect.SPEED_DOWN], // 14
+    [PillEffect.TEARS_UP, PillEffect.TEARS_DOWN], // 16
+    [PillEffect.LUCK_UP, PillEffect.LUCK_DOWN], // 18
     // In vanilla, this converts to ???, but in Racing+ we manually convert it to I'm Excited!!!
-    [PillEffect.PILLEFFECT_TELEPILLS, PillEffect.PILLEFFECT_IM_EXCITED], // 19
-    [PillEffect.PILLEFFECT_48HOUR_ENERGY, PillEffect.PILLEFFECT_SPEED_DOWN], // 20
-    [PillEffect.PILLEFFECT_HEMATEMESIS, PillEffect.PILLEFFECT_BAD_TRIP], // 21
+    [PillEffect.TELEPILLS, PillEffect.IM_EXCITED], // 19
+    [PillEffect.FORTY_EIGHT_HOUR_ENERGY, PillEffect.SPEED_DOWN], // 20
+    [PillEffect.HEMATEMESIS, PillEffect.BAD_TRIP], // 21
     // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Retro Vision
-    [PillEffect.PILLEFFECT_SEE_FOREVER, PillEffect.PILLEFFECT_RETRO_VISION], // 23
-    [PillEffect.PILLEFFECT_PHEROMONES, PillEffect.PILLEFFECT_PARALYSIS], // 24
+    [PillEffect.I_CAN_SEE_FOREVER, PillEffect.RETRO_VISION], // 23
+    [PillEffect.PHEROMONES, PillEffect.PARALYSIS], // 24
     // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Horf!
-    [PillEffect.PILLEFFECT_LEMON_PARTY, PillEffect.PILLEFFECT_HORF], // 26
-    [PillEffect.PILLEFFECT_PERCS, PillEffect.PILLEFFECT_ADDICTED], // 28
-    [PillEffect.PILLEFFECT_LARGER, PillEffect.PILLEFFECT_RANGE_DOWN], // 32
-    [PillEffect.PILLEFFECT_SMALLER, PillEffect.PILLEFFECT_SPEED_DOWN], // 33
-    [
-      PillEffect.PILLEFFECT_INFESTED_EXCLAMATION,
-      PillEffect.PILLEFFECT_TEARS_DOWN,
-    ], // 34
-    [PillEffect.PILLEFFECT_INFESTED_QUESTION, PillEffect.PILLEFFECT_LUCK_DOWN], // 35
-    [PillEffect.PILLEFFECT_POWER, PillEffect.PILLEFFECT_WIZARD], // 36
-    [
-      PillEffect.PILLEFFECT_FRIENDS_TILL_THE_END,
-      PillEffect.PILLEFFECT_HEALTH_DOWN,
-    ], // 38
-    [PillEffect.PILLEFFECT_SOMETHINGS_WRONG, PillEffect.PILLEFFECT_X_LAX], // 40
-    [PillEffect.PILLEFFECT_IM_DROWSY, PillEffect.PILLEFFECT_IM_EXCITED], // 41
-    [PillEffect.PILLEFFECT_GULP, PillEffect.PILLEFFECT_HORF], // 43
-    [PillEffect.PILLEFFECT_SUNSHINE, PillEffect.PILLEFFECT_RETRO_VISION], // 45
-    [PillEffect.PILLEFFECT_VURP, PillEffect.PILLEFFECT_HORF], // 46
-    [
-      PillEffect.PILLEFFECT_SHOT_SPEED_UP,
-      PillEffect.PILLEFFECT_SHOT_SPEED_DOWN,
-    ], // 48
+    [PillEffect.LEMON_PARTY, PillEffect.HORF], // 26
+    [PillEffect.PERCS, PillEffect.ADDICTED], // 28
+    [PillEffect.ONE_MAKES_YOU_LARGER, PillEffect.RANGE_DOWN], // 32
+    [PillEffect.ONE_MAKES_YOU_SMALL, PillEffect.SPEED_DOWN], // 33
+    [PillEffect.INFESTED_EXCLAMATION, PillEffect.TEARS_DOWN], // 34
+    [PillEffect.INFESTED_QUESTION, PillEffect.LUCK_DOWN], // 35
+    [PillEffect.POWER, PillEffect.R_U_A_WIZARD], // 36
+    [PillEffect.FRIENDS_TILL_THE_END, PillEffect.HEALTH_DOWN], // 38
+    [PillEffect.SOMETHINGS_WRONG, PillEffect.X_LAX], // 40
+    [PillEffect.IM_DROWSY, PillEffect.IM_EXCITED], // 41
+    [PillEffect.GULP, PillEffect.HORF], // 43
+    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE, PillEffect.RETRO_VISION], // 45
+    [PillEffect.VURP, PillEffect.HORF], // 46
+    [PillEffect.SHOT_SPEED_UP, PillEffect.SHOT_SPEED_DOWN], // 48
   ],
 );
 
@@ -99,7 +94,7 @@ const v = {
 export function init(): void {
   saveDataManager("showPills", v, featureEnabled);
 
-  for (const pillColor of range(1, PillColor.NUM_STANDARD_PILLS - 1)) {
+  for (const pillColor of erange(1, MAX_NORMAL_PILL_COLOR)) {
     const sprite = initSprite(
       "gfx/pills/pill.anm2",
       `gfx/pills/${pillColor}.png`,
@@ -112,7 +107,7 @@ function featureEnabled() {
   return config.showPills;
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.showPills) {
     return;
@@ -129,8 +124,8 @@ function checkPHD() {
   }
 
   if (
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PHD) &&
-    !anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+    !anyPlayerHasCollectible(CollectibleType.PHD) &&
+    !anyPlayerHasCollectible(CollectibleType.VIRGO)
   ) {
     return;
   }
@@ -153,7 +148,7 @@ function checkFalsePHD() {
     return;
   }
 
-  if (!anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) {
+  if (!anyPlayerHasCollectible(CollectibleType.FALSE_PHD)) {
     return;
   }
 
@@ -169,14 +164,14 @@ function checkFalsePHD() {
   }
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.showPills) {
     return;
   }
 
-  // This feature is disabled if the Babies Mod mod is enabled
-  // (the pills text will overlap with the baby descriptions)
+  // This feature is disabled if the Babies Mod mod is enabled.
+  // (The pills text will overlap with the baby descriptions.)
   if (BabiesModGlobals !== undefined) {
     return;
   }
@@ -192,7 +187,7 @@ export function postRender(): void {
   }
 
   // Only show pill identification if someone is pressing the map button
-  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+  if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
     return;
   }
 
@@ -240,7 +235,7 @@ function drawTextAndSprite() {
   });
 }
 
-// ModCallbacks.MC_USE_PILL (10)
+// ModCallback.POST_USE_PILL (10)
 export function usePill(player: EntityPlayer, pillEffect: PillEffect): void {
   checkNewPill(player, pillEffect);
 }
@@ -250,27 +245,26 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
   const pillColor = player.GetPill(0);
 
   // A mod may have manually used a pill with a null color
-  if (pillColor === PillColor.PILL_NULL) {
+  if (pillColor === PillColor.NULL) {
     return;
   }
 
   // Don't bother recording information about gold pills
-  if (pillColor === PillColor.PILL_GOLD) {
+  if (pillColor === PillColor.GOLD) {
     return;
   }
 
   // Account for Horse Pills (i.e. giant pills)
-  const effectivePillColor =
-    pillColor > PILL_GIANT_FLAG ? pillColor - PILL_GIANT_FLAG : pillColor;
+  const normalPillColor = getNormalPillColorFromHorse(pillColor);
 
   // See if we have already used this particular pill color on this run
   for (const pill of v.run.pillsIdentified) {
-    if (pill.color === effectivePillColor) {
+    if (pill.color === normalPillColor) {
       return;
     }
   }
 
-  newPill(effectivePillColor, pillEffect);
+  newPill(normalPillColor, pillEffect);
 }
 
 function newPill(pillColor: PillColor, pillEffect: PillEffect) {

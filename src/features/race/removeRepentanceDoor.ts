@@ -1,3 +1,4 @@
+import { EffectVariant, RoomType } from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
   getEffects,
@@ -15,7 +16,7 @@ export function postNewRoom(): void {
   checkRemoveRepentanceDoor();
 }
 
-// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {
   checkRemoveRepentanceDoor();
 }
@@ -28,7 +29,7 @@ function checkRemoveRepentanceDoor() {
     !roomClear ||
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
-    roomType !== RoomType.ROOM_BOSS
+    roomType !== RoomType.BOSS
   ) {
     return;
   }

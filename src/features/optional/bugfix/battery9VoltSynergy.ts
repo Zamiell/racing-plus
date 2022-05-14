@@ -1,5 +1,10 @@
-// In vanilla, The Battery & 9 Volt do not synergize together
+// In vanilla, The Battery & 9 Volt do not synergize together.
 
+import {
+  ActiveSlot,
+  CollectibleType,
+  UseFlag,
+} from "isaac-typescript-definitions";
 import {
   getCollectibleMaxCharges,
   getPlayerFromIndex,
@@ -26,30 +31,30 @@ function featureEnabled() {
   return config.battery9VoltSynergy;
 }
 
-// ModCallbacks.MC_USE_ITEM (3)
+// ModCallback.POST_USE_ITEM (3)
 export function useItem(
   collectibleType: CollectibleType | int,
   player: EntityPlayer,
-  useFlags: int,
+  useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,
 ): void {
   if (!config.battery9VoltSynergy) {
     return;
   }
 
-  if (!hasFlag(useFlags, UseFlag.USE_OWNED)) {
+  if (!hasFlag(useFlags, UseFlag.OWNED)) {
     return;
   }
 
   if (
-    !player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY) ||
-    !player.HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)
+    !player.HasCollectible(CollectibleType.BATTERY) ||
+    !player.HasCollectible(CollectibleType.NINE_VOLT)
   ) {
     return;
   }
 
-  // This callback is reached before any charge is depleted from using the active item,
-  // so we must grant an extra charge on the next frame
+  // This callback is reached before any charge is depleted from using the active item, so we must
+  // grant an extra charge on the next frame.
   const activeCharge = player.GetActiveCharge(activeSlot);
   const batteryCharge = player.GetBatteryCharge(activeSlot);
   const activeItemMaxCharges = getCollectibleMaxCharges(collectibleType);
@@ -65,7 +70,7 @@ export function useItem(
   }
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.battery9VoltSynergy) {
     return;

@@ -11,7 +11,7 @@ import { config } from "../../../modConfigMenu";
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_tainted_samson.anm2", true);
 
-// ModCallbacks.MC_POST_PLAYER_RENDER (32)
+// ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.taintedSamsonChargeBar) {
     return;

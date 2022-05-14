@@ -1,6 +1,6 @@
 import { validateCustomEnum } from "isaacscript-common";
 
-// EntityType.ENTITY_EFFECT (1000)
+// EntityType.EFFECT (1000)
 export enum EffectVariantCustom {
   INVISIBLE_EFFECT = Isaac.GetEntityVariantByName("Invisible Effect"),
   PITFALL_CUSTOM = Isaac.GetEntityVariantByName("Pitfall (Custom)"),

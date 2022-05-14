@@ -1,3 +1,5 @@
+import { Card, EntityType, PickupVariant } from "isaac-typescript-definitions";
+
 export function initMinimapAPI(): void {
   if (MinimapAPI === undefined) {
     return;
@@ -16,7 +18,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
     return;
   }
 
-  // PillColor.PILL_ORANGE_ORANGE (3)
+  // PillColor.ORANGE_ORANGE (3)
   // Orange / Orange --> Full purple
   MinimapAPI.AddIcon(
     "PillOrangeOrange",
@@ -25,7 +27,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
     0,
   );
 
-  // PillColor.PILL_REDDOTS_RED (5)
+  // PillColor.REDDOTS_RED (5)
   // White-dotted / Red --> Full red
   MinimapAPI.AddIcon(
     "PillReddotsRed",
@@ -34,11 +36,11 @@ function initMinimapAPIPills(customIcons: Sprite) {
     0,
   );
 
-  // PillColor.PILL_PINK_RED (6)
+  // PillColor.PINK_RED (6)
   // Pink / Red --> White / Red
   MinimapAPI.AddIcon("PillPinkRed", customIcons, "CustomIconPillPinkRed", 0);
 
-  // PillColor.PILL_YELLOW_ORANGE (8)
+  // PillColor.YELLOW_ORANGE (8)
   // Getting rid of the ugly white pixel
   MinimapAPI.AddIcon(
     "PillYellowOrange",
@@ -47,7 +49,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
     0,
   );
 
-  // PillColor.PILL_ORANGEDOTS_WHITE (9)
+  // PillColor.ORANGEDOTS_WHITE (9)
   // White / White-dotted / Full white-dotted
   MinimapAPI.AddIcon(
     "PillOrangedotsWhite",
@@ -56,7 +58,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
     0,
   );
 
-  // PillColor.PILL_WHITE_AZURE (10)
+  // PillColor.WHITE_AZURE (10)
   // White / Cyan --> White / Green
   MinimapAPI.AddIcon(
     "PillWhiteAzure",
@@ -77,8 +79,8 @@ function initMinimapAPICards(customIcons: Sprite) {
   MinimapAPI.AddPickup(
     "BlankRune",
     "BlankRune",
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
+    EntityType.PICKUP,
+    PickupVariant.TAROT_CARD,
     Card.RUNE_BLANK,
     MinimapAPI.PickupNotCollected,
     "runes",
@@ -91,23 +93,23 @@ function initMinimapAPICards(customIcons: Sprite) {
   MinimapAPI.AddPickup(
     "BlackRune",
     "BlackRune",
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
+    EntityType.PICKUP,
+    PickupVariant.TAROT_CARD,
     Card.RUNE_BLACK,
     MinimapAPI.PickupNotCollected,
     "runes",
     1200,
   );
 
-  // Card.CARD_QUESTIONMARK (48)
+  // Card.QUESTION_MARK (48)
   // New sprite for ? Card
   MinimapAPI.AddIcon("QuestionMark", customIcons, "CustomIconQuestionMark", 0);
   MinimapAPI.AddPickup(
     "QuestionMark",
     "QuestionMark",
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_TAROTCARD,
-    Card.CARD_QUESTIONMARK,
+    EntityType.PICKUP,
+    PickupVariant.TAROT_CARD,
+    Card.QUESTION_MARK,
     MinimapAPI.PickupNotCollected,
     "cards",
     1200,

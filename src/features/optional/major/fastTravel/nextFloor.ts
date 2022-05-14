@@ -1,4 +1,10 @@
 import {
+  EntityType,
+  GameStateFlag,
+  NullItemID,
+  StageType,
+} from "isaac-typescript-definitions";
+import {
   getPlayers,
   onRepentanceStage,
   removeAllMatchingEntities,
@@ -19,39 +25,39 @@ export function goto(upwards: boolean): void {
   const nextStage = getNextStage();
   const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
 
-  // The effect of Empress? cards are supposed to end after one minute passive
+  // The effect of Empress? cards are supposed to end after one minute passive.
   // However, taking away the health and re-adding it will cause the extra two red heart containers
-  // to not be removed properly once the minute ends
-  // Thus, we cut the effect short now
+  // to not be removed properly once the minute ends.
+  // Thus, we cut the effect short now.
   for (const player of getPlayers()) {
     const effects = player.GetEffects();
-    effects.RemoveNullEffect(NullItemID.ID_REVERSE_EMPRESS);
+    effects.RemoveNullEffect(NullItemID.REVERSE_EMPRESS);
   }
 
   // The effect of Sun? cards are supposed to end upon reaching a new floor, so we can remove the
-  // effect now so that it will not interfere with the recording of the player's current health
+  // effect now so that it will not interfere with the recording of the player's current health.
   for (const player of getPlayers()) {
     const effects = player.GetEffects();
-    effects.RemoveNullEffect(NullItemID.ID_REVERSE_SUN);
+    effects.RemoveNullEffect(NullItemID.REVERSE_SUN);
   }
 
   // If Tainted Jacob loses Anime Sola for any reason,
-  // it can cause multiple Dark Esau's to spawn upon reaching a new floor
+  // it can cause multiple Dark Esau's to spawn upon reaching a new floor.
   // Since Dark Esau is never supposed to persist between floors,
-  // we can safely remove all Dark Esau entities at this point
-  removeAllMatchingEntities(EntityType.ENTITY_DARK_ESAU);
+  // we can safely remove all Dark Esau entities at this point.
+  removeAllMatchingEntities(EntityType.DARK_ESAU);
 
   // If we do a "stage" command to go to the same floor that we are already on,
-  // it will use the same floor layout as the previous floor
+  // it will use the same floor layout as the previous floor.
   // Thus, in these cases, we need to mark to perform a "reseed" command after doing the "stage"
-  // command
+  // command.
   // However, when we travel to the same floor layout from a Repentance exit,
-  // floors do not need to be reseeded for some reason
+  // floors do not need to be reseeded for some reason.
   v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
 
-  // The fast-travel feature prevents the Perfection trinket from spawning
+  // The fast-travel feature prevents the Perfection trinket from spawning.
   // Using the "WithoutDamage" methods of the Game class do not work properly,
-  // so we revert to keeping track of damage manually
+  // so we revert to keeping track of damage manually.
   if (!v.level.tookDamage) {
     v.run.perfection.floorsWithoutDamage += 1;
   }
@@ -59,28 +65,26 @@ export function goto(upwards: boolean): void {
   setFloorVariables(stage, stageType);
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
-  // and inventory modifications
+  // and inventory modifications.
   seededFloors.before();
 
-  // Use the console to manually travel to the floor
+  // Use the console to manually travel to the floor.
   travelStage(nextStage, nextStageType);
 
-  // Revert the health and inventory modifications
+  // Revert the health and inventory modifications.
   seededFloors.after();
 
-  // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp
+  // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp.
   setDreamCatcherArrivedOnNewFloor();
 }
 
 function getNextStage() {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
-  const backwardsPathInit = g.g.GetStateFlag(
-    GameStateFlag.STATE_BACKWARDS_PATH_INIT,
-  );
-  const backwardsPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const backwardsPathInit = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT);
+  const backwardsPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const mausoleumHeartKilled = g.g.GetStateFlag(
-    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+    GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
 
   if (backwardsPath) {
@@ -128,22 +132,22 @@ function getNextStage() {
 
   if (stage === 8) {
     // If we are not in the Blue Womb entrance room, then we need to skip a floor
-    // (since the Blue Womb is floor 9)
+    // (since the Blue Womb is floor 9).
     return 10;
   }
 
   if (stage === 11) {
-    // The Chest goes to The Chest
-    // The Dark Room goes to the Dark Room
+    // - The Chest goes to The Chest.
+    // - The Dark Room goes to the Dark Room.
     return 11;
   }
 
   if (stage === 12) {
-    // The Void goes to The Void
+    // The Void goes to The Void.
     return 12;
   }
 
-  // By default, go to the next floor
+  // By default, go to the next floor.
   return stage + 1;
 }
 
@@ -229,7 +233,7 @@ function getNextStageType(
   }
 
   // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
-  // going back to Dogma is pointless
+  // going back to Dogma is pointless.
   if (nextStage === 13) {
     if (
       g.race.status === RaceStatus.IN_PROGRESS &&
@@ -242,7 +246,7 @@ function getNextStageType(
     return 0;
   }
 
-  if (g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)) {
+  if (g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH)) {
     return getStageTypeBackwardsPath(stage, nextStage, repentanceStage);
   }
 
@@ -260,13 +264,13 @@ function getNextStageType(
   if (
     repentanceStage &&
     stage === 6 &&
-    g.g.GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED)
+    g.g.GetStateFlag(GameStateFlag.MAUSOLEUM_HEART_KILLED)
   ) {
     return getStageTypeRepentance(nextStage);
   }
 
   if (nextStage === 9) {
-    // Blue Womb does not have any alternate floors
+    // Blue Womb does not have any alternate floors.
     return 0;
   }
 
@@ -300,51 +304,51 @@ function getStageTypeBackwardsPath(
 ): int {
   if (stage === 6 && !repentanceStage) {
     if (v.run.repentanceFloorsVisited.ashpit2) {
-      return StageType.STAGETYPE_REPENTANCE_B;
+      return StageType.REPENTANCE_B;
     }
 
     if (v.run.repentanceFloorsVisited.mines2) {
-      return StageType.STAGETYPE_REPENTANCE;
+      return StageType.REPENTANCE;
     }
   }
 
   if (stage === 4 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.ashpit1) {
-      return StageType.STAGETYPE_REPENTANCE_B;
+      return StageType.REPENTANCE_B;
     }
 
     if (v.run.repentanceFloorsVisited.mines1) {
-      return StageType.STAGETYPE_REPENTANCE;
+      return StageType.REPENTANCE;
     }
   }
 
   if (stage === 4 && !repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross2) {
-      return StageType.STAGETYPE_REPENTANCE_B;
+      return StageType.REPENTANCE_B;
     }
 
     if (v.run.repentanceFloorsVisited.downpour2) {
-      return StageType.STAGETYPE_REPENTANCE;
+      return StageType.REPENTANCE;
     }
   }
 
   if (stage === 3 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross2) {
-      return StageType.STAGETYPE_REPENTANCE_B;
+      return StageType.REPENTANCE_B;
     }
 
     if (v.run.repentanceFloorsVisited.downpour2) {
-      return StageType.STAGETYPE_REPENTANCE;
+      return StageType.REPENTANCE;
     }
   }
 
   if (stage === 2 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross1) {
-      return StageType.STAGETYPE_REPENTANCE_B;
+      return StageType.REPENTANCE_B;
     }
 
     if (v.run.repentanceFloorsVisited.downpour1) {
-      return StageType.STAGETYPE_REPENTANCE;
+      return StageType.REPENTANCE;
     }
   }
 
@@ -352,27 +356,27 @@ function getStageTypeBackwardsPath(
 }
 
 function getStageTypeRepentance(stage: int) {
-  // There is no alternate floor for Corpse
+  // There is no alternate floor for Corpse.
   if (stage === 7 || stage === 8) {
-    return StageType.STAGETYPE_REPENTANCE;
+    return StageType.REPENTANCE;
   }
 
-  // This algorithm is from Kilburn
-  // We add one because the alt path is offset by 1 relative to the normal path
+  // This algorithm is from Kilburn.
+  // We add one because the alt path is offset by 1 relative to the normal path.
   const stageSeed = g.seeds.GetStageSeed(stage + 1);
 
-  // Kilburn does not know why he divided the stage seed by 2 first
+  // Kilburn does not know why he divided the stage seed by 2 first.
   const halfStageSeed = Math.floor(stageSeed / 2);
   if (halfStageSeed % 2 === 0) {
-    return StageType.STAGETYPE_REPENTANCE_B;
+    return StageType.REPENTANCE_B;
   }
 
-  return StageType.STAGETYPE_REPENTANCE;
+  return StageType.REPENTANCE;
 }
 
 function getStageType(stage: int) {
-  // The following is the game's internal code to determine the floor type
-  // (this came directly from Spider)
+  // The following is the game's internal code to determine the floor type.
+  // (This came directly from Spider.)
   /*
     u32 Seed = g_Game->GetSeeds().GetStageSeed(NextStage);
     if (!g_Game->IsGreedMode()) {
@@ -386,30 +390,30 @@ function getStageType(stage: int) {
       StageType = STAGETYPE_AFTERBIRTH;
   */
 
-  // Emulate what the game's internal code does
+  // Emulate what the game's internal code does.
   const stageSeed = g.seeds.GetStageSeed(stage);
 
   if (stageSeed % 2 === 0) {
-    return StageType.STAGETYPE_WOTL;
+    return StageType.WRATH_OF_THE_LAMB;
   }
 
   if (stageSeed % 3 === 0) {
-    return StageType.STAGETYPE_AFTERBIRTH;
+    return StageType.AFTERBIRTH;
   }
 
-  return StageType.STAGETYPE_ORIGINAL;
+  return StageType.ORIGINAL;
 }
 
 function travelStage(stage: int, stageType: int) {
-  // Build the command that will take us to the next floor
+  // Build the command that will take us to the next floor.
   let command = `stage ${stage}`;
-  if (stageType === StageType.STAGETYPE_WOTL) {
+  if (stageType === StageType.WRATH_OF_THE_LAMB) {
     command += "a";
-  } else if (stageType === StageType.STAGETYPE_AFTERBIRTH) {
+  } else if (stageType === StageType.AFTERBIRTH) {
     command += "b";
-  } else if (stageType === StageType.STAGETYPE_REPENTANCE) {
+  } else if (stageType === StageType.REPENTANCE) {
     command += "c";
-  } else if (stageType === StageType.STAGETYPE_REPENTANCE_B) {
+  } else if (stageType === StageType.REPENTANCE_B) {
     command += "d";
   }
 
@@ -418,13 +422,13 @@ function travelStage(stage: int, stageType: int) {
   if (v.run.reseed) {
     v.run.reseed = false;
 
-    // Doing a "reseed" immediately after a "stage" command won't mess anything up
+    // Doing a "reseed" immediately after a "stage" command won't mess anything up.
     consoleCommand("reseed");
   }
 }
 
 function setFloorVariables(stage: int, stageType: int) {
-  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH);
+  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
 
   if (isBackwardPath) {
     return;

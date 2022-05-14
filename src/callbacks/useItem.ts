@@ -1,3 +1,8 @@
+import {
+  CollectibleType,
+  ModCallback,
+  UseFlag,
+} from "isaac-typescript-definitions";
 import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
 import * as debug from "../features/items/debug";
 import * as flipCustom from "../features/items/flipCustom";
@@ -10,54 +15,54 @@ import * as removeFortuneCookieBanners from "../features/optional/quality/remove
 import * as speedrunUseItem from "../features/speedrun/callbacks/useItem";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_USE_ITEM, main);
+  mod.AddCallback(ModCallback.POST_USE_ITEM, main);
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     teleport,
-    CollectibleType.COLLECTIBLE_TELEPORT, // 44
+    CollectibleType.TELEPORT, // 44
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     voidItem,
-    CollectibleType.COLLECTIBLE_VOID, // 477
+    CollectibleType.VOID, // 477
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     fortuneCookie,
-    CollectibleType.COLLECTIBLE_FORTUNE_COOKIE, // 557
+    CollectibleType.FORTUNE_COOKIE, // 557
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     meatCleaver,
-    CollectibleType.COLLECTIBLE_MEAT_CLEAVER, // 631
+    CollectibleType.MEAT_CLEAVER, // 631
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     lemegeton,
-    CollectibleType.COLLECTIBLE_LEMEGETON, // 712
+    CollectibleType.LEMEGETON, // 712
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     spindownDice,
-    CollectibleType.COLLECTIBLE_SPINDOWN_DICE, // 723
+    CollectibleType.SPINDOWN_DICE, // 723
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     useItemFlipCustom,
-    CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM,
+    CollectibleTypeCustom.FLIP_CUSTOM,
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_USE_ITEM,
+    ModCallback.POST_USE_ITEM,
     debugItem,
-    CollectibleTypeCustom.COLLECTIBLE_DEBUG,
+    CollectibleTypeCustom.DEBUG,
   );
 }
 
@@ -65,53 +70,105 @@ function main(
   collectibleType: CollectibleType | int,
   _rng: RNG,
   player: EntityPlayer,
-  useFlags: int,
+  useFlags: BitFlags<UseFlag>,
   activeSlot: int,
   _customVarData: int,
 ): boolean | void {
   battery9VoltSynergy.useItem(collectibleType, player, useFlags, activeSlot);
 }
 
-// CollectibleType.COLLECTIBLE_TELEPORT (44)
-function teleport() {
+// CollectibleType.TELEPORT (44)
+function teleport(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   seededTeleports.useItemTeleport();
 }
 
-// CollectibleType.COLLECTIBLE_VOID (477)
-function voidItem() {
+// CollectibleType.VOID (477)
+function voidItem(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   speedrunUseItem.voidItem();
 }
 
-// CollectibleType.COLLECTIBLE_FORTUNE_COOKIE (557)
-function fortuneCookie() {
+// CollectibleType.FORTUNE_COOKIE (557)
+function fortuneCookie(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   removeFortuneCookieBanners.useItemFortuneCookie();
 }
 
-// CollectibleType.COLLECTIBLE_MEAT_CLEAVER (631)
-function meatCleaver() {
+// CollectibleType.MEAT_CLEAVER (631)
+function meatCleaver(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   consistentAngels.useItemMeatCleaver();
 }
 
-// CollectibleType.COLLECTIBLE_LEMEGETON (712)
-function lemegeton() {
+// CollectibleType.LEMEGETON (712)
+function lemegeton(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   streakText.useItemLemegeton();
 }
 
-// CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
-function spindownDice() {
+// CollectibleType.SPINDOWN_DICE (723)
+function spindownDice(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   removeGloballyBannedItems.useItemSpindownDice();
 }
 
-// CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
+// CollectibleTypeCustom.FLIP_CUSTOM
 function useItemFlipCustom(
   _collectibleType: CollectibleType | int,
   _rng: RNG,
   player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
 ) {
   return flipCustom.useItemFlipCustom(player);
 }
 
-// CollectibleTypeCustom.COLLECTIBLE_DEBUG
-function debugItem() {
+// CollectibleTypeCustom.DEBUG
+function debugItem(
+  _collectibleType: CollectibleType | int,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: int,
+  _customVarData: int,
+) {
   return debug.useItemDebug();
 }

@@ -13,9 +13,9 @@
   "author": "Racing+",
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^1.0.395",
-    "isaacscript": "^1.2.40",
-    "isaacscript-common": "^1.2.288",
-    "isaacscript-lint": "^1.0.99"
+    "isaac-typescript-definitions": "^2.0.12",
+    "isaacscript": "^2.0.3",
+    "isaacscript-common": "^2.0.6",
+    "isaacscript-lint": "^1.0.141"
   }
 }

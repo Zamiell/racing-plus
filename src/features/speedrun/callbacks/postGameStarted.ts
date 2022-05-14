@@ -67,11 +67,11 @@ function liveSplitReset() {
 
   if (v.persistent.liveSplitReset) {
     v.persistent.liveSplitReset = false;
-    player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_RESET);
+    player.AddCollectible(CollectibleTypeCustom.RESET);
     log(
-      `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.COLLECTIBLE_RESET}.`,
+      `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.RESET}.`,
     );
-    removeCollectibleFromItemTracker(CollectibleTypeCustom.COLLECTIBLE_RESET);
+    removeCollectibleFromItemTracker(CollectibleTypeCustom.RESET);
   }
 }
 
@@ -81,7 +81,7 @@ function setCorrectCharacter() {
   const challenge = Isaac.GetChallenge();
 
   if (challenge === ChallengeCustom.SEASON_2) {
-    return false; // This is handled explicitly later
+    return false; // This is handled explicitly later.
   }
 
   const currentCharacter = getCurrentCharacter();
@@ -109,15 +109,15 @@ function goBackToFirstCharacter() {
     return false;
   }
 
-  // They held R for a slow reset, and they are not on the first character,
-  // so they want to restart from the first character
+  // They held R for a slow reset, and they are not on the first character, so they want to restart
+  // from the first character.
   v.persistent.characterNum = 1;
   restartOnNextFrame();
   const firstCharacter = getFirstCharacter();
   setRestartCharacter(firstCharacter);
   log("Restarting because we want to start from the first character again.");
 
-  // Tell the LiveSplit AutoSplitter to reset
+  // Tell the LiveSplit AutoSplitter to reset.
   v.persistent.liveSplitReset = true;
 
   return true;
@@ -126,13 +126,13 @@ function goBackToFirstCharacter() {
 function giveMoreOptionsBuff() {
   const player = Isaac.GetPlayer();
 
-  // Only seasons with Treasure Rooms need the More Options buff
+  // Only seasons with Treasure Rooms need the More Options buff.
   if (shouldBanFirstFloorTreasureRoom()) {
     return;
   }
 
   // The first character of the speedrun always gets More Options to speed up the process of getting
-  // a run going
+  // a run going.
   if (isOnFirstCharacter()) {
     tempMoreOptions.give(player);
   }

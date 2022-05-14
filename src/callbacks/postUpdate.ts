@@ -1,3 +1,4 @@
+import { ModCallback } from "isaac-typescript-definitions";
 import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
@@ -16,7 +17,7 @@ import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_POST_UPDATE, main);
+  mod.AddCallback(ModCallback.POST_UPDATE, main);
 }
 
 function main() {

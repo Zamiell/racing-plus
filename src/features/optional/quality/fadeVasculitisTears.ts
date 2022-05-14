@@ -1,7 +1,8 @@
-// Vasculitis causes tears to explode out of enemies
-// This is very confusing and makes it hard to see real projectiles
-// Fade all tears of this nature so that they are easy to distinguish
+// Vasculitis causes tears to explode out of enemies.
+// This is very confusing and makes it hard to see real projectiles.
+// Fade all tears of this nature so that they are easy to distinguish.
 
+import { CollectibleType } from "isaac-typescript-definitions";
 import { anyPlayerHasCollectible } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
@@ -9,7 +10,7 @@ const FADE_AMOUNT = 0.15;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 const DURATION = 1000;
 
-// ModCallbacks.MC_POST_TEAR_UPDATE (40)
+// ModCallback.POST_TEAR_UPDATE (40)
 // TearVariant.BLOOD (1)
 // Setting the tear color does not work in the PostTearInit callback, so we have to do it here
 export function postTearUpdateBlood(tear: EntityTear): void {
@@ -27,7 +28,7 @@ function isVasculitisTear(tear: EntityTear) {
   return (
     tear.FrameCount === 0 &&
     tear.SpawnerType === 0 &&
-    anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VASCULITIS)
+    anyPlayerHasCollectible(CollectibleType.VASCULITIS)
   );
 }
 

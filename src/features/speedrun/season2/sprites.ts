@@ -1,18 +1,20 @@
-const sprites: Record<string, Sprite | null> = {
-  characterTitle: null,
+const sprites = {
+  characterTitle: null as Sprite | null,
 
-  seededStartingTitle: null, // "Starting Item" or "Starting Build"
-  seededItemCenter: null,
-  seededItemLeft: null,
-  seededItemRight: null,
-  seededItemFarLeft: null,
-  seededItemFarRight: null,
+  /** "Starting Item" or "Starting Build". */
+  seededStartingTitle: null as Sprite | null,
+
+  seededItemCenter: null as Sprite | null,
+  seededItemLeft: null as Sprite | null,
+  seededItemRight: null as Sprite | null,
+  seededItemFarLeft: null as Sprite | null,
+  seededItemFarRight: null as Sprite | null,
 };
 export default sprites;
 
 export function resetSprites(): void {
   for (const key of Object.keys(sprites)) {
-    const property = key;
-    sprites[property] = null;
+    // @ts-expect-error The key will always be valid here.
+    sprites[key] = null;
   }
 }

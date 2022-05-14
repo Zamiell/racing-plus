@@ -1,4 +1,10 @@
 import {
+  CollectibleType,
+  PlayerType,
+  SoundEffect,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   characterStartsWithActiveItem,
   copyArray,
   ensureAllCases,
@@ -26,18 +32,18 @@ import * as tempMoreOptions from "../mandatory/tempMoreOptions";
  */
 const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS: ReadonlySet<PlayerType> =
   new Set([
-    PlayerType.PLAYER_JACOB, // 19
-    PlayerType.PLAYER_ESAU, // 20
-    PlayerType.PLAYER_MAGDALENE_B, // 22
-    PlayerType.PLAYER_JUDAS_B, // 24
-    PlayerType.PLAYER_BLUEBABY_B, // 25
-    PlayerType.PLAYER_EVE_B, // 26
-    PlayerType.PLAYER_LAZARUS_B, // 29
-    PlayerType.PLAYER_APOLLYON_B, // 34
-    PlayerType.PLAYER_BETHANY_B, // 36
-    PlayerType.PLAYER_JACOB_B, // 37
-    PlayerType.PLAYER_LAZARUS2_B, // 38
-    PlayerType.PLAYER_JACOB2_B, // 39
+    PlayerType.JACOB, // 19
+    PlayerType.ESAU, // 20
+    PlayerType.MAGDALENE_B, // 22
+    PlayerType.JUDAS_B, // 24
+    PlayerType.BLUE_BABY_B, // 25
+    PlayerType.EVE_B, // 26
+    PlayerType.LAZARUS_B, // 29
+    PlayerType.APOLLYON_B, // 34
+    PlayerType.BETHANY_B, // 36
+    PlayerType.JACOB_B, // 37
+    PlayerType.LAZARUS_2_B, // 38
+    PlayerType.JACOB_2_B, // 39
   ]);
 
 function characterStartsWithActiveItemRacingPlus(character: PlayerType | int) {
@@ -45,16 +51,16 @@ function characterStartsWithActiveItemRacingPlus(character: PlayerType | int) {
 }
 
 const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
-  CollectibleType.COLLECTIBLE_MOMS_KNIFE,
-  CollectibleType.COLLECTIBLE_D4,
-  CollectibleType.COLLECTIBLE_D100,
-  CollectibleType.COLLECTIBLE_D_INFINITY,
-  CollectibleType.COLLECTIBLE_GENESIS,
-  CollectibleType.COLLECTIBLE_ESAU_JR,
+  CollectibleType.MOMS_KNIFE,
+  CollectibleType.D4,
+  CollectibleType.D100,
+  CollectibleType.D_INFINITY,
+  CollectibleType.GENESIS,
+  CollectibleType.ESAU_JR,
 ];
 
 const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
-  TrinketType.TRINKET_DICE_BAG,
+  TrinketType.DICE_BAG,
 ];
 
 export function formatSetup(player: EntityPlayer): void {
@@ -96,8 +102,8 @@ export function formatSetup(player: EntityPlayer): void {
     }
   }
 
-  // Mute the transformation sound, if present
-  sfxManager.Stop(SoundEffect.SOUND_POWERUP_SPEWER);
+  // Mute the transformation sound, if present.
+  sfxManager.Stop(SoundEffect.POWER_UP_SPEWER);
 }
 
 /**
@@ -105,7 +111,7 @@ export function formatSetup(player: EntityPlayer): void {
  * resetting time.
  */
 function unseeded(player: EntityPlayer) {
-  // If the race has not started yet, don't give the items
+  // If the race has not started yet, don't give the items.
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING
@@ -113,15 +119,15 @@ function unseeded(player: EntityPlayer) {
     return;
   }
 
-  // Avoid giving more options on Tainted Dead Lazarus
-  if (!isCharacter(player, PlayerType.PLAYER_LAZARUS2_B)) {
+  // Avoid giving more options on Tainted Dead Lazarus.
+  if (!isCharacter(player, PlayerType.LAZARUS_2_B)) {
     tempMoreOptions.give(player);
   }
 }
 
 function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
-  // variable
+  // variable.
   for (const serverCollectibleID of g.race.startingItems) {
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
@@ -132,62 +138,48 @@ function unseededRankedSolo(player: EntityPlayer) {
 function seeded(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
-  // All seeded races start with the Compass to reduce mapping RNG
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_COMPASS)) {
+  // All seeded races start with the Compass to reduce mapping RNG.
+  if (player.HasCollectible(CollectibleType.COMPASS)) {
     // Eden started with The Compass, so mark to replace it with another random passive item later
-    // on
+    // on.
     setStartedWithCompass();
   } else {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_COMPASS,
-    );
+    giveCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
   }
 
-  // Seeded races start with an item or build (i.e. the "Instant Start" item)
+  // Seeded races start with an item or build (i.e. the "Instant Start" item).
   for (const serverCollectibleID of g.race.startingItems) {
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
     giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
-  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
-  if (character === PlayerType.PLAYER_EDEN_B) {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
-    );
+  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
+  // Birthright.
+  if (character === PlayerType.EDEN_B) {
+    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   // If we are Tainted Isaac and there are multiple starting items for the race,
-  // give Birthright so that we have more room for other items
-  if (
-    character === PlayerType.PLAYER_ISAAC_B &&
-    g.race.startingItems.length >= 2
-  ) {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
-    );
+  // give Birthright so that we have more room for other items.
+  if (character === PlayerType.ISAAC_B && g.race.startingItems.length >= 2) {
+    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
-  // Remove Birthright on Cain, since it changes floor generation
-  // Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed
-  if (
-    character === PlayerType.PLAYER_CAIN ||
-    character === PlayerType.PLAYER_THELOST
-  ) {
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT);
+  // - Remove Birthright on Cain, since it changes floor generation.
+  // - Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed.
+  if (character === PlayerType.CAIN || character === PlayerType.THE_LOST) {
+    g.itemPool.RemoveCollectible(CollectibleType.BIRTHRIGHT);
   }
 
-  // Other collectible/trinket pool removals are done in the "removeGloballyBannedItems" feature
+  // Other collectible/trinket pool removals are done in the "removeGloballyBannedItems" feature.
 }
 
 function diversity(player: EntityPlayer) {
   const character = player.GetPlayerType();
   const trinket1 = player.GetTrinket(0);
 
-  // If the race has not started yet, don't give the items
+  // If the race has not started yet, don't give the items.
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING
@@ -195,29 +187,29 @@ function diversity(player: EntityPlayer) {
     return;
   }
 
-  // Avoid giving more options on Tainted Dead Lazarus
-  if (character !== PlayerType.PLAYER_LAZARUS2_B) {
+  // Avoid giving more options on Tainted Dead Lazarus.
+  if (character !== PlayerType.LAZARUS_2_B) {
     tempMoreOptions.give(player);
   }
 
-  // In Diversity, the player is given a random active item
+  // In Diversity, the player is given a random active item.
   // If this particular character receives the D6 as an active,
-  // then the Diversity item would overwrite it
+  // then the Diversity item would overwrite it.
   // If this is the case, give the Schoolbag so that they can hold both items
-  // (except for Esau, since he is not given any Diversity items)
+  // (except for Esau, since he is not given any Diversity items).
   if (shouldGetSchoolbagInDiversity(player)) {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_SCHOOLBAG,
-    );
+    giveCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
   }
 
-  // Give the player their five random diversity starting items
+  // Give the player their five random diversity starting items.
   if (g.race.startingItems.length !== 5) {
     error("A diversity race does not have 5 starting items.");
   }
   const collectibleTypes = copyArray(g.race.startingItems, 4);
   const trinketType = getLastElement(g.race.startingItems);
+  if (trinketType === undefined) {
+    error("Failed to find the trinket type from the race's starting items.");
+  }
 
   for (const serverCollectibleID of collectibleTypes) {
     const collectibleType =
@@ -230,23 +222,18 @@ function diversity(player: EntityPlayer) {
   }
 
   giveTrinketAndRemoveFromPools(player, trinketType);
-  useActiveItemTemp(player, CollectibleType.COLLECTIBLE_SMELTER);
+  useActiveItemTemp(player, CollectibleType.SMELTER);
 
-  // Re-give Paper Clip to Cain, for example
+  // Re-give Paper Clip to Cain, for example.
   if (trinket1 !== 0) {
     player.AddTrinket(trinket1);
   }
 
-  // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving Birthright
-  // If we are Tainted Isaac, give Birthright so that we have more room for other items
-  if (
-    character === PlayerType.PLAYER_EDEN_B ||
-    character === PlayerType.PLAYER_ISAAC_B
-  ) {
-    giveCollectibleAndRemoveFromPools(
-      player,
-      CollectibleType.COLLECTIBLE_BIRTHRIGHT,
-    );
+  // - If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
+  // Birthright.
+  // - If we are Tainted Isaac, give Birthright so that we have more room for other items.
+  if (character === PlayerType.EDEN_B || character === PlayerType.ISAAC_B) {
+    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   for (const bannedCollectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
@@ -266,15 +253,15 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
 
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
-    // can hold both their both their normal active item and the new diversity active item
+    // can hold both their both their normal active item and the new diversity active item.
     startsWithActiveItem &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
-    // that rerolls the build (e.g. D4, D100, etc.)
-    // (we could manually replace these items, but it is simpler to just have one item on Eden
-    // instead of two)
+    // that rerolls the build (e.g. D4, D100, etc.).
+    // (We could manually replace these items, but it is simpler to just have one item on Eden
+    // instead of two.)
     !isEden(player) &&
     // Esau is not granted any items in diversity races,
-    // so there is no need to give him the Schoolbag
-    character !== PlayerType.PLAYER_ESAU
+    // so there is no need to give him the Schoolbag.
+    character !== PlayerType.ESAU
   );
 }

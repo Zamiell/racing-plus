@@ -1,6 +1,8 @@
-// Racing+ removes some items from the game for various reasons
-// This feature is not configurable because it could cause a seed to be different
+// Racing+ removes some items from the game for various reasons.
 
+// This feature is not configurable because it could cause a seed to be different.
+
+import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
@@ -35,7 +37,7 @@ export function init(): void {
   saveDataManager("removeGloballyBannedItems", v);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   removeBannedItemsFromPools();
   replaceEdenBannedItems();
@@ -50,7 +52,7 @@ function removeBannedItemsFromPools() {
     g.itemPool.RemoveTrinket(bannedTrinket);
   }
 
-  if (anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_VOID)) {
+  if (anyPlayerHasCollectible(CollectibleType.VOID)) {
     v.run.startedWithVoid = true;
 
     for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID.values()) {
@@ -68,9 +70,9 @@ function removeBannedItemsFromPools() {
     }
   }
 
-  // Tainted Magdalene is invincible with Sharp Plug
-  if (anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B)) {
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SHARP_PLUG);
+  // Tainted Magdalene is invincible with Sharp Plug.
+  if (anyPlayerIs(PlayerType.MAGDALENE_B)) {
+    g.itemPool.RemoveCollectible(CollectibleType.SHARP_PLUG);
   }
 }
 
@@ -79,15 +81,12 @@ function removeBannedItemsFromPools() {
  * worry about those.
  */
 function replaceEdenBannedItems() {
-  // The only items to worry about are the ones that are conditionally banned in seeded races
+  // The only items to worry about are the ones that are conditionally banned in seeded races.
   if (inSeededRace()) {
     return;
   }
 
-  const edens = getPlayersOfType(
-    PlayerType.PLAYER_EDEN,
-    PlayerType.PLAYER_EDEN_B,
-  );
+  const edens = getPlayersOfType(PlayerType.EDEN, PlayerType.EDEN_B);
   for (const player of edens) {
     for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES.values()) {
       if (player.HasCollectible(collectibleType)) {
@@ -103,7 +102,7 @@ function replaceEdenBannedItems() {
     for (const trinketType of BANNED_TRINKETS_ON_SEEDED_RACES.values()) {
       if (player.HasTrinket(trinketType)) {
         player.TryRemoveTrinket(trinketType);
-        // (don't reward them with a new trinket, since Eden doesn't always start with a trinket)
+        // (Do not reward them with a new trinket, since Eden does not always start with a trinket.)
       }
     }
   }
@@ -129,20 +128,20 @@ function getEdenReplacementCollectibleType(
   return replacementCollectible;
 }
 
-// ModCallbacks.MC_USE_ITEM (3)
-// CollectibleType.COLLECTIBLE_SPINDOWN_DICE (723)
+// ModCallback.POST_USE_ITEM (3)
+// CollectibleType.SPINDOWN_DICE (723)
 export function useItemSpindownDice(): void {
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
-      // Skip over the banned collectible and turn it into the one before that
+      // Skip over the banned collectible and turn it into the one before that.
       setCollectibleSubType(collectible, collectible.SubType - 1);
     }
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // Prevent getting banned items on the Death Certificate floor
+  // Prevent getting banned items on the Death Certificate floor.
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       collectible.Remove();
@@ -169,8 +168,8 @@ function isBannedCollectible(entity: Entity) {
   }
 
   if (
-    anyPlayerIs(PlayerType.PLAYER_MAGDALENE_B) &&
-    entity.SubType === CollectibleType.COLLECTIBLE_SHARP_PLUG
+    anyPlayerIs(PlayerType.MAGDALENE_B) &&
+    entity.SubType === CollectibleType.SHARP_PLUG
   ) {
     return true;
   }

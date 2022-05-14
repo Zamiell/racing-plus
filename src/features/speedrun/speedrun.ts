@@ -1,3 +1,4 @@
+import { EntityCollisionClass, PlayerType } from "isaac-typescript-definitions";
 import {
   ISAAC_FRAMES_PER_SECOND,
   isEven,
@@ -47,12 +48,9 @@ export function finish(player: EntityPlayer): void {
 
   sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
 
-  // Give them the Checkpoint custom item
-  // (this is used by the AutoSplitter to know when to split)
-  player.AddCollectible(CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT);
-  removeCollectibleFromItemTracker(
-    CollectibleTypeCustom.COLLECTIBLE_CHECKPOINT,
-  );
+  // Give them the Checkpoint custom item. (This is used by the AutoSplitter to know when to split.)
+  player.AddCollectible(CollectibleTypeCustom.CHECKPOINT);
+  removeCollectibleFromItemTracker(CollectibleTypeCustom.CHECKPOINT);
 
   // Record how long this run took
   if (v.persistent.startedCharacterFrame !== null) {
@@ -196,20 +194,20 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
   removeCollectiblePickupDelay(checkpoint);
 
   // If the player kills the final boss while the seeded death mechanic is active, they should not
-  // be able to take the checkpoint
+  // be able to take the checkpoint.
   if (isSeededDeathActive()) {
     // The collision class on the collectible will be updated 4 frames from now, so if we set a new
-    // collision class now, it will be overwritten
-    // Thus, we have to wait at least 4 frames
+    // collision class now, it will be overwritten.
+    // Thus, we have to wait at least 4 frames.
 
     // First, set the "Wait" property to an arbitrary value longer than 4 frames to prevent the
-    // player from picking up the Checkpoint
+    // player from picking up the Checkpoint.
     checkpoint.Wait = 10;
 
     const checkpointPtr = EntityPtr(checkpoint);
     runInNGameFrames(() => {
       if (checkpointPtr.Ref !== undefined && checkpointPtr.Ref.Exists()) {
-        checkpoint.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE;
+        checkpoint.EntityCollisionClass = EntityCollisionClass.NONE;
       }
     }, 4);
   }

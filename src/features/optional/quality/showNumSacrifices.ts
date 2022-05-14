@@ -1,3 +1,4 @@
+import { RoomType } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -29,7 +30,7 @@ export function shouldShowNumSacrifices(): boolean {
   const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
 
-  return roomType === RoomType.ROOM_SACRIFICE && roomFrameCount > 0;
+  return roomType === RoomType.SACRIFICE && roomFrameCount > 0;
 }
 
 export function getNumSacrifices(): int {

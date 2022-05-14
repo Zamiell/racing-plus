@@ -1,6 +1,14 @@
 // These are shared functions for fast-travel entities
 
 import {
+  CrawlSpaceVariant,
+  EntityPartition,
+  GameStateFlag,
+  GridRoom,
+  RoomType,
+  TrapdoorVariant,
+} from "isaac-typescript-definitions";
+import {
   ensureAllCases,
   getPlayers,
   getRoomGridIndex,
@@ -27,7 +35,7 @@ export function init(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   // This must be passed a function instead of a boolean because we need to initialize the
-  // description before checking whether or not it should open
+  // description before checking whether or not it should open.
   shouldSpawnOpen: (entity: GridEntity | EntityEffect) => boolean,
 ): void {
   const gameFrameCount = g.g.GetFrameCount();
@@ -59,7 +67,7 @@ function getCustomSpriteFilename(
 ) {
   const isGreedMode = g.g.IsGreedMode();
   const mausoleumHeartKilled = g.g.GetStateFlag(
-    GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED,
+    GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
   const stage = g.l.GetStage();
   const roomGridIndex = getRoomGridIndex();
@@ -76,12 +84,12 @@ function getCustomSpriteFilename(
       }
 
       // -8
-      if (roomGridIndex === GridRooms.ROOM_BLUE_WOOM_IDX) {
+      if (roomGridIndex === GridRoom.BLUE_WOMB) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
 
       // -10
-      if (roomGridIndex === GridRooms.ROOM_SECRET_EXIT_IDX) {
+      if (roomGridIndex === GridRoom.SECRET_EXIT) {
         if (!repentanceStage && (stage === 1 || stage === 2)) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
@@ -101,14 +109,14 @@ function getCustomSpriteFilename(
         }
       }
 
-      if (roomType === RoomType.ROOM_BOSS) {
+      if (roomType === RoomType.BOSS) {
         if (
           g.race.status === RaceStatus.IN_PROGRESS &&
           g.race.myStatus === RacerStatus.RACING &&
           g.race.goal === RaceGoal.THE_BEAST &&
           !repentanceStage &&
           stage === 6 &&
-          roomType === RoomType.ROOM_BOSS
+          roomType === RoomType.BOSS
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
@@ -135,7 +143,7 @@ function getCustomSpriteFilename(
       const gridEntity = entity as GridEntity;
       const variant = gridEntity.GetVariant();
 
-      if (variant === StairsVariant.SECRET_SHOP) {
+      if (variant === CrawlSpaceVariant.SECRET_SHOP) {
         return "gfx/grid/door_20_secrettrapdoor_shop_custom.anm2";
       }
 
@@ -160,14 +168,16 @@ export function checkShouldOpen(
   if (
     entityState === FastTravelEntityState.CLOSED &&
     state.shouldOpen(entity, fastTravelEntityType) &&
-    // TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
+    // TODO: Remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from
+    // sprites.
     !anyPlayerUsingPony()
   ) {
     state.open(entity, fastTravelEntityType);
   }
 }
 
-// TODO remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from sprites
+// TODO: Remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from
+// sprites.
 export function anyPlayerUsingPony(): boolean {
   const players = getPlayers();
   return players.some((player) => isPonyActive(player));
@@ -202,19 +212,19 @@ export function checkPlayerTouched(
     }
 
     if (
-      // We don't want a Pony dash to transition to a new floor or a crawlspace
+      // We don't want a Pony dash to transition to a new floor or a crawl space.
       !isPonyActive(player) &&
       !isChildPlayer(player) &&
       canInteractWith(player)
     ) {
       touchedFunction(entity, player);
-      return; // Prevent two players from touching the same entity
+      return; // Prevent two players from touching the same entity.
     }
   }
 }
 
 function canInteractWith(player: EntityPlayer) {
-  // Players cannot interact with fast travel entities while playing certain animations
+  // Players cannot interact with fast travel entities while playing certain animations.
   const sprite = player.GetSprite();
   const animation = sprite.GetAnimation();
   return (

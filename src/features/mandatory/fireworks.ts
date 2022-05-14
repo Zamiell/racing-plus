@@ -1,4 +1,9 @@
 import {
+  EffectVariant,
+  EntityType,
+  SoundEffect,
+} from "isaac-typescript-definitions";
+import {
   countEntities,
   getPlayers,
   newRNG,
@@ -23,7 +28,7 @@ export function init(): void {
   saveDataManager("fireworks", v);
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   makeFireworksQuieter();
 
@@ -40,16 +45,16 @@ export function postUpdate(): void {
 }
 
 function makeFireworksQuieter() {
-  if (!sfxManager.IsPlaying(SoundEffect.SOUND_BOSS1_EXPLOSIONS)) {
+  if (!sfxManager.IsPlaying(SoundEffect.BOSS_1_EXPLOSIONS)) {
     return;
   }
 
   const numFireworks = countEntities(
-    EntityType.ENTITY_EFFECT,
+    EntityType.EFFECT,
     EffectVariant.FIREWORKS,
   );
   if (numFireworks > 0) {
-    sfxManager.AdjustVolume(SoundEffect.SOUND_BOSS1_EXPLOSIONS, 0.2);
+    sfxManager.AdjustVolume(SoundEffect.BOSS_1_EXPLOSIONS, 0.2);
   }
 }
 
@@ -64,8 +69,7 @@ function spawnSparkleOnPlayer() {
 function spawnFireworks() {
   const gameFrameCount = g.g.GetFrameCount();
 
-  // Spawn 30 fireworks (1000.104.0)
-  // (some can be duds randomly)
+  // Spawn 30 fireworks. (Some can be duds randomly.)
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     repeat(5, () => {
       v.run.numFireworksSpawned += 1;
@@ -78,7 +82,7 @@ function spawnFireworks() {
   }
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeed = g.seeds.GetStartSeed();
   setSeed(v.run.rng, startSeed);

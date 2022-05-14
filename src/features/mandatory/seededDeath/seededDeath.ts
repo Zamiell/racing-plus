@@ -1,3 +1,4 @@
+import { FamiliarVariant, PlayerType } from "isaac-typescript-definitions";
 import {
   getDefaultColor,
   getFamiliars,
@@ -19,7 +20,7 @@ export function applySeededGhostFade(
   const newColor = enabled ? QUARTER_FADED_COLOR : getDefaultColor();
   sprite.Color = newColor;
 
-  if (isCharacter(player, PlayerType.PLAYER_THESOUL)) {
+  if (isCharacter(player, PlayerType.THE_SOUL)) {
     const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
     for (const forgottenBody of forgottenBodies) {
       const forgottenSprite = forgottenBody.GetSprite();

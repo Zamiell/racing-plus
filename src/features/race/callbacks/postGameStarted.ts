@@ -1,3 +1,4 @@
+import { Challenge, Difficulty } from "isaac-typescript-definitions";
 import { log, onSetSeed } from "isaacscript-common";
 import { RaceDifficulty } from "../../../enums/RaceDifficulty";
 import { RaceFormat } from "../../../enums/RaceFormat";
@@ -65,7 +66,7 @@ function validateRace(player: EntityPlayer) {
 
 function validateInRace() {
   // We want to still draw some race-related things even if we have finished or quit the race,
-  // so don't check for "g.race.myStatus"
+  // so don't check for "g.race.myStatus".
   return g.race.status !== RaceStatus.NONE;
 }
 
@@ -80,12 +81,9 @@ function validateChallenge() {
 
   const challenge = Isaac.GetChallenge();
 
-  if (
-    challenge !== Challenge.CHALLENGE_NULL &&
-    g.race.format !== RaceFormat.CUSTOM
-  ) {
+  if (challenge !== Challenge.NULL && g.race.format !== RaceFormat.CUSTOM) {
     restartOnNextFrame();
-    setRestartChallenge(Challenge.CHALLENGE_NULL);
+    setRestartChallenge(Challenge.NULL);
     log(
       "Restarting since we are on a custom challenge and this is not a custom race.",
     );
@@ -106,7 +104,7 @@ function validateDifficulty() {
 
   if (
     g.race.difficulty === RaceDifficulty.NORMAL &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_NORMAL &&
+    g.g.Difficulty !== Difficulty.NORMAL &&
     g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
@@ -118,7 +116,7 @@ function validateDifficulty() {
 
   if (
     g.race.difficulty === RaceDifficulty.HARD &&
-    g.g.Difficulty !== Difficulty.DIFFICULTY_HARD &&
+    g.g.Difficulty !== Difficulty.HARD &&
     g.race.format !== RaceFormat.CUSTOM
   ) {
     log(

@@ -1,4 +1,9 @@
 import {
+  CollectibleType,
+  PickupVariant,
+  PlayerType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerIs,
   getClosestEntityTo,
   getPickups,
@@ -10,7 +15,7 @@ import {
 import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 
-// Card.CARD_HIEROPHANT (6)
+// Card.HIEROPHANT (6)
 export function automaticItemInsertionUseCardHierophant(
   player: EntityPlayer,
 ): void {
@@ -18,14 +23,14 @@ export function automaticItemInsertionUseCardHierophant(
     return;
   }
 
-  if (!isCharacter(player, PlayerType.PLAYER_BETHANY)) {
+  if (!isCharacter(player, PlayerType.BETHANY)) {
     return;
   }
 
   addHeartsOnBethanys(player);
 }
 
-// Card.CARD_LOVERS (7)
+// Card.LOVERS (7)
 export function automaticItemInsertionUseCardLovers(
   player: EntityPlayer,
 ): void {
@@ -33,7 +38,7 @@ export function automaticItemInsertionUseCardLovers(
     return;
   }
 
-  if (!isCharacter(player, PlayerType.PLAYER_BETHANY_B)) {
+  if (!isCharacter(player, PlayerType.BETHANY_B)) {
     return;
   }
 
@@ -42,13 +47,11 @@ export function automaticItemInsertionUseCardLovers(
 
 function addHeartsOnBethanys(player: EntityPlayer) {
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items
-  // Instead, find the nearest hearts to the player
-  const hasTarotCloth = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-  );
+  // to automatically insert items.
+  // Instead, find the nearest hearts to the player.
+  const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
   const numHearts = hasTarotCloth ? 3 : 2;
-  const pickupVariants = initArray(PickupVariant.PICKUP_HEART, numHearts);
+  const pickupVariants = initArray(PickupVariant.HEART, numHearts);
 
   for (const pickupVariant of pickupVariants) {
     const pickup = getClosestPickupToPlayer(player, pickupVariant);
@@ -58,7 +61,7 @@ function addHeartsOnBethanys(player: EntityPlayer) {
   }
 }
 
-// Card.CARD_JUSTICE (9)
+// Card.JUSTICE (9)
 export function automaticItemInsertionUseCardJustice(
   player: EntityPlayer,
 ): void {
@@ -67,8 +70,8 @@ export function automaticItemInsertionUseCardJustice(
   }
 
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items
-  // Instead, find the nearest coin, bomb, and key to the player
+  // to automatically insert items.
+  // Instead, find the nearest coin, bomb, and key to the player.
   const pickups = getPickupsFromJusticeCard(player);
   for (const pickup of pickups) {
     insertPickupAndUpdateDelta(pickup, player);
@@ -76,25 +79,23 @@ export function automaticItemInsertionUseCardJustice(
 }
 
 function getPickupsFromJusticeCard(player: EntityPlayer) {
-  const hasTarotCloth = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-  );
+  const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
   const numEachPickup = hasTarotCloth ? 2 : 1;
 
   const pickupVariants: PickupVariant[] = [];
   repeat(numEachPickup, () => {
     pickupVariants.push(
-      PickupVariant.PICKUP_COIN, // 20
-      PickupVariant.PICKUP_KEY, // 30
+      PickupVariant.COIN, // 20
+      PickupVariant.KEY, // 30
     );
 
-    const bombPickupVariant = anyPlayerIs(PlayerType.PLAYER_BLUEBABY_B)
-      ? PickupVariant.PICKUP_POOP
-      : PickupVariant.PICKUP_BOMB;
+    const bombPickupVariant = anyPlayerIs(PlayerType.BLUE_BABY_B)
+      ? PickupVariant.POOP
+      : PickupVariant.BOMB;
     pickupVariants.push(bombPickupVariant);
 
     if (isBethany(player)) {
-      pickupVariants.push(PickupVariant.PICKUP_HEART);
+      pickupVariants.push(PickupVariant.HEART);
     }
   });
 
@@ -117,7 +118,7 @@ function getClosestPickupToPlayer(
   const filteredPickups = pickups.filter(
     (pickup) =>
       pickup.Price === 0 &&
-      // We set the vanilla "Touched" property to true if we have already inserted this pickup
+      // We set the vanilla "Touched" property to true if we have already inserted this pickup.
       !pickup.Touched &&
       !pickup.GetSprite().IsPlaying("Collect"),
   );

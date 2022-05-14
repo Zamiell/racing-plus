@@ -1,7 +1,8 @@
-// In vanilla, Battery Bums will not charge the pocket active item if the player has no active item
-// (this is not the case if the player has an active item; if the active item is already fully
-// double-charged, then the pocket item will be charged properly)
+// In vanilla, Battery Bums will not charge the pocket active item if the player has no active item.
+// (This is not the case if the player has an active item. If the active item is already fully
+// double-charged, then the pocket item will be charged properly.)
 
+import { ActiveSlot } from "isaac-typescript-definitions";
 import {
   getTotalCharge,
   isActiveSlotDoubleCharged,
@@ -22,7 +23,7 @@ const v = {
   },
 };
 
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+// ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (!config.batteryBumFix) {
     return;
@@ -41,14 +42,14 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  // Battery Bum is only bugged when the active slot is missing entirely
-  if (!isActiveSlotEmpty(player, ActiveSlot.SLOT_PRIMARY)) {
+  // Battery Bum is only bugged when the active slot is missing entirely.
+  if (!isActiveSlotEmpty(player, ActiveSlot.PRIMARY)) {
     return;
   }
 
-  // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames
-  // Default to giving 1 charge immediately to minimize the surface for bugs and other interactions
-  addChargesToActiveItem(player, 1, ActiveSlot.SLOT_POCKET);
+  // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames.
+  // Default to giving 1 charge immediately to minimize the surface for bugs and other interactions.
+  addChargesToActiveItem(player, 1, ActiveSlot.POCKET);
 }
 
 function isBeginningHappyAnimation(player: EntityPlayer) {

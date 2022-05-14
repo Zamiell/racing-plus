@@ -1,9 +1,14 @@
 import {
+  CollectibleType,
+  ItemPoolType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   getCollectibleSet,
   getEffectiveStage,
-  getMaxCollectibleType,
   getPlayers,
   getRoomVisitedCount,
   inStartingRoom,
@@ -11,30 +16,32 @@ import {
   log,
   mapGetPlayer,
   mapSetPlayer,
+  MAX_COLLECTIBLE_TYPE,
   MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
   repeat,
   saveDataManager,
 } from "isaacscript-common";
+import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
 import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const NUM_RACING_PLUS_ITEMS = 31;
 const NUM_BABIES_MOD_ITEMS = 17;
-const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE;
-const ITEM_POOL_TO_CHECK = ItemPoolType.POOL_SECRET;
+const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.DEATH_CERTIFICATE;
+const ITEM_POOL_TO_CHECK = ItemPoolType.SECRET;
 const STARTING_X = 115;
 const STARTING_Y = 70;
 const MAX_CHARACTERS = 50;
 
 const COLLECTIBLES_THAT_AFFECT_ITEM_POOLS: readonly CollectibleType[] = [
-  CollectibleType.COLLECTIBLE_CHAOS, // 402
-  CollectibleType.COLLECTIBLE_SACRED_ORB, // 691
-  CollectibleType.COLLECTIBLE_TMTRAINER, // 721
+  CollectibleType.CHAOS, // 402
+  CollectibleType.SACRED_ORB, // 691
+  CollectibleType.TMTRAINER, // 721
 ];
 
 const TRINKETS_THAT_AFFECT_ITEM_POOLS: readonly TrinketType[] = [
-  TrinketType.TRINKET_NO,
+  TrinketType.NO,
 ];
 
 const v = {
@@ -54,12 +61,12 @@ export function check(): boolean {
 }
 
 // If Racing+ is turned on from the mod menu and then the user immediately tries to play,
-// it won't work properly; some things like boss cutscenes will still be enabled
-// In order to fix this, the game needs to be completely restarted
+// it won't work properly; some things like boss cutscenes will still be enabled.
+// In order to fix this, the game needs to be completely restarted.
 // One way to detect this corrupted state is to get how many frames there are in the currently
-// loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2")
-// Racing+ removes boss cutscenes, so this value should be 0
-// This function returns true if the PostGameStarted callback should halt
+// loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2").
+// Racing+ removes boss cutscenes, so this value should be 0.
+// This function returns true if the PostGameStarted callback should halt.
 function isCorruptMod() {
   const sprite = Sprite();
   sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
@@ -80,19 +87,19 @@ function isCorruptMod() {
 // Check to see if Death Certificate is unlocked
 function isIncompleteSave() {
   // If Eden is holding Death Certificate, then it is obviously unlocked
-  // (and it will also be removed from pools so the below check won't work)
+  // (and it will also be removed from pools so the below check won't work).
   if (anyPlayerHasCollectible(COLLECTIBLE_TO_CHECK_FOR)) {
     return false;
   }
 
   // Consider the save file complete if the any player is Tainted Lost
-  // (since Tainted Lost cannot get Death Certificate in item pools)
-  if (anyPlayerIs(PlayerType.PLAYER_THELOST_B)) {
+  // (since Tainted Lost cannot get Death Certificate in item pools).
+  if (anyPlayerIs(PlayerType.THE_LOST_B)) {
     return false;
   }
 
   // Before checking the item pools, remove any items or trinkets that affect retrieved collectible
-  // types
+  // types.
   const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
   const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
   for (const player of getPlayers()) {
@@ -164,19 +171,18 @@ function isIncompleteSave() {
   return v.run.incompleteSave;
 }
 
-// Check to see if there are any mods enabled that have added custom items
-// (it is difficult to detect other mods in other ways)
+// Check to see if there are any mods enabled that have added custom items.
+// (It is difficult to detect other mods in other ways.)
 function areOtherModsEnabled() {
-  const maxCollectibleType = getMaxCollectibleType();
   let correctMaxCollectibleID =
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
   if (BabiesModGlobals !== undefined) {
     correctMaxCollectibleID += NUM_BABIES_MOD_ITEMS;
   }
 
-  if (maxCollectibleType !== correctMaxCollectibleID) {
+  if (MAX_COLLECTIBLE_TYPE !== correctMaxCollectibleID) {
     log(
-      `Error: Other mods detected. (The highest collectible ID is ${maxCollectibleType}, but it should be ${correctMaxCollectibleID}.)`,
+      `Error: Other mods detected. (The highest collectible ID is ${MAX_COLLECTIBLE_TYPE}, but it should be ${correctMaxCollectibleID}.)`,
     );
     v.run.otherModsEnabled = true;
   }
@@ -184,7 +190,7 @@ function areOtherModsEnabled() {
   return v.run.otherModsEnabled;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): boolean {
   if (REPENTANCE === undefined) {
     drawErrorText(
@@ -223,8 +229,7 @@ export function postRender(): boolean {
 
   if (BabiesModGlobals !== undefined) {
     const player = Isaac.GetPlayer();
-    const randomBabyPlayerType = Isaac.GetPlayerTypeByName("Random Baby");
-    const isRandomBaby = isCharacter(player, randomBabyPlayerType);
+    const isRandomBaby = isCharacter(player, PlayerTypeCustom.RANDOM_BABY);
     const effectiveStage = getEffectiveStage();
     const roomVisitedCount = getRoomVisitedCount();
 

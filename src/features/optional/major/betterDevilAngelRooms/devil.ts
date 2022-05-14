@@ -1,4 +1,9 @@
 import {
+  EntityType,
+  FallenVariant,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasTrinket,
   deployJSONRoom,
   emptyRoom,
@@ -20,11 +25,9 @@ const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
 const KRAMPUS_CHANCE = 0.4; // Matches vanilla
 
 export function devil(): void {
-  const hasNumberMagnet = anyPlayerHasTrinket(
-    TrinketType.TRINKET_NUMBER_MAGNET,
-  );
+  const hasNumberMagnet = anyPlayerHasTrinket(TrinketType.NUMBER_MAGNET);
 
-  // First, find out if we should encounter Krampus instead of getting a normal Devil Room
+  // First, find out if we should encounter Krampus instead of getting a normal Devil Room.
   if (!hasNumberMagnet && checkSpawnKrampus()) {
     return;
   }
@@ -59,8 +62,8 @@ function checkSpawnKrampus() {
   if (
     v.run.metKrampus ||
     effectiveDevilDeals === 0 ||
-    // Number Magnet prevents Krampus from appearing
-    anyPlayerHasTrinket(TrinketType.TRINKET_NUMBER_MAGNET)
+    // Number Magnet prevents Krampus from appearing.
+    anyPlayerHasTrinket(TrinketType.NUMBER_MAGNET)
   ) {
     return false;
   }
@@ -74,13 +77,7 @@ function checkSpawnKrampus() {
   emptyRoom(true);
 
   const seed = v.run.rng.krampus.Next();
-  spawnWithSeed(
-    EntityType.ENTITY_FALLEN,
-    FallenVariant.KRAMPUS,
-    0,
-    centerPos,
-    seed,
-  );
+  spawnWithSeed(EntityType.FALLEN, FallenVariant.KRAMPUS, 0, centerPos, seed);
 
   setRoomUncleared();
 

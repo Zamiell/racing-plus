@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   getCollectibleGfxFilename,
   getEnumValues,
@@ -21,12 +22,12 @@ export function initGlowingItemSprite(
   trinket = false,
 ): Sprite {
   // Account for custom items from the server that have an ID between 1001 and 1999 instead of their
-  // real collectible type
+  // real collectible type.
   collectibleOrTrinketType = serverCollectibleIDToCollectibleType(
     collectibleOrTrinketType,
   );
 
-  // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png"
+  // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png".
   if (trinket) {
     collectibleOrTrinketType += GLOWING_IMAGE_TRINKET_OFFSET;
   }
@@ -67,7 +68,7 @@ function isCustomCollectible(
 }
 
 function getFileNum(itemID: int) {
-  // "NEW" is a "Curse of the Blind" item sprite
+  // "NEW" is a "Curse of the Blind" item sprite.
   const defaultReturn = "NEW";
 
   if (itemID < 1) {
@@ -76,7 +77,7 @@ function getFileNum(itemID: int) {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items)
   if (
-    itemID >= CollectibleType.COLLECTIBLE_SAD_ONION &&
+    itemID >= CollectibleType.SAD_ONION &&
     itemID <= MAX_VANILLA_COLLECTIBLE_TYPE
   ) {
     return itemID.toString().padStart(3, "0");

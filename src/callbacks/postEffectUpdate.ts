@@ -1,3 +1,4 @@
+import { EffectVariant, ModCallback } from "isaac-typescript-definitions";
 import { EffectVariantCustom } from "../enums/EffectVariantCustom";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
@@ -7,25 +8,25 @@ import * as fastLuna from "../features/optional/quality/fastLuna";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    ModCallback.POST_EFFECT_UPDATE,
     devil,
     EffectVariant.DEVIL, // 6
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    ModCallback.POST_EFFECT_UPDATE,
     target,
     EffectVariant.TARGET, // 30
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    ModCallback.POST_EFFECT_UPDATE,
     heavenLightDoor,
     EffectVariant.HEAVEN_LIGHT_DOOR, // 39
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_POST_EFFECT_UPDATE,
+    ModCallback.POST_EFFECT_UPDATE,
     stickyNickelEffect,
     EffectVariantCustom.STICKY_NICKEL,
   );

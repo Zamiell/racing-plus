@@ -1,4 +1,13 @@
 import {
+  EffectVariant,
+  EntityType,
+  GridEntityType,
+  HeavenLightDoorSubType,
+  RoomType,
+  StageType,
+  TrapdoorVariant,
+} from "isaac-typescript-definitions";
+import {
   countEntities,
   ensureAllCases,
   getGridEntities,
@@ -28,8 +37,8 @@ enum ItLivesSituation {
   BOTH,
 }
 
-// The trapdoor / heaven door positions after Hush are not in the center of the room;
-// they are near the top wall
+// The trapdoor / heaven door positions after Hush are not in the center of the room; they are near
+// the top wall.
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
 /** Triggered when a room is fast-cleared. */
@@ -47,32 +56,31 @@ function inItLivesOrHushBossRoom() {
   return (
     (stage === 8 || stage === 9) &&
     // Corpse does not have It Lives! / Hush
-    stageType !== StageType.STAGETYPE_REPENTANCE &&
-    roomType === RoomType.ROOM_BOSS &&
-    // If the player is fighting It Lives! from an Emperor? Card room,
-    // then the room will be outside the grid
-    // Paths are not supposed to spawn in this situation
+    stageType !== StageType.REPENTANCE &&
+    roomType === RoomType.BOSS &&
+    // If the player is fighting It Lives! from an Emperor? Card room, then the room will be outside
+    // the grid. Paths are not supposed to spawn in this situation.
     isRoomInsideMap()
   );
 }
 
 function manuallySpawn() {
-  // First, remove any existing trapdoors or heaven doors;
-  // afterward, we will respawn them in an appropriate way
+  // First, remove any existing trapdoors or heaven doors. Afterward, we will respawn them in an
+  // appropriate way.
   removeAllMatchingEntities(
-    EntityType.ENTITY_EFFECT,
+    EntityType.EFFECT,
     EffectVariant.HEAVEN_LIGHT_DOOR,
     HeavenLightDoorSubType.HEAVEN_DOOR,
   );
-  removeAllMatchingGridEntities(GridEntityType.GRID_TRAPDOOR);
+  removeAllMatchingGridEntities(GridEntityType.TRAPDOOR);
 
   const situation = getItLivesSituation();
   doItLivesSituation(situation);
 }
 
-// Figure out if we need to spawn either a trapdoor, a heaven door, or both
+// Figure out if we need to spawn either a trapdoor, a heaven door, or both.
 function getItLivesSituation() {
-  // Speedrun seasons have set goals
+  // Speedrun seasons have set goals.
   if (inSpeedrun()) {
     const itLivesSituation = onSpeedrunWithDarkRoomGoal()
       ? ItLivesSituation.TRAPDOOR
@@ -89,9 +97,9 @@ function getItLivesSituation() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING
   ) {
-    // On races that have a specific direction, force that direction
-    // On races that give the player an option between going up or down, intuit the desired
-    // direction from the Polaroid/Negative status
+    // - On races that have a specific direction, force that direction.
+    // - On races that give the player an option between going up or down, intuit the desired
+    //   direction from the Polaroid/Negative status.
     const itLivesSituationRace = getItLivesSituationRace(g.race.goal);
     if (itLivesSituationRace !== ItLivesSituation.BOTH) {
       return itLivesSituationRace;
@@ -101,23 +109,23 @@ function getItLivesSituation() {
   const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();
 
   if (hasPolaroid && hasNegative) {
-    // The player has both photos (which can occur if the player is Eden or is in a diversity race)
-    // So, give the player a choice between the directions
+    // The player has both photos (which can occur if the player is Eden or is in a diversity race).
+    // So, give the player a choice between the directions.
     return ItLivesSituation.BOTH;
   }
 
   if (hasPolaroid) {
-    // The player has The Polaroid, so send them to Cathedral
+    // The player has The Polaroid, so send them to Cathedral.
     return ItLivesSituation.HEAVEN_DOOR;
   }
 
   if (hasNegative) {
-    // The player has The Negative, so send them to Sheol
+    // The player has The Negative, so send them to Sheol.
     return ItLivesSituation.TRAPDOOR;
   }
 
   // The player does not have either The Polaroid or The Negative,
-  // so give them a choice between the directions
+  // so give them a choice between the directions.
   return ItLivesSituation.BOTH;
 }
 
@@ -136,7 +144,7 @@ function getItLivesSituationRace(goal: RaceGoal) {
     case RaceGoal.MOTHER:
     case RaceGoal.THE_BEAST:
     case RaceGoal.CUSTOM: {
-      // Give the player a choice between the photos for races to alternate objectives
+      // Give the player a choice between the photos for races to alternate objectives.
       return ItLivesSituation.BOTH;
     }
 
@@ -214,13 +222,13 @@ function spawnHeavenDoor(position: Vector) {
 function spawnTrapdoor(position: Vector) {
   const gridIndex = g.r.GetGridIndex(position);
   spawnGridWithVariant(
-    GridEntityType.GRID_TRAPDOOR,
+    GridEntityType.TRAPDOOR,
     TrapdoorVariant.NORMAL,
     gridIndex,
   );
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   checkItLivesWrongPath();
 }
@@ -251,7 +259,7 @@ function checkItLivesWrongPath() {
 
     case ItLivesSituation.HEAVEN_DOOR: {
       const numHeavenDoors = countEntities(
-        EntityType.ENTITY_EFFECT,
+        EntityType.EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
       );
       if (numHeavenDoors === 0) {
@@ -265,7 +273,7 @@ function checkItLivesWrongPath() {
     }
 
     case ItLivesSituation.TRAPDOOR: {
-      const trapdoors = getGridEntities(GridEntityType.GRID_TRAPDOOR);
+      const trapdoors = getGridEntities(GridEntityType.TRAPDOOR);
       if (trapdoors.length === 0) {
         spawnTrapdoor(positionCenter);
         log(
@@ -277,9 +285,8 @@ function checkItLivesWrongPath() {
     }
 
     case ItLivesSituation.BOTH: {
-      // In vanilla, both paths appear by default, so we don't have to do anything
-      // The exception is if we are on a custom challenge that allows both paths,
-      // but ignore this edge-case
+      // In vanilla, both paths appear by default, so we don't have to do anything. The exception is
+      // if we are on a custom challenge that allows both paths, but ignore this edge-case.
       return;
     }
 

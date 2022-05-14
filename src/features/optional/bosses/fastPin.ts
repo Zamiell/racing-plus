@@ -1,13 +1,15 @@
-// Speed up the tear attack of Pin, Frail, and Scolex
-// Make Wormwood spend less time underground
-// There does not seem to be a good way of speeding up Pin/Frail/Scolex while it is underground
+// Speed up the attacks of Pin, Frail, and Scolex. Additionally, make Wormwood spend less time
+// underground. (There does not seem to be a good way of speeding up Pin/Frail/Scolex while they are
+// underground.)
 
+import { EntityType, NpcState, PinVariant } from "isaac-typescript-definitions";
 import { getNPCs, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
 const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;
-/** This is the same for both NpcState.STATE_ATTACK and NpcState.STATE_ATTACK2. */
+
+/** This is the same for both NpcState.ATTACK and NpcState.ATTACK_2. */
 const PIN_ATTACK_STATE_FRAME_FINAL = 105;
 
 const v = {
@@ -25,8 +27,8 @@ function featureEnabled() {
   return config.fastPin;
 }
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_PIN (62)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.PIN (62)
 export function postNPCUpdatePin(npc: EntityNPC): void {
   if (!config.fastPin) {
     return;
@@ -55,14 +57,14 @@ function checkPin(npc: EntityNPC) {
 function speedUpTearAttack(npc: EntityNPC) {
   // In vanilla, Pin will spend too long underground after performing the tear attack
   if (
-    npc.State === NpcState.STATE_ATTACK &&
+    npc.State === NpcState.ATTACK &&
     npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
   ) {
     npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
   }
 
   if (
-    npc.State === NpcState.STATE_ATTACK2 &&
+    npc.State === NpcState.ATTACK_2 &&
     npc.StateFrame >= PIN_ATTACK2_STATE_FRAME_IN_GROUND
   ) {
     npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
@@ -74,15 +76,12 @@ function checkWormwood(npc: EntityNPC) {
     return;
   }
 
-  // Wormwood is in the idle state when they are underground
-  // The state frame starts at a number around 50,
-  // depending on how far away they are from the player
-  // It will tick downwards towards 0
-  // When Wormwood is underground, we force it to be invisible to prevent buggy artifacts
-  // As soon as it does another attack, make it visible again
+  // Wormwood is in the idle state when they are underground. The state frame starts at a number
+  // around 50, depending on how far away they are from the player. It will tick downwards towards
+  // 0. When Wormwood is underground, we force it to be invisible to prevent buggy artifacts. As
+  // soon as it does another attack, make it visible again.
   if (
-    (npc.State === NpcState.STATE_JUMP ||
-      npc.State === NpcState.STATE_ATTACK) &&
+    (npc.State === NpcState.JUMP || npc.State === NpcState.ATTACK) &&
     !npc.Visible
   ) {
     v.room.pokePhase = false;
@@ -95,13 +94,13 @@ function checkWormwood(npc: EntityNPC) {
     return;
   }
 
-  if (npc.State === NpcState.STATE_ATTACK2) {
+  if (npc.State === NpcState.ATTACK_2) {
     v.room.pokePhase = true;
     npc.Visible = true;
     return;
   }
 
-  if (npc.State === NpcState.STATE_IDLE) {
+  if (npc.State === NpcState.IDLE) {
     checkSpeedUpWormwoodWhileUnderground(npc);
   }
 }
@@ -111,16 +110,16 @@ function checkSpeedUpWormwoodWhileUnderground(npc: EntityNPC) {
     return;
   }
 
-  // The beginning of the fight is a special case;
-  // Wormwood already has a collision class of EntityCollisionClass.ENTCOLL_NONE
+  // The beginning of the fight is a special case; Wormwood already has a collision class of
+  // `EntityCollisionClass.NONE`.
   if (npc.FrameCount === 0) {
     speedUpWormwood(npc);
     return;
   }
 
-  // Before we speed up Wormwood, we must wait for the collision class to change
-  // (or else teleporting it on top of the player would cause unavoidable damage)
-  // This only takes 1 frame after changing to the idle state
+  // Before we speed up Wormwood, we must wait for the collision class to change (or else
+  // teleporting it on top of the player would cause unavoidable damage). This only takes 1 frame
+  // after changing to the idle state.
   if (!v.room.wasIdleOnLastFrame) {
     v.room.wasIdleOnLastFrame = false;
     return;
@@ -132,17 +131,16 @@ function checkSpeedUpWormwoodWhileUnderground(npc: EntityNPC) {
 function speedUpWormwood(npc: EntityNPC) {
   const player = Isaac.GetPlayer();
 
-  // Wormwood will first path towards the path, tag them,
-  // and then move to the nearest water tile
-  // Speed up this process by immediately teleporting Wormwood next to the player
-  const wormwoods = getNPCs(EntityType.ENTITY_PIN, PinVariant.WORMWOOD);
+  // Wormwood will first path towards the path, tag them, and then move to the nearest water tile.
+  // Speed up this process by immediately teleporting Wormwood next to the player.
+  const wormwoods = getNPCs(EntityType.PIN, PinVariant.WORMWOOD);
   for (const wormwood of wormwoods) {
     wormwood.Position = player.Position;
     wormwood.Visible = false;
   }
 
-  // Setting the StateFrame to 0 will cause a softlock, so we set it to 1 instead,
-  // which will tick to 0 on the next frame and cause Wormwood to path to the nearest water tile
+  // Setting the `StateFrame` to 0 will cause a softlock, so we set it to 1 instead, which will tick
+  // to 0 on the next frame and cause Wormwood to path to the nearest water tile.
   npc.StateFrame = 1;
   v.room.wasIdleOnLastFrame = false;
 }

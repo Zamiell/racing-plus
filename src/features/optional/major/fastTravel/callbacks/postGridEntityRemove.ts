@@ -1,7 +1,8 @@
 import { config } from "../../../../../modConfigMenu";
-import * as cs from "../crawlspace";
+import * as cs from "../crawlSpace";
 import * as td from "../trapdoor";
 
+// GridEntityType.TRAPDOOR (17)
 export function trapdoor(gridIndex: int): void {
   if (!config.fastTravel) {
     return;
@@ -10,7 +11,8 @@ export function trapdoor(gridIndex: int): void {
   td.postGridEntityRemoveTrapdoor(gridIndex);
 }
 
-export function crawlspace(gridIndex: int): void {
+// GridEntityType.CRAWL_SPACE (18)
+export function crawlSpace(gridIndex: int): void {
   if (!config.fastTravel) {
     return;
   }

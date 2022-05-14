@@ -1,5 +1,7 @@
 # Racing+ Mod Changes
 
+<!-- markdownlint-disable MD033 -->
+
 <br>
 
 ## Website
@@ -94,7 +96,7 @@ Furthermore, the mod attempts to remove all situations where the player is force
 ### 7) Fast-Travel
 
 - `0008` <!-- fastTravel --> The long fade-in and fade-out between floors is replaced with a custom animation where you jump out of a hole.
-- `0008` <!-- fastTravel --> The long fade-in and fade-out between crawlspaces is replaced with the normal room transition animation.
+- `0008` <!-- fastTravel --> The long fade-in and fade-out between crawl spaces is replaced with the normal room transition animation.
 
 ### 8) Room Fixes
 
@@ -147,7 +149,7 @@ Post-flip actions:
 
 - `0202` <!-- samsonDropHeart 6 --> Samson's Child's Heart is automatically dropped.
 
->  Why? When playing as Samson, players usually immediately drop the Child's Heart to improve their odds at good room drops.
+> Why? When playing as Samson, players usually immediately drop the Child's Heart to improve their odds at good room drops.
 
 - `0203` <!-- showEdenStartingItems 9, 30 --> Eden's starting items will be shown in the starting room.
 
@@ -289,6 +291,7 @@ Post-flip actions:
 ### 6) Gameplay Changes
 
 - `0601` <!-- extraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
+
   - 12 - Magic Mushroom (from 0.5)
   - 237 - Death's Touch (from 0.2)
 
@@ -363,7 +366,7 @@ Post-flip actions:
 - `0905` <!-- fixBatteryBum --> Battery Bums will now properly charge pocket active items.
 - `0906` <!-- teleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
 - `0907` <!-- removeInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
-- <!-- fastTravel --> Returning from a crawlspace in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
+- <!-- fastTravel --> Returning from a crawl space in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - <!-- fastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- seededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
 - <!-- seededGBBug --> Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.

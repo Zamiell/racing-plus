@@ -1,8 +1,8 @@
 import { config } from "../../../../../modConfigMenu";
-import * as cs from "../crawlspace";
+import * as cs from "../crawlSpace";
 import * as td from "../trapdoor";
 
-// GridEntityType.GRID_TRAPDOOR (17)
+// GridEntityType.TRAPDOOR (17)
 export function trapdoor(gridEntity: GridEntity): void {
   if (!config.fastTravel) {
     return;
@@ -11,8 +11,8 @@ export function trapdoor(gridEntity: GridEntity): void {
   td.postGridEntityUpdateTrapdoor(gridEntity);
 }
 
-// GridEntityType.GRID_STAIRS (18)
-export function crawlspace(gridEntity: GridEntity): void {
+// GridEntityType.CRAWL_SPACE (18)
+export function crawlSpace(gridEntity: GridEntity): void {
   if (!config.fastTravel) {
     return;
   }
@@ -20,7 +20,7 @@ export function crawlspace(gridEntity: GridEntity): void {
   cs.postGridEntityUpdateCrawlspace(gridEntity);
 }
 
-// GridEntityType.GRID_TELEPORTER (23)
+// GridEntityType.TELEPORTER (23)
 export function teleporter(gridEntity: GridEntity): void {
   if (!config.fastTravel) {
     return;

@@ -1,11 +1,12 @@
+import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import * as flipCustom from "../features/items/flipCustom";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_POST_PICKUP_RENDER,
+    ModCallback.POST_PICKUP_RENDER,
     collectible,
-    PickupVariant.PICKUP_COLLECTIBLE, // 100
+    PickupVariant.COLLECTIBLE, // 100
   );
 }
 

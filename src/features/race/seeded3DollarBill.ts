@@ -1,3 +1,4 @@
+import { CollectibleType, ItemType } from "isaac-typescript-definitions";
 import {
   getPlayers,
   getRandomArrayIndex,
@@ -11,44 +12,44 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import v from "./v";
 
-const REPLACED_ITEM = CollectibleType.COLLECTIBLE_3_DOLLAR_BILL;
-const REPLACEMENT_ITEM = CollectibleTypeCustom.COLLECTIBLE_3_DOLLAR_BILL_SEEDED;
+const REPLACED_ITEM = CollectibleType.THREE_DOLLAR_BILL;
+const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
 
 // Listed in alphabetical order to match the wiki page
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
 const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
-  CollectibleType.COLLECTIBLE_20_20, // 245
-  CollectibleType.COLLECTIBLE_APPLE, // 443
-  CollectibleType.COLLECTIBLE_BALL_OF_TAR, // 231
-  CollectibleType.COLLECTIBLE_CONTINUUM, // 369
-  CollectibleType.COLLECTIBLE_CRICKETS_BODY, // 224
-  CollectibleType.COLLECTIBLE_DARK_MATTER, // 259
-  CollectibleType.COLLECTIBLE_DEAD_EYE, // 373
-  CollectibleType.COLLECTIBLE_DEATHS_TOUCH, // 237
-  CollectibleType.COLLECTIBLE_EUTHANASIA, // 496
-  CollectibleType.COLLECTIBLE_EYE_OF_BELIAL, // 462
-  CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
-  CollectibleType.COLLECTIBLE_IRON_BAR, // 201
-  CollectibleType.COLLECTIBLE_MOMS_CONTACTS, // 110
-  CollectibleType.COLLECTIBLE_MUTANT_SPIDER, // 153
-  CollectibleType.COLLECTIBLE_MY_REFLECTION, // 5
-  CollectibleType.COLLECTIBLE_MYSTERIOUS_LIQUID, // 317
-  CollectibleType.COLLECTIBLE_NUMBER_ONE, // 6
-  CollectibleType.COLLECTIBLE_OUIJA_BOARD, // 115
-  CollectibleType.COLLECTIBLE_PARASITOID, // 461
-  CollectibleType.COLLECTIBLE_PROPTOSIS, // 261
-  CollectibleType.COLLECTIBLE_RUBBER_CEMENT, // 221
-  CollectibleType.COLLECTIBLE_SAGITTARIUS, // 306
-  CollectibleType.COLLECTIBLE_SCORPIO, // 305
-  CollectibleType.COLLECTIBLE_SINUS_INFECTION, // 459
-  CollectibleType.COLLECTIBLE_SPEED_BALL, // 143
-  CollectibleType.COLLECTIBLE_SPOON_BENDER, // 3
-  CollectibleType.COLLECTIBLE_INNER_EYE, // 2
-  CollectibleType.COLLECTIBLE_THE_WIZ, // 358
-  CollectibleType.COLLECTIBLE_TOUGH_LOVE, // 150
+  CollectibleType.TWENTY_TWENTY, // 245
+  CollectibleType.APPLE, // 443
+  CollectibleType.BALL_OF_TAR, // 231
+  CollectibleType.CONTINUUM, // 369
+  CollectibleType.CRICKETS_BODY, // 224
+  CollectibleType.DARK_MATTER, // 259
+  CollectibleType.DEAD_EYE, // 373
+  CollectibleType.DEATHS_TOUCH, // 237
+  CollectibleType.EUTHANASIA, // 496
+  CollectibleType.EYE_OF_BELIAL, // 462
+  CollectibleType.FIRE_MIND, // 257
+  CollectibleType.IRON_BAR, // 201
+  CollectibleType.MOMS_CONTACTS, // 110
+  CollectibleType.MUTANT_SPIDER, // 153
+  CollectibleType.MY_REFLECTION, // 5
+  CollectibleType.MYSTERIOUS_LIQUID, // 317
+  CollectibleType.NUMBER_ONE, // 6
+  CollectibleType.OUIJA_BOARD, // 115
+  CollectibleType.PARASITOID, // 461
+  CollectibleType.PROPTOSIS, // 261
+  CollectibleType.RUBBER_CEMENT, // 221
+  CollectibleType.SAGITTARIUS, // 306
+  CollectibleType.SCORPIO, // 305
+  CollectibleType.SINUS_INFECTION, // 459
+  CollectibleType.SPEED_BALL, // 143
+  CollectibleType.SPOON_BENDER, // 3
+  CollectibleType.INNER_EYE, // 2
+  CollectibleType.THE_WIZ, // 358
+  CollectibleType.TOUGH_LOVE, // 150
 ];
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   for (const player of getPlayers()) {
     checkApplySeeded3DollarBillItem(player);
@@ -75,7 +76,10 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
   let arrayIndex = initialArrayIndex;
   do {
     const collectibleType = THREE_DOLLAR_BILL_ITEMS[arrayIndex];
-    if (!player.HasCollectible(collectibleType)) {
+    if (
+      collectibleType !== undefined &&
+      !player.HasCollectible(collectibleType)
+    ) {
       v.run.seeded3DollarBillItem = collectibleType;
       player.AddCollectible(collectibleType, 0, false);
       return;
@@ -99,7 +103,7 @@ export function postItemPickup(
   // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill
   if (
     player.HasCollectible(REPLACEMENT_ITEM) &&
-    pickingUpItem.itemType === ItemType.ITEM_PASSIVE &&
+    pickingUpItem.itemType === ItemType.PASSIVE &&
     pickingUpItem.subType === v.run.seeded3DollarBillItem
   ) {
     // Unset the variable so that the new item does not get blown away after a room change
@@ -108,7 +112,7 @@ export function postItemPickup(
 }
 
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
-// CollectibleType.COLLECTIBLE_3_DOLLAR_BILL (191)
+// CollectibleType.3_DOLLAR_BILL (191)
 export function postItemPickup3DollarBill(player: EntityPlayer): void {
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&

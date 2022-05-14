@@ -1,4 +1,13 @@
 import {
+  BombSubType,
+  CoinSubType,
+  HeartSubType,
+  KeySubType,
+  PickupVariant,
+  PlayerType,
+  PoopPickupSubType,
+} from "isaac-typescript-definitions";
+import {
   ensureAllCases,
   getCoinValue,
   hasOpenPocketItemSlot,
@@ -12,42 +21,42 @@ export function insertPickup(
 ): [PickupVariant, int] | undefined {
   switch (pickup.Variant) {
     // 10
-    case PickupVariant.PICKUP_HEART: {
+    case PickupVariant.HEART: {
       return insertBloodOrSoulCharge(pickup, player);
     }
 
     // 20
-    case PickupVariant.PICKUP_COIN: {
+    case PickupVariant.COIN: {
       return insertCoin(pickup, player);
     }
 
     // 30
-    case PickupVariant.PICKUP_KEY: {
+    case PickupVariant.KEY: {
       return insertKey(pickup, player);
     }
 
     // 40
-    case PickupVariant.PICKUP_BOMB: {
+    case PickupVariant.BOMB: {
       return insertBomb(pickup, player);
     }
 
     // 42
-    case PickupVariant.PICKUP_POOP: {
+    case PickupVariant.POOP: {
       return insertPoop(pickup, player);
     }
 
     // 70
-    case PickupVariant.PICKUP_PILL: {
+    case PickupVariant.PILL: {
       return insertPill(pickup, player);
     }
 
     // 300
-    case PickupVariant.PICKUP_TAROTCARD: {
+    case PickupVariant.TAROT_CARD: {
       return insertCard(pickup, player);
     }
 
     // 350
-    case PickupVariant.PICKUP_TRINKET: {
+    case PickupVariant.TRINKET: {
       return insertTrinket(pickup, player);
     }
 
@@ -58,7 +67,7 @@ export function insertPickup(
   }
 }
 
-// PickupVariant.PICKUP_HEART (10)
+// PickupVariant.HEART (10)
 function insertBloodOrSoulCharge(
   heart: EntityPickup,
   player: EntityPlayer,
@@ -67,81 +76,87 @@ function insertBloodOrSoulCharge(
   const character = player.GetPlayerType();
 
   switch (heartSubType) {
+    // 0
+    case HeartSubType.NULL: {
+      return undefined;
+    }
+
     // 1
-    case HeartSubType.HEART_FULL: {
-      if (character !== PlayerType.PLAYER_BETHANY_B) {
+    case HeartSubType.FULL: {
+      if (character !== PlayerType.BETHANY_B) {
         return undefined;
       }
 
       const value = 2;
       player.AddBloodCharge(value);
-      return [PickupVariant.PICKUP_HEART, value];
+      return [PickupVariant.HEART, value];
     }
 
     // 2
-    case HeartSubType.HEART_HALF: {
-      if (character !== PlayerType.PLAYER_BETHANY_B) {
+    case HeartSubType.HALF: {
+      if (character !== PlayerType.BETHANY_B) {
         return undefined;
       }
 
       const value = 1;
       player.AddBloodCharge(value);
-      return [PickupVariant.PICKUP_HEART, value];
+      return [PickupVariant.HEART, value];
     }
 
     // 3, 6
-    case HeartSubType.HEART_SOUL:
-    case HeartSubType.HEART_BLACK: {
-      if (character !== PlayerType.PLAYER_BETHANY) {
+    case HeartSubType.SOUL:
+    case HeartSubType.BLACK: {
+      if (character !== PlayerType.BETHANY) {
         return undefined;
       }
 
       const value = 2;
       player.AddSoulCharge(value);
-      return [PickupVariant.PICKUP_HEART, value];
+      return [PickupVariant.HEART, value];
     }
 
     // 5
-    case HeartSubType.HEART_DOUBLEPACK: {
-      if (character !== PlayerType.PLAYER_BETHANY_B) {
+    case HeartSubType.DOUBLE_PACK: {
+      if (character !== PlayerType.BETHANY_B) {
         return undefined;
       }
 
       const value = 4;
       player.AddBloodCharge(value);
-      return [PickupVariant.PICKUP_HEART, value];
+      return [PickupVariant.HEART, value];
     }
 
     // 8
-    case HeartSubType.HEART_HALF_SOUL: {
-      if (character !== PlayerType.PLAYER_BETHANY) {
+    case HeartSubType.HALF_SOUL: {
+      if (character !== PlayerType.BETHANY) {
         return undefined;
       }
 
       const value = 1;
       player.AddSoulCharge(value);
-      return [PickupVariant.PICKUP_HEART, value];
+      return [PickupVariant.HEART, value];
     }
 
-    case HeartSubType.HEART_ETERNAL:
-    case HeartSubType.HEART_GOLDEN:
-    case HeartSubType.HEART_SCARED:
-    case HeartSubType.HEART_BLENDED:
-    case HeartSubType.HEART_BONE:
-    case HeartSubType.HEART_ROTTEN: {
+    case HeartSubType.ETERNAL:
+    case HeartSubType.GOLDEN:
+    case HeartSubType.SCARED:
+    case HeartSubType.BLENDED:
+    case HeartSubType.BONE:
+    case HeartSubType.ROTTEN: {
       return undefined;
     }
 
     default: {
       ensureAllCases(heartSubType);
 
-      // Ignore modded heart sub-types
+      // Ignore modded heart sub-types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
 }
 
-// PickupVariant.PICKUP_COIN (20)
+// PickupVariant.COIN (20)
 function insertCoin(
   coin: EntityPickup,
   player: EntityPlayer,
@@ -150,30 +165,35 @@ function insertCoin(
   const coinValue = getCoinValue(coinSubType);
 
   switch (coinSubType) {
+    // 0
+    case CoinSubType.NULL: {
+      return undefined;
+    }
+
     // 1, 2, 3
-    case CoinSubType.COIN_PENNY:
-    case CoinSubType.COIN_NICKEL:
-    case CoinSubType.COIN_DIME:
-    case CoinSubType.COIN_DOUBLEPACK: {
+    case CoinSubType.PENNY:
+    case CoinSubType.NICKEL:
+    case CoinSubType.DIME:
+    case CoinSubType.DOUBLE_PACK: {
       player.AddCoins(coinValue);
-      return [PickupVariant.PICKUP_COIN, coinValue];
+      return [PickupVariant.COIN, coinValue];
     }
 
     // 5
-    case CoinSubType.COIN_LUCKYPENNY: {
+    case CoinSubType.LUCKY_PENNY: {
       player.AddCoins(coinValue);
       player.DonateLuck(1);
-      return [PickupVariant.PICKUP_COIN, coinValue];
+      return [PickupVariant.COIN, coinValue];
     }
 
     // 6
-    case CoinSubType.COIN_STICKYNICKEL: {
+    case CoinSubType.STICKY_NICKEL: {
       // Don't put Sticky Nickels in our inventory automatically
       return undefined;
     }
 
     // 7
-    case CoinSubType.COIN_GOLDEN: {
+    case CoinSubType.GOLDEN: {
       // Don't put Golden Coins in our inventory automatically
       return undefined;
     }
@@ -181,13 +201,14 @@ function insertCoin(
     default: {
       ensureAllCases(coinSubType);
 
-      // Ignore modded coin sub-types
+      // Ignore modded coin sub-types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
 }
 
-// PickupVariant.PICKUP_KEY (30)
+// PickupVariant.KEY (30)
 function insertKey(
   key: EntityPickup,
   player: EntityPlayer,
@@ -195,45 +216,51 @@ function insertKey(
   const keySubType = key.SubType as KeySubType;
 
   switch (keySubType) {
+    // 0
+    case KeySubType.NULL: {
+      return undefined;
+    }
+
     // 1
-    case KeySubType.KEY_NORMAL: {
+    case KeySubType.NORMAL: {
       const value = 1;
       player.AddKeys(value);
-      return [PickupVariant.PICKUP_KEY, value];
+      return [PickupVariant.KEY, value];
     }
 
     // 2
-    case KeySubType.KEY_GOLDEN: {
+    case KeySubType.GOLDEN: {
       const value = 0;
       player.AddGoldenKey();
-      return [PickupVariant.PICKUP_KEY, value];
+      return [PickupVariant.KEY, value];
     }
 
     // 3
-    case KeySubType.KEY_DOUBLEPACK: {
+    case KeySubType.DOUBLE_PACK: {
       const value = 2;
       player.AddKeys(value);
-      return [PickupVariant.PICKUP_KEY, value];
+      return [PickupVariant.KEY, value];
     }
 
     // 4
-    case KeySubType.KEY_CHARGED: {
+    case KeySubType.CHARGED: {
       const value = 1;
       player.AddKeys(value);
       player.FullCharge();
-      return [PickupVariant.PICKUP_KEY, value];
+      return [PickupVariant.KEY, value];
     }
 
     default: {
       ensureAllCases(keySubType);
 
-      // Ignore modded key sub-types
+      // Ignore modded key sub-types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
 }
 
-// PickupVariant.PICKUP_BOMB (40)
+// PickupVariant.BOMB (40)
 function insertBomb(
   bomb: EntityPickup,
   player: EntityPlayer,
@@ -241,47 +268,52 @@ function insertBomb(
   const bombSubType = bomb.SubType as BombSubType;
 
   switch (bombSubType) {
+    // 0
+    case BombSubType.NULL: {
+      return undefined;
+    }
+
     // 1
-    case BombSubType.BOMB_NORMAL: {
+    case BombSubType.NORMAL: {
       const value = 1;
       player.AddBombs(value);
-      return [PickupVariant.PICKUP_BOMB, value];
+      return [PickupVariant.BOMB, value];
     }
 
     // 2
-    case BombSubType.BOMB_DOUBLEPACK: {
+    case BombSubType.DOUBLE_PACK: {
       const value = 2;
       player.AddBombs(value);
-      return [PickupVariant.PICKUP_BOMB, value];
+      return [PickupVariant.BOMB, value];
     }
 
     // 3
-    case BombSubType.BOMB_TROLL: {
+    case BombSubType.TROLL: {
       // Don't put Troll Bombs in our inventory automatically
       return undefined;
     }
 
     // 4
-    case BombSubType.BOMB_GOLDEN: {
+    case BombSubType.GOLDEN: {
       const value = 0;
       player.AddGoldenBomb();
-      return [PickupVariant.PICKUP_BOMB, value];
+      return [PickupVariant.BOMB, value];
     }
 
     // 5
-    case BombSubType.BOMB_SUPERTROLL: {
+    case BombSubType.MEGA_TROLL: {
       // Don't put Mega Troll Bombs in our inventory automatically
       return undefined;
     }
 
     // 6
-    case BombSubType.BOMB_GOLDENTROLL: {
+    case BombSubType.GOLDEN_TROLL: {
       // Don't put Golden Troll Bombs in our inventory automatically
       return undefined;
     }
 
     // 7
-    case BombSubType.BOMB_GIGA: {
+    case BombSubType.GIGA: {
       // Don't put Giga Bombs in our inventory automatically
       return undefined;
     }
@@ -289,13 +321,14 @@ function insertBomb(
     default: {
       ensureAllCases(bombSubType);
 
-      // Ignore modded bomb sub-types
+      // Ignore modded bomb sub-types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
 }
 
-// PickupVariant.PICKUP_POOP (42)
+// PickupVariant.POOP (42)
 function insertPoop(
   poop: EntityPickup,
   player: EntityPlayer,
@@ -304,29 +337,30 @@ function insertPoop(
 
   switch (poopSubType) {
     // 0
-    case PoopPickupSubType.POOP_SMALL: {
+    case PoopPickupSubType.SMALL: {
       const value = 1;
       player.AddPoopMana(value);
-      return [PickupVariant.PICKUP_BOMB, value];
+      return [PickupVariant.BOMB, value];
     }
 
     // 1
-    case PoopPickupSubType.POOP_BIG: {
+    case PoopPickupSubType.BIG: {
       const value = 3;
       player.AddPoopMana(value);
-      return [PickupVariant.PICKUP_BOMB, value];
+      return [PickupVariant.BOMB, value];
     }
 
     default: {
       ensureAllCases(poopSubType);
 
-      // Ignore modded poop sub-types
+      // Ignore modded poop sub-types.
+      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
 }
 
-// PickupVariant.PICKUP_PILL (70)
+// PickupVariant.PILL (70)
 function insertPill(
   pill: EntityPickup,
   player: EntityPlayer,
@@ -336,10 +370,10 @@ function insertPill(
   }
 
   player.AddPill(pill.SubType);
-  return [PickupVariant.PICKUP_PILL, 1];
+  return [PickupVariant.PILL, 1];
 }
 
-// PickupVariant.PICKUP_TAROTCARD (300)
+// PickupVariant.TAROT_CARD (300)
 function insertCard(
   card: EntityPickup,
   player: EntityPlayer,
@@ -349,10 +383,10 @@ function insertCard(
   }
 
   player.AddCard(card.SubType);
-  return [PickupVariant.PICKUP_TAROTCARD, 1];
+  return [PickupVariant.TAROT_CARD, 1];
 }
 
-// PickupVariant.PICKUP_TRINKET (350)
+// PickupVariant.TRINKET (350)
 function insertTrinket(
   trinket: EntityPickup,
   player: EntityPlayer,
@@ -367,5 +401,5 @@ function insertTrinket(
   }
 
   player.AddTrinket(trinket.SubType);
-  return [PickupVariant.PICKUP_TRINKET, 1];
+  return [PickupVariant.TRINKET, 1];
 }

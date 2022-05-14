@@ -1,3 +1,4 @@
+import { Direction } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import g from "../../../../globals";
@@ -36,7 +37,7 @@ const v = {
 
     /**
      * Repentance secret exits are located in the room outside the grid.
-     * (e.g. GridRooms.ROOM_SECRET_EXIT_IDX)
+     * (e.g. GridRoom.SECRET_EXIT)
      */
     repentanceSecretExit: false,
 
@@ -44,11 +45,11 @@ const v = {
   },
 
   level: {
-    crawlspace: {
+    crawlSpace: {
       amEntering: false,
 
       /**
-       * If the player is returning from the top of the crawlspace ladder back to the previous room.
+       * If the player is returning from the top of the crawl space ladder back to the previous room.
        */
       amExiting: false,
 
@@ -84,14 +85,14 @@ const v = {
     clearFrame: null as int | null,
 
     /** Indexed by grid index. */
-    crawlspaces: new Map<int, FastTravelEntityDescription>(),
+    crawlSpaces: new Map<int, FastTravelEntityDescription>(),
 
     /** Indexed by grid index. */
     heavenDoors: new Map<int, FastTravelEntityDescription>(),
 
     movedAwayFromSecretShopLadder: false,
 
-    /** Used when replacing a crawlspace with a teleporter. */
+    /** Used when replacing a crawl space with a teleporter. */
     teleporterSpawned: false,
 
     /** Indexed by grid index. */

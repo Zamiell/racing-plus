@@ -1,3 +1,4 @@
+import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import { ensureAllCases } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -9,25 +10,26 @@ import { getRoomsEntered } from "../utils/roomsEntered";
 const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
 
-const sprites: Record<string, Sprite | null> = {
-  seededStartingTitle: null, // "Starting Item" or "Starting Build"
-  seededItemCenter: null,
-  seededItemLeft: null,
-  seededItemRight: null,
-  seededItemFarLeft: null,
-  seededItemFarRight: null,
+const sprites = {
+  /** "Starting Item" or "Starting Build". */
+  seededStartingTitle: null as Sprite | null,
+  seededItemCenter: null as Sprite | null,
+  seededItemLeft: null as Sprite | null,
+  seededItemRight: null as Sprite | null,
+  seededItemFarLeft: null as Sprite | null,
+  seededItemFarRight: null as Sprite | null,
 
-  diversityActive: null,
-  diversityPassives: null,
-  diversityTrinket: null,
-  diversityItem1: null,
-  diversityItem2: null,
-  diversityItem3: null,
-  diversityItem4: null,
-  diversityItem5: null,
+  diversityActive: null as Sprite | null,
+  diversityPassives: null as Sprite | null,
+  diversityTrinket: null as Sprite | null,
+  diversityItem1: null as Sprite | null,
+  diversityItem2: null as Sprite | null,
+  diversityItem3: null as Sprite | null,
+  diversityItem4: null as Sprite | null,
+  diversityItem5: null as Sprite | null,
 };
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   drawSprites();
 }
@@ -40,9 +42,9 @@ function drawSprites() {
   }
 
   // We do not have to check if the game is paused because the pause menu will be drawn on top of
-  // the starting room sprites
-  // (and we do not have to worry about the room slide animation because the starting room sprites
-  // are not shown once we re-enter the room)
+  // the starting room sprites.
+  // (And we do not have to worry about the room slide animation because the starting room sprites
+  // are not shown once we re-enter the room.)
 
   if (
     g.race.myStatus === RacerStatus.FINISHED ||
@@ -54,7 +56,7 @@ function drawSprites() {
 
   for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const position = getPosition(spriteName);
+      const position = getPosition(spriteName as keyof typeof sprites);
       sprite.RenderLayer(0, position);
     }
   }
@@ -135,7 +137,7 @@ function getPosition(spriteName: keyof typeof sprites) {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const roomsEntered = getRoomsEntered();
 
@@ -146,8 +148,8 @@ export function postNewRoom(): void {
 
 export function resetSprites(): void {
   for (const key of Object.keys(sprites)) {
-    const property = key;
-    sprites[property] = null;
+    // @ts-expect-error The key will always be valid here.
+    sprites[key] = null;
   }
 }
 

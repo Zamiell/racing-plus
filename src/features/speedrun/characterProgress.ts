@@ -2,7 +2,6 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
-  repeat,
 } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
@@ -16,28 +15,35 @@ import v from "./v";
 const STARTING_POSITION = Vector(23, 79);
 const RACE_PLACE_OFFSET = Vector(30, 0);
 
-const sprites = {
-  digit: [] as Sprite[],
-  slash: Sprite(),
-  seasonIcon: Sprite(),
-};
+class CharacterProgressSprites {
+  digits = {
+    digit1: Sprite(),
+    digit2: Sprite(),
+    digit3: Sprite(),
+    digit4: Sprite(),
+  };
 
-export function init(): void {
-  repeat(4, () => {
-    const sprite = Sprite();
-    sprite.Load("gfx/timer/timer.anm2", true);
-    sprite.Scale = Vector(0.9, 0.9);
-    // Make the numbers a bit smaller than the ones used for the timer
-    sprite.SetFrame("Default", 0);
+  slash = Sprite();
+  seasonIcon = Sprite();
 
-    sprites.digit.push(sprite);
-  });
+  constructor() {
+    for (const sprite of Object.values(this.digits)) {
+      sprite.Load("gfx/timer/timer.anm2", true);
 
-  sprites.slash.Load("gfx/timer/slash.anm2", true);
-  sprites.slash.SetFrame("Default", 0);
+      // Make the numbers a bit smaller than the ones used for the timer
+      sprite.Scale = Vector(0.9, 0.9);
+
+      sprite.SetFrame("Default", 0);
+    }
+
+    this.slash.Load("gfx/timer/slash.anm2", true);
+    this.slash.SetFrame("Default", 0);
+  }
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+const sprites = new CharacterProgressSprites();
+
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   drawCharacterProgressAndSeasonIcon();
 }
@@ -83,38 +89,34 @@ function drawCharacterProgressAndSeasonIcon() {
   const digit3 = 7; // Assume a 7 character speedrun by default
   const digit4 = -1;
 
-  const digit1Sprite = sprites.digit[0];
-  digit1Sprite.SetFrame("Default", digit1);
-  digit1Sprite.RenderLayer(0, position);
+  sprites.digits.digit1.SetFrame("Default", digit1);
+  sprites.digits.digit1.RenderLayer(0, position);
 
   if (digit2 !== -1) {
-    const digit2Sprite = sprites.digit[1];
-    digit2Sprite.SetFrame("Default", digit2);
+    sprites.digits.digit2.SetFrame("Default", digit2);
     const digit2Modification = Vector(digitLength - 1, 0);
     const digit2Position = position.add(digit2Modification);
-    digit2Sprite.RenderLayer(0, digit2Position);
+    sprites.digits.digit2.RenderLayer(0, digit2Position);
   }
 
   const slashModification = Vector(digitLength - 1 + adjustment1, 0);
   const slashPosition = position.add(slashModification);
   sprites.slash.RenderLayer(0, slashPosition);
 
-  const digit3Sprite = sprites.digit[2];
-  digit3Sprite.SetFrame("Default", digit3);
+  sprites.digits.digit3.SetFrame("Default", digit3);
   const digit3Modification = Vector(digitLength + adjustment2 + 5, 0);
   const digit3Position = position.add(digit3Modification);
-  digit3Sprite.RenderLayer(0, digit3Position);
+  sprites.digits.digit3.RenderLayer(0, digit3Position);
 
   let digit4Position: Vector | undefined;
   if (digit4 !== -1) {
-    const digit4Sprite = sprites.digit[3];
-    digit4Sprite.SetFrame("Default", digit4);
+    sprites.digits.digit4.SetFrame("Default", digit4);
     const digit4Modification = Vector(
       digitLength + adjustment2 + 3 + digitLength,
       0,
     );
     digit4Position = position.add(digit4Modification);
-    digit4Sprite.RenderLayer(0, digit4Position);
+    sprites.digits.digit4.RenderLayer(0, digit4Position);
   }
 
   // Draw the sprite for the season icon
@@ -128,7 +130,7 @@ function drawCharacterProgressAndSeasonIcon() {
   sprites.seasonIcon.RenderLayer(0, posSeason);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   initSeasonIconSprite();
 }

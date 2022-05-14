@@ -1,3 +1,4 @@
+import { GameStateFlag, ItemType } from "isaac-typescript-definitions";
 import { getRoomVariant, log, PickingUpItem } from "isaacscript-common";
 import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -8,7 +9,7 @@ import { checkRaceChanged } from "./checkRaceChanged";
 import * as socketClient from "./socketClient";
 import { reset, socketFunctions, SOCKET_DEBUG } from "./socketFunctions";
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.clientCommunication) {
     return;
@@ -32,7 +33,7 @@ export function postRender(): void {
   checkRaceChanged(oldRaceData, g.race);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeedString = g.seeds.GetStartSeedString();
 
@@ -45,23 +46,23 @@ export function postGameStarted(): void {
   send("seed", startSeedString);
 }
 
-// ModCallbacks.MC_PRE_GAME_EXIT (17)
+// ModCallback.PRE_GAME_EXIT (17)
 export function preGameExit(): void {
   send("mainMenu");
 }
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
+// ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
-  const backwards = g.g.GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+  const backwards = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH)
     ? "true"
     : "false";
 
   send("level", `${stage}-${stageType}-${backwards}`);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   const roomType = g.r.GetType();
   const roomVariant = getRoomVariant();
@@ -73,9 +74,9 @@ export function postNewRoom(): void {
 // ModCallbacksCustom.MC_POST_ITEM_PICKUP
 export function postItemPickup(pickingUpItem: PickingUpItem): void {
   if (
-    pickingUpItem.itemType === ItemType.ITEM_ACTIVE ||
-    pickingUpItem.itemType === ItemType.ITEM_PASSIVE ||
-    pickingUpItem.itemType === ItemType.ITEM_FAMILIAR
+    pickingUpItem.itemType === ItemType.ACTIVE ||
+    pickingUpItem.itemType === ItemType.PASSIVE ||
+    pickingUpItem.itemType === ItemType.FAMILIAR
   ) {
     send("item", pickingUpItem.subType.toString());
   }

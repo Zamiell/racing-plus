@@ -1,3 +1,4 @@
+import { RoomType } from "isaac-typescript-definitions";
 import { emptyArray, saveDataManager } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { RepentanceDoorState } from "../../enums/RepentanceDoorState";
@@ -32,7 +33,7 @@ const v = {
   },
 
   level: {
-    previousRoomType: RoomType.ROOM_DEFAULT,
+    previousRoomType: RoomType.DEFAULT,
     repentanceDoorState: RepentanceDoorState.INITIAL,
   },
 

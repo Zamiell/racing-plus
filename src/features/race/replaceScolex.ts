@@ -1,5 +1,6 @@
-// In seeded races, we replace Scolex with two Frails to reduce RNG
+// In seeded races, we replace Scolex with two Frails to reduce RNG.
 
+import { EntityType, PinVariant } from "isaac-typescript-definitions";
 import {
   countEntities,
   newRNG,
@@ -12,11 +13,11 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 
-const SCOLEX_TYPE = EntityType.ENTITY_PIN;
+const SCOLEX_TYPE = EntityType.PIN;
 const SCOLEX_VARIANT = PinVariant.SCOLEX;
 const NUM_FRAILS = 2;
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
@@ -40,14 +41,14 @@ export function postNewRoom(): void {
     return;
   }
 
-  // There are 10 Scolex entities for each Scolex
+  // There are 10 Scolex entities for each Scolex.
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
   repeat(NUM_FRAILS, (i) => {
     // We don't want to spawn both of them on top of each other since that would make them behave
-    // a little glitchy
+    // a little glitchy.
     // Note that pos.X += 200 causes the hitbox to appear too close to the left/right side,
-    // causing damage if the player moves into the room too quickly
+    // causing damage if the player moves into the room too quickly.
     let modification: Vector;
     if (i === 0) {
       modification = Vector(-150, 0);
@@ -57,15 +58,15 @@ export function postNewRoom(): void {
     const position = centerPos.add(modification);
     const seed = rng.Next();
     const frail = spawnWithSeed(
-      EntityType.ENTITY_PIN,
+      EntityType.PIN,
       PinVariant.FRAIL,
       0,
       position,
       seed,
     );
 
-    // It will show the head on the first frame after spawning unless we hide it
-    // The game will automatically make the entity visible later on
+    // It will show the head on the first frame after spawning unless we hide it.
+    // The game will automatically make the entity visible later on.
     frail.Visible = false;
   });
 }

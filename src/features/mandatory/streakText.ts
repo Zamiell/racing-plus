@@ -1,4 +1,14 @@
 import {
+  ActiveSlot,
+  Card,
+  CollectibleType,
+  FamiliarVariant,
+  ItemType,
+  PillEffect,
+  PlayerForm,
+  UseFlag,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerIs,
   getCardName,
   getCollectibleName,
@@ -15,6 +25,7 @@ import {
   setSeed,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
 import g from "../../globals";
 import { goingToRaceRoom } from "../race/raceRoom";
 
@@ -23,38 +34,38 @@ const FRAMES_BEFORE_FADE = 50;
 // Listed in order of the wiki (32 in total)
 // https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
 const DEAD_SEA_SCROLL_EFFECTS: readonly CollectibleType[] = [
-  CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK,
-  CollectibleType.COLLECTIBLE_BEST_FRIEND,
-  CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD,
-  CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL,
-  CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS,
-  CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS,
-  CollectibleType.COLLECTIBLE_BOOK_OF_SIN,
-  CollectibleType.COLLECTIBLE_CRACK_THE_SKY,
-  CollectibleType.COLLECTIBLE_CRYSTAL_BALL,
-  CollectibleType.COLLECTIBLE_DECK_OF_CARDS,
-  CollectibleType.COLLECTIBLE_DOCTORS_REMOTE,
-  CollectibleType.COLLECTIBLE_GAMEKID,
-  CollectibleType.COLLECTIBLE_HOURGLASS,
-  CollectibleType.COLLECTIBLE_LEMON_MISHAP,
-  CollectibleType.COLLECTIBLE_MOMS_BOTTLE_OF_PILLS,
-  CollectibleType.COLLECTIBLE_MOMS_BRA,
-  CollectibleType.COLLECTIBLE_MOMS_PAD,
-  CollectibleType.COLLECTIBLE_MONSTER_MANUAL,
-  CollectibleType.COLLECTIBLE_MONSTROS_TOOTH,
-  CollectibleType.COLLECTIBLE_MR_BOOM,
-  CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN,
-  CollectibleType.COLLECTIBLE_THE_NAIL,
-  CollectibleType.COLLECTIBLE_NECRONOMICON,
-  CollectibleType.COLLECTIBLE_PINKING_SHEARS,
-  CollectibleType.COLLECTIBLE_PRAYER_CARD,
-  CollectibleType.COLLECTIBLE_SHOOP_DA_WHOOP,
-  CollectibleType.COLLECTIBLE_SPIDER_BUTT,
-  CollectibleType.COLLECTIBLE_TAMMYS_HEAD,
-  CollectibleType.COLLECTIBLE_TELEPATHY_BOOK,
-  CollectibleType.COLLECTIBLE_TELEPORT,
-  CollectibleType.COLLECTIBLE_WE_NEED_TO_GO_DEEPER,
-  CollectibleType.COLLECTIBLE_YUM_HEART,
+  CollectibleType.ANARCHIST_COOKBOOK,
+  CollectibleType.BEST_FRIEND,
+  CollectibleType.BOBS_ROTTEN_HEAD,
+  CollectibleType.BOOK_OF_BELIAL,
+  CollectibleType.BOOK_OF_REVELATIONS,
+  CollectibleType.BOOK_OF_SHADOWS,
+  CollectibleType.BOOK_OF_SIN,
+  CollectibleType.CRACK_THE_SKY,
+  CollectibleType.CRYSTAL_BALL,
+  CollectibleType.DECK_OF_CARDS,
+  CollectibleType.DOCTORS_REMOTE,
+  CollectibleType.GAMEKID,
+  CollectibleType.HOURGLASS,
+  CollectibleType.LEMON_MISHAP,
+  CollectibleType.MOMS_BOTTLE_OF_PILLS,
+  CollectibleType.MOMS_BRA,
+  CollectibleType.MOMS_PAD,
+  CollectibleType.MONSTER_MANUAL,
+  CollectibleType.MONSTROS_TOOTH,
+  CollectibleType.MR_BOOM,
+  CollectibleType.MY_LITTLE_UNICORN,
+  CollectibleType.THE_NAIL,
+  CollectibleType.NECRONOMICON,
+  CollectibleType.PINKING_SHEARS,
+  CollectibleType.PRAYER_CARD,
+  CollectibleType.SHOOP_DA_WHOOP,
+  CollectibleType.SPIDER_BUTT,
+  CollectibleType.TAMMYS_HEAD,
+  CollectibleType.TELEPATHY_BOOK,
+  CollectibleType.TELEPORT,
+  CollectibleType.WE_NEED_TO_GO_DEEPER,
+  CollectibleType.YUM_HEART,
 ];
 
 const v = {
@@ -73,13 +84,13 @@ export function init(): void {
   saveDataManager("streakText", v);
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   checkDraw();
 }
 
 function checkDraw() {
-  // Players who prefer the vanilla streak text will have a separate mod enabled
+  // Players who prefer the vanilla streak text will have a separate mod enabled.
   if (VanillaStreakText !== undefined) {
     return;
   }
@@ -90,10 +101,10 @@ function checkDraw() {
   }
 
   // We don't check for the game being paused because it looks buggy if the text disappears when
-  // changing rooms
+  // changing rooms.
 
   if (v.run.renderFrameSet === null) {
-    // Only draw the tab text if there is no normal streak text showing
+    // Only draw the tab text if there is no normal streak text showing.
     if (v.run.tabText !== null) {
       draw(v.run.tabText, 1);
     }
@@ -101,7 +112,7 @@ function checkDraw() {
     return;
   }
 
-  // The streak text will slowly fade out
+  // The streak text will slowly fade out.
   const fade = getFade(v.run.renderFrameSet);
   if (fade <= 0) {
     v.run.renderFrameSet = null;
@@ -136,8 +147,8 @@ function draw(text: string, fade: float) {
   font.DrawString(text, x - length / 2, y, color);
 }
 
-// ModCallbacks.MC_USE_ITEM (3)
-// CollectibleType.COLLECTIBLE_LEMEGETON (712)
+// ModCallback.POST_USE_ITEM (3)
+// CollectibleType.LEMEGETON (712)
 export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
@@ -151,9 +162,9 @@ function getItemWispThatJustSpawned() {
   return wisps.find((wisp) => wisp.FrameCount === 0);
 }
 
-// ModCallbacks.MC_USE_CARD (5)
+// ModCallback.POST_USE_CARD (5)
 export function useCard(card: Card): void {
-  // We ignore Blank Runes because we want to show the streak text of the actual random effect
+  // We ignore Blank Runes because we want to show the streak text of the actual random effect.
   if (card === Card.RUNE_BLANK) {
     return;
   }
@@ -162,19 +173,19 @@ export function useCard(card: Card): void {
   set(cardName);
 }
 
-// ModCallbacks.MC_USE_PILL (10)
+// ModCallback.POST_USE_PILL (10)
 export function usePill(pillEffect: PillEffect): void {
   const pillEffectName = getPillEffectName(pillEffect);
   set(pillEffectName);
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const startSeed = g.seeds.GetStartSeed();
   setSeed(v.run.deadSeaScrollsRNG, startSeed);
 }
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
+// ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   if (shouldShowLevelText()) {
     showLevelText();
@@ -183,25 +194,24 @@ export function postNewLevel(): void {
 
 function shouldShowLevelText() {
   const challenge = Isaac.GetChallenge();
-  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
 
   return (
     // There is no need to show the level text in the Change Char Order custom challenge
     challenge !== ChallengeCustom.CHANGE_CHAR_ORDER &&
     // If the race is finished, the "Victory Lap" text will overlap with the stage text,
-    // so don't bother showing it
+    // so don't bother showing it.
     !g.raceVars.finished &&
     // If one or more players are playing as "Random Baby", the baby descriptions will overlap with
-    // the stage text, so don't bother showing it
-    !anyPlayerIs(randomBaby)
+    // the stage text, so don't bother showing it.
+    !anyPlayerIs(PlayerTypeCustom.RANDOM_BABY)
   );
 }
 
 function showLevelText() {
   const effectiveStage = getEffectiveStage();
 
-  // Show what the new floor is
-  // (the game will not show this naturally after doing a "stage" console command)
+  // Show what the new floor is. (The game will not show this naturally after doing a "stage"
+  // console command.)
   if (VanillaStreakText !== undefined && effectiveStage !== 1) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
@@ -221,8 +231,8 @@ export function getLevelText(): string {
   return g.l.GetName(stage, stageType);
 }
 
-// ModCallbacks.MC_PRE_USE_ITEM (23)
-// CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS (124)
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.DEAD_SEA_SCROLLS (124)
 export function preUseItemDeadSeaScrolls(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
@@ -233,7 +243,7 @@ export function preUseItemDeadSeaScrolls(
     DEAD_SEA_SCROLL_EFFECTS,
     v.run.deadSeaScrollsRNG,
   );
-  player.UseActiveItem(randomCollectible, UseFlag.USE_OWNED, activeSlot);
+  player.UseActiveItem(randomCollectible, UseFlag.OWNED, activeSlot);
 
   const collectibleName = getCollectibleName(randomCollectible);
   if (VanillaStreakText !== undefined) {
@@ -247,7 +257,7 @@ export function preUseItemDeadSeaScrolls(
 
 // ModCallbacksCustom.MC_PRE_ITEM_PICKUP
 export function preItemPickup(pickingUpItem: PickingUpItem): void {
-  const trinket = pickingUpItem.itemType === ItemType.ITEM_TRINKET;
+  const trinket = pickingUpItem.itemType === ItemType.TRINKET;
   const name = trinket
     ? getTrinketName(pickingUpItem.subType)
     : getCollectibleName(pickingUpItem.subType);

@@ -5,7 +5,7 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // InputHook.IS_ACTION_TRIGGERED (1)
-// ButtonAction.ACTION_CONSOLE (28)
+// ButtonAction.CONSOLE (28)
 export function isActionTriggeredConsole(): boolean | void {
   if (!config.clientCommunication) {
     return undefined;

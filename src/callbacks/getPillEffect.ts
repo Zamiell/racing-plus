@@ -1,7 +1,12 @@
+import {
+  ModCallback,
+  PillColor,
+  PillEffect,
+} from "isaac-typescript-definitions";
 import * as removeBannedPillEffects from "../features/mandatory/removeBannedPillEffects";
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, main);
+  mod.AddCallback(ModCallback.GET_PILL_EFFECT, main);
 }
 
 function main(

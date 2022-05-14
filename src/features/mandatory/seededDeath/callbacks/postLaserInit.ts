@@ -11,14 +11,12 @@ export function seededDeathPostLaserInitGiantRed(laser: EntityLaser): void {
     return;
   }
 
-  // There is no way to stop a Mega Blast while it is currently going with the current API
-  // As a workaround, remove all "giant" lasers on initialization
+  // There is no way to stop a Mega Blast while it is currently going. As a workaround, remove all
+  // "giant" lasers on initialization.
   laser.Remove();
 
-  // Even though we delete it, it will still show up for a frame
-  // Thus, the Mega Blast laser will look like it is intermittently shooting,
-  // even though it deals no damage
-  // Make it invisible to fix this
+  // Even though we delete it, it will still show up for a frame. Thus, the Mega Blast laser will
+  // look like it is intermittently shooting, even though it deals no damage. Make it invisible to
+  // fix this. (This also has the side effect of muting the sound effects.)
   laser.Visible = false;
-  // (this also has the side effect of muting the sound effects)
 }

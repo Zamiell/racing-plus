@@ -1,3 +1,4 @@
+import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
   disableAllInputs,
   getPlayerFromIndex,
@@ -23,7 +24,7 @@ export function seededDeathPostNewRoom(): void {
     return;
   }
 
-  // Handle seeded death states
+  // Handle seeded death states.
   postNewRoomWaitingForPostCustomRevive();
   postNewRoomGhostForm();
 }
@@ -42,11 +43,11 @@ function postNewRoomWaitingForPostCustomRevive() {
     return;
   }
 
-  // It is possible to perform a room transition before the player has actually died
-  // (e.g. if they die via running into a Curse Room door at full speed)
-  // However, we don't need to handle this case, since the death animation will happen immediately
-  // after the new room is entered (and during this time, the player is not able to move)
-  if (player.HasCollectible(CollectibleType.COLLECTIBLE_1UP)) {
+  // It is possible to perform a room transition before the player has actually died (e.g. if they
+  // die via running into a Curse Room door at full speed). However, we don't need to handle this
+  // case, since the death animation will happen immediately after the new room is entered (and
+  // during this time, the player is not able to move).
+  if (player.HasCollectible(CollectibleType.ONE_UP)) {
     return;
   }
 
@@ -61,7 +62,7 @@ export function playAppearAnimationAndFade(player: EntityPlayer): void {
   disableAllInputs(SEEDED_DEATH_FEATURE_NAME);
   applySeededGhostFade(player, true);
 
-  // Play the animation where Isaac lies in the fetal position
+  // Play the animation where Isaac lies in the fetal position.
   player.PlayExtraAnimation("AppearVanilla");
   if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
@@ -82,11 +83,11 @@ function postNewRoomGhostForm() {
 }
 
 function removeSpikesInSacrificeRoom() {
-  // Prevent people from abusing the death mechanic to use a Sacrifice Room
+  // Prevent people from abusing the death mechanic to use a Sacrifice Room.
   const roomType = g.r.GetType();
   const player = Isaac.GetPlayer();
 
-  if (roomType !== RoomType.ROOM_SACRIFICE) {
+  if (roomType !== RoomType.SACRIFICE) {
     return;
   }
 

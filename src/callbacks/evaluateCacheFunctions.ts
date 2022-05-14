@@ -1,3 +1,4 @@
+import { CacheFlag } from "isaac-typescript-definitions";
 import * as magic8BallSeeded from "../features/items/magic8BallSeeded";
 import * as nLuck from "../features/items/nLuck";
 import * as sawblade from "../features/items/sawblade";
@@ -10,35 +11,26 @@ export const evaluateCacheFunctions = new Map<
 >();
 
 // 1 << 2
-evaluateCacheFunctions.set(
-  CacheFlag.CACHE_SHOTSPEED,
-  (player: EntityPlayer) => {
-    magic8BallSeeded.evaluateCacheShotSpeed(player);
-  },
-);
+evaluateCacheFunctions.set(CacheFlag.SHOT_SPEED, (player: EntityPlayer) => {
+  magic8BallSeeded.evaluateCacheShotSpeed(player);
+});
 
 // 1 << 6
-evaluateCacheFunctions.set(
-  CacheFlag.CACHE_TEARCOLOR,
-  (player: EntityPlayer) => {
-    changeCreepColor.evaluateCacheTearColor(player);
-  },
-);
+evaluateCacheFunctions.set(CacheFlag.TEAR_COLOR, (player: EntityPlayer) => {
+  changeCreepColor.evaluateCacheTearColor(player);
+});
 
 // 1 << 7
-evaluateCacheFunctions.set(CacheFlag.CACHE_FLYING, (player: EntityPlayer) => {
+evaluateCacheFunctions.set(CacheFlag.FLYING, (player: EntityPlayer) => {
   speedrunEvaluateCacheFlying(player);
 });
 
 // 1 << 9
-evaluateCacheFunctions.set(
-  CacheFlag.CACHE_FAMILIARS,
-  (player: EntityPlayer) => {
-    sawblade.evaluateCacheFamiliars(player);
-  },
-);
+evaluateCacheFunctions.set(CacheFlag.FAMILIARS, (player: EntityPlayer) => {
+  sawblade.evaluateCacheFamiliars(player);
+});
 
 // 1 << 10
-evaluateCacheFunctions.set(CacheFlag.CACHE_LUCK, (player: EntityPlayer) => {
+evaluateCacheFunctions.set(CacheFlag.LUCK, (player: EntityPlayer) => {
   nLuck.evaluateCacheLuck(player);
 });

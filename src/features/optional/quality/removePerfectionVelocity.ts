@@ -1,6 +1,7 @@
 // Since the Perfection trinket spawns with a velocity,
-// it can sometimes go over pits and become inaccessible
+// it can sometimes go over pits and become inaccessible.
 
+import { GridCollisionClass, TrinketType } from "isaac-typescript-definitions";
 import {
   findFreePosition,
   saveDataManager,
@@ -9,13 +10,12 @@ import {
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-// On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of light
-// We put it 2 squares to the right of where the beam of light is
+// On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of
+// light. We put it 2 squares to the right of where the beam of light is.
 const STAGE_8_SPAWN_GRID_LOCATION = 70;
 
 // On stage 10, we do not want the Perfection Trinket to be close to the passage to the next floor
-// in the center of the room
-// We put it 2 squares to the right of the center of the room
+// in the center of the room. We put it 2 squares to the right of the center of the room.
 const STAGE_10_SPAWN_GRID_LOCATION = 69;
 
 const v = {
@@ -32,14 +32,14 @@ function featureEnabled() {
   return config.removePerfectionVelocity;
 }
 
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_TRINKET (350)
+// ModCallback.POST_PICKUP_INIT (34)
+// PickupVariant.TRINKET (350)
 export function postPickupInitTrinket(pickup: EntityPickup): void {
   if (!config.removePerfectionVelocity) {
     return;
   }
 
-  if (pickup.SubType !== TrinketType.TRINKET_PERFECTION) {
+  if (pickup.SubType !== TrinketType.PERFECTION) {
     return;
   }
 
@@ -47,8 +47,8 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
     return;
   }
 
-  // Normally, the Perfection trinket will be flung outward from the location of the boss
-  // Instead, set it to be a free tile near the center of the room
+  // Normally, the Perfection trinket will be flung outward from the location of the boss.
+  // Instead, set it to be a free tile near the center of the room.
   pickup.Position = getPerfectionPosition();
   pickup.Velocity = VectorZero;
 
@@ -68,10 +68,10 @@ function getPerfectionPosition(): Vector {
     return g.r.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
   }
 
-  // Some boss rooms have pits in the center of the room
+  // Some boss rooms have pits in the center of the room.
   if (
     gridEntity !== undefined &&
-    gridEntity.CollisionClass !== GridCollisionClass.COLLISION_NONE
+    gridEntity.CollisionClass !== GridCollisionClass.NONE
   ) {
     return findFreePosition(centerPos);
   }

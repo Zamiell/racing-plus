@@ -1,8 +1,9 @@
+import { LambVariant } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_THE_LAMB (273)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.THE_LAMB (273)
 export function postNPCUpdateLamb(npc: EntityNPC): void {
   if (!config.removeLambBody) {
     return;

@@ -1,3 +1,4 @@
+import { RoomType } from "isaac-typescript-definitions";
 import {
   changeRoom,
   disableAllSound,
@@ -40,8 +41,8 @@ export function shouldApplyPlanetariumFix(): boolean {
   }
 
   v.level.warpRoomGridIndexes = getRoomGridIndexesForType(
-    RoomType.ROOM_TREASURE,
-    RoomType.ROOM_PLANETARIUM,
+    RoomType.TREASURE,
+    RoomType.PLANETARIUM,
   );
   return v.level.warpRoomGridIndexes.length > 0;
 }
@@ -66,7 +67,7 @@ function warpToNextRoom() {
     log(
       `Planetarium Fix - Arrived at room: ${roomGridIndex} (room type: ${roomType})`,
     );
-    decrementRoomsEntered(); // This should not count as entering a room
+    decrementRoomsEntered(); // This should not count as entering a room.
     return;
   }
 
@@ -76,14 +77,14 @@ function warpToNextRoom() {
   setFastTravelResumeGameFrame(gameFrameCount);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (v.level.warpState !== PlanetariumFixWarpState.WARPING) {
     return;
   }
 
   // The game requires that you are in the room for at least a frame before the Planetarium odds
-  // will change
+  // will change.
   runNextGameFrame(() => {
     warpToNextRoom();
   });

@@ -1,3 +1,5 @@
+import { PlayerType } from "isaac-typescript-definitions";
+
 export interface SeasonDescription {
   X: int;
   Y: int;

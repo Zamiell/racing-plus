@@ -1,4 +1,9 @@
 import {
+  CollectibleType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerIs,
   copyArray,
   emptyArray,
@@ -116,11 +121,11 @@ function checkErrors() {
 
 function removeItemsFromPools() {
   // From seeded races
-  g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_SOL);
-  g.itemPool.RemoveTrinket(TrinketType.TRINKET_CAINS_EYE);
+  g.itemPool.RemoveCollectible(CollectibleType.SOL);
+  g.itemPool.RemoveTrinket(TrinketType.CAINS_EYE);
 
-  if (anyPlayerIs(PlayerType.PLAYER_BLACKJUDAS)) {
-    g.itemPool.RemoveCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW);
+  if (anyPlayerIs(PlayerType.BLACK_JUDAS)) {
+    g.itemPool.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
   }
 }
 
@@ -133,7 +138,7 @@ function checkFirstCharacterRefresh() {
   const time = Isaac.GetTime();
   if (v.persistent.timeAssigned === null || v.persistent.timeAssigned > time) {
     // It is possible for the time assignment to be in the future, since it is based on the time
-    // since the operating system started
+    // since the operating system started.
     v.persistent.timeAssigned = time;
     log(`Season 2 - Reset timeAssigned to: ${v.persistent.timeAssigned}`);
   }
@@ -236,37 +241,37 @@ function getStartingBuildIndex(character: PlayerType) {
 function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
   switch (character) {
     // 5
-    case PlayerType.PLAYER_EVE: {
-      return getBuildIndexesFor(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT);
+    case PlayerType.EVE: {
+      return getBuildIndexesFor(CollectibleType.CROWN_OF_LIGHT);
     }
 
     // 16
-    case PlayerType.PLAYER_THEFORGOTTEN: {
+    case PlayerType.THE_FORGOTTEN: {
       return SEASON_2_FORGOTTEN_EXCEPTIONS;
     }
 
     // 27
-    case PlayerType.PLAYER_SAMSON_B: {
+    case PlayerType.SAMSON_B: {
       return getBuildIndexesFor(
-        CollectibleType.COLLECTIBLE_DR_FETUS, // 52
-        CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
-        CollectibleType.COLLECTIBLE_IPECAC, // 148
-        CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
+        CollectibleType.DR_FETUS, // 52
+        CollectibleType.BRIMSTONE, // 118
+        CollectibleType.IPECAC, // 148
+        CollectibleType.FIRE_MIND, // 257
       );
     }
 
     // 28
-    case PlayerType.PLAYER_AZAZEL_B: {
+    case PlayerType.AZAZEL_B: {
       return getBuildIndexesFor(
-        CollectibleType.COLLECTIBLE_DR_FETUS, // 52
-        CollectibleType.COLLECTIBLE_CRICKETS_BODY, // 224
-        CollectibleType.COLLECTIBLE_DEATHS_TOUCH, // 237
-        CollectibleType.COLLECTIBLE_FIRE_MIND, // 257
-        CollectibleType.COLLECTIBLE_DEAD_EYE, // 373
-        CollectibleType.COLLECTIBLE_TECH_X, // 395
-        CollectibleType.COLLECTIBLE_HAEMOLACRIA, // 531
-        CollectibleType.COLLECTIBLE_POINTY_RIB, // 544
-        CollectibleType.COLLECTIBLE_REVELATION, // 643
+        CollectibleType.DR_FETUS, // 52
+        CollectibleType.CRICKETS_BODY, // 224
+        CollectibleType.DEATHS_TOUCH, // 237
+        CollectibleType.FIRE_MIND, // 257
+        CollectibleType.DEAD_EYE, // 373
+        CollectibleType.TECH_X, // 395
+        CollectibleType.HAEMOLACRIA, // 531
+        CollectibleType.POINTY_RIB, // 544
+        CollectibleType.REVELATION, // 643
       );
     }
 
@@ -285,6 +290,10 @@ function getBuildIndexesFor(...collectibleTypes: CollectibleType[]) {
 function getBuildIndexFor(collectibleType: CollectibleType) {
   for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
     const build = SEASON_2_STARTING_BUILDS[i];
+    if (build === undefined) {
+      continue;
+    }
+
     const firstCollectible = build[0];
     if (firstCollectible === collectibleType) {
       return i;
@@ -303,34 +312,25 @@ function giveStartingItems(
   const character = player.GetPlayerType();
 
   // Everyone starts with the Compass in this season
-  giveCollectibleAndRemoveFromPools(
-    player,
-    CollectibleType.COLLECTIBLE_COMPASS,
-  );
+  giveCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
 
   switch (character) {
     // 2
-    case PlayerType.PLAYER_CAIN: {
+    case PlayerType.CAIN: {
       // Cain does not automatically start with the Paper Clip in custom challenges
-      giveTrinketAndRemoveFromPools(player, TrinketType.TRINKET_PAPER_CLIP);
+      giveTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
       break;
     }
 
     // 5
-    case PlayerType.PLAYER_EVE: {
+    case PlayerType.EVE: {
       // Eve does not automatically start with the Razor in custom challenges
-      giveCollectibleAndRemoveFromPools(
-        player,
-        CollectibleType.COLLECTIBLE_RAZOR_BLADE,
-      );
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
       break;
     }
 
-    case PlayerType.PLAYER_ISAAC_B: {
-      giveCollectibleAndRemoveFromPools(
-        player,
-        CollectibleType.COLLECTIBLE_BIRTHRIGHT,
-      );
+    case PlayerType.ISAAC_B: {
+      giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
@@ -346,17 +346,15 @@ function giveStartingItems(
   const firstCollectibleType = startingBuild[0];
 
   // Handle builds with smelted trinkets
-  if (firstCollectibleType === CollectibleType.COLLECTIBLE_INCUBUS) {
-    smeltTrinket(player, TrinketType.TRINKET_FORGOTTEN_LULLABY);
+  if (firstCollectibleType === CollectibleType.INCUBUS) {
+    smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
   }
 
   // Handle builds with custom nerfs
-  if (firstCollectibleType === CollectibleType.COLLECTIBLE_REVELATION) {
+  if (firstCollectibleType === CollectibleType.REVELATION) {
     player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
-    removeCollectibleCostume(player, CollectibleType.COLLECTIBLE_REVELATION);
-  } else if (
-    firstCollectibleType === CollectibleTypeCustom.COLLECTIBLE_SAWBLADE
-  ) {
+    removeCollectibleCostume(player, CollectibleType.REVELATION);
+  } else if (firstCollectibleType === CollectibleTypeCustom.SAWBLADE) {
     player.AddEternalHearts(-1);
   }
 }

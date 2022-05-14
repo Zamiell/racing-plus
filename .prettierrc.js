@@ -13,6 +13,21 @@ module.exports = {
   // https://github.com/prettier/prettier/issues/9369
   trailingComma: "all",
 
+  // We want to always use "lf" to be consistent with all platforms.
+  endOfLine: "lf",
+
+  // Allow proper formatting of JSONC files:
+  // https://github.com/prettier/prettier/issues/5708
+  overrides: [
+    {
+      files: ["**/.vscode/*.json", "**/tsconfig.json", "**/tsconfig.*.json"],
+      options: {
+        parser: "json5",
+        quoteProps: "preserve",
+      },
+    },
+  ],
+
   // https://github.com/prettier/plugin-xml#configuration
   // The default is "struct"
   // However, whitespace cannot be reformatted unless this is set to "ignore"

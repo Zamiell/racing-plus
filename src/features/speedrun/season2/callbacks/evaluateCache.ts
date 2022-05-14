@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   getFlyingCollectibles,
   hasFlyingTemporaryEffect,
@@ -20,9 +21,14 @@ export function season2EvaluateCacheFlying(player: EntityPlayer): void {
   if (buildIndex === undefined) {
     return;
   }
+
   const build = SEASON_2_STARTING_BUILDS[buildIndex];
+  if (build === undefined) {
+    return;
+  }
+
   const firstCollectibleType = build[0];
-  if (firstCollectibleType !== CollectibleType.COLLECTIBLE_REVELATION) {
+  if (firstCollectibleType !== CollectibleType.REVELATION) {
     return;
   }
 
@@ -39,7 +45,7 @@ export function season2EvaluateCacheFlying(player: EntityPlayer): void {
 
 function hasFlyingCollectibleExceptForRevelation(player: EntityPlayer) {
   const flyingCollectibles = getFlyingCollectibles(true);
-  flyingCollectibles.delete(CollectibleType.COLLECTIBLE_REVELATION);
+  flyingCollectibles.delete(CollectibleType.REVELATION);
 
   for (const collectibleType of flyingCollectibles.values()) {
     if (player.HasCollectible(collectibleType)) {

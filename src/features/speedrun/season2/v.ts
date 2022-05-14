@@ -1,3 +1,4 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";
 import { speedrunGetCharacterNum } from "../exported";
 

@@ -1,8 +1,9 @@
+import { SoundEffect } from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_MOMS_HAND (213)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.MOMS_HAND (213)
 export function postNPCUpdateMomsHand(npc: EntityNPC): void {
   if (!config.appearHands) {
     return;
@@ -11,8 +12,8 @@ export function postNPCUpdateMomsHand(npc: EntityNPC): void {
   checkFirstSpawn(npc);
 }
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.MOMS_DEAD_HAND (287)
 export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
   if (!config.appearHands) {
     return;
@@ -34,8 +35,8 @@ function checkFirstSpawn(npc: EntityNPC) {
   }
 }
 
-// ModCallbacks.MC_PRE_NPC_UPDATE (69)
-// EntityType.ENTITY_MOMS_HAND (213)
+// ModCallback.PRE_NPC_UPDATE (69)
+// EntityType.MOMS_HAND (213)
 export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | void {
   if (!config.appearHands) {
     return undefined;
@@ -44,8 +45,8 @@ export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | void {
   return preNPCUpdate(npc);
 }
 
-// ModCallbacks.MC_PRE_NPC_UPDATE (69)
-// EntityType.ENTITY_MOMS_DEAD_HAND (287)
+// ModCallback.PRE_NPC_UPDATE (69)
+// EntityType.MOMS_DEAD_HAND (287)
 export function preNPCUpdateMomsDeadHand(npc: EntityNPC): boolean | void {
   if (!config.appearHands) {
     return undefined;
@@ -65,12 +66,12 @@ function preNPCUpdate(npc: EntityNPC) {
   return undefined;
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.appearHands) {
     return;
   }
 
   // Mute the audio tell of Mom laughing, since it is obnoxious
-  sfxManager.Stop(SoundEffect.SOUND_MOM_VOX_EVILLAUGH);
+  sfxManager.Stop(SoundEffect.MOM_VOX_EVIL_LAUGH);
 }

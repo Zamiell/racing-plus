@@ -1,3 +1,9 @@
+import {
+  ActiveSlot,
+  CollectibleType,
+  ModCallback,
+  UseFlag,
+} from "isaac-typescript-definitions";
 import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
@@ -6,94 +12,109 @@ import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
 
 export function init(mod: Mod): void {
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     d6,
-    CollectibleType.COLLECTIBLE_D6, // 105
+    CollectibleType.D6, // 105
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     deadSeaScrolls,
-    CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS, // 124
+    CollectibleType.DEAD_SEA_SCROLLS, // 124
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     d100,
-    CollectibleType.COLLECTIBLE_D100, // 283
+    CollectibleType.D100, // 283
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     d4,
-    CollectibleType.COLLECTIBLE_D4, // 284
+    CollectibleType.D4, // 284
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     eternalD6,
-    CollectibleType.COLLECTIBLE_ETERNAL_D6, // 609
+    CollectibleType.ETERNAL_D6, // 609
   );
 
   mod.AddCallback(
-    ModCallbacks.MC_PRE_USE_ITEM,
+    ModCallback.PRE_USE_ITEM,
     flip,
-    CollectibleType.COLLECTIBLE_FLIP, // 711
+    CollectibleType.FLIP, // 711
   );
 }
 
-// CollectibleType.COLLECTIBLE_D6 (105)
+// CollectibleType.D6 (105)
 function d6(
   _collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
-  _useFlags: int,
+  _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   return speedrunPreUseItem.d6(player);
 }
 
-// CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS (124)
+// CollectibleType.DEAD_SEA_SCROLLS (124)
 function deadSeaScrolls(
   _collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
-  _useFlags: int,
+  _useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   return streakText.preUseItemDeadSeaScrolls(player, activeSlot);
 }
 
-function d100() {
+// CollectibleType.D100 (283)
+function d100(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+) {
   setCollectiblesRerolledForItemTracker();
 }
 
-// CollectibleType.COLLECTIBLE_D4 (284)
-function d4() {
+// CollectibleType.D4 (284)
+function d4(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  _player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+) {
   betterDevilAngelRoomsPreUseItemD4();
   setCollectiblesRerolledForItemTracker();
 }
 
-// CollectibleType.COLLECTIBLE_ETERNAL_D6 (609)
+// CollectibleType.ETERNAL_D6 (609)
 function eternalD6(
   _collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
-  _useFlags: int,
+  _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   return speedrunPreUseItem.eternalD6(player);
 }
 
-// CollectibleType.COLLECTIBLE_FLIP (711)
+// CollectibleType.FLIP (711)
 function flip(
   _collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
-  useFlags: int,
+  useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {

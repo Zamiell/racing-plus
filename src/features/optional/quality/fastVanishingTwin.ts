@@ -1,4 +1,12 @@
 import {
+  CollectibleType,
+  EffectVariant,
+  EntityType,
+  FamiliarVariant,
+  PoofSubType,
+  RoomType,
+} from "isaac-typescript-definitions";
+import {
   findFreePosition,
   getBosses,
   getCollectibles,
@@ -30,7 +38,7 @@ export function init(): void {
   saveDataManager("fastVanishingTwin", v);
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.fastVanishingTwin) {
     return;
@@ -57,14 +65,14 @@ function checkRoomCleared() {
   }
 
   // If we get a new random position for the second collectible,
-  // it could be blocking a Devil Room or Angel Room
-  // Instead, always spawn it to the right of the existing collectible
+  // it could be blocking a Devil Room or Angel Room.
+  // Instead, always spawn it to the right of the existing collectible.
   const gridIndex = g.r.GetGridIndex(freshCollectible.Position);
   const newGridIndex = gridIndex + 1; // To the right of the collectible
   const position = g.r.GetGridPosition(newGridIndex);
   const roomSeed = g.r.GetSpawnSeed();
 
-  spawnCollectible(CollectibleType.COLLECTIBLE_NULL, position, roomSeed);
+  spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
 
 function getFreshlySpawnedCollectible(): EntityPickup | undefined {
@@ -72,7 +80,7 @@ function getFreshlySpawnedCollectible(): EntityPickup | undefined {
   return collectibles.find((collectible) => collectible.FrameCount === 0);
 }
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
+// ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   if (!config.fastVanishingTwin) {
     return;
@@ -93,35 +101,37 @@ export function postNewLevel(): void {
   );
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.fastVanishingTwin) {
     return;
   }
 
   const roomType = g.r.GetType();
-  if (roomType !== RoomType.ROOM_BOSS) {
+  if (roomType !== RoomType.BOSS) {
     return;
   }
 
   const vanishingTwins = Isaac.FindByType(
-    EntityType.ENTITY_FAMILIAR,
+    EntityType.FAMILIAR,
     FamiliarVariant.VANISHING_TWIN,
   );
   if (vanishingTwins.length === 0) {
     return;
   }
 
-  // It is difficult to properly duplicate double champion bosses
-  // It is difficult to properly duplicate multi-segment bosses
-  // Use the vanilla behavior in these cases
+  // It is difficult to properly duplicate double champion bosses or multi-segment bosses.
+  // Use the vanilla behavior in these cases.
   const bosses = getBosses();
   if (bosses.length !== 1) {
     return;
   }
   const boss = bosses[0];
+  if (boss === undefined) {
+    return;
+  }
 
-  // Vanishing Twin does not apply to story bosses
+  // Vanishing Twin does not apply to story bosses.
   if (isStoryBoss(boss.Type)) {
     return;
   }
@@ -129,7 +139,7 @@ export function postNewRoom(): void {
   for (const vanishingTwin of vanishingTwins) {
     vanishingTwin.Remove();
     spawnEffect(
-      EffectVariant.POOF01,
+      EffectVariant.POOF_1,
       PoofSubType.SMALL,
       vanishingTwin.Position,
     );
@@ -160,7 +170,7 @@ function duplicateBoss(boss: EntityNPC) {
   duplicatedBoss.HitPoints *= HP_MULTIPLIER;
 }
 
-// ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
 export function preSpawnClearAward(): void {
   if (!config.fastVanishingTwin) {
     return;

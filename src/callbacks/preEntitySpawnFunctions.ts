@@ -1,21 +1,22 @@
+import { EntityType, PickupVariant } from "isaac-typescript-definitions";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as replaceCodWorms from "../features/optional/enemies/replaceCodWorms";
 
 export const preEntitySpawnFunctions = new Map<
-  EntityType,
+  EntityType | int,
   (
     variant: int,
     subType: int,
     position: Vector,
     spawner: Entity,
     initSeed: int,
-  ) => [EntityType, int, int, int] | void
+  ) => [EntityType | int, int, int, int] | void
 >();
 
 // 5
 preEntitySpawnFunctions.set(
-  EntityType.ENTITY_PICKUP,
+  EntityType.PICKUP,
   (
     variant: int,
     subType: int,
@@ -23,7 +24,7 @@ preEntitySpawnFunctions.set(
     _spawner: Entity,
     _initSeed: int,
   ) => {
-    if (variant === PickupVariant.PICKUP_COLLECTIBLE) {
+    if (variant === PickupVariant.COLLECTIBLE) {
       return replacePhotos.preEntitySpawnCollectible(subType);
     }
 
@@ -33,7 +34,7 @@ preEntitySpawnFunctions.set(
 
 // 221
 preEntitySpawnFunctions.set(
-  EntityType.ENTITY_COD_WORM,
+  EntityType.COD_WORM,
   (
     _variant: int,
     _subType: int,
@@ -45,7 +46,7 @@ preEntitySpawnFunctions.set(
 
 // 271
 preEntitySpawnFunctions.set(
-  EntityType.ENTITY_URIEL,
+  EntityType.URIEL,
   (
     variant: int,
     subType: int,
@@ -57,7 +58,7 @@ preEntitySpawnFunctions.set(
 
 // 272
 preEntitySpawnFunctions.set(
-  EntityType.ENTITY_GABRIEL,
+  EntityType.GABRIEL,
   (
     variant: int,
     subType: int,

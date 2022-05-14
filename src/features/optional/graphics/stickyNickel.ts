@@ -1,5 +1,6 @@
+import { CoinSubType } from "isaac-typescript-definitions";
 import {
-  getFinalFrameOfAnimation,
+  getLastFrameOfAnimation,
   saveDataManager,
   spawnEffect,
   VectorZero,
@@ -21,14 +22,14 @@ function featureEnabled() {
   return config.stickyNickel;
 }
 
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_COIN (20)
+// ModCallback.POST_PICKUP_INIT (34)
+// PickupVariant.COIN (20)
 export function postPickupInitCoin(pickup: EntityPickup): void {
   if (!config.stickyNickel) {
     return;
   }
 
-  if (pickup.SubType !== CoinSubType.COIN_STICKYNICKEL) {
+  if (pickup.SubType !== CoinSubType.STICKY_NICKEL) {
     return;
   }
 
@@ -58,7 +59,7 @@ function postPickupInitStickyNickel(pickup: EntityPickup) {
   v.room.effectToNickelPtrMap.set(effectPtrHash, pickupEntityPtr);
 }
 
-// ModCallbacks.MC_POST_EFFECT_UPDATE (55)
+// ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariantCustom.STICKY_NICKEL
 export function postEffectUpdateStickyNickel(effect: EntityEffect): void {
   if (!config.stickyNickel) {
@@ -84,7 +85,7 @@ function tryUpdateEffectPosition(effect: EntityEffect) {
   if (
     stickyNickel === undefined ||
     !stickyNickel.Exists() ||
-    stickyNickel.SubType !== CoinSubType.COIN_STICKYNICKEL
+    stickyNickel.SubType !== CoinSubType.STICKY_NICKEL
   ) {
     return false;
   }
@@ -107,7 +108,7 @@ function fadeOutStickyNickelEffect(effect: EntityEffect) {
   }
 
   const frame = sprite.GetFrame();
-  const finalFrame = getFinalFrameOfAnimation(sprite);
+  const finalFrame = getLastFrameOfAnimation(sprite);
   if (frame === finalFrame) {
     effect.Remove();
   }

@@ -1,3 +1,4 @@
+import { EntityType, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
   countEntities,
@@ -29,17 +30,17 @@ function featureEnabled() {
   return config.showMaxFamiliars;
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.showMaxFamiliars) {
     return;
   }
 
-  const numFamiliars = countEntities(EntityType.ENTITY_FAMILIAR);
+  const numFamiliars = countEntities(EntityType.FAMILIAR);
   v.run.haveMaxFamiliars = numFamiliars >= MAX_NUM_FAMILIARS;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.showMaxFamiliars) {
     return;
@@ -58,7 +59,7 @@ function drawSprite() {
     return;
   }
 
-  const position1 = anyPlayerIs(PlayerType.PLAYER_ISAAC_B)
+  const position1 = anyPlayerIs(PlayerType.ISAAC_B)
     ? ICON_SPRITE_POSITION.add(TAINTED_ISAAC_OFFSET)
     : ICON_SPRITE_POSITION;
 

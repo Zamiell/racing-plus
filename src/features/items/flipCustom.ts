@@ -1,4 +1,9 @@
 import {
+  CollectibleType,
+  EffectVariant,
+  PoofSubType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerHasCollectible,
   copyColor,
   DefaultMap,
@@ -27,8 +32,8 @@ type FlippedCollectibleIndex = string & {
   __flippedCollectibleIndexBrand: unknown;
 };
 
-const OLD_COLLECTIBLE_TYPE = CollectibleType.COLLECTIBLE_FLIP;
-const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM;
+const OLD_COLLECTIBLE_TYPE = CollectibleType.FLIP;
+const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.FLIP_CUSTOM;
 const FADE_AMOUNT = 0.33;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
@@ -90,9 +95,9 @@ function newFlippedCollectibleType(
   const isFirstVisit = g.r.IsFirstVisit();
   const roomFrameCount = g.r.GetFrameCount();
 
-  // The Flip effect is only supposed to happen to items that are part of the room layout
+  // The Flip effect is only supposed to happen to items that are part of the room layout.
   if (!isFirstVisit || roomFrameCount > 0) {
-    return CollectibleType.COLLECTIBLE_NULL;
+    return CollectibleType.NULL;
   }
 
   const itemPoolType = getCollectibleItemPoolType(collectible);
@@ -133,8 +138,8 @@ function featureEnabled() {
   return config.flipCustom;
 }
 
-// ModCallbacks.MC_USE_ITEM (3)
-// CollectibleTypeCustom.COLLECTIBLE_FLIP_CUSTOM
+// ModCallback.POST_USE_ITEM (3)
+// CollectibleTypeCustom.FLIP_CUSTOM
 export function useItemFlipCustom(player: EntityPlayer): boolean | void {
   if (!config.flipCustom) {
     return undefined;
@@ -146,16 +151,16 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
       flippedCollectibleIndex,
     );
 
-    // Do not convert items back to an empty pedestal
-    // (this matches the behavior of the vanilla Flip)
+    // Do not convert items back to an empty pedestal. (This matches the behavior of the vanilla
+    // Flip.)
     if (
       flippedCollectibleType === undefined ||
-      flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
+      flippedCollectibleType === CollectibleType.NULL
     ) {
       continue;
     }
 
-    // Flip the items
+    // Flip the items.
     const oldCollectibleType = collectible.SubType;
     setCollectibleSubType(collectible, flippedCollectibleType);
     v.level.flippedCollectibleTypes.set(
@@ -166,30 +171,30 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
     // Delete the flipped sprite
     const ptrHash = GetPtrHash(collectible);
     v.room.flippedSprites.delete(ptrHash);
-    // (the sprite will be reinitialized on the next render frame if there is still an item in the
-    // alternate world)
+    // (The sprite will be reinitialized on the next render frame if there is still an item in the
+    // alternate world.)
 
-    // Copy the vanilla poof animation
-    spawnEffect(EffectVariant.POOF01, PoofSubType.NORMAL, collectible.Position);
+    // Copy the vanilla poof animation.
+    spawnEffect(EffectVariant.POOF_1, PoofSubType.NORMAL, collectible.Position);
   }
 
-  // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus
+  // We also need to invoke the real Flip effect if we are Tainted Lazarus or Dead Tainted Lazarus.
   if (isTaintedLazarus(player)) {
-    useActiveItemTemp(player, CollectibleType.COLLECTIBLE_FLIP);
+    useActiveItemTemp(player, CollectibleType.FLIP);
   }
 
-  // Display the "Use" animation
+  // Display the "Use" animation.
   return true;
 }
 
-// ModCallbacks.MC_POST_PEFFECT_UPDATE (4)
+// ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (!config.flipCustom) {
     return;
   }
 
-  // Automatically replace the vanilla flip with the custom one
-  // (this handles Tainted Lazarus correctly, since he is given Flip in the normal active item slot)
+  // Automatically replace the vanilla flip with the custom one. (This handles Tainted Lazarus
+  // correctly, since he is given Flip in the normal active item slot.)
   if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
     removeCollectibleFromItemTracker(OLD_COLLECTIBLE_TYPE);
@@ -198,8 +203,8 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 }
 
-// ModCallbacks.MC_POST_PICKUP_INIT (34)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.POST_PICKUP_INIT (34)
+// PickupVariant.COLLECTIBLE (100)
 export function postPickupInitCollectible(collectible: EntityPickup): void {
   if (!config.flipCustom) {
     return;
@@ -210,18 +215,18 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
   }
 
   // If the collectible is rolled, the PostPickupInit callback will fire again, but we do not want
-  // to get a new flipped collectible type in this case
-  // Thus, we only set a new collectible type if the index does not exist already
+  // to get a new flipped collectible type in this case. Thus, we only set a new collectible type if
+  // the index does not exist already.
   const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
   if (v.level.flippedCollectibleTypes.has(flippedCollectibleIndex)) {
     return;
   }
 
-  // Handle the special case of a temporary item being spawned in a Devil Room / Angel Room
-  // In this case, we do not have to assign a new flipped collectible, since the item will be
-  // respawned later on this frame
+  // Handle the special case of a temporary item being spawned in a Devil Room / Angel Room. In this
+  // case, we do not have to assign a new flipped collectible, since the item will be respawned
+  // later on this frame.
   const flippedCollectibleType = newFlippedCollectibleType(collectible);
-  if (flippedCollectibleType === CollectibleTypeCustom.COLLECTIBLE_DEBUG) {
+  if (flippedCollectibleType === CollectibleTypeCustom.DEBUG) {
     return;
   }
 
@@ -231,8 +236,8 @@ export function postPickupInitCollectible(collectible: EntityPickup): void {
   );
 }
 
-// ModCallbacks.MC_POST_PICKUP_RENDER (36)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.POST_PICKUP_RENDER (36)
+// PickupVariant.COLLECTIBLE (100)
 export function postPickupRenderCollectible(
   collectible: EntityPickup,
   renderOffset: Vector,
@@ -251,7 +256,7 @@ export function postPickupRenderCollectible(
   );
   if (
     flippedCollectibleType === undefined ||
-    flippedCollectibleType === CollectibleType.COLLECTIBLE_NULL
+    flippedCollectibleType === CollectibleType.NULL
   ) {
     return;
   }
@@ -272,15 +277,15 @@ export function postPickupRenderCollectible(
 }
 
 // ModCallbacksCustom.MC_POST_PURCHASE
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// PickupVariant.COLLECTIBLE (100)
 export function postPurchaseCollectible(
   player: EntityPlayer,
   collectible: EntityPickup,
 ): void {
-  // Normally, when a collectible is purchased, the empty pedestal will despawn on the next frame
+  // Normally, when a collectible is purchased, the empty pedestal will despawn on the next frame.
   // The vanilla flip has a feature where if you purchase a collectible, it will keep the empty
-  // pedestal around (so that you can use Flip on the other item if you want)
-  // Emulate this feature with the custom flip
+  // pedestal around (so that you can use Flip on the other item if you want). Emulate this feature
+  // with the custom flip.
   if (!config.flipCustom) {
     return;
   }
@@ -289,9 +294,9 @@ export function postPurchaseCollectible(
     return;
   }
 
-  // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now
+  // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now.
   spawnEmptyCollectible(collectible.Position, collectible.InitSeed);
 
-  // We do not have to transfer the entry in the "flippedCollectibleTypes" map to the new pedestal,
-  // because it will have the same index (i.e. it will have the same room list index and grid index)
+  // We do not have to transfer the entry in the `flippedCollectibleTypes` map to the new pedestal,
+  // because it will have the same room list index and grid index.
 }

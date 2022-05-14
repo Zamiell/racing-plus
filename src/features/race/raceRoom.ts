@@ -1,4 +1,10 @@
 import {
+  EntityFlag,
+  EntityType,
+  GridRoom,
+  StageType,
+} from "isaac-typescript-definitions";
+import {
   forceNewLevelCallback,
   forceNewRoomCallback,
   getEffectiveStage,
@@ -28,7 +34,7 @@ const GFX_PATH = "gfx/race/race-room";
 const X_SPACING = 110;
 const Y_SPACING = 10;
 
-const sprites: Record<string, Sprite | null> = {
+const sprites = {
   // Top half
   wait: null as Sprite | null, // "Wait for the race to begin!"
   myStatus: null as Sprite | null,
@@ -45,7 +51,7 @@ const sprites: Record<string, Sprite | null> = {
   goalIcon: null as Sprite | null,
 };
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!inRaceRoom()) {
     return;
@@ -56,9 +62,9 @@ export function postRender(): void {
 }
 
 function emulateGapingMaws() {
-  // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect)
-  // (this looks glitchy and jittery if it is done in the PostUpdate callback,
-  // so do it here instead)
+  // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect).
+  // This looks glitchy and jittery if it is done in the PostUpdate callback,
+  // so we do it here instead.
   for (const player of getPlayers()) {
     player.Position = RACE_ROOM_POSITION;
   }
@@ -72,12 +78,11 @@ function drawSprites() {
   }
 
   // We do not have to check if the game is paused because the pause menu will be drawn on top of
-  // the race room sprites
+  // the race room sprites.
 
   for (const [key, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
-      const spriteName = key;
-      const position = getPosition(spriteName);
+      const position = getPosition(key as keyof typeof sprites);
       sprite.RenderLayer(0, position);
     }
   }
@@ -144,7 +149,7 @@ function getPosition(spriteName: keyof typeof sprites) {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   gotoRaceRoom();
   setupRaceRoom();
@@ -159,19 +164,20 @@ function gotoRaceRoom() {
   const stageType = g.l.GetStageType();
 
   // If we not already on the right floor, go there
-  if (effectiveStage !== 1 || stageType !== StageType.STAGETYPE_WOTL) {
+  if (effectiveStage !== 1 || stageType !== StageType.WRATH_OF_THE_LAMB) {
     // Since we might be going to a new floor on frame 0,
-    // we have to specify that the PostNewLevel callback should fire
+    // we have to specify that the PostNewLevel callback should fire.
     forceNewLevelCallback();
     consoleCommand(`stage ${RACE_ROOM_STAGE_ARGUMENT}`);
   }
 
   // Since we might be going to a new room on frame 0,
-  // we have to specify that the PostNewRoom callback should fire
+  // we have to specify that the PostNewRoom callback should fire.
   forceNewRoomCallback();
   consoleCommand(`goto d.${RACE_ROOM_VARIANT}`);
+
   // We will not actually be sent to the room until a frame passes,
-  // so wait until the next PostNewRoom fires
+  // so wait until the next PostNewRoom fires.
 }
 
 function shouldGotoRaceRoom() {
@@ -180,8 +186,8 @@ function shouldGotoRaceRoom() {
   return (
     (g.race.status === RaceStatus.OPEN ||
       g.race.status === RaceStatus.STARTING) &&
-    // Only bring them to the race room if they are not in the middle of a run
-    // e.g. the only room that they have entered is the starting room on Basement 1
+    // Only bring them to the race room if they are not in the middle of a run.
+    // (e.g. the only room that they have entered is the starting room on Basement 1)
     roomsEntered === 1
   );
 }
@@ -196,24 +202,24 @@ function setupRaceRoom() {
   g.r.SetClear(true);
   removeAllDoors();
 
-  // Put the player next to the bottom door
+  // Put the player next to the bottom door.
   for (const player of getPlayers()) {
     player.Position = RACE_ROOM_POSITION;
   }
 
-  // Put familiars next to the bottom door, if any
+  // Put familiars next to the bottom door, if any.
   for (const familiar of getFamiliars()) {
     familiar.Position = RACE_ROOM_POSITION;
   }
 
-  // Spawn two Gaping Maws (235.0)
+  // Spawn two Gaping Maws.
   for (const gridIndex of [96, 98]) {
     const position = g.r.GetGridPosition(gridIndex);
-    const gapingMaw = spawn(EntityType.ENTITY_GAPING_MAW, 0, 0, position);
-    gapingMaw.ClearEntityFlags(EntityFlag.FLAG_APPEAR); // Make them appear instantly
+    const gapingMaw = spawn(EntityType.GAPING_MAW, 0, 0, position);
+    gapingMaw.ClearEntityFlags(EntityFlag.APPEAR); // Make them appear instantly
   }
 
-  // Disable the MinimapAPI to emulate what happens with the vanilla map
+  // Disable the MinimapAPI to emulate what happens with the vanilla map.
   if (MinimapAPI !== undefined) {
     MinimapAPI.Config.Disable = true;
   }
@@ -235,14 +241,14 @@ export function inRaceRoom(): boolean {
   return (
     roomStageID === RACE_ROOM_STAGE_ID &&
     roomVariant === RACE_ROOM_VARIANT &&
-    roomGridIndex === GridRooms.ROOM_DEBUG_IDX
+    roomGridIndex === GridRoom.DEBUG
   );
 }
 
 export function resetSprites(): void {
   for (const key of Object.keys(sprites)) {
-    const property = key;
-    sprites[property] = null;
+    // @ts-expect-error The key will always be valid here.
+    sprites[key] = null;
   }
 }
 

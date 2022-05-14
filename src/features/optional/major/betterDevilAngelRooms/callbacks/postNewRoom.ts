@@ -1,3 +1,4 @@
+import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
   emptyArray,
   emptyRoom,
@@ -29,13 +30,13 @@ function checkDevilAngelRoomReplacement() {
   }
 
   if (
-    roomType !== RoomType.ROOM_DEVIL && // 14
-    roomType !== RoomType.ROOM_ANGEL // 15
+    roomType !== RoomType.DEVIL && // 14
+    roomType !== RoomType.ANGEL // 15
   ) {
     return;
   }
 
-  // Angel shops do not need to be seeded
+  // Angel shops do not need to be seeded.
   if (inAngelShop()) {
     return;
   }
@@ -48,9 +49,9 @@ function checkDevilAngelRoomReplacement() {
 
   v.level.vanillaCollectiblesHaveSpawnedInCustomRoom = true;
 
-  if (roomType === RoomType.ROOM_DEVIL) {
+  if (roomType === RoomType.DEVIL) {
     devil();
-  } else if (roomType === RoomType.ROOM_ANGEL) {
+  } else if (roomType === RoomType.ANGEL) {
     angel();
   }
 }
@@ -60,7 +61,7 @@ function checkRegiveGuppysEye() {
     return;
   }
 
-  // Wait until we switch rooms before giving back the Guppy's Eye that we took away
+  // Wait until we switch rooms before giving back the Guppy's Eye that we took away.
   const roomListIndex = getRoomListIndex();
   if (roomListIndex === v.run.regiveGuppysEyeRoomListIndex) {
     return;
@@ -69,7 +70,7 @@ function checkRegiveGuppysEye() {
   for (const playerIndex of v.run.regiveGuppysEyePlayers) {
     const player = getPlayerFromIndex(playerIndex);
     if (player !== undefined) {
-      player.AddCollectible(CollectibleType.COLLECTIBLE_GUPPYS_EYE, 0, false);
+      player.AddCollectible(CollectibleType.GUPPYS_EYE, 0, false);
     }
   }
 

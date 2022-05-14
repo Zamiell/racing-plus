@@ -1,12 +1,13 @@
 // Automatically open the Mega Satan door on races with a Mega Satan goal
 
+import { DoorSlot, SoundEffect } from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
+// ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const stage = g.l.GetStage();
   const player = Isaac.GetPlayer();
@@ -20,9 +21,9 @@ export function postNewLevel(): void {
     return;
   }
 
-  const topDoor = g.r.GetDoor(DoorSlot.UP0);
+  const topDoor = g.r.GetDoor(DoorSlot.UP_0);
   if (topDoor !== undefined) {
     topDoor.TryUnlock(player, true);
-    sfxManager.Stop(SoundEffect.SOUND_UNLOCK00);
+    sfxManager.Stop(SoundEffect.UNLOCK);
   }
 }

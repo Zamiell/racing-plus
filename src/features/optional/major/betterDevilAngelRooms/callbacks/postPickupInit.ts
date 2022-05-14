@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   getPlayerIndex,
   getPlayers,
@@ -22,12 +23,10 @@ export function betterDevilAngelRoomsPostPickupInitRedChest(): void {
   const roomListIndex = getRoomListIndex();
 
   for (const player of getPlayers()) {
-    const numGuppysEye = player.GetCollectibleNum(
-      CollectibleType.COLLECTIBLE_GUPPYS_EYE,
-    );
+    const numGuppysEye = player.GetCollectibleNum(CollectibleType.GUPPYS_EYE);
     repeat(numGuppysEye, () => {
       player.RemoveCollectible(
-        CollectibleType.COLLECTIBLE_GUPPYS_EYE,
+        CollectibleType.GUPPYS_EYE,
         false,
         undefined,
         false,

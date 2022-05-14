@@ -22,7 +22,7 @@ export function init(): void {
   saveDataManager("preventSacrificeRoomTeleport", v);
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   checkDeleteSpikes();
 }

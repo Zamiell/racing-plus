@@ -1,4 +1,12 @@
 import {
+  EntityFlag,
+  EntityType,
+  LambVariant,
+  PickupVariant,
+  RoomType,
+  SoundEffect,
+} from "isaac-typescript-definitions";
+import {
   addRoomClearCharges,
   getNPCs,
   inMegaSatanRoom,
@@ -30,14 +38,14 @@ function featureEnabled() {
   return config.preventVictoryLapPopup;
 }
 
-// ModCallbacks.MC_POST_ENTITY_KILL (68)
-// EntityType.ENTITY_THE_LAMB (273)
+// ModCallback.POST_ENTITY_KILL (68)
+// EntityType.THE_LAMB (273)
 export function postEntityKillLamb(entity: Entity): void {
   if (!config.preventVictoryLapPopup) {
     return;
   }
 
-  if (entity.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
+  if (entity.HasEntityFlags(EntityFlag.FRIENDLY)) {
     return;
   }
 
@@ -46,12 +54,10 @@ export function postEntityKillLamb(entity: Entity): void {
   }
 
   // There is an edge-case with The Lamb where if you deal fatal damage to it in phase 1, it will
-  // trigger the PostEntityKill callback
-  // However, in this situation, The Lamb will not actually die,
-  // and will instead proceed to transition to phase 2 anyway
-  // To work around this, wait a frame before checking to see if all of the Lamb entities in the
-  // room are dead
-  // (it is difficult to distinguish between this special case and throwing a Chaos Card)
+  // trigger the PostEntityKill callback. However, in this situation, The Lamb will not actually
+  // die, and will instead proceed to transition to phase 2 anyway. To work around this, wait a
+  // frame before checking to see if all of the Lamb entities in the room are dead. (It is difficult
+  // to distinguish between this special case and throwing a Chaos Card.)
   runNextGameFrame(() => {
     if (!isAllLambEntitiesDead()) {
       return;
@@ -73,16 +79,16 @@ function inUnclearedLambBossRoom() {
 
   return (
     onDarkRoom() &&
-    roomType === RoomType.ROOM_BOSS &&
+    roomType === RoomType.BOSS &&
     !inMegaSatanRoom() &&
     !roomClear
   );
 }
 
 function isAllLambEntitiesDead() {
-  const lambs = getNPCs(EntityType.ENTITY_THE_LAMB);
+  const lambs = getNPCs(EntityType.THE_LAMB);
   for (const lamb of lambs) {
-    if (lamb.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
+    if (lamb.HasEntityFlags(EntityFlag.FRIENDLY)) {
       continue;
     }
 
@@ -101,18 +107,18 @@ function isAllLambEntitiesDead() {
 function spawnRoomClearDelayEffect() {
   spawnEffect(EffectVariantCustom.ROOM_CLEAR_DELAY, 0, VectorZero);
   log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
-  // (this will not work to delay the room clearing if "debug 10" is turned on)
-  // (this will not die if the player uses Blood Rights since it is an effect)
+  // (This will not work to delay the room clearing if "debug 10" is turned on.)
+  // (This will not die if the player uses Blood Rights, since it is an effect.)
 }
 
 function emulateRoomClear() {
-  // Emulate the room being cleared
+  // Emulate the room being cleared.
   g.r.SetClear(true);
   addRoomClearCharges();
   openAllDoors();
-  sfxManager.Play(SoundEffect.SOUND_DOOR_HEAVY_OPEN);
+  sfxManager.Play(SoundEffect.DOOR_HEAVY_OPEN);
 
-  // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race)
+  // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
   const position = g.r.GetCenterPos();
-  spawnPickup(PickupVariant.PICKUP_BIGCHEST, 0, position);
+  spawnPickup(PickupVariant.BIG_CHEST, 0, position);
 }

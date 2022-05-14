@@ -1,5 +1,7 @@
+import { GridRoom, RoomShape, RoomType } from "isaac-typescript-definitions";
 import {
   anyPlayerCloserThan,
+  getDoorEnterPosition,
   getDoors,
   getFamiliars,
   getPlayers,
@@ -11,7 +13,7 @@ import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 import { isFastTravelHappening } from "../major/fastTravel/v";
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.teleportInvalidEntrance) {
     return;
@@ -26,7 +28,7 @@ export function postNewRoom(): void {
   }
 
   // Don't bother fixing entrances in the Mom boss room
-  if (stage === 6 && roomType === RoomType.ROOM_BOSS) {
+  if (stage === 6 && roomType === RoomType.BOSS) {
     return;
   }
 
@@ -34,24 +36,25 @@ export function postNewRoom(): void {
     return;
   }
 
-  const [firstDoorSlot, firstDoorPosition] = getFirstDoorSlotAndPosition();
-  if (firstDoorSlot === undefined || firstDoorPosition === undefined) {
-    // Some rooms have no doors, like I AM ERROR rooms
+  const firstDoor = getFirstNonSecretDoor();
+  if (firstDoor === undefined) {
+    // Some rooms have no doors, like I AM ERROR rooms.
     return;
   }
 
-  // Don't bother fixing entrances in big room,
-  // as teleporting the player to a valid door can cause the camera to jerk in a buggy way
-  if (roomShape >= RoomShape.ROOMSHAPE_1x2) {
+  // Don't bother fixing entrances in big room, as teleporting the player to a valid door can cause
+  // the camera to jerk in a buggy way.
+  if (roomShape >= RoomShape.SHAPE_1x2) {
     log(
       "Not fixing an invalid entrance teleport due to being in a large room.",
     );
     return;
   }
 
-  // They teleported to a non-existent entrance,
-  // so manually move the players next to the first door in the room
-  const position = getDoorEnterPosition(firstDoorSlot, firstDoorPosition);
+  // They teleported to a non-existent entrance. Manually move the players next to the first door
+  // in the room. (We can't move the player directly to the door position or they would just enter
+  // the loading zone.)
+  const position = getDoorEnterPosition(firstDoor);
   for (const player of getPlayers()) {
     player.Position = position;
   }
@@ -70,10 +73,10 @@ function enteredRoomViaTeleport() {
   const roomType = g.r.GetType();
   const isFirstVisit = g.r.IsFirstVisit();
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
-  const inDungeon = roomType === RoomType.ROOM_DUNGEON;
+  const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
-    previousRoomGridIndex === GridRooms.ROOM_DUNGEON_IDX ||
-    previousRoomGridIndex === GridRooms.ROOM_SECRET_SHOP_IDX;
+    previousRoomGridIndex === GridRoom.DUNGEON ||
+    previousRoomGridIndex === GridRoom.SECRET_SHOP;
 
   return (
     g.l.LeaveDoor === -1 &&
@@ -87,8 +90,8 @@ function enteredRoomViaTeleport() {
 function isPlayerNextToADoor() {
   for (const door of getDoors()) {
     if (
-      door.TargetRoomType !== RoomType.ROOM_SECRET && // 7
-      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET // 8
+      door.TargetRoomType !== RoomType.SECRET && // 7
+      door.TargetRoomType !== RoomType.SUPER_SECRET // 8
     ) {
       if (anyPlayerCloserThan(door.Position, 60)) {
         return true;
@@ -99,37 +102,13 @@ function isPlayerNextToADoor() {
   return false;
 }
 
-function getFirstDoorSlotAndPosition(): [int | undefined, Vector | undefined] {
+function getFirstNonSecretDoor(): GridEntityDoor | undefined {
   const doors = getDoors();
   const nonSecretRoomDoors = doors.filter(
     (door) =>
-      door.TargetRoomType !== RoomType.ROOM_SECRET &&
-      door.TargetRoomType !== RoomType.ROOM_SUPERSECRET,
+      door.TargetRoomType !== RoomType.SECRET &&
+      door.TargetRoomType !== RoomType.SUPER_SECRET,
   );
-  if (nonSecretRoomDoors.length === 0) {
-    return [undefined, undefined];
-  }
 
-  const firstDoor = nonSecretRoomDoors[0];
-  return [firstDoor.Slot, firstDoor.Position];
-}
-
-function getDoorEnterPosition(doorSlot: DoorSlot, doorPosition: Vector) {
-  // We can't move the player directly to the door position or they would just enter the loading
-  // zone
-  // Players always appear 40 units away from the door when entering a room,
-  // so calculate the offset based on the door slot
-  let x = doorPosition.X;
-  let y = doorPosition.Y;
-  if (doorSlot === DoorSlot.LEFT0 || doorSlot === DoorSlot.LEFT1) {
-    x += 40;
-  } else if (doorSlot === DoorSlot.UP0 || doorSlot === DoorSlot.UP1) {
-    y += 40;
-  } else if (doorSlot === DoorSlot.RIGHT0 || doorSlot === DoorSlot.RIGHT1) {
-    x -= 40;
-  } else if (doorSlot === DoorSlot.DOWN0 || doorSlot === DoorSlot.DOWN1) {
-    y -= 40;
-  }
-
-  return Vector(x, y);
+  return nonSecretRoomDoors[0];
 }

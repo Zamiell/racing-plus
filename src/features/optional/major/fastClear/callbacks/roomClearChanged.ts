@@ -11,9 +11,8 @@ export function fastClearRoomClearChanged(roomClear: boolean): void {
 }
 
 function checkVanillaRoomClear(roomClear: boolean) {
-  // Sometimes, the room clear state can go from cleared to uncleared
-  // (e.g. the player bombed an angel)
-  // Ignore these cases
+  // Sometimes, the room clear state can go from cleared to uncleared (e.g. the player bombed an
+  // angel). Ignore these cases.
   if (!roomClear) {
     log("Room state changed to uncleared.");
     return;

@@ -1,4 +1,11 @@
 import {
+  CollectibleType,
+  EntityType,
+  GridEntityType,
+  PressurePlateState,
+  PressurePlateVariant,
+} from "isaac-typescript-definitions";
+import {
   getClosestPlayer,
   getRoomListIndex,
   inMegaSatanRoom,
@@ -19,11 +26,9 @@ const DPSSprite = Sprite();
 DPSSprite.Load("gfx/017.001_Shopkeeper.anm2", true);
 DPSSprite.Play("Shopkeeper 1", true);
 
-const victoryLapSprite = initGlowingItemSprite(
-  CollectibleType.COLLECTIBLE_FORGET_ME_NOW,
-);
+const victoryLapSprite = initGlowingItemSprite(CollectibleType.FORGET_ME_NOW);
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   drawSprites();
 }
@@ -37,7 +42,7 @@ function drawSprites() {
   }
 
   // We don't care if the sprites show when the game is paused,
-  // but we do not want the sprites to show during room slide animations
+  // but we do not want the sprites to show during room slide animations.
   if (isPaused) {
     return;
   }
@@ -90,7 +95,7 @@ function spawnDPSButton() {
   }
 
   const button = spawnGridWithVariant(
-    GridEntityType.GRID_PRESSURE_PLATE,
+    GridEntityType.PRESSURE_PLATE,
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,
   );
@@ -122,7 +127,7 @@ export function spawnVictoryLapButton(center?: boolean): void {
   }
 
   const button = spawnGridWithVariant(
-    GridEntityType.GRID_PRESSURE_PLATE,
+    GridEntityType.PRESSURE_PLATE,
     PressurePlateVariant.PRESSURE_PLATE,
     gridIndex,
   );
@@ -139,7 +144,7 @@ export function spawnVictoryLapButton(center?: boolean): void {
   };
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!g.raceVars.finished) {
     return;
@@ -153,14 +158,14 @@ export function postNewRoom(): void {
     (v.level.victoryLapButton !== null &&
       v.level.victoryLapButton.roomListIndex === roomListIndex)
   ) {
-    // The buttons will cause the door to close, so re-open the door
-    // (the door will stay open since the room is already cleared)
+    // The buttons will cause the door to close, so re-open the door.
+    // (The door will stay open since the room is already cleared.)
     openAllDoors();
   }
 }
 
 // ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
-// GridEntityType.GRID_PRESSURE_PLATE (20)
+// GridEntityType.PRESSURE_PLATE (20)
 export function postGridEntityUpdatePressurePlate(
   gridEntity: GridEntity,
 ): void {
@@ -191,7 +196,7 @@ function checkDPSButtonPressed(gridEntity: GridEntity) {
 
 function touchedDPSButton() {
   const centerPos = g.r.GetCenterPos();
-  spawn(EntityType.ENTITY_DUMMY, 0, 0, centerPos);
+  spawn(EntityType.DUMMY, 0, 0, centerPos);
 }
 
 function checkVictoryLapButtonPressed(gridEntity: GridEntity) {

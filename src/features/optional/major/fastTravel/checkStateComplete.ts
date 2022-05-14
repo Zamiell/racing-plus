@@ -1,3 +1,4 @@
+import { EntityCollisionClass } from "isaac-typescript-definitions";
 import { ensureAllCases, getEffects, getPlayers } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -7,7 +8,7 @@ import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
 import v from "./v";
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   switch (v.run.state) {
     case FastTravelState.DISABLED: {
@@ -60,14 +61,14 @@ function postRenderFadingIn() {
     return;
   }
 
-  // The FadingToBlack state is completed when the screen is completely black
+  // The FadingToBlack state is completed when the screen is completely black.
   setNewFastTravelState(FastTravelState.DISABLED);
 }
 
 function incrementFramesPassed() {
-  // Only increment the fade timer if the game is not paused
-  // To avoid this, we could base the timer on game frames, but that does not result in a smooth
-  // enough fade out (because it is only updated on every other render frame)
+  // Only increment the fade timer if the game is not paused. To avoid this, we could base the timer
+  // on game frames, but that does not result in a smooth enough fade out (because it is only
+  // updated on every other render frame).
   if (g.g.IsPaused()) {
     return;
   }
@@ -81,9 +82,9 @@ function incrementFramesPassed() {
 }
 
 function resetPlayerCollision(players: EntityPlayer[]) {
-  // Set the collision for all players back to normal
+  // Set the collision for all players back to normal.
   for (const player of players) {
-    player.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL;
+    player.EntityCollisionClass = EntityCollisionClass.ALL;
   }
 }
 

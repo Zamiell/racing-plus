@@ -1,4 +1,11 @@
 import {
+  CollectibleType,
+  DamageFlag,
+  PickupPrice,
+  PlayerType,
+  RoomType,
+} from "isaac-typescript-definitions";
+import {
   anyPlayerIs,
   DefaultMap,
   getTaintedMagdaleneNonTemporaryMaxHearts,
@@ -35,9 +42,7 @@ const v = {
 };
 
 function newMysteryGiftSprite() {
-  const sprite = initCollectibleSprite(
-    CollectibleType.COLLECTIBLE_MYSTERY_GIFT,
-  );
+  const sprite = initCollectibleSprite(CollectibleType.MYSTERY_GIFT);
   sprite.Scale = Vector(0.666, 0.666);
 
   return sprite;
@@ -51,7 +56,7 @@ function featureEnabled() {
   return config.freeDevilItem;
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.freeDevilItem) {
     return;
@@ -61,8 +66,8 @@ export function postRender(): void {
     return;
   }
 
-  // In seeded races, we might be guaranteed to be getting Angel Rooms
-  // If so, then showing the free item icon is superfluous
+  // In seeded races, we might be guaranteed to be getting Angel Rooms. If so, then showing the free
+  // item icon is superfluous.
   if (inSeededRaceWithAllAngelRooms()) {
     return;
   }
@@ -78,8 +83,8 @@ function drawIconSprite() {
   }
 
   const hasTaintedCharacterUI = anyPlayerIs(
-    PlayerType.PLAYER_ISAAC_B, // 21
-    PlayerType.PLAYER_BLUEBABY_B, // 25
+    PlayerType.ISAAC_B, // 21
+    PlayerType.BLUE_BABY_B, // 25
   );
   const position = hasTaintedCharacterUI
     ? ICON_SPRITE_POSITION.add(TAINTED_CHARACTER_UI_OFFSET)
@@ -87,11 +92,11 @@ function drawIconSprite() {
   iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
 
-// ModCallbacks.MC_ENTITY_TAKE_DMG (11)
+// ModCallback.ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
   tookDamage: Entity,
   damageAmount: float,
-  damageFlags: int,
+  damageFlags: BitFlags<DamageFlag>,
 ): void {
   if (!config.freeDevilItem) {
     return;
@@ -110,8 +115,8 @@ export function entityTakeDmgPlayer(
     return;
   }
 
-  // As an exception, Tainted Magdalene is allowed to get damaged on her temporary heart containers
-  if (isCharacter(player, PlayerType.PLAYER_MAGDALENE_B)) {
+  // As an exception, Tainted Magdalene is allowed to get damaged on her temporary heart containers.
+  if (isCharacter(player, PlayerType.MAGDALENE_B)) {
     if (
       wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
         player,
@@ -132,20 +137,20 @@ function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
   damageAmount: float,
 ) {
   // Regardless of the damage amount, damage to a player cannot remove a soul heart and a red heart
-  // at the same time
+  // at the same time.
   const soulHearts = player.GetSoulHearts();
   if (soulHearts > 0) {
     return false;
   }
 
   // Regardless of the damage amount, damage to a player cannot remove a bone heart and a red heart
-  // at the same time
+  // at the same time.
   const boneHearts = player.GetBoneHearts();
   if (boneHearts > 0) {
     return false;
   }
 
-  // Account for rotten hearts eating away at more red hearts than usual
+  // Account for rotten hearts eating away at more red hearts than usual.
   const hearts = player.GetHearts();
   const rottenHearts = player.GetRottenHearts();
   const effectiveDamageAmount =
@@ -157,8 +162,8 @@ function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
   return heartsAfterDamage < nonTemporaryMaxHearts;
 }
 
-// ModCallbacks.MC_POST_PICKUP_UPDATE (35)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.POST_PICKUP_UPDATE (35)
+// PickupVariant.COLLECTIBLE (100)
 export function postPickupUpdateCollectible(pickup: EntityPickup): void {
   if (!config.freeDevilItem) {
     return;
@@ -169,10 +174,9 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
     shouldGetFreeDevilItemInThisRoom() &&
     isDevilDealStyleCollectible(pickup)
   ) {
-    // Update the price of the item on every frame
-    // We deliberately do not change "AutoUpdatePrice" so that as soon as the player is no longer
-    // eligible for the free item, the price will immediately change back to what it is supposed to
-    // be
+    // Update the price of the item on every frame. We deliberately do not change `AutoUpdatePrice`
+    // so that as soon as the player is no longer eligible for the free item, the price will
+    // immediately change back to what it is supposed to be.
     pickup.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
   }
 }
@@ -180,8 +184,8 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
 export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const effectiveDevilDeals = getEffectiveDevilDeals();
   const anyPlayerIsTheLost = anyPlayerIs(
-    PlayerType.PLAYER_THELOST,
-    PlayerType.PLAYER_THELOST_B,
+    PlayerType.THE_LOST,
+    PlayerType.THE_LOST_B,
   );
 
   return !v.run.tookDamage && effectiveDevilDeals === 0 && !anyPlayerIsTheLost;
@@ -192,19 +196,19 @@ function shouldGetFreeDevilItemInThisRoom() {
   const roomType = g.r.GetType();
 
   return (
-    // Black Market deals do not count as "locking in" Devil Deals,
-    // so we exclude this mechanic from applying to them
-    roomType !== RoomType.ROOM_BLACK_MARKET &&
-    // Dark Room starting room deals also don't count as "locking in" Devil Deals
+    // Black Market deals do not count as "locking in" Devil Deals, so we exclude this mechanic from
+    // applying to them.
+    roomType !== RoomType.BLACK_MARKET &&
+    // Dark Room starting room deals also don't count as "locking in" Devil Deals.
     !(onDarkRoom() && inStartingRoom()) &&
-    // We might be traveling to a Devil Room for run-initialization-related tasks
+    // We might be traveling to a Devil Room for run-initialization-related tasks.
     gameFrameCount > 0
   );
 }
 
 /**
  * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
- * price is less than 0 and is not PickupPrice.PRICE_FREE. However, this does not work on Keeper,
+ * price is less than 0 and is not PickupPrice.FREE. However, this does not work on Keeper,
  * because all Devil-Deal-style items cost money. Furthermore, it does not work on Tainted Keeper,
  * because all items cost money.
  *
@@ -215,19 +219,18 @@ function shouldGetFreeDevilItemInThisRoom() {
 function isDevilDealStyleCollectible(pickup: EntityPickup) {
   const roomType = g.r.GetType();
 
-  if (anyPlayerIs(PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_KEEPER_B)) {
+  if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
     return (
       pickup.Price > 0 &&
-      (roomType === RoomType.ROOM_DEVIL ||
-        roomType === RoomType.ROOM_BLACK_MARKET)
+      (roomType === RoomType.DEVIL || roomType === RoomType.BLACK_MARKET)
     );
   }
 
-  return pickup.Price < 0 && pickup.Price !== PickupPrice.PRICE_FREE;
+  return pickup.Price < 0 && pickup.Price !== PickupPrice.FREE;
 }
 
-// ModCallbacks.MC_POST_PICKUP_RENDER (36)
-// PickupVariant.PICKUP_COLLECTIBLE (100)
+// ModCallback.POST_PICKUP_RENDER (36)
+// PickupVariant.COLLECTIBLE (100)
 export function postPickupRenderCollectible(
   pickup: EntityPickup,
   renderOffset: Vector,

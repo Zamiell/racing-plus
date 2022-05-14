@@ -1,3 +1,4 @@
+import { PickupVariant } from "isaac-typescript-definitions";
 import { PlayerIndex, saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 
@@ -24,7 +25,9 @@ const v = {
   },
 
   room: {
-    pickupQueue: [] as Array<[PickupVariant, PlayerIndex]>,
+    pickupQueue: [] as Array<
+      [pickupVariant: PickupVariant, playerIndex: PlayerIndex]
+    >,
   },
 };
 export default v;

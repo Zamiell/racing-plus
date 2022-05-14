@@ -1,4 +1,11 @@
 import {
+  CollectibleType,
+  EntityType,
+  ItemPoolType,
+  PickupVariant,
+  RoomType,
+} from "isaac-typescript-definitions";
+import {
   countEntities,
   getCollectibles,
   getEffectiveStage,
@@ -26,11 +33,11 @@ export function init(): void {
 
 function shouldGetExtraStartingItems() {
   // If the player is not supposed to get a Treasure Room on the first floor, then they do not need
-  // to get extra items inserted into the Treasure Room pool
+  // to get extra items inserted into the Treasure Room pool.
   return !shouldBanFirstFloorTreasureRoom();
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.extraStartingItems) {
     return;
@@ -40,7 +47,7 @@ export function postUpdate(): void {
   replacePlaceholderItems();
 }
 
-// ModCallbacks.MC_POST_GAME_STARTED (15)
+// ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   if (!config.extraStartingItems) {
     return;
@@ -51,7 +58,7 @@ export function postGameStarted(): void {
   }
 }
 
-// ModCallbacks.MC_POST_NEW_LEVEL (18)
+// ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   if (!config.extraStartingItems) {
     return;
@@ -59,15 +66,15 @@ export function postNewLevel(): void {
 
   const effectiveStage = getEffectiveStage();
 
-  // Ensure that the placeholders are removed beyond Basement 1
-  // Placeholders are removed as soon as the player exits the first Treasure Room,
-  // but they might have skipped the Basement 1 Treasure Room for some reason
+  // Ensure that the placeholders are removed beyond Basement 1. Placeholders are removed as soon as
+  // the player exits the first Treasure Room, but they might have skipped the Basement 1 Treasure
+  // Room for some reason.
   if (effectiveStage >= 2 && !v.run.placeholdersRemoved) {
     removePlaceholdersFromPools();
   }
 }
 
-// ModCallbacks.MC_POST_NEW_ROOM (19)
+// ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.extraStartingItems) {
     return;
@@ -78,9 +85,9 @@ export function postNewRoom(): void {
     const lastRoomData = lastRoomDesc.Data;
     if (
       lastRoomData !== undefined &&
-      (lastRoomData.Type === RoomType.ROOM_TREASURE ||
-        // Tainted Keeper can find Treasure Room items in a shop
-        lastRoomData.Type === RoomType.ROOM_SHOP)
+      (lastRoomData.Type === RoomType.TREASURE ||
+        // Tainted Keeper can find Treasure Room items in a shop.
+        lastRoomData.Type === RoomType.SHOP)
     ) {
       removePlaceholdersFromPools();
     }
@@ -94,32 +101,31 @@ function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
 
   const numDeathTouches = countEntities(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-    CollectibleType.COLLECTIBLE_DEATHS_TOUCH,
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+    CollectibleType.DEATHS_TOUCH,
   );
   const deathsTouchExists = numDeathTouches > 0;
 
   const numMagicMushrooms = countEntities(
-    EntityType.ENTITY_PICKUP,
-    PickupVariant.PICKUP_COLLECTIBLE,
-    CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM,
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+    CollectibleType.MAGIC_MUSHROOM,
   );
   const magicMushroomExists = numMagicMushrooms > 0;
 
   for (const collectible of getCollectibles()) {
-    // Ignore empty pedestals (i.e. items that have already been taken by the player)
-    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+    // Ignore empty pedestals (i.e. items that have already been taken by the player).
+    if (collectible.SubType === CollectibleType.NULL) {
       continue;
     }
 
     if (
       deathsTouchExists &&
-      collectible.SubType ===
-        CollectibleTypeCustom.COLLECTIBLE_DEATHS_TOUCH_PLACEHOLDER
+      collectible.SubType === CollectibleTypeCustom.DEATHS_TOUCH_PLACEHOLDER
     ) {
       const newCollectibleType = g.itemPool.GetCollectible(
-        ItemPoolType.POOL_TREASURE,
+        ItemPoolType.TREASURE,
         true,
         startSeed,
       );
@@ -129,11 +135,10 @@ function rollDuplicateItems() {
 
     if (
       magicMushroomExists &&
-      collectible.SubType ===
-        CollectibleTypeCustom.COLLECTIBLE_MAGIC_MUSHROOM_PLACEHOLDER
+      collectible.SubType === CollectibleTypeCustom.MAGIC_MUSHROOM_PLACEHOLDER
     ) {
       const newCollectibleType = g.itemPool.GetCollectible(
-        ItemPoolType.POOL_TREASURE,
+        ItemPoolType.TREASURE,
         true,
         startSeed,
       );
@@ -146,7 +151,7 @@ function rollDuplicateItems() {
 function replacePlaceholderItems() {
   for (const collectible of getCollectibles()) {
     // Ignore empty pedestals (i.e. items that have already been taken by the player)
-    if (collectible.SubType === CollectibleType.COLLECTIBLE_NULL) {
+    if (collectible.SubType === CollectibleType.NULL) {
       continue;
     }
 

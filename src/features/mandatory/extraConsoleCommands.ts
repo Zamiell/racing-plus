@@ -1,4 +1,9 @@
 import {
+  Challenge,
+  CollectibleType,
+  PlayerType,
+} from "isaac-typescript-definitions";
+import {
   addConsoleCommand,
   CHARACTER_MAP,
   deepCopyTests,
@@ -6,6 +11,7 @@ import {
   getEnumValues,
   getMapPartialMatch,
   log,
+  MAX_VANILLA_CHARACTER,
   mergeTests,
   onSetSeed,
   printConsole,
@@ -27,10 +33,8 @@ import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/
 import * as socketClient from "../race/socketClient";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
 
-const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.PLAYER_ISAAC;
-const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
-  CollectibleType.COLLECTIBLE_CRICKETS_HEAD,
-];
+const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.ISAAC;
+const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("angelset", angelSet);
@@ -117,7 +121,7 @@ function rankedSoloReset() {
 }
 
 function s0() {
-  consoleCommand(`challenge ${Challenge.CHALLENGE_NULL}`);
+  consoleCommand(`challenge ${Challenge.NULL}`);
 }
 
 function s1() {
@@ -182,7 +186,7 @@ function seededRaceCharacter(params: string) {
 
     character = match[1];
   } else {
-    if (num < 0 || num >= PlayerType.NUM_PLAYER_TYPES) {
+    if (num < 0 || num > MAX_VANILLA_CHARACTER) {
       printConsole(`Invalid player sub-type: ${num}`);
       return;
     }

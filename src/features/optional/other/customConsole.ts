@@ -1,3 +1,4 @@
+import { Keyboard } from "isaac-typescript-definitions";
 import {
   DefaultMap,
   disableAllInputs,
@@ -25,7 +26,7 @@ export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
 const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = ISAAC_FRAMES_PER_SECOND * 0.5;
 export const DEFAULT_CONSOLE_OPACITY = 0.75;
-const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.KEY_ENTER;
+const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.ENTER;
 
 let consoleOpen = false;
 let inputText = "";
@@ -48,7 +49,7 @@ export function init(): void {
   saveDataManager(FEATURE_NAME, v);
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.customConsole) {
     return;
@@ -125,19 +126,19 @@ function checkKeyboardInput(
 function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
   // Do nothing if modifiers other than shift are pressed
   if (
-    keysPressed.has(Keyboard.KEY_LEFT_CONTROL) ||
-    keysPressed.has(Keyboard.KEY_RIGHT_CONTROL) ||
-    keysPressed.has(Keyboard.KEY_LEFT_ALT) ||
-    keysPressed.has(Keyboard.KEY_RIGHT_ALT) ||
-    keysPressed.has(Keyboard.KEY_LEFT_SUPER) ||
-    keysPressed.has(Keyboard.KEY_RIGHT_SUPER)
+    keysPressed.has(Keyboard.LEFT_CONTROL) ||
+    keysPressed.has(Keyboard.RIGHT_CONTROL) ||
+    keysPressed.has(Keyboard.LEFT_ALT) ||
+    keysPressed.has(Keyboard.RIGHT_ALT) ||
+    keysPressed.has(Keyboard.LEFT_SUPER) ||
+    keysPressed.has(Keyboard.RIGHT_SUPER)
   ) {
     return;
   }
 
   const shiftPressed =
-    keysPressed.has(Keyboard.KEY_LEFT_SHIFT) ||
-    keysPressed.has(Keyboard.KEY_RIGHT_SHIFT);
+    keysPressed.has(Keyboard.LEFT_SHIFT) ||
+    keysPressed.has(Keyboard.RIGHT_SHIFT);
 
   if (keyboardValue === consoleOpenInput && !shiftPressed) {
     if (consoleOpen) {
@@ -284,12 +285,12 @@ function getScreenPosition(
 const keyFunctionMap = new Map<Keyboard, () => void>();
 
 // 256
-keyFunctionMap.set(Keyboard.KEY_ESCAPE, () => {
+keyFunctionMap.set(Keyboard.ESCAPE, () => {
   close(false);
 });
 
 // 259
-keyFunctionMap.set(Keyboard.KEY_BACKSPACE, () => {
+keyFunctionMap.set(Keyboard.BACKSPACE, () => {
   if (inputTextIndex === 0) {
     return;
   }
@@ -302,7 +303,7 @@ keyFunctionMap.set(Keyboard.KEY_BACKSPACE, () => {
 });
 
 // 262
-keyFunctionMap.set(Keyboard.KEY_RIGHT, () => {
+keyFunctionMap.set(Keyboard.RIGHT, () => {
   if (inputTextIndex === inputText.length) {
     return;
   }
@@ -311,7 +312,7 @@ keyFunctionMap.set(Keyboard.KEY_RIGHT, () => {
 });
 
 // 263
-keyFunctionMap.set(Keyboard.KEY_LEFT, () => {
+keyFunctionMap.set(Keyboard.LEFT, () => {
   if (inputTextIndex === 0) {
     return;
   }
@@ -320,7 +321,7 @@ keyFunctionMap.set(Keyboard.KEY_LEFT, () => {
 });
 
 // 264
-keyFunctionMap.set(Keyboard.KEY_DOWN, () => {
+keyFunctionMap.set(Keyboard.DOWN, () => {
   if (historyIndex === -1) {
     return;
   }
@@ -343,7 +344,7 @@ keyFunctionMap.set(Keyboard.KEY_DOWN, () => {
 });
 
 // 265
-keyFunctionMap.set(Keyboard.KEY_UP, () => {
+keyFunctionMap.set(Keyboard.UP, () => {
   if (historyIndex === -1) {
     savedText = inputText;
   }
@@ -368,12 +369,12 @@ keyFunctionMap.set(Keyboard.KEY_UP, () => {
 });
 
 // 268
-keyFunctionMap.set(Keyboard.KEY_HOME, () => {
+keyFunctionMap.set(Keyboard.HOME, () => {
   inputTextIndex = 0;
 });
 
 // 269
-keyFunctionMap.set(Keyboard.KEY_END, () => {
+keyFunctionMap.set(Keyboard.END, () => {
   inputTextIndex = inputText.length;
 });
 

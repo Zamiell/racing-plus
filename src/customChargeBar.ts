@@ -1,3 +1,4 @@
+import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
   ensureAllCases,
   isCharacter,
@@ -14,14 +15,14 @@ const OVERLAP_ADJUSTMENT = Vector(-20, 0);
 
 // Lead Pencil constants
 const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
-  CollectibleType.COLLECTIBLE_DR_FETUS, // 52
-  CollectibleType.COLLECTIBLE_TECHNOLOGY, // 68
-  CollectibleType.COLLECTIBLE_MOMS_KNIFE, // 114
-  CollectibleType.COLLECTIBLE_BRIMSTONE, // 118
-  CollectibleType.COLLECTIBLE_TECHNOLOGY_2, // 152
-  CollectibleType.COLLECTIBLE_EPIC_FETUS, // 168
-  CollectibleType.COLLECTIBLE_MONSTROS_LUNG, // 229
-  CollectibleType.COLLECTIBLE_TECH_X, // 395
+  CollectibleType.DR_FETUS, // 52
+  CollectibleType.TECHNOLOGY, // 68
+  CollectibleType.MOMS_KNIFE, // 114
+  CollectibleType.BRIMSTONE, // 118
+  CollectibleType.TECHNOLOGY_2, // 152
+  CollectibleType.EPIC_FETUS, // 168
+  CollectibleType.MONSTROS_LUNG, // 229
+  CollectibleType.TECH_X, // 395
 ];
 
 // Azazels' Rage constants
@@ -43,14 +44,14 @@ export function drawCustomChargeBar(
   barFrame: int,
   chargeBarType: CustomChargeBarType,
 ): void {
-  // For vanilla charge bars, as the player grows bigger, the charge bar offset increases
+  // For vanilla charge bars, as the player grows bigger, the charge bar offset increases.
   const sizeOffset = VANILLA_CHARGE_BAR_OFFSET.mul(player.SpriteScale);
 
-  // Additionally, the charge bar offset changes depending on if the player is flying or not
+  // Additionally, the charge bar offset changes depending on if the player is flying or not.
   const flyingOffset = player.GetFlyingOffset();
 
   // Adjust this charge bar to the left if there are other custom charge bars showing of a higher
-  // precedence
+  // precedence.
   const numHigherPrecedenceCustomChargeBars =
     getNumHigherPrecedenceCustomChargeBars(player, chargeBarType);
   const overlapOffset = OVERLAP_ADJUSTMENT.mul(
@@ -151,10 +152,10 @@ export function shouldDrawCustomChargeBar(
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
   return (
     config.leadPencilChargeBar &&
-    player.HasCollectible(CollectibleType.COLLECTIBLE_LEAD_PENCIL) &&
+    player.HasCollectible(CollectibleType.LEAD_PENCIL) &&
     // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
-    // (because there is no PostLaserFired callback)
-    !isCharacter(player, PlayerType.PLAYER_AZAZEL) &&
+    // (because there is no PostLaserFired callback).
+    !isCharacter(player, PlayerType.AZAZEL) &&
     !playerHasUntrackableCollectible(player)
   );
 }
@@ -166,26 +167,22 @@ function playerHasUntrackableCollectible(player: EntityPlayer) {
 }
 
 function shouldDrawAzazelsRageChargeBar(player: EntityPlayer) {
-  const hasAzazelsRage = player.HasCollectible(
-    CollectibleType.COLLECTIBLE_AZAZELS_RAGE,
-  );
+  const hasAzazelsRage = player.HasCollectible(CollectibleType.AZAZELS_RAGE);
   const effects = player.GetEffects();
   const numCharges = effects.GetCollectibleEffectNum(
-    CollectibleType.COLLECTIBLE_AZAZELS_RAGE,
+    CollectibleType.AZAZELS_RAGE,
   );
 
-  // The number of effects goes from 4 to 6 when the blast is firing
+  // The number of effects goes from 4 to 6 when the blast is firing.
   const isBlastFiring = numCharges > NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE;
 
   return config.azazelsRageChargeBar && hasAzazelsRage && !isBlastFiring;
 }
 
 function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
-  const isTaintedSamson = isCharacter(player, PlayerType.PLAYER_SAMSON_B);
+  const isTaintedSamson = isCharacter(player, PlayerType.SAMSON_B);
   const effects = player.GetEffects();
-  const isBerserk = effects.HasCollectibleEffect(
-    CollectibleType.COLLECTIBLE_BERSERK,
-  );
+  const isBerserk = effects.HasCollectibleEffect(CollectibleType.BERSERK);
 
   return config.taintedSamsonChargeBar && isTaintedSamson && !isBerserk;
 }
@@ -193,7 +190,7 @@ function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
 function shouldDrawBloodyLustChargeBar(player: EntityPlayer) {
   return (
     config.bloodyLustChargeBar &&
-    player.HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST) &&
+    player.HasCollectible(CollectibleType.BLOODY_LUST) &&
     !isMaxBloodyLustCharges(player)
   );
 }

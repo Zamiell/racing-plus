@@ -34,7 +34,7 @@ socketFunctions.set("set", (rawData: string) => {
 
   switch (previousValueType) {
     case "string": {
-      // No type conversion is necessary
+      // No type conversion is necessary.
       setRace(property, data);
       return;
     }
@@ -66,7 +66,7 @@ socketFunctions.set("set", (rawData: string) => {
     }
 
     case "table": {
-      // "startingItems" is the only property that is a table
+      // "startingItems" is the only property that is a table.
       const newArray = jsonDecode(data) as unknown as int[];
       g.race.startingItems = newArray;
       return;
@@ -88,11 +88,15 @@ socketFunctions.set("chat", (rawData: string) => {
   );
 });
 
-// Mostly copied from the "unpackSocketMsg()" function
+/** This is mostly copied from the `unpackSocketMsg` function. */
 function unpackSetMsg(rawData: string): [string, string] {
   const separator = " ";
   const [property, ...dataArray] = rawData.split(separator);
   const data = dataArray.join(separator);
+
+  if (property === undefined) {
+    return ["", data];
+  }
 
   return [property, data];
 }

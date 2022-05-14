@@ -1,3 +1,4 @@
+import { Card } from "isaac-typescript-definitions";
 import {
   enableAllInputs,
   ISAAC_FRAMES_PER_SECOND,
@@ -45,10 +46,10 @@ function postRenderFetalPosition() {
 
   enableAllInputs(SEEDED_DEATH_FEATURE_NAME);
 
-  // Since Keeper only has one coin container, he gets a bonus usage of Holy Card
-  // We grant it here so that it does not cancel the "AppearVanilla" animation
+  // Since Keeper only has one coin container, he gets a bonus usage of Holy Card. We grant it here
+  // so that it does not cancel the "AppearVanilla" animation.
   if (isKeeper(player)) {
-    player.UseCard(Card.CARD_HOLY);
+    player.UseCard(Card.HOLY);
   }
 }
 

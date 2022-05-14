@@ -24,7 +24,7 @@ export function checkRaceChanged(
   newRaceData: RaceData,
 ): void {
   const keys = Object.keys(oldRaceData);
-  table.sort(keys); // The keys will be in a random order because of Lua's "pairs()"
+  table.sort(keys); // The keys will be in a random order because of Lua's `pairs`.
   for (const key of keys) {
     const property = key as keyof RaceData;
     const oldValue = oldRaceData[property];
@@ -136,9 +136,8 @@ functionMap.set(
   "myStatus",
   (_oldValue: RaceDataType, _newValue: RaceDataType) => {
     // It is possible for "myStatus" to flip between "racing" and "ready" during the middle of a
-    // seeded run
-    // Thus, since we cannot rely on the variable, we cannot automatically reset the game status to
-    // that of an unseeded run after a seeded race is finished
+    // seeded run. Thus, since we cannot rely on the variable, we cannot automatically reset the
+    // game status to that of an unseeded run after a seeded race is finished.
 
     raceRoom.myStatusChanged();
     placeLeft.statusOrMyStatusChanged();

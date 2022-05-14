@@ -1,9 +1,9 @@
-// Racing+ removes the font that displays the in-game time
-// Thus, we need to create a substitute for this
-// By holding the map button, players can show a timer that represents the current time spent on
-// this specific run
-// Unlike the normal run timer, this uses real time instead of game frame count
+// Racing+ removes the font that displays the in-game time. Thus, we need to create a substitute for
+// this. By holding the map button, players can show a timer that represents the current time spent
+// on this specific run. Unlike the normal run timer, this uses real time instead of game frame
+// count.
 
+import { ButtonAction, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
   isActionPressedOnAnyInput,
@@ -28,7 +28,7 @@ export function init(): void {
   saveDataManager("runTimer", v);
 }
 
-// ModCallbacks.MC_POST_UPDATE (1)
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   checkStartTimer();
 }
@@ -39,7 +39,7 @@ function checkStartTimer() {
   }
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   checkDraw();
 }
@@ -51,28 +51,28 @@ function checkDraw() {
     return;
   }
 
-  if (!isActionPressedOnAnyInput(ButtonAction.ACTION_MAP)) {
+  if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
     return;
   }
 
-  // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI
+  // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI.
   if (getNumIdentifiedPills() >= 11) {
     return;
   }
 
-  // Find out how much time has passed since the run started
-  let elapsedTime: float;
+  // Find out how much time has passed since the run started.
+  let elapsedTimeMilliseconds: float;
   if (v.run.startedTime === null) {
-    // We are currently fading in at the beginning of a run
-    elapsedTime = 0;
+    // We are currently fading in at the beginning of a run.
+    elapsedTimeMilliseconds = 0;
   } else {
-    elapsedTime = Isaac.GetTime() - v.run.startedTime;
+    elapsedTimeMilliseconds = Isaac.GetTime() - v.run.startedTime;
   }
-  const seconds = elapsedTime / 1000; // elapsedTime is in milliseconds
+  const seconds = elapsedTimeMilliseconds / 1000;
 
   const x = RUN_TIMER_X;
   let y = RUN_TIMER_Y;
-  if (anyPlayerIs(PlayerType.PLAYER_ISAAC_B)) {
+  if (anyPlayerIs(PlayerType.ISAAC_B)) {
     y += RUN_TIMER_Y_TAINTED_ISAAC_MOD;
   }
 

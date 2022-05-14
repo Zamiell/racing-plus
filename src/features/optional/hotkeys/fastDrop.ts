@@ -1,10 +1,10 @@
+import { PocketItemSlot } from "isaac-typescript-definitions";
 import {
   findFreePosition,
+  getEnumValues,
   getPlayers,
   isKeyboardPressed,
-  MAX_PLAYER_POCKET_ITEM_SLOTS,
   MAX_PLAYER_TRINKET_SLOTS,
-  range,
   repeat,
 } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
@@ -16,19 +16,17 @@ enum FastDropTarget {
   POCKET_ITEMS,
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
   // Normally, we would iterate over the players and check for inputs corresponding to their
-  // ControllerIndex
-  // However, some Xbox controller inputs are not read by the game,
-  // which forces players to use Joy2Key to bind them to keyboard buttons
-  // Thus, a player might have a ControllerIndex of 1 and be pressing inputs on ControllerIndex 0
-  // Because of this, we only check for keyboard inputs,
-  // and then iterate over the players if an input is pressed
+  // `ControllerIndex`. However, some Xbox controller inputs are not read by the game, which forces
+  // players to use Joy2Key to bind them to keyboard buttons. Thus, a player might have a
+  // `ControllerIndex` of 1 and be pressing inputs on `ControllerIndex` 0. Because of this, we only
+  // check for keyboard inputs, and then iterate over the players if an input is pressed.
   checkInputAll();
   checkInputTrinkets();
   checkInputPocket();
@@ -78,7 +76,7 @@ function fastDrop(target: FastDropTarget) {
       target === FastDropTarget.ALL ||
       target === FastDropTarget.POCKET_ITEMS
     ) {
-      for (const pocketItemSlot of range(0, MAX_PLAYER_POCKET_ITEM_SLOTS - 1)) {
+      for (const pocketItemSlot of getEnumValues(PocketItemSlot)) {
         const pos = findFreePosition(player.Position);
         player.DropPocketItem(pocketItemSlot, pos);
       }

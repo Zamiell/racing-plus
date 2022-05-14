@@ -1,9 +1,15 @@
-import { log, restart, saveDataManager } from "isaacscript-common";
+// This feature is used because the game prevents you from executing a "restart" console command
+// while in the PostGameStarted callback.
+
+import { Challenge, PlayerType } from "isaac-typescript-definitions";
+import {
+  log,
+  MAX_VANILLA_PLAYER_TYPE,
+  restart,
+  saveDataManager,
+} from "isaacscript-common";
 import g from "../../globals";
 import { restartChallenge, restartSeed } from "../../utils";
-
-// This feature is used because the game prevents you from executing a "restart" console command
-// while in the PostGameStarted callback
 
 const v = {
   run: {
@@ -18,7 +24,7 @@ export function init(): void {
   saveDataManager("restartOnNextFrame", v);
 }
 
-// ModCallbacks.MC_POST_RENDER (2)
+// ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!v.run.restartOnNextRenderFrame) {
     return;
@@ -63,7 +69,7 @@ export function isRestartingOnNextFrame(): boolean {
 
 export function setRestartCharacter(character: PlayerType): void {
   // Prevent crashing the game when switching to a character that does not exist
-  if (character < 0 || character >= PlayerType.NUM_PLAYER_TYPES) {
+  if (character < 0 || character > MAX_VANILLA_PLAYER_TYPE) {
     log(`Preventing restarting to character: ${character}`);
     return;
   }

@@ -1,6 +1,6 @@
 import { log } from "isaacscript-common";
 
-const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports
+const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports.
 const UDP_PORT = 9113;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
 
@@ -10,8 +10,8 @@ let clientTCP = null as SocketClient | null;
 let clientUDP = null as SocketClient | null;
 
 export function init(): void {
-  // Racing+ installs a sandbox that prevents mods from doing unsafe things
-  // If the sandbox is in place, then we should be clear to request a socket later on
+  // Racing+ installs a sandbox that prevents mods from doing unsafe things. If the sandbox is in
+  // place, then we should be clear to request a socket later on.
   const [ok, requiredSandbox] = pcall(require, "sandbox");
   if (!ok) {
     log("Did not detect the sandbox environment.");
@@ -40,13 +40,13 @@ export function init(): void {
 }
 
 export function connect(): boolean {
-  // Do nothing if the sandbox is not present
+  // Do nothing if the sandbox is not present.
   if (sandbox === null) {
     return false;
   }
 
-  // To minimize lag,
-  // don't attempt to connect if we have recently tried to connect and it has failed
+  // To minimize lag, don't attempt to connect if we have recently tried to connect and it has
+  // failed.
   const renderFrameCount = Isaac.GetFrameCount();
   if (
     connectionAttemptFrame !== null &&
@@ -54,7 +54,7 @@ export function connect(): boolean {
       connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
   ) {
     // Reset the connection attempt frame to this one so that resetting over and over never triggers
-    // a connection attempt
+    // a connection attempt.
     connectionAttemptFrame = renderFrameCount;
     return false;
   }

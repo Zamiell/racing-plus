@@ -1,3 +1,10 @@
+import {
+  Challenge,
+  CollectibleType,
+  EntityType,
+  PlayerType,
+  PlayerVariant,
+} from "isaac-typescript-definitions";
 import { getEntities, getFamiliars, getPlayers, log } from "isaacscript-common";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
@@ -13,11 +20,11 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   let hasNegative = false;
   for (const player of getPlayers()) {
     // We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true
-    // if they are holding the Mysterious Paper trinket
-    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_POLAROID) > 0) {
+    // if they are holding the Mysterious Paper trinket.
+    if (player.GetCollectibleNum(CollectibleType.POLAROID) > 0) {
       hasPolaroid = true;
     }
-    if (player.GetCollectibleNum(CollectibleType.COLLECTIBLE_NEGATIVE) > 0) {
+    if (player.GetCollectibleNum(CollectibleType.NEGATIVE) > 0) {
       hasNegative = true;
     }
   }
@@ -27,9 +34,9 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
 
 export function moveEsauNextToJacob(): void {
   const esaus = getEntities(
-    EntityType.ENTITY_PLAYER,
+    EntityType.PLAYER,
     PlayerVariant.PLAYER,
-    PlayerType.PLAYER_ESAU,
+    PlayerType.ESAU,
   );
   for (const esau of esaus) {
     const player = esau.ToPlayer();
@@ -86,7 +93,7 @@ export function serverCollectibleIDToCollectibleType(
     log(
       `Error: Failed to find a corresponding collectible type for the server collectible ID of: ${serverCollectibleID}`,
     );
-    return CollectibleType.COLLECTIBLE_SAD_ONION;
+    return CollectibleType.SAD_ONION;
   }
 
   return collectibleType;

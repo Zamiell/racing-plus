@@ -1,3 +1,4 @@
+import { PlayerForm } from "isaac-typescript-definitions";
 import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 

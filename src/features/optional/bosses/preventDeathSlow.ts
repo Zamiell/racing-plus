@@ -1,7 +1,8 @@
+import { DeathState } from "isaac-typescript-definitions";
 import { config } from "../../../modConfigMenu";
 
-// ModCallbacks.MC_NPC_UPDATE (0)
-// EntityType.ENTITY_DEATH (66)
+// ModCallback.POST_NPC_UPDATE (0)
+// EntityType.DEATH (66)
 export function postNPCUpdateDeath(npc: EntityNPC): void {
   if (!config.preventDeathSlow) {
     return;

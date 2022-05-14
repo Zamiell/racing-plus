@@ -1,10 +1,15 @@
+import {
+  CollectibleType,
+  ItemPoolType,
+  ModCallback,
+} from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { betterDevilAngelRoomsPreGetCollectible } from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
 
 const DEBUG = true;
 
 export function init(mod: Mod): void {
-  mod.AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, main);
+  mod.AddCallback(ModCallback.PRE_GET_COLLECTIBLE, main);
 }
 
 function main(
