@@ -49,7 +49,8 @@ const v = {
       amEntering: false,
 
       /**
-       * If the player is returning from the top of the crawl space ladder back to the previous room.
+       * If the player is returning from the top of the crawl space ladder back to the previous
+       * room.
        */
       amExiting: false,
 

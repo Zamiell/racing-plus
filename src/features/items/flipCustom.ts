@@ -59,7 +59,7 @@ const v = {
      * - We can't use CollectibleIndex, since that changes after a reroll.
      * - We can't use PtrHash, since that is no longer valid once you leave the room.
      * - We ignore the edge-case of the Flipped collectible type persisting to post-Ascent Treasure
-     * Rooms.
+     *   Rooms.
      */
     flippedCollectibleTypes: new Map<
       FlippedCollectibleIndex,
@@ -69,8 +69,8 @@ const v = {
 
   room: {
     /**
-     * Indexed by collectible `PtrHash` (which is safe to use on per-room data structures).
-     * This cannot be on the "level" object because sprites are not serializable.
+     * Indexed by collectible `PtrHash` (which is safe to use on per-room data structures). This
+     * cannot be on the "level" object because sprites are not serializable.
      */
     flippedSprites: new DefaultMap<
       PtrHash,

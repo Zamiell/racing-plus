@@ -208,12 +208,12 @@ function shouldGetFreeDevilItemInThisRoom() {
 
 /**
  * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
- * price is less than 0 and is not PickupPrice.FREE. However, this does not work on Keeper,
- * because all Devil-Deal-style items cost money. Furthermore, it does not work on Tainted Keeper,
- * because all items cost money.
+ * price is less than 0 and is not PickupPrice.FREE. However, this does not work on Keeper, because
+ * all Devil-Deal-style items cost money. Furthermore, it does not work on Tainted Keeper, because
+ * all items cost money.
  *
- * For simplicity, this function assumes that every item in a Devil Room or Black Market Keeper is
- * a Devil-Deal-style item for Keeper and Tainted Keeper. This is not necessarily true, as Keeper
+ * For simplicity, this function assumes that every item in a Devil Room or Black Market Keeper is a
+ * Devil-Deal-style item for Keeper and Tainted Keeper. This is not necessarily true, as Keeper
  * could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for example.
  */
 function isDevilDealStyleCollectible(pickup: EntityPickup) {

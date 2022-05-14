@@ -17,6 +17,5 @@ module.exports = {
   // We modify the linting rules from the base for some specific things
   rules: {
     "isaacscript/format-line-comments": "off",
-    "isaacscript/format-jsdoc-comments": "off",
   },
 };

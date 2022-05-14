@@ -109,24 +109,26 @@ function shouldSpawnSeededDrop(): boolean {
  *
  * https://bindingofisaacrebirth.gamepedia.com/Room_Clear_Awards
  *
- * However, we implement this algorithm differently from vanilla:
+ * However, we implement this algorithm differently from vanilla.
  *
- * - First, we hard-code values of 0 luck so that room drops are completely consistent. (Otherwise,
+ * First, we hard-code values of 0 luck so that room drops are completely consistent. (Otherwise,
  * one player would be able to get a lucky Emperor card by using a Luck Up or Luck Down pill, for
  * example.)
- * - Second, we ignore the following items, since we remove them from pools:
- *   - Daemon's Tail (22)
- *   - Child's Heart (34)
- *   - Rusted Key (36)
- *   - Match Stick (41)
- *   - Lucky Toe (42)
- *   - Safety Cap (44)
- *   - Ace of Spades (45)
- *   - Lucky Foot (46)
- *   - Watch Battery (72)
- *   - Silver Dollar (110)
- *   - Bloody Crown (111)
- *   - Nuh Uh! (165)
+ *
+ * Second, we ignore the following items, since we remove them from pools:
+ *
+ * - Daemon's Tail (22)
+ * - Child's Heart (34)
+ * - Rusted Key (36)
+ * - Match Stick (41)
+ * - Lucky Toe (42)
+ * - Safety Cap (44)
+ * - Ace of Spades (45)
+ * - Lucky Foot (46)
+ * - Watch Battery (72)
+ * - Silver Dollar (110)
+ * - Bloody Crown (111)
+ * - Nuh Uh! (165)
  *
  * Old Capacitor (143) does not need to be removed, since the Lil Battery chance is independent of
  * the room drop.
