@@ -14,6 +14,5 @@ module.exports = {
     project: "./tsconfig.eslint.json",
   },
 
-  // We modify the linting rules from the base for some specific things.
   rules: {},
 };
