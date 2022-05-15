@@ -64,9 +64,8 @@ function checkRoomCleared() {
     return;
   }
 
-  // If we get a new random position for the second collectible,
-  // it could be blocking a Devil Room or Angel Room.
-  // Instead, always spawn it to the right of the existing collectible.
+  // If we get a new random position for the second collectible, it could be blocking a Devil Room
+  // or Angel Room. Instead, always spawn it to the right of the existing collectible.
   const gridIndex = g.r.GetGridIndex(freshCollectible.Position);
   const newGridIndex = gridIndex + 1; // To the right of the collectible
   const position = g.r.GetGridPosition(newGridIndex);
@@ -120,8 +119,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  // It is difficult to properly duplicate double champion bosses or multi-segment bosses.
-  // Use the vanilla behavior in these cases.
+  // It is difficult to properly duplicate double champion bosses or multi-segment bosses. Use the
+  // vanilla behavior in these cases.
   const bosses = getBosses();
   if (bosses.length !== 1) {
     return;

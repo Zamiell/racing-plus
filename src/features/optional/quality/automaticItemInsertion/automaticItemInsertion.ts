@@ -13,8 +13,8 @@ export function insertPickupAndUpdateDelta(
   // Some pickups cannot be automatically inserted.
   const pickupInserted = insertPickup(pickup, player);
   if (pickupInserted !== undefined) {
-    // Mark that we are removing this pickup by hijacking the vanilla "Touched" property.
-    // This is necessary for inserting multiple pickups from the UseCard callback.
+    // Mark that we are removing this pickup by hijacking the vanilla "Touched" property. This is
+    // necessary for inserting multiple pickups from the UseCard callback.
     pickup.Touched = true;
 
     // Only remove the pickup if it has been successfully inserted.

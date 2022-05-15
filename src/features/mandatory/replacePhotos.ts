@@ -97,22 +97,20 @@ function getPhotoSituation() {
   const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();
 
   if (hasPolaroid && hasNegative) {
-    // The player has both photos already (which can only occur in a diversity race).
-    // Spawn a random boss item instead of a photo.
+    // The player has both photos already (which can only occur in a diversity race). Spawn a random
+    // boss item instead of a photo.
     return PhotoSituation.RANDOM_BOSS_ITEM;
   }
 
   if (hasPolaroid) {
-    // The player has The Polaroid already
-    // (which can occur if the player is Eden or is in a diversity race).
-    // Spawn The Negative instead.
+    // The player has The Polaroid already (which can occur if the player is Eden or is in a
+    // diversity race). Spawn The Negative instead.
     return PhotoSituation.NEGATIVE;
   }
 
   if (hasNegative) {
-    // The player has The Negative already
-    // (which can occur if the player is Eden or is in a diversity race).
-    // Spawn The Polaroid instead.
+    // The player has The Negative already (which can occur if the player is Eden or is in a
+    // diversity race). Spawn The Polaroid instead.
     return PhotoSituation.POLAROID;
   }
 
@@ -190,8 +188,8 @@ function doPhotoSituation(situation: PhotoSituation) {
     }
 
     case PhotoSituation.RANDOM_BOSS_ITEM: {
-      // If we spawn a boss item using an InitSeed of 0, the item will always be the same,
-      // so use the room seed instead.
+      // If we spawn a boss item using an InitSeed of 0, the item will always be the same, so use
+      // the room seed instead.
       if (anyPlayerHasCollectible(CollectibleType.THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1.
         spawnCollectible(

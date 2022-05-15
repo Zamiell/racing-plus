@@ -85,8 +85,8 @@ function touch(trophy: Entity, player: EntityPlayer) {
   player.AnimateCollectible(
     CollectibleTypeCustom.TROPHY,
     PlayerItemAnimation.PICKUP,
-    // We use a custom "PlayerPickupSparkle" animation so that the sparkle appears higher.
-    // (The trophy is taller than a normal collectible, so the sparkle is misaligned.)
+    // We use a custom "PlayerPickupSparkle" animation so that the sparkle appears higher. (The
+    // trophy is taller than a normal collectible, so the sparkle is misaligned.)
     "PlayerPickupSparkle2" as CollectibleAnimation,
   );
 

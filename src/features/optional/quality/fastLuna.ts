@@ -1,7 +1,6 @@
-// The state of Moonlight starts at 0 and increments by 1 on every frame.
-// The player is only able to step into it on frame 60 at beyond.
-// This limit makes no sense, so we immediately set the state to 60 as soon as it ticks upwards for
-// the first time.
+// The state of Moonlight starts at 0 and increments by 1 on every frame. The player is only able to
+// step into it on frame 60 at beyond. This limit makes no sense, so we immediately set the state to
+// 60 as soon as it ticks upwards for the first time.
 
 import { HeavenLightDoorSubType } from "isaac-typescript-definitions";
 import { config } from "../../../modConfigMenu";

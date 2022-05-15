@@ -33,8 +33,8 @@ function checkDuplicatedDarkEsau(npc: EntityNPC) {
   );
   const normalAmountOfDarkEsaus = getNormalAmountOfDarkEsaus();
   if (numDarkEsaus > normalAmountOfDarkEsaus) {
-    // Both normal Dark Esau's and Dark Esau pits should be removed in an identical manner.
-    // (The pit spawns on the same frame after the Dark Esau does.)
+    // Both normal Dark Esau's and Dark Esau pits should be removed in an identical manner. (The pit
+    // spawns on the same frame after the Dark Esau does.)
     npc.Remove();
   }
 }

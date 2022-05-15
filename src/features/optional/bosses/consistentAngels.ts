@@ -1,8 +1,7 @@
 // In vanilla, bombing two angel statues will sometimes result in two of the same angel type
-// spawning.
-// Furthermore, in vanilla, sometimes the first angel from an angel statue is not seeded properly.
-// Prevent this from happening by explicitly making angels spawn in order.
-// Unlike vanilla, we always make Uriel spawn first for balance reasons.
+// spawning. Furthermore, in vanilla, sometimes the first angel from an angel statue is not seeded
+// properly. Prevent this from happening by explicitly making angels spawn in order. Unlike vanilla,
+// we always make Uriel spawn first for balance reasons.
 
 import { AngelVariant, EntityType } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";

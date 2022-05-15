@@ -130,8 +130,8 @@ function shouldSpawnKeyPiece(entity: Entity) {
     return false;
   }
 
-  // Do not drop any key pieces if the player already has both of them.
-  // (This matches the behavior of vanilla.)
+  // Do not drop any key pieces if the player already has both of them. (This matches the behavior
+  // of vanilla.)
   if (
     anyPlayerHasCollectible(CollectibleType.KEY_PIECE_1) && // 238
     anyPlayerHasCollectible(CollectibleType.KEY_PIECE_2) && // 239

@@ -1,7 +1,6 @@
-// Some pills are removed via specifying a bogus achievement in "pocketitems.xml".
-// However, they can still appear if the player gets a False PHD and it converts a Telepills,
-// I can see forever!, or Lemon Party.
-// If this happens, convert them to specific other pills.
+// Some pills are removed via specifying a bogus achievement in "pocketitems.xml". However, they can
+// still appear if the player gets a False PHD and it converts a Telepills, I can see forever!, or
+// Lemon Party. If this happens, convert them to specific other pills.
 
 import { PillEffect } from "isaac-typescript-definitions";
 

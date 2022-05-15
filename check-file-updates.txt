@@ -1,0 +1,8 @@
+.vscode/extensions.json
+.vscode/settings.json
+.gitattributes
+.prettierrc.js
+check-orphaned-words.sh
+tsconfig.eslint.json
+check-file-updates.sh:check-file-updates.sh
+check-orphaned-words.sh

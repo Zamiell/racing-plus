@@ -62,8 +62,8 @@ export function shouldCheckForGameplayInputs(): boolean {
 }
 
 export function unseed(): void {
-  // Invoking the `Seeds.Reset` method will cause the log to be spammed with:
-  // "[ASSERT] - Error: Game Start Seed was not set."
+  // Invoking the `Seeds.Reset` method will cause the log to be spammed with: "[ASSERT] - Error:
+  // Game Start Seed was not set."
 
   // It will also cause the `Seeds.GetStartSeed` method to return 0, which can cause crashes. So, we
   // must immediately re-initialize the game start seed by using the `Seeds.Restart` method.

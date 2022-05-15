@@ -31,9 +31,8 @@ export function season2PostRender(): void {
   }
 
   // We do not have to check if the game is paused because the pause menu will be drawn on top of
-  // the starting room sprites.
-  // (And we do not have to worry about the room slide animation because the starting room sprites
-  // are not shown once we re-enter the room.)
+  // the starting room sprites. (And we do not have to worry about the room slide animation because
+  // the starting room sprites are not shown once we re-enter the room.)
 
   if (drawErrors()) {
     return;

@@ -1,5 +1,5 @@
-// Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart,
-// or It Lives!
+// Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or
+// It Lives!
 
 import {
   DoorSlot,
@@ -75,10 +75,9 @@ function subvertTeleport() {
   for (const player of getPlayers()) {
     player.Position = position;
 
-    // If we are The Soul, the Forgotten body will also need to be teleported.
-    // However, if we change its position manually,
-    // it will just warp back to the same spot on the next frame.
-    // Thus, just manually switch to the Forgotten to avoid this bug.
+    // If we are The Soul, the Forgotten body will also need to be teleported. However, if we change
+    // its position manually, it will just warp back to the same spot on the next frame. Thus, just
+    // manually switch to the Forgotten to avoid this bug.
     if (isCharacter(player, PlayerType.THE_SOUL)) {
       forgottenSwitch();
     }

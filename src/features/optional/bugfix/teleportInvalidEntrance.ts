@@ -51,9 +51,9 @@ export function postNewRoom(): void {
     return;
   }
 
-  // They teleported to a non-existent entrance. Manually move the players next to the first door
-  // in the room. (We can't move the player directly to the door position or they would just enter
-  // the loading zone.)
+  // They teleported to a non-existent entrance. Manually move the players next to the first door in
+  // the room. (We can't move the player directly to the door position or they would just enter the
+  // loading zone.)
   const position = getDoorEnterPosition(firstDoor);
   for (const player of getPlayers()) {
     player.Position = position;

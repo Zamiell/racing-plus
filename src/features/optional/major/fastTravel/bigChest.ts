@@ -274,8 +274,8 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
 
   switch (replacementAction) {
     case ReplacementAction.LEAVE_ALONE: {
-      // Hijack the normally-unused "Touched" property to signify that we should leave it here.
-      // (We will ignore it on subsequent frames.)
+      // Hijack the normally-unused "Touched" property to signify that we should leave it here. (We
+      // will ignore it on subsequent frames.)
       pickup.Touched = true;
       return;
     }

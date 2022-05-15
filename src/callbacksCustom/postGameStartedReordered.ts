@@ -105,8 +105,8 @@ function main(isContinued: boolean) {
   hudOffsetFix.postGameStarted();
   holidayHats.postGameStarted();
 
-  // Handle features that need to be last.
-  // (This checks for items, so it has to be after all features that grant items.)
+  // Handle features that need to be last. (This checks for items, so it has to be after all
+  // features that grant items.)
   removeGloballyBannedItems.postGameStarted();
 }
 

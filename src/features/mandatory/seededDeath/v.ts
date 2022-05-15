@@ -14,8 +14,8 @@ const v = {
     frameOfLastDevilDeal: null as int | null,
     deferringDeathUntilForgottenSwitch: false,
 
-    // Variables for tracking player state.
-    // All are explicitly set back to false after reading them as true.
+    // Variables for tracking player state. All are explicitly set back to false after reading them
+    // as true.
     hasBookOfVirtues: false,
     hasBookOfBelialBirthrightCombo: false,
     actives: new Map<ActiveSlot, ActiveCollectibleDescription>(),

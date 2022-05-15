@@ -160,8 +160,8 @@ function seeded(player: EntityPlayer) {
     giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
-  // If we are Tainted Isaac and there are multiple starting items for the race,
-  // give Birthright so that we have more room for other items.
+  // If we are Tainted Isaac and there are multiple starting items for the race, give Birthright so
+  // that we have more room for other items.
   if (character === PlayerType.ISAAC_B && g.race.startingItems.length >= 2) {
     giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
@@ -192,11 +192,10 @@ function diversity(player: EntityPlayer) {
     tempMoreOptions.give(player);
   }
 
-  // In Diversity, the player is given a random active item.
-  // If this particular character receives the D6 as an active,
-  // then the Diversity item would overwrite it.
-  // If this is the case, give the Schoolbag so that they can hold both items
-  // (except for Esau, since he is not given any Diversity items).
+  // In Diversity, the player is given a random active item. If this particular character receives
+  // the D6 as an active, then the Diversity item would overwrite it. If this is the case, give the
+  // Schoolbag so that they can hold both items (except for Esau, since he is not given any
+  // Diversity items).
   if (shouldGetSchoolbagInDiversity(player)) {
     giveCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
   }
@@ -230,7 +229,7 @@ function diversity(player: EntityPlayer) {
   }
 
   // - If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
-  // Birthright.
+  //   Birthright.
   // - If we are Tainted Isaac, give Birthright so that we have more room for other items.
   if (character === PlayerType.EDEN_B || character === PlayerType.ISAAC_B) {
     giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
@@ -256,12 +255,11 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
     // can hold both their both their normal active item and the new diversity active item.
     startsWithActiveItem &&
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
-    // that rerolls the build (e.g. D4, D100, etc.).
-    // (We could manually replace these items, but it is simpler to just have one item on Eden
-    // instead of two.)
+    // that rerolls the build (e.g. D4, D100, etc.). (We could manually replace these items, but it
+    // is simpler to just have one item on Eden instead of two.)
     !isEden(player) &&
-    // Esau is not granted any items in diversity races,
-    // so there is no need to give him the Schoolbag.
+    // Esau is not granted any items in diversity races, so there is no need to give him the
+    // Schoolbag.
     character !== PlayerType.ESAU
   );
 }

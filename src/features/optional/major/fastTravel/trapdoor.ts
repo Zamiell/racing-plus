@@ -77,8 +77,8 @@ function shouldIgnore(gridEntity: GridEntity) {
     return true;
   }
 
-  // There is no way to manually travel to the "Infinite Basements" Easter Egg floors,
-  // so just disable the fast-travel feature if this is the case.
+  // There is no way to manually travel to the "Infinite Basements" Easter Egg floors, so just
+  // disable the fast-travel feature if this is the case.
   if (g.seeds.HasSeedEffect(SeedEffect.INFINITE_BASEMENT)) {
     return true;
   }
@@ -143,8 +143,8 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race is Mother, remove trapdoors after bosses on most floors.
-  // (But leave trapdoors created by shovels and in I AM ERROR rooms.)
+  // If the goal of the race is Mother, remove trapdoors after bosses on most floors. (But leave
+  // trapdoors created by shovels and in I AM ERROR rooms.)
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -180,9 +180,8 @@ function shouldRemove() {
     }
   }
 
-  // Delete the trapdoors on the Ascent.
-  // (In vanilla, they stay closed, but instead of emulating this functionality it is simpler to
-  // delete them.)
+  // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
+  // this functionality it is simpler to delete them.)
   if (stage < 7 && backwardPath && roomGridIndex !== GridRoom.SECRET_EXIT) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
@@ -204,22 +203,22 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
       return false;
     }
 
-    // If we just entered a new room that is already cleared,
-    // spawn the trapdoor closed if we are standing close to it, and open otherwise.
+    // If we just entered a new room that is already cleared, spawn the trapdoor closed if we are
+    // standing close to it, and open otherwise.
     return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
   }
 
-  // After defeating Satan, the trapdoor should always spawn open
-  // (because there is no reason to remain in Sheol).
+  // After defeating Satan, the trapdoor should always spawn open (because there is no reason to
+  // remain in Sheol).
   if (onSheol()) {
     return true;
   }
 
   // Trapdoors created after a room has already initialized should spawn closed by default:
-  // - Trapdoors created after bosses should spawn closed so that players do not accidentally
-  // jump into them.
-  // - Trapdoors created by We Need to Go Deeper! should spawn closed because the player will
-  // be standing on top of them.
+  // - Trapdoors created after bosses should spawn closed so that players do not accidentally jump
+  //   into them.
+  // - Trapdoors created by We Need to Go Deeper! should spawn closed because the player will be
+  //   standing on top of them.
   return false;
 }
 

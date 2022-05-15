@@ -45,10 +45,9 @@ export function postNewRoom(): void {
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
   repeat(NUM_FRAILS, (i) => {
-    // We don't want to spawn both of them on top of each other since that would make them behave
-    // a little glitchy.
-    // Note that pos.X += 200 causes the hitbox to appear too close to the left/right side,
-    // causing damage if the player moves into the room too quickly.
+    // We don't want to spawn both of them on top of each other since that would make them behave a
+    // little glitchy. Note that pos.X += 200 causes the hitbox to appear too close to the
+    // left/right side, causing damage if the player moves into the room too quickly.
     let modification: Vector;
     if (i === 0) {
       modification = Vector(-150, 0);
@@ -65,8 +64,8 @@ export function postNewRoom(): void {
       seed,
     );
 
-    // It will show the head on the first frame after spawning unless we hide it.
-    // The game will automatically make the entity visible later on.
+    // It will show the head on the first frame after spawning unless we hide it. The game will
+    // automatically make the entity visible later on.
     frail.Visible = false;
   });
 }

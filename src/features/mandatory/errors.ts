@@ -60,13 +60,12 @@ export function check(): boolean {
   return isCorruptMod() || isIncompleteSave() || areOtherModsEnabled();
 }
 
-// If Racing+ is turned on from the mod menu and then the user immediately tries to play,
-// it won't work properly; some things like boss cutscenes will still be enabled.
-// In order to fix this, the game needs to be completely restarted.
-// One way to detect this corrupted state is to get how many frames there are in the currently
-// loaded boss cutscene animation file (located at "gfx/ui/boss/versusscreen.anm2").
-// Racing+ removes boss cutscenes, so this value should be 0.
-// This function returns true if the PostGameStarted callback should halt.
+// If Racing+ is turned on from the mod menu and then the user immediately tries to play, it won't
+// work properly; some things like boss cutscenes will still be enabled. In order to fix this, the
+// game needs to be completely restarted. One way to detect this corrupted state is to get how many
+// frames there are in the currently loaded boss cutscene animation file (located at
+// "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
+// function returns true if the PostGameStarted callback should halt.
 function isCorruptMod() {
   const sprite = Sprite();
   sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
@@ -86,14 +85,14 @@ function isCorruptMod() {
 
 // Check to see if Death Certificate is unlocked.
 function isIncompleteSave() {
-  // If Eden is holding Death Certificate, then it is obviously unlocked
-  // (and it will also be removed from pools so the below check won't work).
+  // If Eden is holding Death Certificate, then it is obviously unlocked (and it will also be
+  // removed from pools so the below check won't work).
   if (anyPlayerHasCollectible(COLLECTIBLE_TO_CHECK_FOR)) {
     return false;
   }
 
-  // Consider the save file complete if the any player is Tainted Lost
-  // (since Tainted Lost cannot get Death Certificate in item pools).
+  // Consider the save file complete if the any player is Tainted Lost (since Tainted Lost cannot
+  // get Death Certificate in item pools).
   if (anyPlayerIs(PlayerType.THE_LOST_B)) {
     return false;
   }
@@ -171,8 +170,8 @@ function isIncompleteSave() {
   return v.run.incompleteSave;
 }
 
-// Check to see if there are any mods enabled that have added custom items.
-// (It is difficult to detect other mods in other ways.)
+// Check to see if there are any mods enabled that have added custom items. (It is difficult to
+// detect other mods in other ways.)
 function areOtherModsEnabled() {
   let correctMaxCollectibleID =
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;

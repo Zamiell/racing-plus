@@ -62,9 +62,8 @@ export function postRender(): void {
 }
 
 function emulateGapingMaws() {
-  // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect).
-  // This looks glitchy and jittery if it is done in the PostUpdate callback,
-  // so we do it here instead.
+  // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect). This looks
+  // glitchy and jittery if it is done in the PostUpdate callback, so we do it here instead.
   for (const player of getPlayers()) {
     player.Position = RACE_ROOM_POSITION;
   }
@@ -165,19 +164,19 @@ function gotoRaceRoom() {
 
   // If we not already on the right floor, go there.
   if (effectiveStage !== 1 || stageType !== StageType.WRATH_OF_THE_LAMB) {
-    // Since we might be going to a new floor on frame 0,
-    // we have to specify that the PostNewLevel callback should fire.
+    // Since we might be going to a new floor on frame 0, we have to specify that the PostNewLevel
+    // callback should fire.
     forceNewLevelCallback();
     consoleCommand(`stage ${RACE_ROOM_STAGE_ARGUMENT}`);
   }
 
-  // Since we might be going to a new room on frame 0,
-  // we have to specify that the PostNewRoom callback should fire.
+  // Since we might be going to a new room on frame 0, we have to specify that the PostNewRoom
+  // callback should fire.
   forceNewRoomCallback();
   consoleCommand(`goto d.${RACE_ROOM_VARIANT}`);
 
-  // We will not actually be sent to the room until a frame passes,
-  // so wait until the next PostNewRoom fires.
+  // We will not actually be sent to the room until a frame passes, so wait until the next
+  // PostNewRoom fires.
 }
 
 function shouldGotoRaceRoom() {

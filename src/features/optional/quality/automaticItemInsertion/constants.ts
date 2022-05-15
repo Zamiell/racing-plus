@@ -36,9 +36,9 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
       PickupVariant.KEY,
       PickupVariant.BOMB,
       PickupVariant.TAROT_CARD,
-      // The Box also drops a pill, but since the pill spawns before the card does,
-      // the pill will always be inserted into the players inventory over the card.
-      // To work around this and prioritize the card, we deliberately skip specifying the pill here.
+      // The Box also drops a pill, but since the pill spawns before the card does, the pill will
+      // always be inserted into the players inventory over the card. To work around this and
+      // prioritize the card, we deliberately skip specifying the pill here.
       PickupVariant.TRINKET,
     ],
   ], // 198
@@ -69,10 +69,9 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
     CollectibleType.BOOSTER_PACK,
     [PickupVariant.TAROT_CARD, PickupVariant.TAROT_CARD],
   ], // 624
-  // Consolation Prize drops either 3 coins, 1 key, or 1 bomb,
-  // depending on what the player has the least of.
-  // However, if there is a tie, it will randomly choose an outcome,
-  // so we must manually check for all 5 drops.
+  // Consolation Prize drops either 3 coins, 1 key, or 1 bomb, depending on what the player has the
+  // least of. However, if there is a tie, it will randomly choose an outcome, so we must manually
+  // check for all 5 drops.
   [
     CollectibleType.CONSOLATION_PRIZE,
     [

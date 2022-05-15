@@ -18,8 +18,8 @@ export function dingle(npc: EntityNPC): void {
     return;
   }
 
-  // Fix the bug where a Dangle spawned from a Brownie will be faded.
-  // We only care about Dangles that are freshly spawned.
+  // Fix the bug where a Dangle spawned from a Brownie will be faded. We only care about Dangles
+  // that are freshly spawned.
   if (npc.Variant === DingleVariant.DANGLE && npc.State === NpcState.INIT) {
     npc.SetColor(Color.Default, 1000, 0, true, true);
   }

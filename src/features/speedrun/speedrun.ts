@@ -197,8 +197,7 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
   // be able to take the checkpoint.
   if (isSeededDeathActive()) {
     // The collision class on the collectible will be updated 4 frames from now, so if we set a new
-    // collision class now, it will be overwritten.
-    // Thus, we have to wait at least 4 frames.
+    // collision class now, it will be overwritten. Thus, we have to wait at least 4 frames.
 
     // First, set the "Wait" property to an arbitrary value longer than 4 frames to prevent the
     // player from picking up the Checkpoint.

@@ -1,6 +1,5 @@
-// Vasculitis causes tears to explode out of enemies.
-// This is very confusing and makes it hard to see real projectiles.
-// Fade all tears of this nature so that they are easy to distinguish.
+// Vasculitis causes tears to explode out of enemies. This is very confusing and makes it hard to
+// see real projectiles. Fade all tears of this nature so that they are easy to distinguish.
 
 import { CollectibleType } from "isaac-typescript-definitions";
 import { anyPlayerHasCollectible } from "isaacscript-common";

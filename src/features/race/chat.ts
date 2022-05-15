@@ -9,8 +9,9 @@ import {
   isConsoleOpen,
 } from "../optional/other/customConsole";
 
-// TODO: Don't display race chat from the previous race.
-// TODO: Send all race chat history upon joining race.
+// TODO:
+// - Don't display race chat from the previous race.
+// - Send all race chat history upon joining race.
 
 const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));
 const LINE_LENGTH = 13;
@@ -34,9 +35,8 @@ function drawChat() {
     return;
   }
 
-  // If the console is open, display the last N messages with default opacity.
-  // Otherwise, only display recent messages,
-  // and fade them so that they do not interfere with gameplay as much.
+  // If the console is open, display the last N messages with default opacity. Otherwise, only
+  // display recent messages, and fade them so that they do not interfere with gameplay as much.
   const renderFrameCount = Isaac.GetFrameCount();
   const consoleOpen = isConsoleOpen();
   const alpha = consoleOpen ? DEFAULT_CONSOLE_OPACITY : FADED_CHAT_OPACITY;

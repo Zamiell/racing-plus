@@ -40,10 +40,10 @@ export function postEntityKill(entity: Entity): void {
     return;
   }
 
-  // Perfection is spawned after clearing 3 floors in a row without taking any damage.
-  // The "floorsWithoutDamage" variable is incremented after going in a trapdoor.
-  // So if it is at 2, and we have not taken damage on this floor,
-  // and we have killed the boss for this floor, then we have cleared 3 floors.
+  // Perfection is spawned after clearing 3 floors in a row without taking any damage. The
+  // "floorsWithoutDamage" variable is incremented after going in a trapdoor. So if it is at 2, and
+  // we have not taken damage on this floor, and we have killed the boss for this floor, then we
+  // have cleared 3 floors.
   if (v.run.perfection.floorsWithoutDamage < 2 || v.level.tookDamage) {
     return;
   }

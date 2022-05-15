@@ -38,8 +38,8 @@ export function postRender(): void {
 function checkResetInput() {
   const isPaused = g.g.IsPaused();
 
-  // Disable the fast-reset feature if the console is open.
-  // (This will also disable the feature when the game is paused, but that's okay as well.)
+  // Disable the fast-reset feature if the console is open. (This will also disable the feature when
+  // the game is paused, but that's okay as well.)
   if (isPaused) {
     return;
   }
@@ -49,8 +49,8 @@ function checkResetInput() {
     return;
   }
 
-  // Don't fast-reset if any modifiers are pressed
-  // (with the exception of shift, since the speedrunner MasterOfPotato uses shift).
+  // Don't fast-reset if any modifiers are pressed (with the exception of shift, since the
+  // speedrunner MasterOfPotato uses shift).
   if (
     isKeyboardPressed(Keyboard.LEFT_CONTROL) || // 341
     isKeyboardPressed(Keyboard.LEFT_ALT) || // 342
@@ -62,9 +62,8 @@ function checkResetInput() {
     return;
   }
 
-  // Check to see if the player has pressed the restart input.
-  // (We check all inputs instead of "player.ControllerIndex" because
-  // a controller player might be using the keyboard to reset.)
+  // Check to see if the player has pressed the restart input. (We check all inputs instead of
+  // "player.ControllerIndex" because a controller player might be using the keyboard to reset.)
   if (isActionTriggeredOnAnyInput(ButtonAction.RESTART)) {
     reset();
   }

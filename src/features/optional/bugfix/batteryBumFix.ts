@@ -47,8 +47,8 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames.
-  // Default to giving 1 charge immediately to minimize the surface for bugs and other interactions.
+  // In vanilla, Battery Bum can grant between 1 and 3 charges over the course of 40 frames. Default
+  // to giving 1 charge immediately to minimize the surface for bugs and other interactions.
   addChargesToActiveItem(player, 1, ActiveSlot.POCKET);
 }
 

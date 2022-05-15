@@ -81,8 +81,8 @@ export function deleteOldConfig(categoryName: string): void {
     return;
   }
 
-  // If we reload the mod, then it will create duplicates of every entry.
-  // Thus, we must first purge all settings relating to the mod.
+  // If we reload the mod, then it will create duplicates of every entry. Thus, we must first purge
+  // all settings relating to the mod.
   const categoryID = ModConfigMenu.GetCategoryIDByName(categoryName);
   if (categoryID !== undefined) {
     ModConfigMenu.MenuData.set(categoryID, {
@@ -92,10 +92,9 @@ export function deleteOldConfig(categoryName: string): void {
   }
 }
 
-// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys".
-// Thus, it is impossible for them to contain any incorrect data.
-// However, the inverse is not true (i.e. a config value can be missing a description).
-// So, we check this at runtime.
+// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys". Thus, it is
+// impossible for them to contain any incorrect data. However, the inverse is not true (i.e. a
+// config value can be missing a description). So, we check this at runtime.
 function validateConfigDescriptions() {
   for (const key of Object.keys(config)) {
     if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {

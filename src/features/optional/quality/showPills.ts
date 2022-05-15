@@ -170,8 +170,8 @@ export function postRender(): void {
     return;
   }
 
-  // This feature is disabled if the Babies Mod mod is enabled.
-  // (The pills text will overlap with the baby descriptions.)
+  // This feature is disabled if the Babies Mod mod is enabled. (The pills text will overlap with
+  // the baby descriptions.)
   if (BabiesModGlobals !== undefined) {
     return;
   }

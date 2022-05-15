@@ -49,18 +49,15 @@ export function betterDevilAngelRoomsPreGetCollectible(
   }
 
   // There is an unknown bug that causes collectibles in Genesis rooms to come from incorrect item
-  // pools.
-  // Work around this by disabling this feature when the player is in a Genesis room.
+  // pools. Work around this by disabling this feature when the player is in a Genesis room.
   if (inGenesisRoom()) {
     return undefined;
   }
 
   // As soon as we enter a Devil Room or an Angel Room, vanilla collectibles may spawn before we
-  // have had a chance to delete them.
-  // This will modify the item pool relating to the room.
-  // To counteract this, replace all vanilla items with an arbitrary placeholder item,
-  // which should not affect pools.
-  // The placeholder item will be deleted later on this frame.
+  // have had a chance to delete them. This will modify the item pool relating to the room. To
+  // counteract this, replace all vanilla items with an arbitrary placeholder item, which should not
+  // affect pools. The placeholder item will be deleted later on this frame.
   if (
     !v.level.vanillaCollectiblesHaveSpawnedInCustomRoom &&
     (roomType === RoomType.DEVIL || roomType === RoomType.ANGEL) &&
@@ -83,8 +80,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
 function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   const player = Isaac.GetPlayer();
 
-  // We need to account for the NO! trinket;
-  // if the player has it, we need to temporarily remove it,
+  // We need to account for the NO! trinket; if the player has it, we need to temporarily remove it,
   // otherwise the random items selected will not be consistent.
   const trinketSituation = temporarilyRemoveTrinket(player, TrinketType.NO);
 
@@ -106,8 +102,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
     }
 
     if (itemConfigItem.Type !== ItemType.ACTIVE) {
-      // It is not an active item.
-      // Give the NO! trinket back and return the new sub-type.
+      // It is not an active item. Give the NO! trinket back and return the new sub-type.
       giveTrinketsBack(player, trinketSituation);
       return subType;
     }

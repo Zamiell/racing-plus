@@ -1,5 +1,5 @@
-// These are functions that directly return values from this feature's local variables.
-// Other exported functions live in "speedrun.ts".
+// These are functions that directly return values from this feature's local variables. Other
+// exported functions live in "speedrun.ts".
 
 import v from "./v";
 

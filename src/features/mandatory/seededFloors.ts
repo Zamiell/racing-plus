@@ -111,12 +111,12 @@ export function before(): void {
   removeAllPlayerHealth(player);
 
   // Modification 1: Devil Room visited
-  // `GameStateFlag.STATE_DEVILROOM_VISITED` affects the chances of a Curse Room being generated.
+  g.g.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
+  // `GameStateFlag.DEVIL_ROOM_VISITED` affects the chances of a Curse Room being generated.
   // However, in seeded races, we always start off the player with one Devil Room item taken (for
   // the consistent Devil/Angel room feature). Thus, default to always having this flag set to true,
   // which will result in slightly more Curse Rooms on the first two floors than normal, but that is
   // okay.
-  g.g.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
 
   // Modification 2: Book touched
   const bookMod = getRandom(rng);
@@ -142,8 +142,8 @@ export function before(): void {
     player.AddKeys(2);
   }
 
-  // Modification 5: Full health
-  // (which always applies to characters who cannot have red heart containers)
+  // Modification 5: Full health (which always applies to characters who cannot have red heart
+  // containers)
   if (characterCanHaveRedHearts(character)) {
     player.AddMaxHearts(2, false);
     player.AddHearts(1);
@@ -157,8 +157,7 @@ export function before(): void {
     player.AddSoulHearts(2);
   }
 
-  // Modification 6: Critical health
-  // (which is defined as being at 1 heart or less)
+  // Modification 6: Critical health (which is defined as being at 1 heart or less)
   const criticalHealthMod = getRandom(rng);
   if (criticalHealthMod < 0.75) {
     // 75% chance to not be at critical health.

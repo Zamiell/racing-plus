@@ -17,7 +17,9 @@
     "isaac-typescript-definitions": "^2.0.13",
     "isaacscript": "^2.0.5",
     "isaacscript-common": "^2.0.6",
-    "isaacscript-lint": "^1.0.141",
-    "isaacscript-spell": "file:../isaacscript-spell"
+    "isaacscript-lint": "^1.0.141"
+  },
+  "devDependencies": {
+    "isaacscript-spell": "^1.0.3"
   }
 }

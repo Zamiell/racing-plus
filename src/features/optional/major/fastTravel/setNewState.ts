@@ -262,9 +262,9 @@ function setGoingToNewFloor() {
     return;
   }
 
-  // Before moving to the next floor, we need to change the room so that health from a Strength
-  // card is properly decremented. We arbitrarily use the starting room for this. Even if a player
-  // is using a trapdoor in the starting room from a shovel, this should not make any difference.
+  // Before moving to the next floor, we need to change the room so that health from a Strength card
+  // is properly decremented. We arbitrarily use the starting room for this. Even if a player is
+  // using a trapdoor in the starting room from a shovel, this should not make any difference.
   changeRoom(startingRoomGridIndex);
   decrementRoomsEntered(); // This should not count as entering a room.
 

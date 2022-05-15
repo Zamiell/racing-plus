@@ -41,8 +41,8 @@ function drawSprites() {
     return;
   }
 
-  // We don't care if the sprites show when the game is paused,
-  // but we do not want the sprites to show during room slide animations.
+  // We don't care if the sprites show when the game is paused, but we do not want the sprites to
+  // show during room slide animations.
   if (isPaused) {
     return;
   }
@@ -158,8 +158,8 @@ export function postNewRoom(): void {
     (v.level.victoryLapButton !== null &&
       v.level.victoryLapButton.roomListIndex === roomListIndex)
   ) {
-    // The buttons will cause the door to close, so re-open the door.
-    // (The door will stay open since the room is already cleared.)
+    // The buttons will cause the door to close, so re-open the door. (The door will stay open since
+    // the room is already cleared.)
     openAllDoors();
   }
 }

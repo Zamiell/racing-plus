@@ -46,10 +46,9 @@ function main() {
     return;
   }
 
-  // For mod features that draw UI elements to the screen,
-  // we should early return if the HUD is not visible.
-  // However, the game is considered to be paused during the room slide animation, so in most cases,
-  // we do not want to check to see if the game is paused.
+  // For mod features that draw UI elements to the screen, we should early return if the HUD is not
+  // visible. However, the game is considered to be paused during the room slide animation, so in
+  // most cases, we do not want to check to see if the game is paused.
 
   // Utils
   timeConsoleUsed.postRender();

@@ -1,5 +1,5 @@
-// Rarely, Ultra Secret Rooms can have no doors.
-// Work around this by spawning a Fool card for the player.
+// Rarely, Ultra Secret Rooms can have no doors. Work around this by spawning a Fool card for the
+// player.
 
 import { Card, RoomType } from "isaac-typescript-definitions";
 import {

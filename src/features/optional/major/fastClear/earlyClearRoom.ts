@@ -143,8 +143,8 @@ function killDeathsHeads() {
       continue;
     }
 
-    // Activate the death state.
-    // (We can't use the `Entity.Kill` method because it would immediately vanish.)
+    // Activate the death state. (We can't use the `Entity.Kill` method because it would immediately
+    // vanish.)
     deathsHead.State = NpcState.DEATH;
 
     // Players should be able to run through them as they are dying; this matches the vanilla

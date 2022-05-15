@@ -25,10 +25,9 @@ export function goto(upwards: boolean): void {
   const nextStage = getNextStage();
   const nextStageType = getNextStageType(stage, stageType, nextStage, upwards);
 
-  // The effect of Empress? cards are supposed to end after one minute passive.
-  // However, taking away the health and re-adding it will cause the extra two red heart containers
-  // to not be removed properly once the minute ends.
-  // Thus, we cut the effect short now.
+  // The effect of Empress? cards are supposed to end after one minute passive. However, taking away
+  // the health and re-adding it will cause the extra two red heart containers to not be removed
+  // properly once the minute ends. Thus, we cut the effect short now.
   for (const player of getPlayers()) {
     const effects = player.GetEffects();
     effects.RemoveNullEffect(NullItemID.REVERSE_EMPRESS);
@@ -41,23 +40,20 @@ export function goto(upwards: boolean): void {
     effects.RemoveNullEffect(NullItemID.REVERSE_SUN);
   }
 
-  // If Tainted Jacob loses Anime Sola for any reason,
-  // it can cause multiple Dark Esau's to spawn upon reaching a new floor.
-  // Since Dark Esau is never supposed to persist between floors,
-  // we can safely remove all Dark Esau entities at this point.
+  // If Tainted Jacob loses Anime Sola for any reason, it can cause multiple Dark Esau's to spawn
+  // upon reaching a new floor. Since Dark Esau is never supposed to persist between floors, we can
+  // safely remove all Dark Esau entities at this point.
   removeAllMatchingEntities(EntityType.DARK_ESAU);
 
-  // If we do a "stage" command to go to the same floor that we are already on,
-  // it will use the same floor layout as the previous floor.
-  // Thus, in these cases, we need to mark to perform a "reseed" command after doing the "stage"
-  // command.
-  // However, when we travel to the same floor layout from a Repentance exit,
-  // floors do not need to be reseeded for some reason.
+  // If we do a "stage" command to go to the same floor that we are already on, it will use the same
+  // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
+  // command after doing the "stage" command. However, when we travel to the same floor layout from
+  // a Repentance exit, floors do not need to be reseeded for some reason.
   v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
 
-  // The fast-travel feature prevents the Perfection trinket from spawning.
-  // Using the "WithoutDamage" methods of the Game class do not work properly,
-  // so we revert to keeping track of damage manually.
+  // The fast-travel feature prevents the Perfection trinket from spawning. Using the
+  // "WithoutDamage" methods of the Game class do not work properly, so we revert to keeping track
+  // of damage manually.
   if (!v.level.tookDamage) {
     v.run.perfection.floorsWithoutDamage += 1;
   }
@@ -131,8 +127,8 @@ function getNextStage() {
   }
 
   if (stage === 8) {
-    // If we are not in the Blue Womb entrance room, then we need to skip a floor
-    // (since the Blue Womb is floor 9).
+    // If we are not in the Blue Womb entrance room, then we need to skip a floor (since the Blue
+    // Womb is floor 9).
     return 10;
   }
 
@@ -361,8 +357,8 @@ function getStageTypeRepentance(stage: int) {
     return StageType.REPENTANCE;
   }
 
-  // This algorithm is from Kilburn.
-  // We add one because the alt path is offset by 1 relative to the normal path.
+  // This algorithm is from Kilburn. We add one because the alt path is offset by 1 relative to the
+  // normal path.
   const stageSeed = g.seeds.GetStageSeed(stage + 1);
 
   // Kilburn does not know why he divided the stage seed by 2 first.
@@ -375,8 +371,8 @@ function getStageTypeRepentance(stage: int) {
 }
 
 function getStageType(stage: int) {
-  // The following is the game's internal code to determine the floor type.
-  // (This came directly from Spider.)
+  // The following is the game's internal code to determine the floor type. (This came directly from
+  // Spider.)
   /*
     u32 Seed = g_Game->GetSeeds().GetStageSeed(NextStage);
     if (!g_Game->IsGreedMode()) {

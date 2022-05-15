@@ -65,8 +65,8 @@ function validateRace(player: EntityPlayer) {
 }
 
 function validateInRace() {
-  // We want to still draw some race-related things even if we have finished or quit the race,
-  // so don't check for "g.race.myStatus".
+  // We want to still draw some race-related things even if we have finished or quit the race, so
+  // don't check for "g.race.myStatus".
   return g.race.status !== RaceStatus.NONE;
 }
 

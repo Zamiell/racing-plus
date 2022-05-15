@@ -29,9 +29,9 @@ export function showDreamCatcherItemPostNewRoom(): void {
     return;
   }
 
-  // This feature requires that fast-travel is enabled.
-  // This is because using the Glowing Hour Glass will not work after warping to the Treasure Room
-  // (because the screen is still fading in from the stage animation).
+  // This feature requires that fast-travel is enabled. This is because using the Glowing Hour Glass
+  // will not work after warping to the Treasure Room (because the screen is still fading in from
+  // the stage animation).
   if (!config.fastTravel) {
     return;
   }
@@ -75,11 +75,11 @@ function gatherInfoAndGlowingHourGlass() {
     boss.AddEntityFlags(EntityFlag.DONT_COUNT_BOSS_HP);
   }
 
-  // In order to reset all of the state properly, we need to use Glowing Hour Glass
-  // (because it is not possible to modify the Planetarium chances via Lua).
-  // This has the disadvantage of having to wait 10 frames before the previous room is entered.
-  // Additionally, we also have to wait a game frame after entering the new room before triggering
-  // the Glowing Hour Glass, or the UI will permanently disappear for some reason.
+  // In order to reset all of the state properly, we need to use Glowing Hour Glass (because it is
+  // not possible to modify the Planetarium chances via Lua). This has the disadvantage of having to
+  // wait 10 frames before the previous room is entered. Additionally, we also have to wait a game
+  // frame after entering the new room before triggering the Glowing Hour Glass, or the UI will
+  // permanently disappear for some reason.
   runNextGameFrame(() => {
     log("Dream Catcher - Using Glowing Hour Glass.");
     const player = Isaac.GetPlayer();

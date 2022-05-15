@@ -1,5 +1,5 @@
-// In seeded races, the silhouettes of other races are drawn onto the screen.
-// This is accomplished via UDP datagrams that are sent to the client, and then to the server.
+// In seeded races, the silhouettes of other races are drawn onto the screen. This is accomplished
+// via UDP datagrams that are sent to the client, and then to the server.
 
 import { ButtonAction, PlayerType } from "isaac-typescript-definitions";
 import {

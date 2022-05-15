@@ -124,8 +124,8 @@ function getItLivesSituation() {
     return ItLivesSituation.TRAPDOOR;
   }
 
-  // The player does not have either The Polaroid or The Negative,
-  // so give them a choice between the directions.
+  // The player does not have either The Polaroid or The Negative, so give them a choice between the
+  // directions.
   return ItLivesSituation.BOTH;
 }
 

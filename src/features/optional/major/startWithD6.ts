@@ -1,16 +1,14 @@
-// A major feature of Racing+ is to give every character the D6,
-// since it heavily reduces run disparity.
+// A major feature of Racing+ is to give every character the D6, since it heavily reduces run
+// disparity.
 
-// We choose to give the D6 as a pocket active item.
-// If we instead gave the D6 as a normal active item, the vast majority of the active items in the
-// game would go unused, since players hardly ever drop the D6 for anything.
-// Giving the D6 as a pocket active fixes this problem.
+// We choose to give the D6 as a pocket active item. If we instead gave the D6 as a normal active
+// item, the vast majority of the active items in the game would go unused, since players hardly
+// ever drop the D6 for anything. Giving the D6 as a pocket active fixes this problem.
 
-// Some characters already have pocket active items.
-// In these cases, we could award the D6 as an active item.
-// However, we want players to have consistent muscle memory for which key to use the D6 on.
-// Thus, we strip the vanilla pocket active item and move it to the active item slot.
-// (The exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
+// Some characters already have pocket active items. In these cases, we could award the D6 as an
+// active item. However, we want players to have consistent muscle memory for which key to use the
+// D6 on. Thus, we strip the vanilla pocket active item and move it to the active item slot. (The
+// exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
 // active slot.)
 
 import {
@@ -82,8 +80,8 @@ export function postNewRoom(): void {
   checkGenesisRoom();
 }
 
-// When the player uses Genesis, it will strip the pocket D6 from them.
-// Give it back to them if this is the case.
+// When the player uses Genesis, it will strip the pocket D6 from them. Give it back to them if this
+// is the case.
 function checkGenesisRoom() {
   if (!inGenesisRoom()) {
     return;
@@ -105,11 +103,12 @@ export function preUseItemFlip(
   }
 
   // This function is triggered when:
-  // 1) Flip is used by the player
-  // 2) Flip is triggered automatically by clearing a room
-  // Record the current charge so that we can propagate it to the other Flip.
-  // We can't use the ActiveSlot passed by the callback because it will be -1 when Flip is triggered
-  // via a room clear.
+  // 1) flip is used by the player
+  // 2) flip is triggered automatically by clearing a room
+
+  // Record the current charge so that we can propagate it to the other Flip. We can't use the
+  // ActiveSlot passed by the callback because it will be -1 when Flip is triggered via a room
+  // clear.
   const flipActiveSlot = getFlipActiveSlot(player);
   if (flipActiveSlot === null) {
     return;
@@ -121,6 +120,7 @@ export function preUseItemFlip(
   // - UseFlag.NO_COSTUME (1 << 1)
   // - UseFlag.ALLOW_NON_MAIN (1 << 3)
   // - UseFlag.REMOVE_ACTIVE (1 << 4)
+
   // When the game uses Flip automatically after clearing a room, "useFlags" will be equal to 0.
   // Since none of these flags correspond highly to using the item, default to checking for 0.
   const flipCharge = getTotalCharge(player, flipActiveSlot);
@@ -167,18 +167,17 @@ export function postFlip(player: EntityPlayer): void {
     return;
   }
 
-  // Normally, Tainted Lazarus has Flip in a pocket active slot,
-  // and the amount of charges on the Flip is maintained between characters.
-  // However, this does not happen if the item is in a normal active slot,
-  // so we have to manually ensure that the charge state is duplicated.
+  // Normally, Tainted Lazarus has Flip in a pocket active slot, and the amount of charges on the
+  // Flip is maintained between characters. However, this does not happen if the item is in a normal
+  // active slot, so we have to manually ensure that the charge state is duplicated.
   const flipActiveSlot = getFlipActiveSlot(player);
   if (flipActiveSlot === null) {
     return;
   }
 
   // We cannot simply set the active charge, because Tainted Lazarus will get an additional charge
-  // on the next frame, causing them to get a double-charge for clearing a room.
-  // Thus, defer setting the charge for a frame.
+  // on the next frame, causing them to get a double-charge for clearing a room. Thus, defer setting
+  // the charge for a frame.
   runNextGameFrame(() => {
     player.SetActiveCharge(v.run.currentFlipCharge, flipActiveSlot);
   });
@@ -231,8 +230,8 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
     return;
   }
 
-  // Birthright will give a pocket active item of Recall, which will replace the D6.
-  // Give the D6 back and make Recall a normal active item.
+  // Birthright will give a pocket active item of Recall, which will replace the D6. Give the D6
+  // back and make Recall a normal active item.
   const pocketActive = player.GetActiveItem(ActiveSlot.POCKET);
   const itemToReplace = CollectibleType.RECALL;
   if (pocketActive !== itemToReplace) {
@@ -257,9 +256,8 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   const pocketItemCharge = getTotalCharge(player, ActiveSlot.POCKET);
   const hasPocketD6 = pocketItem === CollectibleType.D6;
 
-  // Jacob & Esau (19, 20) are a special case.
-  // Since pocket actives do not work on them properly, give each of them a normal D6.
-  // Don't give a D6 to Jacob if we transformed to them with Clicker.
+  // Jacob & Esau (19, 20) are a special case. Since pocket actives do not work on them properly,
+  // give each of them a normal D6. Don't give a D6 to Jacob if we transformed to them with Clicker.
   if (isJacobOrEsau(player)) {
     if (hasOpenActiveItemSlot(player)) {
       player.AddCollectible(CollectibleType.D6, D6_STARTING_CHARGE);
@@ -268,9 +266,9 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
     return;
   }
 
-  // Tainted Cain (23) is a special case.
-  // The Bag of Crafting does not work properly in the normal active slot.
-  // Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded the D6.
+  // Tainted Cain (23) is a special case. The Bag of Crafting does not work properly in the normal
+  // active slot. Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded the
+  // D6.
   if (character === PlayerType.CAIN_B) {
     return;
   }

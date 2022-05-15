@@ -1,5 +1,5 @@
-// Since the Perfection trinket spawns with a velocity,
-// it can sometimes go over pits and become inaccessible.
+// Since the Perfection trinket spawns with a velocity, it can sometimes go over pits and become
+// inaccessible.
 
 import { GridCollisionClass, TrinketType } from "isaac-typescript-definitions";
 import {
@@ -47,8 +47,8 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
     return;
   }
 
-  // Normally, the Perfection trinket will be flung outward from the location of the boss.
-  // Instead, set it to be a free tile near the center of the room.
+  // Normally, the Perfection trinket will be flung outward from the location of the boss. Instead,
+  // set it to be a free tile near the center of the room.
   pickup.Position = getPerfectionPosition();
   pickup.Velocity = VectorZero;
 

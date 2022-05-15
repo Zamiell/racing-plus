@@ -17,9 +17,8 @@ export function evaluateCacheTearColor(player: EntityPlayer): void {
     return;
   }
 
-  // After taking Mysterious Liquid, the color values are:
-  // 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.2
-  // Start by coping the existing color and then swap the green and blue values.
+  // After taking Mysterious Liquid, the color values are all equal to 1.0 except for BO, which is
+  // equal to 0.2. Start by coping the existing color and then swap the green and blue values.
   const color = player.TearColor;
   player.TearColor = Color(
     color.R,
@@ -44,9 +43,8 @@ export function postEffectInitCreepRed(effect: EntityEffect): void {
   // We can't call the `SetColorize` method on the existing color object, so create a new one.
   const newColor = copyColor(sprite.Color);
 
-  // Set the color to green.
-  // These values were determined through trial and error to make creep that looks roughly similar
-  // to green creep (from e.g. Pestilence).
+  // Set the color to green. These values were determined through trial and error to make creep that
+  // looks roughly similar to green creep (from e.g. Pestilence).
   newColor.SetColorize(0, 2.9, 0, 1);
   sprite.Color = newColor;
 }

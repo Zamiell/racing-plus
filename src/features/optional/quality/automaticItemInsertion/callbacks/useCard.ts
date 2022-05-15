@@ -47,8 +47,7 @@ export function automaticItemInsertionUseCardLovers(
 
 function addHeartsOnBethanys(player: EntityPlayer) {
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items.
-  // Instead, find the nearest hearts to the player.
+  // to automatically insert items. Instead, find the nearest hearts to the player.
   const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
   const numHearts = hasTarotCloth ? 3 : 2;
   const pickupVariants = initArray(PickupVariant.HEART, numHearts);
@@ -70,8 +69,7 @@ export function automaticItemInsertionUseCardJustice(
   }
 
   // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items.
-  // Instead, find the nearest coin, bomb, and key to the player.
+  // to automatically insert items. Instead, find the nearest coin, bomb, and key to the player.
   const pickups = getPickupsFromJusticeCard(player);
   for (const pickup of pickups) {
     insertPickupAndUpdateDelta(pickup, player);
