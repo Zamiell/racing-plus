@@ -129,7 +129,7 @@ export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
   [
     CollectibleType.INCUBUS, // 360
     CollectibleType.TWISTED_PAIR, // 698
-    // The smelted Forgotten Lullaby is handled manually
+    // The smelted Forgotten Lullaby is handled manually.
   ],
 
   // 23

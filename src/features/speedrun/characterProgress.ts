@@ -30,7 +30,7 @@ class CharacterProgressSprites {
     for (const sprite of Object.values(this.digits)) {
       sprite.Load("gfx/timer/timer.anm2", true);
 
-      // Make the numbers a bit smaller than the ones used for the timer
+      // Make the numbers a bit smaller than the ones used for the timer.
       sprite.Scale = Vector(0.9, 0.9);
 
       sprite.SetFrame("Default", 0);
@@ -71,7 +71,7 @@ function drawCharacterProgressAndSeasonIcon() {
     adjustment2 = adjustment1 - 1;
   }
 
-  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down
+  // Certain characters have extra HUD elements, shifting the "No Achievements" icon down.
   const player = Isaac.GetPlayer();
   if (isBethany(player)) {
     position = position.add(SPRITE_BETHANY_OFFSET);
@@ -79,7 +79,7 @@ function drawCharacterProgressAndSeasonIcon() {
     position = position.add(SPRITE_JACOB_ESAU_OFFSET);
   }
 
-  // Draw the sprites for the character progress
+  // Draw the sprites for the character progress.
   let digit1 = v.persistent.characterNum;
   let digit2 = -1;
   if (v.persistent.characterNum > 9) {
@@ -119,7 +119,7 @@ function drawCharacterProgressAndSeasonIcon() {
     sprites.digits.digit4.RenderLayer(0, digit4Position);
   }
 
-  // Draw the sprite for the season icon
+  // Draw the sprite for the season icon.
   let posSeason: Vector;
   const spacing = 17;
   if (digit4Position === undefined) {

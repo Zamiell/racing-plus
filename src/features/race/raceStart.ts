@@ -19,7 +19,7 @@ export function shouldShowRaceID(): boolean {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     !inRaceRoom() &&
-    // Only show it in the first two seconds of the race
+    // Only show it in the first two seconds of the race.
     Isaac.GetTime() - g.raceVars.startedTime <= 2000
   );
 }

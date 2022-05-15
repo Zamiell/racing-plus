@@ -147,7 +147,7 @@ function setPlayerAttributes(
   movePlayerToTrapdoor(playerTouchedTrapdoor, position);
 
   for (const player of getPlayers()) {
-    // Freeze all players
+    // Freeze all players.
     player.Velocity = VectorZero;
 
     // We don't want enemy attacks to move the players.

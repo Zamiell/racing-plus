@@ -44,7 +44,7 @@ function deleteVoidDoor() {
     return;
   }
 
-  // Spawning a wall on top of the door will automatically delete the door
+  // Spawning a wall on top of the door will automatically delete the door.
   const gridIndex = voidDoor.GetGridIndex();
   spawnGrid(GridEntityType.WALL, gridIndex);
 }

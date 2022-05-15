@@ -29,11 +29,7 @@ Changes from vanilla:
   <item id="18" quality="3" tags="nocantrip" />
   <item id="19" quality="0" tags="offensive" />
   <item id="20" quality="3" tags="nolostbr summonable" />
-  <item
-    id="21"
-    quality="2"
-    tags="summonable offensive lazarussharedglobal nogreed"
-  />
+  <item id="21" quality="2" tags="summonable offensive lazarussharedglobal nogreed" />
   <item id="22" quality="1" tags="nolostbr nocantrip food" />
   <item id="23" quality="1" tags="nolostbr nocantrip food" />
   <item id="24" quality="1" tags="nolostbr nocantrip food" />
@@ -62,18 +58,10 @@ Changes from vanilla:
   <item id="48" quality="3" tags="summonable offensive" />
   <item id="49" quality="2" tags="offensive" />
   <item id="50" quality="3" tags="summonable offensive" />
-  <item
-    id="51"
-    quality="3"
-    tags="devil summonable offensive lazarussharedglobal"
-  />
+  <item id="51" quality="3" tags="devil summonable offensive lazarussharedglobal" />
   <item id="52" quality="4" tags="summonable offensive" />
   <item id="53" quality="1" tags="summonable" />
-  <item
-    id="54"
-    quality="2"
-    tags="summonable offensive lazarussharedglobal nogreed"
-  />
+  <item id="54" quality="2" tags="summonable offensive lazarussharedglobal nogreed" />
   <item id="55" quality="1" tags="summonable mom offensive" />
   <item id="56" quality="1" tags="offensive" />
   <item id="57" quality="2" tags="summonable monstermanual offensive fly" />
@@ -113,11 +101,7 @@ Changes from vanilla:
   <item id="92" quality="2" tags="nolostbr" />
   <item id="93" quality="2" tags="offensive" />
   <item id="94" quality="1" tags="summonable offensive nocantrip" />
-  <item
-    id="95"
-    quality="1"
-    tags="summonable baby tech monstermanual offensive"
-  />
+  <item id="95" quality="1" tags="summonable baby tech monstermanual offensive" />
   <item id="96" quality="2" tags="nolostbr summonable nocantrip" />
   <item id="97" quality="2" tags="book offensive" />
   <item id="98" quality="3" tags="nolostbr summonable nocantrip" />
@@ -216,11 +200,7 @@ Changes from vanilla:
   <item id="191" quality="2" tags="summonable offensive" />
   <item id="192" quality="1" tags="book offensive" />
   <item id="193" quality="2" tags="nolostbr summonable" />
-  <item
-    id="194"
-    quality="1"
-    tags="summonable offensive stars lazarussharedglobal"
-  />
+  <item id="194" quality="1" tags="summonable offensive stars lazarussharedglobal" />
   <item id="195" quality="1" tags="mom offensive nocantrip" />
   <item id="196" quality="3" tags="summonable tearsup offensive" />
   <item id="197" quality="2" tags="summonable offensive" />
@@ -263,16 +243,8 @@ Changes from vanilla:
   <item id="234" quality="4" tags="summonable spider offensive" />
   <item id="236" quality="1" tags="poop nolostbr summonable" />
   <item id="237" quality="3" tags="summonable offensive" />
-  <item
-    id="238"
-    quality="0"
-    tags="uniquefamiliar offensive lazarusshared noeden nocantrip quest"
-  />
-  <item
-    id="239"
-    quality="0"
-    tags="uniquefamiliar offensive lazarusshared noeden nocantrip quest"
-  />
+  <item id="238" quality="0" tags="uniquefamiliar offensive lazarusshared noeden nocantrip quest" />
+  <item id="239" quality="0" tags="uniquefamiliar offensive lazarusshared noeden nocantrip quest" />
   <item id="240" quality="1" tags="summonable syringe offensive" />
   <item id="241" quality="3" tags="summonable offensive nogreed" />
   <item id="242" quality="2" tags="summonable" />
@@ -282,11 +254,7 @@ Changes from vanilla:
   <item id="246" quality="2" tags="summonable offensive lazarussharedglobal" />
   <item id="247" quality="2" tags="summonable offensive" />
   <item id="248" quality="2" tags="summonable spider offensive fly" />
-  <item
-    id="249"
-    quality="3"
-    tags="summonable offensive nocantrip lazarussharedglobal nogreed"
-  />
+  <item id="249" quality="3" tags="summonable offensive nocantrip lazarussharedglobal nogreed" />
   <item id="250" quality="1" tags="summonable offensive nocantrip" />
   <item id="251" quality="2" tags="summonable offensive nocantrip" />
   <item id="252" quality="1" tags="summonable offensive nocantrip" />
@@ -304,11 +272,7 @@ Changes from vanilla:
   <item id="264" quality="2" tags="summonable monstermanual fly" />
   <item id="265" quality="3" tags="summonable baby monstermanual" />
   <item id="266" quality="2" tags="summonable spider monstermanual offensive" />
-  <item
-    id="267"
-    quality="1"
-    tags="summonable baby tech monstermanual offensive"
-  />
+  <item id="267" quality="1" tags="summonable baby tech monstermanual offensive" />
   <item id="268" quality="3" tags="summonable baby monstermanual offensive" />
   <item id="269" quality="1" tags="summonable baby monstermanual offensive" />
   <item id="270" quality="1" tags="summonable monstermanual offensive" />
@@ -421,11 +385,7 @@ Changes from vanilla:
   <item id="377" quality="1" tags="summonable spider offensive" />
   <item id="378" quality="2" tags="poop summonable offensive" />
   <item id="379" quality="2" tags="summonable offensive" />
-  <item
-    id="380"
-    quality="2"
-    tags="summonable offensive nocantrip lazarussharedglobal"
-  />
+  <item id="380" quality="2" tags="summonable offensive nocantrip lazarussharedglobal" />
   <item id="381" quality="3" tags="summonable tearsup offensive nocantrip" />
   <item id="382" quality="2" tags="offensive nocantrip" />
   <item id="383" quality="1" tags="offensive" />
@@ -459,17 +419,9 @@ Changes from vanilla:
   <item id="411" quality="3" tags="summonable offensive" />
   <item id="412" quality="2" tags="nolostbr summonable" />
   <item id="413" quality="1" tags="nolostbr summonable" />
-  <item
-    id="414"
-    quality="3"
-    tags="summonable offensive nocantrip lazarussharedglobal"
-  />
+  <item id="414" quality="3" tags="summonable offensive nocantrip lazarussharedglobal" />
   <item id="415" quality="4" tags="summonable offensive" />
-  <item
-    id="416"
-    quality="2"
-    tags="summonable offensive nocantrip lazarussharedglobal"
-  />
+  <item id="416" quality="2" tags="summonable offensive nocantrip lazarussharedglobal" />
   <item id="417" quality="3" tags="summonable monstermanual offensive" />
   <item id="418" quality="2" tags="summonable offensive" />
   <item id="419" quality="3" tags="offensive" />
@@ -603,21 +555,9 @@ Changes from vanilla:
   <item id="547" quality="3" tags="summonable offensive" />
   <item id="548" quality="1" tags="summonable offensive" />
   <item id="549" quality="3" tags="nolostbr" />
-  <item
-    id="550"
-    quality="4"
-    tags="offensive noeden lazarussharedglobal quest"
-  />
-  <item
-    id="551"
-    quality="4"
-    tags="offensive noeden lazarussharedglobal quest"
-  />
-  <item
-    id="552"
-    quality="4"
-    tags="mom offensive noeden lazarussharedglobal quest"
-  />
+  <item id="550" quality="4" tags="offensive noeden lazarussharedglobal quest" />
+  <item id="551" quality="4" tags="offensive noeden lazarussharedglobal quest" />
+  <item id="552" quality="4" tags="mom offensive noeden lazarussharedglobal quest" />
   <item id="553" quality="3" tags="mushroom offensive" />
   <item id="554" quality="2" tags="summonable" />
   <item id="555" quality="1" tags="offensive" />
@@ -631,16 +571,8 @@ Changes from vanilla:
   <item id="563" quality="1" tags="summonable offensive" />
   <item id="564" quality="3" tags="summonable tearsup offensive" />
   <item id="565" quality="1" tags="offensive" />
-  <item
-    id="566"
-    quality="2"
-    tags="summonable offensive nocantrip lazarussharedglobal"
-  />
-  <item
-    id="567"
-    quality="3"
-    tags="uniquefamiliar summonable tearsup offensive nocantrip"
-  />
+  <item id="566" quality="2" tags="summonable offensive nocantrip lazarussharedglobal" />
+  <item id="567" quality="3" tags="uniquefamiliar summonable tearsup offensive nocantrip" />
   <item id="568" quality="2" tags="angel" />
   <item id="569" quality="2" tags="uniquefamiliar nolostbr summonable" />
   <item id="570" quality="3" tags="summonable offensive" />
@@ -661,11 +593,7 @@ Changes from vanilla:
   <item id="585" quality="2" tags="offensive nocantrip" />
   <item id="586" quality="3" tags="offensive nocantrip lazarussharedglobal" />
   <item id="588" quality="2" tags="summonable offensive stars" />
-  <item
-    id="589"
-    quality="2"
-    tags="summonable offensive nocantrip stars lazarussharedglobal"
-  />
+  <item id="589" quality="2" tags="summonable offensive nocantrip stars lazarussharedglobal" />
   <item id="590" quality="3" tags="summonable offensive stars noeden" />
   <item id="591" quality="2" tags="summonable offensive stars" />
   <item id="592" quality="3" tags="summonable offensive stars" />
@@ -675,17 +603,9 @@ Changes from vanilla:
   <item id="596" quality="3" tags="summonable offensive stars" />
   <item id="597" quality="3" tags="summonable offensive stars" />
   <item id="598" quality="3" tags="summonable tearsup offensive stars" />
-  <item
-    id="599"
-    quality="1"
-    tags="summonable offensive nocantrip lazarussharedglobal"
-  />
+  <item id="599" quality="1" tags="summonable offensive nocantrip lazarussharedglobal" />
   <item id="600" quality="3" tags="summonable tearsup offensive" />
-  <item
-    id="601"
-    quality="3"
-    tags="summonable tearsup offensive lazarussharedglobal"
-  />
+  <item id="601" quality="3" tags="summonable tearsup offensive lazarussharedglobal" />
   <item id="602" quality="2" tags="summonable offensive" />
   <item id="603" quality="1" tags="battery offensive" />
   <item id="604" quality="2" tags="mom offensive" />
@@ -740,11 +660,7 @@ Changes from vanilla:
   <item id="657" quality="2" tags="summonable offensive" />
   <item id="658" quality="1" tags="nolostbr summonable" />
   <item id="659" quality="1" tags="summonable offensive" />
-  <item
-    id="660"
-    quality="3"
-    tags="summonable offensive nocantrip stars lazarussharedglobal nogreed"
-  />
+  <item id="660" quality="3" tags="summonable offensive nocantrip stars lazarussharedglobal nogreed" />
   <item id="661" quality="2" tags="summonable baby offensive" />
   <item id="663" quality="2" tags="summonable offensive" />
   <item id="664" quality="4" tags="nolostbr" />

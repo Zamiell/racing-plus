@@ -45,7 +45,7 @@ function postPickupInitStickyNickel(pickup: EntityPickup) {
     pickup,
   );
 
-  // Make it render below most things
+  // Make it render below most things.
   effect.RenderZOffset = -10000;
 
   const sprite = pickup.GetSprite();
@@ -53,7 +53,7 @@ function postPickupInitStickyNickel(pickup: EntityPickup) {
   const animation = sprite.IsPlaying("Appear") ? "Appear" : "Idle";
   effectSprite.Play(animation, true);
 
-  // Store the relationship between this coin and effect
+  // Store the relationship between this coin and effect.
   const effectPtrHash = GetPtrHash(effect);
   const pickupEntityPtr = EntityPtr(pickup);
   v.room.effectToNickelPtrMap.set(effectPtrHash, pickupEntityPtr);
@@ -68,7 +68,7 @@ export function postEffectUpdateStickyNickel(effect: EntityEffect): void {
 
   const success = tryUpdateEffectPosition(effect);
   if (!success) {
-    // The sticky nickel is gone, so we should delete the associated effect
+    // The sticky nickel is gone, so we should delete the associated effect.
     fadeOutStickyNickelEffect(effect);
   }
 }
@@ -90,10 +90,10 @@ function tryUpdateEffectPosition(effect: EntityEffect) {
     return false;
   }
 
-  // Update our position to the nickel's position (in case it moved)
+  // Update our position to the nickel's position (in case it moved).
   effect.Position = stickyNickel.Position;
 
-  // We do not want to remove the effect yet, since the nickel is still sticky
+  // We do not want to remove the effect yet, since the nickel is still sticky.
   return true;
 }
 

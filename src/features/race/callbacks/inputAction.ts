@@ -15,7 +15,7 @@ export function isActionTriggeredConsole(): boolean | void {
     return undefined;
   }
 
-  // Prevent opening the console during a race
+  // Prevent opening the console during a race.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&

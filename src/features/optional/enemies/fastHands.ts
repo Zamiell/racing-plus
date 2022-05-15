@@ -35,7 +35,7 @@ function checkSpeedUpHand(npc: EntityNPC) {
 }
 
 function speedUpInitialDelay(npc: EntityNPC) {
-  // StateFrame starts between 0 and a random negative value and ticks upwards
+  // StateFrame starts between 0 and a random negative value and ticks upwards.
   if (npc.StateFrame < START_FRAME) {
     npc.StateFrame = START_FRAME;
   }

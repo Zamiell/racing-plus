@@ -150,7 +150,7 @@ function rollDuplicateItems() {
 
 function replacePlaceholderItems() {
   for (const collectible of getCollectibles()) {
-    // Ignore empty pedestals (i.e. items that have already been taken by the player)
+    // Ignore empty pedestals (i.e. items that have already been taken by the player).
     if (collectible.SubType === CollectibleType.NULL) {
       continue;
     }

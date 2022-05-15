@@ -1,4 +1,4 @@
-// We grant Judas an extra bomb so that the character is slightly more skill based
+// We grant Judas an extra bomb so that the character is slightly more skill based.
 
 import { PlayerType } from "isaac-typescript-definitions";
 import { getPlayersOfType } from "isaacscript-common";

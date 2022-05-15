@@ -19,7 +19,7 @@ const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 
 // ModCallback.POST_EFFECT_UPDATE (55)
 export function postEffectUpdate(effect: EntityEffect): void {
-  // In some situations, heaven doors should be removed entirely
+  // In some situations, heaven doors should be removed entirely.
   if (shouldRemove(effect)) {
     effect.Remove();
     return;
@@ -79,7 +79,7 @@ function shouldSpawnOpen() {
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   const effect = entity as EntityEffect;
 
-  // Perform some extra checks before we consider the player to have activated the heaven door
+  // Perform some extra checks before we consider the player to have activated the heaven door.
   const entityDescription = state.getDescription(
     entity,
     FAST_TRAVEL_ENTITY_TYPE,

@@ -7,7 +7,7 @@ const Y_DISTANCE_ABOVE = 78;
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.DEVIL (6)
 export function postEffectUpdateDevil(effect: EntityEffect): void {
-  // Fade the statue if there are any collectibles in a rectangle above the effect
+  // Fade the statue if there are any collectibles in a rectangle above the effect.
   const rectangleTopLeft = Vector(
     effect.Position.X - X_DISTANCE,
     effect.Position.Y - Y_DISTANCE_ABOVE,

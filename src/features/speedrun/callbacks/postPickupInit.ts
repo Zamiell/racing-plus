@@ -11,7 +11,7 @@ export function trophy(pickup: EntityPickup): void {
 }
 
 function removeAndSpawnBigChest(pickup: EntityPickup) {
-  // Funnel all end-of-run decision making through code that runs on PostPickupInit for Big Chests
+  // Funnel all end-of-run decision making through code that runs on PostPickupInit for Big Chests.
   pickup.Remove();
   spawnPickup(PickupVariant.BIG_CHEST, 0, pickup.Position);
 }

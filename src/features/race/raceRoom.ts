@@ -163,7 +163,7 @@ function gotoRaceRoom() {
   const effectiveStage = getEffectiveStage();
   const stageType = g.l.GetStageType();
 
-  // If we not already on the right floor, go there
+  // If we not already on the right floor, go there.
   if (effectiveStage !== 1 || stageType !== StageType.WRATH_OF_THE_LAMB) {
     // Since we might be going to a new floor on frame 0,
     // we have to specify that the PostNewLevel callback should fire.

@@ -41,7 +41,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
   MinimapAPI.AddIcon("PillPinkRed", customIcons, "CustomIconPillPinkRed", 0);
 
   // PillColor.YELLOW_ORANGE (8)
-  // Getting rid of the ugly white pixel
+  // Getting rid of the ugly white pixel.
   MinimapAPI.AddIcon(
     "PillYellowOrange",
     customIcons,
@@ -50,7 +50,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
   );
 
   // PillColor.ORANGEDOTS_WHITE (9)
-  // White / White-dotted / Full white-dotted
+  // White / White-dotted --> Full white-dotted
   MinimapAPI.AddIcon(
     "PillOrangedotsWhite",
     customIcons,
@@ -74,7 +74,7 @@ function initMinimapAPICards(customIcons: Sprite) {
   }
 
   // Card.RUNE_BLANK (40)
-  // New sprite for Blank Rune
+  // New sprite for Blank Rune.
   MinimapAPI.AddIcon("BlankRune", customIcons, "CustomIconBlankRune", 0);
   MinimapAPI.AddPickup(
     "BlankRune",
@@ -88,7 +88,7 @@ function initMinimapAPICards(customIcons: Sprite) {
   );
 
   // Card.RUNE_BLACK (41)
-  // New sprite for Black Rune
+  // New sprite for Black Rune.
   MinimapAPI.AddIcon("BlackRune", customIcons, "CustomIconBlackRune", 0);
   MinimapAPI.AddPickup(
     "BlackRune",
@@ -102,7 +102,7 @@ function initMinimapAPICards(customIcons: Sprite) {
   );
 
   // Card.QUESTION_MARK (48)
-  // New sprite for ? Card
+  // New sprite for ? Card.
   MinimapAPI.AddIcon("QuestionMark", customIcons, "CustomIconQuestionMark", 0);
   MinimapAPI.AddPickup(
     "QuestionMark",

@@ -61,7 +61,7 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
       [15, 3, 2],
       [16, 4, 2],
       [17, 5, 2],
-      // Skip center column
+      // Skip center column.
       [18, 7, 2],
       [19, 8, 2],
       [20, 9, 2],
@@ -70,7 +70,7 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
 
       [23, 4, 4],
       [24, 5, 4],
-      // Skip center column
+      // Skip center column.
       [25, 7, 4],
       [26, 8, 4],
     ],

@@ -32,7 +32,7 @@ export function racePostGameStarted(): void {
   socket.postGameStarted();
   sprites.resetAll();
 
-  // For race validation purposes, use the 0th player
+  // For race validation purposes, use the 0th player.
   const player = Isaac.GetPlayer();
 
   if (!validateRace(player)) {
@@ -156,7 +156,7 @@ function validateSeed() {
       g.race.format === RaceFormat.DIVERSITY) &&
     onSetSeed()
   ) {
-    // If the run started with a set seed, change the reset behavior to that of an unseeded run
+    // If the run started with a set seed, change the reset behavior to that of an unseeded run.
     restartOnNextFrame();
     unseed();
     return false;

@@ -11,7 +11,7 @@ export function raceFinish(): void {
     Isaac.GetFrameCount() - g.raceVars.startedRenderFrame;
   v.room.showEndOfRunText = true;
 
-  // Tell the client that the goal was achieved (and the race length)
+  // Tell the client that the goal was achieved (and the race length).
   socket.send("finish", g.raceVars.finishedTime.toString());
   log(`Finished race ${g.race.raceID} with time: ${g.raceVars.finishedTime}`);
   log(

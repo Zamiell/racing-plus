@@ -8,12 +8,12 @@ export function postNPCUpdateDeath(npc: EntityNPC): void {
     return;
   }
 
-  // We only care about the main Death
+  // We only care about the main Death.
   if (npc.Variant !== 0) {
     return;
   }
 
-  // Stop Death from performing the attack that slows down the player
+  // Stop Death from performing the attack that slows down the player.
   if (npc.State === DeathState.SLOW_ATTACK) {
     npc.State = DeathState.MAIN_IDLE;
   }

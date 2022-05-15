@@ -41,7 +41,7 @@ function main() {
     return;
   }
 
-  // If there are any errors, we can skip the remainder of this function
+  // If there are any errors, we can skip the remainder of this function.
   if (errors.postRender()) {
     return;
   }
@@ -78,7 +78,7 @@ function main() {
   speedUpFadeIn.postRender();
   showDreamCatcherItemPostRender(); // 566
   showMaxFamiliars.postRender();
-  // Should be after the "Show Max Familiars" feature so that the text has priority
+  // Should be after the "Show Max Familiars" feature so that the text has priority.
   automaticItemInsertionPostRender();
   showPills.postRender();
 
@@ -89,6 +89,6 @@ function main() {
   customConsole.postRender();
   roll.postRender();
 
-  // We want the "R+" sprite to be drawn on top of everything
+  // We want the "R+" sprite to be drawn on top of everything.
   racingPlusSprite.postRender();
 }

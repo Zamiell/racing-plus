@@ -58,7 +58,7 @@ const FALSE_PHD_PILL_CONVERSIONS: ReadonlyMap<PillEffect, PillEffect> = new Map(
     [PillEffect.TELEPILLS, PillEffect.IM_EXCITED], // 19
     [PillEffect.FORTY_EIGHT_HOUR_ENERGY, PillEffect.SPEED_DOWN], // 20
     [PillEffect.HEMATEMESIS, PillEffect.BAD_TRIP], // 21
-    // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Retro Vision
+    // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Retro Vision.
     [PillEffect.I_CAN_SEE_FOREVER, PillEffect.RETRO_VISION], // 23
     [PillEffect.PHEROMONES, PillEffect.PARALYSIS], // 24
     // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Horf!
@@ -119,7 +119,7 @@ export function postUpdate(): void {
 
 function checkPHD() {
   if (v.run.PHD) {
-    // We have already converted bad pill effects this run
+    // We have already converted bad pill effects this run.
     return;
   }
 
@@ -133,7 +133,7 @@ function checkPHD() {
   v.run.PHD = true;
   log("Converting bad pill effects.");
 
-  // Change the text for any identified pills
+  // Change the text for any identified pills.
   for (const pillEntry of v.run.pillsIdentified) {
     const newEffect = PHD_PILL_CONVERSIONS.get(pillEntry.effect);
     if (newEffect !== undefined) {
@@ -144,7 +144,7 @@ function checkPHD() {
 
 function checkFalsePHD() {
   if (v.run.falsePHD) {
-    // We have already converted good pill effects this run
+    // We have already converted good pill effects this run.
     return;
   }
 
@@ -155,7 +155,7 @@ function checkFalsePHD() {
   v.run.falsePHD = true;
   log("Converting good pill effects.");
 
-  // Change the text for any identified pills
+  // Change the text for any identified pills.
   for (const pillEntry of v.run.pillsIdentified) {
     const newEffect = FALSE_PHD_PILL_CONVERSIONS.get(pillEntry.effect);
     if (newEffect !== undefined) {
@@ -181,12 +181,12 @@ export function postRender(): void {
     return;
   }
 
-  // Don't do anything if we have not taken any pills yet
+  // Don't do anything if we have not taken any pills yet.
   if (v.run.pillsIdentified.length === 0) {
     return;
   }
 
-  // Only show pill identification if someone is pressing the map button
+  // Only show pill identification if someone is pressing the map button.
   if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
     return;
   }
@@ -198,7 +198,7 @@ function drawTextAndSprite() {
   const x = 80;
   let baseY = 97;
   for (let i = 9; i <= 12; i++) {
-    // Avoid overflow on the bottom if we identify a lot of pills
+    // Avoid overflow on the bottom if we identify a lot of pills.
     if (v.run.pillsIdentified.length >= i) {
       baseY -= 20;
     }
@@ -214,7 +214,7 @@ function drawTextAndSprite() {
 
   baseY += 20;
   v.run.pillsIdentified.forEach((pillEntry, i) => {
-    // Show the pill sprite
+    // Show the pill sprite.
     const y = baseY + 20 * (i + 1);
     const position = Vector(x, y);
     const sprite = pillSprites.get(pillEntry.color);
@@ -226,7 +226,7 @@ function drawTextAndSprite() {
     }
     sprite.RenderLayer(0, position);
 
-    // Show the pill effect as text
+    // Show the pill effect as text.
     let pillEffectName = getPillEffectName(pillEntry.effect);
     if (pillEffectName === "Feels like I'm walking on sunshine!") {
       pillEffectName = "Walking on sunshine!";
@@ -241,23 +241,23 @@ export function usePill(player: EntityPlayer, pillEffect: PillEffect): void {
 }
 
 function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
-  // This callback fires before the pill is consumed, so we can still get the color of the pill
+  // This callback fires before the pill is consumed, so we can still get the color of the pill.
   const pillColor = player.GetPill(0);
 
-  // A mod may have manually used a pill with a null color
+  // A mod may have manually used a pill with a null color.
   if (pillColor === PillColor.NULL) {
     return;
   }
 
-  // Don't bother recording information about gold pills
+  // Don't bother recording information about gold pills.
   if (pillColor === PillColor.GOLD) {
     return;
   }
 
-  // Account for Horse Pills (i.e. giant pills)
+  // Account for Horse Pills (i.e. giant pills).
   const normalPillColor = getNormalPillColorFromHorse(pillColor);
 
-  // See if we have already used this particular pill color on this run
+  // See if we have already used this particular pill color on this run.
   for (const pill of v.run.pillsIdentified) {
     if (pill.color === normalPillColor) {
       return;
@@ -268,7 +268,7 @@ function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
 }
 
 function newPill(pillColor: PillColor, pillEffect: PillEffect) {
-  // This is the first time we have used this pill, so keep track of the pill color and effect
+  // This is the first time we have used this pill, so keep track of the pill color and effect.
   const pillDescription: PillDescription = {
     color: pillColor,
     effect: pillEffect,

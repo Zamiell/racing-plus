@@ -1,4 +1,4 @@
-// These are shared functions for fast-travel entities
+// These are shared functions for fast-travel entities.
 
 import {
   CrawlSpaceVariant,

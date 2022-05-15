@@ -59,7 +59,8 @@ import { FamiliarVariantCustom } from "../../enums/FamiliarVariantCustom";
 
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
-// const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ORBITAL_ROTATION_SPEED_REPENTANCE = 4.05;
 const SAWBLADE_ROTATION_SPEED = ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS;
 
 /**
@@ -120,7 +121,7 @@ function getInitialAngle() {
     return firstSawbladeAngle === undefined ? 0 : firstSawbladeAngle + 180;
   }
 
-  // Otherwise, default the Sawblade to being below the player
+  // Otherwise, default the Sawblade to being below the player.
   return 0;
 }
 
@@ -157,7 +158,7 @@ function setSpriteOffset(familiar: EntityFamiliar) {
 }
 
 // ModCallback.EVALUATE_CACHE (8)
-// CacheFlag.CACHE_FAMILIARS (1 << 9)
+// CacheFlag.FAMILIARS (1 << 9)
 export function evaluateCacheFamiliars(player: EntityPlayer): void {
   // Automatically handle adding and removing familiars with the `checkFamiliarFromCollectibles`
   // helper function.

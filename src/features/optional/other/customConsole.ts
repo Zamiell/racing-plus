@@ -60,12 +60,12 @@ export function postRender(): void {
   const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
-  // Don't check for inputs or draw the console when Mod Config Menu is open
+  // Don't check for inputs or draw the console when Mod Config Menu is open.
   if (!hud.IsVisible()) {
     return;
   }
 
-  // Don't check for inputs or draw the console when the game is paused or the console is open
+  // Don't check for inputs or draw the console when the game is paused or the console is open.
   if (isPaused) {
     return;
   }
@@ -109,7 +109,7 @@ function checkKeyboardInput(
     isaacFrameCount,
   );
 
-  // We want the key to be repeated if they are holding down the key (after a short delay)
+  // We want the key to be repeated if they are holding down the key (after a short delay).
   const pressedOnThisFrame = framePressed === isaacFrameCount;
   const framesSinceKeyPressed = isaacFrameCount - framePressed;
   const shouldTriggerRepeatPress =
@@ -124,7 +124,7 @@ function checkKeyboardInput(
 }
 
 function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
-  // Do nothing if modifiers other than shift are pressed
+  // Do nothing if modifiers other than shift are pressed.
   if (
     keysPressed.has(Keyboard.LEFT_CONTROL) ||
     keysPressed.has(Keyboard.RIGHT_CONTROL) ||
@@ -222,7 +222,7 @@ function appendHistory() {
 }
 
 function drawConsole() {
-  // We check to see if the console is open again in case it was opened on this frame
+  // We check to see if the console is open again in case it was opened on this frame.
   if (!consoleOpen) {
     return;
   }

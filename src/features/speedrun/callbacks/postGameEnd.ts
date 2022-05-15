@@ -10,6 +10,6 @@ export function speedrunPostGameEnd(isGameOver: boolean): void {
     return;
   }
 
-  // Don't move to the first character of the speedrun if we die
+  // Don't move to the first character of the speedrun if we die.
   v.persistent.performedFastReset = true;
 }

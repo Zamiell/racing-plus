@@ -42,7 +42,7 @@ function postRenderFadingToBlack() {
     return;
   }
 
-  // The FadingToBlack state is completed when the screen is completely black
+  // The fading to black state is completed when the screen is completely black.
   setNewFastTravelState(FastTravelState.GOING_TO_NEW_FLOOR);
 }
 
@@ -61,7 +61,7 @@ function postRenderFadingIn() {
     return;
   }
 
-  // The FadingToBlack state is completed when the screen is completely black.
+  // The fading to black state is completed when the screen is completely black.
   setNewFastTravelState(FastTravelState.DISABLED);
 }
 
@@ -73,7 +73,7 @@ function incrementFramesPassed() {
     return;
   }
 
-  // Defer the jump animation until later if we are warping to new rooms
+  // Defer the jump animation until later if we are warping to new rooms.
   if (isDreamCatcherWarping()) {
     return;
   }
@@ -90,11 +90,11 @@ function resetPlayerCollision(players: EntityPlayer[]) {
 
 function makePlayersJump(players: EntityPlayer[]) {
   for (const player of players) {
-    // Play the jumping out of the hole animation
+    // Play the jumping out of the hole animation.
     player.PlayExtraAnimation("Jump");
   }
 
-  // Make the hole(s) disappear
+  // Make the hole(s) disappear.
   const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
   for (const customPitfall of customPitfalls) {
     const sprite = customPitfall.GetSprite();

@@ -1,5 +1,7 @@
 # Racing+ Mod Room Changes
 
+<!-- markdownlint-disable MD033 -->
+
 ## Table of Contents
 
 1. [Balance Changes](#balance-changes)
@@ -10,10 +12,6 @@
 1. [Rooms That Were Deliberately Not Changed](#rooms-that-were-deliberately-not-changed)
 
 <br>
-
-
-
-
 
 ## Balance Changes
 
@@ -59,13 +57,10 @@ On Sheol, there exists a room with a trapdoor that takes you directly to the Dar
 
 <br>
 
-
-
-
-
 ## Softlock Fixes
 
 A softlock is a condition where:
+
 - it is impossible to beat the run
 - the player is forced to save and quit to beat the run
 - the player is forced to stand still for an unreasonable amount of time to beat the run
@@ -158,10 +153,6 @@ In one room, Trites can get stuck in the top part of the room.
 
 <br>
 
-
-
-
-
 ## Unavoidable Damage Fixes
 
 Racing+ is somewhat conservative with what it classifies as unavoidable damage. Difficult rooms are not considered unavoidable damage. Many hours have been spent testing the viability of rooms with various builds.
@@ -175,7 +166,7 @@ While not technically unavoidable, many narrow rooms have near-impossible attack
 - Depths: #638 (Mom's Dead Hand) (deleted)
 - Necropolis: #616 (Mom's Dead Hand) (deleted)
 - Womb: #598 (Mom's Dead Hand) (deleted)
-- Utero: #586  (Mom's Dead Hand) (deleted)
+- Utero: #586 (Mom's Dead Hand) (deleted)
 - Scarred: #611 (Mom's Dead Hand) (deleted)
 - Cathedral: #255 (Uriel) (changed to 1x1)
 - Cathedral: #260 (Gabriel) (changed to 1x1)
@@ -242,10 +233,6 @@ In some rooms, a Slide causes unavoidable damage.
 
 <br>
 
-
-
-
-
 ## Bug Fixes
 
 The Racing+ mod tries to fix as many bugs as possible.
@@ -303,10 +290,6 @@ On some rooms with a black heart, [Edmund forgot to implement entity stacking](h
 In some rooms, entities are placed out of bounds, which causes glitchy behavior.
 
 - Necropolis: #1092
-
-
-
-
 
 ## Miscellaneous Changes
 

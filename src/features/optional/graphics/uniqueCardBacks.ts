@@ -8,14 +8,14 @@ export function postPickupInitTarotCard(pickup: EntityPickup): void {
     pickup.SubType === Card.RUNE_BLANK || // 40
     pickup.SubType === Card.RUNE_BLACK // 41
   ) {
-    // Give an alternate rune sprite (one that isn't tilted left or right)
+    // Give an alternate rune sprite (one that isn't tilted left or right).
     const sprite = pickup.GetSprite();
     sprite.ReplaceSpritesheet(
       0,
       "gfx/items/pick ups/pickup_unique_generic_rune.png",
     );
 
-    // The black rune will now glow black; remove this from the blank rune
+    // The black rune will now glow black; remove this from the blank rune.
     sprite.ReplaceSpritesheet(
       1,
       "gfx/items/pick ups/pickup_unique_generic_rune.png",
@@ -50,7 +50,7 @@ export function postPickupInitTarotCard(pickup: EntityPickup): void {
     // Wild Card (80) has a unique card back in vanilla
     // Soul of Isaac (81) through Soul of Jacob & Esau (97) have unique rune sprites in vanilla
   ) {
-    // Make some cards face-up
+    // Make some cards face-up.
     const sprite = pickup.GetSprite();
     sprite.ReplaceSpritesheet(
       0,

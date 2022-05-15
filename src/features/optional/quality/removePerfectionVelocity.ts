@@ -76,6 +76,6 @@ function getPerfectionPosition(): Vector {
     return findFreePosition(centerPos);
   }
 
-  // By default, spawn Perfection in the middle of the room
+  // By default, spawn Perfection in the middle of the room.
   return centerPos;
 }

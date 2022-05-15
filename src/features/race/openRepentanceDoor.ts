@@ -1,4 +1,4 @@
-// Automatically open Repentance doors in races to Mother
+// Automatically open Repentance doors in races to Mother.
 
 import { RoomType } from "isaac-typescript-definitions";
 import { getDoors } from "isaacscript-common";

@@ -119,7 +119,7 @@ function createBuildVetoButtons() {
   // We use the "characters" array for the builds to avoid making a new data structure.
   emptyArray(v.room.sprites.characters);
   for (const [buildIndex, x, y] of seasonDescription.buildPositions) {
-    // Spawn buttons for each characters
+    // Spawn buttons for each characters.
     const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
     spawnGridWithVariant(

@@ -10,6 +10,6 @@ export function preEntitySpawnCodWorm(
     return undefined;
   }
 
-  // Replace Cod Worms with Para-Bites
+  // Replace Cod Worms with Para-Bites.
   return [EntityType.PARA_BITE, 0, 0, initSeed];
 }

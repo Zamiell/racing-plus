@@ -84,7 +84,7 @@ function isCorruptMod() {
   return v.run.corrupted;
 }
 
-// Check to see if Death Certificate is unlocked
+// Check to see if Death Certificate is unlocked.
 function isIncompleteSave() {
   // If Eden is holding Death Certificate, then it is obviously unlocked
   // (and it will also be removed from pools so the below check won't work).
@@ -127,7 +127,7 @@ function isIncompleteSave() {
     mapSetPlayer(removedTrinketsMap, player, removedTrinkets);
   }
 
-  // Add every item in the game to the blacklist
+  // Add every item in the game to the blacklist.
   const collectibleSet = getCollectibleSet();
   for (const collectibleType of collectibleSet.values()) {
     if (collectibleType !== COLLECTIBLE_TO_CHECK_FOR) {
@@ -135,7 +135,7 @@ function isIncompleteSave() {
     }
   }
 
-  // Get an item from the pool and see if it is the intended item
+  // Get an item from the pool and see if it is the intended item.
   const itemPoolCollectible = g.itemPool.GetCollectible(
     ITEM_POOL_TO_CHECK,
     false,
@@ -151,7 +151,7 @@ function isIncompleteSave() {
   // Reset the blacklist
   g.itemPool.ResetRoomBlacklist();
 
-  // Give back items/trinkets, if necessary
+  // Give back items/trinkets, if necessary.
   for (const player of getPlayers()) {
     const removedItems = mapGetPlayer(removedItemsMap, player);
     if (removedItems !== undefined) {

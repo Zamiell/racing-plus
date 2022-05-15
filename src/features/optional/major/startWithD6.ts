@@ -311,7 +311,7 @@ function giveActiveItem(
   if (hasOpenActiveItemSlot(player)) {
     player.AddCollectible(collectibleType, itemCharge);
   } else {
-    // Spawn it on the ground instead
+    // Spawn it on the ground instead.
     const position = findFreePosition(player.Position);
     const startSeed = g.seeds.GetStartSeed();
     const collectible = spawnCollectible(collectibleType, position, startSeed);

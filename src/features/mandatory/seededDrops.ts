@@ -161,7 +161,7 @@ function spawnSeededDrop() {
     }
   }
 
-  // Hard mode has a chance to remove a heart drop
+  // Hard mode has a chance to remove a heart drop.
   if (
     g.g.Difficulty === Difficulty.HARD &&
     pickupVariant === PickupVariant.HEART
@@ -171,7 +171,7 @@ function spawnSeededDrop() {
     }
   }
 
-  // Broken Modem has a chance to increase the amount of pickups that drop
+  // Broken Modem has a chance to increase the amount of pickups that drop.
   if (pickupCount >= 1) {
     const numBrokenModems = getTotalPlayerCollectibles(
       CollectibleType.BROKEN_MODEM,
@@ -213,35 +213,35 @@ function getPickupVariant(rng: RNG) {
   // Get a random value between 0 and 1 that will determine what kind of reward we get.
   const pickupPercent = rng.RandomFloat();
 
-  // 22% chance for nothing to drop
+  // 22% chance for nothing to drop.
   let pickupVariant = PickupVariant.NULL;
   if (pickupPercent > 0.22) {
     if (pickupPercent < 0.3) {
-      // 7% chance for a card / trinket / pill
+      // 7% chance for a card / trinket / pill.
       if (rng.RandomInt(3) === 0) {
-        // 7% * 33% = 2.3% chance
+        // 7% * 33% = 2.3% chance.
         pickupVariant = PickupVariant.TAROT_CARD; // 300
       } else if (rng.RandomInt(2) === 0) {
-        // 7% * 66% * 50% = 2.3% chance
+        // 7% * 66% * 50% = 2.3% chance.
         pickupVariant = PickupVariant.TRINKET; // 350
       } else {
-        // 7% * 66% * 50% = 2.3% chance
+        // 7% * 66% * 50% = 2.3% chance.
         pickupVariant = PickupVariant.PILL; // 70
       }
     } else if (pickupPercent < 0.45) {
-      // 15% for a coin
+      // 15% for a coin.
       pickupVariant = PickupVariant.COIN; // 20
     } else if (pickupPercent < 0.6) {
-      // 15% for a heart
+      // 15% for a heart.
       pickupVariant = PickupVariant.HEART; // 10
     } else if (pickupPercent < 0.8) {
-      // 20% for a key
+      // 20% for a key.
       pickupVariant = PickupVariant.KEY; // 30
     } else if (pickupPercent < 0.95) {
-      // 15% for a bomb
+      // 15% for a bomb.
       pickupVariant = PickupVariant.BOMB; // 40
     } else {
-      // 5% for a chest
+      // 5% for a chest.
       pickupVariant = PickupVariant.CHEST; // 50
     }
 

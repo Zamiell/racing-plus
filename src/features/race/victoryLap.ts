@@ -191,7 +191,7 @@ function checkVictoryLapBossReplace() {
     return;
   }
 
-  // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps)
+  // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps).
   removeAllMatchingEntities(EntityType.ISAAC);
   removeAllMatchingEntities(EntityType.THE_LAMB);
 

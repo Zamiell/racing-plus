@@ -100,7 +100,7 @@ export function countdownChanged(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // Remove the "1st place!" graphic from the top if we have entered a new room
+  // Remove the "1st place!" graphic from the top if we have entered a new room.
   if (g.race.status === RaceStatus.NONE || g.raceVars.finished) {
     sprite = null;
   }
@@ -111,7 +111,7 @@ export function placeChanged(): void {
     return;
   }
 
-  // The client won't send a new place for solo races
+  // The client won't send a new place for solo races.
   if (g.race.place > MAX_PLACE) {
     sprite = null;
   } else {

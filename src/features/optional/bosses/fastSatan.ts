@@ -65,7 +65,7 @@ function spawnEnemies() {
   const roomSeed = g.r.GetSpawnSeed();
   const rng = newRNG(roomSeed);
 
-  // Spawn 2x Kamikaze Leech (55.1)
+  // Spawn 2x Kamikaze Leech.
   for (const gridIndex of [66, 68]) {
     const position = g.r.GetGridPosition(gridIndex);
     const leechSeed = rng.Next();
@@ -78,7 +78,7 @@ function spawnEnemies() {
     );
   }
 
-  // Spawn 1x Fallen (81.0)
+  // Spawn 1x Fallen.
   const fallenSeed = rng.Next();
   spawnWithSeed(
     EntityType.FALLEN,
@@ -90,7 +90,7 @@ function spawnEnemies() {
 }
 
 function primeStatue() {
-  // Prime the statue to wake up quicker
+  // Prime the statue to wake up quicker.
   const satans = getNPCs(EntityType.SATAN);
   for (const satan of satans) {
     satan.I1 = 1;

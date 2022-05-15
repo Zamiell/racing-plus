@@ -6,7 +6,7 @@ import { RaceVars } from "./RaceVars";
 export class Globals {
   debug = true;
 
-  // Cached API functions
+  // Cache some API classes.
   g = game;
   l = game.GetLevel();
   r = game.GetRoom();

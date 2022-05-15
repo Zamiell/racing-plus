@@ -1,4 +1,4 @@
-// Double pennies do not heal Keeper and Tainted Keeper for the proper amount
+// Double pennies do not heal Keeper and Tainted Keeper for the proper amount.
 
 import {
   DefaultMap,

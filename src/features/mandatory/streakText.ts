@@ -196,7 +196,7 @@ function shouldShowLevelText() {
   const challenge = Isaac.GetChallenge();
 
   return (
-    // There is no need to show the level text in the Change Char Order custom challenge
+    // There is no need to show the level text in the Change Char Order custom challenge.
     challenge !== ChallengeCustom.CHANGE_CHAR_ORDER &&
     // If the race is finished, the "Victory Lap" text will overlap with the stage text,
     // so don't bother showing it.

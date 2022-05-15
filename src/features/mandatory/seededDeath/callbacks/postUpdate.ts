@@ -27,10 +27,10 @@ function postUpdateGhostForm() {
   const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 
-  // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs
+  // We have to re-apply the fade on every frame in case the player takes a pill or steps on cobwebs.
   applySeededGhostFade(player, true);
 
-  // Check to see if the debuff is over
+  // Check to see if the debuff is over.
   if (
     v.run.debuffEndFrame === null ||
     renderFrameCount < v.run.debuffEndFrame

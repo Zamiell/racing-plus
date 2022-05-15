@@ -90,7 +90,7 @@ function spawnDPSButton() {
 
   let gridIndex = 32; // Top-left
   if (inMegaSatanRoom()) {
-    // The normal position is out of bounds inside of the Mega Satan room
+    // The normal position is out of bounds inside of the Mega Satan room.
     gridIndex = 107;
   }
 
@@ -117,7 +117,7 @@ export function spawnVictoryLapButton(center?: boolean): void {
 
   let gridIndex = 42; // Top right
   if (inMegaSatanRoom()) {
-    // The normal position is out of bounds inside of the Mega Satan room
+    // The normal position is out of bounds inside of the Mega Satan room.
     gridIndex = 117;
   }
 
@@ -224,6 +224,6 @@ function checkVictoryLapButtonPressed(gridEntity: GridEntity) {
 function touchedVictoryLapButton(gridEntity: GridEntity, player: EntityPlayer) {
   v.run.numVictoryLaps += 1;
 
-  // Call the fast-travel function directly to emulate the player having touched a heaven door
+  // Call the fast-travel function directly to emulate the player having touched a heaven door.
   setFadingToBlack(player, gridEntity.Position, true);
 }

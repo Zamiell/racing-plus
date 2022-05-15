@@ -12,7 +12,7 @@ export function postRender(): void {
 
 // ModCallback.EXECUTE_CMD (22)
 export function executeCmd(): void {
-  // Record the time of the last command
+  // Record the time of the last command.
   timeConsoleOpenedOrUsed = Isaac.GetTime();
 }
 

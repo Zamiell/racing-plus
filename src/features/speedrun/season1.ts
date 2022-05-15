@@ -25,24 +25,24 @@ function giveStartingItems() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 
-  // Give extra items to some characters
+  // Give extra items to some characters.
   switch (character) {
     // 0
     case PlayerType.ISAAC: {
-      // Isaac does not get the D6 in challenges
+      // Isaac does not get the D6 in challenges.
       giveCollectibleAndRemoveFromPools(player, CollectibleType.D6);
       break;
     }
 
     case PlayerType.THE_LOST: {
-      // For some reason, Holy Mantle is not removed from pools while in a custom challenge
+      // For some reason, Holy Mantle is not removed from pools while in a custom challenge.
       g.itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);
       break;
     }
 
     // 14
     case PlayerType.KEEPER: {
-      // Keeper does not get the Wooden Nickel in challenges
+      // Keeper does not get the Wooden Nickel in challenges.
       giveCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
       giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
       break;

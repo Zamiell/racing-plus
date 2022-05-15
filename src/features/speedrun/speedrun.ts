@@ -52,16 +52,16 @@ export function finish(player: EntityPlayer): void {
   player.AddCollectible(CollectibleTypeCustom.CHECKPOINT);
   removeCollectibleFromItemTracker(CollectibleTypeCustom.CHECKPOINT);
 
-  // Record how long this run took
+  // Record how long this run took.
   if (v.persistent.startedCharacterFrame !== null) {
     const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
     v.persistent.characterRunFrames.push(elapsedFrames);
   }
 
-  // Show the run summary (including the average time per character)
+  // Show the run summary (including the average time per character).
   v.room.showEndOfRunText = true;
 
-  // Finish the speedrun
+  // Finish the speedrun.
   v.run.finished = true;
 
   if (v.persistent.startedSpeedrunFrame !== null) {
@@ -70,7 +70,7 @@ export function finish(player: EntityPlayer): void {
 
   v.persistent.resetAllVarsOnNextReset = true;
 
-  // Fireworks will play on the next frame (from the PostUpdate callback)
+  // Fireworks will play on the next frame (from the PostUpdate callback).
 }
 
 export function getAverageTimePerCharacter(): string {

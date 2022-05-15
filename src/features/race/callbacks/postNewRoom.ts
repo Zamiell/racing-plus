@@ -14,7 +14,7 @@ import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 import * as victoryLap from "../victoryLap";
 
-// We take the next stage after the final vanilla stage
+// We take the next stage after the final vanilla stage.
 const MEGA_SATAN_FAKE_STAGE_NUM = MAX_STAGE + 1;
 
 export function racePostNewRoom(): void {

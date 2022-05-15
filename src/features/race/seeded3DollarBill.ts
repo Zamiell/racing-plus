@@ -72,7 +72,7 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
     roomSeed,
   );
 
-  // Iterate through the item array until we find an item that we do not have yet
+  // Iterate through the item array until we find an item that we do not have yet.
   let arrayIndex = initialArrayIndex;
   do {
     const collectibleType = THREE_DOLLAR_BILL_ITEMS[arrayIndex];
@@ -91,7 +91,7 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
     }
   } while (arrayIndex !== initialArrayIndex);
 
-  // We have every single item in the list, so do nothing
+  // We have every single item in the list, so do nothing.
   v.run.seeded3DollarBillItem = null;
 }
 
@@ -100,13 +100,13 @@ export function postItemPickup(
   player: EntityPlayer,
   pickingUpItem: PickingUpItem,
 ): void {
-  // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill
+  // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill.
   if (
     player.HasCollectible(REPLACEMENT_ITEM) &&
     pickingUpItem.itemType === ItemType.PASSIVE &&
     pickingUpItem.subType === v.run.seeded3DollarBillItem
   ) {
-    // Unset the variable so that the new item does not get blown away after a room change
+    // Unset the variable so that the new item does not get blown away after a room change.
     v.run.seeded3DollarBillItem = null;
   }
 }

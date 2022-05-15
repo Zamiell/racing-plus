@@ -54,7 +54,7 @@ function checkManualResetAtEndOfFadeout() {
   }
   v.run.resetFrame = null;
 
-  // The screen is now black, so move us to the next character for the speedrun
+  // The screen is now black, so move us to the next character for the speedrun.
   speedrunSetNextCharacterAndRestart();
 }
 
@@ -66,7 +66,7 @@ export function speedrunSetNextCharacterAndRestart(goForward = true): void {
   v.persistent.characterNum += adjustment;
   restartOnNextFrame();
 
-  // Season 2 will set the next character using its own code
+  // Season 2 will set the next character using its own code.
   if (challenge !== ChallengeCustom.SEASON_2) {
     const character = getCurrentCharacter();
     setRestartCharacter(character);

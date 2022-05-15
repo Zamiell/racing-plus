@@ -34,7 +34,7 @@ export function postRender(): void {
   checkResetInput();
 }
 
-// Check for fast-reset inputs
+// Check for fast-reset inputs.
 function checkResetInput() {
   const isPaused = g.g.IsPaused();
 
@@ -44,7 +44,7 @@ function checkResetInput() {
     return;
   }
 
-  // Disable the fast-reset feature if the custom console is open
+  // Disable the fast-reset feature if the custom console is open.
   if (AwaitingTextInput) {
     return;
   }
@@ -75,11 +75,11 @@ function reset() {
   const roomsEntered = getRoomsEntered();
 
   if (roomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
-    // Speedrun functionality relies on knowing whether or not a fast-reset occurred
+    // Speedrun functionality relies on knowing whether or not a fast-reset occurred.
     speedrunSetFastReset();
     restart();
   } else {
-    // In speedruns, we want to double tap R to return reset to the same character
+    // In speedruns, we want to double tap R to return reset to the same character.
     v.run.lastResetFrame = renderFrameCount;
   }
 }

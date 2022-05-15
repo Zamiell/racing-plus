@@ -88,7 +88,7 @@ export function draw(
   sprites.clock.RenderLayer(0, positionClock);
 
   if (hours > 0) {
-    // The format is "#.##.##" (instead of "##.##", which is the default)
+    // The format is "#.##.##" (instead of "##.##", which is the default).
     hourAdjustment2 = 2;
     startingX += DIGIT_LENGTH + hourAdjustment;
 
@@ -142,10 +142,10 @@ export function draw(
 export function convertSecondsToTimerValues(
   totalSeconds: int,
 ): [int, int, int, int, int, int] {
-  // Calculate the hours digit
+  // Calculate the hours digit.
   const hours = math.floor(totalSeconds / 3600);
 
-  // Calculate the minutes digits
+  // Calculate the minutes digits.
   let minutes = math.floor(totalSeconds / 60);
   if (hours > 0) {
     minutes -= hours * 60;
@@ -157,21 +157,21 @@ export function convertSecondsToTimerValues(
     minutesString = minutes.toString();
   }
 
-  // The first character
+  // The first character.
   const minute1String = string.sub(minutesString, 1, 1);
   const minute1 = tonumber(minute1String);
   if (minute1 === undefined) {
     error("Failed to parse the first minute of the timer.");
   }
 
-  // The second character
+  // The second character.
   const minute2String = string.sub(minutesString, 2, 2);
   const minute2 = tonumber(minute2String);
   if (minute2 === undefined) {
     error("Failed to parse the second minute of the timer.");
   }
 
-  // Calculate the seconds digits
+  // Calculate the seconds digits.
   const seconds = math.floor(totalSeconds % 60);
   let secondsString: string;
   if (seconds < 10) {
@@ -180,21 +180,21 @@ export function convertSecondsToTimerValues(
     secondsString = seconds.toString();
   }
 
-  // The first character
+  // The first character.
   const second1String = string.sub(secondsString, 1, 1);
   const second1 = tonumber(second1String);
   if (second1 === undefined) {
     error("Failed to parse the first second of the timer.");
   }
 
-  // The second character
+  // The second character.
   const second2String = string.sub(secondsString, 2, 2);
   const second2 = tonumber(second2String);
   if (second2 === undefined) {
     error("Failed to parse the second second of the timer.");
   }
 
-  // Calculate the tenths digit
+  // Calculate the tenths digit.
   const rawSeconds = totalSeconds % 60; // 0.000 to 59.999
   const decimals = rawSeconds - math.floor(rawSeconds);
   const tenths = math.floor(decimals * 10);

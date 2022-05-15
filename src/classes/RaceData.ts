@@ -6,7 +6,7 @@ import { RaceGoal } from "../enums/RaceGoal";
 import { RacerStatus } from "../enums/RacerStatus";
 import { RaceStatus } from "../enums/RaceStatus";
 
-// The possible types for values of RaceData
+/** The possible types for values of `RaceData`. */
 export type RaceDataType = boolean | number | string | int[];
 
 /** This must match the "ModSocket" class on the client. */

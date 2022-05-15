@@ -36,12 +36,12 @@ export function checkRemove(
   }
 
   // The PostEntityKill callback will be triggered when a Dark Red champion changes to a flesh pile.
-  // This does not count as a real death (and the NPC should not be removed),
-  // so we need to handle this.
-  // We cannot check for `npc.GetSprite().GetFilename() === "gfx/024.000_Globin.anm2"`,
-  // because that will not work for champion Gapers & Globins.
-  // We cannot check for `npc.GetSprite().IsPlaying("ReGenChamp")`,
-  // because that will only be updated on the next frame.
+  // This does not count as a real death (and the NPC should not be removed), so we need to handle
+  // this.
+  // - We cannot check for the sprite file name being equal to "gfx/024.000_Globin.anm2"`, since
+  //   that that will not work for champion Gapers & Globins.
+  // - We cannot check to see if the sprite is playing the "ReGenChamp" animation, since that will
+  //   only be updated on the next frame.
   const championColor = npc.GetChampionColorIdx();
   if (championColor === ChampionColor.DARK_RED && callbackIsPostEntityKill) {
     // We do not want to open the doors yet until the flesh pile is actually removed in the

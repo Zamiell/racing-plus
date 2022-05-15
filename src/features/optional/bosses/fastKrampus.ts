@@ -93,7 +93,7 @@ function getKrampusItemSubType() {
   const [coalBanned, headBanned] = getKrampusBans();
 
   if (coalBanned && headBanned) {
-    // Since both of the items are banned, make Krampus drop a random Devil Room item
+    // Since both of the items are banned, make Krampus drop a random Devil Room item.
     return g.itemPool.GetCollectible(ItemPoolType.DEVIL, true, startSeed);
   }
 
@@ -112,7 +112,7 @@ function getKrampusItemSubType() {
 }
 
 function getKrampusBans(): [coalBanned: boolean, headBanned: boolean] {
-  // We want Krampus' drops to be explicitly contingent upon the items that player 1 has
+  // We want Krampus' drops to be explicitly contingent upon the items that the player has.
   let coalBanned = false;
   let headBanned = false;
 

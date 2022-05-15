@@ -88,12 +88,12 @@ export function season2PostGameStarted(): void {
 function checkErrors() {
   const time = Isaac.GetTime();
 
-  // Game recently opened
+  // Game recently opened.
   const timeGameOpened = getTimeGameOpened();
   const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
   v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
 
-  // Console recently used
+  // Console recently used.
   const timeConsoleUsed = getTimeConsoleUsed();
   if (timeConsoleUsed === null) {
     v.run.errors.consoleRecentlyUsed = false;
@@ -101,13 +101,13 @@ function checkErrors() {
     const consoleUnlockTime = timeConsoleUsed + SEASON_2_LOCK_MILLISECONDS;
     v.run.errors.consoleRecentlyUsed = time <= consoleUnlockTime;
 
-    // Force them back on the first character if they used the console
+    // Force them back on the first character if they used the console.
     if (v.run.errors.consoleRecentlyUsed) {
       resetPersistentVars();
     }
   }
 
-  // Bans recently assigned
+  // Bans recently assigned.
   if (v.persistent.timeBansSet === null) {
     v.run.errors.bansRecentlySet = false;
   } else {
@@ -120,7 +120,7 @@ function checkErrors() {
 }
 
 function removeItemsFromPools() {
-  // From seeded races
+  // These bans are from seeded races.
   g.itemPool.RemoveCollectible(CollectibleType.SOL);
   g.itemPool.RemoveTrinket(TrinketType.CAINS_EYE);
 
@@ -166,14 +166,14 @@ function refreshStartingCharactersAndBuilds() {
   emptyArray(v.persistent.remainingBuildIndexes);
   v.persistent.remainingBuildIndexes.push(...SEASON_2_STARTING_BUILD_INDEXES);
 
-  // We will assign the character and the build in the next function
+  // We will assign the character and the build in the next function.
   v.persistent.timeAssigned = time;
 
   log("Season 2 - Refreshed starting characters and builds.");
 }
 
 function getStartingCharacter() {
-  // First, handle the case where there is no old starting character at all
+  // First, handle the case where there is no old starting character at all.
   const oldStartingCharacter = season2GetCurrentCharacter();
   if (oldStartingCharacter !== undefined) {
     log(
@@ -202,7 +202,7 @@ function getStartingCharacter() {
 }
 
 function getStartingBuildIndex(character: PlayerType) {
-  // First, handle the case where there is no old starting build at all
+  // First, handle the case where there is no old starting build at all.
   const oldStartingBuildIndex = season2GetCurrentBuildIndex();
   if (oldStartingBuildIndex !== undefined) {
     log(`Season 2 - Using previously selected build: ${oldStartingBuildIndex}`);
@@ -211,16 +211,16 @@ function getStartingBuildIndex(character: PlayerType) {
 
   const buildExceptions: int[] = [];
 
-  // Don't get the same starting build as the one we just played
+  // Don't get the same starting build as the one we just played.
   if (v.persistent.lastSelectedBuildIndex !== null) {
     buildExceptions.push(v.persistent.lastSelectedBuildIndex);
   }
 
-  // Don't get starting builds that we have vetoed
+  // Don't get starting builds that we have vetoed.
   const vetoedBuilds = getCharacterOrderSafe();
   buildExceptions.push(...vetoedBuilds);
 
-  // Don't get starting builds that don't synergize with the current character
+  // Don't get starting builds that don't synergize with the current character.
   const antiSynergyBuilds = getAntiSynergyBuilds(character);
   buildExceptions.push(...antiSynergyBuilds);
 
@@ -311,20 +311,20 @@ function giveStartingItems(
 ) {
   const character = player.GetPlayerType();
 
-  // Everyone starts with the Compass in this season
+  // Everyone starts with the Compass in this season.
   giveCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
 
   switch (character) {
     // 2
     case PlayerType.CAIN: {
-      // Cain does not automatically start with the Paper Clip in custom challenges
+      // Cain does not automatically start with the Paper Clip in custom challenges.
       giveTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
       break;
     }
 
     // 5
     case PlayerType.EVE: {
-      // Eve does not automatically start with the Razor in custom challenges
+      // Eve does not automatically start with the Razor in custom challenges.
       giveCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
       break;
     }
@@ -345,12 +345,12 @@ function giveStartingItems(
 
   const firstCollectibleType = startingBuild[0];
 
-  // Handle builds with smelted trinkets
+  // Handle builds with smelted trinkets.
   if (firstCollectibleType === CollectibleType.INCUBUS) {
     smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
   }
 
-  // Handle builds with custom nerfs
+  // Handle builds with custom nerfs.
   if (firstCollectibleType === CollectibleType.REVELATION) {
     player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
     removeCollectibleCostume(player, CollectibleType.REVELATION);

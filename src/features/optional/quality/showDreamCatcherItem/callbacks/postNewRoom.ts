@@ -57,7 +57,7 @@ function checkWarping() {
 }
 
 function gatherInfoAndGlowingHourGlass() {
-  // We have arrived in a new Treasure Room or Boss Room
+  // We have arrived in a new Treasure Room or Boss Room.
   const roomType = g.r.GetType();
   if (roomType === RoomType.TREASURE) {
     for (const collectibleType of getRoomCollectibles()) {
@@ -85,7 +85,7 @@ function gatherInfoAndGlowingHourGlass() {
     const player = Isaac.GetPlayer();
     useActiveItemTemp(player, CollectibleType.GLOWING_HOUR_GLASS);
 
-    // Cancel the "use item" animation to speed up returning to the starting room
+    // Cancel the "use item" animation to speed up returning to the starting room.
     const sprite = player.GetSprite();
     sprite.Stop();
   });

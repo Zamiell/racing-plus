@@ -95,7 +95,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
     }
 
     case RaceStatus.OPEN: {
-      // If we are in the first room of a run, go to the race room
+      // If we are in the first room of a run, go to the race room.
       if (effectiveStage === 1 && inStartingRoom()) {
         restartOnNextFrame();
         log("Restarting to go to the race room.");

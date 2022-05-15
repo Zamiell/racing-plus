@@ -9,7 +9,7 @@ import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SEASON_2_STARTING_BUILDS } from "../constants";
 import { season2GetCurrentBuildIndex } from "../v";
 
-// CacheFlag.CACHE_FLYING (1 << 7)
+// CacheFlag.FLYING (1 << 7)
 export function season2EvaluateCacheFlying(player: EntityPlayer): void {
   const challenge = Isaac.GetChallenge();
 
@@ -32,7 +32,7 @@ export function season2EvaluateCacheFlying(player: EntityPlayer): void {
     return;
   }
 
-  // Only remove the flight if the player does not have another flight item or effect
+  // Only remove the flight if the player does not have another flight item or effect.
   if (
     !isFlyingCharacter(player) &&
     !hasFlyingTransformation(player) &&

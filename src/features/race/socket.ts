@@ -19,15 +19,15 @@ export function postRender(): void {
     return;
   }
 
-  // Send a ping as a quick test to see if the socket is still open
+  // Send a ping as a quick test to see if the socket is still open.
   send("ping");
 
-  // Do nothing further if the ping failed
+  // Do nothing further if the ping failed.
   if (!socketClient.isActive()) {
     return;
   }
 
-  // Read the socket until we run out of data to read
+  // Read the socket until we run out of data to read.
   const oldRaceData = cloneRaceData(g.race);
   while (read()) {} // eslint-disable-line no-empty
   checkRaceChanged(oldRaceData, g.race);
@@ -67,7 +67,7 @@ export function postNewRoom(): void {
   const roomType = g.r.GetType();
   const roomVariant = getRoomVariant();
 
-  // This roughly emulates a log.txt line of e.g. "[INFO] - Room 13.12(New Room)"
+  // This roughly emulates a log.txt line of e.g.: "[INFO] - Room 13.12(New Room)"
   send("room", `${roomType}-${roomVariant}`);
 }
 

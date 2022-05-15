@@ -58,7 +58,7 @@ export function preNPCUpdateMomsDeadHand(npc: EntityNPC): boolean | void {
 function preNPCUpdate(npc: EntityNPC) {
   const sprite = npc.GetSprite();
 
-  // Ignore the normal AI when it is playing the custom "Appear" animation
+  // Ignore the normal AI when it is playing the custom "Appear" animation.
   if (sprite.IsPlaying("Appear")) {
     return true;
   }
@@ -72,6 +72,6 @@ export function postNewRoom(): void {
     return;
   }
 
-  // Mute the audio tell of Mom laughing, since it is obnoxious
+  // Mute the audio tell of Mom laughing, since it is obnoxious.
   sfxManager.Stop(SoundEffect.MOM_VOX_EVIL_LAUGH);
 }

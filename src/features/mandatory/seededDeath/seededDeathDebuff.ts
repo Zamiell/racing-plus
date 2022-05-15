@@ -81,7 +81,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 14, 33
     case PlayerType.KEEPER:
     case PlayerType.KEEPER_B: {
-      // One filled coin container
+      // One filled coin container.
       player.AddMaxHearts(2, true);
       player.AddHearts(2);
       return;
@@ -90,7 +90,7 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 16, 17
     case PlayerType.THE_FORGOTTEN:
     case PlayerType.THE_SOUL: {
-      // One half-filled bone heart + one half soul heart
+      // One half-filled bone heart + one half soul heart.
       player.AddBoneHearts(1);
       player.AddHearts(1);
       player.AddSoulHearts(1);
@@ -100,14 +100,14 @@ function debuffOnSetHealth(player: EntityPlayer) {
     // 18, 22
     case PlayerType.BETHANY:
     case PlayerType.MAGDALENE_B: {
-      // 1.5 filled red heart containers
+      // 1.5 filled red heart containers.
       player.AddMaxHearts(4, true);
       player.AddHearts(3);
       return;
     }
 
     default: {
-      // One and a half soul hearts
+      // One and a half soul hearts.
       player.AddSoulHearts(3);
     }
   }
@@ -134,7 +134,7 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
     removeCollectible(player, CollectibleType.BIRTHRIGHT);
   }
 
-  // Go through all of their active collectibles
+  // Go through all of their active collectibles.
   for (const activeSlot of getEnumValues(ActiveSlot)) {
     if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
@@ -216,7 +216,7 @@ function debuffOnRemoveAllWisps(player: EntityPlayer) {
   // around this by spawning an item wisp that does nothing, which will remove all other item wisps.
   player.AddItemWisp(CollectibleTypeCustom.DEBUG, Vector(0, 0));
 
-  // Then remove that item wisp again
+  // Then remove that item wisp again.
   removeAllFamiliars(FamiliarVariant.ITEM_WISP);
 }
 
@@ -252,7 +252,7 @@ export function debuffOff(player: EntityPlayer): void {
 }
 
 function debuffOffRestoreSize(player: EntityPlayer) {
-  // Set their size to the way it was before the debuff was applied
+  // Set their size to the way it was before the debuff was applied.
   if (isCharacter(player, PlayerType.ESAU)) {
     if (v.run.spriteScale2 !== null) {
       player.SpriteScale = v.run.spriteScale2;

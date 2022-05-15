@@ -15,7 +15,7 @@ const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
 // ModCallback.POST_NPC_INIT (27)
 // EntityType.DADDY_LONG_LEGS (101)
 export function postNPCInitDaddyLongLegs(npc: EntityNPC): void {
-  // We only want to target the child entities that represent the multi-stomp attack
+  // We only want to target the child entities that represent the multi-stomp attack.
   if (npc.SpawnerEntity === undefined) {
     return;
   }

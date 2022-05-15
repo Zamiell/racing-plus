@@ -168,7 +168,7 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | void {
       oldCollectibleType,
     );
 
-    // Delete the flipped sprite
+    // Delete the flipped sprite.
     const ptrHash = GetPtrHash(collectible);
     v.room.flippedSprites.delete(ptrHash);
     // (The sprite will be reinitialized on the next render frame if there is still an item in the

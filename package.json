@@ -13,6 +13,7 @@
   "author": "Racing+",
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
+    "eslint-plugin-isaacscript": "file:../eslint-plugin-isaacscript",
     "isaac-typescript-definitions": "^2.0.12",
     "isaacscript": "^2.0.3",
     "isaacscript-common": "^2.0.6",

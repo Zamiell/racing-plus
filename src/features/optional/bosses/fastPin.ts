@@ -55,7 +55,7 @@ function checkPin(npc: EntityNPC) {
 }
 
 function speedUpTearAttack(npc: EntityNPC) {
-  // In vanilla, Pin will spend too long underground after performing the tear attack
+  // In vanilla, Pin will spend too long underground after performing the tear attack.
   if (
     npc.State === NpcState.ATTACK &&
     npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
@@ -89,7 +89,7 @@ function checkWormwood(npc: EntityNPC) {
     return;
   }
 
-  // We do not want to speed up the poke attack, so keep track of this
+  // We do not want to speed up the poke attack, so keep track of this.
   if (v.room.pokePhase) {
     return;
   }

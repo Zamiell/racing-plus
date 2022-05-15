@@ -55,7 +55,7 @@ function inItLivesOrHushBossRoom() {
 
   return (
     (stage === 8 || stage === 9) &&
-    // Corpse does not have It Lives! / Hush
+    // Corpse does not have It Lives! / Hush.
     stageType !== StageType.REPENTANCE &&
     roomType === RoomType.BOSS &&
     // If the player is fighting It Lives! from an Emperor? Card room, then the room will be outside

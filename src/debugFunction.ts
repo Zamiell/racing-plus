@@ -23,7 +23,7 @@ export function init(): void {
 }
 
 function debugCode(_params?: string) {
-  // Add code here
+  // Add code here.
 }
 
 export function debugFunction(params?: string): void {

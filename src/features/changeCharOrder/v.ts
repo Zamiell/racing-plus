@@ -26,7 +26,7 @@ const v = {
       items: [] as Sprite[],
     },
 
-    // For fading out after the user has finished picking
+    // For fading out after the user has finished picking.
     challengeTarget: null as ChallengeCustom | null,
     resetRenderFrame: null as int | null,
   },

@@ -24,7 +24,7 @@ export function init(): void {
 }
 
 // ModCallback.EVALUATE_CACHE (8)
-// CacheFlag.CACHE_LUCK (1 << 10)
+// CacheFlag.LUCK (1 << 10)
 export function evaluateCacheLuck(player: EntityPlayer): void {
   const has13Luck = player.HasCollectible(CollectibleTypeCustom.THIRTEEN_LUCK);
   const has15Luck = player.HasCollectible(CollectibleTypeCustom.FIFTEEN_LUCK);

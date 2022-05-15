@@ -12,10 +12,11 @@ import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
 
-// Near the top-left
-const SPRITE_X = 123;
-const SPRITE_Y = 17;
-const SPRITE_SPACING = 30;
+/** Near the top-left. */
+const ACTIVE_COLLECTIBLE_SPRITE_POSITION = Vector(123, 17);
+const PASSIVE_COLLECTIBLE_SPRITE_OFFSET = Vector(30, 0);
+const PASSIVE_COLLECTIBLE_SPRITE_POSITION =
+  ACTIVE_COLLECTIBLE_SPRITE_POSITION.add(PASSIVE_COLLECTIBLE_SPRITE_OFFSET);
 
 let activeSprite: Sprite | null = null;
 let passiveSprite: Sprite | null = null;
@@ -59,12 +60,10 @@ function drawItemSprites() {
   }
 
   if (activeSprite !== null) {
-    const position = Vector(SPRITE_X, SPRITE_Y);
-    activeSprite.RenderLayer(0, position);
+    activeSprite.RenderLayer(0, ACTIVE_COLLECTIBLE_SPRITE_POSITION);
   }
   if (passiveSprite !== null) {
-    const position = Vector(SPRITE_X + SPRITE_SPACING, SPRITE_Y);
-    passiveSprite.RenderLayer(0, position);
+    passiveSprite.RenderLayer(0, PASSIVE_COLLECTIBLE_SPRITE_POSITION);
   }
 }
 
@@ -90,7 +89,7 @@ function setItemSprites() {
   }
 }
 
-// Only show the sprites in the starting room of the first floor
+// Only show the sprites in the starting room of the first floor.
 function shouldShowSprites() {
   const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();

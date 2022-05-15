@@ -1,4 +1,4 @@
-// Automatically open the Mega Satan door on races with a Mega Satan goal
+// Automatically open the Mega Satan door on races with a Mega Satan goal.
 
 import { DoorSlot, SoundEffect } from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";

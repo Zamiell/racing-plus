@@ -75,7 +75,7 @@ function getFileNum(itemID: int) {
     return defaultReturn;
   }
 
-  // Between Sad Onion and the highest vanilla item (or a custom modded items)
+  // Between Sad Onion and the highest vanilla item (or a custom modded items).
   if (
     itemID >= CollectibleType.SAD_ONION &&
     itemID <= MAX_VANILLA_COLLECTIBLE_TYPE
@@ -83,27 +83,27 @@ function getFileNum(itemID: int) {
     return itemID.toString().padStart(3, "0");
   }
 
-  // Between the highest vanilla item and Swallowed Penny
+  // Between the highest vanilla item and Swallowed Penny.
   if (itemID > MAX_VANILLA_COLLECTIBLE_TYPE && itemID < 2001) {
     return defaultReturn;
   }
 
-  // Between Swallowed Penny and Sigil of Baphomet
+  // Between Swallowed Penny and Sigil of Baphomet.
   if (itemID >= 2001 && itemID <= 2189) {
     return itemID.toString();
   }
 
-  // Between Sigil of Baphomet and Golden Swallowed Penny
+  // Between Sigil of Baphomet and Golden Swallowed Penny.
   if (itemID > 2189 && itemID < 32769) {
     return defaultReturn;
   }
 
-  // Between Golden Swallowed Penny and Golden Sigil of Baphomet
+  // Between Golden Swallowed Penny and Golden Sigil of Baphomet.
   if (itemID >= 32769 && itemID <= 32957) {
     return itemID.toString();
   }
 
-  // Past Golden Sigil of Baphomet
+  // Past Golden Sigil of Baphomet.
   return defaultReturn;
 }
 

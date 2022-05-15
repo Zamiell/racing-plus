@@ -1,4 +1,4 @@
-// We draw a black sprite on top of the screen in order to fade everything to black
+// We draw a black sprite on top of the screen in order to fade everything to black.
 
 import { VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -13,7 +13,7 @@ export function draw(): void {
     return;
   }
 
-  // Conditionally adjust the opacity
+  // Conditionally adjust the opacity.
   if (v.run.state === FastTravelState.FADING_TO_BLACK) {
     const opacity = v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
     sprite.Color = Color(1, 1, 1, opacity);

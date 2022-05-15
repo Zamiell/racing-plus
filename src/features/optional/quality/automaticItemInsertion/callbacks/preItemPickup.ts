@@ -40,16 +40,16 @@ function checkIfItemDropsPickups(
 
   const collectibleType = pickingUpItem.subType as CollectibleType;
 
-  // First, check to see if this is our 3rd Spun item so that we can insert the pill
+  // First, check to see if this is our 3rd Spun item so that we can insert the pill.
   checkIfThirdSpunItem(collectibleType, player);
 
-  // Check to see if this pickup drops anything
+  // Check to see if this pickup drops anything.
   const pickupVariants = COLLECTIBLE_TO_PICKUP_DROPS_MAP.get(collectibleType);
   if (pickupVariants === undefined) {
     return;
   }
 
-  // This item drops pickups, so record what we expect to spawn, and then wait for later
+  // This item drops pickups, so record what we expect to spawn, and then wait for later.
   for (const pickupVariant of pickupVariants) {
     const playerIndex = getPlayerIndex(player);
     const queueArray: [PickupVariant, PlayerIndex] = [
@@ -79,7 +79,7 @@ function checkIfThirdSpunItem(
     PlayerForm.SPUN,
   );
   if (numSpunCollectibles === 2) {
-    // We already have two Spun items and we are picking up a third one
+    // We already have two Spun items and we are picking up a third one.
     const playerIndex = getPlayerIndex(player);
     const queueArray: [PickupVariant, PlayerIndex] = [
       PickupVariant.PILL,

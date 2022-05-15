@@ -58,7 +58,7 @@ function checkRoomCleared() {
   }
   v.room.spawnClearAwardFrame = null;
 
-  // Now that the room is cleared, spawn a second collectible item
+  // Now that the room is cleared, spawn a second collectible item.
   const freshCollectible = getFreshlySpawnedCollectible();
   if (freshCollectible === undefined) {
     return;
@@ -152,7 +152,7 @@ export function postNewRoom(): void {
 function duplicateBoss(boss: EntityNPC) {
   v.room.shouldSpawnTwoBossItems = true;
 
-  // If the bosses start on the same tile, it looks buggy
+  // If the bosses start on the same tile, it looks buggy.
   const position = findFreePosition(boss.Position, true);
 
   const duplicatedBoss = spawn(
@@ -165,7 +165,7 @@ function duplicateBoss(boss: EntityNPC) {
     boss.InitSeed,
   );
 
-  // Account for the vanilla mechanic where duplicated bosses have a portion of their HP taken away
+  // Account for the vanilla mechanic where duplicated bosses have a portion of their HP taken away.
   boss.HitPoints *= HP_MULTIPLIER;
   duplicatedBoss.HitPoints *= HP_MULTIPLIER;
 }

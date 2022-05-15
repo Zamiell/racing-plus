@@ -58,7 +58,7 @@ function checkInputPocket() {
 
 function fastDrop(target: FastDropTarget) {
   for (const player of getPlayers()) {
-    // Fast-drop is disabled during when the player is holding an item above their head
+    // Fast-drop is disabled during when the player is holding an item above their head.
     if (!player.IsItemQueueEmpty()) {
       return;
     }

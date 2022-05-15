@@ -9,7 +9,7 @@ export function postPlayerRender(player: EntityPlayer): void {
     return;
   }
 
-  // The vanilla teleport animations are annoyingly slow, so speed them up by a factor of 2
+  // The vanilla teleport animations are annoyingly slow, so speed them up by a factor of 2.
   const sprite = player.GetSprite();
   const animation = sprite.GetAnimation();
   if (

@@ -130,7 +130,7 @@ export function before(): void {
   const coinMod = getRandom(rng);
   player.AddCoins(-999);
   if (coinMod < 0.5) {
-    // 50% chance to have 5 coins
+    // 50% chance to have 5 coins.
     player.AddCoins(5);
   }
 
@@ -138,7 +138,7 @@ export function before(): void {
   const keyMod = getRandom(rng);
   player.AddKeys(-99);
   if (keyMod < 0.5) {
-    // 50% chance to get 2 keys
+    // 50% chance to get 2 keys.
     player.AddKeys(2);
   }
 
@@ -149,11 +149,11 @@ export function before(): void {
     player.AddHearts(1);
     const fullHealthMod = getRandom(rng);
     if (fullHealthMod < 0.66) {
-      // 66% chance to be full health
+      // 66% chance to be full health.
       player.AddHearts(1);
     }
   } else {
-    // Give them one soul heart so that they do not die upon changing floors
+    // Give them one soul heart so that they do not die upon changing floors.
     player.AddSoulHearts(2);
   }
 
@@ -161,7 +161,7 @@ export function before(): void {
   // (which is defined as being at 1 heart or less)
   const criticalHealthMod = getRandom(rng);
   if (criticalHealthMod < 0.75) {
-    // 75% chance to not be at critical health
+    // 75% chance to not be at critical health.
     if (characterCanHaveRedHearts(character)) {
       player.AddMaxHearts(2, false);
       player.AddHearts(2);

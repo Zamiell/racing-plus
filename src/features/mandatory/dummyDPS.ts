@@ -38,7 +38,7 @@ function resetDPSIfNSecondsPassed() {
       gameFrameCount,
     );
     if (elapsedSeconds >= DPS_INTERVAL_SECONDS) {
-      // Reset the counter if it has been more than N seconds since the last damage
+      // Reset the counter if it has been more than N seconds since the last damage.
       v.room.totalDamage = 0;
       v.room.firstFrameOfDamage = null;
       v.room.lastFrameOfDamage = null;
@@ -80,7 +80,7 @@ function getDPS() {
 // ModCallback.ENTITY_TAKE_DMG (11)
 // EntityType.DUMMY (964)
 export function entityTakeDmgDummy(damageAmount: float): void {
-  // This entity constantly takes damage for some reason
+  // This entity constantly takes damage for some reason.
   if (damageAmount <= 0) {
     return;
   }

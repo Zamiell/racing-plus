@@ -55,7 +55,7 @@ function checkSpecialRestart() {
     return;
   }
 
-  // Since no special conditions apply, just do a normal restart
+  // Since no special conditions apply, just do a normal restart.
   restart();
 }
 
@@ -68,7 +68,7 @@ export function isRestartingOnNextFrame(): boolean {
 }
 
 export function setRestartCharacter(character: PlayerType): void {
-  // Prevent crashing the game when switching to a character that does not exist
+  // Prevent crashing the game when switching to a character that does not exist.
   if (character < 0 || character > MAX_VANILLA_PLAYER_TYPE) {
     log(`Preventing restarting to character: ${character}`);
     return;

@@ -61,7 +61,7 @@ export function insertPickup(
     }
 
     default: {
-      // Ignore other pickups
+      // Ignore other pickups.
       return undefined;
     }
   }
@@ -188,13 +188,13 @@ function insertCoin(
 
     // 6
     case CoinSubType.STICKY_NICKEL: {
-      // Don't put Sticky Nickels in our inventory automatically
+      // Don't put Sticky Nickels in our inventory automatically.
       return undefined;
     }
 
     // 7
     case CoinSubType.GOLDEN: {
-      // Don't put Golden Coins in our inventory automatically
+      // Don't put Golden Coins in our inventory automatically.
       return undefined;
     }
 
@@ -289,7 +289,7 @@ function insertBomb(
 
     // 3
     case BombSubType.TROLL: {
-      // Don't put Troll Bombs in our inventory automatically
+      // Don't put Troll Bombs in our inventory automatically.
       return undefined;
     }
 
@@ -302,19 +302,19 @@ function insertBomb(
 
     // 5
     case BombSubType.MEGA_TROLL: {
-      // Don't put Mega Troll Bombs in our inventory automatically
+      // Don't put Mega Troll Bombs in our inventory automatically.
       return undefined;
     }
 
     // 6
     case BombSubType.GOLDEN_TROLL: {
-      // Don't put Golden Troll Bombs in our inventory automatically
+      // Don't put Golden Troll Bombs in our inventory automatically.
       return undefined;
     }
 
     // 7
     case BombSubType.GIGA: {
-      // Don't put Giga Bombs in our inventory automatically
+      // Don't put Giga Bombs in our inventory automatically.
       return undefined;
     }
 
@@ -395,7 +395,7 @@ function insertTrinket(
     return undefined;
   }
 
-  // Do not automatically insert trinkets that are detrimental (or potentially detrimental)
+  // Do not automatically insert trinkets that are detrimental (or potentially detrimental).
   if (DETRIMENTAL_TRINKETS.has(trinket.SubType)) {
     return undefined;
   }

@@ -122,7 +122,7 @@ function getReplacementAction() {
 }
 
 function speedrunUp() {
-  // Speedruns go to The Chest and do not require The Polaroid
+  // Speedruns go to The Chest and do not require The Polaroid.
   if (onCathedral()) {
     return ReplacementAction.HEAVEN_DOOR;
   }
@@ -154,7 +154,7 @@ function speedrunAlternate() {
     } (${direction})`,
   );
 
-  // The Polaroid / The Negative is optional in seasons that alternate direction
+  // The Polaroid / The Negative is optional in seasons that alternate direction.
   if (onCathedral()) {
     return direction === SpeedrunDirection.UP
       ? ReplacementAction.HEAVEN_DOOR

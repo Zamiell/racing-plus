@@ -53,7 +53,7 @@ export function postNewRoom(): void {
 function shouldSubvertTeleport() {
   const roomShape = g.r.GetRoomShape();
 
-  // There are Double Trouble rooms with Gurdy but they don't cause a teleport
+  // There are Double Trouble rooms with Gurdy but they don't cause a teleport.
   if (roomShape !== RoomShape.SHAPE_1x1) {
     return false;
   }
@@ -86,7 +86,7 @@ function subvertTeleport() {
 
   moveEsauNextToJacob();
 
-  // Also, account for familiars
+  // Also, account for familiars.
   for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }

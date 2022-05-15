@@ -27,7 +27,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  // Don't bother fixing entrances in the Mom boss room
+  // Don't bother fixing entrances in the Mom boss room.
   if (stage === 6 && roomType === RoomType.BOSS) {
     return;
   }
@@ -60,7 +60,7 @@ export function postNewRoom(): void {
   }
   moveEsauNextToJacob();
 
-  // Also move the familiars
+  // Also move the familiars.
   for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }

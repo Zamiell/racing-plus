@@ -13,7 +13,7 @@ import { config } from "./modConfigMenu";
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
 const OVERLAP_ADJUSTMENT = Vector(-20, 0);
 
-// Lead Pencil constants
+// Lead Pencil constants.
 const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.DR_FETUS, // 52
   CollectibleType.TECHNOLOGY, // 68
@@ -25,7 +25,7 @@ const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.TECH_X, // 395
 ];
 
-// Azazels' Rage constants
+// Azazels' Rage constants.
 export const NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE = 4;
 
 /**

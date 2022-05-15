@@ -8,7 +8,7 @@ export function postNPCUpdateBigHorn(npc: EntityNPC): void {
     return;
   }
 
-  // Speed up coming out of the ground
+  // Speed up coming out of the ground.
   if (
     npc.State === BigHornState.HEAD_GOING_UP_OR_GOING_DOWN_INTO_HOLE &&
     npc.StateFrame >= 67 &&

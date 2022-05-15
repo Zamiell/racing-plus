@@ -9,7 +9,7 @@ export function postNPCUpdateLamb(npc: EntityNPC): void {
     return;
   }
 
-  // Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy
+  // Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy.
   if (
     npc.Variant === LambVariant.BODY &&
     npc.IsInvincible() && // It turns invincible once it is defeated

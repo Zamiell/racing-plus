@@ -97,7 +97,7 @@ function incrementLeadPencilCounter(parent: Entity | undefined) {
 
   const gameFrameCount = g.g.GetFrameCount();
 
-  // The Forgotten and The Soul have different Lead Pencil counters
+  // The Forgotten and The Soul have different Lead Pencil counters.
   const playerIndex = getPlayerIndex(player, true);
 
   // The second tear of a multi-tear-shot does not count towards the Lead Pencil counter. In the

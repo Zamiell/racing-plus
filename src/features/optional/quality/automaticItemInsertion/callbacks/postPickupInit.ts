@@ -77,22 +77,22 @@ function getEffectivePickupVariant(
     (pickup.Variant === PickupVariant.TAROT_CARD ||
       pickup.Variant === PickupVariant.PILL)
   ) {
-    // Handle the case where we need to automatically insert either a card or a pill
+    // Handle the case where we need to automatically insert either a card or a pill.
     return pickup.Variant;
   }
 
   if (hasStarterDeck && hasLittleBaggy) {
-    // If both conversion items are present, they cancel each other out
+    // If both conversion items are present, they cancel each other out.
     return lookingForPickupVariant;
   }
 
   if (hasStarterDeck && lookingForPickupVariant === PickupVariant.PILL) {
-    // Starter Deck will convert all pills to cards
+    // Starter Deck will convert all pills to cards.
     return PickupVariant.TAROT_CARD;
   }
 
   if (hasLittleBaggy && lookingForPickupVariant === PickupVariant.PILL) {
-    // Little Baggy will convert all cards to pills
+    // Little Baggy will convert all cards to pills.
     return PickupVariant.PILL;
   }
 

@@ -58,7 +58,8 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
     return false;
   }
 
-  // Do not revive the player if they are trying to get a "free" item from a particular special room
+  // Do not revive the player if they are trying to get a "free" item from a particular special
+  // room.
   if (
     roomType === RoomType.SACRIFICE || // 13
     roomType === RoomType.BOSS_RUSH // 17

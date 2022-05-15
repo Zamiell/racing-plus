@@ -67,7 +67,7 @@ export function statusOrMyStatusChanged(): void {
 }
 
 export function placeChanged(): void {
-  // Update the place graphic with our final race place
+  // Update the place graphic with our final race place.
   if (g.race.place === -1 || g.race.place > MAX_PLACE) {
     sprite = null;
   } else {

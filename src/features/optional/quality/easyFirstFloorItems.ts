@@ -29,7 +29,7 @@ export function preRoomEntitySpawn(
   }
 
   switch (roomVariant) {
-    // Item surrounded by 3 rocks and 1 spike
+    // Item surrounded by 3 rocks and 1 spike.
     case 11: {
       const rockIndexes = [66, 68, 82];
       for (const rockIndex of rockIndexes) {
@@ -41,7 +41,7 @@ export function preRoomEntitySpawn(
       return undefined;
     }
 
-    // Left item surrounded by rocks
+    // Left item surrounded by rocks.
     case 39: {
       const rockReplaceIndexes = [49, 63, 65, 79];
       for (const rockIndex of rockReplaceIndexes) {
@@ -53,7 +53,7 @@ export function preRoomEntitySpawn(
       const rockDeleteIndexes = [20, 47, 48, 62, 77, 78, 82, 95, 109];
       for (const rockIndex of rockDeleteIndexes) {
         if (rockIndex === gridIndex) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT)
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT).
           return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }
@@ -61,12 +61,12 @@ export function preRoomEntitySpawn(
       return undefined;
     }
 
-    // Left item surrounded by spikes
+    // Left item surrounded by spikes.
     case 41: {
       const spikeIndexes = [48, 50, 78, 80];
       for (const spikeIndex of spikeIndexes) {
         if (spikeIndex === gridIndex) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT)
+          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT).
           return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
         }
       }
@@ -74,7 +74,7 @@ export function preRoomEntitySpawn(
       return undefined;
     }
 
-    // Left item surrounded by pots/mushrooms/skulls
+    // Left item surrounded by pots/mushrooms/skulls.
     case 42: {
       const potIndexes = [49, 63, 65, 79];
       for (const potIndex of potIndexes) {

@@ -17,10 +17,10 @@ export function insertPickupAndUpdateDelta(
     // This is necessary for inserting multiple pickups from the UseCard callback.
     pickup.Touched = true;
 
-    // Only remove the pickup if it has been successfully inserted
+    // Only remove the pickup if it has been successfully inserted.
     pickup.Remove();
 
-    // Track what it inserted so that we can display it on the UI
+    // Track what it inserted so that we can display it on the UI.
     updateDelta(player, pickupInserted, hearts);
   }
 }

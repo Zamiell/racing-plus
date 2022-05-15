@@ -105,27 +105,27 @@ function getPosition(spriteName: keyof typeof sprites) {
     }
 
     case "diversityItem1": {
-      // The active item
+      // The active item.
       return Vector(renderPosition.X - 90, renderPosition.Y - 40);
     }
 
     case "diversityItem2": {
-      // The 1st passive item
+      // The 1st passive item.
       return Vector(renderPosition.X + 60, itemRow1Y);
     }
 
     case "diversityItem3": {
-      // The 2nd passive item
+      // The 2nd passive item.
       return Vector(renderPosition.X + 90, itemRow1Y);
     }
 
     case "diversityItem4": {
-      // The 3rd passive item
+      // The 3rd passive item.
       return Vector(renderPosition.X + 120, itemRow1Y);
     }
 
     case "diversityItem5": {
-      // The trinket
+      // The trinket.
       return Vector(renderPosition.X - 90, renderPosition.Y + 60);
     }
 
@@ -247,10 +247,10 @@ function initDiversitySprites() {
 
   const trinketType = g.race.startingItems[4] as TrinketType;
   if (trinketType < FIRST_GOLDEN_TRINKET_ID) {
-    // A normal trinket
+    // A normal trinket.
     sprites.diversityItem5 = initGlowingItemSprite(trinketType, true);
   } else {
-    // A golden trinket, which should not have its ID modified
+    // A golden trinket, which should not have its ID modified.
     sprites.diversityItem5 = initGlowingItemSprite(trinketType);
   }
 }

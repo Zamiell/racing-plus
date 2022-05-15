@@ -19,7 +19,7 @@ import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcher
 import v from "./v";
 
 export function goto(upwards: boolean): void {
-  // Get the number and type of the next floor
+  // Get the number and type of the next floor.
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const nextStage = getNextStage();
@@ -276,21 +276,21 @@ function getNextStageType(
 
   if (nextStage === 10) {
     if (upwards) {
-      // Go to Cathedral (10.1)
+      // Go to Cathedral (10.1).
       return 1;
     }
 
-    // Go to Sheol (10.0)
+    // Go to Sheol (10.0).
     return 0;
   }
 
   if (nextStage === 11) {
     if (stageType === 0) {
-      // Sheol (10.0) goes to the Dark Room (11.0)
+      // Sheol (10.0) goes to the Dark Room (11.0).
       return 0;
     }
 
-    // Cathedral (10.1) goes to The Chest (11.1)
+    // Cathedral (10.1) goes to The Chest (11.1).
     return 1;
   }
 

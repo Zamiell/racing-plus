@@ -63,26 +63,26 @@ export function movePlayersAndFamiliars(position: Vector): void {
 
   moveEsauNextToJacob();
 
-  // Put familiars next to the players
+  // Put familiars next to the players.
   for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }
 }
 
 export function restartChallenge(challenge: Challenge): void {
-  // This command will change the challenge of the run and restart the game
+  // This command will change the challenge of the run and restart the game.
   consoleCommand(`challenge ${challenge}`);
 }
 
 export function restartSeed(seed: string): void {
-  // This command will change the seed of the run and restart the game
+  // This command will change the seed of the run and restart the game.
   consoleCommand(`seed ${seed}`);
 }
 
 export function serverCollectibleIDToCollectibleType(
   serverCollectibleID: int,
 ): CollectibleType | CollectibleTypeCustom {
-  // 1001-1999 is reserved for server collectible IDs
+  // 1001-1999 is reserved for server collectible IDs.
   if (serverCollectibleID <= 1000 || serverCollectibleID >= 2000) {
     return serverCollectibleID;
   }
