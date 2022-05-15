@@ -246,7 +246,7 @@ function checkPostRoomTransitionSubvert() {
   );
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
+// ModCallbackCustom.POST_GRID_ENTITY_INIT
 // GridEntityType.CRAWL_SPACE (18)
 export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
   const variant = gridEntity.GetVariant();
@@ -282,7 +282,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
   });
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
 // GridEntityType.CRAWL_SPACE (18)
 export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   // Ensure that the fast-travel entity has been initialized.
@@ -312,7 +312,7 @@ function checkShouldClose(gridEntity: GridEntity) {
   }
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
 // GridEntityType.TELEPORTER (23)
 export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
   if (!v.room.teleporterSpawned) {
@@ -330,7 +330,7 @@ export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
   }
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
+// ModCallbackCustom.POST_GRID_ENTITY_REMOVE
 // GridEntityType.CRAWL_SPACE (18)
 export function postGridEntityRemoveCrawlspace(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);

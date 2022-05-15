@@ -77,7 +77,7 @@ function addChargesToActiveItem(
   hud.FlashChargeBar(player, activeSlot);
 }
 
-// ModCallbacksCustom.MC_POST_SLOT_ANIMATION_CHANGED
+// ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotAnimationChangedBatteryBum(
   _slot: Entity,

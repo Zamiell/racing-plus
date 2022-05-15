@@ -17,7 +17,7 @@ function featureEnabled() {
   return config.showNumSacrifices;
 }
 
-// ModCallbacksCustom.MC_POST_SACRIFICE
+// ModCallbackCustom.POST_SACRIFICE
 export function postSacrifice(numSacrifices: int): void {
   v.level.numSacrifices = numSacrifices;
 }

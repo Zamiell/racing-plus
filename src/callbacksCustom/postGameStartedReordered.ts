@@ -1,4 +1,4 @@
-import { log, ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as debugFunction from "../debugFunction";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
@@ -31,10 +31,7 @@ import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGame
 import g from "../globals";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GAME_STARTED_REORDERED,
-    main,
-  );
+  mod.AddCallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, main);
 }
 
 function main(isContinued: boolean) {

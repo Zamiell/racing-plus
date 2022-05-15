@@ -1,4 +1,4 @@
-import { log, ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -11,7 +11,7 @@ import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_LEVEL_REORDERED, main);
+  mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED, main);
 }
 
 function main() {

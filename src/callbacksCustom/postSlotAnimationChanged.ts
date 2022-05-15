@@ -1,11 +1,11 @@
 import { SlotVariant } from "isaac-typescript-definitions";
-import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_SLOT_ANIMATION_CHANGED,
+    ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED,
     batteryBum,
     SlotVariant.BATTERY_BUM, // 13
   );

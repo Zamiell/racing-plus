@@ -198,7 +198,7 @@ export function isActionTriggeredItem(
   return shouldStopActiveItemUses ? false : undefined;
 }
 
-// ModCallbacksCustom.MC_POST_PICKUP_COLLECT
+// ModCallbackCustom.POST_PICKUP_COLLECT
 export function postPickupCollect(
   pickup: EntityPickup,
   player: EntityPlayer,
@@ -215,7 +215,7 @@ export function postPickupCollect(
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 // ItemType.PASSIVE (1)
 // CollectibleType.9_VOLT (116)
 export function postItemPickup9Volt(player: EntityPlayer): void {
@@ -229,7 +229,7 @@ export function postItemPickup9Volt(player: EntityPlayer): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 // ItemType.PASSIVE (1)
 // CollectibleType.BATTERY_PACK (603)
 export function postItemPickupBatteryPack(player: EntityPlayer): void {
@@ -243,7 +243,7 @@ export function postItemPickupBatteryPack(player: EntityPlayer): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacksCustom.MC_POST_PURCHASE
+// ModCallbackCustom.POST_PURCHASE
 export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -257,7 +257,7 @@ export function postPurchase(player: EntityPlayer, pickup: EntityPickup): void {
   checkSwitchCharge(player, chargeSituation);
 }
 
-// ModCallbacksCustom.MC_POST_SLOT_ANIMATION_CHANGED
+// ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED
 // SlotVariant.BATTERY_BUM (13)
 export function postSlotAnimationChangedBatteryBum(
   _slot: Entity,

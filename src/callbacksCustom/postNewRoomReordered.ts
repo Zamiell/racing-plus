@@ -4,7 +4,7 @@ import {
   getRoomType,
   getRoomVariant,
   log,
-  ModCallbacksCustom,
+  ModCallbackCustom,
   ModUpgraded,
 } from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
@@ -42,7 +42,7 @@ import * as roomsEntered from "../features/utils/roomsEntered";
 import g from "../globals";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_NEW_ROOM_REORDERED, main);
+  mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED, main);
 }
 
 function main() {

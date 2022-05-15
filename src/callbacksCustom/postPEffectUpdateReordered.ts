@@ -1,6 +1,6 @@
 import {
   isChildPlayer,
-  ModCallbacksCustom,
+  ModCallbackCustom,
   ModUpgraded,
 } from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
@@ -13,10 +13,7 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_PEFFECT_UPDATE_REORDERED,
-    main,
-  );
+  mod.AddCallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, main);
 }
 
 function main(player: EntityPlayer) {

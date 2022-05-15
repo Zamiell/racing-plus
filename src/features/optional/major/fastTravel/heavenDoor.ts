@@ -99,7 +99,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   setFadingToBlack(player, entity.Position, true);
 }
 
-// ModCallbacksCustom.MC_POST_ROOM_CLEAR
+// ModCallbackCustom.POST_ROOM_CLEAR
 export function postRoomClear(): void {
   openClosedHeavenDoors();
 }

@@ -1,5 +1,5 @@
 import {
-  ModCallbacksCustom,
+  ModCallbackCustom,
   ModUpgraded,
   PickingUpItem,
 } from "isaacscript-common";
@@ -8,7 +8,7 @@ import { automaticItemInsertionPreItemPickup } from "../features/optional/qualit
 import { speedrunPreItemPickup } from "../features/speedrun/callbacks/preItemPickup";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_PRE_ITEM_PICKUP, main);
+  mod.AddCallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP, main);
 }
 
 function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {

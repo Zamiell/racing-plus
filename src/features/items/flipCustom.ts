@@ -276,7 +276,7 @@ export function postPickupRenderCollectible(
   flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
 }
 
-// ModCallbacksCustom.MC_POST_PURCHASE
+// ModCallbackCustom.POST_PURCHASE
 // PickupVariant.COLLECTIBLE (100)
 export function postPurchaseCollectible(
   player: EntityPlayer,

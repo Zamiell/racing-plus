@@ -111,7 +111,7 @@ export function postNewLevel(): void {
   });
 }
 
-// ModCallbacksCustom.MC_POST_CURSED_TELEPORT
+// ModCallbackCustom.POST_CURSED_TELEPORT
 export function postCursedTeleport(_player: EntityPlayer): void {
   log("Cursed Eye / Cursed Skull teleport detected.");
   seededTeleport();

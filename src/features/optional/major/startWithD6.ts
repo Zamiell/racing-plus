@@ -152,7 +152,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   mapSetPlayer(v.run.playersPocketActiveD6Charge, player, pocketActiveCharge);
 }
 
-// ModCallbacksCustom.MC_POST_PLAYER_CHANGE_TYPE
+// ModCallbackCustom.POST_PLAYER_CHANGE_TYPE
 export function postPlayerChangeType(player: EntityPlayer): void {
   if (!config.startWithD6) {
     return;
@@ -161,7 +161,7 @@ export function postPlayerChangeType(player: EntityPlayer): void {
   changedCharacterInSomeWay(player);
 }
 
-// ModCallbacksCustom.MC_POST_FLIP
+// ModCallbackCustom.POST_FLIP
 export function postFlip(player: EntityPlayer): void {
   if (!isTaintedLazarus(player)) {
     return;
@@ -183,7 +183,7 @@ export function postFlip(player: EntityPlayer): void {
   });
 }
 
-// ModCallbacksCustom.MC_POST_FIRST_FLIP
+// ModCallbackCustom.POST_FIRST_FLIP
 export function postFirstFlip(player: EntityPlayer): void {
   if (!config.startWithD6) {
     return;
@@ -194,7 +194,7 @@ export function postFirstFlip(player: EntityPlayer): void {
   changedCharacterInSomeWay(player);
 }
 
-// ModCallbacksCustom.MC_POST_FIRST_ESAU_JR
+// ModCallbackCustom.POST_FIRST_ESAU_JR
 export function postFirstEsauJr(player: EntityPlayer): void {
   if (!config.startWithD6) {
     return;
@@ -218,7 +218,7 @@ function changedCharacterInSomeWay(
   giveD6(player, gotHereFromEsauJr);
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 // ItemType.PASSIVE (1)
 // CollectibleType.BIRTHRIGHT (619)
 export function postItemPickupBirthright(player: EntityPlayer): void {

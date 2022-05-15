@@ -26,7 +26,7 @@ import v from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT
+// ModCallbackCustom.POST_GRID_ENTITY_INIT
 // GridEntityType.TRAPDOOR (17)
 export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
   // In some situations, trapdoors should be removed entirely.
@@ -42,7 +42,7 @@ export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
   fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
 // GridEntityType.TRAPDOOR (17)
 export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   if (shouldIgnore(gridEntity)) {
@@ -63,7 +63,7 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE
+// ModCallbackCustom.POST_GRID_ENTITY_REMOVE
 // GridEntityType.TRAPDOOR (17)
 export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);

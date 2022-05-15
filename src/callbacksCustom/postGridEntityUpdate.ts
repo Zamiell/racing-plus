@@ -1,5 +1,5 @@
 import { GridEntityType } from "isaac-typescript-definitions";
-import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as changeCharOrderPostGridEntityUpdate from "../features/changeCharOrder/callbacks/postGridEntityUpdate";
 import * as fastTravelPostGridEntityUpdate from "../features/optional/major/fastTravel/callbacks/postGridEntityUpdate";
 import * as deleteVoidPortals from "../features/optional/quality/deleteVoidPortals";
@@ -7,25 +7,25 @@ import * as racePostGridEntityUpdate from "../features/race/callbacks/postGridEn
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
+    ModCallbackCustom.POST_GRID_ENTITY_UPDATE,
     trapdoor,
     GridEntityType.TRAPDOOR, // 17
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
+    ModCallbackCustom.POST_GRID_ENTITY_UPDATE,
     crawlSpace,
     GridEntityType.CRAWL_SPACE, // 18
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
+    ModCallbackCustom.POST_GRID_ENTITY_UPDATE,
     pressurePlate,
     GridEntityType.PRESSURE_PLATE, // 20
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE,
+    ModCallbackCustom.POST_GRID_ENTITY_UPDATE,
     teleporter,
     GridEntityType.TELEPORTER, // 23
   );

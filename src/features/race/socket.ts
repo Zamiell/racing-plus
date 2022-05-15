@@ -71,7 +71,7 @@ export function postNewRoom(): void {
   send("room", `${roomType}-${roomVariant}`);
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 export function postItemPickup(pickingUpItem: PickingUpItem): void {
   if (
     pickingUpItem.itemType === ItemType.ACTIVE ||

@@ -27,7 +27,7 @@ export function postNewRoom(): void {
   checkDeleteSpikes();
 }
 
-// ModCallbacksCustom.MC_POST_SACRIFICE
+// ModCallbackCustom.POST_SACRIFICE
 export function postSacrifice(numSacrifices: int): void {
   v.level.numSacrifices = numSacrifices;
   checkDeleteSpikes();

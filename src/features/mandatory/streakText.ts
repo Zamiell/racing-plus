@@ -255,7 +255,7 @@ export function preUseItemDeadSeaScrolls(
   return true;
 }
 
-// ModCallbacksCustom.MC_PRE_ITEM_PICKUP
+// ModCallbackCustom.PRE_ITEM_PICKUP
 export function preItemPickup(pickingUpItem: PickingUpItem): void {
   const trinket = pickingUpItem.itemType === ItemType.TRINKET;
   const name = trinket
@@ -265,7 +265,7 @@ export function preItemPickup(pickingUpItem: PickingUpItem): void {
   set(name);
 }
 
-// ModCallbacksCustom.MC_POST_TRANSFORMATION
+// ModCallbackCustom.POST_TRANSFORMATION
 export function postTransformation(
   playerForm: PlayerForm,
   hasForm: boolean,

@@ -72,7 +72,7 @@ export function postFireTear(tear: EntityTear): void {
   incrementLeadPencilCounter(tear.Parent);
 }
 
-// ModCallbacksCustom.MC_POST_BONE_SWING
+// ModCallbackCustom.POST_BONE_SWING
 export function postBoneSwing(boneClub: EntityKnife): void {
   if (!config.leadPencilChargeBar) {
     return;

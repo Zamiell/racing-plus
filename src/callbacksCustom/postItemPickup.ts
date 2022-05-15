@@ -1,6 +1,6 @@
 import { CollectibleType, ItemType } from "isaac-typescript-definitions";
 import {
-  ModCallbacksCustom,
+  ModCallbackCustom,
   ModUpgraded,
   PickingUpItem,
 } from "isaacscript-common";
@@ -9,38 +9,38 @@ import * as chargePocketItemFirst from "../features/optional/quality/chargePocke
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_ITEM_PICKUP, main);
+  mod.AddCallbackCustom(ModCallbackCustom.POST_ITEM_PICKUP, main);
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    ModCallbackCustom.POST_ITEM_PICKUP,
     nineVolt,
     ItemType.PASSIVE, // 1
     CollectibleType.NINE_VOLT, // 116
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    ModCallbackCustom.POST_ITEM_PICKUP,
     threeDollarBill,
     ItemType.PASSIVE, // 1
     CollectibleType.THREE_DOLLAR_BILL, // 191
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    ModCallbackCustom.POST_ITEM_PICKUP,
     magic8Ball,
     ItemType.PASSIVE, // 1
     CollectibleType.MAGIC_8_BALL, // 194
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    ModCallbackCustom.POST_ITEM_PICKUP,
     batteryPack,
     ItemType.PASSIVE, // 1
     CollectibleType.BATTERY_PACK, // 603
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_ITEM_PICKUP,
+    ModCallbackCustom.POST_ITEM_PICKUP,
     birthright,
     ItemType.PASSIVE, // 1
     CollectibleType.BIRTHRIGHT, // 619

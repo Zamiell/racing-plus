@@ -95,7 +95,7 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
   v.run.seeded3DollarBillItem = null;
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 export function postItemPickup(
   player: EntityPlayer,
   pickingUpItem: PickingUpItem,
@@ -111,7 +111,7 @@ export function postItemPickup(
   }
 }
 
-// ModCallbacksCustom.MC_POST_ITEM_PICKUP
+// ModCallbackCustom.POST_ITEM_PICKUP
 // CollectibleType.3_DOLLAR_BILL (191)
 export function postItemPickup3DollarBill(player: EntityPlayer): void {
   if (

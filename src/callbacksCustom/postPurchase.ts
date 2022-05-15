@@ -1,13 +1,13 @@
 import { PickupVariant } from "isaac-typescript-definitions";
-import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as flipCustom from "../features/items/flipCustom";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 
 export function init(mod: ModUpgraded): void {
-  mod.AddCallbackCustom(ModCallbacksCustom.MC_POST_PURCHASE, main);
+  mod.AddCallbackCustom(ModCallbackCustom.POST_PURCHASE, main);
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_PURCHASE,
+    ModCallbackCustom.POST_PURCHASE,
     collectible,
     PickupVariant.COLLECTIBLE, // 100
   );

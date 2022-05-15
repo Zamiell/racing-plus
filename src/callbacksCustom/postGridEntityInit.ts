@@ -1,16 +1,16 @@
 import { GridEntityType } from "isaac-typescript-definitions";
-import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as fastTravelPostGridEntityInit from "../features/optional/major/fastTravel/callbacks/postGridEntityInit";
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT,
+    ModCallbackCustom.POST_GRID_ENTITY_INIT,
     trapdoor,
     GridEntityType.TRAPDOOR, // 17
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_INIT,
+    ModCallbackCustom.POST_GRID_ENTITY_INIT,
     crawlSpace,
     GridEntityType.CRAWL_SPACE, // 18
   );

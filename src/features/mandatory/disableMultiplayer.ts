@@ -57,7 +57,7 @@ export function preGameExit(shouldSave: boolean): void {
   }
 }
 
-// ModCallbacksCustom.MC_POST_PLAYER_INIT_LATE
+// ModCallbackCustom.POST_PLAYER_INIT_LATE
 export function postPlayerInitLate(player: EntityPlayer): void {
   if (!ENABLED) {
     return;

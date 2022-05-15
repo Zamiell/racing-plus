@@ -1,16 +1,16 @@
 import { GridEntityType } from "isaac-typescript-definitions";
-import { ModCallbacksCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as fastTravelPostGridEntityRemove from "../features/optional/major/fastTravel/callbacks/postGridEntityRemove";
 
 export function init(mod: ModUpgraded): void {
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE,
+    ModCallbackCustom.POST_GRID_ENTITY_REMOVE,
     trapdoor,
     GridEntityType.TRAPDOOR, // 17
   );
 
   mod.AddCallbackCustom(
-    ModCallbacksCustom.MC_POST_GRID_ENTITY_REMOVE,
+    ModCallbackCustom.POST_GRID_ENTITY_REMOVE,
     crawlSpace,
     GridEntityType.CRAWL_SPACE, // 18
   );

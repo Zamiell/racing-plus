@@ -9,6 +9,7 @@ import {
   anyPlayerIs,
   getCollectibleSet,
   getEffectiveStage,
+  getEnumLength,
   getPlayers,
   getRoomVisitedCount,
   inStartingRoom,
@@ -22,11 +23,12 @@ import {
   repeat,
   saveDataManager,
 } from "isaacscript-common";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
 import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
-const NUM_RACING_PLUS_ITEMS = 31;
+const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;
 const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.DEATH_CERTIFICATE;
 const ITEM_POOL_TO_CHECK = ItemPoolType.SECRET;

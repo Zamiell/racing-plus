@@ -142,7 +142,7 @@ function createBuildVetoButtons() {
   }
 }
 
-// ModCallbacksCustom.MC_POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
 // GridEntityType.PRESSURE_PLATE (20)
 export function postGridEntityUpdatePressurePlate(
   gridEntity: GridEntity,
