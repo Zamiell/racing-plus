@@ -10,7 +10,7 @@ Graphic notes:
 
 "Type" race image:
 - Font size 40
-- autocrop
+- auto-crop
 - outline 2 size: 2
 
 "Unseeded" race image:

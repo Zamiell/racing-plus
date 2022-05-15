@@ -4,4 +4,4 @@ font: Lato
 font size: 64px
 text color: white
 
-gridlines: 37x47
+grid-lines: 37x47

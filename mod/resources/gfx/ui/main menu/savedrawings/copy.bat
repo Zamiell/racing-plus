@@ -1,9 +1,12 @@
 @echo off
 
-rem Start with the "Not Fully Unlocked" graphic in-place as "01_basement.png"
-rem and the "Fully Unlocked" graphic in-place as "deadgod.png"
-rem This script will copy it to all possible not completed graphics
-rem This does not include the infinity graphics
+rem /* cspell:disable */
+
+rem Start with the "Not Fully Unlocked" graphic in-place as "01_basement.png" and the "Fully
+rem Unlocked" graphic in-place as "deadgod.png".
+
+rem This script will copy it to all possible not completed graphics. This does not include the
+rem infinity graphics.
 
 copy 01_basement.png 1savefiletogo.png
 copy 01_basement.png 02_momkill.png

@@ -14,9 +14,10 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
     "eslint-plugin-isaacscript": "file:../eslint-plugin-isaacscript",
-    "isaac-typescript-definitions": "^2.0.12",
-    "isaacscript": "^2.0.3",
+    "isaac-typescript-definitions": "^2.0.13",
+    "isaacscript": "^2.0.5",
     "isaacscript-common": "^2.0.6",
-    "isaacscript-lint": "^1.0.141"
+    "isaacscript-lint": "^1.0.141",
+    "isaacscript-spell": "file:../isaacscript-spell"
   }
 }

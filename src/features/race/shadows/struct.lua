@@ -1,3 +1,4 @@
+-- cspell:disable
 -- luacheck: ignore
 
 --[[
