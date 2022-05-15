@@ -175,11 +175,14 @@ function isIncompleteSave() {
 // Check to see if there are any mods enabled that have added custom items. (It is difficult to
 // detect other mods in other ways.)
 function areOtherModsEnabled() {
-  let correctMaxCollectibleID =
+  const correctMaxCollectibleIDRacingPlus =
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
-  if (BabiesModGlobals !== undefined) {
-    correctMaxCollectibleID += NUM_BABIES_MOD_ITEMS;
-  }
+  const correctMaxCollectibleIDRacingPlusBabiesMod =
+    MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS + NUM_BABIES_MOD_ITEMS;
+  const correctMaxCollectibleID =
+    BabiesModGlobals === undefined
+      ? correctMaxCollectibleIDRacingPlus
+      : correctMaxCollectibleIDRacingPlusBabiesMod;
 
   if (MAX_COLLECTIBLE_TYPE !== correctMaxCollectibleID) {
     log(

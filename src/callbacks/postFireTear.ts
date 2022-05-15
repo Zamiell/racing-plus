@@ -1,4 +1,4 @@
-import { ModCallback, TearVariant } from "isaac-typescript-definitions";
+import { ModCallback } from "isaac-typescript-definitions";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 
 export function init(mod: Mod): void {
@@ -6,8 +6,6 @@ export function init(mod: Mod): void {
 }
 
 function main(tear: EntityTear) {
-  tear.ChangeVariant(TearVariant.GRID_ENTITY);
-
   // QoL
   leadPencilChargeBar.postFireTear(tear);
 }
