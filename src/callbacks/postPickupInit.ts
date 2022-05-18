@@ -4,11 +4,8 @@ import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
-import * as flyItemSprites from "../features/optional/graphics/flyItemSprites";
 import * as scaredHeart from "../features/optional/graphics/scaredHeart";
-import * as starOfBethlehem from "../features/optional/graphics/starOfBethlehem";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
-import * as twentyTwenty from "../features/optional/graphics/twentyTwenty";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
@@ -95,9 +92,6 @@ function collectible(pickup: EntityPickup) {
   fastKrampus.postPickupInitCollectible(pickup);
   fastAngels.postPickupInitCollectible(pickup);
   flipCustom.postPickupInitCollectible(pickup);
-  flyItemSprites.postPickupInitCollectible(pickup);
-  twentyTwenty.postPickupInitCollectible(pickup);
-  starOfBethlehem.postPickupInitCollectible(pickup);
 }
 
 // PickupVariant.TAROT_CARD (300)

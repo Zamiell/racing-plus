@@ -95,9 +95,6 @@ export class Config {
   paschalCandle = true; // 3.221
   scaredHeart = true; // 5.10.9
   stickyNickel = true; // 5.20.6
-  flyItemSprites = true; // 5.100.57, 5.100.128, 5.100.364
-  twentyTwenty = true; // 5.100.245
-  starOfBethlehem = true; // 5.100.651
   uniqueCardBacks = true; // 5.300
   hudOffsetFix = true;
   holidayHats = true;

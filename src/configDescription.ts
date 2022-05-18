@@ -1052,37 +1052,10 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "flyItemSprites", // 5.100.57, 5.100.128, 5.100.364
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1004",
-      "Fix fly colors",
-      "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
-    ],
-  ],
-  [
-    "twentyTwenty", // 5.100.245
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1005",
-      "Better 20/20",
-      "Make the 20/20 sprite easier to see.",
-    ],
-  ],
-  [
-    "starOfBethlehem", // 5.100.651
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1006",
-      "Better Star of Bethlehem",
-      "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
-    ],
-  ],
-  [
     "uniqueCardBacks", // 5.300
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1007",
+      "1004",
       "Unique card backs",
       "Make some cards have a unique card back or modified graphic so that they are easier to identify.",
     ],
@@ -1091,7 +1064,7 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     "hudOffsetFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1008",
+      "1005",
       "Fix HUD offset",
       "Fix the default HUD offset to be the same as it was in Afterbirth+.",
     ],
@@ -1100,7 +1073,7 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
     "holidayHats",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1009",
+      "1006",
       "Holiday hats",
       "Show a festive hat during a holiday.",
     ],
@@ -1114,10 +1087,6 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "Make empty red hearts easier to see.",
     ],
   ],
-];
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
   [
     "",
     [
@@ -1143,6 +1112,37 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
       "",
       "Better Purity colors",
       "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.",
+    ],
+  ],
+];
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
+  [
+    "", // 5.100.57, 5.100.128, 5.100.364
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Fix fly colors",
+      "Make the Distant Admiration, Forever Alone, and Friend Zone sprites match the color of the familiars.",
+    ],
+  ],
+  [
+    "", // 5.100.245
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Better 20/20",
+      "Make the 20/20 sprite easier to see.",
+    ],
+  ],
+  [
+    "", // 5.100.651
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Better Star of Bethlehem",
+      "Make the Star of Bethlehem sprite more distinct from Eden's Soul.",
     ],
   ],
   [

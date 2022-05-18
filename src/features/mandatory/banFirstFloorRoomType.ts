@@ -1,4 +1,4 @@
-import { DisplayFlag, RoomType } from "isaac-typescript-definitions";
+import { DisplayFlagZero, RoomType } from "isaac-typescript-definitions";
 import {
   getDoorsToRoomIndex,
   getEffectiveStage,
@@ -90,7 +90,7 @@ function outsideBannedRoom(bannedRoomType: RoomType) {
   if (MinimapAPI === undefined) {
     for (const roomGridIndex of bannedRoomGridIndexes) {
       const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
-      roomDesc.DisplayFlags = 0 as BitFlags<DisplayFlag>;
+      roomDesc.DisplayFlags = DisplayFlagZero;
     }
   } else {
     for (const roomGridIndex of bannedRoomGridIndexes) {

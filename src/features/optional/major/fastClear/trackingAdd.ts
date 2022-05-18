@@ -53,7 +53,7 @@ function checkAdd(entity: Entity, parentCallback: string) {
   const projectile = entity.ToProjectile();
   if (
     projectile !== undefined &&
-    projectile.Variant !== ProjectileVariant.PROJECTILE_MEAT
+    projectile.Variant !== ProjectileVariant.MEAT
   ) {
     return;
   }

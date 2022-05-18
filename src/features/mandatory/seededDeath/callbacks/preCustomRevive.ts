@@ -4,18 +4,17 @@ import {
   PillColor,
   PocketItemSlot,
   RoomType,
+  TrinketSlot,
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
   characterCanTakeFreeDevilDeals,
-  erange,
   findFreePosition,
   getEnumValues,
   getPlayerIndex,
   inBeastRoom,
   isJacobOrEsau,
   isKeeper,
-  MAX_PLAYER_TRINKET_SLOTS,
 } from "isaacscript-common";
 import { RevivalType } from "../../../../enums/RevivalType";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
@@ -113,7 +112,7 @@ function dropEverything(player: EntityPlayer) {
     player.DropPocketItem(pocketItemSlot, position);
   }
 
-  for (const trinketSlot of erange(MAX_PLAYER_TRINKET_SLOTS)) {
+  for (const trinketSlot of getEnumValues(TrinketSlot)) {
     const trinketType = player.GetTrinket(trinketSlot);
     if (trinketType === TrinketType.NULL) {
       continue;
