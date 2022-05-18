@@ -361,7 +361,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   }
 
   // Crawlspaces created after a room has already initialized should spawn closed by default. For
-  // example, crawl spaces created by We Need to Go Deeper! should spawn closed because the player
+  // example, crawl spaces created by We Need to Go Deeper should spawn closed because the player
   // will be standing on top of them.
   return false;
 }

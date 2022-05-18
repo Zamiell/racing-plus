@@ -10,7 +10,7 @@
 // - Batteries (all sub-types)
 // - Charged keys
 // - Coins with the Charged Penny trinket
-// - 48 Hour Energy! pill
+// - 48 Hour Energy pill
 // - Hairpin trinket
 // - Battery Bum
 // - 9 Volt

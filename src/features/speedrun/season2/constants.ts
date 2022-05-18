@@ -70,7 +70,7 @@ export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
   [CollectibleType.SACRED_HEART], // 182
 
   // 13
-  // Revelation is nerfed (no soul hearts & no flight)
+  // Revelation is nerfed (no soul hearts & no flight).
   [CollectibleType.REVELATION], // 643
 
   // -------------

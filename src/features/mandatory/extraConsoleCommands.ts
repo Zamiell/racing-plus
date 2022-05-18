@@ -46,7 +46,6 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("enable", enable);
   addConsoleCommand("move", move);
   addConsoleCommand("next", next);
-  // addConsoleCommand("previous", previous);
   addConsoleCommand("race", race);
   addConsoleCommand("rankedsoloreset", rankedSoloReset);
   addConsoleCommand("s0", s0);
@@ -103,13 +102,6 @@ function move() {
 function next() {
   speedrunSetNextCharacterAndRestart(true);
 }
-
-/*
-// Commented out since it allows people to cheat in Season 2
-function previous() {
-  speedrunSetNextCharacterAndRestart(false);
-}
-*/
 
 function race() {
   logRaceData(g.race);

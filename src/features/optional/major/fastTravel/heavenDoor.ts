@@ -67,7 +67,7 @@ function shouldSpawnOpen() {
   // beams of light in an I AM ERROR room with enemies. If this is the case, spawn the heaven door
   // in a closed state so that the player must defeat all of the enemies in the room before going
   // up. However, the room will not be clear yet if this is a manually spawned heaven door after
-  // killing It Lives! or Hush, so account for that first.
+  // killing It Lives or Hush, so account for that first.
   if ((stage === 8 || stage === 9) && roomType === RoomType.BOSS) {
     return true;
   }

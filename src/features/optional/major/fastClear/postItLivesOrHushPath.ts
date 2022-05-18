@@ -58,8 +58,8 @@ function inItLivesOrHushBossRoom() {
     // Corpse does not have It Lives! / Hush.
     stageType !== StageType.REPENTANCE &&
     roomType === RoomType.BOSS &&
-    // If the player is fighting It Lives! from an Emperor? Card room, then the room will be outside
-    // the grid. Paths are not supposed to spawn in this situation.
+    // If the player is fighting It Lives from a Reverse Emperor Card room, then the room will be
+    // outside the grid. Paths are not supposed to spawn in this situation.
     isRoomInsideMap()
   );
 }
@@ -234,7 +234,7 @@ export function postNewRoom(): void {
 }
 
 /**
- * Killing It Lives! should always trigger fast-clear. If for some reason it does not, then the
+ * Killing It Lives should always trigger fast-clear. If for some reason it does not, then the
  * correct path will never be spawned, and the player can be potentially soft-locked.
  *
  * Check for this situation and spawn the appropriate path if needed.

@@ -31,7 +31,7 @@ import { goingToRaceRoom } from "../race/raceRoom";
 
 const FRAMES_BEFORE_FADE = 50;
 
-// Listed in order of the wiki (32 in total)
+// Listed in order of the wiki (32 in total).
 // https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
 const DEAD_SEA_SCROLL_EFFECTS: readonly CollectibleType[] = [
   CollectibleType.ANARCHIST_COOKBOOK,

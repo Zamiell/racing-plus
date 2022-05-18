@@ -15,7 +15,7 @@ import v from "./v";
 const REPLACED_ITEM = CollectibleType.THREE_DOLLAR_BILL;
 const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
 
-// Listed in alphabetical order to match the wiki page
+// Listed in alphabetical order to match the wiki page.
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
 const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
   CollectibleType.TWENTY_TWENTY, // 245

@@ -53,7 +53,7 @@ export function postEntityKillMomsHeart(): void {
     return;
   }
 
-  // It Lives! will trigger this callback twice.
+  // It Lives will trigger this callback twice.
   if (v.room.killedExtraEnemies) {
     return;
   }

@@ -80,7 +80,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
 function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   const player = Isaac.GetPlayer();
 
-  // We need to account for the NO! trinket; if the player has it, we need to temporarily remove it,
+  // We need to account for the NO trinket; if the player has it, we need to temporarily remove it,
   // otherwise the random items selected will not be consistent.
   const trinketSituation = temporarilyRemoveTrinket(player, TrinketType.NO);
 
@@ -90,7 +90,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
     const subType = getNewSubType(itemPoolType);
     v.run.gettingCollectible = false;
 
-    // Simply return the new sub-type if we do not have the NO! trinket.
+    // Simply return the new sub-type if we do not have the NO trinket.
     if (trinketSituation === undefined) {
       return subType;
     }
@@ -102,7 +102,7 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
     }
 
     if (itemConfigItem.Type !== ItemType.ACTIVE) {
-      // It is not an active item. Give the NO! trinket back and return the new sub-type.
+      // It is not an active item. Give the NO trinket back and return the new sub-type.
       giveTrinketsBack(player, trinketSituation);
       return subType;
     }

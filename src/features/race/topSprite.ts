@@ -1,8 +1,8 @@
 // We show several things at the top of the screen:
-// 1) "Wait for the race to begin!" (only in the race room)
-// 2) An error message if we are on the wrong difficulty
+// 1) "Wait for the race to begin" (only in the race room)
+// 2) An error message if we are on the wrong difficulty.
 // 3) "Go!"
-// 4) Once we have finished a race, the final place
+// 4) Once we have finished a race, the final place.
 
 import { getScreenCenterPos } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -100,7 +100,7 @@ export function countdownChanged(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  // Remove the "1st place!" graphic from the top if we have entered a new room.
+  // Remove the "1st place" graphic from the top if we have entered a new room.
   if (g.race.status === RaceStatus.NONE || g.raceVars.finished) {
     sprite = null;
   }

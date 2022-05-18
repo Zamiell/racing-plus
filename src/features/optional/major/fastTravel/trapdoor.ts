@@ -217,7 +217,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   // Trapdoors created after a room has already initialized should spawn closed by default:
   // - Trapdoors created after bosses should spawn closed so that players do not accidentally jump
   //   into them.
-  // - Trapdoors created by We Need to Go Deeper! should spawn closed because the player will be
+  // - Trapdoors created by We Need to Go Deeper should spawn closed because the player will be
   //   standing on top of them.
   return false;
 }
