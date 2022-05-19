@@ -63,7 +63,7 @@ const v = {
      */
     flippedCollectibleTypes: new Map<
       FlippedCollectibleIndex,
-      CollectibleType | CollectibleTypeCustom
+      CollectibleType
     >(),
   },
 
@@ -76,22 +76,20 @@ const v = {
       PtrHash,
       Sprite,
       [
-        flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
+        flippedCollectibleType: CollectibleType,
         nonFlippedCollectible: EntityPickup,
       ]
     >(
       (
         _key: PtrHash,
-        flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
+        flippedCollectibleType: CollectibleType,
         nonFlippedCollectible: EntityPickup,
       ) => newFlippedSprite(flippedCollectibleType, nonFlippedCollectible),
     ),
   },
 };
 
-function newFlippedCollectibleType(
-  collectible: EntityPickup,
-): CollectibleType | CollectibleTypeCustom {
+function newFlippedCollectibleType(collectible: EntityPickup): CollectibleType {
   const isFirstVisit = g.r.IsFirstVisit();
   const roomFrameCount = g.r.GetFrameCount();
 
@@ -115,7 +113,7 @@ function newFlippedCollectibleType(
 }
 
 function newFlippedSprite(
-  flippedCollectibleType: CollectibleType | CollectibleTypeCustom,
+  flippedCollectibleType: CollectibleType,
   nonFlippedCollectible: EntityPickup,
 ) {
   const collectibleTypeToUse = isBlindCollectible(nonFlippedCollectible)

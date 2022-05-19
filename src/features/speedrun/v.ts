@@ -1,6 +1,5 @@
-import { RoomType } from "isaac-typescript-definitions";
+import { Challenge, RoomType } from "isaac-typescript-definitions";
 import { emptyArray, saveDataManager } from "isaacscript-common";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { RepentanceDoorState } from "../../enums/RepentanceDoorState";
 
 const v = {
@@ -18,7 +17,7 @@ const v = {
     /** Used after a speedrun is finished. */
     resetAllVarsOnNextReset: false,
 
-    currentlyPlayingChallenge: null as ChallengeCustom | null,
+    currentlyPlayingChallenge: null as Challenge | null,
   },
 
   run: {

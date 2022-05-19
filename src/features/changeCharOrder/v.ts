@@ -1,6 +1,5 @@
-import { PlayerType } from "isaac-typescript-definitions";
+import { Challenge, PlayerType } from "isaac-typescript-definitions";
 import { saveDataManager } from "isaacscript-common";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { SeasonDescription } from "../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
@@ -27,7 +26,7 @@ const v = {
     },
 
     // For fading out after the user has finished picking.
-    challengeTarget: null as ChallengeCustom | null,
+    challengeTarget: null as Challenge | null,
     resetRenderFrame: null as int | null,
   },
 };

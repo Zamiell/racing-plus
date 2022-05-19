@@ -3,7 +3,7 @@ import { copyMap } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
 export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
-  CollectibleTypeCustom,
+  CollectibleType,
   CollectibleType
 > = new Map([
   [
@@ -40,7 +40,7 @@ export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
 
 const collectiblePlaceholderReverseMap = new Map<
   CollectibleType,
-  CollectibleTypeCustom
+  CollectibleType
 >();
 for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
   collectiblePlaceholderReverseMap.set(value, key);
@@ -48,8 +48,8 @@ for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
 
 export const COLLECTIBLE_PLACEHOLDER_REVERSE_MAP: ReadonlyMap<
   CollectibleType,
-  CollectibleTypeCustom
+  CollectibleType
 > = copyMap(collectiblePlaceholderReverseMap);
 
-export const PLACEHOLDER_COLLECTIBLES_SET: ReadonlySet<CollectibleTypeCustom> =
+export const PLACEHOLDER_COLLECTIBLES_SET: ReadonlySet<CollectibleType> =
   new Set(COLLECTIBLE_REPLACEMENT_MAP.keys());

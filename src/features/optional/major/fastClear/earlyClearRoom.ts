@@ -166,7 +166,7 @@ function killFleshDeathsHeads() {
     fleshDeathsHead.Visible = false;
     fleshDeathsHead.Kill();
     const newHead = spawnNPC(
-      fleshDeathsHead.Type,
+      EntityType.FLESH_DEATHS_HEAD,
       fleshDeathsHead.Variant,
       fleshDeathsHead.SubType,
       fleshDeathsHead.Position,

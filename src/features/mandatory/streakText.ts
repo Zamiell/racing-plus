@@ -6,6 +6,7 @@ import {
   ItemType,
   PillEffect,
   PlayerForm,
+  TrinketType,
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
@@ -259,8 +260,8 @@ export function preUseItemDeadSeaScrolls(
 export function preItemPickup(pickingUpItem: PickingUpItem): void {
   const trinket = pickingUpItem.itemType === ItemType.TRINKET;
   const name = trinket
-    ? getTrinketName(pickingUpItem.subType)
-    : getCollectibleName(pickingUpItem.subType);
+    ? getTrinketName(pickingUpItem.subType as TrinketType)
+    : getCollectibleName(pickingUpItem.subType as CollectibleType);
 
   set(name);
 }

@@ -7,7 +7,6 @@ import {
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
@@ -25,7 +24,7 @@ export function getEffectiveDevilDeals(): int {
 
 export function giveCollectibleAndRemoveFromPools(
   player: EntityPlayer,
-  collectibleType: CollectibleType | CollectibleTypeCustom,
+  collectibleType: CollectibleType,
 ): void {
   const initCharges = getCollectibleInitCharge(collectibleType);
   const maxCharges = getCollectibleMaxCharges(collectibleType);
@@ -34,9 +33,8 @@ export function giveCollectibleAndRemoveFromPools(
   player.AddCollectible(collectibleType, charges);
   g.itemPool.RemoveCollectible(collectibleType);
 
-  const placeholderCollectible = COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.get(
-    collectibleType as CollectibleType,
-  );
+  const placeholderCollectible =
+    COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.get(collectibleType);
   if (placeholderCollectible !== undefined) {
     g.itemPool.RemoveCollectible(placeholderCollectible);
   }

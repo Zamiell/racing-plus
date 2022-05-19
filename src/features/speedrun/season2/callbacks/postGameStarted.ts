@@ -307,7 +307,7 @@ function getBuildIndexFor(collectibleType: CollectibleType) {
 
 function giveStartingItems(
   player: EntityPlayer,
-  startingBuild: ReadonlyArray<CollectibleType | CollectibleTypeCustom>,
+  startingBuild: readonly CollectibleType[],
 ) {
   const character = player.GetPlayerType();
 
@@ -359,9 +359,7 @@ function giveStartingItems(
   }
 }
 
-function initSprites(
-  startingBuild: ReadonlyArray<CollectibleType | CollectibleTypeCustom>,
-) {
+function initSprites(startingBuild: readonly CollectibleType[]) {
   sprites.characterTitle = initSprite(`${GFX_PATH}/character.anm2`);
 
   const title = startingBuild.length === 1 ? "item" : "build";

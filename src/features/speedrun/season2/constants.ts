@@ -16,7 +16,7 @@ export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
 ];
 
 export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
-  ReadonlyArray<CollectibleType | CollectibleTypeCustom>
+  readonly CollectibleType[]
 > = [
   // -------------------
   // Treasure Room items
@@ -161,9 +161,7 @@ export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
  * characters, so to compensate for this, he is guaranteed a good starting item.
  */
-const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<
-  CollectibleType | CollectibleTypeCustom
-> = new Set([
+const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<CollectibleType> = new Set([
   CollectibleType.MAGIC_MUSHROOM, // 12
   CollectibleType.CHOCOLATE_MILK, // 69
   CollectibleType.IPECAC, // 149

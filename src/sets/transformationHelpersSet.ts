@@ -1,7 +1,8 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
 
-export const TRANSFORMATION_HELPERS_SET: ReadonlySet<CollectibleTypeCustom> =
-  new Set([
+export const TRANSFORMATION_HELPERS_SET: ReadonlySet<CollectibleType> = new Set(
+  [
     CollectibleTypeCustom.GUPPY_TRANSFORMATION_HELPER,
     CollectibleTypeCustom.BEELZEBUB_TRANSFORMATION_HELPER,
     CollectibleTypeCustom.FUN_GUY_TRANSFORMATION_HELPER,
@@ -14,4 +15,5 @@ export const TRANSFORMATION_HELPERS_SET: ReadonlySet<CollectibleTypeCustom> =
     CollectibleTypeCustom.OH_CRAP_TRANSFORMATION_HELPER,
     CollectibleTypeCustom.BOOKWORM_TRANSFORMATION_HELPER,
     CollectibleTypeCustom.SPIDER_BABY_TRANSFORMATION_HELPER,
-  ]);
+  ],
+);

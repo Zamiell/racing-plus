@@ -3,7 +3,7 @@ import { Holiday } from "../enums/Holiday";
 import { NullItemIDCustom } from "../enums/NullItemIDCustom";
 
 export const HOLIDAY_TO_NULL_ITEM_ID: {
-  readonly [key in Holiday]: NullItemID | NullItemIDCustom | undefined;
+  readonly [key in Holiday]: NullItemID | undefined;
 } = {
   [Holiday.NONE]: undefined,
   [Holiday.NEW_YEARS]: NullItemIDCustom.NEW_YEARS,

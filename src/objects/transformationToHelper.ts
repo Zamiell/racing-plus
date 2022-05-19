@@ -1,9 +1,9 @@
-import { PlayerForm } from "isaac-typescript-definitions";
+import { CollectibleType, PlayerForm } from "isaac-typescript-definitions";
 import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
 
 export const TRANSFORMATION_TO_HELPERS: ReadonlyMap<
   PlayerForm,
-  CollectibleTypeCustom
+  CollectibleType
 > = new Map([
   [
     PlayerForm.GUPPY, // 0

@@ -10,11 +10,12 @@ import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { serverCollectibleIDToCollectibleType } from "./utils";
 
-const COLLECTIBLE_TYPE_CUSTOM_ARRAY: readonly CollectibleTypeCustom[] =
-  getEnumValues(CollectibleTypeCustom);
-const COLLECTIBLE_TYPE_CUSTOM_SET: ReadonlySet<
-  CollectibleType | CollectibleTypeCustom
-> = new Set(COLLECTIBLE_TYPE_CUSTOM_ARRAY);
+const COLLECTIBLE_TYPE_CUSTOM_ARRAY: readonly CollectibleType[] = getEnumValues(
+  CollectibleTypeCustom,
+);
+const COLLECTIBLE_TYPE_CUSTOM_SET: ReadonlySet<CollectibleType> = new Set(
+  COLLECTIBLE_TYPE_CUSTOM_ARRAY,
+);
 const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
 export function initGlowingItemSprite(
@@ -61,9 +62,7 @@ function getFilename(itemID: int) {
   return `collectibles_${fileNum}.png`;
 }
 
-function isCustomCollectible(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
-) {
+function isCustomCollectible(collectibleType: CollectibleType) {
   return COLLECTIBLE_TYPE_CUSTOM_SET.has(collectibleType);
 }
 
@@ -108,7 +107,7 @@ function getFileNum(itemID: int) {
 }
 
 export function initCollectibleSprite(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
+  collectibleType: CollectibleType,
 ): Sprite {
   const sprite = Sprite();
   sprite.Load("gfx/005.100_collectible.anm2", false);

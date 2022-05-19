@@ -7,7 +7,6 @@ import {
   MAX_COLLECTIBLE_TYPE,
   saveDataManager,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
@@ -23,8 +22,8 @@ let passiveSprite: Sprite | null = null;
 
 const v = {
   run: {
-    active: CollectibleType.NULL as CollectibleType | CollectibleTypeCustom,
-    passive: CollectibleType.NULL as CollectibleType | CollectibleTypeCustom,
+    active: CollectibleType.NULL,
+    passive: CollectibleType.NULL,
   },
 };
 
@@ -138,7 +137,7 @@ function getEdenPassiveItem(player: EntityPlayer) {
 }
 
 export function changeStartingPassiveItem(
-  collectibleType: CollectibleType | CollectibleTypeCustom,
+  collectibleType: CollectibleType,
 ): void {
   v.run.passive = collectibleType;
   setItemSprites();
