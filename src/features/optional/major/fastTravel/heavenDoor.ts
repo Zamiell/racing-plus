@@ -2,6 +2,7 @@ import {
   BossID,
   EffectVariant,
   HeavenLightDoorSubType,
+  LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
 import { getEffects, inBossRoomOf } from "isaacscript-common";
@@ -49,7 +50,7 @@ function shouldRemove(effect: EntityEffect) {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    (stage === 8 || stage === 9)
+    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB)
   ) {
     return true;
   }
@@ -68,7 +69,10 @@ function shouldSpawnOpen() {
   // in a closed state so that the player must defeat all of the enemies in the room before going
   // up. However, the room will not be clear yet if this is a manually spawned heaven door after
   // killing It Lives or Hush, so account for that first.
-  if ((stage === 8 || stage === 9) && roomType === RoomType.BOSS) {
+  if (
+    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
+    roomType === RoomType.BOSS
+  ) {
     return true;
   }
 

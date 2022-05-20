@@ -176,13 +176,15 @@ function isIncompleteSave() {
 // detect other mods in other ways.)
 function areOtherModsEnabled() {
   const correctMaxCollectibleIDRacingPlus =
+    // eslint-disable-next-line isaacscript/strict-enums
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
   const correctMaxCollectibleIDRacingPlusBabiesMod =
+    // eslint-disable-next-line isaacscript/strict-enums
     MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS + NUM_BABIES_MOD_ITEMS;
   const correctMaxCollectibleID =
     BabiesModGlobals === undefined
-      ? correctMaxCollectibleIDRacingPlus
-      : correctMaxCollectibleIDRacingPlusBabiesMod;
+      ? (correctMaxCollectibleIDRacingPlus as CollectibleType)
+      : (correctMaxCollectibleIDRacingPlusBabiesMod as CollectibleType);
 
   if (MAX_COLLECTIBLE_TYPE !== correctMaxCollectibleID) {
     log(

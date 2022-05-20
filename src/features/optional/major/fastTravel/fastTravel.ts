@@ -5,6 +5,7 @@ import {
   EntityPartition,
   GameStateFlag,
   GridRoom,
+  LevelStage,
   RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
@@ -79,31 +80,36 @@ function getCustomSpriteFilename(
       const gridEntity = entity as GridEntity;
       const variant = gridEntity.GetVariant();
 
-      if (variant === TrapdoorVariant.VOID_PORTAL) {
+      if (variant === (TrapdoorVariant.VOID_PORTAL as int)) {
         return "gfx/grid/voidtrapdoor_custom.anm2";
       }
 
       // -8
-      if (roomGridIndex === GridRoom.BLUE_WOMB) {
+      if (roomGridIndex === (GridRoom.BLUE_WOMB as int)) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
 
       // -10
-      if (roomGridIndex === GridRoom.SECRET_EXIT) {
-        if (!repentanceStage && (stage === 1 || stage === 2)) {
+      if (roomGridIndex === (GridRoom.SECRET_EXIT as int)) {
+        if (
+          !repentanceStage &&
+          (stage === LevelStage.BASEMENT_1 || stage === LevelStage.BASEMENT_2)
+        ) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
 
         if (
-          (!repentanceStage && (stage === 3 || stage === 4)) ||
-          (repentanceStage && stage === 2)
+          (!repentanceStage &&
+            (stage === LevelStage.CAVES_1 || stage === LevelStage.CAVES_2)) ||
+          (repentanceStage && stage === LevelStage.BASEMENT_2)
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          (!repentanceStage && (stage === 5 || stage === 6)) ||
-          (repentanceStage && stage === 4)
+          (!repentanceStage &&
+            (stage === LevelStage.DEPTHS_1 || stage === LevelStage.DEPTHS_2)) ||
+          (repentanceStage && stage === LevelStage.CAVES_2)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
@@ -115,7 +121,7 @@ function getCustomSpriteFilename(
           g.race.myStatus === RacerStatus.RACING &&
           g.race.goal === RaceGoal.THE_BEAST &&
           !repentanceStage &&
-          stage === 6 &&
+          stage === LevelStage.DEPTHS_2 &&
           roomType === RoomType.BOSS
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
@@ -123,15 +129,18 @@ function getCustomSpriteFilename(
       }
 
       if (
-        (repentanceStage && stage === 6 && mausoleumHeartKilled) ||
-        (repentanceStage && stage === 7)
+        (repentanceStage &&
+          stage === LevelStage.DEPTHS_2 &&
+          mausoleumHeartKilled) ||
+        (repentanceStage && stage === LevelStage.WOMB_1)
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }
 
       if (
-        (isGreedMode && stage === 3) ||
-        (!isGreedMode && (stage === 6 || stage === 7))
+        (isGreedMode && stage === LevelStage.CAVES_1) ||
+        (!isGreedMode &&
+          (stage === LevelStage.DEPTHS_2 || stage === LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_wombhole_custom.anm2";
       }
@@ -143,7 +152,7 @@ function getCustomSpriteFilename(
       const gridEntity = entity as GridEntity;
       const variant = gridEntity.GetVariant();
 
-      if (variant === CrawlSpaceVariant.SECRET_SHOP) {
+      if (variant === (CrawlSpaceVariant.SECRET_SHOP as int)) {
         return "gfx/grid/door_20_secrettrapdoor_shop_custom.anm2";
       }
 

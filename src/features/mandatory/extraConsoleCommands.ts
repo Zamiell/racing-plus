@@ -7,6 +7,7 @@ import {
   addConsoleCommand,
   CHARACTER_MAP,
   deepCopyTests,
+  FIRST_CHARACTER,
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
@@ -168,7 +169,7 @@ function seededRaceCharacter(params: string) {
   }
 
   let character: PlayerType;
-  const num = tonumber(params);
+  const num = tonumber(params) as PlayerType | undefined;
   if (num === undefined) {
     const match = getMapPartialMatch(params, CHARACTER_MAP);
     if (match === undefined) {
@@ -178,7 +179,7 @@ function seededRaceCharacter(params: string) {
 
     character = match[1];
   } else {
-    if (num < 0 || num > MAX_VANILLA_CHARACTER) {
+    if (num < FIRST_CHARACTER || num > MAX_VANILLA_CHARACTER) {
       printConsole(`Invalid player sub-type: ${num}`);
       return;
     }

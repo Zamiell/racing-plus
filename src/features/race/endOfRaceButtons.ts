@@ -2,6 +2,7 @@ import {
   CollectibleType,
   EntityType,
   GridEntityType,
+  LevelStage,
   PressurePlateState,
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
@@ -77,7 +78,7 @@ function drawSprites() {
 export function spawnEndOfRaceButtons(): void {
   const stage = g.l.GetStage();
 
-  if (stage !== 11) {
+  if (stage !== LevelStage.DARK_ROOM_CHEST) {
     return;
   }
 
@@ -164,28 +165,26 @@ export function postNewRoom(): void {
   }
 }
 
-// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
-// GridEntityType.PRESSURE_PLATE (20)
-export function postGridEntityUpdatePressurePlate(
-  gridEntity: GridEntity,
+// ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE
+export function postPressurePlateUpdate(
+  gridEntity: GridEntityPressurePlate,
 ): void {
   checkDPSButtonPressed(gridEntity);
   checkVictoryLapButtonPressed(gridEntity);
 }
 
-function checkDPSButtonPressed(gridEntity: GridEntity) {
+function checkDPSButtonPressed(gridEntity: GridEntityPressurePlate) {
   if (v.level.dpsButton === null || v.level.dpsButton.pressed) {
     return;
   }
 
   const roomListIndex = getRoomListIndex();
   const gridIndex = gridEntity.GetGridIndex();
-  const gridDescription = gridEntity.GetSaveState();
 
   if (
     roomListIndex !== v.level.dpsButton.roomListIndex ||
     gridIndex !== v.level.dpsButton.gridIndex ||
-    gridDescription.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
+    gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
   ) {
     return;
   }
@@ -199,19 +198,18 @@ function touchedDPSButton() {
   spawn(EntityType.DUMMY, 0, 0, centerPos);
 }
 
-function checkVictoryLapButtonPressed(gridEntity: GridEntity) {
+function checkVictoryLapButtonPressed(gridEntity: GridEntityPressurePlate) {
   if (v.level.victoryLapButton === null || v.level.victoryLapButton.pressed) {
     return;
   }
 
   const roomListIndex = getRoomListIndex();
   const gridIndex = gridEntity.GetGridIndex();
-  const gridDescription = gridEntity.GetSaveState();
 
   if (
     roomListIndex !== v.level.victoryLapButton.roomListIndex ||
     gridIndex !== v.level.victoryLapButton.gridIndex ||
-    gridDescription.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
+    gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
   ) {
     return;
   }

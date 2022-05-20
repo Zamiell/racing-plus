@@ -14,7 +14,7 @@ const ONE_COIN_CONTAINER_HEARTS_VALUE = 2;
 const v = {
   run: {
     playersCoinMap: new DefaultMap<PlayerIndex, int, [EntityPlayer]>(
-      (_key: PlayerIndex, player: EntityPlayer) => player.GetNumCoins(),
+      (player: EntityPlayer) => player.GetNumCoins(),
     ),
   },
 };

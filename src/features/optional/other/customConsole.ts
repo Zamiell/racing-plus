@@ -36,7 +36,7 @@ let historyIndex = -1;
 
 /** Values are the render frame that the key was pressed. */
 const keysPressed = new DefaultMap<Keyboard, int, [isaacFrameCount: int]>(
-  (_key: Keyboard, isaacFrameCount: int) => isaacFrameCount,
+  (isaacFrameCount: int) => isaacFrameCount,
 );
 
 const v = {
@@ -79,15 +79,22 @@ export function postRender(): void {
     hotkeys.console === -1 ? DEFAULT_CONSOLE_OPEN_INPUT : hotkeys.console;
 
   if (!consoleOpen) {
-    checkKeyboardInput(consoleOpenInput, renderFrameCount, consoleOpenInput);
+    checkKeyboardInput(
+      consoleOpenInput as Keyboard,
+      renderFrameCount,
+      consoleOpenInput as Keyboard,
+    );
     return;
   }
 
-  checkAllKeyboardInput(renderFrameCount, consoleOpenInput);
+  checkAllKeyboardInput(renderFrameCount, consoleOpenInput as Keyboard);
   drawConsole();
 }
 
-function checkAllKeyboardInput(isaacFrameCount: int, consoleOpenInput: int) {
+function checkAllKeyboardInput(
+  isaacFrameCount: int,
+  consoleOpenInput: Keyboard,
+) {
   for (const keyboardValue of getEnumValues(Keyboard)) {
     checkKeyboardInput(keyboardValue, isaacFrameCount, consoleOpenInput);
   }
@@ -96,7 +103,7 @@ function checkAllKeyboardInput(isaacFrameCount: int, consoleOpenInput: int) {
 function checkKeyboardInput(
   keyboardValue: Keyboard,
   isaacFrameCount: int,
-  consoleOpenInput: int,
+  consoleOpenInput: Keyboard,
 ) {
   const pressed = isKeyboardPressed(keyboardValue);
   if (!pressed) {
@@ -123,7 +130,7 @@ function checkKeyboardInput(
   }
 }
 
-function keyPressed(keyboardValue: Keyboard, consoleOpenInput: int) {
+function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
   // Do nothing if modifiers other than shift are pressed.
   if (
     keysPressed.has(Keyboard.LEFT_CONTROL) ||

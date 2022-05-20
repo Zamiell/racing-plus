@@ -41,25 +41,25 @@ export function init(): void {
 // EntityType.PICKUP (5)
 // PickupVariant.COLLECTIBLE (100)
 export function preEntitySpawnCollectible(
-  subType: int,
-): [EntityType | int, int, int, int] | void {
-  return preventVanillaPhotos(subType);
+  collectibleType: CollectibleType,
+): [EntityType, int, int, int] | void {
+  return preventVanillaPhotos(collectibleType);
 }
 
 // We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those
 // manually to speed up the Mom fight.
 function preventVanillaPhotos(
-  subType: int,
-): [EntityType | int, int, int, int] | void {
+  collectibleType: CollectibleType,
+): [EntityType, int, int, int] | void {
   if (
     v.room.vanillaPhotosLeftToSpawn > 0 &&
-    (subType === CollectibleType.POLAROID ||
-      subType === CollectibleType.NEGATIVE)
+    (collectibleType === CollectibleType.POLAROID ||
+      collectibleType === CollectibleType.NEGATIVE)
   ) {
     v.room.vanillaPhotosLeftToSpawn -= 1;
 
     const photoName =
-      subType === CollectibleType.POLAROID ? "Polaroid" : "Negative";
+      collectibleType === CollectibleType.POLAROID ? "Polaroid" : "Negative";
     const gameFrameCount = g.g.GetFrameCount();
     const text = `Preventing a vanilla ${photoName} from spawning on game frame: ${gameFrameCount}`;
     log(text);

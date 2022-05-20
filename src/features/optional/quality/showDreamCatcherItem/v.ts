@@ -1,4 +1,8 @@
-import { CollectibleType, DisplayFlag } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  DisplayFlag,
+  EntityType,
+} from "isaac-typescript-definitions";
 import { PlayerHealth, saveDataManager } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { config } from "../../../../modConfigMenu";
@@ -10,13 +14,13 @@ const v = {
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
     displayFlagsMap: new Map<int, BitFlags<DisplayFlag>>(),
-    cardReadingPortalDescriptions: [] as Array<[int, Vector]>,
+    cardReadingPortalDescriptions: [] as Array<
+      [subType: int, position: Vector]
+    >,
     health: null as PlayerHealth | null,
 
     collectibles: [] as CollectibleType[],
-
-    /** Bosses are stored as an array of: [entityType, variant] */
-    bosses: [] as Array<[int, int]>,
+    bosses: [] as Array<[entityType: EntityType, variant: int]>,
 
     /** Used so that the fast-travel feature can communicate with this feature. */
     arrivedOnNewFloor: false,

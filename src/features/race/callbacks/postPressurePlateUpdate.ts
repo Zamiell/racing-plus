@@ -1,10 +1,12 @@
 import { config } from "../../../modConfigMenu";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 
-export function pressurePlate(gridEntity: GridEntity): void {
+export function racePostPressurePlateUpdate(
+  pressurePlate: GridEntityPressurePlate,
+): void {
   if (!config.clientCommunication) {
     return;
   }
 
-  endOfRaceButtons.postGridEntityUpdatePressurePlate(gridEntity);
+  endOfRaceButtons.postPressurePlateUpdate(pressurePlate);
 }

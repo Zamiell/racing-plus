@@ -43,15 +43,17 @@ function featureEnabled() {
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.COLLECTIBLE (100)
-export function postPickupInitCollectible(pickup: EntityPickup): void {
-  checkRemoveVanillaKrampusDrop(pickup);
+export function postPickupInitCollectible(
+  collectible: EntityPickupCollectible,
+): void {
+  checkRemoveVanillaKrampusDrop(collectible);
 }
 
-function checkRemoveVanillaKrampusDrop(pickup: EntityPickup) {
+function checkRemoveVanillaKrampusDrop(collectible: EntityPickupCollectible) {
   // There is no need to check for the collectible type since the only situation where a Fallen NPC
   // can drop a collectible is Krampus dropping A Lump of Coal or Krampus' Head.
-  if (pickup.SpawnerType === EntityType.FALLEN) {
-    pickup.Remove();
+  if (collectible.SpawnerType === EntityType.FALLEN) {
+    collectible.Remove();
     log("Removed a vanilla Krampus drop.");
   }
 }
@@ -63,7 +65,7 @@ export function postEntityKillFallen(entity: Entity): void {
     return;
   }
 
-  if (entity.Variant === FallenVariant.KRAMPUS) {
+  if (entity.Variant === (FallenVariant.KRAMPUS as int)) {
     spawnKrampusDrop(entity);
   }
 }

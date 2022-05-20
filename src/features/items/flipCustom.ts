@@ -81,7 +81,6 @@ const v = {
       ]
     >(
       (
-        _key: PtrHash,
         flippedCollectibleType: CollectibleType,
         nonFlippedCollectible: EntityPickup,
       ) => newFlippedSprite(flippedCollectibleType, nonFlippedCollectible),
@@ -203,7 +202,9 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.COLLECTIBLE (100)
-export function postPickupInitCollectible(collectible: EntityPickup): void {
+export function postPickupInitCollectible(
+  collectible: EntityPickupCollectible,
+): void {
   if (!config.flipCustom) {
     return;
   }

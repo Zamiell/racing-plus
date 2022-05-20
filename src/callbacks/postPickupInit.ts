@@ -78,24 +78,24 @@ function main(pickup: EntityPickup) {
 }
 
 // PickupVariant.HEART (10)
-function heart(pickup: EntityPickup) {
+function heart(pickup: EntityPickupHeart) {
   scaredHeart.postPickupInitHeart(pickup);
 }
 
 // PickupVariant.COIN (20)
-function coin(pickup: EntityPickup) {
+function coin(pickup: EntityPickupCoin) {
   stickyNickel.postPickupInitCoin(pickup);
 }
 
 // PickupVariant.COLLECTIBLE (100)
-function collectible(pickup: EntityPickup) {
+function collectible(pickup: EntityPickupCollectible) {
   fastKrampus.postPickupInitCollectible(pickup);
   fastAngels.postPickupInitCollectible(pickup);
   flipCustom.postPickupInitCollectible(pickup);
 }
 
 // PickupVariant.TAROT_CARD (300)
-function tarotCard(pickup: EntityPickup) {
+function tarotCard(pickup: EntityPickupCard) {
   uniqueCardBacks.postPickupInitTarotCard(pickup);
 }
 
@@ -105,7 +105,7 @@ function bigChest(pickup: EntityPickup) {
 }
 
 // PickupVariant.TRINKET (350)
-function trinket(pickup: EntityPickup) {
+function trinket(pickup: EntityPickupTrinket) {
   removePerfectionVelocity.postPickupInitTrinket(pickup);
   removePerfectionOnEndFloors.postPickupInitTrinket(pickup);
 }

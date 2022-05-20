@@ -3,7 +3,7 @@
 import { Card } from "isaac-typescript-definitions";
 
 // PickupVariant.TAROT_CARD (300)
-export function postPickupInitTarotCard(pickup: EntityPickup): void {
+export function postPickupInitTarotCard(pickup: EntityPickupCard): void {
   if (
     pickup.SubType === Card.RUNE_BLANK || // 40
     pickup.SubType === Card.RUNE_BLACK // 41

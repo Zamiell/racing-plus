@@ -2,6 +2,7 @@ import {
   ButtonAction,
   CollectibleType,
   Direction,
+  Keyboard,
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
@@ -62,7 +63,7 @@ function checkInput() {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.roll)) {
+  if (!isKeyboardPressed(hotkeys.roll as Keyboard)) {
     isPressed = false;
     return;
   }

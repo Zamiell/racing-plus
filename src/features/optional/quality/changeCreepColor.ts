@@ -59,7 +59,7 @@ export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
   // Ignore creep generated from Lil Spewer.
   if (
     effect.SpawnerType === EntityType.FAMILIAR &&
-    effect.SpawnerVariant === FamiliarVariant.LIL_SPEWER
+    effect.SpawnerVariant === (FamiliarVariant.LIL_SPEWER as int)
   ) {
     return;
   }

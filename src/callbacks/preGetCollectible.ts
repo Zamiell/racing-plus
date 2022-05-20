@@ -16,7 +16,7 @@ function main(
   itemPoolType: ItemPoolType,
   decrease: boolean,
   seed: int,
-): CollectibleType | int | void {
+): CollectibleType | void {
   if (DEBUG) {
     log(
       `MC_PRE_GET_COLLECTIBLE - itemPoolType: ${itemPoolType}, decrease: ${decrease}, seed: ${seed}`,

@@ -1,3 +1,4 @@
+import { Keyboard } from "isaac-typescript-definitions";
 import { getPlayers, isKeyboardPressed } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
@@ -19,7 +20,7 @@ function checkInput() {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.schoolbagSwitch)) {
+  if (!isKeyboardPressed(hotkeys.schoolbagSwitch as Keyboard)) {
     isPressed = false;
     return;
   }

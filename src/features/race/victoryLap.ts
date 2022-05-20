@@ -12,7 +12,7 @@ import { config } from "../../modConfigMenu";
 import v from "./v";
 
 const VICTORY_LAP_BOSSES: ReadonlyArray<
-  [entityType: int, variant: int, subType: int]
+  [entityType: EntityType, variant: int, subType: int]
 > = [
   [19, 0, 0], // Larry Jr.
   [19, 0, 1], // Larry Jr. (green)

@@ -18,12 +18,6 @@ export function postGameStarted(): void {
     return;
   }
 
-  if (holidayCostumeID === -1) {
-    error(
-      `Failed to get the null item ID for holiday costume: ${Holiday[CURRENT_HOLIDAY]} (${CURRENT_HOLIDAY})`,
-    );
-  }
-
   const player = Isaac.GetPlayer();
   player.AddNullCostume(holidayCostumeID);
 

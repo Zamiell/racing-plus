@@ -1,5 +1,5 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
-import { ensureAllCases } from "isaacscript-common";
+import { ensureAllCases, isGoldenTrinket } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -7,7 +7,6 @@ import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../sprite";
 import { getRoomsEntered } from "../utils/roomsEntered";
 
-const FIRST_GOLDEN_TRINKET_ID = 32769;
 const GFX_PATH = "gfx/race/starting-room";
 
 const sprites = {
@@ -245,11 +244,11 @@ function initDiversitySprites() {
   sprites.diversityItem4 = initGlowingItemSprite(passive3CollectibleType);
 
   const trinketType = g.race.startingItems[4] as TrinketType;
-  if (trinketType < FIRST_GOLDEN_TRINKET_ID) {
-    // A normal trinket.
-    sprites.diversityItem5 = initGlowingItemSprite(trinketType, true);
-  } else {
+  if (isGoldenTrinket(trinketType)) {
     // A golden trinket, which should not have its ID modified.
     sprites.diversityItem5 = initGlowingItemSprite(trinketType);
+  } else {
+    // A normal trinket.
+    sprites.diversityItem5 = initGlowingItemSprite(trinketType, true);
   }
 }

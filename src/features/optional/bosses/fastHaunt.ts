@@ -20,7 +20,7 @@ export function postNPCUpdateHaunt(npc: EntityNPC): void {
     return;
   }
 
-  if (npc.Variant !== HauntVariant.HAUNT) {
+  if (npc.Variant !== (HauntVariant.HAUNT as int)) {
     return;
   }
 

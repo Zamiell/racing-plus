@@ -3,16 +3,16 @@ import {
   CollectibleType,
   PillColor,
   PillEffect,
+  PocketItemSlot,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  erange,
+  getAllNormalPillColors,
   getDefaultKColor,
   getNormalPillColorFromHorse,
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
-  MAX_NORMAL_PILL_COLOR,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -94,7 +94,7 @@ const v = {
 export function init(): void {
   saveDataManager("showPills", v, featureEnabled);
 
-  for (const pillColor of erange(1, MAX_NORMAL_PILL_COLOR)) {
+  for (const pillColor of getAllNormalPillColors()) {
     const sprite = initSprite(
       "gfx/pills/pill.anm2",
       `gfx/pills/${pillColor}.png`,
@@ -242,7 +242,7 @@ export function usePill(player: EntityPlayer, pillEffect: PillEffect): void {
 
 function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
   // This callback fires before the pill is consumed, so we can still get the color of the pill.
-  const pillColor = player.GetPill(0);
+  const pillColor = player.GetPill(PocketItemSlot.SLOT_1);
 
   // A mod may have manually used a pill with a null color.
   if (pillColor === PillColor.NULL) {

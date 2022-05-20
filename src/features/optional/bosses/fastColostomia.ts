@@ -4,6 +4,7 @@
 import {
   ColostomiaState,
   EffectVariant,
+  NpcState,
   PoofSubType,
 } from "isaac-typescript-definitions";
 import { spawnEffect } from "isaacscript-common";
@@ -14,7 +15,7 @@ export function postNPCInitColostomia(npc: EntityNPC): void {
   // The state starts at `ColostomiaState.IDLE_PHASE_1` and then always transitions to
   // `ColostomiaState.SPIT_POOP_BOMB`. By immediately setting the state to
   // `ColostomiaState.SPIT_POOP_BOMB`, it will force the NPC to be on the ground.
-  npc.State = ColostomiaState.SPIT_POOP_BOMB;
+  npc.State = ColostomiaState.SPIT_POOP_BOMB as unknown as NpcState;
 
   // Make it have a poof of smoke like a normal boss.
   spawnEffect(

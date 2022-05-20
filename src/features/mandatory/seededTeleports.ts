@@ -1,6 +1,7 @@
 import {
   Direction,
   GridRoom,
+  LevelStage,
   RoomTransitionAnim,
   RoomType,
 } from "isaac-typescript-definitions";
@@ -69,7 +70,7 @@ function seededTelepills() {
   // It is not possible to teleport to I AM ERROR rooms and Black Markets on The Chest / Dark Room.
   let insertErrorRoom = false;
   let insertBlackMarket = false;
-  if (stage !== 11) {
+  if (stage !== LevelStage.DARK_ROOM_CHEST) {
     insertErrorRoom = true;
 
     // There is a 2% chance have a Black Market inserted into the list of possibilities (according

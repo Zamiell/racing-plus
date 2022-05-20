@@ -1,6 +1,7 @@
 import {
   BossID,
   DeathsHeadVariant,
+  EffectVariant,
   EntityCollisionClass,
   EntityType,
   NpcState,
@@ -8,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
+  getEntities,
   getNPCs,
   getRoomData,
   getRoomName,
@@ -139,7 +141,7 @@ function killDeathsHeads() {
   for (const deathsHead of deathsHeads) {
     // Death's Dank Head is a "normal" enemy in that it does not rely on other enemies in the room
     // to be alive. (It is the only variant that has this behavior.)
-    if (deathsHead.Variant === DeathsHeadVariant.DANK_DEATHS_HEAD) {
+    if (deathsHead.Variant === (DeathsHeadVariant.DANK_DEATHS_HEAD as int)) {
       continue;
     }
 
@@ -179,16 +181,10 @@ function killFleshDeathsHeads() {
 }
 
 function killCreep() {
-  const creepEntities = Isaac.FindByType(
-    EntityType.EFFECT,
-    -1,
-    -1,
-    false,
-    true,
-  );
-  for (const entity of creepEntities) {
-    if (CREEP_VARIANTS_TO_KILL.has(entity.Variant)) {
-      entity.Kill();
+  const creeps = getEntities(EntityType.EFFECT, -1, -1, true);
+  for (const creep of creeps) {
+    if (CREEP_VARIANTS_TO_KILL.has(creep.Variant as EffectVariant)) {
+      creep.Kill();
     }
   }
 }

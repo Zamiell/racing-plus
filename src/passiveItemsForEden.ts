@@ -11,7 +11,8 @@ import { PLACEHOLDER_COLLECTIBLES_SET } from "./features/optional/gameplay/extra
 export const PASSIVE_ITEMS_FOR_EDEN: CollectibleType[] = [];
 
 export function init(): void {
-  for (const collectibleType of irange(1, MAX_COLLECTIBLE_TYPE)) {
+  for (const collectibleTypeInt of irange(1, MAX_COLLECTIBLE_TYPE)) {
+    const collectibleType = collectibleTypeInt as CollectibleType;
     const itemConfigItem = itemConfig.GetCollectible(collectibleType);
     if (
       itemConfigItem !== undefined &&

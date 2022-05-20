@@ -1,7 +1,7 @@
 // Vasculitis causes tears to explode out of enemies. This is very confusing and makes it hard to
 // see real projectiles. Fade all tears of this nature so that they are easy to distinguish.
 
-import { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { anyPlayerHasCollectible } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
@@ -26,7 +26,7 @@ function isVasculitisTear(tear: EntityTear) {
   // `tear.SpawnerType` will be equal to 1 if it was shot by the player.
   return (
     tear.FrameCount === 0 &&
-    tear.SpawnerType === 0 &&
+    tear.SpawnerType === EntityType.NULL &&
     anyPlayerHasCollectible(CollectibleType.VASCULITIS)
   );
 }

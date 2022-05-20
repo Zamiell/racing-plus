@@ -23,14 +23,14 @@ export function init(mod: Mod): void {
 }
 
 function main(
-  entityType: EntityType | int,
+  entityType: EntityType,
   variant: int,
   subType: int,
   position: Vector,
   _velocity: Vector,
   spawner: Entity,
   initSeed: int,
-): [EntityType | int, int, int, int] | void {
+): [EntityType, int, int, int] | void {
   if (DEBUG) {
     log(
       `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,

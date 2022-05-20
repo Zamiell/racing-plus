@@ -143,7 +143,7 @@ function checkExitSoftlock(player: EntityPlayer) {
   const roomType = g.r.GetType();
 
   if (
-    previousRoomGridIndex !== GridRoom.DUNGEON ||
+    previousRoomGridIndex !== (GridRoom.DUNGEON as int) ||
     v.level.crawlSpace.previousReturnRoomGridIndex === null
   ) {
     return;
@@ -249,7 +249,7 @@ function checkPostRoomTransitionSubvert() {
 // ModCallbackCustom.POST_GRID_ENTITY_INIT
 // GridEntityType.CRAWL_SPACE (18)
 export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
-  const variant = gridEntity.GetVariant();
+  const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
 
   // We re-implement crawl spaces that lead to the beginning of the floor as a teleport pad since it
   // is easier to understand.
@@ -368,7 +368,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
 function touched(entity: GridEntity | EntityEffect) {
   const gridEntity = entity as GridEntity;
-  const variant = gridEntity.GetVariant();
+  const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
   const roomGridIndex = getRoomGridIndex();
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 

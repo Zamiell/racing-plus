@@ -1,7 +1,11 @@
 // Since the Perfection trinket spawns with a velocity, it can sometimes go over pits and become
 // inaccessible.
 
-import { GridCollisionClass, TrinketType } from "isaac-typescript-definitions";
+import {
+  GridCollisionClass,
+  LevelStage,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   findFreePosition,
   saveDataManager,
@@ -34,7 +38,7 @@ function featureEnabled() {
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.TRINKET (350)
-export function postPickupInitTrinket(pickup: EntityPickup): void {
+export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
   if (!config.removePerfectionVelocity) {
     return;
   }
@@ -60,11 +64,11 @@ function getPerfectionPosition(): Vector {
   const centerPos = g.r.GetCenterPos();
   const gridEntity = g.r.GetGridEntityFromPos(centerPos);
 
-  if (stage === 8) {
+  if (stage === LevelStage.WOMB_2) {
     return g.r.GetGridPosition(STAGE_8_SPAWN_GRID_LOCATION);
   }
 
-  if (stage === 10) {
+  if (stage === LevelStage.SHEOL_CATHEDRAL) {
     return g.r.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
   }
 

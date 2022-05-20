@@ -1,3 +1,4 @@
+import { LevelStage } from "isaac-typescript-definitions";
 import {
   getRepentanceDoor,
   inStartingRoom,
@@ -19,7 +20,7 @@ export function postNewRoom(): void {
     g.race.myStatus !== RacerStatus.RACING ||
     g.race.goal !== RaceGoal.THE_BEAST ||
     repentanceStage ||
-    stage !== 6 ||
+    stage !== LevelStage.DEPTHS_2 ||
     !inStartingRoom()
   ) {
     return;

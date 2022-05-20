@@ -1,4 +1,4 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType, LevelStage } from "isaac-typescript-definitions";
 import {
   getPlayerIndex,
   getPlayers,
@@ -16,7 +16,7 @@ import v from "../v";
  */
 export function betterDevilAngelRoomsPostPickupInitRedChest(): void {
   const stage = g.l.GetStage();
-  if (stage !== 11) {
+  if (stage !== LevelStage.DARK_ROOM_CHEST) {
     return;
   }
 

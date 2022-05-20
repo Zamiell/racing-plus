@@ -1,6 +1,7 @@
 import {
   BeastVariant,
   EntityType,
+  LevelStage,
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
@@ -27,7 +28,7 @@ export function postNewRoom(): void {
   const stage = g.l.GetStage();
   const centerPos = g.r.GetCenterPos();
 
-  if (stage !== 13 || !v.run.beastDefeated) {
+  if (stage !== LevelStage.HOME || !v.run.beastDefeated) {
     return;
   }
 
@@ -44,7 +45,7 @@ export function postNewRoom(): void {
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;
 
-  if (variant !== BeastVariant.BEAST) {
+  if (variant !== (BeastVariant.BEAST as int)) {
     return;
   }
 

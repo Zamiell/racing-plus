@@ -52,21 +52,23 @@ export function postGameStarted(): void {
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.COLLECTIBLE (100)
-export function postPickupInitCollectible(pickup: EntityPickup): void {
+export function postPickupInitCollectible(
+  collectible: EntityPickupCollectible,
+): void {
   if (!config.fastAngels) {
     return;
   }
 
-  checkRemoveVanillaAngelDrop(pickup);
+  checkRemoveVanillaAngelDrop(collectible);
 }
 
-function checkRemoveVanillaAngelDrop(pickup: EntityPickup) {
+function checkRemoveVanillaAngelDrop(collectible: EntityPickupCollectible) {
   // We don't check for the collectible type in case the player has Filigree Feather.
   if (
-    pickup.SpawnerType === EntityType.URIEL || // 271
-    pickup.SpawnerType === EntityType.GABRIEL // 272
+    collectible.SpawnerType === EntityType.URIEL || // 271
+    collectible.SpawnerType === EntityType.GABRIEL // 272
   ) {
-    pickup.Remove();
+    collectible.Remove();
     log("Removed a vanilla Angel drop.");
   }
 }
@@ -116,7 +118,7 @@ function shouldSpawnKeyPiece(entity: Entity) {
   const roomType = g.r.GetType();
 
   // Fallen Angels do not drop key pieces.
-  if (entity.Variant !== AngelVariant.NORMAL) {
+  if (entity.Variant !== (AngelVariant.NORMAL as int)) {
     return false;
   }
 

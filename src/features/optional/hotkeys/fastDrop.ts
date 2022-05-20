@@ -1,4 +1,4 @@
-import { PocketItemSlot } from "isaac-typescript-definitions";
+import { Keyboard, PocketItemSlot } from "isaac-typescript-definitions";
 import {
   findFreePosition,
   getEnumValues,
@@ -33,7 +33,10 @@ export function postRender(): void {
 }
 
 function checkInputAll() {
-  if (hotkeys.fastDropAll !== -1 && isKeyboardPressed(hotkeys.fastDropAll)) {
+  if (
+    hotkeys.fastDropAll !== -1 &&
+    isKeyboardPressed(hotkeys.fastDropAll as Keyboard)
+  ) {
     fastDrop(FastDropTarget.ALL);
   }
 }
@@ -41,7 +44,7 @@ function checkInputAll() {
 function checkInputTrinkets() {
   if (
     hotkeys.fastDropTrinkets !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropTrinkets)
+    isKeyboardPressed(hotkeys.fastDropTrinkets as Keyboard)
   ) {
     fastDrop(FastDropTarget.TRINKETS);
   }
@@ -50,7 +53,7 @@ function checkInputTrinkets() {
 function checkInputPocket() {
   if (
     hotkeys.fastDropPocket !== -1 &&
-    isKeyboardPressed(hotkeys.fastDropPocket)
+    isKeyboardPressed(hotkeys.fastDropPocket as Keyboard)
   ) {
     fastDrop(FastDropTarget.POCKET_ITEMS);
   }

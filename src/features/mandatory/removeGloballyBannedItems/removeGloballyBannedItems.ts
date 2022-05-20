@@ -134,7 +134,11 @@ export function useItemSpindownDice(): void {
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       // Skip over the banned collectible and turn it into the one before that.
-      setCollectibleSubType(collectible, collectible.SubType - 1);
+      const previousCollectibleType = (collectible.SubType as int) - 1;
+      setCollectibleSubType(
+        collectible,
+        previousCollectibleType as CollectibleType,
+      );
     }
   }
 }
@@ -149,27 +153,27 @@ export function postNewRoom(): void {
   }
 }
 
-function isBannedCollectible(entity: Entity) {
-  if (BANNED_COLLECTIBLES.has(entity.SubType)) {
+function isBannedCollectible(collectible: EntityPickupCollectible) {
+  if (BANNED_COLLECTIBLES.has(collectible.SubType)) {
     return true;
   }
 
   if (
     v.run.startedWithVoid &&
-    BANNED_COLLECTIBLES_WITH_VOID.has(entity.SubType)
+    BANNED_COLLECTIBLES_WITH_VOID.has(collectible.SubType)
   ) {
     return true;
   }
 
   if (inSeededRace()) {
-    if (BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(entity.SubType)) {
+    if (BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(collectible.SubType)) {
       return true;
     }
   }
 
   if (
     anyPlayerIs(PlayerType.MAGDALENE_B) &&
-    entity.SubType === CollectibleType.SHARP_PLUG
+    collectible.SubType === CollectibleType.SHARP_PLUG
   ) {
     return true;
   }

@@ -4,6 +4,7 @@ import {
   CollectibleType,
   FamiliarVariant,
   ItemType,
+  LevelStage,
   PillEffect,
   PlayerForm,
   UseFlag,
@@ -152,7 +153,7 @@ function draw(text: string, fade: float) {
 export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
-    const collectibleName = getCollectibleName(wisp.SubType);
+    const collectibleName = getCollectibleName(wisp.SubType as CollectibleType);
     set(collectibleName);
   }
 }
@@ -224,7 +225,7 @@ export function getLevelText(): string {
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
 
-  if (stage === 9) {
+  if (stage === LevelStage.BLUE_WOMB) {
     return "Blue Womb";
   }
 

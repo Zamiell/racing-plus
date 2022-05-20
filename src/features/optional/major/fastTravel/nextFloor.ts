@@ -1,6 +1,7 @@
 import {
   EntityType,
   GameStateFlag,
+  LevelStage,
   NullItemID,
   StageType,
 } from "isaac-typescript-definitions";
@@ -74,7 +75,7 @@ export function goto(upwards: boolean): void {
   setDreamCatcherArrivedOnNewFloor();
 }
 
-function getNextStage() {
+function getNextStage(): LevelStage {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
   const backwardsPathInit = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT);
@@ -91,7 +92,7 @@ function getNextStage() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.THE_BEAST &&
-    stage === 6 &&
+    stage === LevelStage.DEPTHS_2 &&
     !repentanceStage &&
     backwardsPathInit
   ) {
@@ -99,79 +100,91 @@ function getNextStage() {
   }
 
   if (v.run.blueWomb) {
-    return 9;
+    return LevelStage.BLUE_WOMB;
   }
 
   if (v.run.theVoid) {
-    return 12;
+    return LevelStage.THE_VOID;
   }
 
   if (v.run.repentanceSecretExit) {
     if (repentanceStage) {
       // e.g. From Downpour 2 to Mines 1
-      return stage + 1;
+      return (stage as int) + 1;
     }
 
     // e.g. From Basement 1 to Downpour 1 or from Basement 2 to Downpour 2
     return stage;
   }
 
-  if (stage === 6 && repentanceStage && mausoleumHeartKilled) {
+  if (
+    stage === LevelStage.DEPTHS_2 &&
+    repentanceStage &&
+    mausoleumHeartKilled
+  ) {
     // e.g. From Mausoleum 2 to Corpse 1
-    return stage + 1;
+    return (stage as int) + 1;
   }
 
-  if ((stage === 2 || stage === 4 || stage === 6) && repentanceStage) {
+  if (
+    (stage === LevelStage.BASEMENT_2 ||
+      stage === LevelStage.CAVES_2 ||
+      stage === LevelStage.DEPTHS_2) &&
+    repentanceStage
+  ) {
     // e.g. Downpour 2 goes to Caves 2
-    return stage + 2;
+    return (stage as int) + 2;
   }
 
-  if (stage === 8) {
+  if (stage === LevelStage.WOMB_2) {
     // If we are not in the Blue Womb entrance room, then we need to skip a floor (since the Blue
     // Womb is floor 9).
     return 10;
   }
 
-  if (stage === 11) {
+  if (stage === LevelStage.DARK_ROOM_CHEST) {
     // - The Chest goes to The Chest.
     // - The Dark Room goes to the Dark Room.
     return 11;
   }
 
-  if (stage === 12) {
+  if (stage === LevelStage.THE_VOID) {
     // The Void goes to The Void.
     return 12;
   }
 
   // By default, go to the next floor.
-  return stage + 1;
+  return (stage as int) + 1;
 }
 
-function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
-  if (stage === 1) {
+function getNextStageBackwardsPath(
+  stage: LevelStage,
+  repentanceStage: boolean,
+): LevelStage {
+  if (stage === LevelStage.BASEMENT_1) {
     if (repentanceStage) {
       return stage;
     }
 
     // e.g. From Basement 1 to Home
-    return 13;
+    return LevelStage.HOME;
   }
 
-  if (stage === 6 && repentanceStage) {
+  if (stage === LevelStage.DEPTHS_2 && repentanceStage) {
     return stage;
   }
 
   if (
-    stage === 6 &&
+    stage === LevelStage.DEPTHS_2 &&
     !repentanceStage &&
     (v.run.repentanceFloorsVisited.ashpit2 ||
       v.run.repentanceFloorsVisited.mines2)
   ) {
-    return stage - 2;
+    return (stage as int) - 2;
   }
 
   if (
-    stage === 4 &&
+    stage === LevelStage.CAVES_2 &&
     repentanceStage &&
     !v.run.repentanceFloorsVisited.ashpit1 &&
     !v.run.repentanceFloorsVisited.mines1
@@ -180,16 +193,16 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   }
 
   if (
-    stage === 4 &&
+    stage === LevelStage.CAVES_2 &&
     !repentanceStage &&
     (v.run.repentanceFloorsVisited.dross2 ||
       v.run.repentanceFloorsVisited.downpour2)
   ) {
-    return stage - 2;
+    return (stage as int) - 2;
   }
 
   if (
-    stage === 3 &&
+    stage === LevelStage.CAVES_1 &&
     repentanceStage &&
     !v.run.repentanceFloorsVisited.dross2 &&
     !v.run.repentanceFloorsVisited.downpour2
@@ -198,7 +211,7 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
   }
 
   if (
-    stage === 2 &&
+    stage === LevelStage.BASEMENT_2 &&
     repentanceStage &&
     !v.run.repentanceFloorsVisited.dross1 &&
     !v.run.repentanceFloorsVisited.downpour1
@@ -206,15 +219,15 @@ function getNextStageBackwardsPath(stage: int, repentanceStage: boolean): int {
     return stage;
   }
 
-  return stage - 1;
+  return (stage as int) - 1;
 }
 
 function getNextStageType(
-  stage: int,
-  stageType: int,
-  nextStage: int,
+  stage: LevelStage,
+  stageType: StageType,
+  nextStage: LevelStage,
   upwards: boolean,
-) {
+): StageType {
   const repentanceStage = onRepentanceStage();
 
   if (
@@ -222,15 +235,15 @@ function getNextStageType(
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
-    stage === 6 &&
-    nextStage === 6
+    stage === LevelStage.DEPTHS_2 &&
+    nextStage === LevelStage.DEPTHS_2
   ) {
     return getStageTypeRepentance(nextStage);
   }
 
   // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
   // going back to Dogma is pointless.
-  if (nextStage === 13) {
+  if (nextStage === LevelStage.HOME) {
     if (
       g.race.status === RaceStatus.IN_PROGRESS &&
       g.race.myStatus === RacerStatus.RACING &&
@@ -252,25 +265,28 @@ function getNextStageType(
 
   if (
     repentanceStage &&
-    (stage === 1 || stage === 3 || stage === 5 || stage === 7)
+    (stage === LevelStage.BASEMENT_1 ||
+      stage === LevelStage.CAVES_1 ||
+      stage === LevelStage.DEPTHS_1 ||
+      stage === LevelStage.WOMB_1)
   ) {
     return getStageTypeRepentance(nextStage);
   }
 
   if (
     repentanceStage &&
-    stage === 6 &&
+    stage === LevelStage.DEPTHS_2 &&
     g.g.GetStateFlag(GameStateFlag.MAUSOLEUM_HEART_KILLED)
   ) {
     return getStageTypeRepentance(nextStage);
   }
 
-  if (nextStage === 9) {
+  if (nextStage === LevelStage.BLUE_WOMB) {
     // Blue Womb does not have any alternate floors.
     return 0;
   }
 
-  if (nextStage === 10) {
+  if (nextStage === LevelStage.SHEOL_CATHEDRAL) {
     if (upwards) {
       // Go to Cathedral (10.1).
       return 1;
@@ -280,8 +296,8 @@ function getNextStageType(
     return 0;
   }
 
-  if (nextStage === 11) {
-    if (stageType === 0) {
+  if (nextStage === LevelStage.DARK_ROOM_CHEST) {
+    if (stageType === StageType.ORIGINAL) {
       // Sheol (10.0) goes to the Dark Room (11.0).
       return 0;
     }
@@ -294,11 +310,11 @@ function getNextStageType(
 }
 
 function getStageTypeBackwardsPath(
-  stage: int,
-  nextStage: int,
+  stage: LevelStage,
+  nextStage: LevelStage,
   repentanceStage: boolean,
-): int {
-  if (stage === 6 && !repentanceStage) {
+): StageType {
+  if (stage === LevelStage.DEPTHS_2 && !repentanceStage) {
     if (v.run.repentanceFloorsVisited.ashpit2) {
       return StageType.REPENTANCE_B;
     }
@@ -308,7 +324,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 4 && repentanceStage) {
+  if (stage === LevelStage.CAVES_2 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.ashpit1) {
       return StageType.REPENTANCE_B;
     }
@@ -318,7 +334,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 4 && !repentanceStage) {
+  if (stage === LevelStage.CAVES_2 && !repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross2) {
       return StageType.REPENTANCE_B;
     }
@@ -328,7 +344,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 3 && repentanceStage) {
+  if (stage === LevelStage.CAVES_1 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross2) {
       return StageType.REPENTANCE_B;
     }
@@ -338,7 +354,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  if (stage === 2 && repentanceStage) {
+  if (stage === LevelStage.BASEMENT_2 && repentanceStage) {
     if (v.run.repentanceFloorsVisited.dross1) {
       return StageType.REPENTANCE_B;
     }
@@ -351,15 +367,16 @@ function getStageTypeBackwardsPath(
   return getStageType(nextStage);
 }
 
-function getStageTypeRepentance(stage: int) {
+function getStageTypeRepentance(stage: LevelStage): StageType {
   // There is no alternate floor for Corpse.
-  if (stage === 7 || stage === 8) {
+  if (stage === LevelStage.WOMB_1 || stage === LevelStage.WOMB_2) {
     return StageType.REPENTANCE;
   }
 
   // This algorithm is from Kilburn. We add one because the alt path is offset by 1 relative to the
   // normal path.
-  const stageSeed = g.seeds.GetStageSeed(stage + 1);
+  const adjustedStage = ((stage as int) + 1) as LevelStage;
+  const stageSeed = g.seeds.GetStageSeed(adjustedStage);
 
   // Kilburn does not know why he divided the stage seed by 2 first.
   const halfStageSeed = Math.floor(stageSeed / 2);
@@ -370,7 +387,7 @@ function getStageTypeRepentance(stage: int) {
   return StageType.REPENTANCE;
 }
 
-function getStageType(stage: int) {
+function getStageType(stage: LevelStage): StageType {
   // The following is the game's internal code to determine the floor type. (This came directly from
   // Spider.)
   /*
@@ -400,7 +417,7 @@ function getStageType(stage: int) {
   return StageType.ORIGINAL;
 }
 
-function travelStage(stage: int, stageType: int) {
+function travelStage(stage: LevelStage, stageType: StageType) {
   // Build the command that will take us to the next floor.
   let command = `stage ${stage}`;
   if (stageType === StageType.WRATH_OF_THE_LAMB) {
@@ -423,45 +440,45 @@ function travelStage(stage: int, stageType: int) {
   }
 }
 
-function setFloorVariables(stage: int, stageType: int) {
+function setFloorVariables(stage: LevelStage, stageType: StageType) {
   const isBackwardPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
 
   if (isBackwardPath) {
     return;
   }
 
-  if (stageType === 4) {
-    if (stage === 1) {
+  if (stageType === StageType.REPENTANCE) {
+    if (stage === LevelStage.BASEMENT_1) {
       v.run.repentanceFloorsVisited.downpour1 = true;
     }
 
-    if (stage === 2) {
+    if (stage === LevelStage.BASEMENT_2) {
       v.run.repentanceFloorsVisited.downpour2 = true;
     }
 
-    if (stage === 3) {
+    if (stage === LevelStage.CAVES_1) {
       v.run.repentanceFloorsVisited.mines1 = true;
     }
 
-    if (stage === 4) {
+    if (stage === LevelStage.CAVES_2) {
       v.run.repentanceFloorsVisited.mines2 = true;
     }
   }
 
-  if (stageType === 5) {
-    if (stage === 1) {
+  if (stageType === StageType.REPENTANCE_B) {
+    if (stage === LevelStage.BASEMENT_1) {
       v.run.repentanceFloorsVisited.dross1 = true;
     }
 
-    if (stage === 2) {
+    if (stage === LevelStage.BASEMENT_2) {
       v.run.repentanceFloorsVisited.dross2 = true;
     }
 
-    if (stage === 3) {
+    if (stage === LevelStage.CAVES_1) {
       v.run.repentanceFloorsVisited.ashpit1 = true;
     }
 
-    if (stage === 4) {
+    if (stage === LevelStage.CAVES_2) {
       v.run.repentanceFloorsVisited.ashpit2 = true;
     }
   }

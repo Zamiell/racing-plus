@@ -26,7 +26,7 @@ export function postNPCInitDaddyLongLegs(npc: EntityNPC): void {
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.TARGET (30)
 export function postEffectUpdateTarget(effect: EntityEffect): void {
-  if (effect.SubType !== TargetSubTypeCustom.SHADOW_ATTACKS) {
+  if (effect.SubType !== (TargetSubTypeCustom.SHADOW_ATTACKS as int)) {
     return;
   }
 

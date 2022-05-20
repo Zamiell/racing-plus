@@ -13,10 +13,10 @@
   "author": "Racing+",
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^2.0.20",
-    "isaacscript": "^2.0.6",
-    "isaacscript-common": "^2.0.15",
-    "isaacscript-lint": "^1.0.150",
+    "isaac-typescript-definitions": "^2.0.43",
+    "isaacscript": "^2.0.9",
+    "isaacscript-common": "^2.0.24",
+    "isaacscript-lint": "^1.0.157",
     "isaacscript-spell": "^1.0.3"
   }
 }

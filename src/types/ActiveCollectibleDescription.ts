@@ -1,6 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 
 export interface ActiveCollectibleDescription {
-  collectibleType: CollectibleType | int;
+  collectibleType: CollectibleType;
   charge: int;
 }

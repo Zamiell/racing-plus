@@ -1,10 +1,14 @@
-import { RoomType, TrinketType } from "isaac-typescript-definitions";
+import {
+  LevelStage,
+  RoomType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.TRINKET (350)
-export function postPickupInitTrinket(pickup: EntityPickup): void {
+export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
   if (!config.removePerfectionVelocity) {
     return;
   }
@@ -16,7 +20,7 @@ export function postPickupInitTrinket(pickup: EntityPickup): void {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
-  if (stage >= 11 && roomType === RoomType.BOSS) {
+  if (stage >= LevelStage.DARK_ROOM_CHEST && roomType === RoomType.BOSS) {
     pickup.Remove();
   }
 }

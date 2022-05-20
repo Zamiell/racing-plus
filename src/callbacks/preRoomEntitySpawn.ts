@@ -6,12 +6,12 @@ export function init(mod: Mod): void {
 }
 
 function main(
-  _entityType: EntityType | int,
+  _entityType: EntityType,
   _variant: int,
   _subType: int,
   gridIndex: int,
   _seed: int,
-): [EntityType | int, int, int] | void {
+): [EntityType, int, int] | void {
   const newTable = easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
   if (newTable !== undefined) {
     return newTable;

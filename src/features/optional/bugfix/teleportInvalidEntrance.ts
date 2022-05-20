@@ -1,4 +1,10 @@
-import { GridRoom, RoomShape, RoomType } from "isaac-typescript-definitions";
+import {
+  DoorSlot,
+  GridRoom,
+  LevelStage,
+  RoomShape,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   anyPlayerCloserThan,
   getDoorEnterPosition,
@@ -28,7 +34,7 @@ export function postNewRoom(): void {
   }
 
   // Don't bother fixing entrances in the Mom boss room.
-  if (stage === 6 && roomType === RoomType.BOSS) {
+  if (stage === LevelStage.DEPTHS_2 && roomType === RoomType.BOSS) {
     return;
   }
 
@@ -75,11 +81,11 @@ function enteredRoomViaTeleport() {
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
   const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
-    previousRoomGridIndex === GridRoom.DUNGEON ||
-    previousRoomGridIndex === GridRoom.SECRET_SHOP;
+    previousRoomGridIndex === GridRoom.DUNGEON || // eslint-disable-line isaacscript/strict-enums
+    previousRoomGridIndex === GridRoom.SECRET_SHOP; // eslint-disable-line isaacscript/strict-enums
 
   return (
-    g.l.LeaveDoor === -1 &&
+    g.l.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&
     !justReachedThisFloor &&
     !inDungeon &&
     !cameFromDungeon &&

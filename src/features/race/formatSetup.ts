@@ -2,6 +2,7 @@ import {
   CollectibleType,
   PlayerType,
   SoundEffect,
+  TrinketSlot,
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
@@ -46,7 +47,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS: ReadonlySet<PlayerType> =
     PlayerType.JACOB_2_B, // 39
   ]);
 
-function characterStartsWithActiveItemRacingPlus(character: PlayerType | int) {
+function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
   return CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character);
 }
 
@@ -177,7 +178,7 @@ function seeded(player: EntityPlayer) {
 
 function diversity(player: EntityPlayer) {
   const character = player.GetPlayerType();
-  const trinket1 = player.GetTrinket(0);
+  const trinket1 = player.GetTrinket(TrinketSlot.SLOT_1);
 
   // If the race has not started yet, don't give the items.
   if (
@@ -205,7 +206,9 @@ function diversity(player: EntityPlayer) {
     error("A diversity race does not have 5 starting items.");
   }
   const collectibleTypes = copyArray(g.race.startingItems, 4);
-  const trinketType = getLastElement(g.race.startingItems);
+  const trinketType = getLastElement(g.race.startingItems) as
+    | TrinketType
+    | undefined;
   if (trinketType === undefined) {
     error("Failed to find the trinket type from the race's starting items.");
   }
@@ -216,7 +219,7 @@ function diversity(player: EntityPlayer) {
     giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
-  if (trinket1 !== 0) {
+  if (trinket1 !== TrinketType.NULL) {
     player.TryRemoveTrinket(trinket1);
   }
 
@@ -224,7 +227,7 @@ function diversity(player: EntityPlayer) {
   useActiveItemTemp(player, CollectibleType.SMELTER);
 
   // Re-give Paper Clip to Cain, for example.
-  if (trinket1 !== 0) {
+  if (trinket1 !== TrinketType.NULL) {
     player.AddTrinket(trinket1);
   }
 

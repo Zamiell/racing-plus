@@ -92,7 +92,7 @@ function isAllLambEntitiesDead() {
       continue;
     }
 
-    if (lamb.Variant === LambVariant.BODY && lamb.IsInvincible()) {
+    if (lamb.Variant === (LambVariant.BODY as int) && lamb.IsInvincible()) {
       continue;
     }
 

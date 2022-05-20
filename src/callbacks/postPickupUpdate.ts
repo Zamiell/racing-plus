@@ -11,7 +11,7 @@ export function init(mod: Mod): void {
 }
 
 // PickupVariant.COLLECTIBLE (100)
-function collectible(pickup: EntityPickup) {
+function collectible(pickup: EntityPickupCollectible) {
   removeGlitchedItems.postPickupUpdateCollectible(pickup);
   freeDevilItem.postPickupUpdateCollectible(pickup);
 }

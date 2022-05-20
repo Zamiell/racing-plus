@@ -44,9 +44,9 @@ export function postNPCUpdatePin(npc: EntityNPC): void {
 
 function checkPin(npc: EntityNPC) {
   if (
-    npc.Variant !== PinVariant.PIN &&
-    npc.Variant !== PinVariant.FRAIL &&
-    npc.Variant !== PinVariant.SCOLEX
+    npc.Variant !== (PinVariant.PIN as int) &&
+    npc.Variant !== (PinVariant.FRAIL as int) &&
+    npc.Variant !== (PinVariant.SCOLEX as int)
   ) {
     return;
   }
@@ -72,7 +72,7 @@ function speedUpTearAttack(npc: EntityNPC) {
 }
 
 function checkWormwood(npc: EntityNPC) {
-  if (npc.Variant !== PinVariant.WORMWOOD) {
+  if (npc.Variant !== (PinVariant.WORMWOOD as int)) {
     return;
   }
 

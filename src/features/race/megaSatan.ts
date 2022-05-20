@@ -1,6 +1,10 @@
 // Automatically open the Mega Satan door on races with a Mega Satan goal.
 
-import { DoorSlot, SoundEffect } from "isaac-typescript-definitions";
+import {
+  DoorSlot,
+  LevelStage,
+  SoundEffect,
+} from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -16,7 +20,7 @@ export function postNewLevel(): void {
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
     g.race.goal !== RaceGoal.MEGA_SATAN ||
-    stage !== 11
+    stage !== LevelStage.DARK_ROOM_CHEST
   ) {
     return;
   }

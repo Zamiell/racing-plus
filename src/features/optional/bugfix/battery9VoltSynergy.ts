@@ -19,7 +19,7 @@ import { config } from "../../../modConfigMenu";
 const v = {
   run: {
     giveExtraChargePlayerIndex: null as PlayerIndex | null,
-    giveExtraChargeActiveSlot: null as int | null,
+    giveExtraChargeActiveSlot: null as ActiveSlot | null,
   },
 };
 
@@ -33,7 +33,7 @@ function featureEnabled() {
 
 // ModCallback.POST_USE_ITEM (3)
 export function useItem(
-  collectibleType: CollectibleType | int,
+  collectibleType: CollectibleType,
   player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,

@@ -7,7 +7,7 @@ export function heavenLightDoor(effect: EntityEffect): void {
     return;
   }
 
-  if (effect.SubType === HeavenLightDoorSubType.HEAVEN_DOOR) {
+  if (effect.SubType === (HeavenLightDoorSubType.HEAVEN_DOOR as int)) {
     heavenDoor.postEffectUpdate(effect);
   }
 }

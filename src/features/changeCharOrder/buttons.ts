@@ -1,6 +1,7 @@
 import {
   FadeoutTarget,
   GridEntityType,
+  PlayerType,
   PressurePlateState,
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
@@ -142,26 +143,25 @@ function createBuildVetoButtons() {
   }
 }
 
-// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
-// GridEntityType.PRESSURE_PLATE (20)
-export function postGridEntityUpdatePressurePlate(
-  gridEntity: GridEntity,
+// ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE
+export function postPressurePlateUpdate(
+  pressurePlate: GridEntityPressurePlate,
 ): void {
-  checkPressed(gridEntity);
+  checkPressed(pressurePlate);
 }
 
-function checkPressed(gridEntity: GridEntity) {
+function checkPressed(pressurePlate: GridEntityPressurePlate) {
   switch (v.room.phase) {
     case ChangeCharOrderPhase.SEASON_SELECT: {
-      return checkPressedPhaseSeasonSelect(gridEntity);
+      return checkPressedPhaseSeasonSelect(pressurePlate);
     }
 
     case ChangeCharOrderPhase.CHARACTER_SELECT: {
-      return checkPressedPhaseCharacterSelect(gridEntity);
+      return checkPressedPhaseCharacterSelect(pressurePlate);
     }
 
     case ChangeCharOrderPhase.BUILD_VETO: {
-      return checkPressedPhaseBuildVeto(gridEntity);
+      return checkPressedPhaseBuildVeto(pressurePlate);
     }
 
     default: {
@@ -170,16 +170,16 @@ function checkPressed(gridEntity: GridEntity) {
   }
 }
 
-function checkPressedPhaseSeasonSelect(gridEntity: GridEntity) {
+function checkPressedPhaseSeasonSelect(pressurePlate: GridEntityPressurePlate) {
   for (const [key, position] of Object.entries(CHANGE_CHAR_ORDER_POSITIONS)) {
     const buttonPosition = gridCoordinatesToWorldPosition(
       position.X,
       position.Y,
     );
     if (
-      gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      gridEntity.Position.X === buttonPosition.X &&
-      gridEntity.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
+      pressurePlate.Position.X === buttonPosition.X &&
+      pressurePlate.Position.Y === buttonPosition.Y
     ) {
       seasonButtonPressed(key);
       return;
@@ -206,19 +206,21 @@ function seasonButtonPressed(seasonChosenAbbreviation: string) {
   v.room.createButtonsFrame = gameFrameCount + 1;
 }
 
-function checkPressedPhaseCharacterSelect(gridEntity: GridEntity) {
+function checkPressedPhaseCharacterSelect(
+  pressurePlate: GridEntityPressurePlate,
+) {
   const seasonDescription = getSeasonDescription();
 
   seasonDescription.charPositions.forEach((tuple, i) => {
     const [, x, y] = tuple;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
-      gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it.
-      gridEntity.Position.X === buttonPosition.X &&
-      gridEntity.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
+      pressurePlate.VarData === 0 && // We set it to 1 to mark that we have pressed it.
+      pressurePlate.Position.X === buttonPosition.X &&
+      pressurePlate.Position.Y === buttonPosition.Y
     ) {
-      characterButtonPressed(gridEntity, i);
+      characterButtonPressed(pressurePlate, i);
     }
   });
 }
@@ -296,7 +298,7 @@ function deleteCharacterButtonAtIndex(i: int) {
   v.room.sprites.characters[i] = Sprite();
 }
 
-function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
+function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
   const seasonDescription = getSeasonDescription();
 
   if (seasonDescription.buildPositions === undefined) {
@@ -307,12 +309,12 @@ function checkPressedPhaseBuildVeto(gridEntity: GridEntity) {
     const [, x, y] = tuple;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
-      gridEntity.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      gridEntity.VarData === 0 && // We set it to 1 to mark that we have pressed it.
-      gridEntity.Position.X === buttonPosition.X &&
-      gridEntity.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
+      pressurePlate.VarData === 0 && // We set it to 1 to mark that we have pressed it.
+      pressurePlate.Position.X === buttonPosition.X &&
+      pressurePlate.Position.Y === buttonPosition.Y
     ) {
-      buildButtonPressed(gridEntity, i);
+      buildButtonPressed(pressurePlate, i);
     }
   });
 }
@@ -356,7 +358,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
     }
     v.persistent.charOrders.set(
       v.room.seasonChosenAbbreviation,
-      v.room.buildsChosen,
+      v.room.buildsChosen as PlayerType[],
     );
     season2SetBansTime();
     g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);

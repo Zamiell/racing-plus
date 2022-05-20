@@ -164,7 +164,9 @@ function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
 
 // ModCallback.POST_PICKUP_UPDATE (35)
 // PickupVariant.COLLECTIBLE (100)
-export function postPickupUpdateCollectible(pickup: EntityPickup): void {
+export function postPickupUpdateCollectible(
+  collectible: EntityPickupCollectible,
+): void {
   if (!config.freeDevilItem) {
     return;
   }
@@ -172,12 +174,12 @@ export function postPickupUpdateCollectible(pickup: EntityPickup): void {
   if (
     shouldGetFreeDevilItemOnThisRun() &&
     shouldGetFreeDevilItemInThisRoom() &&
-    isDevilDealStyleCollectible(pickup)
+    isDevilDealStyleCollectible(collectible)
   ) {
     // Update the price of the item on every frame. We deliberately do not change `AutoUpdatePrice`
     // so that as soon as the player is no longer eligible for the free item, the price will
     // immediately change back to what it is supposed to be.
-    pickup.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
+    collectible.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
   }
 }
 
@@ -216,17 +218,20 @@ function shouldGetFreeDevilItemInThisRoom() {
  * Devil-Deal-style item for Keeper and Tainted Keeper. This is not necessarily true, as Keeper
  * could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for example.
  */
-function isDevilDealStyleCollectible(pickup: EntityPickup) {
+function isDevilDealStyleCollectible(collectible: EntityPickupCollectible) {
   const roomType = g.r.GetType();
 
   if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
     return (
-      pickup.Price > 0 &&
+      collectible.Price > PickupPrice.NULL &&
       (roomType === RoomType.DEVIL || roomType === RoomType.BLACK_MARKET)
     );
   }
 
-  return pickup.Price < 0 && pickup.Price !== PickupPrice.FREE;
+  return (
+    collectible.Price < PickupPrice.NULL &&
+    collectible.Price !== PickupPrice.FREE
+  );
 }
 
 // ModCallback.POST_PICKUP_RENDER (36)

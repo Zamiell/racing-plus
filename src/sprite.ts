@@ -1,4 +1,4 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   getCollectibleGfxFilename,
   getEnumValues,
@@ -19,7 +19,7 @@ const COLLECTIBLE_TYPE_CUSTOM_SET: ReadonlySet<CollectibleType> = new Set(
 const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
 export function initGlowingItemSprite(
-  collectibleOrTrinketType: int,
+  collectibleOrTrinketType: CollectibleType | TrinketType,
   trinket = false,
 ): Sprite {
   // Account for custom items from the server that have an ID between 1001 and 1999 instead of their
@@ -29,12 +29,12 @@ export function initGlowingItemSprite(
   );
 
   // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png".
-  if (trinket) {
-    collectibleOrTrinketType += GLOWING_IMAGE_TRINKET_OFFSET;
-  }
+  const itemID = trinket
+    ? (collectibleOrTrinketType as int) + GLOWING_IMAGE_TRINKET_OFFSET
+    : collectibleOrTrinketType;
 
-  const directory = getDirectory(collectibleOrTrinketType);
-  const filename = getFilename(collectibleOrTrinketType);
+  const directory = getDirectory(itemID);
+  const filename = getFilename(itemID);
   return initSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
 }
 
@@ -45,12 +45,14 @@ function getDirectory(itemID: int) {
     return "season2builds";
   }
 
-  return isCustomCollectible(itemID) ? "items-glowing-custom" : "items-glowing";
+  return isCustomCollectible(itemID as CollectibleType)
+    ? "items-glowing-custom"
+    : "items-glowing";
 }
 
 function getFilename(itemID: int) {
-  if (isCustomCollectible(itemID)) {
-    const gfxFilename = getCollectibleGfxFilename(itemID);
+  if (isCustomCollectible(itemID as CollectibleType)) {
+    const gfxFilename = getCollectibleGfxFilename(itemID as CollectibleType);
     const pathSegments = gfxFilename.split("/");
     if (pathSegments.length === 0) {
       return "questionmark.png";
@@ -76,13 +78,14 @@ function getFileNum(itemID: int) {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items).
   if (
-    itemID >= CollectibleType.SAD_ONION &&
-    itemID <= MAX_VANILLA_COLLECTIBLE_TYPE
+    itemID >= CollectibleType.SAD_ONION && // eslint-disable-line isaacscript/strict-enums
+    itemID <= MAX_VANILLA_COLLECTIBLE_TYPE // eslint-disable-line isaacscript/strict-enums
   ) {
     return itemID.toString().padStart(3, "0");
   }
 
   // Between the highest vanilla item and Swallowed Penny.
+  // eslint-disable-next-line isaacscript/strict-enums
   if (itemID > MAX_VANILLA_COLLECTIBLE_TYPE && itemID < 2001) {
     return defaultReturn;
   }
@@ -107,13 +110,15 @@ function getFileNum(itemID: int) {
 }
 
 export function initCollectibleSprite(
-  collectibleType: CollectibleType,
+  collectibleType: CollectibleType | -1,
 ): Sprite {
   const sprite = Sprite();
   sprite.Load("gfx/005.100_collectible.anm2", false);
   sprite.SetFrame("Idle", 0);
 
-  const gfxFilename = getCollectibleGfxFilename(collectibleType);
+  const gfxFilename = getCollectibleGfxFilename(
+    collectibleType as CollectibleType,
+  );
   sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
   sprite.LoadGraphics();
 

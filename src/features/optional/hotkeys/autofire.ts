@@ -1,7 +1,7 @@
 // We have to return a value from both the `isActionPressed` and the `getActionValue` callbacks in
 // order for Anti-Gravity autofire to work.
 
-import { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType, Keyboard } from "isaac-typescript-definitions";
 import { isKeyboardPressed, saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
 import { hotkeys } from "../../../modConfigMenu";
@@ -36,16 +36,11 @@ export function postRender(): void {
     return;
   }
 
-  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
-  checkInput();
-}
-
-function checkInput() {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.autofire)) {
+  if (!isKeyboardPressed(hotkeys.autofire as Keyboard)) {
     isPressed = false;
     return;
   }

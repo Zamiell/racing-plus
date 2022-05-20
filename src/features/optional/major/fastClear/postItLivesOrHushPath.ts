@@ -3,6 +3,7 @@ import {
   EntityType,
   GridEntityType,
   HeavenLightDoorSubType,
+  LevelStage,
   RoomType,
   StageType,
   TrapdoorVariant,
@@ -54,7 +55,7 @@ function inItLivesOrHushBossRoom() {
   const roomType = g.r.GetType();
 
   return (
-    (stage === 8 || stage === 9) &&
+    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
     // Corpse does not have It Lives! / Hush.
     stageType !== StageType.REPENTANCE &&
     roomType === RoomType.BOSS &&
@@ -166,7 +167,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
   let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
   let positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
   let positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
-  if (stage === 9) {
+  if (stage === LevelStage.BLUE_WOMB) {
     positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM);
     positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM - 1);
     positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM + 1);

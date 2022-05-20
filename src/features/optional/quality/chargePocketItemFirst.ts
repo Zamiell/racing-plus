@@ -298,7 +298,7 @@ function getChargeSituationForPickup(
 
     // 30
     case PickupVariant.KEY: {
-      if (pickupSubType === KeySubType.CHARGED) {
+      if ((pickupSubType as KeySubType) === KeySubType.CHARGED) {
         return {
           numCharges: LIL_BATTERY_CHARGES,
         };
@@ -311,7 +311,7 @@ function getChargeSituationForPickup(
 
     // 90
     case PickupVariant.LIL_BATTERY: {
-      return getChargeSituationForBattery(pickupSubType);
+      return getChargeSituationForBattery(pickupSubType as BatterySubType);
     }
 
     default: {

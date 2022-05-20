@@ -41,7 +41,10 @@ function fadeBosses(entity: Entity, deferred = false) {
   // trigger the PostEntityKill callback. However, in this situation, The Lamb will not actually
   // die, and will instead proceed to transition to phase 2 anyway. To work around this, wait a
   // frame before checking to see if all of the Lamb entities are dead.
-  if (npc.Type === EntityType.THE_LAMB && npc.Variant === LambVariant.LAMB) {
+  if (
+    npc.Type === EntityType.THE_LAMB &&
+    npc.Variant === (LambVariant.LAMB as int)
+  ) {
     if (deferred) {
       if (!npc.IsDead()) {
         return;

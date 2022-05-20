@@ -183,7 +183,7 @@ function spawnSeededDrop() {
           pickupVariant === PickupVariant.COIN || // 20
           pickupVariant === PickupVariant.KEY || // 30
           pickupVariant === PickupVariant.BOMB || // 40
-          pickupVariant === PickupVariant.GRAB_BAG) // 69
+          pickupVariant === PickupVariant.SACK) // 69
       ) {
         pickupCount += 1;
       }
@@ -250,7 +250,7 @@ function getPickupVariant(rng: RNG) {
     }
 
     if (rng.RandomInt(50) === 0) {
-      pickupVariant = PickupVariant.GRAB_BAG; // 69
+      pickupVariant = PickupVariant.SACK; // 69
     }
   }
 

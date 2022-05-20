@@ -1,6 +1,10 @@
 // Card Reading is too powerful, so it is nerfed in Racing+.
 
-import { EffectVariant, EntityType } from "isaac-typescript-definitions";
+import {
+  EffectVariant,
+  EntityType,
+  LevelStage,
+} from "isaac-typescript-definitions";
 import { removeAllMatchingEntities } from "isaacscript-common";
 import g from "../../globals";
 
@@ -19,5 +23,5 @@ function removeEndGamePortals() {
 
 export function shouldRemoveEndGamePortals(): boolean {
   const stage = g.l.GetStage();
-  return stage >= 8;
+  return stage >= LevelStage.WOMB_2;
 }

@@ -1,6 +1,7 @@
 import {
   GameStateFlag,
   GridRoom,
+  LevelStage,
   RoomType,
   SeedEffect,
   TrapdoorState,
@@ -84,7 +85,7 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // Don't replace the trap door that leads to Mother.
-  if (stage === 8 && repentanceStage) {
+  if (stage === LevelStage.WOMB_2 && repentanceStage) {
     return true;
   }
 
@@ -107,7 +108,7 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
-    stage === 6
+    stage === LevelStage.DEPTHS_2
   ) {
     log(
       `Removed a vanilla trapdoor on Depths 2 (for a Boss Rush goal) on game frame: ${gameFrameCount}`,
@@ -120,8 +121,8 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === 8 &&
-    roomGridIndex !== GridRoom.BLUE_WOMB
+    stage === LevelStage.WOMB_2 &&
+    roomGridIndex !== GridRoom.BLUE_WOMB // eslint-disable-line isaacscript/strict-enums
   ) {
     log(
       `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
@@ -134,8 +135,8 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === 9 &&
-    roomGridIndex !== GridRoom.THE_VOID
+    stage === LevelStage.BLUE_WOMB &&
+    roomGridIndex !== GridRoom.THE_VOID // eslint-disable-line isaacscript/strict-enums
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
@@ -152,11 +153,11 @@ function shouldRemove() {
     roomType === RoomType.BOSS
   ) {
     if (
-      (stage === 1 ||
-        stage === 2 ||
-        stage === 3 ||
-        stage === 4 ||
-        stage === 5) &&
+      (stage === LevelStage.BASEMENT_1 ||
+        stage === LevelStage.BASEMENT_2 ||
+        stage === LevelStage.CAVES_1 ||
+        stage === LevelStage.CAVES_2 ||
+        stage === LevelStage.DEPTHS_1) &&
       !repentanceStage
     ) {
       log(
@@ -165,14 +166,21 @@ function shouldRemove() {
       return true;
     }
 
-    if ((stage === 2 || stage === 4) && repentanceStage) {
+    if (
+      (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
+      repentanceStage
+    ) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
 
-    if (stage === 6 && repentanceStage && !mausoleumHeartKilled) {
+    if (
+      stage === LevelStage.DEPTHS_2 &&
+      repentanceStage &&
+      !mausoleumHeartKilled
+    ) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
       );
@@ -182,7 +190,11 @@ function shouldRemove() {
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
   // this functionality it is simpler to delete them.)
-  if (stage < 7 && backwardPath && roomGridIndex !== GridRoom.SECRET_EXIT) {
+  if (
+    stage < LevelStage.WOMB_1 &&
+    backwardPath &&
+    roomGridIndex !== GridRoom.SECRET_EXIT // eslint-disable-line isaacscript/strict-enums
+  ) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );

@@ -1,7 +1,12 @@
 // In seeded races, the silhouettes of other races are drawn onto the screen. This is accomplished
 // via UDP datagrams that are sent to the client, and then to the server.
 
-import { ButtonAction, PlayerType } from "isaac-typescript-definitions";
+import {
+  ButtonAction,
+  LevelStage,
+  PlayerType,
+  StageType,
+} from "isaac-typescript-definitions";
 import {
   DefaultMap,
   getRoomListIndex,
@@ -35,8 +40,8 @@ interface ShadowData {
   userID: int;
   x: float;
   y: float;
-  stage: int;
-  stageType: int;
+  stage: LevelStage;
+  stageType: StageType;
   /** Equal to the list index specifically. */
   roomIndex: int;
   character: PlayerType;
@@ -53,8 +58,8 @@ interface ShadowMessage {
   userID: int;
   x: float;
   y: float;
-  stage: int;
-  stageType: int;
+  stage: LevelStage;
+  stageType: StageType;
   /** Equal to the list index specifically. */
   roomIndex: int;
   character: PlayerType;
@@ -69,7 +74,7 @@ let lastBeaconFrame: int | null = null;
 
 /** Indexed by user ID. */
 const spriteMap = new DefaultMap<int, Sprite>(() => newShadowSprite());
-const spriteCharacterMap = new DefaultMap<int, PlayerType>(-1);
+const spriteCharacterMap = new DefaultMap<int, PlayerType | -1>(-1);
 
 function newShadowSprite() {
   const sprite = Sprite();

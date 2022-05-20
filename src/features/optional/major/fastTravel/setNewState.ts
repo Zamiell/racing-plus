@@ -5,6 +5,7 @@ import {
   FamiliarVariant,
   GameStateFlag,
   GridRoom,
+  LevelStage,
   PlayerType,
   PlayerVariant,
   RoomType,
@@ -84,8 +85,11 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
+  // eslint-disable-next-line isaacscript/strict-enums
   v.run.blueWomb = roomGridIndex === GridRoom.BLUE_WOMB;
+  // eslint-disable-next-line isaacscript/strict-enums
   v.run.theVoid = roomGridIndex === GridRoom.THE_VOID;
+  // eslint-disable-next-line isaacscript/strict-enums
   v.run.repentanceSecretExit = roomGridIndex === GridRoom.SECRET_EXIT;
   logFastTravelStateChanged();
 
@@ -114,8 +118,8 @@ function setGameStateFlags() {
   // If the player has gone through the trapdoor past the strange door.
   if (
     !repentanceStage &&
-    stage === 6 &&
-    roomGridIndex === GridRoom.SECRET_EXIT
+    stage === LevelStage.DEPTHS_2 &&
+    roomGridIndex === GridRoom.SECRET_EXIT // eslint-disable-line isaacscript/strict-enums
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     g.g.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
@@ -127,7 +131,7 @@ function setGameStateFlags() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
-    stage === 6 &&
+    stage === LevelStage.DEPTHS_2 &&
     roomType === RoomType.BOSS
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.

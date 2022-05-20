@@ -285,7 +285,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = keyboardToString(currentValue);
+        text = keyboardToString(currentValue as Keyboard);
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
@@ -298,7 +298,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = controllerToString(currentValue);
+        text = controllerToString(currentValue as Controller);
       }
 
       return `${shortDescription}: ${text} (controller)`;
@@ -357,11 +357,11 @@ function popupGetKeepSettingString(
 function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
-      return keyboardToString(key);
+      return keyboardToString(key as Keyboard);
     }
 
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
-      return controllerToString(key);
+      return controllerToString(key as Controller);
     }
 
     default: {

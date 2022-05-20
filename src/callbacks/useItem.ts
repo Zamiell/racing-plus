@@ -1,4 +1,5 @@
 import {
+  ActiveSlot,
   CollectibleType,
   ModCallback,
   UseFlag,
@@ -67,11 +68,11 @@ export function init(mod: Mod): void {
 }
 
 function main(
-  collectibleType: CollectibleType | int,
+  collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,
-  activeSlot: int,
+  activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | void {
   battery9VoltSynergy.useItem(collectibleType, player, useFlags, activeSlot);
@@ -79,11 +80,11 @@ function main(
 
 // CollectibleType.TELEPORT (44)
 function teleport(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   seededTeleports.useItemTeleport();
@@ -91,11 +92,11 @@ function teleport(
 
 // CollectibleType.VOID (477)
 function voidItem(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   speedrunUseItem.voidItem();
@@ -103,11 +104,11 @@ function voidItem(
 
 // CollectibleType.FORTUNE_COOKIE (557)
 function fortuneCookie(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   removeFortuneCookieBanners.useItemFortuneCookie();
@@ -115,11 +116,11 @@ function fortuneCookie(
 
 // CollectibleType.MEAT_CLEAVER (631)
 function meatCleaver(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   consistentAngels.useItemMeatCleaver();
@@ -127,11 +128,11 @@ function meatCleaver(
 
 // CollectibleType.LEMEGETON (712)
 function lemegeton(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   streakText.useItemLemegeton();
@@ -139,11 +140,11 @@ function lemegeton(
 
 // CollectibleType.SPINDOWN_DICE (723)
 function spindownDice(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   removeGloballyBannedItems.useItemSpindownDice();
@@ -151,11 +152,11 @@ function spindownDice(
 
 // CollectibleTypeCustom.FLIP_CUSTOM
 function useItemFlipCustom(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   return flipCustom.useItemFlipCustom(player);
@@ -163,11 +164,11 @@ function useItemFlipCustom(
 
 // CollectibleTypeCustom.DEBUG
 function debugItem(
-  _collectibleType: CollectibleType | int,
+  _collectibleType: CollectibleType,
   _rng: RNG,
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
-  _activeSlot: int,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ) {
   return debug.useItemDebug();

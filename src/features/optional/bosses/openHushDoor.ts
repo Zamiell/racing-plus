@@ -1,6 +1,10 @@
 // Automatically open the Hush door to speed things up.
 
-import { DoorSlot, SoundEffect } from "isaac-typescript-definitions";
+import {
+  DoorSlot,
+  LevelStage,
+  SoundEffect,
+} from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -14,7 +18,7 @@ export function postNewLevel(): void {
   const stage = g.l.GetStage();
   const player = Isaac.GetPlayer();
 
-  if (stage === 9) {
+  if (stage === LevelStage.BLUE_WOMB) {
     const hushDoor = g.r.GetDoor(DoorSlot.UP_0);
     if (hushDoor !== undefined) {
       hushDoor.TryUnlock(player, true);

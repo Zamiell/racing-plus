@@ -3,6 +3,7 @@ import {
   EffectVariant,
   GridEntityType,
   HeavenLightDoorSubType,
+  LevelStage,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
@@ -204,13 +205,13 @@ function theLamb() {
 function megaSatan() {
   const stage = g.l.GetStage();
 
-  if (stage === 11 && !inMegaSatanRoom()) {
+  if (stage === LevelStage.DARK_ROOM_CHEST && !inMegaSatanRoom()) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
     // have to go to Mega Satan.
     return ReplacementAction.REMOVE;
   }
 
-  if (stage === 11 && inMegaSatanRoom()) {
+  if (stage === LevelStage.DARK_ROOM_CHEST && inMegaSatanRoom()) {
     return ReplacementAction.TROPHY;
   }
 
@@ -220,7 +221,7 @@ function megaSatan() {
 function hush() {
   const stage = g.l.GetStage();
 
-  if (stage === 9) {
+  if (stage === LevelStage.BLUE_WOMB) {
     return ReplacementAction.TROPHY;
   }
 
@@ -230,7 +231,7 @@ function hush() {
 function delirium() {
   const stage = g.l.GetStage();
 
-  if (stage === 12) {
+  if (stage === LevelStage.THE_VOID) {
     return ReplacementAction.TROPHY;
   }
 
@@ -240,7 +241,7 @@ function delirium() {
 function mother() {
   const stage = g.l.GetStage();
 
-  if (stage === 8 && onRepentanceStage()) {
+  if (stage === LevelStage.WOMB_2 && onRepentanceStage()) {
     return ReplacementAction.TROPHY;
   }
 
@@ -250,7 +251,7 @@ function mother() {
 function theBeast() {
   const stage = g.l.GetStage();
 
-  if (stage === 13) {
+  if (stage === LevelStage.HOME) {
     return ReplacementAction.TROPHY;
   }
 
@@ -260,7 +261,7 @@ function theBeast() {
 function bossRush() {
   const stage = g.l.GetStage();
 
-  if (stage === 6) {
+  if (stage === LevelStage.DEPTHS_2) {
     return ReplacementAction.TROPHY;
   }
 

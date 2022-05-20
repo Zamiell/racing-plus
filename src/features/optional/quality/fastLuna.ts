@@ -15,7 +15,7 @@ export function postEffectUpdateHeavenLightDoor(effect: EntityEffect): void {
   }
 
   if (
-    effect.SubType === HeavenLightDoorSubType.MOONLIGHT &&
+    effect.SubType === (HeavenLightDoorSubType.MOONLIGHT as int) &&
     effect.State === 1
   ) {
     effect.State = ACTIVATION_STATE;

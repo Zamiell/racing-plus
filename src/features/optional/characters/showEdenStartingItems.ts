@@ -1,10 +1,9 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
 import {
+  getCollectibleSet,
   getEffectiveStage,
   inStartingRoom,
-  irange,
   isEden,
-  MAX_COLLECTIBLE_TYPE,
   saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -120,10 +119,10 @@ function storeItemIdentities() {
   v.run.passive = passive;
 }
 
-function getEdenPassiveItem(player: EntityPlayer) {
+function getEdenPassiveItem(player: EntityPlayer): CollectibleType | undefined {
   const activeItem = player.GetActiveItem(ActiveSlot.PRIMARY);
 
-  for (const collectibleType of irange(1, MAX_COLLECTIBLE_TYPE)) {
+  for (const collectibleType of getCollectibleSet().values()) {
     if (
       player.HasCollectible(collectibleType) &&
       collectibleType !== activeItem &&

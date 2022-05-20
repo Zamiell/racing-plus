@@ -64,6 +64,7 @@ import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdate
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
 import * as postPlayerInitLate from "./callbacksCustom/postPlayerInitLate";
+import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
@@ -170,6 +171,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postPickupCollect.init(mod);
   postPlayerChangeType.init(mod);
   postPlayerInitLate.init(mod);
+  postPressurePlateUpdate.init(mod);
   postPurchase.init(mod);
   postRoomClearChanged.init(mod);
   postSacrifice.init(mod);

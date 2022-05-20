@@ -1,6 +1,7 @@
 import { CoinSubType } from "isaac-typescript-definitions";
 import {
   getLastFrameOfAnimation,
+  isCoin,
   saveDataManager,
   spawnEffect,
   VectorZero,
@@ -24,39 +25,39 @@ function featureEnabled() {
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.COIN (20)
-export function postPickupInitCoin(pickup: EntityPickup): void {
+export function postPickupInitCoin(coin: EntityPickupCoin): void {
   if (!config.stickyNickel) {
     return;
   }
 
-  if (pickup.SubType !== CoinSubType.STICKY_NICKEL) {
+  if (coin.SubType !== CoinSubType.STICKY_NICKEL) {
     return;
   }
 
-  postPickupInitStickyNickel(pickup);
+  postPickupInitStickyNickel(coin);
 }
 
-function postPickupInitStickyNickel(pickup: EntityPickup) {
+function postPickupInitStickyNickel(stickyNickel: EntityPickupCoin) {
   const effect = spawnEffect(
     EffectVariantCustom.STICKY_NICKEL,
     0,
-    pickup.Position,
+    stickyNickel.Position,
     VectorZero,
-    pickup,
+    stickyNickel,
   );
 
   // Make it render below most things.
   effect.RenderZOffset = -10000;
 
-  const sprite = pickup.GetSprite();
+  const sprite = stickyNickel.GetSprite();
   const effectSprite = effect.GetSprite();
   const animation = sprite.IsPlaying("Appear") ? "Appear" : "Idle";
   effectSprite.Play(animation, true);
 
   // Store the relationship between this coin and effect.
   const effectPtrHash = GetPtrHash(effect);
-  const pickupEntityPtr = EntityPtr(pickup);
-  v.room.effectToNickelPtrMap.set(effectPtrHash, pickupEntityPtr);
+  const stickyNickelPtr = EntityPtr(stickyNickel);
+  v.room.effectToNickelPtrMap.set(effectPtrHash, stickyNickelPtr);
 }
 
 // ModCallback.POST_EFFECT_UPDATE (55)
@@ -80,12 +81,15 @@ function tryUpdateEffectPosition(effect: EntityEffect) {
   if (nickelPtr === undefined) {
     return false;
   }
-
   const stickyNickel = nickelPtr.Ref;
+  if (stickyNickel === undefined || !stickyNickel.Exists()) {
+    return false;
+  }
+  const pickup = stickyNickel.ToPickup();
   if (
-    stickyNickel === undefined ||
-    !stickyNickel.Exists() ||
-    stickyNickel.SubType !== CoinSubType.STICKY_NICKEL
+    pickup === undefined ||
+    !isCoin(pickup) ||
+    pickup.SubType !== CoinSubType.STICKY_NICKEL
   ) {
     return false;
   }

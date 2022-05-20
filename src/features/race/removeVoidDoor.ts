@@ -1,6 +1,7 @@
 import {
   DoorSlot,
   GridEntityType,
+  LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
 import { spawnGrid } from "isaacscript-common";
@@ -33,7 +34,7 @@ function shouldDeleteVoidDoor() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === 9 &&
+    stage === LevelStage.BLUE_WOMB &&
     roomType === RoomType.BOSS
   );
 }

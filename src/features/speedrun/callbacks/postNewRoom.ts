@@ -2,6 +2,7 @@ import {
   EffectVariant,
   GridEntityType,
   HeavenLightDoorSubType,
+  LevelStage,
   RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
@@ -83,7 +84,7 @@ function checkWomb2IAMERROR() {
   const roomType = g.r.GetType();
   const levelSeed = g.l.GetDungeonPlacementSeed();
 
-  if (stage !== 8 || roomType !== RoomType.ERROR) {
+  if (stage !== LevelStage.WOMB_2 || roomType !== RoomType.ERROR) {
     return;
   }
 

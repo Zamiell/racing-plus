@@ -22,42 +22,42 @@ export function insertPickup(
   switch (pickup.Variant) {
     // 10
     case PickupVariant.HEART: {
-      return insertBloodOrSoulCharge(pickup, player);
+      return insertBloodOrSoulCharge(pickup as EntityPickupHeart, player);
     }
 
     // 20
     case PickupVariant.COIN: {
-      return insertCoin(pickup, player);
+      return insertCoin(pickup as EntityPickupCoin, player);
     }
 
     // 30
     case PickupVariant.KEY: {
-      return insertKey(pickup, player);
+      return insertKey(pickup as EntityPickupKey, player);
     }
 
     // 40
     case PickupVariant.BOMB: {
-      return insertBomb(pickup, player);
+      return insertBomb(pickup as EntityPickupBomb, player);
     }
 
     // 42
     case PickupVariant.POOP: {
-      return insertPoop(pickup, player);
+      return insertPoop(pickup as EntityPickupPoop, player);
     }
 
     // 70
     case PickupVariant.PILL: {
-      return insertPill(pickup, player);
+      return insertPill(pickup as EntityPickupPill, player);
     }
 
     // 300
     case PickupVariant.TAROT_CARD: {
-      return insertCard(pickup, player);
+      return insertCard(pickup as EntityPickupCard, player);
     }
 
     // 350
     case PickupVariant.TRINKET: {
-      return insertTrinket(pickup, player);
+      return insertTrinket(pickup as EntityPickupTrinket, player);
     }
 
     default: {
@@ -69,13 +69,12 @@ export function insertPickup(
 
 // PickupVariant.HEART (10)
 function insertBloodOrSoulCharge(
-  heart: EntityPickup,
+  heart: EntityPickupHeart,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const heartSubType = heart.SubType as HeartSubType;
   const character = player.GetPlayerType();
 
-  switch (heartSubType) {
+  switch (heart.SubType) {
     // 0
     case HeartSubType.NULL: {
       return undefined;
@@ -147,7 +146,7 @@ function insertBloodOrSoulCharge(
     }
 
     default: {
-      ensureAllCases(heartSubType);
+      ensureAllCases(heart.SubType);
 
       // Ignore modded heart sub-types.
       // @ts-expect-error Modded pickups fall outside of the type system.
@@ -158,13 +157,12 @@ function insertBloodOrSoulCharge(
 
 // PickupVariant.COIN (20)
 function insertCoin(
-  coin: EntityPickup,
+  coin: EntityPickupCoin,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const coinSubType = coin.SubType as CoinSubType;
-  const coinValue = getCoinValue(coinSubType);
+  const coinValue = getCoinValue(coin.SubType);
 
-  switch (coinSubType) {
+  switch (coin.SubType) {
     // 0
     case CoinSubType.NULL: {
       return undefined;
@@ -199,7 +197,7 @@ function insertCoin(
     }
 
     default: {
-      ensureAllCases(coinSubType);
+      ensureAllCases(coin.SubType);
 
       // Ignore modded coin sub-types.
       // @ts-expect-error Modded pickups fall outside of the type system.
@@ -210,12 +208,10 @@ function insertCoin(
 
 // PickupVariant.KEY (30)
 function insertKey(
-  key: EntityPickup,
+  key: EntityPickupKey,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const keySubType = key.SubType as KeySubType;
-
-  switch (keySubType) {
+  switch (key.SubType) {
     // 0
     case KeySubType.NULL: {
       return undefined;
@@ -251,7 +247,7 @@ function insertKey(
     }
 
     default: {
-      ensureAllCases(keySubType);
+      ensureAllCases(key.SubType);
 
       // Ignore modded key sub-types.
       // @ts-expect-error Modded pickups fall outside of the type system.
@@ -262,12 +258,10 @@ function insertKey(
 
 // PickupVariant.BOMB (40)
 function insertBomb(
-  bomb: EntityPickup,
+  bomb: EntityPickupBomb,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const bombSubType = bomb.SubType as BombSubType;
-
-  switch (bombSubType) {
+  switch (bomb.SubType) {
     // 0
     case BombSubType.NULL: {
       return undefined;
@@ -319,7 +313,7 @@ function insertBomb(
     }
 
     default: {
-      ensureAllCases(bombSubType);
+      ensureAllCases(bomb.SubType);
 
       // Ignore modded bomb sub-types.
       // @ts-expect-error Modded pickups fall outside of the type system.
@@ -330,12 +324,10 @@ function insertBomb(
 
 // PickupVariant.POOP (42)
 function insertPoop(
-  poop: EntityPickup,
+  poop: EntityPickupPoop,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const poopSubType = poop.SubType as PoopPickupSubType;
-
-  switch (poopSubType) {
+  switch (poop.SubType) {
     // 0
     case PoopPickupSubType.SMALL: {
       const value = 1;
@@ -351,7 +343,7 @@ function insertPoop(
     }
 
     default: {
-      ensureAllCases(poopSubType);
+      ensureAllCases(poop.SubType);
 
       // Ignore modded poop sub-types.
       // @ts-expect-error Modded pickups fall outside of the type system.
@@ -362,7 +354,7 @@ function insertPoop(
 
 // PickupVariant.PILL (70)
 function insertPill(
-  pill: EntityPickup,
+  pill: EntityPickupPill,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
   if (!hasOpenPocketItemSlot(player)) {
@@ -375,7 +367,7 @@ function insertPill(
 
 // PickupVariant.TAROT_CARD (300)
 function insertCard(
-  card: EntityPickup,
+  card: EntityPickupCard,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
   if (!hasOpenPocketItemSlot(player)) {
@@ -388,7 +380,7 @@ function insertCard(
 
 // PickupVariant.TRINKET (350)
 function insertTrinket(
-  trinket: EntityPickup,
+  trinket: EntityPickupTrinket,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
   if (!hasOpenTrinketSlot(player)) {

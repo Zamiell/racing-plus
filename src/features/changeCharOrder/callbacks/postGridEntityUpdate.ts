@@ -1,11 +1,13 @@
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import * as buttons from "../buttons";
 
-export function pressurePlate(gridEntity: GridEntity): void {
+export function changeCharOrderPostPressurePlateUpdate(
+  pressurePlate: GridEntityPressurePlate,
+): void {
   const challenge = Isaac.GetChallenge();
   if (challenge !== ChallengeCustom.CHANGE_CHAR_ORDER) {
     return;
   }
 
-  buttons.postGridEntityUpdatePressurePlate(gridEntity);
+  buttons.postPressurePlateUpdate(pressurePlate);
 }
