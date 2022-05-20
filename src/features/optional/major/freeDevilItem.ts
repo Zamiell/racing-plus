@@ -223,14 +223,13 @@ function isDevilDealStyleCollectible(collectible: EntityPickupCollectible) {
 
   if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
     return (
-      collectible.Price > PickupPrice.NULL &&
+      collectible.Price > 0 &&
       (roomType === RoomType.DEVIL || roomType === RoomType.BLACK_MARKET)
     );
   }
 
   return (
-    collectible.Price < PickupPrice.NULL &&
-    collectible.Price !== PickupPrice.FREE
+    collectible.Price < 0 && collectible.Price !== (PickupPrice.FREE as int)
   );
 }
 
@@ -244,7 +243,7 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  if (pickup.Price !== PickupPriceCustom.PRICE_FREE_DEVIL_DEAL) {
+  if (pickup.Price !== (PickupPriceCustom.PRICE_FREE_DEVIL_DEAL as int)) {
     return;
   }
 

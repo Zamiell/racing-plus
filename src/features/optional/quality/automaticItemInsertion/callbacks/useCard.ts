@@ -1,6 +1,5 @@
 import {
   CollectibleType,
-  PickupPrice,
   PickupVariant,
   PlayerType,
 } from "isaac-typescript-definitions";
@@ -116,7 +115,7 @@ function getClosestPickupToPlayer(
   const pickups = getPickups(pickupVariant);
   const filteredPickups = pickups.filter(
     (pickup) =>
-      pickup.Price === PickupPrice.NULL &&
+      pickup.Price === 0 &&
       // We set the vanilla "Touched" property to true if we have already inserted this pickup.
       !pickup.Touched &&
       !pickup.GetSprite().IsPlaying("Collect"),
