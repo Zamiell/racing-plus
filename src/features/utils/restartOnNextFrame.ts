@@ -4,8 +4,8 @@
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
 import {
   FIRST_CHARACTER,
+  LAST_VANILLA_CHARACTER,
   log,
-  MAX_VANILLA_CHARACTER,
   restart,
   saveDataManager,
 } from "isaacscript-common";
@@ -70,7 +70,7 @@ export function isRestartingOnNextFrame(): boolean {
 
 export function setRestartCharacter(character: PlayerType): void {
   // Prevent crashing the game when switching to a character that does not exist.
-  if (character < FIRST_CHARACTER || character > MAX_VANILLA_CHARACTER) {
+  if (character < FIRST_CHARACTER || character > LAST_VANILLA_CHARACTER) {
     log(`Preventing restarting to character: ${character}`);
     return;
   }

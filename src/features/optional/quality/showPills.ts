@@ -7,9 +7,9 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  getAllNormalPillColors,
   getDefaultKColor,
   getNormalPillColorFromHorse,
+  getNormalPillColors,
   getPillEffectName,
   isActionPressedOnAnyInput,
   log,
@@ -94,7 +94,7 @@ const v = {
 export function init(): void {
   saveDataManager("showPills", v, featureEnabled);
 
-  for (const pillColor of getAllNormalPillColors()) {
+  for (const pillColor of getNormalPillColors()) {
     const sprite = initSprite(
       "gfx/pills/pill.anm2",
       `gfx/pills/${pillColor}.png`,

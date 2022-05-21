@@ -1,9 +1,10 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
+  FIRST_COLLECTIBLE_TYPE,
   getCollectibleGfxFilename,
   getEnumValues,
   getLastElement,
-  MAX_VANILLA_COLLECTIBLE_TYPE,
+  LAST_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
@@ -78,15 +79,14 @@ function getFileNum(itemID: int) {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items).
   if (
-    itemID >= CollectibleType.SAD_ONION && // eslint-disable-line isaacscript/strict-enums
-    itemID <= MAX_VANILLA_COLLECTIBLE_TYPE // eslint-disable-line isaacscript/strict-enums
+    itemID >= (FIRST_COLLECTIBLE_TYPE as int) &&
+    itemID <= (LAST_VANILLA_COLLECTIBLE_TYPE as int)
   ) {
     return itemID.toString().padStart(3, "0");
   }
 
   // Between the highest vanilla item and Swallowed Penny.
-  // eslint-disable-next-line isaacscript/strict-enums
-  if (itemID > MAX_VANILLA_COLLECTIBLE_TYPE && itemID < 2001) {
+  if (itemID > (LAST_VANILLA_COLLECTIBLE_TYPE as int) && itemID < 2001) {
     return defaultReturn;
   }
 

@@ -14,11 +14,11 @@ import {
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
+  LAST_COLLECTIBLE_TYPE,
+  LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
   mapGetPlayer,
   mapSetPlayer,
-  MAX_COLLECTIBLE_TYPE,
-  MAX_VANILLA_COLLECTIBLE_TYPE,
   PlayerIndex,
   repeat,
   saveDataManager,
@@ -175,20 +175,21 @@ function isIncompleteSave() {
 // Check to see if there are any mods enabled that have added custom items. (It is difficult to
 // detect other mods in other ways.)
 function areOtherModsEnabled() {
-  const correctMaxCollectibleIDRacingPlus =
-    // eslint-disable-next-line isaacscript/strict-enums
-    MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS;
-  const correctMaxCollectibleIDRacingPlusBabiesMod =
-    // eslint-disable-next-line isaacscript/strict-enums
-    MAX_VANILLA_COLLECTIBLE_TYPE + NUM_RACING_PLUS_ITEMS + NUM_BABIES_MOD_ITEMS;
-  const correctMaxCollectibleID =
+  const correctLastCollectibleTypeRacingPlus =
+    ((LAST_VANILLA_COLLECTIBLE_TYPE as int) +
+      NUM_RACING_PLUS_ITEMS) as CollectibleType;
+  const correctLastCollectibleTypeRacingPlusBabiesMod =
+    ((LAST_VANILLA_COLLECTIBLE_TYPE as int) +
+      NUM_RACING_PLUS_ITEMS +
+      NUM_BABIES_MOD_ITEMS) as CollectibleType;
+  const correctLastCollectibleType =
     BabiesModGlobals === undefined
-      ? (correctMaxCollectibleIDRacingPlus as CollectibleType)
-      : (correctMaxCollectibleIDRacingPlusBabiesMod as CollectibleType);
+      ? correctLastCollectibleTypeRacingPlus
+      : correctLastCollectibleTypeRacingPlusBabiesMod;
 
-  if (MAX_COLLECTIBLE_TYPE !== correctMaxCollectibleID) {
+  if (LAST_COLLECTIBLE_TYPE !== correctLastCollectibleType) {
     log(
-      `Error: Other mods detected. (The highest collectible ID is ${MAX_COLLECTIBLE_TYPE}, but it should be ${correctMaxCollectibleID}.)`,
+      `Error: Other mods detected. (The highest collectible ID is ${LAST_COLLECTIBLE_TYPE}, but it should be ${correctLastCollectibleType}.)`,
     );
     v.run.otherModsEnabled = true;
   }

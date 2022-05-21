@@ -11,8 +11,8 @@ import {
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
+  LAST_VANILLA_CHARACTER,
   log,
-  MAX_VANILLA_CHARACTER,
   mergeTests,
   onSetSeed,
   printConsole,
@@ -179,7 +179,7 @@ function seededRaceCharacter(params: string) {
 
     character = match[1];
   } else {
-    if (num < FIRST_CHARACTER || num > MAX_VANILLA_CHARACTER) {
+    if (num < FIRST_CHARACTER || num > LAST_VANILLA_CHARACTER) {
       printConsole(`Invalid player sub-type: ${num}`);
       return;
     }

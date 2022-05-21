@@ -81,8 +81,8 @@ function enteredRoomViaTeleport() {
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
   const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
-    previousRoomGridIndex === GridRoom.DUNGEON || // eslint-disable-line isaacscript/strict-enums
-    previousRoomGridIndex === GridRoom.SECRET_SHOP; // eslint-disable-line isaacscript/strict-enums
+    previousRoomGridIndex === (GridRoom.DUNGEON as int) ||
+    previousRoomGridIndex === (GridRoom.SECRET_SHOP as int);
 
   return (
     g.l.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&

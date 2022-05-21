@@ -85,12 +85,9 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
-  // eslint-disable-next-line isaacscript/strict-enums
-  v.run.blueWomb = roomGridIndex === GridRoom.BLUE_WOMB;
-  // eslint-disable-next-line isaacscript/strict-enums
-  v.run.theVoid = roomGridIndex === GridRoom.THE_VOID;
-  // eslint-disable-next-line isaacscript/strict-enums
-  v.run.repentanceSecretExit = roomGridIndex === GridRoom.SECRET_EXIT;
+  v.run.blueWomb = roomGridIndex === (GridRoom.BLUE_WOMB as int);
+  v.run.theVoid = roomGridIndex === (GridRoom.THE_VOID as int);
+  v.run.repentanceSecretExit = roomGridIndex === (GridRoom.SECRET_EXIT as int);
   logFastTravelStateChanged();
 
   const whitelist = new Set([
@@ -119,7 +116,7 @@ function setGameStateFlags() {
   if (
     !repentanceStage &&
     stage === LevelStage.DEPTHS_2 &&
-    roomGridIndex === GridRoom.SECRET_EXIT // eslint-disable-line isaacscript/strict-enums
+    roomGridIndex === (GridRoom.SECRET_EXIT as int)
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     g.g.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);

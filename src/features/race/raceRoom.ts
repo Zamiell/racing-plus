@@ -240,7 +240,7 @@ export function inRaceRoom(): boolean {
   return (
     roomStageID === RACE_ROOM_STAGE_ID &&
     roomVariant === RACE_ROOM_VARIANT &&
-    roomGridIndex === GridRoom.DEBUG // eslint-disable-line isaacscript/strict-enums
+    roomGridIndex === (GridRoom.DEBUG as int)
   );
 }
 
