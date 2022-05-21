@@ -1,15 +1,15 @@
-// The configuration file for TypeScript
+// The configuration file for TypeScript.
 {
-  // We extend the standard IsaacScript config
+  // We extend the standard IsaacScript config:
   // https://github.com/IsaacScript/isaacscript-tsconfig/blob/main/tsconfig.mod.json
   "extends": "isaacscript-tsconfig/tsconfig.mod.json",
 
   // https://www.typescriptlang.org/docs/handbook/compiler-options.html
   "compilerOptions": {
-    // Specifies the root folder within your source files
+    // Specifies the root folder within your source files.
     "rootDir": "./src",
 
-    // Necessary since we import JSON files
+    // Necessary since we import JSON files.
     "resolveJsonModule": true,
   },
 
@@ -19,18 +19,18 @@
   // TypeScriptToLua settings
   "tstl": {
     "luaTarget": "5.3",
-    "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file
+    "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file.
     "luaBundleEntry": "./src/main.ts",
     "noHeader": true,
     "luaPlugins": [
-      // A plugin to add an explanatory comment at the top of the compiled "main.lua" file
+      // A plugin to add an explanatory comment at the top of the compiled "main.lua" file.
       { "name": "./plugins/addIsaacScriptCommentHeader.ts" },
 
-      // A plugin to make enums safe from global variables
+      // A plugin to make enums safe from global variables.
       { "name": "./plugins/noExtendedEnums.ts" },
 
       // Uncomment this and recompile the mod to enable crash debugging, which will tell you the
-      // exact line of the mod that is causing the crash
+      // exact line of the mod that is causing the crash.
       // { "name": "./plugins/addCrashDebugStatements.ts" },
     ],
   },
