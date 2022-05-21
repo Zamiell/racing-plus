@@ -18,7 +18,7 @@ import { config } from "../../../../modConfigMenu";
 import { shouldBanFirstFloorTreasureRoom } from "../../../mandatory/banFirstFloorRoomType";
 import {
   COLLECTIBLE_REPLACEMENT_MAP,
-  PLACEHOLDER_COLLECTIBLES_SET,
+  PLACEHOLDER_COLLECTIBLE_TYPES,
 } from "./constants";
 
 const v = {
@@ -165,7 +165,7 @@ function replacePlaceholderItems() {
 }
 
 function removePlaceholdersFromPools() {
-  for (const collectibleType of PLACEHOLDER_COLLECTIBLES_SET.values()) {
+  for (const collectibleType of PLACEHOLDER_COLLECTIBLE_TYPES) {
     g.itemPool.RemoveCollectible(collectibleType);
   }
 

@@ -8,15 +8,15 @@ import {
   anyPlayerIs,
   getCollectibles,
   getPlayersOfType,
-  getRandomArrayElement,
+  getRandomEdenPassive,
   newRNG,
   saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { PASSIVE_ITEMS_FOR_EDEN } from "../../../passiveItemsForEden";
 import { giveCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
+import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 import { inSeededRace } from "../../race/v";
 import {
   BANNED_COLLECTIBLES,
@@ -122,7 +122,10 @@ function getEdenReplacementCollectibleType(
 
   let replacementCollectible: CollectibleType;
   do {
-    replacementCollectible = getRandomArrayElement(PASSIVE_ITEMS_FOR_EDEN, rng);
+    replacementCollectible = getRandomEdenPassive(
+      rng,
+      PLACEHOLDER_COLLECTIBLE_TYPES,
+    );
   } while (player.HasCollectible(replacementCollectible));
 
   return replacementCollectible;

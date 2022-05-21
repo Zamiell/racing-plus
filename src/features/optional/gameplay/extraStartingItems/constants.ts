@@ -51,5 +51,6 @@ export const COLLECTIBLE_PLACEHOLDER_REVERSE_MAP: ReadonlyMap<
   CollectibleType
 > = copyMap(collectiblePlaceholderReverseMap);
 
-export const PLACEHOLDER_COLLECTIBLES_SET: ReadonlySet<CollectibleType> =
-  new Set(COLLECTIBLE_REPLACEMENT_MAP.keys());
+export const PLACEHOLDER_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
+  ...COLLECTIBLE_REPLACEMENT_MAP.keys(),
+];

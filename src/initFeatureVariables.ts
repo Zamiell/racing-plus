@@ -67,7 +67,6 @@ import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
 import * as roomsEntered from "./features/utils/roomsEntered";
 import * as modConfigMenu from "./modConfigMenu";
 import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
-import * as passiveItemsForEden from "./passiveItemsForEden";
 
 export function initFeatureVariables(): void {
   // Core
@@ -81,7 +80,6 @@ export function initFeatureVariables(): void {
   speedrunVars.init();
   season2.init();
   changeCharOrderVars.init();
-  passiveItemsForEden.init();
 
   // Util
   restartOnNextFrame.init();

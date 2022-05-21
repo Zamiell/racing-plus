@@ -1,6 +1,5 @@
-import { GridEntityType, Keyboard } from "isaac-typescript-definitions";
+import { Keyboard } from "isaac-typescript-definitions";
 import {
-  getGridEntities,
   isKeyboardPressed,
   log,
   printConsole,
@@ -25,12 +24,6 @@ export function init(): void {
 
 function debugCode(_params?: string) {
   // Add code here.
-  const gridEntities = getGridEntities(GridEntityType.ROCK);
-  const firstGridEntity = gridEntities[0];
-  if (firstGridEntity !== undefined) {
-    const rock = firstGridEntity.ToRock();
-    log(`LOL: ${rock}`);
-  }
 }
 
 export function debugFunction(params?: string): void {
