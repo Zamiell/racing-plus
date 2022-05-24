@@ -7,11 +7,11 @@ set -e # Exit on any errors
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [ "$1" == "reset" ]; then
-  npm uninstall isaacscript-common --save
-  npm install isaacscript-common --save
+  yarn remove isaacscript-common --save
+  yarn add isaacscript-common --save
 else
-  npm uninstall isaacscript-common --save
-  npm install ../isaacscript-common --save
+  yarn remove isaacscript-common --save
+  yarn add ../isaacscript-common --save
 fi
 
 echo "Complete!"

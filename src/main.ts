@@ -180,5 +180,3 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   preCustomRevive.init(mod);
   preItemPickup.init(mod);
 }
-
-// Canary
