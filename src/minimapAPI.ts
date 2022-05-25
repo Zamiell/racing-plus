@@ -27,7 +27,7 @@ function initMinimapAPIPills(customIcons: Sprite) {
     0,
   );
 
-  // PillColor.REDDOTS_RED (5)
+  // PillColor.RED_DOTS_RED (5)
   // White-dotted / Red --> Full red
   MinimapAPI.AddIcon(
     "PillReddotsRed",

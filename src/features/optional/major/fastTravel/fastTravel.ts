@@ -134,7 +134,7 @@ function getCustomSpriteFilename(
           mausoleumHeartKilled) ||
         (repentanceStage && stage === LevelStage.WOMB_1)
       ) {
-        return "gfx/grid/door_11_corpsehole_custom.anm2";
+        return "gfx/grid/door_11_corpsehole_custom.anm2"; // cspell:ignore corpsehole
       }
 
       if (

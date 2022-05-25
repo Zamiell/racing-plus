@@ -1,3 +1,5 @@
+/* cspell:disable */
+
 import { PlayerType } from "isaac-typescript-definitions";
 
 export const CHARACTER_PNG_MAP: ReadonlyMap<PlayerType, string> = new Map([

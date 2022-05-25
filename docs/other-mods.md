@@ -7,7 +7,7 @@ Using **any** other mods alongside Racing+ is forbidden. This is because mods th
 ### Legal Mods (Main)
 
 - [Mod Config Menu](https://steamcommunity.com/workshop/filedetails/?id=1603631350)
-- [MiniMAPI](https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635)
+- [MinimapAPI](https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635)
 
 <br>
 

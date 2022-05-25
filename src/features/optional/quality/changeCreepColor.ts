@@ -7,7 +7,7 @@ import { copyColor } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.EVALUATE_CACHE (8)
-// CacheFlag.TEARCOLOR (1 << 6)
+// CacheFlag.TEAR_COLOR (1 << 6)
 export function evaluateCacheTearColor(player: EntityPlayer): void {
   if (!config.changeCreepColor) {
     return;

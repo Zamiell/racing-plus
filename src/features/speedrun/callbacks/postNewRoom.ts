@@ -42,7 +42,7 @@ export function speedrunPostNewRoom(): void {
 
 function checkFirstCharacterFirstFloorDevilRoom() {
   const roomType = g.r.GetType();
-  const previousRoomType = v.level.previousRoomType;
+  const { previousRoomType } = v.level;
   const effectiveStage = getEffectiveStage();
 
   v.level.previousRoomType = roomType;

@@ -398,9 +398,9 @@ function getStageType(stage: LevelStage): StageType {
         ((NextStage == STAGE2_1 || NextStage == STAGE2_2) && gd.Unlocked(ACHIEVEMENT_CATACOMBS)) ||
         ((NextStage == STAGE3_1 || NextStage == STAGE3_2) && gd.Unlocked(ACHIEVEMENT_NECROPOLIS)) ||
         ((NextStage == STAGE4_1 || NextStage == STAGE4_2)))
-      ) ? STAGETYPE_WOTL : STAGETYPE_ORIGINAL;
+      ) ? STAGE_TYPE_WOTL : STAGE_TYPE_ORIGINAL;
     if (Seed % 3 == 0 && NextStage < STAGE5)
-      StageType = STAGETYPE_AFTERBIRTH;
+      StageType = STAGE_TYPE_AFTERBIRTH;
   */
 
   // Emulate what the game's internal code does.

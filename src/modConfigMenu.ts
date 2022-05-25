@@ -41,8 +41,8 @@ const v = {
     hotkeys: new Hotkeys(),
   },
 };
-export const config = v.persistent.config;
-export const hotkeys = v.persistent.hotkeys;
+
+export const { config, hotkeys } = v.persistent;
 
 export function init(): void {
   if (ModConfigMenu === undefined) {

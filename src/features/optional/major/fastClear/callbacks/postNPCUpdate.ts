@@ -47,7 +47,7 @@ export function stoney(npc: EntityNPC): void {
     return;
   }
 
-  // Stoneys have a chance to morph from EntityType.FATTY (208), so they will get added to the
+  // Stonies have a chance to morph from EntityType.FATTY (208), so they will get added to the
   // `aliveEnemies` set before the room is loaded. To correct for this, we constantly remove them
   // from the set.
   trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_STONEY");

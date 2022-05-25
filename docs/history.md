@@ -1447,7 +1447,7 @@
 - Fixed the bug where teleporting to an Angel Room from a Sacrifice Room would not work if you had Cursed Eye. (Thanks Dea1h)
 - Fixed the bug where the 2nd Dad's Lost Coin and beyond would not affect the stats of the player. (Thanks sisuka)
 - Fixed the bug where a Lucky Penny would spawn if you left the room during the pickup animation of Dad's Lost Coin. (Thanks sisuka)
-- Fixed the bug where the charge bar for the Lead Pencil would be misaligned when the player had flying and another charge item. (Thanks KGHB41)
+- Fixed the bug where the charge bar for the Lead Pencil would be misaligned when the player had flying and another charge item. (Thanks KGHB41) <!-- cspell:ignore KGHB -->
 - Fixed the bug where the Victory Lap button would spawn in the wrong place in Mega Satan's room. (Thanks edy47)
 - Updated the "--luadebug" Pastebin as it had some incorrect information.
 
@@ -3241,7 +3241,7 @@ Client:
 
 - Fixed the bug where Lil' Haunt delay canceling wouldn't work under certain conditions. (Thanks Gamonymous)
 - Fixed the bug where non-boss Lil' Haunts had boss health bars. (Thanks Krakenos)
-- Fixed the bug where fast-clear would not work properly with Stoneys that morph from Fatties.
+- Fixed the bug where fast-clear would not work properly with Stonies that morph from Fatties.
 - Fixed the (vanilla) bug where Globins are not properly killed after defeating Mom, Mom's Heart, or It Lives! (Thanks Gamonymous)
 - Added the TehePelo emote. (Requested by Lobsterosity)
 
@@ -3368,7 +3368,7 @@ Client/Server:
 ### _v0.8.10_ - July 29th, 2017
 
 - The LiveSplit auto-splitter should now work again. (Thanks NorBro, Sillypears and Hyphen-ated)
-- Fixed the bug where the client was crashing. (Thanks DiaTech, rerol, Shigan, and Drunkenshoe)
+- Fixed the bug where the client was crashing. (Thanks DiaTech, rerol, Shigan, and Drunkenshoe) <!-- cspell:ignore rerol -->
 - Fixed the bug where fast-clear was not working as Samael. (Thanks NorBro and thereisnofuture)
 
 ### _v0.8.8_ - July 29th, 2017
@@ -4120,7 +4120,7 @@ Changes:
 ### _v0.2.60_ - March 7th, 2017
 
 - Diversity Races now start with More Options. More Options is automatically removed after going into one Treasure Room.
-- Summoning a co-op baby will now only delete unpurchased Devil Deal items (instead of all items). This is to prevent using the co-op baby beneficially in certain situations.
+- Summoning a co-op baby will now only delete non-purchased Devil Deal items (instead of all items). This is to prevent using the co-op baby beneficially in certain situations.
 - We Need to Go Deeper! is no longer banned in races to The Lamb.
 
 ### _v0.2.59_ - March 4th, 2017

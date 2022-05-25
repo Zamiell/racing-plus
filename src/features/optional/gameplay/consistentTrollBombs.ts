@@ -19,7 +19,7 @@ export function postBombInitTroll(bomb: EntityBomb): void {
 }
 
 // ModCallback.POST_BOMB_INIT (57)
-// BombVariant.SUPERTROLL (4)
+// BombVariant.MEGA_TROLL (4)
 export function postBombInitMegaTroll(bomb: EntityBomb): void {
   if (!config.consistentTrollBombs) {
     return;
