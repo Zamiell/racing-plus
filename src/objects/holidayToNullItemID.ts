@@ -11,4 +11,4 @@ export const HOLIDAY_TO_NULL_ITEM_ID: {
   [Holiday.HALLOWEEN]: NullItemIDCustom.HALLOWEEN,
   [Holiday.THANKSGIVING]: NullItemIDCustom.THANKSGIVING,
   [Holiday.CHRISTMAS]: NullItemID.CHRISTMAS,
-};
+} as const;

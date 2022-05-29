@@ -37,7 +37,7 @@ const DOOR_SLOTS_REVERSED: { readonly [key in DoorSlot]: DoorSlot } = {
   [DoorSlot.UP_1]: DoorSlot.DOWN_0,
   [DoorSlot.RIGHT_1]: DoorSlot.LEFT_0,
   [DoorSlot.DOWN_1]: DoorSlot.UP_0,
-};
+} as const;
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {

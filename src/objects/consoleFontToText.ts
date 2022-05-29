@@ -6,4 +6,4 @@ export const CONSOLE_FONT_TO_TEXT: {
   0: "Default",
   1: "Small",
   2: "Tiny",
-};
+} as const;

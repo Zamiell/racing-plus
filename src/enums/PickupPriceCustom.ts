@@ -6,4 +6,4 @@ const nextUnusedPickupPrice =
 
 export const PickupPriceCustom = {
   PRICE_FREE_DEVIL_DEAL: nextUnusedPickupPrice as PickupPrice,
-};
+} as const;
