@@ -6,7 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  DOOR_HITBOX_DISTANCE,
+  DOOR_HITBOX_RADIUS,
   getAngelRoomDoor,
   getDevilRoomDoor,
   log,
@@ -44,7 +44,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 
   const inHitbox =
-    door.Position.Distance(player.Position) <= DOOR_HITBOX_DISTANCE;
+    door.Position.Distance(player.Position) <= DOOR_HITBOX_RADIUS;
   if (!inHitbox) {
     return;
   }

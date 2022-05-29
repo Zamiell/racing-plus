@@ -15,7 +15,7 @@ import {
   getRandom,
   getRepentanceDoor,
   isRoomInsideMap,
-  preventCollectibleRotate,
+  preventCollectibleRotation,
   removeAllPickups,
   spawnGridWithVariant,
 } from "isaacscript-common";
@@ -164,12 +164,12 @@ function setRepentanceDoorState() {
 
 /**
  * If Tainted Isaac re-enters a room with a checkpoint in it, it will no longer have the
- * "preventCollectibleRotate" property from the standard library. Thus, we need to reapply this
+ * "preventCollectibleRotation" property from the standard library. Thus, we need to reapply this
  * every time we re-enter the room.
  */
 function checkEnteringRoomWithCheckpoint() {
   const checkpoints = getCollectibles(CollectibleTypeCustom.CHECKPOINT);
   for (const checkpoint of checkpoints) {
-    preventCollectibleRotate(checkpoint, CollectibleTypeCustom.CHECKPOINT);
+    preventCollectibleRotation(checkpoint, CollectibleTypeCustom.CHECKPOINT);
   }
 }
