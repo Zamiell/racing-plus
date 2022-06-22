@@ -6,7 +6,7 @@ import {
 import { log } from "isaacscript-common";
 import { betterDevilAngelRoomsPreGetCollectible } from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
 
-const DEBUG = true;
+const DEBUG = false;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.PRE_GET_COLLECTIBLE, main);

@@ -14,10 +14,11 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^2.0.55",
-    "isaacscript": "^2.1.2",
-    "isaacscript-common": "2.3.1",
-    "isaacscript-lint": "^1.1.6",
+    "isaacscript": "^2.3.0",
+    "isaacscript-common": "^3.2.0",
+    "isaacscript-lint": "^1.2.1",
     "isaacscript-spell": "^1.1.2",
-    "typescript-to-lua": "^1.4.4"
+    "ts-node": "^10.8.1",
+    "typescript-to-lua": "1.6.0"
   }
 }

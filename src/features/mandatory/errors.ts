@@ -1,50 +1,28 @@
+import { CollectibleType, ItemPoolType } from "isaac-typescript-definitions";
 import {
-  CollectibleType,
-  ItemPoolType,
-  PlayerType,
-  TrinketType,
-} from "isaac-typescript-definitions";
-import {
-  anyPlayerHasCollectible,
-  anyPlayerIs,
-  getCollectibleSet,
+  getCollectibleName,
   getEffectiveStage,
   getEnumLength,
-  getPlayers,
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
+  isCollectibleUnlocked,
   LAST_COLLECTIBLE_TYPE,
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
-  mapGetPlayer,
-  mapSetPlayer,
-  PlayerIndex,
-  repeat,
   saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
-import g from "../../globals";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;
-const COLLECTIBLE_TO_CHECK_FOR = CollectibleType.DEATH_CERTIFICATE;
+const COLLECTIBLE_TO_CHECK = CollectibleType.DEATH_CERTIFICATE;
 const ITEM_POOL_TO_CHECK = ItemPoolType.SECRET;
 const STARTING_X = 115;
 const STARTING_Y = 70;
 const MAX_CHARACTERS = 50;
-
-const COLLECTIBLES_THAT_AFFECT_ITEM_POOLS: readonly CollectibleType[] = [
-  CollectibleType.CHAOS, // 402
-  CollectibleType.SACRED_ORB, // 691
-  CollectibleType.TMTRAINER, // 721
-];
-
-const TRINKETS_THAT_AFFECT_ITEM_POOLS: readonly TrinketType[] = [
-  TrinketType.NO,
-];
 
 const v = {
   run: {
@@ -62,12 +40,14 @@ export function check(): boolean {
   return isCorruptMod() || isIncompleteSave() || areOtherModsEnabled();
 }
 
-// If Racing+ is turned on from the mod menu and then the user immediately tries to play, it won't
-// work properly; some things like boss cutscenes will still be enabled. In order to fix this, the
-// game needs to be completely restarted. One way to detect this corrupted state is to get how many
-// frames there are in the currently loaded boss cutscene animation file (located at
-// "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
-// function returns true if the PostGameStarted callback should halt.
+/**
+ * If Racing+ is turned on from the mod menu and then the user immediately tries to play, it won't
+ * work properly; some things like boss cutscenes will still be enabled. In order to fix this, the
+ * game needs to be completely restarted. One way to detect this corrupted state is to get how many
+ * frames there are in the currently loaded boss cutscene animation file (located at
+ * "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
+ * function returns true if the PostGameStarted callback should halt.
+ */
 function isCorruptMod() {
   const sprite = Sprite();
   sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
@@ -85,95 +65,30 @@ function isCorruptMod() {
   return v.run.corrupted;
 }
 
-// Check to see if Death Certificate is unlocked.
+/** Check to see if Death Certificate is unlocked. */
 function isIncompleteSave() {
-  // If Eden is holding Death Certificate, then it is obviously unlocked (and it will also be
-  // removed from pools so the below check won't work).
-  if (anyPlayerHasCollectible(COLLECTIBLE_TO_CHECK_FOR)) {
-    return false;
-  }
-
-  // Consider the save file complete if the any player is Tainted Lost (since Tainted Lost cannot
-  // get Death Certificate in item pools).
-  if (anyPlayerIs(PlayerType.THE_LOST_B)) {
-    return false;
-  }
-
-  // Before checking the item pools, remove any items or trinkets that affect retrieved collectible
-  // types.
-  const removedItemsMap: Map<PlayerIndex, CollectibleType[]> = new Map();
-  const removedTrinketsMap: Map<PlayerIndex, TrinketType[]> = new Map();
-  for (const player of getPlayers()) {
-    const removedItems: CollectibleType[] = [];
-    for (const itemToRemove of COLLECTIBLES_THAT_AFFECT_ITEM_POOLS) {
-      if (player.HasCollectible(itemToRemove)) {
-        const numCollectibles = player.GetCollectibleNum(itemToRemove);
-        repeat(numCollectibles, () => {
-          player.RemoveCollectible(itemToRemove);
-          removedItems.push(itemToRemove);
-        });
-      }
-    }
-
-    mapSetPlayer(removedItemsMap, player, removedItems);
-
-    const removedTrinkets: TrinketType[] = [];
-    for (const trinketToRemove of TRINKETS_THAT_AFFECT_ITEM_POOLS) {
-      if (player.HasTrinket(trinketToRemove)) {
-        player.TryRemoveTrinket(trinketToRemove);
-        removedTrinkets.push(trinketToRemove);
-      }
-    }
-
-    mapSetPlayer(removedTrinketsMap, player, removedTrinkets);
-  }
-
-  // Add every item in the game to the blacklist.
-  const collectibleSet = getCollectibleSet();
-  for (const collectibleType of collectibleSet.values()) {
-    if (collectibleType !== COLLECTIBLE_TO_CHECK_FOR) {
-      g.itemPool.AddRoomBlacklist(collectibleType);
-    }
-  }
-
-  // Get an item from the pool and see if it is the intended item.
-  const itemPoolCollectible = g.itemPool.GetCollectible(
+  const isDeathCertificateUnlocked = isCollectibleUnlocked(
+    COLLECTIBLE_TO_CHECK,
     ITEM_POOL_TO_CHECK,
-    false,
-    1 as Seed, // We can use any arbitrary value since it should not influence the result
   );
-  if (itemPoolCollectible !== COLLECTIBLE_TO_CHECK_FOR) {
+
+  v.run.incompleteSave = !isDeathCertificateUnlocked;
+
+  if (v.run.incompleteSave) {
     log(
-      `Error: Incomplete save file detected. (Failed to get item ${COLLECTIBLE_TO_CHECK_FOR} from pool ${ITEM_POOL_TO_CHECK}; got item ${itemPoolCollectible} instead.)`,
+      `Error: Incomplete save file detected. (Failed to get collectible ${getCollectibleName(
+        COLLECTIBLE_TO_CHECK,
+      )} from pool ${ItemPoolType[ITEM_POOL_TO_CHECK]}.)`,
     );
-    v.run.incompleteSave = true;
-  }
-
-  // Reset the blacklist
-  g.itemPool.ResetRoomBlacklist();
-
-  // Give back items/trinkets, if necessary.
-  for (const player of getPlayers()) {
-    const removedItems = mapGetPlayer(removedItemsMap, player);
-    if (removedItems !== undefined) {
-      for (const collectibleType of removedItems) {
-        player.AddCollectible(collectibleType, 0, false); // Prevent Chaos from spawning pickups
-      }
-    }
-
-    const removedTrinkets = mapGetPlayer(removedTrinketsMap, player);
-    if (removedTrinkets !== undefined) {
-      for (const trinketType of removedTrinkets) {
-        player.AddTrinket(trinketType, false);
-      }
-    }
   }
 
   return v.run.incompleteSave;
 }
 
-// Check to see if there are any mods enabled that have added custom items. (It is difficult to
-// detect other mods in other ways.)
+/**
+ * Check to see if there are any mods enabled that have added custom items. (It is difficult to
+ * detect other mods in other ways.)
+ */
 function areOtherModsEnabled() {
   const correctLastCollectibleTypeRacingPlus =
     ((LAST_VANILLA_COLLECTIBLE_TYPE as int) +
