@@ -34,7 +34,7 @@ export function speedrunPostNewRoom(): void {
   }
 
   checkFirstCharacterFirstFloorDevilRoom();
-  checkWomb2IAMERROR();
+  checkWomb2IAmError();
   checkEnteringClearedBossRoom();
   checkEnteringRoomWithCheckpoint();
   season2PostNewRoom();
@@ -79,7 +79,7 @@ function emptyDevilAngelRoom() {
   }
 }
 
-function checkWomb2IAMERROR() {
+function checkWomb2IAmError() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const levelSeed = g.l.GetDungeonPlacementSeed();
