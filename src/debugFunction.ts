@@ -1,6 +1,5 @@
-import { Dimension, Keyboard } from "isaac-typescript-definitions";
+import { Keyboard } from "isaac-typescript-definitions";
 import {
-  getDimension,
   isKeyboardPressed,
   log,
   printConsole,
@@ -25,9 +24,6 @@ export function init(): void {
 
 function debugCode(_params?: string) {
   // Add code here.
-  printConsole(
-    `GETTING HERE - CURRENT DIMENSION: ${Dimension[getDimension()]}`,
-  );
 }
 
 export function debugFunction(params?: string): void {
