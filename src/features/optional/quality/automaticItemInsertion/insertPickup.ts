@@ -136,6 +136,7 @@ function insertBloodOrSoulCharge(
       return [PickupVariant.HEART, value];
     }
 
+    // 4, 7, 9, 10, 11, 12
     case HeartSubType.ETERNAL:
     case HeartSubType.GOLDEN:
     case HeartSubType.SCARED:

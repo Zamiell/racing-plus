@@ -28,6 +28,7 @@ import {
   removeDeadEyeMultiplier,
   repeat,
   runInNGameFrames,
+  setActiveItem,
   sfxManager,
   spawn,
 } from "isaacscript-common";
@@ -296,10 +297,9 @@ function debuffOffAddActiveCollectibles(player: EntityPlayer) {
     }
     activesMap.delete(activeSlot);
 
-    player.AddCollectible(
+    setActiveItem(
+      player,
       activeCollectibleDescription.collectibleType,
-      activeCollectibleDescription.charge,
-      false,
       activeSlot,
     );
     giveTransformationHelper(
