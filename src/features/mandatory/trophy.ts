@@ -4,17 +4,16 @@ import {
   PlayerItemAnimation,
 } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   getEntities,
-  getRoomListIndex,
-  log,
+  logError,
+  removePersistentEntity,
   saveDataManager,
-  spawn,
+  spawnPersistentEntity,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
 import g from "../../globals";
-import { EntityLocation } from "../../types/EntityLocation";
 import { raceFinish } from "../race/raceFinish";
 import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";
@@ -24,7 +23,7 @@ const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
 
 const v = {
   level: {
-    trophy: null as EntityLocation | null,
+    trophyIndex: null as int | null,
   },
 };
 
@@ -33,15 +32,19 @@ export function init(): void {
 }
 
 export function spawnTrophy(position: Vector): void {
-  const roomListIndex = getRoomListIndex();
+  // Don't do anything if a trophy already exists in the room. (This can happen if code earlier on
+  // in the PostNewRoom callback spawned a Big Chest or a trophy.)
+  if (v.level.trophyIndex !== null) {
+    return;
+  }
 
-  spawn(EntityTypeCustom.ENTITY_RACE_TROPHY, 0, 0, position);
-
-  // Keep track that we spawned it so that we can respawn it if the player re-enters the room.
-  v.level.trophy = {
-    roomListIndex,
+  const [_entity, index] = spawnPersistentEntity(
+    EntityTypeCustom.ENTITY_RACE_TROPHY,
+    0,
+    0,
     position,
-  };
+  );
+  v.level.trophyIndex = index;
 }
 
 // ModCallback.POST_UPDATE (1)
@@ -77,9 +80,14 @@ function checkTouch() {
   }
 }
 
-function touch(trophy: Entity, player: EntityPlayer) {
-  trophy.Remove();
-  v.level.trophy = null;
+function touch(entity: Entity, player: EntityPlayer) {
+  if (v.level.trophyIndex === null) {
+    logError("A trophy was touched without the index being present.");
+    entity.Remove();
+  } else {
+    removePersistentEntity(v.level.trophyIndex);
+    v.level.trophyIndex = null;
+  }
 
   // Make the player pick it up and have it sparkle.
   player.AnimateCollectible(
@@ -97,34 +105,6 @@ function touch(trophy: Entity, player: EntityPlayer) {
   }
 }
 
-// ModCallback.POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  checkRespawn();
-}
-
-function checkRespawn() {
-  const roomListIndex = getRoomListIndex();
-
-  if (
-    v.level.trophy === null ||
-    roomListIndex !== v.level.trophy.roomListIndex
-  ) {
-    return;
-  }
-
-  // Don't do anything if a trophy already exists in the room. (This can happen if code earlier on
-  // in the PostNewRoom callback spawned a Big Chest or a trophy.)
-  const numTrophies = countEntities(EntityTypeCustom.ENTITY_RACE_TROPHY);
-  if (numTrophies > 0) {
-    return;
-  }
-
-  // We are re-entering a room where a trophy spawned (which is a custom entity), so we need to
-  // respawn it.
-  spawn(EntityTypeCustom.ENTITY_RACE_TROPHY, 0, 0, v.level.trophy.position);
-  log("Respawned a Race Trophy since we re-entered the room.");
-}
-
-export function hasTrophySpawned(): boolean {
-  return v.level.trophy !== null;
+export function doesTrophyExist(): boolean {
+  return doesEntityExist(EntityTypeCustom.ENTITY_RACE_TROPHY);
 }

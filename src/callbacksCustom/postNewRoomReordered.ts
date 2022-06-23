@@ -18,7 +18,6 @@ import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacr
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as trophy from "../features/mandatory/trophy";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/preventUltraSecretRoomSoftlock";
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
@@ -68,7 +67,6 @@ function main() {
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
   controlsGraphic.postNewRoom();
-  trophy.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
   banFirstFloorRoomType.postNewRoom();

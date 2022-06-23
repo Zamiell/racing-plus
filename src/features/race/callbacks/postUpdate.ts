@@ -5,7 +5,7 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { hasTrophySpawned, spawnTrophy } from "../../mandatory/trophy";
+import { doesTrophyExist, spawnTrophy } from "../../mandatory/trophy";
 
 export function racePostUpdate(): void {
   if (!config.clientCommunication) {
@@ -20,7 +20,7 @@ function spawnBossRushTrophy() {
   const bossRushDone = g.g.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
-    !hasTrophySpawned() &&
+    !doesTrophyExist() &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&

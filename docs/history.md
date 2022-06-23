@@ -5,6 +5,7 @@
 ### _v0.80.7_ - May 14th, 2022
 
 - Clutch can now appear in Victory Laps.
+- Fixed the bug where respawned trophies would fall from the ceiling.
 
 ### _v0.80.6_ - April 12th, 2022
 
