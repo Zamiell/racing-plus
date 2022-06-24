@@ -12,8 +12,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          # The default version is 14
-          # The ESLint config requires Node 16 to work properly
+          # The default version is 14. The ESLint config requires Node 16 to work properly.
           node-version: "16"
           cache: "yarn"
 

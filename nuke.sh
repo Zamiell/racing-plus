@@ -7,16 +7,22 @@ set -e # Exit on any errors
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 NPM_LOCK="$DIR/package-lock.json"
-rm -f "$NPM_LOCK"
-echo "Successfully deleted: $NPM_LOCK"
+if test -f "$NPM_LOCK"; then
+  rm -f "$NPM_LOCK"
+  echo "Successfully deleted: $NPM_LOCK"
+fi
 
 YARN_LOCK="$DIR/yarn.lock"
-rm -f "$YARN_LOCK"
-echo "Successfully deleted: $YARN_LOCK"
+if test -f "$YARN_LOCK"; then
+  rm -f "$YARN_LOCK"
+  echo "Successfully deleted: $YARN_LOCK"
+fi
 
 NODE_MODULES="$DIR/node_modules"
-rm -rf "$NODE_MODULES"
-echo "Successfully deleted: $NODE_MODULES"
+if test -f "$NODE_MODULES"; then
+  rm -rf "$NODE_MODULES"
+  echo "Successfully deleted: $NODE_MODULES"
+fi
 
 yarn install
 echo "Successfully reinstalled Node dependencies."
