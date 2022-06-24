@@ -19,19 +19,19 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
-    heart,
+    heartCallback,
     PickupVariant.HEART, // 10
   );
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
-    coin,
+    coinCallback,
     PickupVariant.COIN, // 20
   );
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
-    collectible,
+    collectibleCallback,
     PickupVariant.COLLECTIBLE, // 100
   );
 
@@ -49,7 +49,7 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
-    trinket,
+    trinketCallback,
     PickupVariant.TRINKET, // 350
   );
 
@@ -78,25 +78,33 @@ function main(pickup: EntityPickup) {
 }
 
 // PickupVariant.HEART (10)
-function heart(pickup: EntityPickupHeart) {
-  scaredHeart.postPickupInitHeart(pickup);
+function heartCallback(pickup: EntityPickup) {
+  const heart = pickup as EntityPickupHeart;
+
+  scaredHeart.postPickupInitHeart(heart);
 }
 
 // PickupVariant.COIN (20)
-function coin(pickup: EntityPickupCoin) {
-  stickyNickel.postPickupInitCoin(pickup);
+function coinCallback(pickup: EntityPickup) {
+  const coin = pickup as EntityPickupCoin;
+
+  stickyNickel.postPickupInitCoin(coin);
 }
 
 // PickupVariant.COLLECTIBLE (100)
-function collectible(pickup: EntityPickupCollectible) {
-  fastKrampus.postPickupInitCollectible(pickup);
-  fastAngels.postPickupInitCollectible(pickup);
-  flipCustom.postPickupInitCollectible(pickup);
+function collectibleCallback(pickup: EntityPickup) {
+  const collectible = pickup as EntityPickupCollectible;
+
+  fastKrampus.postPickupInitCollectible(collectible);
+  fastAngels.postPickupInitCollectible(collectible);
+  flipCustom.postPickupInitCollectible(collectible);
 }
 
 // PickupVariant.TAROT_CARD (300)
-function tarotCard(pickup: EntityPickupCard) {
-  uniqueCardBacks.postPickupInitTarotCard(pickup);
+function tarotCard(pickup: EntityPickup) {
+  const pickupCard = pickup as EntityPickupCard;
+
+  uniqueCardBacks.postPickupInitTarotCard(pickupCard);
 }
 
 // PickupVariant.BIG_CHEST (340)
@@ -105,9 +113,11 @@ function bigChest(pickup: EntityPickup) {
 }
 
 // PickupVariant.TRINKET (350)
-function trinket(pickup: EntityPickupTrinket) {
-  removePerfectionVelocity.postPickupInitTrinket(pickup);
-  removePerfectionOnEndFloors.postPickupInitTrinket(pickup);
+function trinketCallback(pickup: EntityPickup) {
+  const trinket = pickup as EntityPickupTrinket;
+
+  removePerfectionVelocity.postPickupInitTrinket(trinket);
+  removePerfectionOnEndFloors.postPickupInitTrinket(trinket);
 }
 
 // PickupVariant.RED_CHEST (360)

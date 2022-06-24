@@ -3,13 +3,13 @@
 import { Card } from "isaac-typescript-definitions";
 
 // PickupVariant.TAROT_CARD (300)
-export function postPickupInitTarotCard(pickup: EntityPickupCard): void {
+export function postPickupInitTarotCard(pickupCard: EntityPickupCard): void {
   if (
-    pickup.SubType === Card.RUNE_BLANK || // 40
-    pickup.SubType === Card.RUNE_BLACK // 41
+    pickupCard.SubType === Card.RUNE_BLANK || // 40
+    pickupCard.SubType === Card.RUNE_BLACK // 41
   ) {
     // Give an alternate rune sprite (one that isn't tilted left or right).
-    const sprite = pickup.GetSprite();
+    const sprite = pickupCard.GetSprite();
     sprite.ReplaceSpritesheet(
       0,
       "gfx/items/pick ups/pickup_unique_generic_rune.png",
@@ -35,7 +35,7 @@ export function postPickupInitTarotCard(pickup: EntityPickupCard): void {
     //   is a playing card.
     // - Get Out of Jail Free Card (47) has a unique card back in vanilla.
     // - ? Card (48) has a red card back in vanilla.
-    pickup.SubType === Card.QUESTION_MARK // 48
+    pickupCard.SubType === Card.QUESTION_MARK // 48
     // - Dice Shard (49) has a unique graphic in vanilla.
     // - Emergency Contact (50) has a unique card back in vanilla.
     // - Holy Card (51) has a unique card back in vanilla.
@@ -51,10 +51,10 @@ export function postPickupInitTarotCard(pickup: EntityPickupCard): void {
     // - Soul of Isaac (81) through Soul of Jacob & Esau (97) have unique rune sprites in vanilla.
   ) {
     // Make some cards face-up.
-    const sprite = pickup.GetSprite();
+    const sprite = pickupCard.GetSprite();
     sprite.ReplaceSpritesheet(
       0,
-      `gfx/items/pick ups/cards/${pickup.SubType}.png`,
+      `gfx/items/pick ups/cards/${pickupCard.SubType}.png`,
     );
     sprite.LoadGraphics();
   }
