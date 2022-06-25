@@ -6,6 +6,8 @@
 
 - Clutch can now appear in Victory Laps.
 - Fixed the bug where respawned trophies would fall from the ceiling.
+- Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
+- !Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
 
 ### _v0.80.6_ - April 12th, 2022
 

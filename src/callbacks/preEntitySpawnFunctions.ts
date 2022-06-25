@@ -14,7 +14,7 @@ export const preEntitySpawnFunctions = new Map<
     variant: int,
     subType: int,
     position: Vector,
-    spawner: Entity,
+    spawner: Entity | undefined,
     initSeed: int,
   ) => [EntityType, int, int, int] | void
 >();
@@ -26,7 +26,7 @@ preEntitySpawnFunctions.set(
     variant: PickupVariant,
     subType: int,
     _position: Vector,
-    _spawner: Entity,
+    _spawner: Entity | undefined,
     _initSeed: int,
   ) => {
     if (variant === PickupVariant.COLLECTIBLE) {
@@ -46,7 +46,7 @@ preEntitySpawnFunctions.set(
     _variant: int,
     _subType: int,
     _position: Vector,
-    _spawner: Entity,
+    _spawner: Entity | undefined,
     initSeed: int,
   ) => replaceCodWorms.preEntitySpawnCodWorm(initSeed),
 );
@@ -58,7 +58,7 @@ preEntitySpawnFunctions.set(
     variant: int,
     subType: int,
     _position: Vector,
-    _spawner: Entity,
+    _spawner: Entity | undefined,
     initSeed: int,
   ) =>
     consistentAngels.preEntitySpawnUriel(
@@ -75,7 +75,7 @@ preEntitySpawnFunctions.set(
     variant: int,
     subType: int,
     _position: Vector,
-    _spawner: Entity,
+    _spawner: Entity | undefined,
     initSeed: int,
   ) =>
     consistentAngels.preEntitySpawnGabriel(

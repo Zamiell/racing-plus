@@ -32,6 +32,5 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
   - Esau Jr. (#703) - Using it while being a ghost will give the items back to the wrong character. (Reported by Gamonymous)
 - Death will be permanent if:
   - You have one red heart container left and remove Mother's Kiss. (Reported by Gamonymous)
-  - The Bible is used in the Satan fight. (Reported by Adrayon)
 
 <br>

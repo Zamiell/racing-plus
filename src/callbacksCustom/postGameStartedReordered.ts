@@ -1,5 +1,4 @@
 import { log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
-import * as debugFunction from "../debugFunction";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
@@ -70,7 +69,6 @@ function main(isContinued: boolean) {
   seededGBBug.postGameStarted();
   fireworks.postGameStarted();
   forceFadedConsoleDisplay.postGameStarted();
-  debugFunction.postGameStarted();
 
   // Showing Eden starting items is a quality of life feature, but it must be performed before race
   // initialization because we need to find out what the passive item is before other items are

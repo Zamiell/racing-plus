@@ -28,7 +28,7 @@ function main(
   subType: int,
   position: Vector,
   _velocity: Vector,
-  spawner: Entity,
+  spawner: Entity | undefined,
   initSeed: int,
 ): [EntityType, int, int, int] | void {
   if (DEBUG) {

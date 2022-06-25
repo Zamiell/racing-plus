@@ -2,29 +2,18 @@ import { Keyboard } from "isaac-typescript-definitions";
 import {
   isKeyboardPressed,
   log,
-  printConsole,
-  saveDataManager,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
 } from "isaacscript-common";
+import { debugCode, hotkey1Function, hotkey2Function } from "./debugCode";
 import g from "./globals";
-import { hotkeys } from "./modConfigMenu";
 
+// F1 shows the version of Racing+.
 const DEBUG_HOTKEY_1 = Keyboard.F2;
 const DEBUG_HOTKEY_2 = Keyboard.F3;
 
 let debugHotkey1Pressed = false;
 let debugHotkey2Pressed = false;
-
-const v = {};
-
-export function init(): void {
-  saveDataManager("debug", v, () => false);
-}
-
-function debugCode(_params?: string) {
-  // Add code here.
-}
 
 export function debugFunction(params?: string): void {
   g.debug = true;
@@ -64,21 +53,3 @@ function checkHotkeysPressed() {
     debugHotkey2Pressed = false;
   }
 }
-
-function hotkey1Function() {
-  debugCode();
-}
-
-function hotkey2Function() {
-  hotkeys.fastDropAll = Keyboard.Z;
-  hotkeys.autofire = Keyboard.F;
-  hotkeys.roll = Keyboard.G;
-
-  printConsole("Test hotkeys set.");
-}
-
-// ModCallback.POST_RENDER (2)
-export function postRender(): void {}
-
-// ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {}
