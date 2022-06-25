@@ -5,9 +5,10 @@
 ### _v0.80.7_ - May 14th, 2022
 
 - Clutch can now appear in Victory Laps.
+- Fixed the vanilla bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
-- !Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
+- Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
 
 ### _v0.80.6_ - April 12th, 2022
 

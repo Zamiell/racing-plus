@@ -927,10 +927,19 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "battery9VoltSynergy",
+    "taintedIsaacCollectibleDelay",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0902",
+      "Fix Tainted Isaac chest bugs",
+      "Make Tainted Isaac not automatically pick up pedestal items from chests.",
+    ],
+  ],
+  [
+    "battery9VoltSynergy",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0903",
       "Fix The Battery + 9 Volt synergy",
       "Make these items work together properly.",
     ],
@@ -939,7 +948,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     "reverseJusticeFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0903",
+      "0904",
       "Fix Justice? cards",
       "Prevent Justice? cards from needlessly removing items from pools.",
     ],
@@ -948,7 +957,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     "preventUltraSecretRoomSoftlock",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0904",
+      "0905",
       "Fix Ultra Secret Rooms softlocks",
       "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
@@ -957,7 +966,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     "batteryBumFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0906",
       "Fix Battery Bums",
       "Make Battery Bums properly charge pocket active items.",
     ],
@@ -966,7 +975,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     "teleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
+      "0907",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
@@ -975,7 +984,7 @@ export const BUG_FIXES_1: ConfigDescriptions = [
     "removeInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0907",
+      "0908",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
