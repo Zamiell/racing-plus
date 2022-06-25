@@ -4,7 +4,9 @@
 
 ### _v0.80.7_ - May 14th, 2022
 
+- Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
 - Clutch can now appear in Victory Laps.
+- Having the External Item Descriptions mod turned on will now result in Racing+ showing an error. (Thanks Gamonymous)
 - Fixed the vanilla bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)

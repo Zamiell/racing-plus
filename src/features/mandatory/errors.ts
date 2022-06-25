@@ -88,6 +88,8 @@ function isIncompleteSave() {
 /**
  * Check to see if there are any mods enabled that have added custom items. (It is difficult to
  * detect other mods in other ways.)
+ *
+ * We hardcode a check for External Item Descriptions, since it is a popular mod.
  */
 function areOtherModsEnabled() {
   const correctLastCollectibleTypeRacingPlus =
@@ -106,6 +108,11 @@ function areOtherModsEnabled() {
     log(
       `Error: Other mods detected. (The highest collectible ID is ${LAST_COLLECTIBLE_TYPE}, but it should be ${correctLastCollectibleType}.)`,
     );
+    v.run.otherModsEnabled = true;
+  }
+
+  if (EID !== undefined) {
+    log("Error: External Item Descriptions detected.");
     v.run.otherModsEnabled = true;
   }
 
