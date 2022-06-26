@@ -6,6 +6,7 @@ import {
   EntityCollisionClass,
   EntityType,
   FamiliarVariant,
+  HeartSubType,
   LostSoulState,
   NullItemID,
   PlayerType,
@@ -22,13 +23,15 @@ import {
   getTransformationsForCollectibleType,
   isActiveSlotEmpty,
   isCharacter,
+  newPlayerHealth,
+  PlayerHealth,
   removeAllFamiliars,
-  removeAllPlayerHealth,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
   repeat,
   runInNGameFrames,
   setActiveItem,
+  setPlayerHealth,
   sfxManager,
   spawn,
 } from "isaacscript-common";
@@ -75,41 +78,54 @@ function debuffOnRemoveSize(player: EntityPlayer) {
 
 function debuffOnSetHealth(player: EntityPlayer) {
   const character = player.GetPlayerType();
+  const playerHealth = getSeededDeathHealthForCharacter(character);
+  setPlayerHealth(player, playerHealth);
+}
 
-  removeAllPlayerHealth(player);
-
+function getSeededDeathHealthForCharacter(character: PlayerType): PlayerHealth {
   switch (character) {
     // 14, 33
     case PlayerType.KEEPER:
     case PlayerType.KEEPER_B: {
       // One filled coin container.
-      player.AddMaxHearts(2, true);
-      player.AddHearts(2);
-      return;
+      return {
+        ...newPlayerHealth(),
+        maxHearts: 4,
+        hearts: 4,
+      };
     }
 
     // 16, 17
     case PlayerType.THE_FORGOTTEN:
     case PlayerType.THE_SOUL: {
       // One half-filled bone heart + one half soul heart.
-      player.AddBoneHearts(1);
-      player.AddHearts(1);
-      player.AddSoulHearts(1);
-      return;
+      return {
+        ...newPlayerHealth(),
+        hearts: 1,
+        boneHearts: 1,
+        soulHearts: 1,
+        soulHeartTypes: [HeartSubType.SOUL],
+      };
     }
 
     // 18, 22
     case PlayerType.BETHANY:
     case PlayerType.MAGDALENE_B: {
       // 1.5 filled red heart containers.
-      player.AddMaxHearts(4, true);
-      player.AddHearts(3);
-      return;
+      return {
+        ...newPlayerHealth(),
+        maxHearts: 4,
+        hearts: 3,
+      };
     }
 
     default: {
       // One and a half soul hearts.
-      player.AddSoulHearts(3);
+      return {
+        ...newPlayerHealth(),
+        soulHearts: 3,
+        soulHeartTypes: [HeartSubType.SOUL, HeartSubType.SOUL],
+      };
     }
   }
 }

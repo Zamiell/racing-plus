@@ -4,6 +4,7 @@
 
 ### _v0.80.7_ - May 14th, 2022
 
+- Lilith and the Fire Mind build are now an anti-synergy. (Thanks Moucheron Quipet)
 - Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
 - Clutch can now appear in Victory Laps.
 - Having the External Item Descriptions mod turned on will now result in Racing+ showing an error. (Thanks Gamonymous)
@@ -11,6 +12,7 @@
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
 - Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
+- Fixed the bug with seeded death where Alabaster Death would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
 
 ### _v0.80.6_ - April 12th, 2022
 
