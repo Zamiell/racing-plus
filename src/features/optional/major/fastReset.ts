@@ -50,7 +50,7 @@ function checkResetInput() {
   }
 
   // Don't fast-reset if any modifiers are pressed (with the exception of shift, since the
-  // speedrunner MasterOfPotato uses shift).
+  // speedrunner MasterofPotato uses shift).
   if (
     isKeyboardPressed(Keyboard.LEFT_CONTROL) || // 341
     isKeyboardPressed(Keyboard.LEFT_ALT) || // 342

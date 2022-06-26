@@ -16,7 +16,9 @@ export function racePostNPCInitDarkEsau(npc: EntityNPC): void {
     return;
   }
 
-  checkDuplicatedDarkEsau(npc);
+  if (npc.Variant === (DarkEsauVariant.DARK_ESAU as int)) {
+    checkDuplicatedDarkEsau(npc);
+  }
 }
 
 /**
@@ -27,10 +29,10 @@ function checkDuplicatedDarkEsau(npc: EntityNPC) {
     return;
   }
 
-  const numDarkEsaus = countEntities(
-    EntityType.DARK_ESAU,
-    DarkEsauVariant.DARK_ESAU,
-  );
+  // The NPC that is in the PostNPCInit callback will not be included in the "countEntities" call,
+  // so we need to add one.
+  const numDarkEsaus =
+    countEntities(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU) + 1;
   const normalAmountOfDarkEsaus = getNormalAmountOfDarkEsaus();
   if (numDarkEsaus > normalAmountOfDarkEsaus) {
     // Both normal Dark Esau's and Dark Esau pits should be removed in an identical manner. (The pit

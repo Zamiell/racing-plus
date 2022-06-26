@@ -1,6 +1,7 @@
 # Racing+ Version History and News
 
 <!-- markdownlint-disable MD001 MD034 -->
+<!-- cspell:ignore Adrayon,aferalsheep,Anidalife,antizoubilamak,Arsene,Astraii,ated,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Chebupeli,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,gamonymous,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hispa,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,Kira,klover,Kool,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mgln,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,thisguyisbarry,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
 ### _v0.80.7_ - May 14th, 2022
 
@@ -13,6 +14,7 @@
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
 - Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
 - Fixed the bug with seeded death where Alabaster Death would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
+- Fixed the bug with seeded death where multiple Dark Esau's could be spawned under certain circumstances. (Thanks Iedaim)
 
 ### _v0.80.6_ - April 12th, 2022
 

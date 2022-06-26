@@ -1,18 +1,9 @@
-import { HeartSubType, Keyboard } from "isaac-typescript-definitions";
-import {
-  getPlayerHealth,
-  printConsole,
-  setPlayerHealth,
-} from "isaacscript-common";
+import { Keyboard } from "isaac-typescript-definitions";
+import { printConsole } from "isaacscript-common";
 import { hotkeys } from "./modConfigMenu";
 
 export function debugCode(_params?: string): void {
   // Add code here.
-  const player = Isaac.GetPlayer();
-  const playerHealth = getPlayerHealth(player);
-  playerHealth.soulHearts = 4;
-  playerHealth.soulHeartTypes = [HeartSubType.SOUL, HeartSubType.SOUL];
-  setPlayerHealth(player, playerHealth);
 }
 
 export function hotkey1Function(): void {

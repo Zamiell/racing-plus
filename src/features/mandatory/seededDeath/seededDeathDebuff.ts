@@ -17,7 +17,6 @@ import {
   getCollectibles,
   getEnumValues,
   getFamiliars,
-  getNPCs,
   getPlayerCollectibleMap,
   getTotalCharge,
   getTransformationsForCollectibleType,
@@ -26,6 +25,7 @@ import {
   newPlayerHealth,
   PlayerHealth,
   removeAllFamiliars,
+  removeAllMatchingEntities,
   removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
   repeat,
@@ -240,9 +240,11 @@ function debuffOnRemoveAllWisps(player: EntityPlayer) {
 function debuffOnRemoveDarkEsau() {
   // If Dark Esau is alive, the player can use it to clear rooms while they are dead. Remove Dark
   // Esau to prevent this.
-  const darkEsaus = getNPCs(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU);
-  for (const darkEsau of darkEsaus) {
-    darkEsau.Remove();
+  const removedEsaus = removeAllMatchingEntities(
+    EntityType.DARK_ESAU,
+    DarkEsauVariant.DARK_ESAU,
+  );
+  if (removedEsaus.length > 0) {
     v.run.removedDarkEsau = true;
   }
 }
