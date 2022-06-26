@@ -104,7 +104,6 @@ export class Config {
   silenceMomDad = true;
 
   // Other
-  customConsole = true;
   shadows = false;
   chat = true;
   roll = false;

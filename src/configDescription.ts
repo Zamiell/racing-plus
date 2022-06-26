@@ -154,8 +154,8 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     [
       ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
       "",
-      "Toggle chat/console",
-      "When in a race, this toggles the chat. When not in a race, this toggles the custom console. If not set, this will default to Enter.",
+      "Toggle chat",
+      "When in a race, this toggles the chat entry console. When not in a race, this will do nothing. If not set, this will default to Enter.",
     ],
   ],
   [
@@ -1235,19 +1235,10 @@ export const SOUND_CHANGES: ConfigDescriptions = [
 // 1201-1210
 export const OTHER_FEATURES: ConfigDescriptions = [
   [
-    "customConsole",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1201",
-      "Enable the custom console",
-      "Press enter to bring up a custom console that is better than the vanilla console. (not finished yet)",
-    ],
-  ],
-  [
     "shadows",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1202",
+      "1201",
       "Draw opponent's shadows",
       "Enable the drawing of race opponents as faded sprites during seeded races.",
     ],
@@ -1256,7 +1247,7 @@ export const OTHER_FEATURES: ConfigDescriptions = [
     "chat",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1203",
+      "1202",
       "Draw race chat",
       "Enable the drawing of race chat on the screen.",
     ],
@@ -1265,7 +1256,7 @@ export const OTHER_FEATURES: ConfigDescriptions = [
     "roll",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1204",
+      "1203",
       "Enable rolling",
       "Turn on experimental rolling, which will invalidate your run for online races and offline leaderboards.",
     ],

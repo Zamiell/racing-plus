@@ -16,7 +16,6 @@ import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
-import * as customConsole from "../features/optional/other/customConsole";
 import * as roll from "../features/optional/other/roll";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
@@ -24,6 +23,7 @@ import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars
 import * as showPills from "../features/optional/quality/showPills";
 import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import { racePostRender } from "../features/race/callbacks/postRender";
+import * as customConsole from "../features/race/customConsole";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
 import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
@@ -83,8 +83,10 @@ function main() {
   fastDrop.postRender();
   schoolbagSwitch.postRender();
   autofire.postRender();
-  customConsole.postRender();
   roll.postRender();
+
+  // Other
+  customConsole.postRender();
 
   // We want the "R+" sprite to be drawn on top of everything.
   racingPlusSprite.postRender();

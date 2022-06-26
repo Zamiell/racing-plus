@@ -12,14 +12,14 @@ import {
   log,
   saveDataManager,
 } from "isaacscript-common";
-import { Colors } from "../../../enums/Colors";
-import { RaceStatus } from "../../../enums/RaceStatus";
-import g from "../../../globals";
-import { KEYBOARD_MAP } from "../../../maps/keyboardMap";
-import { config, hotkeys } from "../../../modConfigMenu";
-import { TextSegment } from "../../../types/TextSegment";
-import { consoleCommand } from "../../../utils";
-import * as socket from "../../race/socket";
+import { Colors } from "../../enums/Colors";
+import { RaceStatus } from "../../enums/RaceStatus";
+import g from "../../globals";
+import { KEYBOARD_MAP } from "../../maps/keyboardMap";
+import { hotkeys } from "../../modConfigMenu";
+import { TextSegment } from "../../types/TextSegment";
+import { consoleCommand } from "../../utils";
+import * as socket from "./socket";
 
 const FEATURE_NAME = "customConsole";
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
@@ -31,7 +31,8 @@ const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.ENTER;
 let consoleOpen = false;
 let inputText = "";
 let inputTextIndex = 0;
-let savedText = ""; // Used to save a partially completed message when recalling history
+/** Used to save a partially completed message when recalling history. */
+let savedText = "";
 let historyIndex = -1;
 
 /** Values are the render frame that the key was pressed. */
@@ -51,10 +52,6 @@ export function init(): void {
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.customConsole) {
-    return;
-  }
-
   const isPaused = g.g.IsPaused();
   const hud = g.g.GetHUD();
   const renderFrameCount = Isaac.GetFrameCount();

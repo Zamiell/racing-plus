@@ -7,7 +7,7 @@ import {
   DEFAULT_CONSOLE_OPACITY,
   drawText,
   isConsoleOpen,
-} from "../optional/other/customConsole";
+} from "./customConsole";
 
 // TODO:
 // - Don't display race chat from the previous race.

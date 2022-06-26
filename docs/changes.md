@@ -417,9 +417,8 @@ Post-flip actions:
 
 ### 12) Other
 
-- `1201` <!-- customConsole --> A custom console is provided that allows you to chat with your race opponents.
-- `1202` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
-- `1203` <!-- chat --> Chat from your race opponents will be drawn on the screen.
+- `1201` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
+- `1202` <!-- chat --> Chat from your race opponents will be drawn on the screen.
 - <!-- forceFadedConsoleDisplay --> The "faded console display" feature is automatically enabled in the "options.ini" file, which allows you to visually see when an error in the game happens.
 
 <br>

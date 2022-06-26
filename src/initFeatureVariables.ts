@@ -44,7 +44,6 @@ import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
-import * as customConsole from "./features/optional/other/customConsole";
 import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as bloodyLustChargeBar from "./features/optional/quality/bloodyLustChargeBar/v";
@@ -58,6 +57,7 @@ import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars"
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
+import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
