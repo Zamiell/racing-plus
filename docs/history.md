@@ -1,7 +1,7 @@
 # Racing+ Version History and News
 
 <!-- markdownlint-disable MD001 MD034 -->
-<!-- cspell:ignore Adrayon,aferalsheep,Anidalife,antizoubilamak,Arsene,Astraii,ated,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Chebupeli,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,gamonymous,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hispa,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,Kira,klover,Kool,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mgln,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,thisguyisbarry,Thoday,toooschi,vertopolka,Zazima,Zorua -->
+<!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
 ### _v0.80.7_ - May 14th, 2022
 
