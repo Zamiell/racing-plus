@@ -1007,6 +1007,10 @@ export const BUG_FIXES_1: ConfigDescriptions = [
       "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)",
     ],
   ],
+];
+
+// 0911-0920
+export const BUG_FIXES_2: ConfigDescriptions = [
   [
     "",
     [
@@ -1016,10 +1020,6 @@ export const BUG_FIXES_1: ConfigDescriptions = [
       "Make Teleport!, Cursed Eye, Broken Remote, and Telepills teleports seeded properly.",
     ],
   ],
-];
-
-// 0911-0920
-export const BUG_FIXES_2: ConfigDescriptions = [
   [
     "",
     [

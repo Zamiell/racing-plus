@@ -178,6 +178,12 @@ function registerSubMenuConfig(
     return;
   }
 
+  if (descriptions.length > 10) {
+    error(
+      "One of the config descriptions was longer than 10 elements. Move some elements into a new category.",
+    );
+  }
+
   for (const [configName, array] of descriptions) {
     const [optionType, code, shortDescription, longDescription] = array;
 
