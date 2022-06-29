@@ -41,7 +41,7 @@ export function init(): void {
 // PickupVariant.COLLECTIBLE (100)
 export function preEntitySpawnCollectible(
   collectibleType: CollectibleType,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   return preventVanillaPhotos(collectibleType);
 }
 
@@ -49,7 +49,7 @@ export function preEntitySpawnCollectible(
 // manually to speed up the Mom fight.
 function preventVanillaPhotos(
   collectibleType: CollectibleType,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   if (
     v.room.vanillaPhotosLeftToSpawn > 0 &&
     (collectibleType === CollectibleType.POLAROID ||

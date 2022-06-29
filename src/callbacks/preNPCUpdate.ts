@@ -16,11 +16,11 @@ export function init(mod: Mod): void {
 }
 
 // EntityType.MOMS_HAND (213)
-function momsHand(npc: EntityNPC) {
+function momsHand(npc: EntityNPC): boolean | undefined {
   return appearHands.preNPCUpdateMomsHand(npc);
 }
 
 // EntityType.MOMS_DEAD_HAND (287)
-function momsDeadHand(npc: EntityNPC) {
+function momsDeadHand(npc: EntityNPC): boolean | undefined {
   return appearHands.preNPCUpdateMomsDeadHand(npc);
 }

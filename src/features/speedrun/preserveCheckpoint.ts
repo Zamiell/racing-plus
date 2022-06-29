@@ -21,7 +21,7 @@ export function useCardBlackRune(): void {
 
 // ModCallback.PRE_USE_ITEM (23)
 // CollectibleType.D6 (105)
-export function preUseItemD6(player: EntityPlayer): boolean | void {
+export function preUseItemD6(player: EntityPlayer): boolean | undefined {
   // The Checkpoint custom item is about to be deleted, so spawn another one.
   const numCheckpoints = countEntities(
     EntityType.PICKUP,
@@ -38,7 +38,7 @@ export function preUseItemD6(player: EntityPlayer): boolean | void {
 
 // ModCallback.PRE_USE_ITEM (23)
 // CollectibleType.ETERNAL_D6 (609)
-export function preUseItemEternalD6(player: EntityPlayer): boolean | void {
+export function preUseItemEternalD6(player: EntityPlayer): boolean | undefined {
   // Use the same logic as the normal D6.
   return preUseItemD6(player);
 }

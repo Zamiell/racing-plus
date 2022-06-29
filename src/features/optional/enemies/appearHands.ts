@@ -37,7 +37,7 @@ function checkFirstSpawn(npc: EntityNPC) {
 
 // ModCallback.PRE_NPC_UPDATE (69)
 // EntityType.MOMS_HAND (213)
-export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | void {
+export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | undefined {
   if (!config.appearHands) {
     return undefined;
   }
@@ -47,7 +47,7 @@ export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | void {
 
 // ModCallback.PRE_NPC_UPDATE (69)
 // EntityType.MOMS_DEAD_HAND (287)
-export function preNPCUpdateMomsDeadHand(npc: EntityNPC): boolean | void {
+export function preNPCUpdateMomsDeadHand(npc: EntityNPC): boolean | undefined {
   if (!config.appearHands) {
     return undefined;
   }

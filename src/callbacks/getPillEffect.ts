@@ -12,6 +12,6 @@ export function init(mod: Mod): void {
 function main(
   pillEffect: PillEffect,
   _pillColor: PillColor,
-): PillEffect | void {
+): PillEffect | undefined {
   return removeBannedPillEffects.getPillEffect(pillEffect);
 }

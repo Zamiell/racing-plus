@@ -5,7 +5,7 @@ import { config } from "../../../modConfigMenu";
 // EntityType.COD_WORM (221)
 export function preEntitySpawnCodWorm(
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   if (!config.replaceCodWorms) {
     return undefined;
   }

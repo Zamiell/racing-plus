@@ -11,7 +11,7 @@ export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.PRE_SPAWN_CLEAN_AWARD, main);
 }
 
-function main(_rng: RNG, _spawnPosition: Vector): boolean | void {
+function main(_rng: RNG, _spawnPosition: Vector): boolean | undefined {
   // Major
   fastTravelPreSpawnClearAward();
   racePreSpawnClearAward();

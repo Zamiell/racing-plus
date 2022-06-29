@@ -4,7 +4,7 @@ import * as raceInputAction from "../features/race/callbacks/inputAction";
 
 export const isActionTriggeredFunctions = new Map<
   ButtonAction,
-  (entity: Entity | undefined) => boolean | void
+  (entity: Entity | undefined) => boolean | undefined
 >();
 
 // 28

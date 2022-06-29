@@ -137,7 +137,7 @@ function featureEnabled() {
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleTypeCustom.FLIP_CUSTOM
-export function useItemFlipCustom(player: EntityPlayer): boolean | void {
+export function useItemFlipCustom(player: EntityPlayer): boolean | undefined {
   if (!config.flipCustom) {
     return undefined;
   }

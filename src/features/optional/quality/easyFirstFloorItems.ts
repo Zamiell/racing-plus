@@ -10,7 +10,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.PRE_ROOM_ENTITY_SPAWN (71)
 export function preRoomEntitySpawn(
   gridIndex: int,
-): [EntityType, int, int] | void {
+): [EntityType, int, int] | undefined {
   if (!config.easyFirstFloorItems) {
     return undefined;
   }

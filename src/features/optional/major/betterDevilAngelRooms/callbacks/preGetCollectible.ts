@@ -25,7 +25,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
   itemPoolType: ItemPoolType,
   _decrease: boolean,
   _seed: int,
-): CollectibleType | void {
+): CollectibleType | undefined {
   if (!config.betterDevilAngelRooms) {
     return undefined;
   }

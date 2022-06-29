@@ -42,7 +42,7 @@ function entityTakeDmgPlayer(
   damageFlags: BitFlags<DamageFlag>,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
-) {
+): boolean | undefined {
   const player = tookDamage.ToPlayer();
   if (player === undefined) {
     return undefined;
@@ -68,7 +68,7 @@ function uriel(
   _damageFlags: BitFlags<DamageFlag>,
   damageSource: EntityRef,
   _damageCountdownFrames: int,
-) {
+): boolean | undefined {
   return doubleAngelNerf.entityTakeDmgUriel(damageSource);
 }
 
@@ -79,7 +79,7 @@ function gabriel(
   _damageFlags: BitFlags<DamageFlag>,
   damageSource: EntityRef,
   _damageCountdownFrames: int,
-) {
+): boolean | undefined {
   return doubleAngelNerf.entityTakeDmgGabriel(damageSource);
 }
 
@@ -90,6 +90,8 @@ function dummy(
   _damageFlags: BitFlags<DamageFlag>,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
-) {
+): boolean | undefined {
   dummyDPS.entityTakeDmgDummy(damageAmount);
+
+  return undefined;
 }

@@ -10,6 +10,6 @@ const BANNED_PILLS: ReadonlyMap<PillEffect, PillEffect> = new Map([
 ]);
 
 // ModCallback.GET_PILL_EFFECT (65)
-export function getPillEffect(pillEffect: PillEffect): PillEffect | void {
+export function getPillEffect(pillEffect: PillEffect): PillEffect | undefined {
   return BANNED_PILLS.get(pillEffect);
 }

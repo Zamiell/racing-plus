@@ -16,7 +16,7 @@ export const preEntitySpawnFunctions = new Map<
     position: Vector,
     spawner: Entity | undefined,
     initSeed: int,
-  ) => [EntityType, int, int, int] | void
+  ) => [EntityType, int, int, int] | undefined
 >();
 
 // 5

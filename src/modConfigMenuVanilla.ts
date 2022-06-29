@@ -231,6 +231,8 @@ export function init(): void {
 function getAnnouncerVoiceModeText() {
   const announcerVoiceModeText =
     ANNOUNCER_VOICE_MODE_TO_TEXT[Options.AnnouncerVoiceMode];
+  // Compare against undefined to be future-safe against new voice mode values.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   return announcerVoiceModeText === undefined
     ? DEFAULT_ANNOUNCER_VOICE_MODE_TEXT
     : announcerVoiceModeText;
@@ -238,6 +240,8 @@ function getAnnouncerVoiceModeText() {
 
 function getConsoleFontText() {
   const consoleFontText = CONSOLE_FONT_TO_TEXT[Options.ConsoleFont];
+  // Compare against undefined to be future-safe against new font text values.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   return consoleFontText === undefined
     ? DEFAULT_CONSOLE_FONT_TEXT
     : consoleFontText;

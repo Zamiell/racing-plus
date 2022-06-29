@@ -10,6 +10,12 @@ export function init(mod: Mod): void {
   );
 }
 
-function sawblade(_familiar: EntityFamiliar, collider: Entity, _low: boolean) {
+function sawblade(
+  _familiar: EntityFamiliar,
+  collider: Entity,
+  _low: boolean,
+): boolean | undefined {
   sb.preFamiliarCollisionSawblade(collider);
+
+  return undefined;
 }

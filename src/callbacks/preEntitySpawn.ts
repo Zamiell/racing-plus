@@ -30,7 +30,8 @@ function main(
   _velocity: Vector,
   spawner: Entity | undefined,
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (DEBUG) {
     log(
       `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,

@@ -74,8 +74,10 @@ function main(
   useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,
   _customVarData: int,
-): boolean | void {
+): boolean | undefined {
   battery9VoltSynergy.useItem(collectibleType, player, useFlags, activeSlot);
+
+  return undefined;
 }
 
 // CollectibleType.TELEPORT (44)
@@ -86,8 +88,10 @@ function teleport(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   seededTeleports.useItemTeleport();
+
+  return undefined;
 }
 
 // CollectibleType.VOID (477)
@@ -98,8 +102,10 @@ function voidItem(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   speedrunUseItem.voidItem();
+
+  return undefined;
 }
 
 // CollectibleType.FORTUNE_COOKIE (557)
@@ -110,8 +116,10 @@ function fortuneCookie(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   removeFortuneCookieBanners.useItemFortuneCookie();
+
+  return undefined;
 }
 
 // CollectibleType.MEAT_CLEAVER (631)
@@ -122,8 +130,10 @@ function meatCleaver(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   consistentAngels.useItemMeatCleaver();
+
+  return undefined;
 }
 
 // CollectibleType.LEMEGETON (712)
@@ -134,8 +144,10 @@ function lemegeton(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   streakText.useItemLemegeton();
+
+  return undefined;
 }
 
 // CollectibleType.SPINDOWN_DICE (723)
@@ -146,8 +158,10 @@ function spindownDice(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   removeGloballyBannedItems.useItemSpindownDice();
+
+  return undefined;
 }
 
 // CollectibleTypeCustom.FLIP_CUSTOM
@@ -158,7 +172,7 @@ function useItemFlipCustom(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   return flipCustom.useItemFlipCustom(player);
 }
 
@@ -170,6 +184,6 @@ function debugItem(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   return debug.useItemDebug();
 }

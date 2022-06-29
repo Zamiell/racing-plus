@@ -16,7 +16,8 @@ function main(
   itemPoolType: ItemPoolType,
   decrease: boolean,
   seed: int,
-): CollectibleType | void {
+): CollectibleType | undefined {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (DEBUG) {
     log(
       `MC_PRE_GET_COLLECTIBLE - itemPoolType: ${itemPoolType}, decrease: ${decrease}, seed: ${seed}`,

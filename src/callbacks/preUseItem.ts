@@ -56,7 +56,7 @@ function d6(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   return speedrunPreUseItem.d6(player);
 }
 
@@ -68,7 +68,7 @@ function deadSeaScrolls(
   _useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   return streakText.preUseItemDeadSeaScrolls(player, activeSlot);
 }
 
@@ -80,8 +80,10 @@ function d100(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   setCollectiblesRerolledForItemTracker();
+
+  return undefined;
 }
 
 // CollectibleType.D4 (284)
@@ -92,9 +94,11 @@ function d4(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   betterDevilAngelRoomsPreUseItemD4();
   setCollectiblesRerolledForItemTracker();
+
+  return undefined;
 }
 
 // CollectibleType.ETERNAL_D6 (609)
@@ -105,7 +109,7 @@ function eternalD6(
   _useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   return speedrunPreUseItem.eternalD6(player);
 }
 
@@ -117,6 +121,8 @@ function flip(
   useFlags: BitFlags<UseFlag>,
   _activeSlot: ActiveSlot,
   _customVarData: int,
-) {
+): boolean | undefined {
   startWithD6.preUseItemFlip(player, useFlags);
+
+  return undefined;
 }

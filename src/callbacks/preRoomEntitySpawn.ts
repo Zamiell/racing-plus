@@ -11,11 +11,6 @@ function main(
   _subType: int,
   gridIndex: int,
   _seed: int,
-): [EntityType, int, int] | void {
-  const newTable = easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
-  if (newTable !== undefined) {
-    return newTable;
-  }
-
-  return undefined;
+): [EntityType, int, int] | undefined {
+  return easyFirstFloorItems.preRoomEntitySpawn(gridIndex);
 }

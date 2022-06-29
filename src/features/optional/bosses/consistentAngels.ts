@@ -40,7 +40,7 @@ export function preEntitySpawnUriel(
   variant: AngelVariant,
   subType: int,
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   if (!config.consistentAngels) {
     return undefined;
   }
@@ -54,7 +54,7 @@ export function preEntitySpawnGabriel(
   variant: AngelVariant,
   subType: int,
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   if (!config.consistentAngels) {
     return undefined;
   }
@@ -67,7 +67,7 @@ function checkCorrectAngelType(
   variant: AngelVariant,
   subType: int,
   initSeed: int,
-): [EntityType, int, int, int] | void {
+): [EntityType, int, int, int] | undefined {
   const gameFrameCount = g.g.GetFrameCount();
 
   // This feature should not apply to angels that were duplicated with a Meat Cleaver.

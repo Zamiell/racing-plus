@@ -237,7 +237,7 @@ export function getLevelText(): string {
 export function preUseItemDeadSeaScrolls(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
-): boolean | void {
+): boolean | undefined {
   const hud = g.g.GetHUD();
 
   const randomCollectible = getRandomArrayElement(

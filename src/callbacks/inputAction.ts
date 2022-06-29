@@ -32,7 +32,7 @@ function isActionPressed(
   entity: Entity | undefined,
   _inputHook: InputHook,
   buttonAction: ButtonAction,
-) {
+): boolean | undefined {
   const isActionPressedFunction = isActionPressedFunctions.get(buttonAction);
   if (isActionPressedFunction !== undefined) {
     return isActionPressedFunction(entity);
@@ -46,7 +46,7 @@ function isActionTriggered(
   entity: Entity | undefined,
   _inputHook: InputHook,
   buttonAction: ButtonAction,
-) {
+): boolean | undefined {
   const isActionTriggeredFunction =
     isActionTriggeredFunctions.get(buttonAction);
   if (isActionTriggeredFunction !== undefined) {
@@ -61,7 +61,7 @@ function getActionValue(
   entity: Entity | undefined,
   _inputHook: InputHook,
   buttonAction: ButtonAction,
-) {
+): float | undefined {
   const getActionValueFunction = getActionValueFunctions.get(buttonAction);
   if (getActionValueFunction !== undefined) {
     return getActionValueFunction(entity);

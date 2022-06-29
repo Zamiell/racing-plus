@@ -3,7 +3,7 @@ import * as autofire from "../features/optional/hotkeys/autofire";
 
 export const getActionValueFunctions = new Map<
   ButtonAction,
-  (entity: Entity | undefined) => float | void
+  (entity: Entity | undefined) => float | undefined
 >();
 
 // 4
