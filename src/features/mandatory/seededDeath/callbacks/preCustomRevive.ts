@@ -26,7 +26,9 @@ import {
 } from "../seededDeath";
 import v from "../v";
 
-export function seededDeathPreCustomRevive(player: EntityPlayer): int | void {
+export function seededDeathPreCustomRevive(
+  player: EntityPlayer,
+): int | undefined {
   if (!shouldSeededDeathFeatureApply()) {
     return undefined;
   }

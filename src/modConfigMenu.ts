@@ -266,16 +266,12 @@ function getDisplayTextBoolean(
   code: string,
   shortDescription: string,
 ) {
-  switch (code) {
-    case "": {
-      return `${shortDescription}: n/a`;
-    }
-
-    default: {
-      const currentValue = config[configName];
-      return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
-    }
+  if (code === "") {
+    return `${shortDescription}: n/a`;
   }
+
+  const currentValue = config[configName];
+  return `${code} - ${shortDescription}: ${onOff(currentValue)}`;
 }
 
 function getDisplayTextKeyboardController(

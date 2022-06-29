@@ -10,7 +10,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   countEntities,
-  ensureAllCases,
   getGridEntities,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRoomInsideMap,
@@ -80,7 +79,7 @@ function manuallySpawn() {
 }
 
 // Figure out if we need to spawn either a trapdoor, a heaven door, or both.
-function getItLivesSituation() {
+function getItLivesSituation(): ItLivesSituation {
   // Speedrun seasons have set goals.
   if (inSpeedrun()) {
     const itLivesSituation = onSpeedrunWithDarkRoomGoal()
@@ -130,7 +129,7 @@ function getItLivesSituation() {
   return ItLivesSituation.BOTH;
 }
 
-function getItLivesSituationRace(goal: RaceGoal) {
+function getItLivesSituationRace(goal: RaceGoal): ItLivesSituation {
   switch (goal) {
     case RaceGoal.BLUE_BABY: {
       return ItLivesSituation.HEAVEN_DOOR;
@@ -153,10 +152,6 @@ function getItLivesSituationRace(goal: RaceGoal) {
     case RaceGoal.DELIRIUM: {
       return ItLivesSituation.NEITHER;
     }
-
-    default: {
-      return ensureAllCases(goal);
-    }
   }
 }
 
@@ -178,7 +173,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; no paths will be spawned.`,
       );
-      return;
+      break;
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
@@ -186,7 +181,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; going up.`,
       );
-      return;
+      break;
     }
 
     case ItLivesSituation.TRAPDOOR: {
@@ -194,7 +189,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; going down.`,
       );
-      return;
+      break;
     }
 
     case ItLivesSituation.BOTH: {
@@ -203,11 +198,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       log(
         `It Lives! or Hush killed on game frame ${gameFrameCount}; spawning both paths.`,
       );
-      return;
-    }
-
-    default: {
-      ensureAllCases(situation);
+      break;
     }
   }
 }
@@ -255,7 +246,7 @@ function checkItLivesWrongPath() {
 
   switch (situation) {
     case ItLivesSituation.NEITHER: {
-      return;
+      break;
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
@@ -270,7 +261,7 @@ function checkItLivesWrongPath() {
         );
       }
 
-      return;
+      break;
     }
 
     case ItLivesSituation.TRAPDOOR: {
@@ -282,17 +273,13 @@ function checkItLivesWrongPath() {
         );
       }
 
-      return;
+      break;
     }
 
     case ItLivesSituation.BOTH: {
       // In vanilla, both paths appear by default, so we don't have to do anything. The exception is
       // if we are on a custom challenge that allows both paths, but ignore this edge-case.
-      return;
-    }
-
-    default: {
-      ensureAllCases(situation);
+      break;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { anyPlayerCloserThan, ensureAllCases, log } from "isaacscript-common";
+import { anyPlayerCloserThan, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import g from "../../../../globals";
@@ -82,7 +82,9 @@ function set(
   entityDescription.state = state;
 }
 
-function getFastTravelMap(fastTravelEntityType: FastTravelEntityType) {
+function getFastTravelMap(
+  fastTravelEntityType: FastTravelEntityType,
+): Map<number, FastTravelEntityDescription> {
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
       return v.room.trapdoors;
@@ -94,10 +96,6 @@ function getFastTravelMap(fastTravelEntityType: FastTravelEntityType) {
 
     case FastTravelEntityType.HEAVEN_DOOR: {
       return v.room.heavenDoors;
-    }
-
-    default: {
-      return ensureAllCases(fastTravelEntityType);
     }
   }
 }
@@ -137,7 +135,7 @@ export function deleteDescription(
 function getIndex(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-) {
+): number {
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
       const gridEntity = entity as GridEntity;
@@ -153,10 +151,6 @@ function getIndex(
       // "effect.Index" is not yet initialized in the PostEffectInit callback. Use the grid index as
       // the index for conformity with the other fast-travel entities.
       return g.r.GetGridIndex(entity.Position);
-    }
-
-    default: {
-      return ensureAllCases(fastTravelEntityType);
     }
   }
 }

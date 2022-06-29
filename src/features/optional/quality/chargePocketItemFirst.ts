@@ -29,7 +29,6 @@ import {
 import {
   DefaultMap,
   defaultMapGetPlayer,
-  ensureAllCases,
   getCollectibleMaxCharges,
   getTotalCharge,
   isActiveSlotEmpty,
@@ -358,10 +357,7 @@ function getChargeSituationForBattery(
     }
 
     default: {
-      ensureAllCases(batterySubType);
-
       // Handle modded battery types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return {
         numCharges: 0,
       };

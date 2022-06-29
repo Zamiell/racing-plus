@@ -87,7 +87,7 @@ function drawSprites() {
   }
 }
 
-function getPosition(spriteName: keyof typeof sprites) {
+function getPosition(spriteName: keyof typeof sprites): Vector {
   const centerPos = g.r.GetCenterPos();
   const renderPosition = Isaac.WorldToRenderPosition(centerPos);
 

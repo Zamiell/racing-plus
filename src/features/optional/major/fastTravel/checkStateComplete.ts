@@ -1,5 +1,5 @@
 import { EntityCollisionClass } from "isaac-typescript-definitions";
-import { ensureAllCases, getEffects, getPlayers } from "isaacscript-common";
+import { getEffects, getPlayers } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import g from "../../../../globals";
@@ -12,25 +12,21 @@ import v from "./v";
 export function postRender(): void {
   switch (v.run.state) {
     case FastTravelState.DISABLED: {
-      return;
+      break;
     }
 
     case FastTravelState.FADING_TO_BLACK: {
       postRenderFadingToBlack();
-      return;
+      break;
     }
 
     case FastTravelState.GOING_TO_NEW_FLOOR: {
-      return;
+      break;
     }
 
     case FastTravelState.FADING_IN: {
       postRenderFadingIn();
-      return;
-    }
-
-    default: {
-      ensureAllCases(v.run.state);
+      break;
     }
   }
 }

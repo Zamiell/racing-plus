@@ -10,7 +10,6 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  ensureAllCases,
   getPlayers,
   getRoomGridIndex,
   isChildPlayer,
@@ -65,7 +64,7 @@ export function init(
 function getCustomSpriteFilename(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
-) {
+): string {
   const isGreedMode = g.g.IsGreedMode();
   const mausoleumHeartKilled = g.g.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
@@ -161,10 +160,6 @@ function getCustomSpriteFilename(
 
     case FastTravelEntityType.HEAVEN_DOOR: {
       return "gfx/1000.039_heaven door custom.anm2";
-    }
-
-    default: {
-      return ensureAllCases(fastTravelEntityType);
     }
   }
 }

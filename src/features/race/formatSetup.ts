@@ -8,7 +8,6 @@ import {
 import {
   characterStartsWithActiveItem,
   copyArray,
-  ensureAllCases,
   getLastElement,
   isCharacter,
   isEden,
@@ -96,10 +95,6 @@ export function formatSetup(player: EntityPlayer): void {
 
     case RaceFormat.CUSTOM: {
       break;
-    }
-
-    default: {
-      ensureAllCases(g.race.format);
     }
   }
 

@@ -115,9 +115,5 @@ function checkAngrySkinAnimation(npc: EntityNPC) {
 
       break;
     }
-
-    default: {
-      break;
-    }
   }
 }

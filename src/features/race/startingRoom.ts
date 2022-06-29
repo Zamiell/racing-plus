@@ -1,5 +1,5 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
-import { ensureAllCases, isGoldenTrinket } from "isaacscript-common";
+import { isGoldenTrinket } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -60,7 +60,7 @@ function drawSprites() {
   }
 }
 
-function getPosition(spriteName: keyof typeof sprites) {
+function getPosition(spriteName: keyof typeof sprites): Vector {
   const centerPos = g.r.GetCenterPos();
   const renderPosition = Isaac.WorldToRenderPosition(centerPos);
   const itemRow1Y = renderPosition.Y - 10;
@@ -162,21 +162,17 @@ export function initSprites(): void {
   switch (g.race.format) {
     case RaceFormat.SEEDED: {
       initSeededSprites();
-      return;
+      break;
     }
 
     case RaceFormat.DIVERSITY: {
       initDiversitySprites();
-      return;
+      break;
     }
 
     case RaceFormat.UNSEEDED:
     case RaceFormat.CUSTOM: {
-      return;
-    }
-
-    default: {
-      ensureAllCases(g.race.format);
+      break;
     }
   }
 }

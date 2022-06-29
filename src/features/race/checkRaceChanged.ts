@@ -1,6 +1,5 @@
 import {
   arrayEquals,
-  ensureAllCases,
   getEffectiveStage,
   inStartingRoom,
   log,
@@ -124,10 +123,6 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       raceStart();
 
       return;
-    }
-
-    default: {
-      ensureAllCases(newStatus);
     }
   }
 });

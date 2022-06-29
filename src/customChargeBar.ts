@@ -1,6 +1,5 @@
 import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
-  ensureAllCases,
   isCharacter,
   isReflectionRender,
   VectorZero,
@@ -105,10 +104,6 @@ function getNumHigherPrecedenceCustomChargeBars(
     case CustomChargeBarType.BLOODY_LUST: {
       return leadPencil + azazelsRage + taintedSamson;
     }
-
-    default: {
-      return ensureAllCases(chargeBarType);
-    }
   }
 }
 
@@ -141,10 +136,6 @@ export function shouldDrawCustomChargeBar(
 
     case CustomChargeBarType.BLOODY_LUST: {
       return shouldDrawBloodyLustChargeBar(player);
-    }
-
-    default: {
-      return ensureAllCases(chargeBarType);
     }
   }
 }

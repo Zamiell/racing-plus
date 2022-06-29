@@ -8,7 +8,6 @@ import {
   PoopPickupSubType,
 } from "isaac-typescript-definitions";
 import {
-  ensureAllCases,
   getCoinValue,
   hasOpenPocketItemSlot,
   hasOpenTrinketSlot,
@@ -147,10 +146,7 @@ function insertBloodOrSoulCharge(
     }
 
     default: {
-      ensureAllCases(heart.SubType);
-
       // Ignore modded heart sub-types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
@@ -198,10 +194,7 @@ function insertCoin(
     }
 
     default: {
-      ensureAllCases(coin.SubType);
-
       // Ignore modded coin sub-types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
@@ -248,10 +241,7 @@ function insertKey(
     }
 
     default: {
-      ensureAllCases(key.SubType);
-
       // Ignore modded key sub-types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
@@ -314,10 +304,7 @@ function insertBomb(
     }
 
     default: {
-      ensureAllCases(bomb.SubType);
-
       // Ignore modded bomb sub-types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }
@@ -344,10 +331,7 @@ function insertPoop(
     }
 
     default: {
-      ensureAllCases(poop.SubType);
-
       // Ignore modded poop sub-types.
-      // @ts-expect-error Modded pickups fall outside of the type system.
       return undefined;
     }
   }

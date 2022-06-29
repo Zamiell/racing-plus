@@ -333,10 +333,6 @@ function giveStartingItems(
       giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
-
-    default: {
-      break;
-    }
   }
 
   for (const collectibleType of startingBuild) {

@@ -164,7 +164,10 @@ function checkExitSoftlock(player: EntityPlayer) {
   }
 }
 
-function getExitDirection(roomType: RoomType, player: EntityPlayer) {
+function getExitDirection(
+  roomType: RoomType,
+  player: EntityPlayer,
+): Direction | undefined {
   const playerGridIndex = g.r.GetGridIndex(player.Position);
 
   switch (roomType) {

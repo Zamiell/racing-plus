@@ -77,7 +77,9 @@ export function betterDevilAngelRoomsPreGetCollectible(
   return collectibleTypeInOrder;
 }
 
-function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
+function getDevilOrAngelItemInOrder(
+  itemPoolType: ItemPoolType.DEVIL | ItemPoolType.ANGEL,
+) {
   const player = Isaac.GetPlayer();
 
   // We need to account for the NO trinket; if the player has it, we need to temporarily remove it,
@@ -111,7 +113,9 @@ function getDevilOrAngelItemInOrder(itemPoolType: ItemPoolType) {
   return undefined;
 }
 
-function getNewSubType(itemPoolType: ItemPoolType) {
+function getNewSubType(
+  itemPoolType: ItemPoolType.DEVIL | ItemPoolType.ANGEL,
+): CollectibleType {
   switch (itemPoolType) {
     // 3
     case ItemPoolType.DEVIL: {
@@ -123,10 +127,6 @@ function getNewSubType(itemPoolType: ItemPoolType) {
     case ItemPoolType.ANGEL: {
       const seed = v.run.rng.angelCollectibles.Next();
       return g.itemPool.GetCollectible(itemPoolType, true, seed);
-    }
-
-    default: {
-      return error("Unknown item pool type.");
     }
   }
 }

@@ -7,7 +7,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   emptyArray,
-  ensureAllCases,
   getDefaultColor,
   getPlayers,
   gridCoordinatesToWorldPosition,
@@ -60,10 +59,6 @@ function checkCreateButtons() {
     case ChangeCharOrderPhase.BUILD_VETO: {
       createBuildVetoButtons();
       return;
-    }
-
-    default: {
-      ensureAllCases(v.room.phase);
     }
   }
 }
@@ -162,10 +157,6 @@ function checkPressed(pressurePlate: GridEntityPressurePlate) {
 
     case ChangeCharOrderPhase.BUILD_VETO: {
       return checkPressedPhaseBuildVeto(pressurePlate);
-    }
-
-    default: {
-      return ensureAllCases(v.room.phase);
     }
   }
 }

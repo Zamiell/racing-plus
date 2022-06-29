@@ -7,7 +7,6 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  ensureAllCases,
   getCollectibles,
   getEffectiveStage,
   getEffects,
@@ -154,10 +153,6 @@ function setRepentanceDoorState() {
       }
 
       break;
-    }
-
-    default: {
-      ensureAllCases(v.level.repentanceDoorState);
     }
   }
 }

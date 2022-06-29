@@ -1,7 +1,6 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  ensureAllCases,
   log,
   newRNG,
   saveDataManager,
@@ -88,7 +87,7 @@ function manuallySpawn() {
 }
 
 // Figure out if we need to spawn The Polaroid, The Negative, or both.
-function getPhotoSituation() {
+function getPhotoSituation(): PhotoSituation {
   // By default, custom speedrun challenges award both photos.
   if (inSpeedrun()) {
     return PhotoSituation.BOTH;
@@ -125,7 +124,7 @@ function getPhotoSituation() {
   return PhotoSituation.BOTH;
 }
 
-function getPhotoSituationRace(goal: RaceGoal) {
+function getPhotoSituationRace(goal: RaceGoal): PhotoSituation {
   switch (goal) {
     case RaceGoal.BLUE_BABY: {
       return PhotoSituation.POLAROID;
@@ -145,10 +144,6 @@ function getPhotoSituationRace(goal: RaceGoal) {
       // Give the player a choice between the photos for races to alternate objectives.
       return PhotoSituation.BOTH;
     }
-
-    default: {
-      return ensureAllCases(goal);
-    }
   }
 }
 
@@ -160,13 +155,13 @@ function doPhotoSituation(situation: PhotoSituation) {
     case PhotoSituation.POLAROID: {
       spawnCollectible(CollectibleType.POLAROID, PEDESTAL_POSITION_CENTER, rng);
 
-      return;
+      break;
     }
 
     case PhotoSituation.NEGATIVE: {
       spawnCollectible(CollectibleType.NEGATIVE, PEDESTAL_POSITION_CENTER, rng);
 
-      return;
+      break;
     }
 
     case PhotoSituation.BOTH: {
@@ -184,7 +179,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         true,
       );
 
-      return;
+      break;
     }
 
     case PhotoSituation.RANDOM_BOSS_ITEM: {
@@ -209,11 +204,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         spawnCollectible(CollectibleType.NULL, PEDESTAL_POSITION_CENTER, rng);
       }
 
-      return;
-    }
-
-    default: {
-      ensureAllCases(situation);
+      break;
     }
   }
 }

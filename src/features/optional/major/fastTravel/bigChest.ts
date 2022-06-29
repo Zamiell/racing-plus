@@ -8,7 +8,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  ensureAllCases,
   inMegaSatanRoom,
   log,
   onCathedral,
@@ -278,7 +277,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       // Hijack the normally-unused "Touched" property to signify that we should leave it here. (We
       // will ignore it on subsequent frames.)
       pickup.Touched = true;
-      return;
+      break;
     }
 
     case ReplacementAction.TRAPDOOR: {
@@ -289,7 +288,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         gridIndex,
       );
 
-      return;
+      break;
     }
 
     case ReplacementAction.HEAVEN_DOOR: {
@@ -304,7 +303,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       // room is cleared).
       fastTravel.init(heavenDoor, FastTravelEntityType.HEAVEN_DOOR, () => true);
 
-      return;
+      break;
     }
 
     case ReplacementAction.CHECKPOINT: {
@@ -315,25 +314,21 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
         seed,
       );
       postSpawnCheckpoint(checkpoint);
-      return;
+      break;
     }
 
     case ReplacementAction.TROPHY: {
       spawnTrophy(pickup.Position);
-      return;
+      break;
     }
 
     case ReplacementAction.VICTORY_LAP: {
       spawnVictoryLapButton(true);
-      return;
+      break;
     }
 
     case ReplacementAction.REMOVE: {
-      return;
-    }
-
-    default: {
-      ensureAllCases(replacementAction);
+      break;
     }
   }
 }
