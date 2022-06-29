@@ -2,6 +2,7 @@ import {
   arrayEquals,
   getEffectiveStage,
   inStartingRoom,
+  isTable,
   log,
 } from "isaacscript-common";
 import { RaceData, RaceDataType } from "../../classes/RaceData";
@@ -26,17 +27,20 @@ export function checkRaceChanged(
   table.sort(keys); // The keys will be in a random order because of Lua's `pairs`.
   for (const key of keys) {
     const property = key as keyof RaceData;
+
     const oldValue = oldRaceData[property];
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (oldValue === undefined) {
       error(`The previous value for "${key}" does not exist.`);
     }
+
     const newValue = newRaceData[property];
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (newValue === undefined) {
       error(`The new value for "${key}" does not exist.`);
     }
-    const valueType = type(oldValue);
 
-    if (valueType === "table") {
+    if (isTable(oldValue)) {
       const oldArray = oldValue as int[];
       const newArray = newValue as int[];
       if (!arrayEquals(oldArray, newArray)) {
@@ -90,7 +94,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       }
 
       sprites.resetAll();
-      return;
+      break;
     }
 
     case RaceStatus.OPEN: {
@@ -102,15 +106,14 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
       placeLeft.statusOrMyStatusChanged();
       topSprite.statusChanged();
-      return;
+      break;
     }
 
     case RaceStatus.STARTING: {
       raceRoom.statusChanged();
       placeLeft.statusOrMyStatusChanged();
       topSprite.statusChanged();
-
-      return;
+      break;
     }
 
     case RaceStatus.IN_PROGRESS: {
@@ -121,8 +124,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       log("Restarting because the run has now started.");
 
       raceStart();
-
-      return;
+      break;
     }
   }
 });

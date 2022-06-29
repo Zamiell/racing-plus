@@ -54,5 +54,9 @@ function giveStartingItems() {
       giveCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
       break;
     }
+
+    default: {
+      break;
+    }
   }
 }

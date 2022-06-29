@@ -48,17 +48,17 @@ function checkCreateButtons() {
 
   switch (v.room.phase) {
     case ChangeCharOrderPhase.SEASON_SELECT: {
-      return;
+      break;
     }
 
     case ChangeCharOrderPhase.CHARACTER_SELECT: {
       createCharacterButtons();
-      return;
+      break;
     }
 
     case ChangeCharOrderPhase.BUILD_VETO: {
       createBuildVetoButtons();
-      return;
+      break;
     }
   }
 }

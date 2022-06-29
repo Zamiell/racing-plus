@@ -51,7 +51,7 @@ function checkDevilAngelRoomReplacement() {
 
   if (roomType === RoomType.DEVIL) {
     devil();
-  } else if (roomType === RoomType.ANGEL) {
+  } else {
     angel();
   }
 }

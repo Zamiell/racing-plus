@@ -36,6 +36,7 @@ export function applySeededGhostFade(
 }
 
 export function logSeededDeathStateChange(): void {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (SEEDED_DEATH_DEBUG) {
     log(
       `Seeded death state changed: ${SeededDeathState[v.run.state]} (${

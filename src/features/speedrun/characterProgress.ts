@@ -86,8 +86,7 @@ function drawCharacterProgressAndSeasonIcon() {
     digit1 = 1;
     digit2 = v.persistent.characterNum - 10;
   }
-  const digit3 = 7; // Assume a 7 character speedrun by default
-  const digit4 = -1;
+  const digit3 = 7; // Assume a 7 character speedrun by default.
 
   sprites.digits.digit1.SetFrame("Default", digit1);
   sprites.digits.digit1.RenderLayer(0, position);
@@ -108,25 +107,9 @@ function drawCharacterProgressAndSeasonIcon() {
   const digit3Position = position.add(digit3Modification);
   sprites.digits.digit3.RenderLayer(0, digit3Position);
 
-  let digit4Position: Vector | undefined;
-  if (digit4 !== -1) {
-    sprites.digits.digit4.SetFrame("Default", digit4);
-    const digit4Modification = Vector(
-      digitLength + adjustment2 + 3 + digitLength,
-      0,
-    );
-    digit4Position = position.add(digit4Modification);
-    sprites.digits.digit4.RenderLayer(0, digit4Position);
-  }
-
   // Draw the sprite for the season icon.
-  let posSeason: Vector;
   const spacing = 17;
-  if (digit4Position === undefined) {
-    posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
-  } else {
-    posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
-  }
+  const posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
   sprites.seasonIcon.RenderLayer(0, posSeason);
 }
 

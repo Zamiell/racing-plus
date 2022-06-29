@@ -4,10 +4,10 @@ const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA po
 const UDP_PORT = 9113;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
 
-let sandbox: Sandbox | null = null;
-let connectionAttemptFrame = null as int | null;
-let clientTCP = null as SocketClient | null;
-let clientUDP = null as SocketClient | null;
+let sandbox: Sandbox | undefined;
+let connectionAttemptFrame: int | undefined;
+let clientTCP: SocketClient | undefined;
+let clientUDP: SocketClient | undefined;
 
 export function init(): void {
   // Racing+ installs a sandbox that prevents mods from doing unsafe things. If the sandbox is in
@@ -21,7 +21,7 @@ export function init(): void {
   sandbox = requiredSandbox as Sandbox;
 
   if (sandboxTraceback === undefined) {
-    sandbox = null;
+    sandbox = undefined;
     log(
       'Error: Detected the sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
     );
@@ -29,7 +29,7 @@ export function init(): void {
   }
 
   if (!sandbox.isSocketInitialized()) {
-    sandbox = null;
+    sandbox = undefined;
     log(
       'Error: Detected the sandbox environment, but the socket library failed to load. (The "--luadebug" flag is probably turned off.)',
     );
@@ -41,7 +41,7 @@ export function init(): void {
 
 export function connect(): boolean {
   // Do nothing if the sandbox is not present.
-  if (sandbox === null) {
+  if (sandbox === undefined) {
     return false;
   }
 
@@ -49,7 +49,7 @@ export function connect(): boolean {
   // failed.
   const renderFrameCount = Isaac.GetFrameCount();
   if (
-    connectionAttemptFrame !== null &&
+    connectionAttemptFrame !== undefined &&
     renderFrameCount <
       connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
   ) {
@@ -61,12 +61,12 @@ export function connect(): boolean {
   connectionAttemptFrame = renderFrameCount;
 
   clientTCP = sandbox.connectLocalhost(TCP_PORT, true);
-  if (clientTCP === null) {
+  if (clientTCP === undefined) {
     return false;
   }
 
   clientUDP = sandbox.connectLocalhost(UDP_PORT, false);
-  if (clientUDP === null) {
+  if (clientUDP === undefined) {
     return false;
   }
 
@@ -74,15 +74,15 @@ export function connect(): boolean {
 }
 
 export function disconnect(): void {
-  clientTCP = null;
-  clientUDP = null;
+  clientTCP = undefined;
+  clientUDP = undefined;
 }
 
 export function send(packedMsg: string): {
   sentBytes: number | undefined;
   errMsg: string;
 } {
-  if (clientTCP === null) {
+  if (clientTCP === undefined) {
     return {
       sentBytes: undefined,
       errMsg: "TCP client is not initialized",
@@ -100,7 +100,7 @@ export function sendUDP(packedMsg: string): {
   sentBytes: number | undefined;
   errMsg: string;
 } {
-  if (clientUDP === null) {
+  if (clientUDP === undefined) {
     return { sentBytes: undefined, errMsg: "UDP client is not initialized" };
   }
 
@@ -109,7 +109,7 @@ export function sendUDP(packedMsg: string): {
 }
 
 export function receive(): { data: string | undefined; errMsg: string } {
-  if (clientTCP === null) {
+  if (clientTCP === undefined) {
     return { data: undefined, errMsg: "TCP client is not initialized" };
   }
 
@@ -118,7 +118,7 @@ export function receive(): { data: string | undefined; errMsg: string } {
 }
 
 export function receiveUDP(): { data: string | undefined; errMsg: string } {
-  if (clientUDP === null) {
+  if (clientUDP === undefined) {
     return { data: undefined, errMsg: "UDP client is not initialized" };
   }
 
@@ -127,5 +127,5 @@ export function receiveUDP(): { data: string | undefined; errMsg: string } {
 }
 
 export function isActive(): boolean {
-  return clientTCP !== null && clientUDP !== null;
+  return clientTCP !== undefined && clientUDP !== undefined;
 }

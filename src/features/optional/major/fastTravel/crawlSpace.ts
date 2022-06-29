@@ -375,6 +375,7 @@ function touched(entity: GridEntity | EntityEffect) {
   const roomGridIndex = getRoomGridIndex();
   const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (FAST_TRAVEL_DEBUG) {
     log("Touched a crawl space.");
   }

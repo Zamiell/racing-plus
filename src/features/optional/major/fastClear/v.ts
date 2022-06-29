@@ -26,6 +26,7 @@ export function logFastClear(
   ptrHash: PtrHash,
   parentCallback: string,
 ): void {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!FAST_CLEAR_DEBUG) {
     return;
   }

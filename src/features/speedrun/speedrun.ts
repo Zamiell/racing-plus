@@ -27,10 +27,6 @@ export function checkValidCharOrder(): boolean {
   }
 
   const [abbreviation, numElements] = challengeDefinition;
-  if (abbreviation === undefined || numElements === undefined) {
-    return false;
-  }
-
   const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
     return false;
@@ -124,12 +120,6 @@ export function getCharacterOrderSafe(): PlayerType[] {
   }
 
   const [abbreviation, numElements] = challengeDefinition;
-  if (abbreviation === undefined || numElements === undefined) {
-    error(
-      `Failed to find parse the challenge definition for challenge: ${challenge}`,
-    );
-  }
-
   const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
     error(`Failed to get the character order for challenge: ${abbreviation}`);

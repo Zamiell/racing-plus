@@ -81,6 +81,7 @@ export function init(mod: Mod): void {
 }
 
 function main(entity: Entity) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (POST_ENTITY_KILL_DEBUG) {
     const gameFrameCount = g.g.GetFrameCount();
     const entityID = getEntityID(entity);

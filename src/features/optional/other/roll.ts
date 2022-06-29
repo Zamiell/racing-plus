@@ -123,7 +123,8 @@ function playRollingAnimation(player: EntityPlayer) {
 }
 
 function getRollingAnimation(direction: Direction) {
-  const defaultDirectionName = getDirectionName(Direction.DOWN) as string;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const defaultDirectionName = getDirectionName(Direction.DOWN)!;
   const directionName = getDirectionName(direction);
   const suffix =
     directionName === undefined ? defaultDirectionName : directionName;

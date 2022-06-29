@@ -45,7 +45,7 @@ function checkDetachLilHaunts(npc: EntityNPC) {
   } else {
     // Only detach the one with the lowest index.
     const lowestIndexLilHaunt = getLowestIndexLilHaunt(attachedLilHaunts);
-    if (lowestIndexLilHaunt !== null) {
+    if (lowestIndexLilHaunt !== undefined) {
       detachLilHaunt(lowestIndexLilHaunt);
     }
   }
@@ -68,7 +68,11 @@ function getAttachedLilHaunts(haunt: EntityNPC) {
   return childrenLilHaunts;
 }
 
-function getLowestIndexLilHaunt(lilHaunts: EntityNPC[]) {
+function getLowestIndexLilHaunt(lilHaunts: EntityNPC[]): EntityNPC | undefined {
+  if (lilHaunts.length === 0) {
+    return undefined;
+  }
+
   return lilHaunts.reduce((lowestIndexLilHaunt, lilHaunt) =>
     lilHaunt.Index < lowestIndexLilHaunt.Index ? lilHaunt : lowestIndexLilHaunt,
   );

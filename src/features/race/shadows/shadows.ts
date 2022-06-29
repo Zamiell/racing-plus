@@ -197,7 +197,7 @@ function sendShadow() {
 }
 
 function getShadows() {
-  // eslint-disable-next-line no-constant-condition
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition,no-constant-condition
   while (true) {
     const rawData = socket.readUDP();
     if (rawData === null) {

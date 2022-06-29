@@ -142,13 +142,13 @@ function checkModifyDevilRoomDoor() {
   // We only need to combine the doors if one of them is present without the other one.
   const devilRoomDoor = getDevilRoomDoor();
   const angelRoomDoor = getAngelRoomDoor();
-  if (devilRoomDoor === null && angelRoomDoor === null) {
+  if (devilRoomDoor === undefined && angelRoomDoor === undefined) {
     return;
   }
-  if (devilRoomDoor !== null && angelRoomDoor !== null) {
+  if (devilRoomDoor !== undefined && angelRoomDoor !== undefined) {
     return;
   }
-  const door = devilRoomDoor === null ? angelRoomDoor : devilRoomDoor;
+  const door = devilRoomDoor === undefined ? angelRoomDoor : devilRoomDoor;
   if (door === undefined) {
     return;
   }

@@ -451,11 +451,6 @@ function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
     }
 
     const totalCharge = getTotalCharge(player, activeSlot);
-    if (chargeSituation.numCharges === undefined) {
-      error(
-        "Failed to find the number of charges in the charge situation object.",
-      );
-    }
     let newCharge = totalCharge + chargeSituation.numCharges;
     const activeItem = player.GetActiveItem(activeSlot);
     let maxCharges = getCollectibleMaxCharges(activeItem);

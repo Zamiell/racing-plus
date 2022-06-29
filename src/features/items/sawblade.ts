@@ -127,19 +127,14 @@ function getInitialAngle() {
 
 /** Sawblades should rotate around the player like a Cube of Meat or Sacrificial Dagger does. */
 function setPosition(familiar: EntityFamiliar, angle: float) {
-  const position = getPositionFromAngle(familiar, angle);
-  if (position === undefined) {
-    return;
-  }
-
-  familiar.Position = position;
+  familiar.Position = getPositionFromAngle(familiar, angle);
 
   // Sometimes, when the familiar collides with things, it can pick up some velocity, which will
   // cause the sprite to glitch out. Zero out the velocity on every frame.
   familiar.Velocity = VectorZero;
 }
 
-function getPositionFromAngle(familiar: EntityFamiliar, angle: float) {
+function getPositionFromAngle(familiar: EntityFamiliar, angle: float): Vector {
   const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
   const rotatedVector = baseVector.Rotated(angle);
 

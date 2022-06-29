@@ -114,17 +114,15 @@ function getCustomSpriteFilename(
         }
       }
 
-      if (roomType === RoomType.BOSS) {
-        if (
-          g.race.status === RaceStatus.IN_PROGRESS &&
-          g.race.myStatus === RacerStatus.RACING &&
-          g.race.goal === RaceGoal.THE_BEAST &&
-          !repentanceStage &&
-          stage === LevelStage.DEPTHS_2 &&
-          roomType === RoomType.BOSS
-        ) {
-          return "gfx/grid/trapdoor_mausoleum_custom.anm2";
-        }
+      if (
+        roomType === RoomType.BOSS &&
+        g.race.status === RaceStatus.IN_PROGRESS &&
+        g.race.myStatus === RacerStatus.RACING &&
+        g.race.goal === RaceGoal.THE_BEAST &&
+        !repentanceStage &&
+        stage === LevelStage.DEPTHS_2
+      ) {
+        return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
       if (

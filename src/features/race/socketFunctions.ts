@@ -25,6 +25,7 @@ socketFunctions.set("set", (rawData: string) => {
   const [propertyString, data] = unpackSetMsg(rawData);
   const property = propertyString as keyof RaceData;
   const previousValue = g.race[property];
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (previousValue === undefined) {
     error(
       `Got a set command from the Racing+ client for a property that does not exist: ${property}`,
@@ -108,7 +109,10 @@ function setRace<K extends keyof RaceData, V extends RaceData[K]>(
   value: V,
 ) {
   g.race[key] = value;
+
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (SOCKET_DEBUG) {
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     log(`Set race value: ${key} --> ${value}`);
   }
 }

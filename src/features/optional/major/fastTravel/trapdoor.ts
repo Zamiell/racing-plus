@@ -235,6 +235,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (FAST_TRAVEL_DEBUG) {
     log("Touched a trapdoor.");
   }

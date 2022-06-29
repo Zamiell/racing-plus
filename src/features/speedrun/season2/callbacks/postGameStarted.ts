@@ -333,6 +333,10 @@ function giveStartingItems(
       giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
+
+    default: {
+      break;
+    }
   }
 
   for (const collectibleType of startingBuild) {
@@ -365,37 +369,37 @@ function initSprites(startingBuild: readonly CollectibleType[]) {
 
   if (startingBuild.length === 1) {
     sprites.seededItemCenter = initGlowingItemSprite(
-      startingBuild[0] as CollectibleType,
+      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 2) {
     sprites.seededItemLeft = initGlowingItemSprite(
-      startingBuild[0] as CollectibleType,
+      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemRight = initGlowingItemSprite(
-      startingBuild[1] as CollectibleType,
+      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 3) {
     sprites.seededItemCenter = initGlowingItemSprite(
-      startingBuild[0] as CollectibleType,
+      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemFarLeft = initGlowingItemSprite(
-      startingBuild[1] as CollectibleType,
+      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemFarRight = initGlowingItemSprite(
-      startingBuild[2] as CollectibleType,
+      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 4) {
     sprites.seededItemLeft = initGlowingItemSprite(
-      startingBuild[1] as CollectibleType,
+      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemRight = initGlowingItemSprite(
-      startingBuild[2] as CollectibleType,
+      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemFarLeft = initGlowingItemSprite(
-      startingBuild[0] as CollectibleType,
+      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemFarRight = initGlowingItemSprite(
-      startingBuild[3] as CollectibleType,
+      startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   }
 }

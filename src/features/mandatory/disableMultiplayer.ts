@@ -5,7 +5,7 @@ import { FadeoutTarget } from "isaac-typescript-definitions";
 import { getPlayers, isChildPlayer, saveDataManager } from "isaacscript-common";
 import g from "../../globals";
 
-const ENABLED = true;
+const MULTIPLAYER_ENABLED = true;
 
 const v = {
   run: {
@@ -19,7 +19,8 @@ export function init(): void {
 
 // ModCallback.POST_PLAYER_INIT (9)
 export function postPlayerInit(player: EntityPlayer): void {
-  if (!ENABLED) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!MULTIPLAYER_ENABLED) {
     return;
   }
 
@@ -30,7 +31,8 @@ export function postPlayerInit(player: EntityPlayer): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!ENABLED) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!MULTIPLAYER_ENABLED) {
     return;
   }
 
@@ -48,7 +50,8 @@ export function postGameStarted(): void {
 
 // ModCallback.PRE_GAME_EXIT (17)
 export function preGameExit(shouldSave: boolean): void {
-  if (!ENABLED) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!MULTIPLAYER_ENABLED) {
     return;
   }
 
@@ -59,7 +62,8 @@ export function preGameExit(shouldSave: boolean): void {
 
 // ModCallbackCustom.POST_PLAYER_INIT_LATE
 export function postPlayerInitLate(player: EntityPlayer): void {
-  if (!ENABLED) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!MULTIPLAYER_ENABLED) {
     return;
   }
 
