@@ -88,11 +88,6 @@ export function before(): void {
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
-  Isaac.DebugString(
-    `GETTING HERE - GOT PLAYER HEALTH HEARTS: ${
-      v.run.playerHealth.hearts
-    } (${Isaac.GetPlayer().GetHearts()})`,
-  );
 
   // Eternal Hearts will be lost since we are about to change floors, so convert it to other types
   // of health. `eternalHearts` will be equal to 1 if we have an Eternal Heart.
@@ -200,17 +195,7 @@ export function after(): void {
   }
   if (v.run.playerHealth !== null) {
     logTable(v.run.playerHealth);
-    Isaac.DebugString(
-      `GETTING HERE - setting player health to ${
-        v.run.playerHealth.hearts
-      }, health is currently at: ${Isaac.GetPlayer().GetHearts()}`,
-    );
     setPlayerHealth(player, v.run.playerHealth);
-    Isaac.DebugString(
-      `GETTING HERE - set player health to ${
-        v.run.playerHealth.hearts
-      }, health is now: ${Isaac.GetPlayer().GetHearts()}`,
-    );
   }
 
   addExtraHealthFromItems(player);
