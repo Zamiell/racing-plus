@@ -46,6 +46,7 @@ import * as preUseItem from "./callbacks/preUseItem";
 import * as useCard from "./callbacks/useCard";
 import * as useItem from "./callbacks/useItem";
 import * as usePill from "./callbacks/usePill";
+import * as postBombExploded from "./callbacksCustom/postBombExploded";
 import * as postBoneSwing from "./callbacksCustom/postBoneSwing";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
@@ -153,6 +154,7 @@ function registerCallbacksVanilla(mod: ModUpgraded) {
 }
 
 function registerCallbacksCustom(mod: ModUpgraded) {
+  postBombExploded.init(mod);
   postBoneSwing.init(mod);
   postCursedTeleport.init(mod);
   postCustomRevive.init(mod);

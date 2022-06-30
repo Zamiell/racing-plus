@@ -2,9 +2,11 @@ import {
   AngelVariant,
   CollectibleType,
   EntityType,
+  PickupNullSubType,
   PickupVariant,
 } from "isaac-typescript-definitions";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
+import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as replaceCodWorms from "../features/optional/enemies/replaceCodWorms";
 
@@ -26,9 +28,16 @@ preEntitySpawnFunctions.set(
     variant: PickupVariant,
     subType: int,
     _position: Vector,
-    _spawner: Entity | undefined,
+    spawner: Entity | undefined,
     _initSeed: int,
   ) => {
+    if (variant === PickupVariant.NULL) {
+      return seededGlitterBombs.preEntitySpawnPickupNull(
+        subType as PickupNullSubType,
+        spawner,
+      );
+    }
+
     if (variant === PickupVariant.COLLECTIBLE) {
       return replacePhotos.preEntitySpawnCollectible(
         subType as CollectibleType,

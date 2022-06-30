@@ -10,6 +10,7 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
+import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
@@ -66,6 +67,7 @@ function main(isContinued: boolean) {
   seededFloors.postGameStarted();
   centerStart.postGameStarted();
   streakText.postGameStarted();
+  seededGlitterBombs.postGameStarted();
   seededGBBug.postGameStarted();
   fireworks.postGameStarted();
   forceFadedConsoleDisplay.postGameStarted();
