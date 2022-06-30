@@ -7,6 +7,7 @@
 
 - Lilith and the Fire Mind build are now an anti-synergy. (Thanks Moucheron Quipet)
 - Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
+- Options? is now banned in seeded races. (Thanks Monkeypot)
 - Clutch can now appear in Victory Laps.
 - Having the External Item Descriptions mod turned on will now result in Racing+ showing an error. (Thanks Gamonymous)
 - Fixed the vanilla bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
@@ -14,9 +15,9 @@
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
 - Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
-- Fixed the bug with seeded death where Alabaster Death would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
+- Fixed the bug with seeded death where Alabaster Box would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
 - Fixed the bug with seeded death where multiple Dark Esau's could be spawned under certain circumstances. (Thanks Iedaim)
-- !Fixed the bug in seeded races where Keeper was incorrectly healed when going to a new floor. (Thanks KiraKeepKool)
+- Fixed the bug in seeded races where Keeper was incorrectly healed when going to a new floor. (Thanks KiraKeepKool)
 
 ### _v0.80.6_ - April 12th, 2022
 

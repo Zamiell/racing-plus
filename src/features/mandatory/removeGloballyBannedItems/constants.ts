@@ -33,6 +33,9 @@ export const BANNED_COLLECTIBLES_ON_SEEDED_RACES: ReadonlySet<CollectibleType> =
 
     // R Key allows players to play a different seed.
     CollectibleType.R_KEY, // 636
+
+    // Options does not work properly with the seeded room drops mechanic.
+    CollectibleType.OPTIONS, // 670
   ]);
 
 export const BANNED_TRINKETS_ON_SEEDED_RACES: ReadonlySet<TrinketType> =
