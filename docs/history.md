@@ -3,18 +3,20 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.80.7_ - May 14th, 2022
+### _v0.81.0_ - May 14th, 2022
 
 - Lilith and the Fire Mind build are now an anti-synergy. (Thanks Moucheron Quipet)
 - Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
 - Clutch can now appear in Victory Laps.
 - Having the External Item Descriptions mod turned on will now result in Racing+ showing an error. (Thanks Gamonymous)
 - Fixed the vanilla bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
+- Fixed the vanilla bug where Glitter Bombs were not properly seeded. (Thanks Fallenfor)
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
 - Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
 - Fixed the bug with seeded death where Alabaster Death would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
 - Fixed the bug with seeded death where multiple Dark Esau's could be spawned under certain circumstances. (Thanks Iedaim)
+- !Fixed the bug in seeded races where Keeper was incorrectly healed when going to a new floor. (Thanks KiraKeepKool)
 
 ### _v0.80.6_ - April 12th, 2022
 

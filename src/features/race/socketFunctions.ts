@@ -74,9 +74,7 @@ socketFunctions.set("set", (rawData: string) => {
     }
 
     default: {
-      return error(
-        `Setting race types of "${previousValueType}" are not supported.`,
-      );
+      error(`Setting race types of "${previousValueType}" are not supported.`);
     }
   }
 });

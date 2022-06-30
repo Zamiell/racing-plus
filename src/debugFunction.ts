@@ -5,7 +5,7 @@ import {
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
 } from "isaacscript-common";
-import { debugCode, hotkey1Function, hotkey2Function } from "./debugCode";
+import { debugCode, hotkey1Function, hotkey2Function } from "./debug";
 import g from "./globals";
 
 // F1 shows the version of Racing+.

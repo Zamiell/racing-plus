@@ -18,7 +18,7 @@ import * as tstl from "typescript-to-lua";
 class CustomPrinter extends tstl.LuaPrinter {
   printStatement(statement: tstl.Statement): SourceNode {
     const uuid = crypto.randomUUID();
-    const debugLineToInsert = `Isaac.DebugString("CRASH DEBUG ${uuid}")\n`;
+    const debugLineToInsert = `if Isaac.GetPlayer() ~= nil then Isaac.DebugString("CRASH DEBUG ${uuid} - hearts: " .. tostring(Isaac.GetPlayer():GetHearts())) end\n`;
     const originalResult = super.printStatement(statement);
     return this.createSourceNode(statement, [
       debugLineToInsert,

@@ -30,7 +30,7 @@
 
       // Uncomment this and recompile the mod to enable crash debugging, which will tell you the
       // exact line of the mod that is causing the crash.
-      // { "name": "./plugins/addCrashDebugStatements.ts" },
+      { "name": "./plugins/addCrashDebugStatements.ts" },
     ],
     "noHeader": true,
     "noImplicitGlobalVariables": true,

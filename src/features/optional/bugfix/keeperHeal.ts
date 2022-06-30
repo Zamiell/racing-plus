@@ -8,6 +8,7 @@ import {
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
+import g from "../../../globals";
 
 const ONE_COIN_CONTAINER_HEARTS_VALUE = 2;
 
@@ -25,6 +26,14 @@ export function init(): void {
 
 // ModCallback.POST_EFFECT_UPDATE (55)
 export function postPEffectUpdate(player: EntityPlayer): void {
+  // This mechanic is intended to trigger when the player picks up coins. Do nothing if we are first
+  // loading a room to prevent this feature from interacting with things like the seeded floor
+  // mechanic.
+  const roomFrameCount = g.r.GetFrameCount();
+  if (roomFrameCount === 0) {
+    return;
+  }
+
   checkPlayerCoinsChanged(player);
 }
 

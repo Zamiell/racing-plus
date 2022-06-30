@@ -24,6 +24,7 @@ import {
   getRandom,
   isCharacter,
   log,
+  logTable,
   newRNG,
   PlayerHealth,
   removeAllPlayerHealth,
@@ -87,6 +88,11 @@ export function before(): void {
   v.run.gameStateFlags = getGameStateFlags();
   v.run.inventory = getInventory(player);
   v.run.playerHealth = getPlayerHealth(player);
+  Isaac.DebugString(
+    `GETTING HERE - GOT PLAYER HEALTH HEARTS: ${
+      v.run.playerHealth.hearts
+    } (${Isaac.GetPlayer().GetHearts()})`,
+  );
 
   // Eternal Hearts will be lost since we are about to change floors, so convert it to other types
   // of health. `eternalHearts` will be equal to 1 if we have an Eternal Heart.
@@ -169,8 +175,10 @@ export function before(): void {
     }
   }
 
-  // Add any eternal hearts back so that the giantbook animation is triggered as per normal.
-  player.AddEternalHearts(eternalHearts);
+  // Add the eternal heart back so that the giantbook animation is triggered as per normal.
+  if (eternalHearts > 0) {
+    player.AddEternalHearts(eternalHearts);
+  }
 }
 
 export function after(): void {
@@ -191,7 +199,18 @@ export function after(): void {
     setInventory(player, v.run.inventory);
   }
   if (v.run.playerHealth !== null) {
+    logTable(v.run.playerHealth);
+    Isaac.DebugString(
+      `GETTING HERE - setting player health to ${
+        v.run.playerHealth.hearts
+      }, health is currently at: ${Isaac.GetPlayer().GetHearts()}`,
+    );
     setPlayerHealth(player, v.run.playerHealth);
+    Isaac.DebugString(
+      `GETTING HERE - set player health to ${
+        v.run.playerHealth.hearts
+      }, health is now: ${Isaac.GetPlayer().GetHearts()}`,
+    );
   }
 
   addExtraHealthFromItems(player);
@@ -231,7 +250,8 @@ function getInventory(player: EntityPlayer): Inventory {
 }
 
 function setInventory(player: EntityPlayer, inventory: Inventory) {
-  player.AddCoins(-99);
+  player.AddCoins(99); // Make sure that Keeper is at full health.
+  player.AddCoins(-999); // Removing coins does not affect Keeper's health.
   player.AddCoins(inventory.coins);
   player.AddBombs(-99);
   player.AddBombs(inventory.bombs);
@@ -240,6 +260,13 @@ function setInventory(player: EntityPlayer, inventory: Inventory) {
 }
 
 function addExtraHealthFromItems(player: EntityPlayer) {
+  addExtraHealthFromCollectibles(player);
+  addExtraHealthFromTrinkets(player);
+}
+
+function addExtraHealthFromCollectibles(player: EntityPlayer) {
+  const redHearts = player.GetHearts();
+
   // 566
   if (player.HasCollectible(CollectibleType.DREAM_CATCHER)) {
     // In vanilla, no matter how many Dream Catchers the player has, it will only grant 1 soul
@@ -248,15 +275,17 @@ function addExtraHealthFromItems(player: EntityPlayer) {
   }
 
   // 676
-  const redHearts = player.GetHearts();
   if (player.HasCollectible(CollectibleType.EMPTY_HEART) && redHearts <= 2) {
     player.AddMaxHearts(2, true);
   }
+}
 
+function addExtraHealthFromTrinkets(player: EntityPlayer) {
   // 55
   const numMaggysFaith = player.GetTrinketMultiplier(TrinketType.MAGGYS_FAITH);
   player.AddEternalHearts(numMaggysFaith);
 
+  // 168
   const numHollowHearts = player.GetTrinketMultiplier(TrinketType.HOLLOW_HEART);
   player.AddBoneHearts(numHollowHearts);
 }

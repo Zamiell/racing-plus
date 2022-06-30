@@ -371,6 +371,7 @@ Post-flip actions:
 - <!-- fastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- seededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.
 - <!-- seededGBBug --> Morphed GB Bug pickups are now seeded in order rather than based on the InitSeed of the morphed pickup.
+- <!-- seededGlitterBombs --> The rewards from Glitter Bombs are now seeded.
 
 ### 10) Graphics Fixes
 

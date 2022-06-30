@@ -1,4 +1,8 @@
-import { EntityType, ModCallback } from "isaac-typescript-definitions";
+import {
+  EntityType,
+  GridEntityXMLType,
+  ModCallback,
+} from "isaac-typescript-definitions";
 import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloorItems";
 
 export function init(mod: Mod): void {
@@ -6,7 +10,7 @@ export function init(mod: Mod): void {
 }
 
 function main(
-  _entityType: EntityType,
+  _entityTypeOrGridEntityXMLType: EntityType | GridEntityXMLType,
   _variant: int,
   _subType: int,
   gridIndex: int,
