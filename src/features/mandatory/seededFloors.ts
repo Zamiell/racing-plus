@@ -63,6 +63,11 @@ function featureEnabled() {
   return config.fastTravel;
 }
 
+/** Only swap things if we are playing a seeded race. */
+function shouldSeededFloorsApply() {
+  return config.fastTravel && inSeededRace();
+}
+
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   // We may have had the Curse of the Unknown seed enabled in a previous run, so ensure that it is
@@ -71,8 +76,7 @@ export function postGameStarted(): void {
 }
 
 export function before(): void {
-  // Only swap things if we are playing on a seeded race.
-  if (!inSeededRace()) {
+  if (!shouldSeededFloorsApply()) {
     return;
   }
 
@@ -177,8 +181,7 @@ export function before(): void {
 }
 
 export function after(): void {
-  // Only swap things if we are playing on a seeded race.
-  if (!inSeededRace()) {
+  if (!shouldSeededFloorsApply()) {
     return;
   }
 

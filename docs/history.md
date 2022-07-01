@@ -5,6 +5,7 @@
 
 ### _v0.81.0_ - May 14th, 2022
 
+- !Integrated the rooms from vanilla patch 1.7.8.
 - Lilith and the Fire Mind build are now an anti-synergy. (Thanks Moucheron Quipet)
 - Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
 - Options? is now banned in seeded races. (Thanks Monkeypot)
@@ -18,6 +19,8 @@
 - Fixed the bug with seeded death where Alabaster Box would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
 - Fixed the bug with seeded death where multiple Dark Esau's could be spawned under certain circumstances. (Thanks Iedaim)
 - Fixed the bug in seeded races where Keeper was incorrectly healed when going to a new floor. (Thanks KiraKeepKool)
+- Fixed the bug where A Pound of Flesh would not make the free devil deal item feature work properly in certain circumstances. (Thanks Adrayon)
+- Fixed the bug where eternal hearts would not work properly if the player had Dream Catcher. (Thanks 3kch1)
 
 ### _v0.80.6_ - April 12th, 2022
 

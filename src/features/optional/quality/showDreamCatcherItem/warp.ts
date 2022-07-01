@@ -139,6 +139,17 @@ export function warpToNextDreamCatcherRoom(): void {
   // the seeded floors feature. To work around this, re-run the "after" function.
   seededFloors.after();
 
+  // Using the Glowing Hour Glass will revert any heart containers that were granted by an eternal
+  // heart upon reaching this floor. Manually apply any eternal hearts.
+  for (const player of players) {
+    const eternalHearts = player.GetEternalHearts();
+    if (eternalHearts > 0) {
+      player.AddEternalHearts(eternalHearts * -1);
+      player.AddMaxHearts(2, true);
+      player.AddHearts(2);
+    }
+  }
+
   // Using the Glowing Hour Glass will remove the half soul heart that the Dream Catcher granted.
   // (This is not just an artifact of the warping; it does this on vanilla too if you use Glowing
   // Hour Glass after walking into a new room.) Thus, add it back manually. For some reason, this is

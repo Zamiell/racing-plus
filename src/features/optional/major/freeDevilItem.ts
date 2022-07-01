@@ -6,6 +6,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  anyPlayerHasCollectible,
   anyPlayerIs,
   DefaultMap,
   getTaintedMagdaleneNonTemporaryMaxHearts,
@@ -210,13 +211,14 @@ function shouldGetFreeDevilItemInThisRoom() {
 
 /**
  * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
- * price is less than 0 and is not PickupPrice.FREE. However, this does not work on Keeper, because
- * all Devil-Deal-style items cost money. Furthermore, it does not work on Tainted Keeper, because
- * all items cost money.
+ * price is less than 0 and is not `PickupPrice.FREE`. However, this does not work on Keeper,
+ * because all Devil-Deal-style collectibles cost money. Furthermore, it does not work on Tainted
+ * Keeper, because all collectibles cost money. It also fails with shop items
  *
- * For simplicity, this function assumes that every item in a Devil Room or Black Market Keeper is a
- * Devil-Deal-style item for Keeper and Tainted Keeper. This is not necessarily true, as Keeper
- * could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for example.
+ * For simplicity, this function assumes that every collectible in a Devil Room or Black Market
+ * Keeper is a Devil-Deal-style collectible for Keeper and Tainted Keeper. This is not necessarily
+ * true, as Keeper could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for
+ * example.
  */
 function isDevilDealStyleCollectible(collectible: EntityPickupCollectible) {
   const roomType = g.r.GetType();
@@ -226,6 +228,20 @@ function isDevilDealStyleCollectible(collectible: EntityPickupCollectible) {
       collectible.Price > 0 &&
       (roomType === RoomType.DEVIL || roomType === RoomType.BLACK_MARKET)
     );
+  }
+
+  // Handle the special case of collectibles with A Pound of Flesh.
+  if (anyPlayerHasCollectible(CollectibleType.POUND_OF_FLESH)) {
+    // For the context of this function, shop items with A Pound of Flesh do not count as devil deal
+    // style collectibles because they do not increase the return value from the
+    // `Game.GetDevilRoomDeals` method. (Black Market items are not affected by A Pound of Flesh.)
+    if (roomType === RoomType.SHOP) {
+      return false;
+    }
+
+    if (roomType === RoomType.DEVIL) {
+      return collectible.Price > 0;
+    }
   }
 
   return (
