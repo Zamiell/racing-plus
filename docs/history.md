@@ -5,7 +5,42 @@
 
 ### _v0.81.0_ - May 14th, 2022
 
-- !Integrated the rooms from vanilla patch 1.7.8.
+- Integrated the rooms from vanilla patch 1.7.8:
+  - The "good" and "bad" shops are now rare.
+  - 10 Voodoo Head specific Curse Rooms were added.
+  - Double Trouble rooms were added:
+    - 3x Wormwood + Monstro
+    - 3x Hornfel + C.H.A.D.
+    - 3x Rainmaker + Gurglings
+    - 3x Singe + Polycephalus
+    - 3x Turdlet + Larry Jr.
+    - 3x 3 Siren + The Adversary
+  - The 3 Clutch boss rooms were altered.
+  - Bumbino #5273 and #5274 - Rocks were removed to make a path. (These rooms are already removed in Racing+.)
+  - Arcade #9 - The shell game is moved down one tile so that you don't accidentally bump it when entering the room.
+  - Challenge Room #24 (with a pedestal item and TNT barrels) - The weight was changed from 0.5 to 0.75.
+  - Added 8 Mines-specific Challenge Rooms.
+  - Sacrifice Room #5 - Doors were added to the left and right sides.
+  - One normal Devil Room was added that has 2 items and a stacked entity. (This will not appear in Racing+.)
+  - One Number Six Devil Room was added that has 3 items and 2 Black Sacks.
+  - Angel #6 - Doors were added to the left and right sides. (This bug was already fixed in Racing+.)
+  - Boss Rush #1 - 4 TNT barrels were moved two tiles closer to the center of the room.
+  - Clean Bedroom #24 - The bed was moved from the center of the room to the top-left corner.
+  - Basement/Cellar/Burning #176 - The center path of the trap was nerfed so that you will not automatically walk into it.
+  - Basement #1118 - Rocks were moved to make the layout more compact.
+  - Cellar #1083 - Rocks were moved to make the layout more compact.
+  - Burning #1259 - Rocks were moved to make the layout more compact.
+  - Caves/Flooded #44 - The Boom Flies were moved away from the top and bottom entrances. (This change was already in Racing+.)
+  - Catacombs #267 - The Night Crawler was moved away from the bottom entrance. (This change was already in Racing+.)
+  - Depths/Necropolis/Dank #204 - The bottom door was added.
+  - Depths/Necropolis/Dank #299 - The top door was added.
+  - Depths/Dank #491 - The top door was added.
+  - Necropolis #9 - The room was nerfed; pits were removed from the top and bottom walls.
+  - Necropolis #490 - The top door was added.
+  - Dross #778 - A glitched rock inside the wall was removed.
+  - Ashpit - Many new rooms and changes.
+  - Mausoleum - Many new rooms and changes.
+  - Gehenna - Many new rooms and changes.
 - Lilith and the Fire Mind build are now an anti-synergy. (Thanks Moucheron Quipet)
 - Dice Bag is now banned in seeded races. (Thanks thereisnofuture)
 - Options? is now banned in seeded races. (Thanks Monkeypot)

@@ -306,16 +306,13 @@ Due to bug fixes in May 2018, most enemies that spawn near an entrance are no lo
 - Cellar: #126 (Mulligan/Mulligoon)
 - Cellar: #359 (Mulligan)
 - Burning: #126 (Mulligan/Mulligoon)
-- Caves: #44 (Boom Fly)
 - Caves: #48 (Red Boom Fly)
 - Caves: #165 (Attack Fly)
 - Caves: #440 (Boom Fly)
 - Caves: #890 (Maggot)
-- Catacombs: #44 (Boom Fly)
-- Catacombs: #267 (Night Crawler)
+- Catacombs: #44 (Red Boom Fly)
 - Catacombs: #440 (Boom Fly)
 - Catacombs: #884 (Maggot)
-- Flooded: #44 (Boom Fly)
 - Flooded: #48 (Red Boom Fly)
 - Flooded: #165 (Attack Fly)
 - Flooded: #448 (Boom Fly)
@@ -372,7 +369,7 @@ Some rooms in the game only have a few rocks, pits, etc. These types of rooms ro
 - Catacombs: #139, #207, #208, #209, #210, #247, #248, #249, #250, #251, #294, #295, #296, #297, #310, #311, #312, #680, #682, #686, #707, #840, #851
 - Flooded: #213, #215, #216, #263, #264, #310, #311, #312, #694, #696, #697, #721, #854, #865, #1047, #1104
 - Mines: #0, #5, #7, #15, #20, #22, #23, #45, #50, #62, #408, #5000, #5030
-- Ashpit: #1, #6, #7, #15, #19, #21, #22, #40, #245, #247, #288, #366, #507, #508, #512, #700, #5000, #5029
+- Ashpit: #1, #6, #7, #15, #19, #21, #22, #40, #245, #247, #288, #366, #507, #508, #512, #723, #5000, #5029
 - Depths: #196, #199, #287, #288, #289, #290, #291, #693, #825, #883, #1013, #10000, #10009
 - Catacombs: #196, #199, #287, #288, #289, #290, #291, #670, #811, #856, #898, #906, #920, #10000, #10009
 - Depths: #196, #199, #287, #288, #289, #290, #291, #691, #825, #990, #998, #1136, #10000, #10009
