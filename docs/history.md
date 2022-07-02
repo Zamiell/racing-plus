@@ -50,7 +50,7 @@
 - Fixed the vanilla bug where Glitter Bombs were not properly seeded. (Thanks Fallenfor)
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
-- Fixed the bug where shovels would always generate crawlspaces in Devil Rooms and Angel Rooms.
+- Fixed the bug where shovels would always generate crawl spaces in Devil Rooms and Angel Rooms.
 - Fixed the bug with seeded death where Alabaster Box would cause a permanent death under certain circumstances. (Thanks thereisnofuture)
 - Fixed the bug with seeded death where multiple Dark Esau's could be spawned under certain circumstances. (Thanks Iedaim)
 - Fixed the bug in seeded races where Keeper was incorrectly healed when going to a new floor. (Thanks KiraKeepKool)

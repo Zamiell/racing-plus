@@ -189,12 +189,12 @@ function getExitDirection(
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  checkEnteringCrawlspace();
-  checkExitingCrawlspace();
+  checkEnteringCrawlSpace();
+  checkExitingCrawlSpace();
   checkPostRoomTransitionSubvert();
 }
 
-function checkEnteringCrawlspace() {
+function checkEnteringCrawlSpace() {
   if (!inCrawlspace()) {
     return;
   }
@@ -213,7 +213,7 @@ function checkEnteringCrawlspace() {
   );
 }
 
-function checkExitingCrawlspace() {
+function checkExitingCrawlSpace() {
   if (!v.level.crawlSpace.amExiting) {
     return;
   }
@@ -252,7 +252,7 @@ function checkPostRoomTransitionSubvert() {
 
 // ModCallbackCustom.POST_GRID_ENTITY_INIT
 // GridEntityType.CRAWL_SPACE (18)
-export function postGridEntityInitCrawlspace(gridEntity: GridEntity): void {
+export function postGridEntityInitCrawlSpace(gridEntity: GridEntity): void {
   const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
 
   // We re-implement crawl spaces that lead to the beginning of the floor as a teleport pad since it
@@ -288,7 +288,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
 
 // ModCallbackCustom.POST_GRID_ENTITY_UPDATE
 // GridEntityType.CRAWL_SPACE (18)
-export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
+export function postGridEntityUpdateCrawlSpace(gridEntity: GridEntity): void {
   // Ensure that the fast-travel entity has been initialized.
   const gridIndex = gridEntity.GetGridIndex();
   const entry = v.room.crawlSpaces.get(gridIndex);
@@ -304,7 +304,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
-// TODO: Remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from
+// TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
 // sprites.
 function checkShouldClose(gridEntity: GridEntity) {
   const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
@@ -333,7 +333,7 @@ export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
 
 // ModCallbackCustom.POST_GRID_ENTITY_REMOVE
 // GridEntityType.CRAWL_SPACE (18)
-export function postGridEntityRemoveCrawlspace(gridIndex: int): void {
+export function postGridEntityRemoveCrawlSpace(gridIndex: int): void {
   state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
 
@@ -341,30 +341,30 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   const roomFrameCount = g.r.GetFrameCount();
   const roomClear = g.r.IsClear();
 
-  if (roomFrameCount === 0) {
-    // If we just entered a new room with enemies in it, spawn the crawl space closed so that the
-    // player has to defeat the enemies first before using the crawl space.
-    if (!roomClear) {
-      return false;
-    }
-
-    // Always spawn crawl spaces closed in off-grid rooms to prevent softlocks. (The below distance
-    // check will fail and the crawl space will be spawned open, but then the player will be
-    // teleported away from the entrance of the room back on top of the crawl space, which will
-    // cause them to immediately re-enter it again.)
-    if (!isRoomInsideMap()) {
-      return false;
-    }
-
-    // If we just entered a new room that is already cleared, spawn the crawl space closed if we are
-    // standing close to it, and open otherwise.
-    return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
-  }
-
-  // Crawlspaces created after a room has already initialized should spawn closed by default. For
+  // Crawl spaces created after a room has already initialized should spawn closed by default. For
   // example, crawl spaces created by We Need to Go Deeper should spawn closed because the player
   // will be standing on top of them.
-  return false;
+  if (roomFrameCount > 0) {
+    return false;
+  }
+
+  // If we just entered a new room with enemies in it, spawn the crawl space closed so that the
+  // player has to defeat the enemies first before using the crawl space.
+  if (!roomClear) {
+    return false;
+  }
+
+  // Always spawn crawl spaces closed in off-grid rooms to prevent softlocks. (The below distance
+  // check will fail and the crawl space will be spawned open, but then the player will be
+  // teleported away from the entrance of the room back on top of the crawl space, which will cause
+  // them to immediately re-enter it again.)
+  if (!isRoomInsideMap()) {
+    return false;
+  }
+
+  // If we just entered a new room that is already cleared, spawn the crawl space closed if we are
+  // standing close to it, and open otherwise.
+  return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function touched(entity: GridEntity | EntityEffect) {

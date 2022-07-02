@@ -17,5 +17,5 @@ export function crawlSpace(gridEntity: GridEntity): void {
     return;
   }
 
-  cs.postGridEntityInitCrawlspace(gridEntity);
+  cs.postGridEntityInitCrawlSpace(gridEntity);
 }

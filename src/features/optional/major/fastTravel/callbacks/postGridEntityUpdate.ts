@@ -17,7 +17,7 @@ export function crawlSpace(gridEntity: GridEntity): void {
     return;
   }
 
-  cs.postGridEntityUpdateCrawlspace(gridEntity);
+  cs.postGridEntityUpdateCrawlSpace(gridEntity);
 }
 
 // GridEntityType.TELEPORTER (23)

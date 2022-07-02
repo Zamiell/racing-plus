@@ -17,5 +17,5 @@ export function crawlSpace(gridIndex: int): void {
     return;
   }
 
-  cs.postGridEntityRemoveCrawlspace(gridIndex);
+  cs.postGridEntityRemoveCrawlSpace(gridIndex);
 }
