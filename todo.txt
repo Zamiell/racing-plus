@@ -2,3 +2,35 @@ TODO Racing+ new features:
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
   - Ranked Solo Season 3 ended:  April 2nd, 2022 (estimated)
   - Ranked Solo Season 3 length: 120 days
+
+
+
+
+
+function getNextStageTypeCustom() {
+
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.THE_BEAST &&
+    !repentanceStage &&
+    stage === LevelStage.DEPTHS_2 &&
+    nextStage === LevelStage.DEPTHS_2
+  ) {
+    return getStageTypeRepentance(nextStage);
+  }
+
+  // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
+  // going back to Dogma is pointless.
+  if (nextStage === LevelStage.HOME) {
+    if (
+      g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.goal === RaceGoal.THE_BEAST
+    ) {
+      return 1;
+    }
+
+    return 0;
+  }
+

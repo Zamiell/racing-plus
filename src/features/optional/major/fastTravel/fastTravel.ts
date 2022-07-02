@@ -10,7 +10,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  getPlayers,
+  anyPlayerUsingPony,
   getRoomGridIndex,
   isChildPlayer,
   isPonyActive,
@@ -176,13 +176,6 @@ export function checkShouldOpen(
   ) {
     state.open(entity, fastTravelEntityType);
   }
-}
-
-// TODO: Remove this after the next vanilla patch in 2022 when Crawlspaces are decoupled from
-// sprites.
-export function anyPlayerUsingPony(): boolean {
-  const players = getPlayers();
-  return players.some((player) => isPonyActive(player));
 }
 
 export function checkPlayerTouched(

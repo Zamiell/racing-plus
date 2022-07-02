@@ -1,7 +1,7 @@
 // For testing, a seed with a Black Market is: 2SB2 M4R6
 
 import {
-  CrawlspaceState,
+  CrawlSpaceState,
   CrawlSpaceVariant,
   Direction,
   GridEntityType,
@@ -11,6 +11,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  anyPlayerUsingPony,
   DISTANCE_OF_GRID_TILE,
   getPlayerCloserThan,
   getRoomGridIndex,
@@ -296,7 +297,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
   }
 
   // Keep it closed on every frame so that we can implement our own custom functionality.
-  gridEntity.State = CrawlspaceState.CLOSED;
+  gridEntity.State = CrawlSpaceState.CLOSED;
 
   checkShouldClose(gridEntity);
   fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
@@ -307,10 +308,7 @@ export function postGridEntityUpdateCrawlspace(gridEntity: GridEntity): void {
 // sprites.
 function checkShouldClose(gridEntity: GridEntity) {
   const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  if (
-    entityState === FastTravelEntityState.OPEN &&
-    fastTravel.anyPlayerUsingPony()
-  ) {
+  if (entityState === FastTravelEntityState.OPEN && anyPlayerUsingPony()) {
     state.close(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   }
 }

@@ -6,6 +6,8 @@ import {
   StageType,
 } from "isaac-typescript-definitions";
 import {
+  calculateStageType,
+  calculateStageTypeRepentance,
   getPlayers,
   onRepentanceStage,
   removeAllMatchingEntities,
@@ -238,7 +240,7 @@ function getNextStageType(
     stage === LevelStage.DEPTHS_2 &&
     nextStage === LevelStage.DEPTHS_2
   ) {
-    return getStageTypeRepentance(nextStage);
+    return calculateStageTypeRepentance(nextStage);
   }
 
   // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
@@ -260,7 +262,7 @@ function getNextStageType(
   }
 
   if (v.run.repentanceSecretExit) {
-    return getStageTypeRepentance(nextStage);
+    return calculateStageTypeRepentance(nextStage);
   }
 
   if (
@@ -270,7 +272,7 @@ function getNextStageType(
       stage === LevelStage.DEPTHS_1 ||
       stage === LevelStage.WOMB_1)
   ) {
-    return getStageTypeRepentance(nextStage);
+    return calculateStageTypeRepentance(nextStage);
   }
 
   if (
@@ -278,7 +280,7 @@ function getNextStageType(
     stage === LevelStage.DEPTHS_2 &&
     g.g.GetStateFlag(GameStateFlag.MAUSOLEUM_HEART_KILLED)
   ) {
-    return getStageTypeRepentance(nextStage);
+    return calculateStageTypeRepentance(nextStage);
   }
 
   if (nextStage === LevelStage.BLUE_WOMB) {
@@ -306,7 +308,7 @@ function getNextStageType(
     return 1;
   }
 
-  return getStageType(nextStage);
+  return calculateStageType(nextStage);
 }
 
 function getStageTypeBackwardsPath(
@@ -364,57 +366,7 @@ function getStageTypeBackwardsPath(
     }
   }
 
-  return getStageType(nextStage);
-}
-
-function getStageTypeRepentance(stage: LevelStage): StageType {
-  // There is no alternate floor for Corpse.
-  if (stage === LevelStage.WOMB_1 || stage === LevelStage.WOMB_2) {
-    return StageType.REPENTANCE;
-  }
-
-  // This algorithm is from Kilburn. We add one because the alt path is offset by 1 relative to the
-  // normal path.
-  const adjustedStage = ((stage as int) + 1) as LevelStage;
-  const stageSeed = g.seeds.GetStageSeed(adjustedStage);
-
-  // Kilburn does not know why he divided the stage seed by 2 first.
-  const halfStageSeed = Math.floor(stageSeed / 2);
-  if (halfStageSeed % 2 === 0) {
-    return StageType.REPENTANCE_B;
-  }
-
-  return StageType.REPENTANCE;
-}
-
-function getStageType(stage: LevelStage): StageType {
-  // The following is the game's internal code to determine the floor type. (This came directly from
-  // Spider.)
-  /*
-    u32 Seed = g_Game->GetSeeds().GetStageSeed(NextStage);
-    if (!g_Game->IsGreedMode()) {
-      StageType = ((Seed % 2) == 0 && (
-        ((NextStage == STAGE1_1 || NextStage == STAGE1_2) && gd.Unlocked(ACHIEVEMENT_CELLAR)) ||
-        ((NextStage == STAGE2_1 || NextStage == STAGE2_2) && gd.Unlocked(ACHIEVEMENT_CATACOMBS)) ||
-        ((NextStage == STAGE3_1 || NextStage == STAGE3_2) && gd.Unlocked(ACHIEVEMENT_NECROPOLIS)) ||
-        ((NextStage == STAGE4_1 || NextStage == STAGE4_2)))
-      ) ? STAGE_TYPE_WOTL : STAGE_TYPE_ORIGINAL;
-    if (Seed % 3 == 0 && NextStage < STAGE5)
-      StageType = STAGE_TYPE_AFTERBIRTH;
-  */
-
-  // Emulate what the game's internal code does.
-  const stageSeed = g.seeds.GetStageSeed(stage);
-
-  if (stageSeed % 2 === 0) {
-    return StageType.WRATH_OF_THE_LAMB;
-  }
-
-  if (stageSeed % 3 === 0) {
-    return StageType.AFTERBIRTH;
-  }
-
-  return StageType.ORIGINAL;
+  return calculateStageType(nextStage);
 }
 
 function travelStage(stage: LevelStage, stageType: StageType) {

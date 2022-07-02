@@ -2321,19 +2321,19 @@ is-yarn-global@^0.3.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.3.0.tgz#d502d3382590ea3004893746754c89139973e232"
   integrity sha512-VjSeb/lHmkoyd8ryPVIKvOCn4D1koMqY+vqyjjUfc3xyKtP4dYOxM44sZrnqQSzSds3xyOrUTLTC9LVCVgLngw==
 
-isaac-typescript-definitions@^3.0.11:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.11.tgz#507b060619955d415610f1337cabd73ff627e5e0"
-  integrity sha512-v7aS00XDnRuqfRqM3e9sqhwg4z9GXaPgPom9/2Z6ymW1CD8y0dq4p4oTtTPnTSVPt9gI+ZhqcyM8NAIfeWXouQ==
+isaac-typescript-definitions@^3.0.13:
+  version "3.0.13"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.13.tgz#8140decf8cd89bbe5d7c46f107e5f0cd9864a213"
+  integrity sha512-Zj8Qphkkrfic5g5ipINJUXzkTM3GuP9npvP2yyJl3MxuVweYDzR2sCXTE9ZZFdrA8J27FTxu00A0GpG+3UxVTA==
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^4.2.6:
-  version "4.2.6"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.2.6.tgz#e06eee51125298c19a63c1435a287510b9e162b3"
-  integrity sha512-XIU5J3P10d/WLabCgZi+zGiShA+TGRiQdHLN3fPA/zz8fgC1jsKRrRkZqDHx1qIEMx/tooLyDY8rwPkxnygohw==
+isaacscript-common@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.3.0.tgz#d947b33735ae8b8047f68e6c7446186190c916af"
+  integrity sha512-iHtC5IvUJmdjOVdORgVI0xAfRYrzRtiheRTKzbydCyoPMGXV8C5lfy7fI2jBjj/R+2LnlOSsxcB6rTdqjxbwkQ==
   dependencies:
-    isaac-typescript-definitions "^3.0.11"
+    isaac-typescript-definitions "^3.0.13"
 
 isaacscript-lint@^3.0.0:
   version "3.0.0"
@@ -3676,10 +3676,10 @@ ts-morph@^13.0.1:
     "@ts-morph/common" "~0.12.3"
     code-block-writer "^11.0.0"
 
-ts-node@^10.8.1:
-  version "10.8.1"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.8.1.tgz#ea2bd3459011b52699d7e88daa55a45a1af4f066"
-  integrity sha512-Wwsnao4DQoJsN034wePSg5nZiw4YKXf56mPIAeD6wVmiv+RytNSWqc2f3fKvcUoV+Yn2+yocD71VOfQHbmVX4g==
+ts-node@^10.8.2:
+  version "10.8.2"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.8.2.tgz#3185b75228cef116bf82ffe8762594f54b2a23f2"
+  integrity sha512-LYdGnoGddf1D6v8REPtIH+5iq/gTDuZqv2/UJUU7tKjuEU8xVZorBM+buCGNjj+pGEud+sOoM4CX3/YzINpENA==
   dependencies:
     "@cspotcode/source-map-support" "^0.8.0"
     "@tsconfig/node10" "^1.0.7"
