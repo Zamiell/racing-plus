@@ -1371,7 +1371,7 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="36" name="Devil Room (6 Room)" type="14" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="36" name="Devil Room (6 Room)" type="14" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
