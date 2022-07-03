@@ -1,5 +1,5 @@
 import { FadeoutTarget } from "isaac-typescript-definitions";
-import { log } from "isaacscript-common";
+import { getCharacterName, log } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
 import {
@@ -58,21 +58,22 @@ function checkManualResetAtEndOfFadeout() {
   speedrunSetNextCharacterAndRestart();
 }
 
-export function speedrunSetNextCharacterAndRestart(goForward = true): void {
+export function speedrunSetNextCharacterAndRestart(): void {
   const challenge = Isaac.GetChallenge();
 
   v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
-  const adjustment = goForward ? 1 : -1;
-  v.persistent.characterNum += adjustment;
+  v.persistent.characterNum += 1;
   restartOnNextFrame();
+  log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
 
   // Season 2 will set the next character using its own code.
   if (challenge !== ChallengeCustom.SEASON_2) {
     const character = getCurrentCharacter();
     setRestartCharacter(character);
-  }
 
-  log(
-    `Switching to the next character for the speedrun: ${v.persistent.characterNum}`,
-  );
+    const characterName = getCharacterName(character);
+    log(
+      `Speedrun: Set the next character to be ${characterName} (${character}) and set to restart on the next frame.`,
+    );
+  }
 }

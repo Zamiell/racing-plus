@@ -71,8 +71,16 @@ export function isRestartingOnNextFrame(): boolean {
 export function setRestartCharacter(character: PlayerType): void {
   // Prevent crashing the game when switching to a character that does not exist.
   if (character < FIRST_CHARACTER || character > LAST_VANILLA_CHARACTER) {
-    log(`Preventing restarting to character: ${character}`);
-    return;
+    if (
+      // eslint-disable-next-line isaacscript/strict-enums
+      character === LAST_VANILLA_CHARACTER + 1 &&
+      BabiesModGlobals !== undefined
+    ) {
+      // Random Baby takes the first modded character slot.
+    } else {
+      log(`Preventing restarting to character: ${character}`);
+      return;
+    }
   }
 
   v.run.restartCharacter = character;

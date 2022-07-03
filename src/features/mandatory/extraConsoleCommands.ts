@@ -101,7 +101,7 @@ function move() {
 }
 
 function next() {
-  speedrunSetNextCharacterAndRestart(true);
+  speedrunSetNextCharacterAndRestart();
 }
 
 function race() {
