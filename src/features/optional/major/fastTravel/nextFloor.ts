@@ -23,9 +23,7 @@ import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcher
 import v from "./v";
 
 export function goto(upwards: boolean): void {
-  // Get the number and type of the next floor.
   const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
   const nextStage = getNextStageCustom();
@@ -63,8 +61,6 @@ export function goto(upwards: boolean): void {
   if (!v.level.tookDamage) {
     v.run.perfection.floorsWithoutDamage += 1;
   }
-
-  setFloorVariables(stage, stageType);
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications.
@@ -151,49 +147,5 @@ function travelStage(stage: LevelStage, stageType: StageType, reseed = false) {
   if (reseed) {
     // Doing a "reseed" immediately after a "stage" command won't mess anything up.
     consoleCommand("reseed");
-  }
-}
-
-function setFloorVariables(stage: LevelStage, stageType: StageType) {
-  const isBackwardPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
-
-  if (isBackwardPath) {
-    return;
-  }
-
-  if (stageType === StageType.REPENTANCE) {
-    if (stage === LevelStage.BASEMENT_1) {
-      v.run.repentanceFloorsVisited.downpour1 = true;
-    }
-
-    if (stage === LevelStage.BASEMENT_2) {
-      v.run.repentanceFloorsVisited.downpour2 = true;
-    }
-
-    if (stage === LevelStage.CAVES_1) {
-      v.run.repentanceFloorsVisited.mines1 = true;
-    }
-
-    if (stage === LevelStage.CAVES_2) {
-      v.run.repentanceFloorsVisited.mines2 = true;
-    }
-  }
-
-  if (stageType === StageType.REPENTANCE_B) {
-    if (stage === LevelStage.BASEMENT_1) {
-      v.run.repentanceFloorsVisited.dross1 = true;
-    }
-
-    if (stage === LevelStage.BASEMENT_2) {
-      v.run.repentanceFloorsVisited.dross2 = true;
-    }
-
-    if (stage === LevelStage.CAVES_1) {
-      v.run.repentanceFloorsVisited.ashpit1 = true;
-    }
-
-    if (stage === LevelStage.CAVES_2) {
-      v.run.repentanceFloorsVisited.ashpit2 = true;
-    }
   }
 }

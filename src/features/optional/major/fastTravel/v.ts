@@ -21,21 +21,6 @@ const v = {
     },
 
     /**
-     * We need to track the Repentance floors that we visited so that we can return to them during
-     * the Ascent.
-     */
-    repentanceFloorsVisited: {
-      downpour1: false,
-      dross1: false,
-      downpour2: false,
-      dross2: false,
-      mines1: false,
-      ashpit1: false,
-      mines2: false,
-      ashpit2: false,
-    },
-
-    /**
      * Repentance secret exits are located in the room outside the grid.
      * (e.g. GridRoom.SECRET_EXIT)
      */
