@@ -16,7 +16,7 @@
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^3.0.13",
     "isaacscript": "^2.7.2",
-    "isaacscript-common": "^4.3.3",
+    "isaacscript-common": "^4.4.0",
     "isaacscript-lint": "^3.0.0",
     "isaacscript-spell": "^1.2.4",
     "ts-node": "^10.8.2",

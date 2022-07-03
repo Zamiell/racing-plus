@@ -13,7 +13,7 @@ const v = {
   level: {
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
-    displayFlagsMap: new Map<int, BitFlags<DisplayFlag>>(),
+    floorDisplayFlags: new Map<int, BitFlags<DisplayFlag>>(),
     cardReadingPortalDescriptions: [] as Array<
       [subType: int, position: Vector]
     >,

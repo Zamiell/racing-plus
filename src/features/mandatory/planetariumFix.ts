@@ -3,6 +3,7 @@ import {
   changeRoom,
   disableAllSound,
   enableAllSound,
+  getRoomGridIndex,
   getRoomGridIndexesForType,
   log,
   runNextGameFrame,
@@ -24,8 +25,9 @@ enum PlanetariumFixWarpState {
 
 const v = {
   level: {
-    warpRoomGridIndexes: [] as int[],
     warpState: PlanetariumFixWarpState.INITIAL,
+    startingRoomGridIndex: null as int | null,
+    warpRoomGridIndexes: [] as int[],
     disableMusic: false,
   },
 };
@@ -53,6 +55,9 @@ export function shouldApplyPlanetariumFix(): boolean {
  * Treasure Room and Planetarium in seeded races.
  */
 export function planetariumFix(): void {
+  const roomGridIndex = getRoomGridIndex();
+
+  v.level.startingRoomGridIndex = roomGridIndex;
   v.level.warpState = PlanetariumFixWarpState.WARPING;
   disableAllSound(FEATURE_NAME);
   warpToNextRoom();
@@ -69,6 +74,11 @@ function warpToNextRoom() {
     );
     decrementNumRoomsEntered(); // This should not count as entering a room.
     return;
+  }
+
+  if (v.level.startingRoomGridIndex !== null) {
+    log("Planetarium Fix - Warping back to where we started from.");
+    changeRoom(v.level.startingRoomGridIndex);
   }
 
   log("Planetarium Fix - Finished warping.");

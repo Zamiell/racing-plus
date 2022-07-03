@@ -11,6 +11,7 @@ import {
   disableAllSound,
   getEffectiveStage,
   getEffects,
+  getFloorDisplayFlags,
   getPlayers,
   getRoomGridIndexesForType,
   inStartingRoom,
@@ -24,7 +25,6 @@ import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
-import { getMinimapDisplayFlagsMap } from "./minimap";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
@@ -73,7 +73,7 @@ function startWarp() {
 
   // After using Glowing Hour Glass, the minimap will be bugged. We can work around this by manually
   // recording all of the minimap state beforehand, and then restoring it later.
-  v.level.displayFlagsMap = getMinimapDisplayFlagsMap();
+  v.level.floorDisplayFlags = getFloorDisplayFlags();
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are.
   // (Glowing Hour Glass does not properly restore Card Reading portals.)

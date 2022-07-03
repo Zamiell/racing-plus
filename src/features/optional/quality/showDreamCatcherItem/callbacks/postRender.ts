@@ -2,6 +2,7 @@ import {
   enableAllSound,
   getEffects,
   getPlayers,
+  setFloorDisplayFlags,
   setPlayerHealth,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
@@ -9,7 +10,6 @@ import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { centerPlayers } from "../../../../mandatory/centerStart";
-import { restoreMinimapDisplayFlags } from "../minimap";
 import * as sprites from "../sprites";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
@@ -53,7 +53,7 @@ function repositionPlayer() {
     }
   });
 
-  restoreMinimapDisplayFlags(v.level.displayFlagsMap);
+  setFloorDisplayFlags(v.level.floorDisplayFlags);
 
   // Restore the player's health.
   const player = Isaac.GetPlayer();
