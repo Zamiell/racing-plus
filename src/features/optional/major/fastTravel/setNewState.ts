@@ -80,8 +80,6 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
-  v.run.blueWomb = roomGridIndex === (GridRoom.BLUE_WOMB as int);
-  v.run.theVoid = roomGridIndex === (GridRoom.THE_VOID as int);
   v.run.repentanceSecretExit = roomGridIndex === (GridRoom.SECRET_EXIT as int);
   logFastTravelStateChanged();
 

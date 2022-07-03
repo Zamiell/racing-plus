@@ -12,17 +12,18 @@ import {
   getPlayers,
   onRepentanceStage,
   removeAllMatchingEntities,
+  setStage,
 } from "isaacscript-common";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { consoleCommand } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import v from "./v";
 
 export function goto(upwards: boolean): void {
+  const hud = g.g.GetHUD();
   const stage = g.l.GetStage();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
@@ -49,12 +50,6 @@ export function goto(upwards: boolean): void {
   // safely remove all Dark Esau entities at this point.
   removeAllMatchingEntities(EntityType.DARK_ESAU);
 
-  // If we do a "stage" command to go to the same floor that we are already on, it will use the same
-  // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
-  // command after doing the "stage" command. However, when we travel to the same floor layout from
-  // a Repentance exit, floors do not need to be reseeded for some reason.
-  v.run.reseed = stage === nextStage && !v.run.repentanceSecretExit;
-
   // The fast-travel feature prevents the Perfection trinket from spawning. Using the
   // "WithoutDamage" methods of the Game class do not work properly, so we revert to keeping track
   // of damage manually.
@@ -66,15 +61,24 @@ export function goto(upwards: boolean): void {
   // and inventory modifications.
   seededFloors.before();
 
+  // If we do a "stage" command to go to the same floor that we are already on, it will use the same
+  // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
+  // command after doing the "stage" command. However, when we travel to the same floor layout from
+  // a Repentance exit, floors do not need to be reseeded for some reason.
+  const reseed = stage === nextStage && !v.run.repentanceSecretExit;
+
   // Use the console to manually travel to the floor.
-  travelStage(nextStage, nextStageType, v.run.reseed);
-  v.run.reseed = false;
+  setStage(nextStage, nextStageType, reseed);
 
   // Revert the health and inventory modifications.
   seededFloors.after();
 
   // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp.
   setDreamCatcherArrivedOnNewFloor();
+
+  // Ensure that the HUD is visible. (The Planetarium fix code may have set it to false earlier
+  // before warping around.)
+  hud.SetVisible(true);
 }
 
 function getNextStageCustom() {
@@ -127,25 +131,4 @@ function getNextStageTypeCustom(upwards: boolean) {
   }
 
   return getNextStageType(upwards);
-}
-
-function travelStage(stage: LevelStage, stageType: StageType, reseed = false) {
-  // Build the command that will take us to the next floor.
-  let command = `stage ${stage}`;
-  if (stageType === StageType.WRATH_OF_THE_LAMB) {
-    command += "a";
-  } else if (stageType === StageType.AFTERBIRTH) {
-    command += "b";
-  } else if (stageType === StageType.REPENTANCE) {
-    command += "c";
-  } else if (stageType === StageType.REPENTANCE_B) {
-    command += "d";
-  }
-
-  consoleCommand(command);
-
-  if (reseed) {
-    // Doing a "reseed" immediately after a "stage" command won't mess anything up.
-    consoleCommand("reseed");
-  }
 }

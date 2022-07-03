@@ -3,6 +3,7 @@ import {
   changeRoom,
   disableAllSound,
   enableAllSound,
+  game,
   getRoomGridIndex,
   getRoomGridIndexesForType,
   log,
@@ -26,7 +27,6 @@ enum PlanetariumFixWarpState {
 const v = {
   level: {
     warpState: PlanetariumFixWarpState.INITIAL,
-    startingRoomGridIndex: null as int | null,
     warpRoomGridIndexes: [] as int[],
     disableMusic: false,
   },
@@ -38,6 +38,7 @@ export function init(): void {
 
 export function shouldApplyPlanetariumFix(): boolean {
   const challenge = Isaac.GetChallenge();
+
   if (!inSeededRace() && challenge !== ChallengeCustom.SEASON_2) {
     return false;
   }
@@ -55,10 +56,16 @@ export function shouldApplyPlanetariumFix(): boolean {
  * Treasure Room and Planetarium in seeded races.
  */
 export function planetariumFix(): void {
+  const hud = game.GetHUD();
   const roomGridIndex = getRoomGridIndex();
 
-  v.level.startingRoomGridIndex = roomGridIndex;
   v.level.warpState = PlanetariumFixWarpState.WARPING;
+  // The "v.level.warpRoomGridIndexes" array is set in the "shouldApplyPlanetariumFix" function.
+  // Append the room that we are in, so that we can warp back at the end. (The room that initiates
+  // stage travel will influence the destination.)
+  v.level.warpRoomGridIndexes.push(roomGridIndex);
+
+  hud.SetVisible(false); // It looks confusing if the minimap changes as we warp around.
   disableAllSound(FEATURE_NAME);
   warpToNextRoom();
 }
@@ -76,12 +83,8 @@ function warpToNextRoom() {
     return;
   }
 
-  if (v.level.startingRoomGridIndex !== null) {
-    log("Planetarium Fix - Warping back to where we started from.");
-    changeRoom(v.level.startingRoomGridIndex);
-  }
-
   log("Planetarium Fix - Finished warping.");
+  // We only re-enable the hud once we have reached the new floor.
   enableAllSound(FEATURE_NAME);
   const gameFrameCount = g.g.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);

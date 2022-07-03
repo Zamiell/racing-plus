@@ -12,8 +12,6 @@ const v = {
     renderFramesPassed: 0,
 
     upwards: false,
-    blueWomb: false,
-    theVoid: false,
 
     perfection: {
       floorsWithoutDamage: 0,
@@ -25,8 +23,6 @@ const v = {
      * (e.g. GridRoom.SECRET_EXIT)
      */
     repentanceSecretExit: false,
-
-    reseed: false,
   },
 
   level: {

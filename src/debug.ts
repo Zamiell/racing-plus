@@ -2,6 +2,7 @@ import { Keyboard } from "isaac-typescript-definitions";
 import { printConsole } from "isaacscript-common";
 import { hotkeys } from "./modConfigMenu";
 
+/** Currently, F2 is set up to execute this function. */
 export function debugCode(_params?: string): void {
   // Add code here.
 }
