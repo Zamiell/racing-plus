@@ -137,9 +137,9 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
-  if (roomsEntered > 1) {
+  if (numRoomsEntered > 1) {
     resetSprites();
   }
 }

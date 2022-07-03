@@ -31,11 +31,11 @@ export function charCharOrderPostNewRoom(): void {
     return;
   }
 
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
-  if (roomsEntered === 1) {
+  if (numRoomsEntered === 1) {
     gotoButtonRoom();
-  } else if (roomsEntered === 3) {
+  } else if (numRoomsEntered === 3) {
     setupButtonRoom();
   }
 }

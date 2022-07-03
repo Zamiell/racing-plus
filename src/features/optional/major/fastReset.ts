@@ -71,9 +71,9 @@ function checkResetInput() {
 
 function reset() {
   const renderFrameCount = Isaac.GetFrameCount();
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
-  if (roomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
+  if (numRoomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
     // Speedrun functionality relies on knowing whether or not a fast-reset occurred.
     speedrunSetFastReset();
     restart();

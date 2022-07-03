@@ -79,9 +79,9 @@ function drawStartingRoomSprites() {
 }
 
 function drawStartingRoomText() {
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
-  if (roomsEntered !== 1) {
+  if (numRoomsEntered !== 1) {
     return;
   }
 

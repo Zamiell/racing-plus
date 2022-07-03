@@ -180,14 +180,14 @@ function gotoRaceRoom() {
 }
 
 function shouldGotoRaceRoom() {
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
   return (
     (g.race.status === RaceStatus.OPEN ||
       g.race.status === RaceStatus.STARTING) &&
     // Only bring them to the race room if they are not in the middle of a run.
     // (e.g. the only room that they have entered is the starting room on Basement 1)
-    roomsEntered === 1
+    numRoomsEntered === 1
   );
 }
 
@@ -325,11 +325,11 @@ export function numEntrantsChanged(): void {
 
 export function goingToRaceRoom(): boolean {
   const effectiveStage = getEffectiveStage();
-  const roomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = getNumRoomsEntered();
 
   return (
     g.race.status === RaceStatus.OPEN &&
     effectiveStage === 1 &&
-    (roomsEntered === 0 || roomsEntered === 1)
+    (numRoomsEntered === 0 || numRoomsEntered === 1)
   );
 }

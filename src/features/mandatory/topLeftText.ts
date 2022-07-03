@@ -58,8 +58,8 @@ export function postRender(): void {
     if (speedrunShouldShowEndOfRunText()) {
       lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
-      const roomsEntered = getNumRoomsEntered();
-      lines.push(`Rooms entered: ${roomsEntered}`);
+      const numRoomsEntered = getNumRoomsEntered();
+      lines.push(`Rooms entered: ${numRoomsEntered}`);
     }
 
     // Draw a 3rd line to show the total frames.
