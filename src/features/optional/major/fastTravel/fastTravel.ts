@@ -10,7 +10,6 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerUsingPony,
   getRoomGridIndex,
   isChildPlayer,
   isPonyActive,
@@ -169,10 +168,7 @@ export function checkShouldOpen(
   const entityState = state.get(entity, fastTravelEntityType);
   if (
     entityState === FastTravelEntityState.CLOSED &&
-    state.shouldOpen(entity, fastTravelEntityType) &&
-    // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
-    // sprites.
-    !anyPlayerUsingPony()
+    state.shouldOpen(entity, fastTravelEntityType)
   ) {
     state.open(entity, fastTravelEntityType);
   }

@@ -1,5 +1,9 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { anyPlayerCloserThan, log } from "isaacscript-common";
+import {
+  anyPlayerCloserThan,
+  anyPlayerUsingPony,
+  log,
+} from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import g from "../../../../globals";
@@ -168,7 +172,10 @@ export function shouldOpen(
   return (
     !anyPlayerCloserThan(entity.Position, TRAPDOOR_OPEN_DISTANCE) &&
     !playerCloseAfterBoss(entity.Position) &&
-    !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial)
+    !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial) &&
+    // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
+    // sprites.
+    !anyPlayerUsingPony()
   );
 }
 

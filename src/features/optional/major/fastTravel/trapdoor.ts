@@ -208,18 +208,6 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   const roomFrameCount = g.r.GetFrameCount();
   const roomClear = g.r.IsClear();
 
-  if (roomFrameCount === 0) {
-    // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the
-    // player has to defeat the enemies first before using the trapdoor.
-    if (!roomClear) {
-      return false;
-    }
-
-    // If we just entered a new room that is already cleared, spawn the trapdoor closed if we are
-    // standing close to it, and open otherwise.
-    return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
-  }
-
   // After defeating Satan, the trapdoor should always spawn open (because there is no reason to
   // remain in Sheol).
   if (onSheol()) {
@@ -231,7 +219,19 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   //   into them.
   // - Trapdoors created by We Need to Go Deeper should spawn closed because the player will be
   //   standing on top of them.
-  return false;
+  if (roomFrameCount > 0) {
+    return false;
+  }
+
+  // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the player
+  // has to defeat the enemies first before using the trapdoor.
+  if (!roomClear) {
+    return false;
+  }
+
+  // If we just entered a new room that is already cleared, spawn the trapdoor closed if we are
+  // standing close to it, and open otherwise.
+  return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {

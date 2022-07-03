@@ -13,9 +13,10 @@ import {
 import {
   anyPlayerUsingPony,
   DISTANCE_OF_GRID_TILE,
+  getCrawlSpaces,
   getPlayerCloserThan,
   getRoomGridIndex,
-  inCrawlspace,
+  inCrawlSpace,
   inSecretShop,
   isRoomInsideMap,
   log,
@@ -90,7 +91,7 @@ function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
 }
 
 function checkTouchingLadderExitTile(player: EntityPlayer) {
-  if (!inCrawlspace() && !inSecretShop()) {
+  if (!inCrawlSpace() && !inSecretShop()) {
     return;
   }
 
@@ -195,7 +196,7 @@ export function postNewRoom(): void {
 }
 
 function checkEnteringCrawlSpace() {
-  if (!inCrawlspace()) {
+  if (!inCrawlSpace()) {
     return;
   }
 
@@ -221,6 +222,13 @@ function checkExitingCrawlSpace() {
 
   if (v.level.crawlSpace.returnRoomPosition !== null) {
     movePlayersAndFamiliars(v.level.crawlSpace.returnRoomPosition);
+  }
+
+  // Since the player was manually moved, the crawlspace could have spawned in an open state.
+  // Account for this by manually setting every crawl space to be closed.
+  const crawlSpaces = getCrawlSpaces();
+  for (const crawlSpace of crawlSpaces) {
+    state.close(crawlSpace, FAST_TRAVEL_ENTITY_TYPE);
   }
 }
 
