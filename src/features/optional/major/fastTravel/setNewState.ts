@@ -248,7 +248,7 @@ function playTravelingAnimation(player: EntityPlayer, upwards: boolean) {
 }
 
 function setGoingToNewFloor() {
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const roomGridIndex = getRoomGridIndex();
 
   blackSprite.setFullyOpaque();
 
@@ -259,9 +259,10 @@ function setGoingToNewFloor() {
   }
 
   // Before moving to the next floor, we need to change the room so that health from a Strength card
-  // is properly decremented. We arbitrarily use the starting room for this. Even if a player is
-  // using a trapdoor in the starting room from a shovel, this should not make any difference.
-  changeRoom(startingRoomGridIndex);
+  // is properly decremented. We arbitrarily reload the current room (instead of e.g. teleporting to
+  // the starting room of the floor) so that the room type and room grid index remain unchanged for
+  // the purposes of calculating the next stage and stage type.
+  changeRoom(roomGridIndex);
   decrementRoomsEntered(); // This should not count as entering a room.
 
   nextFloor.goto(v.run.upwards);
