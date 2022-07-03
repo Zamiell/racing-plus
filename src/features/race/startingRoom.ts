@@ -5,7 +5,7 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { initGlowingItemSprite, initSprite } from "../../sprite";
-import { getRoomsEntered } from "../utils/roomsEntered";
+import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -137,7 +137,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomsEntered = getRoomsEntered();
+  const roomsEntered = getNumRoomsEntered();
 
   if (roomsEntered > 1) {
     resetSprites();

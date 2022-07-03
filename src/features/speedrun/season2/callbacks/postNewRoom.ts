@@ -1,5 +1,5 @@
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import { getRoomsEntered } from "../../../utils/roomsEntered";
+import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { resetSprites } from "../sprites";
 
 export function season2PostNewRoom(): void {
@@ -9,7 +9,7 @@ export function season2PostNewRoom(): void {
     return;
   }
 
-  const roomsEntered = getRoomsEntered();
+  const roomsEntered = getNumRoomsEntered();
 
   if (roomsEntered !== 1) {
     resetSprites();

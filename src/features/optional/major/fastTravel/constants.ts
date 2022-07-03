@@ -1,4 +1,4 @@
-export const FAST_TRAVEL_DEBUG = false;
+export const FAST_TRAVEL_DEBUG = true;
 export const FAST_TRAVEL_FEATURE_NAME = "fastTravel";
 
 export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL: ReadonlySet<string> = new Set(

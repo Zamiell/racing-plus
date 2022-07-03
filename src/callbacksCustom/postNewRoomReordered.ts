@@ -1,4 +1,6 @@
+import { GridRoom } from "isaac-typescript-definitions";
 import {
+  getRoomGridIndex,
   getRoomStageID,
   getRoomSubType,
   getRoomType,
@@ -37,7 +39,7 @@ import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/sh
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
-import * as roomsEntered from "../features/utils/roomsEntered";
+import * as roomsEntered from "../features/utils/numRoomsEntered";
 import g from "../globals";
 
 export function init(mod: ModUpgraded): void {
@@ -55,9 +57,12 @@ function main() {
   const roomType = getRoomType();
   const roomVariant = getRoomVariant();
   const roomSubType = getRoomSubType();
+  const roomGridIndex = getRoomGridIndex();
+  const roomGridIndexSuffix =
+    roomGridIndex >= 0 ? "" : ` (GridRoom.${GridRoom[roomGridIndex]})`;
 
   log(
-    `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
+    `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Grid index: ${roomGridIndex}${roomGridIndexSuffix} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
 
   // Utils

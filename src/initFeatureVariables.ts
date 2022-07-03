@@ -64,8 +64,8 @@ import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
+import * as roomsEntered from "./features/utils/numRoomsEntered";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
-import * as roomsEntered from "./features/utils/roomsEntered";
 import * as modConfigMenu from "./modConfigMenu";
 import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
 

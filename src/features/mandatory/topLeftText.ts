@@ -26,7 +26,7 @@ import {
   inSpeedrun,
   isOnFinalCharacter,
 } from "../speedrun/speedrun";
-import { getRoomsEntered } from "../utils/roomsEntered";
+import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const STARTING_X = 55;
 const STARTING_Y = 10;
@@ -58,7 +58,7 @@ export function postRender(): void {
     if (speedrunShouldShowEndOfRunText()) {
       lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
-      const roomsEntered = getRoomsEntered();
+      const roomsEntered = getNumRoomsEntered();
       lines.push(`Rooms entered: ${roomsEntered}`);
     }
 

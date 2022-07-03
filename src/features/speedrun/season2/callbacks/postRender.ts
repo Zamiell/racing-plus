@@ -2,7 +2,7 @@ import { getDefaultKColor, getPlayerName } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
-import { getRoomsEntered } from "../../../utils/roomsEntered";
+import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import {
@@ -79,7 +79,7 @@ function drawStartingRoomSprites() {
 }
 
 function drawStartingRoomText() {
-  const roomsEntered = getRoomsEntered();
+  const roomsEntered = getNumRoomsEntered();
 
   if (roomsEntered !== 1) {
     return;

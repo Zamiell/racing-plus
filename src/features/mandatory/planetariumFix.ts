@@ -12,7 +12,7 @@ import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
-import { decrementRoomsEntered } from "../utils/roomsEntered";
+import { decrementNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const FEATURE_NAME = "planetariumFix";
 
@@ -67,7 +67,7 @@ function warpToNextRoom() {
     log(
       `Planetarium Fix - Arrived at room: ${roomGridIndex} (room type: ${roomType})`,
     );
-    decrementRoomsEntered(); // This should not count as entering a room.
+    decrementNumRoomsEntered(); // This should not count as entering a room.
     return;
   }
 

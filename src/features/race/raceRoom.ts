@@ -22,7 +22,7 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { initSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
-import { getRoomsEntered } from "../utils/roomsEntered";
+import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 import {
   RACE_ROOM_POSITION,
   RACE_ROOM_STAGE_ARGUMENT,
@@ -180,7 +180,7 @@ function gotoRaceRoom() {
 }
 
 function shouldGotoRaceRoom() {
-  const roomsEntered = getRoomsEntered();
+  const roomsEntered = getNumRoomsEntered();
 
   return (
     (g.race.status === RaceStatus.OPEN ||
@@ -325,7 +325,7 @@ export function numEntrantsChanged(): void {
 
 export function goingToRaceRoom(): boolean {
   const effectiveStage = getEffectiveStage();
-  const roomsEntered = getRoomsEntered();
+  const roomsEntered = getNumRoomsEntered();
 
   return (
     g.race.status === RaceStatus.OPEN &&

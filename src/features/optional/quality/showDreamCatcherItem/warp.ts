@@ -22,7 +22,7 @@ import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import g from "../../../../globals";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import { decrementRoomsEntered } from "../../../utils/roomsEntered";
+import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { getMinimapDisplayFlagsMap } from "./minimap";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
@@ -106,7 +106,7 @@ export function warpToNextDreamCatcherRoom(): void {
   if (roomGridIndex !== undefined) {
     log(`Dream Catcher - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
-    decrementRoomsEntered(); // This should not count as entering a room.
+    decrementNumRoomsEntered(); // This should not count as entering a room.
     return;
   }
 

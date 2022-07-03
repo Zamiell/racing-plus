@@ -61,6 +61,23 @@ const v = {
   },
 
   room: {
+    // -----------------------
+    // Fast-travel Entity Maps
+    // -----------------------
+
+    /** Indexed by grid index. */
+    crawlSpaces: new Map<int, FastTravelEntityDescription>(),
+
+    /** Indexed by grid index. */
+    heavenDoors: new Map<int, FastTravelEntityDescription>(),
+
+    /** Indexed by grid index. */
+    trapdoors: new Map<int, FastTravelEntityDescription>(),
+
+    // -----
+    // Other
+    // -----
+
     /**
      * Used to prevent changing rooms twice, since it takes a frame for the "StartRoomTransition"
      * method to take effect.
@@ -70,19 +87,12 @@ const v = {
     /** Equal to the game frame count that the room was cleared. */
     clearFrame: null as int | null,
 
-    /** Indexed by grid index. */
-    crawlSpaces: new Map<int, FastTravelEntityDescription>(),
-
-    /** Indexed by grid index. */
-    heavenDoors: new Map<int, FastTravelEntityDescription>(),
-
     movedAwayFromSecretShopLadder: false,
 
     /** Used when replacing a crawl space with a teleporter. */
     teleporterSpawned: false,
 
-    /** Indexed by grid index. */
-    trapdoors: new Map<int, FastTravelEntityDescription>(),
+    usedStrengthCard: false,
   },
 };
 export default v;

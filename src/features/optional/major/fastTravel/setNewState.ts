@@ -35,7 +35,7 @@ import {
   planetariumFix,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
-import { decrementRoomsEntered } from "../../../utils/roomsEntered";
+import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import * as nextFloor from "./nextFloor";
@@ -252,19 +252,30 @@ function setGoingToNewFloor() {
 
   blackSprite.setFullyOpaque();
 
-  // Defer going to the next floor if we need to visit other rooms first.
+  if (v.room.usedStrengthCard) {
+    // Before moving to the next floor, we need to change the room so that health from a Strength
+    // card is properly decremented. We arbitrarily reload the current room (instead of e.g.
+    // teleporting to the starting room of the floor) so that the room type and room grid index
+    // remain unchanged for the purposes of calculating the next stage and stage type.
+    changeRoom(roomGridIndex);
+    decrementNumRoomsEntered(); // This should not count as entering a room.
+  }
+
+  // Defer going to the next floor if we need to visit other rooms first. (The
+  // "finishGoingToNewFloor" function will be manually called later in the PostUpdate callback.)
   if (shouldApplyPlanetariumFix()) {
     planetariumFix();
     return;
   }
 
-  // Before moving to the next floor, we need to change the room so that health from a Strength card
-  // is properly decremented. We arbitrarily reload the current room (instead of e.g. teleporting to
-  // the starting room of the floor) so that the room type and room grid index remain unchanged for
-  // the purposes of calculating the next stage and stage type.
-  changeRoom(roomGridIndex);
-  decrementRoomsEntered(); // This should not count as entering a room.
+  finishGoingToNewFloor();
+}
 
+/**
+ * In some situations, we manually interrupt fast-travel before going to the next floor. Splitting
+ * the final logic into a separate function allows other features to resume fast-travel.
+ */
+export function finishGoingToNewFloor(): void {
   nextFloor.goto(v.run.upwards);
   setNewFastTravelState(FastTravelState.FADING_IN);
 }
