@@ -2626,10 +2626,10 @@ isaac-typescript-definitions@^3.0.13:
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.5.0.tgz#43fead684a75a4c1654785ec611a64823ba17255"
-  integrity sha512-NWfMAbcA9CdMTZ6LPWAWldmjyCPwCJh3wSslSCBm8aSSrgJn19+w9DhnOSVrCNoPA2OWjoe+ynWetEGx1ltrHw==
+isaacscript-common@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.5.1.tgz#ba4a6209f406c6f684601930e1ef2e1cbb1a6903"
+  integrity sha512-/EufHIYQsW6FF6oH5jQv87CaAhKB2cZiyAwRoqO7nvwyr3ls6VVDxQMHvB4fYuchT9gvj0P56DD8w1sDC5M6vA==
   dependencies:
     isaac-typescript-definitions "^3.0.13"
 
@@ -2657,10 +2657,10 @@ isaacscript-lint@^3.0.0:
     prettier-plugin-organize-imports "^3.0.0"
     ts-prune "^0.10.3"
 
-isaacscript-spell@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.4.tgz#826e5a64bd6006b7c9474289e83b51d7df0c1a9d"
-  integrity sha512-saJY5VRquUuFZJUstl5r7W466Td52MXZYj29G2j9xIRoK9Xv7SFAeCZPyiAPWu2IjEupM1d3Av3ypBEVlFT/0A==
+isaacscript-spell@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.5.tgz#09d4031e9dc25c67b5801bdd0db45cd19e3c05e2"
+  integrity sha512-62XJRDJlguQKvGb5RdaPP80Ft71DPJwcrfOrm1FeZb6ivDZs6LMMcO5BcLCt7CkGwwfspCUFdHZ5VtE1sfnxzA==
 
 isaacscript-tsconfig@^2.0.0:
   version "2.0.0"
@@ -4212,6 +4212,15 @@ typescript-to-lua@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.6.1.tgz#617f51d90e6e3e48b057a194c82a7d457407d2c9"
   integrity sha512-ekF9U9GhfaoyJcBYiw4uHkT1I9d7Gcoo38N1Aiv/csylodwzNYnThUv/ae+aDhtSD8A4L6uwxMS/OJn5uLbohw==
+  dependencies:
+    enhanced-resolve "^5.8.2"
+    resolve "^1.15.1"
+    source-map "^0.7.3"
+
+typescript-to-lua@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.6.2.tgz#2fcb83858784976f6b899a82f3ba63899c36e6e6"
+  integrity sha512-m0TZ2RqL6BPy3/TNIjbVDTr9N6M45Qyb2/VJpBz0qnS3zTXxhAOugc+PaILSVwvCb1vent8ateWDt2fcEtcsRw==
   dependencies:
     enhanced-resolve "^5.8.2"
     resolve "^1.15.1"

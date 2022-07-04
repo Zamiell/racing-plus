@@ -12,7 +12,7 @@ import {
 import {
   getRoomGridIndex,
   isChildPlayer,
-  isPonyActive,
+  isPlayerUsingPony,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -204,7 +204,7 @@ export function checkPlayerTouched(
 
     if (
       // We don't want a Pony dash to transition to a new floor or a crawl space.
-      !isPonyActive(player) &&
+      !isPlayerUsingPony(player) &&
       !isChildPlayer(player) &&
       canInteractWith(player)
     ) {

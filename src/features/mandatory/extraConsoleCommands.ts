@@ -41,7 +41,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("angelset", angelSet);
   addConsoleCommand("cco", cco);
   addConsoleCommand("changecharorder", changeCharOrder);
-  addConsoleCommand("debug", debug);
+  addConsoleCommand("d", debug);
   addConsoleCommand("devilset", devilSet);
   addConsoleCommand("disable", disable);
   addConsoleCommand("enable", enable);
