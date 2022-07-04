@@ -34,30 +34,30 @@ import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/
 import * as socketClient from "../race/socketClient";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
 
-const DEFAULT_SEEDED_RACE_STARTING_CHARACTER = PlayerType.ISAAC;
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
-  addConsoleCommand("angelset", angelSet);
+  addConsoleCommand("angelSet", angelSet);
   addConsoleCommand("cco", cco);
-  addConsoleCommand("changecharorder", changeCharOrder);
+  addConsoleCommand("changeCharOrder", changeCharOrder);
   addConsoleCommand("d", debug);
-  addConsoleCommand("devilset", devilSet);
+  addConsoleCommand("devilSet", devilSet);
   addConsoleCommand("disable", disable);
   addConsoleCommand("enable", enable);
   addConsoleCommand("move", move);
   addConsoleCommand("next", next);
   addConsoleCommand("race", race);
-  addConsoleCommand("rankedsoloreset", rankedSoloReset);
+  addConsoleCommand("rankedSoloReset", rankedSoloReset);
   addConsoleCommand("s0", s0);
   addConsoleCommand("s1", s1);
   addConsoleCommand("s2", s2);
-  addConsoleCommand("seededrace", seededRace);
-  addConsoleCommand("seededracecharacter", seededRaceCharacter);
-  addConsoleCommand("seededracebuild", seededRaceBuild);
-  addConsoleCommand("seededraceitem", seededRaceItem);
-  addConsoleCommand("seededracegoal", seededRaceGoal);
-  addConsoleCommand("seededraceoff", seededRaceOff);
+  addConsoleCommand("seededRace", seededRace);
+  addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
+  addConsoleCommand("seededRaceBuild", seededRaceBuild);
+  addConsoleCommand("seededRaceItem", seededRaceItem);
+  addConsoleCommand("seededRaceGoal", seededRaceGoal);
+  addConsoleCommand("seededRaceOff", seededRaceOff);
+  addConsoleCommand("seededRaceSeed", seededRaceSeed);
   addConsoleCommand("tests", tests);
   addConsoleCommand("unseed", unseedCommand);
   addConsoleCommand("version", version);
@@ -130,14 +130,14 @@ function s2() {
 function seededRace(params: string) {
   if (params !== "") {
     printConsole(
-      'The "seededrace" command does not take any arguments. (Set the seed first before using this command.)',
+      'The "seededRace" command does not take any arguments. (Set the seed first before using this command.)',
     );
     return;
   }
 
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
     printConsole(
-      'You must be connected to the Racing+ client in order to use the "seededrace" command. (The R+ icon should be green.)',
+      'You must be connected to the Racing+ client in order to use the "seededRace" command. (The R+ icon should be green.)',
     );
     return;
   }
@@ -149,13 +149,15 @@ function seededRace(params: string) {
   }
 
   const startSeedString = g.seeds.GetStartSeedString();
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
 
   g.debug = true;
   g.race.status = RaceStatus.IN_PROGRESS;
   g.race.myStatus = RacerStatus.RACING;
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
-  g.race.character = DEFAULT_SEEDED_RACE_STARTING_CHARACTER;
+  g.race.character = character;
   g.race.startingItems = DEFAULT_SEEDED_RACE_STARTING_ITEMS;
 
   printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
@@ -197,7 +199,7 @@ function seededRaceCharacter(params: string) {
 }
 
 function seededRaceBuild() {
-  printConsole('Use the "seededraceitem" command instead.');
+  printConsole('Use the "seededRaceItem" command instead.');
 }
 
 function seededRaceItem(params: string) {
@@ -244,6 +246,23 @@ function seededRaceOff() {
   g.race = new RaceData();
   printConsole("Disabled seeded race mode.");
   unseed();
+  restart();
+}
+
+function seededRaceSeed(params: string) {
+  if (params === "") {
+    printConsole("You must specify the seed.");
+    return;
+  }
+
+  if (params.length !== 9 || params[5] !== " ") {
+    printConsole("That is an invalid format for the seed.");
+    return;
+  }
+
+  g.race.seed = params;
+
+  printConsole(`Set the seeded race seed to: ${params}`);
   restart();
 }
 
