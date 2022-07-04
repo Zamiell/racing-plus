@@ -80,4 +80,8 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
   },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+  },
 }

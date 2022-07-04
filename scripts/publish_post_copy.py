@@ -10,7 +10,7 @@ MOD_NAME = "racing-plus"
 SCRIPT_PATH = os.path.realpath(__file__)
 SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
 PROJECT_DIRECTORY = os.path.join(SCRIPT_DIRECTORY, "..")
-SHA1_FILE_PATH = os.path.join(PROJECT_DIRECTORY, "sha1.json")
+SHA1_FILE_PATH = os.path.abspath(os.path.join(PROJECT_DIRECTORY, "sha1.json"))
 
 GAME_DIRECTORY = os.path.join(
     "C:",
