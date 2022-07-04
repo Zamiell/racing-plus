@@ -2626,10 +2626,10 @@ isaac-typescript-definitions@^3.0.13:
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.5.1.tgz#ba4a6209f406c6f684601930e1ef2e1cbb1a6903"
-  integrity sha512-/EufHIYQsW6FF6oH5jQv87CaAhKB2cZiyAwRoqO7nvwyr3ls6VVDxQMHvB4fYuchT9gvj0P56DD8w1sDC5M6vA==
+isaacscript-common@^4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.5.2.tgz#d6feba4bc0e6c90515990bf0b2f6d03d3357f820"
+  integrity sha512-JYxI1hWAXM9AGbEFzOlOa68GFVrdp/XfUX1J3k22skA1rQCWYN+YKDOB3JHewjJ3x2Ymmqhbb64Vti5fUa7NyQ==
   dependencies:
     isaac-typescript-definitions "^3.0.13"
 
@@ -2667,10 +2667,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.2.tgz#6abdbc0269fd7bd52b9c956d1bab57deb165df5a"
-  integrity sha512-55VUFvueljVCd6M5fNwGv/ZDCGTX+uJSLhXUCZmwKrgSRpRl8xY3izXYorLP8dB0WNZ2/IzbubllNs36y0fxig==
+isaacscript@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.3.tgz#3cb81acf019496a74e75ebfae7113c96e9959ce2"
+  integrity sha512-xc92aAP8uN1yQdv5SYtJoSIOVAAk4uurRnab+2+Rd42XPDFn/uf6e8ArefTWwPwz11FVXQGE9RIAobj0fOF5uw==
   dependencies:
     chalk "4.1.2"
     command-exists "^1.2.9"
@@ -2687,7 +2687,7 @@ isaacscript@^2.7.2:
     source-map-support "^0.5.21"
     sync-directory "^5.1.7"
     tslib "^2.4.0"
-    typescript-to-lua "^1.6.1"
+    typescript-to-lua "^1.6.2"
     update-notifier "5.1.0"
     yaml "^2.1.1"
     yargs "^17.5.1"
@@ -4207,15 +4207,6 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
-
-typescript-to-lua@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.6.1.tgz#617f51d90e6e3e48b057a194c82a7d457407d2c9"
-  integrity sha512-ekF9U9GhfaoyJcBYiw4uHkT1I9d7Gcoo38N1Aiv/csylodwzNYnThUv/ae+aDhtSD8A4L6uwxMS/OJn5uLbohw==
-  dependencies:
-    enhanced-resolve "^5.8.2"
-    resolve "^1.15.1"
-    source-map "^0.7.3"
 
 typescript-to-lua@^1.6.2:
   version "1.6.2"
