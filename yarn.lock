@@ -2667,10 +2667,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.7.3:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.3.tgz#3cb81acf019496a74e75ebfae7113c96e9959ce2"
-  integrity sha512-xc92aAP8uN1yQdv5SYtJoSIOVAAk4uurRnab+2+Rd42XPDFn/uf6e8ArefTWwPwz11FVXQGE9RIAobj0fOF5uw==
+isaacscript@^2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.4.tgz#693ca368f2c1160ad20bd97680053096ca364f19"
+  integrity sha512-Mw3rttQodkkjHz6itGqfOr5thUyFLLXred75lkn55CMLWsCCS7fnBws+vd3WNwHxdWEWhtz0jOwzZs3jHmWl5w==
   dependencies:
     chalk "4.1.2"
     command-exists "^1.2.9"
