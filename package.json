@@ -9,14 +9,23 @@
     "afterbirth",
     "repentance"
   ],
+  "homepage": "https://github.com/Zamiell/racing_plus#readme",
+  "bugs": {
+    "url": "https://github.com/Zamiell/racing_plus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zamiell/racing_plus.git"
+  },
   "license": "GPL-3.0",
+  "author": "Zamiell",
   "type": "commonjs",
   "dependencies": {
-    "@types/node": "^18.0.1",
+    "@types/node": "^18.0.3",
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^3.0.13",
-    "isaacscript": "^2.7.4",
-    "isaacscript-common": "^4.5.2",
+    "isaac-typescript-definitions": "^3.0.17",
+    "isaacscript": "^2.7.6",
+    "isaacscript-common": "^4.9.0",
     "isaacscript-lint": "^3.0.0",
     "isaacscript-spell": "^1.2.5",
     "ts-node": "^10.8.2",

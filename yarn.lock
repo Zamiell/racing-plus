@@ -573,10 +573,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.0.tgz#67c7b724e1bcdd7a8821ce0d5ee184d3b4dd525a"
   integrity sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==
 
-"@types/node@^18.0.1":
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.1.tgz#e91bd73239b338557a84d1f67f7b9e0f25643870"
-  integrity sha512-CmR8+Tsy95hhwtZBKJBs0/FFq4XX7sDZHlGGf+0q+BRZfMbOTkzkj0AFAuTyXbObDIoanaBBW0+KEW+m3N16Wg==
+"@types/node@^18.0.3":
+  version "18.0.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.3.tgz#463fc47f13ec0688a33aec75d078a0541a447199"
+  integrity sha512-HzNRZtp4eepNitP+BD6k2L6DROIDG4Q0fm4x+dwfsr6LGmROENnok75VGw40628xf+iR24WeMFcHuuBDUAzzsQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2626,12 +2626,19 @@ isaac-typescript-definitions@^3.0.13:
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.5.2.tgz#d6feba4bc0e6c90515990bf0b2f6d03d3357f820"
-  integrity sha512-JYxI1hWAXM9AGbEFzOlOa68GFVrdp/XfUX1J3k22skA1rQCWYN+YKDOB3JHewjJ3x2Ymmqhbb64Vti5fUa7NyQ==
+isaac-typescript-definitions@^3.0.17:
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.17.tgz#36a7c03fb098cab3af5cca92b7a1546bdbb81ac0"
+  integrity sha512-aesMJD1uRLSrEx2XVuQtJjVUCwC1ARMxQOMBhXztzxxwVwH5Tsg/rD5OaVT6uh+16DY7DEOWho2MayjSISiYPw==
   dependencies:
-    isaac-typescript-definitions "^3.0.13"
+    lua-types "^2.11.0"
+
+isaacscript-common@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.9.0.tgz#d26d4a8ad8a96a7f239db03deb6c1d259838234d"
+  integrity sha512-U2gNhsfFBy8GF2bkc4GgNnF1d6iF1CoqvYR/HpuNcvdCuNi8bP/6s8LQLiI7z6GiftsMcACDQZfqUOz8154SXw==
+  dependencies:
+    isaac-typescript-definitions "^3.0.17"
 
 isaacscript-lint@^3.0.0:
   version "3.0.0"
@@ -2667,10 +2674,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.7.4:
-  version "2.7.4"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.4.tgz#693ca368f2c1160ad20bd97680053096ca364f19"
-  integrity sha512-Mw3rttQodkkjHz6itGqfOr5thUyFLLXred75lkn55CMLWsCCS7fnBws+vd3WNwHxdWEWhtz0jOwzZs3jHmWl5w==
+isaacscript@^2.7.6:
+  version "2.7.6"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.6.tgz#2ade1c9612b604946abace161dc9a37079c32b4b"
+  integrity sha512-MpK4K+27e3kANlujX2TzjqcDMYz88JS2RxNhGAha11q3BOwGimVXV1vjQcgkQqMit9qDShNr/YnR8zUK+GMCOQ==
   dependencies:
     chalk "4.1.2"
     command-exists "^1.2.9"

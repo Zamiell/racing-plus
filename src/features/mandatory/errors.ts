@@ -116,6 +116,11 @@ function areOtherModsEnabled() {
     v.run.otherModsEnabled = true;
   }
 
+  if (StageAPI !== undefined) {
+    log("Error: StageAPI detected.");
+    v.run.otherModsEnabled = true;
+  }
+
   return v.run.otherModsEnabled;
 }
 
