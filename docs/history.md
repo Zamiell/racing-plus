@@ -5,6 +5,7 @@
 
 ### _v0.82.0_ - July 10th, 2022
 
+- In seeded races, a message will be displayed to the leader when the person who is in second place arrives on the floor. (Thanks Hispa)
 - Fixed the bug where Krampus would always drop A Lump of Coal in seeded races. (Thanks Sakk)
 
 ### _v0.81.6_ - July 3rd, 2022
