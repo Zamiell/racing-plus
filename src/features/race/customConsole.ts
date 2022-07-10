@@ -77,15 +77,11 @@ export function postRender(): void {
     hotkeys.console === -1 ? DEFAULT_CONSOLE_OPEN_INPUT : hotkeys.console;
 
   if (!consoleOpen) {
-    checkKeyboardInput(
-      consoleOpenInput as Keyboard,
-      renderFrameCount,
-      consoleOpenInput as Keyboard,
-    );
+    checkKeyboardInput(consoleOpenInput, renderFrameCount, consoleOpenInput);
     return;
   }
 
-  checkAllKeyboardInput(renderFrameCount, consoleOpenInput as Keyboard);
+  checkAllKeyboardInput(renderFrameCount, consoleOpenInput);
   drawConsole();
 }
 

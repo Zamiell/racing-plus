@@ -10,13 +10,9 @@ import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbac
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
-import * as autofire from "../features/optional/hotkeys/autofire";
-import * as fastDrop from "../features/optional/hotkeys/fastDrop";
-import * as schoolbagSwitch from "../features/optional/hotkeys/schoolbagSwitch";
 import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
-import * as roll from "../features/optional/other/roll";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -78,12 +74,6 @@ function main() {
   // Should be after the "Show Max Familiars" feature so that the text has priority.
   automaticItemInsertionPostRender();
   showPills.postRender();
-
-  // Hotkeys
-  fastDrop.postRender();
-  schoolbagSwitch.postRender();
-  autofire.postRender();
-  roll.postRender();
 
   // Other
   customConsole.postRender();

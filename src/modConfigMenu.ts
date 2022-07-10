@@ -234,7 +234,8 @@ function registerSubMenuHotkeys(
           newValue = getDefaultValue(optionType);
         }
 
-        hotkeys[configName as keyof Hotkeys] = newValue as number;
+        const hotkey = configName as keyof Hotkeys;
+        hotkeys[hotkey] = newValue as Keyboard;
       },
       Popup: () => getPopupDescription(configName as keyof Hotkeys, optionType),
       PopupGfx: getPopupGfx(optionType),
@@ -287,12 +288,13 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = keyboardToString(currentValue as Keyboard);
+        text = keyboardToString(currentValue);
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
     }
 
+    /*
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
       const currentValue = hotkeys[configName];
 
@@ -300,11 +302,12 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = controllerToString(currentValue as Controller);
+        text = controllerToString(currentValue);
       }
 
       return `${shortDescription}: ${text} (controller)`;
     }
+    */
 
     default: {
       return error(`Option types of ${optionType} are unsupported.`);

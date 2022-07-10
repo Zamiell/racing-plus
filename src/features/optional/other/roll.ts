@@ -2,7 +2,6 @@ import {
   ButtonAction,
   CollectibleType,
   Direction,
-  Keyboard,
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
@@ -13,7 +12,7 @@ import {
   isActionPressedOnAnyInput,
   isCharacter,
   isJacobOrEsau,
-  isKeyboardPressed,
+  registerHotkey,
   saveDataManager,
   VectorZero,
 } from "isaacscript-common";
@@ -29,8 +28,6 @@ const ROLL_STOP_FRAME = 17;
 const VANILLA_SPEED = 4.4;
 const ROLL_SPEED = VANILLA_SPEED * 2;
 
-let isPressed = false;
-
 const v = {
   run: {
     rolling: false,
@@ -42,41 +39,26 @@ const v = {
 
 export function init(): void {
   saveDataManager(FEATURE_NAME, v, featureEnabled);
+
+  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+  const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
+  // eslint-disable-next-line isaacscript/strict-enums
+  registerHotkey(keyboardFunc, checkStartRoll);
 }
 
 function featureEnabled() {
   return config.roll;
 }
 
-// ModCallback.POST_RENDER (2)
-export function postRender(): void {
+function checkStartRoll() {
   if (!rollEnabled()) {
     return;
   }
 
-  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
-  checkInput();
-}
-
-function checkInput() {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.roll as Keyboard)) {
-    isPressed = false;
-    return;
-  }
-
-  if (isPressed) {
-    return;
-  }
-  isPressed = true;
-
-  checkStartRoll();
-}
-
-function checkStartRoll() {
   const player = getRollPlayer();
 
   if (playerCanRoll(player)) {

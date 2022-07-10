@@ -55,7 +55,7 @@ export function shouldApplyPlanetariumFix(): boolean {
  * divergence in seeded races. In order to mitigate this, we force all players to visit every
  * Treasure Room and Planetarium in seeded races.
  */
-export function planetariumFix(): void {
+export function planetariumFixBeginWarp(): void {
   const hud = game.GetHUD();
   const roomGridIndex = getRoomGridIndex();
 

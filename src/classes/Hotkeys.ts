@@ -1,9 +1,11 @@
+import { Keyboard } from "isaac-typescript-definitions";
+
 export class Hotkeys {
-  fastDropAll = -1;
-  fastDropTrinkets = -1;
-  fastDropPocket = -1;
-  schoolbagSwitch = -1;
-  autofire = -1;
-  console = -1;
-  roll = -1;
+  fastDropAll: Keyboard | -1 = -1;
+  fastDropTrinkets: Keyboard | -1 = -1;
+  fastDropPocket: Keyboard | -1 = -1;
+  schoolbagSwitch: Keyboard | -1 = -1;
+  autofire: Keyboard | -1 = -1;
+  console: Keyboard | -1 = -1;
+  roll: Keyboard | -1 = -1;
 }

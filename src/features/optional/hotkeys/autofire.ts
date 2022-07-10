@@ -1,8 +1,8 @@
 // We have to return a value from both the `isActionPressed` and the `getActionValue` callbacks in
 // order for Anti-Gravity autofire to work.
 
-import { CollectibleType, Keyboard } from "isaac-typescript-definitions";
-import { game, isKeyboardPressed, saveDataManager } from "isaacscript-common";
+import { CollectibleType } from "isaac-typescript-definitions";
+import { game, registerHotkey, saveDataManager } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 import * as streakText from "../../mandatory/streakText";
@@ -19,40 +19,25 @@ const v = {
   },
 };
 
-let isPressed = false;
-
 export function init(): void {
   saveDataManager("autofire", v, featureEnabled);
+
+  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+  const keyboardFunc = () =>
+    hotkeys.autofire === -1 ? undefined : hotkeys.autofire;
+  // eslint-disable-next-line isaacscript/strict-enums
+  registerHotkey(keyboardFunc, toggleAutofire);
 }
 
 function featureEnabled() {
   return hotkeys.autofire !== -1;
 }
 
-// ModCallback.POST_RENDER (2)
-export function postRender(): void {
-  if (hotkeys.autofire === -1) {
-    return;
-  }
-
+function toggleAutofire() {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.autofire as Keyboard)) {
-    isPressed = false;
-    return;
-  }
-
-  if (isPressed) {
-    return;
-  }
-  isPressed = true;
-
-  toggleAutofire();
-}
-
-function toggleAutofire() {
   v.run.enabled = !v.run.enabled;
   const enabledText = v.run.enabled ? "Enabled" : "Disabled";
   streakText.set(`${enabledText} autofire.`);

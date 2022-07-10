@@ -33,7 +33,7 @@ import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { moveEsauNextToJacob } from "../../../../utils";
 import {
-  planetariumFix,
+  planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
@@ -263,7 +263,7 @@ function setGoingToNewFloor() {
   // Defer going to the next floor if we need to visit other rooms first. (The
   // "finishGoingToNewFloor" function will be manually called later in the PostUpdate callback.)
   if (shouldApplyPlanetariumFix()) {
-    planetariumFix();
+    planetariumFixBeginWarp();
     return;
   }
 

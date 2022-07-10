@@ -1,39 +1,20 @@
-import { Keyboard } from "isaac-typescript-definitions";
-import { getPlayers, isKeyboardPressed } from "isaacscript-common";
+import { getPlayers, registerHotkey } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 
-let isPressed = false;
-
-// ModCallback.POST_RENDER (2)
-export function postRender(): void {
-  if (hotkeys.schoolbagSwitch === -1) {
-    return;
-  }
-
+export function init(): void {
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
-  checkInput();
+  const keyboardFunc = () =>
+    hotkeys.schoolbagSwitch === -1 ? undefined : hotkeys.schoolbagSwitch;
+  // eslint-disable-next-line isaacscript/strict-enums
+  registerHotkey(keyboardFunc, schoolbagSwitch);
 }
 
-function checkInput() {
+function schoolbagSwitch() {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }
 
-  if (!isKeyboardPressed(hotkeys.schoolbagSwitch as Keyboard)) {
-    isPressed = false;
-    return;
-  }
-
-  if (isPressed) {
-    return;
-  }
-  isPressed = true;
-
-  schoolbagSwitch();
-}
-
-function schoolbagSwitch() {
   for (const player of getPlayers()) {
     player.SwapActiveItems(); // This will be a no-op if they do not have the Schoolbag.
   }
