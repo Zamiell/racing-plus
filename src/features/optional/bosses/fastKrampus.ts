@@ -15,6 +15,7 @@ import {
   getRandom,
   log,
   newRNG,
+  nextSeed,
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
@@ -107,10 +108,16 @@ function getKrampusItemSubType() {
     return CollectibleType.LUMP_OF_COAL;
   }
 
-  const chance = getRandom(startSeed);
-  const coal = chance < 0.5;
+  // We want to use the starting seed of the run as a base for the random check, but if we use the
+  // starting seed without iterating it, coal will always drop in seeded races. This is because the
+  // `consistentDevilAngelRooms` feature only selects Devil Rooms 50% of the time.
+  const seed = nextSeed(startSeed);
+  const chance = getRandom(seed);
+  const shouldGetCoal = chance < 0.5;
 
-  return coal ? CollectibleType.LUMP_OF_COAL : CollectibleType.HEAD_OF_KRAMPUS;
+  return shouldGetCoal
+    ? CollectibleType.LUMP_OF_COAL
+    : CollectibleType.HEAD_OF_KRAMPUS;
 }
 
 function getKrampusBans(): [coalBanned: boolean, headBanned: boolean] {
