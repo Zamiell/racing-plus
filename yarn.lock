@@ -2628,6 +2628,13 @@ isaacscript-common@^5.1.2:
   dependencies:
     isaac-typescript-definitions "^3.0.18"
 
+isaacscript-common@^5.1.5:
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-5.1.5.tgz#7c1bad9a275c120fff87b518f3ae67ee1ada1277"
+  integrity sha512-a4X2jLu4unYN/qg72tSiZEaKrWVVGXnOR4xWNON2K3UZ21pB4w4ZhIrXGN80NBFlejb1UQNHV3Ew4GJ+l54tlQ==
+  dependencies:
+    isaac-typescript-definitions "^3.0.18"
+
 isaacscript-lint@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-3.0.0.tgz#c5f4d7dc3e47ed60e712ac24a103ba19f77bbfb0"
