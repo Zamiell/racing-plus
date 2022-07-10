@@ -1,11 +1,11 @@
 import { ButtonAction, Keyboard } from "isaac-typescript-definitions";
 import {
+  game,
   isActionTriggeredOnAnyInput,
   isKeyboardPressed,
   restart,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { speedrunSetFastReset } from "../../speedrun/exported";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
@@ -36,7 +36,7 @@ export function postRender(): void {
 
 // Check for fast-reset inputs.
 function checkResetInput() {
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
 
   // Disable the fast-reset feature if the console is open. (This will also disable the feature when
   // the game is paused, but that's okay as well.)

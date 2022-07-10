@@ -1,5 +1,5 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
-import { emptyArray, inStartingRoom, logError } from "isaacscript-common";
+import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
 import g from "../../../../globals";
 import { initGlowingItemSprite, initSprite } from "../../../../sprite";
 import { bossPNGMap } from "./bossPNGMap";
@@ -71,7 +71,7 @@ export function reset(): void {
 }
 
 function shouldShowSprites() {
-  const isGreedMode = g.g.IsGreedMode();
+  const isGreedMode = game.IsGreedMode();
 
   return (
     (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
@@ -83,8 +83,8 @@ function shouldShowSprites() {
 }
 
 export function draw(): void {
-  const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
+  const hud = game.GetHUD();
   const topLeftRoomPosition = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
   const nextToDreamCatcherPosition = g.r.GetGridPosition(
     TOP_LEFT_GRID_INDEX + 1,

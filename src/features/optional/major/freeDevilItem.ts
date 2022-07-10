@@ -9,6 +9,7 @@ import {
   anyPlayerHasCollectible,
   anyPlayerIs,
   DefaultMap,
+  game,
   getTaintedMagdaleneNonTemporaryMaxHearts,
   inStartingRoom,
   isCharacter,
@@ -77,7 +78,7 @@ export function postRender(): void {
 }
 
 function drawIconSprite() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;
@@ -195,7 +196,7 @@ export function shouldGetFreeDevilItemOnThisRun(): boolean {
 }
 
 function shouldGetFreeDevilItemInThisRoom() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const roomType = g.r.GetType();
 
   return (

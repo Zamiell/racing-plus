@@ -11,6 +11,7 @@ import {
 import {
   anyPlayerHasCollectible,
   findFreePosition,
+  game,
   getTotalPlayerCollectibles,
   log,
   newRNG,
@@ -163,7 +164,7 @@ function spawnSeededDrop() {
 
   // Hard mode has a chance to remove a heart drop.
   if (
-    g.g.Difficulty === Difficulty.HARD &&
+    game.Difficulty === Difficulty.HARD &&
     pickupVariant === PickupVariant.HEART
   ) {
     if (rng.RandomInt(100) >= 35) {

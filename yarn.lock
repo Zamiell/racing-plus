@@ -1058,11 +1058,6 @@ ci-info@^3.2.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.3.2.tgz#6d2967ffa407466481c6c90b6e16b3098f080128"
   integrity sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg==
 
-cint@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/cint/-/cint-8.2.1.tgz#70386b1b48e2773d0d63166a55aff94ef4456a12"
-  integrity sha512-gyWqJHXgDFPNx7PEyFJotutav+al92TTC3dWlMFyTETlOyKBQMZb7Cetqmj3GlrnSILHwSJRwf4mIGzc7C5lXw==
-
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
@@ -2619,26 +2614,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^3.0.13:
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.13.tgz#8140decf8cd89bbe5d7c46f107e5f0cd9864a213"
-  integrity sha512-Zj8Qphkkrfic5g5ipINJUXzkTM3GuP9npvP2yyJl3MxuVweYDzR2sCXTE9ZZFdrA8J27FTxu00A0GpG+3UxVTA==
+isaac-typescript-definitions@^3.0.18:
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.18.tgz#5b25463840d06e41522d1ceff262c6ef5b6fb10a"
+  integrity sha512-rX4xDJH+D+kko+Mtp/r0LqRwQJVOTuLjVpnt4gHhCrLM4qtKuAICWeJP7n0glDLC1zKSA7HYkRkfOtSCpbSTsg==
   dependencies:
     lua-types "^2.11.0"
 
-isaac-typescript-definitions@^3.0.17:
-  version "3.0.17"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.17.tgz#36a7c03fb098cab3af5cca92b7a1546bdbb81ac0"
-  integrity sha512-aesMJD1uRLSrEx2XVuQtJjVUCwC1ARMxQOMBhXztzxxwVwH5Tsg/rD5OaVT6uh+16DY7DEOWho2MayjSISiYPw==
+isaacscript-common@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-5.1.2.tgz#28da0b5b72adb709d293a6e5bc3365a82371336f"
+  integrity sha512-fS8sJFQgMHYxMAEE6riwEEUQq/bs0B9dA57w0cQcRdCDGzjfC/tZkPS+2VSNe1i8oqXGC+MzaupFUtobWgmuqA==
   dependencies:
-    lua-types "^2.11.0"
-
-isaacscript-common@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-4.9.0.tgz#d26d4a8ad8a96a7f239db03deb6c1d259838234d"
-  integrity sha512-U2gNhsfFBy8GF2bkc4GgNnF1d6iF1CoqvYR/HpuNcvdCuNi8bP/6s8LQLiI7z6GiftsMcACDQZfqUOz8154SXw==
-  dependencies:
-    isaac-typescript-definitions "^3.0.17"
+    isaac-typescript-definitions "^3.0.18"
 
 isaacscript-lint@^3.0.0:
   version "3.0.0"
@@ -2664,20 +2652,20 @@ isaacscript-lint@^3.0.0:
     prettier-plugin-organize-imports "^3.0.0"
     ts-prune "^0.10.3"
 
-isaacscript-spell@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.5.tgz#09d4031e9dc25c67b5801bdd0db45cd19e3c05e2"
-  integrity sha512-62XJRDJlguQKvGb5RdaPP80Ft71DPJwcrfOrm1FeZb6ivDZs6LMMcO5BcLCt7CkGwwfspCUFdHZ5VtE1sfnxzA==
+isaacscript-spell@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.7.tgz#678b2b26ca20889ee181b2f90c84f9e09cd85d53"
+  integrity sha512-vmjyN/aasR9qyRPTxYPcc0fDCGSt87XyqdSoMcl5t4z8nTj3P7NdLsmRdqdgwjUhOC95O1/oE4W5G/vS2k060g==
 
 isaacscript-tsconfig@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.7.6:
-  version "2.7.6"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.7.6.tgz#2ade1c9612b604946abace161dc9a37079c32b4b"
-  integrity sha512-MpK4K+27e3kANlujX2TzjqcDMYz88JS2RxNhGAha11q3BOwGimVXV1vjQcgkQqMit9qDShNr/YnR8zUK+GMCOQ==
+isaacscript@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.8.0.tgz#0070323f83933539218bf10051b3a28b75f61862"
+  integrity sha512-oR40Y4ddB+hAK1um2FhhE5XOS3jPzExRQUhSlTBxB8Bg/i3FmZ9PdzrolbtjVdP+gbZFwj+Tj1SwOWlXV5SkdA==
   dependencies:
     chalk "4.1.2"
     command-exists "^1.2.9"
@@ -2685,11 +2673,12 @@ isaacscript@^2.7.6:
     figlet "^1.5.2"
     fs-extra "^10.1.0"
     git-dirty "^1.0.2"
-    isaac-typescript-definitions "^3.0.13"
+    isaac-typescript-definitions "^3.0.18"
+    isaacscript-common "^5.1.2"
     isaacscript-tsconfig "^2.0.0"
     jsonc-parser "^3.0.0"
-    moment "^2.29.3"
-    npm-check-updates "^15.0.2"
+    moment "^2.29.4"
+    npm-check-updates "^15.2.1"
     prompt "^1.3.0"
     source-map-support "^0.5.21"
     sync-directory "^5.1.7"
@@ -3065,10 +3054,10 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@^2.29.3:
-  version "2.29.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
-  integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
+moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 ms@2.0.0:
   version "2.0.0"
@@ -3162,13 +3151,12 @@ npm-bundled@^1.1.1, npm-bundled@^1.1.2:
   dependencies:
     npm-normalize-package-bin "^1.0.1"
 
-npm-check-updates@^15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-15.0.2.tgz#ff274346709c68351e20e8b04210296a356249b7"
-  integrity sha512-ZSmNUm2Cl8K7VZBhLY4/AE2NHmZfR4glKoRZIeJrgg5bvFP1LhRBU3tdS+IX1+MLoUvpF2L+Q7oD5QO+nBOm+Q==
+npm-check-updates@^15.2.1:
+  version "15.2.6"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-15.2.6.tgz#d460d586c383afbffc2006b461d05ad2207bc965"
+  integrity sha512-lXihP+6EjHW74ENE6YYW2feUmdsfK4evus2ZTCyTd0QSnmHdx0bcHpiHsjgqjPtIqgHPJXLCrV6gd3JGYZg3xg==
   dependencies:
     chalk "^4.1.2"
-    cint "^8.2.1"
     cli-table "^0.3.11"
     commander "^9.3.0"
     fast-memoize "^2.5.2"
@@ -3185,7 +3173,7 @@ npm-check-updates@^15.0.2:
     pacote "^13.6.1"
     parse-github-url "^1.0.2"
     progress "^2.0.3"
-    prompts-ncu "^2.5.0"
+    prompts-ncu "^2.5.1"
     rc-config-loader "^4.1.0"
     remote-git-tags "^3.0.0"
     rimraf "^3.0.2"
@@ -3538,10 +3526,10 @@ prompt@^1.3.0:
     revalidator "0.1.x"
     winston "2.x"
 
-prompts-ncu@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/prompts-ncu/-/prompts-ncu-2.5.0.tgz#eae6bb7f5564aa3937b037df1096d6dd3b828346"
-  integrity sha512-a9WdInrG7zSlmfzDszmF3r8O4grZRI8+ChV0LtagHRT4dH7F+kxkrwFPGxeS83FZgAGBx3AXoLP+c4kGJb1P3w==
+prompts-ncu@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/prompts-ncu/-/prompts-ncu-2.5.1.tgz#0a75702e0af1d1319261113aad9153fd7267122a"
+  integrity sha512-Hdd7GgV7b76Yh9FP9HL1D9xqtJCJdVPpiM2vDtuoc8W1KfweJe15gutFYmxkq83ViFaagFM8K0UcPCQ/tZq8bA==
   dependencies:
     kleur "^4.0.1"
     sisteransi "^1.0.5"
@@ -4219,6 +4207,15 @@ typescript-to-lua@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.6.2.tgz#2fcb83858784976f6b899a82f3ba63899c36e6e6"
   integrity sha512-m0TZ2RqL6BPy3/TNIjbVDTr9N6M45Qyb2/VJpBz0qnS3zTXxhAOugc+PaILSVwvCb1vent8ateWDt2fcEtcsRw==
+  dependencies:
+    enhanced-resolve "^5.8.2"
+    resolve "^1.15.1"
+    source-map "^0.7.3"
+
+typescript-to-lua@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.6.3.tgz#a4afdabf6dba3d51bea12100c827202401dc37cf"
+  integrity sha512-yfXxGjOwX6453wSgEB37lLdxZZ8m+LH1g3PfebNfKaZHGGtbm9owxE6oRKB3sWcy2CICkfobAjWf3VdhKnEETg==
   dependencies:
     enhanced-resolve "^5.8.2"
     resolve "^1.15.1"

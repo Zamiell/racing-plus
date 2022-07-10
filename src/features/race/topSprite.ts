@@ -4,7 +4,7 @@
 // 3) "Go!"
 // 4) Once we have finished a race, the final place.
 
-import { getScreenCenterPos } from "isaacscript-common";
+import { game, getScreenCenterPos } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -30,7 +30,7 @@ export function postRender(): void {
 }
 
 function drawSprite() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

@@ -7,6 +7,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  game,
   getDefaultKColor,
   getFalsePHDPillEffect,
   getNormalPillColorFromHorse,
@@ -135,7 +136,7 @@ export function postRender(): void {
     return;
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

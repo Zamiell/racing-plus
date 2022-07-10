@@ -6,6 +6,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getCollectibleName,
   giveTrinketsBack,
   inAngelShop,
@@ -34,7 +35,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
     return undefined;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const roomType = g.r.GetType();
 
   if (gameFrameCount === v.room.usedD4Frame) {

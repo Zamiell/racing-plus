@@ -2,10 +2,10 @@ import { EntityType, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
   countEntities,
+  game,
   MAX_NUM_FAMILIARS,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { shouldGetFreeDevilItemOnThisRun } from "../major/freeDevilItem";
@@ -54,7 +54,7 @@ function drawSprite() {
     return;
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

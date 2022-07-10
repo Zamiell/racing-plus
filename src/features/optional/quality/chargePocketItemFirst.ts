@@ -29,6 +29,7 @@ import {
 import {
   DefaultMap,
   defaultMapGetPlayer,
+  game,
   getCollectibleMaxCharges,
   getTotalCharge,
   isActiveSlotEmpty,
@@ -101,7 +102,7 @@ function checkBatteryBumCharge(player: EntityPlayer) {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   if (gameFrameCount > v.run.checkForBatteryBumChargesUntilGameFrame) {
     v.run.checkForBatteryBumChargesUntilGameFrame = null;
     return;
@@ -169,6 +170,8 @@ export function usePill48HourEnergy(player: EntityPlayer): void {
 }
 
 // ModCallback.INPUT_ACTION (13)
+// InputHook.IS_ACTION_TRIGGERED (1)
+// ButtonAction.ITEM (9)
 export function isActionTriggeredItem(
   entity: Entity | undefined,
 ): boolean | undefined {
@@ -186,7 +189,8 @@ export function isActionTriggeredItem(
   }
 
   // Prevent using the active item before the charges have been swapped.
-  const roomFrameCount = g.r.GetFrameCount();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
   const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   const batteryBumCharging =
@@ -264,7 +268,7 @@ export function postSlotAnimationChangedBatteryBum(
   currentAnimation: string,
 ): void {
   const player = Isaac.GetPlayer();
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   if (!chargePocketFeatureShouldApply(player)) {
     return;
@@ -442,7 +446,7 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
 }
 
 function giveCharge(player: EntityPlayer, chargeSituation: ChargeSituation) {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   // Now, charge the active items in the proper order.
   for (const activeSlot of ACTIVE_SLOTS_PRECEDENCE) {

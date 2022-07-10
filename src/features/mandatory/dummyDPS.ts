@@ -1,4 +1,5 @@
 import {
+  game,
   GAME_FRAMES_PER_SECOND,
   getDefaultKColor,
   getScreenBottomRightPos,
@@ -30,7 +31,7 @@ export function postNPCRenderDummy(npc: EntityNPC): void {
 }
 
 function resetDPSIfNSecondsPassed() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   if (v.room.firstFrameOfDamage !== null && v.room.lastFrameOfDamage !== null) {
     const elapsedSeconds = getElapsedSeconds(
@@ -85,7 +86,7 @@ export function entityTakeDmgDummy(damageAmount: float): void {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   v.room.totalDamage += damageAmount;
   if (v.room.firstFrameOfDamage === null) {

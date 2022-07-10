@@ -1,4 +1,5 @@
 import {
+  game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
@@ -7,7 +8,6 @@ import {
   SPRITE_BETHANY_OFFSET,
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
-import g from "../../globals";
 import { shouldDrawPlaceLeftSprite } from "../race/placeLeft";
 import { CHALLENGE_DEFINITIONS } from "./constants";
 import v from "./v";
@@ -49,8 +49,7 @@ export function postRender(): void {
 }
 
 function drawCharacterProgressAndSeasonIcon() {
-  const hud = g.g.GetHUD();
-
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

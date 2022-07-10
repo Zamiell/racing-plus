@@ -1,6 +1,5 @@
 import { PickupVariant } from "isaac-typescript-definitions";
-import { isFirstPlayer, isKeeper } from "isaacscript-common";
-import g from "../../../../globals";
+import { game, isFirstPlayer, isKeeper } from "isaacscript-common";
 import { insertPickup } from "./insertPickup";
 import v from "./v";
 
@@ -30,7 +29,7 @@ function updateDelta(
   pickupInserted: [PickupVariant, int],
   oldHearts: int,
 ) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // Determining where to draw the UI indicators for players other than the first player is too
   // difficult, so ignore this case.

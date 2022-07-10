@@ -1,4 +1,5 @@
 import {
+  game,
   getDefaultKColor,
   gridCoordinatesToWorldPosition,
   VectorZero,
@@ -24,7 +25,7 @@ export function changeCharOrderPostRender(): void {
 }
 
 function disableControls() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const player = Isaac.GetPlayer();
 
   // Disable the controls to prevent the player from moving around while the screen is still black.

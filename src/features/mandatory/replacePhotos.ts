@@ -1,6 +1,7 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  game,
   log,
   newRNG,
   saveDataManager,
@@ -59,7 +60,7 @@ function preventVanillaPhotos(
 
     const photoName =
       collectibleType === CollectibleType.POLAROID ? "Polaroid" : "Negative";
-    const gameFrameCount = g.g.GetFrameCount();
+    const gameFrameCount = game.GetFrameCount();
     const text = `Preventing a vanilla ${photoName} from spawning on game frame: ${gameFrameCount}`;
     log(text);
 

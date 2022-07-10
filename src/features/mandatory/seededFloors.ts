@@ -20,6 +20,7 @@ import {
 import {
   characterCanHaveRedHearts,
   characterGetsBlackHeartFromEternalHeart,
+  game,
   getPlayerHealth,
   getRandom,
   isCharacter,
@@ -116,7 +117,7 @@ export function before(): void {
   removeAllPlayerHealth(player);
 
   // Modification 1: Devil Room visited
-  g.g.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
+  game.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
   // `GameStateFlag.DEVIL_ROOM_VISITED` affects the chances of a Curse Room being generated.
   // However, in seeded races, we always start off the player with one Devil Room item taken (for
   // the consistent Devil/Angel room feature). Thus, default to always having this flag set to true,
@@ -126,9 +127,9 @@ export function before(): void {
   // Modification 2: Book touched
   const bookMod = getRandom(rng);
   if (bookMod < 0.5) {
-    g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, false);
+    game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, false);
   } else {
-    g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, true);
+    game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, true);
   }
 
   // Modification 3: Coins
@@ -208,8 +209,8 @@ export function after(): void {
 }
 
 function getGameStateFlags(): GameStateFlags {
-  const devilVisited = g.g.GetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED);
-  const bookPickedUp = g.g.GetStateFlag(GameStateFlag.BOOK_PICKED_UP);
+  const devilVisited = game.GetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED);
+  const bookPickedUp = game.GetStateFlag(GameStateFlag.BOOK_PICKED_UP);
 
   return {
     devilRoomVisited: devilVisited,
@@ -218,11 +219,11 @@ function getGameStateFlags(): GameStateFlags {
 }
 
 function setGameStateFlags(gameStateFlags: GameStateFlags) {
-  g.g.SetStateFlag(
+  game.SetStateFlag(
     GameStateFlag.DEVIL_ROOM_VISITED,
     gameStateFlags.devilRoomVisited,
   );
-  g.g.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, gameStateFlags.bookTouched);
+  game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, gameStateFlags.bookTouched);
 }
 
 function getInventory(player: EntityPlayer): Inventory {

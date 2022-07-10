@@ -5,6 +5,7 @@
 
 import { Direction, PlayerType } from "isaac-typescript-definitions";
 import {
+  game,
   getCircleDiscretizedPoints,
   getPlayers,
   isCharacter,
@@ -21,7 +22,7 @@ export function postGameStarted(): void {
 }
 
 export function centerPlayers(): void {
-  const isGreedMode = g.g.IsGreedMode();
+  const isGreedMode = game.IsGreedMode();
   const centerPos = g.r.GetCenterPos();
 
   // In Greed Mode, we cannot put the player in the center of the room, because they would
@@ -70,7 +71,7 @@ function pickUpTaintedForgotten() {
 
 // ModCallback.POST_EFFECT_INIT (54)
 export function poof01(effect: EntityEffect): void {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // If players start the run with familiars, they will leave behind stray poofs when they get
   // moved.

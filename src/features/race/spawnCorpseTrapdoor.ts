@@ -7,7 +7,7 @@ import {
   RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
-import { spawnGridWithVariant } from "isaacscript-common";
+import { game, spawnGridWithVariant } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -18,10 +18,10 @@ const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomType = g.r.GetType();
-  const mausoleumHeartKilled = g.g.GetStateFlag(
+  const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
+  const roomType = g.r.GetType();
 
   if (
     !v.run.spawnedCorpseTrapdoor &&

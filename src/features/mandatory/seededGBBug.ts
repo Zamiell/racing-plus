@@ -8,6 +8,7 @@
 
 import { PickupNullSubType, PickupVariant } from "isaac-typescript-definitions";
 import {
+  game,
   getPickups,
   newRNG,
   saveDataManager,
@@ -38,7 +39,7 @@ export function postGameStarted(): void {
 // ModCallback.POST_PICKUP_INIT (34)
 export function postPickupInit(pickup: EntityPickup): void {
   v.run.lastSpawnedPickupPtrHash = GetPtrHash(pickup);
-  v.run.lastSpawnedPickupFrame = g.g.GetFrameCount();
+  v.run.lastSpawnedPickupFrame = game.GetFrameCount();
 }
 
 // ModCallback.POST_FAMILIAR_RENDER (25)
@@ -72,7 +73,7 @@ function getLastSpawnedPickup() {
     return null;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   for (const pickup of getPickups()) {
     const ptrHash = GetPtrHash(pickup);

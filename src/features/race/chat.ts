@@ -1,3 +1,4 @@
+import { game } from "isaacscript-common";
 import { Colors } from "../../enums/Colors";
 import g from "../../globals";
 import { config } from "../../modConfigMenu";
@@ -29,7 +30,7 @@ export function postRender(): void {
 }
 
 function drawChat() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

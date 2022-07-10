@@ -1,5 +1,5 @@
 import { GameStateFlag, RoomType } from "isaac-typescript-definitions";
-import { findFreePosition } from "isaacscript-common";
+import { findFreePosition, game } from "isaacscript-common";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
@@ -17,7 +17,7 @@ export function racePostUpdate(): void {
 
 function spawnBossRushTrophy() {
   const roomType = g.r.GetType();
-  const bossRushDone = g.g.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
+  const bossRushDone = game.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
     !doesTrophyExist() &&

@@ -1,5 +1,4 @@
-import { getEntityID, log, saveDataManager } from "isaacscript-common";
-import g from "../../../../globals";
+import { game, getEntityID, log, saveDataManager } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { FAST_CLEAR_DEBUG } from "./constants";
 
@@ -31,7 +30,7 @@ export function logFastClear(
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   const verb = added ? "Added" : "Removed";
   const entityID = getEntityID(entity);

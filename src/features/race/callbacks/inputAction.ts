@@ -4,6 +4,7 @@ import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
+// ModCallback.INPUT_ACTION (13)
 // InputHook.IS_ACTION_TRIGGERED (1)
 // ButtonAction.CONSOLE (28)
 export function isActionTriggeredConsole(): boolean | undefined {

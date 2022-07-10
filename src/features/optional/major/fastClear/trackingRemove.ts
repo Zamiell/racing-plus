@@ -1,5 +1,5 @@
 import { ChampionColor } from "isaac-typescript-definitions";
-import g from "../../../../globals";
+import { game } from "isaacscript-common";
 import v, { logFastClear } from "./v";
 
 // ModCallback.POST_ENTITY_REMOVE (67)
@@ -53,7 +53,7 @@ export function checkRemove(
 }
 
 function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   v.room.aliveEnemies.delete(ptrHash);
   logFastClear(false, npc, ptrHash, parentCallback);

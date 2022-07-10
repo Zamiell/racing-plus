@@ -3,6 +3,7 @@
 
 import {
   DefaultMap,
+  game,
   getPlayerIndex,
   PlayerIndex,
   saveDataManager,
@@ -14,7 +15,6 @@ import {
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
@@ -95,7 +95,7 @@ function incrementLeadPencilCounter(parent: Entity | undefined) {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // The Forgotten and The Soul have different Lead Pencil counters.
   const playerIndex = getPlayerIndex(player, true);

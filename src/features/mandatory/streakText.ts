@@ -11,6 +11,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
+  game,
   getCardName,
   getCollectibleName,
   getEffectiveStage,
@@ -96,7 +97,7 @@ function checkDraw() {
     return;
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }
@@ -238,7 +239,7 @@ export function preUseItemDeadSeaScrolls(
   player: EntityPlayer,
   activeSlot: ActiveSlot,
 ): boolean | undefined {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   const randomCollectible = getRandomArrayElement(
     DEAD_SEA_SCROLL_EFFECTS,

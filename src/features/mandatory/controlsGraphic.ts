@@ -5,6 +5,7 @@
 
 import { EffectVariant, StageType } from "isaac-typescript-definitions";
 import {
+  game,
   getEffectiveStage,
   inStartingRoom,
   spawnEffect,
@@ -56,7 +57,7 @@ function drawControlsGraphic() {
 function shouldDrawControlsGraphic() {
   // Only draw the graphic in the starting room of the first floor. We ignore Greed Mode to simplify
   // things, even though on vanilla, the sprite will display in Greed Mode.
-  const isGreedMode = g.g.IsGreedMode();
+  const isGreedMode = game.IsGreedMode();
   const effectiveStage = getEffectiveStage();
 
   return (

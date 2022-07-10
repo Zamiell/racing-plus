@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   forceNewRoomCallback,
+  game,
   getNPCs,
   gridCoordinatesToWorldPosition,
   itemConfig,
@@ -50,7 +51,7 @@ function gotoButtonRoom() {
 
 function setupButtonRoom() {
   const player = Isaac.GetPlayer();
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   hud.SetVisible(false);
 

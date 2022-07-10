@@ -86,7 +86,7 @@ function warpToNextRoom() {
   log("Planetarium Fix - Finished warping.");
   // We only re-enable the hud once we have reached the new floor.
   enableAllSound(FEATURE_NAME);
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
 }
 

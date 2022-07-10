@@ -9,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   DefaultMap,
+  game,
   getRoomListIndex,
   ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
@@ -249,8 +250,8 @@ function updateShadow(shadowMessage: ShadowMessage) {
 }
 
 function drawShadows() {
-  const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
+  const hud = game.GetHUD();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const renderFrameCount = Isaac.GetFrameCount();

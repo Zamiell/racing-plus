@@ -1,11 +1,11 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import {
+  game,
   getScreenCenterPos,
   isKeyboardPressed,
   saveDataManager,
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
-import g from "../../globals";
 
 const SHOW_VERSION_ACTIVATION_HOTKEY = Keyboard.F1;
 
@@ -21,8 +21,8 @@ export function init(): void {
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  const hud = g.g.GetHUD();
-  const gameFrameCount = g.g.GetFrameCount();
+  const hud = game.GetHUD();
+  const gameFrameCount = game.GetFrameCount();
 
   if (!hud.IsVisible()) {
     return;

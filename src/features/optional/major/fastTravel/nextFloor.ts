@@ -7,6 +7,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   calculateStageTypeRepentance,
+  game,
   getNextStage,
   getNextStageType,
   getPlayers,
@@ -23,7 +24,7 @@ import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcher
 import v from "./v";
 
 export function goto(upwards: boolean): void {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   const stage = g.l.GetStage();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
@@ -82,8 +83,10 @@ export function goto(upwards: boolean): void {
 }
 
 function getNextStageCustom() {
+  const backwardsPathInit = game.GetStateFlag(
+    GameStateFlag.BACKWARDS_PATH_INIT,
+  );
   const stage = g.l.GetStage();
-  const backwardsPathInit = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT);
   const repentanceStage = onRepentanceStage();
 
   if (

@@ -7,6 +7,7 @@ import {
 import {
   forceNewLevelCallback,
   forceNewRoomCallback,
+  game,
   getEffectiveStage,
   getFamiliars,
   getNPCs,
@@ -70,7 +71,7 @@ function emulateGapingMaws() {
 }
 
 function drawSprites() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

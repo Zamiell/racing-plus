@@ -7,6 +7,7 @@ import {
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getClosestPlayer,
   getRoomListIndex,
   inMegaSatanRoom,
@@ -35,8 +36,8 @@ export function postRender(): void {
 }
 
 function drawSprites() {
-  const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

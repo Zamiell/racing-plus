@@ -1,5 +1,6 @@
 import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
+  game,
   isCharacter,
   isReflectionRender,
   VectorZero,
@@ -112,7 +113,7 @@ function getNumHigherPrecedenceCustomChargeBars(
  * water reflection.
  */
 export function shouldDrawAnyCustomChargeBar(): boolean {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   return hud.IsVisible() && !isReflectionRender();
 }

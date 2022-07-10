@@ -4,8 +4,7 @@
 // we always make Uriel spawn first for balance reasons.
 
 import { AngelVariant, EntityType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
-import g from "../../../globals";
+import { game, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER = 2;
@@ -31,7 +30,7 @@ export function useItemMeatCleaver(): void {
     return;
   }
 
-  v.room.usedMeatCleaverFrame = g.g.GetFrameCount();
+  v.room.usedMeatCleaverFrame = game.GetFrameCount();
 }
 
 // ModCallback.PRE_ENTITY_SPAWN (24)
@@ -68,7 +67,7 @@ function checkCorrectAngelType(
   subType: int,
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // This feature should not apply to angels that were duplicated with a Meat Cleaver.
   if (

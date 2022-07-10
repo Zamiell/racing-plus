@@ -8,6 +8,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getEffectiveStage,
   getEntities,
   getNPCs,
@@ -35,7 +36,7 @@ export function postUpdate(): void {
 }
 
 function checkEarlyClearRoom() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const roomFrameCount = g.r.GetFrameCount();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
@@ -88,7 +89,7 @@ function checkEarlyClearRoom() {
 }
 
 function earlyClearRoom() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
   const roomData = getRoomData();

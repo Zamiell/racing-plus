@@ -9,6 +9,7 @@ import {
   anyPlayerHasCollectible,
   changeRoom,
   disableAllSound,
+  game,
   getEffectiveStage,
   getEffects,
   getFloorDisplayFlags,
@@ -30,8 +31,8 @@ import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
 const STAIRWAY_GRID_INDEX = 25;
 
 export function checkStartDreamCatcherWarp(): void {
-  const isGreedMode = g.g.IsGreedMode();
-  const onTheAscent = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
+  const isGreedMode = game.IsGreedMode();
+  const onTheAscent = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const isFirstVisit = g.r.IsFirstVisit();
   const effectiveStage = getEffectiveStage();
 
@@ -91,7 +92,7 @@ function startWarp() {
   );
   v.level.warpState = DreamCatcherWarpState.WARPING;
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   hud.SetVisible(false);
 
   disableAllSound(DREAM_CATCHER_FEATURE_NAME);

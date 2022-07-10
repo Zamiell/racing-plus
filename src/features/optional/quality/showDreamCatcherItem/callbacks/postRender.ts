@@ -1,5 +1,6 @@
 import {
   enableAllSound,
+  game,
   getEffects,
   getPlayers,
   setFloorDisplayFlags,
@@ -7,7 +8,6 @@ import {
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
-import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { centerPlayers } from "../../../../mandatory/centerStart";
 import * as sprites from "../sprites";
@@ -61,7 +61,7 @@ function repositionPlayer() {
     setPlayerHealth(player, v.level.health);
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   hud.SetVisible(true);
 
   enableAllSound(DREAM_CATCHER_FEATURE_NAME);

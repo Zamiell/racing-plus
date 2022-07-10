@@ -1,5 +1,5 @@
 import { Challenge, Difficulty } from "isaac-typescript-definitions";
-import { log, onSetSeed } from "isaacscript-common";
+import { game, log, onSetSeed } from "isaacscript-common";
 import { RaceDifficulty } from "../../../enums/RaceDifficulty";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { RacerStatus } from "../../../enums/RacerStatus";
@@ -104,11 +104,11 @@ function validateDifficulty() {
 
   if (
     g.race.difficulty === RaceDifficulty.NORMAL &&
-    g.g.Difficulty !== Difficulty.NORMAL &&
+    game.Difficulty !== Difficulty.NORMAL &&
     g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
-      `Error: Supposed to be on normal mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
+      `Error: Supposed to be on normal mode. (Currently, the difficulty is ${game.Difficulty}.)`,
     );
     topSprite.setErrorHardMode();
     return false;
@@ -116,11 +116,11 @@ function validateDifficulty() {
 
   if (
     g.race.difficulty === RaceDifficulty.HARD &&
-    g.g.Difficulty !== Difficulty.HARD &&
+    game.Difficulty !== Difficulty.HARD &&
     g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
-      `Error: Supposed to be on hard mode. (Currently, the difficulty is ${g.g.Difficulty}.)`,
+      `Error: Supposed to be on hard mode. (Currently, the difficulty is ${game.Difficulty}.)`,
     );
     topSprite.setErrorNormalMode();
     return false;

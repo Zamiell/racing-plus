@@ -2,8 +2,7 @@
 // order for Anti-Gravity autofire to work.
 
 import { CollectibleType, Keyboard } from "isaac-typescript-definitions";
-import { isKeyboardPressed, saveDataManager } from "isaacscript-common";
-import g from "../../../globals";
+import { game, isKeyboardPressed, saveDataManager } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
 import * as streakText from "../../mandatory/streakText";
@@ -118,7 +117,7 @@ export function inputActionGetActionValueShoot(
 }
 
 function autofireShouldReleaseKey(player: EntityPlayer) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const hasSpiritSword = player.HasCollectible(CollectibleType.SPIRIT_SWORD);
   const frameDelay = hasSpiritSword
     ? SPIRIT_SWORD_FRAME_DELAY

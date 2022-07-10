@@ -2,6 +2,7 @@
 // will depend on how many heart containers we have).
 
 import {
+  game,
   getEffectiveStage,
   getHeartsUIWidth,
   getHUDOffsetVector,
@@ -33,7 +34,7 @@ const STARTING_Y = 10;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

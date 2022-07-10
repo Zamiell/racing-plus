@@ -15,6 +15,7 @@ import {
   disableAllInputsExceptFor,
   enableAllInputs,
   forgottenSwitch,
+  game,
   getFamiliars,
   getPlayers,
   getRoomGridIndex,
@@ -112,7 +113,7 @@ function setGameStateFlags() {
     roomGridIndex === (GridRoom.SECRET_EXIT as int)
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
-    g.g.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
+    game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
   }
 
   // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast.
@@ -125,7 +126,7 @@ function setGameStateFlags() {
     roomType === RoomType.BOSS
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
-    g.g.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
+    game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
 
     // Furthermore, we want to prevent the new floor from being reseeded, so pretend that the boss
     // room with Mom in it is a Repentance secret exit. (Even though Repentance floors are on the

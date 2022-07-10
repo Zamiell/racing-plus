@@ -7,6 +7,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   emptyArray,
+  game,
   getDefaultColor,
   getPlayers,
   gridCoordinatesToWorldPosition,
@@ -36,7 +37,7 @@ export function postUpdate(): void {
 }
 
 function checkCreateButtons() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   if (
     v.room.createButtonsFrame === null ||
@@ -179,7 +180,7 @@ function checkPressedPhaseSeasonSelect(pressurePlate: GridEntityPressurePlate) {
 }
 
 function seasonButtonPressed(seasonChosenAbbreviation: string) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   const newPhase =
     seasonChosenAbbreviation === "R7S2"
@@ -252,7 +253,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.seasonChosenAbbreviation,
       v.room.charOrder,
     );
-    g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+    game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
     v.room.challengeTarget = ChallengeCustom.SEASON_1;
     v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
   }
@@ -352,7 +353,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.buildsChosen as PlayerType[],
     );
     season2SetBansTime();
-    g.g.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+    game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
     v.room.challengeTarget = ChallengeCustom.SEASON_2;
     v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
   }

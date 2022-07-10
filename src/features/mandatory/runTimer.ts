@@ -6,11 +6,11 @@
 import { ButtonAction, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
+  game,
   isActionPressedOnAnyInput,
   saveDataManager,
 } from "isaacscript-common";
 import { TimerType } from "../../enums/TimerType";
-import g from "../../globals";
 import * as timer from "../../timer";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
 
@@ -45,7 +45,7 @@ export function postRender(): void {
 }
 
 function checkDraw() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

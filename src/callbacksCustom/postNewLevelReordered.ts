@@ -1,4 +1,4 @@
-import { log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import { game, log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -15,7 +15,7 @@ export function init(mod: ModUpgraded): void {
 }
 
 function main() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const renderFrameCount = Isaac.GetFrameCount();

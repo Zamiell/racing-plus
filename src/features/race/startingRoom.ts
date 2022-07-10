@@ -1,5 +1,5 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
-import { isGoldenTrinket } from "isaacscript-common";
+import { game, isGoldenTrinket } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -34,7 +34,7 @@ export function postRender(): void {
 }
 
 function drawSprites() {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

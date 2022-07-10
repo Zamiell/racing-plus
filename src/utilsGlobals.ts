@@ -4,6 +4,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
 } from "isaacscript-common";
@@ -13,7 +14,7 @@ import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistent
 import g from "./globals";
 
 export function getEffectiveDevilDeals(): int {
-  const devilRoomDeals = g.g.GetDevilRoomDeals();
+  const devilRoomDeals = game.GetDevilRoomDeals();
 
   // In seeded races, we arbitrarily increase the Devil Room deals counter by one, so account for
   // this.
@@ -55,7 +56,7 @@ export function giveTrinketAndRemoveFromPools(
  * - Mod Config Menu is open
  */
 export function shouldCheckForGameplayInputs(): boolean {
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
   return !isPaused && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible);
 }
 

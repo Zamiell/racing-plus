@@ -1,12 +1,12 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
 import {
+  game,
   getCollectibleSet,
   getEffectiveStage,
   inStartingRoom,
   isEden,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initGlowingItemSprite } from "../../../sprite";
 
@@ -44,8 +44,8 @@ export function postRender(): void {
 }
 
 function drawItemSprites() {
-  const hud = g.g.GetHUD();
-  const isPaused = g.g.IsPaused();
+  const isPaused = game.IsPaused();
+  const hud = game.GetHUD();
 
   if (!hud.IsVisible()) {
     return;

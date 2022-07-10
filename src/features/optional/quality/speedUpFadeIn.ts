@@ -1,7 +1,6 @@
 // Get rid of the slow fade-in at the beginning of a run.
 
-import { saveDataManager } from "isaacscript-common";
-import g from "../../../globals";
+import { game, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 /** This is fine tuned from trial and error to be a good speed. */
@@ -33,11 +32,11 @@ export function postRender(): void {
 }
 
 function shouldSpeedUpFadeIn() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   return !v.run.spedUpFadeIn && gameFrameCount === 0;
 }
 
 function speedUpFadeIn() {
   v.run.spedUpFadeIn = true;
-  g.g.Fadein(FADE_IN_SPEED);
+  game.Fadein(FADE_IN_SPEED);
 }

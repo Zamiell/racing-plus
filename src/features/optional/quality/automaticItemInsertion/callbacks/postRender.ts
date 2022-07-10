@@ -1,5 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import {
+  game,
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
   isBethany,
@@ -27,7 +28,7 @@ export function automaticItemInsertionPostRender(): void {
     return;
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }
@@ -174,7 +175,7 @@ function drawTrinketsDelta() {
 }
 
 function getFade(frame: int) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const elapsedFrames = gameFrameCount - frame;
 
   if (elapsedFrames <= FRAMES_BEFORE_FADE) {

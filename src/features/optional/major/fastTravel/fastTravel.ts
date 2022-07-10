@@ -10,6 +10,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getRoomGridIndex,
   isChildPlayer,
   isPlayerUsingPony,
@@ -37,7 +38,7 @@ export function init(
   // description before checking whether or not it should open.
   shouldSpawnOpen: (entity: GridEntity | EntityEffect) => boolean,
 ): void {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   const sprite = entity.GetSprite();
   const fileName = sprite.GetFilename();
@@ -64,8 +65,8 @@ function getCustomSpriteFilename(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): string {
-  const isGreedMode = g.g.IsGreedMode();
-  const mausoleumHeartKilled = g.g.GetStateFlag(
+  const isGreedMode = game.IsGreedMode();
+  const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
   const stage = g.l.GetStage();

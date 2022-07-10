@@ -3,6 +3,7 @@ import {
   DefaultMap,
   disableAllInputs,
   enableAllInputs,
+  game,
   getEnumValues,
   getScreenBottomRightPos,
   hexToKColor,
@@ -52,8 +53,8 @@ export function init(): void {
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  const isPaused = g.g.IsPaused();
-  const hud = g.g.GetHUD();
+  const isPaused = game.IsPaused();
+  const hud = game.GetHUD();
   const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
 

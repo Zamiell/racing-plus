@@ -10,6 +10,7 @@ import {
 import {
   characterCanTakeFreeDevilDeals,
   findFreePosition,
+  game,
   getEnumValues,
   getPlayerIndex,
   inBeastRoom,
@@ -44,7 +45,7 @@ export function seededDeathPreCustomRevive(
 
 function shouldSeededDeathRevive(player: EntityPlayer) {
   const roomType = g.r.GetType();
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // Do not revive the player if they took a devil deal within the past few seconds. (We cannot use
   // the `DamageFlag.DAMAGE_DEVIL` to determine this because the player could have taken a devil

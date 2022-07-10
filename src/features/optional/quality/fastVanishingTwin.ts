@@ -8,6 +8,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   findFreePosition,
+  game,
   getBosses,
   getCollectibles,
   isStoryBoss,
@@ -52,7 +53,7 @@ function checkRoomCleared() {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   if (gameFrameCount < v.room.spawnClearAwardFrame) {
     return;
   }
@@ -179,6 +180,6 @@ export function preSpawnClearAward(): void {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   v.room.spawnClearAwardFrame = gameFrameCount;
 }

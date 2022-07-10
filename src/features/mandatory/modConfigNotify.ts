@@ -1,4 +1,4 @@
-import { getScreenBottomRightPos } from "isaacscript-common";
+import { game, getScreenBottomRightPos } from "isaacscript-common";
 import g from "../../globals";
 
 const NOTIFICATION_LENGTH = 300;
@@ -24,7 +24,7 @@ export function postRender(): void {
     return;
   }
 
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

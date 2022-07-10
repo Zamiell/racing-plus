@@ -1,5 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import { getEntityID, log } from "isaacscript-common";
+import { game, getEntityID, log } from "isaacscript-common";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
 import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
@@ -12,7 +12,6 @@ import * as preventVictoryLapPopup from "../features/optional/bosses/preventVict
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
-import g from "../globals";
 
 const POST_ENTITY_KILL_DEBUG = false;
 
@@ -83,7 +82,7 @@ export function init(mod: Mod): void {
 function main(entity: Entity) {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (POST_ENTITY_KILL_DEBUG) {
-    const gameFrameCount = g.g.GetFrameCount();
+    const gameFrameCount = game.GetFrameCount();
     const entityID = getEntityID(entity);
     log(`MC_POST_ENTITY_KILL - ${entityID} (on game frame ${gameFrameCount})`);
   }

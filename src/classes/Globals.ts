@@ -7,7 +7,6 @@ export class Globals {
   debug = true;
 
   // Cache some API classes.
-  g = game;
   l = game.GetLevel();
   r = game.GetRoom();
   seeds = game.GetSeeds();

@@ -1,4 +1,4 @@
-import g from "../../../../../globals";
+import { game } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import { finishGoingToNewFloor } from "../setNewState";
 import v from "../v";
@@ -12,7 +12,7 @@ export function fastTravelPostUpdate(): void {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   if (gameFrameCount >= v.level.resumeGameFrame) {
     v.level.resumeGameFrame = null;
     finishGoingToNewFloor();

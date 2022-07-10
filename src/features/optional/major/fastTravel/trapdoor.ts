@@ -7,6 +7,7 @@ import {
   TrapdoorState,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getRoomGridIndex,
   isPostBossVoidPortal,
   log,
@@ -93,11 +94,11 @@ function shouldIgnore(gridEntity: GridEntity) {
 }
 
 function shouldRemove() {
-  const gameFrameCount = g.g.GetFrameCount();
-  const mausoleumHeartKilled = g.g.GetStateFlag(
+  const gameFrameCount = game.GetFrameCount();
+  const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
-  const backwardPath = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
+  const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomGridIndex = getRoomGridIndex();

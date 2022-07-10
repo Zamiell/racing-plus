@@ -1,8 +1,7 @@
 import { EntityCollisionClass } from "isaac-typescript-definitions";
-import { getEffects, getPlayers } from "isaacscript-common";
+import { game, getEffects, getPlayers } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
-import g from "../../../../globals";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
@@ -65,7 +64,7 @@ function incrementFramesPassed() {
   // Only increment the fade timer if the game is not paused. To avoid this, we could base the timer
   // on game frames, but that does not result in a smooth enough fade out (because it is only
   // updated on every other render frame).
-  if (g.g.IsPaused()) {
+  if (game.IsPaused()) {
     return;
   }
 

@@ -7,6 +7,7 @@ import {
   SeedEffect,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
@@ -33,8 +34,7 @@ const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  const hud = g.g.GetHUD();
-
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }
@@ -60,9 +60,9 @@ export function getPosition(): Vector {
 
   // On vanilla, being in Hard Mode shifts the "No Achievements" icon to the right. Being in greed
   // mode shifts the "No Achievements" icon to the left.
-  if (g.g.Difficulty === Difficulty.HARD) {
+  if (game.Difficulty === Difficulty.HARD) {
     position = position.add(SPRITE_DIFFICULTY_OFFSET);
-  } else if (g.g.IsGreedMode()) {
+  } else if (game.IsGreedMode()) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 

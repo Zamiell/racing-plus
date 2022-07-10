@@ -1,12 +1,12 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import {
   DefaultMap,
+  game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
 } from "isaacscript-common";
 import { TimerType } from "./enums/TimerType";
-import g from "./globals";
 import { initSprite } from "./sprite";
 
 class TimerSprites {
@@ -41,8 +41,7 @@ export function draw(
   startingX?: int,
   startingY?: int,
 ): void {
-  const hud = g.g.GetHUD();
-
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

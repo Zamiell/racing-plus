@@ -2,6 +2,7 @@ import { RoomType } from "isaac-typescript-definitions";
 import {
   anyPlayerCloserThan,
   anyPlayerUsingPony,
+  game,
   log,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
@@ -184,7 +185,7 @@ function shouldBeClosedFromStartingInRoomWithEnemies(initial: boolean) {
 }
 
 function playerCloseAfterBoss(position: Vector) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const roomType = g.r.GetType();
 
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after

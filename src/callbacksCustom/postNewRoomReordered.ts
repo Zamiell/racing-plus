@@ -1,5 +1,6 @@
 import { GridRoom } from "isaac-typescript-definitions";
 import {
+  game,
   getRoomGridIndex,
   getRoomStageID,
   getRoomSubType,
@@ -49,7 +50,7 @@ export function init(mod: ModUpgraded): void {
 function main() {
   updateCachedAPIFunctions();
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const stage = g.l.GetStage();
   const stageType = g.l.GetStageType();
   const renderFrameCount = Isaac.GetFrameCount();

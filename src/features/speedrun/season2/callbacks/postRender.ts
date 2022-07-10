@@ -1,4 +1,4 @@
-import { getDefaultKColor, getPlayerName } from "isaacscript-common";
+import { game, getDefaultKColor, getPlayerName } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
@@ -19,7 +19,7 @@ const SPRITE_TITLE_OFFSET = Vector(0, -30);
 const SPRITE_ITEM_OFFSET = 15;
 
 export function season2PostRender(): void {
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_2) {

@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   countEntities,
+  game,
   getPlayers,
   newRNG,
   repeat,
@@ -67,7 +68,7 @@ function spawnSparkleOnPlayer() {
 }
 
 function spawnFireworks() {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   // Spawn 30 fireworks. (Some can be duds randomly.)
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {

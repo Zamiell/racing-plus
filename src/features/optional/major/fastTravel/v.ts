@@ -1,7 +1,6 @@
 import { Direction } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
+import { game, saveDataManager } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
-import g from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
@@ -106,8 +105,7 @@ export function isFastTravelHappening(): boolean {
 }
 
 export function setFastTravelClearFrame(): void {
-  const gameFrameCount = g.g.GetFrameCount();
-
+  const gameFrameCount = game.GetFrameCount();
   v.room.clearFrame = gameFrameCount;
 }
 

@@ -4,11 +4,11 @@
 
 import { ActiveSlot } from "isaac-typescript-definitions";
 import {
+  game,
   getTotalCharge,
   isActiveSlotDoubleCharged,
   isActiveSlotEmpty,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 /**
@@ -29,7 +29,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   if (
     v.run.checkForHappyAnimationFrame === null ||
     gameFrameCount < v.run.checkForHappyAnimationFrame
@@ -73,7 +73,7 @@ function addChargesToActiveItem(
   const charge = getTotalCharge(player, activeSlot);
   const newCharge = charge + numCharges;
   player.SetActiveCharge(newCharge, activeSlot);
-  const hud = g.g.GetHUD();
+  const hud = game.GetHUD();
   hud.FlashChargeBar(player, activeSlot);
 }
 
@@ -88,7 +88,7 @@ export function postSlotAnimationChangedBatteryBum(
     return;
   }
 
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
 
   if (currentAnimation === "Prize") {
     v.run.checkForHappyAnimationFrame =

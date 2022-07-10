@@ -10,6 +10,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   countEntities,
+  game,
   getGridEntities,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRoomInsideMap,
@@ -156,7 +157,7 @@ function getItLivesSituationRace(goal: RaceGoal): ItLivesSituation {
 }
 
 function doItLivesSituation(situation: ItLivesSituation) {
-  const gameFrameCount = g.g.GetFrameCount();
+  const gameFrameCount = game.GetFrameCount();
   const stage = g.l.GetStage();
 
   let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);

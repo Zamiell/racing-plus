@@ -1,5 +1,5 @@
 import { GameStateFlag, ItemType } from "isaac-typescript-definitions";
-import { getRoomVariant, log, PickingUpItem } from "isaacscript-common";
+import { game, getRoomVariant, log, PickingUpItem } from "isaacscript-common";
 import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -53,11 +53,11 @@ export function preGameExit(): void {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const backwards = g.g.GetStateFlag(GameStateFlag.BACKWARDS_PATH)
+  const backwards = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH)
     ? "true"
     : "false";
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
 
   send("level", `${stage}-${stageType}-${backwards}`);
 }
