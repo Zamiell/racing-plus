@@ -70,7 +70,7 @@ export function season2PostGameStarted(): void {
     restartOnNextFrame();
     setRestartCharacter(startingCharacter);
     log(
-      `Restarting because we are on character ${character} and we need to be on character ${startingCharacter} (for season 2).`,
+      `Restarting because we are on character ${PlayerType[character]} (${character}) and we need to be on character ${PlayerType[startingCharacter]} (${startingCharacter}) (for season 2).`,
     );
     return;
   }
@@ -177,7 +177,7 @@ function getStartingCharacter() {
   const oldStartingCharacter = season2GetCurrentCharacter();
   if (oldStartingCharacter !== undefined) {
     log(
-      `Season 2 - Using previously selected character: ${oldStartingCharacter}`,
+      `Season 2 - Using previously selected character: ${PlayerType[oldStartingCharacter]} (${oldStartingCharacter})`,
     );
     return oldStartingCharacter;
   }
@@ -196,7 +196,9 @@ function getStartingCharacter() {
   v.persistent.selectedCharacters.push(startingCharacter);
   v.persistent.lastSelectedCharacter = startingCharacter;
 
-  log(`Season 2 - Selected character: ${startingCharacter}`);
+  log(
+    `Season 2 - Selected character: ${PlayerType[startingCharacter]} (${startingCharacter})`,
+  );
 
   return startingCharacter;
 }
