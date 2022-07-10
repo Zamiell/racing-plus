@@ -7,6 +7,7 @@ import {
   getHeartsUIWidth,
   getHUDOffsetVector,
   inStartingRoom,
+  RENDER_FRAMES_PER_SECOND,
   SECOND_IN_MILLISECONDS,
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
@@ -32,6 +33,8 @@ import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 const STARTING_X = 55;
 const STARTING_Y = 10;
 
+const SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR = 3;
+
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
   const hud = game.GetHUD();
@@ -47,8 +50,22 @@ export function postRender(): void {
   let y = HUDOffsetVector.Y + STARTING_Y;
   const lineLength = 15;
 
+  const renderFrameCount = Isaac.GetFrameCount();
+  const clientMessageDifference =
+    renderFrameCount - g.frameLastClientMessageReceived;
+  const shouldShowClientMessage =
+    clientMessageDifference <=
+    SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR * RENDER_FRAMES_PER_SECOND;
+
   const lines: string[] = [];
-  if (shouldShowVictoryLaps()) {
+  if (shouldShowClientMessage) {
+    // We can't use a real newline to split the message because the socket protocol uses newlines as
+    // a command terminator. Thus, we use an arbitrary sequence of characters to indicate a line
+    // break.
+    for (const line of g.race.message.split("[NEWLINE]")) {
+      lines.push(line);
+    }
+  } else if (shouldShowVictoryLaps()) {
     // Display the number of victory laps. (This should have priority over showing the seed.)
     const victoryLaps = getNumVictoryLaps();
     lines.push(`Victory Lap #${victoryLaps}`);

@@ -11,8 +11,8 @@ import {
   DefaultMap,
   game,
   getRoomListIndex,
-  ISAAC_FRAMES_PER_SECOND,
   isActionPressedOnAnyInput,
+  RENDER_FRAMES_PER_SECOND,
   saveDataManager,
   VectorZero,
 } from "isaacscript-common";
@@ -272,7 +272,7 @@ function drawShadows() {
 
   for (const shadowData of v.run.shadows.values()) {
     const framesSinceLastUpdate = renderFrameCount - shadowData.frameUpdated;
-    if (framesSinceLastUpdate > 1 * ISAAC_FRAMES_PER_SECOND) {
+    if (framesSinceLastUpdate > 1 * RENDER_FRAMES_PER_SECOND) {
       continue;
     }
 

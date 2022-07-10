@@ -1,10 +1,10 @@
 import { EntityCollisionClass, PlayerType } from "isaac-typescript-definitions";
 import {
-  ISAAC_FRAMES_PER_SECOND,
   isEven,
   log,
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
+  RENDER_FRAMES_PER_SECOND,
   runInNGameFrames,
   sfxManager,
   sumArray,
@@ -72,7 +72,7 @@ export function finish(player: EntityPlayer): void {
 export function getAverageTimePerCharacter(): string {
   const totalFrames = sumArray(v.persistent.characterRunFrames);
   const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
-  const averageSeconds = averageFrames / ISAAC_FRAMES_PER_SECOND;
+  const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
 
   const [hours, minute1, minute2, second1, second2] =
     timer.convertSecondsToTimerValues(averageSeconds);

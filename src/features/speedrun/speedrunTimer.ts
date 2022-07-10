@@ -1,4 +1,4 @@
-import { ISAAC_FRAMES_PER_SECOND } from "isaacscript-common";
+import { RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 import { TimerType } from "../../enums/TimerType";
 import * as timer from "../../timer";
 import { shouldDrawRaceTimer } from "../race/raceTimer";
@@ -27,7 +27,7 @@ function drawSpeedrunTimer() {
   } else {
     elapsedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
   }
-  const seconds = elapsedFrames / ISAAC_FRAMES_PER_SECOND;
+  const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
   timer.draw(TimerType.RACE_OR_SPEEDRUN, seconds);
 }

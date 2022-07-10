@@ -173,3 +173,19 @@ functionMap.set(
     raceRoom.numEntrantsChanged();
   },
 );
+
+functionMap.set(
+  "message",
+  (_oldValue: RaceDataType, newValue: RaceDataType) => {
+    if (typeof newValue !== "string") {
+      return;
+    }
+
+    if (newValue === "") {
+      return;
+    }
+
+    const renderFrameCount = Isaac.GetFrameCount();
+    g.frameLastClientMessageReceived = renderFrameCount;
+  },
+);

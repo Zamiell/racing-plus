@@ -4,7 +4,7 @@ import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
-import * as showLevelText from "../features/mandatory/showLevelText";
+import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import * as trophy from "../features/mandatory/trophy";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
@@ -25,7 +25,7 @@ function main() {
   trophy.postUpdate();
   seededDeathPostUpdate();
   fireworks.postUpdate();
-  showLevelText.postUpdate();
+  showLevelTextOnTab.postUpdate();
   runTimer.postUpdate();
   debugFunction.postUpdate();
 

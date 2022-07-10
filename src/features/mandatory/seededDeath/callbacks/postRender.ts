@@ -1,8 +1,8 @@
 import { Card } from "isaac-typescript-definitions";
 import {
   enableAllInputs,
-  ISAAC_FRAMES_PER_SECOND,
   isKeeper,
+  RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
@@ -62,7 +62,7 @@ function postRenderCheckDrawTimer() {
   const challenge = Isaac.GetChallenge();
 
   const remainingFrames = v.run.debuffEndFrame - renderFrameCount;
-  const seconds = remainingFrames / ISAAC_FRAMES_PER_SECOND;
+  const seconds = remainingFrames / RENDER_FRAMES_PER_SECOND;
 
   let startingX = SEEDED_DEATH_TIMER_STARTING_X;
   const startingY = SEEDED_DEATH_TIMER_STARTING_Y;

@@ -7,10 +7,10 @@ import {
   getEnumValues,
   getScreenBottomRightPos,
   hexToKColor,
-  ISAAC_FRAMES_PER_SECOND,
   isEven,
   isKeyboardPressed,
   log,
+  RENDER_FRAMES_PER_SECOND,
   saveDataManager,
 } from "isaacscript-common";
 import { Colors } from "../../enums/Colors";
@@ -25,7 +25,7 @@ import * as socket from "./socket";
 const FEATURE_NAME = "customConsole";
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
-const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = ISAAC_FRAMES_PER_SECOND * 0.5;
+const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = RENDER_FRAMES_PER_SECOND * 0.5;
 export const DEFAULT_CONSOLE_OPACITY = 0.75;
 const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.ENTER;
 

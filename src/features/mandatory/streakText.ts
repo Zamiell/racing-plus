@@ -284,6 +284,10 @@ export function postTransformation(
   set(transformationName);
 }
 
+// -------
+// Exports
+// -------
+
 export function set(text: string): void {
   v.run.text = text;
   v.run.renderFrameSet = Isaac.GetFrameCount();

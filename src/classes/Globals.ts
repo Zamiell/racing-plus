@@ -24,6 +24,12 @@ export class Globals {
   /** Extra variables for races that are separate from what the client knows about. */
   raceVars = new RaceVars();
 
+  /**
+   * Used only for temporary messages like what is used to display the message when the second place
+   * racer gets to the first place racer's floor.
+   */
+  frameLastClientMessageReceived = 0;
+
   constructor() {
     this.fonts.droid.Load("font/droid.fnt");
     this.fonts.pf.Load("font/pftempestasevencondensed.fnt");

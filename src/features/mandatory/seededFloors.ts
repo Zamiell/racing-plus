@@ -25,7 +25,6 @@ import {
   getRandom,
   isCharacter,
   log,
-  logTable,
   newRNG,
   PlayerHealth,
   removeAllPlayerHealth,
@@ -198,7 +197,6 @@ export function after(): void {
     setInventory(player, v.run.inventory);
   }
   if (v.run.playerHealth !== null) {
-    logTable(v.run.playerHealth);
     setPlayerHealth(player, v.run.playerHealth);
   }
 
