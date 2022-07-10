@@ -39,6 +39,8 @@ import * as globinSoftlock from "./features/optional/enemies/globinSoftlock";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as stickyNickel from "./features/optional/graphics/stickyNickel";
 import * as autofire from "./features/optional/hotkeys/autofire";
+import * as fastDrop from "./features/optional/hotkeys/fastDrop";
+import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastReset from "./features/optional/major/fastReset";
@@ -116,6 +118,8 @@ export function initFeatureVariables(): void {
   freeDevilItem.init();
 
   // Hotkeys
+  fastDrop.init();
+  schoolbagSwitch.init();
   autofire.init();
 
   // Enemies
