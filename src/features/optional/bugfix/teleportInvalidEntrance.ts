@@ -9,6 +9,7 @@ import {
   anyPlayerCloserThan,
   getDoorEnterPosition,
   getDoors,
+  getDoorSlotEnterPositionOffset,
   getFamiliars,
   getPlayers,
   inStartingRoom,
@@ -63,6 +64,13 @@ export function postNewRoom(): void {
   const position = getDoorEnterPosition(firstDoor);
   for (const player of getPlayers()) {
     player.Position = position;
+
+    const offset = getDoorSlotEnterPositionOffset(firstDoor.Slot);
+    Isaac.DebugString(
+      `GETTING HERE - doorSlot: ${DoorSlot[firstDoor.Slot]}, offset: ${
+        offset.X
+      },${offset.Y}, position: ${position.X},${position.Y}`,
+    );
   }
   moveEsauNextToJacob();
 

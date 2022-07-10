@@ -6,7 +6,9 @@
 ### _v0.82.0_ - July 10th, 2022
 
 - In seeded races, a message will be displayed to the leader when the person who is in second place arrives on the floor. (Thanks Hispa)
+- In seeded races, there will now be a 33% chance to get all Angel Rooms (instead of a 50% chance). (Thanks Hispa)
 - Fixed the bug where Krampus would always drop A Lump of Coal in seeded races. (Thanks Sakk)
+- Fixed the bug where taking a Card Reading portal would make you automatically exit the room under certain circumstances. (Thanks Gamonymous)
 
 ### _v0.81.6_ - July 3rd, 2022
 

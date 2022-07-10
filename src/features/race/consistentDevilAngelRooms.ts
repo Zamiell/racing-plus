@@ -14,6 +14,8 @@ import { anyPlayerIs, game, getRandom } from "isaacscript-common";
 import g from "../../globals";
 import v, { inSeededRace } from "./v";
 
+const CHANCE_TO_GET_ANGEL_ROOMS = 0.3;
+
 const CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS: readonly PlayerType[] = [
   PlayerType.BETHANY,
   PlayerType.MAGDALENE_B,
@@ -28,11 +30,10 @@ export function postGameStarted(): void {
   // Calculate whether we should get all Devil Rooms or all Angel Rooms.
   const startSeed = g.seeds.GetStartSeed();
   const randomChance = getRandom(startSeed);
-  let devil = randomChance < 0.5;
-  if (anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS)) {
-    devil = false;
-  }
-  v.run.allAngelRooms = !devil;
+  const allAngelRooms =
+    randomChance < CHANCE_TO_GET_ANGEL_ROOMS ||
+    anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS);
+  v.run.allAngelRooms = allAngelRooms;
 
   // Set the player's vanilla Angel Room chances to 0%. (See the above explanation.)
   game.AddDevilRoomDeal();
