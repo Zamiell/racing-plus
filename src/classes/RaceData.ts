@@ -51,6 +51,7 @@ export class RaceData {
   numEntrants = 1;
 
   millisecondsBehindLeader = 0;
+  millisecondsAheadOfNextRacer = 0;
 }
 
 export function cloneRaceData(raceData: RaceData): RaceData {
