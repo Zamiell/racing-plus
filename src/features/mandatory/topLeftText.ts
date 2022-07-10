@@ -76,27 +76,16 @@ export function postRender(): void {
     }
   } else if (shouldShowRaceID()) {
     lines.push(`Race ID: ${g.race.raceID}`);
-  } else if (shouldShowSeededRaceTimeOffset()) {
-    if (g.race.placeMid === 1) {
-      const seconds = Math.round(
-        g.race.millisecondsAheadOfNextRacer / SECOND_IN_MILLISECONDS,
-      );
-      const suffix = Math.abs(seconds) !== 1 ? "s" : "";
-      if (seconds === 0) {
-        lines.push("Tied with the next racer!");
-      } else {
-        lines.push(`Ahead by: ${seconds} second${suffix}`);
-      }
-    } else {
-      const seconds = Math.round(
-        g.race.millisecondsBehindLeader / SECOND_IN_MILLISECONDS,
-      );
-      const suffix = Math.abs(seconds) !== 1 ? "s" : "";
-      if (seconds === 0) {
-        lines.push("Tied with the next racer!");
-      } else {
-        lines.push(`Behind by: ${seconds} second${suffix}`);
-      }
+  } else if (
+    shouldShowSeededRaceTimeOffset() &&
+    g.race.millisecondsBehindLeader > 0
+  ) {
+    const seconds = Math.round(
+      g.race.millisecondsBehindLeader / SECOND_IN_MILLISECONDS,
+    );
+    if (seconds > 0) {
+      const suffix = seconds > 0 ? "s" : "";
+      lines.push(`Behind by: ${seconds} second${suffix}`);
     }
   } else if (shouldShowNumSacrifices()) {
     lines.push(`Sacrifices: ${getNumSacrifices()}`);
@@ -114,6 +103,6 @@ function shouldShowSeededRaceTimeOffset() {
     getEffectiveStage() > 1 &&
     inStartingRoom() &&
     g.r.IsFirstVisit() &&
-    !g.race.solo
+    g.race.placeMid !== 1 // Only show it if we are not in first place.
   );
 }
