@@ -3,56 +3,18 @@
 
 // This feature is not configurable because it could grant an advantage to turn off.
 
-import { Direction, PlayerType } from "isaac-typescript-definitions";
+import { PlayerType } from "isaac-typescript-definitions";
 import {
   game,
-  getCircleDiscretizedPoints,
   getPlayers,
   isCharacter,
+  movePlayersToCenter,
 } from "isaacscript-common";
-import g from "../../globals";
-import { movePlayersAndFamiliars } from "../../utils";
-
-const CIRCLE_RADIUS_BETWEEN_PLAYERS = 50;
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  centerPlayers();
+  movePlayersToCenter();
   pickUpTaintedForgotten();
-}
-
-export function centerPlayers(): void {
-  const isGreedMode = game.IsGreedMode();
-  const centerPos = g.r.GetCenterPos();
-
-  // In Greed Mode, we cannot put the player in the center of the room, because they would
-  // immediately touch the trigger button.
-  if (isGreedMode) {
-    return;
-  }
-
-  movePlayersAndFamiliars(centerPos);
-
-  const players = getPlayers(true); // Don't include secondary players
-
-  // If this is a multiplayer game, spread out the players in a circle around the center of the
-  // room.
-  if (players.length > 1) {
-    const circlePoints = getCircleDiscretizedPoints(
-      centerPos,
-      CIRCLE_RADIUS_BETWEEN_PLAYERS,
-      players.length,
-      1,
-      1,
-      Direction.LEFT,
-    );
-    players.forEach((player, i) => {
-      const position = circlePoints[i];
-      if (position !== undefined) {
-        player.Position = position;
-      }
-    });
-  }
 }
 
 function pickUpTaintedForgotten() {

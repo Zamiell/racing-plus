@@ -3,13 +3,13 @@ import {
   game,
   getEffects,
   getPlayers,
+  movePlayersToCenter,
   setFloorDisplayFlags,
   setPlayerHealth,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import { config } from "../../../../../modConfigMenu";
-import { centerPlayers } from "../../../../mandatory/centerStart";
 import * as sprites from "../sprites";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
@@ -40,7 +40,7 @@ function repositionPlayer() {
 
   v.level.warpState = DreamCatcherWarpState.FINISHED;
 
-  centerPlayers();
+  movePlayersToCenter();
 
   // Fix the bug where the fast-travel pitfalls will be misaligned due to being spawned before the
   // player's position was updated.
