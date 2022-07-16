@@ -2624,19 +2624,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.22.tgz#eecfc8d8b8c50a9d95d81d28f5a8d3240fe45099"
-  integrity sha512-9jLrQKQNGBAJiBRt7hCTH6PctTk0YpGvA0dBlQLyA7tga3zzRkXP/zmcPIKC3k/Qsdw6DtaM9xragG+dPZe72w==
+isaac-typescript-definitions@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.24.tgz#bdf905015236a9b818aa3c002f48470fa89acfe8"
+  integrity sha512-5PC706TO0ITH8pkmMdhg4BHF5IyuNRGuOrHQg/s5JGhuRaledMPzs7BFDmaL4zYFtVTEITGxQLn7srhUj2x67A==
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.4.0.tgz#7a9b873a6ae239a203aab338a9d909e972ce7209"
-  integrity sha512-MSmxMbRO79JL1Anpg24S5zhlyhc7lCMYUZuS2iMeZwjHOpUEIVy1Pw2zrFnq7fRDPmJsqm1E83uj5zXmqcuFcg==
+isaacscript-common@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.5.0.tgz#efd30f0f499c37210f9d4a82817ef537fdf16bf9"
+  integrity sha512-mkrbsptpyQSt7puxaVLnKU/OYyb5RSUd31o2HV72CjPCMO2a7lSIX0477l8gHxMVjt8zYlCqegf4z71n5baDBg==
   dependencies:
-    isaac-typescript-definitions "^3.0.22"
+    isaac-typescript-definitions "^3.0.24"
 
 isaacscript-lint@^3.0.0:
   version "3.0.0"
@@ -2672,10 +2672,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.3.tgz#5992039be1a92817defc3fac2d7ce1562b436d40"
-  integrity sha512-xleoWxaSrlf399HeuJnLNB8l/crMMLzWE2cIwPyaYMUg5ZP2dQeEFs5QxYAMlb33+N+AdSWI6Rxv6DopTCcMHQ==
+isaacscript@^2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.5.tgz#fe62dcc64dde2f70a8684d4d3512e5e09179e45e"
+  integrity sha512-Z7qfqS1L9aZDW3/Td650YfsUIWEKI2SbNrfTBQnUjf1ZMkeYv46wjloKyS4+e81vo6PkN0ACChwy+QQ7fqwbew==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"

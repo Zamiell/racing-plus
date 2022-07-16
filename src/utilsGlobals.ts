@@ -1,12 +1,9 @@
-import {
-  Challenge,
-  CollectibleType,
-  TrinketType,
-} from "isaac-typescript-definitions";
+import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   game,
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
+  setUnseeded,
 } from "isaacscript-common";
 import * as racingPlusSprite from "./features/mandatory/racingPlusSprite";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
@@ -61,13 +58,7 @@ export function shouldCheckForGameplayInputs(): boolean {
 }
 
 export function unseed(): void {
-  // Invoking the `Seeds.Reset` method will cause the log to be spammed with: "[ASSERT] - Error:
-  // Game Start Seed was not set."
-
-  // It will also cause the `Seeds.GetStartSeed` method to return 0, which can cause crashes. So, we
-  // must immediately re-initialize the game start seed by using the `Seeds.Restart` method.
-  g.seeds.Reset();
-  g.seeds.Restart(Challenge.NULL);
+  setUnseeded();
 
   // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we
   // must manually reactivate them.

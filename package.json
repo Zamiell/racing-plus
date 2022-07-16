@@ -23,9 +23,9 @@
   "dependencies": {
     "@types/node": "^18.0.5",
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^3.0.22",
-    "isaacscript": "^2.9.3",
-    "isaacscript-common": "^6.4.0",
+    "isaac-typescript-definitions": "^3.0.24",
+    "isaacscript": "^2.9.5",
+    "isaacscript-common": "^6.5.0",
     "isaacscript-lint": "^3.0.0",
     "isaacscript-spell": "^1.2.7",
     "ts-node": "^10.9.1",
