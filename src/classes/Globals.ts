@@ -11,10 +11,6 @@ export class Globals {
   r = game.GetRoom();
   seeds = game.GetSeeds();
   itemPool = game.GetItemPool();
-  readonly fonts = {
-    droid: Font(),
-    pf: Font(),
-  };
 
   readonly chatMessages: ChatMessage[] = [];
 
@@ -29,9 +25,4 @@ export class Globals {
    * racer gets to the first place racer's floor.
    */
   frameLastClientMessageReceived = 0;
-
-  constructor() {
-    this.fonts.droid.Load("font/droid.fnt");
-    this.fonts.pf.Load("font/pftempestasevencondensed.fnt");
-  }
 }

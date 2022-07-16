@@ -1,5 +1,4 @@
-import { game, getScreenBottomRightPos } from "isaacscript-common";
-import g from "../../globals";
+import { fonts, game, getScreenBottomRightPos } from "isaacscript-common";
 
 const NOTIFICATION_LENGTH = 300;
 const NOTIFICATION_TEXT =
@@ -36,7 +35,7 @@ export function postRender(): void {
   const closeToBottom = bottomRightPos.Y - 28;
   const alpha = (math.min(timer, 60) / 60) * 0.5;
   const color = KColor(1, 1, 0, alpha);
-  g.fonts.pf.DrawString(
+  fonts.pfTempestaSevenCondensed.DrawString(
     NOTIFICATION_TEXT,
     0,
     closeToBottom,

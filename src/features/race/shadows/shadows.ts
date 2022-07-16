@@ -9,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   DefaultMap,
+  fonts,
   game,
   getRoomListIndex,
   isActionPressedOnAnyInput,
@@ -321,6 +322,7 @@ function setSpriteAnimation(sprite: Sprite, shadowData: ShadowData) {
 }
 
 function drawSprite(sprite: Sprite, shadowData: ShadowData) {
+  const font = fonts.pfTempestaSevenCondensed;
   const positionGame = Vector(shadowData.x, shadowData.y);
   const position = Isaac.WorldToScreen(positionGame);
   sprite.Render(position, VectorZero, VectorZero);
@@ -332,8 +334,8 @@ function drawSprite(sprite: Sprite, shadowData: ShadowData) {
     const fadeAmount = 0.5;
     const color = KColor(1, 1, 1, fadeAmount);
     const scale = 1;
-    const length = g.fonts.pf.GetStringWidthUTF8(shadowData.username) * scale;
-    g.fonts.pf.DrawStringScaled(
+    const length = font.GetStringWidthUTF8(shadowData.username) * scale;
+    font.DrawStringScaled(
       shadowData.username,
       positionText.X - length / 2,
       positionText.Y,

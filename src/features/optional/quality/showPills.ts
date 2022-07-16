@@ -7,19 +7,19 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  fonts,
   game,
-  getDefaultKColor,
   getFalsePHDPillEffect,
   getNormalPillColorFromHorse,
   getNormalPillColors,
   getPHDPillEffect,
   getPillEffectName,
   isActionPressedOnAnyInput,
+  KColorDefault,
   log,
   NUM_PILLS_IN_POOL,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
@@ -155,6 +155,8 @@ export function postRender(): void {
 }
 
 function drawTextAndSprite() {
+  const font = fonts.droid;
+
   const x = 80;
   let baseY = 97;
   for (let i = 9; i <= 12; i++) {
@@ -165,12 +167,7 @@ function drawTextAndSprite() {
   }
 
   const pillsIdentifiedText = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
-  g.fonts.droid.DrawString(
-    pillsIdentifiedText,
-    x - 10,
-    baseY - 9 + 20,
-    getDefaultKColor(),
-  );
+  font.DrawString(pillsIdentifiedText, x - 10, baseY - 9 + 20, KColorDefault);
 
   baseY += 20;
   v.run.pillsIdentified.forEach((pillEntry, i) => {
@@ -191,7 +188,7 @@ function drawTextAndSprite() {
     if (pillEffectName === "Feels like I'm walking on sunshine!") {
       pillEffectName = "Walking on sunshine!";
     }
-    g.fonts.droid.DrawString(pillEffectName, x + 15, y - 9, getDefaultKColor());
+    font.DrawString(pillEffectName, x + 15, y - 9, KColorDefault);
   });
 }
 

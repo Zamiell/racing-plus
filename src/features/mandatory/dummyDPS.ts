@@ -1,12 +1,12 @@
 import {
+  fonts,
   game,
   GAME_FRAMES_PER_SECOND,
-  getDefaultKColor,
   getScreenBottomRightPos,
+  KColorDefault,
   round,
   saveDataManager,
 } from "isaacscript-common";
-import g from "../../globals";
 
 const DPS_TEXT_Y_OFFSET = -40;
 const DPS_INTERVAL_SECONDS = 5;
@@ -58,7 +58,14 @@ function drawDPSText(npc: EntityNPC) {
   const renderPosition = Isaac.WorldToScreen(npc.Position);
   const y = renderPosition.Y + DPS_TEXT_Y_OFFSET;
   const bottomRightPos = getScreenBottomRightPos();
-  g.fonts.pf.DrawString(text, 0, y, getDefaultKColor(), bottomRightPos.X, true);
+  fonts.pfTempestaSevenCondensed.DrawString(
+    text,
+    0,
+    y,
+    KColorDefault,
+    bottomRightPos.X,
+    true,
+  );
 }
 
 function getDPS() {

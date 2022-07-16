@@ -3,6 +3,7 @@ import {
   DefaultMap,
   disableAllInputs,
   enableAllInputs,
+  fonts,
   game,
   getEnumValues,
   getScreenBottomRightPos,
@@ -257,6 +258,7 @@ export function drawText(
   position: Vector,
   alpha = DEFAULT_CONSOLE_OPACITY,
 ): void {
+  const font = fonts.pfTempestaSevenCondensed;
   let x = position.X;
   const y = position.Y;
 
@@ -264,9 +266,9 @@ export function drawText(
     const hexColor =
       textSegment.color === undefined ? Colors.WHITE : textSegment.color;
     const kColor = hexToKColor(hexColor, alpha);
-    g.fonts.pf.DrawString(textSegment.text, x, y, kColor, 0, true);
+    font.DrawString(textSegment.text, x, y, kColor, 0, true);
 
-    x += g.fonts.pf.GetStringWidth(textSegment.text);
+    x += font.GetStringWidth(textSegment.text);
   }
 }
 

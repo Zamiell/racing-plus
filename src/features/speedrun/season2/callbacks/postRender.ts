@@ -1,4 +1,4 @@
-import { game, getDefaultKColor, getPlayerName } from "isaacscript-common";
+import { fonts, game, getPlayerName, KColorDefault } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
@@ -92,14 +92,14 @@ function drawStartingRoomText() {
   let position = Isaac.WorldToRenderPosition(positionGame);
   position = position.add(Vector(0, -11));
 
-  const font = g.fonts.droid;
+  const font = fonts.droid;
   const length = font.GetStringWidthUTF8(characterName);
 
   font.DrawString(
     characterName,
     position.X - length / 2,
     position.Y,
-    getDefaultKColor(),
+    KColorDefault,
   );
 }
 

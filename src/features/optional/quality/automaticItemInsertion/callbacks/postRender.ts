@@ -1,12 +1,12 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import {
+  fonts,
   game,
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
   isBethany,
   isJacobOrEsau,
 } from "isaacscript-common";
-import g from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import v from "../v";
 
@@ -60,7 +60,7 @@ function drawCoinsDelta() {
     const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
   }
 }
 
@@ -83,7 +83,7 @@ function drawKeysDelta() {
     }
 
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(text, UI_X, y, color, 0, true);
   }
 }
 
@@ -106,7 +106,7 @@ function drawBombsDelta() {
     }
 
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, UI_X, y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(text, UI_X, y, color, 0, true);
   }
 }
 
@@ -124,7 +124,14 @@ function drawBloodOrSoulChargeDelta() {
     }
 
     const color = getTextColor(fade);
-    g.fonts.pf.DrawString(text, UI_X, BLOOD_SOUL_CHARGE_Y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(
+      text,
+      UI_X,
+      BLOOD_SOUL_CHARGE_Y,
+      color,
+      0,
+      true,
+    );
   }
 }
 
@@ -150,7 +157,7 @@ function drawPocketItemsDelta() {
     const bottomRightPos = getScreenBottomRightPos();
     const x = bottomRightPos.X - BOTTOM_CORNER_OFFSET;
     const y = bottomRightPos.Y - BOTTOM_CORNER_OFFSET;
-    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
   }
 }
 
@@ -170,7 +177,7 @@ function drawTrinketsDelta() {
     const bottomLeftPos = getScreenBottomLeftPos();
     const x = bottomLeftPos.X + BOTTOM_CORNER_OFFSET;
     const y = bottomLeftPos.Y - BOTTOM_CORNER_OFFSET;
-    g.fonts.pf.DrawString(text, x, y, color, 0, true);
+    fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
   }
 }
 

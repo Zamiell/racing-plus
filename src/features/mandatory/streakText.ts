@@ -11,6 +11,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
+  fonts,
   game,
   getCardName,
   getCollectibleName,
@@ -143,7 +144,7 @@ function draw(text: string, fade: float) {
   const x = bottomRightPos.X * 0.5;
   const y = bottomRightPos.Y * 0.25;
 
-  const font = g.fonts.droid;
+  const font = fonts.droid;
   const length = font.GetStringWidthUTF8(text);
   const color = KColor(1, 1, 1, fade);
   font.DrawString(text, x - length / 2, y, color);

@@ -6,9 +6,9 @@ import {
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
 import {
+  ColorDefault,
   emptyArray,
   game,
-  getDefaultColor,
   getPlayers,
   gridCoordinatesToWorldPosition,
   isEven,
@@ -237,7 +237,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   }
   sprite.Load("gfx/timer/timer.anm2", true);
   sprite.SetFrame("Default", v.room.charOrder.length);
-  sprite.Color = getDefaultColor(); // Remove the fade.
+  sprite.Color = ColorDefault; // Remove the fade.
 
   if (v.room.seasonChosenAbbreviation === "R7S1") {
     season1DeleteOtherCharButton(i);

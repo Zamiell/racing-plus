@@ -1,7 +1,8 @@
 import {
+  fonts,
   game,
-  getDefaultKColor,
   gridCoordinatesToWorldPosition,
+  KColorDefault,
   VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
@@ -62,14 +63,9 @@ function drawCurrentChoosingActivity() {
   const position = Isaac.WorldToScreen(bottomCenterOfRoom);
   position.Y -= 15;
   const text = CHANGE_CHAR_ORDER_PHASE_TEXT[v.room.phase];
-  const font = g.fonts.droid;
+  const font = fonts.droid;
   const length = font.GetStringWidthUTF8(text);
-  font.DrawString(
-    text,
-    position.X - length / 2,
-    position.Y,
-    getDefaultKColor(),
-  );
+  font.DrawString(text, position.X - length / 2, position.Y, KColorDefault);
 }
 function drawSeasonSprites() {
   if (v.room.phase !== ChangeCharOrderPhase.SEASON_SELECT) {

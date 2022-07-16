@@ -1,6 +1,6 @@
 import { FamiliarVariant, PlayerType } from "isaac-typescript-definitions";
 import {
-  getDefaultColor,
+  ColorDefault,
   getFamiliars,
   isCharacter,
   isJacobOrEsau,
@@ -17,7 +17,7 @@ export function applySeededGhostFade(
   enabled: boolean,
 ): void {
   const sprite = player.GetSprite();
-  const newColor = enabled ? QUARTER_FADED_COLOR : getDefaultColor();
+  const newColor = enabled ? QUARTER_FADED_COLOR : ColorDefault;
   sprite.Color = newColor;
 
   if (isCharacter(player, PlayerType.THE_SOUL)) {
