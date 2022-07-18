@@ -73,7 +73,7 @@ function incrementFramesPassed() {
     return;
   }
 
-  v.run.renderFramesPassed += 1;
+  v.run.renderFramesPassed++;
 }
 
 function resetPlayerCollision(players: EntityPlayer[]) {

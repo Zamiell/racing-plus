@@ -85,7 +85,7 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
       return;
     }
 
-    arrayIndex += 1;
+    arrayIndex++;
     if (arrayIndex >= THREE_DOLLAR_BILL_ITEMS.length) {
       arrayIndex = 0;
     }

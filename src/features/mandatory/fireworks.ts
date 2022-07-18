@@ -73,7 +73,7 @@ function spawnFireworks() {
   // Spawn 30 fireworks. (Some can be duds randomly.)
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     repeat(5, () => {
-      v.run.numFireworksSpawned += 1;
+      v.run.numFireworksSpawned++;
       const seed = v.run.rng.Next();
       const randomGridIndex = g.r.GetRandomTileIndex(seed);
       const position = g.r.GetGridPosition(randomGridIndex);

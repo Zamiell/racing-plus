@@ -55,7 +55,7 @@ export function goto(upwards: boolean): void {
   // "WithoutDamage" methods of the Game class do not work properly, so we revert to keeping track
   // of damage manually.
   if (!v.level.tookDamage) {
-    v.run.perfection.floorsWithoutDamage += 1;
+    v.run.perfection.floorsWithoutDamage++;
   }
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health

@@ -165,7 +165,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
     const front = inputText.slice(0, inputTextIndex);
     const back = inputText.slice(inputTextIndex);
     inputText = `${front}${character}${back}`;
-    inputTextIndex += 1;
+    inputTextIndex++;
   }
 }
 
@@ -302,7 +302,7 @@ keyFunctionMap.set(Keyboard.BACKSPACE, () => {
   const back = inputText.slice(inputTextIndex);
   const frontWithLastCharRemoved = front.slice(0, -1);
   inputText = frontWithLastCharRemoved + back;
-  inputTextIndex -= 1;
+  inputTextIndex--;
 });
 
 // 262
@@ -311,7 +311,7 @@ keyFunctionMap.set(Keyboard.RIGHT, () => {
     return;
   }
 
-  inputTextIndex += 1;
+  inputTextIndex++;
 });
 
 // 263
@@ -320,7 +320,7 @@ keyFunctionMap.set(Keyboard.LEFT, () => {
     return;
   }
 
-  inputTextIndex -= 1;
+  inputTextIndex--;
 });
 
 // 264
@@ -329,7 +329,7 @@ keyFunctionMap.set(Keyboard.DOWN, () => {
     return;
   }
 
-  historyIndex -= 1;
+  historyIndex--;
 
   if (historyIndex === -1) {
     inputText = savedText;

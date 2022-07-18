@@ -93,7 +93,7 @@ export function postBombExploded(bomb: EntityBomb): void {
       seed,
     );
     v.run.spawningPrize = false;
-    v.level.numPrizes += 1;
+    v.level.numPrizes++;
   }
 }
 

@@ -56,7 +56,7 @@ function preventVanillaPhotos(
     (collectibleType === CollectibleType.POLAROID ||
       collectibleType === CollectibleType.NEGATIVE)
   ) {
-    v.room.vanillaPhotosLeftToSpawn -= 1;
+    v.room.vanillaPhotosLeftToSpawn--;
 
     const photoName =
       collectibleType === CollectibleType.POLAROID ? "Polaroid" : "Negative";

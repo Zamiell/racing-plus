@@ -61,7 +61,7 @@ export function speedrunSetNextCharacterAndRestart(): void {
   const challenge = Isaac.GetChallenge();
 
   v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
-  v.persistent.characterNum += 1;
+  v.persistent.characterNum++;
   restartOnNextFrame();
   log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
 

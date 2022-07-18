@@ -12,7 +12,7 @@ export function init(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  v.run.numRoomsEntered += 1;
+  v.run.numRoomsEntered++;
 }
 
 export function getNumRoomsEntered(): int {
@@ -20,5 +20,5 @@ export function getNumRoomsEntered(): int {
 }
 
 export function decrementNumRoomsEntered(): void {
-  v.run.numRoomsEntered -= 1;
+  v.run.numRoomsEntered--;
 }

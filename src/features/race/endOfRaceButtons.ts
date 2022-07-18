@@ -221,7 +221,7 @@ function checkVictoryLapButtonPressed(gridEntity: GridEntityPressurePlate) {
 }
 
 function touchedVictoryLapButton(gridEntity: GridEntity, player: EntityPlayer) {
-  v.run.numVictoryLaps += 1;
+  v.run.numVictoryLaps++;
 
   // Call the fast-travel function directly to emulate the player having touched a heaven door.
   setFadingToBlack(player, gridEntity.Position, true);

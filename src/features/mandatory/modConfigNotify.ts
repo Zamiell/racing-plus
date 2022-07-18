@@ -17,7 +17,7 @@ export function postRender(): void {
     return;
   }
 
-  timer -= 1;
+  timer--;
   if (timer === 0) {
     timer = null;
     return;

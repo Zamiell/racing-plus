@@ -74,7 +74,7 @@ function drawChat() {
 
     y -= LINE_LENGTH;
 
-    numMessagesDrawn += 1;
+    numMessagesDrawn++;
     if (numMessagesDrawn > MAX_CHAT_MESSAGES) {
       return;
     }

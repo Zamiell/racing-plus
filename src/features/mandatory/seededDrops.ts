@@ -186,7 +186,7 @@ function spawnSeededDrop() {
           pickupVariant === PickupVariant.BOMB || // 40
           pickupVariant === PickupVariant.SACK) // 69
       ) {
-        pickupCount += 1;
+        pickupCount++;
       }
     });
   }
