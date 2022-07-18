@@ -14,6 +14,7 @@ import {
   log,
   onSetSeed,
   printConsole,
+  removeConsoleCommand,
   restart,
   runDeepCopyTests,
   runMergeTests,
@@ -29,7 +30,7 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
-import { unseed } from "../../utilsGlobals";
+import { setUnseededWithRacingPlusLogic } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
@@ -59,6 +60,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("seededRaceOff", seededRaceOff);
   addConsoleCommand("seededRaceSeed", seededRaceSeed);
   addConsoleCommand("tests", tests);
+  removeConsoleCommand("unseed");
   addConsoleCommand("unseed", unseedCommand);
   addConsoleCommand("version", version);
 }
@@ -245,7 +247,7 @@ function seededRaceGoal(params: string) {
 function seededRaceOff() {
   g.race = new RaceData();
   printConsole("Disabled seeded race mode.");
-  unseed();
+  setUnseededWithRacingPlusLogic();
   restart();
 }
 
@@ -272,7 +274,7 @@ function tests() {
 }
 
 function unseedCommand() {
-  unseed();
+  setUnseededWithRacingPlusLogic();
   restart();
 }
 

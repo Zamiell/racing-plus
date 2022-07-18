@@ -57,7 +57,7 @@ export function shouldCheckForGameplayInputs(): boolean {
   return !isPaused && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible);
 }
 
-export function unseed(): void {
+export function setUnseededWithRacingPlusLogic(): void {
   setUnseeded();
 
   // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we

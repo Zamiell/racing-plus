@@ -6,7 +6,7 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { unseed } from "../../../utilsGlobals";
+import { setUnseededWithRacingPlusLogic } from "../../../utilsGlobals";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,
@@ -158,7 +158,7 @@ function validateSeed() {
   ) {
     // If the run started with a set seed, change the reset behavior to that of an unseeded run.
     restartOnNextFrame();
-    unseed();
+    setUnseededWithRacingPlusLogic();
     return false;
   }
 
