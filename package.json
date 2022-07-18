@@ -24,7 +24,7 @@
     "@types/node": "^18.0.6",
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^3.0.27",
-    "isaacscript": "^2.9.11",
+    "isaacscript": "^2.9.12",
     "isaacscript-common": "^6.6.4",
     "isaacscript-lint": "^3.0.0",
     "isaacscript-spell": "^1.2.7",
