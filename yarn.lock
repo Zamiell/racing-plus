@@ -573,10 +573,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.0.tgz#67c7b724e1bcdd7a8821ce0d5ee184d3b4dd525a"
   integrity sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==
 
-"@types/node@^18.0.5":
-  version "18.0.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.5.tgz#96be8113b014e9e7f0c3609c4a25afadd85ff659"
-  integrity sha512-En7tneq+j0qAiVwysBD79y86MT3ModuoIJbe7JXp+sb5UAjInSShmK3nXXMioBzfF7rXC12hv12d4IyCVwN4dA==
+"@types/node@^18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.6.tgz#0ba49ac517ad69abe7a1508bc9b3a5483df9d5d7"
+  integrity sha512-/xUq6H2aQm261exT6iZTMifUySEt4GR5KX8eYyY+C4MSNPqSh9oNIP7tz2GLKTlFaiBbgZNxffoR3CVRG+cljw==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2624,19 +2624,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^3.0.24:
-  version "3.0.24"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.24.tgz#bdf905015236a9b818aa3c002f48470fa89acfe8"
-  integrity sha512-5PC706TO0ITH8pkmMdhg4BHF5IyuNRGuOrHQg/s5JGhuRaledMPzs7BFDmaL4zYFtVTEITGxQLn7srhUj2x67A==
+isaac-typescript-definitions@^3.0.27:
+  version "3.0.27"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.0.27.tgz#e41b5549eda1107eef02d3c560ccf334387013fe"
+  integrity sha512-AyLxB4ZCUsCMkxvnuWktt5ld5mGkYoF97tnZ/vC2Bav2gxoPz+WevdVjcnjsoydpJJ5KDDVfqSrtehaBNoRDMg==
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.5.0.tgz#efd30f0f499c37210f9d4a82817ef537fdf16bf9"
-  integrity sha512-mkrbsptpyQSt7puxaVLnKU/OYyb5RSUd31o2HV72CjPCMO2a7lSIX0477l8gHxMVjt8zYlCqegf4z71n5baDBg==
+isaacscript-common@^6.6.4:
+  version "6.6.4"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.6.4.tgz#b1a4408229aba85eac279990f201a8ca543a1562"
+  integrity sha512-LBpmA2jEjihMH1R+N+8n99+hJoljZSwtx4/kfbMUaF8AKTHFDA9brhzxv0yCsFyPiXON+xEEoF8B8Igv9Jempw==
   dependencies:
-    isaac-typescript-definitions "^3.0.24"
+    isaac-typescript-definitions "^3.0.27"
 
 isaacscript-lint@^3.0.0:
   version "3.0.0"
@@ -2672,10 +2672,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.9.5:
-  version "2.9.5"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.5.tgz#fe62dcc64dde2f70a8684d4d3512e5e09179e45e"
-  integrity sha512-Z7qfqS1L9aZDW3/Td650YfsUIWEKI2SbNrfTBQnUjf1ZMkeYv46wjloKyS4+e81vo6PkN0ACChwy+QQ7fqwbew==
+isaacscript@^2.9.11:
+  version "2.9.11"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.11.tgz#5c969f6d25f7e6144a3a19f8bc1cacb5d07b33a6"
+  integrity sha512-MNdBBx56pZVog6XCGoxQBW9fMu7hdQw/MEZplxLdGWwzEmyTpHiN5xthjBgbEQfpaTG5mEeIK2UyHEl8L8HfMQ==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
@@ -2687,7 +2687,7 @@ isaacscript@^2.9.5:
     isaacscript-tsconfig "^2.0.0"
     jsonc-parser "^3.1.0"
     moment "^2.29.4"
-    npm-check-updates "^15.3.3"
+    npm-check-updates "^15.3.4"
     prompt "^1.3.0"
     source-map-support "^0.5.21"
     sync-directory "^5.1.7"
@@ -3166,10 +3166,10 @@ npm-bundled@^1.1.1, npm-bundled@^1.1.2:
   dependencies:
     npm-normalize-package-bin "^1.0.1"
 
-npm-check-updates@^15.3.3:
-  version "15.3.3"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-15.3.3.tgz#35de2235b78fafd08d9a43e864f29c559dc112da"
-  integrity sha512-kdZte9jeJ3n8tS8wxAjrvQz5owi4AEY9pxt5OaEzw094k/ymg0HYR6b89W2OJaFn7xK4tCrkOFp9PUWKlydA8Q==
+npm-check-updates@^15.3.4:
+  version "15.3.4"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-15.3.4.tgz#ec16f5b553dff5cf670b0126c7e4dff0f6246194"
+  integrity sha512-YZDcw0DFn5ggl7b9znZ7N0i+Q1HVIxW+eZlV7XvR+RIs367H+ytKCB4slAU33Bg9IljY7uv3dsFjV2npOt3GyA==
   dependencies:
     chalk "^5.0.1"
     cli-table "^0.3.11"

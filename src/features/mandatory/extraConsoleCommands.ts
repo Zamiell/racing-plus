@@ -6,17 +6,17 @@ import {
 import {
   addConsoleCommand,
   CHARACTER_MAP,
-  deepCopyTests,
   FIRST_CHARACTER,
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
   LAST_VANILLA_CHARACTER,
   log,
-  mergeTests,
   onSetSeed,
   printConsole,
   restart,
+  runDeepCopyTests,
+  runMergeTests,
 } from "isaacscript-common";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
@@ -267,8 +267,8 @@ function seededRaceSeed(params: string) {
 }
 
 function tests() {
-  deepCopyTests();
-  mergeTests();
+  runDeepCopyTests();
+  runMergeTests();
 }
 
 function unseedCommand() {
