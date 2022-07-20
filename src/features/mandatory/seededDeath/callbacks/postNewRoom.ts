@@ -4,7 +4,7 @@ import {
   getPlayerFromIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isJacobOrEsau,
-  removeGrid,
+  removeGridEntity,
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
@@ -93,7 +93,7 @@ function removeSpikesInSacrificeRoom() {
 
   const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
   if (spikes !== undefined) {
-    removeGrid(spikes);
+    removeGridEntity(spikes, false);
   }
 
   player.AnimateSad();

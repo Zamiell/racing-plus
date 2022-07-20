@@ -1,6 +1,6 @@
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
-  removeGrid,
+  removeGridEntity,
   saveDataManager,
 } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
@@ -37,7 +37,7 @@ function checkDeleteSpikes() {
   if (shouldDeleteSpikes()) {
     const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
     if (spikes !== undefined) {
-      removeGrid(spikes);
+      removeGridEntity(spikes, false);
     }
   }
 }

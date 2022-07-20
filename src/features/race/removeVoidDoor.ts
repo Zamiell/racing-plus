@@ -4,7 +4,7 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { spawnGrid } from "isaacscript-common";
+import { spawnGridEntity } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -47,5 +47,5 @@ function deleteVoidDoor() {
 
   // Spawning a wall on top of the door will automatically delete the door.
   const gridIndex = voidDoor.GetGridIndex();
-  spawnGrid(GridEntityType.WALL, gridIndex);
+  spawnGridEntity(GridEntityType.WALL, gridIndex);
 }

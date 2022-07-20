@@ -7,7 +7,7 @@ import {
   RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
-import { game, spawnGridWithVariant } from "isaacscript-common";
+import { game, spawnGridEntityWithVariant } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -33,7 +33,7 @@ export function postNewRoom(): void {
   ) {
     v.run.spawnedCorpseTrapdoor = true;
     const gridIndex = g.r.GetGridIndex(NORMAL_TRAPDOOR_POSITION);
-    spawnGridWithVariant(
+    spawnGridEntityWithVariant(
       GridEntityType.TRAPDOOR,
       TrapdoorVariant.NORMAL,
       gridIndex,

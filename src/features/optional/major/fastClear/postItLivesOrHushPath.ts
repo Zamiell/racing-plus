@@ -18,7 +18,7 @@ import {
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
   spawnEffect,
-  spawnGridWithVariant,
+  spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
@@ -214,7 +214,7 @@ function spawnHeavenDoor(position: Vector) {
 
 function spawnTrapdoor(position: Vector) {
   const gridIndex = g.r.GetGridIndex(position);
-  spawnGridWithVariant(
+  spawnGridEntityWithVariant(
     GridEntityType.TRAPDOOR,
     TrapdoorVariant.NORMAL,
     gridIndex,

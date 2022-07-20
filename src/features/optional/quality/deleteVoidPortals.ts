@@ -1,4 +1,4 @@
-import { isPostBossVoidPortal, removeGrid } from "isaacscript-common";
+import { isPostBossVoidPortal, removeGridEntity } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallbackCustom.POST_GRID_ENTITY_UPDATE
@@ -9,6 +9,6 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   }
 
   if (isPostBossVoidPortal(gridEntity)) {
-    removeGrid(gridEntity);
+    removeGridEntity(gridEntity, false);
   }
 }
