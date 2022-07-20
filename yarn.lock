@@ -2668,10 +2668,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.9.13:
-  version "2.9.13"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.13.tgz#170a04ce85060d592e7f5b196c8ea0c5af29e580"
-  integrity sha512-S7ah0sbxkCZrvuoJvGGA7CM0fVF4Vferu2AV0RLrN4+KLkrZ6nxz9xpSAD3ukY9n/9CqtW23NVy2WueieayuWw==
+isaacscript@^2.9.14:
+  version "2.9.14"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.14.tgz#b24793acc7af5c4559ff8e27cc44746385275b48"
+  integrity sha512-bMlzdni4v0syWDf4rvY95d0wp+91FKfFrkoH28I6P2HZlnWGBOqxUXuGLLEaj14EOckCSpIwbmI/jokqTEZu1Q==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
