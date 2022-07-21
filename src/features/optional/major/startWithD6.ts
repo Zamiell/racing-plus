@@ -41,7 +41,7 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-const D6_STARTING_CHARGE = 6;
+const D6_STARTING_CHARGE = getCollectibleMaxCharges(CollectibleType.D6);
 
 const v = {
   run: {
@@ -283,14 +283,16 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   }
 
   // If we are switching characters, get the charge from the D6 on the previous frame.
-  const d6Charge = defaultMapGetPlayer(
+  const oldCharge = defaultMapGetPlayer(
     v.run.playersPocketActiveD6Charge,
     player,
   );
+  const d6Charge = player.FrameCount === 0 ? D6_STARTING_CHARGE : oldCharge;
 
   // The "EntityPlayer.SetPocketActiveItem" method also removes it from item pools.
   player.SetPocketActiveItem(CollectibleType.D6, ActiveSlot.POCKET);
   player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
+  Isaac.DebugString(`GETTING HERE - set ${d6Charge}`);
 
   // If we previously had a pocket active item, move it to the normal active item slot.
   if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {
