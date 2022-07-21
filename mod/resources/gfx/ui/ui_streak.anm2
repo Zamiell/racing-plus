@@ -1,3 +1,11 @@
+<!--
+
+Changes from vanilla:
+- Set "YPosition" to "-1000" for all root animation frames.
+- Added ShowRect="false" to the "Center" null layer.
+
+-->
+
 <AnimatedActor>
 	<Info CreatedBy="Unknown" CreatedOn="5/30/2021 7:15:33 PM" Version="16" Fps="30"/>
 	<Content>

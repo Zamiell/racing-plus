@@ -58,8 +58,16 @@ export function postPlayerInitLate(player: EntityPlayer): void {
   }
 }
 
+/**
+ * A new player has arrived that is not the first player, so they must be trying to initiate a
+ * multiplayer game.
+ *
+ * Forcefully end the run to prevent cheating.
+ */
 function endRun() {
-  // A new player has arrived that is not the first player, so they must be trying to initiate a
-  // multiplayer game.
+  // Play an animation to let the player know that multiplayer is illegal.
+  const player = Isaac.GetPlayer();
+  player.AnimateSad();
+
   game.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
 }
