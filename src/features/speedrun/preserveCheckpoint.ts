@@ -22,7 +22,7 @@ export function useCardBlackRune(): void {
 // ModCallback.PRE_USE_ITEM (23)
 // CollectibleType.D6 (105)
 export function preUseItemD6(player: EntityPlayer): boolean | undefined {
-  // The Checkpoint custom item is about to be deleted, so spawn another one.
+  // Prevent using the D6 if there are one or more Checkpoints in the room.
   const numCheckpoints = countEntities(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
