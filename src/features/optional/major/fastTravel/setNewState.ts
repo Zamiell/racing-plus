@@ -251,14 +251,17 @@ function setGoingToNewFloor() {
 
   blackSprite.setFullyOpaque();
 
-  if (v.room.usedStrengthCard) {
-    // Before moving to the next floor, we need to change the room so that health from a Strength
-    // card is properly decremented. We arbitrarily reload the current room (instead of e.g.
-    // teleporting to the starting room of the floor) so that the room type and room grid index
-    // remain unchanged for the purposes of calculating the next stage and stage type.
-    changeRoom(roomGridIndex);
-    decrementNumRoomsEntered(); // This should not count as entering a room.
-  }
+  // Before moving to the next floor, we need to change the room so that health from a Strength card
+  // is properly decremented. We arbitrarily reload the current room (instead of e.g. teleporting to
+  // the starting room of the floor) so that the room type and room grid index remain unchanged for
+  // the purposes of calculating the next stage and stage type.
+  changeRoom(roomGridIndex);
+  decrementNumRoomsEntered(); // This should not count as entering a room.
+  // (Technically, we only need to change the room if the player has used a Strength card, which
+  // will be the exception rather than the norm. However, if we do not change the room, a weird bug
+  // can occur where the location of the wall on the new floor can get messed up. This can be
+  // observed when going from Sheol to the Dark Room. By unconditionally changing the room before
+  // executing the stage transition, this bug goes away.)
 
   // Defer going to the next floor if we need to visit other rooms first. (The
   // "finishGoingToNewFloor" function will be manually called later in the PostUpdate callback.)

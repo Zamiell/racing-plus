@@ -86,8 +86,6 @@ const v = {
 
     /** Used when replacing a crawl space with a teleporter. */
     teleporterSpawned: false,
-
-    usedStrengthCard: false,
   },
 };
 export default v;

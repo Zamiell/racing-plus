@@ -1,6 +1,5 @@
 import { Card, ModCallback, UseFlag } from "isaac-typescript-definitions";
 import * as streakText from "../features/mandatory/streakText";
-import { fastTravelUseCardStrength } from "../features/optional/major/fastTravel/callbacks/useCard";
 import {
   automaticItemInsertionUseCardHierophant,
   automaticItemInsertionUseCardJustice,
@@ -27,12 +26,6 @@ export function init(mod: Mod): void {
     ModCallback.POST_USE_CARD,
     justice,
     Card.JUSTICE, // 9
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_CARD,
-    strength,
-    Card.STRENGTH, // 12
   );
 
   mod.AddCallback(
@@ -71,15 +64,6 @@ function justice(
   _useFlags: BitFlags<UseFlag>,
 ) {
   automaticItemInsertionUseCardJustice(player);
-}
-
-// Card.STRENGTH (12)
-function strength(
-  _card: Card,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-) {
-  fastTravelUseCardStrength();
 }
 
 // Card.RUNE_BLACK (41)
