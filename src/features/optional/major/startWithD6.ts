@@ -292,7 +292,6 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   // The "EntityPlayer.SetPocketActiveItem" method also removes it from item pools.
   player.SetPocketActiveItem(CollectibleType.D6, ActiveSlot.POCKET);
   player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
-  Isaac.DebugString(`GETTING HERE - set ${d6Charge}`);
 
   // If we previously had a pocket active item, move it to the normal active item slot.
   if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {

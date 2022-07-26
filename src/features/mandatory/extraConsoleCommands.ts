@@ -16,8 +16,6 @@ import {
   printConsole,
   removeConsoleCommand,
   restart,
-  runDeepCopyTests,
-  runMergeTests,
 } from "isaacscript-common";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
@@ -59,7 +57,6 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("seededRaceGoal", seededRaceGoal);
   addConsoleCommand("seededRaceOff", seededRaceOff);
   addConsoleCommand("seededRaceSeed", seededRaceSeed);
-  addConsoleCommand("tests", tests);
   removeConsoleCommand("unseed");
   addConsoleCommand("unseed", unseedCommand);
   addConsoleCommand("version", version);
@@ -266,11 +263,6 @@ function seededRaceSeed(params: string) {
 
   printConsole(`Set the seeded race seed to: ${params}`);
   restart();
-}
-
-function tests() {
-  runDeepCopyTests();
-  runMergeTests();
 }
 
 function unseedCommand() {

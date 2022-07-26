@@ -98,11 +98,12 @@ function getSeededDeathHealthForCharacter(character: PlayerType): PlayerHealth {
     // 16, 17
     case PlayerType.THE_FORGOTTEN:
     case PlayerType.THE_SOUL: {
-      // One half-filled bone heart + one half soul heart.
+      // One half-filled bone heart + one half soul heart. (We specify the bone heart as a max heart
+      // as to not have to specify it inside the `soulHeartTypes` array.)
       return {
         ...newPlayerHealth(),
+        maxHearts: 2,
         hearts: 1,
-        boneHearts: 1,
         soulHearts: 1,
         soulHeartTypes: [HeartSubType.SOUL],
       };
