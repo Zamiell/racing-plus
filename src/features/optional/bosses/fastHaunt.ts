@@ -30,7 +30,7 @@ export function postNPCUpdateHaunt(npc: EntityNPC): void {
 
 function checkDetachLilHaunts(npc: EntityNPC) {
   // In vanilla, the first Lil' Haunt detaches on frame 91. We speed this up so that it happens on
-  // the first frame that its PostNPCUpdate callback fires.
+  // the first frame that its `POST_NPC_UPDATE` callback fires.
   if (npc.FrameCount !== FIRST_LIL_HAUNT_UPDATE_FRAME) {
     return;
   }

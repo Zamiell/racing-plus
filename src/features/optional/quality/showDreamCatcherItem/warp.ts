@@ -163,7 +163,7 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
-  // We cannot reposition the player in the PostNewRoom callback for some reason, so mark to do it
-  // on the next render frame.
+  // We cannot reposition the player in the `POST_NEW_ROOM` callback for some reason, so mark to do
+  // it on the next render frame.
   v.level.warpState = DreamCatcherWarpState.REPOSITIONING_PLAYER;
 }

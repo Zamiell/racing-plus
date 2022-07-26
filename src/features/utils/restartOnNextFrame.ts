@@ -1,5 +1,5 @@
 // This feature is used because the game prevents you from executing a "restart" console command
-// while in the PostGameStarted callback.
+// while in the `POST_GAME_STARTED` callback.
 
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
 import {

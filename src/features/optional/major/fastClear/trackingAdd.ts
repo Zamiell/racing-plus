@@ -70,7 +70,7 @@ function checkAdd(entity: Entity, parentCallback: string) {
   }
 
   // We don't care if the NPC is already dead. (This is needed because we can enter this function
-  // from the PostNPCUpdate callback.)
+  // from the `POST_NPC_UPDATE` callback.)
   if (entity.IsDead()) {
     return;
   }

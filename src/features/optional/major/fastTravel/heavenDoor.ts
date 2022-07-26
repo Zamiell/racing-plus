@@ -32,7 +32,7 @@ export function postEffectUpdate(effect: EntityEffect): void {
   effect.State = 0;
 
   // We can't initialize the entity in the PostEffectInit callback because that fires before the
-  // PostNewRoom callback.
+  // `POST_NEW_ROOM` callback.
   fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
 }

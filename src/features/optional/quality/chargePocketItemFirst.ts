@@ -131,7 +131,7 @@ function checkHairpinCharge(player: EntityPlayer) {
   }
 
   // Hairpin charges the active item on the 1st frame of the room. Thus, we have to perform this
-  // check in the PostPEffectUpdate callback instead of the PostNewRoom callback.
+  // check in the PostPEffectUpdate callback instead of the `POST_NEW_ROOM` callback.
   const chargeSituation: ChargeSituation = {
     numCharges: LIL_BATTERY_CHARGES,
   };

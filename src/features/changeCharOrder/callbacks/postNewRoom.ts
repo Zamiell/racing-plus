@@ -46,7 +46,7 @@ function gotoButtonRoom() {
   consoleCommand(`stage ${CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT}`);
   forceNewRoomCallback();
   consoleCommand(`goto d.${CHANGE_CHAR_ORDER_ROOM_VARIANT}`);
-  // We do more things in the next PostNewRoom callback.
+  // We do more things in the next `POST_NEW_ROOM` callback.
 }
 
 function setupButtonRoom() {

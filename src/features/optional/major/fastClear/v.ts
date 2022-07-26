@@ -34,8 +34,10 @@ export function logFastClear(
 
   const verb = added ? "Added" : "Removed";
   const entityID = getEntityID(entity);
+  const npc = entity.ToNPC();
+  const state = npc === undefined ? "n/a" : npc.State.toString();
   log(
-    `${verb} fast-clear entity to track on game frame ${gameFrameCount}: ${entityID} - ${ptrHash} (${parentCallback})`,
+    `${verb} fast-clear entity to track on game frame ${gameFrameCount}: ${entityID}, state: ${state}, parent: ${entity.Parent}, spawnerEntity: ${entity.SpawnerEntity}, ptrHash: ${ptrHash}, parentCallback: ${parentCallback}`,
   );
   log(
     `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,

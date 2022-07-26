@@ -33,7 +33,7 @@ export function init(): void {
 
 export function spawnTrophy(position: Vector): void {
   // Don't do anything if a trophy already exists in the room. (This can happen if code earlier on
-  // in the PostNewRoom callback spawned a Big Chest or a trophy.)
+  // in the `POST_NEW_ROOM` callback spawned a Big Chest or a trophy.)
   if (v.level.trophyIndex !== null) {
     return;
   }

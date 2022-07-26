@@ -46,7 +46,7 @@ export function check(): boolean {
  * game needs to be completely restarted. One way to detect this corrupted state is to get how many
  * frames there are in the currently loaded boss cutscene animation file (located at
  * "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
- * function returns true if the PostGameStarted callback should halt.
+ * function returns true if the `POST_GAME_STARTED` callback should halt.
  */
 function isCorruptMod() {
   const sprite = Sprite();
