@@ -574,10 +574,15 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^18.6.1":
+"@types/node@*":
   version "18.6.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.1.tgz#828e4785ccca13f44e2fb6852ae0ef11e3e20ba5"
   integrity sha512-z+2vB6yDt1fNwKOeGbckpmirO+VBDuQqecXkgeIqDlaOtmKn6hPR/viQ8cxCfqLU4fTlvM3+YjM367TukWdxpg==
+
+"@types/node@^18.6.2":
+  version "18.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.2.tgz#ffc5f0f099d27887c8d9067b54e55090fcd54126"
+  integrity sha512-KcfkBq9H4PI6Vpu5B/KoPeuVDAbmi+2mDBqGPGUgoL7yXQtcWGu2vJWmmRkneWK3Rh0nIAX192Aa87AqKHYChQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1171,7 +1176,7 @@ commander@^6.2.0, commander@^6.2.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
   integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
-commander@^9.3.0, commander@^9.4.0:
+commander@^9.4.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.0.tgz#bc4a40918fefe52e22450c111ecd6b7acce6f11c"
   integrity sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==
@@ -2626,19 +2631,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.1.0.tgz#046e6171ed62654473d961e9eaaef942261a6fd1"
-  integrity sha512-MhHcJyF7jtC69D2iSIlEIlB1svbbXGbAk9GYiC+pUh2vYjeitl4aXTUWtZ5RredQeZJmYqwBvmDvWKTIxC2WoQ==
+isaac-typescript-definitions@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-3.1.4.tgz#9ee3ad785a7e2e17711b57884471681f93a9fa55"
+  integrity sha512-vVW/G6l/U65EOJ7Q/KVJCW55mmxr0jyA0zZ54ogc32qHkUXFwVI44NBPn/n5ytAPx7N4JgCc9yLl0yNMOOA+Pg==
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^6.17.1:
-  version "6.17.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.17.1.tgz#f92e40785698066b947c2c08a66333c0673c28cd"
-  integrity sha512-79oXo4ozjr6lLzTCw6hb3g/dGKLjwc1oTHUI7ZA+uYKEGFFVFM2j4Q1ghRfOT4r6wEID2AACfAka5IqF7HsTFQ==
+isaacscript-common@^6.22.4:
+  version "6.22.4"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-6.22.4.tgz#d39db31c7dec32bee1733c5e67bc0e781f0b4b6e"
+  integrity sha512-QRSZPvyPChafilrYGbQjSgUGv/GlZV5kr16gYMLnuRPSU8YoFrvpPN97K6wWVE0p37n1oMSSXM++n1dzsKHfdQ==
   dependencies:
-    isaac-typescript-definitions "^3.1.0"
+    isaac-typescript-definitions "^3.1.4"
 
 isaacscript-lint@^4.0.3:
   version "4.0.3"
@@ -2674,10 +2679,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.9.15:
-  version "2.9.15"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.9.15.tgz#b3e83ff1f684d774e95e8c1781ae3ff2144b7be7"
-  integrity sha512-eXsRz6IxRaLRY5Way2XvhxesumnmN9rovw2cPUnUoX2B6eWbI6Fn2Ay+FHXynGG3Mx9D5Fo49/pOUVuOLLinsA==
+isaacscript@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.10.0.tgz#0bab2fccaa76456329d016ffec7ff59704f10d26"
+  integrity sha512-jBAItIp5a9M72OYUpsCTv3ycmBtahYltrZZIqkxDkRwEiZiKgXrvCmMwMZFYVyEW8SRWg6lQxHO0YdOm8iSLYw==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
@@ -2689,12 +2694,12 @@ isaacscript@^2.9.15:
     isaacscript-tsconfig "^2.0.0"
     jsonc-parser "^3.1.0"
     moment "^2.29.4"
-    npm-check-updates "^15.3.4"
+    npm-check-updates "^16.0.1"
     prompt "^1.3.0"
     source-map-support "^0.5.21"
     sync-directory "^5.1.7"
     tslib "^2.4.0"
-    typescript-to-lua "^1.7.0"
+    typescript-to-lua "^1.7.1"
     update-notifier "5.1.0"
     xml2js "^0.4.23"
     yaml "^2.1.1"
@@ -3168,14 +3173,14 @@ npm-bundled@^1.1.1, npm-bundled@^1.1.2:
   dependencies:
     npm-normalize-package-bin "^1.0.1"
 
-npm-check-updates@^15.3.4:
-  version "15.3.4"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-15.3.4.tgz#ec16f5b553dff5cf670b0126c7e4dff0f6246194"
-  integrity sha512-YZDcw0DFn5ggl7b9znZ7N0i+Q1HVIxW+eZlV7XvR+RIs367H+ytKCB4slAU33Bg9IljY7uv3dsFjV2npOt3GyA==
+npm-check-updates@^16.0.1:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.0.3.tgz#39e6f1227596d35b072858d6a06a8d1f63ec25b1"
+  integrity sha512-oTCQ/USrDBruVOIRrnpxk4oW4H1mIJfcSta2/ffslKv6kqv4C22hP+ltZoRGu+1nhZ5dsDb/B8CoVyD27/Wm8w==
   dependencies:
     chalk "^5.0.1"
     cli-table "^0.3.11"
-    commander "^9.3.0"
+    commander "^9.4.0"
     fast-memoize "^2.5.2"
     find-up "5.0.0"
     fp-and-or "^0.1.3"
@@ -4215,7 +4220,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript-to-lua@^1.7.0, typescript-to-lua@^1.7.1:
+typescript-to-lua@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.7.1.tgz#318ffc21b6580a56a525009452e30845b3990c2b"
   integrity sha512-iDjCnel38p3Cxv+Las8rBzd6BaRIE49DQSyFOgupg4gSw36+8H1xtwde3lRdGMPZx19/zVwXEO8UspiACYJc+A==

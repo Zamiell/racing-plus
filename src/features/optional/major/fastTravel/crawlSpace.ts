@@ -18,7 +18,7 @@ import {
   getRoomGridIndex,
   inCrawlSpace,
   inSecretShop,
-  isRoomInsideMap,
+  isRoomInsideGrid,
   log,
   removeGridEntity,
   runNextGameFrame,
@@ -366,7 +366,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   // check will fail and the crawl space will be spawned open, but then the player will be
   // teleported away from the entrance of the room back on top of the crawl space, which will cause
   // them to immediately re-enter it again.)
-  if (!isRoomInsideMap()) {
+  if (!isRoomInsideGrid()) {
     return false;
   }
 
@@ -394,7 +394,7 @@ function touched(entity: GridEntity | EntityEffect) {
   // Additionally, save the previous room information so that we can avoid a softlock when returning
   // to a room outside the grid.
   if (
-    !isRoomInsideMap() &&
+    !isRoomInsideGrid() &&
     v.level.crawlSpace.previousReturnRoomGridIndex === null
   ) {
     v.level.crawlSpace.previousReturnRoomGridIndex = previousRoomGridIndex;
