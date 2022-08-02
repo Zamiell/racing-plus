@@ -5,6 +5,7 @@ import {
   StageType,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   forceNewLevelCallback,
   forceNewRoomCallback,
   game,
@@ -241,7 +242,7 @@ export function inRaceRoom(): boolean {
   return (
     roomStageID === RACE_ROOM_STAGE_ID &&
     roomVariant === RACE_ROOM_VARIANT &&
-    roomGridIndex === (GridRoom.DEBUG as int)
+    roomGridIndex === asNumber(GridRoom.DEBUG)
   );
 }
 

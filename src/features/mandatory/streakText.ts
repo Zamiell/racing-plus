@@ -11,6 +11,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
+  asCollectibleType,
   fonts,
   game,
   getCardName,
@@ -155,7 +156,7 @@ function draw(text: string, fade: float) {
 export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
-    const collectibleName = getCollectibleName(wisp.SubType as CollectibleType);
+    const collectibleName = getCollectibleName(asCollectibleType(wisp.SubType));
     set(collectibleName);
   }
 }

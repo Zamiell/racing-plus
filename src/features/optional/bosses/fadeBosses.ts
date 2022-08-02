@@ -1,7 +1,7 @@
 // When beginning a death animation, make bosses faded so that it makes it easier to see.
 
 import { EntityType, LambVariant } from "isaac-typescript-definitions";
-import { runNextGameFrame } from "isaacscript-common";
+import { asNumber, runNextGameFrame } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const FADE_AMOUNT = 0.4;
@@ -43,7 +43,7 @@ function fadeBosses(entity: Entity, deferred = false) {
   // frame before checking to see if all of the Lamb entities are dead.
   if (
     npc.Type === EntityType.THE_LAMB &&
-    npc.Variant === (LambVariant.LAMB as int)
+    npc.Variant === asNumber(LambVariant.LAMB)
   ) {
     if (deferred) {
       if (!npc.IsDead()) {

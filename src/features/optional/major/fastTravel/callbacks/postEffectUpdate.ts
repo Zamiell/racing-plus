@@ -1,4 +1,5 @@
 import { HeavenLightDoorSubType } from "isaac-typescript-definitions";
+import { asNumber } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 import * as heavenDoor from "../heavenDoor";
 
@@ -7,7 +8,7 @@ export function heavenLightDoor(effect: EntityEffect): void {
     return;
   }
 
-  if (effect.SubType === (HeavenLightDoorSubType.HEAVEN_DOOR as int)) {
+  if (effect.SubType === asNumber(HeavenLightDoorSubType.HEAVEN_DOOR)) {
     heavenDoor.postEffectUpdate(effect);
   }
 }

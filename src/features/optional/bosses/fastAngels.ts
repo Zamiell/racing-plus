@@ -14,6 +14,7 @@ import {
 import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
+  asNumber,
   countEntities,
   findFreePosition,
   getCollectibleName,
@@ -118,7 +119,7 @@ function shouldSpawnKeyPiece(entity: Entity) {
   const roomType = g.r.GetType();
 
   // Fallen Angels do not drop key pieces.
-  if (entity.Variant !== (AngelVariant.NORMAL as int)) {
+  if (entity.Variant !== asNumber(AngelVariant.NORMAL)) {
     return false;
   }
 

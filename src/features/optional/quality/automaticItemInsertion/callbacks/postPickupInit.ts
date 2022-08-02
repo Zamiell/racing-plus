@@ -72,8 +72,7 @@ function getEffectivePickupVariant(
   const hasLittleBaggy = anyPlayerHasCollectible(CollectibleType.LITTLE_BAGGY); // Other players can change the drops
 
   if (
-    lookingForPickupVariant ===
-      (PICKUP_VARIANT_CARD_OR_PILL as PickupVariant) &&
+    lookingForPickupVariant === PICKUP_VARIANT_CARD_OR_PILL &&
     (pickup.Variant === PickupVariant.TAROT_CARD ||
       pickup.Variant === PickupVariant.PILL)
   ) {

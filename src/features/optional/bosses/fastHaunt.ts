@@ -5,7 +5,7 @@ import {
   HauntVariant,
   NpcState,
 } from "isaac-typescript-definitions";
-import { getNPCs } from "isaacscript-common";
+import { asNumber, ColorDefault, getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
@@ -20,7 +20,7 @@ export function postNPCUpdateHaunt(npc: EntityNPC): void {
     return;
   }
 
-  if (npc.Variant !== (HauntVariant.HAUNT as int)) {
+  if (npc.Variant !== asNumber(HauntVariant.HAUNT)) {
     return;
   }
 
@@ -84,7 +84,7 @@ function detachLilHaunt(npc: EntityNPC) {
 
   // After detaching, the Lil' Haunt will remain faded, so manually set the color to be fully
   // opaque.
-  npc.SetColor(Color.Default, 0, 0);
+  npc.SetColor(ColorDefault, 0, 0);
 }
 
 function checkAngrySkinAnimation(npc: EntityNPC) {

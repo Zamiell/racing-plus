@@ -288,7 +288,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = keyboardToString(currentValue);
+        text = keyboardToString(currentValue, true) ?? "Unknown";
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
@@ -359,14 +359,14 @@ function popupGetKeepSettingString(
   return `This setting is currently set to "${currentKeyName}".$newlinePress this button to keep it unchanged.$newline$newline`;
 }
 
-function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
+function getKeyName(optionType: ModConfigMenuOptionType, key: int): string {
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
-      return keyboardToString(key as Keyboard);
+      return keyboardToString(key as Keyboard, true) ?? "Unknown";
     }
 
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
-      return controllerToString(key as Controller);
+      return controllerToString(key as Controller) ?? "Unknown";
     }
 
     default: {
@@ -375,20 +375,20 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int) {
   }
 }
 
-function popupGetBackKeyText() {
+function popupGetBackKeyText(): string {
   if (ModConfigMenu === undefined) {
     return "back";
   }
 
   const lastBackPressed = ModConfigMenu.Config.LastBackPressed;
 
-  const keyboardString = keyboardToString(lastBackPressed as Keyboard);
-  if (keyboardString !== "unknown") {
+  const keyboardString = keyboardToString(lastBackPressed as Keyboard, true);
+  if (keyboardString !== undefined) {
     return keyboardString;
   }
 
   const controllerString = controllerToString(lastBackPressed as Controller);
-  if (controllerString !== "unknown") {
+  if (controllerString !== undefined) {
     return controllerString;
   }
 

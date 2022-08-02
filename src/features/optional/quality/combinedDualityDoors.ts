@@ -6,6 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  asNumber,
   DOOR_HITBOX_RADIUS,
   getAngelRoomDoor,
   getDevilRoomDoor,
@@ -72,7 +73,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 }
 
 function getPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor) {
-  const useYAxis = (door.Slot as int) % 2 === 0;
+  const useYAxis = asNumber(door.Slot) % 2 === 0;
   const invertDirection = shouldInvertDirection(door.Slot);
 
   // We combine position and velocity to project where the player will be a frame from now. We do

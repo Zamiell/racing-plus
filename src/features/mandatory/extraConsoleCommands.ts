@@ -231,12 +231,13 @@ function seededRaceItem(params: string) {
 
 function seededRaceGoal(params: string) {
   const raceGoals = getEnumValues(RaceGoal);
-  if (!raceGoals.includes(params as RaceGoal)) {
+  const raceGoal = params as RaceGoal;
+  if (!raceGoals.includes(raceGoal)) {
     printConsole(`That is an invalid race goal: ${params}`);
     return;
   }
 
-  g.race.goal = params as RaceGoal;
+  g.race.goal = raceGoal;
   printConsole(`Set the seeded race goal to: ${g.race.goal}`);
   restart();
 }

@@ -7,6 +7,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerCloserThan,
+  asNumber,
   getDoorEnterPosition,
   getDoors,
   getFamiliars,
@@ -81,8 +82,8 @@ function enteredRoomViaTeleport() {
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
   const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
-    previousRoomGridIndex === (GridRoom.DUNGEON as int) ||
-    previousRoomGridIndex === (GridRoom.SECRET_SHOP as int);
+    previousRoomGridIndex === asNumber(GridRoom.DUNGEON) ||
+    previousRoomGridIndex === asNumber(GridRoom.SECRET_SHOP);
 
   return (
     g.l.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&

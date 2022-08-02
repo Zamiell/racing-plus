@@ -12,6 +12,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerUsingPony,
+  asNumber,
   DISTANCE_OF_GRID_TILE,
   getCrawlSpaces,
   getPlayerCloserThan,
@@ -145,7 +146,7 @@ function checkExitSoftlock(player: EntityPlayer) {
   const roomType = g.r.GetType();
 
   if (
-    previousRoomGridIndex !== (GridRoom.DUNGEON as int) ||
+    previousRoomGridIndex !== asNumber(GridRoom.DUNGEON) ||
     v.level.crawlSpace.previousReturnRoomGridIndex === null
   ) {
     return;

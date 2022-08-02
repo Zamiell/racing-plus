@@ -3,6 +3,7 @@
 // 60 as soon as it ticks upwards for the first time.
 
 import { HeavenLightDoorSubType } from "isaac-typescript-definitions";
+import { asNumber } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const ACTIVATION_STATE = 60;
@@ -15,7 +16,7 @@ export function postEffectUpdateHeavenLightDoor(effect: EntityEffect): void {
   }
 
   if (
-    effect.SubType === (HeavenLightDoorSubType.MOONLIGHT as int) &&
+    effect.SubType === asNumber(HeavenLightDoorSubType.MOONLIGHT) &&
     effect.State === 1
   ) {
     effect.State = ACTIVATION_STATE;

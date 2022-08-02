@@ -21,42 +21,50 @@ export function insertPickup(
   switch (pickup.Variant) {
     // 10
     case PickupVariant.HEART: {
-      return insertBloodOrSoulCharge(pickup as EntityPickupHeart, player);
+      const heart = pickup as EntityPickupHeart;
+      return insertBloodOrSoulCharge(heart, player);
     }
 
     // 20
     case PickupVariant.COIN: {
-      return insertCoin(pickup as EntityPickupCoin, player);
+      const coin = pickup as EntityPickupCoin;
+      return insertCoin(coin, player);
     }
 
     // 30
     case PickupVariant.KEY: {
-      return insertKey(pickup as EntityPickupKey, player);
+      const key = pickup as EntityPickupKey;
+      return insertKey(key, player);
     }
 
     // 40
     case PickupVariant.BOMB: {
-      return insertBomb(pickup as EntityPickupBomb, player);
+      const bomb = pickup as EntityPickupBomb;
+      return insertBomb(bomb, player);
     }
 
     // 42
     case PickupVariant.POOP: {
-      return insertPoop(pickup as EntityPickupPoop, player);
+      const poop = pickup as EntityPickupPoop;
+      return insertPoop(poop, player);
     }
 
     // 70
     case PickupVariant.PILL: {
-      return insertPill(pickup as EntityPickupPill, player);
+      const pill = pickup as EntityPickupPill;
+      return insertPill(pill, player);
     }
 
     // 300
     case PickupVariant.TAROT_CARD: {
-      return insertCard(pickup as EntityPickupCard, player);
+      const card = pickup as EntityPickupCard;
+      return insertCard(card, player);
     }
 
     // 350
     case PickupVariant.TRINKET: {
-      return insertTrinket(pickup as EntityPickupTrinket, player);
+      const trinket = pickup as EntityPickupTrinket;
+      return insertTrinket(trinket, player);
     }
 
     default: {

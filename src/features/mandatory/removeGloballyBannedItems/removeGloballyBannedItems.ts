@@ -6,6 +6,8 @@ import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  asCollectibleType,
+  asNumber,
   getCollectibles,
   getPlayersOfType,
   getRandomEdenPassive,
@@ -137,11 +139,10 @@ export function useItemSpindownDice(): void {
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       // Skip over the banned collectible and turn it into the one before that.
-      const previousCollectibleType = (collectible.SubType as int) - 1;
-      setCollectibleSubType(
-        collectible,
-        previousCollectibleType as CollectibleType,
+      const previousCollectibleType = asCollectibleType(
+        asNumber(collectible.SubType) - 1,
       );
+      setCollectibleSubType(collectible, previousCollectibleType);
     }
   }
 }

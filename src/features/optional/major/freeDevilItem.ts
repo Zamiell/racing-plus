@@ -8,6 +8,7 @@ import {
 import {
   anyPlayerHasCollectible,
   anyPlayerIs,
+  asNumber,
   DefaultMap,
   game,
   getTaintedMagdaleneNonTemporaryMaxHearts,
@@ -246,7 +247,7 @@ function isDevilDealStyleCollectible(collectible: EntityPickupCollectible) {
   }
 
   return (
-    collectible.Price < 0 && collectible.Price !== (PickupPrice.FREE as int)
+    collectible.Price < 0 && collectible.Price !== asNumber(PickupPrice.FREE)
   );
 }
 
@@ -260,7 +261,7 @@ export function postPickupRenderCollectible(
     return;
   }
 
-  if (pickup.Price !== (PickupPriceCustom.PRICE_FREE_DEVIL_DEAL as int)) {
+  if (pickup.Price !== asNumber(PickupPriceCustom.PRICE_FREE_DEVIL_DEAL)) {
     return;
   }
 

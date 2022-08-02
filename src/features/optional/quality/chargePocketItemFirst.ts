@@ -27,6 +27,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   DefaultMap,
   defaultMapGetPlayer,
   game,
@@ -301,7 +302,7 @@ function getChargeSituationForPickup(
 
     // 30
     case PickupVariant.KEY: {
-      if ((pickupSubType as KeySubType) === KeySubType.CHARGED) {
+      if (pickupSubType === asNumber(KeySubType.CHARGED)) {
         return {
           numCharges: LIL_BATTERY_CHARGES,
         };
@@ -314,7 +315,8 @@ function getChargeSituationForPickup(
 
     // 90
     case PickupVariant.LIL_BATTERY: {
-      return getChargeSituationForBattery(pickupSubType as BatterySubType);
+      const batterySubType = pickupSubType as BatterySubType;
+      return getChargeSituationForBattery(batterySubType);
     }
 
     default: {

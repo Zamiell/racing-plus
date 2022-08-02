@@ -1,4 +1,5 @@
-import { DeathState, NpcState } from "isaac-typescript-definitions";
+import { DeathState } from "isaac-typescript-definitions";
+import { asNpcState } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NPC_UPDATE (0)
@@ -14,7 +15,7 @@ export function postNPCUpdateDeath(npc: EntityNPC): void {
   }
 
   // Stop Death from performing the attack that slows down the player.
-  if (npc.State === (DeathState.SLOW_ATTACK as unknown as NpcState)) {
-    npc.State = DeathState.MAIN_IDLE as unknown as NpcState;
+  if (npc.State === asNpcState(DeathState.SLOW_ATTACK)) {
+    npc.State = asNpcState(DeathState.MAIN_IDLE);
   }
 }

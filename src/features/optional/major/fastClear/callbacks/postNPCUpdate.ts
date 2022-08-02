@@ -1,5 +1,9 @@
 import { DingleVariant, NpcState } from "isaac-typescript-definitions";
-import { isRaglingDeathPatch } from "isaacscript-common";
+import {
+  asNumber,
+  ColorDefault,
+  isRaglingDeathPatch,
+} from "isaacscript-common";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import * as trackingAdd from "../trackingAdd";
 import * as trackingRemove from "../trackingRemove";
@@ -21,10 +25,10 @@ export function dingle(npc: EntityNPC): void {
   // Fix the bug where a Dangle spawned from a Brownie will be faded. We only care about Dangles
   // that are freshly spawned.
   if (
-    npc.Variant === (DingleVariant.DANGLE as int) &&
+    npc.Variant === asNumber(DingleVariant.DANGLE) &&
     npc.State === NpcState.INIT
   ) {
-    npc.SetColor(Color.Default, 1000, 0, true, true);
+    npc.SetColor(ColorDefault, 1000, 0, true, true);
   }
 }
 

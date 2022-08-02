@@ -6,6 +6,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  asTrinketType,
   characterStartsWithActiveItem,
   copyArray,
   getLastElement,
@@ -201,12 +202,11 @@ function diversity(player: EntityPlayer) {
     error("A diversity race does not have 5 starting items.");
   }
   const collectibleTypes = copyArray(g.race.startingItems, 4);
-  const trinketType = getLastElement(g.race.startingItems) as
-    | TrinketType
-    | undefined;
-  if (trinketType === undefined) {
+  const lastStartingItem = getLastElement(g.race.startingItems);
+  if (lastStartingItem === undefined) {
     error("Failed to find the trinket type from the race's starting items.");
   }
+  const trinketType = asTrinketType(lastStartingItem);
 
   for (const serverCollectibleID of collectibleTypes) {
     const collectibleType =

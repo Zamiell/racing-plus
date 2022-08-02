@@ -7,7 +7,7 @@ import {
   EffectVariant,
   EntityCollisionClass,
 } from "isaac-typescript-definitions";
-import { spawnEffect, VectorZero } from "isaacscript-common";
+import { asNumber, spawnEffect, VectorZero } from "isaacscript-common";
 import { TargetSubTypeCustom } from "../../../enums/TargetSubTypeCustom";
 
 const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);
@@ -26,7 +26,7 @@ export function postNPCInitDaddyLongLegs(npc: EntityNPC): void {
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.TARGET (30)
 export function postEffectUpdateTarget(effect: EntityEffect): void {
-  if (effect.SubType !== (TargetSubTypeCustom.SHADOW_ATTACKS as int)) {
+  if (effect.SubType !== asNumber(TargetSubTypeCustom.SHADOW_ATTACKS)) {
     return;
   }
 

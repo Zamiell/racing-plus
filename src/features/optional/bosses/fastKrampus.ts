@@ -10,6 +10,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  asNumber,
   findFreePosition,
   getCollectibleName,
   getRandom,
@@ -66,7 +67,7 @@ export function postEntityKillFallen(entity: Entity): void {
     return;
   }
 
-  if (entity.Variant === (FallenVariant.KRAMPUS as int)) {
+  if (entity.Variant === asNumber(FallenVariant.KRAMPUS)) {
     spawnKrampusDrop(entity);
   }
 }

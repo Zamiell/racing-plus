@@ -5,6 +5,7 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   saveDataManager,
   spawn,
   spawnPickup,
@@ -45,7 +46,7 @@ export function postNewRoom(): void {
 export function postEntityKillTheBeast(entity: Entity): void {
   const variant = entity.Variant;
 
-  if (variant !== (BeastVariant.BEAST as int)) {
+  if (variant !== asNumber(BeastVariant.BEAST)) {
     return;
   }
 

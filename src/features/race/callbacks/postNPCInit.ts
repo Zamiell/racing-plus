@@ -6,6 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
+  asNumber,
   countEntities,
   getPlayersOfType,
 } from "isaacscript-common";
@@ -16,7 +17,7 @@ export function racePostNPCInitDarkEsau(npc: EntityNPC): void {
     return;
   }
 
-  if (npc.Variant === (DarkEsauVariant.DARK_ESAU as int)) {
+  if (npc.Variant === asNumber(DarkEsauVariant.DARK_ESAU)) {
     checkDuplicatedDarkEsau(npc);
   }
 }

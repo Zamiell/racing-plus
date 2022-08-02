@@ -7,6 +7,7 @@ import {
   TrapdoorState,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   game,
   getRoomGridIndex,
   isPostBossVoidPortal,
@@ -123,7 +124,7 @@ function shouldRemove() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === LevelStage.WOMB_2 &&
-    roomGridIndex !== (GridRoom.BLUE_WOMB as int)
+    roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
       `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
@@ -137,7 +138,7 @@ function shouldRemove() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === LevelStage.BLUE_WOMB &&
-    roomGridIndex !== (GridRoom.THE_VOID as int)
+    roomGridIndex !== asNumber(GridRoom.THE_VOID)
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
@@ -194,7 +195,7 @@ function shouldRemove() {
   if (
     stage < LevelStage.WOMB_1 &&
     backwardPath &&
-    roomGridIndex !== (GridRoom.SECRET_EXIT as int)
+    roomGridIndex !== asNumber(GridRoom.SECRET_EXIT)
   ) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,

@@ -1,4 +1,5 @@
-import { BigHornState, NpcState } from "isaac-typescript-definitions";
+import { BigHornState } from "isaac-typescript-definitions";
+import { asNpcState } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NPC_UPDATE (0)
@@ -11,7 +12,7 @@ export function postNPCUpdateBigHorn(npc: EntityNPC): void {
   // Speed up coming out of the ground.
   if (
     npc.State ===
-      (BigHornState.HEAD_GOING_UP_OR_GOING_DOWN_INTO_HOLE as unknown as NpcState) &&
+      asNpcState(BigHornState.HEAD_GOING_UP_OR_GOING_DOWN_INTO_HOLE) &&
     npc.StateFrame >= 67 &&
     npc.StateFrame < 100
   ) {

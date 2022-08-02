@@ -3,7 +3,7 @@ import {
   EntityType,
   FamiliarVariant,
 } from "isaac-typescript-definitions";
-import { copyColor } from "isaacscript-common";
+import { asNumber, copyColor } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.EVALUATE_CACHE (8)
@@ -59,7 +59,7 @@ export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
   // Ignore creep generated from Lil Spewer.
   if (
     effect.SpawnerType === EntityType.FAMILIAR &&
-    effect.SpawnerVariant === (FamiliarVariant.LIL_SPEWER as int)
+    effect.SpawnerVariant === asNumber(FamiliarVariant.LIL_SPEWER)
   ) {
     return;
   }

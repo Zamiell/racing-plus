@@ -9,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  asNumber,
   getBosses,
   getCollectibles,
   inStartingRoom,
@@ -119,24 +120,24 @@ function isBossException(type: EntityType, variant: int) {
   switch (type) {
     // 45
     case EntityType.MOM: {
-      return variant === (MomVariant.STOMP as int);
+      return variant === asNumber(MomVariant.STOMP);
     }
 
     // 79
     case EntityType.GEMINI: {
       return (
-        variant === (GeminiVariant.GEMINI_BABY as int) ||
-        variant === (GeminiVariant.STEVEN_BABY as int) ||
-        variant === (GeminiVariant.BLIGHTED_OVUM_BABY as int) ||
-        variant === (GeminiVariant.UMBILICAL_CORD as int)
+        variant === asNumber(GeminiVariant.GEMINI_BABY) ||
+        variant === asNumber(GeminiVariant.STEVEN_BABY) ||
+        variant === asNumber(GeminiVariant.BLIGHTED_OVUM_BABY) ||
+        variant === asNumber(GeminiVariant.UMBILICAL_CORD)
       );
     }
 
     // 266
     case EntityType.MAMA_GURDY: {
       return (
-        variant === (MamaGurdyVariant.LEFT_HAND as int) ||
-        variant === (MamaGurdyVariant.RIGHT_HAND as int)
+        variant === asNumber(MamaGurdyVariant.LEFT_HAND) ||
+        variant === asNumber(MamaGurdyVariant.RIGHT_HAND)
       );
     }
 

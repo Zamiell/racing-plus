@@ -7,7 +7,7 @@ import {
 /**
  * We use an arbitrary value of -1 to indicate that the collectible drops either a card or a pill.
  */
-export const PICKUP_VARIANT_CARD_OR_PILL = -1;
+export const PICKUP_VARIANT_CARD_OR_PILL = -1 as PickupVariant;
 
 export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
   CollectibleType,

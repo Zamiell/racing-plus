@@ -10,6 +10,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   game,
   getRoomGridIndex,
   isChildPlayer,
@@ -79,17 +80,17 @@ function getCustomSpriteFilename(
       const gridEntity = entity as GridEntity;
       const variant = gridEntity.GetVariant();
 
-      if (variant === (TrapdoorVariant.VOID_PORTAL as int)) {
+      if (variant === asNumber(TrapdoorVariant.VOID_PORTAL)) {
         return "gfx/grid/voidtrapdoor_custom.anm2";
       }
 
       // -8
-      if (roomGridIndex === (GridRoom.BLUE_WOMB as int)) {
+      if (roomGridIndex === asNumber(GridRoom.BLUE_WOMB)) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";
       }
 
       // -10
-      if (roomGridIndex === (GridRoom.SECRET_EXIT as int)) {
+      if (roomGridIndex === asNumber(GridRoom.SECRET_EXIT)) {
         if (
           !repentanceStage &&
           (stage === LevelStage.BASEMENT_1 || stage === LevelStage.BASEMENT_2)
@@ -149,7 +150,7 @@ function getCustomSpriteFilename(
       const gridEntity = entity as GridEntity;
       const variant = gridEntity.GetVariant();
 
-      if (variant === (CrawlSpaceVariant.SECRET_SHOP as int)) {
+      if (variant === asNumber(CrawlSpaceVariant.SECRET_SHOP)) {
         return "gfx/grid/door_20_secrettrapdoor_shop_custom.anm2";
       }
 

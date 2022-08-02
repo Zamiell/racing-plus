@@ -1,5 +1,5 @@
 import { LambVariant } from "isaac-typescript-definitions";
-import { log } from "isaacscript-common";
+import { asNumber, log } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NPC_UPDATE (0)
@@ -11,7 +11,7 @@ export function postNPCUpdateLamb(npc: EntityNPC): void {
 
   // Remove The Lamb body once it is defeated so that it does not interfere with taking the trophy.
   if (
-    npc.Variant === (LambVariant.BODY as int) &&
+    npc.Variant === asNumber(LambVariant.BODY) &&
     npc.IsInvincible() && // It turns invincible once it is defeated
     !npc.IsDead() // The callback will be hit again during the removal
   ) {

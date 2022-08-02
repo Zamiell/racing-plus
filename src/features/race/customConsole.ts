@@ -10,6 +10,7 @@ import {
   hexToKColor,
   isEven,
   isKeyboardPressed,
+  keyboardToString,
   log,
   RENDER_FRAMES_PER_SECOND,
   saveDataManager,
@@ -17,7 +18,6 @@ import {
 import { Colors } from "../../enums/Colors";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { KEYBOARD_MAP } from "../../maps/keyboardMap";
 import { hotkeys } from "../../modConfigMenu";
 import { TextSegment } from "../../types/TextSegment";
 import { consoleCommand } from "../../utils";
@@ -158,7 +158,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
     return;
   }
 
-  const keyStringArray = KEYBOARD_MAP.get(keyboardValue);
+  const keyStringArray = keyboardToString(keyboardValue, shiftPressed);
   if (keyStringArray !== undefined) {
     const [lowercaseCharacter, uppercaseCharacter] = keyStringArray;
     const character = shiftPressed ? uppercaseCharacter : lowercaseCharacter;

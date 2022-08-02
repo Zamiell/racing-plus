@@ -8,6 +8,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   addRoomClearCharges,
+  asNumber,
   getNPCs,
   inMegaSatanRoom,
   log,
@@ -92,7 +93,7 @@ function isAllLambEntitiesDead() {
       continue;
     }
 
-    if (lamb.Variant === (LambVariant.BODY as int) && lamb.IsInvincible()) {
+    if (lamb.Variant === asNumber(LambVariant.BODY) && lamb.IsInvincible()) {
       continue;
     }
 

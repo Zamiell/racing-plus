@@ -8,6 +8,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   game,
   getEffectiveStage,
   getEntities,
@@ -142,7 +143,7 @@ function killDeathsHeads() {
   for (const deathsHead of deathsHeads) {
     // Death's Dank Head is a "normal" enemy in that it does not rely on other enemies in the room
     // to be alive. (It is the only variant that has this behavior.)
-    if (deathsHead.Variant === (DeathsHeadVariant.DANK_DEATHS_HEAD as int)) {
+    if (deathsHead.Variant === asNumber(DeathsHeadVariant.DANK_DEATHS_HEAD)) {
       continue;
     }
 

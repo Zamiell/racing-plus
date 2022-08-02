@@ -3,11 +3,17 @@
 // underground.)
 
 import { EntityType, NpcState, PinVariant } from "isaac-typescript-definitions";
-import { getNPCs, saveDataManager } from "isaacscript-common";
+import { asNumber, getNPCs, saveDataManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
 const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;
+
+const PIN_VARIANTS_TO_SPEED_UP_TEAR_ATTACK: ReadonlySet<PinVariant> = new Set([
+  PinVariant.PIN,
+  PinVariant.FRAIL,
+  PinVariant.SCOLEX,
+]);
 
 /** This is the same for both NpcState.ATTACK and NpcState.ATTACK_2. */
 const PIN_ATTACK_STATE_FRAME_FINAL = 105;
@@ -43,11 +49,7 @@ export function postNPCUpdatePin(npc: EntityNPC): void {
 }
 
 function checkPin(npc: EntityNPC) {
-  if (
-    npc.Variant !== (PinVariant.PIN as int) &&
-    npc.Variant !== (PinVariant.FRAIL as int) &&
-    npc.Variant !== (PinVariant.SCOLEX as int)
-  ) {
+  if (!PIN_VARIANTS_TO_SPEED_UP_TEAR_ATTACK.has(npc.Variant as PinVariant)) {
     return;
   }
 
@@ -72,7 +74,7 @@ function speedUpTearAttack(npc: EntityNPC) {
 }
 
 function checkWormwood(npc: EntityNPC) {
-  if (npc.Variant !== (PinVariant.WORMWOOD as int)) {
+  if (npc.Variant !== asNumber(PinVariant.WORMWOOD)) {
     return;
   }
 

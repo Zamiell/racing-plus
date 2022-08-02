@@ -1,5 +1,7 @@
 import { CollectibleType, ItemPoolType } from "isaac-typescript-definitions";
 import {
+  asCollectibleType,
+  asNumber,
   getCollectibleName,
   getEffectiveStage,
   getEnumLength,
@@ -92,13 +94,14 @@ function isIncompleteSave() {
  * We hardcode a check for External Item Descriptions, since it is a popular mod.
  */
 function areOtherModsEnabled() {
-  const correctLastCollectibleTypeRacingPlus =
-    ((LAST_VANILLA_COLLECTIBLE_TYPE as int) +
-      NUM_RACING_PLUS_ITEMS) as CollectibleType;
-  const correctLastCollectibleTypeRacingPlusBabiesMod =
-    ((LAST_VANILLA_COLLECTIBLE_TYPE as int) +
+  const correctLastCollectibleTypeRacingPlus = asCollectibleType(
+    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) + NUM_RACING_PLUS_ITEMS,
+  );
+  const correctLastCollectibleTypeRacingPlusBabiesMod = asCollectibleType(
+    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) +
       NUM_RACING_PLUS_ITEMS +
-      NUM_BABIES_MOD_ITEMS) as CollectibleType;
+      NUM_BABIES_MOD_ITEMS,
+  );
   const correctLastCollectibleType =
     BabiesModGlobals === undefined
       ? correctLastCollectibleTypeRacingPlus

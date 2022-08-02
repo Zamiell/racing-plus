@@ -11,6 +11,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   changeRoom,
   disableAllInputsExceptFor,
   enableAllInputs,
@@ -81,7 +82,7 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
-  v.run.repentanceSecretExit = roomGridIndex === (GridRoom.SECRET_EXIT as int);
+  v.run.repentanceSecretExit = roomGridIndex === asNumber(GridRoom.SECRET_EXIT);
   logFastTravelStateChanged();
 
   const whitelist = new Set([

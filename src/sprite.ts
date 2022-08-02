@@ -1,5 +1,7 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
+  asCollectibleType,
+  asNumber,
   FIRST_COLLECTIBLE_TYPE,
   getCollectibleGfxFilename,
   getEnumValues,
@@ -31,7 +33,7 @@ export function initGlowingItemSprite(
 
   // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png".
   const itemID = trinket
-    ? (collectibleOrTrinketType as int) + GLOWING_IMAGE_TRINKET_OFFSET
+    ? asNumber(collectibleOrTrinketType) + GLOWING_IMAGE_TRINKET_OFFSET
     : collectibleOrTrinketType;
 
   const directory = getDirectory(itemID);
@@ -46,14 +48,14 @@ function getDirectory(itemID: int) {
     return "season2builds";
   }
 
-  return isCustomCollectible(itemID as CollectibleType)
+  return isCustomCollectible(asCollectibleType(itemID))
     ? "items-glowing-custom"
     : "items-glowing";
 }
 
 function getFilename(itemID: int) {
-  if (isCustomCollectible(itemID as CollectibleType)) {
-    const gfxFilename = getCollectibleGfxFilename(itemID as CollectibleType);
+  if (isCustomCollectible(asCollectibleType(itemID))) {
+    const gfxFilename = getCollectibleGfxFilename(asCollectibleType(itemID));
     const pathSegments = gfxFilename.split("/");
     if (pathSegments.length === 0) {
       return "questionmark.png";
@@ -79,14 +81,14 @@ function getFileNum(itemID: int) {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items).
   if (
-    itemID >= (FIRST_COLLECTIBLE_TYPE as int) &&
-    itemID <= (LAST_VANILLA_COLLECTIBLE_TYPE as int)
+    itemID >= asNumber(FIRST_COLLECTIBLE_TYPE) &&
+    itemID <= asNumber(LAST_VANILLA_COLLECTIBLE_TYPE)
   ) {
     return itemID.toString().padStart(3, "0");
   }
 
   // Between the highest vanilla item and Swallowed Penny.
-  if (itemID > (LAST_VANILLA_COLLECTIBLE_TYPE as int) && itemID < 2001) {
+  if (itemID > asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) && itemID < 2001) {
     return defaultReturn;
   }
 
@@ -117,7 +119,7 @@ export function initCollectibleSprite(
   sprite.SetFrame("Idle", 0);
 
   const gfxFilename = getCollectibleGfxFilename(
-    collectibleType as CollectibleType,
+    asCollectibleType(collectibleType),
   );
   sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
   sprite.LoadGraphics();
