@@ -14,8 +14,5 @@ module.exports = {
     project: "./tsconfig.eslint.json",
   },
 
-  rules: {
-    // TODO
-    "no-type-assertion/no-type-assertion": "error",
-  },
+  rules: {},
 };
