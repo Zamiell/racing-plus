@@ -11,13 +11,13 @@ import {
   asNumber,
   DefaultMap,
   game,
-  getTaintedMagdaleneNonTemporaryMaxHearts,
   inStartingRoom,
   isCharacter,
   isChildPlayer,
   isSelfDamage,
   onDarkRoom,
   saveDataManager,
+  wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../../constants";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
@@ -37,6 +37,12 @@ iconSprite.Scale = Vector(0.5, 0.5);
 const v = {
   run: {
     tookDamage: false,
+
+    /**
+     * This is the `tookDamage` variable from the previous room. We need to track this in order to
+     * handle Glowing Hour Glass.
+     */
+    previousTookDamage: false,
   },
 
   room: {
@@ -95,6 +101,12 @@ function drawIconSprite() {
   iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
 
+// ModCallback.POST_USE_ITEM (3)
+// CollectibleType.GLOWING_HOUR_GLASS (422)
+export function postUseItemGlowingHourGlass(): void {
+  v.run.tookDamage = v.run.previousTookDamage;
+}
+
 // ModCallback.ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
   tookDamage: Entity,
@@ -135,34 +147,9 @@ export function entityTakeDmgPlayer(
   v.run.tookDamage = true;
 }
 
-function wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
-  player: EntityPlayer,
-  damageAmount: float,
-) {
-  // Regardless of the damage amount, damage to a player cannot remove a soul heart and a red heart
-  // at the same time.
-  const soulHearts = player.GetSoulHearts();
-  if (soulHearts > 0) {
-    return false;
-  }
-
-  // Regardless of the damage amount, damage to a player cannot remove a bone heart and a red heart
-  // at the same time.
-  const boneHearts = player.GetBoneHearts();
-  if (boneHearts > 0) {
-    return false;
-  }
-
-  // Account for rotten hearts eating away at more red hearts than usual.
-  const hearts = player.GetHearts();
-  const rottenHearts = player.GetRottenHearts();
-  const effectiveDamageAmount =
-    damageAmount + Math.min(rottenHearts, damageAmount);
-
-  const heartsAfterDamage = hearts - effectiveDamageAmount;
-  const nonTemporaryMaxHearts =
-    getTaintedMagdaleneNonTemporaryMaxHearts(player);
-  return heartsAfterDamage < nonTemporaryMaxHearts;
+// ModCallback.POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  v.run.previousTookDamage = v.run.tookDamage;
 }
 
 // ModCallback.POST_PICKUP_UPDATE (35)

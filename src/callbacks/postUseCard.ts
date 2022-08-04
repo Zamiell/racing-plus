@@ -5,7 +5,7 @@ import {
   automaticItemInsertionUseCardJustice,
   automaticItemInsertionUseCardLovers,
 } from "../features/optional/quality/automaticItemInsertion/callbacks/useCard";
-import * as speedrunUseCard from "../features/speedrun/callbacks/useCard";
+import * as speedrunUseCard from "../features/speedrun/callbacks/postUseCard";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_USE_CARD, main);
