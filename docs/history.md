@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.82.9_ - August 4th, 2022
+### _v0.82.11_ - August 4th, 2022
 
 - Fixed the bug where the "subvert teleport" feature would put you at the incorrect position under certain circumstances. (Thanks Fallenfor)
 - Fixed the bug where using Glowing Hour Glass did not give you the free devil deal back. (Thanks Hispa)
