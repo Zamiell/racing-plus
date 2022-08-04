@@ -8,10 +8,10 @@ import {
 import {
   anyPlayerCloserThan,
   asNumber,
+  getAllPlayers,
   getDoorEnterPosition,
   getDoors,
   getFamiliars,
-  getPlayers,
   inStartingRoom,
   log,
 } from "isaacscript-common";
@@ -62,7 +62,7 @@ export function postNewRoom(): void {
   // the room. (We can't move the player directly to the door position or they would just enter the
   // loading zone.)
   const position = getDoorEnterPosition(firstDoor);
-  for (const player of getPlayers()) {
+  for (const player of getAllPlayers()) {
     player.Position = position;
   }
   moveEsauNextToJacob();

@@ -10,10 +10,12 @@ import {
 import {
   countEntities,
   forgottenSwitch,
+  getAllPlayers,
+  getDoorEnterPosition,
   getFamiliars,
-  getPlayers,
   isCharacter,
   log,
+  logError,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -25,7 +27,9 @@ const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
   EntityType.MOMS_HEART, // 78
 ]);
 
-const DOOR_SLOTS_REVERSED: { readonly [key in DoorSlot]: DoorSlot } = {
+const LEAVE_DOOR_SLOT_TO_MOM_ENTER_DOOR_SLOT: {
+  readonly [key in DoorSlot]: DoorSlot;
+} = {
   // If we teleported into the room, use the default position.
   [DoorSlot.NO_DOOR_SLOT]: DoorSlot.DOWN_0,
 
@@ -70,9 +74,16 @@ function shouldSubvertTeleport() {
 
 function subvertTeleport() {
   const doorSlot = getRoomEnterDoorSlot();
-  const position = g.r.GetDoorSlotPosition(doorSlot);
+  const door = g.r.GetDoor(doorSlot);
+  if (door === undefined) {
+    logError(
+      "Failed to find the entrance door for the subvert teleport feature.",
+    );
+    return;
+  }
+  const position = getDoorEnterPosition(door);
 
-  for (const player of getPlayers()) {
+  for (const player of getAllPlayers()) {
     player.Position = position;
 
     // If we are The Soul, the Forgotten body will also need to be teleported. However, if we change
@@ -93,7 +104,12 @@ function subvertTeleport() {
   log("Subverted a teleport.");
 }
 
+/**
+ * - We can't use "level.EnterDoor" because it gives a random result when in the Mom room.
+ * - We don't use the `getOppositeDoorSlot` helper function because that will not work properly //
+ *   when going from a big room to a 1x1 room. (The subvert teleport feature will only happen in a
+ *   1x1 room.)
+ */
 function getRoomEnterDoorSlot() {
-  // We can't use "level.EnterDoor" because it gives a random result when in the Mom room.
-  return DOOR_SLOTS_REVERSED[g.l.LeaveDoor];
+  return LEAVE_DOOR_SLOT_TO_MOM_ENTER_DOOR_SLOT[g.l.LeaveDoor];
 }

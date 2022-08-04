@@ -24,12 +24,12 @@
     "@types/node": "^18.6.3",
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^3.5.0",
-    "isaacscript": "^2.10.0",
-    "isaacscript-common": "^7.4.2",
+    "isaacscript": "^2.12.2",
+    "isaacscript-common": "^7.7.1",
     "isaacscript-lint": "^4.1.1",
     "isaacscript-spell": "^1.2.7",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4",
-    "typescript-to-lua": "^1.7.1"
+    "typescript-to-lua": "^1.7.2"
   }
 }
