@@ -6,7 +6,7 @@
 ### _v0.82.9_ - August 4th, 2022
 
 - Fixed the bug where the "subvert teleport" feature would put you at the incorrect position under certain circumstances. (Thanks Fallenfor)
-- !Fixed the bug where using Glowing Hour Glass did not give you the free devil deal back. (Thanks Hispa)
+- Fixed the bug where using Glowing Hour Glass did not give you the free devil deal back. (Thanks Hispa)
 
 ### _v0.82.9_ - July 27th, 2022
 
