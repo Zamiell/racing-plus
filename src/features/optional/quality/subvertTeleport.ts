@@ -27,7 +27,8 @@ const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
   EntityType.MOMS_HEART, // 78
 ]);
 
-const LEAVE_DOOR_SLOT_TO_MOM_ENTER_DOOR_SLOT: {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const LEAVE_DOOR_SLOT_TO_1x1_ENTER_DOOR_SLOT: {
   readonly [key in DoorSlot]: DoorSlot;
 } = {
   // If we teleported into the room, use the default position.
@@ -111,5 +112,5 @@ function subvertTeleport() {
  *   1x1 room.)
  */
 function getRoomEnterDoorSlot() {
-  return LEAVE_DOOR_SLOT_TO_MOM_ENTER_DOOR_SLOT[g.l.LeaveDoor];
+  return LEAVE_DOOR_SLOT_TO_1x1_ENTER_DOOR_SLOT[g.l.LeaveDoor];
 }
