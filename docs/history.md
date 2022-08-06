@@ -5,7 +5,7 @@
 
 ### _v0.82.12_ - August 6th, 2022
 
-- Fixed the bug where the "subvert teleport" feature was not working properly. (Thanks sisuka)
+- Fixed the bug where the "subvert teleport" feature was not working properly in the Mom fight. (Thanks sisuka)
 
 ### _v0.82.11_ - August 4th, 2022
 

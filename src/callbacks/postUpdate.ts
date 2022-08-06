@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import * as debugFunction from "../debugFunction";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as runTimer from "../features/mandatory/runTimer";
@@ -27,7 +26,6 @@ function main() {
   fireworks.postUpdate();
   showLevelTextOnTab.postUpdate();
   runTimer.postUpdate();
-  debugFunction.postUpdate();
 
   // Major
   racePostUpdate();

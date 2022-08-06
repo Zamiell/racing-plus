@@ -11,6 +11,7 @@ import {
   countEntities,
   forgottenSwitch,
   getAllPlayers,
+  getDoorSlotEnterPosition,
   getFamiliars,
   isCharacter,
   log,
@@ -48,16 +49,6 @@ const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT: {
   [DoorSlot.DOWN_1]: DoorSlot.UP_0, // 7
 } as const;
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const DOOR_SLOT_1x1_TO_GRID_INDEX: {
-  readonly [key in OneByOneRoomDoorSlot]: int;
-} = {
-  [DoorSlot.LEFT_0]: 61, // 0
-  [DoorSlot.UP_0]: 22, // 1
-  [DoorSlot.RIGHT_0]: 73, // 2
-  [DoorSlot.DOWN_0]: 112, // 3
-} as const;
-
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (!config.subvertTeleport) {
@@ -89,8 +80,7 @@ function shouldSubvertTeleport() {
 
 function subvertTeleport() {
   const doorSlot = getRoomEnterDoorSlot();
-  const gridIndex = DOOR_SLOT_1x1_TO_GRID_INDEX[doorSlot];
-  const position = g.r.GetGridPosition(gridIndex);
+  const position = getDoorSlotEnterPosition(doorSlot);
 
   for (const player of getAllPlayers()) {
     player.Position = position;

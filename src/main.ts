@@ -1,7 +1,9 @@
+import { Keyboard } from "isaac-typescript-definitions";
 import {
   enableExtraConsoleCommands,
   log,
   ModUpgraded,
+  registerHotkey,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
   upgradeMod,
@@ -74,6 +76,7 @@ import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
+import { hotkey1Function, hotkey2Function } from "./debug";
 import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
 import g from "./globals";
 import { initFeatureVariables } from "./initFeatureVariables";
@@ -98,6 +101,9 @@ function main() {
   if (g.debug) {
     saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
+    // F1 shows the version of Racing+.
+    registerHotkey(Keyboard.F2, hotkey1Function);
+    registerHotkey(Keyboard.F3, hotkey2Function);
   }
 }
 
