@@ -11,11 +11,9 @@ import {
   countEntities,
   forgottenSwitch,
   getAllPlayers,
-  getDoorEnterPosition,
   getFamiliars,
   isCharacter,
   log,
-  logError,
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -27,21 +25,37 @@ const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
   EntityType.MOMS_HEART, // 78
 ]);
 
+type OneByOneRoomDoorSlot =
+  | DoorSlot.LEFT_0
+  | DoorSlot.UP_0
+  | DoorSlot.RIGHT_0
+  | DoorSlot.DOWN_0;
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
-const LEAVE_DOOR_SLOT_TO_1x1_ENTER_DOOR_SLOT: {
-  readonly [key in DoorSlot]: DoorSlot;
+const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT: {
+  readonly [key in DoorSlot]: OneByOneRoomDoorSlot;
 } = {
   // If we teleported into the room, use the default position.
-  [DoorSlot.NO_DOOR_SLOT]: DoorSlot.DOWN_0,
+  [DoorSlot.NO_DOOR_SLOT]: DoorSlot.DOWN_0, // -1
 
-  [DoorSlot.LEFT_0]: DoorSlot.RIGHT_0,
-  [DoorSlot.UP_0]: DoorSlot.DOWN_0,
-  [DoorSlot.RIGHT_0]: DoorSlot.LEFT_0,
-  [DoorSlot.DOWN_0]: DoorSlot.UP_0,
-  [DoorSlot.LEFT_1]: DoorSlot.RIGHT_0,
-  [DoorSlot.UP_1]: DoorSlot.DOWN_0,
-  [DoorSlot.RIGHT_1]: DoorSlot.LEFT_0,
-  [DoorSlot.DOWN_1]: DoorSlot.UP_0,
+  [DoorSlot.LEFT_0]: DoorSlot.RIGHT_0, // 0
+  [DoorSlot.UP_0]: DoorSlot.DOWN_0, // 1
+  [DoorSlot.RIGHT_0]: DoorSlot.LEFT_0, // 2
+  [DoorSlot.DOWN_0]: DoorSlot.UP_0, // 3
+  [DoorSlot.LEFT_1]: DoorSlot.RIGHT_0, // 4
+  [DoorSlot.UP_1]: DoorSlot.DOWN_0, // 5
+  [DoorSlot.RIGHT_1]: DoorSlot.LEFT_0, // 6
+  [DoorSlot.DOWN_1]: DoorSlot.UP_0, // 7
+} as const;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const DOOR_SLOT_1x1_TO_GRID_INDEX: {
+  readonly [key in OneByOneRoomDoorSlot]: int;
+} = {
+  [DoorSlot.LEFT_0]: 61, // 0
+  [DoorSlot.UP_0]: 22, // 1
+  [DoorSlot.RIGHT_0]: 73, // 2
+  [DoorSlot.DOWN_0]: 112, // 3
 } as const;
 
 // ModCallback.POST_NEW_ROOM (19)
@@ -75,14 +89,8 @@ function shouldSubvertTeleport() {
 
 function subvertTeleport() {
   const doorSlot = getRoomEnterDoorSlot();
-  const door = g.r.GetDoor(doorSlot);
-  if (door === undefined) {
-    logError(
-      "Failed to find the entrance door for the subvert teleport feature.",
-    );
-    return;
-  }
-  const position = getDoorEnterPosition(door);
+  const gridIndex = DOOR_SLOT_1x1_TO_GRID_INDEX[doorSlot];
+  const position = g.r.GetGridPosition(gridIndex);
 
   for (const player of getAllPlayers()) {
     player.Position = position;
@@ -111,6 +119,6 @@ function subvertTeleport() {
  *   when going from a big room to a 1x1 room. (The subvert teleport feature will only happen in a
  *   1x1 room.)
  */
-function getRoomEnterDoorSlot() {
-  return LEAVE_DOOR_SLOT_TO_1x1_ENTER_DOOR_SLOT[g.l.LeaveDoor];
+function getRoomEnterDoorSlot(): OneByOneRoomDoorSlot {
+  return LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT[g.l.LeaveDoor];
 }

@@ -584,10 +584,15 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^18.6.3":
+"@types/node@*":
   version "18.6.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.3.tgz#4e4a95b6fe44014563ceb514b2598b3e623d1c98"
   integrity sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==
+
+"@types/node@^18.6.4":
+  version "18.6.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.4.tgz#fd26723a8a3f8f46729812a7f9b4fc2d1608ed39"
+  integrity sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1675,10 +1680,10 @@ eslint-config-airbnb-typescript@^17.0.0:
   dependencies:
     eslint-config-airbnb-base "^15.0.0"
 
-eslint-config-isaacscript@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-isaacscript/-/eslint-config-isaacscript-3.1.0.tgz#d054928ba49af1cc89e76932252f869afdff02aa"
-  integrity sha512-bhaMUwc1USCBbQc8+Nx0EHabwrF2hth42CGj8Vcb3CzST3gO257BZ9kSOXzvXJrIHd3jHD6AIupcLCnV7udTVQ==
+eslint-config-isaacscript@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-isaacscript/-/eslint-config-isaacscript-3.1.1.tgz#8a859cf4d0780c9ee1299376b4304f3180ed1e4c"
+  integrity sha512-1POyLkIGf5dODVE9qAneoy6/6QLiojnMkjtqkz2oNTrfFKEzNim7Ur1UJ/5dUswmRd4aw31RWW0PsOvDx169pw==
 
 eslint-config-prettier@^8.5.0:
   version "8.5.0"
@@ -2658,17 +2663,17 @@ isaac-typescript-definitions@^3.5.0:
   dependencies:
     lua-types "^2.11.0"
 
-isaacscript-common@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-7.8.0.tgz#f53a20ac26cc85a29a213073809740620ae879ac"
-  integrity sha512-+4Ys2WsgL48K2spHdVMcK76h5aNfFsgEs1z/+eWp4FsHhuXpDIc3Br4rUuhStXNgbS8shIEwaZYCmAyJVPGsvg==
+isaacscript-common@^7.16.1:
+  version "7.16.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-7.16.1.tgz#b35526c747d564667d5fb520f424df6199162908"
+  integrity sha512-b80ZQQ7domY7Oy3JAbLolD0Jqd8x4B7CK6pNViATIq5RR2Yu/4Svpp9ajbVh134HJgHtkuZ5vH3IDzAlJwDYlw==
   dependencies:
     isaac-typescript-definitions "^3.5.0"
 
-isaacscript-lint@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.1.1.tgz#ab2750a79cb474a44b32bd5873d0f55548f9eeb9"
-  integrity sha512-7HdZsxrh2/jYhRjIFXQ+w6nsAbf/9IibvLG4Huf1Iq2qJ8WxngelqXnf0aW1hAlLS4sXvjxsmj22PPgvf0mw/g==
+isaacscript-lint@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.1.2.tgz#ea9a5956dbf11bfcfe317b143f7bdde2ec19eb1f"
+  integrity sha512-d/Sc2yaYGCBUeQGTBOcRONHQmamqJ64MGXYeCknC7GX47lCzW9YdnwXVSfDkSjV9OVFmWAVT2X++Pemlf17cHw==
   dependencies:
     "@prettier/plugin-xml" "^2.2.0"
     "@typescript-eslint/eslint-plugin" "^5.32.0"
@@ -2677,7 +2682,7 @@ isaacscript-lint@^4.1.1:
     eslint "^8.21.0"
     eslint-config-airbnb-base "^15.0.0"
     eslint-config-airbnb-typescript "^17.0.0"
-    eslint-config-isaacscript "^3.1.0"
+    eslint-config-isaacscript "^3.1.1"
     eslint-config-prettier "^8.5.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-import "^2.26.0"
@@ -2700,10 +2705,10 @@ isaacscript-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.12.2:
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.12.2.tgz#913a95c33195a8d3853ef6d0bde29cfc1507c240"
-  integrity sha512-mttwHG2OXwcKA8pBweuAyjnCqbwXMMZ7jS+5RWeEYnl2d8W57Bps/4SUhR/a9sfD4n+Y/SPuCXtK/wjX/7iUsg==
+isaacscript@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.14.0.tgz#36621bf1c91f3841712bba300f6b674d1b163b41"
+  integrity sha512-WyamDmP11J4rGf8BIDCtQvbYmW1oT/3Qup9D0zxr0oh36U/GkzX/gwJZTzO59OeoqhNbo4SVRVgq38EfZwferQ==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
