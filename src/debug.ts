@@ -9,7 +9,7 @@ import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
 /** Currently, F2 is set to execute this function. */
-export function debugCode(_params?: string): void {
+function debugCode(_params?: string) {
   // Add code here.
 }
 
