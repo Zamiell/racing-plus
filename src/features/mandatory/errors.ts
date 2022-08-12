@@ -5,11 +5,11 @@ import {
   getCollectibleName,
   getEffectiveStage,
   getEnumLength,
+  getLastCollectibleType,
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
   isCollectibleUnlocked,
-  LAST_COLLECTIBLE_TYPE,
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
   saveDataManager,
@@ -107,9 +107,10 @@ function areOtherModsEnabled() {
       ? correctLastCollectibleTypeRacingPlus
       : correctLastCollectibleTypeRacingPlusBabiesMod;
 
-  if (LAST_COLLECTIBLE_TYPE !== correctLastCollectibleType) {
+  const lastCollectibleType = getLastCollectibleType();
+  if (lastCollectibleType !== correctLastCollectibleType) {
     log(
-      `Error: Other mods detected. (The highest collectible ID is ${LAST_COLLECTIBLE_TYPE}, but it should be ${correctLastCollectibleType}.)`,
+      `Error: Other mods detected. (The highest collectible ID is ${lastCollectibleType}, but it should be ${correctLastCollectibleType}.)`,
     );
     v.run.otherModsEnabled = true;
   }
