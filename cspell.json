@@ -7,6 +7,10 @@
   "files": [
     "**"
   ],
+  "enableFiletypes": [
+    "*"
+  ],
+  "enableGlobDot": true,
   "ignorePaths": [
     "*.pyc",
     "*.wav",
@@ -47,6 +51,7 @@
     "pausescreen",
     "permadeath",
     "Plumbus",
+    "pycache",
     "Quipet",
     "rankedsoloreset",
     "reddots",
@@ -62,8 +67,6 @@
     "thisguyisbarry",
     "titlemenu",
     "unflipped",
-    "unseed",
-    "versusscreen",
     "wizoobs",
     "Xelnas",
     "xmltodict"
