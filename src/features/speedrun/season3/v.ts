@@ -26,7 +26,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("season2", v);
+  saveDataManager("season3", v);
 }
 
 export function season3GetCurrentCharacter(): PlayerType | undefined {
