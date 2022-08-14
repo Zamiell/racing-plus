@@ -44,6 +44,7 @@ export function postNewRoom(): void {
   }
 }
 
+/** Validation is performed in the parent function. */
 export function give(player: EntityPlayer): void {
   // If the character already started with More Options, then do nothing.
   if (player.HasCollectible(CollectibleType.MORE_OPTIONS)) {

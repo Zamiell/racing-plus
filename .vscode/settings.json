@@ -14,7 +14,7 @@
     ".env*": "shellscript", // e.g. ".env.example" is the same as ".env".
   },
 
-  // We want to always use "lf" to be consistent with all platforms.
+  // Linux line endings are used in this project.
   "files.eol": "\n",
 
   // Automatically removing all trailing whitespace when saving a file.

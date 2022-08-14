@@ -1,10 +1,15 @@
-import { PlayerType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import { arrayToString, isArray, log } from "isaacscript-common";
 import { RaceDifficulty } from "../enums/RaceDifficulty";
 import { RaceFormat } from "../enums/RaceFormat";
 import { RaceGoal } from "../enums/RaceGoal";
 import { RacerStatus } from "../enums/RacerStatus";
 import { RaceStatus } from "../enums/RaceStatus";
+import { ServerCollectibleID } from "../types/ServerCollectibleID";
 
 /** The possible types for values of `RaceData`. */
 export type RaceDataType = boolean | number | string | int[];
@@ -29,8 +34,12 @@ export class RaceData {
   /** Corresponds to the seed that is the race goal or "-". */
   seed = "-";
 
-  /** The starting items for this race, if any. */
-  startingItems: int[] = [];
+  /**
+   * The starting items for this race, if any. (The format of the race and the position in the array
+   * determines whether or not it is a `CollectibleType`, `TrinketType`, or `ServerCollectibleID`.
+   */
+  startingItems: Array<CollectibleType | TrinketType | ServerCollectibleID> =
+    [];
 
   /** This corresponds to the graphic to draw on the screen. */
   countdown = -1;

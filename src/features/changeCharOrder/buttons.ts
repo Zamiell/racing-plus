@@ -20,7 +20,7 @@ import {
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import g from "../../globals";
-import { initGlowingItemSprite } from "../../sprite";
+import { initGlowingCollectibleSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { season2SetBansTime } from "../speedrun/season2/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
@@ -130,11 +130,11 @@ function createBuildVetoButtons() {
     if (build === undefined) {
       error(`Failed to get the build at index: ${buildIndex}`);
     }
-    const firstItem = build[0];
-    if (firstItem === undefined) {
+    const firstCollectibleType = build[0];
+    if (firstCollectibleType === undefined) {
       error(`Failed to get the first item for build at index: ${buildIndex}`);
     }
-    const characterSprite = initGlowingItemSprite(firstItem);
+    const characterSprite = initGlowingCollectibleSprite(firstCollectibleType);
     v.room.sprites.characters.push(characterSprite);
   }
 }

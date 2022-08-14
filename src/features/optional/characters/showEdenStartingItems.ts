@@ -8,7 +8,7 @@ import {
   saveDataManager,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import { initGlowingItemSprite } from "../../../sprite";
+import { initGlowingCollectibleSprite } from "../../../sprite";
 
 /** Near the top-left. */
 const ACTIVE_COLLECTIBLE_SPRITE_POSITION = Vector(123, 17);
@@ -82,8 +82,8 @@ function resetItemSprites() {
 
 function setItemSprites() {
   if (shouldShowSprites()) {
-    activeSprite = initGlowingItemSprite(v.run.active);
-    passiveSprite = initGlowingItemSprite(v.run.passive);
+    activeSprite = initGlowingCollectibleSprite(v.run.active);
+    passiveSprite = initGlowingCollectibleSprite(v.run.passive);
   }
 }
 

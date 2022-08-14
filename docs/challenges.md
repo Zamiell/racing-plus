@@ -1,5 +1,8 @@
 # Racing+ Mod Custom Challenges
 
+<!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD033 -->
+
 - By pressing "Tab" on the challenges portion of the main menu, you can access custom challenges added by mods. The Racing+ mod uses custom challenges to facilitate multi-character speedruns where you must beat the game multiple times in a row on various characters.
 - These custom challenges will automatically take you to the next character so that you never have to return to the menu. They will also show a timer on the screen and your current character progress.
 - Before starting a speedrun, you must define a character order by using the "Change Char Order" custom challenge.
@@ -147,6 +150,93 @@ Some builds are banned on certain characters:
   - Planetariums
 
 <br>
+
+## R+7 Season 3 (Diversity) (Proposed)
+
+### Characters
+
+- You must complete the game with the following 7 characters:
+  - 3 - Judas
+  - 4 - Blue Baby
+  - 8 - Lazarus
+  - 22 - Tainted Magdalene
+  - 24 - Tainted Judas
+  - 26 - Tainted Eve
+  - 37 - Tainted Jacob
+- Blue Baby, Tainted Magdalene, Tainted Judas, and Tainted Eve start with Birthright.
+- You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
+
+### Diversity Items
+
+- You are randomly assigned five starting items at the beginning of the run, similar to how diversity races work.
+- All of the other changes from diversity races are also present.
+- Additionally, the following items can never be randomly assigned, since they are too powerful:
+  - The 20 starting items (as per single "seeded starts")
+  - 147 - Notched Axe
+  - 158 - Crystal Ball
+  - 311 - Judas' Shadow
+  - 333 - The Mind
+  - 592 - Terra
+  - 660 - Card Reading
+
+### Item Bans
+
+- The following items are removed from pools, in addition to the ones that are normally removed from diversity races (like D4):
+  - 84 - We Need to Go Deeper!
+  - 441 - Mega Blast
+
+### Goal
+
+- You must complete the following 7 goals:
+  - Blue Baby
+  - The Lamb
+  - Mega Satan
+  - Boss Rush
+  - Hush
+  - Mother
+  - Dogma (without The Beast fight)
+- You can do the goals in any order that you like.
+- The key pieces are not required to go to Mega Satan; a portal to the boss room will appear in the starting room of The Chest or the Dark Room.
+- The knife pieces are not required to go to Mother; a trapdoor to Corpse 1 will appear after defeating Mom on Mausoleum/Gehenna.
+- Going through the Ascent is not required to go to Dogma; a beam of light to Dark Home will appear in place of Dad's Note.
+
+TODO: remove armor on Mega Satan phase 2 and Hush
+TODO: remove great gideon
+
+<br>
+
+<!--
+
+## R+7 Season 4 (Storage)
+
+### Characters
+
+- You must complete the game with the following 7 characters:
+  - 0 - Isaac
+  - 6 - Samson
+  - 9 - Eden
+  - 10 - Lost
+  - 19 - Jacob & Esau
+  - 24 - Tainted Judas
+  - 32 - Tainted Lilith
+- Jacob & Esau start with There's Options & More Options.
+- You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
+
+### Storage
+
+- When holding an item above your head, you can hold down the map button to activate a "storage" mechanic.
+- When an item is stored, it will not be granted to the player, but will go into storage instead.
+- All stored items will appear during the starting room of next character in the speedrun.
+
+<br>
+
+## R+7 Season 5 (Babies)
+
+* You must defeat Blue Baby 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+
+<br>
+
+-->
 
 ## Races
 

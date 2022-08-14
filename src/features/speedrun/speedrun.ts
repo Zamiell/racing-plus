@@ -27,6 +27,11 @@ export function checkValidCharOrder(): boolean {
   }
 
   const [abbreviation, numElements] = challengeDefinition;
+  if (numElements === 0) {
+    // Some seasons do not have any pre-defined choices.
+    return true;
+  }
+
   const characterOrder = getCharacterOrder(abbreviation);
   if (characterOrder === undefined) {
     return false;

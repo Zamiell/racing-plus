@@ -1,10 +1,14 @@
-import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
-import { game, isGoldenTrinket } from "isaacscript-common";
+import { TrinketType } from "isaac-typescript-definitions";
+import { game } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
-import { initGlowingItemSprite, initSprite } from "../../sprite";
+import {
+  initGlowingCollectibleSpriteFromServerCollectibleID,
+  initGlowingTrinketSprite,
+  initSprite,
+} from "../../sprite";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const GFX_PATH = "gfx/race/starting-room";
@@ -186,65 +190,54 @@ function initSeededSprites() {
   );
 
   if (startingItems.length === 1) {
-    sprites.seededItemCenter = initGlowingItemSprite(
-      startingItems[0] as CollectibleType,
-    );
+    sprites.seededItemCenter =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
   } else if (startingItems.length === 2) {
-    sprites.seededItemLeft = initGlowingItemSprite(
-      startingItems[0] as CollectibleType,
-    );
-    sprites.seededItemRight = initGlowingItemSprite(
-      startingItems[1] as CollectibleType,
-    );
+    sprites.seededItemLeft =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+    sprites.seededItemRight =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
   } else if (startingItems.length === 3) {
-    sprites.seededItemCenter = initGlowingItemSprite(
-      startingItems[0] as CollectibleType,
-    );
-    sprites.seededItemFarLeft = initGlowingItemSprite(
-      startingItems[1] as CollectibleType,
-    );
-    sprites.seededItemFarRight = initGlowingItemSprite(
-      startingItems[2] as CollectibleType,
-    );
+    sprites.seededItemCenter =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+    sprites.seededItemFarLeft =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+    sprites.seededItemFarRight =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
   } else if (startingItems.length === 4) {
-    sprites.seededItemLeft = initGlowingItemSprite(
-      startingItems[1] as CollectibleType,
-    );
-    sprites.seededItemRight = initGlowingItemSprite(
-      startingItems[2] as CollectibleType,
-    );
-    sprites.seededItemFarLeft = initGlowingItemSprite(
-      startingItems[0] as CollectibleType,
-    );
-    sprites.seededItemFarRight = initGlowingItemSprite(
-      startingItems[3] as CollectibleType,
-    );
+    sprites.seededItemLeft =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+    sprites.seededItemRight =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+    sprites.seededItemFarLeft =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
+    sprites.seededItemFarRight =
+      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
   }
 }
 
 function initDiversitySprites() {
+  if (g.race.startingItems.length !== 5) {
+    error("A diversity race does not have 5 starting items.");
+  }
+
   sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
   sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
   sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
 
-  const activeCollectibleType = g.race.startingItems[0] as CollectibleType;
-  sprites.diversityItem1 = initGlowingItemSprite(activeCollectibleType);
-
-  const passive1CollectibleType = g.race.startingItems[1] as CollectibleType;
-  sprites.diversityItem2 = initGlowingItemSprite(passive1CollectibleType);
-
-  const passive2CollectibleType = g.race.startingItems[2] as CollectibleType;
-  sprites.diversityItem3 = initGlowingItemSprite(passive2CollectibleType);
-
-  const passive3CollectibleType = g.race.startingItems[3] as CollectibleType;
-  sprites.diversityItem4 = initGlowingItemSprite(passive3CollectibleType);
+  sprites.diversityItem1 = initGlowingCollectibleSpriteFromServerCollectibleID(
+    g.race.startingItems[0],
+  );
+  sprites.diversityItem2 = initGlowingCollectibleSpriteFromServerCollectibleID(
+    g.race.startingItems[1],
+  );
+  sprites.diversityItem3 = initGlowingCollectibleSpriteFromServerCollectibleID(
+    g.race.startingItems[2],
+  );
+  sprites.diversityItem4 = initGlowingCollectibleSpriteFromServerCollectibleID(
+    g.race.startingItems[3],
+  );
 
   const trinketType = g.race.startingItems[4] as TrinketType;
-  if (isGoldenTrinket(trinketType)) {
-    // A golden trinket, which should not have its ID modified.
-    sprites.diversityItem5 = initGlowingItemSprite(trinketType);
-  } else {
-    // A normal trinket.
-    sprites.diversityItem5 = initGlowingItemSprite(trinketType, true);
-  }
+  sprites.diversityItem5 = initGlowingTrinketSprite(trinketType);
 }

@@ -1,5 +1,7 @@
 # Racing+ Diversity Races
 
+<!-- markdownlint-disable MD033 -->
+
 ## General Description
 
 In diversity races, each racer starts with the same 5 items:
@@ -26,15 +28,15 @@ To cut down on the reset time to get the run going, the first Treasure Room will
 
 The following items are removed from all items pools, because they override tear effects. Note that it is still possible to start with them as one of the 3 random passive items.
 
-- Mom's Knife
+- 114 - Mom's Knife
 
 The following items are also removed from all item pools, because they allow you to re-roll your build, which spoils the fun.
 
-- D4
-- D100
-- D Infinity
-- Genesis
-- Esau Jr.
+- 283 - D100
+- 284 - D4
+- 489 - D Infinity
+- 622 - Genesis
+- 703 - Esau Jr.
 
 <br>
 
@@ -42,7 +44,7 @@ The following items are also removed from all item pools, because they allow you
 
 The following trinkets are removed, because they allow you to re-roll your build, which spoils the fun.
 
-- Dice Bag
+- 154 - Dice Bag
 
 <br>
 

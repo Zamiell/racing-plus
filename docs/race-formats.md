@@ -74,7 +74,7 @@ Regardless of the format:
 
 - Diversity races are similar to unseeded races in that each player plays on different seeds and is allowed to reset as much as they want.
 - However, each racer starts with the same five random items. (This is in addition to the character's original passive items and resources.)
-- For additional information, see [the documentation for diversity races](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/README-DIVERSITY.md).
+- For additional information, see [the documentation for diversity races](diversity.md).
 
 <br>
 

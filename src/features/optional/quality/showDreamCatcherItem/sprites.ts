@@ -1,7 +1,7 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
 import g from "../../../../globals";
-import { initGlowingItemSprite, initSprite } from "../../../../sprite";
+import { initGlowingCollectibleSprite, initSprite } from "../../../../sprite";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";
 
@@ -18,13 +18,15 @@ export function set(): void {
     return;
   }
 
-  dreamCatcherSprite = initGlowingItemSprite(CollectibleType.DREAM_CATCHER);
+  dreamCatcherSprite = initGlowingCollectibleSprite(
+    CollectibleType.DREAM_CATCHER,
+  );
 
   for (let i = 0; i < v.level.collectibles.length; i++) {
     if (itemSprites[i] === undefined) {
       const collectibleType = v.level.collectibles[i];
       if (collectibleType !== undefined) {
-        itemSprites[i] = initGlowingItemSprite(collectibleType);
+        itemSprites[i] = initGlowingCollectibleSprite(collectibleType);
       }
     }
   }

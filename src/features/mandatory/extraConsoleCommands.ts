@@ -50,6 +50,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("s0", s0);
   addConsoleCommand("s1", s1);
   addConsoleCommand("s2", s2);
+  addConsoleCommand("s3", s3);
   addConsoleCommand("seededRace", seededRace);
   addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
   addConsoleCommand("seededRaceBuild", seededRaceBuild);
@@ -124,6 +125,10 @@ function s1() {
 function s2() {
   consoleCommand(`challenge ${ChallengeCustom.SEASON_2}`);
   consoleCommand("setbuildvetos");
+}
+
+function s3() {
+  consoleCommand(`challenge ${ChallengeCustom.SEASON_3}`);
 }
 
 function seededRace(params: string) {

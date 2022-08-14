@@ -8,14 +8,13 @@ import {
   copyArray,
   emptyArray,
   getRandomArrayElementAndRemove,
-  log,
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
-import { initGlowingItemSprite, initSprite } from "../../../../sprite";
+import { initGlowingCollectibleSprite, initSprite } from "../../../../sprite";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
@@ -61,7 +60,6 @@ export function season2PostGameStarted(): void {
   removeItemsFromPools();
   checkFirstCharacterRefresh();
 
-  log(`Season 2 - On character: ${speedrunGetCharacterNum()}/7`);
   const startingCharacter = getStartingCharacter();
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
 
@@ -69,9 +67,6 @@ export function season2PostGameStarted(): void {
     speedrunSetFastReset();
     restartOnNextFrame();
     setRestartCharacter(startingCharacter);
-    log(
-      `Restarting because we are on character ${PlayerType[character]} (${character}) and we need to be on character ${PlayerType[startingCharacter]} (${startingCharacter}) (for season 2).`,
-    );
     return;
   }
 
@@ -85,7 +80,7 @@ export function season2PostGameStarted(): void {
   initSprites(startingBuild);
 }
 
-function checkErrors() {
+function checkErrors(): boolean {
   const time = Isaac.GetTime();
 
   // Game recently opened.
@@ -140,7 +135,6 @@ function checkFirstCharacterRefresh() {
     // It is possible for the time assignment to be in the future, since it is based on the time
     // since the operating system started.
     v.persistent.timeAssigned = time;
-    log(`Season 2 - Reset timeAssigned to: ${v.persistent.timeAssigned}`);
   }
 
   const buildLockedUntilTime =
@@ -168,17 +162,12 @@ function refreshStartingCharactersAndBuilds() {
 
   // We will assign the character and the build in the next function.
   v.persistent.timeAssigned = time;
-
-  log("Season 2 - Refreshed starting characters and builds.");
 }
 
 function getStartingCharacter() {
   // First, handle the case where there is no old starting character at all.
   const oldStartingCharacter = season2GetCurrentCharacter();
   if (oldStartingCharacter !== undefined) {
-    log(
-      `Season 2 - Using previously selected character: ${PlayerType[oldStartingCharacter]} (${oldStartingCharacter})`,
-    );
     return oldStartingCharacter;
   }
 
@@ -196,10 +185,6 @@ function getStartingCharacter() {
   v.persistent.selectedCharacters.push(startingCharacter);
   v.persistent.lastSelectedCharacter = startingCharacter;
 
-  log(
-    `Season 2 - Selected character: ${PlayerType[startingCharacter]} (${startingCharacter})`,
-  );
-
   return startingCharacter;
 }
 
@@ -207,7 +192,6 @@ function getStartingBuildIndex(character: PlayerType) {
   // First, handle the case where there is no old starting build at all.
   const oldStartingBuildIndex = season2GetCurrentBuildIndex();
   if (oldStartingBuildIndex !== undefined) {
-    log(`Season 2 - Using previously selected build: ${oldStartingBuildIndex}`);
     return oldStartingBuildIndex;
   }
 
@@ -234,8 +218,6 @@ function getStartingBuildIndex(character: PlayerType) {
 
   v.persistent.selectedBuildIndexes.push(startingBuildIndex);
   v.persistent.lastSelectedBuildIndex = startingBuildIndex;
-
-  log(`Season 2 - Selected build index: ${startingBuildIndex}`);
 
   return startingBuildIndex;
 }
@@ -370,37 +352,37 @@ function initSprites(startingBuild: readonly CollectibleType[]) {
   );
 
   if (startingBuild.length === 1) {
-    sprites.seededItemCenter = initGlowingItemSprite(
+    sprites.seededItemCenter = initGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 2) {
-    sprites.seededItemLeft = initGlowingItemSprite(
+    sprites.seededItemLeft = initGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemRight = initGlowingItemSprite(
+    sprites.seededItemRight = initGlowingCollectibleSprite(
       startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 3) {
-    sprites.seededItemCenter = initGlowingItemSprite(
+    sprites.seededItemCenter = initGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemFarLeft = initGlowingItemSprite(
+    sprites.seededItemFarLeft = initGlowingCollectibleSprite(
       startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemFarRight = initGlowingItemSprite(
+    sprites.seededItemFarRight = initGlowingCollectibleSprite(
       startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   } else if (startingBuild.length === 4) {
-    sprites.seededItemLeft = initGlowingItemSprite(
+    sprites.seededItemLeft = initGlowingCollectibleSprite(
       startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemRight = initGlowingItemSprite(
+    sprites.seededItemRight = initGlowingCollectibleSprite(
       startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemFarLeft = initGlowingItemSprite(
+    sprites.seededItemFarLeft = initGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-    sprites.seededItemFarRight = initGlowingItemSprite(
+    sprites.seededItemFarRight = initGlowingCollectibleSprite(
       startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
   }

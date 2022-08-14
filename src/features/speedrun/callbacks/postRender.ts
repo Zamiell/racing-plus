@@ -7,6 +7,7 @@ import {
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { season2PostRender } from "../season2/callbacks/postRender";
+import { season3PostRender } from "../season3/callbacks/postRender";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
 import v from "../v";
@@ -25,6 +26,7 @@ export function speedrunPostRender(): void {
   characterProgress.postRender();
 
   season2PostRender();
+  season3PostRender();
 }
 
 function checkBeginFadeOutAfterCheckpoint() {

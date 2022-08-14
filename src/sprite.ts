@@ -4,38 +4,54 @@ import {
   asNumber,
   FIRST_COLLECTIBLE_TYPE,
   getCollectibleGfxFilename,
-  getEnumValues,
   getLastElement,
+  isGoldenTrinketType,
+  isModdedCollectibleType,
   LAST_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "./constants";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
-import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
+import { ServerCollectibleID } from "./types/ServerCollectibleID";
 import { serverCollectibleIDToCollectibleType } from "./utils";
 
-const COLLECTIBLE_TYPE_CUSTOM_ARRAY: readonly CollectibleType[] = getEnumValues(
-  CollectibleTypeCustom,
-);
-const COLLECTIBLE_TYPE_CUSTOM_SET: ReadonlySet<CollectibleType> = new Set(
-  COLLECTIBLE_TYPE_CUSTOM_ARRAY,
-);
+/** e.g. Swallowed Penny is located in file "collectibles_2001.png". */
 const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
-export function initGlowingItemSprite(
-  collectibleOrTrinketType: CollectibleType | TrinketType,
-  trinket = false,
+export function initGlowingCollectibleSprite(
+  collectibleType: CollectibleType,
 ): Sprite {
-  // Account for custom items from the server that have an ID between 1001 and 1999 instead of their
-  // real collectible type.
-  collectibleOrTrinketType = serverCollectibleIDToCollectibleType(
-    collectibleOrTrinketType,
+  return initGlowingItemSprite(collectibleType);
+}
+
+/**
+ * When drawing sprites for collectibles received from the server, we need to account for custom
+ * collectibles that have an ID between 1001 and 1999 instead of their real collectible type.
+ */
+export function initGlowingCollectibleSpriteFromServerCollectibleID(
+  serverCollectibleID: int | undefined,
+): Sprite {
+  if (serverCollectibleID === undefined) {
+    error(
+      "Failed to initialize a glowing collectible sprite from the starting items sent from the server.",
+    );
+  }
+
+  const collectibleType = serverCollectibleIDToCollectibleType(
+    serverCollectibleID as ServerCollectibleID,
   );
+  return initGlowingCollectibleSprite(collectibleType);
+}
 
-  // Account for trinkets that are represented by filenames of e.g. "collectibles_2001.png".
-  const itemID = trinket
-    ? asNumber(collectibleOrTrinketType) + GLOWING_IMAGE_TRINKET_OFFSET
-    : collectibleOrTrinketType;
+export function initGlowingTrinketSprite(trinketType: TrinketType): Sprite {
+  // Golden trinkets should not have their ID modified.
+  const itemID = isGoldenTrinketType(trinketType)
+    ? asNumber(trinketType)
+    : asNumber(trinketType) + GLOWING_IMAGE_TRINKET_OFFSET;
 
+  return initGlowingItemSprite(itemID);
+}
+
+function initGlowingItemSprite(itemID: int): Sprite {
   const directory = getDirectory(itemID);
   const filename = getFilename(itemID);
   return initSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
@@ -48,27 +64,24 @@ function getDirectory(itemID: int) {
     return "season2builds";
   }
 
-  return isCustomCollectible(asCollectibleType(itemID))
+  return isModdedCollectibleType(asCollectibleType(itemID))
     ? "items-glowing-custom"
     : "items-glowing";
 }
 
 function getFilename(itemID: int) {
-  if (isCustomCollectible(asCollectibleType(itemID))) {
+  if (isModdedCollectibleType(asCollectibleType(itemID))) {
     const gfxFilename = getCollectibleGfxFilename(asCollectibleType(itemID));
     const pathSegments = gfxFilename.split("/");
     if (pathSegments.length === 0) {
       return "questionmark.png";
     }
+
     return getLastElement(pathSegments);
   }
 
   const fileNum = getFileNum(itemID);
   return `collectibles_${fileNum}.png`;
-}
-
-function isCustomCollectible(collectibleType: CollectibleType) {
-  return COLLECTIBLE_TYPE_CUSTOM_SET.has(collectibleType);
 }
 
 function getFileNum(itemID: int) {

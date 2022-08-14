@@ -2,23 +2,23 @@ import {
   CollectibleType,
   PlayerType,
   SoundEffect,
-  TrinketSlot,
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  asTrinketType,
   characterStartsWithActiveItem,
   copyArray,
-  getLastElement,
+  giveTrinketsBack,
   isCharacter,
   isEden,
   sfxManager,
+  temporarilyRemoveTrinkets,
   useActiveItemTemp,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { ServerCollectibleID } from "../../types/ServerCollectibleID";
 import { serverCollectibleIDToCollectibleType } from "../../utils";
 import {
   giveCollectibleAndRemoveFromPools,
@@ -52,12 +52,12 @@ function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
 }
 
 const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
-  CollectibleType.MOMS_KNIFE,
-  CollectibleType.D4,
-  CollectibleType.D100,
-  CollectibleType.D_INFINITY,
-  CollectibleType.GENESIS,
-  CollectibleType.ESAU_JR,
+  CollectibleType.MOMS_KNIFE, // 114
+  CollectibleType.D100, // 283
+  CollectibleType.D4, // 284
+  CollectibleType.D_INFINITY, // 489
+  CollectibleType.GENESIS, // 622
+  CollectibleType.ESAU_JR, // 703
 ];
 
 const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
@@ -125,7 +125,8 @@ function unseeded(player: EntityPlayer) {
 function unseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable.
-  for (const serverCollectibleID of g.race.startingItems) {
+  for (const startingItem of g.race.startingItems) {
+    const serverCollectibleID = startingItem as ServerCollectibleID;
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
     giveCollectibleAndRemoveFromPools(player, collectibleType);
@@ -145,7 +146,8 @@ function seeded(player: EntityPlayer) {
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item).
-  for (const serverCollectibleID of g.race.startingItems) {
+  for (const startingItem of g.race.startingItems) {
+    const serverCollectibleID = startingItem as ServerCollectibleID;
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
     giveCollectibleAndRemoveFromPools(player, collectibleType);
@@ -173,9 +175,6 @@ function seeded(player: EntityPlayer) {
 }
 
 function diversity(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-  const trinket1 = player.GetTrinket(TrinketSlot.SLOT_1);
-
   // If the race has not started yet, don't give the items.
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
@@ -183,6 +182,30 @@ function diversity(player: EntityPlayer) {
   ) {
     return;
   }
+
+  if (g.race.startingItems.length !== 5) {
+    error("A diversity race does not have 5 starting items.");
+  }
+
+  // Don't copy the final element, which is the trinket.
+  const serverCollectibleIDs = copyArray(
+    g.race.startingItems,
+    4,
+  ) as ServerCollectibleID[];
+  const collectibleTypes = serverCollectibleIDs.map((serverCollectibleID) =>
+    serverCollectibleIDToCollectibleType(serverCollectibleID),
+  );
+  const trinketType = g.race.startingItems[4] as TrinketType;
+
+  giveDiversityItemsAndDoItemBans(player, collectibleTypes, trinketType);
+}
+
+export function giveDiversityItemsAndDoItemBans(
+  player: EntityPlayer,
+  collectibleTypes: CollectibleType[],
+  trinketType: TrinketType,
+): void {
+  const character = player.GetPlayerType();
 
   // Avoid giving more options on Tainted Dead Lazarus.
   if (character !== PlayerType.LAZARUS_2_B) {
@@ -197,34 +220,14 @@ function diversity(player: EntityPlayer) {
     giveCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
   }
 
-  // Give the player their five random diversity starting items.
-  if (g.race.startingItems.length !== 5) {
-    error("A diversity race does not have 5 starting items.");
-  }
-  const collectibleTypes = copyArray(g.race.startingItems, 4);
-  const lastStartingItem = getLastElement(g.race.startingItems);
-  if (lastStartingItem === undefined) {
-    error("Failed to find the trinket type from the race's starting items.");
-  }
-  const trinketType = asTrinketType(lastStartingItem);
-
-  for (const serverCollectibleID of collectibleTypes) {
-    const collectibleType =
-      serverCollectibleIDToCollectibleType(serverCollectibleID);
+  for (const collectibleType of collectibleTypes) {
     giveCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
-  if (trinket1 !== TrinketType.NULL) {
-    player.TryRemoveTrinket(trinket1);
-  }
-
+  const trinketSituation = temporarilyRemoveTrinkets(player);
   giveTrinketAndRemoveFromPools(player, trinketType);
   useActiveItemTemp(player, CollectibleType.SMELTER);
-
-  // Re-give Paper Clip to Cain, for example.
-  if (trinket1 !== TrinketType.NULL) {
-    player.AddTrinket(trinket1);
-  }
+  giveTrinketsBack(player, trinketSituation);
 
   // - If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
   //   Birthright.
@@ -242,7 +245,7 @@ function diversity(player: EntityPlayer) {
   }
 }
 
-function shouldGetSchoolbagInDiversity(player: EntityPlayer) {
+function shouldGetSchoolbagInDiversity(player: EntityPlayer): boolean {
   const character = player.GetPlayerType();
   const startsWithActiveItem =
     characterStartsWithActiveItem(character) ||

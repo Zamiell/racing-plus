@@ -13,6 +13,7 @@ import {
   asNumber,
   findFreePosition,
   getCollectibleName,
+  getEffectiveStage,
   getRandom,
   log,
   newRNG,
@@ -20,8 +21,6 @@ import {
   saveDataManager,
   spawnCollectible,
 } from "isaacscript-common";
-import { RacerStatus } from "../../../enums/RacerStatus";
-import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -32,6 +31,9 @@ const v = {
      * "preventItemRotate" feature of the standard library.
      */
     collectibleRNG: newRNG(),
+
+    startedWithLumpOfCoal: false,
+    startedWithHeadOfKrampus: false,
   },
 };
 
@@ -41,6 +43,24 @@ export function init(): void {
 
 function featureEnabled() {
   return config.fastAngels;
+}
+
+// ModCallback.POST_NEW_LEVEL (18)
+export function postNewLevel(): void {
+  const effectStage = getEffectiveStage();
+  if (effectStage !== 2) {
+    return;
+  }
+
+  // Since we have reached the second floor, account for if the player "started" with either Lump of
+  // Coal or Head of Krampus. (For example, they may have been given as part of the race starting
+  // items, or maybe they were picked up in the first Treasure Room through some custom mechanic.)
+  v.run.startedWithLumpOfCoal = anyPlayerHasCollectible(
+    CollectibleType.LUMP_OF_COAL,
+  );
+  v.run.startedWithLumpOfCoal = anyPlayerHasCollectible(
+    CollectibleType.HEAD_OF_KRAMPUS,
+  );
 }
 
 // ModCallback.POST_PICKUP_INIT (34)
@@ -121,30 +141,14 @@ function getKrampusItemSubType() {
     : CollectibleType.HEAD_OF_KRAMPUS;
 }
 
+/** We want Krampus' drops to be explicitly contingent upon the items that the player has. */
 function getKrampusBans(): [coalBanned: boolean, headBanned: boolean] {
-  // We want Krampus' drops to be explicitly contingent upon the items that the player has.
-  let coalBanned = false;
-  let headBanned = false;
-
-  if (anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL)) {
-    coalBanned = true;
-  }
-
-  if (anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS)) {
-    headBanned = true;
-  }
-
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
-  ) {
-    if (g.race.startingItems.includes(CollectibleType.LUMP_OF_COAL)) {
-      coalBanned = true;
-    }
-    if (g.race.startingItems.includes(CollectibleType.HEAD_OF_KRAMPUS)) {
-      headBanned = true;
-    }
-  }
+  const coalBanned =
+    v.run.startedWithLumpOfCoal ||
+    anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL);
+  const headBanned =
+    v.run.startedWithHeadOfKrampus ||
+    anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS);
 
   return [coalBanned, headBanned];
 }

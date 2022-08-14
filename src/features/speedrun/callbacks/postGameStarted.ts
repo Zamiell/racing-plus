@@ -11,6 +11,7 @@ import {
 import * as characterProgress from "../characterProgress";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
+import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -56,10 +57,13 @@ export function speedrunPostGameStarted(): void {
   }
 
   resetFirstCharacterVars();
-  giveMoreOptionsBuff();
   characterProgress.postGameStarted();
   season1.postGameStarted();
   season2PostGameStarted();
+  season3PostGameStarted();
+
+  // We give the More Options buff last in case one of the seasons grants a normal More Options.
+  giveMoreOptionsBuff();
 }
 
 function liveSplitReset() {
@@ -75,13 +79,20 @@ function liveSplitReset() {
   }
 }
 
+/**
+ * @returns True if the current character was wrong.
+ */
 function setCorrectCharacter() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const challenge = Isaac.GetChallenge();
 
-  if (challenge === ChallengeCustom.SEASON_2) {
-    return false; // This is handled explicitly later.
+  // Character order is explicitly handled in some seasons.
+  if (
+    challenge === ChallengeCustom.SEASON_2 ||
+    challenge === ChallengeCustom.SEASON_3
+  ) {
+    return false;
   }
 
   const currentCharacter = getCurrentCharacter();
@@ -125,15 +136,16 @@ function goBackToFirstCharacter() {
 
 function giveMoreOptionsBuff() {
   const player = Isaac.GetPlayer();
+  const challenge = Isaac.GetChallenge();
 
   // Only seasons with Treasure Rooms need the More Options buff.
   if (shouldBanFirstFloorTreasureRoom()) {
     return;
   }
 
-  // The first character of the speedrun always gets More Options to speed up the process of getting
-  // a run going.
-  if (isOnFirstCharacter()) {
+  // The first character of the speedrun always gets a temporary More Options to speed up the
+  // process of getting a run going. (On season 3, every character gets this temporary buff.)
+  if (isOnFirstCharacter() || challenge === ChallengeCustom.SEASON_3) {
     tempMoreOptions.give(player);
   }
 }
