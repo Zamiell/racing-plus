@@ -158,13 +158,11 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
     return;
   }
 
-  const keyStringArray = keyboardToString(keyboardValue, shiftPressed);
-  if (keyStringArray !== undefined) {
-    const [lowercaseCharacter, uppercaseCharacter] = keyStringArray;
-    const character = shiftPressed ? uppercaseCharacter : lowercaseCharacter;
+  const keyboardString = keyboardToString(keyboardValue, shiftPressed);
+  if (keyboardString !== undefined) {
     const front = inputText.slice(0, inputTextIndex);
     const back = inputText.slice(inputTextIndex);
-    inputText = `${front}${character}${back}`;
+    inputText = `${front}${keyboardString}${back}`;
     inputTextIndex++;
   }
 }
