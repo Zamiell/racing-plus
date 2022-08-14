@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   addConsoleCommand,
+  asCollectibleType,
   CHARACTER_MAP,
   FIRST_CHARACTER,
   getCharacterName,
@@ -215,7 +216,7 @@ function seededRaceItem(params: string) {
   }
 
   const startingItemStrings = params.split(",");
-  const startingItems: int[] = [];
+  const startingItems: CollectibleType[] = [];
   for (const startingItemString of startingItemStrings) {
     const num = tonumber(startingItemString);
     if (num === undefined) {
@@ -224,7 +225,7 @@ function seededRaceItem(params: string) {
       );
       return;
     }
-    startingItems.push(num);
+    startingItems.push(asCollectibleType(num));
   }
 
   g.race.startingItems = startingItems;

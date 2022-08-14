@@ -1,3 +1,4 @@
+import { CollectibleType } from "isaac-typescript-definitions";
 import { jsonDecode, log } from "isaacscript-common";
 import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import g from "../../globals";
@@ -68,7 +69,7 @@ socketFunctions.set("set", (rawData: string) => {
 
     case "table": {
       // "startingItems" is the only property that is a table.
-      const newArray = jsonDecode(data) as unknown as int[];
+      const newArray = jsonDecode(data) as unknown as CollectibleType[];
       g.race.startingItems = newArray;
       break;
     }
