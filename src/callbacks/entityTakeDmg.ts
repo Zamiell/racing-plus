@@ -6,6 +6,7 @@ import {
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
 import * as removeHushArmor from "../features/optional/bosses/removeHushArmor";
+import * as removeMegaSatanArmor from "../features/optional/bosses/removeMegaSatanArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
@@ -28,6 +29,12 @@ export function init(mod: Mod): void {
     ModCallback.ENTITY_TAKE_DMG,
     gabriel,
     EntityType.GABRIEL, // 272
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
+    megaSatan2,
+    EntityType.MEGA_SATAN_2, // 275
   );
 
   mod.AddCallback(
@@ -88,6 +95,23 @@ function gabriel(
   _countdownFrames: int,
 ): boolean | undefined {
   return doubleAngelNerf.entityTakeDmgGabriel(source);
+}
+
+// EntityType.MEGA_SATAN_2 (275)
+function megaSatan2(
+  entity: Entity,
+  amount: float,
+  damageFlags: BitFlags<DamageFlag>,
+  source: EntityRef,
+  countdownFrames: int,
+): boolean | undefined {
+  return removeMegaSatanArmor.entityTakeDmgMegaSatan2(
+    entity,
+    amount,
+    damageFlags,
+    source,
+    countdownFrames,
+  );
 }
 
 // EntityType.HUSH (407)

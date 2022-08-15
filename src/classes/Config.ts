@@ -29,6 +29,7 @@ export class Config {
   consistentAngels = true; // 271, 272
   removeLambBody = true; // 273
   preventVictoryLapPopup = true; // 273
+  removeMegaSatanArmor = true; // 275
   openHushDoor = true; // 407
   removeHushArmor = true; // 407
   fastBigHorn = true; // 411

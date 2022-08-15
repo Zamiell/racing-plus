@@ -190,8 +190,8 @@ Post-flip actions:
 - `0314` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
 - `0315` <!-- fastColostomia 917 --> Colostomia will instantly appear.
 - `0316` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
-- <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274 --> Some of the animations in the Mega Satan fight have been removed.
-- <!-- megaSatanPreventEnd 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
+- <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
+- <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 

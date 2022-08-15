@@ -324,10 +324,19 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
+    "removeMegaSatanArmor", // 275
+    [
+      ModConfigMenuOptionType.TEXT,
+      "0312",
+      "Remove Mega Satan's armor",
+      "Remove Mega Satan's armor during his second phase, which is intended to make it scale with powerful builds.",
+    ],
+  ],
+  [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0312",
+      "0313",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -336,7 +345,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "removeHushArmor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0313",
+      "0314",
       "Remove Hush Armor",
       "Remove Hush's armor, which is intended to make it scale with powerful builds.",
     ],
@@ -345,7 +354,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0314",
+      "0315",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -354,7 +363,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0315",
+      "0316",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -363,13 +372,13 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0316",
+      "0317",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],
   ],
   [
-    "", // 274
+    "", // 274, 275
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -378,7 +387,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    "", // 274
+    "", // 275
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -395,6 +404,10 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       'Make Hush no longer play an "Appear" animation.',
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 951
     [
@@ -1286,6 +1299,7 @@ export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
   ...CHARACTER_CHANGES,
   ...BOSS_CHANGES_1,
   ...BOSS_CHANGES_2,
+  ...BOSS_CHANGES_3,
   ...ENEMY_CHANGES_1,
   ...ENEMY_CHANGES_2,
   ...QUALITY_OF_LIFE_CHANGES_1,

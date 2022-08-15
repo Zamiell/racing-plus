@@ -12,6 +12,7 @@ import {
   ALL_HOTKEY_DESCRIPTIONS,
   BOSS_CHANGES_1,
   BOSS_CHANGES_2,
+  BOSS_CHANGES_3,
   BUG_FIXES_1,
   BUG_FIXES_2,
   CHARACTER_CHANGES,
@@ -60,6 +61,7 @@ export function init(): void {
   registerSubMenuConfig("Chars", CHARACTER_CHANGES);
   registerSubMenuConfig("Boss (1)", BOSS_CHANGES_1);
   registerSubMenuConfig("Boss (2)", BOSS_CHANGES_2);
+  registerSubMenuConfig("Boss (3)", BOSS_CHANGES_3);
   registerSubMenuConfig("NPCs (1)", ENEMY_CHANGES_1);
   registerSubMenuConfig("NPCs (2)", ENEMY_CHANGES_2);
   registerSubMenuConfig("QoL (1)", QUALITY_OF_LIFE_CHANGES_1);
