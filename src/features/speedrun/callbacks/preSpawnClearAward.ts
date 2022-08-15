@@ -1,4 +1,5 @@
 import { season2PreSpawnClearAward } from "../season2/callbacks/preSpawnClearAward";
+import { season3PreSpawnClearAward } from "../season3/callbacks/preSpawnClearAward";
 import { inSpeedrun } from "../speedrun";
 
 export function speedrunPreSpawnClearAward(): void {
@@ -7,4 +8,5 @@ export function speedrunPreSpawnClearAward(): void {
   }
 
   season2PreSpawnClearAward();
+  season3PreSpawnClearAward();
 }
