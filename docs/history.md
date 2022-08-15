@@ -5,8 +5,10 @@
 
 ### _v0.82.14_ - August ?th, 2022
 
+- Hush no longer has armor.
+- The second phase of Mega Satan no longer has armor.
 - Dogma can no longer be given as a random item during diversity races.
-- Fixed the bug where the diversity documentation was not accurate about the excluded starting items.
+- Fixed the bug where the diversity documentation was not accurate with respect to the excluded starting items.
 
 ### _v0.82.13_ - August 14th, 2022
 
