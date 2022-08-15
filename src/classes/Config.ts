@@ -19,6 +19,7 @@ export class Config {
 
   // Boss
   fadeBosses = true;
+  fastBossRush = true;
   killExtraEnemies = true; // 45, 78
   fastPin = true; // 62
   preventDeathSlow = true; // 66

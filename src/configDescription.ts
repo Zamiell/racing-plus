@@ -230,19 +230,28 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "killExtraEnemies", // 45, 78
+    "fastBossRush",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0302",
-      "Fade dead bosses",
-      "Make bosses faded during their death animation so that you can see the dropped item.",
+      "Fast Boss Rush",
+      "The mandatory waiting between bosses is removed.",
+    ],
+  ],
+  [
+    "killExtraEnemies", // 45, 78
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0303",
+      "Kill extra enemies",
+      "Extra enemies will properly die after defeating Mom, Mom's Heart, or It Lives!",
     ],
   ],
   [
     "fastPin", // 62
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0303",
+      "0304",
       "Fast Pin",
       "Make Pin, Frail, Scolex, and Wormwood spend less time underground.",
     ],
@@ -251,7 +260,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "preventDeathSlow", // 66
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0304",
+      "0305",
       "Stop Death's slow attack",
       "Stop Death from performing the attack that reduces your speed by a factor of 2.",
     ],
@@ -260,7 +269,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastKrampus", // 81
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0305",
+      "0306",
       "Fast Krampus",
       "Make Krampus immediately drop his item once he is killed.",
     ],
@@ -269,7 +278,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0306",
+      "0307",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
@@ -278,7 +287,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0307",
+      "0308",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
     ],
@@ -287,7 +296,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0308",
+      "0309",
       "Fast angels",
       "Make Uriel and Gabriel immediately drop their key piece once they are killed.",
     ],
@@ -296,18 +305,9 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "consistentAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0309",
+      "0310",
       "Consistent angels",
       "Prevent two of the same angel boss from spawning in the same room.",
-    ],
-  ],
-  [
-    "removeLambBody", // 273
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0310",
-      "Remove The Lamb body",
-      "Remove The Lamb body entirely once it dies.",
     ],
   ],
 ];
@@ -315,10 +315,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
 // 0311-0320
 export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
-    "preventVictoryLapPopup", // 273
+    "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",
+      "Remove The Lamb body",
+      "Remove The Lamb body entirely once it dies.",
+    ],
+  ],
+  [
+    "preventVictoryLapPopup", // 273
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0312",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -327,7 +336,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "removeMegaSatanArmor", // 275
     [
       ModConfigMenuOptionType.TEXT,
-      "0312",
+      "0313",
       "Remove Mega Satan's armor",
       "Remove Mega Satan's armor during his second phase, which is intended to make it scale with powerful builds.",
     ],
@@ -336,7 +345,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0313",
+      "0314",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -345,7 +354,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "removeHushArmor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0314",
+      "0315",
       "Remove Hush Armor",
       "Remove Hush's armor, which is intended to make it scale with powerful builds.",
     ],
@@ -354,7 +363,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0315",
+      "0316",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -363,7 +372,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0316",
+      "0317",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -372,7 +381,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0317",
+      "0318",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],
@@ -395,6 +404,10 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       "Defeating Mega Satan no longer has a chance to immediately end the run.",
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 407
     [
@@ -404,10 +417,6 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       'Make Hush no longer play an "Appear" animation.',
     ],
   ],
-];
-
-// 0311-0320
-export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 951
     [

@@ -5,6 +5,7 @@
 
 ### _v0.82.14_ - August ?th, 2022
 
+- Great Gideon will no longer appear as a boss in Mines/Ashpit.
 - Hush no longer has armor.
 - The second phase of Mega Satan no longer has armor.
 - Dogma can no longer be given as a random item during diversity races.

@@ -200,8 +200,6 @@ Some builds are banned on certain characters:
 - The knife pieces are not required to go to Mother; a trapdoor to Corpse 1 will appear after defeating Mom on Mausoleum/Gehenna.
 - Going through the Ascent is not required to go to Dogma; a beam of light to Dark Home will appear in place of Dad's Note.
 
-TODO: remove great gideon
-
 <br>
 
 <!--
