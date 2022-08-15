@@ -1,8 +1,6 @@
-import { fonts, game, getPlayerName, KColorDefault } from "isaacscript-common";
+import { game } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
-import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import {
@@ -10,10 +8,11 @@ import {
   SEASON_2_LOCK_SECONDS,
   SEASON_2_NUM_BANS,
 } from "../constants";
-import { drawSeason2StartingRoomSprites } from "../startingRoomSprites";
+import {
+  drawSeason2StartingRoomSprites,
+  drawSeason2StartingRoomText,
+} from "../startingRoomSprites";
 import v from "../v";
-
-const TOP_LEFT_GRID_INDEX = 32;
 
 export function season2PostRender(): void {
   const hud = game.GetHUD();
@@ -36,7 +35,7 @@ export function season2PostRender(): void {
   }
 
   drawSeason2StartingRoomSprites();
-  drawStartingRoomText();
+  drawSeason2StartingRoomText();
 }
 
 function drawErrors() {
@@ -78,29 +77,4 @@ function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
       ? `Please wait ${secondsRemainingText} and then restart.`
       : "Please restart.";
   return `You are not allowed to start a new Season 2 run so soon after ${action}. ${secondSentence}`;
-}
-
-function drawStartingRoomText() {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered !== 1) {
-    return;
-  }
-
-  const player = Isaac.GetPlayer();
-  const characterName = getPlayerName(player);
-
-  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  let position = Isaac.WorldToRenderPosition(positionGame);
-  position = position.add(Vector(0, -11));
-
-  const font = fonts.droid;
-  const length = font.GetStringWidthUTF8(characterName);
-
-  font.DrawString(
-    characterName,
-    position.X - length / 2,
-    position.Y,
-    KColorDefault,
-  );
 }

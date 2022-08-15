@@ -101,6 +101,7 @@ function main() {
   if (g.debug) {
     saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
+
     // F1 shows the version of Racing+.
     registerHotkey(Keyboard.F2, hotkey1Function);
     registerHotkey(Keyboard.F3, hotkey2Function);

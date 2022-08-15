@@ -1,20 +1,14 @@
-import {
-  fonts,
-  game,
-  getPlayerName,
-  KColorDefault,
-  todo,
-} from "isaacscript-common";
+import { game } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
 import { drawErrorText } from "../../../mandatory/errors";
-import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import { SEASON_3_LOCK_MILLISECONDS } from "../constants";
+import {
+  drawSeason3StartingRoomSprites,
+  drawSeason3StartingRoomText,
+} from "../startingRoomSprites";
 import v from "../v";
-
-const TOP_LEFT_GRID_INDEX = 32;
 
 export function season3PostRender(): void {
   const hud = game.GetHUD();
@@ -36,8 +30,8 @@ export function season3PostRender(): void {
     return;
   }
 
-  todo("draw diversity sprites");
-  drawStartingRoomText();
+  drawSeason3StartingRoomSprites();
+  drawSeason3StartingRoomText();
 }
 
 function drawErrors() {
@@ -72,29 +66,4 @@ function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
       ? `Please wait ${secondsRemainingText} and then restart.`
       : "Please restart.";
   return `You are not allowed to start a new Season 3 run so soon after ${action}. ${secondSentence}`;
-}
-
-function drawStartingRoomText() {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered !== 1) {
-    return;
-  }
-
-  const player = Isaac.GetPlayer();
-  const characterName = getPlayerName(player);
-
-  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  let position = Isaac.WorldToRenderPosition(positionGame);
-  position = position.add(Vector(0, -11));
-
-  const font = fonts.droid;
-  const length = font.GetStringWidthUTF8(characterName);
-
-  font.DrawString(
-    characterName,
-    position.X - length / 2,
-    position.Y,
-    KColorDefault,
-  );
 }

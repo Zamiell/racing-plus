@@ -96,7 +96,7 @@ function setupButtonRoom() {
 
     const seasonSprite = Sprite();
     seasonSprite.Load(
-      `gfx/changeCharOrder/buttons/${seasonAbbreviation}.anm2`,
+      `gfx/change-char-order/buttons/${seasonAbbreviation}.anm2`,
       true,
     );
     seasonSprite.SetFrame("Default", 0);

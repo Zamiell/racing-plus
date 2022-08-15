@@ -6,7 +6,7 @@ export function initMinimapAPI(): void {
   }
 
   const customIcons = Sprite();
-  customIcons.Load("gfx/minimapAPI/custom_icons.anm2", true);
+  customIcons.Load("gfx/minimap-api/custom_icons.anm2", true);
 
   initMinimapAPIPills(customIcons);
   initMinimapAPICards(customIcons);

@@ -1,6 +1,8 @@
 import { CollectibleType } from "isaac-typescript-definitions";
+import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
 import g from "../../../globals";
 import { initGlowingCollectibleSprite, initSprite } from "../../../sprite";
+import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -10,9 +12,10 @@ const SPRITE_TITLE_OFFSET = Vector(0, -30);
 const SPRITE_ITEM_OFFSET = 15;
 
 const sprites = {
+  /** The "Character" yellow sprite. */
   characterTitle: null as Sprite | null,
 
-  /** "Starting Item" or "Starting Build". */
+  /** The "Starting Item" or "Starting Build" yellow sprite. */
   seededStartingTitle: null as Sprite | null,
 
   seededItemCenter: null as Sprite | null,
@@ -122,4 +125,29 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
       return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * 3, 0));
     }
   }
+}
+
+export function drawSeason2StartingRoomText(): void {
+  const numRoomsEntered = getNumRoomsEntered();
+
+  if (numRoomsEntered !== 1) {
+    return;
+  }
+
+  const player = Isaac.GetPlayer();
+  const characterName = getPlayerName(player);
+
+  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  let position = Isaac.WorldToRenderPosition(positionGame);
+  position = position.add(Vector(0, -11));
+
+  const font = fonts.droid;
+  const length = font.GetStringWidthUTF8(characterName);
+
+  font.DrawString(
+    characterName,
+    position.X - length / 2,
+    position.Y,
+    KColorDefault,
+  );
 }

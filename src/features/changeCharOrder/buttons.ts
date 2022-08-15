@@ -87,7 +87,7 @@ function createCharacterButtons() {
     // Spawn the character graphic next to the button.
     const characterSprite = Sprite();
     characterSprite.Load(
-      `gfx/changeCharOrder/characters/${characterID}.anm2`,
+      `gfx/change-char-order/characters/${characterID}.anm2`,
       true,
     );
 

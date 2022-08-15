@@ -6,6 +6,7 @@ import {
   getVanillaTrinketArray,
   isActiveCollectible,
 } from "isaacscript-common";
+import g from "../../../globals";
 import {
   BANNED_COLLECTIBLES,
   BANNED_TRINKETS,
@@ -26,7 +27,7 @@ export const SEASON_3_CHARACTERS: readonly PlayerType[] = [
 ];
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_3_LOCK_MINUTES = 1.25;
+const SEASON_3_LOCK_MINUTES = g.debug ? 0.01 : 1.25;
 const SEASON_3_LOCK_SECONDS = SEASON_3_LOCK_MINUTES * 60;
 export const SEASON_3_LOCK_MILLISECONDS = SEASON_3_LOCK_SECONDS * 1000;
 

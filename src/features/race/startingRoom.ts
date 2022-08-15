@@ -14,21 +14,37 @@ import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 const GFX_PATH = "gfx/race/starting-room";
 
 const sprites = {
-  /** "Starting Item" or "Starting Build". */
+  /** The "Starting Item" or "Starting Build" yellow sprite. */
   seededStartingTitle: null as Sprite | null,
+
   seededItemCenter: null as Sprite | null,
   seededItemLeft: null as Sprite | null,
   seededItemRight: null as Sprite | null,
   seededItemFarLeft: null as Sprite | null,
   seededItemFarRight: null as Sprite | null,
 
+  /** The "Active" yellow sprite. */
   diversityActive: null as Sprite | null,
+
+  /** The "Passives" yellow sprite. */
   diversityPassives: null as Sprite | null,
+
+  /** The "Trinket" yellow sprite. */
   diversityTrinket: null as Sprite | null,
+
+  /** The active item. */
   diversityItem1: null as Sprite | null,
+
+  /** The first passive item. */
   diversityItem2: null as Sprite | null,
+
+  /** The second passive item. */
   diversityItem3: null as Sprite | null,
+
+  /** The third passive item. */
   diversityItem4: null as Sprite | null,
+
+  /** The trinket. */
   diversityItem5: null as Sprite | null,
 };
 
@@ -107,34 +123,23 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
     }
 
     case "diversityItem1": {
-      // The active item.
       return Vector(renderPosition.X - 90, renderPosition.Y - 40);
     }
 
     case "diversityItem2": {
-      // The 1st passive item.
       return Vector(renderPosition.X + 60, itemRow1Y);
     }
 
     case "diversityItem3": {
-      // The 2nd passive item.
       return Vector(renderPosition.X + 90, itemRow1Y);
     }
 
     case "diversityItem4": {
-      // The 3rd passive item.
       return Vector(renderPosition.X + 120, itemRow1Y);
     }
 
     case "diversityItem5": {
-      // The trinket.
       return Vector(renderPosition.X - 90, renderPosition.Y + 60);
-    }
-
-    default: {
-      return error(
-        `Starting room sprites named "${spriteName}" are unsupported.`,
-      );
     }
   }
 }
@@ -217,13 +222,15 @@ function initSeededSprites() {
 }
 
 function initDiversitySprites() {
-  if (g.race.startingItems.length !== 5) {
-    error("A diversity race does not have 5 starting items.");
-  }
-
   sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
   sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
   sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
+
+  if (g.race.startingItems.length !== 5) {
+    error(
+      `Failed to initialize the diversity race starting room sprites due to only having ${g.race.startingItems.length} starting items instead of 5.`,
+    );
+  }
 
   sprites.diversityItem1 = initGlowingCollectibleSpriteFromServerCollectibleID(
     g.race.startingItems[0],

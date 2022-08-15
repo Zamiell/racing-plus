@@ -116,28 +116,26 @@ function rankedSoloReset() {
 }
 
 function s0() {
-  consoleCommand(`challenge ${Challenge.NULL}`);
+  goToChallenge(Challenge.NULL);
 }
 
 function s1() {
   goToChallenge(ChallengeCustom.SEASON_1);
-  consoleCommand("setcharorder");
 }
 
 function s2() {
   goToChallenge(ChallengeCustom.SEASON_2);
-  consoleCommand("setbuildvetos");
 }
 
 function s3() {
   goToChallenge(ChallengeCustom.SEASON_3);
 }
 
-function goToChallenge(destinationChallenge: Challenge) {
-  if (asNumber(destinationChallenge) === -1) {
+function goToChallenge(challenge: Challenge) {
+  if (asNumber(challenge) === -1) {
     printConsole("That challenge was not found.");
   } else {
-    consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
+    consoleCommand(`challenge ${challenge}`);
   }
 }
 

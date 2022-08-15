@@ -61,16 +61,16 @@ function getDirectory(itemID: int) {
   const challenge = Isaac.GetChallenge();
 
   if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER) {
-    return "season2builds";
+    return "season-2-builds";
   }
 
-  return isModdedCollectibleType(asCollectibleType(itemID))
+  return isRacingPlusModdedCollectible(itemID)
     ? "items-glowing-custom"
     : "items-glowing";
 }
 
 function getFilename(itemID: int) {
-  if (isModdedCollectibleType(asCollectibleType(itemID))) {
+  if (isRacingPlusModdedCollectible(itemID)) {
     const gfxFilename = getCollectibleGfxFilename(asCollectibleType(itemID));
     const pathSegments = gfxFilename.split("/");
     if (pathSegments.length === 0) {
@@ -82,6 +82,13 @@ function getFilename(itemID: int) {
 
   const fileNum = getFileNum(itemID);
   return `collectibles_${fileNum}.png`;
+}
+
+function isRacingPlusModdedCollectible(itemID: int) {
+  return (
+    isModdedCollectibleType(asCollectibleType(itemID)) &&
+    itemID < GLOWING_IMAGE_TRINKET_OFFSET
+  );
 }
 
 function getFileNum(itemID: int) {

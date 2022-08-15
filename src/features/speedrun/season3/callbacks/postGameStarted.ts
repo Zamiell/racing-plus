@@ -24,6 +24,7 @@ import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { resetPersistentVars } from "../../v";
 import {
   BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
+  DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
   DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
   DIVERSITY_TRINKET_TYPES,
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
@@ -124,7 +125,7 @@ function getRandomDiversityItems(
   let activeCollectibleType: CollectibleType;
   do {
     activeCollectibleType = getRandomArrayElement(
-      DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+      DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
       rng,
     );
   } while (player.HasCollectible(activeCollectibleType));
