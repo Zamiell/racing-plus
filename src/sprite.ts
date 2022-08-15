@@ -64,13 +64,13 @@ function getDirectory(itemID: int) {
     return "season-2-builds";
   }
 
-  return isRacingPlusModdedCollectible(itemID)
+  return isRacingPlusModdedCollectibleType(itemID)
     ? "items-glowing-custom"
     : "items-glowing";
 }
 
 function getFilename(itemID: int) {
-  if (isRacingPlusModdedCollectible(itemID)) {
+  if (isRacingPlusModdedCollectibleType(itemID)) {
     const gfxFilename = getCollectibleGfxFilename(asCollectibleType(itemID));
     const pathSegments = gfxFilename.split("/");
     if (pathSegments.length === 0) {
@@ -84,7 +84,7 @@ function getFilename(itemID: int) {
   return `collectibles_${fileNum}.png`;
 }
 
-function isRacingPlusModdedCollectible(itemID: int) {
+function isRacingPlusModdedCollectibleType(itemID: int) {
   return (
     isModdedCollectibleType(asCollectibleType(itemID)) &&
     itemID < GLOWING_IMAGE_TRINKET_OFFSET
