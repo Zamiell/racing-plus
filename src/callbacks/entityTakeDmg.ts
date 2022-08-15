@@ -44,19 +44,19 @@ export function init(mod: Mod): void {
 }
 
 function entityTakeDmgPlayer(
-  tookDamage: Entity,
-  damageAmount: float,
+  entity: Entity,
+  amount: float,
   damageFlags: BitFlags<DamageFlag>,
-  _damageSource: EntityRef,
-  _damageCountdownFrames: int,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  const player = tookDamage.ToPlayer();
+  const player = entity.ToPlayer();
   if (player === undefined) {
     return undefined;
   }
 
   // Major
-  freeDevilItem.entityTakeDmgPlayer(tookDamage, damageAmount, damageFlags);
+  freeDevilItem.entityTakeDmgPlayer(entity, amount, damageFlags);
   fastTravelEntityTakeDmgPlayer(damageFlags);
 
   // QoL
@@ -70,52 +70,50 @@ function entityTakeDmgPlayer(
 
 // EntityType.URIEL (271)
 function uriel(
-  _tookDamage: Entity,
-  _damageAmount: float,
+  _entity: Entity,
+  _amount: float,
   _damageFlags: BitFlags<DamageFlag>,
-  damageSource: EntityRef,
-  _damageCountdownFrames: int,
+  source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return doubleAngelNerf.entityTakeDmgUriel(damageSource);
+  return doubleAngelNerf.entityTakeDmgUriel(source);
 }
 
 // EntityType.GABRIEL (272)
 function gabriel(
-  _tookDamage: Entity,
-  _damageAmount: float,
+  _entity: Entity,
+  _amount: float,
   _damageFlags: BitFlags<DamageFlag>,
-  damageSource: EntityRef,
-  _damageCountdownFrames: int,
+  source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return doubleAngelNerf.entityTakeDmgGabriel(damageSource);
+  return doubleAngelNerf.entityTakeDmgGabriel(source);
 }
 
 // EntityType.HUSH (407)
 function hush(
-  tookDamage: Entity,
-  damageAmount: float,
+  entity: Entity,
+  amount: float,
   damageFlags: BitFlags<DamageFlag>,
-  damageSource: EntityRef,
-  damageCountdownFrames: int,
+  source: EntityRef,
+  countdownFrames: int,
 ): boolean | undefined {
   return removeHushArmor.entityTakeDmgHush(
-    tookDamage,
-    damageAmount,
+    entity,
+    amount,
     damageFlags,
-    damageSource,
-    damageCountdownFrames,
+    source,
+    countdownFrames,
   );
 }
 
 // EntityType.DUMMY (964)
 function dummy(
-  _tookDamage: Entity,
-  damageAmount: float,
+  _entity: Entity,
+  amount: float,
   _damageFlags: BitFlags<DamageFlag>,
-  _damageSource: EntityRef,
-  _damageCountdownFrames: int,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  dummyDPS.entityTakeDmgDummy(damageAmount);
-
-  return undefined;
+  return dummyDPS.entityTakeDmgDummy(amount);
 }

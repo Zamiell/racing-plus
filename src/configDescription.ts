@@ -345,7 +345,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0313",
+      "0314",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -354,7 +354,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0314",
+      "0315",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -363,7 +363,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0315",
+      "0316",
       "Fast Dogma",
       "Automatically skip Dogma's death cutscene.",
     ],

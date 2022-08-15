@@ -109,15 +109,15 @@ export function postUseItemGlowingHourGlass(): void {
 
 // ModCallback.ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
-  tookDamage: Entity,
-  damageAmount: float,
+  entity: Entity,
+  amount: float,
   damageFlags: BitFlags<DamageFlag>,
 ): void {
   if (!config.freeDevilItem) {
     return;
   }
 
-  const player = tookDamage.ToPlayer();
+  const player = entity.ToPlayer();
   if (player === undefined) {
     return;
   }
@@ -133,10 +133,7 @@ export function entityTakeDmgPlayer(
   // As an exception, Tainted Magdalene is allowed to get damaged on her temporary heart containers.
   if (isCharacter(player, PlayerType.MAGDALENE_B)) {
     if (
-      wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(
-        player,
-        damageAmount,
-      )
+      wouldDamageTaintedMagdaleneNonTemporaryHeartContainers(player, amount)
     ) {
       v.run.tookDamage = true;
     }

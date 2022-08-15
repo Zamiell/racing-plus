@@ -87,21 +87,23 @@ function getDPS() {
 
 // ModCallback.ENTITY_TAKE_DMG (11)
 // EntityType.DUMMY (964)
-export function entityTakeDmgDummy(damageAmount: float): void {
+export function entityTakeDmgDummy(amount: float): boolean | undefined {
   // This entity constantly takes damage for some reason.
-  if (damageAmount <= 0) {
+  if (amount <= 0) {
     return;
   }
 
   const gameFrameCount = game.GetFrameCount();
 
-  v.room.totalDamage += damageAmount;
+  v.room.totalDamage += amount;
   if (v.room.firstFrameOfDamage === null) {
     const player = Isaac.GetPlayer();
     const framePenaltyForCharging = player.MaxFireDelay;
     v.room.firstFrameOfDamage = gameFrameCount - framePenaltyForCharging;
   }
   v.room.lastFrameOfDamage = gameFrameCount;
+
+  return undefined;
 }
 
 function getElapsedSeconds(startFrame: int, endFrame: int) {
