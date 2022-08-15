@@ -30,6 +30,7 @@ export class Config {
   removeLambBody = true; // 273
   preventVictoryLapPopup = true; // 273
   openHushDoor = true; // 407
+  removeHushArmor = true; // 407
   fastBigHorn = true; // 411
   fastColostomia = true; // 917
   fastDogma = true; // 950

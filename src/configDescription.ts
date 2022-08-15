@@ -333,6 +333,15 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
+    "removeHushArmor", // 407
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0313",
+      "Remove Hush Armor",
+      "Remove Hush's armor, which is intended to make it scale with powerful builds.",
+    ],
+  ],
+  [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,

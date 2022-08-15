@@ -186,9 +186,10 @@ Post-flip actions:
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
 - `0312` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0313` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0314` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0315` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0313` <!-- removeHushArmor 407 --> Hush no longer has armor.
+- `0314` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0315` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0316` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 274 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 

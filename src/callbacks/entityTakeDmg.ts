@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
+import * as removeHushArmor from "../features/optional/bosses/removeHushArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
@@ -27,6 +28,12 @@ export function init(mod: Mod): void {
     ModCallback.ENTITY_TAKE_DMG,
     gabriel,
     EntityType.GABRIEL, // 272
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
+    hush,
+    EntityType.HUSH, // 407
   );
 
   mod.AddCallback(
@@ -81,6 +88,23 @@ function gabriel(
   _damageCountdownFrames: int,
 ): boolean | undefined {
   return doubleAngelNerf.entityTakeDmgGabriel(damageSource);
+}
+
+// EntityType.HUSH (407)
+function hush(
+  tookDamage: Entity,
+  damageAmount: float,
+  damageFlags: BitFlags<DamageFlag>,
+  damageSource: EntityRef,
+  damageCountdownFrames: int,
+): boolean | undefined {
+  return removeHushArmor.entityTakeDmgHush(
+    tookDamage,
+    damageAmount,
+    damageFlags,
+    damageSource,
+    damageCountdownFrames,
+  );
 }
 
 // EntityType.DUMMY (964)
