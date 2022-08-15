@@ -6,7 +6,6 @@ import {
 import {
   anyPlayerIs,
   copyArray,
-  emptyArray,
   getRandomArrayElementAndRemove,
   removeCollectibleCostume,
   smeltTrinket,
@@ -151,12 +150,13 @@ function checkFirstCharacterRefresh() {
 function refreshStartingCharactersAndBuilds() {
   const time = Isaac.GetTime();
 
-  emptyArray(v.persistent.selectedCharacters);
+  v.persistent.selectedCharacters = [];
   v.persistent.remainingCharacters = copyArray(SEASON_2_CHARACTERS);
 
-  emptyArray(v.persistent.selectedBuildIndexes);
-  emptyArray(v.persistent.remainingBuildIndexes);
-  v.persistent.remainingBuildIndexes.push(...SEASON_2_STARTING_BUILD_INDEXES);
+  v.persistent.selectedBuildIndexes = [];
+  v.persistent.remainingBuildIndexes = copyArray(
+    SEASON_2_STARTING_BUILD_INDEXES,
+  );
 
   // We will assign the character and the build in the next function.
   v.persistent.timeAssigned = time;

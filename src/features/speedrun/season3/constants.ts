@@ -88,6 +88,53 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.RECALL, // 714
 ];
 
+const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
+  // Treasure Room
+  CollectibleType.CRICKETS_BODY, // 224
+  CollectibleType.CRICKETS_HEAD, // 4
+  CollectibleType.DEAD_EYE, // 373
+  CollectibleType.DEATHS_TOUCH, // 237
+  CollectibleType.DR_FETUS, // 52
+  CollectibleType.IPECAC, // 149
+  CollectibleType.MAGIC_MUSHROOM, // 12
+  CollectibleType.MOMS_KNIFE, // 114
+  CollectibleType.POLYPHEMUS, // 169
+  CollectibleType.PROPTOSIS, // 261
+  CollectibleType.TECH_5, // 244
+  CollectibleType.TECH_X, // 395
+  CollectibleType.C_SECTION, // 678
+
+  // Devil Room
+  CollectibleType.BRIMSTONE, // 118
+  CollectibleType.MAW_OF_THE_VOID, // 399
+
+  // Angel Room
+  CollectibleType.CROWN_OF_LIGHT, // 415
+  CollectibleType.SACRED_HEART, // 182
+  CollectibleType.SPIRIT_SWORD, // 579
+  CollectibleType.REVELATION, // 643
+
+  // Secret Room
+  CollectibleType.EPIC_FETUS, // 168
+];
+
+/**
+ * These are collectibles that can never be assigned as random starting items, but can still be
+ * found in other pools in the middle of a run.
+ *
+ * This only applies during R+7 Season 3, not during diversity races.
+ */
+const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType[] =
+  [
+    ...STARTING_COLLECTIBLE_TYPES,
+    CollectibleType.NOTCHED_AXE, // 147
+    CollectibleType.CRYSTAL_BALL, // 158
+    CollectibleType.JUDAS_SHADOW, // 311
+    CollectibleType.MIND, // 333
+    CollectibleType.TERRA, // 592
+    CollectibleType.CARD_READING, // 660
+  ];
+
 const DIVERSITY_COLLECTIBLE_TYPES = copyArray(getVanillaCollectibleArray());
 arrayRemoveInPlace(
   DIVERSITY_COLLECTIBLE_TYPES,
@@ -95,6 +142,7 @@ arrayRemoveInPlace(
   ...BANNED_DIVERSITY_COLLECTIBLES,
   ...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
   ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST,
+  ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY,
 );
 export const DIVERSITY_ACTIVE_COLLECTIBLE_TYPES =
   DIVERSITY_COLLECTIBLE_TYPES.filter((collectibleType) =>
@@ -111,3 +159,23 @@ arrayRemoveInPlace(
   ...BANNED_TRINKETS,
   ...BANNED_DIVERSITY_TRINKETS,
 );
+
+export enum Season3Goal {
+  BLUE_BABY = "Blue Baby",
+  THE_LAMB = "The Lamb",
+  MEGA_SATAN = "Mega Satan",
+  BOSS_RUSH = "Boss Rush",
+  HUSH = "Hush",
+  MOTHER = "Mother",
+  DOGMA = "Dogma",
+}
+
+export const SEASON_3_GOALS: readonly Season3Goal[] = [
+  Season3Goal.BLUE_BABY,
+  Season3Goal.THE_LAMB,
+  Season3Goal.MEGA_SATAN,
+  Season3Goal.BOSS_RUSH,
+  Season3Goal.HUSH,
+  Season3Goal.MOTHER,
+  Season3Goal.DOGMA,
+];

@@ -5,7 +5,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   copyArray,
-  emptyArray,
   getRandomArrayElement,
   getRandomArrayElementAndRemove,
   newRNG,
@@ -29,6 +28,7 @@ import {
   DIVERSITY_TRINKET_TYPES,
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_CHARACTERS,
+  SEASON_3_GOALS,
   SEASON_3_LOCK_MILLISECONDS,
 } from "../constants";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
@@ -113,7 +113,7 @@ function checkFirstCharacterRefresh() {
     return;
   }
 
-  refreshStartingCharacters();
+  refreshStartingCharactersAndGoals();
 }
 
 function getRandomDiversityItems(
@@ -160,11 +160,13 @@ function removeItemsFromPools() {
   }
 }
 
-function refreshStartingCharacters() {
+function refreshStartingCharactersAndGoals() {
   const time = Isaac.GetTime();
 
-  emptyArray(v.persistent.selectedCharacters);
+  v.persistent.selectedCharacters = [];
   v.persistent.remainingCharacters = copyArray(SEASON_3_CHARACTERS);
+
+  v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);
 
   // We will assign the character in the next function.
   v.persistent.timeAssigned = time;

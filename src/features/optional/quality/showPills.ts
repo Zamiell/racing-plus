@@ -20,6 +20,7 @@ import {
   NUM_PILLS_IN_POOL,
   saveDataManager,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
@@ -133,6 +134,12 @@ export function postRender(): void {
   // This feature is disabled if the Babies Mod mod is enabled. (The pills text will overlap with
   // the baby descriptions.)
   if (BabiesModGlobals !== undefined) {
+    return;
+  }
+
+  // This feature is disabled in season 3. (The pills text will overlap with the goals.)
+  const challenge = Isaac.GetChallenge();
+  if (challenge === ChallengeCustom.SEASON_3) {
     return;
   }
 

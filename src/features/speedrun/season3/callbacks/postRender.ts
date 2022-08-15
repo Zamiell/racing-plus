@@ -1,9 +1,15 @@
-import { game } from "isaacscript-common";
+import { ButtonAction } from "isaac-typescript-definitions";
+import {
+  fonts,
+  game,
+  isActionPressedOnAnyInput,
+  KColorDefault,
+} from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { drawErrorText } from "../../../mandatory/errors";
 import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../utils/timeGameOpened";
-import { SEASON_3_LOCK_MILLISECONDS } from "../constants";
+import { SEASON_3_GOALS, SEASON_3_LOCK_MILLISECONDS } from "../constants";
 import {
   drawSeason3StartingRoomSprites,
   drawSeason3StartingRoomText,
@@ -32,6 +38,7 @@ export function season3PostRender(): void {
 
   drawSeason3StartingRoomSprites();
   drawSeason3StartingRoomText();
+  checkDrawGoals();
 }
 
 function drawErrors() {
@@ -66,4 +73,27 @@ function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
       ? `Please wait ${secondsRemainingText} and then restart.`
       : "Please restart.";
   return `You are not allowed to start a new Season 3 run so soon after ${action}. ${secondSentence}`;
+}
+
+function checkDrawGoals() {
+  // Only show goal identification if someone is pressing the map button.
+  if (isActionPressedOnAnyInput(ButtonAction.MAP)) {
+    drawGoals();
+  }
+}
+
+function drawGoals() {
+  const font = fonts.droid;
+
+  const x = 70;
+  let baseY = 55;
+
+  const pillsIdentifiedText = `Goals remaining: ${v.persistent.remainingGoals.length} / ${SEASON_3_GOALS.length}`;
+  font.DrawString(pillsIdentifiedText, x, baseY - 9 + 20, KColorDefault);
+
+  baseY += 20;
+  v.persistent.remainingGoals.forEach((goal, i) => {
+    const y = baseY + 20 * (i + 1);
+    font.DrawString(`- ${goal}`, x, y - 9, KColorDefault);
+  });
 }
