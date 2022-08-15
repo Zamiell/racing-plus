@@ -13,10 +13,10 @@ import {
   getCollectibles,
   isStoryBoss,
   saveDataManager,
-  spawn,
   spawnCollectible,
   spawnEffect,
   spawnFamiliar,
+  spawnNPC,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -155,7 +155,7 @@ function duplicateBoss(boss: EntityNPC) {
   // If the bosses start on the same tile, it looks buggy.
   const position = findFreePosition(boss.Position, true);
 
-  const duplicatedBoss = spawn(
+  const duplicatedBoss = spawnNPC(
     boss.Type,
     boss.Variant,
     boss.SubType,

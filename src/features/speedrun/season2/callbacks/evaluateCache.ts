@@ -1,5 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import {
+  copySet,
   getFlyingCollectibles,
   hasFlyingTemporaryEffect,
   hasFlyingTransformation,
@@ -44,7 +45,7 @@ export function season2EvaluateCacheFlying(player: EntityPlayer): void {
 }
 
 function hasFlyingCollectibleExceptForRevelation(player: EntityPlayer) {
-  const flyingCollectibles = getFlyingCollectibles(true);
+  const flyingCollectibles = copySet(getFlyingCollectibles(true));
   flyingCollectibles.delete(CollectibleType.REVELATION);
 
   for (const collectibleType of flyingCollectibles.values()) {

@@ -5,6 +5,7 @@
 
 ### _v0.82.14_ - August ?th, 2022
 
+- !The Boss Rush is now customized to include Womb bosses and Repentance bosses. The delay between waves is also removed.
 - Great Gideon will no longer appear as a boss in Mines/Ashpit.
 - Hush no longer has armor.
 - The second phase of Mega Satan no longer has armor.

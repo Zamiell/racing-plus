@@ -7,7 +7,7 @@ import {
 import {
   asNumber,
   saveDataManager,
-  spawn,
+  spawnNPC,
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
@@ -33,9 +33,10 @@ export function postNewRoom(): void {
     return;
   }
 
-  // If we do nothing, The Beast fight will begin again. If we remove all of the Beast entities, it
-  // will trigger the credits. Instead, we spawn another Beast to prevent the fight from beginning.
-  spawn(EntityType.BEAST, BeastVariant.BEAST, 0, VectorZero);
+  // We have now reloaded the room after killing The Beast. If we do nothing, The Beast fight will
+  // begin again. If we remove all of the Beast entities, it will trigger the credits. Instead, we
+  // spawn another Beast to prevent the fight from beginning.
+  spawnNPC(EntityType.BEAST, BeastVariant.BEAST, 0, VectorZero);
 
   // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
   spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);

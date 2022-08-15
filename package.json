@@ -21,11 +21,11 @@
   "author": "Zamiell",
   "type": "commonjs",
   "dependencies": {
-    "@types/node": "^18.7.3",
+    "@types/node": "^18.7.4",
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^3.5.2",
     "isaacscript": "^2.15.1",
-    "isaacscript-common": "^8.4.6",
+    "isaacscript-common": "^8.5.0",
     "isaacscript-lint": "^4.1.2",
     "isaacscript-spell": "^1.2.8",
     "ts-node": "^10.9.1",

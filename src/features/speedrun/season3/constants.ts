@@ -35,7 +35,7 @@ export const NUM_DIVERSITY_PASSIVE_COLLECTIBLES = 3;
 
 /**
  * - These are collectibles that are banned from all item pools during R+7 Season 3 only.
- * - They are copied from R+7 Season 6 for Afterbirth+.
+ * - They are mostly copied from R+7 Season 6 for Afterbirth+.
  * - The idea is that we want to normalize the lower-bound on any particular run.
  * - This was originally Dea1h's idea.
  */
@@ -43,6 +43,7 @@ export const BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY: readonly CollectibleType
   [
     CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
     CollectibleType.MEGA_BLAST, // 441
+    CollectibleType.MEGA_MUSH, // 625
   ];
 
 /**

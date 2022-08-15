@@ -166,7 +166,7 @@ Post-flip actions:
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
-- `0302` <!-- fastBossRush --> The unnecessary waiting during the Boss Rush is removed.
+- `0302` <!-- fastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses. Additionally, the unnecessary waiting between waves is removed.
 - `0303` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - `0304` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
 - `0305` <!-- preventDeathSlow 66 --> Death will no longer perform his "slow" attack.
@@ -186,11 +186,12 @@ Post-flip actions:
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0313` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0314` <!-- removeHushArmor 407 --> Hush no longer has armor.
-- `0315` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0316` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0317` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0313` <!-- removeMegaSatanArmor 275 --> The second phase of Mega Satan no longer has armor.
+- `0314` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0315` <!-- removeHushArmor 407 --> Hush no longer has armor.
+- `0316` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0317` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0318` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 

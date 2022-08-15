@@ -18,7 +18,7 @@ import {
   getRoomVariant,
   removeAllDoors,
   removeEntities,
-  spawn,
+  spawnNPC,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
@@ -216,7 +216,7 @@ function setupRaceRoom() {
   // Spawn two Gaping Maws.
   for (const gridIndex of [96, 98]) {
     const position = g.r.GetGridPosition(gridIndex);
-    const gapingMaw = spawn(EntityType.GAPING_MAW, 0, 0, position);
+    const gapingMaw = spawnNPC(EntityType.GAPING_MAW, 0, 0, position);
     gapingMaw.ClearEntityFlags(EntityFlag.APPEAR); // Make them appear instantly
   }
 

@@ -5,6 +5,7 @@ import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import * as trophy from "../features/mandatory/trophy";
+import * as fastBossRush from "../features/optional/bosses/fastBossRush";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
@@ -33,6 +34,9 @@ function main() {
   changeCharOrderPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();
+
+  // Bosses
+  fastBossRush.postUpdate();
 
   // QoL
   showPills.postUpdate();

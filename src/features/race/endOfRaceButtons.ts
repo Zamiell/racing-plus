@@ -12,8 +12,8 @@ import {
   getRoomListIndex,
   inMegaSatanRoom,
   openAllDoors,
-  spawn,
   spawnGridEntityWithVariant,
+  spawnNPC,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
@@ -198,7 +198,7 @@ function checkDPSButtonPressed(gridEntity: GridEntityPressurePlate) {
 
 function touchedDPSButton() {
   const centerPos = g.r.GetCenterPos();
-  spawn(EntityType.DUMMY, 0, 0, centerPos);
+  spawnNPC(EntityType.DUMMY, 0, 0, centerPos);
 }
 
 function checkVictoryLapButtonPressed(gridEntity: GridEntityPressurePlate) {

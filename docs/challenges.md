@@ -184,6 +184,7 @@ Some builds are banned on certain characters:
 - The following items are removed from pools, in addition to the ones that are normally removed from diversity races (like D4):
   - 84 - We Need to Go Deeper!
   - 441 - Mega Blast
+  - 625 - Mega Mush
 
 ### Goal
 

@@ -26,6 +26,7 @@ import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as consistentAngels from "./features/optional/bosses/consistentAngels";
 import * as fastAngels from "./features/optional/bosses/fastAngels";
+import * as fastBossRush from "./features/optional/bosses/fastBossRush";
 import * as fastKrampus from "./features/optional/bosses/fastKrampus";
 import * as fastPin from "./features/optional/bosses/fastPin";
 import * as fastSatan from "./features/optional/bosses/fastSatan";
@@ -129,6 +130,7 @@ export function initFeatureVariables(): void {
 
   // Boss
   killExtraEnemies.init(); // 45, 78
+  fastBossRush.init();
   fastPin.init(); // 62
   fastKrampus.init(); // 81
   fastSatan.init(); // 84

@@ -33,7 +33,7 @@ import {
   setActiveItem,
   setPlayerHealth,
   sfxManager,
-  spawn,
+  spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
@@ -439,7 +439,7 @@ function debuffOffAddDarkEsau() {
   v.run.removedDarkEsau = false;
 
   const centerPos = g.r.GetCenterPos();
-  spawn(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU, 0, centerPos);
+  spawnNPC(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU, 0, centerPos);
 }
 
 function removeCollectible(
