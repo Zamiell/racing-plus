@@ -51,7 +51,8 @@ function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
   return CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character);
 }
 
-const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
+/** These are collectibles that are banned from all item pools during any diversity race. */
+export const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.MOMS_KNIFE, // 114
   CollectibleType.D100, // 283
   CollectibleType.D4, // 284
@@ -60,7 +61,7 @@ const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.ESAU_JR, // 703
 ];
 
-const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
+export const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
   TrinketType.DICE_BAG,
 ];
 

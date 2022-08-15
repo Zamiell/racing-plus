@@ -149,8 +149,8 @@ export function postNewRoom(): void {
 }
 
 export function resetSprites(): void {
-  for (const key of Object.keys(sprites)) {
-    // @ts-expect-error The key will always be valid here.
+  for (const keyString of Object.keys(sprites)) {
+    const key = keyString as keyof typeof sprites;
     sprites[key] = null;
   }
 }

@@ -6,6 +6,7 @@ import {
 import {
   addConsoleCommand,
   asCollectibleType,
+  asNumber,
   CHARACTER_MAP,
   FIRST_CHARACTER,
   getCharacterName,
@@ -119,17 +120,25 @@ function s0() {
 }
 
 function s1() {
-  consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
+  goToChallenge(ChallengeCustom.SEASON_1);
   consoleCommand("setcharorder");
 }
 
 function s2() {
-  consoleCommand(`challenge ${ChallengeCustom.SEASON_2}`);
+  goToChallenge(ChallengeCustom.SEASON_2);
   consoleCommand("setbuildvetos");
 }
 
 function s3() {
-  consoleCommand(`challenge ${ChallengeCustom.SEASON_3}`);
+  goToChallenge(ChallengeCustom.SEASON_3);
+}
+
+function goToChallenge(destinationChallenge: Challenge) {
+  if (asNumber(destinationChallenge) === -1) {
+    printConsole("That challenge was not found.");
+  } else {
+    consoleCommand(`challenge ${ChallengeCustom.SEASON_1}`);
+  }
 }
 
 function seededRace(params: string) {
@@ -165,7 +174,10 @@ function seededRace(params: string) {
   g.race.character = character;
   g.race.startingItems = DEFAULT_SEEDED_RACE_STARTING_ITEMS;
 
-  printConsole(`Enabled seeded race mode for seed: ${startSeedString}`);
+  printConsole(`Enabled fake seeded race mode for seed: ${startSeedString}`);
+  printConsole(
+    "You can go back to normal by using the command of: seededRaceOff",
+  );
   restart(g.race.character);
 }
 

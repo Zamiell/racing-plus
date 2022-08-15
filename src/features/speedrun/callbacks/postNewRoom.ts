@@ -24,6 +24,7 @@ import g from "../../../globals";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
+import { season3PostNewRoom } from "../season3/callbacks/postNewRoom";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import v from "../v";
 
@@ -37,6 +38,7 @@ export function speedrunPostNewRoom(): void {
   checkEnteringClearedBossRoom();
   checkEnteringRoomWithCheckpoint();
   season2PostNewRoom();
+  season3PostNewRoom();
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {

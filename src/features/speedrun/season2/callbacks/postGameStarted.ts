@@ -14,7 +14,6 @@ import {
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
-import { initGlowingCollectibleSprite, initSprite } from "../../../../sprite";
 import {
   giveCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
@@ -35,13 +34,12 @@ import {
   SEASON_2_STARTING_BUILDS,
   SEASON_2_STARTING_BUILD_INDEXES,
 } from "../constants";
-import sprites, { resetSprites } from "../sprites";
+import { initSeason2StartingRoomSprites } from "../startingRoomSprites";
 import v, {
   season2GetCurrentBuildIndex,
   season2GetCurrentCharacter,
 } from "../v";
 
-const GFX_PATH = "gfx/race/starting-room";
 const NUM_REVELATION_SOUL_HEARTS = 4;
 
 export function season2PostGameStarted(): void {
@@ -57,7 +55,6 @@ export function season2PostGameStarted(): void {
     return;
   }
 
-  removeItemsFromPools();
   checkFirstCharacterRefresh();
 
   const startingCharacter = getStartingCharacter();
@@ -76,8 +73,9 @@ export function season2PostGameStarted(): void {
   }
 
   giveStartingItems(player, startingBuild);
-  resetSprites();
-  initSprites(startingBuild);
+  removeItemsFromPools();
+
+  initSeason2StartingRoomSprites(startingBuild);
 }
 
 function checkErrors(): boolean {
@@ -340,50 +338,5 @@ function giveStartingItems(
     removeCollectibleCostume(player, CollectibleType.REVELATION);
   } else if (firstCollectibleType === CollectibleTypeCustom.SAWBLADE) {
     player.AddEternalHearts(-1);
-  }
-}
-
-function initSprites(startingBuild: readonly CollectibleType[]) {
-  sprites.characterTitle = initSprite(`${GFX_PATH}/character.anm2`);
-
-  const title = startingBuild.length === 1 ? "item" : "build";
-  sprites.seededStartingTitle = initSprite(
-    `${GFX_PATH}/seeded-starting-${title}.anm2`,
-  );
-
-  if (startingBuild.length === 1) {
-    sprites.seededItemCenter = initGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  } else if (startingBuild.length === 2) {
-    sprites.seededItemLeft = initGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemRight = initGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  } else if (startingBuild.length === 3) {
-    sprites.seededItemCenter = initGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarLeft = initGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarRight = initGlowingCollectibleSprite(
-      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  } else if (startingBuild.length === 4) {
-    sprites.seededItemLeft = initGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemRight = initGlowingCollectibleSprite(
-      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarLeft = initGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarRight = initGlowingCollectibleSprite(
-      startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
   }
 }

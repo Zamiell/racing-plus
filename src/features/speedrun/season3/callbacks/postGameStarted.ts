@@ -6,7 +6,10 @@ import {
 import {
   copyArray,
   emptyArray,
+  getRandomArrayElement,
   getRandomArrayElementAndRemove,
+  newRNG,
+  repeat,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
@@ -19,7 +22,15 @@ import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { resetPersistentVars } from "../../v";
-import { SEASON_3_CHARACTERS, SEASON_3_LOCK_MILLISECONDS } from "../constants";
+import {
+  BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
+  DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+  DIVERSITY_TRINKET_TYPES,
+  NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
+  SEASON_3_CHARACTERS,
+  SEASON_3_LOCK_MILLISECONDS,
+} from "../constants";
+import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
 import v, { season3GetCurrentCharacter } from "../v";
 
 export function season3PostGameStarted(): void {
@@ -35,7 +46,6 @@ export function season3PostGameStarted(): void {
     return;
   }
 
-  removeItemsFromPools();
   checkFirstCharacterRefresh();
 
   const startingCharacter = getStartingCharacter();
@@ -47,18 +57,12 @@ export function season3PostGameStarted(): void {
   }
 
   giveStartingItems(player);
+  removeItemsFromPools();
 
-  // TODO: pick items
-  giveDiversityItemsAndDoItemBans(
-    player,
-    [] as CollectibleType[],
-    TrinketType.SWALLOWED_PENNY,
-  );
+  const [collectibleTypes, trinketType] = getRandomDiversityItems(player);
+  giveDiversityItemsAndDoItemBans(player, collectibleTypes, trinketType);
 
-  /*
-  resetSprites();
-  initSprites(startingBuild);
-  */
+  initSeason3StartingRoomSprites(collectibleTypes, trinketType);
 }
 
 function checkErrors(): boolean {
@@ -86,13 +90,6 @@ function checkErrors(): boolean {
   return v.run.errors.gameRecentlyOpened;
 }
 
-/** In addition to the "normal" diversity bans, some additional items are removed from pools. */
-function removeItemsFromPools() {
-  // These bans are copied from R+7 Season 6 for Afterbirth+. (They were originally Dea1h's idea.)
-  g.itemPool.RemoveCollectible(CollectibleType.WE_NEED_TO_GO_DEEPER);
-  g.itemPool.RemoveCollectible(CollectibleType.MEGA_BLAST);
-}
-
 function checkFirstCharacterRefresh() {
   const characterNum = speedrunGetCharacterNum();
   if (characterNum !== 1) {
@@ -116,6 +113,50 @@ function checkFirstCharacterRefresh() {
   }
 
   refreshStartingCharacters();
+}
+
+function getRandomDiversityItems(
+  player: EntityPlayer,
+): [collectibleTypes: CollectibleType[], trinketType: TrinketType] {
+  const startSeed = g.seeds.GetStartSeed();
+  const rng = newRNG(startSeed);
+
+  let activeCollectibleType: CollectibleType;
+  do {
+    activeCollectibleType = getRandomArrayElement(
+      DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+      rng,
+    );
+  } while (player.HasCollectible(activeCollectibleType));
+
+  const passiveCollectibleTypes: CollectibleType[] = [];
+  repeat(NUM_DIVERSITY_PASSIVE_COLLECTIBLES, () => {
+    let passiveCollectibleType: CollectibleType;
+    do {
+      passiveCollectibleType = getRandomArrayElement(
+        DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+        rng,
+        passiveCollectibleTypes,
+      );
+    } while (player.HasCollectible(passiveCollectibleType));
+    passiveCollectibleTypes.push(passiveCollectibleType);
+  });
+
+  let trinketType: TrinketType;
+  do {
+    trinketType = getRandomArrayElement(DIVERSITY_TRINKET_TYPES, rng);
+  } while (player.HasTrinket(trinketType));
+
+  const collectibleTypes = [activeCollectibleType, ...passiveCollectibleTypes];
+
+  return [collectibleTypes, trinketType];
+}
+
+/** In addition to the "normal" diversity bans, some additional items are removed from pools. */
+function removeItemsFromPools() {
+  for (const collectibleType of BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY) {
+    g.itemPool.RemoveCollectible(collectibleType);
+  }
 }
 
 function refreshStartingCharacters() {

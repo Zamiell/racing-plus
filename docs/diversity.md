@@ -50,7 +50,7 @@ The following trinkets are removed, because they allow you to re-roll your build
 
 ## Excluded Starting Items
 
-Some items hardly have an effect on the playstyle of the run. Thus, the following items are excluded from the pool of random passives given:
+Some items hardly have an effect on the playstyle of the run. Thus, the following items are excluded from the pool of random items given:
 
 - 15 - <3
 - 16 - Raw Liver
@@ -80,7 +80,10 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 456 - Midnight Snack
 - 626 - Knife Piece #1
 - 627 - Knife Piece #2
+- 633 - Dogma
+- 636 - R Key
 - 668 - Dad's Note
 - 707 - Supper
+- 714 - Recall
 
 <br>
