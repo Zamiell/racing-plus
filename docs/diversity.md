@@ -78,6 +78,7 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 428 - PJs
 - 455 - Dad's Lost Coin
 - 456 - Midnight Snack
+- 541 - Marrow
 - 550 - Broken Shovel (Top)
 - 551 - Broken Shovel (Bottom)
 - 552 - Mom's Shovel
@@ -85,8 +86,10 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 627 - Knife Piece #2
 - 633 - Dogma
 - 636 - R Key
+- 659 - Tropicamide
 - 668 - Dad's Note
 - 707 - Supper
 - 714 - Recall
+- 715 - Hold
 
 <br>

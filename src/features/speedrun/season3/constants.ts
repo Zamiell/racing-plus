@@ -81,16 +81,20 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.PJS, // 428
   CollectibleType.DADS_LOST_COIN, // 455
   CollectibleType.MIDNIGHT_SNACK, // 456
+  CollectibleType.MARROW, // 541
   CollectibleType.BROKEN_SHOVEL_1, // 550
   CollectibleType.BROKEN_SHOVEL_2, // 551
   CollectibleType.MOMS_SHOVEL, // 552
   CollectibleType.KNIFE_PIECE_1, // 626
   CollectibleType.KNIFE_PIECE_2, // 627
   CollectibleType.DOGMA, // 633
+  CollectibleType.DAMOCLES_PASSIVE, // 656
+  CollectibleType.TROPICAMIDE, // 659
   CollectibleType.R_KEY, // 636
   CollectibleType.DADS_NOTE, // 668
   CollectibleType.SUPPER, // 707
   CollectibleType.RECALL, // 714
+  CollectibleType.HOLD, // 715
 ];
 
 /** These correspond to the single seeded starts in "builds.json" (from "isaac-racing-common"). */
