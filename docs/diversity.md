@@ -86,6 +86,7 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 627 - Knife Piece #2
 - 633 - Dogma
 - 636 - R Key
+- 656 - Damocles (Passive)
 - 659 - Tropicamide
 - 668 - Dad's Note
 - 707 - Supper
