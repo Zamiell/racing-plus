@@ -164,6 +164,7 @@ Some builds are banned on certain characters:
   - 26 - Tainted Eve
   - 37 - Tainted Jacob
 - Blue Baby, Tainted Magdalene, Tainted Judas, and Tainted Eve start with Birthright.
+- Tainted Magdalene also starts with Steven (to help make up for her 0.75x damage multiplier).
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 
 ### Diversity Items

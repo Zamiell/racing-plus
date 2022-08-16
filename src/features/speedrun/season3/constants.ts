@@ -89,6 +89,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.RECALL, // 714
 ];
 
+/** These correspond to the single seeded starts in "builds.json" (from "isaac-racing-common"). */
 const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
   // Treasure Room
   CollectibleType.CRICKETS_BODY, // 224
@@ -132,6 +133,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType
     CollectibleType.CRYSTAL_BALL, // 158
     CollectibleType.JUDAS_SHADOW, // 311
     CollectibleType.MIND, // 333
+    CollectibleType.MOMS_SHOVEL, // 552 (since We Need to Go Deeper! is banned)
     CollectibleType.TERRA, // 592
     CollectibleType.CARD_READING, // 660
   ];

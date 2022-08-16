@@ -20,7 +20,7 @@ export function getEffectiveDevilDeals(): int {
     : devilRoomDeals;
 }
 
-export function giveCollectibleAndRemoveFromPools(
+export function addCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType,
 ): void {

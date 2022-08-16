@@ -12,6 +12,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
+import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
 import {
   restartOnNextFrame,
@@ -202,25 +203,27 @@ function giveStartingItems(player: EntityPlayer) {
   switch (character) {
     // 4
     case PlayerType.BLUE_BABY: {
-      player.AddCollectible(CollectibleType.BIRTHRIGHT);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
     // 22
     case PlayerType.MAGDALENE_B: {
-      player.AddCollectible(CollectibleType.BIRTHRIGHT);
+      // Birthright should come before Steven on the item tracker.
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.STEVEN);
       break;
     }
 
     // 24
     case PlayerType.JUDAS_B: {
-      player.AddCollectible(CollectibleType.BIRTHRIGHT);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
     // 26
     case PlayerType.EVE_B: {
-      player.AddCollectible(CollectibleType.BIRTHRIGHT);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 

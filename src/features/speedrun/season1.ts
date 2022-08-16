@@ -6,7 +6,7 @@ import {
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
 import {
-  giveCollectibleAndRemoveFromPools,
+  addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../utilsGlobals";
 
@@ -30,7 +30,7 @@ function giveStartingItems() {
     // 0
     case PlayerType.ISAAC: {
       // Isaac does not get the D6 in challenges.
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.D6);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
       break;
     }
 
@@ -43,7 +43,7 @@ function giveStartingItems() {
     // 14
     case PlayerType.KEEPER: {
       // Keeper does not get the Wooden Nickel in challenges.
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
       giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
       break;
     }
@@ -51,7 +51,7 @@ function giveStartingItems() {
     // 18, 36
     case PlayerType.BETHANY:
     case PlayerType.BETHANY_B: {
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
       break;
     }
 

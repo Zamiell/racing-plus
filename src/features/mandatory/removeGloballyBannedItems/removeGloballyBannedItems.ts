@@ -16,7 +16,7 @@ import {
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
-import { giveCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 import { inSeededRace } from "../../race/v";
@@ -113,7 +113,7 @@ function replaceEdenBannedItems() {
 function addNewRandomPassiveToEden(player: EntityPlayer) {
   const replacementCollectibleType = getEdenReplacementCollectibleType(player);
   showEdenStartingItems.changeStartingPassiveItem(replacementCollectibleType);
-  giveCollectibleAndRemoveFromPools(player, replacementCollectibleType);
+  addCollectibleAndRemoveFromPools(player, replacementCollectibleType);
 }
 
 function getEdenReplacementCollectibleType(

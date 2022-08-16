@@ -14,7 +14,7 @@ import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import g from "../../../../globals";
 import {
-  giveCollectibleAndRemoveFromPools,
+  addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../../../utilsGlobals";
 import {
@@ -294,7 +294,7 @@ function giveStartingItems(
   const character = player.GetPlayerType();
 
   // Everyone starts with the Compass in this season.
-  giveCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
+  addCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
 
   switch (character) {
     // 2
@@ -307,12 +307,12 @@ function giveStartingItems(
     // 5
     case PlayerType.EVE: {
       // Eve does not automatically start with the Razor in custom challenges.
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
       break;
     }
 
     case PlayerType.ISAAC_B: {
-      giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
@@ -322,7 +322,7 @@ function giveStartingItems(
   }
 
   for (const collectibleType of startingBuild) {
-    giveCollectibleAndRemoveFromPools(player, collectibleType);
+    addCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
   const firstCollectibleType = startingBuild[0];

@@ -21,7 +21,7 @@ import g from "../../globals";
 import { ServerCollectibleID } from "../../types/ServerCollectibleID";
 import { serverCollectibleIDToCollectibleType } from "../../utils";
 import {
-  giveCollectibleAndRemoveFromPools,
+  addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../utilsGlobals";
 import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
@@ -130,7 +130,7 @@ function unseededRankedSolo(player: EntityPlayer) {
     const serverCollectibleID = startingItem as ServerCollectibleID;
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
-    giveCollectibleAndRemoveFromPools(player, collectibleType);
+    addCollectibleAndRemoveFromPools(player, collectibleType);
   }
 }
 
@@ -143,7 +143,7 @@ function seeded(player: EntityPlayer) {
     // on.
     setStartedWithCompass();
   } else {
-    giveCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
+    addCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
   }
 
   // Seeded races start with an item or build (i.e. the "Instant Start" item).
@@ -151,19 +151,19 @@ function seeded(player: EntityPlayer) {
     const serverCollectibleID = startingItem as ServerCollectibleID;
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
-    giveCollectibleAndRemoveFromPools(player, collectibleType);
+    addCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
   // Birthright.
   if (character === PlayerType.EDEN_B) {
-    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+    addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   // If we are Tainted Isaac and there are multiple starting items for the race, give Birthright so
   // that we have more room for other items.
   if (character === PlayerType.ISAAC_B && g.race.startingItems.length >= 2) {
-    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+    addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   // - Remove Birthright on Cain, since it changes floor generation.
@@ -218,11 +218,11 @@ export function giveDiversityItemsAndDoItemBans(
   // Schoolbag so that they can hold both items (except for Esau, since he is not given any
   // Diversity items).
   if (shouldGetSchoolbagInDiversity(player)) {
-    giveCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
+    addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
   }
 
   for (const collectibleType of collectibleTypes) {
-    giveCollectibleAndRemoveFromPools(player, collectibleType);
+    addCollectibleAndRemoveFromPools(player, collectibleType);
   }
 
   const trinketSituation = temporarilyRemoveTrinkets(player);
@@ -234,7 +234,7 @@ export function giveDiversityItemsAndDoItemBans(
   //   Birthright.
   // - If we are Tainted Isaac, give Birthright so that we have more room for other items.
   if (character === PlayerType.EDEN_B || character === PlayerType.ISAAC_B) {
-    giveCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+    addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   for (const bannedCollectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
