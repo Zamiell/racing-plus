@@ -39,7 +39,7 @@ export function spawnTrophy(position: Vector): void {
   }
 
   const [_entity, index] = spawnPersistentEntity(
-    EntityTypeCustom.ENTITY_RACE_TROPHY,
+    EntityTypeCustom.RACE_TROPHY,
     0,
     0,
     position,
@@ -60,7 +60,7 @@ function checkTouch() {
 
   // We cannot perform this check in the NPCUpdate callback since it will not fire during the
   // "Appear" animation.
-  const trophies = getEntities(EntityTypeCustom.ENTITY_RACE_TROPHY);
+  const trophies = getEntities(EntityTypeCustom.RACE_TROPHY);
   for (const trophy of trophies) {
     const playersInRange = Isaac.FindInRadius(
       trophy.Position,
@@ -106,5 +106,5 @@ function touch(entity: Entity, player: EntityPlayer) {
 }
 
 export function doesTrophyExist(): boolean {
-  return doesEntityExist(EntityTypeCustom.ENTITY_RACE_TROPHY);
+  return doesEntityExist(EntityTypeCustom.RACE_TROPHY);
 }

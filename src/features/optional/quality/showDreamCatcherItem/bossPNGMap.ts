@@ -122,7 +122,7 @@ export const bossPNGMap = new Map([
   [EntityType.SIREN, ["portrait_904.0_siren.png"]],
   [EntityType.HERETIC, ["portrait_905.0_heretic.png"]],
   [EntityType.HORNFEL, ["portrait_906.0_hornfel.png"]],
-  [EntityType.GIDEON, ["portrait_907.0_gideon.png"]],
+  [EntityType.GREAT_GIDEON, ["portrait_907.0_gideon.png"]],
   [EntityType.BABY_PLUM, ["portrait_908.0_babyplum.png"]],
   [EntityType.SCOURGE, ["portrait_909.0_scourge.png"]],
   [EntityType.CHIMERA, ["portrait_910.0_chimera.png"]],

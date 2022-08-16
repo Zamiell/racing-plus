@@ -171,6 +171,7 @@ export enum Season3Goal {
   DOGMA = "Dogma",
 }
 
+/** We can't use `getEnumValues` on `Season3Goal` because they will be in a random order. */
 export const SEASON_3_GOALS: readonly Season3Goal[] = [
   Season3Goal.BLUE_BABY,
   Season3Goal.THE_LAMB,

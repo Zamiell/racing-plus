@@ -7,11 +7,15 @@ import {
 import {
   copySet,
   getAllBossesSet,
+  getRandomArrayElement,
+  newRNG,
+  repeat,
   saveDataManager,
-  spawnEffect,
+  spawnNPC,
   VectorZero,
 } from "isaacscript-common";
-import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
+import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
+import g from "../../../globals";
 
 // TODO: Turdlet code
 // TODO: Clutch code (need to spawn 3x Clickety Clack)
@@ -37,19 +41,19 @@ const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
   `${EntityType.HORNFEL}.0`, // 906.0
 
   // Great Gideon would not work properly in a Boss Rush room.
-  `${EntityType.GIDEON}.0`, // 907.0
+  `${EntityType.GREAT_GIDEON}.0`, // 907.0
 ];
 
-const BOSS_RUSH_BOSS_SET = getBossRushBossSet();
+const BOSS_RUSH_BOSSES = getBossRushBosses();
 
-function getBossRushBossSet(): ReadonlySet<string> {
+function getBossRushBosses(): readonly string[] {
   const bossSet = copySet(getAllBossesSet(false));
 
   for (const entityTypeVariantString of BOSS_RUSH_EXCLUSIONS) {
     bossSet.delete(entityTypeVariantString);
   }
 
-  return bossSet;
+  return [...bossSet.values()];
 }
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */
@@ -61,6 +65,13 @@ const v = {
   run: {
     started: false,
     finished: false,
+    currentWave: 0,
+
+    /**
+     * An array of entity type + variant strings, matching the format of the boss set from the
+     * standard library.
+     */
+    selectedBosses: [] as string[],
   },
 };
 
@@ -79,12 +90,41 @@ function checkSpawnNextWave() {
 // ModCallbackCustom.POST_AMBUSH_STARTED
 // AmbushType.BOSS_RUSH
 export function postAmbushStartedBossRush(): void {
-  // We need to prevent the vanilla Boss Rush from starting, so spawn a room clear delay effect as a
-  // helper to keep the doors closed. (Otherwise, the doors will re-open on every frame.)
-  const roomClearDelayEffect = spawnEffect(
-    EffectVariantCustom.ROOM_CLEAR_DELAY,
+  start();
+}
+
+function start() {
+  v.run.started = true;
+  v.run.currentWave = 0;
+  v.run.selectedBosses = getRandomBossRushBosses();
+
+  // Now that the vanilla Boss Rush has been triggered, we need to prevent the vanilla bosses from
+  // spawning. This is accomplished by immediately spawning a dummy boss, because the game will wait
+  // for it to be killed before spawning the first wave. (Note that the "Room Clear Delay Effect"
+  // does not work and a non-boss NPC does not work.)
+  const roomClearDelayNPC = spawnNPC(
+    EntityTypeCustom.ROOM_CLEAR_DELAY_NPC,
+    0,
     0,
     VectorZero,
   );
-  roomClearDelayEffect.ClearEntityFlags(EntityFlag.APPEAR);
+  roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
+}
+
+function getRandomBossRushBosses(): string[] {
+  const startSeed = g.seeds.GetStartSeed();
+  const rng = newRNG(startSeed);
+
+  const randomBosses: string[] = [];
+
+  repeat(TOTAL_BOSSES, () => {
+    const randomBoss = getRandomArrayElement(
+      BOSS_RUSH_BOSSES,
+      rng,
+      randomBosses,
+    );
+    randomBosses.push(randomBoss);
+  });
+
+  return randomBosses;
 }
