@@ -9,7 +9,7 @@
 - Great Gideon will no longer appear as a boss in Mines/Ashpit.
 - Hush no longer has armor.
 - The second phase of Mega Satan no longer has armor.
-- Dogma can no longer be given as a random item during diversity races.
+- Marrow, Tropicamide, and Dogma can no longer be given as a random item during diversity races.
 - Fixed the bug where the diversity documentation was not accurate with respect to the excluded starting items.
 
 ### _v0.82.13_ - August 14th, 2022
