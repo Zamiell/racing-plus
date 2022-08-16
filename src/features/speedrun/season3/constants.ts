@@ -64,6 +64,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.MOMS_UNDERWEAR, // 29
   CollectibleType.MOMS_HEELS, // 30
   CollectibleType.MOMS_LIPSTICK, // 31
+  CollectibleType.BOOK_OF_BELIAL_BIRTHRIGHT, // 59
   CollectibleType.SUPER_BANDAGE, // 92
   CollectibleType.STEM_CELLS, // 176
   CollectibleType.MAGIC_8_BALL, // 194
@@ -80,6 +81,9 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.PJS, // 428
   CollectibleType.DADS_LOST_COIN, // 455
   CollectibleType.MIDNIGHT_SNACK, // 456
+  CollectibleType.BROKEN_SHOVEL_1, // 550
+  CollectibleType.BROKEN_SHOVEL_2, // 551
+  CollectibleType.MOMS_SHOVEL, // 552
   CollectibleType.KNIFE_PIECE_1, // 626
   CollectibleType.KNIFE_PIECE_2, // 627
   CollectibleType.DOGMA, // 633
