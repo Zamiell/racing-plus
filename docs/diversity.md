@@ -62,6 +62,7 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 29 - Moms Underwear
 - 30 - Moms Heels
 - 31 - Moms Lipstick
+- 59 - Book of Belial (Birthright)
 - 92 - Super Bandage
 - 176 - Stem Cells
 - 194 - Magic 8 Ball
