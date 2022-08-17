@@ -1,5 +1,5 @@
 import {
-  Card,
+  CardType,
   PlayerType,
   PocketItemSlot,
   SoundEffect,
@@ -22,8 +22,8 @@ export function postGameStarted(): void {
   for (const player of taintedLosts) {
     const slotWithHolyCard = getPocketItemSlotWithHolyCard(player);
     if (slotWithHolyCard !== undefined) {
-      player.SetCard(slotWithHolyCard, Card.NULL);
-      player.UseCard(Card.HOLY, UseFlag.NO_ANIMATION);
+      player.SetCard(slotWithHolyCard, CardType.NULL);
+      player.UseCard(CardType.HOLY, UseFlag.NO_ANIMATION);
       sfxManager.Stop(SoundEffect.HOLY_CARD);
     }
   }
@@ -32,7 +32,7 @@ export function postGameStarted(): void {
 function getPocketItemSlotWithHolyCard(player: EntityPlayer) {
   const pocketItemSlots = getEnumValues(PocketItemSlot);
   return pocketItemSlots.find((pocketItemSlot) => {
-    const card = player.GetCard(pocketItemSlot);
-    return card === Card.HOLY;
+    const cardType = player.GetCard(pocketItemSlot);
+    return cardType === CardType.HOLY;
   });
 }

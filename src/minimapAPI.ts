@@ -1,4 +1,8 @@
-import { Card, EntityType, PickupVariant } from "isaac-typescript-definitions";
+import {
+  CardType,
+  EntityType,
+  PickupVariant,
+} from "isaac-typescript-definitions";
 
 export function initMinimapAPI(): void {
   if (MinimapAPI === undefined) {
@@ -81,7 +85,7 @@ function initMinimapAPICards(customIcons: Sprite) {
     "BlankRune",
     EntityType.PICKUP,
     PickupVariant.TAROT_CARD,
-    Card.RUNE_BLANK,
+    CardType.RUNE_BLANK,
     MinimapAPI.PickupNotCollected,
     "runes",
     1200,
@@ -95,7 +99,7 @@ function initMinimapAPICards(customIcons: Sprite) {
     "BlackRune",
     EntityType.PICKUP,
     PickupVariant.TAROT_CARD,
-    Card.RUNE_BLACK,
+    CardType.RUNE_BLACK,
     MinimapAPI.PickupNotCollected,
     "runes",
     1200,
@@ -109,7 +113,7 @@ function initMinimapAPICards(customIcons: Sprite) {
     "QuestionMark",
     EntityType.PICKUP,
     PickupVariant.TAROT_CARD,
-    Card.QUESTION_MARK,
+    CardType.QUESTION_MARK,
     MinimapAPI.PickupNotCollected,
     "cards",
     1200,

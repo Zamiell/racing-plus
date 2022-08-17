@@ -1,7 +1,7 @@
 // Rarely, Ultra Secret Rooms can have no doors. Work around this by spawning a Fool card for the
 // player.
 
-import { Card, RoomType } from "isaac-typescript-definitions";
+import { CardType, RoomType } from "isaac-typescript-definitions";
 import {
   getDoors,
   gridCoordinatesToWorldPosition,
@@ -30,5 +30,5 @@ export function postNewRoom(): void {
   // blocked in one specific Ultra Secret Room. Use the left side of the room instead (which is free
   // in all Ultra Secret Rooms).
   const position = gridCoordinatesToWorldPosition(2, 3);
-  spawnCard(Card.FOOL, position);
+  spawnCard(CardType.FOOL, position);
 }

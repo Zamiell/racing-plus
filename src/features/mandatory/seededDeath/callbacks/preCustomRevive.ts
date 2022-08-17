@@ -1,5 +1,5 @@
 import {
-  Card,
+  CardType,
   LevelCurse,
   PillColor,
   PocketItemSlot,
@@ -105,9 +105,9 @@ function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {
 
 function dropEverything(player: EntityPlayer) {
   for (const pocketItemSlot of getEnumValues(PocketItemSlot)) {
-    const card = player.GetCard(pocketItemSlot);
+    const cardType = player.GetCard(pocketItemSlot);
     const pillColor = player.GetPill(pocketItemSlot);
-    if (card === Card.NULL && pillColor === PillColor.NULL) {
+    if (cardType === CardType.NULL && pillColor === PillColor.NULL) {
       continue;
     }
 

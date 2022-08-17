@@ -1,12 +1,12 @@
 // ModCallback.POST_PICKUP_INIT (34)
 
-import { Card } from "isaac-typescript-definitions";
+import { CardType } from "isaac-typescript-definitions";
 
 // PickupVariant.TAROT_CARD (300)
 export function postPickupInitTarotCard(pickupCard: EntityPickupCard): void {
   if (
-    pickupCard.SubType === Card.RUNE_BLANK || // 40
-    pickupCard.SubType === Card.RUNE_BLACK // 41
+    pickupCard.SubType === CardType.RUNE_BLANK || // 40
+    pickupCard.SubType === CardType.RUNE_BLACK // 41
   ) {
     // Give an alternate rune sprite (one that isn't tilted left or right).
     const sprite = pickupCard.GetSprite();
@@ -35,7 +35,7 @@ export function postPickupInitTarotCard(pickupCard: EntityPickupCard): void {
     //   is a playing card.
     // - Get Out of Jail Free Card (47) has a unique card back in vanilla.
     // - ? Card (48) has a red card back in vanilla.
-    pickupCard.SubType === Card.QUESTION_MARK // 48
+    pickupCard.SubType === CardType.QUESTION_MARK // 48
     // - Dice Shard (49) has a unique graphic in vanilla.
     // - Emergency Contact (50) has a unique card back in vanilla.
     // - Holy Card (51) has a unique card back in vanilla.

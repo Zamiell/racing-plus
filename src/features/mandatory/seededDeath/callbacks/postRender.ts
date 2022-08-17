@@ -1,4 +1,4 @@
-import { Card } from "isaac-typescript-definitions";
+import { CardType } from "isaac-typescript-definitions";
 import {
   enableAllInputs,
   isKeeper,
@@ -49,7 +49,7 @@ function postRenderFetalPosition() {
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card. We grant it here
   // so that it does not cancel the "AppearVanilla" animation.
   if (isKeeper(player)) {
-    player.UseCard(Card.HOLY);
+    player.UseCard(CardType.HOLY);
   }
 }
 

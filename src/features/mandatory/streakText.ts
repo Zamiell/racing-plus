@@ -1,6 +1,6 @@
 import {
   ActiveSlot,
-  Card,
+  CardType,
   CollectibleType,
   FamiliarVariant,
   ItemType,
@@ -167,13 +167,13 @@ function getItemWispThatJustSpawned() {
 }
 
 // ModCallback.POST_USE_CARD (5)
-export function useCard(card: Card): void {
+export function useCard(cardType: CardType): void {
   // We ignore Blank Runes because we want to show the streak text of the actual random effect.
-  if (card === Card.RUNE_BLANK) {
+  if (cardType === CardType.RUNE_BLANK) {
     return;
   }
 
-  const cardName = getCardName(card);
+  const cardName = getCardName(cardType);
   set(cardName);
 }
 
