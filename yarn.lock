@@ -589,10 +589,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.5.tgz#f1c1d4b7d8231c0278962347163656f9c36f3e83"
   integrity sha512-NcKK6Ts+9LqdHJaW6HQmgr7dT/i3GOHG+pt6BiWv++5SnjtRd4NXeiuN2kA153SjhXPR/AhHIPHPbrsbpUVOww==
 
-"@types/node@^18.7.6":
-  version "18.7.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.6.tgz#31743bc5772b6ac223845e18c3fc26f042713c83"
-  integrity sha512-EdxgKRXgYsNITy5mjjXjVE/CS8YENSdhiagGrLqjG0pvA2owgJ6i4l7wy/PFZGC0B1/H20lWKN7ONVDNYDZm7A==
+"@types/node@^18.7.8":
+  version "18.7.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.8.tgz#6bbf2be6fbf9c187a5040d4277d24a06a18957a1"
+  integrity sha512-/YP55EMK2341JkODUb8DM9O0x1SIz2aBvyF33Uf1c76St3VpsMXEIW0nxuKkq/5cxnbz0RD9cfwNZHEAZQD3ag==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -4211,6 +4211,15 @@ typescript-to-lua@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.8.2.tgz#cb8ee432575885ca6a894a340311ad7f2adf8d77"
   integrity sha512-2ZFJlF9R9HgTryM+Vwk3X3Dexnvpm5vT75Eh66E0rDFZGK+vW70aqkw6s47/ytdJg/9IyN+Oz7ITUzZxXEOxlA==
+  dependencies:
+    enhanced-resolve "^5.8.2"
+    resolve "^1.15.1"
+    source-map "^0.7.3"
+
+typescript-to-lua@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.9.0.tgz#9c6fff18680077b8fe357bb6d097ae146ee51ab8"
+  integrity sha512-Oj8kutP1u/TSjN9oGUuESfOL+feHMSs7CCxl90C60jWTH+4ZXLtrXlRJTalA3Z2/aHjQXXgPaXQStSXBzAYLow==
   dependencies:
     enhanced-resolve "^5.8.2"
     resolve "^1.15.1"
