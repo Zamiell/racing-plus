@@ -1,7 +1,8 @@
+<!-- The "id" field is used to put the items on the death screen. -->
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
   <!-- Utility items -->
 
-  <passive description="Congratulations!" gfx="Trophy.png" name="Trophy" hidden="true" />
+  <passive description="Congratulations!" gfx="Trophy.png" name="Trophy" hidden="true" tags="quest" />
   <passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" id="1" />
   <passive description="Reset to the first character" gfx="questionmark.png" name="Reset" hidden="true" tags="quest" />
   <active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" tags="quest" />
@@ -30,6 +31,11 @@
   <active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="7" />
 
   <!-- Placeholders -->
+  <!--
+    These can be awarded to the player after a D4 roll, but there is no known tag besides "hidden"
+    that will accomplish this. ("noeden" and "quest" do not seem to have any effect.) We cannot make
+    the items hidden because we need them to randomly appear in the Treasure Room pool.
+  -->
 
   <!-- 12 -->
   <passive description="" gfx="questionmark.png" name="Magic Mushroom Placeholder" quality="4" tags="noeden offensive" />

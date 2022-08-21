@@ -11,11 +11,6 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
-  /*
-  Isaac.DebugString(
-    `GETTING HERE - ${getPlayerLastPassiveCollectible(player)}`,
-  );
-  */
 }
 
 /** Hotkey 1 is bound to F2. */
