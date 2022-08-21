@@ -149,12 +149,8 @@ export function convertSecondsToTimerValues(
   if (hours > 0) {
     minutes -= hours * 60;
   }
-  let minutesString: string;
-  if (minutes < 10) {
-    minutesString = `0${minutes}`;
-  } else {
-    minutesString = minutes.toString();
-  }
+  const minutesStringUnpadded = minutes.toString();
+  const minutesString = minutesStringUnpadded.padStart(2, "0");
 
   // The first character.
   const minute1String = minutesString[0] ?? "0";
@@ -172,12 +168,8 @@ export function convertSecondsToTimerValues(
 
   // Calculate the seconds digits.
   const seconds = math.floor(totalSeconds % 60);
-  let secondsString: string;
-  if (seconds < 10) {
-    secondsString = `0${seconds}`;
-  } else {
-    secondsString = seconds.toString();
-  }
+  const secondsStringUnpadded = seconds.toString();
+  const secondsString = secondsStringUnpadded.padStart(2, "0");
 
   // The first character.
   const second1String = secondsString[0] ?? "0";
