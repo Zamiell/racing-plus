@@ -6,6 +6,7 @@ import {
 import * as flipCustom from "../features/items/flipCustom";
 import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import * as keeperHeal from "../features/optional/bugfix/keeperHeal";
+import { extraStartingItemsPostPEffectUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postPEffectUpdate";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
@@ -27,6 +28,7 @@ function main(player: EntityPlayer) {
 
   // Gameplay
   combinedDualityDoors.postPEffectUpdate(player);
+  extraStartingItemsPostPEffectUpdate(player);
 
   // QoL
   chargePocketItemFirst.postPEffectUpdate(player);

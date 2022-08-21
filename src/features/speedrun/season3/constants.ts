@@ -126,6 +126,15 @@ const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
 
   // Secret Room
   CollectibleType.EPIC_FETUS, // 168
+
+  // Builds
+  CollectibleType.TWENTY_TWENTY, // 245
+  CollectibleType.CHOCOLATE_MILK, // 69
+  CollectibleType.GODHEAD, // 331
+  CollectibleType.HAEMOLACRIA, // 531
+  CollectibleType.INCUBUS, // 360
+  CollectibleType.MONSTROS_LUNG, // 229
+  CollectibleType.TWISTED_PAIR, // 698
 ];
 
 /**
