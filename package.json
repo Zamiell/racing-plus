@@ -21,14 +21,12 @@
   "author": "Zamiell",
   "type": "commonjs",
   "dependencies": {
-    "@types/node": "^18.7.8",
     "convert-xml-to-json": "^1.0.0",
     "isaac-typescript-definitions": "^4.0.0",
-    "isaacscript": "^2.15.1",
-    "isaacscript-common": "^9.1.1",
+    "isaacscript": "^2.16.2",
+    "isaacscript-common": "^9.2.0",
     "isaacscript-lint": "^4.1.2",
     "isaacscript-spell": "^1.2.8",
-    "ts-node": "^10.9.1",
     "typescript": "^4.7.4",
     "typescript-to-lua": "^1.9.0"
   }

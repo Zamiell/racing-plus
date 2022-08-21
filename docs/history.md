@@ -12,6 +12,7 @@
 - Marrow, Tropicamide, and Dogma can no longer be given as a random item during diversity races.
 - Fixed the bug where the diversity documentation was not accurate with respect to the excluded starting items.
 - Fixed the bug where it was possible to reroll into placeholder items.
+- Fixed the bug where the speedrun timer would not appear under certain circumstances. (Thanks sisuka)
 
 ### _v0.82.13_ - August 14th, 2022
 
