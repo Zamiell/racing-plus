@@ -8,6 +8,7 @@ import {
   Music,
   PickupVariant,
   PinVariant,
+  RoomType,
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
@@ -39,6 +40,7 @@ import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
+import { config } from "../../../modConfigMenu";
 import { setStreakText } from "../../mandatory/streakText";
 import {
   getFastClearNumAliveBosses,
@@ -120,6 +122,8 @@ const v = {
      */
     selectedBosses: [] as string[],
   },
+
+  room: {},
 };
 
 export function init(): void {
@@ -127,6 +131,15 @@ export function init(): void {
 }
 
 export function postUpdate(): void {
+  if (!config.fastBossRush) {
+    return;
+  }
+
+  const roomType = g.r.GetType();
+  if (roomType !== RoomType.BOSS_RUSH) {
+    return;
+  }
+
   checkSpawnNextWave();
 }
 
@@ -354,6 +367,10 @@ function spawnBossRushFinishReward() {
 // ModCallbackCustom.POST_AMBUSH_STARTED
 // AmbushType.BOSS_RUSH
 export function postAmbushStartedBossRush(): void {
+  if (!config.fastBossRush) {
+    return;
+  }
+
   startCustomBossRush();
 }
 
