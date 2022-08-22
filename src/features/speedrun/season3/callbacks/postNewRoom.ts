@@ -39,6 +39,6 @@ function checkSpawnMegaSatanTeleporter() {
     !isOnFirstCharacter()
   ) {
     spawnTeleporter(TOP_CENTER_GRID_INDEX);
-    v.room.depths2TeleporterSpawned = true;
+    v.room.megaSatanTeleporterSpawned = true;
   }
 }

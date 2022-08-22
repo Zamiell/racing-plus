@@ -30,7 +30,6 @@ const v = {
   },
 
   room: {
-    depths2TeleporterSpawned: false,
     megaSatanTeleporterSpawned: false,
   },
 };
