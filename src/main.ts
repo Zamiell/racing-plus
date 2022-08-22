@@ -59,6 +59,7 @@ import * as postFlip from "./callbacksCustom/postFlip";
 import * as postGameStartedReordered from "./callbacksCustom/postGameStartedReordered";
 import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
 import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
+import * as postGridEntityStateChanged from "./callbacksCustom/postGridEntityStateChanged";
 import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
@@ -173,6 +174,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postGameStartedReordered.init(mod);
   postGridEntityInit.init(mod);
   postGridEntityRemove.init(mod);
+  postGridEntityStateChanged.init(mod);
   postGridEntityUpdate.init(mod);
   postItemPickup.init(mod);
   postNewLevelReordered.init(mod);

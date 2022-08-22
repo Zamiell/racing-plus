@@ -19,12 +19,3 @@ export function crawlSpace(gridEntity: GridEntity): void {
 
   cs.postGridEntityUpdateCrawlSpace(gridEntity);
 }
-
-// GridEntityType.TELEPORTER (23)
-export function teleporter(gridEntity: GridEntity): void {
-  if (!config.fastTravel) {
-    return;
-  }
-
-  cs.postGridEntityUpdateTeleporter(gridEntity);
-}

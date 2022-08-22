@@ -1,16 +1,14 @@
-import { GridRoom } from "isaac-typescript-definitions";
-import {
-  getPlayerCloserThan,
-  teleport,
-  TELEPORTER_ACTIVATION_DISTANCE,
-} from "isaacscript-common";
+import { GridRoom, TeleporterState } from "isaac-typescript-definitions";
+import { asNumber, teleport } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import v from "../v";
 
-// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED
 // GridEntityType.TELEPORTER (23)
-export function season3PostGridEntityUpdateTeleporter(
-  gridEntity: GridEntity,
+export function season3PostGridEntityStateChangedTeleporter(
+  _gridEntity: GridEntity,
+  _oldState: int,
+  newState: int,
 ): void {
   const challenge = Isaac.GetChallenge();
 
@@ -22,11 +20,7 @@ export function season3PostGridEntityUpdateTeleporter(
     return;
   }
 
-  const playerTouching = getPlayerCloserThan(
-    gridEntity.Position,
-    TELEPORTER_ACTIVATION_DISTANCE,
-  );
-  if (playerTouching !== undefined) {
+  if (newState === asNumber(TeleporterState.DISABLED)) {
     teleport(GridRoom.MEGA_SATAN);
   }
 }

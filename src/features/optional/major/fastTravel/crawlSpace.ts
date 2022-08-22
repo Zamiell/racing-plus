@@ -9,13 +9,13 @@ import {
   RoomShape,
   RoomTransitionAnim,
   RoomType,
+  TeleporterState,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerUsingPony,
   asNumber,
   DISTANCE_OF_GRID_TILE,
   getCrawlSpaces,
-  getPlayerCloserThan,
   getRoomGridIndex,
   inCrawlSpace,
   inSecretShop,
@@ -25,7 +25,6 @@ import {
   runNextGameFrame,
   spawnGridEntity,
   teleport,
-  TELEPORTER_ACTIVATION_DISTANCE,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -320,20 +319,15 @@ function checkShouldClose(gridEntity: GridEntity) {
   }
 }
 
-// ModCallbackCustom.POST_GRID_ENTITY_UPDATE
+// ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED
 // GridEntityType.TELEPORTER (23)
-export function postGridEntityUpdateTeleporter(gridEntity: GridEntity): void {
+export function postGridEntityStateChangedTeleporter(newState: int): void {
   if (!v.room.teleporterSpawned) {
     return;
   }
 
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
-
-  const playerTouching = getPlayerCloserThan(
-    gridEntity.Position,
-    TELEPORTER_ACTIVATION_DISTANCE,
-  );
-  if (playerTouching !== undefined) {
+  if (newState === asNumber(TeleporterState.DISABLED)) {
+    const startingRoomGridIndex = g.l.GetStartingRoomIndex();
     teleport(startingRoomGridIndex);
   }
 }

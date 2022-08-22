@@ -2579,19 +2579,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-4.0.0.tgz#77234b84943f2a40638a84263beb199cab361d9d"
-  integrity sha512-Wv9/mWMuUG13ndtWZSZGjrpsrHpCz3imOYgEJzTwddFd/1ECATFam7XTnY3bbdw+e193RYXPVHQWLJDCvo2+/A==
+isaac-typescript-definitions@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-4.0.1.tgz#8f4b86a3be10aa826a655423a7b425a2d33aba84"
+  integrity sha512-4O85MT603Fa9uVgG7bbW2s0E/n+CoywrfTDXI6AexliMOWOgnOp7gQq66qqdZUpckZmHyg6qRz93PJO0X1d53w==
   dependencies:
     lua-types "^2.12.0"
 
-isaacscript-common@^9.3.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-9.3.0.tgz#b881c19c4d80b0ed94470fb238269a15823ed854"
-  integrity sha512-Ij7muBNndRm6E0upMbIHu1CL1wYz2O4jpqDYIGiWWn2np54KKVJ8H+UfJUMsxSnqysHOC8h97h/LJzFTEFWYbA==
+isaacscript-common@^9.4.1:
+  version "9.4.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-9.4.1.tgz#27c4d524bc9c1f1dd6b1b241dde31f286e54e471"
+  integrity sha512-rf+UzZs9obT8c73Hd4U7GHnARvJTpol2DbOJU+P9CHrGmr7Jbpxl9+WAT5VjeYQtDPAyllana8bVGhA9TqkWxQ==
   dependencies:
-    isaac-typescript-definitions "^4.0.0"
+    isaac-typescript-definitions "^4.0.1"
 
 isaacscript-lint@^4.1.2:
   version "4.1.2"
