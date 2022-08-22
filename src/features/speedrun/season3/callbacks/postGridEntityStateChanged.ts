@@ -1,6 +1,7 @@
 import { GridRoom, TeleporterState } from "isaac-typescript-definitions";
 import { asNumber, teleport } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import g from "../../../../globals";
 import v from "../v";
 
 // ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED
@@ -16,7 +17,23 @@ export function season3PostGridEntityStateChangedTeleporter(
     return;
   }
 
-  if (!v.room.teleporterSpawned) {
+  checkDepths2TeleporterActivated(newState);
+  checkMegaSatanTeleporterActivated(newState);
+}
+
+function checkDepths2TeleporterActivated(newState: int) {
+  if (!v.room.depths2TeleporterSpawned) {
+    return;
+  }
+
+  if (newState === asNumber(TeleporterState.DISABLED)) {
+    const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+    teleport(startingRoomGridIndex);
+  }
+}
+
+function checkMegaSatanTeleporterActivated(newState: int) {
+  if (!v.room.megaSatanTeleporterSpawned) {
     return;
   }
 

@@ -5,6 +5,7 @@ import g from "../../../../globals";
 import { Season3Goal } from "../constants";
 import v from "../v";
 
+// EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {
   const challenge = Isaac.GetChallenge();
 

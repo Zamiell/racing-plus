@@ -1,25 +1,67 @@
 import {
   EffectVariant,
+  GridEntityType,
   LevelStage,
   PickupVariant,
   RoomType,
+  TeleporterState,
 } from "isaac-typescript-definitions";
 import {
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRoomInsideGrid,
   removeAllEffects,
   removeAllTrapdoors,
+  spawnGridEntity,
   spawnPickup,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { Season3Goal } from "../constants";
 import v from "../v";
+
+export function season3PostRoomClearChanged(roomClear: boolean): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_3) {
+    return;
+  }
+
+  if (!roomClear) {
+    return;
+  }
+
+  checkMomCleared();
+  checkHushCleared();
+}
+
+function checkMomCleared() {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+
+  if (
+    stage === LevelStage.DEPTHS_2 &&
+    roomType === RoomType.BOSS &&
+    isRoomInsideGrid() &&
+    v.persistent.remainingGoals.includes(Season3Goal.DOGMA)
+  ) {
+    const teleporter = spawnGridEntity(
+      GridEntityType.TELEPORTER,
+      GRID_INDEX_CENTER_OF_1X1_ROOM,
+    );
+
+    // The teleporter will start disabled and only become activated when the player takes a photo.
+    if (teleporter !== undefined) {
+      teleporter.State = TeleporterState.DISABLED;
+    }
+  }
+}
 
 /**
  * Fast clear will be triggered after clearing Hush, so to avoid conflicting with that feature, we
  * spawn the Checkpoint in the `POST_ROOM_CLEAR_CHANGED` callback, which only triggers on the
  * subsequent frame.
  */
-export function season3PostRoomClearChanged(roomCleared: boolean): void {
+function checkHushCleared() {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
 
@@ -27,7 +69,6 @@ export function season3PostRoomClearChanged(roomCleared: boolean): void {
     stage === LevelStage.BLUE_WOMB &&
     roomType === RoomType.BOSS &&
     isRoomInsideGrid() &&
-    roomCleared &&
     v.persistent.remainingGoals.includes(Season3Goal.HUSH)
   ) {
     removeAllTrapdoors();

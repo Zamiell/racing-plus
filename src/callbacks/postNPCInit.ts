@@ -4,7 +4,7 @@ import * as clearerShadowAttacks from "../features/optional/enemies/clearerShado
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
 import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callbacks/postNPCInit";
 import { racePostNPCInitDarkEsau } from "../features/race/callbacks/postNPCInit";
-import { season3PostNPCInitIsaac } from "../features/speedrun/season3/callbacks/postNPCInit";
+import { speedrunPostNPCInitIsaac } from "../features/speedrun/callbacks/postNPCInit";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_NPC_INIT, main);
@@ -51,7 +51,7 @@ function daddyLongLegs(npc: EntityNPC) {
 
 // EntityType.ISAAC (102)
 function isaac(npc: EntityNPC) {
-  season3PostNPCInitIsaac(npc);
+  speedrunPostNPCInitIsaac(npc);
 }
 
 // EntityType.PITFALL (291)

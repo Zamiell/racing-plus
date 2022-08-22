@@ -39,6 +39,6 @@ function checkSpawnMegaSatanTeleporter() {
     !isOnFirstCharacter()
   ) {
     spawnGridEntity(GridEntityType.TELEPORTER, TOP_CENTER_GRID_INDEX);
-    v.room.teleporterSpawned = true;
+    v.room.megaSatanTeleporterSpawned = true;
   }
 }
