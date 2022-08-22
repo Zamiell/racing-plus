@@ -1,11 +1,11 @@
 import {
   CollectibleType,
-  GridEntityType,
   ItemType,
   TeleporterState,
 } from "isaac-typescript-definitions";
-import { getGridEntities, PickingUpItem } from "isaacscript-common";
+import { getTeleporters, PickingUpItem } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import v from "../v";
 
 export function season3PreItemPickup(
   _player: EntityPlayer,
@@ -14,6 +14,10 @@ export function season3PreItemPickup(
   const challenge = Isaac.GetChallenge();
 
   if (challenge !== ChallengeCustom.SEASON_3) {
+    return;
+  }
+
+  if (v.room.depths2TeleporterSpawned) {
     return;
   }
 
@@ -28,11 +32,11 @@ export function season3PreItemPickup(
     return;
   }
 
-  const teleporters = getGridEntities(GridEntityType.TELEPORTER);
+  const teleporters = getTeleporters();
   const teleporter = teleporters[0];
   if (teleporter === undefined) {
     return;
   }
 
-  teleporter.State = TeleporterState.ACTIVATED;
+  teleporter.State = TeleporterState.NORMAL;
 }

@@ -22,11 +22,14 @@ export function season3PostGridEntityStateChangedTeleporter(
 }
 
 function checkDepths2TeleporterActivated(newState: int) {
+  Isaac.DebugString(`GETTING HERE 1 - ${newState}`);
   if (!v.room.depths2TeleporterSpawned) {
     return;
   }
+  Isaac.DebugString(`GETTING HERE 2 - ${newState}`);
 
   if (newState === asNumber(TeleporterState.DISABLED)) {
+    Isaac.DebugString(`GETTING HERE 3 - ${newState}`);
     const startingRoomGridIndex = g.l.GetStartingRoomIndex();
     teleport(startingRoomGridIndex);
   }

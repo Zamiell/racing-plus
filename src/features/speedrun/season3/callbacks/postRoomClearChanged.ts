@@ -1,6 +1,5 @@
 import {
   EffectVariant,
-  GridEntityType,
   LevelStage,
   PickupVariant,
   RoomType,
@@ -11,8 +10,8 @@ import {
   isRoomInsideGrid,
   removeAllEffects,
   removeAllTrapdoors,
-  spawnGridEntity,
   spawnPickup,
+  spawnTeleporter,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
@@ -44,10 +43,7 @@ function checkMomCleared() {
     isRoomInsideGrid() &&
     v.persistent.remainingGoals.includes(Season3Goal.DOGMA)
   ) {
-    const teleporter = spawnGridEntity(
-      GridEntityType.TELEPORTER,
-      GRID_INDEX_CENTER_OF_1X1_ROOM,
-    );
+    const teleporter = spawnTeleporter(GRID_INDEX_CENTER_OF_1X1_ROOM);
 
     // The teleporter will start disabled and only become activated when the player takes a photo.
     if (teleporter !== undefined) {

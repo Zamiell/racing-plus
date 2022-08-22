@@ -4,7 +4,6 @@ import {
   CrawlSpaceState,
   CrawlSpaceVariant,
   Direction,
-  GridEntityType,
   GridRoom,
   RoomShape,
   RoomTransitionAnim,
@@ -23,7 +22,7 @@ import {
   log,
   removeGridEntity,
   runNextGameFrame,
-  spawnGridEntity,
+  spawnTeleporter,
   teleport,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
@@ -287,7 +286,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
   // the next game frame.
   const gridIndex = gridEntity.GetGridIndex();
   runNextGameFrame(() => {
-    spawnGridEntity(GridEntityType.TELEPORTER, gridIndex);
+    spawnTeleporter(gridIndex);
     v.room.teleporterSpawned = true;
   });
 }
