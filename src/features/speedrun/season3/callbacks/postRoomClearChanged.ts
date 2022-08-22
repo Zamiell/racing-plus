@@ -14,6 +14,11 @@ import g from "../../../../globals";
 import { Season3Goal } from "../constants";
 import v from "../v";
 
+/**
+ * Fast clear will be triggered after clearing Hush, so to avoid conflicting with that feature, we
+ * spawn the Checkpoint in the `POST_ROOM_CLEAR_CHANGED` callback, which only triggers on the
+ * subsequent frame.
+ */
 export function season3PostRoomClearChanged(roomCleared: boolean): void {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
@@ -28,7 +33,7 @@ export function season3PostRoomClearChanged(roomCleared: boolean): void {
     removeAllTrapdoors();
     removeAllEffects(EffectVariant.HEAVEN_LIGHT_DOOR);
 
-    // It will be replaced by a Checkpoint or Trophy on the subsequent frame.
+    // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
     const centerPos = g.r.GetCenterPos();
     spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
   }

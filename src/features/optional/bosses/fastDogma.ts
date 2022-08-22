@@ -1,5 +1,6 @@
 import { DogmaVariant } from "isaac-typescript-definitions";
 import { asNumber } from "isaacscript-common";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../utils";
 
@@ -7,6 +8,12 @@ import { consoleCommand } from "../../../utils";
 // EntityType.DOGMA (950)
 export function postEntityKillDogma(entity: Entity): void {
   if (!config.fastDogma) {
+    return;
+  }
+
+  // This feature does not apply when playing Season 3.
+  const challenge = Isaac.GetChallenge();
+  if (challenge === ChallengeCustom.SEASON_3) {
     return;
   }
 

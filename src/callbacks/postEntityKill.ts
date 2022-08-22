@@ -12,6 +12,7 @@ import * as preventVictoryLapPopup from "../features/optional/bosses/preventVict
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
+import { season3PostEntityKillDogma } from "../features/speedrun/season3/callbacks/postEntityKill";
 
 const POST_ENTITY_KILL_DEBUG = false;
 
@@ -135,6 +136,7 @@ function hush(entity: Entity) {
 
 // EntityType.DOGMA (950)
 function dogma(entity: Entity) {
+  season3PostEntityKillDogma(entity);
   fastDogma.postEntityKillDogma(entity);
 }
 
