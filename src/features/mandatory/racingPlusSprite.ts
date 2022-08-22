@@ -90,7 +90,7 @@ export function postGameStarted(): void {
  *
  * Note that not all easter eggs prevent achievements, but this one does.
  */
-export function disableAchievements(): void {
+function disableAchievements() {
   g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
 }
 

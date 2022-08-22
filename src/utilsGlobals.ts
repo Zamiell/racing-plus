@@ -1,15 +1,26 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   getCollectibleInitCharge,
+  getCollectibleItemType,
   getCollectibleMaxCharges,
+  newPickingUpItem,
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
+import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
 import g from "./globals";
 
 export function addCollectibleAndRemoveFromPools(
   player: EntityPlayer,
   collectibleType: CollectibleType,
 ): void {
+  // Before adding the new collectible, pretend like the item is becoming queued so that the
+  // automatic item insertion feature works properly.
+  const itemType = getCollectibleItemType(collectibleType);
+  const pickingUpItem = newPickingUpItem();
+  pickingUpItem.itemType = itemType;
+  pickingUpItem.subType = collectibleType;
+  automaticItemInsertionPreItemPickup(player, pickingUpItem);
+
   const initCharges = getCollectibleInitCharge(collectibleType);
   const maxCharges = getCollectibleMaxCharges(collectibleType);
   const charges = initCharges === -1 ? maxCharges : initCharges;
