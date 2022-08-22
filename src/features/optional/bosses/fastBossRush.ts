@@ -42,8 +42,8 @@ import {
   getFastClearNumAliveEnemies,
 } from "../major/fastClear/v";
 
-// TODO: Turdlet code
 // TODO: Clutch code (need to spawn 3x Clickety Clack)
+// TODO: test save and quit
 
 const SPLITTING_BOSS_ENTITY_TYPE_SET = new Set([
   EntityType.FISTULA_BIG, // 71
