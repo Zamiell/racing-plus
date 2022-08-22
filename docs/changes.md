@@ -166,7 +166,7 @@ Post-flip actions:
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
-- `0302` <!-- fastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses. Additionally, the unnecessary waiting between waves is removed.
+- `0302` <!-- fastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses (in order to increase the variety). Additionally, three bosses will spawn at a time instead of two. The unnecessary waiting between waves is removed.
 - `0303` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - `0304` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
 - `0305` <!-- preventDeathSlow 66 --> Death will no longer perform his "slow" attack.

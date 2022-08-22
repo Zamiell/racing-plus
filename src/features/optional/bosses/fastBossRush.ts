@@ -1,30 +1,70 @@
 import {
+  CollectibleType,
   EntityFlag,
   EntityType,
+  GameStateFlag,
+  LarryJrVariant,
   MamaGurdyVariant,
+  PickupVariant,
   PinVariant,
+  SoundEffect,
 } from "isaac-typescript-definitions";
 import {
+  anyPlayerCloserThan,
   copySet,
+  findFreePosition,
+  game,
   getAllBossesSet,
+  getNPCs,
   getRandomArrayElement,
+  gridCoordinatesToWorldPosition,
+  log,
   newRNG,
+  openAllDoors,
+  parseEntityTypeVariantString,
   repeat,
   saveDataManager,
+  sfxManager,
+  spawnCollectible,
   spawnNPC,
+  spawnPickup,
   VectorZero,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
+import { RaceGoal } from "../../../enums/RaceGoal";
+import { RacerStatus } from "../../../enums/RacerStatus";
+import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
+import { setStreakText } from "../../mandatory/streakText";
+import {
+  getFastClearNumAliveBosses,
+  getFastClearNumAliveEnemies,
+} from "../major/fastClear/v";
 
 // TODO: Turdlet code
 // TODO: Clutch code (need to spawn 3x Clickety Clack)
+
+const SPLITTING_BOSS_ENTITY_TYPE_SET = new Set([
+  EntityType.FISTULA_BIG, // 71
+  EntityType.FISTULA_MEDIUM, // 72
+  EntityType.FISTULA_SMALL, // 73
+  EntityType.BLASTOCYST_BIG, // 74
+  EntityType.BLASTOCYST_MEDIUM, // 75
+  EntityType.BLASTOCYST_SMALL, // 76
+  EntityType.FALLEN, // 81
+  EntityType.BROWNIE, // 402
+]);
 
 /**
  * Krampus, Uriel, and Gabriel are not included in the boss set from the standard library, so we do
  * not have to exclude them. (We want to exclude them since they will drop items.)
  */
 const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
+  // Tuff Twins and The Shell require bombs to kill.
+  `${EntityType.LARRY_JR}.${LarryJrVariant.TUFF_TWIN}`, // 19.2
+  `${EntityType.LARRY_JR}.${LarryJrVariant.THE_SHELL}`, // 19.3
+
   // Scolex is not a balanced boss for speedruns.
   `${EntityType.PIN}.${PinVariant.SCOLEX}`, // 62.1
 
@@ -57,7 +97,13 @@ function getBossRushBosses(): readonly string[] {
 }
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */
-const TOTAL_BOSSES = 30;
+const NUM_TOTAL_BOSSES = 30;
+
+/**
+ * In vanilla it is 2, but we increase this to 3 in Racing+ so that the Boss Rush can be completed
+ * faster.
+ */
+const NUM_BOSSES_PER_WAVE = 3;
 
 const NUM_GAME_FRAMES_BETWEEN_WAVES = 20;
 
@@ -66,6 +112,7 @@ const v = {
     started: false,
     finished: false,
     currentWave: 0,
+    spawnWaveGameFrame: 0,
 
     /**
      * An array of entity type + variant strings, matching the format of the boss set from the
@@ -84,16 +131,219 @@ export function postUpdate(): void {
 }
 
 function checkSpawnNextWave() {
-  // TODO
+  if (!v.run.started) {
+    return;
+  }
+
+  // Don't do anything if we are in the short delay between waves.
+  const gameFrameCount = game.GetFrameCount();
+  if (v.run.spawnWaveGameFrame !== 0) {
+    if (gameFrameCount >= v.run.spawnWaveGameFrame) {
+      v.run.spawnWaveGameFrame = 0;
+      spawnNextWave();
+    }
+
+    return;
+  }
+
+  const totalBossesDefeatedIfWaveIsClear =
+    v.run.currentWave * NUM_BOSSES_PER_WAVE;
+
+  if (!isWaveComplete(totalBossesDefeatedIfWaveIsClear)) {
+    return;
+  }
+
+  log(
+    `Boss Rush wave ${v.run.currentWave} completed. Total bosses defeated so far: ${totalBossesDefeatedIfWaveIsClear}`,
+  );
+
+  // TODO: Give charge if necessary.
+
+  // Find out if the Boss Rush is over.
+  if (totalBossesDefeatedIfWaveIsClear >= NUM_TOTAL_BOSSES) {
+    finish();
+  } else {
+    // Spawn the next wave after a short delay.
+    v.run.spawnWaveGameFrame = gameFrameCount + NUM_GAME_FRAMES_BETWEEN_WAVES;
+    v.run.currentWave++;
+  }
+}
+
+function spawnNextWave() {
+  const gameFrameCount = game.GetFrameCount();
+
+  for (let i = 0; i < NUM_BOSSES_PER_WAVE; i++) {
+    // Get the boss to spawn.
+    const bossIndex =
+      v.run.currentWave * NUM_BOSSES_PER_WAVE - NUM_BOSSES_PER_WAVE + i;
+    const bossString = v.run.selectedBosses[bossIndex];
+    if (bossString === undefined) {
+      error(
+        `Failed to find the selected Boss Rush boss at index: ${bossIndex}`,
+      );
+    }
+    const tuple = parseEntityTypeVariantString(bossString);
+    if (tuple === undefined) {
+      error(`Failed to parse the selected Boss Rush boss: ${bossString}`);
+    }
+    const [entityType, variant] = tuple;
+
+    const numSegments = getNumBossSegments(entityType);
+    const position = getBossSpawnPosition(i);
+
+    repeat(numSegments, () => {
+      spawnNPC(entityType, variant, 0, position);
+    });
+  }
+
+  sfxManager.Play(SoundEffect.SUMMON_SOUND);
+
+  // Display the wave number as streak text.
+  const totalWaves = math.floor(NUM_TOTAL_BOSSES / NUM_BOSSES_PER_WAVE);
+  setStreakText(`Wave ${v.run.currentWave} / ${totalWaves}`);
+
+  log(
+    `Spawned Boss Rush wave ${v.run.currentWave} on game frame: ${gameFrameCount}`,
+  );
+}
+
+function getNumBossSegments(entityType: EntityType): int {
+  if (entityType === EntityType.LARRY_JR || entityType === EntityType.TURDLET) {
+    return 10;
+  }
+
+  if (entityType === EntityType.CHUB) {
+    return 3;
+  }
+
+  // Gurglings and Turdlings spawn in sets of 3. (This is how it is in the vanilla Boss Rush.)
+  if (entityType === EntityType.GURGLING) {
+    return 3;
+  }
+
+  return 1;
+}
+
+function getBossSpawnPosition(bossNum: int): Vector {
+  const bossPositions: readonly Vector[] = [
+    gridCoordinatesToWorldPosition(7, 6), // Left of the items
+    gridCoordinatesToWorldPosition(18, 7), // Right of the items
+    gridCoordinatesToWorldPosition(12, 2), // Above the items
+    /// gridCoordinatesToWorldPosition(13, 11), // Below the items (currently unused)
+  ];
+
+  const basePosition = bossPositions[bossNum];
+  if (basePosition === undefined) {
+    error(`Failed to get the base boss position for boss number: ${bossNum}`);
+  }
+
+  for (let i = 0; i < 100; i++) {
+    const position = g.r.FindFreePickupSpawnPosition(basePosition, i, true);
+
+    // Ensure that we do not spawn a boss too close to the player.
+    if (!anyPlayerCloserThan(position, 120)) {
+      return position;
+    }
+  }
+
+  // If we have not found a valid position after 100 iterations, something has gone wrong. Default
+  // to spawning the boss at the base position.
+  return basePosition;
+}
+
+function isWaveComplete(totalBossesDefeatedIfWaveIsClear: int): boolean {
+  // If this is the final wave, then we only want to proceed if every enemy is killed, not just the
+  // bosses.
+  if (totalBossesDefeatedIfWaveIsClear >= NUM_TOTAL_BOSSES) {
+    const numAliveEnemies = getNumAliveEnemies();
+    if (numAliveEnemies > 0) {
+      return false;
+    }
+
+    // Allow splitting enemies to produce their offspring.
+    return !doSplittingBossesExist();
+  }
+
+  // This is not the final wave, so only count alive bosses.
+  const numAliveBosses = getNumAliveBosses();
+  if (numAliveBosses > 0) {
+    return false;
+  }
+
+  // Allow splitting enemies to produce their offspring.
+  return !doSplittingBossesExist();
+}
+
+/**
+ * This accounts for the "Room Clear Delay NPC" that we spawn to prevent the vanilla bosses from
+ * spawning.
+ */
+function getNumAliveEnemies(): int {
+  const numAliveEnemies = getFastClearNumAliveEnemies();
+  return numAliveEnemies - 1;
+}
+
+/**
+ * This accounts for the "Room Clear Delay NPC" that we spawn to prevent the vanilla bosses from
+ * spawning.
+ */
+function getNumAliveBosses(): int {
+  const numAliveBosses = getFastClearNumAliveBosses();
+  return numAliveBosses - 1;
+}
+
+function doSplittingBossesExist(): boolean {
+  const npcs = getNPCs();
+  return npcs.some((npc) => SPLITTING_BOSS_ENTITY_TYPE_SET.has(npc.Type));
+}
+
+function finish() {
+  v.run.started = false;
+  v.run.finished = true;
+  game.SetStateFlag(GameStateFlag.BOSS_RUSH_DONE, true);
+  Isaac.DebugString("Custom Boss Rush finished.");
+
+  spawnBossRushFinishReward();
+  openAllDoors();
+  sfxManager.Play(SoundEffect.DOOR_HEAVY_OPEN);
+
+  // TODO: test music on finish
+
+  // Announce the completion via streak text.
+  setStreakText("Complete!");
+}
+
+function spawnBossRushFinishReward() {
+  const roomSeed = g.r.GetSpawnSeed();
+  const centerPos = g.r.GetCenterPos();
+  const challenge = Isaac.GetChallenge();
+
+  const position = findFreePosition(centerPos, true);
+  if (challenge === ChallengeCustom.SEASON_3) {
+    // The big chest will get replaced with either a checkpoint or a trophy on the next frame.
+    spawnPickup(PickupVariant.BIG_CHEST, 0, position);
+    return;
+  }
+
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.goal === RaceGoal.BOSS_RUSH
+  ) {
+    // The big chest will get replaced with a trophy on the next frame.
+    spawnPickup(PickupVariant.BIG_CHEST, 0, position);
+  }
+
+  spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
 
 // ModCallbackCustom.POST_AMBUSH_STARTED
 // AmbushType.BOSS_RUSH
 export function postAmbushStartedBossRush(): void {
-  start();
+  startCustomBossRush();
 }
 
-function start() {
+function startCustomBossRush() {
   v.run.started = true;
   v.run.currentWave = 0;
   v.run.selectedBosses = getRandomBossRushBosses();
@@ -117,7 +367,7 @@ function getRandomBossRushBosses(): string[] {
 
   const randomBosses: string[] = [];
 
-  repeat(TOTAL_BOSSES, () => {
+  repeat(NUM_TOTAL_BOSSES, () => {
     const randomBoss = getRandomArrayElement(
       BOSS_RUSH_BOSSES,
       rng,

@@ -5,6 +5,7 @@ import { FAST_CLEAR_DEBUG } from "./constants";
 const v = {
   room: {
     aliveEnemies: new Set<PtrHash>(),
+    aliveBosses: new Set<PtrHash>(),
     delayClearUntilGameFrame: null as int | null,
     fastClearedRoom: false,
   },
@@ -43,4 +44,12 @@ export function logFastClear(
     `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
   );
   log(`fastClearedRoom: ${v.room.fastClearedRoom}`);
+}
+
+export function getFastClearNumAliveEnemies(): number {
+  return v.room.aliveEnemies.size;
+}
+
+export function getFastClearNumAliveBosses(): number {
+  return v.room.aliveBosses.size;
 }

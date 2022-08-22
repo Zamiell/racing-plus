@@ -157,7 +157,7 @@ export function useItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
     const collectibleName = getCollectibleName(asCollectibleType(wisp.SubType));
-    set(collectibleName);
+    setStreakText(collectibleName);
   }
 }
 
@@ -174,13 +174,13 @@ export function useCard(cardType: CardType): void {
   }
 
   const cardName = getCardName(cardType);
-  set(cardName);
+  setStreakText(cardName);
 }
 
 // ModCallback.POST_USE_PILL (10)
 export function usePill(pillEffect: PillEffect): void {
   const pillEffectName = getPillEffectName(pillEffect);
-  set(pillEffectName);
+  setStreakText(pillEffectName);
 }
 
 // ModCallback.POST_GAME_STARTED (15)
@@ -219,20 +219,9 @@ function showLevelText() {
   if (VanillaStreakText !== undefined && effectiveStage !== 1) {
     g.l.ShowName(false);
   } else if (!goingToRaceRoom()) {
-    const text = getLevelText();
-    set(text);
+    const text = getLevelStreakText();
+    setStreakText(text);
   }
-}
-
-export function getLevelText(): string {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  if (stage === LevelStage.BLUE_WOMB) {
-    return "Blue Womb";
-  }
-
-  return g.l.GetName(stage, stageType);
 }
 
 // ModCallback.PRE_USE_ITEM (23)
@@ -253,7 +242,7 @@ export function preUseItemDeadSeaScrolls(
   if (VanillaStreakText !== undefined) {
     hud.ShowItemText(collectibleName);
   } else {
-    set(collectibleName);
+    setStreakText(collectibleName);
   }
 
   return true;
@@ -270,7 +259,7 @@ export function preItemPickup(pickingUpItem: PickingUpItem): void {
     ? getTrinketName(pickingUpItem.subType)
     : getCollectibleName(pickingUpItem.subType);
 
-  set(name);
+  setStreakText(name);
 }
 
 // ModCallbackCustom.POST_TRANSFORMATION
@@ -283,18 +272,29 @@ export function postTransformation(
   }
 
   const transformationName = getTransformationName(playerForm);
-  set(transformationName);
+  setStreakText(transformationName);
 }
 
 // -------
 // Exports
 // -------
 
-export function set(text: string): void {
+export function getLevelStreakText(): string {
+  const stage = g.l.GetStage();
+  const stageType = g.l.GetStageType();
+
+  if (stage === LevelStage.BLUE_WOMB) {
+    return "Blue Womb";
+  }
+
+  return g.l.GetName(stage, stageType);
+}
+
+export function setStreakText(text: string): void {
   v.run.text = text;
   v.run.renderFrameSet = Isaac.GetFrameCount();
 }
 
-export function setTab(value: string | null): void {
+export function setStreakTextTab(value: string | null): void {
   v.run.tabText = value;
 }

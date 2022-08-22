@@ -56,6 +56,7 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   const gameFrameCount = game.GetFrameCount();
 
   v.room.aliveEnemies.delete(ptrHash);
+  v.room.aliveBosses.delete(ptrHash);
   logFastClear(false, npc, ptrHash, parentCallback);
 
   // If this was the last NPC in the room that died, we want to delay a frame before opening the

@@ -1,6 +1,6 @@
 import { ButtonAction } from "isaac-typescript-definitions";
 import { isActionPressedOnAnyInput } from "isaacscript-common";
-import * as streakText from "./streakText";
+import { getLevelStreakText, setStreakTextTab } from "./streakText";
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
@@ -11,10 +11,10 @@ export function postUpdate(): void {
 
   // Only show the floor name if the user is pressing tab.
   if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
-    streakText.setTab(null);
+    setStreakTextTab(null);
     return;
   }
 
-  const levelText = streakText.getLevelText();
-  streakText.setTab(levelText);
+  const levelText = getLevelStreakText();
+  setStreakTextTab(levelText);
 }

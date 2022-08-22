@@ -5,7 +5,7 @@ import { CollectibleType } from "isaac-typescript-definitions";
 import { game, registerHotkey, saveDataManager } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
-import * as streakText from "../../mandatory/streakText";
+import { setStreakText } from "../../mandatory/streakText";
 
 /** Release the key on every other frame. */
 const NORMAL_FRAME_DELAY = 2;
@@ -40,7 +40,7 @@ function toggleAutofire() {
 
   v.run.enabled = !v.run.enabled;
   const enabledText = v.run.enabled ? "Enabled" : "Disabled";
-  streakText.set(`${enabledText} autofire.`);
+  setStreakText(`${enabledText} autofire.`);
 }
 
 // ModCallback.INPUT_ACTION (13)

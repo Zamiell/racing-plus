@@ -86,5 +86,9 @@ function checkAdd(entity: Entity, parentCallback: string) {
 
 function add(entity: Entity, ptrHash: PtrHash, parentCallback: string) {
   v.room.aliveEnemies.add(ptrHash);
+  if (entity.IsBoss()) {
+    v.room.aliveBosses.add(ptrHash);
+  }
+
   logFastClear(true, entity, ptrHash, parentCallback);
 }
