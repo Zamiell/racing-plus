@@ -5,6 +5,7 @@ import {
   GameStateFlag,
   LarryJrVariant,
   MamaGurdyVariant,
+  Music,
   PickupVariant,
   PinVariant,
   SoundEffect,
@@ -19,6 +20,8 @@ import {
   getRandomArrayElement,
   gridCoordinatesToWorldPosition,
   log,
+  logError,
+  musicManager,
   newRNG,
   openAllDoors,
   parseEntityTypeVariantString,
@@ -41,9 +44,6 @@ import {
   getFastClearNumAliveBosses,
   getFastClearNumAliveEnemies,
 } from "../major/fastClear/v";
-
-// TODO: Clutch code (need to spawn 3x Clickety Clack)
-// TODO: test save and quit
 
 const SPLITTING_BOSS_ENTITY_TYPE_SET = new Set([
   EntityType.FISTULA_BIG, // 71
@@ -178,13 +178,15 @@ function spawnNextWave() {
       v.run.currentWave * NUM_BOSSES_PER_WAVE - NUM_BOSSES_PER_WAVE + i;
     const bossString = v.run.selectedBosses[bossIndex];
     if (bossString === undefined) {
-      error(
+      logError(
         `Failed to find the selected Boss Rush boss at index: ${bossIndex}`,
       );
+      continue;
     }
     const tuple = parseEntityTypeVariantString(bossString);
     if (tuple === undefined) {
-      error(`Failed to parse the selected Boss Rush boss: ${bossString}`);
+      logError(`Failed to parse the selected Boss Rush boss: ${bossString}`);
+      continue;
     }
     const [entityType, variant] = tuple;
 
@@ -193,6 +195,13 @@ function spawnNextWave() {
 
     repeat(numSegments, () => {
       spawnNPC(entityType, variant, 0, position);
+
+      // Clutch is a special case; he is always accompanied by 3 Clickety Clacks.
+      if (entityType === EntityType.CLUTCH) {
+        repeat(3, () => {
+          spawnNPC(EntityType.CLICKETY_CLACK, 0, 0, position);
+        });
+      }
     });
   }
 
@@ -307,7 +316,8 @@ function finish() {
   openAllDoors();
   sfxManager.Play(SoundEffect.DOOR_HEAVY_OPEN);
 
-  // TODO: test music on finish
+  // Because of the emulated Boss Rush, the battle music will continue to play.
+  musicManager.Crossfade(Music.BOSS_OVER);
 
   // Announce the completion via streak text.
   setStreakText("Complete!");
