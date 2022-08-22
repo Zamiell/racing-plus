@@ -3,15 +3,12 @@ import {
   LevelStage,
   PickupVariant,
   RoomType,
-  TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRoomInsideGrid,
   removeAllEffects,
   removeAllTrapdoors,
   spawnPickup,
-  spawnTrapdoorWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
@@ -29,25 +26,7 @@ export function season3PostRoomClearChanged(roomClear: boolean): void {
     return;
   }
 
-  checkMomCleared();
   checkHushCleared();
-}
-
-function checkMomCleared() {
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-
-  if (
-    stage === LevelStage.DEPTHS_2 &&
-    roomType === RoomType.BOSS &&
-    isRoomInsideGrid() &&
-    v.persistent.remainingGoals.includes(Season3Goal.DOGMA)
-  ) {
-    spawnTrapdoorWithVariant(
-      TrapdoorVariant.NORMAL,
-      GRID_INDEX_CENTER_OF_1X1_ROOM,
-    );
-  }
 }
 
 /**

@@ -27,6 +27,7 @@ import {
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -38,6 +39,10 @@ import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
+import {
+  INVERTED_TRAPDOOR_GRID_INDEX,
+  NORMAL_TRAPDOOR_GRID_INDEX,
+} from "../../../speedrun/season3/callbacks/preItemPickup";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
@@ -95,38 +100,45 @@ export function setFadingToBlack(
   ]);
   disableAllInputsExceptFor(FAST_TRAVEL_FEATURE_NAME, whitelist);
 
-  setGameStateFlags();
+  setGameStateFlags(position);
   setPlayerAttributes(player, position);
   warpForgottenBody(player);
   dropTaintedForgotten(player);
   playTravelingAnimation(player, upwards);
 }
 
-function setGameStateFlags() {
+function setGameStateFlags(position: Vector) {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const gridIndex = g.r.GetGridIndex(position);
+  const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
   const roomGridIndex = getRoomGridIndex();
+  const insideGrid = isRoomInsideGrid();
 
   // If the player has gone through the trapdoor past the strange door.
   if (
-    !repentanceStage &&
     stage === LevelStage.DEPTHS_2 &&
+    !repentanceStage &&
     roomGridIndex === (GridRoom.SECRET_EXIT as int)
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
   }
 
-  // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast.
+  // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast or
+  // on Season 3.
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.THE_BEAST &&
-    !repentanceStage &&
+    ((g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.goal === RaceGoal.THE_BEAST &&
+      gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
+      (challenge === ChallengeCustom.SEASON_3 &&
+        gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
     stage === LevelStage.DEPTHS_2 &&
+    !repentanceStage &&
     roomType === RoomType.BOSS &&
-    isRoomInsideGrid()
+    insideGrid
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);

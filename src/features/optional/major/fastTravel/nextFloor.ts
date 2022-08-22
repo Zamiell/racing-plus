@@ -3,6 +3,7 @@ import {
   GameStateFlag,
   LevelStage,
   NullItemID,
+  RoomType,
   StageType,
 } from "isaac-typescript-definitions";
 import {
@@ -11,10 +12,12 @@ import {
   getNextStage,
   getNextStageType,
   getPlayers,
+  isRoomInsideGrid,
   onRepentanceStage,
   removeAllMatchingEntities,
   setStage,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
@@ -87,14 +90,18 @@ function getNextStageCustom() {
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
+  const insideGrid = isRoomInsideGrid();
+  const raceDestinationTheAscent = isRaceDestinationTheAscent();
 
+  // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.THE_BEAST &&
+    raceDestinationTheAscent &&
     stage === LevelStage.DEPTHS_2 &&
     !repentanceStage &&
+    roomType === RoomType.BOSS &&
+    insideGrid &&
     backwardsPathInit
   ) {
     return stage;
@@ -104,16 +111,24 @@ function getNextStageCustom() {
 }
 
 function getNextStageTypeCustom(upwards: boolean) {
+  const backwardsPathInit = game.GetStateFlag(
+    GameStateFlag.BACKWARDS_PATH_INIT,
+  );
   const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
-  const nextStage = getNextStage();
+  const insideGrid = isRoomInsideGrid();
+  const nextStage = getNextStageCustom();
+  const raceDestinationTheAscent = isRaceDestinationTheAscent();
 
+  // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.THE_BEAST &&
-    !repentanceStage &&
+    raceDestinationTheAscent &&
     stage === LevelStage.DEPTHS_2 &&
+    !repentanceStage &&
+    roomType === RoomType.BOSS &&
+    insideGrid &&
+    backwardsPathInit &&
     nextStage === LevelStage.DEPTHS_2
   ) {
     return calculateStageTypeRepentance(nextStage);
@@ -121,17 +136,23 @@ function getNextStageTypeCustom(upwards: boolean) {
 
   // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
   // going back to Dogma is pointless.
-  if (nextStage === LevelStage.HOME) {
-    if (
-      g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.goal === RaceGoal.THE_BEAST
-    ) {
-      return StageType.WRATH_OF_THE_LAMB;
-    }
-
-    return StageType.ORIGINAL;
+  if (raceDestinationTheAscent && nextStage === LevelStage.HOME) {
+    return StageType.WRATH_OF_THE_LAMB;
   }
 
   return getNextStageType(upwards);
+}
+
+/**
+ * Specific races and multi-character speedruns take the player to The Ascent in a non-vanilla way.
+ */
+function isRaceDestinationTheAscent(): boolean {
+  const challenge = Isaac.GetChallenge();
+
+  return (
+    (g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.goal === RaceGoal.THE_BEAST) ||
+    challenge === ChallengeCustom.SEASON_3
+  );
 }

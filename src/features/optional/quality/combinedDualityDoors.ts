@@ -157,7 +157,6 @@ function checkModifyDevilRoomDoor() {
   v.room.modifiedDevilDoorSlot = door.Slot;
 
   // Modify the sprite for the door so that it looks half Devil and half Angel.
-  // cspell:ignore combineddoor
   const sprite = door.GetSprite();
   sprite.ReplaceSpritesheet(FRAME_LAYER, "gfx/grid/door_07_combineddoor.png");
   sprite.LoadGraphics();
