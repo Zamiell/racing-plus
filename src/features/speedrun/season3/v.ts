@@ -28,6 +28,10 @@ const v = {
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
   },
+
+  room: {
+    teleporterSpawned: false,
+  },
 };
 export default v;
 

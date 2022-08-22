@@ -1,5 +1,5 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { getEffectiveStage } from "isaacscript-common";
+import { getEffectiveStage, isRoomInsideGrid } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import v from "../v";
@@ -19,7 +19,11 @@ function checkResetTimeAssigned() {
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
 
-  if (effectiveStage === 2 && roomType === RoomType.BOSS) {
+  if (
+    effectiveStage === 2 &&
+    roomType === RoomType.BOSS &&
+    isRoomInsideGrid()
+  ) {
     v.persistent.timeAssigned = 0;
   }
 }

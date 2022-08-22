@@ -1,3 +1,4 @@
+import { PlayerType } from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
@@ -111,6 +112,8 @@ function setCorrectCharacter() {
 }
 
 function goBackToFirstCharacter() {
+  const challenge = Isaac.GetChallenge();
+
   if (v.persistent.performedFastReset) {
     v.persistent.performedFastReset = false;
     return false;
@@ -124,8 +127,14 @@ function goBackToFirstCharacter() {
   // from the first character.
   v.persistent.characterNum = 1;
   restartOnNextFrame();
-  const firstCharacter = getFirstCharacter();
+
+  const firstCharacter =
+    challenge === ChallengeCustom.SEASON_2 ||
+    challenge === ChallengeCustom.SEASON_3
+      ? PlayerType.ISAAC
+      : getFirstCharacter();
   setRestartCharacter(firstCharacter);
+
   log("Restarting because we want to start from the first character again.");
 
   // Tell the LiveSplit AutoSplitter to reset.

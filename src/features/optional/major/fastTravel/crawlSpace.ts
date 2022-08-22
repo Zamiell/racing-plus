@@ -25,6 +25,7 @@ import {
   runNextGameFrame,
   spawnGridEntity,
   teleport,
+  TELEPORTER_ACTIVATION_DISTANCE,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -38,9 +39,6 @@ import v from "./v";
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;
 const GRID_INDEX_SECRET_SHOP_LADDER = 25;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
-
-/** Exactly the same as a vanilla teleporter. */
-const TELEPORTER_ACTIVATION_DISTANCE = 20;
 
 const DEVIL_ANGEL_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
   [7, Direction.UP], // Top door

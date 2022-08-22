@@ -2,7 +2,7 @@ import { log } from "isaacscript-common";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 import v from "../v";
 
-export function fastClearRoomClearChanged(roomClear: boolean): void {
+export function fastClearPostRoomClearChanged(roomClear: boolean): void {
   if (!shouldEnableFastClear()) {
     return;
   }

@@ -1,6 +1,7 @@
-import { GridEntityType } from "isaac-typescript-definitions";
-import { spawnGridEntity } from "isaacscript-common";
+import { GridEntityType, LevelStage } from "isaac-typescript-definitions";
+import { getRoomGridIndex, spawnGridEntity } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import g from "../../../../globals";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
 import { Season3Goal } from "../constants";
@@ -25,10 +26,19 @@ export function season3PostNewRoom(): void {
 }
 
 function checkSpawnMegaSatanTeleporter() {
+  const stage = g.l.GetStage();
+  const isFirstVisit = g.r.IsFirstVisit();
+  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const roomGridIndex = getRoomGridIndex();
+
   if (
+    stage === LevelStage.DARK_ROOM_CHEST &&
+    roomGridIndex === startingRoomGridIndex &&
+    isFirstVisit &&
     v.persistent.remainingGoals.includes(Season3Goal.MEGA_SATAN) &&
     !isOnFirstCharacter()
   ) {
     spawnGridEntity(GridEntityType.TELEPORTER, TOP_CENTER_GRID_INDEX);
+    v.room.teleporterSpawned = true;
   }
 }

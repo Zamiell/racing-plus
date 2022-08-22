@@ -4,7 +4,7 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { spawnGridEntity } from "isaacscript-common";
+import { isRoomInsideGrid, spawnGridEntity } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -35,7 +35,8 @@ function shouldDeleteVoidDoor() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === LevelStage.BLUE_WOMB &&
-    roomType === RoomType.BOSS
+    roomType === RoomType.BOSS &&
+    isRoomInsideGrid()
   );
 }
 

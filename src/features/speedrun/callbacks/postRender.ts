@@ -67,8 +67,11 @@ export function speedrunSetNextCharacterAndRestart(): void {
   restartOnNextFrame();
   log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
 
-  // Season 2 will set the next character using its own code.
-  if (challenge !== ChallengeCustom.SEASON_2) {
+  // Season 2 and season 3 will set the next character using its own code.
+  if (
+    challenge !== ChallengeCustom.SEASON_2 &&
+    challenge !== ChallengeCustom.SEASON_3
+  ) {
     const character = getCurrentCharacter();
     setRestartCharacter(character);
 

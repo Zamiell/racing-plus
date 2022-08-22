@@ -18,6 +18,7 @@ import {
   inBeastRoom,
   inBossRoomOf,
   isAllPressurePlatesPushed,
+  isRoomInsideGrid,
   log,
   openAllDoors,
   spawnNPC,
@@ -121,6 +122,7 @@ function earlyClearRoom() {
   if (
     inSpeedrun() &&
     roomType === RoomType.BOSS &&
+    isRoomInsideGrid() &&
     (effectiveStage === 1 || effectiveStage === 2)
   ) {
     g.r.TrySpawnSecretExit(true, true);

@@ -1,3 +1,9 @@
+S3:
+- spawn chest after hush
+- spawn chest after dogma
+- ensure constant alt path / rep
+- make sure boss rush bosses don't collide with red poop
+
 TODO Racing+ new features:
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
   - Ranked Solo Season 3 ended:  April 2nd, 2022 (estimated)

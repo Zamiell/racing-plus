@@ -2,6 +2,7 @@ import { onCathedral, onSheol } from "isaacscript-common";
 import { BigChestReplacementAction } from "../../../enums/BigChestReplacementAction";
 import { isOnFinalCharacter } from "../speedrun";
 import { getSeason3GoalCorrespondingToRoom } from "./checkpoint";
+import v from "./v";
 
 export function getSeason3BigChestReplacementAction(): BigChestReplacementAction {
   if (onSheol()) {
@@ -14,6 +15,11 @@ export function getSeason3BigChestReplacementAction(): BigChestReplacementAction
 
   const goal = getSeason3GoalCorrespondingToRoom();
   if (goal === undefined) {
+    return BigChestReplacementAction.LEAVE_ALONE;
+  }
+
+  // Don't allow repeat goals over the course of the same 7 character speedrun.
+  if (!v.persistent.remainingGoals.includes(goal)) {
     return BigChestReplacementAction.LEAVE_ALONE;
   }
 

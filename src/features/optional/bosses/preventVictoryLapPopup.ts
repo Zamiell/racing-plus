@@ -10,7 +10,7 @@ import {
   addRoomClearCharges,
   asNumber,
   getNPCs,
-  inMegaSatanRoom,
+  isRoomInsideGrid,
   log,
   onDarkRoom,
   openAllDoors,
@@ -81,7 +81,7 @@ function inUnclearedLambBossRoom() {
   return (
     onDarkRoom() &&
     roomType === RoomType.BOSS &&
-    !inMegaSatanRoom() &&
+    isRoomInsideGrid() &&
     !roomClear
   );
 }

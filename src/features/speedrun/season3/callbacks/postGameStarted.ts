@@ -23,15 +23,17 @@ import { getTimeGameOpened } from "../../../utils/timeGameOpened";
 import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
 import { resetPersistentVars } from "../../v";
 import {
-  BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
-  DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
-  DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
-  DIVERSITY_TRINKET_TYPES,
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_CHARACTERS,
   SEASON_3_GOALS,
   SEASON_3_LOCK_MILLISECONDS,
 } from "../constants";
+import {
+  BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
+  DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
+  DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+} from "../constantsCollectibles";
+import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
 import v, { season3GetCurrentCharacter } from "../v";
 

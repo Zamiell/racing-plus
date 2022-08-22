@@ -21,6 +21,7 @@ import {
   getPlayers,
   getRoomGridIndex,
   isCharacter,
+  isRoomInsideGrid,
   log,
   onRepentanceStage,
   spawnEffect,
@@ -124,7 +125,8 @@ function setGameStateFlags() {
     g.race.goal === RaceGoal.THE_BEAST &&
     !repentanceStage &&
     stage === LevelStage.DEPTHS_2 &&
-    roomType === RoomType.BOSS
+    roomType === RoomType.BOSS &&
+    isRoomInsideGrid()
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
