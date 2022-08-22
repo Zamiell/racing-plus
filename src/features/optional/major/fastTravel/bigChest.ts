@@ -19,6 +19,7 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -29,6 +30,7 @@ import g from "../../../../globals";
 import { spawnTrophy } from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { speedrunGetCharacterNum } from "../../../speedrun/exported";
+import { getSeason3BigChestReplacementAction } from "../../../speedrun/season3/bigChest";
 import {
   isOnFinalCharacter,
   onSpeedrunWithDarkRoomGoal,
@@ -36,18 +38,7 @@ import {
 } from "../../../speedrun/speedrun";
 import * as fastTravel from "./fastTravel";
 
-enum ReplacementAction {
-  /** Leave the Big Chest there. */
-  LEAVE_ALONE,
-  TRAPDOOR,
-  HEAVEN_DOOR,
-  CHECKPOINT,
-  TROPHY,
-  VICTORY_LAP,
-  REMOVE,
-}
-
-const DEFAULT_REPLACEMENT_ACTION = ReplacementAction.LEAVE_ALONE;
+const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.BIG_CHEST (340)
@@ -55,7 +46,7 @@ export function postPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
   log(
-    `Big Chest detected, doing action: ${ReplacementAction[replacementAction]}`,
+    `Big Chest detected, doing action: ${BigChestReplacementAction[replacementAction]}`,
   );
 }
 
@@ -64,10 +55,10 @@ function getReplacementAction() {
 
   // First, handle the common case of Cathedral and Sheol. (This avoids duplication below.)
   if (onCathedral() && anyPlayerHasCollectible(CollectibleType.POLAROID)) {
-    return ReplacementAction.HEAVEN_DOOR;
+    return BigChestReplacementAction.HEAVEN_DOOR;
   }
   if (onSheol() && anyPlayerHasCollectible(CollectibleType.NEGATIVE)) {
-    return ReplacementAction.TRAPDOOR;
+    return BigChestReplacementAction.TRAPDOOR;
   }
 
   if (challenge === ChallengeCustom.SEASON_1) {
@@ -76,9 +67,12 @@ function getReplacementAction() {
   if (challenge === ChallengeCustom.SEASON_2) {
     return speedrunAlternate();
   }
+  if (challenge === ChallengeCustom.SEASON_3) {
+    return getSeason3BigChestReplacementAction();
+  }
 
   if (g.raceVars.finished) {
-    return ReplacementAction.VICTORY_LAP;
+    return BigChestReplacementAction.VICTORY_LAP;
   }
 
   if (
@@ -124,7 +118,7 @@ function getReplacementAction() {
 function speedrunUp() {
   // Speedruns go to The Chest and do not require The Polaroid.
   if (onCathedral()) {
-    return ReplacementAction.HEAVEN_DOOR;
+    return BigChestReplacementAction.HEAVEN_DOOR;
   }
 
   if (onChest()) {
@@ -157,14 +151,14 @@ function speedrunAlternate() {
   // The Polaroid / The Negative is optional in seasons that alternate direction.
   if (onCathedral()) {
     return direction === SpeedrunDirection.UP
-      ? ReplacementAction.HEAVEN_DOOR
-      : ReplacementAction.LEAVE_ALONE;
+      ? BigChestReplacementAction.HEAVEN_DOOR
+      : BigChestReplacementAction.LEAVE_ALONE;
   }
 
   if (onSheol()) {
     return direction === SpeedrunDirection.DOWN
-      ? ReplacementAction.TRAPDOOR
-      : ReplacementAction.LEAVE_ALONE;
+      ? BigChestReplacementAction.TRAPDOOR
+      : BigChestReplacementAction.LEAVE_ALONE;
   }
 
   if (
@@ -179,15 +173,15 @@ function speedrunAlternate() {
 
 function speedrunKilledFinalBoss() {
   if (isOnFinalCharacter()) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
-  return ReplacementAction.CHECKPOINT;
+  return BigChestReplacementAction.CHECKPOINT;
 }
 
 function blueBaby() {
   if (onChest() && !inMegaSatanRoom()) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -195,7 +189,7 @@ function blueBaby() {
 
 function theLamb() {
   if (onDarkRoom() && !inMegaSatanRoom()) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -207,11 +201,11 @@ function megaSatan() {
   if (stage === LevelStage.DARK_ROOM_CHEST && !inMegaSatanRoom()) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
     // have to go to Mega Satan.
-    return ReplacementAction.REMOVE;
+    return BigChestReplacementAction.REMOVE;
   }
 
   if (stage === LevelStage.DARK_ROOM_CHEST && inMegaSatanRoom()) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -221,7 +215,7 @@ function hush() {
   const stage = g.l.GetStage();
 
   if (stage === LevelStage.BLUE_WOMB) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -231,7 +225,7 @@ function delirium() {
   const stage = g.l.GetStage();
 
   if (stage === LevelStage.THE_VOID) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -241,7 +235,7 @@ function mother() {
   const stage = g.l.GetStage();
 
   if (stage === LevelStage.WOMB_2 && onRepentanceStage()) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -251,7 +245,7 @@ function theBeast() {
   const stage = g.l.GetStage();
 
   if (stage === LevelStage.HOME) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
@@ -261,26 +255,29 @@ function bossRush() {
   const stage = g.l.GetStage();
 
   if (stage === LevelStage.DEPTHS_2) {
-    return ReplacementAction.TROPHY;
+    return BigChestReplacementAction.TROPHY;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
 }
 
-function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
-  if (replacementAction !== ReplacementAction.LEAVE_ALONE) {
+function replace(
+  pickup: EntityPickup,
+  replacementAction: BigChestReplacementAction,
+) {
+  if (replacementAction !== BigChestReplacementAction.LEAVE_ALONE) {
     pickup.Remove();
   }
 
   switch (replacementAction) {
-    case ReplacementAction.LEAVE_ALONE: {
+    case BigChestReplacementAction.LEAVE_ALONE: {
       // Hijack the normally-unused "Touched" property to signify that we should leave it here. (We
       // will ignore it on subsequent frames.)
       pickup.Touched = true;
       break;
     }
 
-    case ReplacementAction.TRAPDOOR: {
+    case BigChestReplacementAction.TRAPDOOR: {
       const gridIndex = g.r.GetGridIndex(pickup.Position);
       spawnGridEntityWithVariant(
         GridEntityType.TRAPDOOR,
@@ -291,7 +288,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.HEAVEN_DOOR: {
+    case BigChestReplacementAction.HEAVEN_DOOR: {
       const heavenDoor = spawnEffect(
         EffectVariant.HEAVEN_LIGHT_DOOR,
         HeavenLightDoorSubType.HEAVEN_DOOR,
@@ -306,7 +303,7 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.CHECKPOINT: {
+    case BigChestReplacementAction.CHECKPOINT: {
       const seed = g.seeds.GetStartSeed();
       const checkpoint = spawnCollectible(
         CollectibleTypeCustom.CHECKPOINT,
@@ -317,17 +314,17 @@ function replace(pickup: EntityPickup, replacementAction: ReplacementAction) {
       break;
     }
 
-    case ReplacementAction.TROPHY: {
+    case BigChestReplacementAction.TROPHY: {
       spawnTrophy(pickup.Position);
       break;
     }
 
-    case ReplacementAction.VICTORY_LAP: {
+    case BigChestReplacementAction.VICTORY_LAP: {
       spawnVictoryLapButton(true);
       break;
     }
 
-    case ReplacementAction.REMOVE: {
+    case BigChestReplacementAction.REMOVE: {
       break;
     }
   }

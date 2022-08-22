@@ -76,8 +76,7 @@ function getSeason2ErrorMessage(action: string, secondsRemaining: int) {
 }
 
 function checkDrawGoals() {
-  // Only show goal identification if someone is pressing the map button.
-  if (isActionPressedOnAnyInput(ButtonAction.MAP)) {
+  if (isActionPressedOnAnyInput(ButtonAction.MAP) || v.run.goalCompleted) {
     drawGoals();
   }
 }

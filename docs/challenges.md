@@ -187,7 +187,7 @@ Some builds are banned on certain characters:
   - 441 - Mega Blast
   - 625 - Mega Mush
 
-### Goal
+### Goals
 
 - You must complete the following 7 goals:
   - Blue Baby
@@ -197,8 +197,9 @@ Some builds are banned on certain characters:
   - Hush
   - Mother
   - Dogma (without The Beast fight)
-- You can do the goals in any order that you like.
+- You can only complete the Mega Satan goal on the second character and beyond. Except for that, you can do the goals in any order that you like.
 - The key pieces are not required to go to Mega Satan; a portal to the boss room will appear in the starting room of The Chest or the Dark Room.
+- The Blue Baby phase of the Hush fight will be automatically skipped.
 - The knife pieces are not required to go to Mother; a trapdoor to Corpse 1 will appear after defeating Mom on Mausoleum/Gehenna.
 - Going through the Ascent is not required to go to Dogma; a beam of light to Dark Home will appear in place of Dad's Note.
 

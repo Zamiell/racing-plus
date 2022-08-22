@@ -24,6 +24,9 @@ const v = {
       gameRecentlyOpened: false,
       consoleRecentlyUsed: false,
     },
+
+    /** Used to display the remaining goals during the fade out. */
+    goalCompleted: false,
   },
 };
 export default v;
