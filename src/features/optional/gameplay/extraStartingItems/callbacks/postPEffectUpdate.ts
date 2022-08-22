@@ -2,8 +2,9 @@ import g from "../../../../../globals";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../constants";
 
 /**
- * It is possible to use D4 to get the placeholder items, since they are in pools. Check for this
- * case and try to handle it.
+ * It is possible for players to get the placeholder items via the D4 or Tainted Eden getting
+ * damaged. This is because the placeholder items are in pools. Check for this case and try to
+ * handle it.
  */
 export function extraStartingItemsPostPEffectUpdate(
   player: EntityPlayer,
