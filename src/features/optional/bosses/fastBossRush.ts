@@ -111,10 +111,8 @@ const NUM_GAME_FRAMES_BETWEEN_WAVES = 20;
 
 const v = {
   run: {
-    started: false,
+    inProgress: false,
     finished: false,
-    currentWave: 0,
-    spawnWaveGameFrame: 0,
 
     /**
      * An array of entity type + variant strings, matching the format of the boss set from the
@@ -123,13 +121,20 @@ const v = {
     selectedBosses: [] as string[],
   },
 
-  room: {},
+  /**
+   * In vanilla, saving and quitting in the middle of the Boss Rush will reset the wave back to 0.
+   */
+  room: {
+    currentWave: 0,
+    spawnWaveGameFrame: 0,
+  },
 };
 
 export function init(): void {
   saveDataManager("fastBossRush", v);
 }
 
+// ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
   if (!config.fastBossRush) {
     return;
@@ -144,15 +149,15 @@ export function postUpdate(): void {
 }
 
 function checkSpawnNextWave() {
-  if (!v.run.started) {
+  if (!v.run.inProgress) {
     return;
   }
 
   // Don't do anything if we are in the short delay between waves.
   const gameFrameCount = game.GetFrameCount();
-  if (v.run.spawnWaveGameFrame !== 0) {
-    if (gameFrameCount >= v.run.spawnWaveGameFrame) {
-      v.run.spawnWaveGameFrame = 0;
+  if (v.room.spawnWaveGameFrame !== 0) {
+    if (gameFrameCount >= v.room.spawnWaveGameFrame) {
+      v.room.spawnWaveGameFrame = 0;
       spawnNextWave();
     }
 
@@ -160,14 +165,14 @@ function checkSpawnNextWave() {
   }
 
   const totalBossesDefeatedIfWaveIsClear =
-    v.run.currentWave * NUM_BOSSES_PER_WAVE;
+    v.room.currentWave * NUM_BOSSES_PER_WAVE;
 
   if (!isWaveComplete(totalBossesDefeatedIfWaveIsClear)) {
     return;
   }
 
   log(
-    `Boss Rush wave ${v.run.currentWave} completed. Total bosses defeated so far: ${totalBossesDefeatedIfWaveIsClear}`,
+    `Boss Rush wave ${v.room.currentWave} completed. Total bosses defeated so far: ${totalBossesDefeatedIfWaveIsClear}`,
   );
 
   // TODO: Give charge if necessary.
@@ -177,8 +182,8 @@ function checkSpawnNextWave() {
     finish();
   } else {
     // Spawn the next wave after a short delay.
-    v.run.spawnWaveGameFrame = gameFrameCount + NUM_GAME_FRAMES_BETWEEN_WAVES;
-    v.run.currentWave++;
+    v.room.spawnWaveGameFrame = gameFrameCount + NUM_GAME_FRAMES_BETWEEN_WAVES;
+    v.room.currentWave++;
   }
 }
 
@@ -188,7 +193,7 @@ function spawnNextWave() {
   for (let i = 0; i < NUM_BOSSES_PER_WAVE; i++) {
     // Get the boss to spawn.
     const bossIndex =
-      v.run.currentWave * NUM_BOSSES_PER_WAVE - NUM_BOSSES_PER_WAVE + i;
+      v.room.currentWave * NUM_BOSSES_PER_WAVE - NUM_BOSSES_PER_WAVE + i;
     const bossString = v.run.selectedBosses[bossIndex];
     if (bossString === undefined) {
       logError(
@@ -222,10 +227,10 @@ function spawnNextWave() {
 
   // Display the wave number as streak text.
   const totalWaves = math.floor(NUM_TOTAL_BOSSES / NUM_BOSSES_PER_WAVE);
-  setStreakText(`Wave ${v.run.currentWave} / ${totalWaves}`);
+  setStreakText(`Wave ${v.room.currentWave} / ${totalWaves}`);
 
   log(
-    `Spawned Boss Rush wave ${v.run.currentWave} on game frame: ${gameFrameCount}`,
+    `Spawned Boss Rush wave ${v.room.currentWave} on game frame: ${gameFrameCount}`,
   );
 }
 
@@ -324,10 +329,9 @@ function doSplittingBossesExist(): boolean {
 }
 
 function finish() {
-  v.run.started = false;
+  v.run.inProgress = false;
   v.run.finished = true;
   game.SetStateFlag(GameStateFlag.BOSS_RUSH_DONE, true);
-  Isaac.DebugString("Custom Boss Rush finished.");
 
   spawnBossRushFinishReward();
   openAllDoors();
@@ -364,6 +368,20 @@ function spawnBossRushFinishReward() {
   spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
 
+// ModCallback.POST_NEW_ROOM (19)
+export function postNewRoom(): void {
+  // In vanilla, saving and quitting in the middle of the Boss Rush will reset the wave back to 0.
+  // However, teleporting out of the room before completing it will mark it as being completed.
+  // Thus, we need to emulate this. Note that the player will still be able to restart the Boss Rush
+  // if they go back in and touch another collectible. (This is also how vanilla works.)
+  const roomType = g.r.GetType();
+  if (v.run.inProgress && !v.run.finished && roomType !== RoomType.BOSS_RUSH) {
+    v.run.inProgress = false;
+    v.run.finished = true;
+    game.SetStateFlag(GameStateFlag.BOSS_RUSH_DONE, true);
+  }
+}
+
 // ModCallbackCustom.POST_AMBUSH_STARTED
 // AmbushType.BOSS_RUSH
 export function postAmbushStartedBossRush(): void {
@@ -375,8 +393,8 @@ export function postAmbushStartedBossRush(): void {
 }
 
 function startCustomBossRush() {
-  v.run.started = true;
-  v.run.currentWave = 0;
+  v.run.inProgress = true;
+  v.room.currentWave = 0;
   v.run.selectedBosses = getRandomBossRushBosses();
 
   // Now that the vanilla Boss Rush has been triggered, we need to prevent the vanilla bosses from
