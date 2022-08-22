@@ -16,7 +16,7 @@ import {
   spawnWithSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { getEffectiveDevilDeals } from "../../../../utilsGlobals";
+import { getEffectiveDevilDeals } from "../../../../utils";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
 

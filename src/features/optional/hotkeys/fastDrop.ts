@@ -8,7 +8,7 @@ import {
   repeat,
 } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
-import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
+import { shouldCheckForGameplayInputs } from "../../../utils";
 
 enum FastDropTarget {
   ALL,

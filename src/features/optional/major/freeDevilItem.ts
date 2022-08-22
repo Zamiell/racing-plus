@@ -24,7 +24,7 @@ import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { initCollectibleSprite } from "../../../sprite";
-import { getEffectiveDevilDeals } from "../../../utilsGlobals";
+import { getEffectiveDevilDeals } from "../../../utils";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
 const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count

@@ -4,7 +4,7 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { game, registerHotkey, saveDataManager } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
-import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
+import { shouldCheckForGameplayInputs } from "../../../utils";
 import { setStreakText } from "../../mandatory/streakText";
 
 /** Release the key on every other frame. */

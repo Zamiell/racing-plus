@@ -2,7 +2,6 @@ import { Keyboard } from "isaac-typescript-definitions";
 import {
   enableExtraConsoleCommands,
   log,
-  ModCallbackCustom,
   ModUpgraded,
   registerHotkey,
   saveDataManagerSetGlobal,
@@ -191,17 +190,4 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postTransformation.init(mod);
   preCustomRevive.init(mod);
   preItemPickup.init(mod);
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED,
-    (_player, collectibleType) => {
-      log(`POST_PLAYER_COLLECTIBLE_ADDED - ${collectibleType}`);
-    },
-  );
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED,
-    (_player, collectibleType) => {
-      log(`POST_PLAYER_COLLECTIBLE_REMOVED - ${collectibleType}`);
-    },
-  );
 }

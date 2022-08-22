@@ -11,6 +11,7 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  setUnseeded,
 } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
@@ -91,4 +92,12 @@ export function postGameStarted(): void {
  */
 export function disableAchievements(): void {
   g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
+}
+
+export function setUnseededWithRacingPlusLogic(): void {
+  setUnseeded();
+
+  // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we
+  // must manually reactivate them.
+  disableAchievements();
 }

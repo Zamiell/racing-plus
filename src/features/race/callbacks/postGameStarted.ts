@@ -6,7 +6,7 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { setUnseededWithRacingPlusLogic } from "../../../utilsGlobals";
+import { setUnseededWithRacingPlusLogic } from "../../mandatory/racingPlusSprite";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,

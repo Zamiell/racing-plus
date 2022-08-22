@@ -18,7 +18,7 @@ import {
 } from "isaacscript-common";
 import g from "../../../globals";
 import { config, hotkeys } from "../../../modConfigMenu";
-import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
+import { shouldCheckForGameplayInputs } from "../../../utils";
 
 const FEATURE_NAME = "roll";
 

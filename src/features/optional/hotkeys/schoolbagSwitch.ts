@@ -1,6 +1,6 @@
 import { getPlayers, registerHotkey } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
-import { shouldCheckForGameplayInputs } from "../../../utilsGlobals";
+import { shouldCheckForGameplayInputs } from "../../../utils";
 
 export function init(): void {
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.

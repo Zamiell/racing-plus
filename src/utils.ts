@@ -5,7 +5,14 @@ import {
   PlayerType,
   PlayerVariant,
 } from "isaac-typescript-definitions";
-import { getEntities, getFamiliars, getPlayers, log } from "isaacscript-common";
+import {
+  game,
+  getEntities,
+  getFamiliars,
+  getPlayers,
+  log,
+} from "isaacscript-common";
+import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
 
@@ -13,6 +20,16 @@ export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
   Isaac.ExecuteCommand(command);
   log(`Finished executing console command: ${command}`);
+}
+
+export function getEffectiveDevilDeals(): int {
+  const devilRoomDeals = game.GetDevilRoomDeals();
+
+  // In seeded races, we arbitrarily increase the Devil Room deals counter by one, so account for
+  // this.
+  return shouldConsistentDevilAngelRoomsApply()
+    ? devilRoomDeals - 1
+    : devilRoomDeals;
 }
 
 export function hasPolaroidOrNegative(): [boolean, boolean] {
@@ -97,4 +114,15 @@ export function serverCollectibleIDToCollectibleType(
   }
 
   return collectibleType;
+}
+
+/**
+ * Don't check for inputs when:
+ * - the game is paused
+ * - the console is open
+ * - Mod Config Menu is open
+ */
+export function shouldCheckForGameplayInputs(): boolean {
+  const isPaused = game.IsPaused();
+  return !isPaused && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible);
 }

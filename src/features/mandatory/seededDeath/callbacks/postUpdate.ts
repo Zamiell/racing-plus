@@ -1,6 +1,6 @@
 import { game, isJacobOrEsau } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import { getEffectiveDevilDeals } from "../../../../utilsGlobals";
+import { getEffectiveDevilDeals } from "../../../../utils";
 import {
   applySeededGhostFade,
   logSeededDeathStateChange,

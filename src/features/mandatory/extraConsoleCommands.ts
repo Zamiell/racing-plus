@@ -30,10 +30,10 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
-import { setUnseededWithRacingPlusLogic } from "../../utilsGlobals";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
 import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
+import { setUnseededWithRacingPlusLogic } from "./racingPlusSprite";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
 
