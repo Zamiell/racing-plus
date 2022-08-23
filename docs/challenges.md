@@ -198,10 +198,11 @@ Some builds are banned on certain characters:
   - Mother
   - Dogma (without The Beast fight)
 - You can only complete the Mega Satan goal on the second character and beyond. Except for that, you can do the goals in any order that you like.
-- The key pieces are not required to go to Mega Satan; a portal to the boss room will appear in the starting room of The Chest or the Dark Room.
-- The Blue Baby phase of the Hush fight will be automatically skipped.
-- The knife pieces are not required to go to Mother; a trapdoor to Corpse 1 will appear after defeating Mom on Mausoleum/Gehenna.
-- Going through the Ascent is not required to go to Dogma; a beam of light to Dark Home will appear in place of Dad's Note.
+- Some goals are altered:
+  - Mega Satan - The key pieces are not required; a teleporter will appear in the starting room of The Chest and the Dark Room.
+  - Hush - The Blue Baby phase of the fight will be automatically skipped.
+  - Mother - The door to Downpour/Dross will appear on the second floor and will be automatically unlocked. Once entered, the path will lead to Mother and cannot be escaped.
+  - Dogma - Will appear in place of Dad's Note.
 
 <br>
 

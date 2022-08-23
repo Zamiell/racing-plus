@@ -27,6 +27,8 @@ const v = {
 
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
+
+    killedDogma: false,
   },
 
   room: {
@@ -42,4 +44,8 @@ export function init(): void {
 export function season3GetCurrentCharacter(): PlayerType | undefined {
   const characterNum = speedrunGetCharacterNum();
   return v.persistent.selectedCharacters[characterNum - 1];
+}
+
+export function season3HasMotherGoal(): boolean {
+  return v.persistent.remainingGoals.includes(Season3Goal.MOTHER);
 }

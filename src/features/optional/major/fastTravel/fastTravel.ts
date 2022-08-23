@@ -79,6 +79,7 @@ function getCustomSpriteFilename(
   const stage = g.l.GetStage();
   const roomGridIndex = getRoomGridIndex();
   const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
   const gridIndex = g.r.GetGridIndex(entity.Position);
   const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
@@ -98,10 +99,11 @@ function getCustomSpriteFilename(
         g.race.status === RaceStatus.IN_PROGRESS &&
         g.race.myStatus === RacerStatus.RACING &&
         g.race.goal === RaceGoal.THE_BEAST &&
-        roomType === RoomType.BOSS &&
-        roomInsideGrid &&
         stage === LevelStage.DEPTHS_2 &&
         !repentanceStage &&
+        roomType === RoomType.BOSS &&
+        roomInsideGrid &&
+        roomClear &&
         gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
@@ -110,10 +112,11 @@ function getCustomSpriteFilename(
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
         challenge === ChallengeCustom.SEASON_3 &&
-        roomType === RoomType.BOSS &&
-        roomInsideGrid &&
         stage === LevelStage.DEPTHS_2 &&
         !repentanceStage &&
+        roomType === RoomType.BOSS &&
+        roomInsideGrid &&
+        roomClear &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";

@@ -5,12 +5,10 @@ import {
   EntityCollisionClass,
   EntityType,
   NpcState,
-  RoomType,
 } from "isaac-typescript-definitions";
 import {
   asNumber,
   game,
-  getEffectiveStage,
   getEntities,
   getNPCs,
   getRoomData,
@@ -18,13 +16,12 @@ import {
   inBeastRoom,
   inBossRoomOf,
   isAllPressurePlatesPushed,
-  isRoomInsideGrid,
   log,
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
 import g from "../../../../globals";
-import { inSpeedrun } from "../../../speedrun/speedrun";
+import { speedrunPostFastClear } from "../../../speedrun/fastClear";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
@@ -92,8 +89,6 @@ function checkEarlyClearRoom() {
 
 function earlyClearRoom() {
   const gameFrameCount = game.GetFrameCount();
-  const roomType = g.r.GetType();
-  const effectiveStage = getEffectiveStage();
   const roomData = getRoomData();
   const roomID =
     roomData === undefined
@@ -115,18 +110,7 @@ function earlyClearRoom() {
   killExtraEntities();
   postItLivesOrHushPath.fastClear();
 
-  // Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby.
-  // Thus, spawn the path manually if we are on a custom challenge. We only spawn them the
-  // Downpour/Dross doors to avoid the bug where picking up Goat Head in a boss room and then
-  // re-entering the room causes the Devil Room to become blocked.
-  if (
-    inSpeedrun() &&
-    roomType === RoomType.BOSS &&
-    isRoomInsideGrid() &&
-    (effectiveStage === 1 || effectiveStage === 2)
-  ) {
-    g.r.TrySpawnSecretExit(true, true);
-  }
+  speedrunPostFastClear();
 }
 
 function killExtraEntities() {

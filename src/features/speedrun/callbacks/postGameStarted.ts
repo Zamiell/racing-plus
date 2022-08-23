@@ -153,7 +153,8 @@ function giveMoreOptionsBuff() {
   }
 
   // The first character of the speedrun always gets a temporary More Options to speed up the
-  // process of getting a run going. (On season 3, every character gets this temporary buff.)
+  // process of getting a run going. (On season 3, every character gets this temporary buff in order
+  // to match how diversity races work.)
   if (isOnFirstCharacter() || challenge === ChallengeCustom.SEASON_3) {
     tempMoreOptions.give(player);
   }

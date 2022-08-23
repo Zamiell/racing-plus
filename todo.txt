@@ -1,6 +1,6 @@
 S3:
-- spawn chest after dogma
 - ensure constant alt path / rep
+- do softlock preventing for every goal
 
 TODO Racing+ new features:
 - Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)

@@ -91,6 +91,7 @@ function getNextStageCustom() {
   );
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
   const repentanceStage = onRepentanceStage();
   const insideGrid = isRoomInsideGrid();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
@@ -102,7 +103,8 @@ function getNextStageCustom() {
     !repentanceStage &&
     roomType === RoomType.BOSS &&
     insideGrid &&
-    backwardsPathInit
+    backwardsPathInit &&
+    roomClear
   ) {
     return stage;
   }
@@ -116,6 +118,7 @@ function getNextStageTypeCustom(upwards: boolean) {
   );
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const roomClear = g.r.IsClear();
   const repentanceStage = onRepentanceStage();
   const insideGrid = isRoomInsideGrid();
   const nextStage = getNextStageCustom();
@@ -129,6 +132,7 @@ function getNextStageTypeCustom(upwards: boolean) {
     roomType === RoomType.BOSS &&
     insideGrid &&
     backwardsPathInit &&
+    roomClear &&
     nextStage === LevelStage.DEPTHS_2
   ) {
     return calculateStageTypeRepentance(nextStage);

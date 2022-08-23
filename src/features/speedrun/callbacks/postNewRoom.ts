@@ -13,7 +13,6 @@ import {
   getPlayers,
   getRandom,
   getRepentanceDoor,
-  isRoomInsideGrid,
   preventCollectibleRotation,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -23,6 +22,7 @@ import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
 import g from "../../../globals";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
+import { speedrunShouldSpawnRepentanceDoor } from "../fastClear";
 import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
 import { season3PostNewRoom } from "../season3/callbacks/postNewRoom";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
@@ -118,17 +118,7 @@ function checkWomb2IAmError() {
  * Room.
  */
 function checkEnteringClearedBossRoom() {
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
-  const effectiveStage = getEffectiveStage();
-  const roomInsideGrid = isRoomInsideGrid();
-
-  if (
-    roomType === RoomType.BOSS &&
-    (effectiveStage === 1 || effectiveStage === 2) &&
-    roomClear &&
-    roomInsideGrid // Handle the case of Emperor? card rooms.
-  ) {
+  if (speedrunShouldSpawnRepentanceDoor()) {
     g.r.TrySpawnSecretExit(false, true);
     setRepentanceDoorState();
   }
