@@ -13,8 +13,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
-import { Season3Goal } from "../constants";
-import v from "../v";
+import { season3HasDogmaGoal } from "../v";
 
 /** One tile away from the bottom door in a 1x1 room. */
 export const INVERTED_TRAPDOOR_GRID_INDEX = 97;
@@ -43,7 +42,7 @@ function spawnTrapdoorOnTakePhoto(pickingUpItem: PickingUpItem) {
     return;
   }
 
-  if (!v.persistent.remainingGoals.includes(Season3Goal.DOGMA)) {
+  if (!season3HasDogmaGoal()) {
     return;
   }
 

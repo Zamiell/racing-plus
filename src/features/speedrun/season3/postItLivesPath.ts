@@ -1,16 +1,17 @@
 import { ItLivesSituation } from "../../../enums/ItLivesSituation";
-import { Season3Goal } from "./constants";
-import v from "./v";
+import {
+  season3HasBlueBabyGoal,
+  season3HasLambGoal,
+  season3HasMegaSatanGoal,
+} from "./v";
 
 export function season3PostItLivesPath(): ItLivesSituation {
-  if (v.persistent.remainingGoals.includes(Season3Goal.MEGA_SATAN)) {
+  if (season3HasMegaSatanGoal()) {
     return ItLivesSituation.BOTH;
   }
 
-  const hasBlueBaby = v.persistent.remainingGoals.includes(
-    Season3Goal.BLUE_BABY,
-  );
-  const hasLamb = v.persistent.remainingGoals.includes(Season3Goal.THE_LAMB);
+  const hasBlueBaby = season3HasBlueBabyGoal();
+  const hasLamb = season3HasLambGoal();
 
   if (hasBlueBaby && hasLamb) {
     return ItLivesSituation.BOTH;

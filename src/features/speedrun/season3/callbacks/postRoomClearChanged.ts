@@ -16,8 +16,7 @@ import {
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
-import { Season3Goal } from "../constants";
-import v from "../v";
+import { season3HasHushGoal } from "../v";
 
 export function season3PostRoomClearChanged(roomClear: boolean): void {
   const challenge = Isaac.GetChallenge();
@@ -47,7 +46,7 @@ function checkHushCleared() {
     stage === LevelStage.BLUE_WOMB &&
     roomType === RoomType.BOSS &&
     isRoomInsideGrid() &&
-    v.persistent.remainingGoals.includes(Season3Goal.HUSH)
+    season3HasHushGoal()
   ) {
     removeAllTrapdoors();
     removeAllEffects(EffectVariant.HEAVEN_LIGHT_DOOR);

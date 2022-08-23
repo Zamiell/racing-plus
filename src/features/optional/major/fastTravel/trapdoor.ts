@@ -25,8 +25,8 @@ import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import {
-  season3OnlyBossRushGoalLeft,
-  season3OnlyHushGoalLeft,
+  season3HasOnlyBossRushLeft,
+  season3HasOnlyHushLeft,
 } from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
@@ -129,7 +129,7 @@ function shouldRemove() {
   }
   if (
     challenge === ChallengeCustom.SEASON_3 &&
-    season3OnlyBossRushGoalLeft() &&
+    season3HasOnlyBossRushLeft() &&
     stage === LevelStage.DEPTHS_2
   ) {
     log(
@@ -154,7 +154,7 @@ function shouldRemove() {
 
   if (
     challenge === ChallengeCustom.SEASON_3 &&
-    season3OnlyHushGoalLeft() &&
+    season3HasOnlyHushLeft() &&
     stage === LevelStage.WOMB_2 &&
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {

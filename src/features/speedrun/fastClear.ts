@@ -1,16 +1,24 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
-  getBlueWombDoor,
   getEffectiveStage,
   getRepentanceDoor,
   isRoomInsideGrid,
   onRepentanceStage,
-  removeDoor,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
-import { season3HasHushGoal, season3HasMotherGoal } from "./season3/v";
+import { season3FastClear } from "./season3/fastClear";
+import { season3HasMotherGoal } from "./season3/v";
 import { inSpeedrun } from "./speedrun";
+
+export function speedrunPostFastClear(): void {
+  if (!inSpeedrun()) {
+    return;
+  }
+
+  checkSpawnRepentanceDoor();
+  season3FastClear();
+}
 
 /**
  * Paths to Repentance floors will not appear in custom challenges that have a goal of Blue Baby.
@@ -18,11 +26,7 @@ import { inSpeedrun } from "./speedrun";
  * Downpour/Dross doors to avoid the bug where picking up Goat Head in a boss room and then
  * re-entering the room causes the Devil Room to become blocked.
  */
-export function speedrunPostFastClear(): void {
-  if (!inSpeedrun()) {
-    return;
-  }
-
+function checkSpawnRepentanceDoor() {
   const challenge = Isaac.GetChallenge();
 
   if (speedrunShouldSpawnRepentanceDoor()) {
@@ -30,14 +34,6 @@ export function speedrunPostFastClear(): void {
 
     if (challenge === ChallengeCustom.SEASON_3) {
       unlockRepentanceDoor();
-    }
-  }
-
-  // Additionally, guard against the player accidentally going to Hush in Season 3.
-  if (challenge === ChallengeCustom.SEASON_3 && !season3HasHushGoal()) {
-    const blueWombDoor = getBlueWombDoor();
-    if (blueWombDoor !== undefined) {
-      removeDoor(blueWombDoor);
     }
   }
 }

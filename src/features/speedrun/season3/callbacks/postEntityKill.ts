@@ -11,8 +11,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
-import { Season3Goal } from "../constants";
-import v from "../v";
+import v, { season3HasDogmaGoal } from "../v";
 
 const GAME_FRAMES_UNTIL_SCREEN_FADES_TO_BLACK = 120;
 
@@ -28,7 +27,7 @@ export function season3PostEntityKillDogma(entity: Entity): void {
     return;
   }
 
-  if (!v.persistent.remainingGoals.includes(Season3Goal.DOGMA)) {
+  if (!season3HasDogmaGoal()) {
     return;
   }
 

@@ -20,9 +20,12 @@ import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
-import { Season3Goal } from "../constants";
 import { resetSeason3StartingRoomSprites } from "../startingRoomSprites";
-import v, { season3HasHushGoal } from "../v";
+import v, {
+  season3HasDogmaGoal,
+  season3HasHushGoal,
+  season3HasMegaSatanGoal,
+} from "../v";
 
 const LEFT_OF_CENTER_GRID_INDEX = 65;
 const TOP_CENTER_GRID_INDEX = 22;
@@ -54,7 +57,7 @@ function checkSpawnMegaSatanTeleporter() {
     stage === LevelStage.DARK_ROOM_CHEST &&
     roomGridIndex === startingRoomGridIndex &&
     isFirstVisit &&
-    v.persistent.remainingGoals.includes(Season3Goal.MEGA_SATAN) &&
+    season3HasMegaSatanGoal() &&
     !isOnFirstCharacter()
   ) {
     spawnTeleporter(TOP_CENTER_GRID_INDEX);
@@ -73,7 +76,7 @@ function checkDadsNoteRoom() {
 
   if (
     !v.run.killedDogma &&
-    v.persistent.remainingGoals.includes(Season3Goal.DOGMA) &&
+    season3HasDogmaGoal() &&
     stage === LevelStage.DEPTHS_2 &&
     repentanceStage &&
     roomType === RoomType.BOSS &&
