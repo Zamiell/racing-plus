@@ -163,6 +163,13 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
+  // Using the Glowing Hour glass will grant a golden bomb/key if the player had one on the previous
+  // floor.
+  for (const player of players) {
+    player.RemoveGoldenBomb();
+    player.RemoveGoldenKey();
+  }
+
   // We cannot reposition the player in the `POST_NEW_ROOM` callback for some reason, so mark to do
   // it on the next render frame.
   v.level.warpState = DreamCatcherWarpState.REPOSITIONING_PLAYER;
