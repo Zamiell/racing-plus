@@ -12,8 +12,8 @@
 - In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
 - In season 3, the static fade out effect after killing Dogma is now prevented. (Thanks makia)
 - Fixed the bug where defeating a wave in the Boss Rush did not grant any charges. (Thanks 3kch1)
-- Fixed the bug where the photos could spawn in the Dad's Note room under certain conditions. (Thanks makia)
-- Fixed the bug where the Mega Satan teleporter would only work one time.
+- Fixed the bug where having Dream Catcher would grant you a permanent golden bomb or golden key. (Thanks sisuka)
+- Fixed the bug in season 3 where the Mega Satan teleporter would only work one time.
 
 ### _v0.84.0_ - August 22nd, 2022
 
