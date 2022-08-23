@@ -6,7 +6,6 @@ import {
   GameStateFlag,
   GridRoom,
   LevelStage,
-  RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
@@ -27,16 +26,17 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import {
-  INVERTED_TRAPDOOR_GRID_INDEX,
-  NORMAL_TRAPDOOR_GRID_INDEX,
-} from "../../../speedrun/season3/callbacks/preItemPickup";
+import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
+import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
 } from "./constants";
 import * as state from "./state";
 import v from "./v";
+
+/** One tile away from the top door in a 1x1 room. */
+export const NORMAL_TRAPDOOR_GRID_INDEX = 37;
 
 export function init(
   entity: GridEntity | EntityEffect,
@@ -99,11 +99,8 @@ function getCustomSpriteFilename(
         g.race.status === RaceStatus.IN_PROGRESS &&
         g.race.myStatus === RacerStatus.RACING &&
         g.race.goal === RaceGoal.THE_BEAST &&
-        stage === LevelStage.DEPTHS_2 &&
+        isInClearedMomBossRoom() &&
         !repentanceStage &&
-        roomType === RoomType.BOSS &&
-        roomInsideGrid &&
-        roomClear &&
         gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
@@ -112,11 +109,8 @@ function getCustomSpriteFilename(
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
         challenge === ChallengeCustom.SEASON_3 &&
-        stage === LevelStage.DEPTHS_2 &&
+        isInClearedMomBossRoom() &&
         !repentanceStage &&
-        roomType === RoomType.BOSS &&
-        roomInsideGrid &&
-        roomClear &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";

@@ -3,7 +3,6 @@ import {
   GameStateFlag,
   LevelStage,
   NullItemID,
-  RoomType,
   StageType,
 } from "isaac-typescript-definitions";
 import {
@@ -12,7 +11,6 @@ import {
   getNextStage,
   getNextStageType,
   getPlayers,
-  isRoomInsideGrid,
   onRepentanceStage,
   removeAllMatchingEntities,
   setStage,
@@ -22,6 +20,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
+import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import v from "./v";
@@ -90,21 +89,16 @@ function getNextStageCustom() {
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
   const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
   const repentanceStage = onRepentanceStage();
-  const insideGrid = isRoomInsideGrid();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
+  const inClearedMomBossRoom = isInClearedMomBossRoom();
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
     raceDestinationTheAscent &&
-    stage === LevelStage.DEPTHS_2 &&
+    inClearedMomBossRoom &&
     !repentanceStage &&
-    roomType === RoomType.BOSS &&
-    insideGrid &&
-    backwardsPathInit &&
-    roomClear
+    backwardsPathInit
   ) {
     return stage;
   }
@@ -116,23 +110,17 @@ function getNextStageTypeCustom(upwards: boolean) {
   const backwardsPathInit = game.GetStateFlag(
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
   const repentanceStage = onRepentanceStage();
-  const insideGrid = isRoomInsideGrid();
   const nextStage = getNextStageCustom();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
+  const inClearedMomBossRoom = isInClearedMomBossRoom();
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
     raceDestinationTheAscent &&
-    stage === LevelStage.DEPTHS_2 &&
+    inClearedMomBossRoom &&
     !repentanceStage &&
-    roomType === RoomType.BOSS &&
-    insideGrid &&
     backwardsPathInit &&
-    roomClear &&
     nextStage === LevelStage.DEPTHS_2
   ) {
     return calculateStageTypeRepentance(nextStage);

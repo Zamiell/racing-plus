@@ -13,6 +13,7 @@ import {
   getDoors,
   getFamiliars,
   inStartingRoom,
+  isRoomInsideGrid,
   log,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -35,7 +36,11 @@ export function postNewRoom(): void {
   }
 
   // Don't bother fixing entrances in the Mom boss room.
-  if (stage === LevelStage.DEPTHS_2 && roomType === RoomType.BOSS) {
+  if (
+    stage === LevelStage.DEPTHS_2 &&
+    roomType === RoomType.BOSS &&
+    isRoomInsideGrid()
+  ) {
     return;
   }
 

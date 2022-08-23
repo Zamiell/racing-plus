@@ -16,9 +16,6 @@ import g from "../../../../globals";
 import { Season3Goal } from "../constants";
 import v from "../v";
 
-/** One tile away from the top door in a 1x1 room. */
-export const NORMAL_TRAPDOOR_GRID_INDEX = 37;
-
 /** One tile away from the bottom door in a 1x1 room. */
 export const INVERTED_TRAPDOOR_GRID_INDEX = 97;
 
@@ -31,6 +28,10 @@ export function season3PreItemPickup(
     return;
   }
 
+  spawnTrapdoorOnTakePhoto(pickingUpItem);
+}
+
+function spawnTrapdoorOnTakePhoto(pickingUpItem: PickingUpItem) {
   if (pickingUpItem.itemType !== ItemType.PASSIVE) {
     return;
   }

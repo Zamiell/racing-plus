@@ -4,14 +4,11 @@ import {
   EntityType,
   FamiliarVariant,
   GameStateFlag,
-  GridRoom,
   LevelStage,
   PlayerType,
   PlayerVariant,
-  RoomType,
 } from "isaac-typescript-definitions";
 import {
-  asNumber,
   changeRoom,
   disableAllInputsExceptFor,
   enableAllInputs,
@@ -22,7 +19,6 @@ import {
   getRoomGridIndex,
   inSecretExit,
   isCharacter,
-  isRoomInsideGrid,
   log,
   onRepentanceStage,
   spawnEffect,
@@ -36,17 +32,16 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { moveEsauNextToJacob } from "../../../../utils";
+import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
 import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
-import {
-  INVERTED_TRAPDOOR_GRID_INDEX,
-  NORMAL_TRAPDOOR_GRID_INDEX,
-} from "../../../speedrun/season3/callbacks/preItemPickup";
+import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
+import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravel";
 import * as nextFloor from "./nextFloor";
 import v from "./v";
 
@@ -82,8 +77,6 @@ export function setFadingToBlack(
   position: Vector,
   upwards: boolean,
 ): void {
-  const roomGridIndex = getRoomGridIndex();
-
   // Begin the process of moving the player to the next floor. If this is a multiplayer game, only
   // the player who touched the trapdoor / heaven door will play the traveling animation.
   v.run.state = FastTravelState.FADING_TO_BLACK;
@@ -110,18 +103,12 @@ export function setFadingToBlack(
 
 function setGameStateFlags(position: Vector) {
   const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
   const gridIndex = g.r.GetGridIndex(position);
   const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
-  const insideGrid = isRoomInsideGrid();
 
   // If the player has gone through the trapdoor past the strange door.
-  if (
-    stage === LevelStage.DEPTHS_2 &&
-    !repentanceStage &&
-    inSecretExit()
-  ) {
+  if (stage === LevelStage.DEPTHS_2 && !repentanceStage && inSecretExit()) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
   }
@@ -135,10 +122,7 @@ function setGameStateFlags(position: Vector) {
       gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
       (challenge === ChallengeCustom.SEASON_3 &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
-    stage === LevelStage.DEPTHS_2 &&
-    !repentanceStage &&
-    roomType === RoomType.BOSS &&
-    insideGrid
+    isInClearedMomBossRoom()
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);

@@ -23,6 +23,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
+import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -107,6 +108,8 @@ function shouldRemove() {
   const challenge = Isaac.GetChallenge();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
+  const secretExit = inSecretExit();
+  const inClearedMomBossRoom = isInClearedMomBossRoom();
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
@@ -198,7 +201,7 @@ function shouldRemove() {
     if (
       (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
       repentanceStage &&
-      !inSecretExit()
+      !secretExit
     ) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
@@ -209,7 +212,7 @@ function shouldRemove() {
     if (
       stage === LevelStage.DEPTHS_2 &&
       repentanceStage &&
-      !mausoleumHeartKilled
+      !inClearedMomBossRoom
     ) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
@@ -220,7 +223,7 @@ function shouldRemove() {
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
   // this functionality it is simpler to delete them.)
-  if (stage < LevelStage.WOMB_1 && backwardPath && !inSecretExit()) {
+  if (stage < LevelStage.WOMB_1 && backwardPath && !secretExit) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );
