@@ -1,11 +1,6 @@
-import {
-  GameStateFlag,
-  LevelStage,
-  RoomType,
-} from "isaac-typescript-definitions";
+import { LevelStage, RoomType } from "isaac-typescript-definitions";
 import {
   arrayRemoveInPlace,
-  game,
   inMegaSatanRoom,
   onChest,
   onDarkRoom,
@@ -34,9 +29,6 @@ export function season3CheckpointTouched(): void {
 }
 
 export function getSeason3GoalCorrespondingToRoom(): Season3Goal | undefined {
-  const backwardsPathInit = game.GetStateFlag(
-    GameStateFlag.BACKWARDS_PATH_INIT,
-  );
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();
@@ -67,7 +59,7 @@ export function getSeason3GoalCorrespondingToRoom(): Season3Goal | undefined {
     return Season3Goal.MOTHER;
   }
 
-  if (stage === LevelStage.DEPTHS_2 && repentanceStage && backwardsPathInit) {
+  if (stage === LevelStage.HOME) {
     return Season3Goal.DOGMA;
   }
 

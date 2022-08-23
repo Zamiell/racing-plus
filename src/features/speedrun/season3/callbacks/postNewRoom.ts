@@ -1,20 +1,28 @@
 import {
+  EntityFlag,
   GameStateFlag,
   GridEntityType,
   LevelStage,
   RoomType,
+  StageType,
   TeleporterState,
 } from "isaac-typescript-definitions";
 import {
+  changeRoom,
   game,
   getBlueWombDoor,
   inStartingRoom,
   isRoomInsideGrid,
+  log,
   onRepentanceStage,
   removeDoor,
+  setStage,
+  spawnNPC,
   spawnTeleporter,
+  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import g from "../../../../globals";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
@@ -25,8 +33,7 @@ import {
   season3HasMegaSatanGoal,
 } from "../v";
 
-const LEFT_OF_CENTER_GRID_INDEX = 65;
-
+const DOGMA_ROOM_GRID_INDEX = 109;
 const LEFT_OF_TOP_DOOR_GRID_INDEX = 20;
 
 export function season3PostNewRoom(): void {
@@ -89,32 +96,20 @@ function checkDadsNoteRoom() {
     roomInsideGrid &&
     backwardsPathInit
   ) {
-    /*
-    removeAllCollectibles(); // Remove Dad's Note.
-
-    // We can't spawn Dogma in the center of the room, because then it will overlap with the TV and
-    // will glitch out on the next frame.
-    const position = g.r.GetGridPosition(LEFT_OF_CENTER_GRID_INDEX);
-    spawnNPC(EntityType.DOGMA, 0, 0, position);
-
-    spawnRoomClearDelayNPC();
-
-    // The Dad's Note room will always have rocks in each of the four corners. Their presence makes
-    // the fight a lot harder, so remove them.
-    removeAllRocks();
-    */
     // Take them directly to Home to avoid wasting time.
+    setStage(LevelStage.HOME, StageType.WRATH_OF_THE_LAMB);
+    changeRoom(DOGMA_ROOM_GRID_INDEX);
+    spawnRoomClearDelayNPC();
   }
 }
 
 /**
- * If we clear the room, the vanilla photos will spawn, because the game thinks it is a Mom boss
- * room. Since we spawn the checkpoint based on when Dogma dies, we can safely spawn a room clear
- * delay NPC to prevent the normal room clear from ever happening.
+ * If we clear the room, a random pickup will spawn, which may interfere with picking up the
+ * checkpoint/trophy. Since we spawn the Big Chest based on when Dogma dies, we can safely spawn a
+ * room clear delay NPC to prevent the normal room clear from ever happening.
  *
  * Using a room clear delay effect for this purpose does not work.
  */
-/*
 function spawnRoomClearDelayNPC() {
   const roomClearDelayNPC = spawnNPC(
     EntityTypeCustom.ROOM_CLEAR_DELAY_NPC,
@@ -125,7 +120,6 @@ function spawnRoomClearDelayNPC() {
   roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
   log('Spawned the "Room Clear Delay NPC" custom entity (for Dogma).');
 }
-*/
 
 /** Guard against the player accidentally going to Hush. */
 function checkBlueWombRoom() {

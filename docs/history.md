@@ -3,10 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.84.0_ - August 23rd, 2022
+### _v0.84.1_ - August 23rd, 2022
 
+- The Dogma fight now starts as soon as you enter the room. (You no longer have to inspect the TV or watch the cutscene.)
 - Mother and Dogma no longer has armor (i.e. damage scaling).
 - Dogma's transition animation between phase 1 and phase 2 is now removed. (Thanks thereisnofuture)
+- In season 3, you are now teleported to the Dogma room when you enter the Dad's Note room.
 - In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
 - In season 3, the static fade out effect after killing Dogma is now prevented. (Thanks makia)
 - Fixed the bug where defeating a wave in the Boss Rush did not grant any charges. (Thanks 3kch1)
