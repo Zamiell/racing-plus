@@ -5,8 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
-import * as removeHushArmor from "../features/optional/bosses/removeHushArmor";
-import * as removeMegaSatanArmor from "../features/optional/bosses/removeMegaSatanArmor";
+import * as removeArmor from "../features/optional/bosses/removeArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
@@ -105,7 +104,7 @@ function megaSatan2(
   source: EntityRef,
   countdownFrames: int,
 ): boolean | undefined {
-  return removeMegaSatanArmor.entityTakeDmgMegaSatan2(
+  return removeArmor.entityTakeDmgMegaSatan2(
     entity,
     amount,
     damageFlags,
@@ -122,7 +121,7 @@ function hush(
   source: EntityRef,
   countdownFrames: int,
 ): boolean | undefined {
-  return removeHushArmor.entityTakeDmgHush(
+  return removeArmor.entityTakeDmgHush(
     entity,
     amount,
     damageFlags,

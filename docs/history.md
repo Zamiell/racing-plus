@@ -5,7 +5,9 @@
 
 ### _v0.84.0_ - August 23rd, 2022
 
+- Dogma's transition animation between phase 1 and phase 2 is now removed.
 - In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
+- In season 3, the static fade out effect after killing Dogma is now prevented. (Thanks makia)
 - Fixed the bug where defeating a wave in the Boss Rush did not grant any charges. (Thanks 3kch1)
 - Fixed the bug where the photos could spawn in the Dad's Note room under certain conditions. (Thanks makia)
 

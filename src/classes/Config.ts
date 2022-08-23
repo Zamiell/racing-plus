@@ -19,6 +19,7 @@ export class Config {
 
   // Boss
   fadeBosses = true;
+  removeArmor = true;
   fastBossRush = true;
   killExtraEnemies = true; // 45, 78
   fastPin = true; // 62
@@ -30,9 +31,7 @@ export class Config {
   consistentAngels = true; // 271, 272
   removeLambBody = true; // 273
   preventVictoryLapPopup = true; // 273
-  removeMegaSatanArmor = true; // 275
   openHushDoor = true; // 407
-  removeHushArmor = true; // 407
   fastBigHorn = true; // 411
   fastColostomia = true; // 917
   fastDogma = true; // 950

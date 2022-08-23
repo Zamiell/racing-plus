@@ -1,19 +1,8 @@
-import {
-  DogmaVariant,
-  FadeoutTarget,
-  PickupVariant,
-} from "isaac-typescript-definitions";
-import {
-  asNumber,
-  game,
-  runInNGameFrames,
-  spawnPickup,
-} from "isaacscript-common";
+import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
+import { asNumber, runInNGameFrames, spawnPickup } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import v, { season3HasDogmaGoal } from "../v";
-
-const GAME_FRAMES_UNTIL_SCREEN_FADES_TO_BLACK = 120;
 
 // EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {
@@ -37,11 +26,16 @@ export function season3PostEntityKillDogma(entity: Entity): void {
   const centerPos = g.r.GetCenterPos();
   spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
 
-  // If the player does not take the Checkpoint by the time the screen fades to black, the game will
-  // try to warp them to the Beast room, but this will not work from stage 6, so the game will
-  // crash. To work around this, return the player to the menu to emulate what would happen if they
-  // saved and quit.
+  // When Dogma dies, it triggers the static fade out effect, which will take the player to the
+  // Beast Room. In this circumstance, since we are not on the Home floor, the game will crash.
+  // Thus, we need to stop the fade out effect from occurring. Since the effect is only triggered
+  // once Dogma's death animation ends, we can prevent the effect by removing Dogma on the frame
+  // before the death animation completes.
+  const entityPtr = EntityPtr(entity);
   runInNGameFrames(() => {
-    game.Fadeout(1, FadeoutTarget.MAIN_MENU);
-  }, GAME_FRAMES_UNTIL_SCREEN_FADES_TO_BLACK);
+    const futureEntity = entityPtr.Ref;
+    if (futureEntity !== undefined) {
+      futureEntity.Remove();
+    }
+  }, 41); // 42 triggers the static.
 }

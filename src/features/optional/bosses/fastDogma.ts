@@ -23,3 +23,13 @@ export function postEntityKillDogma(entity: Entity): void {
     consoleCommand("goto x.itemdungeon.666");
   }
 }
+
+// ModCallback.POST_NPC_RENDER (28)
+// EntityType.DOGMA (950)
+export function postNPCRenderDogma(npc: EntityNPC): void {
+  const sprite = npc.GetSprite();
+  const animation = sprite.GetAnimation();
+  if (animation === "Transition" || animation === "Appear") {
+    sprite.SetLastFrame();
+  }
+}

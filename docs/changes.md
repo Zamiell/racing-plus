@@ -166,32 +166,31 @@ Post-flip actions:
 
 > Why? Bosses with long death animations obscure the identity of the item that drops, forcing players to wait for the death animation to complete before being able to take or roll the item.
 
-- `0302` <!-- fastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses (in order to increase the variety). Additionally, three bosses will spawn at a time instead of two. The unnecessary waiting between waves is removed.
-- `0303` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
-- `0304` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
-- `0305` <!-- preventDeathSlow 66 --> Death will no longer perform his "slow" attack.
+- `0302` <!-- removeArmor --> Bosses no longer have armor (i.e. damage scaling).
+- `0303` <!-- fastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses (in order to increase the variety). Additionally, three bosses will spawn at a time instead of two. The unnecessary waiting between waves is removed.
+- `0304` <!-- killExtraEnemies 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
+- `0305` <!-- fastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
+- `0306` <!-- preventDeathSlow 66 --> Death will no longer perform his "slow" attack.
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `0306` <!-- fastKrampus 81 --> Krampus will immediately drop his item once he is killed.
-- `0307` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
-- `0308` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `0309` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
-- `0310` <!-- consistentAngels 271, 272 --> Angel types are now properly seeded and are no longer duplicated. Uriel is always given first.
-- `0311` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
+- `0307` <!-- fastKrampus 81 --> Krampus will immediately drop his item once he is killed.
+- `0308` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
+- `0309` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `0310` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
+- `0311` <!-- consistentAngels 271, 272 --> Angel types are now properly seeded and are no longer duplicated. Uriel is always given first.
+- `0312` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `0312` <!-- preventVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
+- `0313` <!-- preventVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0313` <!-- removeMegaSatanArmor 275 --> The second phase of Mega Satan no longer has armor.
 - `0314` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0315` <!-- removeHushArmor 407 --> Hush no longer has armor.
-- `0316` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0317` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0318` <!-- fastDogma 950 --> Dogma's death cutscene is skipped.
+- `0315` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0316` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0317` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
