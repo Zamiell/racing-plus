@@ -44,6 +44,18 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallback.ENTITY_TAKE_DMG,
+    mother,
+    EntityType.MOTHER, // 912
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
+    dogma,
+    EntityType.DOGMA, // 950
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
     dummy,
     EntityType.DUMMY, // 964
   );
@@ -122,6 +134,40 @@ function hush(
   countdownFrames: int,
 ): boolean | undefined {
   return removeArmor.entityTakeDmgHush(
+    entity,
+    amount,
+    damageFlags,
+    source,
+    countdownFrames,
+  );
+}
+
+// EntityType.MOTHER (912)
+function mother(
+  entity: Entity,
+  amount: float,
+  damageFlags: BitFlags<DamageFlag>,
+  source: EntityRef,
+  countdownFrames: int,
+): boolean | undefined {
+  return removeArmor.entityTakeDmgMother(
+    entity,
+    amount,
+    damageFlags,
+    source,
+    countdownFrames,
+  );
+}
+
+// EntityType.DOGMA (950)
+function dogma(
+  entity: Entity,
+  amount: float,
+  damageFlags: BitFlags<DamageFlag>,
+  source: EntityRef,
+  countdownFrames: int,
+): boolean | undefined {
+  return removeArmor.entityTakeDmgDogma(
     entity,
     amount,
     damageFlags,

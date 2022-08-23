@@ -28,6 +28,18 @@ export function entityTakeDmgHush(
 }
 
 // ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.MOTHER (912)
+export function entityTakeDmgMother(
+  entity: Entity,
+  amount: float,
+  damageFlags: BitFlags<DamageFlag>,
+  source: EntityRef,
+  countdownFrames: int,
+): boolean | undefined {
+  return removeArmor(entity, amount, damageFlags, source, countdownFrames);
+}
+
+// ModCallback.ENTITY_TAKE_DMG (11)
 // EntityType.DOGMA (950)
 export function entityTakeDmgDogma(
   entity: Entity,

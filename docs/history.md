@@ -5,8 +5,8 @@
 
 ### _v0.84.0_ - August 23rd, 2022
 
-- Dogma no longer has armor (i.e. damage scaling).
-- Dogma's transition animation between phase 1 and phase 2 is now removed.
+- Mother and Dogma no longer has armor (i.e. damage scaling).
+- Dogma's transition animation between phase 1 and phase 2 is now removed. (Thanks thereisnofuture)
 - In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
 - In season 3, the static fade out effect after killing Dogma is now prevented. (Thanks makia)
 - Fixed the bug where defeating a wave in the Boss Rush did not grant any charges. (Thanks 3kch1)
