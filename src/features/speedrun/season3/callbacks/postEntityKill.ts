@@ -2,7 +2,7 @@ import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
 import { asNumber, runInNGameFrames, spawnPickup } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
-import v, { season3HasDogmaGoal } from "../v";
+import { season3HasDogmaGoal } from "../v";
 
 // EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {
@@ -19,8 +19,6 @@ export function season3PostEntityKillDogma(entity: Entity): void {
   if (!season3HasDogmaGoal()) {
     return;
   }
-
-  v.run.killedDogma = true;
 
   // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
   const centerPos = g.r.GetCenterPos();

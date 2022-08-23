@@ -1,7 +1,11 @@
-import { GridRoom, TeleporterState } from "isaac-typescript-definitions";
-import { asNumber, teleport } from "isaacscript-common";
+import {
+  GridRoom,
+  LevelStage,
+  TeleporterState,
+} from "isaac-typescript-definitions";
+import { asNumber, inStartingRoom, teleport } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import v from "../v";
+import g from "../../../../globals";
 
 // ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED
 // GridEntityType.TELEPORTER (23)
@@ -20,7 +24,9 @@ export function season3PostGridEntityStateChangedTeleporter(
 }
 
 function checkMegaSatanTeleporterActivated(newState: int) {
-  if (!v.room.megaSatanTeleporterSpawned) {
+  const stage = g.l.GetStage();
+
+  if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
     return;
   }
 

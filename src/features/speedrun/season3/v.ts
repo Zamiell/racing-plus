@@ -27,12 +27,6 @@ const v = {
 
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
-
-    killedDogma: false,
-  },
-
-  room: {
-    megaSatanTeleporterSpawned: false,
   },
 };
 export default v;

@@ -59,7 +59,7 @@ function checkManualResetAtEndOfFadeout() {
   speedrunSetNextCharacterAndRestart();
 }
 
-export function speedrunSetNextCharacterAndRestart(): void {
+function speedrunSetNextCharacterAndRestart() {
   const challenge = Isaac.GetChallenge();
 
   v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again
