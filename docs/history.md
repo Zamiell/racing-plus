@@ -3,6 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.84.0_ - August 23rd, 2022
+
+- In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
+- Fixed the bug where defeating a wave in the Boss Rush did not grant any charges. (Thanks 3kch1)
+- Fixed the bug where the photos could spawn in the Dad's Note room under certain conditions. (Thanks makia)
+
 ### _v0.84.0_ - August 22nd, 2022
 
 - R+7 Season 3 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-3-diversity

@@ -128,6 +128,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType
     CollectibleType.MIND, // 333
     CollectibleType.MOMS_SHOVEL, // 552 (since We Need to Go Deeper! is banned)
     CollectibleType.TERRA, // 592
+    CollectibleType.DEATH_CERTIFICATE, // 628
     CollectibleType.CARD_READING, // 660
   ];
 

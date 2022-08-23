@@ -1,4 +1,5 @@
 import {
+  BossID,
   CollectibleType,
   LevelStage,
   RoomType,
@@ -53,12 +54,15 @@ export function inClearedMomBossRoom(): boolean {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
+  const bossID = g.r.GetBossID();
   const roomInsideGrid = isRoomInsideGrid();
 
   return (
     stage === LevelStage.DEPTHS_2 &&
     roomType === RoomType.BOSS &&
     roomInsideGrid &&
-    roomClear
+    roomClear &&
+    // We want to filter out the situations where the Dad's Note room is cleared.
+    bossID === BossID.MOM
   );
 }

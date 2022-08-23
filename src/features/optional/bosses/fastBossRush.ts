@@ -12,6 +12,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
+  addRoomClearCharges,
   anyPlayerCloserThan,
   copySet,
   findFreePosition,
@@ -175,7 +176,9 @@ function checkSpawnNextWave() {
     `Boss Rush wave ${v.room.currentWave} completed. Total bosses defeated so far: ${totalBossesDefeatedIfWaveIsClear}`,
   );
 
-  // TODO: Give charge if necessary.
+  if (v.room.currentWave > 0) {
+    addRoomClearCharges();
+  }
 
   // Find out if the Boss Rush is over.
   if (totalBossesDefeatedIfWaveIsClear >= NUM_TOTAL_BOSSES) {

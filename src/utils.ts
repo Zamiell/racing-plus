@@ -32,19 +32,28 @@ export function getEffectiveDevilDeals(): int {
     : devilRoomDeals;
 }
 
+/**
+ * We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true if
+ * they are holding the Mysterious Paper trinket.
+ */
 export function hasPolaroidOrNegative(): [boolean, boolean] {
-  let hasPolaroid = false;
-  let hasNegative = false;
-  for (const player of getPlayers()) {
-    // We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true
-    // if they are holding the Mysterious Paper trinket.
-    if (player.GetCollectibleNum(CollectibleType.POLAROID) > 0) {
-      hasPolaroid = true;
-    }
-    if (player.GetCollectibleNum(CollectibleType.NEGATIVE) > 0) {
-      hasNegative = true;
-    }
-  }
+  const players = getPlayers();
+
+  const hasPolaroid = players.some((player) => {
+    const numPolaroids = player.GetCollectibleNum(
+      CollectibleType.POLAROID,
+      true,
+    );
+    return numPolaroids > 0;
+  });
+
+  const hasNegative = players.some((player) => {
+    const numNegatives = player.GetCollectibleNum(
+      CollectibleType.NEGATIVE,
+      true,
+    );
+    return numNegatives > 0;
+  });
 
   return [hasPolaroid, hasNegative];
 }

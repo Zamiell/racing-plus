@@ -104,6 +104,7 @@ function earlyClearRoom() {
   // The `Room.TriggerClear` method must be before other logic because extra doors can be spawned by
   // clearing the room.
   g.r.TriggerClear();
+  Isaac.DebugString("GETTING HERE - TRIGGERING ROOM CLEAR");
   g.r.SetClear(true);
 
   openAllDoors();

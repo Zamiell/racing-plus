@@ -1,4 +1,5 @@
 import {
+  EntityFlag,
   EntityType,
   GameStateFlag,
   LevelStage,
@@ -9,14 +10,17 @@ import {
   getBlueWombDoor,
   getRoomGridIndex,
   isRoomInsideGrid,
+  log,
   onRepentanceStage,
   removeAllCollectibles,
   removeAllRocks,
   removeDoor,
   spawnNPC,
   spawnTeleporter,
+  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import g from "../../../../globals";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
@@ -90,10 +94,30 @@ function checkDadsNoteRoom() {
     const position = g.r.GetGridPosition(LEFT_OF_CENTER_GRID_INDEX);
     spawnNPC(EntityType.DOGMA, 0, 0, position);
 
+    spawnRoomClearDelayNPC();
+
     // The Dad's Note room will always have rocks in each of the four corners. Their presence makes
     // the fight a lot harder, so remove them.
     removeAllRocks();
   }
+}
+
+/**
+ * If we clear the room, the vanilla photos will spawn, because the game thinks it is a Mom boss
+ * room. Since we spawn the checkpoint based on when Dogma dies, we can safely spawn a room clear
+ * delay NPC to prevent the normal room clear from ever happening.
+ *
+ * Using a room clear delay effect for this purpose does not work.
+ */
+function spawnRoomClearDelayNPC() {
+  const roomClearDelayNPC = spawnNPC(
+    EntityTypeCustom.ROOM_CLEAR_DELAY_NPC,
+    0,
+    0,
+    VectorZero,
+  );
+  roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
+  log('Spawned the "Room Clear Delay NPC" custom entity (for Dogma).');
 }
 
 /** Guard against the player accidentally going to Hush. */

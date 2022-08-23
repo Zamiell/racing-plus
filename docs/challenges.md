@@ -179,6 +179,7 @@ Some builds are banned on certain characters:
   - 324 - Undefined
   - 333 - The Mind
   - 592 - Terra
+  - 628 - Death Certificate
   - 660 - Card Reading
 
 ### Item Bans
