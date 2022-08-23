@@ -3,6 +3,7 @@ import {
   RoomType,
   TrinketType,
 } from "isaac-typescript-definitions";
+import { onRepentanceStage } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
@@ -17,10 +18,16 @@ export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
     return;
   }
 
-  const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  if (roomType !== RoomType.BOSS) {
+    return;
+  }
 
-  if (stage >= LevelStage.DARK_ROOM_CHEST && roomType === RoomType.BOSS) {
+  const stage = g.l.GetStage();
+  if (
+    stage >= LevelStage.DARK_ROOM_CHEST ||
+    (stage === LevelStage.WOMB_2 && onRepentanceStage())
+  ) {
     pickup.Remove();
   }
 }
