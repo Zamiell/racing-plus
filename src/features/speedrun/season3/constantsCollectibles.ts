@@ -56,6 +56,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.PJS, // 428
   CollectibleType.DADS_LOST_COIN, // 455
   CollectibleType.MIDNIGHT_SNACK, // 456
+  CollectibleType.BROKEN_GLASS_CANNON, // 474
   CollectibleType.MARROW, // 541
   CollectibleType.BROKEN_SHOVEL_1, // 550
   CollectibleType.BROKEN_SHOVEL_2, // 551

@@ -32,7 +32,6 @@ import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
-import { speedrunSetNextCharacterAndRestart } from "../speedrun/callbacks/postRender";
 import { setUnseededWithRacingPlusLogic } from "./racingPlusSprite";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
@@ -46,7 +45,6 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   addConsoleCommand("disable", disable);
   addConsoleCommand("enable", enable);
   addConsoleCommand("move", move);
-  addConsoleCommand("next", next);
   addConsoleCommand("race", race);
   addConsoleCommand("rankedSoloReset", rankedSoloReset);
   addConsoleCommand("s0", s0);
@@ -100,10 +98,6 @@ function move() {
   const player = Isaac.GetPlayer();
   const oneByOneRoomRightDoorNextToLoadingZone = Vector(593, 280); // 593 works, 593.1 is too far
   player.Position = oneByOneRoomRightDoorNextToLoadingZone;
-}
-
-function next() {
-  speedrunSetNextCharacterAndRestart();
 }
 
 function race() {

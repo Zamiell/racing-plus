@@ -79,6 +79,7 @@ Some items hardly have an effect on the playstyle of the run. Thus, the followin
 - 428 - PJs
 - 455 - Dad's Lost Coin
 - 456 - Midnight Snack
+- 474 - Broken Glass Cannon
 - 541 - Marrow
 - 550 - Broken Shovel (Top)
 - 551 - Broken Shovel (Bottom)
