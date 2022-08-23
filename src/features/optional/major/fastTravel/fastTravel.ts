@@ -14,7 +14,6 @@ import {
   getRoomGridIndex,
   isChildPlayer,
   isPlayerUsingPony,
-  isRoomInsideGrid,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -26,7 +25,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
@@ -78,12 +77,10 @@ function getCustomSpriteFilename(
   );
   const stage = g.l.GetStage();
   const roomGridIndex = getRoomGridIndex();
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
   const gridIndex = g.r.GetGridIndex(entity.Position);
   const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
-  const roomInsideGrid = isRoomInsideGrid();
+  const clearedMomBossRoom = inClearedMomBossRoom();
 
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
@@ -99,7 +96,7 @@ function getCustomSpriteFilename(
         g.race.status === RaceStatus.IN_PROGRESS &&
         g.race.myStatus === RacerStatus.RACING &&
         g.race.goal === RaceGoal.THE_BEAST &&
-        isInClearedMomBossRoom() &&
+        clearedMomBossRoom &&
         !repentanceStage &&
         gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
       ) {
@@ -109,7 +106,7 @@ function getCustomSpriteFilename(
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
         challenge === ChallengeCustom.SEASON_3 &&
-        isInClearedMomBossRoom() &&
+        clearedMomBossRoom &&
         !repentanceStage &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX
       ) {

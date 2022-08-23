@@ -23,7 +23,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -109,7 +109,7 @@ function shouldRemove() {
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
-  const inClearedMomBossRoom = isInClearedMomBossRoom();
+  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
@@ -212,7 +212,7 @@ function shouldRemove() {
     if (
       stage === LevelStage.DEPTHS_2 &&
       repentanceStage &&
-      !inClearedMomBossRoom
+      !clearedMomBossRoom
     ) {
       log(
         `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,

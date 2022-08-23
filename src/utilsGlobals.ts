@@ -49,7 +49,7 @@ export function giveTrinketAndRemoveFromPools(
   g.itemPool.RemoveTrinket(trinketType);
 }
 
-export function isInClearedMomBossRoom(): boolean {
+export function inClearedMomBossRoom(): boolean {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();

@@ -20,7 +20,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import v from "./v";
@@ -91,12 +91,12 @@ function getNextStageCustom() {
   const stage = g.l.GetStage();
   const repentanceStage = onRepentanceStage();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
-  const inClearedMomBossRoom = isInClearedMomBossRoom();
+  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
     raceDestinationTheAscent &&
-    inClearedMomBossRoom &&
+    clearedMomBossRoom &&
     !repentanceStage &&
     backwardsPathInit
   ) {
@@ -113,12 +113,12 @@ function getNextStageTypeCustom(upwards: boolean) {
   const repentanceStage = onRepentanceStage();
   const nextStage = getNextStageCustom();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
-  const inClearedMomBossRoom = isInClearedMomBossRoom();
+  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
     raceDestinationTheAscent &&
-    inClearedMomBossRoom &&
+    clearedMomBossRoom &&
     !repentanceStage &&
     backwardsPathInit &&
     nextStage === LevelStage.DEPTHS_2

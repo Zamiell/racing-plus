@@ -32,7 +32,7 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { moveEsauNextToJacob } from "../../../../utils";
-import { isInClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
@@ -106,6 +106,7 @@ function setGameStateFlags(position: Vector) {
   const gridIndex = g.r.GetGridIndex(position);
   const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
+  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // If the player has gone through the trapdoor past the strange door.
   if (stage === LevelStage.DEPTHS_2 && !repentanceStage && inSecretExit()) {
@@ -122,7 +123,7 @@ function setGameStateFlags(position: Vector) {
       gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
       (challenge === ChallengeCustom.SEASON_3 &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
-    isInClearedMomBossRoom()
+    clearedMomBossRoom
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
