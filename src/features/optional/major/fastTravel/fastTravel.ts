@@ -113,6 +113,15 @@ function getCustomSpriteFilename(
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
+      if (
+        challenge === ChallengeCustom.SEASON_3 &&
+        clearedMomBossRoom &&
+        repentanceStage &&
+        gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+      ) {
+        return "gfx/grid/door_11_corpsehole_custom.anm2";
+      }
+
       // -8
       if (roomGridIndex === asNumber(GridRoom.BLUE_WOMB)) {
         return "gfx/grid/door_11_wombhole_blue_custom.anm2";

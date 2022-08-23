@@ -123,7 +123,8 @@ function setGameStateFlags(position: Vector) {
       gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
       (challenge === ChallengeCustom.SEASON_3 &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
-    clearedMomBossRoom
+    clearedMomBossRoom &&
+    !repentanceStage
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);

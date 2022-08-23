@@ -1,17 +1,21 @@
 import {
   EffectVariant,
+  GameStateFlag,
   LevelStage,
   PickupVariant,
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   isRoomInsideGrid,
+  onRepentanceStage,
   removeAllEffects,
   removeAllTrapdoors,
   spawnPickup,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { Season3Goal } from "../constants";
 import v from "../v";
 
@@ -27,6 +31,7 @@ export function season3PostRoomClearChanged(roomClear: boolean): void {
   }
 
   checkHushCleared();
+  checkRepentanceMomCleared();
 }
 
 /**
@@ -50,5 +55,15 @@ function checkHushCleared() {
     // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
     const centerPos = g.r.GetCenterPos();
     spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
+  }
+}
+
+/**
+ * By setting the Mausoleum Heart killed flag after clearing Mom, the lights will fade and the
+ * trapdoor will automatically take us to Corpse without having to specify any explicit logic.
+ */
+function checkRepentanceMomCleared() {
+  if (inClearedMomBossRoom() && onRepentanceStage()) {
+    game.SetStateFlag(GameStateFlag.MAUSOLEUM_HEART_KILLED, true);
   }
 }
