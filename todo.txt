@@ -1,5 +1,4 @@
 S3:
-- ensure constant alt path / rep
 - do softlock preventing for every goal
 
 TODO Racing+ new features:

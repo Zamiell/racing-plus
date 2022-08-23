@@ -24,6 +24,10 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import {
+  season3OnlyBossRushGoalLeft,
+  season3OnlyHushGoalLeft,
+} from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -111,7 +115,7 @@ function shouldRemove() {
   const secretExit = inSecretExit();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
-  // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
+  // If the goal of the race/speedrun is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -123,8 +127,18 @@ function shouldRemove() {
     );
     return true;
   }
+  if (
+    challenge === ChallengeCustom.SEASON_3 &&
+    season3OnlyBossRushGoalLeft() &&
+    stage === LevelStage.DEPTHS_2
+  ) {
+    log(
+      `Removed a vanilla trapdoor on Depths 2 (for a Season 3 Boss Rush goal) on game frame: ${gameFrameCount}`,
+    );
+    return true;
+  }
 
-  // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
+  // If the goal of the race/speedrun is Hush, delete the trapdoor that spawns after It Lives!
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
@@ -134,6 +148,18 @@ function shouldRemove() {
   ) {
     log(
       `Removed a vanilla trapdoor after Mom (for a race Hush goal) on game frame: ${gameFrameCount}`,
+    );
+    return true;
+  }
+
+  if (
+    challenge === ChallengeCustom.SEASON_3 &&
+    season3OnlyHushGoalLeft() &&
+    stage === LevelStage.WOMB_2 &&
+    roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
+  ) {
+    log(
+      `Removed a vanilla trapdoor after Mom (for a Season 3 Hush goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }

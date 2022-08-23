@@ -151,7 +151,7 @@ Some builds are banned on certain characters:
 
 <br>
 
-## R+7 Season 3 (Diversity) (Proposed)
+## R+7 Season 3 (Diversity)
 
 ### Characters
 

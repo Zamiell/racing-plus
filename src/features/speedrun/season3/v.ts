@@ -46,6 +46,24 @@ export function season3GetCurrentCharacter(): PlayerType | undefined {
   return v.persistent.selectedCharacters[characterNum - 1];
 }
 
+export function season3OnlyBossRushGoalLeft(): boolean {
+  return (
+    v.persistent.remainingGoals.includes(Season3Goal.BOSS_RUSH) &&
+    v.persistent.remainingGoals.length === 1
+  );
+}
+
+export function season3HasHushGoal(): boolean {
+  return v.persistent.remainingGoals.includes(Season3Goal.HUSH);
+}
+
+export function season3OnlyHushGoalLeft(): boolean {
+  return (
+    v.persistent.remainingGoals.includes(Season3Goal.HUSH) &&
+    v.persistent.remainingGoals.length === 1
+  );
+}
+
 export function season3HasMotherGoal(): boolean {
   return v.persistent.remainingGoals.includes(Season3Goal.MOTHER);
 }

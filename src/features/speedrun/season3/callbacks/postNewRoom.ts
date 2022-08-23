@@ -6,11 +6,13 @@ import {
 } from "isaac-typescript-definitions";
 import {
   game,
+  getBlueWombDoor,
   getRoomGridIndex,
   isRoomInsideGrid,
   onRepentanceStage,
   removeAllCollectibles,
   removeAllRocks,
+  removeDoor,
   spawnNPC,
   spawnTeleporter,
 } from "isaacscript-common";
@@ -20,7 +22,7 @@ import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
 import { Season3Goal } from "../constants";
 import { resetSeason3StartingRoomSprites } from "../startingRoomSprites";
-import v from "../v";
+import v, { season3HasHushGoal } from "../v";
 
 const LEFT_OF_CENTER_GRID_INDEX = 65;
 const TOP_CENTER_GRID_INDEX = 22;
@@ -39,6 +41,7 @@ export function season3PostNewRoom(): void {
 
   checkSpawnMegaSatanTeleporter();
   checkDadsNoteRoom();
+  checkBlueWombRoom();
 }
 
 function checkSpawnMegaSatanTeleporter() {
@@ -87,5 +90,17 @@ function checkDadsNoteRoom() {
     // The Dad's Note room will always have rocks in each of the four corners. Their presence makes
     // the fight a lot harder, so remove them.
     removeAllRocks();
+  }
+}
+
+/** Guard against the player accidentally going to Hush. */
+function checkBlueWombRoom() {
+  if (season3HasHushGoal()) {
+    return;
+  }
+
+  const blueWombDoor = getBlueWombDoor();
+  if (blueWombDoor !== undefined) {
+    removeDoor(blueWombDoor);
   }
 }

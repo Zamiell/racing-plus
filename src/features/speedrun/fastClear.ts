@@ -1,13 +1,15 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
+  getBlueWombDoor,
   getEffectiveStage,
   getRepentanceDoor,
   isRoomInsideGrid,
   onRepentanceStage,
+  removeDoor,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
-import { season3HasMotherGoal } from "./season3/v";
+import { season3HasHushGoal, season3HasMotherGoal } from "./season3/v";
 import { inSpeedrun } from "./speedrun";
 
 /**
@@ -28,6 +30,14 @@ export function speedrunPostFastClear(): void {
 
     if (challenge === ChallengeCustom.SEASON_3) {
       unlockRepentanceDoor();
+    }
+  }
+
+  // Additionally, guard against the player accidentally going to Hush in Season 3.
+  if (challenge === ChallengeCustom.SEASON_3 && !season3HasHushGoal()) {
+    const blueWombDoor = getBlueWombDoor();
+    if (blueWombDoor !== undefined) {
+      removeDoor(blueWombDoor);
     }
   }
 }
