@@ -176,6 +176,7 @@ Some builds are banned on certain characters:
   - 147 - Notched Axe
   - 158 - Crystal Ball
   - 311 - Judas' Shadow
+  - 324 - Undefined
   - 333 - The Mind
   - 592 - Terra
   - 660 - Card Reading

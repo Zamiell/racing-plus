@@ -124,6 +124,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType
     CollectibleType.NOTCHED_AXE, // 147
     CollectibleType.CRYSTAL_BALL, // 158
     CollectibleType.JUDAS_SHADOW, // 311
+    CollectibleType.UNDEFINED, // 324
     CollectibleType.MIND, // 333
     CollectibleType.MOMS_SHOVEL, // 552 (since We Need to Go Deeper! is banned)
     CollectibleType.TERRA, // 592

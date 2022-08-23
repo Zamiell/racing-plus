@@ -1,7 +1,6 @@
 import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import { getArrayIndexes } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import g from "../../../globals";
 
 export const SEASON_2_NUM_BANS = 3;
 
@@ -192,6 +191,6 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
   });
 
 /** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = g.debug ? 0.01 : 1.25;
+const SEASON_2_LOCK_MINUTES = 1.25;
 export const SEASON_2_LOCK_SECONDS = SEASON_2_LOCK_MINUTES * 60;
 export const SEASON_2_LOCK_MILLISECONDS = SEASON_2_LOCK_SECONDS * 1000;
