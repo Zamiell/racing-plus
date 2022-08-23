@@ -20,23 +20,18 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { ItLivesSituation } from "../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../utils";
-import { speedrunGetCharacterNum } from "../../../speedrun/exported";
+import { season3PostItLivesPath } from "../../../speedrun/season3/postItLivesPath";
 import {
   inSpeedrun,
   onSpeedrunWithDarkRoomGoal,
 } from "../../../speedrun/speedrun";
-
-enum ItLivesSituation {
-  NEITHER,
-  HEAVEN_DOOR,
-  TRAPDOOR,
-  BOTH,
-}
 
 // The trapdoor / heaven door positions after Hush are not in the center of the room; they are near
 // the top wall.
@@ -81,16 +76,17 @@ function manuallySpawn() {
 
 // Figure out if we need to spawn either a trapdoor, a heaven door, or both.
 function getItLivesSituation(): ItLivesSituation {
+  const challenge = Isaac.GetChallenge();
+
   // Speedrun seasons have set goals.
   if (inSpeedrun()) {
+    if (challenge === ChallengeCustom.SEASON_3) {
+      return season3PostItLivesPath();
+    }
+
     const itLivesSituation = onSpeedrunWithDarkRoomGoal()
       ? ItLivesSituation.TRAPDOOR
       : ItLivesSituation.HEAVEN_DOOR;
-    log(
-      `Season 2 - It Lives! situation, character number: ${speedrunGetCharacterNum()}, situation: ${
-        ItLivesSituation[itLivesSituation]
-      } (${itLivesSituation})`,
-    );
     return itLivesSituation;
   }
 
