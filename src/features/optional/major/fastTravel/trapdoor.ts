@@ -10,12 +10,14 @@ import {
   asNumber,
   game,
   getRoomGridIndex,
+  inSecretExit,
   isPostBossVoidPortal,
   log,
   onRepentanceStage,
   onSheol,
   removeGridEntity,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
@@ -102,6 +104,7 @@ function shouldRemove() {
   const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
+  const challenge = Isaac.GetChallenge();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
 
@@ -113,7 +116,7 @@ function shouldRemove() {
     stage === LevelStage.DEPTHS_2
   ) {
     log(
-      `Removed a vanilla trapdoor on Depths 2 (for a Boss Rush goal) on game frame: ${gameFrameCount}`,
+      `Removed a vanilla trapdoor on Depths 2 (for a race Boss Rush goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }
@@ -127,7 +130,7 @@ function shouldRemove() {
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
-      `Removed a vanilla trapdoor after Mom on game frame: ${gameFrameCount}`,
+      `Removed a vanilla trapdoor after Mom (for a race Hush goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }
@@ -141,7 +144,7 @@ function shouldRemove() {
     roomGridIndex !== asNumber(GridRoom.THE_VOID)
   ) {
     log(
-      `Removed a vanilla trapdoor after Hush (for a Hush goal) on game frame: ${gameFrameCount}`,
+      `Removed a vanilla trapdoor after Hush (for a race Hush goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }
@@ -163,7 +166,7 @@ function shouldRemove() {
       !repentanceStage
     ) {
       log(
-        `Removed a vanilla trapdoor after a boss on non-Repentance stage ${stage} (for a Mother goal) on game frame: ${gameFrameCount}`,
+        `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
@@ -173,7 +176,7 @@ function shouldRemove() {
       repentanceStage
     ) {
       log(
-        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
+        `Removed a vanilla trapdoor Downpour/Dross or Mines/Ashpit (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
@@ -184,7 +187,32 @@ function shouldRemove() {
       !mausoleumHeartKilled
     ) {
       log(
-        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Mother goal) on game frame: ${gameFrameCount}`,
+        `Removed a vanilla trapdoor on Mausoleum/Gehenna 2 (for a race Mother goal) on game frame: ${gameFrameCount}`,
+      );
+      return true;
+    }
+  }
+
+  // If the goal of the multi-character speedrun is Mother, remove some trapdoors.
+  if (challenge === ChallengeCustom.SEASON_3) {
+    if (
+      (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
+      repentanceStage &&
+      !inSecretExit()
+    ) {
+      log(
+        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
+      );
+      return true;
+    }
+
+    if (
+      stage === LevelStage.DEPTHS_2 &&
+      repentanceStage &&
+      !mausoleumHeartKilled
+    ) {
+      log(
+        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
@@ -192,11 +220,7 @@ function shouldRemove() {
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
   // this functionality it is simpler to delete them.)
-  if (
-    stage < LevelStage.WOMB_1 &&
-    backwardPath &&
-    roomGridIndex !== asNumber(GridRoom.SECRET_EXIT)
-  ) {
+  if (stage < LevelStage.WOMB_1 && backwardPath && !inSecretExit()) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );

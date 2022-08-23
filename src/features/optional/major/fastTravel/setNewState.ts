@@ -20,6 +20,7 @@ import {
   getFamiliars,
   getPlayers,
   getRoomGridIndex,
+  inSecretExit,
   isCharacter,
   isRoomInsideGrid,
   log,
@@ -88,7 +89,7 @@ export function setFadingToBlack(
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
   v.run.upwards = upwards;
-  v.run.repentanceSecretExit = roomGridIndex === asNumber(GridRoom.SECRET_EXIT);
+  v.run.repentanceSecretExit = inSecretExit();
   logFastTravelStateChanged();
 
   const whitelist = new Set([
@@ -113,14 +114,13 @@ function setGameStateFlags(position: Vector) {
   const gridIndex = g.r.GetGridIndex(position);
   const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
-  const roomGridIndex = getRoomGridIndex();
   const insideGrid = isRoomInsideGrid();
 
   // If the player has gone through the trapdoor past the strange door.
   if (
     stage === LevelStage.DEPTHS_2 &&
     !repentanceStage &&
-    roomGridIndex === (GridRoom.SECRET_EXIT as int)
+    inSecretExit()
   ) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);

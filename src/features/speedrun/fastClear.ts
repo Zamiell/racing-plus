@@ -52,7 +52,18 @@ function isCorrectStageForRepentanceDoor(): boolean {
   const repentanceStage = onRepentanceStage();
 
   if (challenge === ChallengeCustom.SEASON_3) {
-    return effectiveStage === 2 && !repentanceStage && season3HasMotherGoal();
+    if (!season3HasMotherGoal()) {
+      return false;
+    }
+
+    return (
+      // Basement 2 --> Downpour/Dross 2
+      (effectiveStage === 2 && !repentanceStage) ||
+      // Downpour/Dross 2 --> Mines/Ashpit 1
+      (effectiveStage === 3 && repentanceStage) ||
+      // Mines/Ashpit 2 --> Mausoleum/Gehenna 1
+      (effectiveStage === 5 && repentanceStage)
+    );
   }
 
   return effectiveStage === 1 || (effectiveStage === 2 && !repentanceStage);

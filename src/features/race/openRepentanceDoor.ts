@@ -1,7 +1,7 @@
 // Automatically open Repentance doors in races to Mother.
 
 import { RoomType } from "isaac-typescript-definitions";
-import { getDoors } from "isaacscript-common";
+import { getRepentanceDoor, isRoomInsideGrid } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -24,11 +24,13 @@ function openRepentanceDoor() {
   const player = Isaac.GetPlayer();
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
+  const roomInsideGrid = isRoomInsideGrid();
 
-  if (roomType === RoomType.BOSS && roomClear) {
-    for (const door of getDoors()) {
-      if (door.IsLocked()) {
-        door.TryUnlock(player, true);
+  if (roomType === RoomType.BOSS && roomInsideGrid && roomClear) {
+    const repentanceDoor = getRepentanceDoor();
+    if (repentanceDoor !== undefined) {
+      if (repentanceDoor.IsLocked()) {
+        repentanceDoor.TryUnlock(player, true);
       }
     }
   }

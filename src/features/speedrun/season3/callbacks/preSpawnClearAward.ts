@@ -18,12 +18,9 @@ export function season3PreSpawnClearAward(): void {
 function checkResetTimeAssigned() {
   const roomType = g.r.GetType();
   const effectiveStage = getEffectiveStage();
+  const roomInsideGrid = isRoomInsideGrid();
 
-  if (
-    effectiveStage === 2 &&
-    roomType === RoomType.BOSS &&
-    isRoomInsideGrid()
-  ) {
+  if (effectiveStage === 2 && roomType === RoomType.BOSS && roomInsideGrid) {
     v.persistent.timeAssigned = 0;
   }
 }
