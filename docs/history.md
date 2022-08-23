@@ -5,6 +5,7 @@
 
 ### _v0.84.0_ - August 23rd, 2022
 
+- Dogma no longer has armor (i.e. damage scaling).
 - Dogma's transition animation between phase 1 and phase 2 is now removed.
 - In season 3, Death Certificate is now blacklisted from the diversity starting items. (Thanks sisuka)
 - In season 3, the static fade out effect after killing Dogma is now prevented. (Thanks makia)
@@ -28,8 +29,7 @@
 
 - The Boss Rush is now customized to include Womb bosses and Repentance bosses (in order to increase the variety). Additionally, three bosses will spawn at a time instead of two. The unnecessary waiting between waves is removed.
 - Great Gideon will no longer appear as a boss in Mines/Ashpit.
-- Hush no longer has armor.
-- The second phase of Mega Satan no longer has armor.
+- Hush and Mega Satan no longer have armor (i.e. damage scaling).
 - Marrow, Tropicamide, and Dogma can no longer be given as a random item during diversity races.
 - Fixed the bug where the diversity documentation was not accurate with respect to the excluded starting items.
 - Fixed the bug where it was possible to reroll into placeholder items.
