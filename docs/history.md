@@ -5,9 +5,10 @@
 
 ### _v0.84.2_ - August 24th, 2022 (Unreleased)
 
+- Dogma's transition animation will now be sped up by a factor of 4 instead of skipped altogether.
 - Dump bodies that are fading away and spitting out tears will no longer be considered alive for the purposes of fast-clear. (Thanks Hispa)
 - Sol now properly works with fast-clear. (Thanks toooschi)
-- In season 3, Glitched Crown is now blacklisted from the diversity starting items.
+- In season 3, Glitched Crown is now blacklisted from the diversity starting items. (Thanks Jack)
 - In season 3, Apple of Sodom is now blacklisted from the diversity starting trinket when playing as Tainted Magdalene or Tainted Eve. (Thanks Jack)
 - Fixed the bug where fast-clear would not work properly with Dumps. (Thanks Hispa)
 - Fixed the bug where Hornfel would be incorrectly faded during his second phase.
