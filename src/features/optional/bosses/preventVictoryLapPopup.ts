@@ -55,7 +55,7 @@ export function postEntityKillLamb(entity: Entity): void {
   }
 
   // There is an edge-case with The Lamb where if you deal fatal damage to it in phase 1, it will
-  // trigger the PostEntityKill callback. However, in this situation, The Lamb will not actually
+  // trigger the `POST_ENTITY_KILL` callback. However, in this situation, The Lamb will not actually
   // die, and will instead proceed to transition to phase 2 anyway. To work around this, wait a
   // frame before checking to see if all of the Lamb entities in the room are dead. (It is difficult
   // to distinguish between this special case and throwing a Chaos Card.)

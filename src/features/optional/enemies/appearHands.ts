@@ -25,7 +25,7 @@ export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
 /**
  * Play a custom "Appear" animation when Hands first spawn.
  *
- * This cannot be in the PostNPCInit callback because if it is done there, a shadow will appear
+ * This cannot be in the `POST_NPC_INIT` callback because if it is done there, a shadow will appear
  * below the hand, which does not look very good, and I don't know of a way to remove the shadow.
  */
 function checkFirstSpawn(npc: EntityNPC) {

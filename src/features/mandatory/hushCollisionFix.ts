@@ -1,6 +1,6 @@
 // Setting Hush's appear animation to be 0 frames long has a side effect where his
 // `EntityCollisionClass` will be set to `ENEMIES` instead of `ALL`. We can fix this by manually
-// setting the `EntityCollisionClass` on the 0th frame. (This cannot be done in the PostNPCInit
+// setting the `EntityCollisionClass` on the 0th frame. (This cannot be done in the `POST_NPC_INIT`
 // callback.)
 
 import { EntityCollisionClass } from "isaac-typescript-definitions";

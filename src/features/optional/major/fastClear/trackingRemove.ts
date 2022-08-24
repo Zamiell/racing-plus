@@ -9,8 +9,8 @@ export function postEntityRemove(entity: Entity): void {
     return;
   }
 
-  // We cannot completely rely on the PostEntityKill callback because it is not fired for certain
-  // NPCs (like when Daddy Long Legs does a stomp attack or a Portal despawns).
+  // We cannot completely rely on the `POST_ENTITY_KILL` callback because it is not fired for
+  // certain NPCs (like when Daddy Long Legs does a stomp attack or a Portal despawns).
   checkRemove(npc, false, "MC_POST_ENTITY_REMOVE");
 }
 
@@ -35,9 +35,9 @@ export function checkRemove(
     return;
   }
 
-  // The PostEntityKill callback will be triggered when a Dark Red champion changes to a flesh pile.
-  // This does not count as a real death (and the NPC should not be removed), so we need to handle
-  // this.
+  // The `POST_ENTITY_KILL` callback will be triggered when a Dark Red champion changes to a flesh
+  // pile. This does not count as a real death (and the NPC should not be removed), so we need to
+  // handle this.
   // - We cannot check for the sprite file name being equal to "gfx/024.000_Globin.anm2"`, since
   //   that that will not work for champion Gapers & Globins.
   // - We cannot check to see if the sprite is playing the "ReGenChamp" animation, since that will

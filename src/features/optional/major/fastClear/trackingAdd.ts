@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   isAliveExceptionNPC,
+  isDyingDump,
   isDyingEggyWithNoSpidersLeft,
 } from "isaacscript-common";
 import * as trackingRemove from "./trackingRemove";
@@ -13,21 +14,28 @@ import v, { logFastClear } from "./v";
 // ModCallback.POST_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {
   // Friendly enemies (from Delirious or Friendly Ball) will be added to the `aliveEnemies` set
-  // because there are no flags set yet in the PostNPCInit callback. Thus, we have to wait until
+  // because there are no flags set yet in the `POST_NPC_INIT` callback. Thus, we have to wait until
   // they are initialized before we remove them from the table.
   if (npc.HasEntityFlags(EntityFlag.FRIENDLY)) {
     trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_FLAG_FRIENDLY");
     return;
   }
 
-  // Eggies will never trigger the PostEntityKill callback, so we must manually check to see if they
-  // are dead on every frame.
+  // Eggies will never trigger the `POST_ENTITY_KILL` callback, so we must manually check to see if
+  // they are dead on every frame.
   if (isDyingEggyWithNoSpidersLeft(npc)) {
     trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_DYING_EGGY");
     return;
   }
 
-  // In order to keep track of new NPCs, we cannot completely rely on the PostNPCInit callback,
+  // Dumps will never trigger the `POST_ENTITY_KILL` callback, so we must manually check to see if
+  // they are dead on every frame.
+  if (isDyingDump(npc)) {
+    trackingRemove.checkRemove(npc, false, "MC_NPC_UPDATE_DYING_DUMP");
+    return;
+  }
+
+  // In order to keep track of new NPCs, we cannot completely rely on the `POST_NPC_INIT` callback,
   // because it is not fired for certain NPCs (like when a Gusher emerges from killing a Gaper).
   checkAdd(npc, "MC_NPC_UPDATE");
 }

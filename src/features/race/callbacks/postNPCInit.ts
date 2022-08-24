@@ -30,8 +30,8 @@ function checkDuplicatedDarkEsau(npc: EntityNPC) {
     return;
   }
 
-  // The NPC that is in the PostNPCInit callback will not be included in the "countEntities" call,
-  // so we need to add one.
+  // The NPC that is in the `POST_NPC_INIT` callback will not be included in the "countEntities"
+  // call, so we need to add one.
   const numDarkEsaus =
     countEntities(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU) + 1;
   const normalAmountOfDarkEsaus = getNormalAmountOfDarkEsaus();
