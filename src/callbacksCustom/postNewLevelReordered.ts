@@ -1,4 +1,5 @@
 import { game, log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import * as solCustom from "../features/items/solCustom";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -46,4 +47,7 @@ function main() {
 
   // Sounds
   silenceMomDad.postNewLevel();
+
+  // Items
+  solCustom.postNewLevel();
 }

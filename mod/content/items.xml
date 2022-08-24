@@ -34,7 +34,7 @@
   <passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" id="6" />
 
   <!-- 588 -->
-  <active gfx="Collectibles_588_Sol.png" name="Sol (Custom)" description="Radiant victory" hidden="true" id="7" />
+  <passive gfx="Collectibles_588_Sol.png" name="Sol (Custom)" description="Radiant victory" hidden="true" id="7" />
 
   <!-- 711 -->
   <active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="8" />

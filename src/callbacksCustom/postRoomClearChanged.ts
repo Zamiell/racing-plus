@@ -1,4 +1,5 @@
 import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import * as solCustom from "../features/items/solCustom";
 import { fastClearPostRoomClearChanged } from "../features/optional/major/fastClear/callbacks/postRoomClearChanged";
 import { speedrunPostRoomClearChanged } from "../features/speedrun/callbacks/postRoomClearChanged";
 
@@ -9,4 +10,5 @@ export function init(mod: ModUpgraded): void {
 function main(roomClear: boolean) {
   fastClearPostRoomClearChanged(roomClear);
   speedrunPostRoomClearChanged(roomClear);
+  solCustom.postRoomClearChanged(roomClear);
 }
