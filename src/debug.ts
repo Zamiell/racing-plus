@@ -4,6 +4,7 @@ import {
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
+  setNPCDisplay,
 } from "isaacscript-common";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
@@ -11,6 +12,7 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
+  setNPCDisplay((npc) => `${npc.State}`);
 }
 
 /** Hotkey 1 is bound to F2. */

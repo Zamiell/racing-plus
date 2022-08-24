@@ -14,7 +14,7 @@ import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { speedrunPostEntityKillDogma } from "../features/speedrun/callbacks/postEntityKill";
 
-const POST_ENTITY_KILL_DEBUG = false;
+const POST_ENTITY_KILL_DEBUG = true;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_ENTITY_KILL, main);
@@ -85,7 +85,17 @@ function main(entity: Entity) {
   if (POST_ENTITY_KILL_DEBUG) {
     const gameFrameCount = game.GetFrameCount();
     const entityID = getEntityID(entity);
-    log(`MC_POST_ENTITY_KILL - ${entityID} (on game frame ${gameFrameCount})`);
+
+    let state: int | undefined;
+    const npc = entity.ToNPC();
+    if (npc !== undefined) {
+      state = npc.State;
+    }
+    const stateText = state === undefined ? "n/a" : state.toString();
+
+    log(
+      `MC_POST_ENTITY_KILL - ${entityID} (state: ${stateText}) (on game frame ${gameFrameCount})`,
+    );
   }
 
   fastClearPostEntityKill(entity);

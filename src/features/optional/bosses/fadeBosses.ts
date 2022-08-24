@@ -1,6 +1,10 @@
 // When beginning a death animation, make bosses faded so that it makes it easier to see.
 
-import { EntityType, LambVariant } from "isaac-typescript-definitions";
+import {
+  EntityType,
+  LambVariant,
+  NpcState,
+} from "isaac-typescript-definitions";
 import { asNumber, runNextGameFrame } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
@@ -34,6 +38,13 @@ function fadeBosses(entity: Entity, deferred = false) {
   // We don't want to fade multi-segment bosses since killing one segment will fade the rest of the
   // segments.
   if (MULTI_SEGMENT_BOSSES.has(entity.Type)) {
+    return;
+  }
+
+  // Killing the first phase of Hornfel will trigger the `POST_ENTITY_KILL` callback, so do not fade
+  // Hornfel in this case. (Hornfel will be in `NpcState.MOVE` in his second phase when he is
+  // running away from the player.)
+  if (npc.Type === EntityType.HORNFEL && npc.State !== NpcState.MOVE) {
     return;
   }
 
