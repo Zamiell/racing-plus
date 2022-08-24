@@ -14,7 +14,7 @@ import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { speedrunPostEntityKillDogma } from "../features/speedrun/callbacks/postEntityKill";
 
-const POST_ENTITY_KILL_DEBUG = true;
+const POST_ENTITY_KILL_DEBUG = false;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_ENTITY_KILL, main);

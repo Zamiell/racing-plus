@@ -4,6 +4,7 @@ import {
   EntityType,
   HomeRoomSubType,
   LevelStage,
+  PickupVariant,
   StageType,
 } from "isaac-typescript-definitions";
 import {
@@ -16,6 +17,8 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../utils";
@@ -51,6 +54,17 @@ function enteredDogmaRoom() {
   // frame.)
   const numDogmas = countEntities(EntityType.DOGMA);
   if (numDogmas > 0) {
+    return;
+  }
+
+  // Don't do anything if we have already defeated Dogma. (This is possible in Season 3.)
+  const numCheckpoint = countEntities(
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+    CollectibleTypeCustom.CHECKPOINT,
+  );
+  const numTrophy = countEntities(EntityTypeCustom.RACE_TROPHY);
+  if (numCheckpoint > 0 || numTrophy > 0) {
     return;
   }
 
@@ -90,7 +104,6 @@ export function postNPCRenderDogma(npc: EntityNPC): void {
   // Remove the long transition between phase 1 and phase 2.
   const sprite = npc.GetSprite();
   const animation = sprite.GetAnimation();
-  if (animation === "Transition" || animation === "Appear") {
-    sprite.SetLastFrame();
-  }
+  sprite.PlaybackSpeed =
+    animation === "Transition" || animation === "Appear" ? 4 : 1;
 }
