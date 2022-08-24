@@ -23,6 +23,7 @@ import {
   getScreenBottomRightPos,
   getTransformationName,
   getTrinketName,
+  hasFlag,
   newRNG,
   PickingUpItem,
   saveDataManager,
@@ -167,7 +168,11 @@ function getItemWispThatJustSpawned() {
 }
 
 // ModCallback.POST_USE_CARD (5)
-export function useCard(cardType: CardType): void {
+export function useCard(cardType: CardType, useFlags: BitFlags<UseFlag>): void {
+  if (hasFlag(useFlags, UseFlag.NO_ANIMATION)) {
+    return;
+  }
+
   // We ignore Blank Runes because we want to show the streak text of the actual random effect.
   if (cardType === CardType.RUNE_BLANK) {
     return;
@@ -178,7 +183,14 @@ export function useCard(cardType: CardType): void {
 }
 
 // ModCallback.POST_USE_PILL (10)
-export function usePill(pillEffect: PillEffect): void {
+export function usePill(
+  pillEffect: PillEffect,
+  useFlags: BitFlags<UseFlag>,
+): void {
+  if (hasFlag(useFlags, UseFlag.NO_ANIMATION)) {
+    return;
+  }
+
   const pillEffectName = getPillEffectName(pillEffect);
   setStreakText(pillEffectName);
 }

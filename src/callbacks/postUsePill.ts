@@ -36,10 +36,10 @@ export function init(mod: Mod): void {
 function main(
   pillEffect: PillEffect,
   player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
+  useFlags: BitFlags<UseFlag>,
 ) {
   showPills.usePill(player, pillEffect);
-  streakText.usePill(pillEffect);
+  streakText.usePill(pillEffect, useFlags);
 }
 
 // PillEffect.TELEPILLS (19)

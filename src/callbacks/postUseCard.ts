@@ -38,9 +38,9 @@ export function init(mod: Mod): void {
 function main(
   cardType: CardType,
   _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
+  useFlags: BitFlags<UseFlag>,
 ) {
-  streakText.useCard(cardType);
+  streakText.useCard(cardType, useFlags);
 }
 
 // Card.HIEROPHANT (6)

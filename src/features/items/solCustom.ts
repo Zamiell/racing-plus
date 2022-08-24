@@ -5,6 +5,7 @@ import {
   CollectibleType,
   DisplayFlag,
   RoomType,
+  UseFlag,
 } from "isaac-typescript-definitions";
 import {
   addCharge,
@@ -116,7 +117,7 @@ export function postRoomClearChanged(roomClear: boolean): void {
       // behavior for now.
       addCharge(player, activeSlot, 12);
 
-      player.UseCard(CardType.SUN);
+      player.UseCard(CardType.SUN, UseFlag.NO_ANIMATION);
 
       const curses = g.l.GetCurses();
       g.l.RemoveCurses(curses);

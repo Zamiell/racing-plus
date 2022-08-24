@@ -1,4 +1,4 @@
-import { Keyboard } from "isaac-typescript-definitions";
+import { CardType, Keyboard, UseFlag } from "isaac-typescript-definitions";
 import {
   log,
   printConsole,
@@ -11,6 +11,8 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
+  const player = Isaac.GetPlayer();
+  player.UseCard(CardType.SUN, UseFlag.NO_ANIMATION);
 }
 
 /** Hotkey 1 is bound to F2. */
