@@ -159,10 +159,7 @@ export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES =
 export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
   PlayerType,
   Set<CollectibleType>
-> = new Map([
-  // 22
-  [PlayerType.MAGDALENE_B, new Set([CollectibleType.HYPERCOAGULATION])],
-]);
+> = new Map([]);
 
 export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES: ReadonlyMap<
   PlayerType,
