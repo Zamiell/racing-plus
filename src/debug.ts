@@ -4,18 +4,13 @@ import {
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
-  setNPCDisplay,
 } from "isaacscript-common";
-import { logFastClearAliveEnemies } from "./features/optional/major/fastClear/v";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
-  logFastClearAliveEnemies();
-
-  setNPCDisplay((npc) => `${npc.State}`);
 }
 
 /** Hotkey 1 is bound to F2. */

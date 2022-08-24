@@ -1,6 +1,6 @@
 import { EffectVariant, RoomType } from "isaac-typescript-definitions";
 
-export const FAST_CLEAR_DEBUG = true;
+export const FAST_CLEAR_DEBUG = false;
 
 export const CREEP_VARIANTS_TO_KILL: ReadonlySet<EffectVariant> = new Set([
   EffectVariant.CREEP_RED, // 22
