@@ -1,4 +1,8 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   arrayRemoveInPlace,
   copyArray,
@@ -150,3 +154,22 @@ export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES =
   DIVERSITY_COLLECTIBLE_TYPES.filter(
     (collectibleType) => !isActiveCollectible(collectibleType),
   );
+
+export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
+  PlayerType,
+  Set<CollectibleType>
+> = new Map([
+  // 22
+  [PlayerType.MAGDALENE_B, new Set([CollectibleType.HYPERCOAGULATION])],
+]);
+
+export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES: ReadonlyMap<
+  PlayerType,
+  Set<TrinketType>
+> = new Map([
+  // 22
+  [PlayerType.MAGDALENE_B, new Set([TrinketType.APPLE_OF_SODOM])],
+
+  // 26
+  [PlayerType.EVE_B, new Set([TrinketType.APPLE_OF_SODOM])],
+]);

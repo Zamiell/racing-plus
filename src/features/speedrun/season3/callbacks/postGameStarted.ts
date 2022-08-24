@@ -31,6 +31,8 @@ import {
 import {
   BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
   DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
+  DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES,
+  DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES,
   DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
 } from "../constantsCollectibles";
 import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
@@ -124,6 +126,7 @@ function getRandomDiversityItems(
 ): [collectibleTypes: CollectibleType[], trinketType: TrinketType] {
   const startSeed = g.seeds.GetStartSeed();
   const rng = newRNG(startSeed);
+  const character = player.GetPlayerType();
 
   let activeCollectibleType: CollectibleType;
   do {
@@ -131,7 +134,10 @@ function getRandomDiversityItems(
       DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
       rng,
     );
-  } while (player.HasCollectible(activeCollectibleType));
+  } while (
+    player.HasCollectible(activeCollectibleType) ||
+    isCollectibleTypeBannedOnThisCharacter(activeCollectibleType, character)
+  );
 
   const passiveCollectibleTypes: CollectibleType[] = [];
   repeat(NUM_DIVERSITY_PASSIVE_COLLECTIBLES, () => {
@@ -142,18 +148,50 @@ function getRandomDiversityItems(
         rng,
         passiveCollectibleTypes,
       );
-    } while (player.HasCollectible(passiveCollectibleType));
+    } while (
+      player.HasCollectible(passiveCollectibleType) ||
+      isCollectibleTypeBannedOnThisCharacter(activeCollectibleType, character)
+    );
     passiveCollectibleTypes.push(passiveCollectibleType);
   });
 
   let trinketType: TrinketType;
   do {
     trinketType = getRandomArrayElement(DIVERSITY_TRINKET_TYPES, rng);
-  } while (player.HasTrinket(trinketType));
+  } while (
+    player.HasTrinket(trinketType) ||
+    isTrinketTypeBannedOnThisCharacter(trinketType, character)
+  );
 
   const collectibleTypes = [activeCollectibleType, ...passiveCollectibleTypes];
 
   return [collectibleTypes, trinketType];
+}
+
+function isCollectibleTypeBannedOnThisCharacter(
+  collectibleType: CollectibleType,
+  character: PlayerType,
+): boolean {
+  const bannedCollectibleTypes =
+    DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES.get(character);
+  if (bannedCollectibleTypes === undefined) {
+    return false;
+  }
+
+  return bannedCollectibleTypes.has(collectibleType);
+}
+
+function isTrinketTypeBannedOnThisCharacter(
+  trinketType: TrinketType,
+  character: PlayerType,
+): boolean {
+  const bannedTrinketTypes =
+    DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES.get(character);
+  if (bannedTrinketTypes === undefined) {
+    return false;
+  }
+
+  return bannedTrinketTypes.has(trinketType);
 }
 
 /** In addition to the "normal" diversity bans, some additional items are removed from pools. */
