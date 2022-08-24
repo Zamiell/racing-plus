@@ -5,7 +5,7 @@
 
 ### _v0.84.3_ - August ?th, 2022 (Unreleased)
 
-- n/a
+- Fixed the bug where the item tracker would not show items in certain situations (like with Seeded 3 Dollar Bill).
 
 ### _v0.84.2_ - August 24th, 2022
 
