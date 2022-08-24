@@ -1,13 +1,17 @@
 <!-- The "id" field is used to put the items on the death screen. -->
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
+  <!-- +++++++++++++ -->
   <!-- Utility items -->
+  <!-- +++++++++++++ -->
 
   <passive description="Congratulations!" gfx="Trophy.png" name="Trophy" hidden="true" tags="quest" />
   <passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" id="1" />
   <passive description="Reset to the first character" gfx="questionmark.png" name="Reset" hidden="true" tags="quest" />
   <active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" tags="quest" />
 
+  <!-- ++++++++++++ -->
   <!-- Custom items -->
+  <!-- ++++++++++++ -->
   <!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 
   <!-- Server Collectible ID: 1001 -->
@@ -19,7 +23,9 @@
   <!-- Server Collectible ID: 1003 -->
   <familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" hidden="true" id="4" />
 
+  <!-- ++++++++++++++++++++ -->
   <!-- Vanilla replacements -->
+  <!-- ++++++++++++++++++++ -->
 
   <!-- 191 -->
   <passive cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" id="5" />
@@ -27,10 +33,15 @@
   <!-- 194 -->
   <passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" id="6" />
 
-  <!-- 711 -->
-  <active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="7" />
+  <!-- 588 -->
+  <active gfx="Collectibles_588_Sol.png" name="Sol (Custom)" description="Radiant victory" hidden="true" id="7" />
 
+  <!-- 711 -->
+  <active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="8" />
+
+  <!-- ++++++++++++ -->
   <!-- Placeholders -->
+  <!-- ++++++++++++ -->
   <!--
     These can be awarded to the player after a D4 roll, but there is no known tag besides "hidden"
     that will accomplish this. ("noeden" and "quest" do not seem to have any effect.) We cannot make
@@ -65,7 +76,10 @@
   <!-- 698 -->
   <passive description="" gfx="questionmark.png" name="Twisted Pair Placeholder" quality="4" tags="noeden offensive" />
 
+  <!-- ++++++++++++++++++++++ -->
   <!-- Transformation helpers -->
+  <!-- ++++++++++++++++++++++ -->
+
   <!-- (We specify the "quest" tag so that they cannot be rerolled by D4 / etc.) -->
   <!-- (We don't need to specify the "noeden" tag because hidden items are never given to Eden.) -->
 

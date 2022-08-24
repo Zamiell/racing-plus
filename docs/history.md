@@ -5,8 +5,9 @@
 
 ### _v0.84.2_ - August 24th, 2022
 
+- Sol now properly works with fast-clear. (Thanks toooschi)
 - In season 3, Hypercoagulation is now blacklisted from the diversity starting items when playing as Tainted Magdalene.
-- In season 3, Apple of Sodom is now blacklisted from the diversity starting trinket when playing as Tainted Magdalene or Tainted Eve.
+- In season 3, Apple of Sodom is now blacklisted from the diversity starting trinket when playing as Tainted Magdalene or Tainted Eve. (Thanks Jack)
 
 ### _v0.84.1_ - August 23rd, 2022
 

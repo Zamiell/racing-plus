@@ -1,8 +1,7 @@
-import { CollectibleType, ItemType } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   getPlayers,
   getRandomArrayIndex,
-  PickingUpItem,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
@@ -49,6 +48,22 @@ const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
   CollectibleType.TOUGH_LOVE, // 150
 ];
 
+// ModCallback.POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
+  if (
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING &&
+    g.race.format === RaceFormat.SEEDED &&
+    player.HasCollectible(REPLACED_ITEM)
+  ) {
+    player.RemoveCollectible(REPLACED_ITEM);
+    removeCollectibleFromItemTracker(REPLACED_ITEM);
+    player.AddCollectible(REPLACEMENT_ITEM);
+
+    checkApplySeeded3DollarBillItem(player);
+  }
+}
+
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   for (const player of getPlayers()) {
@@ -93,37 +108,4 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
 
   // We have every single item in the list, so do nothing.
   v.run.seeded3DollarBillItem = null;
-}
-
-// ModCallbackCustom.POST_ITEM_PICKUP
-export function postItemPickup(
-  player: EntityPlayer,
-  pickingUpItem: PickingUpItem,
-): void {
-  // Check to see if we picked up the item that conflicts with the custom 3 Dollar Bill.
-  if (
-    player.HasCollectible(REPLACEMENT_ITEM) &&
-    pickingUpItem.itemType === ItemType.PASSIVE &&
-    pickingUpItem.subType === v.run.seeded3DollarBillItem
-  ) {
-    // Unset the variable so that the new item does not get blown away after a room change.
-    v.run.seeded3DollarBillItem = null;
-  }
-}
-
-// ModCallbackCustom.POST_ITEM_PICKUP
-// CollectibleType.3_DOLLAR_BILL (191)
-export function postItemPickup3DollarBill(player: EntityPlayer): void {
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED &&
-    player.HasCollectible(REPLACED_ITEM)
-  ) {
-    player.RemoveCollectible(REPLACED_ITEM);
-    removeCollectibleFromItemTracker(REPLACED_ITEM);
-    player.AddCollectible(REPLACEMENT_ITEM);
-
-    checkApplySeeded3DollarBillItem(player);
-  }
 }

@@ -16,9 +16,10 @@ export const CollectibleTypeCustom = {
   FIFTEEN_LUCK: Isaac.GetItemIdByName("15 Luck"),
 
   // Vanilla replacements
-  THREE_DOLLAR_BILL_SEEDED: Isaac.GetItemIdByName("3 Dollar Bill (Seeded)"),
-  MAGIC_8_BALL_SEEDED: Isaac.GetItemIdByName("Magic 8 Ball (Seeded)"),
-  FLIP_CUSTOM: Isaac.GetItemIdByName("Flip (Custom)"),
+  THREE_DOLLAR_BILL_SEEDED: Isaac.GetItemIdByName("3 Dollar Bill (Seeded)"), // 191
+  MAGIC_8_BALL_SEEDED: Isaac.GetItemIdByName("Magic 8 Ball (Seeded)"), // 194
+  SOL_CUSTOM: Isaac.GetItemIdByName("Sol (Custom)"), // 588
+  FLIP_CUSTOM: Isaac.GetItemIdByName("Flip (Custom)"), // 711
 
   // Starting item placeholders
   MAGIC_MUSHROOM_PLACEHOLDER: Isaac.GetItemIdByName(

@@ -20,20 +20,6 @@ export function init(mod: ModUpgraded): void {
 
   mod.AddCallbackCustom(
     ModCallbackCustom.POST_ITEM_PICKUP,
-    threeDollarBill,
-    ItemType.PASSIVE, // 1
-    CollectibleType.THREE_DOLLAR_BILL, // 191
-  );
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_ITEM_PICKUP,
-    magic8Ball,
-    ItemType.PASSIVE, // 1
-    CollectibleType.MAGIC_8_BALL, // 194
-  );
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_ITEM_PICKUP,
     batteryPack,
     ItemType.PASSIVE, // 1
     CollectibleType.BATTERY_PACK, // 603
@@ -55,18 +41,6 @@ function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {
 // CollectibleType.9_VOLT (116)
 function nineVolt(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
   chargePocketItemFirst.postItemPickup9Volt(player);
-}
-
-// ItemType.PASSIVE (1)
-// CollectibleType.3_DOLLAR_BILL (191)
-function threeDollarBill(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
-  racePostItemPickup.threeDollarBill(player);
-}
-
-// ItemType.PASSIVE (1)
-// CollectibleType.MAGIC_8_BALL (194)
-function magic8Ball(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
-  racePostItemPickup.magic8Ball(player);
 }
 
 // ItemType.PASSIVE (1)
