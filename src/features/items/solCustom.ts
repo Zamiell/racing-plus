@@ -18,7 +18,6 @@ import {
   getRoomGridIndex,
   getRoomGridIndexesForType,
   PlayerIndex,
-  removeCollectibleFromItemTracker,
   setRoomDisplayFlags,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
@@ -57,7 +56,6 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   // correctly, since he is given Flip in the normal active item slot.)
   if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
-    removeCollectibleFromItemTracker(OLD_COLLECTIBLE_TYPE);
     player.AddCollectible(NEW_COLLECTIBLE_TYPE, 0, false);
     addCollectibleCostume(player, OLD_COLLECTIBLE_TYPE);
   }

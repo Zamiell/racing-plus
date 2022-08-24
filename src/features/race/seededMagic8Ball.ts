@@ -1,5 +1,4 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { removeCollectibleFromItemTracker } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { inSeededRace } from "./v";
 
@@ -10,7 +9,6 @@ const REPLACEMENT_ITEM = CollectibleTypeCustom.MAGIC_8_BALL_SEEDED;
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (inSeededRace() && player.HasCollectible(REPLACED_ITEM)) {
     player.RemoveCollectible(REPLACED_ITEM);
-    removeCollectibleFromItemTracker(REPLACED_ITEM);
     player.AddCollectible(REPLACEMENT_ITEM);
   }
 }

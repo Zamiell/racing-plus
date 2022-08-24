@@ -1,9 +1,5 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import {
-  getPlayers,
-  getRandomArrayIndex,
-  removeCollectibleFromItemTracker,
-} from "isaacscript-common";
+import { getPlayers, getRandomArrayIndex } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -57,7 +53,6 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     player.HasCollectible(REPLACED_ITEM)
   ) {
     player.RemoveCollectible(REPLACED_ITEM);
-    removeCollectibleFromItemTracker(REPLACED_ITEM);
     player.AddCollectible(REPLACEMENT_ITEM);
 
     checkApplySeeded3DollarBillItem(player);
@@ -78,7 +73,6 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
 
   if (v.run.seeded3DollarBillItem !== null) {
     player.RemoveCollectible(v.run.seeded3DollarBillItem);
-    removeCollectibleFromItemTracker(v.run.seeded3DollarBillItem);
   }
 
   const roomSeed = g.r.GetSpawnSeed();

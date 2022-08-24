@@ -26,7 +26,6 @@ import {
   PlayerHealth,
   removeAllFamiliars,
   removeAllMatchingEntities,
-  removeCollectibleFromItemTracker,
   removeDeadEyeMultiplier,
   repeat,
   runInNGameFrames,
@@ -451,6 +450,4 @@ function removeCollectible(
   // https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/404
   player.RemoveCollectible(collectibleType);
   player.RemoveCollectible(collectibleType);
-
-  removeCollectibleFromItemTracker(collectibleType);
 }
