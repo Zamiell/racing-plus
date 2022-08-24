@@ -135,6 +135,7 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType
     CollectibleType.TERRA, // 592
     CollectibleType.DEATH_CERTIFICATE, // 628
     CollectibleType.CARD_READING, // 660
+    CollectibleType.GLITCHED_CROWN, // 689
   ];
 
 const DIVERSITY_COLLECTIBLE_TYPES = copyArray(getVanillaCollectibleArray());

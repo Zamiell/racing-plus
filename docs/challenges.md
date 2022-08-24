@@ -181,6 +181,7 @@ Some builds are banned on certain characters:
   - 592 - Terra
   - 628 - Death Certificate
   - 660 - Card Reading
+  - 689 - Glitched Crown
 
 ### Item Bans
 
