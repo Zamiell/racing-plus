@@ -3,8 +3,9 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.84.3_ - August ?th, 2022 (Unreleased)
+### _v0.84.3_ - August 25th, 2022 (Unreleased)
 
+- In season 3, fixed the bug where some characters could get awarded the Schoolbag twice. (Thanks Monkeypot)
 - Fixed the bug where the item tracker would not show items in certain situations (like with Seeded 3 Dollar Bill).
 
 ### _v0.84.2_ - August 24th, 2022
