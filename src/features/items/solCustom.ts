@@ -8,7 +8,6 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
-  addCharge,
   addCollectibleCostume,
   addFlag,
   anyPlayerHasCollectible,
@@ -113,7 +112,7 @@ export function postRoomClearChanged(roomClear: boolean): void {
     ]) {
       // In vanilla, Sol will grant 12 charges, which is likely a bug. Racing+ will replicate this
       // behavior for now.
-      addCharge(player, activeSlot, 12);
+      player.FullCharge(activeSlot);
 
       player.UseCard(CardType.SUN, UseFlag.NO_ANIMATION);
 
