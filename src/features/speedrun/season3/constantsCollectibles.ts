@@ -165,9 +165,6 @@ export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES: ReadonlyMap<
   PlayerType,
   Set<TrinketType>
 > = new Map([
-  // 22
-  [PlayerType.MAGDALENE_B, new Set([TrinketType.APPLE_OF_SODOM])],
-
   // 26
   [PlayerType.EVE_B, new Set([TrinketType.APPLE_OF_SODOM])],
 ]);

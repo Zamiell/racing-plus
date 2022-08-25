@@ -156,15 +156,14 @@ Some builds are banned on certain characters:
 ### Characters
 
 - You must complete the game with the following 7 characters:
+  - 0 - Isaac
   - 3 - Judas
   - 4 - Blue Baby
   - 8 - Lazarus
-  - 22 - Tainted Magdalene
   - 24 - Tainted Judas
   - 26 - Tainted Eve
   - 37 - Tainted Jacob
-- Blue Baby, Tainted Magdalene, Tainted Judas, and Tainted Eve start with Birthright.
-- Tainted Magdalene also starts with Steven (to help make up for her 0.75x damage multiplier).
+- Blue Baby, Tainted Judas, and Tainted Eve start with Birthright.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 
 ### Diversity Items

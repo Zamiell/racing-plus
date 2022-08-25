@@ -2,10 +2,10 @@ import { PlayerType } from "isaac-typescript-definitions";
 import g from "../../../globals";
 
 export const SEASON_3_CHARACTERS: readonly PlayerType[] = [
+  PlayerType.ISAAC, // 0
   PlayerType.JUDAS, // 3
   PlayerType.BLUE_BABY, // 4
   PlayerType.LAZARUS, // 8
-  PlayerType.MAGDALENE_B, // 22
   PlayerType.JUDAS_B, // 24
   PlayerType.EVE_B, // 26
   PlayerType.JACOB_B, // 37

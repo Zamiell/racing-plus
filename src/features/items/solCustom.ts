@@ -11,6 +11,7 @@ import {
   addCollectibleCostume,
   addFlag,
   anyPlayerHasCollectible,
+  getPlayerFromIndex,
   getPlayerIndex,
   getPlayersWithCollectible,
   getRoomDisplayFlags,
@@ -26,7 +27,7 @@ const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.SOL_CUSTOM;
 
 const v = {
-  level: {
+  run: {
     playersSolEffect: new Set<PlayerIndex>(),
   },
 };
@@ -35,7 +36,7 @@ const v = {
 // CacheFlag.DAMAGE (1 << 0)
 export function evaluateCacheDamage(player: EntityPlayer): void {
   const playerIndex = getPlayerIndex(player);
-  if (v.level.playersSolEffect.has(playerIndex)) {
+  if (v.run.playersSolEffect.has(playerIndex)) {
     player.Damage += 3;
   }
 }
@@ -44,7 +45,7 @@ export function evaluateCacheDamage(player: EntityPlayer): void {
 // CacheFlag.LUCK (1 << 10)
 export function evaluateCacheLuck(player: EntityPlayer): void {
   const playerIndex = getPlayerIndex(player);
-  if (v.level.playersSolEffect.has(playerIndex)) {
+  if (v.run.playersSolEffect.has(playerIndex)) {
     player.Luck++;
   }
 }
@@ -62,7 +63,20 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
+  checkRemoveSolBuff();
   checkApplySolMapEffect();
+}
+
+function checkRemoveSolBuff() {
+  const playerIndexes = [...v.run.playersSolEffect.values()];
+  v.run.playersSolEffect.clear();
+
+  for (const playerIndex of playerIndexes) {
+    const player = getPlayerFromIndex(playerIndex);
+    if (player !== undefined) {
+      evaluateItems(player);
+    }
+  }
 }
 
 function checkApplySolMapEffect() {
@@ -120,10 +134,8 @@ export function postRoomClearChanged(roomClear: boolean): void {
       g.l.RemoveCurses(curses);
 
       const playerIndex = getPlayerIndex(player);
-      v.level.playersSolEffect.add(playerIndex);
-      player.AddCacheFlags(CacheFlag.DAMAGE);
-      player.AddCacheFlags(CacheFlag.LUCK);
-      player.EvaluateItems();
+      v.run.playersSolEffect.add(playerIndex);
+      evaluateItems(player);
     }
   }
 }
@@ -135,4 +147,10 @@ export function postRoomClearChanged(roomClear: boolean): void {
 function getSolBossRoomGridIndex(): int | undefined {
   const bossRoomGridIndexes = getRoomGridIndexesForType(RoomType.BOSS);
   return bossRoomGridIndexes[0];
+}
+
+function evaluateItems(player: EntityPlayer) {
+  player.AddCacheFlags(CacheFlag.DAMAGE);
+  player.AddCacheFlags(CacheFlag.LUCK);
+  player.EvaluateItems();
 }

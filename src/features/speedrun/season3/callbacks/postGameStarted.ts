@@ -245,6 +245,12 @@ function giveStartingItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   switch (character) {
+    // 0
+    case PlayerType.ISAAC: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
+      break;
+    }
+
     // 3
     case PlayerType.JUDAS: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
@@ -255,15 +261,6 @@ function giveStartingItems(player: EntityPlayer) {
     case PlayerType.BLUE_BABY: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      break;
-    }
-
-    // 22
-    case PlayerType.MAGDALENE_B: {
-      // Birthright should come before Steven on the item tracker.
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
-      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      addCollectibleAndRemoveFromPools(player, CollectibleType.STEVEN);
       break;
     }
 

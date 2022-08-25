@@ -1,7 +1,6 @@
 import { Controller, Keyboard } from "isaac-typescript-definitions";
 import {
   controllerToString,
-  keyboardToString,
   saveDataManager,
   saveDataManagerSave,
 } from "isaacscript-common";
@@ -290,7 +289,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = keyboardToString(currentValue, false) ?? "Unknown";
+        text = Keyboard[currentValue] ?? "Unknown";
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
@@ -364,7 +363,7 @@ function popupGetKeepSettingString(
 function getKeyName(optionType: ModConfigMenuOptionType, key: int): string {
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
-      return keyboardToString(key as Keyboard, true) ?? "Unknown";
+      return Keyboard[key] ?? "Unknown";
     }
 
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
@@ -384,7 +383,7 @@ function popupGetBackKeyText(): string {
 
   const lastBackPressed = ModConfigMenu.Config.LastBackPressed;
 
-  const keyboardString = keyboardToString(lastBackPressed as Keyboard, true);
+  const keyboardString = Keyboard[lastBackPressed];
   if (keyboardString !== undefined) {
     return keyboardString;
   }
