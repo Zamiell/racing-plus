@@ -10,7 +10,8 @@ cd "$DIR"
 
 PACKAGE_JSON="$DIR/package.json"
 OLD_HASH=$(md5sum "$PACKAGE_JSON")
-npx npm-check-updates --upgrade --packageFile "$PACKAGE_JSON"
+# TODO: TypeScript doesn't work with TSTL.
+npx npm-check-updates --upgrade --packageFile "$PACKAGE_JSON" --reject typescript
 NEW_HASH=$(md5sum "$PACKAGE_JSON")
 if [[ $OLD_HASH != $NEW_HASH ]]; then
   if test -f "$DIR/yarn.lock"; then

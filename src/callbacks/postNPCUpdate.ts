@@ -13,6 +13,7 @@ import * as fastHands from "../features/optional/enemies/fastHands";
 import * as fastNeedles from "../features/optional/enemies/fastNeedles";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
+import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_NPC_UPDATE, main);
@@ -99,6 +100,12 @@ export function init(mod: Mod): void {
     ModCallback.POST_NPC_UPDATE,
     bigHorn,
     EntityType.BIG_HORN, // 411
+  );
+
+  mod.AddCallback(
+    ModCallback.POST_NPC_UPDATE,
+    darkEsau,
+    EntityType.DARK_ESAU, // 866
   );
 
   mod.AddCallback(
@@ -191,6 +198,11 @@ function hush(npc: EntityNPC) {
 // EntityType.BIG_HORN (411)
 function bigHorn(npc: EntityNPC) {
   fastBigHorn.postNPCUpdateBigHorn(npc);
+}
+
+// EntityType.DARK_ESAU (866)
+function darkEsau(npc: EntityNPC) {
+  racePostNPCUpdateDarkEsau(npc);
 }
 
 // EntityType.NEEDLE (881)

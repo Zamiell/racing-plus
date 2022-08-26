@@ -3,11 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.85.0_ - August 25th, 2022
+### _v0.85.0_ - August 26th, 2022
 
 - In season 3, Tainted Magdalene has been replaced by Isaac.
 - Fixed the bug where Mod Config Menu would show some keys are "Unknown". (Thanks mgln)
 - Fixed the bug where the buff from Sol was not removed under certain circumstances. (Thanks mgln)
+- Fixed the bug where Dark Esau would be removed if you used Glowing Hour Glass. (Thanks TNTerminator)
 
 ### _v0.84.3_ - August 25th, 2022
 

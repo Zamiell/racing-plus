@@ -3,7 +3,6 @@ import * as fastColostomia from "../features/optional/bosses/fastColostomia";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
 import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callbacks/postNPCInit";
-import { racePostNPCInitDarkEsau } from "../features/race/callbacks/postNPCInit";
 import { speedrunPostNPCInitIsaac } from "../features/speedrun/callbacks/postNPCInit";
 
 export function init(mod: Mod): void {
@@ -25,12 +24,6 @@ export function init(mod: Mod): void {
     ModCallback.POST_NPC_INIT,
     pitfall,
     EntityType.PITFALL, // 291
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_INIT,
-    darkEsau,
-    EntityType.DARK_ESAU, // 866
   );
 
   mod.AddCallback(
@@ -57,11 +50,6 @@ function isaac(npc: EntityNPC) {
 // EntityType.PITFALL (291)
 function pitfall(npc: EntityNPC) {
   betterDevilAngelRoomsPostNPCInit.pitfall(npc);
-}
-
-// EntityType.DARK_ESAU (866)
-function darkEsau(npc: EntityNPC) {
-  racePostNPCInitDarkEsau(npc);
 }
 
 // EntityType.COLOSTOMIA (917)
