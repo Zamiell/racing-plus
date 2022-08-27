@@ -15,7 +15,7 @@ export const CHARACTER_PNG_MAP: ReadonlyMap<PlayerType, string> = new Map([
   [PlayerType.EDEN, "characters/costumes/character_009_eden.png"], // 9
   [PlayerType.THE_LOST, "characters/costumes/character_012_thelost.png"], // 10
   [PlayerType.LAZARUS_2, "characters/costumes/character_010_lazarus2.png"], // 11
-  [PlayerType.BLACK_JUDAS, "characters/costumes/character_013_blackjudas.png"], // 12
+  [PlayerType.DARK_JUDAS, "characters/costumes/character_013_blackjudas.png"], // 12
   [PlayerType.LILITH, "characters/costumes/character_014_lilith.png"], // 13
   [PlayerType.KEEPER, "characters/costumes/character_015_keeper.png"], // 14
   [PlayerType.APOLLYON, "characters/costumes/character_016_apollyon.png"], // 15

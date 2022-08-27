@@ -116,7 +116,7 @@ function removeItemsFromPools() {
   g.itemPool.RemoveCollectible(CollectibleType.SOL);
   g.itemPool.RemoveTrinket(TrinketType.CAINS_EYE);
 
-  if (anyPlayerIs(PlayerType.BLACK_JUDAS)) {
+  if (anyPlayerIs(PlayerType.DARK_JUDAS)) {
     g.itemPool.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
   }
 }

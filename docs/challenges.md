@@ -156,9 +156,9 @@ Some builds are banned on certain characters:
 ### Characters
 
 - You must complete the game with the following 7 characters:
-  - 0 - Isaac
   - 3 - Judas
   - 4 - Blue Baby
+  - 6 - Samson
   - 8 - Lazarus
   - 24 - Tainted Judas
   - 26 - Tainted Eve

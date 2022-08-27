@@ -1,5 +1,6 @@
 import {
   getBlueWombDoor,
+  getRepentanceDoor,
   removeDoor,
   removeGridEntity,
 } from "isaacscript-common";
@@ -15,7 +16,16 @@ export function season3FastClear(): void {
     return;
   }
 
+  unlockRepentanceDoor();
   preventGoalSoftlocks();
+}
+
+function unlockRepentanceDoor() {
+  const repentanceDoor = getRepentanceDoor();
+  if (repentanceDoor !== undefined) {
+    repentanceDoor.SetLocked(false);
+    repentanceDoor.Open();
+  }
 }
 
 function preventGoalSoftlocks() {

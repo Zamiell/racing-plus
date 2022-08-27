@@ -1,7 +1,6 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
-  getRepentanceDoor,
   isRoomInsideGrid,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -27,14 +26,8 @@ export function speedrunPostFastClear(): void {
  * re-entering the room causes the Devil Room to become blocked.
  */
 function checkSpawnRepentanceDoor() {
-  const challenge = Isaac.GetChallenge();
-
   if (speedrunShouldSpawnRepentanceDoor()) {
     g.r.TrySpawnSecretExit(true, true);
-
-    if (challenge === ChallengeCustom.SEASON_3) {
-      unlockRepentanceDoor();
-    }
   }
 }
 
@@ -73,11 +66,4 @@ function isCorrectStageForRepentanceDoor(): boolean {
   }
 
   return effectiveStage === 1 || (effectiveStage === 2 && !repentanceStage);
-}
-
-function unlockRepentanceDoor() {
-  const repentanceDoor = getRepentanceDoor();
-  if (repentanceDoor !== undefined) {
-    repentanceDoor.SetLocked(false);
-  }
 }

@@ -242,14 +242,6 @@ function giveStartingItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   switch (character) {
-    // 0
-    case PlayerType.ISAAC: {
-      // In custom challenges, Isaac does not start with the D6 for some reason.
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
-      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
-      break;
-    }
-
     // 4
     case PlayerType.BLUE_BABY: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);

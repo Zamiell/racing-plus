@@ -165,9 +165,6 @@ export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
   PlayerType,
   Set<CollectibleType>
 > = new Map([
-  // 0
-  [PlayerType.ISAAC, new Set([CollectibleType.SCHOOLBAG])],
-
   // 3
   [PlayerType.JUDAS, new Set([CollectibleType.SCHOOLBAG])],
 

@@ -5,10 +5,11 @@
 
 ### _v0.85.1_ - August 26th, 2022
 
+- In season 3, Isaac has been replaced by Samson.
 - In Season 3, sometimes Dogma will not play its death animation for an unknown reason. If this happens, the screen will immediately turn black (instead of slowly fading out with a static effect) and you will be teleported to the Beast room. If this happens, you will now be automatically teleported back to the Dogma room. (Thanks Cyber_1)
 - Fixed the bug where in season 3 where there would be a trapdoor after the Hush fight. (Thanks TNTerminator)
 - Fixed the bug where in season 3, Schoolbag was awarded twice. (Thanks Cyber_1)
-- Fixed the bug where in season 3, Isaac did not start with the D6 in his active slot.
+- Fixed the bug where in season 3, Repentance doors would be unlocked but not be immediately opened. (Thanks Hispa)
 
 ### _v0.85.0_ - August 26th, 2022
 

@@ -7,7 +7,7 @@ export const SEASON_2_NUM_BANS = 3;
 export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
   PlayerType.CAIN, // 2
   PlayerType.EVE, // 5
-  PlayerType.BLACK_JUDAS, // 12
+  PlayerType.DARK_JUDAS, // 12
   PlayerType.THE_FORGOTTEN, // 16
   PlayerType.ISAAC_B, // 21
   PlayerType.SAMSON_B, // 27

@@ -7,7 +7,7 @@ import {
   addConsoleCommand,
   asCollectibleType,
   asNumber,
-  CHARACTER_MAP,
+  CHARACTER_NAME_TO_TYPE_MAP,
   FIRST_CHARACTER,
   getCharacterName,
   getEnumValues,
@@ -182,7 +182,7 @@ function seededRaceCharacter(params: string) {
   let character: PlayerType;
   const num = tonumber(params) as PlayerType | undefined;
   if (num === undefined) {
-    const match = getMapPartialMatch(params, CHARACTER_MAP);
+    const match = getMapPartialMatch(params, CHARACTER_NAME_TO_TYPE_MAP);
     if (match === undefined) {
       printConsole(`Unknown character: ${params}`);
       return;
