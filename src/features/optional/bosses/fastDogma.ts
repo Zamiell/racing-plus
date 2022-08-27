@@ -81,6 +81,11 @@ export function postEntityKillDogma(entity: Entity): void {
     return;
   }
 
+  // We only want to target when the second phase is killed.
+  if (entity.Variant !== asNumber(DogmaVariant.ANGEL_PHASE_2)) {
+    return;
+  }
+
   // This feature does not apply when playing Season 3.
   const challenge = Isaac.GetChallenge();
   if (challenge === ChallengeCustom.SEASON_3) {
@@ -89,9 +94,7 @@ export function postEntityKillDogma(entity: Entity): void {
 
   // As soon as the player kills the second phase of Dogma, warp them to The Beast fight without
   // playing the cutscene.
-  if (entity.Variant === asNumber(DogmaVariant.ANGEL_PHASE_2)) {
-    consoleCommand("goto x.itemdungeon.666");
-  }
+  consoleCommand("goto x.itemdungeon.666");
 }
 
 // ModCallback.POST_NPC_RENDER (28)

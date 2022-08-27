@@ -237,49 +237,34 @@ function getStartingCharacter() {
   return startingCharacter;
 }
 
-/**
- * Some characters start with additional items to make them stronger. Also, we award the Schoolbag
- * now to prevent it from being awarded as a random diversity passive.
- */
+/** Some characters start with additional items to make them stronger. */
 function giveStartingItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   switch (character) {
     // 0
     case PlayerType.ISAAC: {
+      // In custom challenges, Isaac does not start with the D6 for some reason.
       addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
-      break;
-    }
-
-    // 3
-    case PlayerType.JUDAS: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
       break;
     }
 
     // 4
     case PlayerType.BLUE_BABY: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
     // 24
     case PlayerType.JUDAS_B: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;
     }
 
     // 26
     case PlayerType.EVE_B: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      break;
-    }
-
-    case PlayerType.JACOB_B: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.SCHOOLBAG);
       break;
     }
 

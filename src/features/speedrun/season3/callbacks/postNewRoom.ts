@@ -11,6 +11,7 @@ import {
   changeRoom,
   game,
   getBlueWombDoor,
+  inBeastRoom,
   inStartingRoom,
   isRoomInsideGrid,
   log,
@@ -50,6 +51,7 @@ export function season3PostNewRoom(): void {
 
   checkMegaSatanTeleporter();
   checkDadsNoteRoom();
+  checkBeastRoom();
   checkBlueWombRoom();
 }
 
@@ -100,6 +102,17 @@ function checkDadsNoteRoom() {
     setStage(LevelStage.HOME, StageType.WRATH_OF_THE_LAMB);
     changeRoom(DOGMA_ROOM_GRID_INDEX);
     spawnRoomClearDelayNPC();
+  }
+}
+
+/**
+ * Sometimes, Dogma will not play its death animation for an unknown reason. If this happens, the
+ * player will be teleported to The Beast room. Try to detect this and teleport them back.
+ */
+function checkBeastRoom() {
+  if (inBeastRoom()) {
+    // We do not need to change the stage, as doing that would delete the spawned Checkpoint.
+    changeRoom(DOGMA_ROOM_GRID_INDEX);
   }
 }
 

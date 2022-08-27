@@ -156,10 +156,33 @@ export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES =
     (collectibleType) => !isActiveCollectible(collectibleType),
   );
 
+/**
+ * To avoid duplicating logic, we grant the Schoolbag only after retrieving the 3 random passive
+ * collectibles. Thus, as a consequence, we have to blacklist the Schoolbag so that it is not
+ * pre-selected.
+ */
 export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
   PlayerType,
   Set<CollectibleType>
-> = new Map([]);
+> = new Map([
+  // 0
+  [PlayerType.ISAAC, new Set([CollectibleType.SCHOOLBAG])],
+
+  // 3
+  [PlayerType.JUDAS, new Set([CollectibleType.SCHOOLBAG])],
+
+  // 4
+  [PlayerType.BLUE_BABY, new Set([CollectibleType.SCHOOLBAG])],
+
+  // 24
+  [PlayerType.JUDAS_B, new Set([CollectibleType.SCHOOLBAG])],
+
+  // 26
+  [PlayerType.EVE_B, new Set([CollectibleType.SCHOOLBAG])],
+
+  // 37
+  [PlayerType.JACOB_B, new Set([CollectibleType.SCHOOLBAG])],
+]);
 
 export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES: ReadonlyMap<
   PlayerType,
