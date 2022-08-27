@@ -1,4 +1,9 @@
-import { log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import {
+  getCharacterName,
+  log,
+  ModCallbackCustom,
+  ModUpgraded,
+} from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
@@ -39,9 +44,10 @@ function main(isContinued: boolean) {
   const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
+  const characterName = getCharacterName(character);
 
   log(
-    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued} - Character: ${character}`,
+    `MC_POST_GAME_STARTED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued} - Character: ${characterName} (${character})`,
   );
 
   // Make sure that the MinimapAPI is enabled. (We may have disabled it in a previous run.)
