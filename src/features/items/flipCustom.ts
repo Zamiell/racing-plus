@@ -211,9 +211,9 @@ export function postPickupInitCollectible(
     return;
   }
 
-  // If the collectible is rolled, the PostPickupInit callback will fire again, but we do not want
-  // to get a new flipped collectible type in this case. Thus, we only set a new collectible type if
-  // the index does not exist already.
+  // If the collectible is rolled, the `POST_PICKUP_INIT` callback will fire again, but we do not
+  // want to get a new flipped collectible type in this case. Thus, we only set a new collectible
+  // type if the index does not exist already.
   const flippedCollectibleIndex = getFlippedCollectibleIndex(collectible);
   if (v.level.flippedCollectibleTypes.has(flippedCollectibleIndex)) {
     return;

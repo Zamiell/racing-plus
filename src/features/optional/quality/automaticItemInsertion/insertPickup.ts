@@ -1,6 +1,7 @@
 import {
   BombSubType,
   CoinSubType,
+  CollectibleType,
   HeartSubType,
   KeySubType,
   PickupVariant,
@@ -11,6 +12,7 @@ import {
   getCoinValue,
   hasOpenPocketItemSlot,
   hasOpenTrinketSlot,
+  isCharacter,
 } from "isaacscript-common";
 import { DETRIMENTAL_TRINKETS } from "./constants";
 
@@ -79,8 +81,6 @@ function insertBloodOrSoulCharge(
   heart: EntityPickupHeart,
   player: EntityPlayer,
 ): [PickupVariant, int] | undefined {
-  const character = player.GetPlayerType();
-
   switch (heart.SubType) {
     // 0
     case HeartSubType.NULL: {
@@ -89,7 +89,7 @@ function insertBloodOrSoulCharge(
 
     // 1
     case HeartSubType.FULL: {
-      if (character !== PlayerType.BETHANY_B) {
+      if (!shouldInsertRedHeart(player)) {
         return undefined;
       }
 
@@ -100,7 +100,7 @@ function insertBloodOrSoulCharge(
 
     // 2
     case HeartSubType.HALF: {
-      if (character !== PlayerType.BETHANY_B) {
+      if (!shouldInsertRedHeart(player)) {
         return undefined;
       }
 
@@ -112,7 +112,7 @@ function insertBloodOrSoulCharge(
     // 3, 6
     case HeartSubType.SOUL:
     case HeartSubType.BLACK: {
-      if (character !== PlayerType.BETHANY) {
+      if (!shouldInsertSoulHeart(player)) {
         return undefined;
       }
 
@@ -123,7 +123,7 @@ function insertBloodOrSoulCharge(
 
     // 5
     case HeartSubType.DOUBLE_PACK: {
-      if (character !== PlayerType.BETHANY_B) {
+      if (!shouldInsertRedHeart(player)) {
         return undefined;
       }
 
@@ -134,7 +134,7 @@ function insertBloodOrSoulCharge(
 
     // 8
     case HeartSubType.HALF_SOUL: {
-      if (character !== PlayerType.BETHANY) {
+      if (!shouldInsertSoulHeart(player)) {
         return undefined;
       }
 
@@ -158,6 +158,18 @@ function insertBloodOrSoulCharge(
       return undefined;
     }
   }
+}
+
+export function shouldInsertRedHeart(player: EntityPlayer): boolean {
+  return isCharacter(player, PlayerType.BETHANY_B);
+}
+
+export function shouldInsertSoulHeart(player: EntityPlayer): boolean {
+  return (
+    isCharacter(player, PlayerType.BETHANY) &&
+    (!player.HasCollectible(CollectibleType.ALABASTER_BOX) ||
+      !player.NeedsCharge())
+  );
 }
 
 // PickupVariant.COIN (20)

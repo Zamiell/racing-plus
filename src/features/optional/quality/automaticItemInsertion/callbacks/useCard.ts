@@ -9,7 +9,6 @@ import {
   getPickups,
   initArray,
   isBethany,
-  isCharacter,
   repeat,
 } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
@@ -23,11 +22,7 @@ export function automaticItemInsertionUseCardHierophant(
     return;
   }
 
-  if (!isCharacter(player, PlayerType.BETHANY)) {
-    return;
-  }
-
-  addHeartsOnBethanys(player);
+  insertHeartsFromCard(player);
 }
 
 // Card.LOVERS (7)
@@ -38,16 +33,14 @@ export function automaticItemInsertionUseCardLovers(
     return;
   }
 
-  if (!isCharacter(player, PlayerType.BETHANY_B)) {
-    return;
-  }
-
-  addHeartsOnBethanys(player);
+  insertHeartsFromCard(player);
 }
 
-function addHeartsOnBethanys(player: EntityPlayer) {
-  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items. Instead, find the nearest hearts to the player.
+/**
+ * The `POST_PICKUP_INIT` callback fires before this one, so we cannot use the existing queue system
+ * to automatically insert items. Instead, find the nearest hearts to the player.
+ */
+function insertHeartsFromCard(player: EntityPlayer) {
   const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
   const numHearts = hasTarotCloth ? 3 : 2;
   const pickupVariants = initArray(PickupVariant.HEART, numHearts);
@@ -68,8 +61,9 @@ export function automaticItemInsertionUseCardJustice(
     return;
   }
 
-  // The PostPickupInit callback fires before this one, so we cannot use the existing queue system
-  // to automatically insert items. Instead, find the nearest coin, bomb, and key to the player.
+  // The `POST_PICKUP_INIT` callback fires before this one, so we cannot use the existing queue
+  // system to automatically insert items. Instead, find the nearest coin, bomb, and key to the
+  // player.
   const pickups = getPickupsFromJusticeCard(player);
   for (const pickup of pickups) {
     insertPickupAndUpdateDelta(pickup, player);

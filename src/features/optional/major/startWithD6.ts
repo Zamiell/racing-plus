@@ -251,7 +251,6 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
 }
 
 function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
-  const character = player.GetPlayerType();
   const pocketItem = player.GetActiveItem(ActiveSlot.POCKET);
   const pocketItemCharge = getTotalCharge(player, ActiveSlot.POCKET);
   const hasPocketD6 = pocketItem === CollectibleType.D6;
@@ -269,12 +268,12 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   // Tainted Cain (23) is a special case. The Bag of Crafting does not work properly in the normal
   // active slot. Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded the
   // D6.
-  if (character === PlayerType.CAIN_B) {
+  if (isCharacter(player, PlayerType.CAIN_B)) {
     return;
   }
 
   // Tainted Soul (40) is a special case; he cannot use items.
-  if (character === PlayerType.THE_SOUL_B) {
+  if (isCharacter(player, PlayerType.THE_SOUL_B)) {
     return;
   }
 

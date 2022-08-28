@@ -136,8 +136,6 @@ function unseededRankedSolo(player: EntityPlayer) {
 }
 
 function seeded(player: EntityPlayer) {
-  const character = player.GetPlayerType();
-
   // All seeded races start with the Compass to reduce mapping RNG.
   if (player.HasCollectible(CollectibleType.COMPASS)) {
     // Eden started with The Compass, so mark to replace it with another random passive item later
@@ -157,19 +155,22 @@ function seeded(player: EntityPlayer) {
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
   // Birthright.
-  if (character === PlayerType.EDEN_B) {
+  if (isCharacter(player, PlayerType.EDEN_B)) {
     addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   // If we are Tainted Isaac and there are multiple starting items for the race, give Birthright so
   // that we have more room for other items.
-  if (character === PlayerType.ISAAC_B && g.race.startingItems.length >= 2) {
+  if (
+    isCharacter(player, PlayerType.ISAAC_B) &&
+    g.race.startingItems.length >= 2
+  ) {
     addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
   // - Remove Birthright on Cain, since it changes floor generation.
   // - Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed.
-  if (character === PlayerType.CAIN || character === PlayerType.THE_LOST) {
+  if (isCharacter(player, PlayerType.CAIN, PlayerType.THE_LOST)) {
     g.itemPool.RemoveCollectible(CollectibleType.BIRTHRIGHT);
   }
 
@@ -207,10 +208,8 @@ export function giveDiversityItemsAndDoItemBans(
   collectibleTypes: CollectibleType[],
   trinketType: TrinketType,
 ): void {
-  const character = player.GetPlayerType();
-
   // Avoid giving more options on Tainted Dead Lazarus.
-  if (character !== PlayerType.LAZARUS_2_B) {
+  if (!isCharacter(player, PlayerType.LAZARUS_2_B)) {
     tempMoreOptions.give(player);
   }
 
@@ -234,7 +233,7 @@ export function giveDiversityItemsAndDoItemBans(
   // - If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving
   //   Birthright.
   // - If we are Tainted Isaac, give Birthright so that we have more room for other items.
-  if (character === PlayerType.EDEN_B || character === PlayerType.ISAAC_B) {
+  if (isCharacter(player, PlayerType.EDEN_B, PlayerType.ISAAC_B)) {
     addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
@@ -263,6 +262,6 @@ function shouldGetSchoolbagInDiversity(player: EntityPlayer): boolean {
     !isEden(player) &&
     // Esau is not granted any items in diversity races, so there is no need to give him the
     // Schoolbag.
-    character !== PlayerType.ESAU
+    !isCharacter(player, PlayerType.ESAU)
   );
 }
