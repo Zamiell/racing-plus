@@ -160,11 +160,11 @@ function insertBloodOrSoulCharge(
   }
 }
 
-export function shouldInsertRedHeart(player: EntityPlayer): boolean {
+function shouldInsertRedHeart(player: EntityPlayer): boolean {
   return isCharacter(player, PlayerType.BETHANY_B);
 }
 
-export function shouldInsertSoulHeart(player: EntityPlayer): boolean {
+function shouldInsertSoulHeart(player: EntityPlayer): boolean {
   return (
     isCharacter(player, PlayerType.BETHANY) &&
     (!player.HasCollectible(CollectibleType.ALABASTER_BOX) ||
