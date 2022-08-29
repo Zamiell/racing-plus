@@ -13,6 +13,7 @@ import {
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
+import { spawnDroppedChildsHeart } from "../../../optional/characters/samsonDropHeart";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
 import {
   restartOnNextFrame,
@@ -245,6 +246,13 @@ function giveStartingItems(player: EntityPlayer) {
     // 4
     case PlayerType.BLUE_BABY: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+      break;
+    }
+
+    // 6
+    case PlayerType.SAMSON: {
+      // Samson does not start with Child's Heart in challenges for some reason.
+      spawnDroppedChildsHeart(player);
       break;
     }
 

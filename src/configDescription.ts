@@ -360,10 +360,19 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     ],
   ],
   [
-    "fastColostomia", // 917
+    "fastHeretic", // 905
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0316",
+      "Fast Heretic",
+      "Make The Heretic fight start instantly.",
+    ],
+  ],
+  [
+    "fastColostomia", // 917
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0317",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -372,7 +381,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0317",
+      "0318",
       "Fast Dogma",
       "Speed up Dogma's death animation (and skip the death cutscene).",
     ],
@@ -395,6 +404,10 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       "Defeating Mega Satan no longer has a chance to immediately end the run.",
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 407
     [
@@ -404,10 +417,6 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       'Make Hush no longer play an "Appear" animation.',
     ],
   ],
-];
-
-// 0311-0320
-export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 951
     [

@@ -3,10 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.85.2_ - August 28th, 2022 (Unreleased)
+### _v0.85.2_ - August 28th, 2022
 
+- The Heretic fight will now immediately start as soon as you enter the room. (Thanks Hispa)
 - Fixed the bug where some of the diversity sprites would not match the collectible sprite. (Thanks to Gamonymous for coding this.)
 - Fixed the bug where the automatic item insertion feature would override Alabaster Box when playing as Bethany. (Thanks Gamonymous)
+- Fixed the bug where in season 3, Samson would not start with a dropped Child's Heart. (Thanks TNTerminator)
 
 ### _v0.85.1_ - August 27th, 2022
 

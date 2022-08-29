@@ -3,7 +3,7 @@ import { getPlayersOfType, spawnTrinket, VectorZero } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-const BOTTOM_RIGHT_GRID_INDEX = 106;
+const BOTTOM_LEFT_GRID_INDEX = 106;
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
@@ -19,15 +19,19 @@ export function postGameStarted(): void {
       return;
     }
 
-    const bottomRightPosition = g.r.GetGridPosition(BOTTOM_RIGHT_GRID_INDEX);
-    const childsHeart = spawnTrinket(
-      TrinketType.CHILDS_HEART,
-      bottomRightPosition,
-      VectorZero,
-      samson,
-      samson.InitSeed,
-    );
-    const sprite = childsHeart.GetSprite();
-    sprite.Play("Idle", true);
+    spawnDroppedChildsHeart(samson);
   }
+}
+
+export function spawnDroppedChildsHeart(player: EntityPlayer): void {
+  const bottomRightPosition = g.r.GetGridPosition(BOTTOM_LEFT_GRID_INDEX);
+  const childsHeart = spawnTrinket(
+    TrinketType.CHILDS_HEART,
+    bottomRightPosition,
+    VectorZero,
+    player,
+    player.InitSeed,
+  );
+  const sprite = childsHeart.GetSprite();
+  sprite.Play("Idle", true);
 }

@@ -33,6 +33,7 @@ export class Config {
   preventVictoryLapPopup = true; // 273
   openHushDoor = true; // 407
   fastBigHorn = true; // 411
+  fastHeretic = true; // 905
   fastColostomia = true; // 917
   fastDogma = true; // 950
 

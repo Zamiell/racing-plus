@@ -16,9 +16,7 @@ If you want to learn more about Racing+, you can visit [the official website](ht
 1. [Design Goals](#design-goals)
 1. [List of Major Changes](#list-of-major-changes)
 1. [List of Minor Changes](#list-of-minor-changes)
-1. [Additional Changes for Races](#additional-changes-for-races)
 1. [Additional Changes for Multi-Character Speedruns (Custom Challenges)](#additional-changes-for-multi-character-speedruns-custom-challenges)
-1. [Individual Room Changes](#individual-room-changes)
 
 <br>
 
@@ -189,8 +187,9 @@ Post-flip actions:
 
 - `0314` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
 - `0315` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0316` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0317` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
+- `0316` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
+- `0317` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0318` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
