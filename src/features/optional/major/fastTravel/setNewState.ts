@@ -103,29 +103,16 @@ export function setFadingToBlack(
 
 function setGameStateFlags(position: Vector) {
   const stage = g.l.GetStage();
-  const gridIndex = g.r.GetGridIndex(position);
-  const challenge = Isaac.GetChallenge();
-  const repentanceStage = onRepentanceStage();
-  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // If the player has gone through the trapdoor past the strange door.
-  if (stage === LevelStage.DEPTHS_2 && !repentanceStage && inSecretExit()) {
+  if (stage === LevelStage.DEPTHS_2 && !onRepentanceStage() && inSecretExit()) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
   }
 
   // If the player has gone through the custom trapdoor after the Mom fight in races to The Beast or
   // on Season 3.
-  if (
-    ((g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.goal === RaceGoal.THE_BEAST &&
-      gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
-      (challenge === ChallengeCustom.SEASON_3 &&
-        gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
-    clearedMomBossRoom &&
-    !repentanceStage
-  ) {
+  if (goingToMausoleum2ThroughCustomTrapdoor(position)) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
 
@@ -134,6 +121,42 @@ function setGameStateFlags(position: Vector) {
     // same stage, they do not need to be reseeded.)
     v.run.repentanceSecretExit = true;
   }
+
+  if (goingToCorpse1ThroughCustomTrapdoor(position)) {
+    game.SetStateFlag(GameStateFlag.MAUSOLEUM_HEART_KILLED, true);
+  }
+}
+
+function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
+  const gridIndex = g.r.GetGridIndex(position);
+  const challenge = Isaac.GetChallenge();
+  const repentanceStage = onRepentanceStage();
+  const clearedMomBossRoom = inClearedMomBossRoom();
+
+  return (
+    ((g.race.status === RaceStatus.IN_PROGRESS &&
+      g.race.myStatus === RacerStatus.RACING &&
+      g.race.goal === RaceGoal.THE_BEAST &&
+      gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
+      (challenge === ChallengeCustom.SEASON_3 &&
+        gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
+    clearedMomBossRoom &&
+    !repentanceStage
+  );
+}
+
+function goingToCorpse1ThroughCustomTrapdoor(position: Vector): boolean {
+  const gridIndex = g.r.GetGridIndex(position);
+  const challenge = Isaac.GetChallenge();
+  const repentanceStage = onRepentanceStage();
+  const clearedMomBossRoom = inClearedMomBossRoom();
+
+  return (
+    challenge === ChallengeCustom.SEASON_3 &&
+    gridIndex === NORMAL_TRAPDOOR_GRID_INDEX &&
+    clearedMomBossRoom &&
+    repentanceStage
+  );
 }
 
 function setPlayerAttributes(

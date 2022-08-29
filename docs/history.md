@@ -3,6 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.85.3_ - August 29th, 2022
+
+- Fixed the bug where the mechanics of custom Flip would apply to non-collectible items. (Thanks Gamonymous)
+- Fixed the bug where Dream Catcher would not work properly when the boss was Wormwood. (Thanks Cyber_1)
+- Fixed the bug where in season 3, the Mausoleum 2 Boss Rush would be empty. (Thanks Gamonymous)
+
 ### _v0.85.2_ - August 28th, 2022
 
 - The Heretic fight will now immediately start as soon as you enter the room. (Thanks Hispa)

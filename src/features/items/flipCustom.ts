@@ -147,8 +147,8 @@ export function useItemFlipCustom(player: EntityPlayer): boolean | undefined {
       flippedCollectibleIndex,
     );
 
-    // Do not convert items back to an empty pedestal. (This matches the behavior of the vanilla
-    // Flip.)
+    // Do not convert collectibles back to an empty pedestal. (This matches the behavior of the
+    // vanilla Flip.)
     if (
       flippedCollectibleType === undefined ||
       flippedCollectibleType === CollectibleType.NULL

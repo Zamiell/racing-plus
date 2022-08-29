@@ -1,4 +1,4 @@
-/* cspell:disable */
+// cspell:disable
 
 import { PlayerType } from "isaac-typescript-definitions";
 
