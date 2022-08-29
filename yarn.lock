@@ -2588,20 +2588,20 @@ isaacscript-lint@^4.1.3:
     prettier-plugin-organize-imports "^3.1.0"
     ts-prune "^0.10.3"
 
-isaacscript-spell@^1.2.10:
-  version "1.2.10"
-  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.10.tgz#d4dcdff7b986d3e10c037155e73a8f4400ea5f64"
-  integrity sha512-OVmddeawozGrhvmC3vIQX9RZe4kjOcypMKh0/nQ/DrJ8cjZnyoailuwZdoW3eXDwvaqyCK9YFGCQMvyXC5mkcA==
+isaacscript-spell@^1.2.12:
+  version "1.2.12"
+  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.12.tgz#496b0da7e4984207f23cc38312d4a83f9feb4e99"
+  integrity sha512-aijh9pZMgng4n0lL7RCz7oapdVRFIyIbZqa00cn5l7KuCRE/+MPvzWDxECbEhzTJ0r6Dp/Vz568GVySh/P6CgA==
 
 isaacscript-tsconfig@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.0.0.tgz#d7acad0d636552f188341c9059e596e02bd66e1f"
   integrity sha512-1xxQUKitGicOOfRdUf7TbRjRGIWOM81KJz1ZLo5yBUjfqmtLl1OwmoSpF8GBiAah01uAS6P3pY+goU2BwhSSXw==
 
-isaacscript@^2.19.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.19.0.tgz#8b88c7a036f62d3239b6bbd55d4a0c3a942a26dc"
-  integrity sha512-s1mfpZFV7Buowmrg1EcDvqmCuGIZUOOtdtAtsp7/djP24fZmUmWPJ7cg6s1g3Ovi/OYHIiwLzozmVW9kWF46Qw==
+isaacscript@^2.19.1:
+  version "2.19.1"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-2.19.1.tgz#ee978dfc1a1aa672eb63518e4a0e6d4594347796"
+  integrity sha512-v2bnTZu0gBV1BWocJiTm8EdnxQcLWEI8Zj2rs7XgQ1sLZj3nHp3Jg0yz/vWoDib9tyVS9IOVDePYMDW/TnkhfQ==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
