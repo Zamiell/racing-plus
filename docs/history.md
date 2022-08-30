@@ -3,6 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.85.4_ - August 30th, 2022
+
+- In season 3, Tainted Eve will no longer start with Birthright. (It did not seem to be very useful.)
+- In season 3, trapdoors will no longer be removed on Repentance floors. This allows you to escape the Mother path if you want. (Thanks Hispa)
+- Fixed the bug where "special" charged items like Alabaster Box were being charged in the Boss Rush. (Thanks TNTerminator)
+
 ### _v0.85.3_ - August 29th, 2022
 
 - Fixed the bug where the mechanics of custom Flip would apply to non-collectible items. (Thanks Gamonymous)

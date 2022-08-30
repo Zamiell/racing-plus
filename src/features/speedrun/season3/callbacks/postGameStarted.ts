@@ -262,12 +262,6 @@ function giveStartingItems(player: EntityPlayer) {
       break;
     }
 
-    // 26
-    case PlayerType.EVE_B: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      break;
-    }
-
     default: {
       break;
     }

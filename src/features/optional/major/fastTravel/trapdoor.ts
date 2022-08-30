@@ -23,7 +23,6 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
-import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import {
   season3HasOnlyBossRushLeft,
   season3HasOnlyHushLeft,
@@ -113,7 +112,6 @@ function shouldRemove() {
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
-  const clearedMomBossRoom = inClearedMomBossRoom();
 
   // If the goal of the race/speedrun is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
@@ -217,31 +215,6 @@ function shouldRemove() {
     ) {
       log(
         `Removed a vanilla trapdoor on Mausoleum/Gehenna 2 (for a race Mother goal) on game frame: ${gameFrameCount}`,
-      );
-      return true;
-    }
-  }
-
-  // If the goal of the multi-character speedrun is Mother, remove some trapdoors.
-  if (challenge === ChallengeCustom.SEASON_3) {
-    if (
-      (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
-      repentanceStage &&
-      !secretExit
-    ) {
-      log(
-        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
-      );
-      return true;
-    }
-
-    if (
-      stage === LevelStage.DEPTHS_2 &&
-      repentanceStage &&
-      !clearedMomBossRoom
-    ) {
-      log(
-        `Removed a vanilla trapdoor after a boss on an even Repentance stage (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }

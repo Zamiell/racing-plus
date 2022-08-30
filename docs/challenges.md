@@ -163,7 +163,7 @@ Some builds are banned on certain characters:
   - 24 - Tainted Judas
   - 26 - Tainted Eve
   - 37 - Tainted Jacob
-- Blue Baby, Tainted Judas, and Tainted Eve start with Birthright.
+- Blue Baby and Tainted Judas start with Birthright.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 
 ### Diversity Items
