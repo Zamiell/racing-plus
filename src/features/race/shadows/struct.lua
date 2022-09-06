@@ -23,8 +23,7 @@
  * THE SOFTWARE.
 --]]
 
-local unpack = table.unpack or _G.unpack
-local math = require('math')
+local unpack = table.unpack
 
 local function frexp(x)
   local exponent
