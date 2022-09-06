@@ -2,6 +2,7 @@ import {
   arrayEquals,
   getEffectiveStage,
   inStartingRoom,
+  isArray,
   isTable,
   log,
 } from "isaacscript-common";
@@ -24,7 +25,8 @@ export function checkRaceChanged(
   newRaceData: RaceData,
 ): void {
   const keys = Object.keys(oldRaceData);
-  table.sort(keys); // The keys will be in a random order because of Lua's `pairs`.
+  keys.sort(); // The keys will be in a random order because of Lua's `pairs`.
+
   for (const key of keys) {
     const property = key as keyof RaceData;
 
@@ -60,15 +62,23 @@ function raceValueChanged(
   log(`Race value "${property}" changed: ${oldValue} --> ${newValue}`);
 
   if (type(oldValue) === "table") {
-    for (const [i, value] of ipairs(oldValue as Record<number, unknown>)) {
-      log(`Old array: ${i}) - ${value}`);
+    if (!isArray(oldValue)) {
+      error("The old race value was not an array.");
     }
+
+    oldValue.forEach((element, i) => {
+      log(`Old array: ${i}) - ${element}`);
+    });
   }
 
   if (type(newValue) === "table") {
-    for (const [i, value] of ipairs(newValue as Record<number, unknown>)) {
-      log(`New array: ${i}) - ${value}`);
+    if (!isArray(newValue)) {
+      error("The new race value was not an array.");
     }
+
+    newValue.forEach((element, i) => {
+      log(`New array: ${i}) - ${element}`);
+    });
   }
 
   const changedFunction = functionMap.get(property);
