@@ -85,6 +85,9 @@ const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
 
   // Great Gideon would not work properly in a Boss Rush room.
   `${EntityType.GREAT_GIDEON}.0`, // 907.0
+
+  // Clog's spin attack is unfair with other bosses on the screen.
+  `${EntityType.CLOG}.0`, // 914.0
 ];
 
 const BOSS_RUSH_BOSSES = getBossRushBosses();
