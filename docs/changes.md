@@ -395,11 +395,11 @@ Post-flip actions:
   - <!-- PILL_ORANGEDOTS_WHITE (9) --> White / White-dotted --> Full white-dotted
   - <!-- PILL_WHITE_AZURE (10) --> White / Cyan --> White / Green
 - The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.
-- <!-- 5.100.57, 5.100.128, 5.100.364 --> The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars.
-- <!-- 5.100.245, "collectibles_245_2020_custom.png" --> The 20/20 sprite is now easier to see.
-- The Star of Bethlehem sprite is now more distinct from Eden's Soul. Credit goes to [Duck Duck Go](https://duckduckgo.com).
-- <!-- 5.350.75, "trinket_075_error.png" (cannot be toggleable) --> The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).)
-- <!-- 5.350.115, "trinket_115_locustoffamine.png" (cannot be toggleable) --> The Locust of Famine sprite now matches the color of the flies.
+- The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars. <!-- 5.100.57, 5.100.128, 5.100.364 -->
+- The 20/20 sprite is now easier to see. <!-- 5.100.245, "collectibles_245_2020_custom.png" -->
+- The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- 5.100.651, "collectibles_651_starofbethlehem_custom.png" -->
+- The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).) <!-- 5.350.75, "trinket_075_error.png" (cannot be toggleable) -->
+- The Locust of Famine sprite now matches the color of the flies. <!-- 5.350.115, "trinket_115_locustoffamine.png" (cannot be toggleable) -->
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
 - <!-- controlsGraphic --> The controls graphic in the start room is changed to be speedrunning-themed.
 - <!-- "teammeatfont10.fnt", "teammeatfont10_0.png" --> The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
