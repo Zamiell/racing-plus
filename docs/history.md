@@ -3,6 +3,10 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.86.4_ - September 7th, 2022
+
+- Fixed the bug where Dream Catcher would not work properly on the Blue Womb. (Thanks Gamonymous)
+
 ### _v0.86.0_ - September 7th, 2022
 
 - R+7 Season 2 is finished!

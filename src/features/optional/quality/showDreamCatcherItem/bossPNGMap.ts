@@ -132,7 +132,7 @@ export const bossPNGMap = new Map([
     [
       "portrait_102.0_isaac.png",
       "portrait_102.1_bluebaby.png",
-      "portrait_102.1_bluebaby.png",
+      "portrait_407.0_hush.png",
     ],
   ],
 
