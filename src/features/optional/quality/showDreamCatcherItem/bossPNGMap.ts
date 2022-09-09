@@ -129,7 +129,11 @@ export const bossPNGMap = new Map([
   // 102
   [
     EntityType.ISAAC,
-    ["portrait_102.0_isaac.png", "portrait_102.1_bluebaby.png"],
+    [
+      "portrait_102.0_isaac.png",
+      "portrait_102.1_bluebaby.png",
+      "portrait_102.1_bluebaby.png",
+    ],
   ],
 
   // 237
