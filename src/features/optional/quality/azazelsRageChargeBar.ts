@@ -3,7 +3,6 @@ import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
   NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE,
-  shouldDrawAnyCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
@@ -15,10 +14,6 @@ sprite.Load("gfx/chargebar_azazels_rage.anm2", true);
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.azazelsRageChargeBar) {
-    return;
-  }
-
-  if (!shouldDrawAnyCustomChargeBar()) {
     return;
   }
 

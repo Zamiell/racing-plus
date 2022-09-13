@@ -38,11 +38,11 @@ You may also be interested in [the client repository](https://github.com/Zamiell
 - Clone your forked repository:
   - `cd [the path where you want the code to live]` (optional)
   - If you already have an SSH key pair and have the public key attached to your GitHub profile, then use the following command to clone the repository via SSH:
-    - `git clone git@github.com:YourUsername/racing-plus.git`
-    - (Replace "YourUsername" with your GitHub username.)
+    - `git clone git@github.com:[username]/racing-plus.git`
+    - (Replace "[username]" with your GitHub username.)
   - If you do not already have an SSH key pair, then use the following command to clone the repository via HTTPS:
-    - `git clone https://github.com/YourUsername/racing-plus.git`
-    - (Replace "YourUsername" with your GitHub username.)
+    - `git clone https://github.com/[username]/racing-plus.git`
+    - (Replace "[username]" with your GitHub username.)
 - Enter the cloned repository:
   - `cd racing-plus`
 - Install Yarn, if you have not done so already:

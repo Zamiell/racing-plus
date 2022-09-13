@@ -2,7 +2,6 @@ import { MAX_TAINTED_SAMSON_BERSERK_CHARGE } from "isaacscript-common";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
-  shouldDrawAnyCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
@@ -14,10 +13,6 @@ sprite.Load("gfx/chargebar_tainted_samson.anm2", true);
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.taintedSamsonChargeBar) {
-    return;
-  }
-
-  if (!shouldDrawAnyCustomChargeBar()) {
     return;
   }
 

@@ -22,7 +22,6 @@ import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
-import * as postFireTear from "./callbacks/postFireTear";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCInit from "./callbacks/postNPCInit";
@@ -74,6 +73,7 @@ import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postSlotAnimationChanged from "./callbacksCustom/postSlotAnimationChanged";
+import * as postTearInitVeryLate from "./callbacksCustom/postTearInitVeryLate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -152,7 +152,6 @@ function registerCallbacksVanilla(mod: ModUpgraded) {
   postEffectInit.init(mod); // 54
   postEffectUpdate.init(mod); // 55
   postBombInit.init(mod); // 57
-  postFireTear.init(mod); // 61
   preGetCollectible.init(mod); // 62
   getPillEffect.init(mod); // 65
   postEntityRemove.init(mod); // 67
@@ -189,6 +188,7 @@ function registerCallbacksCustom(mod: ModUpgraded) {
   postRoomClearChanged.init(mod);
   postSacrifice.init(mod);
   postSlotAnimationChanged.init(mod);
+  postTearInitVeryLate.init(mod);
   postTransformation.init(mod);
   preCustomRevive.init(mod);
   preItemPickup.init(mod);

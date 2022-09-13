@@ -2,7 +2,6 @@ import { defaultMapGetPlayer, mapSetPlayer } from "isaacscript-common";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
-  shouldDrawAnyCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
@@ -27,10 +26,6 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   if (!config.bloodyLustChargeBar) {
-    return;
-  }
-
-  if (!shouldDrawAnyCustomChargeBar()) {
     return;
   }
 

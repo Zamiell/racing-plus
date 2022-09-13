@@ -1,5 +1,11 @@
-import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import {
+  CollectibleType,
+  EntityType,
+  FamiliarVariant,
+  PlayerType,
+} from "isaac-typescript-definitions";
+import {
+  doesEntityExist,
   game,
   isCharacter,
   isReflectionRender,
@@ -108,20 +114,14 @@ function getNumHigherPrecedenceCustomChargeBars(
   }
 }
 
-/**
- * Since this is a UI element, we only want to draw it when the HUD is enabled and if this is not a
- * water reflection.
- */
-export function shouldDrawAnyCustomChargeBar(): boolean {
-  const hud = game.GetHUD();
-
-  return hud.IsVisible() && !isReflectionRender();
-}
-
 export function shouldDrawCustomChargeBar(
   player: EntityPlayer,
   chargeBarType: CustomChargeBarType,
 ): boolean {
+  if (!shouldDrawAnyCustomChargeBar()) {
+    return false;
+  }
+
   switch (chargeBarType) {
     case CustomChargeBarType.LEAD_PENCIL: {
       return shouldDrawLeadPencilChargeBar(player);
@@ -141,13 +141,27 @@ export function shouldDrawCustomChargeBar(
   }
 }
 
+/**
+ * Since this is a UI element, we only want to draw it when the HUD is enabled and if this is not a
+ * water reflection.
+ */
+function shouldDrawAnyCustomChargeBar(): boolean {
+  const hud = game.GetHUD();
+
+  return hud.IsVisible() && !isReflectionRender();
+}
+
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
   return (
     config.leadPencilChargeBar &&
     player.HasCollectible(CollectibleType.LEAD_PENCIL) &&
     // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
-    // (because there is no PostLaserFired callback).
+    // (because there is no `POST_LASER_FIRED` callback).
     !isCharacter(player, PlayerType.AZAZEL) &&
+    // When Incubus or a Blood Baby fires a Lead Pencil barrage, there is no way to tell that it
+    // came from a familiar (because the `SpawnerEntity` shows up as the player for some reason).
+    !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.INCUBUS) &&
+    !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.BLOOD_BABY) &&
     !playerHasUntrackableCollectible(player)
   );
 }

@@ -5,6 +5,7 @@
 
 ### _v0.86.5_ - September 7th, 2022
 
+- The Lead Pencil charge bar will no longer be drawn if the player has one or more Incubi or Blood Babies. (Thanks Gamonymous)
 - In season 3, the Polaroid or the Negative is no longer required to spawn the trapdoor to the Dogma goal. (Thanks TNTerminator)
 - In season 3, the trapdoor on Basement 2 will now be removed if your final goal is Mother. (Thanks Gamonymous)
 - Fixed the where some pills and runes would not show up properly in the UI. Thanks to Gamonymous for fixing this and TNTerminator for reporting.

@@ -1,17 +1,18 @@
-// Incubus has its own counter that is independent of the player. However, we don't draw an extra
-// charge bar for every Incubus, since that would clutter the screen.
+// Incubus and Blood Babies have their own counter that is independent of the player. However, we
+// don't draw an extra charge bar for every familiar, since that would clutter the screen.
 
 import {
   DefaultMap,
   game,
+  getPlayerFromEntity,
   getPlayerIndex,
+  isTearFromPlayer,
   PlayerIndex,
   saveDataManager,
 } from "isaacscript-common";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
-  shouldDrawAnyCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
@@ -43,10 +44,6 @@ export function postPlayerRender(player: EntityPlayer): void {
     return;
   }
 
-  if (!shouldDrawAnyCustomChargeBar()) {
-    return;
-  }
-
   if (!shouldDrawCustomChargeBar(player, CustomChargeBarType.LEAD_PENCIL)) {
     return;
   }
@@ -63,13 +60,17 @@ export function postPlayerRender(player: EntityPlayer): void {
   drawCustomChargeBar(player, sprite, frame, CustomChargeBarType.LEAD_PENCIL);
 }
 
-// ModCallback.POST_FIRE_TEAR (61)
-export function postFireTear(tear: EntityTear): void {
+// ModCallback.POST_TEAR_INIT_VERY_LATE
+export function postTearInitVeryLate(tear: EntityTear): void {
   if (!config.leadPencilChargeBar) {
     return;
   }
 
-  incrementLeadPencilCounter(tear.Parent);
+  if (!isTearFromPlayer(tear)) {
+    return;
+  }
+
+  checkIncrementLeadPencilCounter(tear);
 }
 
 // ModCallbackCustom.POST_BONE_SWING
@@ -78,24 +79,20 @@ export function postBoneSwing(boneClub: EntityKnife): void {
     return;
   }
 
-  incrementLeadPencilCounter(boneClub.Parent);
+  checkIncrementLeadPencilCounter(boneClub);
 }
 
 /**
  * Lead Pencil fires every N tears. The counter needs to be incremented even if the player does not
  * have Lead Pencil, so that the charge bar will be accurate if they pick up the item mid-run.
  */
-function incrementLeadPencilCounter(parent: Entity | undefined) {
-  if (parent === undefined) {
-    return;
-  }
+function checkIncrementLeadPencilCounter(entity: Entity) {
+  const gameFrameCount = game.GetFrameCount();
 
-  const player = parent.ToPlayer();
+  const player = getPlayerFromEntity(entity);
   if (player === undefined) {
     return;
   }
-
-  const gameFrameCount = game.GetFrameCount();
 
   // The Forgotten and The Soul have different Lead Pencil counters.
   const playerIndex = getPlayerIndex(player, true);
