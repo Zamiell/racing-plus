@@ -26,6 +26,7 @@ import g from "../../../../globals";
 import {
   season3HasOnlyBossRushLeft,
   season3HasOnlyHushLeft,
+  season3HasOnlyMotherLeft,
 } from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
@@ -218,6 +219,20 @@ function shouldRemove() {
       );
       return true;
     }
+  }
+
+  // In season 3, delete the trapdoor to Caves 1 when the only goal remaining is Mother.
+  if (
+    challenge === ChallengeCustom.SEASON_3 &&
+    season3HasOnlyMotherLeft() &&
+    stage === LevelStage.BASEMENT_2 &&
+    !repentanceStage &&
+    !inSecretExit()
+  ) {
+    log(
+      `Removed a vanilla trapdoor on Basement 2 (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
+    );
+    return true;
   }
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating

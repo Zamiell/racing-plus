@@ -6,6 +6,7 @@
 ### _v0.86.5_ - September 7th, 2022
 
 - In season 3, the Polaroid or the Negative is no longer required to spawn the trapdoor to the Dogma goal. (Thanks TNTerminator)
+- In season 3, the trapdoor on Basement 2 will now be removed if your final goal is Mother. (Thanks Gamonymous)
 - Fixed the where some pills and runes would not show up properly in the UI. Thanks to Gamonymous for fixing this and TNTerminator for reporting.
 - Fixed the bug in season 3 where Duality would cause there to not be enough room for a Repentance door to spawn in boss rooms with only 3 available door slots.
 

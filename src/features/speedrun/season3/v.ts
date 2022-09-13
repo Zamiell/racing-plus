@@ -74,6 +74,13 @@ export function season3HasMotherGoal(): boolean {
   return v.persistent.remainingGoals.includes(Season3Goal.MOTHER);
 }
 
+export function season3HasOnlyMotherLeft(): boolean {
+  return (
+    v.persistent.remainingGoals.includes(Season3Goal.MOTHER) &&
+    v.persistent.remainingGoals.length === 1
+  );
+}
+
 export function season3HasDogmaGoal(): boolean {
   return v.persistent.remainingGoals.includes(Season3Goal.DOGMA);
 }
