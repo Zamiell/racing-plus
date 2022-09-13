@@ -13,6 +13,7 @@ import {
   getPlayers,
   getRandom,
   getRepentanceDoor,
+  hasUnusedDoorSlot,
   preventCollectibleRotation,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -118,7 +119,7 @@ function checkWomb2IAmError() {
  * Room.
  */
 function checkEnteringClearedBossRoom() {
-  if (speedrunShouldSpawnRepentanceDoor()) {
+  if (speedrunShouldSpawnRepentanceDoor() && hasUnusedDoorSlot()) {
     g.r.TrySpawnSecretExit(false, true);
     setRepentanceDoorState();
   }

@@ -3,7 +3,7 @@ import {
   RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 
-export const SEEDED_DEATH_DEBUG = false;
+export const SEEDED_DEATH_DEBUG = false as boolean;
 export const SEEDED_DEATH_FEATURE_NAME = "seededDeath";
 const SEEDED_DEATH_DEBUFF_SECONDS = 45;
 export const SEEDED_DEATH_DEBUFF_RENDER_FRAMES =

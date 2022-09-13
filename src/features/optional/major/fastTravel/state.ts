@@ -55,7 +55,6 @@ function setOpenClose(
   const animation = `${animationPrefix} Custom`;
   sprite.Play(animation, true);
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (FAST_TRAVEL_DEBUG) {
     log(
       `${animationPrefix} a fast travel entity: ${FastTravelEntityType[fastTravelEntityType]} (${fastTravelEntityType})`,

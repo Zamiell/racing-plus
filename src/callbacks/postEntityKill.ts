@@ -14,7 +14,7 @@ import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { speedrunPostEntityKillDogma } from "../features/speedrun/callbacks/postEntityKill";
 
-const POST_ENTITY_KILL_DEBUG = false;
+const POST_ENTITY_KILL_DEBUG = false as boolean;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_ENTITY_KILL, main);
@@ -81,7 +81,6 @@ export function init(mod: Mod): void {
 }
 
 function main(entity: Entity) {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (POST_ENTITY_KILL_DEBUG) {
     const gameFrameCount = game.GetFrameCount();
     const entityID = getEntityID(entity);

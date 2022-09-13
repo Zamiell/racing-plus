@@ -1,11 +1,16 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
+  getAngelRoomDoor,
+  getDevilRoomDoor,
   getEffectiveStage,
+  hasUnusedDoorSlot,
   isRoomInsideGrid,
   onRepentanceStage,
+  removeDoor,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
+import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
 import { season3FastClear } from "./season3/fastClear";
 import { season3HasMotherGoal } from "./season3/v";
 import { inSpeedrun } from "./speedrun";
@@ -27,7 +32,21 @@ export function speedrunPostFastClear(): void {
  */
 function checkSpawnRepentanceDoor() {
   if (speedrunShouldSpawnRepentanceDoor()) {
-    g.r.TrySpawnSecretExit(true, true);
+    if (hasUnusedDoorSlot()) {
+      g.r.TrySpawnSecretExit(true, true);
+    } else {
+      const devilRoomDoor = getDevilRoomDoor();
+      const angelRoomDoor = getAngelRoomDoor();
+      if (devilRoomDoor !== undefined && angelRoomDoor !== undefined) {
+        // Both a Devil Room and an Angel Room door spawned, so there was no room left for the
+        // Repentance door. Delete the Angel Room door and respawn the Repentance door.
+        removeDoor(angelRoomDoor);
+        g.r.TrySpawnSecretExit(true, true);
+
+        // Combine the Devil Door with the Angel Room door.
+        combinedDualityDoors.preSpawnClearAward();
+      }
+    }
   }
 }
 
@@ -65,5 +84,5 @@ function isCorrectStageForRepentanceDoor(): boolean {
     );
   }
 
-  return effectiveStage === 1 || (effectiveStage === 2 && !repentanceStage);
+  return (effectiveStage === 1 || effectiveStage === 2) && !repentanceStage;
 }

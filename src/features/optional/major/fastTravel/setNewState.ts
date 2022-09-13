@@ -387,7 +387,6 @@ function setDisabled() {
 }
 
 function logFastTravelStateChanged() {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (FAST_TRAVEL_DEBUG) {
     log(
       `Fast-travel state changed: ${FastTravelState[v.run.state]} (${

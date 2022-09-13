@@ -8,6 +8,6 @@ Notes:
   <challenge name="R+7 Season 1" endstage="11" altpath="true" />
   <challenge name="R+7 Season 2" endstage="11" altpath="true" />
   <challenge name="R+7 Season 3" endstage="11" altpath="true" />
-  <!-- <challenge name="R+7 Experiment" endstage="11" altpath="true" /> -->
+  <!--<challenge name="R+7 Experiment" endstage="11" altpath="true" />-->
   <challenge name="Change Char Order" endstage="11" canshoot="false" />
 </challenges>

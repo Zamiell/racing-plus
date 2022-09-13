@@ -8,6 +8,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 
 ## Miscellaneous Bugs
 
+- The "fast-clear" feature does not apply to Challenge Rooms or Boss Challenge Rooms.
 - When returning to a big room from a crawl space, the camera will jerk from the door to the location of the crawl space.
 - The Great Gideon crawl space is not be handled by the fast-travel feature.
 - Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)

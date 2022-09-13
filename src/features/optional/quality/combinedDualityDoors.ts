@@ -35,6 +35,10 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
+  checkPlayerPositionOnDoorSide(player);
+}
+
+function checkPlayerPositionOnDoorSide(player: EntityPlayer) {
   if (v.room.modifiedDevilDoorSlot === null) {
     return;
   }
@@ -98,10 +102,10 @@ function getPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor) {
 
 function shouldInvertDirection(slot: DoorSlot) {
   return (
-    slot === DoorSlot.RIGHT_0 ||
-    slot === DoorSlot.DOWN_0 ||
-    slot === DoorSlot.RIGHT_1 ||
-    slot === DoorSlot.DOWN_1
+    slot === DoorSlot.RIGHT_0 || // 2
+    slot === DoorSlot.DOWN_0 || // 3
+    slot === DoorSlot.RIGHT_1 || // 6
+    slot === DoorSlot.DOWN_1 // 7
   );
 }
 

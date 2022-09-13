@@ -16,7 +16,7 @@ import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
 
-const DEBUG = false;
+const DEBUG = false as boolean;
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.PRE_ENTITY_SPAWN, main);
@@ -31,7 +31,6 @@ function main(
   spawner: Entity | undefined,
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (DEBUG) {
     log(
       `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,

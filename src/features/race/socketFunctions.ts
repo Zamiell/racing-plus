@@ -6,7 +6,7 @@ import { ChatMessage } from "../../types/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 
-export const SOCKET_DEBUG = false;
+export const SOCKET_DEBUG = false as boolean;
 
 export const socketFunctions = new Map<
   SocketCommandIn,
@@ -109,7 +109,6 @@ function setRace<K extends keyof RaceData, V extends RaceData[K]>(
 ) {
   g.race[key] = value;
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (SOCKET_DEBUG) {
     // eslint-disable-next-line @typescript-eslint/no-base-to-string
     log(`Set race value: ${key} --> ${value}`);

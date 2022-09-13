@@ -169,7 +169,7 @@ Some builds are banned on certain characters:
 ### Diversity Items
 
 - You are randomly assigned five starting items at the beginning of the run, similar to how diversity races work.
-- All of the other changes from diversity races are also present.
+- All of [the other changes](diversity.md) from diversity races are also present.
 - Additionally, the following items can never be randomly assigned, since they are too powerful:
   - The 27 starting items (as per the "seeded starts")
   - 147 - Notched Axe
