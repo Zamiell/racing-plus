@@ -13,6 +13,10 @@ export function evaluateCacheTearColor(player: EntityPlayer): void {
     return;
   }
 
+  changeMysteriousLiquidColor(player);
+}
+
+function changeMysteriousLiquidColor(player: EntityPlayer) {
   if (!player.HasCollectible(CollectibleType.MYSTERIOUS_LIQUID)) {
     return;
   }
@@ -38,6 +42,10 @@ export function postEffectInitCreepRed(effect: EntityEffect): void {
     return;
   }
 
+  changeRedCreepToGreen(effect);
+}
+
+function changeRedCreepToGreen(effect: EntityEffect) {
   const sprite = effect.GetSprite();
 
   // We can't call the `SetColorize` method on the existing color object, so create a new one.
@@ -56,6 +64,10 @@ export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
     return;
   }
 
+  changeGreenCreepToRed(effect);
+}
+
+function changeGreenCreepToRed(effect: EntityEffect) {
   // Ignore creep generated from Lil Spewer.
   if (
     effect.SpawnerType === EntityType.FAMILIAR &&
