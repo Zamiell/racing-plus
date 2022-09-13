@@ -34,7 +34,7 @@ type FlippedCollectibleIndex = string & {
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.FLIP;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.FLIP_CUSTOM;
-const FADE_AMOUNT = 0.33;
+const FADE_AMOUNT = 0.35;
 const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
 
 /**
