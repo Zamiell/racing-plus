@@ -11,6 +11,7 @@ import {
   getCollectibleMaxCharges,
   getCollectibles,
   getRoomListIndex,
+  inDeathCertificateArea,
   isBlindCollectible,
   isTaintedLazarus,
   saveDataManager,
@@ -208,6 +209,12 @@ export function postPickupInitCollectible(
   }
 
   if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
+    return;
+  }
+
+  // Flip does not apply in the Death Certificate area, since there is already one of each
+  // collectible.
+  if (inDeathCertificateArea()) {
     return;
   }
 

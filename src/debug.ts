@@ -5,15 +5,12 @@ import {
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
 } from "isaacscript-common";
-import { Season3Goal } from "./features/speedrun/season3/constants";
-import v from "./features/speedrun/season3/v";
 import g from "./globals";
 import { hotkeys } from "./modConfigMenu";
 
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
-  v.persistent.remainingGoals = [Season3Goal.MOTHER];
 }
 
 /** Hotkey 1 is bound to F2. */
