@@ -154,7 +154,7 @@ function draw(text: string, fade: float) {
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.LEMEGETON (712)
-export function useItemLemegeton(): void {
+export function postUseItemLemegeton(): void {
   const wisp = getItemWispThatJustSpawned();
   if (wisp !== undefined) {
     const collectibleName = getCollectibleName(asCollectibleType(wisp.SubType));
@@ -168,7 +168,10 @@ function getItemWispThatJustSpawned() {
 }
 
 // ModCallback.POST_USE_CARD (5)
-export function useCard(cardType: CardType, useFlags: BitFlags<UseFlag>): void {
+export function postUseCard(
+  cardType: CardType,
+  useFlags: BitFlags<UseFlag>,
+): void {
   if (hasFlag(useFlags, UseFlag.NO_ANIMATION)) {
     return;
   }

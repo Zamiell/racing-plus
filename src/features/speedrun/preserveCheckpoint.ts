@@ -9,7 +9,7 @@ import { postSpawnCheckpoint } from "./speedrun";
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.VOID (477)
-export function useItemVoid(): void {
+export function postUseItemVoid(): void {
   respawnCheckpoint();
 }
 

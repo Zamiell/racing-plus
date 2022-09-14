@@ -32,7 +32,7 @@ function featureEnabled() {
 }
 
 // ModCallback.POST_USE_ITEM (3)
-export function useItem(
+export function postUseItem(
   collectibleType: CollectibleType,
   player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,

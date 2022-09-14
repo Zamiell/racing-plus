@@ -135,7 +135,7 @@ function getEdenReplacementCollectibleType(
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.SPINDOWN_DICE (723)
-export function useItemSpindownDice(): void {
+export function postUseItemSpindownDice(): void {
   for (const collectible of getCollectibles()) {
     if (isBannedCollectible(collectible)) {
       // Skip over the banned collectible and turn it into the one before that.

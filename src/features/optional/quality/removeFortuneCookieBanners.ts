@@ -7,7 +7,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.FORTUNE_COOKIE (557)
-export function useItemFortuneCookie(): void {
+export function postUseItemFortuneCookie(): void {
   const HUD = game.GetHUD();
 
   if (!config.removeFortuneCookieBanners) {

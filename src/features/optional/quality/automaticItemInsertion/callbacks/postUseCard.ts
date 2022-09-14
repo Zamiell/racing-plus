@@ -15,7 +15,7 @@ import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 
 // Card.HIEROPHANT (6)
-export function automaticItemInsertionUseCardHierophant(
+export function automaticItemInsertionPostUseCardHierophant(
   player: EntityPlayer,
 ): void {
   if (!config.automaticItemInsertion) {
@@ -26,7 +26,7 @@ export function automaticItemInsertionUseCardHierophant(
 }
 
 // Card.LOVERS (7)
-export function automaticItemInsertionUseCardLovers(
+export function automaticItemInsertionPostUseCardLovers(
   player: EntityPlayer,
 ): void {
   if (!config.automaticItemInsertion) {
@@ -54,7 +54,7 @@ function insertHeartsFromCard(player: EntityPlayer) {
 }
 
 // Card.JUSTICE (9)
-export function automaticItemInsertionUseCardJustice(
+export function automaticItemInsertionPostUseCardJustice(
   player: EntityPlayer,
 ): void {
   if (!config.automaticItemInsertion) {

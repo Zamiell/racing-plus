@@ -266,26 +266,29 @@ Post-flip actions:
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `0516` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `0516` <!-- fastVanishingTwin 697 --> The Vanishing Twin familiar is replaced by a custom version that activates instantly.
+- `0517` <!-- flipCustom 711 --> Flip will now more clearly show what each item will change into.
+- `0518` <!-- removePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `0517` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `0519` <!-- removePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `0518` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
-- `0519` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
+- `0520` <!-- displayExpansionPack 181 --> The random active item chosen by Expansion Pack will be drawn on the screen as streak text.
+- `0521` <!-- automaticItemInsertion --> Pickups that spawn after taking an item will be automatically inserted into your inventory. (Chaos, Marbles, Purple Heart, Mom's Toenail, Match Stick, The Tick, Faded Polaroid, Ouroboros Worm, and 'M are exempt from this behavior.)
+- `0522` <!-- chargePocketItemFirst --> Batteries will now charge the pocket item first over the active item. (You can hold the drop/switch button to temporarily disable this feature.)
   - This also fixes the vanilla bug where 48 Hour Energy! and Hairpin will only charge 12-charge items for 3 charges instead of 6.
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `0520` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
-- `0521` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `0523` <!-- showMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
+- `0524` <!-- showPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
-- `0522` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
+- `0525` <!-- fadeDevilStatue --> The statue in a Devil Room will now be faded if there are pickups behind it.
 - <!-- centerStart --> Players will start in the center of the room (instead of at the bottom).
 
 > Why? This is convenient because it makes the player equidistant to all of the doors.

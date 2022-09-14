@@ -13,6 +13,7 @@ import * as streakText from "../features/mandatory/streakText";
 import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/postUseItem";
 
@@ -82,7 +83,13 @@ function main(
   activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  battery9VoltSynergy.useItem(collectibleType, player, useFlags, activeSlot);
+  battery9VoltSynergy.postUseItem(
+    collectibleType,
+    player,
+    useFlags,
+    activeSlot,
+  );
+  displayExpansionPack.postUseItem(collectibleType, player, useFlags);
 
   return undefined;
 }
@@ -96,7 +103,7 @@ function teleport(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  seededTeleports.useItemTeleport();
+  seededTeleports.postUseItemTeleport();
 
   return undefined;
 }
@@ -124,7 +131,7 @@ function voidItem(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  speedrunUseItem.voidItem();
+  speedrunUseItem.postUseItemVoid();
 
   return undefined;
 }
@@ -138,7 +145,7 @@ function fortuneCookie(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  removeFortuneCookieBanners.useItemFortuneCookie();
+  removeFortuneCookieBanners.postUseItemFortuneCookie();
 
   return undefined;
 }
@@ -152,7 +159,7 @@ function meatCleaver(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  consistentAngels.useItemMeatCleaver();
+  consistentAngels.postUseItemMeatCleaver();
 
   return undefined;
 }
@@ -166,7 +173,7 @@ function lemegeton(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  streakText.useItemLemegeton();
+  streakText.postUseItemLemegeton();
 
   return undefined;
 }
@@ -180,7 +187,7 @@ function spindownDice(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  removeGloballyBannedItems.useItemSpindownDice();
+  removeGloballyBannedItems.postUseItemSpindownDice();
 
   return undefined;
 }
@@ -194,7 +201,7 @@ function useItemFlipCustom(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  return flipCustom.useItemFlipCustom(player);
+  return flipCustom.postUseItemFlipCustom(player);
 }
 
 // CollectibleTypeCustom.DEBUG
@@ -206,5 +213,5 @@ function debug(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  return debugItem.useItemDebug();
+  return debugItem.postUseItemDebug();
 }

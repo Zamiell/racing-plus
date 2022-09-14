@@ -34,7 +34,7 @@ export function init(): void {
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.TELEPORT (44)
 // This callback is used naturally by Broken Remote.
-export function useItemTeleport(): void {
+export function postUseItemTeleport(): void {
   seededTeleport();
 }
 

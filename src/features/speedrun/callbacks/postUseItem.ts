@@ -1,10 +1,10 @@
 import * as preserveCheckpoint from "../preserveCheckpoint";
 import { inSpeedrun } from "../speedrun";
 
-export function voidItem(): void {
+export function postUseItemVoid(): void {
   if (!inSpeedrun()) {
     return;
   }
 
-  preserveCheckpoint.useItemVoid();
+  preserveCheckpoint.postUseItemVoid();
 }

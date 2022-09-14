@@ -25,7 +25,7 @@ export function init(): void {
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.MEAT_CLEAVER (631)
-export function useItemMeatCleaver(): void {
+export function postUseItemMeatCleaver(): void {
   if (!config.consistentAngels) {
     return;
   }

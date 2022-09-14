@@ -1,11 +1,11 @@
 import { CardType, ModCallback, UseFlag } from "isaac-typescript-definitions";
 import * as streakText from "../features/mandatory/streakText";
 import {
-  automaticItemInsertionUseCardHierophant,
-  automaticItemInsertionUseCardJustice,
-  automaticItemInsertionUseCardLovers,
-} from "../features/optional/quality/automaticItemInsertion/callbacks/useCard";
-import * as speedrunUseCard from "../features/speedrun/callbacks/postUseCard";
+  automaticItemInsertionPostUseCardHierophant,
+  automaticItemInsertionPostUseCardJustice,
+  automaticItemInsertionPostUseCardLovers,
+} from "../features/optional/quality/automaticItemInsertion/callbacks/postUseCard";
+import * as speedrunPostUseCard from "../features/speedrun/callbacks/postUseCard";
 
 export function init(mod: Mod): void {
   mod.AddCallback(ModCallback.POST_USE_CARD, main);
@@ -40,7 +40,7 @@ function main(
   _player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,
 ) {
-  streakText.useCard(cardType, useFlags);
+  streakText.postUseCard(cardType, useFlags);
 }
 
 // Card.HIEROPHANT (6)
@@ -49,7 +49,7 @@ function hierophant(
   player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  automaticItemInsertionUseCardHierophant(player);
+  automaticItemInsertionPostUseCardHierophant(player);
 }
 
 // Card.LOVERS (7)
@@ -58,7 +58,7 @@ function lovers(
   player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  automaticItemInsertionUseCardLovers(player);
+  automaticItemInsertionPostUseCardLovers(player);
 }
 
 // Card.JUSTICE (9)
@@ -67,7 +67,7 @@ function justice(
   player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  automaticItemInsertionUseCardJustice(player);
+  automaticItemInsertionPostUseCardJustice(player);
 }
 
 // Card.RUNE_BLACK (41)
@@ -76,5 +76,5 @@ function blackRune(
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  speedrunUseCard.blackRune();
+  speedrunPostUseCard.blackRune();
 }

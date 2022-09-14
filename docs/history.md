@@ -5,6 +5,7 @@
 
 ### _v0.86.4_ - September 7th, 2022
 
+- Expansion Pack will now display the randomly chosen active item as the streak text, similar to how Dead Sea Scrolls works. (Thanks Gamonymous)
 - The Lead Pencil charge bar will no longer be drawn if the player has one or more Incubi or Blood Babies. (Thanks Gamonymous)
 - In season 3, the Polaroid or the Negative is no longer required to spawn the trapdoor to the Dogma goal. (Thanks TNTerminator)
 - In season 3, the trapdoor on Basement 2 will now be removed if your final goal is Mother. (Thanks Gamonymous)
