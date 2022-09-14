@@ -3,14 +3,14 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.87.0_ - September 7th, 2022
+### _v0.87.0_ - September 13th, 2022
 
 - Expansion Pack will now display the randomly chosen active item as the streak text, similar to how Dead Sea Scrolls works. (Thanks Gamonymous)
 - The Lead Pencil charge bar will no longer be drawn if the player has one or more Incubi or Blood Babies. (Thanks Gamonymous)
 - In season 3, the Polaroid or the Negative is no longer required to spawn the trapdoor to the Dogma goal. (Thanks TNTerminator)
 - In season 3, the trapdoor on Basement 2 will now be removed if your final goal is Mother. (Thanks Gamonymous)
 - Fixed the where some pills and runes would not show up properly in the UI. Thanks to Gamonymous for fixing this and TNTerminator for reporting.
-- Fixed the bug in season 3 where Duality would cause there to not be enough room for a Repentance door to spawn in boss rooms with only 3 available door slots.
+- Fixed the bug in season 3 where Duality would cause there to not be enough room for a Repentance door to spawn in boss rooms with only 3 available door slots. (Thanks TNTerminator)
 - Fixed the bug where Flip would be enabled in the Death Certificate area. (Thanks Gamonymous)
 - Fixed the bug where Dream Catcher would not work properly on the Blue Womb. (Thanks Gamonymous)
 - Fixed the bug where red creep was not turned to green creep under certain circumstances. (Thanks Gamonymous)
