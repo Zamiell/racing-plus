@@ -5,9 +5,12 @@
 
 ### _v0.87.1_ - September 14th, 2022
 
-- Armor is now removed from the the first phase of Mega Satan.
+- In the Boss Rush, Turdlet now spawns with N segments instead of M. (Thanks Gamonymous)
+- In the Boss Rush, Clutch will now spawn solo instead of spawning with three Clickety Clacks. (Thanks toooschi)
+- In the Boss Rush, Colostomia can no longer spawn. (Thanks Hispa)
+- Armor is now removed from the the first phase of Mega Satan. (Thanks thereisnofuture)
 - Armor is now removed from the Blue Baby that spawns before Hush.
-- Armor is now removed from the Ultra Horsemen and The Beast.
+- Armor is now removed from the Ultra Horsemen and The Beast. (Thanks MoucheronQuipet)
 - Fixed the bug where armor was not being removed properly. (Thanks thereisnofuture)
 
 ### _v0.87.0_ - September 13th, 2022

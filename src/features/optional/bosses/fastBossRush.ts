@@ -88,6 +88,9 @@ const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
 
   // Clog's spin attack is unfair with other bosses on the screen.
   `${EntityType.CLOG}.0`, // 914.0
+
+  // Colostomia spin attack is not fair with other bosses on the screen at the same time.
+  `${EntityType.COLOSTOMIA}.0`, // 917.0
 ];
 
 const BOSS_RUSH_BOSSES = getBossRushBosses();
@@ -220,12 +223,8 @@ function spawnNextWave() {
     repeat(numSegments, () => {
       spawnNPC(entityType, variant, 0, position);
 
-      // Clutch is a special case; he is always accompanied by 3 Clickety Clacks.
-      if (entityType === EntityType.CLUTCH) {
-        repeat(3, () => {
-          spawnNPC(EntityType.CLICKETY_CLACK, 0, 0, position);
-        });
-      }
+      // Clutch is deliberately not spawned with 3 Clickety Clacks since they can wander far away in
+      // a 2x2 room and cause a frustrating search.
     });
   }
 
@@ -241,20 +240,36 @@ function spawnNextWave() {
 }
 
 function getNumBossSegments(entityType: EntityType): int {
-  if (entityType === EntityType.LARRY_JR || entityType === EntityType.TURDLET) {
-    return 10;
-  }
+  switch (entityType) {
+    // 19
+    case EntityType.LARRY_JR: {
+      return 10;
+    }
 
-  if (entityType === EntityType.CHUB) {
-    return 3;
-  }
+    // 28
+    case EntityType.CHUB: {
+      return 3;
+    }
 
-  // Gurglings and Turdlings spawn in sets of 3. (This is how it is in the vanilla Boss Rush.)
-  if (entityType === EntityType.GURGLING) {
-    return 3;
-  }
+    // 237
+    case EntityType.GURGLING: {
+      // Gurglings and Turdlings spawn in sets of 3. (This is how it is in the vanilla Boss Rush.)
+      return 3;
+    }
 
-  return 1;
+    // 918
+    case EntityType.TURDLET: {
+      // Turdlet functions slightly differently from Larry Jr. Instead of splitting when an segment
+      // entity dies, HP is shared between segments and he splits into two halves. Thus, having a
+      // Turdlet with more than 5 segments would cause more than 1 split. For this reason, we use
+      // the vanilla value of 5 instead of matching the value for Larry Jr.
+      return 5;
+    }
+
+    default: {
+      return 1;
+    }
+  }
 }
 
 function getBossSpawnPosition(bossNum: int): Vector {
