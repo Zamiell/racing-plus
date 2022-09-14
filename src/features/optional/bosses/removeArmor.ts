@@ -76,9 +76,6 @@ function removeArmor(entity: Entity, amount: float): boolean | undefined {
   }
 
   entity.HitPoints -= amount;
-  Isaac.DebugString(
-    `GETTING HERE - manually dealt: ${amount}, HitPoints: ${entity.HitPoints}`,
-  );
   if (entity.HitPoints <= 0) {
     entity.Kill();
   }

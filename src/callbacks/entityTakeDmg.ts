@@ -200,7 +200,7 @@ function beast(
   _source: EntityRef,
   _countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor.entityTakeDmgDogma(entity, amount);
+  return removeArmor.entityTakeDmgBeast(entity, amount);
 }
 
 // EntityType.DUMMY (964)
