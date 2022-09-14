@@ -20,6 +20,12 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallback.ENTITY_TAKE_DMG,
+    isaac,
+    EntityType.ISAAC, // 102
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
     uriel,
     EntityType.URIEL, // 271
   );
@@ -28,6 +34,12 @@ export function init(mod: Mod): void {
     ModCallback.ENTITY_TAKE_DMG,
     gabriel,
     EntityType.GABRIEL, // 272
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
+    megaSatan,
+    EntityType.MEGA_SATAN, // 274
   );
 
   mod.AddCallback(
@@ -52,6 +64,12 @@ export function init(mod: Mod): void {
     ModCallback.ENTITY_TAKE_DMG,
     dogma,
     EntityType.DOGMA, // 950
+  );
+
+  mod.AddCallback(
+    ModCallback.ENTITY_TAKE_DMG,
+    beast,
+    EntityType.BEAST, // 951
   );
 
   mod.AddCallback(
@@ -86,6 +104,17 @@ function entityTakeDmgPlayer(
   return undefined;
 }
 
+// EntityType.ISAAC (102)
+function isaac(
+  entity: Entity,
+  amount: float,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
+): boolean | undefined {
+  return removeArmor.entityTakeDmgIsaac(entity, amount);
+}
+
 // EntityType.URIEL (271)
 function uriel(
   _entity: Entity,
@@ -108,72 +137,70 @@ function gabriel(
   return doubleAngelNerf.entityTakeDmgGabriel(source);
 }
 
+// EntityType.MEGA_SATAN (274)
+function megaSatan(
+  entity: Entity,
+  amount: float,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
+): boolean | undefined {
+  return removeArmor.entityTakeDmgMegaSatan(entity, amount);
+}
+
 // EntityType.MEGA_SATAN_2 (275)
 function megaSatan2(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor.entityTakeDmgMegaSatan2(
-    entity,
-    amount,
-    damageFlags,
-    source,
-    countdownFrames,
-  );
+  return removeArmor.entityTakeDmgMegaSatan2(entity, amount);
 }
 
 // EntityType.HUSH (407)
 function hush(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor.entityTakeDmgHush(
-    entity,
-    amount,
-    damageFlags,
-    source,
-    countdownFrames,
-  );
+  return removeArmor.entityTakeDmgHush(entity, amount);
 }
 
 // EntityType.MOTHER (912)
 function mother(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor.entityTakeDmgMother(
-    entity,
-    amount,
-    damageFlags,
-    source,
-    countdownFrames,
-  );
+  return removeArmor.entityTakeDmgMother(entity, amount);
 }
 
 // EntityType.DOGMA (950)
 function dogma(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor.entityTakeDmgDogma(
-    entity,
-    amount,
-    damageFlags,
-    source,
-    countdownFrames,
-  );
+  return removeArmor.entityTakeDmgDogma(entity, amount);
+}
+
+// EntityType.BEAST (951)
+function beast(
+  entity: Entity,
+  amount: float,
+  _damageFlags: BitFlags<DamageFlag>,
+  _source: EntityRef,
+  _countdownFrames: int,
+): boolean | undefined {
+  return removeArmor.entityTakeDmgDogma(entity, amount);
 }
 
 // EntityType.DUMMY (964)

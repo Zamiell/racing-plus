@@ -3,6 +3,13 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.87.1_ - September 14th, 2022
+
+- Armor is now removed from the the first phase of Mega Satan.
+- Armor is now removed from the Blue Baby that spawns before Hush.
+- Armor is now removed from the Ultra Horsemen and The Beast.
+- Fixed the bug where armor was not being removed properly. (Thanks thereisnofuture)
+
 ### _v0.87.0_ - September 13th, 2022
 
 - Expansion Pack will now display the randomly chosen active item as the streak text, similar to how Dead Sea Scrolls works. (Thanks Gamonymous)

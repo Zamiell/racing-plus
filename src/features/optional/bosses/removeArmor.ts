@@ -1,18 +1,37 @@
-import { DamageFlag } from "isaac-typescript-definitions";
+import { IsaacVariant } from "isaac-typescript-definitions";
+import { asNumber } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-let dealingManualDamage = false;
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.ISAAC (102)
+export function entityTakeDmgIsaac(
+  entity: Entity,
+  amount: float,
+): boolean | undefined {
+  // The Hush version of Blue Baby has armor, but the other variants do not.
+  if (entity.Variant === asNumber(IsaacVariant.BLUE_BABY_HUSH)) {
+    return removeArmor(entity, amount);
+  }
+
+  return undefined;
+}
+
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.MEGA_SATAN (274)
+export function entityTakeDmgMegaSatan(
+  entity: Entity,
+  amount: float,
+): boolean | undefined {
+  return removeArmor(entity, amount);
+}
 
 // ModCallback.ENTITY_TAKE_DMG (11)
 // EntityType.MEGA_SATAN_2 (275)
 export function entityTakeDmgMegaSatan2(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor(entity, amount, damageFlags, source, countdownFrames);
+  return removeArmor(entity, amount);
 }
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -20,11 +39,8 @@ export function entityTakeDmgMegaSatan2(
 export function entityTakeDmgHush(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor(entity, amount, damageFlags, source, countdownFrames);
+  return removeArmor(entity, amount);
 }
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -32,11 +48,8 @@ export function entityTakeDmgHush(
 export function entityTakeDmgMother(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor(entity, amount, damageFlags, source, countdownFrames);
+  return removeArmor(entity, amount);
 }
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -44,31 +57,31 @@ export function entityTakeDmgMother(
 export function entityTakeDmgDogma(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
 ): boolean | undefined {
-  return removeArmor(entity, amount, damageFlags, source, countdownFrames);
+  return removeArmor(entity, amount);
 }
 
-function removeArmor(
+// ModCallback.ENTITY_TAKE_DMG (11)
+// EntityType.BEAST (951)
+export function entityTakeDmgBeast(
   entity: Entity,
   amount: float,
-  damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  countdownFrames: int,
 ): boolean | undefined {
+  return removeArmor(entity, amount);
+}
+
+function removeArmor(entity: Entity, amount: float): boolean | undefined {
   if (!config.removeArmor) {
-    return;
+    return undefined;
   }
 
-  if (dealingManualDamage) {
-    return;
+  entity.HitPoints -= amount;
+  Isaac.DebugString(
+    `GETTING HERE - manually dealt: ${amount}, HitPoints: ${entity.HitPoints}`,
+  );
+  if (entity.HitPoints <= 0) {
+    entity.Kill();
   }
-
-  dealingManualDamage = true;
-  entity.TakeDamage(amount, damageFlags, source, countdownFrames);
-  dealingManualDamage = false;
 
   return false;
 }
