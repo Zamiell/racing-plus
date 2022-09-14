@@ -43,9 +43,11 @@ const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
  */
 const INVALID_COLLECTIBLE_TYPE = -1;
 
+/** See the documentation for `v.level.flippedCollectibleTypes`. */
 function getFlippedCollectibleIndex(collectible: EntityPickup) {
   const roomListIndex = getRoomListIndex();
   const gridIndex = g.r.GetGridIndex(collectible.Position);
+
   return `${roomListIndex},${gridIndex}` as FlippedCollectibleIndex;
 }
 
@@ -55,11 +57,11 @@ const v = {
      * Indexed by a tuple of room list index and collectible grid index. (In vanilla, rolling a
      * collectible will not roll the flipped collectible type.)
      *
-     * - We can't use InitSeed, since that changes after a reroll.
-     * - We can't use CollectibleIndex, since that changes after a reroll.
-     * - We can't use PtrHash, since that is no longer valid once you leave the room.
-     * - We ignore the edge-case of the Flipped collectible type persisting to post-Ascent Treasure
-     *   Rooms.
+     * - We can't use `InitSeed`, since that changes after a reroll.
+     * - We can't use `CollectibleIndex`, since that changes after a reroll.
+     * - We can't use `PtrHash`, since that is no longer valid once you leave the room.
+     * - We ignore the edge-case of the flipped collectible type persisting to a post-Ascent
+     *   Treasure Room.
      */
     flippedCollectibleTypes: new Map<
       FlippedCollectibleIndex,
@@ -89,14 +91,6 @@ const v = {
 };
 
 function newFlippedCollectibleType(collectible: EntityPickup): CollectibleType {
-  const isFirstVisit = g.r.IsFirstVisit();
-  const roomFrameCount = g.r.GetFrameCount();
-
-  // The Flip effect is only supposed to happen to items that are part of the room layout.
-  if (!isFirstVisit || roomFrameCount > 0) {
-    return CollectibleType.NULL;
-  }
-
   const itemPoolType = getCollectibleItemPoolType(collectible);
   const collectibleType = g.itemPool.GetCollectible(
     itemPoolType,
@@ -211,6 +205,14 @@ export function postPickupInitCollectible(
   }
 
   if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
+    return;
+  }
+
+  const isFirstVisit = g.r.IsFirstVisit();
+  const roomFrameCount = g.r.GetFrameCount();
+
+  // The Flip effect is only supposed to happen to items that are part of the room layout.
+  if (!isFirstVisit || roomFrameCount > 0) {
     return;
   }
 
