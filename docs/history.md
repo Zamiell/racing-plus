@@ -12,6 +12,8 @@
 - Fixed the bug in season 3 where Duality would cause there to not be enough room for a Repentance door to spawn in boss rooms with only 3 available door slots.
 - Fixed the bug where Flip would be enabled in the Death Certificate area. (Thanks Gamonymous)
 - Fixed the bug where Dream Catcher would not work properly on the Blue Womb. (Thanks Gamonymous)
+- Fixed the bug where red creep was not turned to green creep under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where green creep was not turned to blue creep under certain circumstances. (Thanks PassionDrama)
 
 ### _v0.86.0_ - September 7th, 2022
 

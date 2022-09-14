@@ -11,7 +11,6 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - The "fast-clear" feature does not apply to Challenge Rooms or Boss Challenge Rooms.
 - When returning to a big room from a crawl space, the camera will jerk from the door to the location of the crawl space.
 - The Great Gideon crawl space is not be handled by the fast-travel feature.
-- Bob's Bladder produces green creep instead of blue. (Reported by PassionDrama)
 - The charges from killing enemies with 4.5 Volt will not prioritize the pocket active item. (Reported by Gamonymous)
 - Guppy's Eye will not work correctly when it needs to show a Red Chest that gives a Devil Room item. (Reported by Moucheron Quipet)
 - The effects of an Empress? card will be cut short if you enter a trapdoor.

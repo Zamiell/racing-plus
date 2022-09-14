@@ -13,12 +13,6 @@ export function init(mod: Mod): void {
 
   mod.AddCallback(
     ModCallback.POST_EFFECT_INIT,
-    creepRed,
-    EffectVariant.CREEP_RED, // 22
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_EFFECT_INIT,
     playerCreepGreen,
     EffectVariant.PLAYER_CREEP_GREEN, // 53
   );
@@ -39,11 +33,6 @@ export function init(mod: Mod): void {
 // EffectVariant.POOF_1 (15)
 function poof01(effect: EntityEffect) {
   centerStart.poof01(effect);
-}
-
-// EffectVariant.CREEP_RED (22)
-function creepRed(effect: EntityEffect) {
-  changeCreepColor.postEffectInitCreepRed(effect);
 }
 
 // EffectVariant.PLAYER_CREEP_GREEN (53)
