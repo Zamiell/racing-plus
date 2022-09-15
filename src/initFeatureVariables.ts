@@ -32,6 +32,7 @@ import * as fastPin from "./features/optional/bosses/fastPin";
 import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "./features/optional/bosses/preventVictoryLapPopup";
+import * as removeArmor from "./features/optional/bosses/removeArmor";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as keeperHeal from "./features/optional/bugfix/keeperHeal";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
@@ -128,7 +129,8 @@ export function initFeatureVariables(): void {
   // Enemies
   globinSoftlock.init();
 
-  // Boss
+  // Bosses
+  removeArmor.init();
   killExtraEnemies.init(); // 45, 78
   fastBossRush.init();
   fastPin.init(); // 62
