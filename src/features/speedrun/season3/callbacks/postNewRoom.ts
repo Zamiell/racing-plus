@@ -25,6 +25,7 @@ import {
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import g from "../../../../globals";
+import { isDreamCatcherWarping } from "../../../optional/quality/showDreamCatcherItem/v";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
 import { resetSeason3StartingRoomSprites } from "../startingRoomSprites";
@@ -96,7 +97,8 @@ function checkDadsNoteRoom() {
     repentanceStage &&
     roomType === RoomType.BOSS &&
     roomInsideGrid &&
-    backwardsPathInit
+    backwardsPathInit &&
+    !isDreamCatcherWarping()
   ) {
     // Take them directly to Home to avoid wasting time.
     setStage(LevelStage.HOME, StageType.WRATH_OF_THE_LAMB);
