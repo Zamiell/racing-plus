@@ -203,7 +203,7 @@ Some builds are banned on certain characters:
 - Some goals are altered:
   - Mega Satan - The key pieces are not required; a teleporter will appear in the starting room of The Chest and the Dark Room.
   - Hush - The Blue Baby phase of the fight will be automatically skipped.
-  - Mother - The door to Downpour/Dross will appear on the second floor and will be automatically unlocked. Once entered, the path will lead to Mother and cannot be escaped.
+  - Mother - The door to Downpour/Dross will appear on the second floor and will be automatically unlocked.
   - Dogma - Will appear in place of Dad's Note.
 
 <br>

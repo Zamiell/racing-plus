@@ -16,13 +16,13 @@ import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
 import { decrementNumRoomsEntered } from "../utils/numRoomsEntered";
 
-const FEATURE_NAME = "planetariumFix";
-
 enum PlanetariumFixWarpState {
   INITIAL,
   WARPING,
   FINISHED,
 }
+
+const FEATURE_NAME = "planetariumFix";
 
 const v = {
   level: {

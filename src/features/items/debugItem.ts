@@ -1,4 +1,4 @@
-import { debugFunction } from "../../debug";
+import { debugFunction } from "../../debugCode";
 
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleTypeCustom.DEBUG

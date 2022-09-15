@@ -21,7 +21,7 @@ import {
 } from "isaacscript-common";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
-import { debugFunction } from "../../debug";
+import { debugFunction } from "../../debugCode";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceGoal } from "../../enums/RaceGoal";
