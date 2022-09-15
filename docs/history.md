@@ -5,8 +5,9 @@
 
 ### _v0.87.2_ - September 15th, 2022
 
-- !Fixed the bug where Glowing Hour Glass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
-- Fixed the bug where enemies who had their armor removed would not flash red. (Thanks thereisnofuture)
+- Armor is now removed from every enemy in the game, including the tainted enemies on The Ascent.
+- Armor is now removed in a separate way that will cause enemies to flash red and item charges to properly accrue.(Thanks Gamonymous)
+- Fixed the bug where Glowing Hour Glass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
 
 ### _v0.87.1_ - September 14th, 2022
 

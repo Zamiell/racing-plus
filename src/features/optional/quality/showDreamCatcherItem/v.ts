@@ -11,6 +11,7 @@ export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
 
 const v = {
   level: {
+    __ignoreGlowingHourGlass: true, // Tell the Save Data Manager to not revert this variable.
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
     floorDisplayFlags: new Map<int, BitFlags<DisplayFlag>>(),

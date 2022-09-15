@@ -12,7 +12,6 @@ import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
-import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/postUseItem";
@@ -24,12 +23,6 @@ export function init(mod: Mod): void {
     ModCallback.POST_USE_ITEM,
     teleport,
     CollectibleType.TELEPORT, // 44
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_ITEM,
-    glowingHourGlass,
-    CollectibleType.GLOWING_HOUR_GLASS, // 422
   );
 
   mod.AddCallback(
@@ -104,20 +97,6 @@ function teleport(
   _customVarData: int,
 ): boolean | undefined {
   seededTeleports.postUseItemTeleport();
-
-  return undefined;
-}
-
-// CollectibleType.GLOWING_HOUR_GLASS (422)
-function glowingHourGlass(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  freeDevilItem.postUseItemGlowingHourGlass();
 
   return undefined;
 }

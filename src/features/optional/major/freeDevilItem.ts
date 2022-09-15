@@ -37,12 +37,6 @@ iconSprite.Scale = Vector(0.5, 0.5);
 const v = {
   run: {
     tookDamage: false,
-
-    /**
-     * This is the `tookDamage` variable from the previous room. We need to track this in order to
-     * handle Glowing Hour Glass.
-     */
-    previousTookDamage: false,
   },
 
   room: {
@@ -101,12 +95,6 @@ function drawIconSprite() {
   iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
 
-// ModCallback.POST_USE_ITEM (3)
-// CollectibleType.GLOWING_HOUR_GLASS (422)
-export function postUseItemGlowingHourGlass(): void {
-  v.run.tookDamage = v.run.previousTookDamage;
-}
-
 // ModCallback.ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
   entity: Entity,
@@ -142,11 +130,6 @@ export function entityTakeDmgPlayer(
   }
 
   v.run.tookDamage = true;
-}
-
-// ModCallback.POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  v.run.previousTookDamage = v.run.tookDamage;
 }
 
 // ModCallback.POST_PICKUP_UPDATE (35)
