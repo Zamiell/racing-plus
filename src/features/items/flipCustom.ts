@@ -2,6 +2,7 @@ import {
   CollectibleType,
   EffectVariant,
   PoofSubType,
+  RenderMode,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
@@ -27,11 +28,6 @@ import { config } from "../../modConfigMenu";
 import { initCollectibleSprite } from "../../sprite";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
-/** See the documentation for the `flippedCollectibleTypes` map. */
-type FlippedCollectibleIndex = string & {
-  __flippedCollectibleIndexBrand: unknown;
-};
-
 const OLD_COLLECTIBLE_TYPE = CollectibleType.FLIP;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.FLIP_CUSTOM;
 const FADE_AMOUNT = 0.35;
@@ -42,6 +38,11 @@ const FLIPPED_COLLECTIBLE_DRAW_OFFSET = Vector(-15, -15);
  * function returning the path to the question mark PNG file.
  */
 const INVALID_COLLECTIBLE_TYPE = -1;
+
+/** See the documentation for the `flippedCollectibleTypes` map. */
+type FlippedCollectibleIndex = string & {
+  __flippedCollectibleIndexBrand: unknown;
+};
 
 /** See the documentation for `v.level.flippedCollectibleTypes`. */
 function getFlippedCollectibleIndex(collectible: EntityPickup) {
@@ -255,6 +256,13 @@ export function postPickupRenderCollectible(
   }
 
   if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
+    return;
+  }
+
+  // Checking for blind sprites will not work in the reflect callback, so wait for the "normal"
+  // render callback to fire.
+  const renderMode = g.r.GetRenderMode();
+  if (renderMode === RenderMode.WATER_REFLECT) {
     return;
   }
 
