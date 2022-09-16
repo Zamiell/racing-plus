@@ -426,7 +426,7 @@ Post-flip actions:
 - `1201` <!-- shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
 - `1202` <!-- chat --> Chat from your race opponents will be drawn on the screen.
 - <!-- forceFadedConsoleDisplay --> The "faded console display" feature is automatically enabled in the "options.ini" file, which allows you to visually see when an error in the game happens.
-- <!-- drawVersion --> Pressing the "v" key on the keyboard will draw the version of Racing+ on the screen.
+- <!-- drawVersion --> Pressing the "F1" key on the keyboard will draw the version of Racing+ on the screen.
 
 <br>
 
