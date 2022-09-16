@@ -1,5 +1,5 @@
 import { DamageFlag } from "isaac-typescript-definitions";
-import { addFlag, hasFlag } from "isaacscript-common";
+import { addFlag, hasArmor, hasFlag } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -14,12 +14,19 @@ export function entityTakeDmg(
     return undefined;
   }
 
+  // Instead of checking every entity in the game, we could have individual callbacks for each
+  // individual entity that has armor. However, there are too many entities with armor for this to
+  // be feasible. Additionally, we have to filter out entities without armor because adding
+  // `DamageFlag.IGNORE_ARMOR` to all damage has some weird side effects, like fires not being able
+  // to deal any damage, and the sneeze effect from Tainted Azazel not applying the debuff.
+  if (!hasArmor(entity)) {
+    return;
+  }
+
   if (hasFlag(damageFlags, DamageFlag.IGNORE_ARMOR)) {
     return undefined;
   }
 
-  // Instead of manually handling each entity in the game that has armor, we just add the
-  // `DamageFlag.IGNORE_ARMOR` flag to all damage.
   const newDamageFlags = addFlag(damageFlags, DamageFlag.IGNORE_ARMOR);
   entity.TakeDamage(amount, newDamageFlags, source, countdownFrames);
 

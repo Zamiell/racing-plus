@@ -9,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   changeRoom,
+  DOGMA_ROOM_GRID_INDEX,
   game,
   getBlueWombDoor,
   inBeastRoom,
@@ -35,7 +36,6 @@ import {
   season3HasMegaSatanGoal,
 } from "../v";
 
-const DOGMA_ROOM_GRID_INDEX = 109;
 const LEFT_OF_TOP_DOOR_GRID_INDEX = 20;
 
 export function season3PostNewRoom(): void {
