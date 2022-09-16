@@ -14,6 +14,7 @@ import {
   getEffects,
   getFloorDisplayFlags,
   getPlayers,
+  getRoomGridIndex,
   getRoomGridIndexesForType,
   inStartingRoom,
   log,
@@ -97,7 +98,11 @@ function startWarp() {
 
   disableAllSound(DREAM_CATCHER_FEATURE_NAME);
 
-  warpToNextDreamCatcherRoom();
+  // Start by reloading the current room. This prevents bugs with the Glowing Hour Glass later on.
+  // For example, Bloody Gust stat modifications will remain in place from the previous floor if we
+  // warp away and then use Glowing Hour Glass for some reason.
+  const roomGridIndex = getRoomGridIndex();
+  changeRoom(roomGridIndex);
 }
 
 export function warpToNextDreamCatcherRoom(): void {
