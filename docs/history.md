@@ -3,10 +3,14 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.87.3_ - September 16th, 2022
+
+- Fixed the bug in season 2 where going to a new floor would cause run-time errors. (Thanks thereisnofuture)
+
 ### _v0.87.2_ - September 15th, 2022
 
 - Armor is now removed from every enemy in the game, including the tainted enemies on The Ascent.
-- Armor is now removed in a separate way that will cause enemies to flash red and item charges to properly accrue.(Thanks Gamonymous)
+- Armor is now removed in a separate way that will cause enemies to flash red and item charges to properly accrue. (Thanks Gamonymous)
 - Fixed the bug where Glowing Hour Glass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
 - Fixed the bug where items from Flip would incorrectly appear as blind under certain circumstances. (Thanks Gamonymous)
 - Fixed the bug where Samson's dropped heart would not have any collision. (Thanks Gamonymous)
