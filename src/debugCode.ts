@@ -1,7 +1,6 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import {
   log,
-  logVector,
   printConsole,
   saveDataManagerSetGlobal,
   setLogFunctionsGlobal,
@@ -12,8 +11,6 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
-  const foo = getHUDOffsetVector();
-  logVector(foo);
 }
 
 /** Hotkey 1 is bound to F2. */
@@ -39,25 +36,4 @@ export function debugFunction(params?: string): void {
   log("Entering debug function.");
   debugCode(params);
   log("Exiting debug function.");
-}
-
-function getHUDOffsetVector(): Vector {
-  // Convert e.g. 0.4 to 4.
-  const hudOffset = math.floor(1.0 * 10);
-
-  // Expected values are integers between 1 and 10.
-  if (hudOffset < 1 || hudOffset > 10) {
-    return Vector(0, 0);
-  }
-
-  const x = hudOffset * 2;
-  let y = hudOffset;
-  if (y >= 4) {
-    y++;
-  }
-  if (y >= 9) {
-    y++;
-  }
-
-  return Vector(x, y);
 }
