@@ -9,6 +9,7 @@
 - Armor is now removed in a separate way that will cause enemies to flash red and item charges to properly accrue.(Thanks Gamonymous)
 - Fixed the bug where Glowing Hour Glass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
 - Fixed the bug where items from Flip would incorrectly appear as blind under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where Samson's dropped heart would not have any collision. (Thanks Gamonymous)
 
 ### _v0.87.1_ - September 14th, 2022
 

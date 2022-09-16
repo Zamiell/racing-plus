@@ -1,4 +1,8 @@
-import { PlayerType, TrinketType } from "isaac-typescript-definitions";
+import {
+  EntityCollisionClass,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import { getPlayersOfType, spawnTrinket, VectorZero } from "isaacscript-common";
 import g from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -32,6 +36,12 @@ export function spawnDroppedChildsHeart(player: EntityPlayer): void {
     player,
     player.InitSeed,
   );
+
+  // Bypass the drop animation, since it is distracting when resetting.
   const sprite = childsHeart.GetSprite();
   sprite.Play("Idle", true);
+
+  // An artifact of bypassing the normal animation is that the item does not have any collision;
+  // manually account for this.
+  childsHeart.EntityCollisionClass = EntityCollisionClass.ALL;
 }
