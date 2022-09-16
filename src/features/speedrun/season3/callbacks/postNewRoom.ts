@@ -58,23 +58,24 @@ export function season3PostNewRoom(): void {
 
 function checkMegaSatanTeleporter() {
   const stage = g.l.GetStage();
-  const isFirstVisit = g.r.IsFirstVisit();
 
   if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
     return;
   }
 
-  // Handle spawning the teleporter.
-  if (isFirstVisit && season3HasMegaSatanGoal() && !isOnFirstCharacter()) {
-    // We don't want to spawn the teleporter exactly where the top door would be because that is the
-    // position that they will return to if they e.g. die in the Mega Satan fight with Dead Cat.
-    spawnTeleporter(LEFT_OF_TOP_DOOR_GRID_INDEX);
+  if (!season3HasMegaSatanGoal() || isOnFirstCharacter()) {
+    return;
   }
 
-  // If we return to the starting room after the teleporter has already been activated, then we have
-  // to manually change the state to allow the player to return to the Mega Satan room.
   const gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
-  if (gridEntity !== undefined) {
+  if (gridEntity === undefined) {
+    // If the teleporter does not already exist, spawn it. Note that we do not want to spawn it
+    // where the top door would be, because that is the position that they will return to if they
+    // e.g. die in the Mega Satan fight with Dead Cat.
+    spawnTeleporter(LEFT_OF_TOP_DOOR_GRID_INDEX);
+  } else {
+    // If we return to the starting room after the teleporter has already been activated, then we
+    // have to manually change the state to allow the player to return to the Mega Satan room.
     const gridEntityType = gridEntity.GetType();
     if (gridEntityType === GridEntityType.TELEPORTER) {
       gridEntity.State = TeleporterState.NORMAL;
