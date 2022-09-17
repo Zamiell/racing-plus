@@ -1,4 +1,4 @@
-import { getPlayers, registerHotkey } from "isaacscript-common";
+import { getPlayers, setHotkey } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
 
@@ -7,7 +7,7 @@ export function init(): void {
   const keyboardFunc = () =>
     hotkeys.schoolbagSwitch === -1 ? undefined : hotkeys.schoolbagSwitch;
   // eslint-disable-next-line isaacscript/strict-enums
-  registerHotkey(keyboardFunc, schoolbagSwitch);
+  setHotkey(keyboardFunc, schoolbagSwitch);
 }
 
 function schoolbagSwitch() {

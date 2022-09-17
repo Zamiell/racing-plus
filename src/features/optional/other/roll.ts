@@ -12,8 +12,8 @@ import {
   isActionPressedOnAnyInput,
   isCharacter,
   isJacobOrEsau,
-  registerHotkey,
   saveDataManager,
+  setHotkey,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -43,7 +43,7 @@ export function init(): void {
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
   const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
   // eslint-disable-next-line isaacscript/strict-enums
-  registerHotkey(keyboardFunc, checkStartRoll);
+  setHotkey(keyboardFunc, checkStartRoll);
 }
 
 function featureEnabled() {

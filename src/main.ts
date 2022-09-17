@@ -3,8 +3,8 @@ import {
   enableExtraConsoleCommands,
   log,
   ModUpgraded,
-  registerHotkey,
   saveDataManagerSetGlobal,
+  setHotkey,
   setLogFunctionsGlobal,
   upgradeMod,
 } from "isaacscript-common";
@@ -105,8 +105,8 @@ function main() {
     setLogFunctionsGlobal();
 
     // F1 shows the version of Racing+.
-    registerHotkey(Keyboard.F2, hotkey1Function);
-    registerHotkey(Keyboard.F3, hotkey2Function);
+    setHotkey(Keyboard.F2, hotkey1Function);
+    setHotkey(Keyboard.F3, hotkey2Function);
   }
 }
 
