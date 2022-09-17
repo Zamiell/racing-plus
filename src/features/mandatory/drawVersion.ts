@@ -7,7 +7,7 @@ import {
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
 
-const SHOW_VERSION_ACTIVATION_HOTKEY = Keyboard.F1;
+const SHOW_VERSION_HOTKEY = Keyboard.F1;
 
 const v = {
   run: {
@@ -32,7 +32,7 @@ export function postRender(): void {
   // of the pause menu.
 
   // Make the version persist for at least 2 seconds after the player presses the hotkey.
-  if (isKeyboardPressed(SHOW_VERSION_ACTIVATION_HOTKEY)) {
+  if (isKeyboardPressed(SHOW_VERSION_HOTKEY)) {
     v.run.showVersionFrame = gameFrameCount + 60;
   }
 
