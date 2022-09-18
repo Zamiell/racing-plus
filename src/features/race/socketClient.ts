@@ -20,7 +20,7 @@ export function init(): void {
 
   sandbox = requiredSandbox as Sandbox;
 
-  if (sandboxTraceback === undefined) {
+  if (SandboxTraceback === undefined) {
     sandbox = undefined;
     log(
       'Error: Detected the sandbox environment, but it was not initialized correctly. (The invocation in the "main.lua" file is probably missing.)',
