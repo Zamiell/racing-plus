@@ -12,6 +12,7 @@ import {
   getRandom,
   getRandomJSONRoom,
   JSONRoom,
+  preventGridEntityRespawn,
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
@@ -74,7 +75,8 @@ function checkSpawnKrampus() {
   }
 
   v.run.metKrampus = true;
-  emptyRoom(true);
+  emptyRoom();
+  preventGridEntityRespawn();
 
   const seed = v.run.rng.krampus.Next();
   spawnWithSeed(EntityType.FALLEN, FallenVariant.KRAMPUS, 0, centerPos, seed);

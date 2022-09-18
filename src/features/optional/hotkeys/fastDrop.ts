@@ -5,7 +5,7 @@ import {
   getPlayers,
   MAX_PLAYER_TRINKET_SLOTS,
   repeat,
-  setHotkey,
+  setConditionalHotkey,
 } from "isaacscript-common";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
@@ -26,22 +26,19 @@ enum FastDropTarget {
 export function init(): void {
   const keyboardFuncAll = () =>
     hotkeys.fastDropAll === -1 ? undefined : hotkeys.fastDropAll;
-  // eslint-disable-next-line isaacscript/strict-enums
-  setHotkey(keyboardFuncAll, () => {
+  setConditionalHotkey(keyboardFuncAll, () => {
     fastDrop(FastDropTarget.ALL);
   });
 
   const keyboardFunTrinkets = () =>
     hotkeys.fastDropTrinkets === -1 ? undefined : hotkeys.fastDropTrinkets;
-  // eslint-disable-next-line isaacscript/strict-enums
-  setHotkey(keyboardFunTrinkets, () => {
+  setConditionalHotkey(keyboardFunTrinkets, () => {
     fastDrop(FastDropTarget.TRINKETS);
   });
 
   const keyboardFuncPocket = () =>
     hotkeys.fastDropPocket === -1 ? undefined : hotkeys.fastDropPocket;
-  // eslint-disable-next-line isaacscript/strict-enums
-  setHotkey(keyboardFuncPocket, () => {
+  setConditionalHotkey(keyboardFuncPocket, () => {
     fastDrop(FastDropTarget.POCKET_ITEMS);
   });
 }
