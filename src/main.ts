@@ -6,6 +6,7 @@ import {
   saveDataManagerSetGlobal,
   setHotkey,
   setLogFunctionsGlobal,
+  setTracebackFunctionsGlobal,
   upgradeMod,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
@@ -94,15 +95,18 @@ function main() {
   initFeatureVariables();
   initMinimapAPI();
 
-  enableExtraConsoleCommands(mod); // Initialize extra console commands from the standard library
-  enableExtraConsoleCommandsRacingPlus(); // Initialize extra console commands from Racing+
+  enableExtraConsoleCommands(mod); // Initialize extra console commands from the standard library.
+  enableExtraConsoleCommandsRacingPlus(); // Initialize extra console commands from Racing+.
 
   registerCallbacksVanilla(mod);
   registerCallbacksCustom(mod);
 
   if (g.debug) {
+    // We don't use the "enableDevFeatures" function since it would interfere with the fast reset
+    // feature.
     saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
+    setTracebackFunctionsGlobal();
 
     // F1 shows the version of Racing+.
     setHotkey(Keyboard.F2, hotkey1Function);
