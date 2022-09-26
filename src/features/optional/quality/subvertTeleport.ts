@@ -88,7 +88,7 @@ function subvertTeleport() {
     // If we are The Soul, the Forgotten body will also need to be teleported. However, if we change
     // its position manually, it will just warp back to the same spot on the next frame. Thus, just
     // manually switch to the Forgotten to avoid this bug.
-    if (isCharacter(player, PlayerType.THE_SOUL)) {
+    if (isCharacter(player, PlayerType.SOUL)) {
       forgottenSwitch();
     }
   }

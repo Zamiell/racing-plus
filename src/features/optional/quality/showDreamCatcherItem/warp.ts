@@ -2,8 +2,8 @@ import {
   CollectibleType,
   EffectVariant,
   GameStateFlag,
-  LadderSubType,
   RoomType,
+  TallLadderSubType,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
@@ -125,7 +125,11 @@ export function warpToNextDreamCatcherRoom(): void {
   // it if necessary.
   if (anyPlayerHasCollectible(CollectibleType.STAIRWAY)) {
     const position = g.r.GetGridPosition(STAIRWAY_GRID_INDEX);
-    spawnEffect(EffectVariant.TALL_LADDER, LadderSubType.STAIRWAY, position);
+    spawnEffect(
+      EffectVariant.TALL_LADDER,
+      TallLadderSubType.STAIRWAY,
+      position,
+    );
   }
 
   // If the player has Card Reading, moving away from the room would delete the portals, so respawn

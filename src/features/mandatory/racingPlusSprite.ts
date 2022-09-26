@@ -86,7 +86,7 @@ export function postGameStarted(): void {
  * We want this sprite to appear on all runs, so we need to disable achievements on all runs. The
  * easiest way to do this without affecting gameplay is to enable an easter egg that prevents a
  * curse from appearing. (This will have no effect since all curses are removed in the
- * "PostCurseEval" callback anyway.)
+ * `POST_CURSE_EVAL` callback anyway.)
  *
  * Note that not all easter eggs prevent achievements, but this one does.
  */

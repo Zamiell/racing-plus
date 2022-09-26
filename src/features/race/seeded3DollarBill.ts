@@ -10,38 +10,48 @@ import v from "./v";
 const REPLACED_ITEM = CollectibleType.THREE_DOLLAR_BILL;
 const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
 
-// Listed in alphabetical order to match the wiki page.
+// Listed in alphabetical order to match the wiki page (39 in total).
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
 const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
-  CollectibleType.TWENTY_TWENTY, // 245
-  CollectibleType.APPLE, // 443
-  CollectibleType.BALL_OF_TAR, // 231
-  CollectibleType.CONTINUUM, // 369
-  CollectibleType.CRICKETS_BODY, // 224
-  CollectibleType.DARK_MATTER, // 259
-  CollectibleType.DEAD_EYE, // 373
-  CollectibleType.DEATHS_TOUCH, // 237
-  CollectibleType.EUTHANASIA, // 496
-  CollectibleType.EYE_OF_BELIAL, // 462
-  CollectibleType.FIRE_MIND, // 257
-  CollectibleType.IRON_BAR, // 201
-  CollectibleType.MOMS_CONTACTS, // 110
-  CollectibleType.MUTANT_SPIDER, // 153
-  CollectibleType.MY_REFLECTION, // 5
-  CollectibleType.MYSTERIOUS_LIQUID, // 317
-  CollectibleType.NUMBER_ONE, // 6
-  CollectibleType.OUIJA_BOARD, // 115
-  CollectibleType.PARASITOID, // 461
-  CollectibleType.PROPTOSIS, // 261
-  CollectibleType.RUBBER_CEMENT, // 221
-  CollectibleType.SAGITTARIUS, // 306
-  CollectibleType.SCORPIO, // 305
-  CollectibleType.SINUS_INFECTION, // 459
-  CollectibleType.SPEED_BALL, // 143
-  CollectibleType.SPOON_BENDER, // 3
-  CollectibleType.INNER_EYE, // 2
-  CollectibleType.THE_WIZ, // 358
-  CollectibleType.TOUGH_LOVE, // 150
+  CollectibleType.EIGHT_INCH_NAILS,
+  CollectibleType.TWENTY_TWENTY,
+  CollectibleType.APPLE,
+  CollectibleType.BALL_OF_TAR,
+  CollectibleType.CONTINUUM,
+  CollectibleType.CRICKETS_BODY,
+  CollectibleType.DARK_MATTER,
+  CollectibleType.DEAD_EYE,
+  CollectibleType.DEATHS_TOUCH,
+  CollectibleType.EUTHANASIA,
+  CollectibleType.EXPLOSIVO,
+  CollectibleType.EYE_OF_BELIAL,
+  CollectibleType.FIRE_MIND,
+  CollectibleType.HOLY_LIGHT,
+  CollectibleType.IRON_BAR,
+  CollectibleType.LITTLE_HORN,
+  CollectibleType.LOST_CONTACT,
+  CollectibleType.MOMS_CONTACTS,
+  CollectibleType.MOMS_EYESHADOW,
+  CollectibleType.MOMS_PERFUME,
+  CollectibleType.MUTANT_SPIDER,
+  CollectibleType.MY_REFLECTION,
+  CollectibleType.MYSTERIOUS_LIQUID,
+  CollectibleType.NUMBER_ONE,
+  CollectibleType.OUIJA_BOARD,
+  CollectibleType.PARASITOID,
+  CollectibleType.PROPTOSIS,
+  CollectibleType.PUPULA_DUPLEX,
+  CollectibleType.RUBBER_CEMENT,
+  CollectibleType.SAGITTARIUS,
+  CollectibleType.SCORPIO,
+  CollectibleType.SINUS_INFECTION,
+  CollectibleType.SPEED_BALL,
+  CollectibleType.SPOON_BENDER,
+  CollectibleType.INNER_EYE,
+  CollectibleType.PARASITE,
+  CollectibleType.SAD_ONION,
+  CollectibleType.WIZ,
+  CollectibleType.TOUGH_LOVE,
 ];
 
 // ModCallback.POST_PEFFECT_UPDATE (4)

@@ -120,7 +120,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     return;
   }
 
-  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
     return;
   }
 
@@ -192,7 +192,7 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 function getRollPlayer() {
   const player = Isaac.GetPlayer();
 
-  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul === undefined) {
       error("Failed to get Tainted Soul from Tainted Forgotten.");

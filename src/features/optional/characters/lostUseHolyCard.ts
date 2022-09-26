@@ -18,7 +18,7 @@ export function postGameStarted(): void {
     return;
   }
 
-  const taintedLosts = getPlayersOfType(PlayerType.THE_LOST_B);
+  const taintedLosts = getPlayersOfType(PlayerType.LOST_B);
   for (const player of taintedLosts) {
     const slotWithHolyCard = getPocketItemSlotWithHolyCard(player);
     if (slotWithHolyCard !== undefined) {

@@ -20,7 +20,7 @@ export function applySeededGhostFade(
   const newColor = enabled ? QUARTER_FADED_COLOR : ColorDefault;
   sprite.Color = newColor;
 
-  if (isCharacter(player, PlayerType.THE_SOUL)) {
+  if (isCharacter(player, PlayerType.SOUL)) {
     const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
     for (const forgottenBody of forgottenBodies) {
       const forgottenSprite = forgottenBody.GetSprite();

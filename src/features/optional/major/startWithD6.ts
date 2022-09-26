@@ -226,7 +226,7 @@ export function postItemPickupBirthright(player: EntityPlayer): void {
     return;
   }
 
-  if (!isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (!isCharacter(player, PlayerType.FORGOTTEN_B)) {
     return;
   }
 
@@ -273,7 +273,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   }
 
   // Tainted Soul (40) is a special case; he cannot use items.
-  if (isCharacter(player, PlayerType.THE_SOUL_B)) {
+  if (isCharacter(player, PlayerType.SOUL_B)) {
     return;
   }
 

@@ -23,8 +23,8 @@ export const CHANGE_CHAR_ORDER_POSITIONS: Record<string, SeasonDescription> = {
       [PlayerType.AZAZEL, 10, 1], // 7
       [PlayerType.AZAZEL_B, 12, 1],
 
-      [PlayerType.THE_LOST, 0, 3], // 10
-      [PlayerType.THE_LOST_B, 2, 3],
+      [PlayerType.LOST, 0, 3], // 10
+      [PlayerType.LOST_B, 2, 3],
 
       [PlayerType.KEEPER, 10, 3], // 12
       [PlayerType.KEEPER_B, 12, 3],

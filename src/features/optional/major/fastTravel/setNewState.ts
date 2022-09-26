@@ -189,7 +189,7 @@ function movePlayerToTrapdoor(player: EntityPlayer, position: Vector) {
 }
 
 function shouldMoveTaintedSoul(player: EntityPlayer) {
-  if (!isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (!isCharacter(player, PlayerType.FORGOTTEN_B)) {
     return false;
   }
 
@@ -210,7 +210,7 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
  * If The Soul is traveling to the next floor, the Forgotten body will also need to be teleported.
  */
 function warpForgottenBody(player: EntityPlayer) {
-  if (!isCharacter(player, PlayerType.THE_SOUL)) {
+  if (!isCharacter(player, PlayerType.SOUL)) {
     return;
   }
 
@@ -233,7 +233,7 @@ function warpForgottenBody(player: EntityPlayer) {
 }
 
 function dropTaintedForgotten(player: EntityPlayer) {
-  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (taintedSoul !== undefined) {
       taintedSoul.ThrowHeldEntity(VectorZero);
@@ -258,7 +258,7 @@ function playTravelingAnimation(player: EntityPlayer, upwards: boolean) {
   // If Tainted Forgotten is overlapping with Tainted Soul, playing two jumping animations does not
   // work. Instead, just make Tainted Soul invisible. (They will automatically become visible again
   // when we reach the next floor.)
-  if (isCharacter(player, PlayerType.THE_FORGOTTEN_B)) {
+  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (
       taintedSoul !== undefined &&
@@ -349,7 +349,7 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
   const taintedForgottens = Isaac.FindByType(
     EntityType.PLAYER,
     PlayerVariant.PLAYER,
-    PlayerType.THE_FORGOTTEN_B,
+    PlayerType.FORGOTTEN_B,
   );
   for (const taintedForgotten of taintedForgottens) {
     const player = taintedForgotten.ToPlayer();

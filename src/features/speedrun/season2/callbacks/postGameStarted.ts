@@ -228,7 +228,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
     }
 
     // 16
-    case PlayerType.THE_FORGOTTEN: {
+    case PlayerType.FORGOTTEN: {
       return SEASON_2_FORGOTTEN_EXCEPTIONS;
     }
 

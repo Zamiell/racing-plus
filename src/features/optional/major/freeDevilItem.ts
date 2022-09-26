@@ -155,10 +155,7 @@ export function postPickupUpdateCollectible(
 
 export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const effectiveDevilDeals = getEffectiveDevilDeals();
-  const anyPlayerIsTheLost = anyPlayerIs(
-    PlayerType.THE_LOST,
-    PlayerType.THE_LOST_B,
-  );
+  const anyPlayerIsTheLost = anyPlayerIs(PlayerType.LOST, PlayerType.LOST_B);
 
   return !v.run.tookDamage && effectiveDevilDeals === 0 && !anyPlayerIsTheLost;
 }

@@ -8,7 +8,7 @@ export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
   PlayerType.CAIN, // 2
   PlayerType.EVE, // 5
   PlayerType.DARK_JUDAS, // 12
-  PlayerType.THE_FORGOTTEN, // 16
+  PlayerType.FORGOTTEN, // 16
   PlayerType.ISAAC_B, // 21
   PlayerType.SAMSON_B, // 27
   PlayerType.AZAZEL_B, // 28
