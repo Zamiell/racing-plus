@@ -123,13 +123,9 @@ export function before(): void {
   // which will result in slightly more Curse Rooms on the first two floors than normal, but that is
   // okay.
 
-  // Modification 2: Book touched
-  const bookMod = getRandom(rng);
-  if (bookMod < 0.5) {
-    game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, false);
-  } else {
-    game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, true);
-  }
+  // Modification 2: Book touched.
+  // - Vanilla is bugged so that the flag never gets set to true, so we copy this behavior and do
+  //   nothing.
 
   // Modification 3: Coins
   const coinMod = getRandom(rng);

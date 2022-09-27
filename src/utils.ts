@@ -130,8 +130,13 @@ export function serverCollectibleIDToCollectibleType(
  * - the game is paused
  * - the console is open
  * - Mod Config Menu is open
+ * - a custom console is open
  */
 export function shouldCheckForGameplayInputs(): boolean {
   const isPaused = game.IsPaused();
-  return !isPaused && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible);
+  return (
+    !isPaused &&
+    (ModConfigMenu === undefined || !ModConfigMenu.IsVisible) &&
+    (AwaitingTextInput === undefined || !AwaitingTextInput)
+  );
 }
