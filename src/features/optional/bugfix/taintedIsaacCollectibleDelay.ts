@@ -1,12 +1,8 @@
 // Make Tainted Isaac not automatically pick up pedestal items from chests.
 
-import {
-  COLLECTIBLE_INITIAL_WAIT,
-  DefaultMap,
-  game,
-  saveDataManager,
-} from "isaacscript-common";
+import { COLLECTIBLE_INITIAL_WAIT, DefaultMap, game } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { mod } from "../../../mod";
 
 const v = {
   room: {
@@ -17,7 +13,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("taintedIsaacCollectibleDelay", v);
+  mod.saveDataManager("taintedIsaacCollectibleDelay", v);
 }
 
 // ModCallback.POST_PICKUP_UPDATE (35)

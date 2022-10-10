@@ -1,12 +1,12 @@
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeGridEntity,
-  saveDataManager,
 } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { inSpeedrun, onSpeedrunWithDarkRoomGoal } from "../speedrun/speedrun";
 
@@ -19,7 +19,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("preventSacrificeRoomTeleport", v);
+  mod.saveDataManager("preventSacrificeRoomTeleport", v);
 }
 
 // ModCallback.POST_NEW_ROOM (19)

@@ -6,12 +6,12 @@ import {
 } from "isaac-typescript-definitions";
 import {
   asNumber,
-  saveDataManager,
   spawnNPC,
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { consoleCommand } from "../../utils";
 
 const v = {
@@ -21,7 +21,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("beastPreventEnd", v);
+  mod.saveDataManager("beastPreventEnd", v);
 }
 
 // ModCallback.POST_NEW_ROOM (19)

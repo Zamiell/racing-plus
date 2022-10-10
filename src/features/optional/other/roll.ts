@@ -6,17 +6,14 @@ import {
 } from "isaac-typescript-definitions";
 import {
   capitalizeFirstLetter,
-  disableAllInputs,
-  enableAllInputs,
   getDirectionName,
   isActionPressedOnAnyInput,
   isCharacter,
   isJacobOrEsau,
-  saveDataManager,
-  setConditionalHotkey,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config, hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
 
@@ -38,11 +35,11 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager(FEATURE_NAME, v, featureEnabled);
+  mod.saveDataManager(FEATURE_NAME, v, featureEnabled);
 
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
   const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
-  setConditionalHotkey(keyboardFunc, checkStartRoll);
+  mod.setConditionalHotkey(keyboardFunc, checkStartRoll);
 }
 
 function featureEnabled() {
@@ -78,7 +75,7 @@ function playerCanRoll(player: EntityPlayer) {
 }
 
 function startRoll(player: EntityPlayer) {
-  disableAllInputs(FEATURE_NAME);
+  mod.disableAllInputs(FEATURE_NAME);
 
   // The player's velocity is stored so that it can be restored when the roll is over.
   v.run.rolling = true;
@@ -170,7 +167,7 @@ function stopRoll(player: EntityPlayer) {
   v.run.originalVelocity = VectorZero;
   v.run.originalVelocity2 = VectorZero;
 
-  enableAllInputs(FEATURE_NAME);
+  mod.enableAllInputs(FEATURE_NAME);
 }
 
 // ModCallback.POST_NEW_ROOM (19)

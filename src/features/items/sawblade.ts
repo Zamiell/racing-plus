@@ -49,13 +49,10 @@
 // - Rotation rate: 4.05 degrees per frame (same as all orbitals in Afterbirth+)
 
 import { EntityType, NullItemID } from "isaac-typescript-definitions";
-import {
-  checkFamiliarFromCollectibles,
-  saveDataManager,
-  VectorZero,
-} from "isaacscript-common";
+import { checkFamiliarFromCollectibles, VectorZero } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../enums/FamiliarVariantCustom";
+import { mod } from "../../mod";
 
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;
@@ -77,7 +74,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("sawblade", v);
+  mod.saveDataManager("sawblade", v);
 }
 
 // ModCallback.POST_FAMILIAR_UPDATE (6)

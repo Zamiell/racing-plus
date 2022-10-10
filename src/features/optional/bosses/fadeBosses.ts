@@ -5,7 +5,8 @@ import {
   LambVariant,
   NpcState,
 } from "isaac-typescript-definitions";
-import { asNumber, runNextGameFrame } from "isaacscript-common";
+import { asNumber } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const FADE_AMOUNT = 0.4;
@@ -61,7 +62,7 @@ function fadeBosses(entity: Entity, deferred = false) {
         return;
       }
     } else {
-      runNextGameFrame(() => {
+      mod.runNextGameFrame(() => {
         fadeBosses(entity, true);
       });
       return;

@@ -1,12 +1,9 @@
 import { CardType } from "isaac-typescript-definitions";
-import {
-  enableAllInputs,
-  isKeeper,
-  RENDER_FRAMES_PER_SECOND,
-} from "isaacscript-common";
+import { isKeeper, RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import { TimerType } from "../../../../enums/TimerType";
+import { mod } from "../../../../mod";
 import * as timer from "../../../../timer";
 import {
   SEEDED_DEATH_FEATURE_NAME,
@@ -44,7 +41,7 @@ function postRenderFetalPosition() {
   v.run.state = SeededDeathState.GHOST_FORM;
   logSeededDeathStateChange();
 
-  enableAllInputs(SEEDED_DEATH_FEATURE_NAME);
+  mod.enableAllInputs(SEEDED_DEATH_FEATURE_NAME);
 
   // Since Keeper only has one coin container, he gets a bonus usage of Holy Card. We grant it here
   // so that it does not cancel the "AppearVanilla" animation.

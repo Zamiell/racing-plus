@@ -8,10 +8,10 @@ import {
 import {
   collectibleHasTag,
   getPlayerIndex,
-  getPlayerNumCollectiblesForTransformation,
   PickingUpItem,
   PlayerIndex,
 } from "isaacscript-common";
+import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { COLLECTIBLE_TO_PICKUP_DROPS_MAP } from "../constants";
 import v from "../v";
@@ -74,11 +74,11 @@ function checkIfThirdSpunItem(
     return;
   }
 
-  const numSpunCollectibles = getPlayerNumCollectiblesForTransformation(
+  const spunCollectibles = mod.getPlayerCollectiblesForTransformation(
     player,
     PlayerForm.SPUN,
   );
-  if (numSpunCollectibles === 2) {
+  if (spunCollectibles.length === 2) {
     // We already have two Spun items and we are picking up a third one.
     const playerIndex = getPlayerIndex(player);
     const queueArray: [PickupVariant, PlayerIndex] = [

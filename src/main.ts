@@ -1,13 +1,8 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import {
-  enableExtraConsoleCommands,
   log,
-  ModUpgraded,
-  saveDataManagerSetGlobal,
-  setHotkey,
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
-  upgradeMod,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
@@ -84,33 +79,28 @@ import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extra
 import g from "./globals";
 import { initFeatureVariables } from "./initFeatureVariables";
 import { initMinimapAPI } from "./minimapAPI";
+import { mod } from "./mod";
 
 main();
 
 function main() {
-  const modVanilla = RegisterMod(MOD_NAME, 1);
-  const mod = upgradeMod(modVanilla);
-
   welcomeBanner();
   initFeatureVariables();
   initMinimapAPI();
 
-  enableExtraConsoleCommands(mod); // Initialize extra console commands from the standard library.
-  enableExtraConsoleCommandsRacingPlus(); // Initialize extra console commands from Racing+.
+  enableExtraConsoleCommandsRacingPlus();
 
-  registerCallbacksVanilla(mod);
-  registerCallbacksCustom(mod);
+  registerCallbacksVanilla();
+  registerCallbacksCustom();
 
   if (g.debug) {
-    // We don't use the "enableDevFeatures" function since it would interfere with the fast reset
-    // feature.
-    saveDataManagerSetGlobal();
+    mod.saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
     setTracebackFunctionsGlobal();
 
     // F1 shows the version of Racing+.
-    setHotkey(Keyboard.F2, hotkey1Function);
-    setHotkey(Keyboard.F3, hotkey2Function);
+    mod.setHotkey(Keyboard.F2, hotkey1Function);
+    mod.setHotkey(Keyboard.F3, hotkey2Function);
   }
 }
 
@@ -123,77 +113,77 @@ function welcomeBanner() {
   log(welcomeTextBorder);
 }
 
-function registerCallbacksVanilla(mod: ModUpgraded) {
-  postNPCUpdate.init(mod); // 0
-  postUpdate.init(mod); // 1
-  postRender.init(mod); // 2
-  useItem.init(mod); // 3
-  useCard.init(mod); // 5
-  postFamiliarUpdate.init(mod); // 6
-  postFamiliarInit.init(mod); // 7
-  evaluateCache.init(mod); // 8
-  postPlayerInit.init(mod); // 9
-  usePill.init(mod); // 10
-  entityTakeDmg.init(mod); // 11
-  postCurseEval.init(mod); // 12
-  inputAction.init(mod); // 13
-  postGameEnd.init(mod); // 16
-  preGameExit.init(mod); // 17
-  executeCmd.init(mod); // 22
-  preUseItem.init(mod); // 23
-  preEntitySpawn.init(mod); // 24
-  postFamiliarRender.init(mod); // 25
-  preFamiliarCollision.init(mod); // 26
-  postNPCInit.init(mod); // 27
-  postNPCRender.init(mod); // 28
-  postPlayerRender.init(mod); // 32
-  postPickupInit.init(mod); // 34
-  postPickupUpdate.init(mod); // 35
-  postPickupRender.init(mod); // 36
-  postTearUpdate.init(mod); // 40
-  postProjectileInit.init(mod); // 43
-  postLaserInit.init(mod); // 47
-  postEffectInit.init(mod); // 54
-  postEffectUpdate.init(mod); // 55
-  postBombInit.init(mod); // 57
-  preGetCollectible.init(mod); // 62
-  getPillEffect.init(mod); // 65
-  postEntityRemove.init(mod); // 67
-  postEntityKill.init(mod); // 68
-  preNPCUpdate.init(mod); // 69
-  preSpawnClearAward.init(mod); // 70
-  preRoomEntitySpawn.init(mod); // 71
+function registerCallbacksVanilla() {
+  postNPCUpdate.init(); // 0
+  postUpdate.init(); // 1
+  postRender.init(); // 2
+  useItem.init(); // 3
+  useCard.init(); // 5
+  postFamiliarUpdate.init(); // 6
+  postFamiliarInit.init(); // 7
+  evaluateCache.init(); // 8
+  postPlayerInit.init(); // 9
+  usePill.init(); // 10
+  entityTakeDmg.init(); // 11
+  postCurseEval.init(); // 12
+  inputAction.init(); // 13
+  postGameEnd.init(); // 16
+  preGameExit.init(); // 17
+  executeCmd.init(); // 22
+  preUseItem.init(); // 23
+  preEntitySpawn.init(); // 24
+  postFamiliarRender.init(); // 25
+  preFamiliarCollision.init(); // 26
+  postNPCInit.init(); // 27
+  postNPCRender.init(); // 28
+  postPlayerRender.init(); // 32
+  postPickupInit.init(); // 34
+  postPickupUpdate.init(); // 35
+  postPickupRender.init(); // 36
+  postTearUpdate.init(); // 40
+  postProjectileInit.init(); // 43
+  postLaserInit.init(); // 47
+  postEffectInit.init(); // 54
+  postEffectUpdate.init(); // 55
+  postBombInit.init(); // 57
+  preGetCollectible.init(); // 62
+  getPillEffect.init(); // 65
+  postEntityRemove.init(); // 67
+  postEntityKill.init(); // 68
+  preNPCUpdate.init(); // 69
+  preSpawnClearAward.init(); // 70
+  preRoomEntitySpawn.init(); // 71
 }
 
-function registerCallbacksCustom(mod: ModUpgraded) {
-  postAmbushStarted.init(mod);
-  postBombExploded.init(mod);
-  postBoneSwing.init(mod);
-  postCursedTeleport.init(mod);
-  postCustomRevive.init(mod);
-  postFirstEsauJr.init(mod);
-  postFirstFlip.init(mod);
-  postFlip.init(mod);
-  postGameStartedReordered.init(mod);
-  postGridEntityInit.init(mod);
-  postGridEntityRemove.init(mod);
-  postGridEntityStateChanged.init(mod);
-  postGridEntityUpdate.init(mod);
-  postItemPickup.init(mod);
-  postNewLevelReordered.init(mod);
-  postNewRoomReordered.init(mod);
-  postNPCInitLate.init(mod);
-  postPEffectUpdateReordered.init(mod);
-  postPickupCollect.init(mod);
-  postPlayerChangeType.init(mod);
-  postPlayerInitLate.init(mod);
-  postPressurePlateUpdate.init(mod);
-  postPurchase.init(mod);
-  postRoomClearChanged.init(mod);
-  postSacrifice.init(mod);
-  postSlotAnimationChanged.init(mod);
-  postTearInitVeryLate.init(mod);
-  postTransformation.init(mod);
-  preCustomRevive.init(mod);
-  preItemPickup.init(mod);
+function registerCallbacksCustom() {
+  postAmbushStarted.init();
+  postBombExploded.init();
+  postBoneSwing.init();
+  postCursedTeleport.init();
+  postCustomRevive.init();
+  postFirstEsauJr.init();
+  postFirstFlip.init();
+  postFlip.init();
+  postGameStartedReordered.init();
+  postGridEntityInit.init();
+  postGridEntityRemove.init();
+  postGridEntityStateChanged.init();
+  postGridEntityUpdate.init();
+  postItemPickup.init();
+  postNewLevelReordered.init();
+  postNewRoomReordered.init();
+  postNPCInitLate.init();
+  postPEffectUpdateReordered.init();
+  postPickupCollect.init();
+  postPlayerChangeType.init();
+  postPlayerInitLate.init();
+  postPressurePlateUpdate.init();
+  postPurchase.init();
+  postRoomClearChanged.init();
+  postSacrifice.init();
+  postSlotAnimationChanged.init();
+  postTearInitVeryLate.init();
+  postTransformation.init();
+  preCustomRevive.init();
+  preItemPickup.init();
 }

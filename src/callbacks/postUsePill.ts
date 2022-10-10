@@ -4,8 +4,9 @@ import * as streakText from "../features/mandatory/streakText";
 import * as pillsCancelAnimations from "../features/optional/gameplay/pillsCancelAnimations";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as showPills from "../features/optional/quality/showPills";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_USE_PILL, main);
 
   mod.AddCallback(

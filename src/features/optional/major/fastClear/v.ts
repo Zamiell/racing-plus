@@ -1,10 +1,5 @@
-import {
-  game,
-  getEntityID,
-  log,
-  logPtrHashes,
-  saveDataManager,
-} from "isaacscript-common";
+import { game, getEntityID, log, logPtrHashes } from "isaacscript-common";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { FAST_CLEAR_DEBUG } from "./constants";
 
@@ -19,7 +14,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("fastClear", v, featureEnabled);
+  mod.saveDataManager("fastClear", v, featureEnabled);
 }
 
 function featureEnabled() {

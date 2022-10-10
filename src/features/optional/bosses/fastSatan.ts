@@ -12,10 +12,10 @@ import {
   inBossRoomOf,
   log,
   newRNG,
-  saveDataManager,
   spawnWithSeed,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -25,7 +25,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastSatan", v);
+  mod.saveDataManager("fastSatan", v);
 }
 
 // ModCallback.POST_GAME_STARTED (15)

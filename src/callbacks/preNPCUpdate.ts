@@ -1,7 +1,8 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import * as appearHands from "../features/optional/enemies/appearHands";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.PRE_NPC_UPDATE,
     momsHand,

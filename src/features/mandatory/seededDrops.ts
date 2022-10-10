@@ -17,11 +17,11 @@ import {
   newRNG,
   onSetSeed,
   repeat,
-  saveDataManager,
   setAllRNGToStartSeed,
   spawnPickupWithSeed,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -38,7 +38,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("seededDrops", v);
+  mod.saveDataManager("seededDrops", v);
 }
 
 // ModCallback.POST_GAME_STARTED (15)

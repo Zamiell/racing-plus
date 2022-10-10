@@ -23,8 +23,9 @@ import * as customConsole from "../features/race/customConsole";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
 import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
 import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_RENDER, main);
 }
 

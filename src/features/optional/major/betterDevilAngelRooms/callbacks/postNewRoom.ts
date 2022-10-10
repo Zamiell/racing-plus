@@ -5,9 +5,9 @@ import {
   getPlayerFromIndex,
   getRoomListIndex,
   inAngelShop,
-  preventGridEntityRespawn,
 } from "isaacscript-common";
 import g from "../../../../../globals";
+import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { angel } from "../angel";
 import { devil } from "../devil";
@@ -45,7 +45,7 @@ function checkDevilAngelRoomReplacement() {
   if (v.run.intentionallyLeaveEmpty) {
     v.run.intentionallyLeaveEmpty = false;
     emptyRoom();
-    preventGridEntityRespawn();
+    mod.preventGridEntityRespawn();
     return;
   }
 

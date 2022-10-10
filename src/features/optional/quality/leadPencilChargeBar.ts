@@ -8,7 +8,6 @@ import {
   getPlayerIndex,
   isTearFromPlayer,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
 import {
   drawCustomChargeBar,
@@ -16,6 +15,7 @@ import {
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
@@ -31,7 +31,7 @@ const sprite = Sprite();
 sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 
 export function init(): void {
-  saveDataManager("leadPencilChargeBar", v, featureEnabled);
+  mod.saveDataManager("leadPencilChargeBar", v, featureEnabled);
 }
 
 function featureEnabled() {

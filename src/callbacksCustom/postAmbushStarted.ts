@@ -1,7 +1,8 @@
-import { AmbushType, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import { AmbushType, ModCallbackCustom } from "isaacscript-common";
 import * as fastBossRush from "../features/optional/bosses/fastBossRush";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(
     ModCallbackCustom.POST_AMBUSH_STARTED,
     bossRush,

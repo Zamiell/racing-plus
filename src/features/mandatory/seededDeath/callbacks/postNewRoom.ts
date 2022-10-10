@@ -1,6 +1,5 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
-  disableAllInputs,
   getPlayerFromIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isJacobOrEsau,
@@ -8,6 +7,7 @@ import {
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import {
   SEEDED_DEATH_DEBUFF_RENDER_FRAMES,
   SEEDED_DEATH_FEATURE_NAME,
@@ -59,7 +59,7 @@ function postNewRoomWaitingForPostCustomRevive() {
 }
 
 export function playAppearAnimationAndFade(player: EntityPlayer): void {
-  disableAllInputs(SEEDED_DEATH_FEATURE_NAME);
+  mod.disableAllInputs(SEEDED_DEATH_FEATURE_NAME);
   applySeededGhostFade(player, true);
 
   // Play the animation where Isaac lies in the fetal position.

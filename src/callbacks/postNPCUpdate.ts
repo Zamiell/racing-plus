@@ -14,8 +14,9 @@ import * as fastNeedles from "../features/optional/enemies/fastNeedles";
 import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_NPC_UPDATE, main);
 
   mod.AddCallback(

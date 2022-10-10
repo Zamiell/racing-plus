@@ -1,4 +1,3 @@
-import { saveDataManagerLoad } from "isaacscript-common";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
@@ -66,10 +65,13 @@ import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as season2 from "./features/speedrun/season2/v";
+import { initDiversityCollectibleTypes } from "./features/speedrun/season3/constantsCollectibles";
+import { initDiversityTrinketTypes } from "./features/speedrun/season3/constantsTrinkets";
 import * as season3 from "./features/speedrun/season3/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as roomsEntered from "./features/utils/numRoomsEntered";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
+import { mod } from "./mod";
 import * as modConfigMenu from "./modConfigMenu";
 import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
 
@@ -84,6 +86,8 @@ export function initFeatureVariables(): void {
   speedrunVars.init();
   season2.init();
   season3.init();
+  initDiversityCollectibleTypes();
+  initDiversityTrinketTypes();
   changeCharOrderVars.init();
 
   // Util
@@ -176,5 +180,5 @@ export function initFeatureVariables(): void {
   // Now that all of the features have been initialized, we can get the save data manager to load
   // data from disk before the first run begins. (This prevents bugs with `isaacscript-watcher` when
   // reloading the mod in the middle of a run.)
-  saveDataManagerLoad();
+  mod.saveDataManagerLoad();
 }

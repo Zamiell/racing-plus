@@ -1,4 +1,4 @@
-import { saveDataManager } from "isaacscript-common";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -7,7 +7,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("roomsEntered", v);
+  mod.saveDataManager("roomsEntered", v);
 }
 
 // ModCallback.POST_NEW_ROOM (19)

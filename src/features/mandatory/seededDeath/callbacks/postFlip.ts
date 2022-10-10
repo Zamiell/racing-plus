@@ -1,6 +1,7 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { runNextGameFrame, useActiveItemTemp } from "isaacscript-common";
+import { useActiveItemTemp } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
+import { mod } from "../../../../mod";
 import {
   applySeededGhostFade,
   shouldSeededDeathFeatureApply,
@@ -26,7 +27,7 @@ export function seededDeathPostFlip(player: EntityPlayer): void {
     // it.
     applySeededGhostFade(player, true);
   } else {
-    runNextGameFrame(() => {
+    mod.runNextGameFrame(() => {
       v.run.switchingBackToGhostLazarus = true;
       useActiveItemTemp(player, CollectibleType.FLIP);
     });

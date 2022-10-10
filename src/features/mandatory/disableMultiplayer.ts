@@ -2,12 +2,8 @@
 // run is forcefully ended.
 
 import { FadeoutTarget } from "isaac-typescript-definitions";
-import {
-  game,
-  getPlayers,
-  isChildPlayer,
-  saveDataManager,
-} from "isaacscript-common";
+import { game, getPlayers, isChildPlayer } from "isaacscript-common";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -16,7 +12,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("disableMultiplayer", v);
+  mod.saveDataManager("disableMultiplayer", v);
 }
 
 // ModCallback.POST_PLAYER_INIT (9)

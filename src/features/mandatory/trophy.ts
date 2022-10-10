@@ -3,17 +3,11 @@ import {
   EntityPartition,
   PlayerItemAnimation,
 } from "isaac-typescript-definitions";
-import {
-  doesEntityExist,
-  getEntities,
-  logError,
-  removePersistentEntity,
-  saveDataManager,
-  spawnPersistentEntity,
-} from "isaacscript-common";
+import { doesEntityExist, getEntities, logError } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { raceFinish } from "../race/raceFinish";
 import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";
@@ -28,7 +22,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("trophy", v);
+  mod.saveDataManager("trophy", v);
 }
 
 export function spawnTrophy(position: Vector): void {
@@ -38,7 +32,7 @@ export function spawnTrophy(position: Vector): void {
     return;
   }
 
-  const [_entity, index] = spawnPersistentEntity(
+  const [_entity, index] = mod.spawnPersistentEntity(
     EntityTypeCustom.RACE_TROPHY,
     0,
     0,
@@ -85,7 +79,7 @@ function touch(entity: Entity, player: EntityPlayer) {
     logError("A trophy was touched without the index being present.");
     entity.Remove();
   } else {
-    removePersistentEntity(v.level.trophyIndex);
+    mod.removePersistentEntity(v.level.trophyIndex);
     v.level.trophyIndex = null;
   }
 

@@ -1,4 +1,5 @@
-import { getPlayers, setConditionalHotkey } from "isaacscript-common";
+import { getPlayers } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
 
@@ -6,7 +7,7 @@ export function init(): void {
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
   const keyboardFunc = () =>
     hotkeys.schoolbagSwitch === -1 ? undefined : hotkeys.schoolbagSwitch;
-  setConditionalHotkey(keyboardFunc, schoolbagSwitch);
+  mod.setConditionalHotkey(keyboardFunc, schoolbagSwitch);
 }
 
 function schoolbagSwitch() {

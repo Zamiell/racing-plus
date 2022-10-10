@@ -2,11 +2,11 @@ import { CoinSubType } from "isaac-typescript-definitions";
 import {
   getLastFrameOfAnimation,
   isCoin,
-  saveDataManager,
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -16,7 +16,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("stickyNickel", v, featureEnabled);
+  mod.saveDataManager("stickyNickel", v, featureEnabled);
 }
 
 function featureEnabled() {

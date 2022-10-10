@@ -6,9 +6,9 @@ import {
   isKeeper,
   mapSetPlayer,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 
 const ONE_COIN_CONTAINER_HEARTS_VALUE = 2;
 
@@ -21,7 +21,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("keeperHeal", v);
+  mod.saveDataManager("keeperHeal", v);
 }
 
 // ModCallback.POST_EFFECT_UPDATE (55)

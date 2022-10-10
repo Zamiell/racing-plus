@@ -1,5 +1,6 @@
 import { PickupVariant } from "isaac-typescript-definitions";
-import { PlayerIndex, saveDataManager } from "isaacscript-common";
+import { PlayerIndex } from "isaacscript-common";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
 const v = {
@@ -33,7 +34,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("automaticItemInsertion", v, featureEnabled);
+  mod.saveDataManager("automaticItemInsertion", v, featureEnabled);
 }
 
 function featureEnabled() {

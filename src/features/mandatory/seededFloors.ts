@@ -29,10 +29,10 @@ import {
   PlayerHealth,
   removeAllPlayerHealth,
   repeat,
-  saveDataManager,
   setPlayerHealth,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { inSeededRace } from "../race/v";
 
@@ -56,7 +56,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("seededFloors", v, featureEnabled);
+  mod.saveDataManager("seededFloors", v, featureEnabled);
 }
 
 function featureEnabled() {

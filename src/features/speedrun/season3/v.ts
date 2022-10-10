@@ -1,5 +1,5 @@
 import { PlayerType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { speedrunGetCharacterNum } from "../exported";
 import { Season3Goal } from "./constants";
 
@@ -32,7 +32,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("season3", v);
+  mod.saveDataManager("season3", v);
 }
 
 export function season3GetCurrentCharacter(): PlayerType | undefined {

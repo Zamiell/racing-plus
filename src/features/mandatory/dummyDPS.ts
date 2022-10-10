@@ -5,8 +5,8 @@ import {
   getScreenBottomRightPos,
   KColorDefault,
   round,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../mod";
 
 const DPS_TEXT_Y_OFFSET = -40;
 const DPS_INTERVAL_SECONDS = 5;
@@ -20,7 +20,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("dummyDPS", v);
+  mod.saveDataManager("dummyDPS", v);
 }
 
 // ModCallback.POST_NPC_RENDER (28)

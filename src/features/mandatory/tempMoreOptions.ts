@@ -5,9 +5,9 @@ import {
   getEffectiveStage,
   itemConfig,
   removeCollectibleFromItemTracker,
-  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -16,7 +16,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("tempMoreOptions", v);
+  mod.saveDataManager("tempMoreOptions", v);
 }
 
 // ModCallback.POST_NEW_LEVEL (18)

@@ -2,8 +2,9 @@ import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import * as removeGlitchedItems from "../features/mandatory/removeGlitchedItems";
 import * as taintedIsaacCollectibleDelay from "../features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_PICKUP_UPDATE,
     collectibleCallback,

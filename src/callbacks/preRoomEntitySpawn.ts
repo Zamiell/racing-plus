@@ -4,8 +4,9 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import * as easyFirstFloorItems from "../features/optional/quality/easyFirstFloorItems";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.PRE_ROOM_ENTITY_SPAWN, main);
 }
 

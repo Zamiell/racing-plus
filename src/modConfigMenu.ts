@@ -1,9 +1,5 @@
 import { Controller, Keyboard } from "isaac-typescript-definitions";
-import {
-  controllerToString,
-  saveDataManager,
-  saveDataManagerSave,
-} from "isaacscript-common";
+import { controllerToString } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
 import {
@@ -31,6 +27,7 @@ import {
   REMOVALS,
   SOUND_CHANGES,
 } from "./configDescription";
+import { mod } from "./mod";
 
 const CATEGORY_NAME = "Racing+";
 const PRESETS_NAME = "Presets";
@@ -49,7 +46,7 @@ export function init(): void {
     return;
   }
 
-  saveDataManager("modConfigMenu", v);
+  mod.saveDataManager("modConfigMenu", v);
 
   deleteOldConfig(CATEGORY_NAME);
   validateConfigDescriptions();
@@ -168,7 +165,7 @@ export function setAllModConfigMenuSettings(newValue: boolean): void {
     config[assertedKey] = newValue;
   }
 
-  saveDataManagerSave();
+  mod.saveDataManagerSave();
 }
 
 function registerSubMenuConfig(
@@ -203,7 +200,7 @@ function registerSubMenuConfig(
         }
 
         config[configName as keyof Config] = newValue as boolean;
-        saveDataManagerSave();
+        mod.saveDataManagerSave();
       },
       Info: [longDescription],
     });

@@ -1,17 +1,11 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
-import {
-  anyPlayerHasCollectible,
-  game,
-  log,
-  newRNG,
-  saveDataManager,
-  spawnCollectible,
-} from "isaacscript-common";
+import { anyPlayerHasCollectible, game, log, newRNG } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { hasPolaroidOrNegative } from "../../utils";
 import { inSpeedrun } from "../speedrun/speedrun";
 
@@ -34,7 +28,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("replacePhotos", v);
+  mod.saveDataManager("replacePhotos", v);
 }
 
 // ModCallback.PRE_ENTITY_SPAWN (24)
@@ -154,26 +148,34 @@ function doPhotoSituation(situation: PhotoSituation) {
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
-      spawnCollectible(CollectibleType.POLAROID, PEDESTAL_POSITION_CENTER, rng);
+      mod.spawnCollectible(
+        CollectibleType.POLAROID,
+        PEDESTAL_POSITION_CENTER,
+        rng,
+      );
 
       break;
     }
 
     case PhotoSituation.NEGATIVE: {
-      spawnCollectible(CollectibleType.NEGATIVE, PEDESTAL_POSITION_CENTER, rng);
+      mod.spawnCollectible(
+        CollectibleType.NEGATIVE,
+        PEDESTAL_POSITION_CENTER,
+        rng,
+      );
 
       break;
     }
 
     case PhotoSituation.BOTH: {
-      spawnCollectible(
+      mod.spawnCollectible(
         CollectibleType.POLAROID,
         PEDESTAL_POSITION_LEFT,
         rng,
         true,
       );
 
-      spawnCollectible(
+      mod.spawnCollectible(
         CollectibleType.NEGATIVE,
         PEDESTAL_POSITION_RIGHT,
         rng,
@@ -188,21 +190,25 @@ function doPhotoSituation(situation: PhotoSituation) {
       // the room seed instead.
       if (anyPlayerHasCollectible(CollectibleType.THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1.
-        spawnCollectible(
+        mod.spawnCollectible(
           CollectibleType.NULL,
           PEDESTAL_POSITION_LEFT,
           rng,
           true,
         );
 
-        spawnCollectible(
+        mod.spawnCollectible(
           CollectibleType.NULL,
           PEDESTAL_POSITION_RIGHT,
           rng,
           true,
         );
       } else {
-        spawnCollectible(CollectibleType.NULL, PEDESTAL_POSITION_CENTER, rng);
+        mod.spawnCollectible(
+          CollectibleType.NULL,
+          PEDESTAL_POSITION_CENTER,
+          rng,
+        );
       }
 
       break;

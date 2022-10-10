@@ -5,10 +5,11 @@ import {
 } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import { betterDevilAngelRoomsPreGetCollectible } from "../features/optional/major/betterDevilAngelRooms/callbacks/preGetCollectible";
+import { mod } from "../mod";
 
 const DEBUG = false as boolean;
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.PRE_GET_COLLECTIBLE, main);
 }
 

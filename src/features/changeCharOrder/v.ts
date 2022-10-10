@@ -1,6 +1,6 @@
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
+import { mod } from "../../mod";
 import { SeasonDescription } from "../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 
@@ -40,7 +40,7 @@ export function init(): void {
     v.persistent.charOrders.set(seasonAbbreviation, [] as PlayerType[]);
   }
 
-  saveDataManager("changeCharOrder", v);
+  mod.saveDataManager("changeCharOrder", v);
 }
 
 export function getCharacterOrder(key: string): PlayerType[] | undefined {

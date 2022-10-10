@@ -1,6 +1,6 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -10,7 +10,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("showNumSacrifices", v, featureEnabled);
+  mod.saveDataManager("showNumSacrifices", v, featureEnabled);
 }
 
 function featureEnabled() {

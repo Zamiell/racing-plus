@@ -18,9 +18,9 @@ import {
   KColorDefault,
   log,
   NUM_PILLS_IN_POOL,
-  saveDataManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
@@ -52,7 +52,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("showPills", v, featureEnabled);
+  mod.saveDataManager("showPills", v, featureEnabled);
 
   for (const pillColor of getNormalPillColors()) {
     const sprite = initSprite(

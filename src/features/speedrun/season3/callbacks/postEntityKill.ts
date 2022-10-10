@@ -1,13 +1,13 @@
 import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
-import { asNumber, runInNGameFrames, spawnPickup } from "isaacscript-common";
+import { asNumber, spawnPickup } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { season3HasDogmaGoal } from "../v";
 
 // EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {
   const challenge = Isaac.GetChallenge();
-
   if (challenge !== ChallengeCustom.SEASON_3) {
     return;
   }
@@ -30,7 +30,7 @@ export function season3PostEntityKillDogma(entity: Entity): void {
   // once Dogma's death animation ends, we can prevent the effect by removing Dogma on the frame
   // before the death animation completes.
   const entityPtr = EntityPtr(entity);
-  runInNGameFrames(() => {
+  mod.runInNGameFrames(() => {
     const futureEntity = entityPtr.Ref;
     if (futureEntity !== undefined) {
       futureEntity.Remove();

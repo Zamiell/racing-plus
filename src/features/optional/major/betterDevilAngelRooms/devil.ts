@@ -5,18 +5,17 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasTrinket,
-  deployJSONRoom,
   emptyRoom,
   getJSONRoomOfVariant,
   getJSONRoomsOfSubType,
   getRandom,
   getRandomJSONRoom,
   JSONRoom,
-  preventGridEntityRespawn,
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { getEffectiveDevilDeals } from "../../../../utils";
 import * as devilRooms from "./devilRooms.json";
 import v from "./v";
@@ -53,7 +52,7 @@ export function devil(): void {
     jsonRoom = debugJSONRoom;
   }
 
-  deployJSONRoom(jsonRoom, v.run.rng.devilEntities);
+  mod.deployJSONRoom(jsonRoom, v.run.rng.devilEntities);
 }
 
 function checkSpawnKrampus() {
@@ -76,7 +75,7 @@ function checkSpawnKrampus() {
 
   v.run.metKrampus = true;
   emptyRoom();
-  preventGridEntityRespawn();
+  mod.preventGridEntityRespawn();
 
   const seed = v.run.rng.krampus.Next();
   spawnWithSeed(EntityType.FALLEN, FallenVariant.KRAMPUS, 0, centerPos, seed);

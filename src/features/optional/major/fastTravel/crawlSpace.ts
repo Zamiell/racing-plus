@@ -11,7 +11,6 @@ import {
   TeleporterState,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerUsingPony,
   asNumber,
   DISTANCE_OF_GRID_TILE,
   getCrawlSpaces,
@@ -21,13 +20,13 @@ import {
   isRoomInsideGrid,
   log,
   removeGridEntity,
-  runNextGameFrame,
   spawnTeleporter,
   teleport,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
@@ -285,7 +284,7 @@ function replaceWithTeleportPad(gridEntity: GridEntity) {
   // teleporter will immediately despawn for some reason. Work around this by simply spawning it on
   // the next game frame.
   const gridIndex = gridEntity.GetGridIndex();
-  runNextGameFrame(() => {
+  mod.runNextGameFrame(() => {
     spawnTeleporter(gridIndex);
     v.room.teleporterSpawned = true;
   });
@@ -313,7 +312,7 @@ export function postGridEntityUpdateCrawlSpace(gridEntity: GridEntity): void {
 // sprites.
 function checkShouldClose(gridEntity: GridEntity) {
   const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  if (entityState === FastTravelEntityState.OPEN && anyPlayerUsingPony()) {
+  if (entityState === FastTravelEntityState.OPEN && mod.anyPlayerUsingPony()) {
     state.close(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   }
 }

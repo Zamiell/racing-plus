@@ -14,13 +14,13 @@ import {
   getRandom,
   getRepentanceDoor,
   hasUnusedDoorSlot,
-  preventCollectibleRotation,
   removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { speedrunShouldSpawnRepentanceDoor } from "../fastClear";
@@ -158,6 +158,9 @@ function setRepentanceDoorState() {
 function checkEnteringRoomWithCheckpoint() {
   const checkpoints = getCollectibles(CollectibleTypeCustom.CHECKPOINT);
   for (const checkpoint of checkpoints) {
-    preventCollectibleRotation(checkpoint, CollectibleTypeCustom.CHECKPOINT);
+    mod.preventCollectibleRotation(
+      checkpoint,
+      CollectibleTypeCustom.CHECKPOINT,
+    );
   }
 }

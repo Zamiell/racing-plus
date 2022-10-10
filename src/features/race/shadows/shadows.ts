@@ -14,13 +14,13 @@ import {
   getRoomListIndex,
   isActionPressedOnAnyInput,
   RENDER_FRAMES_PER_SECOND,
-  saveDataManager,
   VectorZero,
 } from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import * as socket from "../socket";
 import { CHARACTER_PNG_MAP } from "./characterPNGMap";
@@ -94,7 +94,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("shadows", v);
+  mod.saveDataManager("shadows", v);
 }
 
 // ModCallback.POST_RENDER (2)

@@ -3,7 +3,8 @@
 // underground.)
 
 import { EntityType, NpcState, PinVariant } from "isaac-typescript-definitions";
-import { asNumber, getNPCs, saveDataManager } from "isaacscript-common";
+import { asNumber, getNPCs } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
@@ -26,7 +27,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastPin", v, featureEnabled);
+  mod.saveDataManager("fastPin", v, featureEnabled);
 }
 
 function featureEnabled() {

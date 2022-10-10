@@ -6,8 +6,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   asNumber,
-  forceNewLevelCallback,
-  forceNewRoomCallback,
   game,
   getEffectiveStage,
   getFamiliars,
@@ -22,6 +20,7 @@ import {
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { initSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
@@ -168,13 +167,13 @@ function gotoRaceRoom() {
   if (effectiveStage !== 1 || stageType !== StageType.WRATH_OF_THE_LAMB) {
     // Since we might be going to a new floor on frame 0, we have to specify that the
     // `POST_NEW_LEVEL` callback should fire.
-    forceNewLevelCallback();
+    mod.forceNewLevelCallback();
     consoleCommand(`stage ${RACE_ROOM_STAGE_ARGUMENT}`);
   }
 
   // Since we might be going to a new room on frame 0, we have to specify that the `POST_NEW_ROOM`
   // callback should fire.
-  forceNewRoomCallback();
+  mod.forceNewRoomCallback();
   consoleCommand(`goto d.${RACE_ROOM_VARIANT}`);
 
   // We will not actually be sent to the room until a frame passes, so wait until the next

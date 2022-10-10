@@ -1,8 +1,9 @@
 import { ModCallback, ProjectileVariant } from "isaac-typescript-definitions";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import { fastClearPostProjectileInitMeat } from "../features/optional/major/fastClear/callbacks/postProjectileInit";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_PROJECTILE_INIT,
     rock,

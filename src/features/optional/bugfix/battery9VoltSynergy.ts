@@ -12,8 +12,8 @@ import {
   getTotalCharge,
   hasFlag,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -24,7 +24,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("battery9VoltSynergy", v, featureEnabled);
+  mod.saveDataManager("battery9VoltSynergy", v, featureEnabled);
 }
 
 function featureEnabled() {

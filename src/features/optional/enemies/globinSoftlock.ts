@@ -1,5 +1,6 @@
 import { NpcState } from "isaac-typescript-definitions";
-import { DefaultMap, log, saveDataManager } from "isaacscript-common";
+import { DefaultMap, log } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const MAX_REGENERATIONS = 4;
@@ -12,7 +13,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("globinSoftlock", v, featureEnabled);
+  mod.saveDataManager("globinSoftlock", v, featureEnabled);
 }
 
 function featureEnabled() {

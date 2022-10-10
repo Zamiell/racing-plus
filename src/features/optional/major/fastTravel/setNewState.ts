@@ -10,9 +10,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   changeRoom,
-  disableAllInputsExceptFor,
-  enableAllInputs,
-  forgottenSwitch,
   game,
   getFamiliars,
   getPlayers,
@@ -31,6 +28,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { moveEsauNextToJacob } from "../../../../utils";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import {
@@ -92,7 +90,7 @@ export function setFadingToBlack(
     // Allow the player to save & quit in order to e.g. get a soul heart from a Monstro.
     ButtonAction.PAUSE,
   ]);
-  disableAllInputsExceptFor(FAST_TRAVEL_FEATURE_NAME, whitelist);
+  mod.disableAllInputsExceptFor(FAST_TRAVEL_FEATURE_NAME, whitelist);
 
   setGameStateFlags(position);
   setPlayerAttributes(player, position);
@@ -223,7 +221,7 @@ function warpForgottenBody(player: EntityPlayer) {
 
   // If we change the position of the Forgotten body manually, it will warp back to the same spot on
   // the next frame. Instead, manually switch to the Forgotten to avoid this bug.
-  forgottenSwitch();
+  mod.forgottenSwitch();
 
   // Also warp the body to where The Soul is so that The Forgotten won't jump down through a
   // non-trapdoor tile.
@@ -383,7 +381,7 @@ export function setPlayersVisible(
 
 function setDisabled() {
   blackSprite.setFullyTransparent();
-  enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
+  mod.enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
 }
 
 function logFastTravelStateChanged() {

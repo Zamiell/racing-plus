@@ -1,12 +1,11 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
 import {
   game,
-  getCollectibleSet,
   getEffectiveStage,
   inStartingRoom,
   isEden,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { initGlowingCollectibleSprite } from "../../../sprite";
 
@@ -27,7 +26,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("showEdenStartingItems", v, featureEnabled);
+  mod.saveDataManager("showEdenStartingItems", v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -112,17 +111,19 @@ function storeItemIdentities() {
   }
 
   v.run.active = player.GetActiveItem(ActiveSlot.PRIMARY);
-  const passive = getEdenPassiveItem(player);
+  const passive = getEdenPassiveItemStarted(player);
   if (passive === undefined) {
     error("Failed to find Eden / Tainted Eden passive item.");
   }
   v.run.passive = passive;
 }
 
-function getEdenPassiveItem(player: EntityPlayer): CollectibleType | undefined {
+function getEdenPassiveItemStarted(
+  player: EntityPlayer,
+): CollectibleType | undefined {
   const activeItem = player.GetActiveItem(ActiveSlot.PRIMARY);
 
-  for (const collectibleType of getCollectibleSet().values()) {
+  for (const collectibleType of mod.getCollectibleArray()) {
     if (
       player.HasCollectible(collectibleType) &&
       collectibleType !== activeItem &&

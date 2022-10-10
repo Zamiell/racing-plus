@@ -3,11 +3,12 @@ import {
   InputHook,
   ModCallback,
 } from "isaac-typescript-definitions";
+import { mod } from "../mod";
 import { getActionValueFunctions } from "./getActionValueFunctions";
 import { isActionPressedFunctions } from "./isActionPressedFunctions";
 import { isActionTriggeredFunctions } from "./isActionTriggeredFunctions";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.INPUT_ACTION,
     isActionPressed,

@@ -9,13 +9,13 @@ import {
   getPlayers,
   newRNG,
   repeat,
-  saveDataManager,
   setSeed,
   sfxManager,
   spawnEffect,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { speedrunIsFinished } from "../speedrun/exported";
 
 const v = {
@@ -26,7 +26,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fireworks", v);
+  mod.saveDataManager("fireworks", v);
 }
 
 // ModCallback.POST_UPDATE (1)

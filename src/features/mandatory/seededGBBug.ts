@@ -11,11 +11,11 @@ import {
   game,
   getPickups,
   newRNG,
-  saveDataManager,
   setSeed,
   spawnPickup,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -27,7 +27,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("seededGBBug", v);
+  mod.saveDataManager("seededGBBug", v);
 }
 
 // ModCallback.POST_GAME_STARTED (15)

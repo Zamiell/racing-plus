@@ -20,11 +20,10 @@ import {
   getCollectibleName,
   log,
   newRNG,
-  saveDataManager,
   setSeed,
-  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -38,7 +37,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastAngels", v, featureEnabled);
+  mod.saveDataManager("fastAngels", v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -103,7 +102,7 @@ function spawnKeyPiece(entity: Entity) {
   const position = findFreePosition(entity.Position);
 
   // In vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free.
-  spawnCollectible(
+  mod.spawnCollectible(
     collectibleType,
     position,
     v.run.collectibleRNG,

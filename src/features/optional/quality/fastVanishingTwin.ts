@@ -12,14 +12,13 @@ import {
   getBosses,
   getCollectibles,
   isStoryBoss,
-  saveDataManager,
-  spawnCollectible,
   spawnEffect,
   spawnFamiliar,
   spawnNPC,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const HP_MULTIPLIER = 0.75; // Matches vanilla
@@ -36,7 +35,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastVanishingTwin", v);
+  mod.saveDataManager("fastVanishingTwin", v);
 }
 
 // ModCallback.POST_UPDATE (1)
@@ -72,7 +71,7 @@ function checkRoomCleared() {
   const position = g.r.GetGridPosition(newGridIndex);
   const roomSeed = g.r.GetSpawnSeed();
 
-  spawnCollectible(CollectibleType.NULL, position, roomSeed);
+  mod.spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
 
 function getFreshlySpawnedCollectible(): EntityPickup | undefined {

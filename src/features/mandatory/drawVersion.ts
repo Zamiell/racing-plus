@@ -3,9 +3,9 @@ import {
   game,
   getScreenCenterPos,
   isKeyboardPressed,
-  saveDataManager,
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
+import { mod } from "../../mod";
 
 const SHOW_VERSION_HOTKEY = Keyboard.F1;
 
@@ -16,7 +16,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("drawVersion", v);
+  mod.saveDataManager("drawVersion", v);
 }
 
 // ModCallback.POST_RENDER (2)

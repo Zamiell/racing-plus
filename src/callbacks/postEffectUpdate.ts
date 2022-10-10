@@ -6,8 +6,9 @@ import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTrav
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";
 import * as fastLuna from "../features/optional/quality/fastLuna";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_EFFECT_UPDATE,
     devil,

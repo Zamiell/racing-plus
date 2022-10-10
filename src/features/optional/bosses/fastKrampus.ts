@@ -18,10 +18,9 @@ import {
   log,
   newRNG,
   nextSeed,
-  saveDataManager,
-  spawnCollectible,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -38,7 +37,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastKrampus", v, featureEnabled);
+  mod.saveDataManager("fastKrampus", v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -96,7 +95,7 @@ function spawnKrampusDrop(entity: Entity) {
   const collectibleType = getKrampusItemSubType();
   const position = findFreePosition(entity.Position);
 
-  spawnCollectible(
+  mod.spawnCollectible(
     collectibleType,
     position,
     v.run.collectibleRNG,

@@ -22,12 +22,12 @@
   "type": "commonjs",
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^9.0.0",
-    "isaacscript": "^3.3.3",
-    "isaacscript-common": "^14.1.0",
+    "isaac-typescript-definitions": "^9.0.3",
+    "isaacscript": "^3.3.4",
+    "isaacscript-common": "^15.0.0",
     "isaacscript-lint": "^4.2.0",
     "isaacscript-spell": "^1.2.16",
-    "typescript": "^4.8.3",
+    "typescript": "^4.8.4",
     "typescript-to-lua": "^1.10.1"
   }
 }

@@ -15,8 +15,9 @@ import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars
 import * as showPills from "../features/optional/quality/showPills";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_UPDATE, main);
 }
 

@@ -8,14 +8,12 @@ import {
   anyPlayerHasCollectible,
   copyColor,
   DefaultMap,
-  getCollectibleItemPoolType,
   getCollectibleMaxCharges,
   getCollectibles,
   getRoomListIndex,
   inDeathCertificateArea,
   isBlindCollectible,
   isTaintedLazarus,
-  saveDataManager,
   setCollectibleSubType,
   spawnEffect,
   spawnEmptyCollectible,
@@ -24,6 +22,7 @@ import {
 import { COLLECTIBLE_LAYER } from "../../constants";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { initCollectibleSprite } from "../../sprite";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
@@ -92,7 +91,7 @@ const v = {
 };
 
 function newFlippedCollectibleType(collectible: EntityPickup): CollectibleType {
-  const itemPoolType = getCollectibleItemPoolType(collectible);
+  const itemPoolType = mod.getCollectibleItemPoolType(collectible);
   const collectibleType = g.itemPool.GetCollectible(
     itemPoolType,
     true,
@@ -123,7 +122,7 @@ function newFlippedSprite(
 }
 
 export function init(): void {
-  saveDataManager("flipCustom", v, featureEnabled);
+  mod.saveDataManager("flipCustom", v, featureEnabled);
 }
 
 function featureEnabled() {

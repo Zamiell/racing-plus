@@ -7,13 +7,13 @@ import {
 import {
   getRandom,
   newRNG,
-  saveDataManager,
   setSeed,
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 /** This chance is modified by 1% for every prize previously awarded on the floor. */
 const GLITTER_BOMBS_PRIZE_BASE_CHANCE_PERCENT = 63;
@@ -30,7 +30,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("seededGlitterBombs", v);
+  mod.saveDataManager("seededGlitterBombs", v);
 }
 
 // ModCallback.POST_GAME_STARTED (15)

@@ -10,8 +10,9 @@ import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTr
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.ENTITY_TAKE_DMG, main);
 
   mod.AddCallback(

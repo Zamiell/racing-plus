@@ -3,8 +3,9 @@ import * as dummyDPS from "../features/mandatory/dummyDPS";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";
 import { speedrunPostNPCRenderDogma } from "../features/speedrun/callbacks/postNPCRender";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_NPC_RENDER,
     heretic,

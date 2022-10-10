@@ -15,8 +15,9 @@ import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSy
 import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import * as speedrunUseItem from "../features/speedrun/callbacks/postUseItem";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_USE_ITEM, main);
 
   mod.AddCallback(

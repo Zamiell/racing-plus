@@ -1,14 +1,11 @@
 import { CollectibleType, ItemType } from "isaac-typescript-definitions";
-import {
-  ModCallbackCustom,
-  ModUpgraded,
-  PickingUpItem,
-} from "isaacscript-common";
+import { ModCallbackCustom, PickingUpItem } from "isaacscript-common";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_ITEM_PICKUP, main);
 
   mod.AddCallbackCustom(

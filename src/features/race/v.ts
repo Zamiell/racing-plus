@@ -1,9 +1,9 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { ButtonDescription } from "../../types/ButtonDescription";
 
@@ -33,7 +33,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("race", v, featureEnabled);
+  mod.saveDataManager("race", v, featureEnabled);
 }
 
 function featureEnabled() {

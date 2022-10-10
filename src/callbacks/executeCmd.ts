@@ -1,8 +1,9 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
 import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.EXECUTE_CMD, main);
 }
 

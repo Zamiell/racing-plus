@@ -1,7 +1,8 @@
 import { LevelCurse, ModCallback } from "isaac-typescript-definitions";
 import { disableCurses } from "../features/optional/major/disableCurses";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_CURSE_EVAL, main);
 }
 

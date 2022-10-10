@@ -11,9 +11,9 @@ import {
   getAngelRoomDoor,
   getDevilRoomDoor,
   log,
-  saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const FRAME_LAYER = 3;
@@ -26,7 +26,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("combinedDualityDoors", v);
+  mod.saveDataManager("combinedDualityDoors", v);
 }
 
 // ModCallback.POST_PEFFECT_UPDATE (4)

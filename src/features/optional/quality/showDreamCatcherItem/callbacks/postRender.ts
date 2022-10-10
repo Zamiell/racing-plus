@@ -1,5 +1,4 @@
 import {
-  enableAllSound,
   game,
   getEffects,
   getPlayers,
@@ -9,6 +8,7 @@ import {
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
+import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import * as sprites from "../sprites";
 import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
@@ -40,12 +40,14 @@ function repositionPlayer() {
 
   v.level.warpState = DreamCatcherWarpState.FINISHED;
 
+  const hud = game.GetHUD();
+
   movePlayersToCenter();
 
   // Fix the bug where the fast-travel pitfalls will be misaligned due to being spawned before the
   // player's position was updated.
-  const players = getPlayers();
   const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
+  const players = getPlayers();
   customPitfalls.forEach((pitfall, i) => {
     const player = players[i];
     if (player !== undefined) {
@@ -61,8 +63,7 @@ function repositionPlayer() {
     setPlayerHealth(player, v.level.health);
   }
 
-  const hud = game.GetHUD();
   hud.SetVisible(true);
 
-  enableAllSound(DREAM_CATCHER_FEATURE_NAME);
+  mod.enableAllSound(DREAM_CATCHER_FEATURE_NAME);
 }

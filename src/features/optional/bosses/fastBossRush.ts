@@ -28,9 +28,7 @@ import {
   openAllDoors,
   parseEntityTypeVariantString,
   repeat,
-  saveDataManager,
   sfxManager,
-  spawnCollectible,
   spawnNPC,
   spawnPickup,
   VectorZero,
@@ -41,6 +39,7 @@ import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { setStreakText } from "../../mandatory/streakText";
 import {
@@ -138,7 +137,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastBossRush", v);
+  mod.saveDataManager("fastBossRush", v);
 }
 
 // ModCallback.POST_UPDATE (1)
@@ -386,7 +385,7 @@ function spawnBossRushFinishReward() {
     spawnPickup(PickupVariant.BIG_CHEST, 0, position);
   }
 
-  spawnCollectible(CollectibleType.NULL, position, roomSeed);
+  mod.spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
 
 // ModCallback.POST_NEW_ROOM (19)

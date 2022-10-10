@@ -9,7 +9,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   countEntities,
-  forgottenSwitch,
   getAllPlayers,
   getDoorSlotEnterPosition,
   getFamiliars,
@@ -17,6 +16,7 @@ import {
   log,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 
@@ -89,7 +89,7 @@ function subvertTeleport() {
     // its position manually, it will just warp back to the same spot on the next frame. Thus, just
     // manually switch to the Forgotten to avoid this bug.
     if (isCharacter(player, PlayerType.SOUL)) {
-      forgottenSwitch();
+      mod.forgottenSwitch();
     }
   }
 

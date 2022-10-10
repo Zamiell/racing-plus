@@ -9,9 +9,9 @@ import {
   mapGetPlayer,
   mapSetPlayer,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
+import { mod } from "../../mod";
 
 const v = {
   run: {
@@ -20,7 +20,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("nLuck", v);
+  mod.saveDataManager("nLuck", v);
 }
 
 // ModCallback.EVALUATE_CACHE (8)

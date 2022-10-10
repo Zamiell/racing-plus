@@ -8,9 +8,9 @@ import {
   anyPlayerIs,
   game,
   isActionPressedOnAnyInput,
-  saveDataManager,
 } from "isaacscript-common";
 import { TimerType } from "../../enums/TimerType";
+import { mod } from "../../mod";
 import * as timer from "../../timer";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
 
@@ -25,7 +25,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("runTimer", v);
+  mod.saveDataManager("runTimer", v);
 }
 
 // ModCallback.POST_UPDATE (1)

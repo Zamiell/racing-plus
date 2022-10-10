@@ -26,12 +26,12 @@ import {
   hasFlag,
   newRNG,
   PickingUpItem,
-  saveDataManager,
   setSeed,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { goingToRaceRoom } from "../race/raceRoom";
 
 const FRAMES_BEFORE_FADE = 50;
@@ -86,7 +86,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("streakText", v);
+  mod.saveDataManager("streakText", v);
 }
 
 // ModCallback.POST_RENDER (2)

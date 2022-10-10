@@ -1,5 +1,5 @@
 import { PlayerType } from "isaac-typescript-definitions";
-import { saveDataManager } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { speedrunGetCharacterNum } from "../exported";
 
 const v = {
@@ -35,7 +35,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("season2", v);
+  mod.saveDataManager("season2", v);
 }
 
 export function season2GetCurrentBuildIndex(): int | undefined {

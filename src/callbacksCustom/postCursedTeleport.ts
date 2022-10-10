@@ -1,7 +1,8 @@
-import { ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import { ModCallbackCustom } from "isaacscript-common";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_CURSED_TELEPORT, main);
 }
 

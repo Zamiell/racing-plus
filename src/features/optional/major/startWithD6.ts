@@ -33,12 +33,10 @@ import {
   log,
   mapSetPlayer,
   PlayerIndex,
-  runNextGameFrame,
-  saveDataManager,
-  spawnCollectible,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const D6_STARTING_CHARGE = getCollectibleMaxCharges(CollectibleType.D6);
@@ -53,7 +51,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("startWithD6", v, featureEnabled);
+  mod.saveDataManager("startWithD6", v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -178,7 +176,7 @@ export function postFlip(player: EntityPlayer): void {
   // We cannot simply set the active charge, because Tainted Lazarus will get an additional charge
   // on the next frame, causing them to get a double-charge for clearing a room. Thus, defer setting
   // the charge for a frame.
-  runNextGameFrame(() => {
+  mod.runNextGameFrame(() => {
     player.SetActiveCharge(v.run.currentFlipCharge, flipActiveSlot);
   });
 }
@@ -312,7 +310,11 @@ function giveActiveItem(
     // Spawn it on the ground instead.
     const position = findFreePosition(player.Position);
     const startSeed = g.seeds.GetStartSeed();
-    const collectible = spawnCollectible(collectibleType, position, startSeed);
+    const collectible = mod.spawnCollectible(
+      collectibleType,
+      position,
+      startSeed,
+    );
     collectible.Charge = itemCharge;
   }
 }

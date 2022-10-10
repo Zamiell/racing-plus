@@ -1,6 +1,7 @@
 // Get rid of the slow fade-in at the beginning of a run.
 
-import { game, saveDataManager } from "isaacscript-common";
+import { game } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 /** This is fine tuned from trial and error to be a good speed. */
@@ -13,7 +14,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("speedUpFadeIn", v, featureEnabled);
+  mod.saveDataManager("speedUpFadeIn", v, featureEnabled);
 }
 
 function featureEnabled() {

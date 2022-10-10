@@ -13,7 +13,6 @@ import {
   game,
   getRoomGridIndex,
   isChildPlayer,
-  isPlayerUsingPony,
   log,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -25,6 +24,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import {
@@ -234,7 +234,7 @@ export function checkPlayerTouched(
 
     if (
       // We don't want a Pony dash to transition to a new floor or a crawl space.
-      !isPlayerUsingPony(player) &&
+      !mod.isPlayerUsingPony(player) &&
       !isChildPlayer(player) &&
       canInteractWith(player)
     ) {

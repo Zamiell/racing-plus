@@ -4,7 +4,6 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
-  addConsoleCommand,
   asCollectibleType,
   asNumber,
   CHARACTER_NAME_TO_TYPE_MAP,
@@ -16,7 +15,6 @@ import {
   log,
   onSetSeed,
   printConsole,
-  removeConsoleCommand,
   restart,
 } from "isaacscript-common";
 import { logRaceData, RaceData } from "../../classes/RaceData";
@@ -28,6 +26,7 @@ import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
@@ -37,30 +36,30 @@ import { setUnseededWithRacingPlusLogic } from "./racingPlusSprite";
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
-  addConsoleCommand("angelSet", angelSet);
-  addConsoleCommand("cco", cco);
-  addConsoleCommand("changeCharOrder", changeCharOrder);
-  addConsoleCommand("d", debug);
-  addConsoleCommand("devilSet", devilSet);
-  addConsoleCommand("disable", disable);
-  addConsoleCommand("enable", enable);
-  addConsoleCommand("move", move);
-  addConsoleCommand("race", race);
-  addConsoleCommand("rankedSoloReset", rankedSoloReset);
-  addConsoleCommand("s0", s0);
-  addConsoleCommand("s1", s1);
-  addConsoleCommand("s2", s2);
-  addConsoleCommand("s3", s3);
-  addConsoleCommand("seededRace", seededRace);
-  addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
-  addConsoleCommand("seededRaceBuild", seededRaceBuild);
-  addConsoleCommand("seededRaceItem", seededRaceItem);
-  addConsoleCommand("seededRaceGoal", seededRaceGoal);
-  addConsoleCommand("seededRaceOff", seededRaceOff);
-  addConsoleCommand("seededRaceSeed", seededRaceSeed);
-  removeConsoleCommand("unseed");
-  addConsoleCommand("unseed", unseedCommand);
-  addConsoleCommand("version", version);
+  mod.addConsoleCommand("angelSet", angelSet);
+  mod.addConsoleCommand("cco", cco);
+  mod.addConsoleCommand("changeCharOrder", changeCharOrder);
+  mod.addConsoleCommand("d", debug);
+  mod.addConsoleCommand("devilSet", devilSet);
+  mod.addConsoleCommand("disable", disable);
+  mod.addConsoleCommand("enable", enable);
+  mod.addConsoleCommand("move", move);
+  mod.addConsoleCommand("race", race);
+  mod.addConsoleCommand("rankedSoloReset", rankedSoloReset);
+  mod.addConsoleCommand("s0", s0);
+  mod.addConsoleCommand("s1", s1);
+  mod.addConsoleCommand("s2", s2);
+  mod.addConsoleCommand("s3", s3);
+  mod.addConsoleCommand("seededRace", seededRace);
+  mod.addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
+  mod.addConsoleCommand("seededRaceBuild", seededRaceBuild);
+  mod.addConsoleCommand("seededRaceItem", seededRaceItem);
+  mod.addConsoleCommand("seededRaceGoal", seededRaceGoal);
+  mod.addConsoleCommand("seededRaceOff", seededRaceOff);
+  mod.addConsoleCommand("seededRaceSeed", seededRaceSeed);
+  mod.removeConsoleCommand("unseed");
+  mod.addConsoleCommand("unseed", unseedCommand);
+  mod.addConsoleCommand("version", version);
 }
 
 function angelSet(params: string) {

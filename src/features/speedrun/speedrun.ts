@@ -5,13 +5,13 @@ import {
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
   RENDER_FRAMES_PER_SECOND,
-  runInNGameFrames,
   sfxManager,
   sumArray,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../enums/SoundEffectCustom";
+import { mod } from "../../mod";
 import * as timer from "../../timer";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
@@ -199,7 +199,7 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
     checkpoint.Wait = 10;
 
     const checkpointPtr = EntityPtr(checkpoint);
-    runInNGameFrames(() => {
+    mod.runInNGameFrames(() => {
       if (checkpointPtr.Ref !== undefined && checkpointPtr.Ref.Exists()) {
         checkpoint.EntityCollisionClass = EntityCollisionClass.NONE;
       }

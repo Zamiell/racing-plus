@@ -1,13 +1,9 @@
 import { RoomType } from "isaac-typescript-definitions";
-import {
-  anyPlayerCloserThan,
-  anyPlayerUsingPony,
-  game,
-  log,
-} from "isaacscript-common";
+import { anyPlayerCloserThan, game, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import {
   FAST_TRAVEL_DEBUG,
@@ -175,7 +171,7 @@ export function shouldOpen(
     !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial) &&
     // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
     // sprites.
-    !anyPlayerUsingPony()
+    !mod.anyPlayerUsingPony()
   );
 }
 

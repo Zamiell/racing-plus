@@ -16,12 +16,12 @@ import {
   isChildPlayer,
   isSelfDamage,
   onDarkRoom,
-  saveDataManager,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../../constants";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { initCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utils";
@@ -52,7 +52,7 @@ function newMysteryGiftSprite() {
 }
 
 export function init(): void {
-  saveDataManager("freeDevilItem", v, featureEnabled);
+  mod.saveDataManager("freeDevilItem", v, featureEnabled);
 }
 
 function featureEnabled() {

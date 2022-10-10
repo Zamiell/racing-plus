@@ -4,7 +4,8 @@
 // we always make Uriel spawn first for balance reasons.
 
 import { AngelVariant, EntityType } from "isaac-typescript-definitions";
-import { game, saveDataManager } from "isaacscript-common";
+import { game } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER = 2;
@@ -20,7 +21,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("consistentAngels", v);
+  mod.saveDataManager("consistentAngels", v);
 }
 
 // ModCallback.POST_USE_ITEM (3)

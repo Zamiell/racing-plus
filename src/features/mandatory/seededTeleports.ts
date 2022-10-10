@@ -12,11 +12,11 @@ import {
   log,
   newRNG,
   repeat,
-  saveDataManager,
   setSeed,
   teleport,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 const v = {
   level: {
@@ -28,7 +28,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("seededTeleports", v);
+  mod.saveDataManager("seededTeleports", v);
 }
 
 // ModCallback.POST_USE_ITEM (3)

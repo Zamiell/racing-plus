@@ -1,11 +1,7 @@
 import { Keyboard } from "isaac-typescript-definitions";
-import {
-  log,
-  printConsole,
-  saveDataManagerSetGlobal,
-  setLogFunctionsGlobal,
-} from "isaacscript-common";
+import { log, printConsole, setLogFunctionsGlobal } from "isaacscript-common";
 import g from "./globals";
+import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
 
 /** Currently, F2 is set to execute this function. */
@@ -30,7 +26,7 @@ export function hotkey2Function(): void {
 
 export function debugFunction(params?: string): void {
   g.debug = true;
-  saveDataManagerSetGlobal();
+  mod.saveDataManagerSetGlobal();
   setLogFunctionsGlobal();
 
   log("Entering debug function.");

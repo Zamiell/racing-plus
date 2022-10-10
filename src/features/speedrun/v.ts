@@ -1,6 +1,7 @@
 import { Challenge, RoomType } from "isaac-typescript-definitions";
-import { emptyArray, saveDataManager } from "isaacscript-common";
+import { emptyArray } from "isaacscript-common";
 import { RepentanceDoorState } from "../../enums/RepentanceDoorState";
+import { mod } from "../../mod";
 
 const v = {
   persistent: {
@@ -46,7 +47,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("speedrun", v);
+  mod.saveDataManager("speedrun", v);
 }
 
 export function resetPersistentVars(): void {

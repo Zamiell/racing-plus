@@ -15,11 +15,11 @@ import {
   inStartingRoom,
   isArrayInArray,
   log,
-  runNextGameFrame,
   useActiveItemTemp,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import g from "../../../../../globals";
+import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import * as sprites from "../sprites";
 import v from "../v";
@@ -81,7 +81,7 @@ function gatherInfoAndGlowingHourGlass() {
   // wait 10 frames before the previous room is entered. Additionally, we also have to wait a game
   // frame after entering the new room before triggering the Glowing Hour Glass, or the UI will
   // permanently disappear for some reason.
-  runNextGameFrame(() => {
+  mod.runNextGameFrame(() => {
     log("Dream Catcher - Using Glowing Hour Glass.");
     const player = Isaac.GetPlayer();
     useActiveItemTemp(player, CollectibleType.GLOWING_HOUR_GLASS);

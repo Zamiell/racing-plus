@@ -1,7 +1,8 @@
 import { LaserVariant, ModCallback } from "isaac-typescript-definitions";
 import { seededDeathPostLaserInitGiantRed } from "../features/mandatory/seededDeath/callbacks/postLaserInit";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_LASER_INIT,
     giantRed,

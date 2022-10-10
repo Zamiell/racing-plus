@@ -1,6 +1,7 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
-import { PlayerIndex, saveDataManager } from "isaacscript-common";
+import { PlayerIndex } from "isaacscript-common";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
+import { mod } from "../../../mod";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
@@ -36,7 +37,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager(SEEDED_DEATH_FEATURE_NAME, v);
+  mod.saveDataManager(SEEDED_DEATH_FEATURE_NAME, v);
 }
 
 export function isSeededDeathActive(): boolean {

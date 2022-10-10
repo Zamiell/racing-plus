@@ -1,7 +1,8 @@
 import { ModCallback, TearVariant } from "isaac-typescript-definitions";
 import * as fadeVasculitisTears from "../features/optional/quality/fadeVasculitisTears";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_TEAR_UPDATE,
     blood,

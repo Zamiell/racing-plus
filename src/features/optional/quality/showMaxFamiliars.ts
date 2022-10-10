@@ -4,8 +4,8 @@ import {
   countEntities,
   game,
   MAX_NUM_FAMILIARS,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { initSprite } from "../../../sprite";
 import { shouldGetFreeDevilItemOnThisRun } from "../major/freeDevilItem";
@@ -23,7 +23,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("showMaxFamiliars", v, featureEnabled);
+  mod.saveDataManager("showMaxFamiliars", v, featureEnabled);
 }
 
 function featureEnabled() {

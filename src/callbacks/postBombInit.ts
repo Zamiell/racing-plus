@@ -1,7 +1,8 @@
 import { BombVariant, ModCallback } from "isaac-typescript-definitions";
 import * as consistentTrollBombs from "../features/optional/gameplay/consistentTrollBombs";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.POST_BOMB_INIT,
     troll,

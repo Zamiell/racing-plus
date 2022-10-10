@@ -5,8 +5,9 @@ import * as sawblade from "../features/items/sawblade";
 import * as solCustom from "../features/items/solCustom";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import { speedrunEvaluateCacheFlying } from "../features/speedrun/callbacks/evaluateCache";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.EVALUATE_CACHE, damage, CacheFlag.DAMAGE); // 1 << 0
   mod.AddCallback(ModCallback.EVALUATE_CACHE, shotSpeed, CacheFlag.SHOT_SPEED); // 1 << 2
   mod.AddCallback(ModCallback.EVALUATE_CACHE, tearColor, CacheFlag.TEAR_COLOR); // 1 << 6

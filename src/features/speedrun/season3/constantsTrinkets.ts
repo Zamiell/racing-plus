@@ -1,9 +1,5 @@
 import { TrinketType } from "isaac-typescript-definitions";
-import {
-  arrayRemoveInPlace,
-  copyArray,
-  getVanillaTrinketArray,
-} from "isaacscript-common";
+import { getVanillaTrinketTypes } from "isaacscript-common";
 import { BANNED_TRINKETS } from "../../mandatory/removeGloballyBannedItems/constants";
 import { BANNED_DIVERSITY_TRINKETS } from "../../race/formatSetup";
 
@@ -17,10 +13,21 @@ const DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY: readonly TrinketType[] = [
   TrinketType.OUROBOROS_WORM,
 ];
 
-export const DIVERSITY_TRINKET_TYPES = copyArray(getVanillaTrinketArray());
-arrayRemoveInPlace(
-  DIVERSITY_TRINKET_TYPES,
-  ...BANNED_TRINKETS,
-  ...BANNED_DIVERSITY_TRINKETS,
-  ...DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY,
-);
+export const DIVERSITY_TRINKET_TYPES: TrinketType[] = [];
+
+export function initDiversityTrinketTypes(): void {
+  const vanillaTrinketTypes = getVanillaTrinketTypes();
+  const removedStartingTrinketTypesSet = new Set<TrinketType>([
+    ...BANNED_TRINKETS,
+    ...BANNED_DIVERSITY_TRINKETS,
+    ...DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY,
+  ]);
+
+  for (const trinketType of vanillaTrinketTypes) {
+    if (removedStartingTrinketTypesSet.has(trinketType)) {
+      continue;
+    }
+
+    DIVERSITY_TRINKET_TYPES.push(trinketType);
+  }
+}

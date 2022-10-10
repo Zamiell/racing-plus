@@ -8,7 +8,6 @@ import {
 import {
   anyPlayerHasCollectible,
   changeRoom,
-  disableAllSound,
   game,
   getEffectiveStage,
   getEffects,
@@ -23,6 +22,7 @@ import {
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import g from "../../../../globals";
+import { mod } from "../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
@@ -96,7 +96,7 @@ function startWarp() {
   const hud = game.GetHUD();
   hud.SetVisible(false);
 
-  disableAllSound(DREAM_CATCHER_FEATURE_NAME);
+  mod.disableAllSound(DREAM_CATCHER_FEATURE_NAME);
 
   // Start by reloading the current room. This prevents bugs with the Glowing Hour Glass later on.
   // For example, Bloody Gust stat modifications will remain in place from the previous floor if we

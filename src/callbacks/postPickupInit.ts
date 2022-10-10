@@ -13,8 +13,9 @@ import { automaticItemInsertionPostPickupInit } from "../features/optional/quali
 import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_PICKUP_INIT, main);
 
   mod.AddCallback(

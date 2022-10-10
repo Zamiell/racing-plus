@@ -5,7 +5,8 @@
 // Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma).
 
 import { EntityType } from "isaac-typescript-definitions";
-import { getNPCs, saveDataManager } from "isaacscript-common";
+import { getNPCs } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const BUGGED_NPC_TYPES: ReadonlySet<EntityType> = new Set([
@@ -24,7 +25,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("killExtraEnemies", v, featureEnabled);
+  mod.saveDataManager("killExtraEnemies", v, featureEnabled);
 }
 
 function featureEnabled() {

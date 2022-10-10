@@ -2,11 +2,8 @@
 // order for Anti-Gravity autofire to work.
 
 import { CollectibleType } from "isaac-typescript-definitions";
-import {
-  game,
-  saveDataManager,
-  setConditionalHotkey,
-} from "isaacscript-common";
+import { game } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
 import { setStreakText } from "../../mandatory/streakText";
@@ -24,12 +21,12 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("autofire", v, featureEnabled);
+  mod.saveDataManager("autofire", v, featureEnabled);
 
   // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
   const keyboardFunc = () =>
     hotkeys.autofire === -1 ? undefined : hotkeys.autofire;
-  setConditionalHotkey(keyboardFunc, toggleAutofire);
+  mod.setConditionalHotkey(keyboardFunc, toggleAutofire);
 }
 
 function featureEnabled() {

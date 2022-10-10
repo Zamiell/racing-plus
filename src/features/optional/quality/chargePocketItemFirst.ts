@@ -37,9 +37,9 @@ import {
   log,
   playChargeSoundEffect,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 interface ChargeSituation {
@@ -72,7 +72,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("chargePocketItemFirst", v, featureEnabled);
+  mod.saveDataManager("chargePocketItemFirst", v, featureEnabled);
 }
 
 function featureEnabled() {

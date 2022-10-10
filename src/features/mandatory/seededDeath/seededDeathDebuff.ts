@@ -17,7 +17,6 @@ import {
   getCollectibles,
   getEnumValues,
   getFamiliars,
-  getPlayerCollectibleMap,
   getTotalCharge,
   getTransformationsForCollectibleType,
   isActiveSlotEmpty,
@@ -28,7 +27,6 @@ import {
   removeAllMatchingEntities,
   removeDeadEyeMultiplier,
   repeat,
-  runInNGameFrames,
   setActiveItem,
   setPlayerHealth,
   sfxManager,
@@ -36,6 +34,7 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { TRANSFORMATION_TO_HELPERS } from "../../../objects/transformationToHelper";
 import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
@@ -181,7 +180,7 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
     ? v.run.collectibles2
     : v.run.collectibles;
 
-  const collectibleMap = getPlayerCollectibleMap(player);
+  const collectibleMap = mod.getPlayerCollectibleMap(player);
   for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
     repeat(collectibleNum, () => {
       if (!TRANSFORMATION_HELPERS_SET.has(collectibleType)) {
@@ -374,7 +373,7 @@ function disableLostSoul() {
     // For some reason, it takes N game frames after changing the state for the Lost Soul to
     // actually die.
     const lostSoulPointer = EntityPtr(lostSoul);
-    runInNGameFrames(() => {
+    mod.runInNGameFrames(() => {
       // Changing the state will make the death animation play, so make it invisible. The
       // invisibility will automatically be removed by the game upon reaching the next floor.
       const lostSoulReference = lostSoulPointer.Ref;

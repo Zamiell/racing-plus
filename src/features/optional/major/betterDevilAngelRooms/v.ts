@@ -1,9 +1,5 @@
-import {
-  newRNG,
-  PlayerIndex,
-  saveDataManager,
-  setAllRNGToStartSeed,
-} from "isaacscript-common";
+import { newRNG, PlayerIndex, setAllRNGToStartSeed } from "isaacscript-common";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
 const v = {
@@ -42,7 +38,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("betterDevilAngelRooms", v, featureEnabled);
+  mod.saveDataManager("betterDevilAngelRooms", v, featureEnabled);
 }
 
 function featureEnabled() {

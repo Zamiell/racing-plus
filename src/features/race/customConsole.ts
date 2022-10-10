@@ -1,8 +1,6 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import {
   DefaultMap,
-  disableAllInputs,
-  enableAllInputs,
   fonts,
   game,
   getEnumValues,
@@ -13,11 +11,11 @@ import {
   keyboardToString,
   log,
   RENDER_FRAMES_PER_SECOND,
-  saveDataManager,
 } from "isaacscript-common";
 import { Colors } from "../../enums/Colors";
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { TextSegment } from "../../types/TextSegment";
 import { consoleCommand } from "../../utils";
@@ -49,7 +47,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager(FEATURE_NAME, v);
+  mod.saveDataManager(FEATURE_NAME, v);
 }
 
 // ModCallback.POST_RENDER (2)
@@ -169,7 +167,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
 
 function open() {
   consoleOpen = true;
-  disableAllInputs(FEATURE_NAME);
+  mod.disableAllInputs(FEATURE_NAME);
   AwaitingTextInput = true;
 
   log("Console opened.");
@@ -181,7 +179,7 @@ function close(execute = true) {
   }
 
   consoleOpen = false;
-  enableAllInputs(FEATURE_NAME);
+  mod.enableAllInputs(FEATURE_NAME);
   AwaitingTextInput = false;
 
   if (!execute || inputText === "") {

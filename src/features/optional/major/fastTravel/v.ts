@@ -1,6 +1,7 @@
 import { Direction } from "isaac-typescript-definitions";
-import { game, saveDataManager } from "isaacscript-common";
+import { game } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
@@ -91,7 +92,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager(FAST_TRAVEL_FEATURE_NAME, v, featureEnabled);
+  mod.saveDataManager(FAST_TRAVEL_FEATURE_NAME, v, featureEnabled);
 }
 
 function featureEnabled() {

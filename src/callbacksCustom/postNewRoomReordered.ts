@@ -8,7 +8,6 @@ import {
   getRoomVariant,
   log,
   ModCallbackCustom,
-  ModUpgraded,
 } from "isaacscript-common";
 import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
@@ -44,8 +43,9 @@ import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import * as roomsEntered from "../features/utils/numRoomsEntered";
 import g from "../globals";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED, main);
 }
 

@@ -2,8 +2,8 @@ import {
   DefaultMap,
   defaultMapGetPlayer,
   PlayerIndex,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../../../mod";
 
 export const MAX_BLOODY_LUST_CHARGES = 6;
 
@@ -15,7 +15,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager("bloodyLustChargeBar", v);
+  mod.saveDataManager("bloodyLustChargeBar", v);
 }
 
 export function isMaxBloodyLustCharges(player: EntityPlayer): boolean {

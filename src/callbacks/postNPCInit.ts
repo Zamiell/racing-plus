@@ -4,8 +4,9 @@ import * as clearerShadowAttacks from "../features/optional/enemies/clearerShado
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
 import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callbacks/postNPCInit";
 import { speedrunPostNPCInitIsaac } from "../features/speedrun/callbacks/postNPCInit";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_NPC_INIT, main);
 
   mod.AddCallback(

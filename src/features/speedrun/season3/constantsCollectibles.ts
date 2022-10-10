@@ -3,12 +3,8 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import {
-  arrayRemoveInPlace,
-  copyArray,
-  getVanillaCollectibleArray,
-  isActiveCollectible,
-} from "isaacscript-common";
+import { isActiveCollectible, isPassiveCollectible } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removeGloballyBannedItems/constants";
 import { BANNED_DIVERSITY_COLLECTIBLES } from "../../race/formatSetup";
 
@@ -138,23 +134,33 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType
     CollectibleType.GLITCHED_CROWN, // 689
   ];
 
-const DIVERSITY_COLLECTIBLE_TYPES = copyArray(getVanillaCollectibleArray());
-arrayRemoveInPlace(
-  DIVERSITY_COLLECTIBLE_TYPES,
-  ...BANNED_COLLECTIBLES,
-  ...BANNED_DIVERSITY_COLLECTIBLES,
-  ...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
-  ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST,
-  ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY,
-);
-export const DIVERSITY_ACTIVE_COLLECTIBLE_TYPES =
-  DIVERSITY_COLLECTIBLE_TYPES.filter((collectibleType) =>
-    isActiveCollectible(collectibleType),
-  );
-export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES =
-  DIVERSITY_COLLECTIBLE_TYPES.filter(
-    (collectibleType) => !isActiveCollectible(collectibleType),
-  );
+export const DIVERSITY_ACTIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];
+export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];
+
+export function initDiversityCollectibleTypes(): void {
+  const vanillaCollectibleArray = mod.getVanillaCollectibleArray();
+  const removedStartingCollectibleTypesSet = new Set<CollectibleType>([
+    ...BANNED_COLLECTIBLES,
+    ...BANNED_DIVERSITY_COLLECTIBLES,
+    ...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
+    ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST,
+    ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY,
+  ]);
+
+  for (const collectibleType of vanillaCollectibleArray) {
+    if (removedStartingCollectibleTypesSet.has(collectibleType)) {
+      continue;
+    }
+
+    if (isActiveCollectible(collectibleType)) {
+      DIVERSITY_ACTIVE_COLLECTIBLE_TYPES.push(collectibleType);
+    }
+
+    if (isPassiveCollectible(collectibleType)) {
+      DIVERSITY_PASSIVE_COLLECTIBLE_TYPES.push(collectibleType);
+    }
+  }
+}
 
 /**
  * To avoid duplicating logic, we grant the Schoolbag only after retrieving the 3 random passive

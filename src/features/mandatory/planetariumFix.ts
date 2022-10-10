@@ -1,17 +1,14 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
   changeRoom,
-  disableAllSound,
-  enableAllSound,
   game,
   getRoomGridIndex,
   getRoomGridIndexesForType,
   log,
-  runNextGameFrame,
-  saveDataManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
 import { decrementNumRoomsEntered } from "../utils/numRoomsEntered";
@@ -33,7 +30,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager(FEATURE_NAME, v);
+  mod.saveDataManager(FEATURE_NAME, v);
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
@@ -66,7 +63,7 @@ export function planetariumFixBeginWarp(): void {
   v.level.warpRoomGridIndexes.push(roomGridIndex);
 
   hud.SetVisible(false); // It looks confusing if the minimap changes as we warp around.
-  disableAllSound(FEATURE_NAME);
+  mod.disableAllSound(FEATURE_NAME);
   warpToNextRoom();
 }
 
@@ -85,7 +82,7 @@ function warpToNextRoom() {
 
   log("Planetarium Fix - Finished warping.");
   // We only re-enable the hud once we have reached the new floor.
-  enableAllSound(FEATURE_NAME);
+  mod.enableAllSound(FEATURE_NAME);
   const gameFrameCount = game.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
 }
@@ -98,7 +95,7 @@ export function postNewRoom(): void {
 
   // The game requires that you are in the room for at least a frame before the Planetarium odds
   // will change.
-  runNextGameFrame(() => {
+  mod.runNextGameFrame(() => {
     warpToNextRoom();
   });
 }

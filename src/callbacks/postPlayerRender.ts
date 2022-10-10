@@ -5,8 +5,9 @@ import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageC
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import * as taintedSamsonChargeBar from "../features/optional/quality/taintedSamsonChargeBar";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_PLAYER_RENDER, main);
 }
 

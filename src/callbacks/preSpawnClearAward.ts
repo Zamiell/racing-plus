@@ -6,8 +6,9 @@ import * as combinedDualityDoors from "../features/optional/quality/combinedDual
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { racePreSpawnClearAward } from "../features/race/callbacks/preSpawnClearAward";
 import { speedrunPreSpawnClearAward } from "../features/speedrun/callbacks/preSpawnClearAward";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.PRE_SPAWN_CLEAN_AWARD, main);
 }
 

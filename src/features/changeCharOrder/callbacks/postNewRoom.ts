@@ -4,7 +4,6 @@ import {
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
 import {
-  forceNewRoomCallback,
   game,
   getNPCs,
   gridCoordinatesToWorldPosition,
@@ -17,6 +16,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { consoleCommand } from "../../../utils";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 import {
@@ -42,9 +42,9 @@ export function charCharOrderPostNewRoom(): void {
 }
 
 function gotoButtonRoom() {
-  forceNewRoomCallback();
+  mod.forceNewRoomCallback();
   consoleCommand(`stage ${CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT}`);
-  forceNewRoomCallback();
+  mod.forceNewRoomCallback();
   consoleCommand(`goto d.${CHANGE_CHAR_ORDER_ROOM_VARIANT}`);
   // We do more things in the next `POST_NEW_ROOM` callback.
 }

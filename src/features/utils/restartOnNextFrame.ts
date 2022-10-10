@@ -7,9 +7,9 @@ import {
   LAST_VANILLA_CHARACTER,
   log,
   restart,
-  saveDataManager,
 } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 import { restartChallenge, restartSeed } from "../../utils";
 
 const v = {
@@ -22,7 +22,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("restartOnNextFrame", v);
+  mod.saveDataManager("restartOnNextFrame", v);
 }
 
 // ModCallback.POST_RENDER (2)

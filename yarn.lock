@@ -2541,19 +2541,19 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.0.tgz#714d94453327db9ea98fbf1a0c5f2b88f59ddd5c"
   integrity sha512-HneQBCrXGBy15QnaDfcn6OLoU8AQPAa0Qn0IeJR/QCo4E8dNZaGGwxpCwWyEBQC5QvFonP8d6t60iGpAHVAfNA==
 
-isaac-typescript-definitions@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-9.0.0.tgz#f02a6af35ec1617ac2228755bb0a24c504c4e9f1"
-  integrity sha512-OCZHjJDCxb2zPQquVbjhw2cowtxGfMCJsVlHITaxX4jOZhs6MkvbdTfXojzx3gjHTHzmLETH/KcSEK5+Cvkx+w==
+isaac-typescript-definitions@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-9.0.3.tgz#d79123bed585e665ec6d7f76df2f084cf2b859ab"
+  integrity sha512-SRD/8jPigqfp0TBmal9E622/GXEZ1NTzZNsjw0HpcohQiVhSgdxoAJGpaJPi/mZ9VYwHPrx2aNxp4oJ46UEQCw==
   dependencies:
     lua-types "^2.13.0"
 
-isaacscript-common@^14.1.0:
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-14.1.0.tgz#61a62717119f629b5dec3956fa9b8410a320f1f8"
-  integrity sha512-NxOXA/r/Dso7EQyNt2nvj+R2zfPr5VBeEDMBi8zJwiCQMhK1yDiB4L8lu7PV/R0Lju1YPUcq5Etdx1nx8KaFrA==
+isaacscript-common@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-15.0.0.tgz#2f60ffcf917e4f3e62b808c14c814ceef195745a"
+  integrity sha512-MkwAWTqKduhdy2WRqpKtMr7uI7DR1C1Y+j5tje83noFzuutAcz87JgvxsDjt7+Chqea5GpnuODidw0CROzWTVQ==
   dependencies:
-    isaac-typescript-definitions "^9.0.0"
+    isaac-typescript-definitions "^9.0.3"
 
 isaacscript-lint@^4.2.0:
   version "4.2.0"
@@ -2585,15 +2585,15 @@ isaacscript-spell@^1.2.16:
   resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.16.tgz#3bd80b91c34f20f00a990a55b75730b4c17d1066"
   integrity sha512-Lxc7WpUQ5vs1pCelT+721k3G6TKTfkt9DZN6P9XlfTuC1htjU+f2SZCRtEd2tITT9iN8tYmXV1jMEV+6zEDF8A==
 
-isaacscript-tsconfig@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.1.0.tgz#b6e051db61a754f9b6cba39656e384afa28ceca4"
-  integrity sha512-KZbcPGy5eHH8J1U7hwWYQ5wbOaVU35QwCgunpVb/8ocbfLX5Gom4qbSU8jy0rmpl2U1aeaTrKR/hlHP8ag6tOw==
+isaacscript-tsconfig@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-2.2.0.tgz#85935e165619c0716faa1c1967e26b3db24bac3e"
+  integrity sha512-S9FNigiNxm5Scud/gEqYL5RTOeQoTis4j3bJU6yOH09ZRCi1upoRwizt/Nx7E9vkh6vGBnheDHj6EVNhPVJJlg==
 
-isaacscript@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.3.3.tgz#2a05d754d62cd0a722053a7d1b96d73d408868bc"
-  integrity sha512-Yg+VDgX9UFRKq7lHcTWF6XNljhDvRvCGOE/nUwn0BuGFzK4ea+waaRzbmQZN12/+6ffE56jJzCnCJnVr2Hlydg==
+isaacscript@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.3.4.tgz#53dcbae6e2abb5548b0c53ebc7af294e431cfe3e"
+  integrity sha512-kC7kd0sFKV1GpZGLAzvSyvfIqiRr6QoqxuveI11DQ8BYZDLAEMpHPxIyhOzIvLwfrB87744WKlJ8ug/FaFPDKQ==
   dependencies:
     ajv "^8.11.0"
     chalk "4.1.2"
@@ -2603,7 +2603,7 @@ isaacscript@^3.3.3:
     fs-extra "^10.1.0"
     git-dirty "^1.0.2"
     glob "^8.0.3"
-    isaacscript-tsconfig "^2.1.0"
+    isaacscript-tsconfig "^2.2.0"
     jsonc-parser "^3.2.0"
     moment "^2.29.4"
     npm-check-updates "^16.3.2"
@@ -4114,10 +4114,10 @@ typescript-to-lua@^1.10.1:
     resolve "^1.15.1"
     source-map "^0.7.3"
 
-typescript@^4.8.3:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.3.tgz#d59344522c4bc464a65a730ac695007fdb66dd88"
-  integrity sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==
+typescript@^4.8.4:
+  version "4.8.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
+  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"

@@ -1,9 +1,4 @@
-import {
-  getCharacterName,
-  log,
-  ModCallbackCustom,
-  ModUpgraded,
-} from "isaacscript-common";
+import { getCharacterName, log, ModCallbackCustom } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import * as errors from "../features/mandatory/errors";
@@ -34,8 +29,9 @@ import { showDreamCatcherItemPostGameStarted } from "../features/optional/qualit
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
 import g from "../globals";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, main);
 }
 

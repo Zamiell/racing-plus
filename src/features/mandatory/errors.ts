@@ -5,17 +5,15 @@ import {
   getCollectibleName,
   getEffectiveStage,
   getEnumLength,
-  getLastCollectibleType,
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
-  isCollectibleUnlocked,
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
-  saveDataManager,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
+import { mod } from "../../mod";
 import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
@@ -35,7 +33,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("errors", v);
+  mod.saveDataManager("errors", v);
 }
 
 export function check(): boolean {
@@ -69,7 +67,7 @@ function isCorruptMod() {
 
 /** Check to see if Death Certificate is unlocked. */
 function isIncompleteSave() {
-  const isDeathCertificateUnlocked = isCollectibleUnlocked(
+  const isDeathCertificateUnlocked = mod.isCollectibleUnlocked(
     COLLECTIBLE_TO_CHECK,
     ITEM_POOL_TO_CHECK,
   );
@@ -107,7 +105,7 @@ function areOtherModsEnabled() {
       ? correctLastCollectibleTypeRacingPlus
       : correctLastCollectibleTypeRacingPlusBabiesMod;
 
-  const lastCollectibleType = getLastCollectibleType();
+  const lastCollectibleType = mod.getLastCollectibleType();
   if (lastCollectibleType !== correctLastCollectibleType) {
     log(
       `Error: Other mods detected. (The highest collectible ID is ${lastCollectibleType}, but it should be ${correctLastCollectibleType}.)`,

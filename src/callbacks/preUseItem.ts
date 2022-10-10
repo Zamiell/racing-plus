@@ -9,8 +9,9 @@ import * as streakText from "../features/mandatory/streakText";
 import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
 import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
     d6,

@@ -14,8 +14,6 @@ import {
   log,
   onDarkRoom,
   openAllDoors,
-  runNextGameFrame,
-  saveDataManager,
   sfxManager,
   spawnEffect,
   spawnPickup,
@@ -23,6 +21,7 @@ import {
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const v = {
@@ -32,7 +31,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("preventVictoryLapPopup", v, featureEnabled);
+  mod.saveDataManager("preventVictoryLapPopup", v, featureEnabled);
 }
 
 function featureEnabled() {
@@ -59,7 +58,7 @@ export function postEntityKillLamb(entity: Entity): void {
   // die, and will instead proceed to transition to phase 2 anyway. To work around this, wait a
   // frame before checking to see if all of the Lamb entities in the room are dead. (It is difficult
   // to distinguish between this special case and throwing a Chaos Card.)
-  runNextGameFrame(() => {
+  mod.runNextGameFrame(() => {
     if (!isAllLambEntitiesDead()) {
       return;
     }

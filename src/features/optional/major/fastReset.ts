@@ -4,8 +4,8 @@ import {
   isActionTriggeredOnAnyInput,
   isKeyboardPressed,
   restart,
-  saveDataManager,
 } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { speedrunSetFastReset } from "../../speedrun/exported";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
@@ -18,7 +18,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("fastReset", v, featureEnabled);
+  mod.saveDataManager("fastReset", v, featureEnabled);
 }
 
 function featureEnabled() {

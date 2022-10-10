@@ -6,12 +6,9 @@ import {
   LevelStage,
   TrinketType,
 } from "isaac-typescript-definitions";
-import {
-  findFreePosition,
-  saveDataManager,
-  VectorZero,
-} from "isaacscript-common";
+import { findFreePosition, VectorZero } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 // On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of
@@ -29,7 +26,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("removePerfectionVelocity", v, featureEnabled);
+  mod.saveDataManager("removePerfectionVelocity", v, featureEnabled);
 }
 
 function featureEnabled() {

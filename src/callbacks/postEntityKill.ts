@@ -13,10 +13,11 @@ import { fastClearPostEntityKill } from "../features/optional/major/fastClear/ca
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { speedrunPostEntityKillDogma } from "../features/speedrun/callbacks/postEntityKill";
+import { mod } from "../mod";
 
 const POST_ENTITY_KILL_DEBUG = false as boolean;
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_ENTITY_KILL, main);
 
   mod.AddCallback(

@@ -7,8 +7,9 @@ import { ModCallback } from "isaac-typescript-definitions";
 import { getPlayerIndex, log } from "isaacscript-common";
 import * as nLuck from "../features/items/nLuck";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
+import { mod } from "../mod";
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.POST_PLAYER_INIT, main);
 }
 

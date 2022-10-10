@@ -10,12 +10,11 @@ import {
   asNumber,
   getCollectibles,
   getPlayersOfType,
-  getRandomEdenPassive,
   newRNG,
-  saveDataManager,
   setCollectibleSubType,
 } from "isaacscript-common";
 import g from "../../../globals";
+import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
@@ -36,7 +35,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("removeGloballyBannedItems", v);
+  mod.saveDataManager("removeGloballyBannedItems", v);
 }
 
 // ModCallback.POST_GAME_STARTED (15)
@@ -124,7 +123,7 @@ function getEdenReplacementCollectibleType(
 
   let replacementCollectible: CollectibleType;
   do {
-    replacementCollectible = getRandomEdenPassive(
+    replacementCollectible = mod.getRandomEdenPassiveCollectible(
       rng,
       PLACEHOLDER_COLLECTIBLE_TYPES,
     );

@@ -1,9 +1,9 @@
 import {
-  deployJSONRoom,
   getJSONRoomOfVariant,
   getRandomJSONRoom,
   JSONRoom,
 } from "isaacscript-common";
+import { mod } from "../../../../mod";
 import * as angelRooms from "./angelRooms.json";
 import v from "./v";
 
@@ -24,5 +24,5 @@ export function angel(): void {
     jsonRoom = debugJSONRoom;
   }
 
-  deployJSONRoom(jsonRoom, v.run.rng.angelEntities);
+  mod.deployJSONRoom(jsonRoom, v.run.rng.angelEntities);
 }

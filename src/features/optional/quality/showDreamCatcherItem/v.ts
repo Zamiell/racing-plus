@@ -3,8 +3,9 @@ import {
   DisplayFlag,
   EntityType,
 } from "isaac-typescript-definitions";
-import { PlayerHealth, saveDataManager } from "isaacscript-common";
+import { PlayerHealth } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
 export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
@@ -30,7 +31,7 @@ const v = {
 export default v;
 
 export function init(): void {
-  saveDataManager(DREAM_CATCHER_FEATURE_NAME, v, featureEnabled);
+  mod.saveDataManager(DREAM_CATCHER_FEATURE_NAME, v, featureEnabled);
 }
 
 function featureEnabled() {

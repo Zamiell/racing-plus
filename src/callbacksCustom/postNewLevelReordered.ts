@@ -1,4 +1,4 @@
-import { game, log, ModCallbackCustom, ModUpgraded } from "isaacscript-common";
+import { game, log, ModCallbackCustom } from "isaacscript-common";
 import * as solCustom from "../features/items/solCustom";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -11,8 +11,9 @@ import { showDreamCatcherItemPostNewLevel } from "../features/optional/quality/s
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import g from "../globals";
+import { mod } from "../mod";
 
-export function init(mod: ModUpgraded): void {
+export function init(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED, main);
 }
 

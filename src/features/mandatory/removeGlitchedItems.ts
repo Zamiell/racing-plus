@@ -1,11 +1,7 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
-import {
-  isGlitchedCollectible,
-  log,
-  saveDataManager,
-  spawnCollectible,
-} from "isaacscript-common";
+import { isGlitchedCollectible, log } from "isaacscript-common";
 import g from "../../globals";
+import { mod } from "../../mod";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
 
@@ -22,7 +18,7 @@ const v = {
 };
 
 export function init(): void {
-  saveDataManager("removeGlitchedItems", v);
+  mod.saveDataManager("removeGlitchedItems", v);
 }
 
 // ModCallback.POST_PICKUP_UPDATE (35)
@@ -65,7 +61,7 @@ function checkGlitchedItem(collectible: EntityPickupCollectible) {
     // spawn a new one. Even if we use the same `InitSeed`, it will still not change back to a
     // glitched item.
     collectible.Remove();
-    spawnCollectible(
+    mod.spawnCollectible(
       storedCollectibleType,
       collectible.Position,
       collectible.InitSeed,

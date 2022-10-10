@@ -14,11 +14,12 @@ Notes:
 
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { log } from "isaacscript-common";
+import { mod } from "../mod";
 import { preEntitySpawnFunctions } from "./preEntitySpawnFunctions";
 
 const DEBUG = false as boolean;
 
-export function init(mod: Mod): void {
+export function init(): void {
   mod.AddCallback(ModCallback.PRE_ENTITY_SPAWN, main);
 }
 
