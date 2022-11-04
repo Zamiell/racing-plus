@@ -22,7 +22,7 @@
   "type": "commonjs",
   "dependencies": {
     "convert-xml-to-json": "^1.0.0",
-    "isaac-typescript-definitions": "^9.0.6",
+    "isaac-typescript-definitions": "^9.2.0",
     "isaacscript": "^3.3.4",
     "isaacscript-common": "^15.4.3",
     "isaacscript-lint": "^4.2.0",
