@@ -11,6 +11,10 @@ export const COLLECTIBLE_REPLACEMENT_MAP: ReadonlyMap<
     CollectibleType.MAGIC_MUSHROOM,
   ],
   [
+    CollectibleTypeCustom.EPIC_FETUS_PLACEHOLDER,
+    CollectibleType.EPIC_FETUS,
+  ],
+  [
     CollectibleTypeCustom.SACRED_HEART_PLACEHOLDER,
     CollectibleType.SACRED_HEART,
   ],

@@ -3,6 +3,9 @@
     <!-- 12 -->
     <Item Name="Magic Mushroom Placeholder" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
 
+    <!-- 168 -->
+    <Item Name="Epic Fetus Placeholder" Weight="0.9" DecreaseBy="0.9" RemoveOn="0.09" />
+
     <!-- 182 -->
     <Item Name="Sacred Heart Placeholder" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
 
