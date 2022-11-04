@@ -32,7 +32,6 @@ import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "./features/optional/bosses/preventVictoryLapPopup";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
-import * as keeperHeal from "./features/optional/bugfix/keeperHeal";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as globinSoftlock from "./features/optional/enemies/globinSoftlock";
@@ -161,7 +160,6 @@ export function initFeatureVariables(): void {
   extraStartingItems.init();
 
   // Bug fixes
-  keeperHeal.init();
   taintedIsaacCollectibleDelay.init();
   battery9VoltSynergy.init();
 
