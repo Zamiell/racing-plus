@@ -25,6 +25,7 @@ export const CollectibleTypeCustom = {
   MAGIC_MUSHROOM_PLACEHOLDER: Isaac.GetItemIdByName(
     "Magic Mushroom Placeholder",
   ),
+  EPIC_FETUS_PLACEHOLDER: Isaac.GetItemIdByName("Epic Fetus Placeholder"),
   SACRED_HEART_PLACEHOLDER: Isaac.GetItemIdByName("Sacred Heart Placeholder"),
   DEATHS_TOUCH_PLACEHOLDER: Isaac.GetItemIdByName("Death's Touch Placeholder"),
   JUDAS_SHADOW_PLACEHOLDER: Isaac.GetItemIdByName("Judas' Shadow Placeholder"),

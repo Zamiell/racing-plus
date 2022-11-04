@@ -51,6 +51,9 @@
   <!-- 12 -->
   <passive description="" gfx="questionmark.png" name="Magic Mushroom Placeholder" quality="4" tags="noeden offensive" />
 
+  <!-- 168 -->
+  <passive description="" gfx="questionmark.png" name="Epic Fetus Placeholder" quality="4" tags="noeden offensive" />
+
   <!-- 182 -->
   <passive description="" gfx="questionmark.png" name="Sacred Heart Placeholder" quality="4" tags="noeden offensive" />
 

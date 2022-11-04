@@ -298,6 +298,7 @@ Post-flip actions:
 - `0601` <!-- extraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
 
   - 12 - Magic Mushroom (from 0.5)
+  - 168 - Epic Fetus (from 0.1)
   - 237 - Death's Touch (from 0.2)
 
 - `0601` <!-- extraStartingItems --> The following extra starting items will appear in the Treasure Room on the first floor:
