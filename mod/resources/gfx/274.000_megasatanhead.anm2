@@ -1,10 +1,10 @@
 <!--
 
 Changes from vanilla:
-- Set the "Appear" animation to have 0 frames
-- Set the "Death" animation to have 0 frames
-- Set the "Hide" animation to have 0 frames
-- Set the "Reveal" animation to have 0 frames
+- Set the "Appear" animation to have 0 frames.
+- Set the "Death" animation to have 0 frames.
+- Set the "Hide" animation to have 0 frames.
+- Set the "Reveal" animation to have 0 frames.
 
 -->
 
