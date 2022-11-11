@@ -73,12 +73,12 @@ function startWarp() {
     return;
   }
 
-  // After using Glowing Hour Glass, the minimap will be bugged. We can work around this by manually
+  // After using Glowing Hourglass, the minimap will be bugged. We can work around this by manually
   // recording all of the minimap state beforehand, and then restoring it later.
   v.level.floorDisplayFlags = getFloorDisplayFlags();
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are.
-  // (Glowing Hour Glass does not properly restore Card Reading portals.)
+  // (Glowing Hourglass does not properly restore Card Reading portals.)
   const cardReadingPortals = getEffects(EffectVariant.PORTAL_TELEPORT);
   for (const cardReadingPortal of cardReadingPortals) {
     const tuple: [int, Vector] = [
@@ -98,9 +98,9 @@ function startWarp() {
 
   mod.disableAllSound(DREAM_CATCHER_FEATURE_NAME);
 
-  // Start by reloading the current room. This prevents bugs with the Glowing Hour Glass later on.
+  // Start by reloading the current room. This prevents bugs with the Glowing Hourglass later on.
   // For example, Bloody Gust stat modifications will remain in place from the previous floor if we
-  // warp away and then use Glowing Hour Glass for some reason.
+  // warp away and then use Glowing Hourglass for some reason.
   const roomGridIndex = getRoomGridIndex();
   changeRoom(roomGridIndex);
 }
@@ -118,7 +118,7 @@ export function warpToNextDreamCatcherRoom(): void {
 
   log("Dream Catcher - Finished warping.");
 
-  // At this point, the player will briefly show the animation of holding the Glowing Hour Glass
+  // At this point, the player will briefly show the animation of holding the Glowing Hourglass
   // above their head. However, there does not seem to be a way to cancel this.
 
   // If the player has The Stairway, moving away from the room would delete the ladder, so respawn
@@ -145,11 +145,11 @@ export function warpToNextDreamCatcherRoom(): void {
   // Manually respawn them.
   spawnHoles(players);
 
-  // Using the Glowing Hour Glass will reset any health or inventory modifications that were set by
+  // Using the Glowing Hourglass will reset any health or inventory modifications that were set by
   // the seeded floors feature. To work around this, re-run the "after" function.
   seededFloors.after();
 
-  // Using the Glowing Hour Glass will revert any heart containers that were granted by an eternal
+  // Using the Glowing Hourglass will revert any heart containers that were granted by an eternal
   // heart upon reaching this floor. Manually apply any eternal hearts.
   for (const player of players) {
     const eternalHearts = player.GetEternalHearts();
@@ -160,7 +160,7 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
-  // Using the Glowing Hour Glass will remove the half soul heart that the Dream Catcher granted.
+  // Using the Glowing Hourglass will remove the half soul heart that the Dream Catcher granted.
   // (This is not just an artifact of the warping; it does this on vanilla too if you use Glowing
   // Hour Glass after walking into a new room.) Thus, add it back manually. For some reason, this is
   // not needed if the `seededFloors.after` function performed modifications.
@@ -172,7 +172,7 @@ export function warpToNextDreamCatcherRoom(): void {
     }
   }
 
-  // Using the Glowing Hour glass will grant a golden bomb/key if the player had one on the previous
+  // Using the Glowing Hourglass will grant a golden bomb/key if the player had one on the previous
   // floor.
   for (const player of players) {
     player.RemoveGoldenBomb();

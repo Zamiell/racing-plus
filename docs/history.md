@@ -32,7 +32,7 @@
 
 - Armor is now removed from every enemy in the game, including the tainted enemies on The Ascent.
 - Armor is now removed in a separate way that will cause enemies to flash red and item charges to properly accrue. (Thanks Gamonymous)
-- Fixed the bug where Glowing Hour Glass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
+- Fixed the bug where Glowing Hourglass would not reset Devil Rooms or Angel Rooms properly. (Thanks Gamonymous)
 - Fixed the bug where items from Flip would incorrectly appear as blind under certain circumstances. (Thanks Gamonymous)
 - Fixed the bug where Samson's dropped heart would not have any collision. (Thanks Gamonymous)
 
@@ -102,7 +102,7 @@
 - In season 3, Tainted Magdalene has been replaced by Isaac.
 - Fixed the bug where Mod Config Menu would show some keys are "Unknown". (Thanks mgln)
 - Fixed the bug where the buff from Sol was not removed under certain circumstances. (Thanks mgln)
-- Fixed the bug where Dark Esau would be removed if you used Glowing Hour Glass. (Thanks TNTerminator)
+- Fixed the bug where Dark Esau would be removed if you used Glowing Hourglass. (Thanks TNTerminator)
 
 ### _v0.84.3_ - August 25th, 2022
 
@@ -168,7 +168,7 @@
 ### _v0.82.11_ - August 4th, 2022
 
 - Fixed the bug where the "subvert teleport" feature would put you at the incorrect position under certain circumstances. (Thanks Fallenfor)
-- Fixed the bug where using Glowing Hour Glass did not give you the free devil deal back. (Thanks Hispa)
+- Fixed the bug where using Glowing Hourglass did not give you the free devil deal back. (Thanks Hispa)
 
 ### _v0.82.9_ - July 27th, 2022
 
@@ -1950,7 +1950,7 @@ Mod changes:
 - Fixed the bug where going to the next floor on Greed Mode would automatically start the next wave.
 - Fixed the bug where the Butter Bean "morph" mechanic was not working properly. (It is supposed to be a 10% chance per swap.) (Thanks Greg)
 - Fixed the bug where Blank Card + ? Card would not work correctly if you had Cursed Eye. (Thanks Greg)
-- Fixed the bug where the Glowing Hour Glass would not work correctly if you had Cursed Eye. (Thanks mgln)
+- Fixed the bug where the Glowing Hourglass would not work correctly if you had Cursed Eye. (Thanks mgln)
 - Fixed the bug where brown creep would not be cleared immediately when the room was cleared.
 - Fixed the bug where pedestal items could go into an empty Schoolbag upon entering a room under certain conditions. (Thanks Gamonymous)
 
@@ -1971,7 +1971,7 @@ Mod changes:
 - Deleted Ultra Greed's "Appear" animation.
 - The Lead Pencil charge bar no longer appears if you are Azazel. (Thanks NorBro)
 - Fixed the (vanilla) bug where angels would not drop key pieces if another angel was alive.
-- Fixed the bug where the Glowing Hour Glass would not work correctly with the Schoolbag if you had the Butter! trinket. (Thanks mgln)
+- Fixed the bug where the Glowing Hourglass would not work correctly with the Schoolbag if you had the Butter! trinket. (Thanks mgln)
 - Fixed the bug where Teleport 2.0 would not work correctly if you had Cursed Eye. (Thanks Greg)
 - Fixed the bug where the Big Chest would spawn out of bounds after killing The Lamb.
 - Fixed the bug where the Big Chest would spawn out of bounds after killing Mega Satan.
@@ -2115,7 +2115,7 @@ Mod changes:
 - Gurglings and Turdlings in the Boss Rush will now spawn in triplets (which matches the vanilla behavior).
 - In Season 7, if your only goal remaining is Blue Baby, then only The Polaroid will spawn. (Thanks Dea1h)
 - In Season 7, if your only goal remaining is The Lamb, then only The Negative will spawn. (Thanks Dea1h)
-- Fixed the bug where using the Glowing Hour Glass would cause a Cursed Eye teleport if you had Cursed Eye.
+- Fixed the bug where using the Glowing Hourglass would cause a Cursed Eye teleport if you had Cursed Eye.
 - Fixed the bug where the "Remaining Goals" text would appear on runs outside of the Season 7 custom challenge.
 
 ### _v0.45.0_ - October 15th, 2019
@@ -3546,7 +3546,7 @@ Gameplay:
 - Krampus' item will now spawn at the beginning of the death animation rather than midway through. This prevents the Krampus item getting deleted if you accidentally leave the Devil Room as soon as the doors open. Furthermore, this means that it is now possible to do the "Anti Quick Roll" strategy in Racing+, where you can roll the item before the room is cleared to get an extra charge on the D6. (Note that unlike before, this is now a frame perfect trick.) (Thanks Thoday)
 - Unfair Dople / Evil Twin tears that fire on the first frame were previously "fixed" by adjusting the Dople / Evil Twin placement in the room. However, this method did not reliably stop Evil Twin triple shots from hitting the player, so Dople / Evil Twin placement has been reverted to vanilla in all rooms and new Lua code will automatically delete any projectiles fired on the first frame.
 - If you enter the Mega Satan room without defeating the Lamb first on the "Everything" race goal, something very bad will happen. (Thanks Shigan and BMZ_Loop)
-- You can no longer use the Glowing Hour Glass in the pre-race room. (Thanks Gamonymous)
+- You can no longer use the Glowing Hourglass in the pre-race room. (Thanks Gamonymous)
 - If you have the Mysterious Paper trinket, you will now always have a choice between the two photos after defeating Mom. (It is impossible to tell if the player has the real Polaroid or Negative when this trinket is equipped.) (Thanks Molfried and Smoom)
 - Fixed the bug where friendly enemies would prevent fast-clear from functioning. (Thanks thereisnofuture)
 - Fixed the bug where The Compass was not being removed from all pools in seeded races.
@@ -3915,7 +3915,7 @@ Changes:
 - Fixed the bug with Book of Sin where it wouldn't work under certain conditions. (Thanks Thalen22)
 - Fixed the bug where Ball of Bandages was getting fart-rerolled in diversity races when it shouldn't. (Thanks BMZ_Loop)
 - Fixed the bug where Krampus' Head and A Lump of Coal were not being fart-rolled under certain conditions. (Thanks PassionDrama)
-- Fixed the bug where the Schoolbag + Glowing Hour Glass + Broken Remote synergy was not working properly. (Thanks Ou_J)
+- Fixed the bug where the Schoolbag + Glowing Hourglass + Broken Remote synergy was not working properly. (Thanks Ou_J)
 - Added the KonCha emote. (Requested by Ou_J)
 
 ### _v0.5.19_ - April 21st, 2017
@@ -4052,7 +4052,7 @@ Changes:
 ### _v0.4.18_ - April 4th, 2017
 
 - Trapdoors should be behave more similarly to vanilla now in that they won't open right away if the player is standing relatively close. If you continue to accidentally fall into trapdoors, please let me know.
-- Fixed the bug where using a Glowing Hour Glass on the first room of a floor would make your character permanently invisible. (Thanks Fyon and CrafterLynx)
+- Fixed the bug where using a Glowing Hourglass on the first room of a floor would make your character permanently invisible. (Thanks Fyon and CrafterLynx)
 
 ### _v0.4.16_ - April 3rd, 2017
 
@@ -4262,7 +4262,7 @@ Changes:
 - Fixed a crash that occurred in the client on diversity races that gave Betrayal.
 - Cursed Eye no longer overrides Cursed Skull. (Thanks Cyber_1)
 - Cursed Eye no longer overrides Devil Room teleports from Red Chests. (Thanks Dea1h and TeaLex)
-- The Schoolbag will now work properly with the Glowing Hour Glass. (Thanks TheMoonSage)
+- The Schoolbag will now work properly with the Glowing Hourglass. (Thanks TheMoonSage)
 - PMs will no longer give an error message when the recipient is online. (Thanks to InvaderTim for coding this.)
 - You can now use the "/r" command to reply to PMs. (Thanks to InvaderTim for coding this.)
 
@@ -4351,7 +4351,7 @@ Changes:
 - Fixed the bug where Eden would incorrectly retain the stats from their starting active item. (Thanks SlashSP)
 - Fixed the bug where the Joker card would not work if you had Cursed Eye. (Thanks thereisnofuture)
 - Fixed the bug where the current trinket for the diversity race would not display in the tooltip.
-- Replaced the Glowing Hour Glass rewind process of starting a race with a better method. This should help people with potato computers.
+- Replaced the Glowing Hourglass rewind process of starting a race with a better method. This should help people with potato computers.
 - Moved a lot of code to the game physics callback; the game should run much faster now on potato computers.
 - Fixed the bug where Cain and Samson's trinkets would incorrectly get smelted in diversity races.
 - Fixed the bug where the active item in a diversity race would get fart-rolled if you swapped it for something else. Unfortunately, this means your random active item in diversity will not be removed from any pools. (Thanks Thoday)
@@ -4548,7 +4548,7 @@ Changes:
 
 ### _v0.2.33_ - February 13th, 2017
 
-- Fixed the Mega Blast build for seeded races. If you try to use Mega Blast before The Hourglass, you will get an "error" sound, and it won't work. This is by design, because the game is bugged such that using Glowing Hour Glass while a Mega Blast is underway doesn't actually delete the beam.
+- Fixed the Mega Blast build for seeded races. If you try to use Mega Blast before The Hourglass, you will get an "error" sound, and it won't work. This is by design, because the game is bugged such that using Glowing Hourglass while a Mega Blast is underway doesn't actually delete the beam.
 
 ### _v0.2.29_ - February 12th, 2017
 

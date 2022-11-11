@@ -30,7 +30,7 @@ export function racePostNPCUpdateDarkEsau(npc: EntityNPC): void {
  * will return the correct amount.
  */
 function checkDuplicatedDarkEsau(npc: EntityNPC) {
-  // If Glowing Hour Glass is used, then a second Dark Esau will be spawned before the first one is
+  // If Glowing Hourglass is used, then a second Dark Esau will be spawned before the first one is
   // removed. Thus, we wait until frame 1 before counting the total number of Dark Esaus. (We don't
   // want the check to run on every frame, or else all of the Dark Esaus would get removed at the
   // same time.)
