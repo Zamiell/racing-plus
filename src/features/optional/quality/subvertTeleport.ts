@@ -89,7 +89,7 @@ function subvertTeleport() {
     // its position manually, it will just warp back to the same spot on the next frame. Thus, just
     // manually switch to the Forgotten to avoid this bug.
     if (isCharacter(player, PlayerType.SOUL)) {
-      mod.forgottenSwitch();
+      mod.forgottenSwitch(player);
     }
   }
 

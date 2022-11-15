@@ -221,7 +221,7 @@ function warpForgottenBody(player: EntityPlayer) {
 
   // If we change the position of the Forgotten body manually, it will warp back to the same spot on
   // the next frame. Instead, manually switch to the Forgotten to avoid this bug.
-  mod.forgottenSwitch();
+  mod.forgottenSwitch(player);
 
   // Also warp the body to where The Soul is so that The Forgotten won't jump down through a
   // non-trapdoor tile.
