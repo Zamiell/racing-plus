@@ -9,9 +9,8 @@
 - Epic Fetus has now a weight of 1 in the first item room. (Thanks Gamonymous)
 - Tainted Keeper no longer starts with 15 cents in seeded races. (Thanks Gamonymous)
 - Fixed unavoidable damage caused by Ball and Chain in two rooms in Gehenna. (Thanks 3kch1)
-
-- Fixed trapdoors to normal path appearing in alt path when the only goal left was Mother in Season 3. (Thanks iceeCat)
-- Fixed a visual bug with the Dogma goal trapdoor upon taking a second collectible in Season 3. (Thanks Czeresnia)
+- Fixed the visual bug with the Dogma goal trapdoor upon taking a second collectible in Season 3. (Thanks Czeresnia)
+- Fixed the bug in season 3 where trapdoors to the normal path would spawn when the only goal left was Mother. (Thanks iceeCat)
 
 ### _v0.87.8_ - November 4th, 2022
 
