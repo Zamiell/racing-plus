@@ -3,6 +3,12 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.88.0_ - ???, 2022
+
+- Item pools and metadata now match the latest update. (Thanks Gamonymous)
+- Epic Fetus has now a weight of 1 in the first item room. (Thanks Gamonymous)
+- Tainted Keeper no longer starts with 15 cents in seeded races. (Thanks Gamonymous)
+
 ### _v0.87.8_ - November 4th, 2022
 
 - Fixed the bug where the seeded 3 Dollar Bill items did not match the list from the wiki.

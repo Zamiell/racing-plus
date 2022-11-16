@@ -154,7 +154,7 @@ Post-flip actions:
 > Why? Many speedrunners do not use the in-game item tracker, since it clutters the screen. This feature allows players to quickly see what the Eden items are, allowing them to reset the game if the items are bad.
 
 - `0204` <!-- lostUseHolyCard 31 --> Tainted Lost now automatically uses his Holy Card at the beginning of the run.
-- `0205` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents.
+- `0205` <!-- taintedKeeperMoney 33 --> Tainted Keeper starts with 15 cents except in seeded races.
 
 > Why? This gives Tainted Keeper enough money to start a Treasure Room item, which is considered to be important for unseeded speedruns.
 
