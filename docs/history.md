@@ -5,7 +5,7 @@
 
 ### _v0.88.0_ - ???, 2022
 
-- Item pools and metadata now match the latest update. (Thanks Gamonymous)
+- Item pools and metadata now match the latest vanilla update. (Thanks Gamonymous)
 - Epic Fetus has now a weight of 1 in the first item room. (Thanks Gamonymous)
 - Tainted Keeper no longer starts with 15 cents in seeded races. (Thanks Gamonymous)
 
