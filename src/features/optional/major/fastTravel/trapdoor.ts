@@ -222,7 +222,7 @@ function shouldRemove() {
     }
   }
 
-  // In season 3, delete the trapdoors to normal path when the only goal remaining is Mother.
+  // In season 3, delete the trapdoors to the normal path when the only goal remaining is Mother.
   if (
     challenge === ChallengeCustom.SEASON_3 &&
     season3HasOnlyMotherLeft() &&
