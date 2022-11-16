@@ -126,6 +126,7 @@ function shouldRemove() {
     );
     return true;
   }
+
   if (
     challenge === ChallengeCustom.SEASON_3 &&
     season3HasOnlyBossRushLeft() &&
@@ -221,16 +222,15 @@ function shouldRemove() {
     }
   }
 
-  // In season 3, delete the trapdoor to Caves 1 when the only goal remaining is Mother.
+  // In season 3, delete the trapdoors to normal path when the only goal remaining is Mother.
   if (
     challenge === ChallengeCustom.SEASON_3 &&
     season3HasOnlyMotherLeft() &&
-    stage === LevelStage.BASEMENT_2 &&
-    !repentanceStage &&
+    (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
     !inSecretExit()
   ) {
     log(
-      `Removed a vanilla trapdoor on Basement 2 (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
+      `Removed a vanilla trapdoor (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }
