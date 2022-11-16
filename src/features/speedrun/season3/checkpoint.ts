@@ -22,6 +22,8 @@ export function season3CheckpointTouched(): void {
   // Show the remaining goals.
   v.run.goalCompleted = true;
 
+  v.run.season3DogmaTrapdoorSpawned = false;
+
   const goal = getSeason3GoalCorrespondingToRoom();
   if (goal !== undefined) {
     arrayRemoveInPlace(v.persistent.remainingGoals, goal);

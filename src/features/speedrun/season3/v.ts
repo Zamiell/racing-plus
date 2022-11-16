@@ -27,6 +27,9 @@ const v = {
 
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
+
+    /** Used to not spawn a second trapdoor on taking a second collectible. */
+    season3DogmaTrapdoorSpawned: false,
   },
 };
 export default v;
@@ -90,4 +93,8 @@ export function season3HasOnlyDogmaLeft(): boolean {
     v.persistent.remainingGoals.includes(Season3Goal.DOGMA) &&
     v.persistent.remainingGoals.length === 1
   );
+}
+
+export function season3DogmaTrapdoorSpawned(): boolean {
+  return v.run.season3DogmaTrapdoorSpawned;
 }
