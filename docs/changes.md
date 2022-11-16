@@ -124,7 +124,7 @@ Post-flip actions:
    The Chest - #20039, #30039, #20059, #30059, #20121, #30121
    Dark Room - #20011, #30011
 
-6) Change the rotation of both Ball and Chain in Gehenna #10287 and #20287 to avoid unavoidable damage
+6) Change the rotation of both Ball and Chain in Gehenna #10287 and #20287 to avoid unavoidable damage.
 
 -->
 
