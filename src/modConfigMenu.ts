@@ -286,7 +286,7 @@ function getDisplayTextKeyboardController(
       if (currentValue === -1) {
         text = "None";
       } else {
-        text = Keyboard[currentValue] ?? "Unknown";
+        text = Keyboard[currentValue];
       }
 
       return `${shortDescription}: ${text} (keyboard)`;
