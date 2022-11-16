@@ -23,8 +23,8 @@ export function season3PreItemPickup(
   spawnTrapdoorOnTakeMomCollectible();
 }
 
-// The trapdoor to Womb 2 in Mausoleum Mom boss room or to the Dogma goal should only spawn after
-// the players have taken a collectible.
+/** The trapdoor to Womb 2 in Mausoleum Mom boss room or to the Dogma goal should only spawn after
+    the players have taken a collectible. */
 function spawnTrapdoorOnTakeMomCollectible() {
   if (!inClearedMomBossRoom()) {
     return;
