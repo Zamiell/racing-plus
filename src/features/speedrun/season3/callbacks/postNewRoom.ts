@@ -18,6 +18,7 @@ import {
   log,
   onRepentanceStage,
   removeDoor,
+  removeGridEntity,
   setStage,
   spawnNPC,
   spawnTeleporter,
@@ -67,7 +68,18 @@ function checkMegaSatanTeleporter() {
     return;
   }
 
-  const gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
+  let gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
+
+  // Sometimes, there will be a decoration in the room on the specific tile. Remove it if this is
+  // the case.
+  if (
+    gridEntity !== undefined &&
+    gridEntity.GetType() !== GridEntityType.TELEPORTER
+  ) {
+    removeGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX, true);
+    gridEntity = undefined;
+  }
+
   if (gridEntity === undefined) {
     // If the teleporter does not already exist, spawn it. Note that we do not want to spawn it
     // where the top door would be, because that is the position that they will return to if they

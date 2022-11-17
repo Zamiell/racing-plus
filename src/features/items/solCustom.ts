@@ -52,8 +52,7 @@ export function evaluateCacheLuck(player: EntityPlayer): void {
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  // Automatically replace the vanilla flip with the custom one. (This handles Tainted Lazarus
-  // correctly, since he is given Flip in the normal active item slot.)
+  // Automatically replace the vanilla Sol with the custom one.
   if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
     player.AddCollectible(NEW_COLLECTIBLE_TYPE, 0, false);
