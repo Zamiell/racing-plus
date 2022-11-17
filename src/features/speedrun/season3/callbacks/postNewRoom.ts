@@ -70,13 +70,13 @@ function checkMegaSatanTeleporter() {
 
   let gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
 
-  // Decorations can prevent the teleporter to spawn so remove them first if there's any.
+  // Sometimes, there will be a decoration in the room on the specific tile. Remove it if this is the case.
   if (
     gridEntity !== undefined &&
     gridEntity.GetType() !== GridEntityType.TELEPORTER
   ) {
     removeGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX, true);
-    gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
+    gridEntity = undefined;
   }
 
   if (gridEntity === undefined) {
