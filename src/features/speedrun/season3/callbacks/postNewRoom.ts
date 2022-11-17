@@ -70,7 +70,8 @@ function checkMegaSatanTeleporter() {
 
   let gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
 
-  // Sometimes, there will be a decoration in the room on the specific tile. Remove it if this is the case.
+  // Sometimes, there will be a decoration in the room on the specific tile. Remove it if this is
+  // the case.
   if (
     gridEntity !== undefined &&
     gridEntity.GetType() !== GridEntityType.TELEPORTER
