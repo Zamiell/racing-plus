@@ -52,7 +52,7 @@ export function evaluateCacheLuck(player: EntityPlayer): void {
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  // Automatically replace the vanilla sol with the custom one.
+  // Automatically replace the vanilla Sol with the custom one.
   if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
     player.AddCollectible(NEW_COLLECTIBLE_TYPE, 0, false);
