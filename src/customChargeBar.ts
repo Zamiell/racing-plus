@@ -19,8 +19,7 @@ import { config } from "./modConfigMenu";
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
 const OVERLAP_ADJUSTMENT = Vector(-20, 0);
 
-// Lead Pencil constants.
-const UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
+const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.DR_FETUS, // 52
   CollectibleType.TECHNOLOGY, // 68
   CollectibleType.MOMS_KNIFE, // 114
@@ -167,7 +166,7 @@ function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
 }
 
 function playerHasUntrackableCollectible(player: EntityPlayer) {
-  return UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
+  return LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
     player.HasCollectible(collectibleType),
   );
 }

@@ -87,7 +87,6 @@ export class Config {
   fastTeleports = true;
 
   // Bug fixes
-  keeperHeal = true;
   taintedIsaacCollectibleDelay = true;
   battery9VoltSynergy = true;
   reverseJusticeFix = true;

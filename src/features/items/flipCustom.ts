@@ -188,7 +188,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 
   // Automatically replace the vanilla flip with the custom one. (This handles Tainted Lazarus
   // correctly, since he is given Flip in the normal active item slot.)
-  if (player.HasCollectible(OLD_COLLECTIBLE_TYPE)) {
+  if (player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
     const charges = getCollectibleMaxCharges(NEW_COLLECTIBLE_TYPE);
     player.AddCollectible(NEW_COLLECTIBLE_TYPE, charges, false);
