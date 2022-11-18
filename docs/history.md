@@ -5,7 +5,7 @@
 
 ### _v0.88.1_ - November 17th, 2022
 
-- Fixed the bug where pickups could cause a run-time error. (Thanks Gamonymous)
+- Fixed the bug where pickups could cause a run-time error under certain conditions. (Thanks Gamonymous)
 
 ### _v0.88.0_ - November 17th, 2022
 
