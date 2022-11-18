@@ -364,7 +364,7 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int): string {
     }
 
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
-      return controllerToString(key as Controller) ?? "Unknown";
+      return controllerToString(key as Controller);
     }
 
     default: {
@@ -386,6 +386,7 @@ function popupGetBackKeyText(): string {
   }
 
   const controllerString = controllerToString(lastBackPressed as Controller);
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (controllerString !== undefined) {
     return controllerString;
   }
