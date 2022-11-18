@@ -1,7 +1,5 @@
-import { ModCallback } from "isaac-typescript-definitions";
 import {
   ISCFeature,
-  logTearFlags,
   setTracebackFunctionsGlobal,
   upgradeMod,
 } from "isaacscript-common";
@@ -32,7 +30,3 @@ const ISC_FEATURES_FOR_THIS_MOD = [
 setTracebackFunctionsGlobal();
 const modVanilla = RegisterMod(MOD_NAME, 1);
 export const mod = upgradeMod(modVanilla, ISC_FEATURES_FOR_THIS_MOD);
-
-mod.AddCallback(ModCallback.POST_FIRE_TEAR, (tear) => {
-  logTearFlags(tear.TearFlags);
-});

@@ -12,9 +12,6 @@
 - Fixed the visual bug with the Dogma goal trapdoor upon taking a second collectible in Season 3. (Thanks Czeresnia)
 - Fixed the bug in season 3 where trapdoors to the normal path would spawn when the only goal left was Mother. (Thanks iceeCat)
 - Fixed the bug in season 3 where the Mega Satan teleporter would not spawn if there was a decoration on the tile 3. (Thanks Shiny)
-
-### _v0.87.8_ - November 4th, 2022
-
 - Fixed the bug where the seeded 3 Dollar Bill items did not match the list from the wiki.
 
 ### _v0.87.7_ - September 17th, 2022
