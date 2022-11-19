@@ -77,7 +77,9 @@ function set(
 ) {
   const entityDescription = getDescription(entity, fastTravelEntityType);
   if (entityDescription === undefined) {
-    error(`Failed to set a new fast-travel entity state: ${state}`);
+    error(
+      `Failed to set a new fast-travel entity state for a ${FastTravelEntityType[fastTravelEntityType]}: ${FastTravelEntityState[state]} (${state})`,
+    );
   }
 
   entityDescription.state = state;

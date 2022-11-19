@@ -2574,10 +2574,10 @@ isaac-typescript-definitions@^9.5.0:
   dependencies:
     lua-types "^2.13.0"
 
-isaacscript-common@^15.6.2:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-15.6.2.tgz#0f54672a17d4c9acb3153f1816fcf28f5d08c33a"
-  integrity sha512-S9d/2B20OToCEa6a5dSm4jlfxyBnx6n5FGA8EwFgWeoiX4ffOY6g/rmwAQUWUGLkteZo6eESjcwGhpgU3S9sxA==
+isaacscript-common@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-16.0.0.tgz#209cc81cc0120557b0f512910c6507b13c54bd45"
+  integrity sha512-SUYei9RLb6KVVtxrqafaj35dSKdYd3JLmrgOCc2FCM9aHhtKdwwS+0W17PwU1bTWbMOwPX0iA51dikuw5bTsVw==
   dependencies:
     isaac-typescript-definitions "^9.5.0"
 
@@ -4175,6 +4175,16 @@ typescript-to-lua@^1.10.1:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.10.1.tgz#0046d88237dcc013e69441df1734d881168a32bf"
   integrity sha512-R6KQc1YzFcejyaZ9tAvVK0MFTlRS1b10vON5sxjtGVSUWl+W4KRLik0LDCgKfI0wnDQH+LNVnKBNUsBfTtEoQQ==
+  dependencies:
+    "@typescript-to-lua/language-extensions" "1.0.0"
+    enhanced-resolve "^5.8.2"
+    resolve "^1.15.1"
+    source-map "^0.7.3"
+
+typescript-to-lua@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.11.0.tgz#5aecd431abb60e66b960fba3d7704937f2dd5892"
+  integrity sha512-BQqN3KkNFi6+T9LAFyvYH3FrtsM8V0sUhx0sPqgTCjJOlWmLwjUP3zcYOPy8bXW6vR4PJ+eaCNhba50wZAADAw==
   dependencies:
     "@typescript-to-lua/language-extensions" "1.0.0"
     enhanced-resolve "^5.8.2"
