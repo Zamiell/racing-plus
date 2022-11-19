@@ -1,7 +1,12 @@
-import { EntityCollisionClass, PlayerType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  EntityCollisionClass,
+  PlayerType,
+} from "isaac-typescript-definitions";
 import {
   isEven,
   log,
+  removeCollectibleFromAllPlayers,
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
   RENDER_FRAMES_PER_SECOND,
@@ -187,6 +192,9 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
   log("Spawned a Checkpoint custom collectible.");
   removeCollectiblePickupDelay(checkpoint);
+
+  // IBS can cause the Checkpoint to be overridden with poop, causing a soft-lock.
+  removeCollectibleFromAllPlayers(CollectibleType.IBS);
 
   // If the player kills the final boss while the seeded death mechanic is active, they should not
   // be able to take the checkpoint.
