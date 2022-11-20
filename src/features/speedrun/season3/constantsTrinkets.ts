@@ -1,5 +1,5 @@
 import { TrinketType } from "isaac-typescript-definitions";
-import { getVanillaTrinketTypes } from "isaacscript-common";
+import { mod } from "../../../mod";
 import { BANNED_TRINKETS } from "../../mandatory/removeGloballyBannedItems/constants";
 import { BANNED_DIVERSITY_TRINKETS } from "../../race/formatSetup";
 
@@ -16,14 +16,14 @@ const DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY: readonly TrinketType[] = [
 export const DIVERSITY_TRINKET_TYPES: TrinketType[] = [];
 
 export function initDiversityTrinketTypes(): void {
-  const vanillaTrinketTypes = getVanillaTrinketTypes();
+  const vanillaTrinketArray = mod.getVanillaTrinketArray();
   const removedStartingTrinketTypesSet = new Set<TrinketType>([
     ...BANNED_TRINKETS,
     ...BANNED_DIVERSITY_TRINKETS,
     ...DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY,
   ]);
 
-  for (const trinketType of vanillaTrinketTypes) {
+  for (const trinketType of vanillaTrinketArray) {
     if (removedStartingTrinketTypesSet.has(trinketType)) {
       continue;
     }

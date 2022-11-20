@@ -66,7 +66,11 @@ export function season3PostGameStarted(): void {
   giveStartingItems(player);
   removeItemsFromPools();
 
-  const [collectibleTypes, trinketType] = getRandomDiversityItems(player);
+  const startSeed = g.seeds.GetStartSeed();
+  const [collectibleTypes, trinketType] = getRandomDiversityItems(
+    player,
+    startSeed,
+  );
   giveDiversityItemsAndDoItemBans(player, collectibleTypes, trinketType);
 
   initSeason3StartingRoomSprites(collectibleTypes, trinketType);
@@ -122,10 +126,10 @@ function checkFirstCharacterRefresh() {
   refreshStartingCharactersAndGoals();
 }
 
-function getRandomDiversityItems(
+export function getRandomDiversityItems(
   player: EntityPlayer,
+  startSeed: Seed,
 ): [collectibleTypes: CollectibleType[], trinketType: TrinketType] {
-  const startSeed = g.seeds.GetStartSeed();
   const rng = newRNG(startSeed);
   const character = player.GetPlayerType();
 
