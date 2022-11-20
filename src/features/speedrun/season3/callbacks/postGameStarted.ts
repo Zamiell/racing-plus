@@ -126,7 +126,7 @@ function checkFirstCharacterRefresh() {
   refreshStartingCharactersAndGoals();
 }
 
-export function getRandomDiversityItems(
+function getRandomDiversityItems(
   player: EntityPlayer,
   startSeed: Seed,
 ): [collectibleTypes: CollectibleType[], trinketType: TrinketType] {
