@@ -11,6 +11,7 @@
 - Fixed the bug where the game would softlock if you used Glowing Hour Glass in the first room of a floor. (Thanks thereisnofuture)
 - Fixed the bug where the fast Vanishing Twin feature would consider Dark Esau to be a boss. (Thanks Gamonymous)
 - Fixed the bug where the fast Vanishing Twin feature would work in a cleared boss room. (Thanks Gamonymous)
+- !Fixed the bug where leaving and re-entering a room with Krampus would make him disappear. (Thanks mgln)
 
 ### _v0.88.3_ - November 20th, 2022
 

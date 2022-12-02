@@ -41,7 +41,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastAngels;
+  return config.fastKrampus;
 }
 
 // ModCallback.POST_NEW_LEVEL (18)

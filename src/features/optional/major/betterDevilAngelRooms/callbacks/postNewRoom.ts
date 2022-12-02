@@ -5,12 +5,13 @@ import {
   getPlayerFromIndex,
   getRoomListIndex,
   inAngelShop,
+  inRoomType,
 } from "isaacscript-common";
 import g from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { angel } from "../angel";
-import { devil } from "../devil";
+import { checkRespawnKrampus, devil } from "../devil";
 import v from "../v";
 
 export function betterDevilAngelRoomsPostNewRoom(): void {
@@ -27,13 +28,11 @@ function checkDevilAngelRoomReplacement() {
   const isFirstVisit = g.r.IsFirstVisit();
 
   if (!isFirstVisit) {
+    checkRespawnKrampus();
     return;
   }
 
-  if (
-    roomType !== RoomType.DEVIL && // 14
-    roomType !== RoomType.ANGEL // 15
-  ) {
+  if (!inRoomType(RoomType.DEVIL, RoomType.ANGEL)) {
     return;
   }
 

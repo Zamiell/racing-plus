@@ -1,6 +1,7 @@
 import {
   EntityType,
   FallenVariant,
+  RoomType,
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
@@ -74,6 +75,8 @@ function checkSpawnKrampus() {
   }
 
   v.run.metKrampus = true;
+  v.level.spawnedKrampusOnThisFloor = true;
+
   emptyRoom();
   mod.preventGridEntityRespawn();
 
@@ -83,4 +86,20 @@ function checkSpawnKrampus() {
   setRoomUncleared();
 
   return true;
+}
+
+export function checkRespawnKrampus(): void {
+  const roomType = g.r.GetType();
+  const centerPos = g.r.GetCenterPos();
+
+  if (roomType !== RoomType.DEVIL) {
+    return;
+  }
+
+  if (v.level.spawnedKrampusOnThisFloor && !v.level.killedKrampusOnThisFloor) {
+    const seed = v.run.rng.krampus.GetSeed();
+    spawnWithSeed(EntityType.FALLEN, FallenVariant.KRAMPUS, 0, centerPos, seed);
+
+    setRoomUncleared();
+  }
 }

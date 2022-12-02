@@ -9,6 +9,7 @@ import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
+import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/major/betterDevilAngelRooms/callbacks/postEntityKill";
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
@@ -117,6 +118,7 @@ function momsHeart(_entity: Entity) {
 // EntityType.FALLEN (81)
 function fallen(entity: Entity) {
   fastKrampus.postEntityKillFallen(entity);
+  betterDevilAngelRoomsPostEntityKillFallen(entity);
 }
 
 // EntityType.THE_LAMB (273)

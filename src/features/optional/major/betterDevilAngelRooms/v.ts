@@ -29,6 +29,9 @@ const v = {
 
   level: {
     vanillaCollectiblesHaveSpawnedInCustomRoom: false,
+
+    spawnedKrampusOnThisFloor: false,
+    killedKrampusOnThisFloor: false,
   },
 
   room: {
