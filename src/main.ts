@@ -94,6 +94,7 @@ function main() {
   registerCallbacksCustom();
 
   if (g.debug) {
+    log("Racing+ debug mode enabled.");
     mod.saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
     setTracebackFunctionsGlobal();

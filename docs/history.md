@@ -8,6 +8,7 @@
 - Fixed the bug where Karma was not properly removed from pools under certain conditions. (Thanks sisuka)
 - Fixed the bug where the game would randomly crash when entering a new room under certain conditions. (Thanks 3kch1)
 - Fixed the bug where Notched Axe would not discharge properly on enemies with armor. (Thanks thereisnofuture)
+- Fixed the bug where the game would softlock if you used Glowing Hour Glass in the first room of a floor. (Thanks thereisnofuture)
 
 ### _v0.88.3_ - November 20th, 2022
 
