@@ -1,7 +1,6 @@
 import {
   CollectibleType,
   EffectVariant,
-  EntityType,
   FamiliarVariant,
   PoofSubType,
   RoomType,
@@ -11,6 +10,7 @@ import {
   game,
   getBosses,
   getCollectibles,
+  getFamiliars,
   isStoryBoss,
   spawnEffect,
   spawnFamiliar,
@@ -58,7 +58,7 @@ function checkRoomCleared() {
   }
   v.room.spawnClearAwardFrame = null;
 
-  // Now that the room is cleared, spawn a second collectible item.
+  // Now that the room is cleared, spawn the second collectible item.
   const freshCollectible = getFreshlySpawnedCollectible();
   if (freshCollectible === undefined) {
     return;
@@ -111,10 +111,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  const vanishingTwins = Isaac.FindByType(
-    EntityType.FAMILIAR,
-    FamiliarVariant.VANISHING_TWIN,
-  );
+  const vanishingTwins = getFamiliars(FamiliarVariant.VANISHING_TWIN);
   if (vanishingTwins.length === 0) {
     return;
   }
