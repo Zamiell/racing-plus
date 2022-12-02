@@ -39,9 +39,8 @@ export function init(): void {
 }
 
 // ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
+export function postGameStartedFirst(): void {
   removeBannedItemsFromPools();
-  replaceEdenBannedItems();
 }
 
 function removeBannedItemsFromPools() {
@@ -75,6 +74,11 @@ function removeBannedItemsFromPools() {
   if (anyPlayerIs(PlayerType.MAGDALENE_B)) {
     g.itemPool.RemoveCollectible(CollectibleType.SHARP_PLUG);
   }
+}
+
+// ModCallback.POST_GAME_STARTED (15)
+export function postGameStartedLast(): void {
+  replaceEdenBannedItems();
 }
 
 /**

@@ -64,6 +64,10 @@ function main(isContinued: boolean) {
     return;
   }
 
+  // Handle features that need to be first. (This removes items from pools, so it needs to be before
+  // giving items that can spawn other items (like Marbles).
+  removeGloballyBannedItems.postGameStartedFirst();
+
   // Mandatory
   racingPlusSprite.postGameStarted();
   modConfigNotify.postGameStarted();
@@ -108,7 +112,7 @@ function main(isContinued: boolean) {
 
   // Handle features that need to be last. (This checks for items, so it has to be after all
   // features that grant items.)
-  removeGloballyBannedItems.postGameStarted();
+  removeGloballyBannedItems.postGameStartedLast();
 }
 
 function postGameStartedContinued() {
