@@ -9,6 +9,8 @@
 - Fixed the bug where the game would randomly crash when entering a new room under certain conditions. (Thanks 3kch1)
 - Fixed the bug where Notched Axe would not discharge properly on enemies with armor. (Thanks thereisnofuture)
 - Fixed the bug where the game would softlock if you used Glowing Hour Glass in the first room of a floor. (Thanks thereisnofuture)
+- Fixed the bug where the fast Vanishing Twin feature would consider Dark Esau to be a boss. (Thanks Gamonymous)
+- Fixed the bug where the fast Vanishing Twin feature would work in a cleared boss room. (Thanks Gamonymous)
 
 ### _v0.88.3_ - November 20th, 2022
 

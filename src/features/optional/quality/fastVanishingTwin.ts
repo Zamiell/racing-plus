@@ -1,6 +1,7 @@
 import {
   CollectibleType,
   EffectVariant,
+  EntityType,
   FamiliarVariant,
   PoofSubType,
   RoomType,
@@ -106,23 +107,37 @@ export function postNewRoom(): void {
     return;
   }
 
+  const vanishingTwins = getFamiliars(FamiliarVariant.VANISHING_TWIN);
+  if (vanishingTwins.length === 0) {
+    return;
+  }
+
+  // Vanishing Twin only takes effect in Boss Rooms.
   const roomType = g.r.GetType();
   if (roomType !== RoomType.BOSS) {
     return;
   }
 
-  const vanishingTwins = getFamiliars(FamiliarVariant.VANISHING_TWIN);
-  if (vanishingTwins.length === 0) {
+  // Vanishing Twin only takes effect in uncleared rooms.
+  const roomClear = g.r.IsClear();
+  if (roomClear) {
     return;
   }
 
   // It is difficult to properly duplicate double champion bosses or multi-segment bosses. Use the
   // vanilla behavior in these cases.
   const bosses = getBosses();
-  if (bosses.length !== 1) {
+
+  // Dark Esau counts as a boss, so we need to filter him out, if present.
+  const filteredBosses = bosses.filter(
+    (boss) => boss.Type !== EntityType.DARK_ESAU,
+  );
+
+  if (filteredBosses.length !== 1) {
     return;
   }
-  const boss = bosses[0];
+
+  const boss = filteredBosses[0];
   if (boss === undefined) {
     return;
   }
