@@ -1,5 +1,11 @@
-import { DamageFlag } from "isaac-typescript-definitions";
-import { addFlag, hasArmor, hasFlag } from "isaacscript-common";
+import { CollectibleType, DamageFlag } from "isaac-typescript-definitions";
+import {
+  addFlag,
+  getActiveItemSlot,
+  getTotalCharge,
+  hasArmor,
+  hasFlag,
+} from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -30,5 +36,49 @@ export function entityTakeDmg(
   const newDamageFlags = addFlag(damageFlags, DamageFlag.IGNORE_ARMOR);
   entity.TakeDamage(amount, newDamageFlags, source, countdownFrames);
 
+  checkDischargeNotchedAxe(damageFlags, source);
+
   return false;
+}
+
+/**
+ * Making the entity manually take damage has the side effect of not decrementing the charges of
+ * Notched Axe, so we need to explicitly check for this case.
+ */
+function checkDischargeNotchedAxe(
+  damageFlags: BitFlags<DamageFlag>,
+  source: EntityRef,
+) {
+  if (source.Entity === undefined || !source.Entity.Exists()) {
+    return;
+  }
+
+  const player = source.Entity.ToPlayer();
+  if (player === undefined) {
+    return;
+  }
+
+  // Check if they have the Notched Axe currently deployed/out.
+  const effects = player.GetEffects();
+  if (!effects.HasCollectibleEffect(CollectibleType.NOTCHED_AXE)) {
+    return;
+  }
+
+  // Notched Axe hits will have `DamageFlag.CRUSH`.
+  if (!hasFlag(damageFlags, DamageFlag.CRUSH)) {
+    return;
+  }
+
+  const activeSlot = getActiveItemSlot(player, CollectibleType.NOTCHED_AXE);
+  if (activeSlot === undefined) {
+    return;
+  }
+
+  const previousCharge = getTotalCharge(player, activeSlot);
+  let newCharge = previousCharge - 2;
+  if (newCharge < 0) {
+    newCharge = 0;
+  }
+
+  player.SetActiveCharge(newCharge, activeSlot);
 }
