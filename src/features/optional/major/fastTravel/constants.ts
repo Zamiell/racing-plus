@@ -3,6 +3,7 @@ export const FAST_TRAVEL_FEATURE_NAME = "fastTravel";
 
 export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL: ReadonlySet<string> = new Set(
   [
+    "Death",
     "Happy",
     "Sad",
     "Jump",

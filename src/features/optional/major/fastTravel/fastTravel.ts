@@ -226,6 +226,7 @@ export function checkPlayerTouched(
     TRAPDOOR_TOUCH_DISTANCE,
     EntityPartition.PLAYER,
   );
+
   for (const playerEntity of playersTouching) {
     const player = playerEntity.ToPlayer();
     if (player === undefined) {
