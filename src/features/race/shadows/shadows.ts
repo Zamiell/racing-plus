@@ -141,8 +141,7 @@ function sendBeacon() {
 
   const structData: unknown[] = [];
   for (const field of BEACON_FIELDS) {
-    const key = field as keyof typeof structObject;
-    const fieldData = structObject[key];
+    const fieldData = structObject[field];
     structData.push(fieldData);
   }
 

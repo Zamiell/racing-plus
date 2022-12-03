@@ -131,9 +131,6 @@ function createBuildVetoButtons() {
       error(`Failed to get the build at index: ${buildIndex}`);
     }
     const firstCollectibleType = build[0];
-    if (firstCollectibleType === undefined) {
-      error(`Failed to get the first item for build at index: ${buildIndex}`);
-    }
     const characterSprite = initGlowingCollectibleSprite(firstCollectibleType);
     v.room.sprites.characters.push(characterSprite);
   }
