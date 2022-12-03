@@ -9,7 +9,6 @@
 1. [Unavoidable Damage Fixes](#unavoidable-damage-fixes)
 1. [Bug Fixes](#bug-fixes)
 1. [Miscellaneous Changes](#miscellaneous-changes)
-1. [Rooms That Were Deliberately Not Changed](#rooms-that-were-deliberately-not-changed)
 
 <br>
 

@@ -109,22 +109,25 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 Post-flip actions:
 
-1) Fix flipped Utero room 975 (the flipped Wall Huggers should always rotate around the center)
+1) Fix flipped Utero room 975. (The flipped Wall Huggers should always rotate around the center.)
 
-2) Remove the duplicated start rooms for The Chest / Dark Room
+2) Remove the duplicated start rooms for The Chest / Dark Room.
 
 3) Un-flip Y-flipped Gurdy rooms:
-   The Chest - #20015, #30015
+   - The Chest - #20015, #30015
 
 4) Un-flip double Gate rooms (and enable all of the doors)
-   The Chest - #20040, #30040
-   Dark Room - #20012, #30012
+   - The Chest - #20040, #30040
+   - Dark Room - #20012, #30012
 
 5) Un-flip some Mega Maw rooms:
-   The Chest - #20039, #30039, #20059, #30059, #20121, #30121
-   Dark Room - #20011, #30011
+   - The Chest - #20039, #30039, #20059, #30059, #20121, #30121
+   - Dark Room - #20011, #30011
 
-6) Change the rotation of both Ball and Chain in Gehenna #10287 and #20287 to avoid unavoidable damage.
+6) Don't flip:
+   - Mines
+   - Ashpit
+   - Gehenna
 
 -->
 
