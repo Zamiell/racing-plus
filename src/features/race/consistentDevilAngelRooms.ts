@@ -16,10 +16,10 @@ import v, { inSeededRace } from "./v";
 
 const CHANCE_TO_GET_ANGEL_ROOMS = 0.3;
 
-const CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS: readonly PlayerType[] = [
+const CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS = [
   PlayerType.BETHANY,
   PlayerType.MAGDALENE_B,
-];
+] as const;
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {

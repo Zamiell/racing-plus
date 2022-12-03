@@ -14,12 +14,11 @@ import { BANNED_DIVERSITY_COLLECTIBLES } from "../../race/formatSetup";
  * - The idea is that we want to normalize the lower-bound on any particular run.
  * - This was originally Dea1h's idea.
  */
-export const BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY: readonly CollectibleType[] =
-  [
-    CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
-    CollectibleType.MEGA_BLAST, // 441
-    CollectibleType.MEGA_MUSH, // 625
-  ];
+export const BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY = [
+  CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
+  CollectibleType.MEGA_BLAST, // 441
+  CollectibleType.MEGA_MUSH, // 625
+] as const;
 
 /**
  * These are collectibles that can never be assigned as random starting items, but can still be
@@ -28,7 +27,7 @@ export const BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY: readonly CollectibleType
  * This matches the list in "diversity.md" and "diversity.go". (The latter is a whitelist instead of
  * a blacklist.)
  */
-const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
+const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST = [
   CollectibleType.HEART, // 15
   CollectibleType.RAW_LIVER, // 16
   CollectibleType.LUNCH, // 22
@@ -71,10 +70,10 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST: readonly CollectibleType[] = [
   CollectibleType.SUPPER, // 707
   CollectibleType.RECALL, // 714
   CollectibleType.HOLD, // 715
-];
+] as const;
 
 /** These correspond to the seeded starts in "builds.json" (from "isaac-racing-common"). */
-const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
+const STARTING_COLLECTIBLE_TYPES = [
   // Treasure Room
   CollectibleType.CRICKETS_BODY, // 224
   CollectibleType.CRICKETS_HEAD, // 4
@@ -111,7 +110,7 @@ const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
   CollectibleType.INCUBUS, // 360
   CollectibleType.MONSTROS_LUNG, // 229
   CollectibleType.TWISTED_PAIR, // 698
-];
+] as const;
 
 /**
  * These are collectibles that can never be assigned as random starting items, but can still be
@@ -119,20 +118,19 @@ const STARTING_COLLECTIBLE_TYPES: readonly CollectibleType[] = [
  *
  * This only applies during R+7 Season 3, not during diversity races.
  */
-const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY: readonly CollectibleType[] =
-  [
-    ...STARTING_COLLECTIBLE_TYPES,
-    CollectibleType.NOTCHED_AXE, // 147
-    CollectibleType.CRYSTAL_BALL, // 158
-    CollectibleType.JUDAS_SHADOW, // 311
-    CollectibleType.UNDEFINED, // 324
-    CollectibleType.MIND, // 333
-    CollectibleType.MOMS_SHOVEL, // 552 (since We Need to Go Deeper! is banned)
-    CollectibleType.TERRA, // 592
-    CollectibleType.DEATH_CERTIFICATE, // 628
-    CollectibleType.CARD_READING, // 660
-    CollectibleType.GLITCHED_CROWN, // 689
-  ];
+const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY = [
+  ...STARTING_COLLECTIBLE_TYPES,
+  CollectibleType.NOTCHED_AXE, // 147
+  CollectibleType.CRYSTAL_BALL, // 158
+  CollectibleType.JUDAS_SHADOW, // 311
+  CollectibleType.UNDEFINED, // 324
+  CollectibleType.MIND, // 333
+  CollectibleType.MOMS_SHOVEL, // 552 (since We Need to Go Deeper! is banned)
+  CollectibleType.TERRA, // 592
+  CollectibleType.DEATH_CERTIFICATE, // 628
+  CollectibleType.CARD_READING, // 660
+  CollectibleType.GLITCHED_CROWN, // 689
+] as const;
 
 export const DIVERSITY_ACTIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];
 export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];

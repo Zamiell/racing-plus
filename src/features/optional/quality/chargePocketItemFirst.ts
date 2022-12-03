@@ -47,11 +47,11 @@ interface ChargeSituation {
   overcharge?: boolean;
 }
 
-const ACTIVE_SLOTS_PRECEDENCE: readonly ActiveSlot[] = [
+const ACTIVE_SLOTS_PRECEDENCE = [
   ActiveSlot.POCKET,
   ActiveSlot.PRIMARY,
   ActiveSlot.SECONDARY,
-];
+] as const;
 
 /**
  * The maximum amount of charges that a Battery Bum can grant is 3. The third charge occurs on this

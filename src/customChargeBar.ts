@@ -19,7 +19,7 @@ import { config } from "./modConfigMenu";
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
 const OVERLAP_ADJUSTMENT = Vector(-20, 0);
 
-const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
+const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES = [
   CollectibleType.DR_FETUS, // 52
   CollectibleType.TECHNOLOGY, // 68
   CollectibleType.MOMS_KNIFE, // 114
@@ -29,7 +29,7 @@ const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.MONSTROS_LUNG, // 229
   CollectibleType.TECH_X, // 395
   CollectibleType.HAEMOLACRIA, // 531
-];
+] as const;
 
 // Azazels' Rage constants.
 export const NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE = 4;

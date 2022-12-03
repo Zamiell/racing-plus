@@ -4,7 +4,7 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
 
-export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
+export const SEASON_2_CHARACTERS = [
   PlayerType.CAIN, // 2
   PlayerType.EVE, // 5
   PlayerType.DARK_JUDAS, // 12
@@ -12,11 +12,9 @@ export const SEASON_2_CHARACTERS: readonly PlayerType[] = [
   PlayerType.ISAAC_B, // 21
   PlayerType.SAMSON_B, // 27
   PlayerType.AZAZEL_B, // 28
-];
+] as const;
 
-export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
-  readonly CollectibleType[]
-> = [
+export const SEASON_2_STARTING_BUILDS = [
   // -------------------
   // Treasure Room items
   // -------------------
@@ -154,7 +152,7 @@ export const SEASON_2_STARTING_BUILDS: ReadonlyArray<
     CollectibleTypeCustom.SAWBLADE,
     CollectibleType.FATE, // 179
   ],
-];
+] as const;
 
 /**
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
@@ -183,10 +181,6 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
     }
 
     const firstCollectible = build[0];
-    if (firstCollectible === undefined) {
-      return false;
-    }
-
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });
 

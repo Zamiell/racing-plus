@@ -9,9 +9,9 @@ import { BANNED_DIVERSITY_TRINKETS } from "../../race/formatSetup";
  *
  * This only applies during R+7 Season 3, not during diversity races.
  */
-const DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY: readonly TrinketType[] = [
+const DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY = [
   TrinketType.OUROBOROS_WORM,
-];
+] as const;
 
 export const DIVERSITY_TRINKET_TYPES: TrinketType[] = [];
 

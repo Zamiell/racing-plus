@@ -62,7 +62,7 @@ const SPLITTING_BOSS_ENTITY_TYPE_SET = new Set([
  * Krampus, Uriel, and Gabriel are not included in the boss set from the standard library, so we do
  * not have to exclude them. (We want to exclude them since they will drop items.)
  */
-const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
+const BOSS_RUSH_EXCLUSIONS = [
   // Tuff Twins and The Shell require bombs to kill.
   `${EntityType.LARRY_JR}.${LarryJrVariant.TUFF_TWIN}`, // 19.2
   `${EntityType.LARRY_JR}.${LarryJrVariant.THE_SHELL}`, // 19.3
@@ -90,7 +90,7 @@ const BOSS_RUSH_EXCLUSIONS: readonly string[] = [
 
   // Colostomia spin attack is not fair with other bosses on the screen at the same time.
   `${EntityType.COLOSTOMIA}.0`, // 917.0
-];
+] as const;
 
 const BOSS_RUSH_BOSSES = getBossRushBosses();
 

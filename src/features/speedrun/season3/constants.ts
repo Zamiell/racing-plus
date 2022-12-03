@@ -1,7 +1,7 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import g from "../../../globals";
 
-export const SEASON_3_CHARACTERS: readonly PlayerType[] = [
+export const SEASON_3_CHARACTERS = [
   PlayerType.JUDAS, // 3
   PlayerType.BLUE_BABY, // 4
   PlayerType.SAMSON, // 6
@@ -9,7 +9,7 @@ export const SEASON_3_CHARACTERS: readonly PlayerType[] = [
   PlayerType.JUDAS_B, // 24
   PlayerType.EVE_B, // 26
   PlayerType.JACOB_B, // 37
-];
+] as const;
 
 /** How long the randomly-selected character & build combination is "locked-in". */
 const SEASON_3_LOCK_MINUTES = g.debug ? 0.01 : 1.25;
@@ -29,7 +29,7 @@ export enum Season3Goal {
 }
 
 /** We can't use `getEnumValues` on `Season3Goal` because they will be in a random order. */
-export const SEASON_3_GOALS: readonly Season3Goal[] = [
+export const SEASON_3_GOALS = [
   Season3Goal.BLUE_BABY,
   Season3Goal.THE_LAMB,
   Season3Goal.MEGA_SATAN,
@@ -37,4 +37,4 @@ export const SEASON_3_GOALS: readonly Season3Goal[] = [
   Season3Goal.HUSH,
   Season3Goal.MOTHER,
   Season3Goal.DOGMA,
-];
+] as const;

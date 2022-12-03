@@ -15,7 +15,7 @@ pack/unpack reference:
 import { RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 
 export const BEACON_INTERVAL = 10 * RENDER_FRAMES_PER_SECOND;
-export const BEACON_FIELDS: readonly string[] = ["raceID", "userID", "message"];
+export const BEACON_FIELDS = ["raceID", "userID", "message"] as const;
 export const BEACON_DATA_FORMAT = "IIc5";
 export const BEACON_MESSAGE = "HELLO";
 
@@ -40,4 +40,12 @@ export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20"; // This matches the Sha
 export const CHARACTER_LAYER_ID = 0;
 export const DEFAULT_CHARACTER_PNG =
   "characters/costumes/character_001_isaac.png";
-export const SHADOW_FADED_COLOR = Color(1, 1, 1, 0.075, 0, 0, 0);
+export const SHADOW_FADED_COLOR: Readonly<Color> = Color(
+  1,
+  1,
+  1,
+  0.075,
+  0,
+  0,
+  0,
+);

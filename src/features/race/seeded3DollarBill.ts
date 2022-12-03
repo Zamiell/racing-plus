@@ -12,7 +12,7 @@ const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
 
 // Listed in alphabetical order to match the wiki page (39 in total).
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
-const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
+const THREE_DOLLAR_BILL_ITEMS = [
   CollectibleType.EIGHT_INCH_NAILS,
   CollectibleType.TWENTY_TWENTY,
   CollectibleType.APPLE,
@@ -52,7 +52,7 @@ const THREE_DOLLAR_BILL_ITEMS: readonly CollectibleType[] = [
   CollectibleType.SAD_ONION,
   CollectibleType.WIZ,
   CollectibleType.TOUGH_LOVE,
-];
+] as const;
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {

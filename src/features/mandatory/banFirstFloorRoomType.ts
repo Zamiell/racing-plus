@@ -13,12 +13,12 @@ import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
 
-const SEASON_2_BANNED_ROOM_TYPES: readonly RoomType[] = [
+const SEASON_2_BANNED_ROOM_TYPES = [
   RoomType.MINI_BOSS, // 6
   RoomType.CURSE, // 10
   RoomType.LIBRARY, // 12
   RoomType.PLANETARIUM, // 24
-];
+] as const;
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {

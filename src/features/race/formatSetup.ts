@@ -52,19 +52,17 @@ function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
 }
 
 /** These are collectibles that are banned from all item pools in all diversity races. */
-export const BANNED_DIVERSITY_COLLECTIBLES: readonly CollectibleType[] = [
+export const BANNED_DIVERSITY_COLLECTIBLES = [
   CollectibleType.MOMS_KNIFE, // 114
   CollectibleType.D100, // 283
   CollectibleType.D4, // 284
   CollectibleType.D_INFINITY, // 489
   CollectibleType.GENESIS, // 622
   CollectibleType.ESAU_JR, // 703
-];
+] as const;
 
 /** These are trinkets that are banned from the trinket pool in all diversity races. */
-export const BANNED_DIVERSITY_TRINKETS: readonly TrinketType[] = [
-  TrinketType.DICE_BAG,
-];
+export const BANNED_DIVERSITY_TRINKETS = [TrinketType.DICE_BAG] as const;
 
 export function formatSetup(player: EntityPlayer): void {
   if (
