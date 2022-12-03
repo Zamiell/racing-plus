@@ -98,7 +98,7 @@ function spawnKeyPiece(entity: Entity) {
     return;
   }
 
-  const collectibleType = getKeySubType(entity);
+  const collectibleType = getAngelCollectibleType(entity);
   const position = findFreePosition(entity.Position);
 
   // In vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free.
@@ -145,7 +145,12 @@ function shouldSpawnKeyPiece(entity: Entity) {
   return true;
 }
 
-function getKeySubType(entity: Entity) {
+function getAngelCollectibleType(
+  entity: Entity,
+):
+  | CollectibleType.KEY_PIECE_1
+  | CollectibleType.KEY_PIECE_2
+  | CollectibleType.NULL {
   const hasFiligreeFeather = anyPlayerHasTrinket(TrinketType.FILIGREE_FEATHERS);
   const hasKeyPiece1 = anyPlayerHasCollectible(CollectibleType.KEY_PIECE_1);
   const hasKeyPiece2 = anyPlayerHasCollectible(CollectibleType.KEY_PIECE_2);

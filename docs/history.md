@@ -14,6 +14,7 @@
 - Fixed the bug where leaving and re-entering a room with Krampus would make him disappear. (Thanks mgln)
 - Fixed the bug where the golden NO trinket would not work properly on Devil or Angel deals. (Thanks Gamonymous)
 - Fixed the bug where you could die and go down a trapdoor at the same time. (Thanks Gamonymous)
+- Fixed the bug where Krampus could drop Head of Krampus if you started with it. (Thanks Gamonymous)
 
 ### _v0.88.3_ - November 20th, 2022
 

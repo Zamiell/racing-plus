@@ -57,7 +57,7 @@ export function postNewLevel(): void {
   v.run.startedWithLumpOfCoal = anyPlayerHasCollectible(
     CollectibleType.LUMP_OF_COAL,
   );
-  v.run.startedWithLumpOfCoal = anyPlayerHasCollectible(
+  v.run.startedWithHeadOfKrampus = anyPlayerHasCollectible(
     CollectibleType.HEAD_OF_KRAMPUS,
   );
 }
@@ -92,7 +92,7 @@ export function postEntityKillFallen(entity: Entity): void {
 }
 
 function spawnKrampusDrop(entity: Entity) {
-  const collectibleType = getKrampusItemSubType();
+  const collectibleType = getKrampusCollectibleType();
   const position = findFreePosition(entity.Position);
 
   mod.spawnCollectible(
@@ -107,7 +107,7 @@ function spawnKrampusDrop(entity: Entity) {
   log(`Spawned fast-Krampus item: ${collectibleName} (${collectibleType})`);
 }
 
-function getKrampusItemSubType() {
+function getKrampusCollectibleType() {
   // Normally, Krampus has a 50% chance of dropping A Lump of Coal and a 50% chance of dropping
   // Krampus' Head. However, we might be in a special situation where we should always spawn one or
   // the other.
