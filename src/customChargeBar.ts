@@ -28,6 +28,7 @@ const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES: readonly CollectibleType[] = [
   CollectibleType.EPIC_FETUS, // 168
   CollectibleType.MONSTROS_LUNG, // 229
   CollectibleType.TECH_X, // 395
+  CollectibleType.HAEMOLACRIA, // 531
 ];
 
 // Azazels' Rage constants.

@@ -5,6 +5,7 @@
 
 ### _v0.88.4_ - December 2nd, 2022
 
+- The Lead Pencil counter will no longer show if you have Haemolacria. (Thanks Gamonymous)
 - Fixed the bug where Karma was not properly removed from pools under certain conditions. (Thanks sisuka)
 - Fixed the bug where the game would randomly crash when entering a new room under certain conditions. (Thanks 3kch1)
 - Fixed the bug where Notched Axe would not discharge properly on enemies with armor. (Thanks thereisnofuture)
