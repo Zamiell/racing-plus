@@ -5,10 +5,11 @@
 
 ### _v0.88.5_ - December ?nd, 2022
 
-- The HP of Gabriel (red angel) is reduced to that of Uriel (blue angel).
-- There are no longer obstacles in Angel Rooms.
+- The HP of Gabriel (red angel) is reduced to that of Uriel (blue angel). (660 --> 400)
+- Many Angel Rooms with pits or other obstacles have been deleted or modified.
 - The Devil Room with Grunges has been deleted.
 - Several Devil Rooms have been revamped, with the average number of pedestals increasing from 2.07 to 2.31.
+- Fixed the bug where duplicated bosses from Vanishing Twin could sometimes overlap with the player. (Thanks Gamonymous)
 
 ### _v0.88.4_ - December 2nd, 2022
 

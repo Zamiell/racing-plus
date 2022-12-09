@@ -75,13 +75,13 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 > Why? Some characters do not start with enough health to take the first devil deal, which is an important reward for playing perfectly. Instead of buffing the health of some characters, it is simpler to give every character one free devil deal (provided that they play well for the first two floors).
 
-- <!-- doubleAngelNerf --> Uriel and Gabriel can no longer damage each other.
+- <!-- doubleAngelNerf, entities2.xml --> Uriel and Gabriel can no longer damage each other. To balance this, Gabriel's HP is reduced to that of Uriel. (660 --> 400)
 
 > Why? This greatly increases the RNG having to do with Angel Rooms.
 
 ### 5) Fast-Reset
 
-- `0006` <!-- fastReset --> The restart/reset key immediately restarts the game, as long as you have not entered more than 3 rooms.
+- `0006` <!-- fastReset --> The restart/reset key immediately restarts the game, as long as you have entered 2 or less rooms thus far.
 
 > Why? In vanilla, the game enforces a 2 second limit between resets, but there is no good reason for this. Speeding this up makes resetting for a starting item less tedious.
 

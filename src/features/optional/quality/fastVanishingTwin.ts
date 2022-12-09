@@ -7,7 +7,6 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  findFreePosition,
   game,
   getBosses,
   getCollectibles,
@@ -16,6 +15,7 @@ import {
   spawnEffect,
   spawnFamiliar,
   spawnNPC,
+  VectorOne,
   VectorZero,
 } from "isaacscript-common";
 import g from "../../../globals";
@@ -163,8 +163,9 @@ export function postNewRoom(): void {
 function duplicateBoss(boss: EntityNPC) {
   v.room.shouldSpawnTwoBossItems = true;
 
-  // If the bosses start on the same tile, it looks buggy.
-  const position = findFreePosition(boss.Position, true);
+  // If the bosses start on the same tile, it looks buggy. By not spawning the new boss on the exact
+  // same position, it will run the collision code and push it properly to the side.
+  const position = boss.Position.add(VectorOne);
 
   const duplicatedBoss = spawnNPC(
     boss.Type,
@@ -179,6 +180,9 @@ function duplicateBoss(boss: EntityNPC) {
   // Account for the vanilla mechanic where duplicated bosses have a portion of their HP taken away.
   boss.HitPoints *= HP_MULTIPLIER;
   duplicatedBoss.HitPoints *= HP_MULTIPLIER;
+
+  // Update it so that the collision pushes it away from the other boss.
+  duplicatedBoss.Update();
 }
 
 // ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
