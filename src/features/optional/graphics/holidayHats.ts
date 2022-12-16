@@ -5,9 +5,7 @@ import { Holiday } from "../../../enums/Holiday";
 import { config } from "../../../modConfigMenu";
 import { HOLIDAY_TO_NULL_ITEM_ID } from "../../../objects/holidayToNullItemID";
 
-// - Christmas is: Sunday, December 25th
-// - Two weeks before is: Sunday, December 11th
-const CURRENT_HOLIDAY = Holiday.NONE;
+const CURRENT_HOLIDAY = Holiday.CHRISTMAS;
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
