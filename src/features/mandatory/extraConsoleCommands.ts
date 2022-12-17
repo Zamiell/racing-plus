@@ -2,11 +2,13 @@ import {
   Challenge,
   CollectibleType,
   PlayerType,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import {
   asCollectibleType,
   asNumber,
   CHARACTER_NAME_TO_TYPE_MAP,
+  copyArray,
   FIRST_CHARACTER,
   getCharacterName,
   getEnumValues,
@@ -33,7 +35,22 @@ import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/
 import * as socketClient from "../race/socketClient";
 import { setUnseededWithRacingPlusLogic } from "./racingPlusSprite";
 
-const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [CollectibleType.CRICKETS_HEAD];
+const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
+  CollectibleType.CRICKETS_HEAD,
+] as const;
+
+const DEFAULT_DIVERSITY_RACE_STARTING_ITEMS = [
+  // Active item
+  CollectibleType.POOP,
+
+  // Passive items
+  CollectibleType.SAD_ONION,
+  CollectibleType.INNER_EYE,
+  CollectibleType.SPOON_BENDER,
+
+  // Trinket
+  TrinketType.SWALLOWED_PENNY,
+] as const;
 
 export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("angelSet", angelSet);
@@ -42,9 +59,12 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("d", debug);
   mod.addConsoleCommand("devilSet", devilSet);
   mod.addConsoleCommand("disable", disable);
+  mod.addConsoleCommand("diversityRace", diversityRace);
+  mod.addConsoleCommand("diversityRaceCharacter", diversityRaceCharacter);
   mod.addConsoleCommand("enable", enable);
   mod.addConsoleCommand("move", move);
   mod.addConsoleCommand("race", race);
+  mod.addConsoleCommand("raceCharacter", raceCharacter);
   mod.addConsoleCommand("rankedSoloReset", rankedSoloReset);
   mod.addConsoleCommand("s0", s0);
   mod.addConsoleCommand("s1", s1);
@@ -71,6 +91,15 @@ function cco() {
   changeCharOrder();
 }
 
+function changeCharOrder() {
+  consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
+}
+
+function debug(params: string) {
+  printConsole("Executing debug function.");
+  debugFunction(params);
+}
+
 function devilSet(params: string) {
   devilAngelSet(params, true);
 }
@@ -79,17 +108,52 @@ function disable() {
   setAllModConfigMenuSettings(false);
 }
 
+function diversityRace(params: string) {
+  if (params !== "") {
+    printConsole(
+      'The "diversityRace" command does not take any arguments. (Set the seed first before using this command.)',
+    );
+    return;
+  }
+
+  if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
+    printConsole(
+      'You must be connected to the Racing+ client in order to use the "diversityRace" command. (The R+ icon should be green.)',
+    );
+    return;
+  }
+
+  if (!onSetSeed()) {
+    printConsole(
+      "You are not on a set seed; assuming that you want to use the current seed for the fake diversity race.",
+    );
+  }
+
+  const startSeedString = g.seeds.GetStartSeedString();
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+
+  g.debug = true;
+  g.race.status = RaceStatus.IN_PROGRESS;
+  g.race.myStatus = RacerStatus.RACING;
+  g.race.format = RaceFormat.DIVERSITY;
+  g.race.seed = startSeedString;
+  g.race.character = character;
+  g.race.startingItems = copyArray(DEFAULT_DIVERSITY_RACE_STARTING_ITEMS);
+
+  printConsole(`Enabled fake seeded race mode for seed: ${startSeedString}`);
+  printConsole(
+    "You can go back to normal by using the command of: seededRaceOff",
+  );
+  restart(g.race.character);
+}
+
+function diversityRaceCharacter(params: string) {
+  raceCharacter(params);
+}
+
 function enable() {
   setAllModConfigMenuSettings(true);
-}
-
-function changeCharOrder() {
-  consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
-}
-
-function debug(params: string) {
-  printConsole("Executing debug function.");
-  debugFunction(params);
 }
 
 /** Move the player to a specific position. */
@@ -102,6 +166,38 @@ function move() {
 function race() {
   logRaceData(g.race);
   printConsole('Logged the race statistics to the "log.txt" file.');
+}
+
+function raceCharacter(params: string) {
+  if (params === "") {
+    printConsole("You must specify a character name or number.");
+    return;
+  }
+
+  let character: PlayerType;
+  const num = tonumber(params) as PlayerType | undefined;
+  if (num === undefined) {
+    const match = getMapPartialMatch(params, CHARACTER_NAME_TO_TYPE_MAP);
+    if (match === undefined) {
+      printConsole(`Unknown character: ${params}`);
+      return;
+    }
+
+    character = match[1];
+  } else {
+    if (num < FIRST_CHARACTER || num > LAST_VANILLA_CHARACTER) {
+      printConsole(`Invalid player sub-type: ${num}`);
+      return;
+    }
+
+    character = num;
+  }
+
+  g.race.character = character;
+
+  const characterName = getCharacterName(character);
+  restart(g.race.character);
+  printConsole(`Set the race character to: ${characterName} (${character})`);
 }
 
 function rankedSoloReset() {
@@ -163,7 +259,7 @@ function seededRace(params: string) {
   g.race.format = RaceFormat.SEEDED;
   g.race.seed = startSeedString;
   g.race.character = character;
-  g.race.startingItems = DEFAULT_SEEDED_RACE_STARTING_ITEMS;
+  g.race.startingItems = copyArray(DEFAULT_SEEDED_RACE_STARTING_ITEMS);
 
   printConsole(`Enabled fake seeded race mode for seed: ${startSeedString}`);
   printConsole(
@@ -173,37 +269,7 @@ function seededRace(params: string) {
 }
 
 function seededRaceCharacter(params: string) {
-  if (params === "") {
-    printConsole("You must specify a character name or number.");
-    return;
-  }
-
-  let character: PlayerType;
-  const num = tonumber(params) as PlayerType | undefined;
-  if (num === undefined) {
-    const match = getMapPartialMatch(params, CHARACTER_NAME_TO_TYPE_MAP);
-    if (match === undefined) {
-      printConsole(`Unknown character: ${params}`);
-      return;
-    }
-
-    character = match[1];
-  } else {
-    if (num < FIRST_CHARACTER || num > LAST_VANILLA_CHARACTER) {
-      printConsole(`Invalid player sub-type: ${num}`);
-      return;
-    }
-
-    character = num;
-  }
-
-  g.race.character = character;
-
-  const characterName = getCharacterName(character);
-  restart(g.race.character);
-  printConsole(
-    `Set the seeded race character to: ${characterName} (${character})`,
-  );
+  raceCharacter(params);
 }
 
 function seededRaceBuild() {
