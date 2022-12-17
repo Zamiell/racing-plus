@@ -15,13 +15,15 @@ import {
   asNumber,
   DISTANCE_OF_GRID_TILE,
   getCrawlSpaces,
+  getEffects,
   getRoomGridIndex,
   inCrawlSpace,
   inSecretShop,
   isRoomInsideGrid,
+  LadderSubTypeCustom,
   log,
-  removeAllEffects,
   removeGridEntity,
+  spawnEffect,
   spawnTeleporter,
   teleport,
 } from "isaacscript-common";
@@ -38,6 +40,10 @@ import v from "./v";
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;
 const GRID_INDEX_SECRET_SHOP_LADDER = 25;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
+
+/** Chosen to not overlap with the vanilla `LadderSubTypeCustom` entries. */
+// eslint-disable-next-line isaacscript/strict-enums
+const CUSTOM_SECRET_SHOP_LADDER_SUB_TYPE: LadderSubTypeCustom = 200;
 
 const DEVIL_ANGEL_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
   [7, Direction.UP], // Top door
@@ -202,8 +208,28 @@ function checkEnteringSecretShop() {
     return;
   }
 
-  // Removing the ladder will also remove the vanilla loading zone.
-  removeAllEffects(EffectVariant.TALL_LADDER);
+  // The vanilla loading zone is tied to the presence of the Tall Ladder effect.
+  const ladders = getEffects(EffectVariant.TALL_LADDER);
+  const ladder = ladders[0];
+  if (ladder === undefined) {
+    return;
+  }
+
+  ladder.Remove();
+
+  // Spawn a new effect with the old ladder's graphics. (We use a normal ladder to represent the
+  // custom tall ladder since a normal ladder is a vanilla effect that is non-interacting.)
+  const sprite = ladder.GetSprite();
+  const filename = sprite.GetFilename();
+  const animation = sprite.GetAnimation();
+  const customLadder = spawnEffect(
+    EffectVariant.LADDER,
+    CUSTOM_SECRET_SHOP_LADDER_SUB_TYPE,
+    ladder.Position,
+  );
+  const customSprite = customLadder.GetSprite();
+  customSprite.Load(filename, true);
+  customSprite.Play(animation, true);
 }
 
 function checkEnteringCrawlSpace() {
