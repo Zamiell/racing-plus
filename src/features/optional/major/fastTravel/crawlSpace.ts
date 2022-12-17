@@ -4,6 +4,7 @@ import {
   CrawlSpaceState,
   CrawlSpaceVariant,
   Direction,
+  EffectVariant,
   GridRoom,
   RoomShape,
   RoomTransitionAnim,
@@ -19,6 +20,7 @@ import {
   inSecretShop,
   isRoomInsideGrid,
   log,
+  removeAllEffects,
   removeGridEntity,
   spawnTeleporter,
   teleport,
@@ -113,17 +115,20 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
 }
 
 function playerIsTouchingExitTile(player: EntityPlayer) {
-  // First, handle the special case of being in a secret shop.
+  // First, handle the special case of being in a secret shop, where you exit from the top right
+  // corner of the room.
   if (inSecretShop()) {
     const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
     return (
-      // The vanilla hitbox seems to be half of a grid square, so we need to specify our hitbox to
-      // be bigger than this. (0.6 is not big enough to consistently work when coming from the left
-      // side.)
-      player.Position.Distance(ladderPosition) < DISTANCE_OF_GRID_TILE * 0.75
+      // The vanilla hitbox seems to be half of a grid square. (We do not have to worry about
+      // colliding with the vanilla hitbox because it no longer exists once we have removed the
+      // vanilla ladder effect.)
+      player.Position.Distance(ladderPosition) < DISTANCE_OF_GRID_TILE * 0.5
     );
   }
 
+  // Handle the case of being in a normal crawlspace, where you exit from the top left corner of the
+  // room.
   const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
   return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
 }
@@ -186,9 +191,19 @@ function getExitDirection(
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  checkEnteringSecretShop();
   checkEnteringCrawlSpace();
   checkExitingCrawlSpace();
   checkPostRoomTransitionSubvert();
+}
+
+function checkEnteringSecretShop() {
+  if (!inSecretShop()) {
+    return;
+  }
+
+  // Removing the ladder will also remove the vanilla loading zone.
+  removeAllEffects(EffectVariant.TALL_LADDER);
 }
 
 function checkEnteringCrawlSpace() {

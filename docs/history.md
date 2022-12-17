@@ -10,6 +10,7 @@
 - The Devil Room with Grunges has been deleted.
 - Several Devil Rooms have been revamped, with the average number of pedestals increasing from 2.07 to 2.31.
 - Fixed the bug where duplicated bosses from Vanishing Twin could sometimes overlap with the player. (Thanks Gamonymous)
+- Fixed the bug where exiting secret shops would take you to the starting room of the floor under certain conditions. (Thanks sisuka)
 
 ### _v0.88.4_ - December 2nd, 2022
 
