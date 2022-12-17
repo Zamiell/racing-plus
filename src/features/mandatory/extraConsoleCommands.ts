@@ -61,6 +61,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("disable", disable);
   mod.addConsoleCommand("diversityRace", diversityRace);
   mod.addConsoleCommand("diversityRaceCharacter", diversityRaceCharacter);
+  mod.addConsoleCommand("diversityRaceOff", diversityRaceOff);
   mod.addConsoleCommand("enable", enable);
   mod.addConsoleCommand("move", move);
   mod.addConsoleCommand("race", race);
@@ -141,15 +142,22 @@ function diversityRace(params: string) {
   g.race.character = character;
   g.race.startingItems = copyArray(DEFAULT_DIVERSITY_RACE_STARTING_ITEMS);
 
-  printConsole(`Enabled fake seeded race mode for seed: ${startSeedString}`);
+  printConsole(`Enabled fake diversity race mode for seed: ${startSeedString}`);
   printConsole(
-    "You can go back to normal by using the command of: seededRaceOff",
+    "You can go back to normal by using the command of: diversityRaceOff",
   );
   restart(g.race.character);
 }
 
 function diversityRaceCharacter(params: string) {
   raceCharacter(params);
+}
+
+function diversityRaceOff() {
+  g.race = new RaceData();
+  printConsole("Disabled diversity race mode.");
+  setUnseededWithRacingPlusLogic();
+  restart();
 }
 
 function enable() {
