@@ -3,12 +3,14 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.88.5_ - December ?nd, 2022
+### _v0.89.0_ - December 18nd, 2022
 
+- Merry Christmas!
 - The HP of Gabriel (red angel) is reduced to that of Uriel (blue angel). (660 --> 400)
 - Many Angel Rooms with pits or other obstacles have been deleted or modified.
 - The Devil Room with Grunges has been deleted.
 - Several Devil Rooms have been revamped, with the average number of pedestals increasing from 2.07 to 2.31.
+- The rooms from Basement to Depths have been added from vanilla patch v1.7.9.
 - Fixed the bug where duplicated bosses from Vanishing Twin could sometimes overlap with the player. (Thanks Gamonymous)
 - Fixed the bug where exiting secret shops would take you to the starting room of the floor under certain conditions. (Thanks sisuka)
 
