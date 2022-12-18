@@ -41,7 +41,7 @@ const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
 
 const DEFAULT_DIVERSITY_RACE_STARTING_ITEMS = [
   // Active item
-  CollectibleType.POOP,
+  CollectibleType.GLOWING_HOUR_GLASS,
 
   // Passive items
   CollectibleType.SAD_ONION,
