@@ -4,12 +4,9 @@ import os
 import shutil
 
 from set_debug_variable import set_debug_variable
-from utils import printf
+from utils import printf, PROJECT_DIRECTORY
 
 MOD_NAME = "racing-plus"
-SCRIPT_PATH = os.path.realpath(__file__)
-SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
-PROJECT_DIRECTORY = os.path.join(SCRIPT_DIRECTORY, "..")
 SHA1_FILE_PATH = os.path.abspath(os.path.join(PROJECT_DIRECTORY, "sha1.json"))
 
 GAME_DIRECTORY = os.path.join(
@@ -28,11 +25,11 @@ PRE_FLIPPED_DIRECTORY = os.path.join(
 
 
 def main():
-    # Remove the "pre-flipped" directory, since it isn't necessary to send this to the end-user
+    # Remove the "pre-flipped" directory, since it isn't necessary to send this to the end-user.
     printf("Removing the pre-flipped directory...")
     remove_pre_flipped_directory()
 
-    # Make SHA1 hashes of every file so that the client can validate the mod's integrity
+    # Make SHA1 hashes of every file so that the client can validate the mod's integrity.
     printf("Getting SHA1 hashes of every file...")
     sha1_hashes = get_sha1_hashes()
     printf('Writing the hashes to "{}"...'.format(SHA1_FILE_PATH))
@@ -60,10 +57,10 @@ def get_sha1_hashes():
 
 
 def write_hashes_to_file(sha1_hashes, file_path):
-    # By default, the file will be created with "\r\n" end-of-line separators
+    # By default, the file will be created with "\r\n" end-of-line separators.
     with open(file_path, "w", newline="\n") as file_pointer:
-        # By default, the JSON will be all combined into a single line, so we specify the indent to make it pretty
-        # By default, the JSON will be dumped in a random order, so we use "sort_keys" to make it alphabetical
+        # By default, the JSON will be all combined into a single line, so we specify the indent to make it pretty.
+        # By default, the JSON will be dumped in a random order, so we use "sort_keys" to make it alphabetical.
         json.dump(sha1_hashes, file_pointer, indent=4, sort_keys=True)
 
 

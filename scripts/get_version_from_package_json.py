@@ -1,11 +1,9 @@
 import json
 import os
 
-from utils import error
+from utils import error, PROJECT_DIRECTORY
 
-SCRIPT_PATH = os.path.realpath(__file__)
-SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
-PACKAGE_JSON_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "package.json")
+PACKAGE_JSON_PATH = os.path.join(PROJECT_DIRECTORY, "package.json")
 
 
 def get_version_from_package_json():

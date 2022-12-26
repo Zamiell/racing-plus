@@ -2,18 +2,15 @@ import os
 
 from PIL import Image, ImageFont, ImageDraw
 from get_version_from_package_json import get_version_from_package_json
-from utils import printf
+from utils import printf, PROJECT_DIRECTORY, SCRIPT_DIRECTORY
 
-SCRIPT_NAME = os.path.basename(__file__)
-SCRIPT_PATH = os.path.realpath(__file__)
-SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
 FONTS_DIRECTORY_PATH = os.path.join(SCRIPT_DIRECTORY, "fonts")
 TITLE_FONT_PATH = os.path.join(FONTS_DIRECTORY_PATH, "jelly-crazies.ttf")
 URL_FONT_PATH = os.path.join(FONTS_DIRECTORY_PATH, "vera.ttf")
-MOD_DIRECTORY_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "mod")
-ENGLISH_RESOURCES_DIRECTOR_PATH = os.path.join(MOD_DIRECTORY_PATH, "resources")
+MOD_DIRECTORY_PATH = os.path.join(PROJECT_DIRECTORY, "mod")
+ENGLISH_RESOURCES_DIRECTORY_PATH = os.path.join(MOD_DIRECTORY_PATH, "resources")
 MAIN_MENU_DIRECTORY_PATH = os.path.join(
-    ENGLISH_RESOURCES_DIRECTOR_PATH, "gfx", "ui", "main menu"
+    ENGLISH_RESOURCES_DIRECTORY_PATH, "gfx", "ui", "main menu"
 )
 TITLE_MENU_TEMPLATE_PATH = os.path.join(
     MAIN_MENU_DIRECTORY_PATH, "titlemenu-template.png"

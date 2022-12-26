@@ -932,68 +932,83 @@ Changes from vanilla:
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="165" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="010.001_Gaper.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="10" name="#GAPER" numGridCollisionPoints="12" portrait="1" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="165" />
+    <devolve id="77.0.0" weight="1" />
   </entity>
   <entity anm2path="010.002_FlamingGaper.anm2" baseHP="9" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#FLAMING_GAPER" numGridCollisionPoints="12" portrait="135" reroll="true" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="165" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="011.000_Gusher.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" hasFloorAlts="true" id="11" name="#GUSHER" numGridCollisionPoints="12" portrait="2" reroll="true" shadowSize="13" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Blood" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="999.5.0" weight="1" />
   </entity>
   <entity anm2path="011.001_Pacer.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" hasFloorAlts="true" id="11" name="#PACER" numGridCollisionPoints="12" portrait="3" reroll="true" shadowSize="13" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="999.5.0" weight="1" />
   </entity>
   <entity anm2path="012.000_Horf.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="12" name="#HORF" numGridCollisionPoints="12" portrait="4" reroll="true" shadowSize="13" stageHP="0" variant="0">
     <bestiary anim="Shake" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="146" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="013.000_Fly.anm2" baseHP="3" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="17" friction="1" gridCollision="walls" id="13" name="#FLY" numGridCollisionPoints="4" portrait="5" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.33.0" weight="1" />
   </entity>
   <entity anm2path="014.000_Pooter.anm2" baseHP="8" boss="0" champion="1" collisionDamage="0" collisionMass="4" collisionRadius="17" friction="1" gridCollision="walls" id="14" name="#POOTER" numGridCollisionPoints="4" portrait="6" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="178" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="014.001_Super Pooter.anm2" baseHP="8" boss="0" champion="1" collisionDamage="0" collisionMass="4" collisionRadius="17" friction="1" gridCollision="walls" id="14" name="#SUPER_POOTER" numGridCollisionPoints="4" portrait="7" reroll="true" shadowSize="13" stageHP="0" tags="fly" variant="1">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="14.0.0" weight="1" />
   </entity>
   <entity anm2path="015.000_Clotty.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="true" id="15" name="#CLOTTY" numGridCollisionPoints="12" portrait="8" reroll="true" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1" />
+    <devolve id="30.0.0" weight="1" />
   </entity>
   <entity anm2path="015.001_Clot.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="15" name="#CLOT" numGridCollisionPoints="12" portrait="9" reroll="true" shadowSize="28" stageHP="0" variant="1">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="015.002_I.Blob.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="15" name="#IBLOB" numGridCollisionPoints="12" portrait="10" reroll="true" shadowSize="28" stageHP="0" variant="2">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="15.1.0" weight="1" />
   </entity>
   <entity anm2path="016.000_Mulligan.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="16" name="#MULLIGAN" numGridCollisionPoints="12" portrait="11" reroll="true" shadowSize="13" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="143" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="016.001_Mulligoon.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="16" name="#MULLIGOON" numGridCollisionPoints="12" portrait="12" reroll="true" shadowSize="13" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="143" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="016.002_Mulliboom.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="16" name="#MULLIBOOM" numGridCollisionPoints="12" portrait="13" reroll="true" shadowSize="13" stageHP="0" tags="explosive_soul" variant="2">
     <bestiary anim="WalkVert" overlay="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="16.1.0" weight="1" />
   </entity>
   <entity anm2path="017.001_Shopkeeper.anm2" baseHP="5" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="1" friction="1" id="17" name="Shopkeeper" numGridCollisionPoints="0" shadowSize="24" shutdoors="false" stageHP="0" variant="0">
     <gibs amount="4" blood="0" bone="1" eye="0" gut="0" large="0" />
@@ -1013,6 +1028,7 @@ Changes from vanilla:
   <entity anm2path="018.000_Attack Fly.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="walls" id="18" name="#ATTACK_FLY" numGridCollisionPoints="4" portrait="5" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="13.0.0" weight="1" />
   </entity>
   <entity anm2path="019.000_Larry Jr..anm2" baseHP="22" boss="1" bossID="2" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" gridCollision="walls" id="19" name="#LARRY_JR" numGridCollisionPoints="8" portrait="0" shadowSize="25" stageHP="0" variant="0">
     <bestiary anim="WalkHeadHori" transform="0,0,1" />
@@ -1033,21 +1049,25 @@ Changes from vanilla:
   <entity anm2path="021.000_Maggot.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="21" name="#MAGGOT" numGridCollisionPoints="12" portrait="14" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="853.0.0" weight="1" />
   </entity>
   <entity anm2path="022.000_Hive.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="7" collisionRadius="13" friction="1" id="22" name="#HIVE" numGridCollisionPoints="12" portrait="15" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
     <preload-snd id="158" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="022.001_Drowned Hive.anm2" baseHP="18" boss="0" champion="1" collisionDamage="0" collisionMass="7" collisionRadius="13" friction="1" id="22" name="#DROWNED_HIVE" numGridCollisionPoints="12" portrait="139" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="22.0.0" weight="1" />
   </entity>
   <entity anm2path="023.000_Charger.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="23" name="#CHARGER" numGridCollisionPoints="12" portrait="16" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="224" />
+    <devolve id="21.0.0" weight="1" />
   </entity>
   <entity anm2path="023.000.001_My Shadow.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="23" name="My Shadow" numGridCollisionPoints="12" portrait="16" shadowSize="17" stageHP="0" subtype="1" variant="0">
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
@@ -1056,58 +1076,71 @@ Changes from vanilla:
   <entity anm2path="023.001_Drowned Charger.anm2" baseHP="22" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="23" name="#DROWNED_CHARGER" numGridCollisionPoints="12" portrait="137" reroll="true" shadowSize="17" stageHP="0" variant="1">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="023.002_Dank Charger.anm2" baseHP="26" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="23" name="#DANK_CHARGER" numGridCollisionPoints="12" portrait="168" reroll="true" shadowSize="17" stageHP="0" variant="2">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="23.1.0" weight="1" />
   </entity>
   <entity anm2path="024.000_Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="24" name="#GLOBIN" numGridCollisionPoints="12" portrait="17" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="165" />
     <preload-snd id="29" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="024.001_Gazing Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="24" name="#GAZING_GLOBIN" numGridCollisionPoints="12" portrait="18" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="024.002_Dank Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="24" name="#DANK_GLOBIN" numGridCollisionPoints="12" portrait="124" reroll="true" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="24.1.0" weight="1" />
   </entity>
   <entity anm2path="025.000_Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="#BOOM_FLY" numGridCollisionPoints="12" portrait="19" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="214.0.0" weight="1" />
   </entity>
   <entity anm2path="025.001_Red Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="#RED_BOOM_FLY" numGridCollisionPoints="12" portrait="20" reroll="true" shadowSize="20" stageHP="3" tags="fly" variant="1">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="249.0.0" weight="1" />
   </entity>
   <entity anm2path="025.002_Drowned Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="#DROWNED_BOOM_FLY" numGridCollisionPoints="12" portrait="138" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="2">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="25.0.0" weight="1" />
   </entity>
   <entity anm2path="026.000_Maw.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="26" name="#MAW" numGridCollisionPoints="12" portrait="21" reroll="true" shadowSize="16" stageHP="0" variant="0" gridCollision="walls">
     <bestiary anim="Idle" transform="0,5,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="146" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="026.001_Red Maw.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="26" name="#RED_MAW" numGridCollisionPoints="12" portrait="22" reroll="true" shadowSize="17" stageHP="0" variant="1" gridCollision="walls">
     <bestiary anim="Idle" transform="0,5,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="026.002_Psychic Maw.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="26" name="#PSYCHIC_MAW" numGridCollisionPoints="12" portrait="23" reroll="true" shadowSize="14" stageHP="0" tags="homing_soul" variant="2" gridCollision="walls">
     <bestiary anim="Idle" transform="0,4,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="26.0.0" weight="1" />
   </entity>
   <entity anm2path="027.000_Host.anm2" baseHP="14" boss="0" champion="1" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="27" name="#HOST" numGridCollisionPoints="12" portrait="24" reroll="true" shadowSize="25" stageHP="0" variant="0">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
     <preload-snd id="166" />
+    <devolve id="226.0.0" weight="1" />
   </entity>
   <entity anm2path="027.001_Red Host.anm2" baseHP="15" boss="0" champion="1" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="27" name="#RED_HOST" numGridCollisionPoints="12" portrait="175" reroll="true" shadowSize="25" stageHP="0" variant="1">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <devolve id="30.0.0" weight="1" />
   </entity>
   <entity anm2path="028.000_Chub.anm2" baseHP="350" boss="1" bossID="3" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="18" friction="1" id="28" name="#CHUB" numGridCollisionPoints="12" portrait="3" shadowSize="42" stageHP="0" variant="0">
     <bestiary anim="WalkNormalHori" transform="0,0,1" />
@@ -1140,34 +1173,41 @@ Changes from vanilla:
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="69" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="029.001_Trite.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="29" name="#TRITE" numGridCollisionPoints="12" portrait="26" reroll="true" shadowSize="28" stageHP="0" tags="spider" variant="1">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="030.000_Boil.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="30" name="#BOIL" numGridCollisionPoints="12" portrait="27" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="030.001_Gut.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="30" name="#GUT" numGridCollisionPoints="12" portrait="27" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="1">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="213" />
+    <devolve id="868.0.0" weight="1" />
   </entity>
   <entity anm2path="030.002_Sack.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="30" name="#SACK" numGridCollisionPoints="12" portrait="28" reroll="true" shadowSize="17" stageHP="0" variant="2">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="181" />
+    <devolve id="94.0.0" weight="1" />
   </entity>
   <entity anm2path="031.000_Spity.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="31" name="#SPITTY" numGridCollisionPoints="12" portrait="29" reroll="true" shadowSize="26" stageHP="0" variant="0">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="5" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="319" />
+    <devolve id="21.0.0" weight="1" />
   </entity>
   <entity anm2path="032.000_Brain.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="32" name="#BRAIN" numGridCollisionPoints="12" portrait="30" reroll="true" shadowSize="25" stageHP="0" variant="0">
     <bestiary anim="Walk" transform="0,-3,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload id="1000" variant="22" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="033.000_Fireplace.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="0.5" id="33" name="Fire Place" numGridCollisionPoints="0" portrait="68" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -1194,26 +1234,31 @@ Changes from vanilla:
   <entity anm2path="034.000_Leaper.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="34" name="#LEAPER" numGridCollisionPoints="12" portrait="25" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="035.000_Mr. Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="#MR_MAW" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="0">
     <bestiary anim="Idle" anm2path="035.000_Mr. Maw (bestiary).anm2" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="165" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="035.001_Mr. Maw Head.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="#MR_MAW_HEAD" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="1" gridCollision="walls">
     <bestiary parent="35.0" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="226" />
+    <devolve id="26.0.0" weight="1" />
   </entity>
   <entity anm2path="035.002_Mr. Red Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="#MR_RED_MAW" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="2">
     <bestiary anim="Idle" anm2path="035.002_Mr. Red Maw (bestiary).anm2" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="035.003_Mr. Red Maw Head.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="#MR_RED_MAW_HEAD" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="3" gridCollision="walls">
     <bestiary parent="35.2" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="146" />
     <preload-snd id="226" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="035.010_Mr. Maw Neck.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="Mr. Maw Neck" numGridCollisionPoints="0" shadowSize="8" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -1230,11 +1275,13 @@ Changes from vanilla:
     <bestiary anim="Move" transform="0,3,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" sound_baby="1" />
     <preload-snd id="44" />
+    <devolve id="77.0.0" weight="1" />
   </entity>
   <entity anm2path="038.001_Angelic Baby.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="38" name="#ANGELIC_BABY" numGridCollisionPoints="8" portrait="33" reroll="true" shadowSize="16" stageHP="0" variant="1">
     <bestiary anim="Move" transform="0,3,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" sound_baby="1" />
     <preload-snd id="44" />
+    <devolve id="38.0.0" weight="1" />
   </entity>
   <entity anm2path="038.002_Ultra Pride Baby.anm2" baseHP="30" boss="1" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="38" name="#ULTRA_PRIDE_BABY" numGridCollisionPoints="8" portrait="12" shadowSize="16" stageHP="5" tags="homing_soul" variant="2">
     <bestiary anim="Move" transform="0,0,1" />
@@ -1245,15 +1292,18 @@ Changes from vanilla:
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="5" />
+    <devolve id="284.0.0" weight="1" />
   </entity>
   <entity anm2path="039.001_Double Vis.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="39" name="#DOUBLE_VIS" numGridCollisionPoints="12" portrait="192" reroll="true" shadowSize="14" stageHP="0" tags="brimstone_soul" variant="1">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="5" />
+    <devolve id="39.0.0" weight="1" />
   </entity>
   <entity anm2path="039.002_Chubber.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="39" name="#CHUBBER" numGridCollisionPoints="12" portrait="35" reroll="true" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="39.0.0" weight="1" />
   </entity>
   <entity anm2path="039.022_Chubber Projectile.anm2" baseHP="1000" boss="0" champion="1" collisionDamage="2" collisionInterval="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="none" id="39" name="Chubber Projectile" numGridCollisionPoints="12" portrait="35" shadowSize="15" stageHP="0" variant="22">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -1261,33 +1311,40 @@ Changes from vanilla:
   <entity anm2path="039.003_Scarred Double Vis.anm2" baseHP="22" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="39" name="#SCARRED_DOUBLE_VIS" numGridCollisionPoints="12" portrait="145" reroll="true" shadowSize="14" stageHP="0" tags="brimstone_soul" variant="3">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="39.1.0" weight="1" />
   </entity>
   <entity anm2path="040.000_Guts.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="40" name="#GUTS" numGridCollisionPoints="12" portrait="36" reroll="true" shadowSize="22" stageHP="0" variant="0">
     <bestiary anim="Roll" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="205" />
+    <devolve id="868.0.0" weight="1" />
   </entity>
   <entity anm2path="040.001_Scarred Guts.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="40" name="#SCARRED_GUTS" numGridCollisionPoints="12" portrait="143" reroll="true" shadowSize="22" stageHP="0" variant="1">
     <bestiary anim="Roll" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="40.0.0" weight="1" />
   </entity>
   <entity anm2path="041.000_Knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="41" name="#KNIGHT" numGridCollisionPoints="12" portrait="37" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="32.0.0" weight="1" />
   </entity>
   <entity anm2path="041.001_Selfless Knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="41" name="#SELFLESS_KNIGHT" numGridCollisionPoints="12" portrait="38" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="41.0.0" weight="1" />
   </entity>
   <entity anm2path="042.000_Stone Grimace.anm2" baseHP="20" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="42" name="#STONE_GRIMACE" numGridCollisionPoints="0" portrait="61" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Appear" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="212" />
     <preload-snd id="262" />
+    <devolve id="1000.0.0" weight="1" />
   </entity>
   <entity anm2path="042.001_Vomit Grimace.anm2" baseHP="20" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="42" name="#VOMIT_GRIMACE" numGridCollisionPoints="0" portrait="61" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
     <bestiary anim="Appear" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="043.000_Monstro II.anm2" baseHP="632.5" boss="1" bossID="5" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="35" friction="1" id="43" name="#MONSTRO_II" numGridCollisionPoints="12" portrait="7" shadowSize="52" stageHP="0" variant="0">
     <bestiary anim="Taunt" transform="0,0,1" />
@@ -1313,10 +1370,12 @@ Changes from vanilla:
   <entity anm2path="044.000_Poky.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="15" collisionRadius="16" friction="1" id="44" name="#POKY" numGridCollisionPoints="12" portrait="39" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Spikes" transform="0,-12,1" />
     <gibs amount="4" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="44.0.0" weight="1" />
   </entity>
   <entity anm2path="044.001_Slide.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="15" collisionRadius="13" friction="1" id="44" name="#SLIDE" numGridCollisionPoints="12" portrait="39" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
     <bestiary anim="Spikes" transform="0,-12,1" />
     <gibs amount="4" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="44.1.0" weight="1" />
   </entity>
   <entity anm2path="045.000_Mom.anm2" baseHP="645" boss="1" bossID="6" champion="0" collisionDamage="2" collisionMass="70" collisionRadius="35" friction="1" id="45" name="#MOM" numGridCollisionPoints="0" portrait="9" shadowSize="33" stageHP="0" variant="0">
     <bestiary anim="Eye" transform="0,0,1" />
@@ -1425,55 +1484,66 @@ Changes from vanilla:
   <entity anm2path="053.000_Dople.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="10" collisionRadius="13" friction="1" id="53" name="#DOPLE" numGridCollisionPoints="12" portrait="40" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="HeadIdle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="053.001_Evil Twin.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="10" collisionRadius="13" friction="1" id="53" name="#EVIL_TWIN" numGridCollisionPoints="12" portrait="41" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkDown" overlay="HeadIdle" transform="0,0,1" />
     <gibs amount="7" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="53.0.0" weight="1" />
   </entity>
   <entity anm2path="054.000_Flaming Hopper.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="54" name="#FLAMING_HOPPER" numGridCollisionPoints="12" portrait="42" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="69" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="055.000_Leech.anm2" baseHP="25" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="55" name="#LEECH" numGridCollisionPoints="12" portrait="43" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="221" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="055.001_Kamikaze Leech.anm2" baseHP="25" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="55" name="#KAMIKAZE_LEECH" numGridCollisionPoints="12" portrait="44" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="1">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="221" />
+    <devolve id="55.0.0" weight="1" />
   </entity>
   <entity anm2path="055.002_Holy Leech.anm2" baseHP="25" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="55" name="#HOLY_LEECH" numGridCollisionPoints="12" portrait="44" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="2">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="221" />
+    <devolve id="55.0.0" weight="1" />
   </entity>
   <entity anm2path="056.000_Lump.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="56" name="#LUMP" numGridCollisionPoints="12" portrait="45" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Shake" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="226" />
     <preload-snd id="72" />
+    <devolve id="30.0.0" weight="1" />
   </entity>
   <entity anm2path="057.000_MemBrain.anm2" baseHP="62" boss="0" champion="1" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="57" name="#MEMBRAIN" numGridCollisionPoints="12" portrait="46" reroll="true" shadowSize="42" stageHP="0" variant="0">
     <bestiary anim="Wiggle" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="0" eye="0" gut="1" large="1" />
     <preload id="32" variant="0" />
     <preload-snd id="48" />
+    <devolve id="32.0.0" weight="1" />
   </entity>
   <entity anm2path="057.001_Mama Guts.anm2" baseHP="62" boss="0" champion="1" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="57" name="#MAMA_GUTS" numGridCollisionPoints="12" portrait="47" reroll="true" shadowSize="40" stageHP="0" variant="1">
     <bestiary anim="Wiggle" transform="0,0,1" />
     <gibs amount="18" blood="1" bone="0" eye="0" gut="1" large="1" />
     <preload id="40" variant="0" />
+    <devolve id="40.0.0" weight="1" />
   </entity>
   <entity anm2path="058.000_Para-Bite.anm2" baseHP="35" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="58" name="#PARABITE" numGridCollisionPoints="12" portrait="48" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="058.001_Scarred Para-Bite.anm2" baseHP="35" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="58" name="#SCARRED_PARABITE" numGridCollisionPoints="12" portrait="144" reroll="true" shadowSize="0" stageHP="0" variant="1">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="58.0.0" weight="1" />
   </entity>
   <entity anm2path="059.000_Fred.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="59" name="#FRED" numGridCollisionPoints="12" portrait="49" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="Attack" transform="0,0,1" />
@@ -1481,10 +1551,12 @@ Changes from vanilla:
     <preload-snd id="72" />
     <preload-snd id="226" />
     <preload-snd id="213" />
+    <devolve id="289.0.0" weight="1" />
   </entity>
   <entity anm2path="060.000_Eye.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="60" name="#EYE" numGridCollisionPoints="12" portrait="50" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Eye Open" transform="0,-8,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="284.0.0" weight="1" />
   </entity>
   <entity anm2path="060.001_Bloodshot Eye.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="60" name="#BLOODSHOT_EYE" numGridCollisionPoints="12" portrait="69" reroll="true" shadowSize="0" stageHP="0" variant="1">
     <bestiary anim="Rotate" transform="0,0,1" />
@@ -1492,18 +1564,22 @@ Changes from vanilla:
     <preload id="7" variant="1" />
     <preload id="1000" subtype="1" variant="50" />
     <preload-snd id="133" />
+    <devolve id="60.0.0" weight="1" />
   </entity>
   <entity anm2path="061.000_Sucker.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#SUCKER" numGridCollisionPoints="4" portrait="51" reroll="true" shadowSize="14" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="061.001_Spit.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#SPIT" numGridCollisionPoints="4" portrait="51" reroll="true" shadowSize="14" stageHP="0" tags="fly explosive_soul" variant="1">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="868.0.0" weight="1" />
   </entity>
   <entity anm2path="061.002_soul sucker.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#SOUL_SUCKER" numGridCollisionPoints="4" portrait="166" reroll="true" shadowSize="14" stageHP="0" tags="fly brimstone_soul" variant="2">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="61.0.0" weight="1" />
   </entity>
   <entity anm2path="062.000_Pin.anm2" baseHP="100" boss="1" bossID="37" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#PIN" numGridCollisionPoints="12" portrait="25" shadowSize="18" stageHP="0" variant="0">
     <bestiary anim="Attack1" transform="0,-10,1" />
@@ -1638,6 +1714,7 @@ Changes from vanilla:
   <entity anm2path="072.000_Fistula Medium.anm2" baseHP="15" boss="1" bossID="18" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="25" friction="1" gridCollision="walls" hasFloorAlts="true" id="72" name="Fistula Medium" numGridCollisionPoints="12" portrait="39" shadowSize="25" stageHP="0" variant="0">
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
     <preload id="73" variant="0" />
+    <devolve id="73.0.0" weight="1" />
   </entity>
   <entity anm2path="072.001_Teratoma Medium.anm2" baseHP="15" boss="1" bossID="33" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="25" friction="1" gridCollision="walls" hasFloorAlts="true" id="72" name="Teratoma Medium" numGridCollisionPoints="12" portrait="42" shadowSize="27" stageHP="0" variant="1">
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
@@ -1645,6 +1722,7 @@ Changes from vanilla:
   </entity>
   <entity anm2path="073.000_Fistula Small.anm2" baseHP="8" boss="1" bossID="18" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" hasFloorAlts="true" id="73" name="Fistula Small" numGridCollisionPoints="12" portrait="40" shadowSize="22" stageHP="0" variant="0">
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="310.1.0" weight="1" />
   </entity>
   <entity anm2path="073.001_Teratoma Small.anm2" baseHP="8" boss="1" bossID="33" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" hasFloorAlts="true" id="73" name="Teratoma Small" numGridCollisionPoints="12" portrait="43" shadowSize="23" stageHP="0" variant="1">
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" worm="1" />
@@ -1670,6 +1748,7 @@ Changes from vanilla:
     <bestiary anim="Walk Happy" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" sound_baby="1" />
     <preload-snd id="205" />
+    <devolve id="853.0.0" weight="1" />
   </entity>
   <entity anm2path="078.000_Moms Heart.anm2" baseHP="950" boss="1" bossID="8" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="35" friction="1" id="78" name="#MOMS_HEART" numGridCollisionPoints="0" portrait="47" shadowSize="33" stageHP="0" variant="0">
     <bestiary anim="Heartbeat1" transform="0,12,.8" />
@@ -1747,6 +1826,7 @@ Changes from vanilla:
   <entity anm2path="080.000_Moter.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="walls" id="80" name="#MOTER" numGridCollisionPoints="0" portrait="177" reroll="true" shadowSize="13" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="081.000_The Fallen.anm2" baseHP="60" boss="1" bossID="23" champion="0" collisionDamage="2" collisionMass="50" collisionRadius="20" friction="1" id="81" name="#THE_FALLEN" numGridCollisionPoints="0" portrait="52" shadowSize="24" stageHP="45" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
@@ -1799,53 +1879,65 @@ Changes from vanilla:
   <entity anm2path="085.000_Spider.anm2" baseHP="6.5" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="85" name="#SPIDER" numGridCollisionPoints="12" portrait="53" reroll="true" shadowSize="11" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="884.0.0" weight="1" />
   </entity>
   <entity anm2path="086.000_Keeper.anm2" baseHP="36" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="86" name="#KEEPER" numGridCollisionPoints="12" portrait="54" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="JumpDown" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="087.000_Gurgle.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="87" name="#GURGLE" numGridCollisionPoints="12" portrait="185" reroll="true" shadowSize="16" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
     <preload-snd id="165" />
     <preload-snd id="213" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="088.000_Walking Boil.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="88" name="#WALKING_BOIL" numGridCollisionPoints="12" portrait="63" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="30.0.0" weight="1" />
   </entity>
   <entity anm2path="088.001_Walking Gut.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="88" name="#WALKING_GUT" numGridCollisionPoints="12" portrait="63" reroll="true" shadowSize="14" stageHP="0" tags="explosive_soul" variant="1">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="30.1.0" weight="1" />
   </entity>
   <entity anm2path="088.002_Walking Sack.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="88" name="#WALKING_SACK" numGridCollisionPoints="12" portrait="64" reroll="true" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="30.2.0" weight="1" />
   </entity>
   <entity anm2path="089.000_Buttlicker.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="89" name="#BUTTLICKER" numGridCollisionPoints="12" portrait="55" shadowSize="24" stageHP="0" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="090.000_Hanger.anm2" baseHP="40" boss="0" champion="1" collisionDamage="0" collisionMass="30" collisionRadius="13" friction="1" gridCollision="walls" id="90" name="#HANGER" numGridCollisionPoints="12" portrait="56" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="86.0.0" weight="1" />
   </entity>
   <entity anm2path="091.000_Swarmer.anm2" baseHP="40" boss="0" champion="1" collisionDamage="0" collisionMass="30" collisionRadius="13" friction="1" gridCollision="walls" id="91" name="#SWARMER" numGridCollisionPoints="12" portrait="57" reroll="true" shadowSize="26" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,10,1" />
     <gibs amount="10" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="158" />
+    <devolve id="22.0.0" weight="1" />
   </entity>
   <entity anm2path="092.000_Heart.anm2" baseHP="40" boss="0" champion="0" collisionDamage="0" collisionMass="30" collisionRadius="13" friction="1" id="92" name="#HEART" numGridCollisionPoints="12" portrait="59" reroll="true" shadowSize="18" stageHP="0" variant="0">
     <bestiary anim="HeartAttack" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="5.10.9" weight="1" />
   </entity>
   <entity anm2path="093.000_Mask.anm2" baseHP="40" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="93" name="#MASK" numGridCollisionPoints="12" portrait="58" reroll="true" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="Down" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="0" large="0" />
+    <devolve id="0.0.0" weight="1" />
   </entity>
   <entity anm2path="094.000_Big Spider.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="94" name="#BIG_SPIDER" numGridCollisionPoints="12" portrait="60" reroll="true" shadowSize="17" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="096.000_Eternal Fly.anm2" baseHP="300" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" gridCollision="walls" id="96" name="#ETERNAL_FLY" numGridCollisionPoints="0" portrait="176" shadowSize="11" shutdoors="false" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
@@ -1928,6 +2020,7 @@ Changes from vanilla:
   <entity anm2path="201.000_Stone Eye.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="201" name="#STONE_EYE" numGridCollisionPoints="0" portrait="69" shadowSize="14" shutdoors="false" stageHP="0" variant="0" tags="noreroll">
     <bestiary anim="Rotate" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="202.000_Constant Stone Shooter.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="202" name="#CONSTANT_STONE_SHOOTER" numGridCollisionPoints="0" portrait="70" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Appear" transform="0,0,1" />
@@ -1938,18 +2031,22 @@ Changes from vanilla:
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="262" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="202.010_cross stone shooterx.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="202" name="#CROSS_STONE_SHOOTER" numGridCollisionPoints="0" portrait="165" reroll="false" shadowSize="24" shutdoors="false" stageHP="0" subtype="1" tags="noreroll" variant="10">
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="262" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="202.010_cross stone shooter.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="202" name="Cross Stone Shooter (always on)" numGridCollisionPoints="0" portrait="165" reroll="false" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="11">
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="262" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="202.010_cross stone shooterx.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="202" name="Cross Stone Shooter (always on)" numGridCollisionPoints="0" portrait="165" reroll="false" shadowSize="24" shutdoors="false" stageHP="0" subtype="1" tags="noreroll" variant="11">
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="262" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="203.000_Brimstone Head.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="203" name="#BRIMSTONE_HEAD" numGridCollisionPoints="0" portrait="71" shadowSize="22" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Appear" transform="0,0,1" />
@@ -1957,48 +2054,58 @@ Changes from vanilla:
     <preload id="7" variant="1" />
     <preload id="1000" subtype="1" variant="50" />
     <preload-snd id="5" />
+    <devolve id="202.0.0" weight="1" />
   </entity>
   <entity anm2path="204.000_Mobile Host.anm2" baseHP="14" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="204" name="#MOBILE_HOST" numGridCollisionPoints="12" portrait="72" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="226.1.0" weight="1" />
   </entity>
   <entity anm2path="205.000_Nest.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="7" collisionRadius="13" friction="1" id="205" name="#NEST" numGridCollisionPoints="12" portrait="73" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="158" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="205.000_Baby Long Legs.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="206" name="#BABY_LONG_LEGS" numGridCollisionPoints="12" portrait="186" reroll="true" shadowSize="11" stageHP="4" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload id="85" variant="0" />
     <preload-snd id="159" />
+    <devolve id="206.1.0" weight="1" />
   </entity>
   <entity anm2path="205.001_Small Baby Long Legs.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="206" name="#SMALL_BABY_LONG_LEGS" numGridCollisionPoints="12" portrait="74" reroll="true" shadowSize="8" stageHP="4" tags="spider" variant="1">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload id="30" variant="2" />
+    <devolve id="94.0.0" weight="1" />
   </entity>
   <entity anm2path="206.000_Crazy Long Legs.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="207" name="#CRAZY_LONG_LEGS" numGridCollisionPoints="12" portrait="187" reroll="true" shadowSize="11" stageHP="4" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="207.1.0" weight="1" />
   </entity>
   <entity anm2path="206.001_Small Crazy Long Legs.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="207" name="#SMALL_CRAZY_LONG_LEGS" numGridCollisionPoints="12" portrait="75" reroll="true" shadowSize="8" stageHP="4" tags="spider" variant="1">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="215.0.0" weight="1" />
   </entity>
   <entity anm2path="207.000_Fatty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="208" name="#FATTY" numGridCollisionPoints="12" portrait="76" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="167" />
     <preload-snd id="116" />
+    <devolve id="226.0.0" weight="1" />
   </entity>
   <entity anm2path="207.001_Pale Fatty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="208" name="#PALE_FATTY" numGridCollisionPoints="12" portrait="76" reroll="true" shadowSize="16" stageHP="0" variant="1">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="210.0.0" weight="1" />
   </entity>
   <entity anm2path="207.002_FlamingFatty.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="208" name="#FLAMING_FATTY" numGridCollisionPoints="12" portrait="136" reroll="true" shadowSize="16" stageHP="0" variant="2">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="208.0.0" weight="1" />
   </entity>
   <entity anm2path="208.000_Fatsack.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="209" name="#FAT_SACK" numGridCollisionPoints="12" portrait="77" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
@@ -2006,25 +2113,30 @@ Changes from vanilla:
     <preload-snd id="116" />
     <preload-snd id="38" />
     <preload-snd id="72" />
+    <devolve id="208.0.0" weight="1" />
   </entity>
   <entity anm2path="209.000_Blubber.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="210" name="#BLUBBER" numGridCollisionPoints="12" portrait="78" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="3" />
+    <devolve id="211.0.0" weight="1" />
   </entity>
   <entity anm2path="210.000_Half Sack.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="211" name="#HALF_SACK" numGridCollisionPoints="12" portrait="79" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="3" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="212.000_DeathsHead.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="212" name="#DEATHS_HEAD" numGridCollisionPoints="12" portrait="80" shadowSize="17" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
     <preload-snd id="316" />
+    <devolve id="26.0.0" weight="1" />
   </entity>
   <entity anm2path="212.001_Dank DeathsHead.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="212" name="#DANK_DEATHS_HEAD" numGridCollisionPoints="12" portrait="141" shadowSize="17" stageHP="0" variant="1">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="212.000_Moms Hand.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="16" collisionRadius="40" friction="1" id="213" name="#MOMS_HAND" numGridCollisionPoints="12" portrait="81" shadowSize="42" stageHP="0" variant="0">
     <bestiary anim="Stunned" transform="0,0,1" />
@@ -2032,22 +2144,27 @@ Changes from vanilla:
     <preload-snd id="84" />
     <preload-snd id="2" />
     <preload-snd id="48" />
+    <devolve id="34.0.0" weight="1" />
   </entity>
   <entity anm2path="213.000_Level2Fly.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" gridCollision="walls" id="214" name="#LEVEL_2_FLY" numGridCollisionPoints="8" portrait="82" reroll="true" shadowSize="14" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="214.000_Level2Spider.anm2" baseHP="13" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="215" name="#LEVEL_2_SPIDER" numGridCollisionPoints="12" portrait="83" reroll="true" shadowSize="16" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="221.000_Swinger.anm2" baseHP="38" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="216" name="#SWINGER" numGridCollisionPoints="12" portrait="84" reroll="true" shadowSize="12" stageHP="0" variant="0">
     <bestiary anim="Idle" anm2path="221.000_Swinger (bestiary).anm2" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.5.0" weight="1" />
   </entity>
   <entity anm2path="221.000_Swinger.anm2" baseHP="38" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="216" name="#SWINGER_HEAD" numGridCollisionPoints="0" portrait="84" reroll="true" shadowSize="12" stageHP="0" variant="1">
     <bestiary parent="216.0" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="26.0.0" weight="1" />
   </entity>
   <entity anm2path="221.000_Swinger.anm2" baseHP="38" boss="0" champion="0" collisionDamage="0" collisionMass="10" collisionRadius="0" friction="1" id="216" name="Swinger Neck" numGridCollisionPoints="0" portrait="84" shadowSize="8" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -2056,16 +2173,19 @@ Changes from vanilla:
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="60" />
+    <devolve id="1500.0.0" weight="1" />
   </entity>
   <entity anm2path="216.001_Corn.anm2" baseHP="3" boss="0" champion="0" collisionDamage="1" collisionMass="6" collisionRadius="9" friction="1" id="217" name="#CORN" numGridCollisionPoints="12" portrait="183" reroll="true" shadowSize="12" stageHP="0" variant="1">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="60" />
+    <devolve id="217.0.0" weight="1" />
   </entity>
   <entity anm2path="216.002_BrownieCorn.anm2" baseHP="3" boss="0" champion="0" collisionDamage="1" collisionMass="6" collisionRadius="9" friction="1" id="217" name="#BROWNIE_CORN" numGridCollisionPoints="12" portrait="184" reroll="true" shadowSize="12" stageHP="0" variant="2">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="60" />
+    <devolve id="217.0.0" weight="1" />
   </entity>
   <entity anm2path="218.000_Wall Hugger.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="15" collisionRadius="16" friction="1" id="218" name="#WALL_HUGGER" numGridCollisionPoints="12" portrait="39" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Spikes" transform="0,-12,1" />
@@ -2075,31 +2195,37 @@ Changes from vanilla:
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="263" />
+    <devolve id="260.10.0" weight="1" />
   </entity>
   <entity anm2path="220.000_Squirt.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="220" name="#SQUIRT" numGridCollisionPoints="12" portrait="87" reroll="true" shadowSize="21" stageHP="6" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload id="217" variant="0" />
     <preload-snd id="57" />
+    <devolve id="217.0.0" weight="1" />
   </entity>
   <entity anm2path="220.001_Dank Squirt.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="220" name="#DANK_SQUIRT" numGridCollisionPoints="12" portrait="140" reroll="true" shadowSize="21" stageHP="6" variant="1">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" poop="1" />
+    <devolve id="220.0.0" weight="1" />
   </entity>
   <entity anm2path="220.000_Cod Worm.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="100" collisionRadius="16" friction="1" id="221" name="#COD_WORM" numGridCollisionPoints="12" portrait="88" reroll="true" shadowSize="30" stageHP="0" variant="0">
     <bestiary anim="DigOut" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="2" />
+    <devolve id="58.0.0" weight="1" />
   </entity>
   <entity anm2path="222.000_Ring Fly.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="walls" id="222" name="#RING_FLY" numGridCollisionPoints="4" portrait="89" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Idle" anm2path="222.000_Ring Fly (bestiary).anm2" transform="0,-5,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="223.000_Dinga.anm2" baseHP="62" boss="0" champion="0" collisionDamage="2" collisionMass="3" collisionRadius="17" friction="1" id="223" name="#DINGA" numGridCollisionPoints="12" portrait="90" reroll="true" shadowSize="11" stageHP="0" variant="0">
     <bestiary anim="Wiggle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload id="220" variant="0" />
     <preload-snd id="48" />
+    <devolve id="220.0.0" weight="1" />
   </entity>
   <entity anm2path="224.000_Oob.anm2" baseHP="100" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="18" friction="1" gridCollision="walls" id="224" name="#OOB" numGridCollisionPoints="8" portrait="91" reroll="true" shadowSize="24" stageHP="0" variant="0">
     <bestiary anim="Walk" transform="0,6,1" />
@@ -2107,6 +2233,7 @@ Changes from vanilla:
     <preload id="32" variant="0" />
     <preload-snd id="119" />
     <preload-snd id="265" />
+    <devolve id="57.0.0" weight="1" />
   </entity>
   <entity anm2path="225.000_Black Maw.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="20" friction="1" gridCollision="walls" id="225" name="#BLACK_MAW" numGridCollisionPoints="8" portrait="92" reroll="true" shadowSize="32" stageHP="6" tags="explosive_soul" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
@@ -2114,11 +2241,13 @@ Changes from vanilla:
     <preload id="55" variant="0" />
     <preload-snd id="119" />
     <preload-snd id="265" />
+    <devolve id="224.0.0" weight="1" />
   </entity>
   <entity anm2path="226.000_Skinny.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="226" name="#SKINNY" numGridCollisionPoints="12" portrait="103" reroll="true" shadowSize="14" stageHP="4" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" />
     <preload-snd id="167" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="226.001_Rotty.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="226" name="#ROTTY" numGridCollisionPoints="12" portrait="103" reroll="true" shadowSize="14" stageHP="5" variant="1">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
@@ -2126,6 +2255,7 @@ Changes from vanilla:
     <preload id="227" variant="0" />
     <preload-snd id="165" />
     <preload-snd id="115" />
+    <devolve id="226.0.0" weight="1" />
   </entity>
   <entity anm2path="226.002_Crispy.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="226" name="#CRISPY" numGridCollisionPoints="12" portrait="174" reroll="true" shadowSize="14" stageHP="4" variant="2">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
@@ -2133,6 +2263,7 @@ Changes from vanilla:
     <preload id="227" variant="0" />
     <preload-snd id="165" />
     <preload-snd id="115" />
+    <devolve id="226.0.0" weight="1" />
   </entity>
   <entity anm2path="227.000_Boney.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" hasFloorAlts="true" id="227" name="#BONY" numGridCollisionPoints="12" portrait="104" reroll="true" shadowSize="14" stageHP="2" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
@@ -2140,10 +2271,12 @@ Changes from vanilla:
     <preload id="9" variant="1" />
     <preload-snd id="116" />
     <preload-snd id="249" />
+    <devolve id="226.0.0" weight="1" />
   </entity>
   <entity anm2path="228.000_Homunculus.anm2" baseHP="36" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="228" name="#HOMUNCULUS" numGridCollisionPoints="12" portrait="105" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="7" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="860.0.0" weight="1" />
   </entity>
   <entity anm2path="228.000_Homunculus.anm2" baseHP="20" boss="0" champion="0" collisionDamage="0" collisionMass="14" collisionRadius="0" friction="1" id="228" name="Homunculus Cord" numGridCollisionPoints="0" portrait="105" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -2151,36 +2284,44 @@ Changes from vanilla:
   <entity anm2path="229.000_Tumor.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="229" name="#TUMOR" numGridCollisionPoints="12" portrait="106" reroll="true" shadowSize="26" stageHP="0" variant="0">
     <bestiary anim="FloatDown" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="289.0.0" weight="1" />
   </entity>
   <entity anm2path="230.000_camillojr.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="230" name="#CAMILLO_JR" numGridCollisionPoints="12" portrait="107" reroll="true" shadowSize="26" stageHP="0" variant="0">
     <bestiary anim="FloatDown" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="229.0.0" weight="1" />
   </entity>
   <entity anm2path="231.000_NerveEnding.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="231" name="#NERVE_ENDING" numGridCollisionPoints="12" portrait="108" reroll="true" shadowSize="22" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="1490.0.0" weight="1" />
   </entity>
   <entity anm2path="231.001_NerveEnding2.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="231" name="#NERVE_ENDING_2" numGridCollisionPoints="12" portrait="153" reroll="true" shadowSize="22" stageHP="0" variant="1">
     <bestiary anim="SwingRight" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="231.0.0" weight="1" />
   </entity>
   <entity anm2path="234.000_OneTooth.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" gridCollision="none" id="234" name="#ONE_TOOTH" numGridCollisionPoints="12" portrait="109" reroll="true" shadowSize="18" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,-10,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="146" />
+    <devolve id="214.0.0" weight="1" />
   </entity>
   <entity anm2path="235.000_GapingMaw.anm2" baseHP="100" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="235" name="#GAPING_MAW" numGridCollisionPoints="0" portrait="98" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Sucking2" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="236.0.0" weight="1" />
   </entity>
   <entity anm2path="236.000_Broken GapingMaw.anm2" baseHP="100" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="236" name="#BROKEN_GAPING_MAW" numGridCollisionPoints="0" portrait="99" shadowSize="24" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Sucking2" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="1000.0.0" weight="1" />
   </entity>
   <entity anm2path="237.000_Gurgling.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="237" name="#GURGLING" numGridCollisionPoints="12" portrait="100" reroll="true" shadowSize="22" stageHP="4" variant="0">
     <bestiary anim="WalkRight" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload-snd id="57" />
+    <devolve id="77.0.0" weight="1" />
   </entity>
   <entity anm2path="237.000_Gurgling.anm2" baseHP="60" boss="1" bossID="56" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="237" name="#GURGLING_BOSS" numGridCollisionPoints="12" portrait="93" shadowSize="22" stageHP="0" variant="1">
     <bestiary anim="WalkRight" transform="0,0,1" />
@@ -2195,15 +2336,18 @@ Changes from vanilla:
   <entity anm2path="238.000_Splasher.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="238" name="#SPLASHER" numGridCollisionPoints="12" portrait="101" reroll="true" shadowSize="11" stageHP="2" tags="explosive_soul" variant="0">
     <bestiary anim="WalkVert" overlay="Blood" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="239.000_Grub.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="239" name="#GRUB" numGridCollisionPoints="12" portrait="102" shadowSize="22" stageHP="2.5" variant="0">
     <bestiary anim="AttackHeadDown" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="240.000_Wall Creep.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="240" name="#WALL_CREEP" numGridCollisionPoints="12" portrait="93" shadowSize="0" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="317" />
+    <devolve id="242.0.0" weight="1" />
   </entity>
   <entity anm2path="241.000_Rage Creep.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="241" name="#RAGE_CREEP" numGridCollisionPoints="12" portrait="94" shadowSize="0" stageHP="0" tags="spider brimstone_soul" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
@@ -2211,24 +2355,29 @@ Changes from vanilla:
     <preload id="7" variant="1" />
     <preload id="1000" subtype="1" variant="50" />
     <preload-snd id="5" />
+    <devolve id="240.0.0" weight="1" />
   </entity>
   <entity anm2path="242.000_Blind Creep.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="242" name="#BLIND_CREEP" numGridCollisionPoints="12" portrait="95" shadowSize="0" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="240.0.0" weight="1" />
   </entity>
   <entity anm2path="243.000_Conjoined Spitty.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="243" name="#CONJOINED_SPITTY" numGridCollisionPoints="12" portrait="96" reroll="true" shadowSize="24" stageHP="0" variant="0">
     <bestiary anim="Move Hori" transform="0,0,1" />
     <gibs amount="7" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="31.0.0" weight="1" />
   </entity>
   <entity anm2path="244.000_Round Worm.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="244" name="#ROUND_WORM" numGridCollisionPoints="12" portrait="97" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="318" />
+    <devolve id="21.0.0" weight="1" />
   </entity>
   <entity anm2path="244.001_tube worm.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" hasFloorAlts="true" id="244" name="#TUBE_WORM" numGridCollisionPoints="12" portrait="162" reroll="true" shadowSize="0" stageHP="0" variant="1">
     <bestiary alt="_downpour" anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="318" />
+    <devolve id="255.0.0" weight="1" />
   </entity>
   <entity anm2path="grid/grid_poop.anm2" baseHP="5" boss="0" champion="0" collisionDamage="0" collisionMass="500" collisionRadius="13" friction="1.0" id="245" name="Poop" numGridCollisionPoints="12" portrait="40" shadowSize="14" shutdoors="false" stageHP="0" variant="0">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
@@ -2236,31 +2385,38 @@ Changes from vanilla:
   <entity anm2path="246.000_Ragling.anm2" baseHP="13" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="246" name="#RAGLING" numGridCollisionPoints="12" portrait="178" reroll="true" shadowSize="28" stageHP="0" tags="spider homing_soul" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="29.1.0" weight="1" />
   </entity>
   <entity anm2path="246.001_Ragmans Ragling.anm2" baseHP="30" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="246" name="Rag Man&apos;s Ragling" numGridCollisionPoints="12" portrait="28" shadowSize="28" stageHP="0" tags="spider homing_soul" variant="1">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="246.0.0" weight="1" />
   </entity>
   <entity anm2path="247.000_Flesh Mobile Host.anm2" baseHP="27" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="247" name="#FLESH_MOBILE_HOST" numGridCollisionPoints="12" portrait="179" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="166" />
+    <devolve id="27.1.0" weight="1" />
   </entity>
   <entity anm2path="248.000_Psychic Horf.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="248" name="#PSYCHIC_HORF" numGridCollisionPoints="12" portrait="180" reroll="true" shadowSize="13" stageHP="0" tags="homing_soul" variant="0">
     <bestiary anim="Shake" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="146" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="249.000_Full Fly.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" gridCollision="walls" id="249" name="#FULL_FLY" numGridCollisionPoints="8" portrait="190" reroll="true" shadowSize="14" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="214.0.0" weight="1" />
   </entity>
   <entity anm2path="250.000_Ticking Spider.anm2" baseHP="13" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="250" name="#TICKING_SPIDER" numGridCollisionPoints="12" portrait="191" reroll="true" shadowSize="16" stageHP="0" tags="spider explosive_soul" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="215.0.0" weight="1" />
   </entity>
   <entity anm2path="251.000_Begotten.anm2" baseHP="60" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="251" name="#BEGOTTEN" numGridCollisionPoints="12" portrait="181" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="7" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="228.0.0" weight="1" />
   </entity>
   <entity anm2path="251.000_Begotten.anm2" baseHP="60" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="251" name="Begotten Chain" numGridCollisionPoints="12" portrait="105" shadowSize="8" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="7" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -2268,38 +2424,47 @@ Changes from vanilla:
   <entity anm2path="252.000_Nulls.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="252" name="#NULLS" numGridCollisionPoints="12" portrait="182" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="253.000_PsyTumor.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" id="253" name="#PSY_TUMOR" numGridCollisionPoints="12" portrait="106" reroll="true" shadowSize="26" stageHP="0" tags="homing_soul" variant="0">
     <bestiary anim="FloatDown" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="229.0.0" weight="1" />
   </entity>
   <entity anm2path="254.000_Floating Knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="254" name="#FLOATING_KNIGHT" numGridCollisionPoints="12" portrait="188" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Down" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="255.000_NightCrawler.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="255" name="#NIGHT_CRAWLER" numGridCollisionPoints="12" portrait="189" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="256.000_DartFly.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="walls" id="256" name="#DART_FLY" numGridCollisionPoints="4" portrait="118" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="257.000_ConjoinedFatty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="257" name="#CONJOINED_FATTY" numGridCollisionPoints="12" portrait="119" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="208.0.0" weight="1" />
   </entity>
   <entity anm2path="257.001_BlueConjoinedFatty.anm2" baseHP="60" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="257" name="#BLUE_CONJOINED_FATTY" numGridCollisionPoints="12" portrait="133" reroll="true" shadowSize="16" stageHP="0" tags="explosive_soul" variant="1">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="257.0.0" weight="1" />
   </entity>
   <entity anm2path="258.000_Fat Bat.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" gridCollision="walls" id="258" name="#FAT_BAT" numGridCollisionPoints="12" portrait="120" reroll="true" shadowSize="18" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,-16,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="234.0.0" weight="1" />
   </entity>
   <entity anm2path="259.000_Imp.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="259" name="#IMP" numGridCollisionPoints="4" portrait="121" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="Move" transform="0,8,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="816.0.0" weight="1" />
   </entity>
   <entity anm2path="260.000_Haunt.anm2" baseHP="200" boss="1" bossID="43" champion="0" collisionDamage="2" collisionMass="50" collisionRadius="26" friction="1" gridCollision="walls" id="260" name="#HAUNT" numGridCollisionPoints="12" portrait="64" shadowSize="28" tags="ghost" variant="0">
     <bestiary anim="IdleSkin" transform="0,18,1" />
@@ -2315,6 +2480,7 @@ Changes from vanilla:
   <entity anm2path="260.010_Lil Haunt.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="16" collisionRadius="13" friction="1" gridCollision="none" id="260" name="#LIL_HAUNT" numGridCollisionPoints="12" portrait="173" shadowSize="11" stageHP="0" tags="ghost" variant="10">
     <bestiary anim="FloatChase" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.159.0" weight="1" />
   </entity>
   <entity anm2path="261.000_Dingle.anm2" baseHP="300" boss="1" bossID="44" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="20" friction="1" id="261" name="#DINGLE" numGridCollisionPoints="12" portrait="65" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
@@ -2498,64 +2664,79 @@ Changes from vanilla:
   <entity anm2path="276.000_Roundy.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="276" name="#ROUNDY" numGridCollisionPoints="12" portrait="122" reroll="true" shadowSize="0" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="289.0.0" weight="1" />
   </entity>
   <entity anm2path="277.000_Black Boney.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="277" name="#BLACK_BONY" numGridCollisionPoints="12" portrait="123" reroll="true" shadowSize="14" stageHP="2" tags="explosive_soul" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
     <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
     <preload id="9" variant="1" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="278.000_Black Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="278" name="#BLACK_GLOBIN" numGridCollisionPoints="12" portrait="142" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="24.1.0" weight="1" />
   </entity>
   <entity anm2path="279.000_Black Globins Head.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="279" name="#BLACK_GLOBINS_HEAD" numGridCollisionPoints="12" portrait="125" reroll="true" shadowSize="25" stageHP="0" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
     <preload id="1000" variant="22" />
+    <devolve id="24.0.10" weight="1" />
   </entity>
   <entity anm2path="280.000_Black Globins Body.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="280" name="#BLACK_GLOBINS_BODY" numGridCollisionPoints="12" portrait="126" reroll="true" shadowSize="13" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="281.000_Swarm.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="14" friction="1" gridCollision="walls" id="281" name="#SWARM" numGridCollisionPoints="4" portrait="127" reroll="true" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.33.0" weight="1" />
   </entity>
   <entity anm2path="282.000_MegaClotty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="282" name="#MEGA_CLOTTY" numGridCollisionPoints="12" portrait="128" reroll="true" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="283.000_BoneKnight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="283" name="#BONE_KNIGHT" numGridCollisionPoints="12" portrait="129" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Down" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="41.1.0" weight="1" />
   </entity>
   <entity anm2path="284.000_Cyclopia.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="284" name="#CYCLOPIA" numGridCollisionPoints="12" portrait="130" reroll="true" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Attack" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="285.000_Red Ghost.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="285" name="#RED_GHOST" numGridCollisionPoints="12" portrait="131" reroll="true" shadowSize="21" stageHP="4" tags="ghost" variant="0">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="219.0.0" weight="1" />
   </entity>
   <entity anm2path="286.000_FleshDeathsHead.anm2" baseHP="30" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="286" name="#FLESH_DEATHS_HEAD" numGridCollisionPoints="12" portrait="132" shadowSize="17" shutdoors="false" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" />
+    <devolve id="25.1.0" weight="1" />
   </entity>
   <entity anm2path="287.000_Moms Dead Hand.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="16" collisionRadius="40" friction="1" id="287" name="#MOMS_DEAD_HAND" numGridCollisionPoints="12" portrait="134" shadowSize="42" stageHP="0" variant="0">
     <bestiary anim="Stunned" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="1" />
+    <devolve id="213.0.0" weight="1" />
   </entity>
   <entity anm2path="288.000_Dukie.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="288" name="#DUKIE" numGridCollisionPoints="12" portrait="146" reroll="true" shadowSize="17" shutdoors="true" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="289.000_Ulcer.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="289" name="#ULCER" numGridCollisionPoints="12" portrait="147" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="290.000_Meatball.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="290" name="#MEATBALL" numGridCollisionPoints="12" portrait="148" reroll="true" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="291.000_Pitfall.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="50" collisionRadius="32" friction="1" id="291" name="Pitfall" numGridCollisionPoints="12" portrait="0" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
@@ -2594,53 +2775,66 @@ Changes from vanilla:
   <entity anm2path="296.000_Hush Fly.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="9" friction="1" gridCollision="walls" id="296" name="#HUSH_FLY" numGridCollisionPoints="0" portrait="199" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="222.0.0" weight="1" />
   </entity>
   <entity anm2path="297.000_BlueGaper.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="297" name="#BLUE_GAPER" numGridCollisionPoints="12" portrait="196" shadowSize="14" stageHP="2" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="298.000_Blue Boil.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="298" name="#BLUE_BOIL" numGridCollisionPoints="12" portrait="195" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="30.0.0" weight="1" />
   </entity>
   <entity anm2path="299.000_GreedGaper.anm2" baseHP="9" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="299" name="#GREED_GAPER" numGridCollisionPoints="12" portrait="197" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head2" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="300.000_MushroomMan.anm2" baseHP="23" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="300" name="#MUSHROOM" numGridCollisionPoints="12" portrait="156" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="1002.0.0" weight="1" />
   </entity>
   <entity anm2path="301.000_PoisonMind.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="301" name="#POISON_MIND" numGridCollisionPoints="12" portrait="159" shadowSize="14" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="32.0.0" weight="1" />
   </entity>
   <entity anm2path="302.000_Stoney.anm2" baseHP="50" boss="0" champion="0" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="302" name="#STONEY" numGridCollisionPoints="12" portrait="158" shadowSize="14" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="208.0.0" weight="1" />
   </entity>
   <entity anm2path="302.010_Cross Stoney.anm2" baseHP="50" boss="0" champion="0" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="302" name="#CROSS_STONEY" numGridCollisionPoints="12" portrait="158" shadowSize="14" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="302.0.0" weight="1" />
   </entity>
   <entity anm2path="303.000_Blister.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="303" name="#BLISTER" numGridCollisionPoints="12" portrait="157" shadowSize="14" stageHP="8" tags="spider" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="215.0.0" weight="1" />
   </entity>
   <entity anm2path="304.000_TheThing.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="304" name="#THE_THING" numGridCollisionPoints="12" portrait="155" shadowSize="0" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="240.0.0" weight="1" />
   </entity>
   <entity anm2path="305.000_Ministro.anm2" baseHP="9" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="305" name="#MINISTRO" numGridCollisionPoints="12" portrait="154" shadowSize="20" stageHP="2" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="306.000_Portal.anm2" baseHP="9" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="306" name="#PORTAL" numGridCollisionPoints="0" portrait="160" shadowSize="24" shutdoors="true" stageHP="5" variant="0">
     <bestiary anim="Idle" transform="0,-20,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="306.1.0" weight="1" />
   </entity>
   <entity anm2path="307.000_tar boy.anm2" baseHP="55" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="18" friction="1" gridCollision="ground" id="307" name="#TAR_BOY" numGridCollisionPoints="0" portrait="167" reroll="true" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="309.0.0" weight="1" />
   </entity>
   <entity anm2path="307.000_tar boy.anm2" baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="18" friction="1" id="307" name="#TAR_BOY_MOUTH" numGridCollisionPoints="0" portrait="167" reroll="false" shadowSize="0" shutdoors="false" stageHP="0" subtype="1" variant="0">
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
@@ -2648,36 +2842,44 @@ Changes from vanilla:
   <entity anm2path="308.000_fistuloid.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="17" friction="1" gridCollision="walls" id="308" name="#FISTULOID" numGridCollisionPoints="12" portrait="163" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="309.000_gush.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="309" name="#GUSH" numGridCollisionPoints="12" portrait="164" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Spew" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="30.1.0" weight="1" />
   </entity>
   <entity anm2path="310.000_Leper.anm2" baseHP="60" boss="0" champion="1" collisionDamage="0" collisionMass="5" collisionRadius="15" friction="1" id="310" name="#LEPER" numGridCollisionPoints="12" portrait="169" reroll="true" shadowSize="17" stageHP="0" variant="0">
     <bestiary anim="Appear" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
+    <devolve id="310.1.0" weight="1" />
   </entity>
   <entity anm2path="310.000_Leper_2.anm2" baseHP="45" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="15" friction="1" id="310" name="#LEPER_STAGE_2" numGridCollisionPoints="12" portrait="169" reroll="true" shadowSize="17" stageHP="0" subtype="1" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
+    <devolve id="310.1.0" weight="1" />
   </entity>
   <entity anm2path="310.000_Leper_3.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="15" friction="1" id="310" name="#LEPER_STAGE_3" numGridCollisionPoints="12" portrait="169" reroll="true" shadowSize="17" stageHP="0" subtype="2" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="310.000_Leper_4.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="15" friction="1" id="310" name="#LEPER_STAGE_4" numGridCollisionPoints="12" portrait="169" reroll="true" shadowSize="17" stageHP="0" subtype="3" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="310.001_Leper Flesh.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" gridCollision="walls" id="310" name="#LEPER_FLESH" numGridCollisionPoints="12" portrait="170" reroll="true" shadowSize="17" stageHP="1.5" variant="1">
     <bestiary anim="Idle1" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="61.0.0" weight="1" />
   </entity>
   <entity anm2path="311.000_Mr. Mine.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="311" name="#MR_MINE" numGridCollisionPoints="12" portrait="172" reroll="true" shadowSize="12" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="226" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="311.010_Mr. Mine Neck.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="none" id="311" name="Mr. Mine Neck" numGridCollisionPoints="0" shadowSize="8" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -2700,6 +2902,7 @@ Changes from vanilla:
   </entity>
   <entity anm2path="404.001_DarkBall.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" id="404" name="Dark Ball" numGridCollisionPoints="16" portrait="161" shadowSize="16" stageHP="0" variant="1">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.147.0" weight="1" />
   </entity>
   <entity anm2path="405.000_Ragman.anm2" baseHP="200" boss="1" bossID="61" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="405" name="#RAG_MAN" numGridCollisionPoints="12" portrait="83" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="HeadPop" transform="0,0,1" />
@@ -3557,29 +3760,37 @@ Changes from vanilla:
   <entity anm2path="010.003_rotten gaper.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" variant="3">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="010.003_rotten gaper.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" subtype="1" variant="3">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="010.003_rotten gaper01.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" subtype="2" variant="3">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="010.003_rotten gaper02.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" subtype="3" variant="3">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="010.003_rotten gaper03.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" subtype="4" variant="3">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="010.003_rotten gaper04.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="10" name="#ROTTEN_GAPER" numGridCollisionPoints="12" portrait="270" shadowSize="14" stageHP="0" subtype="5" variant="3">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="813.0.0" weight="1" />
   </entity>
   <entity anm2path="014.002_Ultra Pooter.anm2" baseHP="75" boss="0" champion="0" collisionDamage="0" collisionMass="10" collisionRadius="20" friction="1" gridCollision="walls" id="14" name="#TAINTED_POOTER" numGridCollisionPoints="4" portrait="349" reroll="false" shadowSize="18" shieldStrength="30" stageHP="0" tags="fly" variant="2">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="0" eye="0" gut="1" large="1" />
+    <devolve id="14.1.0" weight="1" />
   </entity>
   <entity anm2path="015.003_grilled clotty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="15" name="#GRILLED_CLOTTY" numGridCollisionPoints="12" portrait="260" shadowSize="28" stageHP="0" variant="3">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="019.002_tuff twin.anm2" baseHP="35" boss="1" bossID="80" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="20" friction="1" gridCollision="walls" id="19" name="#TUFF_TWIN" numGridCollisionPoints="8" portrait="106" shadowSize="25" stageHP="0" tags="nodelirium" variant="2">
     <bestiary anim="WalkHeadHori" transform="0,0,1" />
@@ -3594,58 +3805,71 @@ Changes from vanilla:
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     <preload-snd id="143" />
     <preload-snd id="158" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="022.003_Ultra Mulligan.anm2" baseHP="100" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="30" friction="1" id="22" name="#TAINTED_MULLIGAN" numGridCollisionPoints="12" portrait="347" reroll="false" shadowSize="30" shieldStrength="30" stageHP="8" variant="3">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
     <preload-snd id="143" />
     <preload-snd id="158" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="023.003_Carrion Princess.anm2" baseHP="26" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="23" name="#CARRION_PRINCESS" numGridCollisionPoints="12" portrait="321" reroll="true" shadowSize="17" stageHP="0" variant="3">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="0" large="0" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="024.003_cursed globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="1" id="24" name="#CURSED_GLOBIN" numGridCollisionPoints="12" portrait="220" shadowSize="14" stageHP="0" variant="3">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" colorblood="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="24.1.0" weight="1" />
   </entity>
   <entity anm2path="025.003_dragonfly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" hasFloorAlts="1" id="25" name="#DRAGON_FLY" numGridCollisionPoints="12" portrait="250" shadowSize="20" stageHP="3" tags="fly" variant="3">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="25.1.0" weight="1" />
   </entity>
   <entity anm2path="025.003_dragonfly2.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" hasFloorAlts="1" id="25" name="#DRAGON_FLY_X" numGridCollisionPoints="12" portrait="250" shadowSize="20" stageHP="3" subtype="1" tags="fly" variant="3">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="25.1.0" weight="1" />
   </entity>
   <entity anm2path="025.004_bone fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="#BONE_FLY" numGridCollisionPoints="12" portrait="305" shadowSize="20" stageHP="3" tags="fly" variant="4">
     <bestiary anim="Attack" transform="0,0,1" />
     <gibs amount="4" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="25.1.0" weight="1" />
   </entity>
   <entity anm2path="025.005_sick boom fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="#SICK_BOOM_FLY" numGridCollisionPoints="12" portrait="278" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="5">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="25.1.0" weight="1" />
   </entity>
   <entity anm2path="025.006_ultra boom fly.anm2" baseHP="20" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="24" friction="1" gridCollision="walls" id="25" name="#TAINTED_BOOM_FLY" numGridCollisionPoints="12" portrait="352" shadowSize="28" shieldStrength="10" stageHP="0" tags="fly explosive_soul" variant="6">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="25.0.0" weight="1" />
   </entity>
   <entity anm2path="027.003_hard host.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="15" collisionRadius="13" friction="1" id="27" name="#HARD_HOST" numGridCollisionPoints="12" portrait="247" shadowSize="25" stageHP="0" variant="3">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="9" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="27.0.0" weight="1" />
   </entity>
   <entity anm2path="029.002_Eggy.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="29" name="#EGGY" numGridCollisionPoints="12" portrait="346" reroll="true" shadowSize="14" stageHP="2" variant="2">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="1" eye="0" gut="1" large="0" />
     <preload-snd id="69" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="029.003_Ultra Hopper.anm2" baseHP="80" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="18" friction="1" id="29" name="#TAINTED_HOPPER" numGridCollisionPoints="12" portrait="351" shadowSize="18" shieldStrength="30" stageHP="0" variant="3">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="1" eye="0" gut="1" large="1" />
     <preload-snd id="69" />
+    <devolve id="29.0.0" weight="1" />
   </entity>
   <entity anm2path="031.001_ultra spitty.anm2" baseHP="60" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="18" friction="1" id="31" name="#TAINTED_SPITTY" numGridCollisionPoints="12" portrait="335" shadowSize="32" shieldStrength="30" stageHP="0" variant="1">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="5" blood="1" bone="0" eye="1" gut="1" large="1" />
     <preload-snd id="319" />
+    <devolve id="31.0.0" weight="1" />
   </entity>
   <entity anm2path="033.004_White Fireplace.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="0.5" id="33" name="White Fire Place" numGridCollisionPoints="0" portrait="68" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="4">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -3665,25 +3889,30 @@ Changes from vanilla:
   <entity anm2path="034.001_sticky leaper.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="34" name="#STICKY_LEAPER" numGridCollisionPoints="12" portrait="303" reroll="true" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="34.0.0" weight="1" />
   </entity>
   <entity anm2path="038.001_Angelic Baby (small).anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="38" name="Angelic Baby (small)" numGridCollisionPoints="8" portrait="33" reroll="true" shadowSize="16" stageHP="0" subtype="1" variant="1">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" sound_baby="1" />
     <preload-snd id="44" />
+    <devolve id="77.0.0" weight="1" />
   </entity>
   <entity anm2path="038.003_Wrinkly Baby.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="38" name="#WRINKLY_BABY" numGridCollisionPoints="4" portrait="314" shadowSize="16" stageHP="0" variant="3">
     <bestiary anim="Move" transform="0,3,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="0" sound_baby="1" />
     <preload-snd id="44" />
+    <devolve id="38.0.0" weight="1" />
   </entity>
   <entity anm2path="060.002_Holy Eye.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="60" name="#HOLY_EYE" numGridCollisionPoints="12" portrait="332" reroll="true" shadowSize="14" stageHP="5" variant="2">
     <bestiary anim="Idle" transform="0,-8,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="60.0.0" weight="1" />
   </entity>
   <entity anm2path="087.001_crackle.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="87" name="#CRACKLE" numGridCollisionPoints="12" portrait="345" reroll="true" shadowSize="16" stageHP="0" variant="1">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
     <preload-snd id="165" />
     <preload-snd id="213" />
+    <devolve id="87.0.0" weight="1" />
   </entity>
   <entity anm2path="227.001_Holy Bony.anm2" baseHP="60" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="20" friction="1" id="227" name="#HOLY_BONY" numGridCollisionPoints="12" portrait="331" reroll="true" shadowSize="20" stageHP="14" variant="1">
     <bestiary anim="WalkDown" transform="0,0,1" />
@@ -3691,15 +3920,18 @@ Changes from vanilla:
     <preload id="9" variant="1" />
     <preload-snd id="116" />
     <preload-snd id="249" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="229.001_Planetoid.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="229" name="#PLANETOID" numGridCollisionPoints="12" portrait="330" reroll="true" shadowSize="26" stageHP="4" variant="1">
     <bestiary anim="Float" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="229.0.0" weight="1" />
   </entity>
   <entity anm2path="244.002_Ultra Round Worm.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="20" friction="1" id="244" name="#TAINTED_ROUND_WORM" numGridCollisionPoints="12" portrait="348" reroll="false" shadowSize="0" shieldStrength="30" variant="2">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="0" eye="1" gut="1" large="1" />
     <preload-snd id="318" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="244.002_Ultra Round Worm Butt.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="12" friction="1" id="244" name="Tainted Round Worm Butt" numGridCollisionPoints="12" portrait="348" reroll="false" shadowSize="0" shieldStrength="30" subtype="1" tags="noreroll" variant="2">
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -3709,6 +3941,7 @@ Changes from vanilla:
     <bestiary alt="_downpour" anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="1" />
     <preload-snd id="318" />
+    <devolve id="244.1.0" weight="1" />
   </entity>
   <entity anm2path="818.002_coal 1.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="33" name="#COAL" numGridCollisionPoints="12" portrait="258" shadowSize="15" shutdoors="false" stageHP="0" variant="11">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
@@ -3725,10 +3958,12 @@ Changes from vanilla:
   <entity anm2path="040.002_Slog.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="40" name="#SLOG" numGridCollisionPoints="12" portrait="325" reroll="true" shadowSize="22" stageHP="0" variant="2">
     <bestiary anim="Roll" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="40.0.0" weight="1" />
   </entity>
   <entity anm2path="041.002_loose knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="41" name="#LOOSE_KNIGHT" numGridCollisionPoints="12" portrait="230" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="41.0.0" weight="1" />
   </entity>
   <entity anm2path="041.003_empty knight.anm2" baseHP="20" boss="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="41" name="#BRAINLESS_KNIGHT" numGridCollisionPoints="12" portrait="231" shadowSize="14" shutdoors="false" stageHP="0" variant="3">
     <bestiary anim="Hori" transform="0,0,1" />
@@ -3737,37 +3972,45 @@ Changes from vanilla:
   <entity anm2path="041.004_black knight.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="41" name="#BLACK_KNIGHT" numGridCollisionPoints="12" portrait="281" shadowSize="14" stageHP="0" variant="4">
     <bestiary anim="Hori" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="41.0.0" weight="1" />
   </entity>
   <entity anm2path="042.002_Triple Grimace.anm2" baseHP="20" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="42" name="#TRIPLE_GRIMACE" numGridCollisionPoints="0" portrait="323" shadowSize="24" shutdoors="false" stageHP="0" variant="2" tags="noreroll">
     <bestiary anim="Appear" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     <preload-snd id="212" />
     <preload-snd id="262" />
+    <devolve id="42.0.0" weight="1" />
   </entity>
   <entity anm2path="061.003_ink.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#INK" numGridCollisionPoints="4" portrait="251" shadowSize="14" stageHP="0" tags="fly" variant="3">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="057.002_Dead Meat.anm2" baseHP="62" boss="0" champion="1" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="57" name="#DEAD_MEAT" numGridCollisionPoints="12" portrait="375" reroll="true" shadowSize="40" stageHP="0" variant="2">
     <bestiary anim="Wiggle" transform="0,0,1" />
     <gibs amount="18" blood="1" bone="0" eye="0" gut="1" large="1" />
     <preload id="40" variant="0" />
+    <devolve id="57.1.0" weight="1" />
   </entity>
   <entity anm2path="061.004_mama fly.anm2" baseHP="44" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#MAMA_FLY" numGridCollisionPoints="4" portrait="276" shadowSize="14" stageHP="0" tags="fly" variant="4">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="861.0.0" weight="1" />
   </entity>
   <entity anm2path="061.005_bulb.anm2" baseHP="10" boss="0" champion="0" collisionDamage="0" collisionMass="5" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#BULB" numGridCollisionPoints="4" portrait="301" shadowSize="14" stageHP="2" tags="fly" variant="5">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="14.1.0" weight="1" />
   </entity>
   <entity anm2path="061.006_bloodfly.anm2" baseHP="6" boss="0" champion="0" collisionDamage="0" collisionMass="5" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="#BLOODFLY" numGridCollisionPoints="4" portrait="350" shadowSize="14" stageHP="1" tags="fly" variant="6">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="61.5.0" weight="1" />
   </entity>
   <entity anm2path="061.007_ultra sucker.anm2" baseHP="14" boss="0" champion="0" collisionDamage="0" collisionMass="18" collisionRadius="20" friction="1" gridCollision="walls" id="61" name="#TAINTED_SUCKER" numGridCollisionPoints="4" portrait="353" shadowSize="20" shieldStrength="10" stageHP="1" tags="fly" variant="7">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="61.0.0" weight="1" />
   </entity>
   <entity anm2path="062.003_wormwood.anm2" baseHP="200" boss="1" bossID="76" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" gridCollision="walls" hasFloorAlts="true" id="62" name="#WORMWOOD" numGridCollisionPoints="12" portrait="102" shadowSize="18" stageHP="0" tags="nodelirium" variant="3">
     <bestiary anim="Attack1" transform="0,-15,1" />
@@ -3776,10 +4019,12 @@ Changes from vanilla:
   <entity anm2path="092.001_Half Heart L.anm2" baseHP="40" boss="0" champion="0" collisionDamage="0" collisionMass="30" collisionRadius="13" friction="1" id="92" name="#HALF_HEART" numGridCollisionPoints="12" portrait="308" reroll="true" shadowSize="18" stageHP="0" variant="1">
     <bestiary anim="HeartAttack" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="5.10.2" weight="1" />
   </entity>
   <entity anm2path="092.001_Half Heart R.anm2" baseHP="40" boss="0" champion="0" collisionDamage="0" collisionMass="30" collisionRadius="13" friction="1" id="92" name="#HALF_HEART" numGridCollisionPoints="12" portrait="308" reroll="true" shadowSize="18" stageHP="0" subtype="1" variant="1">
     <bestiary parent="92.1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="5.10.2" weight="1" />
   </entity>
   <entity anm2path="093.001_Mask 2.anm2" baseHP="40" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="93" name="#MASK_II" numGridCollisionPoints="12" portrait="309" reroll="true" shadowSize="15" stageHP="0" variant="1">
     <bestiary anim="Down" transform="0,0,1" />
@@ -3788,14 +4033,17 @@ Changes from vanilla:
   <entity anm2path="212.002_cursed death head.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="212" name="#CURSED_DEATHS_HEAD" numGridCollisionPoints="12" portrait="227" shadowSize="17" shutdoors="false" stageHP="0" tags="noreroll" variant="2">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="212.003_brimstone death head.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="212" name="#BRIMSTONE_DEATHS_HEAD" numGridCollisionPoints="12" portrait="312" shadowSize="17" shutdoors="false" stageHP="0" tags="noreroll" variant="3">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="212.004_redskull.anm2" baseHP="80" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="14" friction="1" gridCollision="walls" id="212" name="#REDSKULL" numGridCollisionPoints="12" portrait="326" shadowSize="19" shutdoors="false" stageHP="0" variant="4">
     <bestiary anim="Attack" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="239.100_corpse eater.anm2" baseHP="48" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="239" name="#CORPSE_EATER" numGridCollisionPoints="12" portrait="238" shadowSize="21" stageHP="2.5" variant="100">
     <gibs amount="10" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -3807,6 +4055,7 @@ Changes from vanilla:
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
     <preload-snd id="317" />
+    <devolve id="240.0.0" weight="1" />
   </entity>
   <entity anm2path="240.002_rag creep.anm2" baseHP="17" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="240" name="#RAG_CREEP" numGridCollisionPoints="12" portrait="333" shadowSize="0" stageHP="4" tags="spider homing_soul" variant="2">
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -3816,6 +4065,7 @@ Changes from vanilla:
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="1" />
     <preload-snd id="317" />
+    <devolve id="240.1.0" weight="1" />
   </entity>
   <entity anm2path="241.001_split rage creep.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="241" name="#SPLIT_RAGE_CREEP" numGridCollisionPoints="12" portrait="315" shadowSize="0" stageHP="0" tags="spider brimstone_soul" variant="1">
     <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
@@ -3830,6 +4080,7 @@ Changes from vanilla:
   <entity anm2path="306.001_lil portal.anm2" baseHP="15" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="8" friction="1" id="306" name="#LIL_PORTAL" numGridCollisionPoints="0" portrait="324" shadowSize="12" shutdoors="true" stageHP="6" variant="1">
     <bestiary anim="Idle" transform="0,-20,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="222.0.0" weight="1" />
   </entity>
   <entity anm2path="802.000_blood puppy lv2.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="12" collisionRadius="13" friction="1" id="802" name="#BLOOD_PUPPY" numGridCollisionPoints="12" portrait="357" shadowSize="18" shieldStrength="90" shutdoors="false" stageHP="0" variant="0">
     <bestiary anim="Idle Hori" transform="0,0,1" />
@@ -3857,18 +4108,22 @@ Changes from vanilla:
   <entity anm2path="805.000_bishop.anm2" baseHP="14" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="805" name="#BISHOP" numGridCollisionPoints="12" portrait="208" shadowSize="34" stageHP="4" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" dust="1" eye="0" gut="1" large="0" rock="1" />
+    <devolve id="885.0.0" weight="1" />
   </entity>
   <entity anm2path="806.000_bubbles.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="true" id="806" name="#BUBBLES" numGridCollisionPoints="12" portrait="209" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="813.0.0" weight="1" />
   </entity>
   <entity anm2path="807.000_wraith.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="807" name="#WRAITH" numGridCollisionPoints="12" portrait="211" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="808.000_willo.anm2" baseHP="6" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="17" friction="1" gridCollision="none" id="808" name="#WILLO" numGridCollisionPoints="0" portrait="210" shadowSize="10" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="809.000_bomb grimace.anm2" baseHP="20" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="809" name="#BOMB_GRIMACE" numGridCollisionPoints="0" shadowSize="23" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Appear" transform="0,0,1" />
@@ -3877,107 +4132,137 @@ Changes from vanilla:
   <entity anm2path="810.000_small leech.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="nopits" hasFloorAlts="true" id="810" name="#SMALL_LEECH" numGridCollisionPoints="8" portrait="212" shadowSize="10" stageHP="0" variant="0">
     <bestiary anim="SwimRight" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="853.0.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="#DEEP_GAPER" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper01.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="1" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper02.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="2" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper03.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="3" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper04.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="4" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper05.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="5" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="811.000_deep gaper06.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="Deep Gaper" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" subtype="6" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="812.000_sub horf.anm2" baseHP="14" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" gridCollision="nopits" hasFloorAlts="true" id="812" name="#SUB_HORF" numGridCollisionPoints="12" portrait="219" shadowSize="12" stageHP="0" variant="0">
     <bestiary alt="_downpour" anim="Bestiary" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="812.001_ultra sub horf.anm2" baseHP="50" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="16" friction="1" gridCollision="nopits" id="812" name="#TAINTED_SUB_HORF" numGridCollisionPoints="12" portrait="368" shadowSize="16" shieldStrength="8" stageHP="0" variant="1">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="1" eye="0" gut="1" large="1" />
+    <devolve id="812.0.0" weight="1" />
   </entity>
   <entity anm2path="813.000_blurb.anm2" baseHP="16" bestiaryAnim="WalkVert" bestiaryOverlay="HeadFull" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="813" name="#BLURB" numGridCollisionPoints="12" portrait="218" shadowSize="14" stageHP="0" variant="0">
     <bestiary alt="_downpour" anim="WalkVert" overlay="HeadFull" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="814.000_strider.anm2" baseHP="6.5" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" gridCollision="nopits" id="814" name="#STRIDER" numGridCollisionPoints="8" portrait="215" shadowSize="14" stageHP="0" tags="spider" variant="0">
     <bestiary anim="WalkRight" transform="0,-10,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="884.0.0" weight="1" />
   </entity>
   <entity anm2path="815.000_fissure.anm2" baseHP="6.5" boss="0" champion="0" collisionDamage="1" collisionMass="16" collisionRadius="13" friction="1" gridCollision="nopits" id="815" name="#FISSURE" numGridCollisionPoints="8" portrait="356" shadowSize="14" shutdoors="false" stageHP="0" variant="0">
     <bestiary anim="Bestiary" transform="0,-10,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="810.0.0" weight="1" />
   </entity>
   <entity anm2path="816.000_polty.anm2" baseHP="14" boss="0" champion="1" collisionDamage="1" collisionMass="16" collisionRadius="13" friction="1" gridCollision="walls" id="816" name="#POLTY" numGridCollisionPoints="8" portrait="214" shadowSize="10" stageHP="2.5" tags="ghost" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="260.10.0" weight="1" />
   </entity>
   <entity anm2path="816.001_kineti.anm2" baseHP="45" boss="0" champion="1" collisionDamage="1" collisionMass="16" collisionRadius="13" friction="1" gridCollision="walls" id="816" name="#KINETI" numGridCollisionPoints="8" portrait="334" shadowSize="10" stageHP="3" tags="ghost" variant="1">
     <bestiary anim="TeleLoop" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="1" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="816.0.0" weight="1" />
   </entity>
   <entity anm2path="817.000_prey.anm2" baseHP="14" boss="0" champion="1" collisionDamage="0" collisionMass="7" collisionRadius="13" friction="1" hasFloorAlts="true" id="817" name="#PREY" numGridCollisionPoints="12" portrait="217" shadowSize="14" stageHP="0" variant="0">
     <bestiary alt="_downpour" anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="817.001_mullighoul.anm2" baseHP="14" boss="0" champion="1" collisionDamage="0" collisionMass="7" collisionRadius="13" friction="1" id="817" name="#MULLIGHOUL" numGridCollisionPoints="12" portrait="225" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="816.0.0" weight="1" />
   </entity>
   <entity anm2path="818.000_rock spider 1.anm2" baseHP="12" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#ROCK_SPIDER" numGridCollisionPoints="12" portrait="240" shadowSize="15" stageHP="0" tags="spider" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="818.000_rock spider 1.anm2" baseHP="12" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#ROCK_SPIDER" numGridCollisionPoints="12" portrait="240" shadowSize="15" stageHP="0" subtype="1" tags="spider" variant="0">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="818.000_rock spider 2.anm2" baseHP="12" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#ROCK_SPIDER" numGridCollisionPoints="12" portrait="240" shadowSize="15" stageHP="0" subtype="2" tags="spider" variant="0">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="818.000_rock spider 3.anm2" baseHP="12" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#ROCK_SPIDER" numGridCollisionPoints="12" portrait="240" shadowSize="15" stageHP="0" subtype="3" tags="spider" variant="0">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="85.0.0" weight="1" />
   </entity>
   <entity anm2path="818.001_tinted rock spider 1.anm2" baseHP="22" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#TINTED_ROCK_SPIDER" numGridCollisionPoints="12" portrait="241" shadowSize="15" stageHP="0" tags="spider" variant="1">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="5.10.3" weight="1" />
   </entity>
   <entity anm2path="818.001_tinted rock spider 1.anm2" baseHP="22" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#TINTED_ROCK_SPIDER" numGridCollisionPoints="12" portrait="241" shadowSize="15" stageHP="0" subtype="1" tags="spider" variant="1">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="5.10.3" weight="1" />
   </entity>
   <entity anm2path="818.001_tinted rock spider 2.anm2" baseHP="22" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#TINTED_ROCK_SPIDER" numGridCollisionPoints="12" portrait="241" shadowSize="15" stageHP="0" subtype="2" tags="spider" variant="1">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="5.10.3" weight="1" />
   </entity>
   <entity anm2path="818.001_tinted rock spider 3.anm2" baseHP="22" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#TINTED_ROCK_SPIDER" numGridCollisionPoints="12" portrait="241" shadowSize="15" stageHP="0" subtype="3" tags="spider" variant="1">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="5.10.3" weight="1" />
   </entity>
   <entity anm2path="818.002_coal spider 1.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#COAL_SPIDER" numGridCollisionPoints="12" portrait="257" shadowSize="15" stageHP="0" tags="spider" variant="2">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="33.11.0" weight="1" />
   </entity>
   <entity anm2path="818.002_coal spider 1.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#COAL_SPIDER" numGridCollisionPoints="12" portrait="257" shadowSize="15" stageHP="0" subtype="1" tags="spider" variant="2">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="33.11.0" weight="1" />
   </entity>
   <entity anm2path="818.002_coal spider 2.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#COAL_SPIDER" numGridCollisionPoints="12" portrait="257" shadowSize="15" stageHP="0" subtype="2" tags="spider" variant="2">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="33.11.0" weight="1" />
   </entity>
   <entity anm2path="818.002_coal spider 3.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="818" name="#COAL_SPIDER" numGridCollisionPoints="12" portrait="257" shadowSize="15" stageHP="0" subtype="3" tags="spider" variant="2">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
+    <devolve id="33.11.0" weight="1" />
   </entity>
   <entity anm2path="819.000_fly bomb.anm2" baseHP="7" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" gridCollision="walls" id="819" name="#FLY_BOMB" numGridCollisionPoints="8" portrait="242" shadowSize="14" stageHP="0" tags="fly explosive_soul" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="18.0.0" weight="1" />
   </entity>
   <entity anm2path="819.001_eternal fly bomb.anm2" baseHP="7" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" gridCollision="walls" id="819" name="#ETERNAL_FLY_BOMB" numGridCollisionPoints="8" portrait="242" shadowSize="14" stageHP="0" tags="fly explosive_soul" variant="1">
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
@@ -3985,62 +4270,77 @@ Changes from vanilla:
   <entity anm2path="820.000_danny.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="820" name="#DANNY" numGridCollisionPoints="12" portrait="243" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
+    <devolve id="205.0.0" weight="1" />
   </entity>
   <entity anm2path="820.001_coal boy.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="820" name="#COAL_BOY" numGridCollisionPoints="12" portrait="259" shadowSize="15" stageHP="0" variant="1">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1" worm="1" />
+    <devolve id="820.0.0" weight="1" />
   </entity>
   <entity anm2path="821.000_blaster.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" hasFloorAlts="1" id="821" name="#BLASTER" numGridCollisionPoints="12" portrait="244" shadowSize="15" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="12" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="16.1.0" weight="1" />
   </entity>
   <entity anm2path="822.000_bouncer.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="822" name="#BOUNCER" numGridCollisionPoints="12" portrait="254" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="HeadWalkVert" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="16.0.0" weight="1" />
   </entity>
   <entity anm2path="823.000_quakey.anm2" baseHP="45" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="823" name="#QUAKEY" numGridCollisionPoints="12" portrait="245" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="21" blood="1" bone="1" colorblood="1" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="208.1.0" weight="1" />
   </entity>
   <entity anm2path="824.000_gyro.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="824" name="#GYRO" numGridCollisionPoints="12" portrait="255" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="WalkLeft" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="824.001_grilled gyro.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="824" name="#GRILLED_GYRO" numGridCollisionPoints="12" portrait="256" shadowSize="28" stageHP="0" variant="1">
     <bestiary anim="DashLeft" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <devolve id="15.3.0" weight="1" />
   </entity>
   <entity anm2path="825.000_fireworm.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" gridCollision="none" id="825" name="#FIRE_WORM" numGridCollisionPoints="12" portrait="248" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="25.3.0" weight="1" />
   </entity>
   <entity anm2path="826.000_hardy.anm2" baseHP="42" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="826" name="#HARDY" numGridCollisionPoints="12" portrait="252" shadowSize="20" stageHP="6" variant="0">
     <bestiary anim="Idle1" transform="0,0,1" />
     <gibs amount="12" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
+    <devolve id="220.0.0" weight="1" />
   </entity>
   <entity anm2path="827.000_faceless.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="827" name="#FACELESS" numGridCollisionPoints="12" portrait="246" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="10.0.0" weight="1" />
   </entity>
   <entity anm2path="827.001_ultra faceless.anm2" baseHP="100" boss="0" champion="0" collisionDamage="2" collisionMass="18" collisionRadius="13" friction="1" id="827" name="#TAINTED_FACELESS" numGridCollisionPoints="12" portrait="367" shadowSize="16" shieldStrength="20" stageHP="0" variant="1">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="1" />
+    <devolve id="827.0.0" weight="1" />
   </entity>
   <entity anm2path="828.000_necro.anm2" baseHP="22" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="828" name="#NECRO" numGridCollisionPoints="12" portrait="337" shadowSize="13" stageHP="0" variant="0">
     <bestiary anim="Shake" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="829.000_mole.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="829" name="#MOLE" numGridCollisionPoints="12" portrait="261" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="829.001_ultra mole.anm2" baseHP="80" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="16" friction="1" id="829" name="#TAINTED_MOLE" numGridCollisionPoints="12" portrait="372" shadowSize="15" shieldStrength="10" stageHP="0" variant="1">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="12" blood="1" bone="1" eye="1" gut="1" large="1" />
+    <devolve id="829.0.0" weight="1" />
   </entity>
   <entity anm2path="830.000_big bony.anm2" baseHP="50" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="830" name="#BIG_BONY" numGridCollisionPoints="12" portrait="221" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="830.010_big bone.anm2" baseHP="5" boss="0" champion="1" collisionDamage="2" collisionMass="50" collisionRadius="13" friction="1" id="830" name="Big Bone" numGridCollisionPoints="12" portrait="221" shadowSize="15" shutdoors="false" stageHP="0" variant="10">
     <gibs amount="4" blood="0" bone="0" eye="0" gut="0" large="0" rock_small="1" />
@@ -4050,6 +4350,7 @@ Changes from vanilla:
     <gibs amount="26" blood="1" bone="1" eye="1" gut="1" large="1" />
     <preload-snd id="167" />
     <preload-snd id="116" />
+    <devolve id="886.0.0" weight="1" />
   </entity>
   <entity anm2path="831.010_Gutted Fatty Eye.anm2" baseHP="80" boss="0" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="13" friction="1" gridCollision="walls" id="831" name="Gutted Fatty Eye" numGridCollisionPoints="12" portrait="359" shadowSize="14" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="4" blood="1" bone="0" eye="1" gut="0" large="0" />
@@ -4057,33 +4358,41 @@ Changes from vanilla:
   <entity anm2path="831.020_Gutted Fatty Guts.anm2" baseHP="22" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="13" friction="1" id="831" name="#FESTERING_GUTS" numGridCollisionPoints="12" portrait="360" shadowSize="15" stageHP="0" variant="20">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="853.10.5" weight="1" />
   </entity>
   <entity anm2path="832.000_exorcist.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="832" name="#EXORCIST" numGridCollisionPoints="12" portrait="236" shadowSize="14" stageHP="0" tags="homing_soul" variant="0">
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="832.001_fanatic.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="832" name="#FANATIC" numGridCollisionPoints="12" portrait="262" shadowSize="15" stageHP="0" tags="homing_soul" variant="1">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="11.1.0" weight="1" />
   </entity>
   <entity anm2path="833.000_candler.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="16" collisionRadius="13" friction="1" gridCollision="walls" id="833" name="#CANDLER" numGridCollisionPoints="12" portrait="226" shadowSize="10" stageHP="0" tags="ghost" variant="0">
     <bestiary anim="Attack" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="260.10.0" weight="1" />
   </entity>
   <entity anm2path="834.000_whipper.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="true" id="834" name="#WHIPPER" numGridCollisionPoints="12" portrait="222" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkDown" overlay="HeadDown" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="41.0.0" weight="1" />
   </entity>
   <entity anm2path="834.001_snapper.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="true" id="834" name="#SNAPPER" numGridCollisionPoints="12" portrait="224" shadowSize="14" stageHP="0" variant="1">
     <bestiary anim="WalkDown" overlay="HeadDown" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="834.0.0" weight="1" />
   </entity>
   <entity anm2path="834.002_lunatic.anm2" baseHP="42" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="834" name="#FLAGELLANT" numGridCollisionPoints="12" portrait="263" shadowSize="14" stageHP="0" variant="2">
     <bestiary anim="WalkDown" overlay="HeadLaughDown" transform="0,0,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
+    <devolve id="834.0.0" weight="1" />
   </entity>
   <entity anm2path="835.000_peeper fatty.anm2" baseHP="60" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="835" name="#PEEPING_FATTY" numGridCollisionPoints="12" portrait="361" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="210.0.0" weight="1" />
   </entity>
   <entity anm2path="835.010_peeper fatty eye.anm2" baseHP="60" boss="0" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="13" friction="1" gridCollision="walls" id="835" name="Peeping Fatty Eye" numGridCollisionPoints="12" portrait="361" shadowSize="14" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="1" blood="0" bone="0" eye="1" gut="0" large="0" />
@@ -4091,13 +4400,16 @@ Changes from vanilla:
   <entity anm2path="836.000_vis versa.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" hasFloorAlts="true" id="836" name="#VIS_VERSA" numGridCollisionPoints="12" portrait="228" shadowSize="14" stageHP="0" tags="brimstone_soul" variant="0">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
+    <devolve id="39.0.0" weight="1" />
   </entity>
   <entity anm2path="837.000_henry.anm2" baseHP="80" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="22" friction="1" id="837" name="#HENRY" numGridCollisionPoints="12" portrait="239" shadowSize="0" stageHP="0" variant="0">
     <gibs amount="6" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
+    <devolve id="837.0.0" weight="1" />
   </entity>
   <entity anm2path="838.000_level 2 willo.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="8" collisionRadius="13" friction="1" id="838" name="#LEVEL_2_WILLO" numGridCollisionPoints="8" portrait="362" shadowSize="14" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Fly" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="808.0.0" weight="1" />
   </entity>
   <entity anm2path="839.000_strifer.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="839" name="#STRIFER" numGridCollisionPoints="12" portrait="223" shadowSize="15" stageHP="0" variant="0">
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
@@ -4105,14 +4417,17 @@ Changes from vanilla:
   <entity anm2path="840.000_pon.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="840" name="#PON" numGridCollisionPoints="12" portrait="232" shadowSize="25" stageHP="0" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="1" large="0" />
+    <devolve id="32.0.0" weight="1" />
   </entity>
   <entity anm2path="841.000_revenant.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" hasFloorAlts="true" id="841" name="#REVENANT" numGridCollisionPoints="12" portrait="237" shadowSize="14" stageHP="3" variant="0">
     <bestiary anim="WalkDown" overlay="HeadWalkDown" transform="0,0,1" />
     <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="841.001_quad revenant.anm2" baseHP="35" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" hasFloorAlts="true" id="841" name="#QUAD_REVENANT" numGridCollisionPoints="12" portrait="327" shadowSize="14" stageHP="4" variant="1">
     <bestiary anim="WalkDown" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="841.0.0" weight="1" />
   </entity>
   <entity anm2path="842.000_nightwatch.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" gridCollision="floor" id="842" name="#NIGHTWATCH" numGridCollisionPoints="12" portrait="264" shadowSize="20" shutdoors="false" stageHP="5" tags="ghost" variant="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -4130,22 +4445,27 @@ Changes from vanilla:
     <preload-snd id="319" />
     <preload-snd id="184" />
     <preload-snd id="186" />
+    <devolve id="4.4.0" weight="1" />
   </entity>
   <entity anm2path="850.000_level 2 gaper.anm2" baseHP="40" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="16" friction="1" id="850" name="#LEVEL_2_GAPER" numGridCollisionPoints="12" portrait="363" shadowSize="20" shieldStrength="5" stageHP="0" variant="0">
     <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
     <gibs amount="13" blood="1" bone="1" colorblood="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="10.1.0" weight="1" />
   </entity>
   <entity anm2path="850.001_level 2 horf.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="16" friction="1" id="850" name="#LEVEL_2_HORF" numGridCollisionPoints="12" portrait="364" shadowSize="20" shieldStrength="2.5" stageHP="0" variant="1">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="13" blood="1" bone="1" colorblood="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="12.0.0" weight="1" />
   </entity>
   <entity anm2path="850.002_level 2 gusher.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="850" name="#LEVEL_2_GUSHER" numGridCollisionPoints="12" portrait="365" shadowSize="15" shieldStrength="2.5" stageHP="0" variant="2">
     <bestiary anim="Blood" overlay="WalkHori" transform="0,0,1" />
     <gibs amount="13" blood="1" bone="1" colorblood="1" eye="1" gut="1" large="0" worm="1" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="851.000_twitchy.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="851" name="#TWITCHY" numGridCollisionPoints="12" portrait="272" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="Jump" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="29.1.0" weight="1" />
   </entity>
   <entity anm2path="852.000_spikeball.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="852" name="#SPIKEBALL" numGridCollisionPoints="12" portrait="285" shadowSize="25" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
@@ -4154,28 +4474,34 @@ Changes from vanilla:
   <entity anm2path="853.000_small maggot.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="ground" id="853" name="#SMALL_MAGGOT" numGridCollisionPoints="8" portrait="271" shadowSize="10" stageHP="0" variant="0">
     <bestiary anim="MoveHori" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.63.1" weight="1" />
   </entity>
   <entity anm2path="854.000_adult leech.anm2" baseHP="90" boss="0" champion="1" collisionDamage="2" collisionMass="100" collisionRadius="24" friction="1" gridCollision="walls" id="854" name="#ADULT_LEECH" numGridCollisionPoints="12" portrait="283" shadowSize="30" stageHP="0" variant="0">
     <bestiary anim="MoveHori" transform="0,0,1" />
     <gibs amount="20" blood="1" bone="0" eye="0" gut="0" large="1" />
+    <devolve id="55.0.0" weight="1" />
   </entity>
   <entity anm2path="855.000_level 2 charger.anm2" baseHP="40" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="16" friction="1" id="855" name="#LEVEL_2_CHARGER" numGridCollisionPoints="12" portrait="366" shadowSize="20" shieldStrength="2.5" stageHP="0" variant="0">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="224" />
+    <devolve id="23.0.0" weight="1" />
   </entity>
   <entity anm2path="855.001_elleech.anm2" baseHP="60" boss="0" champion="0" collisionDamage="2" collisionMass="10" collisionRadius="16" friction="1" id="855" name="#ELLEECH" numGridCollisionPoints="12" portrait="370" shadowSize="20" shieldStrength="5" stageHP="0" variant="1">
     <bestiary anim="Move Hori" transform="0,-3,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="1" large="0" />
     <preload-snd id="224" />
+    <devolve id="810.0.0" weight="1" />
   </entity>
   <entity anm2path="856.000_gasbag.anm2" baseHP="80" boss="0" champion="1" collisionDamage="1" collisionMass="50" collisionRadius="40" friction="1" id="856" name="#GASBAG" numGridCollisionPoints="12" portrait="273" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Attack" transform="0,0,1" />
     <gibs amount="18" blood="1" bone="0" colorblood="1" eye="0" gut="1" large="1" />
+    <devolve id="25.5.0" weight="1" />
   </entity>
   <entity anm2path="857.000_cohort.anm2" baseHP="125" boss="0" champion="1" collisionDamage="2" collisionMass="50" collisionRadius="40" friction="1" id="857" name="#COHORT" numGridCollisionPoints="12" portrait="277" shadowSize="50" stageHP="0" variant="0">
     <bestiary anim="Attack2" transform="0,0,1" />
     <gibs amount="20" blood="1" bone="0" eye="0" gut="0" large="1" />
+    <devolve id="24.0.0" weight="1" />
   </entity>
   <entity anm2path="858.000_vessel.anm2" baseHP="60" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="858" name="#VESSEL" numGridCollisionPoints="12" portrait="274" shadowSize="15" stageHP="0" variant="0">
     <gibs amount="21" blood="1" bone="0" colorblood="1" eye="0" gut="1" large="1" worm="1" />
@@ -4183,36 +4509,45 @@ Changes from vanilla:
   <entity anm2path="859.000_floating host.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="40" collisionRadius="13" friction="1" gridCollision="walls" id="859" name="#FLOAST" numGridCollisionPoints="12" portrait="275" shadowSize="20" stageHP="0" variant="0">
     <bestiary anim="Shoot" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <devolve id="815.0.0" weight="1" />
   </entity>
   <entity anm2path="860.000_unborn.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="860" name="#UNBORN" numGridCollisionPoints="8" portrait="280" shadowSize="15" stageHP="0" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" small="1" />
+    <devolve id="77.0.0" weight="1" />
   </entity>
   <entity anm2path="861.000_pustule.anm2" baseHP="19" boss="0" champion="1" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="861" name="#PUSTULE" numGridCollisionPoints="12" portrait="279" shadowSize="0" stageHP="0" variant="0">
     <bestiary anim="Idle4" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" colorblood="1" eye="0" gut="0" large="0" />
+    <devolve id="853.10.3" weight="1" />
   </entity>
   <entity anm2path="862.000_cyst.anm2" baseHP="25" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="862" name="#CYST" numGridCollisionPoints="12" portrait="282" shadowSize="21" stageHP="0" variant="0">
     <bestiary anim="Roll" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="0" colorblood="1" eye="0" gut="1" large="0" />
+    <devolve id="40.0.0" weight="1" />
   </entity>
   <entity anm2path="863.000_morningstar.anm2" baseHP="60" boss="0" champion="1" collisionDamage="2" collisionMass="24" collisionRadius="28" friction="1" gridCollision="walls" id="863" name="#MORNINGSTAR" numGridCollisionPoints="12" portrait="355" shadowSize="28" stageHP="0" variant="0">
     <bestiary anim="Move" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="863.000_morningstar.anm2" baseHP="60" boss="0" champion="1" collisionDamage="2" collisionMass="24" collisionRadius="28" friction="1" gridCollision="walls" id="863" name="#MORNINGSTAR" numGridCollisionPoints="12" portrait="355" shadowSize="28" stageHP="0" variant="0" subtype="1">
     <gibs amount="4" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="863.000_morningstar 2.anm2" baseHP="60" boss="0" champion="1" collisionDamage="2" collisionMass="24" collisionRadius="28" friction="1" gridCollision="walls" id="863" name="#MORNINGSTAR" numGridCollisionPoints="12" portrait="355" shadowSize="28" stageHP="0" variant="0" subtype="2">
     <gibs amount="4" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="26.1.0" weight="1" />
   </entity>
   <entity anm2path="864.000_mockulus.anm2" baseHP="40" boss="0" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="13" friction="1" gridCollision="walls" id="864" name="#MOCKULUS" numGridCollisionPoints="12" portrait="354" shadowSize="14" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="4" blood="1" bone="0" eye="1" gut="0" large="0" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="865.000_evis.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="865" name="#EVIS" numGridCollisionPoints="12" portrait="286" shadowSize="14" stageHP="0" variant="0">
     <bestiary anim="WalkHori" transform="0,0,1" />
     <gibs amount="8" blood="1" bone="1" colorblood="1" eye="0" gut="1" large="0" />
+    <devolve id="39.1.0" weight="1" />
   </entity>
   <entity anm2path="865.010_evis guts.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="15" friction="1" id="865" name="Evis Guts" numGridCollisionPoints="1" shadowSize="5" shutdoors="false" stageHP="0" tags="noreroll" variant="10">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -4234,54 +4569,65 @@ Changes from vanilla:
   <entity anm2path="868.000_army fly.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="14" friction="1" gridCollision="walls" id="868" name="#ARMY_FLY" numGridCollisionPoints="4" portrait="289" shadowSize="11" stageHP="0" tags="fly" variant="0">
     <bestiary anim="Idle" anm2path="868.000_army fly (bestiary).anm2" transform="0,8,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="222.0.0" weight="1" />
   </entity>
   <entity anm2path="869.000_migraine.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="869" name="#MIGRAINE" numGridCollisionPoints="12" portrait="290" shadowSize="16" stageHP="0" tags="spider explosive_soul" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="250.0.0" weight="1" />
   </entity>
   <entity anm2path="870.000_floater.anm2" baseHP="3" boss="0" champion="0" collisionDamage="1" collisionMass="6" collisionRadius="9" friction="1" gridCollision="nopits" id="870" name="#DRIP" numGridCollisionPoints="12" portrait="291" shadowSize="12" stageHP="1" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="60" />
+    <devolve id="217.0.0" weight="1" />
   </entity>
   <entity anm2path="871.000_water buoy.anm2" baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" gridCollision="nopits" id="871" name="#SPLURT" numGridCollisionPoints="12" portrait="292" shadowSize="21" stageHP="6" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="57" />
+    <devolve id="220.0.0" weight="1" />
   </entity>
   <entity anm2path="872.000_residuum.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="872" name="#CLOGGY" numGridCollisionPoints="12" portrait="293" reroll="true" shadowSize="28" stageHP="2" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="1" eye="0" gut="0" large="0" poop="1" />
+    <devolve id="15.0.0" weight="1" />
   </entity>
   <entity anm2path="873.000_fly trap.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="873" name="#FLY_TRAP" numGridCollisionPoints="12" portrait="294" reroll="true" shadowSize="16" stageHP="6" variant="0">
     <bestiary anim="Walk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="165" />
+    <devolve id="281.0.0" weight="1" />
   </entity>
   <entity anm2path="874.000_gas dwarf.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="874" name="#GAS_DWARF" numGridCollisionPoints="12" portrait="295" reroll="true" shadowSize="13" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="143" />
+    <devolve id="16.1.0" weight="1" />
   </entity>
   <entity anm2path="216.003_Big Corn.anm2" baseHP="6" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="9" friction="1" id="217" name="#BIG_CORN" numGridCollisionPoints="12" portrait="297" reroll="true" shadowSize="12" stageHP="2" variant="3">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     <preload-snd id="60" />
+    <devolve id="870.0.0" weight="1" />
   </entity>
   <entity anm2path="875.000_poot mine.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="13" collisionRadius="13" friction="1" id="875" name="#POOT_MINE" numGridCollisionPoints="12" portrait="298" reroll="true" shadowSize="13" stageHP="2" tags="explosive_soul" variant="0">
     <bestiary anim="Idle_ref" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="37" />
+    <devolve id="812.0.0" weight="1" />
   </entity>
   <entity anm2path="876.000_dump.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="876" name="#DUMP" numGridCollisionPoints="12" portrait="299" reroll="true" shadowSize="13" stageHP="1" variant="0">
     <bestiary anim="Walk" overlay="HeadWalk0" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="165" />
+    <devolve id="217.3.0" weight="1" />
   </entity>
   <entity anm2path="876.001_dump head.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="876" name="#DUMP_HEAD" numGridCollisionPoints="12" portrait="300" reroll="true" shadowSize="13" stageHP="1" variant="1">
     <bestiary anim="Walk_ref" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" poop="1" />
     <preload-snd id="165" />
+    <devolve id="870.0.0" weight="1" />
   </entity>
   <entity anm2path="877.000_grudge.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="16" friction="1" hasFloorAlts="true" id="877" name="#GRUDGE" numGridCollisionPoints="12" portrait="302" shadowSize="0" shutdoors="false" tags="noreroll" variant="0">
     <bestiary anim="Wake" transform="0,-12,1" />
@@ -4290,6 +4636,7 @@ Changes from vanilla:
   <entity anm2path="878.000_butt_slicker.anm2" baseHP="16" boss="0" champion="1" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="878" name="#BUTT_SLICKER" numGridCollisionPoints="12" portrait="304" shadowSize="24" stageHP="3" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
     <gibs amount="5" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="89.0.0" weight="1" />
   </entity>
   <entity anm2path="879.000_bloaty.anm2" baseHP="26" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="879" name="#BLOATY" numGridCollisionPoints="12" portrait="306" reroll="true" shadowSize="16" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
@@ -4297,42 +4644,51 @@ Changes from vanilla:
     <preload-snd id="167" />
     <preload-snd id="12" />
     <preload-snd id="11" />
+    <devolve id="208.0.0" weight="1" />
   </entity>
   <entity anm2path="880.000_flesh maiden.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="50" collisionRadius="13" friction="1" gridCollision="walls" id="880" name="#FLESH_MAIDEN" numGridCollisionPoints="12" portrait="307" reroll="true" shadowSize="16" stageHP="4" variant="0">
     <bestiary anim="Bestiary" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="90.0.0" weight="1" />
   </entity>
   <entity anm2path="881.000_needle.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="14" friction="1" gridCollision="walls" id="881" name="#NEEDLE" numGridCollisionPoints="12" portrait="310" reroll="true" shadowSize="14" stageHP="2" variant="0">
     <bestiary anim="Bestiary" transform="0,-10,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
+    <devolve id="244.0.0" weight="1" />
   </entity>
   <entity anm2path="881.001_pasty.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="14" friction="1" gridCollision="walls" id="881" name="#PASTY" numGridCollisionPoints="12" portrait="311" reroll="true" shadowSize="14" stageHP="2" variant="1">
     <bestiary anim="Bestiary" transform="0,-10,1" />
     <gibs amount="6" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
+    <devolve id="881.0.0" weight="1" />
   </entity>
   <entity anm2path="882.000_dust.anm2" baseHP="22" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="882" name="#DUST" numGridCollisionPoints="12" portrait="317" shadowSize="13" stageHP="0" tags="ghost" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
     <gibs amount="4" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" />
+    <devolve id="219.0.0" weight="1" />
   </entity>
   <entity anm2path="883.000_baby begotten.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="883" name="#BABY_BEGOTTEN" numGridCollisionPoints="8" portrait="316" reroll="true" shadowSize="16" stageHP="3" variant="0">
     <bestiary anim="IdleDown" transform="0,3,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" sound_baby="1" />
+    <devolve id="259.0.0" weight="1" />
   </entity>
   <entity anm2path="884.000_swarm spider.anm2" baseHP="4.5" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="884" name="#SWARM_SPIDER" numGridCollisionPoints="12" portrait="318" reroll="true" shadowSize="11" stageHP="0.2" tags="spider" variant="0">
     <bestiary anim="Hop" transform="0,0,1" />
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="999.21.0" weight="1" />
   </entity>
   <entity anm2path="885.000_cultist.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="885" name="#CULTIST" numGridCollisionPoints="12" portrait="328" reroll="true" shadowSize="11" stageHP="3" tags="homing_soul" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="13" />
     <preload-snd id="265" />
+    <devolve id="068.10.99" weight="1" />
   </entity>
   <entity anm2path="885.001_blood cultist.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="885" name="#BLOOD_CULTIST" numGridCollisionPoints="12" portrait="329" reroll="true" shadowSize="11" stageHP="3" variant="1">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="13" />
     <preload-snd id="265" />
+    <devolve id="068.11.99" weight="1" />
   </entity>
   <entity anm2path="885.010_bone trap.anm2" baseHP="8" boss="0" champion="0" collisionDamage="0" collisionMass="10" collisionRadius="16" friction="1" gridCollision="walls" id="885" name="Bone Trap" numGridCollisionPoints="12" shadowSize="0" shutdoors="false" stageHP="0" variant="10">
     <gibs amount="5" blood="0" bone="1" eye="0" gut="0" large="0" />
@@ -4342,29 +4698,34 @@ Changes from vanilla:
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="167" />
     <preload-snd id="116" />
+    <devolve id="208.1.0" weight="1" />
   </entity>
   <entity anm2path="886.001_fetal demon.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="886" name="#FETAL_DEMON" numGridCollisionPoints="12" portrait="320" shadowSize="14" stageHP="3" variant="1">
     <bestiary anim="Walk01" transform="0,0,1" />
     <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="25" />
     <preload-snd id="318" />
+    <devolve id="38.0.0" weight="1" />
   </entity>
   <entity anm2path="887.000_dusty death head.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="none" id="887" name="#DUSTY_DEATHS_HEAD" numGridCollisionPoints="12" portrait="322" shadowSize="17" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Idle" transform="0,0,1" />
     <gibs amount="8" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
     <preload-snd id="316" />
+    <devolve id="212.0.0" weight="1" />
   </entity>
   <entity anm2path="888.000_Shady.anm2" baseHP="80" boss="0" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="888" name="#SHADY" numGridCollisionPoints="12" portrait="338" shadowSize="16" shieldStrength="12" stageHP="0" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0" />
     <preload-snd id="167" />
     <preload-snd id="116" />
+    <devolve id="209.0.0" weight="1" />
   </entity>
   <entity anm2path="889.000_clickety clack.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="889" name="#CLICKETY_CLACK" numGridCollisionPoints="12" portrait="339" reroll="true" shadowSize="14" stageHP="3" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
     <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
     <preload id="9" variant="1" />
     <preload-snd id="249" />
+    <devolve id="24.0.0" weight="1" />
   </entity>
   <entity anm2path="890.000_maze roamer 1.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="890" name="#MAZE_ROAMER" numGridCollisionPoints="12" portrait="340" reroll="true" shadowSize="14" stageHP="3" variant="0">
     <bestiary anim="WalkDown" transform="0,0,1" />
@@ -4372,24 +4733,29 @@ Changes from vanilla:
     <preload id="9" variant="1" />
     <preload-snd id="116" />
     <preload-snd id="249" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="890.000_maze roamer 2.anm2" baseHP="12" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="890" name="#MAZE_ROAMER" numGridCollisionPoints="12" portrait="340" reroll="true" shadowSize="14" stageHP="3" subtype="1" variant="0">
     <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1" />
     <preload id="9" variant="1" />
     <preload-snd id="116" />
     <preload-snd id="249" />
+    <devolve id="227.0.0" weight="1" />
   </entity>
   <entity anm2path="891.000_goat.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="891" name="#GOAT" numGridCollisionPoints="12" portrait="341" reroll="true" shadowSize="14" stageHP="3" variant="0">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="0" eye="1" gut="1" large="0" />
+    <devolve id="11.0.0" weight="1" />
   </entity>
   <entity anm2path="891.001_black goat.anm2" baseHP="24" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="891" name="#BLACK_GOAT" numGridCollisionPoints="12" portrait="342" reroll="true" shadowSize="14" stageHP="5" tags="brimstone_soul" variant="1">
     <bestiary anim="WalkVert" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="0" eye="1" gut="1" large="1" />
+    <devolve id="891.0.0" weight="1" />
   </entity>
   <entity anm2path="892.000_poofer.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="13" friction="1" id="892" name="#POOFER" numGridCollisionPoints="12" portrait="343" reroll="true" shadowSize="14" stageHP="0" tags="explosive_soul" variant="0">
     <bestiary anim="Idle0" transform="0,0,1" />
     <gibs amount="10" blood="1" bone="0" eye="0" gut="1" large="1" />
+    <devolve id="286.0.0" weight="1" />
   </entity>
   <entity anm2path="893.000_ball and chain.anm2" baseHP="100" boss="0" champion="0" collisionDamage="2" collisionMass="100" collisionRadius="15" friction="1" id="893" name="#BALL_AND_CHAIN" numGridCollisionPoints="12" portrait="344" shadowSize="20" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
     <bestiary anim="Idle4" transform="0,-10,1" />
@@ -4945,6 +5311,7 @@ Changes from vanilla:
   </entity>
   <entity anm2path="005.041_Bomb.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Fissure Spawner" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="192">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    <devolve id="0.0.0" weight="1" />
   </entity>
   <entity anm2path="1000.193_Anima Chain.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Anima Chain" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="193">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

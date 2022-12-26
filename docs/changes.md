@@ -107,6 +107,13 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 <!--
 
+Don't flip:
+
+- Mines (because of issues with Bomb Grimaces; they only spit bombs underneath)
+- Ashpit (because of issues with Bomb Grimaces; they only spit bombs underneath)
+- Mausoleum (because we don't flip Gehenna and we want the Mausoleum & Gehenna to be consistent)
+- Gehenna (because of flipping issues with Ball and Chains leading to unavoidable damage)
+
 Post-flip actions:
 
 1) Fix flipped Utero room 975. (The flipped Wall Huggers should always rotate around the center.)
@@ -121,13 +128,16 @@ Post-flip actions:
    - Dark Room - #20012, #30012
 
 5) Un-flip some Mega Maw rooms:
-   - The Chest - #20039, #30039, #20059, #30059, #20121, #30121
+   - The Chest - #20039, #30039, #20059, #30059
    - Dark Room - #20011, #30011
 
-6) Don't flip:
-   - Mines
-   - Ashpit
-   - Gehenna
+6) Ensure no overlapping variants in:
+   - Fool Card Room (Depths/Necropolis/Dank) (10000 to 40000)
+   - Mirror Room (Downpour/Dross) (10000 to 40000)
+   - Knife Piece Room (Downpour/Dross) (10000 to 50000)
+   - Button Room (Mines/Ashpit) (5000 to 40000)
+   - Secret Entrance (Mines/Ashpit) (10000 to 50000)
+   - Mineshaft Room (Mines/Ashpit) (10000 to 60000)
 
 -->
 

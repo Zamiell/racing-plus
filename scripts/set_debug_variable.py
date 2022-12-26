@@ -1,10 +1,8 @@
 import os
 
-from utils import error
+from utils import error, PROJECT_DIRECTORY
 
-SCRIPT_PATH = os.path.realpath(__file__)
-SCRIPT_DIRECTORY = os.path.dirname(SCRIPT_PATH)
-GLOBALS_TS_PATH = os.path.join(SCRIPT_DIRECTORY, "..", "src", "classes", "Globals.ts")
+GLOBALS_TS_PATH = os.path.join(PROJECT_DIRECTORY, "..", "src", "classes", "Globals.ts")
 
 
 def set_debug_variable(enabled: bool):

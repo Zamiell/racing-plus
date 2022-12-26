@@ -170,10 +170,10 @@ While not technically unavoidable, many narrow rooms have near-impossible attack
 - Cathedral: #255 (Uriel) (changed to 1x1)
 - Cathedral: #260 (Gabriel) (changed to 1x1)
 - Sheol: #257, #275, #308 (Mom's Dead Hand) (deleted)
-- Chest: #114 (Headless Horseman Head x2) (changed to 1x1)
-- Chest: #121 (Mega Maw) (changed to 1x1)
-- Chest: #127 (The Fallen) (changed to 1x1)
-- Chest: #135 (Gurdy Jr.) (deleted)
+- Chest: #112 (Headless Horseman Head x2) (changed to 1x1)
+- Chest: #119 (Mega Maw) (changed to 1x1)
+- Chest: #125 (The Fallen) (changed to 1x1)
+- Chest: #133 (Gurdy Jr.) (deleted)
 - Dark Room: #123, #142 (Teratoma) (deleted)
 - Dark Room: #124, #143 (The Fallen) (deleted)
 - Dark Room: #138 (4 Nulls) (deleted)
@@ -275,14 +275,6 @@ In some boss rooms, it is not possible to enter a Devil Room / Angel Room on the
 
 <br>
 
-### Door Fixes
-
-On certain rooms, doors are disabled for no good reason.
-
-- Chest: #39 (double Mega Maw)
-
-<br>
-
 ### Entity Stacking Fixes
 
 On some rooms with a black heart, [Edmund forgot to implement entity stacking](http://bindingofisaac.com/post/90431619124/insert-size-matters-joke-here).
@@ -322,12 +314,9 @@ Due to bug fixes in May 2018, most enemies that spawn near an entrance are no lo
 - Flooded: #953 (Drowned Boom Fly)
 - Womb: #203 (Lump)
 - Womb: #333 (Fistula)
-- Womb: #410 (Sucker)
 - Utero: #3 (Guts)
 - Utero: #333 (Fistula)
-- Utero: #410 (Sucker)
 - Scarred: #333 (Fistula)
-- Scarred: #410 (Sucker)
 - Cathedral: #28 (Holy Leech)
 - Sheol: #28 (Kamikaze Leech)
 - Sheol: #212 (Cage)
@@ -372,11 +361,9 @@ Some rooms in the game only have a few rocks, pits, etc. These types of rooms ro
 - Flooded: #213, #215, #216, #263, #264, #310, #311, #312, #694, #696, #697, #721, #854, #865, #1047, #1104, #1258
 - Mines: #0, #5, #7, #15, #20, #22, #23, #45, #50, #62, #408, #5000, #5030
 - Ashpit: #1, #6, #7, #15, #19, #21, #22, #40, #245, #247, #288, #366, #507, #508, #512, #723, #5000, #5029
-- Depths: #196, #199, #287, #288, #289, #290, #291, #693, #825, #883, #1013, #10000, #10009
-- Catacombs: #196, #199, #287, #288, #289, #290, #291, #670, #811, #856, #898, #906, #920, #10000, #10009
-- Depths: #196, #199, #287, #288, #289, #290, #291, #691, #825, #990, #998, #1136, #10000, #10009
-- Necropolis: #196, #199, #287, #288, #289, #290, #291, #10000, #10009
-- Dank: #196, #199, #287, #288, #289, #290, #291, #990, #10000, #10009
+- Depths: #196, #199, #287, #288, #289, #290, #291, #693, #825, #883, #1013, #1110, #10000, #10009
+- Necropolis: #196, #199, #287, #288, #289, #290, #291, #1131 #10000, #10009
+- Dank: #196, #199, #287, #288, #289, #290, #291, #990, #1375, #10000, #10009
 - Mausoleum: #18, #19, #53, #86, #101, #102, #362, #437, #475
 - Gehenna: #23, #35, #52, #66, #67, #260, #374, #401, #442, #494, #495, #539, #540
 - Womb: #177, #178, #179, #180, #181, #214, #215, #216, #217, #218, #266, #267, #268, #269, #270, #676, #687, #827
@@ -385,7 +372,7 @@ Some rooms in the game only have a few rocks, pits, etc. These types of rooms ro
 - Corpse: #5, #33, #52, #115, #116, #190
 - Cathedral: #26, #71, #221, #256, #257, #259, #261, #262, #473
 - Sheol: #71, #286, #291, #513, #516, #519
-- Chest: #26, #142, #143, #199
+- Chest: #26, #142, #143, #197
 
 <br>
 
@@ -458,7 +445,7 @@ Certain rooms in the game were probably meant to be symmetrical, but one entity 
 - Caves: #26, #53, #118, #416, #541
 - Flooded: #26, #53, #118, #416, #549, #918, #987
 - Sheol: #58
-- Cathedral: #9, #10, #21, #39, #57, #454
+- Cathedral: #9, #10, #21, #57, #454
 - Chest: #193
 - Curse Room: #24
 - Monstro II: #1051
