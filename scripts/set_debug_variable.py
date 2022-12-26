@@ -2,7 +2,7 @@ import os
 
 from utils import error, PROJECT_DIRECTORY
 
-GLOBALS_TS_PATH = os.path.join(PROJECT_DIRECTORY, "..", "src", "classes", "Globals.ts")
+GLOBALS_TS_PATH = os.path.join(PROJECT_DIRECTORY, "src", "classes", "Globals.ts")
 
 
 def set_debug_variable(enabled: bool):
