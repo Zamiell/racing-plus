@@ -4,7 +4,6 @@ import {
   CollectibleType,
   FamiliarVariant,
   ItemType,
-  LevelStage,
   PillEffect,
   PlayerForm,
   UseFlag,
@@ -17,6 +16,7 @@ import {
   getCardName,
   getCollectibleName,
   getEffectiveStage,
+  getEnglishLevelName,
   getFamiliars,
   getPillEffectName,
   getRandomArrayElement,
@@ -36,8 +36,10 @@ import { goingToRaceRoom } from "../race/raceRoom";
 
 const FRAMES_BEFORE_FADE = 50;
 
-// Listed in alphabetical order to match the wiki page (32 in total).
-// https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
+/**
+ * Listed in alphabetical order to match the wiki page (32 in total).
+ * https://bindingofisaacrebirth.fandom.com/wiki/Dead_Sea_Scrolls?dlcfilter=3
+ */
 const DEAD_SEA_SCROLL_EFFECTS = [
   CollectibleType.ANARCHIST_COOKBOOK,
   CollectibleType.BEST_FRIEND,
@@ -229,13 +231,18 @@ function shouldShowLevelText() {
 function showLevelText() {
   const effectiveStage = getEffectiveStage();
 
+  // Going to the race room is a special case; we don't want to display the level text here.
+  if (goingToRaceRoom()) {
+    return;
+  }
+
   // Show what the new floor is. (The game will not show this naturally after doing a "stage"
   // console command.)
-  if (VanillaStreakText !== undefined && effectiveStage !== 1) {
-    g.l.ShowName(false);
-  } else if (!goingToRaceRoom()) {
-    const text = getLevelStreakText();
+  if (VanillaStreakText === undefined) {
+    const text = getEnglishLevelName();
     setStreakText(text);
+  } else if (effectiveStage !== 1) {
+    g.l.ShowName(false);
   }
 }
 
@@ -293,17 +300,6 @@ export function postTransformation(
 // -------
 // Exports
 // -------
-
-export function getLevelStreakText(): string {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-
-  if (stage === LevelStage.BLUE_WOMB) {
-    return "Blue Womb";
-  }
-
-  return g.l.GetName(stage, stageType);
-}
 
 export function setStreakText(text: string): void {
   v.run.text = text;

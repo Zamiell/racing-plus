@@ -1,6 +1,9 @@
 import { ButtonAction } from "isaac-typescript-definitions";
-import { isActionPressedOnAnyInput } from "isaacscript-common";
-import { getLevelStreakText, setStreakTextTab } from "./streakText";
+import {
+  getEnglishLevelName,
+  isActionPressedOnAnyInput,
+} from "isaacscript-common";
+import { setStreakTextTab } from "./streakText";
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
@@ -15,6 +18,6 @@ export function postUpdate(): void {
     return;
   }
 
-  const levelText = getLevelStreakText();
+  const levelText = getEnglishLevelName();
   setStreakTextTab(levelText);
 }

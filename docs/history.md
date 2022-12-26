@@ -5,8 +5,10 @@
 
 ### _v0.89.1_ - December 26th, 2022
 
-- The rooms from from vanilla patch v1.7.9 have been added.
+- Happy New Years!
+- All of the rooms from from vanilla patch v1.7.9 have been added.
 - Mausoleum is no longer flipped (so that it is consistent with Gehenna).
+- Level streak text will now always display in English. (Thanks Gamonymous)
 
 ### _v0.89.0_ - December 18th, 2022
 
@@ -15,7 +17,7 @@
 - Many Angel Rooms with pits or other obstacles have been deleted or modified.
 - The Devil Room with Grunges has been deleted.
 - Several Devil Rooms have been revamped, with the average number of pedestals increasing from 2.07 to 2.31.
-- The rooms from from vanilla patch v1.7.9 have been added (from Basement to Depths).
+- The rooms from from vanilla patch v1.7.9 have been added (but only from Basement to Depths).
 - Fixed the bug where duplicated bosses from Vanishing Twin could sometimes overlap with the player. (Thanks Gamonymous)
 - Fixed the bug where exiting secret shops would take you to the starting room of the floor under certain conditions. (Thanks sisuka)
 
