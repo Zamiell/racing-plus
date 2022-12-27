@@ -1,4 +1,5 @@
 import {
+  Challenge,
   CollectibleType,
   EntityCollisionClass,
   PlayerType,
@@ -22,6 +23,9 @@ import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
 import v, { speedrunGetCharacterNum } from "./v";
+
+const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM: ReadonlySet<Challenge> =
+  new Set([ChallengeCustom.SEASON_2, ChallengeCustom.SEASON_4]);
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
@@ -180,7 +184,9 @@ export function inSpeedrun(): boolean {
 export function onSpeedrunWithDarkRoomGoal(): boolean {
   const challenge = Isaac.GetChallenge();
 
-  if (challenge === ChallengeCustom.SEASON_2) {
+  if (
+    CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM.has(challenge)
+  ) {
     const characterNum = speedrunGetCharacterNum();
     return isEven(characterNum);
   }

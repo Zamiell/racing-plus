@@ -70,6 +70,9 @@ function getReplacementAction() {
   if (challenge === ChallengeCustom.SEASON_3) {
     return getSeason3BigChestReplacementAction();
   }
+  if (challenge === ChallengeCustom.SEASON_4) {
+    return speedrunAlternate();
+  }
 
   if (g.raceVars.finished) {
     return BigChestReplacementAction.VICTORY_LAP;

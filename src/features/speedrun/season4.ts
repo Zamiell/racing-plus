@@ -1,16 +1,89 @@
 import {
   ButtonAction,
   CollectibleType,
+  EntityType,
+  PickupVariant,
   PlayerType,
+  SoundEffect,
 } from "isaac-typescript-definitions";
-import { isActionPressedOnAnyInput } from "isaacscript-common";
+import {
+  arrayRemoveInPlace,
+  countEntities,
+  DefaultMap,
+  dequeueItem,
+  emptyArray,
+  game,
+  getEffectiveStage,
+  getPlayerIndex,
+  inStartingRoom,
+  isActionPressedOnAnyInput,
+  isPickingUpItemCollectible,
+  newCollectibleSprite,
+  PickingUpItem,
+  PickingUpItemCollectible,
+  PlayerIndex,
+  sfxManager,
+} from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { mod } from "../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
+import { isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
   PlayerType.JACOB, // 19
 ] as const;
+
+const STORED_ITEM_GRID_INDEXES = [
+  // Row 1 left
+  16, 17, 18, 19, 20,
+
+  // Row 1 right
+  24, 25, 26, 27, 28,
+
+  // Row 2 left
+  46, 47, 48, 49, 50,
+
+  // Row 2 right
+  54, 55, 56, 57, 58,
+
+  // Row 3 left
+  76, 77, 78, 79, 80,
+
+  // Row 3 right
+  84, 85, 86, 87, 88,
+
+  // Row 4 left
+  106, 107, 108, 109, 110,
+
+  // Row 4 right
+  114, 115, 116, 117, 118,
+] as const;
+
+const STORAGE_ICON_OFFSET = Vector(0, -40);
+
+const v = {
+  persistent: {
+    storedCollectibles: [] as CollectibleType[],
+    storedCollectiblesOnThisRun: [] as CollectibleType[],
+  },
+
+  run: {
+    playersCurrentlyStoring: new Set<PlayerIndex>(),
+  },
+};
+
+const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
+  newCollectibleSprite(CollectibleType.SCHOOLBAG),
+);
+
+export function season4Debug(): void {
+  v.persistent.storedCollectibles.push(CollectibleType.ALMOND_MILK);
+}
+
+export function init(): void {
+  mod.saveDataManager("season4", v);
+}
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
@@ -21,16 +94,10 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 
   checkItemStorageInput(player);
+  checkStorageAnimationComplete(player);
 }
 
 function checkItemStorageInput(player: EntityPlayer) {
-  if (
-    player.QueuedItem.Item === undefined ||
-    !player.QueuedItem.Item.IsCollectible()
-  ) {
-    return;
-  }
-
   if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
     return;
   }
@@ -38,8 +105,41 @@ function checkItemStorageInput(player: EntityPlayer) {
   storeCollectible(player);
 }
 
-function storeCollectible(_player: EntityPlayer) {
-  // TODO
+function storeCollectible(player: EntityPlayer) {
+  if (
+    player.QueuedItem.Item === undefined ||
+    !player.QueuedItem.Item.IsCollectible()
+  ) {
+    return;
+  }
+
+  const collectibleType = player.QueuedItem.Item.ID;
+  dequeueItem(player);
+
+  v.persistent.storedCollectibles.push(collectibleType);
+  v.persistent.storedCollectiblesOnThisRun.push(collectibleType);
+
+  const playerIndex = getPlayerIndex(player);
+  v.run.playersCurrentlyStoring.add(playerIndex);
+
+  player.AnimateHappy();
+  sfxManager.Stop(SoundEffect.THUMBS_UP);
+  sfxManager.Play(SoundEffect.TOOTH_AND_NAIL_TICK);
+
+  const itemPool = game.GetItemPool();
+  itemPool.RemoveCollectible(collectibleType);
+}
+
+function checkStorageAnimationComplete(player: EntityPlayer) {
+  const playerIndex = getPlayerIndex(player);
+  if (!v.run.playersCurrentlyStoring.has(playerIndex)) {
+    return;
+  }
+
+  if (player.IsExtraAnimationFinished()) {
+    v.run.playersCurrentlyStoring.delete(playerIndex);
+    playersStoringSprites.delete(playerIndex);
+  }
 }
 
 // ModCallback.POST_GAME_STARTED (15)
@@ -50,7 +150,19 @@ export function postGameStarted(): void {
     return;
   }
 
+  // Reset data structures for this season.
+  if (isOnFirstCharacter()) {
+    emptyArray(v.persistent.storedCollectibles);
+  } else {
+    for (const collectibleType of v.persistent.storedCollectiblesOnThisRun) {
+      arrayRemoveInPlace(v.persistent.storedCollectibles, collectibleType);
+    }
+  }
+  emptyArray(v.persistent.storedCollectiblesOnThisRun);
+  playersStoringSprites.clear();
+
   giveStartingItems();
+  spawnStoredCollectibles();
 }
 
 function giveStartingItems() {
@@ -59,6 +171,12 @@ function giveStartingItems() {
 
   // Give extra items to some characters.
   switch (character) {
+    // 13
+    case PlayerType.LILITH: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+      break;
+    }
+
     // 18
     case PlayerType.BETHANY: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
@@ -76,4 +194,102 @@ function giveStartingItems() {
       break;
     }
   }
+}
+
+function spawnStoredCollectibles() {
+  for (let i = 0; i < v.persistent.storedCollectibles.length; i++) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const collectibleType = v.persistent.storedCollectibles[i]!;
+    const gridIndex =
+      STORED_ITEM_GRID_INDEXES[i % STORED_ITEM_GRID_INDEXES.length];
+    if (gridIndex === undefined) {
+      error("Failed to find a grid index for a stored collectible.");
+    }
+
+    mod.spawnCollectible(collectibleType, gridIndex);
+  }
+}
+
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.D6 (105)
+export function preUseItemD6(player: EntityPlayer): boolean | undefined {
+  // This feature only affects the starting room of the run.
+  const effectiveStage = getEffectiveStage();
+  if (effectiveStage !== 1 || !inStartingRoom()) {
+    return;
+  }
+
+  // Prevent using the D6 if there are one or more collectibles in the room.
+  const numCheckpoints = countEntities(
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+  );
+  if (numCheckpoints > 0) {
+    player.AnimateSad();
+    return true;
+  }
+
+  return undefined;
+}
+
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.ETERNAL_D6 (609)
+export function preUseItemEternalD6(player: EntityPlayer): boolean | undefined {
+  // Use the same logic as the normal D6.
+  return preUseItemD6(player);
+}
+
+// ModCallback.POST_PLAYER_RENDER (32)
+export function postPlayerRender(player: EntityPlayer): void {
+  const playerIndex = getPlayerIndex(player);
+  if (!v.run.playersCurrentlyStoring.has(playerIndex)) {
+    return;
+  }
+
+  const sprite = playersStoringSprites.getAndSetDefault(playerIndex);
+  const position = Isaac.WorldToRenderPosition(
+    player.Position.add(STORAGE_ICON_OFFSET),
+  );
+  sprite.Render(position);
+}
+
+// ModCallbackCustom.PRE_ITEM_PICKUP
+export function preItemPickup(
+  _player: EntityPlayer,
+  pickingUpItem: PickingUpItem,
+): void {
+  const challenge = Isaac.GetChallenge();
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  if (!isPickingUpItemCollectible(pickingUpItem)) {
+    return;
+  }
+
+  checkPlayerTakingStoredCollectible(pickingUpItem);
+}
+
+function checkPlayerTakingStoredCollectible(
+  pickingUpItemCollectible: PickingUpItemCollectible,
+) {
+  const effectiveStage = getEffectiveStage();
+
+  if (effectiveStage === 1 && inStartingRoom()) {
+    arrayRemoveInPlace(
+      v.persistent.storedCollectibles,
+      pickingUpItemCollectible.subType,
+    );
+  }
+}
+
+// Called from the `ModCallbackCustom.PRE_ITEM_PICKUP` callback.
+export function season4CheckpointTouched(): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  emptyArray(v.persistent.storedCollectiblesOnThisRun);
 }

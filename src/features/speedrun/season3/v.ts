@@ -1,6 +1,5 @@
-import { copyArray } from "isaacscript-common";
 import { mod } from "../../../mod";
-import { Season3Goal, SEASON_3_GOALS } from "./constants";
+import { Season3Goal } from "./constants";
 
 const v = {
   persistent: {
@@ -75,8 +74,4 @@ export function season3HasOnlyDogmaLeft(): boolean {
 
 export function season3DogmaTrapdoorSpawned(): boolean {
   return v.run.season3DogmaTrapdoorSpawned;
-}
-
-export function season3ResetGoals(): void {
-  v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);
 }

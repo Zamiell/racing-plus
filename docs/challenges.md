@@ -216,14 +216,20 @@ Some builds are banned on certain characters:
   - 0 - Isaac
   - 3 - Judas
   - 7 - Azazel
-  - 10 - The Lost
+  - 13 - Lilith
   - 15 - Apollyon
   - 18 - Bethany
   - 19 - Jacob & Esau
+- Lilith starts with Birthright.
 - Bethany starts with Duality.
 - Jacob & Esau start with There's Options & More Options.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 - Jacob & Esau and Bethany will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
+
+### Goal
+
+- The 1st, 3rd, 5th, and 7th runs will go to The Chest.
+- The 2nd, 4th, and 6th runs will go to the Dark Room.
 
 ### Storage
 
@@ -233,6 +239,8 @@ Some builds are banned on certain characters:
 - If you do not take a stored collectible in the starting room, it will continue to be stored for future characters.
 - Stored collectibles are removed from pools when you store them (even though they don't go into your current inventory).
 - Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
+- Stored collectibles cannot be rolled.
+- If you reset or die before touching the trophy, any collectibles that you stored on the run will be lost. Items already stored from previous characters will remain. (This prevents you from storing items from the Basement 1 Treasure Room.)
 
 <br>
 

@@ -3,13 +3,22 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { getRandomArrayElement, newRNG, repeat } from "isaacscript-common";
+import {
+  copyArray,
+  getRandomArrayElement,
+  newRNG,
+  repeat,
+} from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { spawnDroppedChildsHeart } from "../../../optional/characters/samsonDropHeart";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
-import { NUM_DIVERSITY_PASSIVE_COLLECTIBLES } from "../constants";
+import { isOnFirstCharacter } from "../../speedrun";
+import {
+  NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
+  SEASON_3_GOALS,
+} from "../constants";
 import {
   BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
   DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
@@ -19,6 +28,7 @@ import {
 } from "../constantsCollectibles";
 import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
+import v from "../v";
 
 export function season3PostGameStarted(): void {
   const challenge = Isaac.GetChallenge();
@@ -26,6 +36,10 @@ export function season3PostGameStarted(): void {
 
   if (challenge !== ChallengeCustom.SEASON_3) {
     return;
+  }
+
+  if (isOnFirstCharacter()) {
+    v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);
   }
 
   giveStartingItems(player);

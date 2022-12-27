@@ -1,5 +1,6 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import { log, printConsole, setLogFunctionsGlobal } from "isaacscript-common";
+import { season4Debug } from "./features/speedrun/season4";
 import g from "./globals";
 import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
@@ -7,6 +8,7 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
+  season4Debug();
 }
 
 /** Hotkey 1 is bound to F2. */

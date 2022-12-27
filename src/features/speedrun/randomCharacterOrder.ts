@@ -21,7 +21,6 @@ import {
 } from "./constants";
 import { SEASON_2_NUM_BANS } from "./season2/constants";
 import { season2ResetBuilds } from "./season2/v";
-import { season3ResetGoals } from "./season3/v";
 import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4";
 import v, {
   speedrunGetCharacterNum,
@@ -245,11 +244,6 @@ function refreshStartingCharactersAndOtherThings() {
   switch (challenge) {
     case ChallengeCustom.SEASON_2: {
       season2ResetBuilds();
-      break;
-    }
-
-    case ChallengeCustom.SEASON_3: {
-      season3ResetGoals();
       break;
     }
 
