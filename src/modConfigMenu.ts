@@ -386,7 +386,6 @@ function popupGetBackKeyText(): string {
   }
 
   const controllerString = controllerToString(lastBackPressed as Controller);
-
   if (controllerString !== undefined) {
     return controllerString;
   }

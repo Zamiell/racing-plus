@@ -1,5 +1,4 @@
 import {
-  ButtonAction,
   CollectibleType,
   EntityType,
   PickupVariant,
@@ -16,7 +15,6 @@ import {
   getEffectiveStage,
   getPlayerIndex,
   inStartingRoom,
-  isActionPressedOnAnyInput,
   isPickingUpItemCollectible,
   newCollectibleSprite,
   PickingUpItem,
@@ -26,6 +24,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { mod } from "../../mod";
+import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 import { isOnFirstCharacter } from "./speedrun";
 
@@ -79,29 +78,16 @@ const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
 
 export function init(): void {
   mod.saveDataManager("season4", v);
+
+  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+  const keyboardFunc = () =>
+    hotkeys.storage === -1 ? undefined : hotkeys.storage;
+  mod.setConditionalHotkey(keyboardFunc, checkStoreCollectible);
 }
 
-// ModCallback.POST_PEFFECT_UPDATE (4)
-export function postPEffectUpdate(player: EntityPlayer): void {
-  const challenge = Isaac.GetChallenge();
+function checkStoreCollectible() {
+  const player = Isaac.GetPlayer();
 
-  if (challenge !== ChallengeCustom.SEASON_4) {
-    return;
-  }
-
-  checkItemStorageInput(player);
-  checkStorageAnimationComplete(player);
-}
-
-function checkItemStorageInput(player: EntityPlayer) {
-  if (!isActionPressedOnAnyInput(ButtonAction.MAP)) {
-    return;
-  }
-
-  storeCollectible(player);
-}
-
-function storeCollectible(player: EntityPlayer) {
   if (
     player.QueuedItem.Item === undefined ||
     !player.QueuedItem.Item.IsCollectible()
@@ -110,6 +96,11 @@ function storeCollectible(player: EntityPlayer) {
   }
 
   const collectibleType = player.QueuedItem.Item.ID;
+  if (collectibleType === CollectibleType.WE_NEED_TO_GO_DEEPER) {
+    sfxManager.Play(SoundEffect.BOSS_2_INTRO_ERROR_BUZZ);
+    return;
+  }
+
   dequeueItem(player);
 
   v.persistent.storedCollectibles.push(collectibleType);
@@ -124,6 +115,17 @@ function storeCollectible(player: EntityPlayer) {
 
   const itemPool = game.GetItemPool();
   itemPool.RemoveCollectible(collectibleType);
+}
+
+// ModCallback.POST_PEFFECT_UPDATE (4)
+export function postPEffectUpdate(player: EntityPlayer): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  checkStorageAnimationComplete(player);
 }
 
 function checkStorageAnimationComplete(player: EntityPlayer) {

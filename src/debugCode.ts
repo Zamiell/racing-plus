@@ -19,6 +19,7 @@ export function hotkey1Function(): void {
 export function hotkey2Function(): void {
   hotkeys.fastDropAll = Keyboard.Z;
   hotkeys.autofire = Keyboard.F;
+  hotkeys.storage = Keyboard.X;
   hotkeys.roll = Keyboard.G;
 
   printConsole("Test hotkeys set.");

@@ -7,5 +7,6 @@ export class Hotkeys {
   schoolbagSwitch: Keyboard | -1 = -1;
   autofire: Keyboard | -1 = -1;
   console: Keyboard | -1 = -1;
+  storage: Keyboard | -1 = -1;
   roll: Keyboard | -1 = -1;
 }

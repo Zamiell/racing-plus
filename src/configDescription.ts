@@ -159,6 +159,15 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
     ],
   ],
   [
+    "storage",
+    [
+      ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
+      "",
+      "Storage",
+      "Store the current item for later. (This only works in Season 4.)",
+    ],
+  ],
+  [
     "roll",
     [
       ModConfigMenuOptionType.KEY_BIND_KEYBOARD,
