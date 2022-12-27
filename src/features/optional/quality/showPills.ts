@@ -3,14 +3,12 @@ import {
   CollectibleType,
   PillColor,
   PillEffect,
-  PocketItemSlot,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   fonts,
   game,
   getFalsePHDPillEffect,
-  getNormalPillColorFromHorse,
   getNormalPillColors,
   getPHDPillEffect,
   getPillEffectName,
@@ -200,35 +198,28 @@ function drawTextAndSprite() {
 }
 
 // ModCallback.POST_USE_PILL (10)
-export function usePill(player: EntityPlayer, pillEffect: PillEffect): void {
-  checkNewPill(player, pillEffect);
+export function usePill(_player: EntityPlayer, pillEffect: PillEffect): void {
+  checkNewPillIdentified(pillEffect);
 }
 
-function checkNewPill(player: EntityPlayer, pillEffect: PillEffect) {
-  // This callback fires before the pill is consumed, so we can still get the color of the pill.
-  const pillColor = player.GetPill(PocketItemSlot.SLOT_1);
+function checkNewPillIdentified(pillEffect: PillEffect) {
+  const itemPool = game.GetItemPool();
 
-  // A mod may have manually used a pill with a null color.
-  if (pillColor === PillColor.NULL) {
-    return;
-  }
+  // This callback fires after the pill is consumed, so we must iterate through all of the pill
+  // colors to see if any new ones are identified.
+  for (const pillColor of getNormalPillColors()) {
+    if (!itemPool.IsPillIdentified(pillColor)) {
+      continue;
+    }
 
-  // Don't bother recording information about gold pills.
-  if (pillColor === PillColor.GOLD) {
-    return;
-  }
-
-  // Account for Horse Pills (i.e. giant pills).
-  const normalPillColor = getNormalPillColorFromHorse(pillColor);
-
-  // See if we have already used this particular pill color on this run.
-  for (const pill of v.run.pillsIdentified) {
-    if (pill.color === normalPillColor) {
-      return;
+    if (!isPillColorRecordedAlready(pillColor)) {
+      newPill(pillColor, pillEffect);
     }
   }
+}
 
-  newPill(normalPillColor, pillEffect);
+function isPillColorRecordedAlready(pillColor: PillColor) {
+  return v.run.pillsIdentified.some((pill) => pill.color === pillColor);
 }
 
 function newPill(pillColor: PillColor, pillEffect: PillEffect) {
