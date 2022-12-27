@@ -22,6 +22,7 @@ import {
 import { SEASON_2_NUM_BANS } from "./season2/constants";
 import { season2ResetBuilds } from "./season2/v";
 import { season3ResetGoals } from "./season3/v";
+import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4";
 import v, {
   speedrunGetCharacterNum,
   speedrunGetCurrentSelectedCharacter,
@@ -259,18 +260,31 @@ function refreshStartingCharactersAndOtherThings() {
 }
 
 export function getStartingCharacter(): PlayerType {
+  const challenge = Isaac.GetChallenge();
+
   // First, handle the case where we have already selected a starting character.
   const oldStartingCharacter = speedrunGetCurrentSelectedCharacter();
   if (oldStartingCharacter !== undefined) {
     return oldStartingCharacter;
   }
 
-  // Select a new starting character.
+  // Prepare a list of characters that should not be possible for this segment of the speedrun.
   const characterExceptions =
     v.persistent.lastSelectedCharacter === null
       ? []
       : [v.persistent.lastSelectedCharacter];
+  if (challenge === ChallengeCustom.SEASON_4) {
+    const characterNum = speedrunGetCharacterNum();
+    if (characterNum <= 2) {
+      for (const character of STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND) {
+        if (!characterExceptions.includes(character)) {
+          characterExceptions.push(character);
+        }
+      }
+    }
+  }
 
+  // Select a new starting character.
   const startingCharacter = getRandomArrayElementAndRemove(
     v.persistent.remainingCharacters,
     undefined,

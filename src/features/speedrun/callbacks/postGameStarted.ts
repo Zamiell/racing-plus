@@ -14,6 +14,7 @@ import * as randomCharacterOrder from "../randomCharacterOrder";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
+import * as season4 from "../season4";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -73,6 +74,7 @@ export function speedrunPostGameStarted(): void {
   season1.postGameStarted();
   season2PostGameStarted();
   season3PostGameStarted();
+  season4.postGameStarted();
 
   // We give the More Options buff last in case one of the seasons grants a normal More Options.
   giveMoreOptionsBuff();

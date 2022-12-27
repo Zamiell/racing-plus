@@ -2,6 +2,11 @@ import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 
+export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
+  PlayerType.BETHANY, // 18
+  PlayerType.JACOB, // 19
+] as const;
+
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
   const challenge = Isaac.GetChallenge();
