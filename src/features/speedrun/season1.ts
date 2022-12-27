@@ -34,6 +34,7 @@ function giveStartingItems() {
       break;
     }
 
+    // 10
     case PlayerType.LOST: {
       // For some reason, Holy Mantle is not removed from pools while in a custom challenge.
       g.itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);

@@ -19,6 +19,7 @@ import {
   getFirstCharacter,
   inSpeedrun,
   isOnFirstCharacter,
+  isSpeedrunWithRandomCharacterOrder,
 } from "../speedrun";
 import v, { resetFirstCharacterVars, resetPersistentVars } from "../v";
 
@@ -86,13 +87,9 @@ function liveSplitReset() {
 function setCorrectCharacter() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
-  const challenge = Isaac.GetChallenge();
 
   // Character order is explicitly handled in some seasons.
-  if (
-    challenge === ChallengeCustom.SEASON_2 ||
-    challenge === ChallengeCustom.SEASON_3
-  ) {
+  if (isSpeedrunWithRandomCharacterOrder()) {
     return false;
   }
 
@@ -112,8 +109,6 @@ function setCorrectCharacter() {
 }
 
 function goBackToFirstCharacter() {
-  const challenge = Isaac.GetChallenge();
-
   if (v.persistent.performedFastReset) {
     v.persistent.performedFastReset = false;
     return false;
@@ -128,11 +123,9 @@ function goBackToFirstCharacter() {
   v.persistent.characterNum = 1;
   restartOnNextFrame();
 
-  const firstCharacter =
-    challenge === ChallengeCustom.SEASON_2 ||
-    challenge === ChallengeCustom.SEASON_3
-      ? PlayerType.ISAAC
-      : getFirstCharacter();
+  const firstCharacter = isSpeedrunWithRandomCharacterOrder()
+    ? PlayerType.ISAAC
+    : getFirstCharacter();
   setRestartCharacter(firstCharacter);
 
   log("Restarting because we want to start from the first character again.");

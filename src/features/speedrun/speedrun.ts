@@ -173,6 +173,16 @@ export function isOnFirstCharacter(): boolean {
   return v.persistent.characterNum === 1;
 }
 
+export function isSpeedrunWithRandomCharacterOrder(): boolean {
+  const challenge = Isaac.GetChallenge();
+
+  return (
+    challenge === ChallengeCustom.SEASON_2 ||
+    challenge === ChallengeCustom.SEASON_3 ||
+    challenge === ChallengeCustom.SEASON_4
+  );
+}
+
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();
   return CUSTOM_CHALLENGES_SET.has(challenge);

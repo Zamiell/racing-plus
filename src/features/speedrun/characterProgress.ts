@@ -1,3 +1,5 @@
+// The sprite on the left hand side of the screen that shows "1 / 7".
+
 import {
   game,
   getHUDOffsetVector,

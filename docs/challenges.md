@@ -208,34 +208,39 @@ Some builds are banned on certain characters:
 
 <br>
 
-<!--
-
 ## R+7 Season 4 (Storage)
 
 ### Characters
 
 - You must complete the game with the following 7 characters:
   - 0 - Isaac
-  - 6 - Samson
-  - 9 - Eden
-  - 10 - Lost
+  - 3 - Judas
+  - 7 - Azazel
+  - 10 - The Lost
+  - 15 - Apollyon
+  - 18 - Bethany
   - 19 - Jacob & Esau
-  - 24 - Tainted Judas
-  - 32 - Tainted Lilith
+- Bethany starts with Duality.
 - Jacob & Esau start with There's Options & More Options.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
+- Jacob & Esau and Bethany will never be assigned for the first or second character of the challenge, which gives you some time to store items for them.
 
 ### Storage
 
 - When holding an item above your head, you can hold down the map button to activate a "storage" mechanic.
 - When an item is stored, it will not be granted to the player, but will go into storage instead.
 - All stored items will appear during the starting room of next character in the speedrun.
+- If you do not take a previously stored item in the starting room, it will continue to be stored for subsequent runs.
+- Stored items are removed from pools when you store them (even though they don't go into your current inventory).
+- Stored items are removed from pools if they appear in the starting room of the run.
 
 <br>
 
+<!--
+
 ## R+7 Season 5 (Babies)
 
-* You must defeat Blue Baby 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+- You must defeat Blue Baby 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
 
 <br>
 
