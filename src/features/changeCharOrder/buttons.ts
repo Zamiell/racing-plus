@@ -22,7 +22,7 @@ import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import g from "../../globals";
 import { initGlowingCollectibleSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
-import { season2SetBansTime } from "../speedrun/season2/v";
+import { speedrunSetBansTime } from "../speedrun/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 import v, { getSeasonDescription } from "./v";
 
@@ -349,7 +349,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.seasonChosenAbbreviation,
       v.room.buildsChosen as PlayerType[],
     );
-    season2SetBansTime();
+    speedrunSetBansTime();
     game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
     v.room.challengeTarget = ChallengeCustom.SEASON_2;
     v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;

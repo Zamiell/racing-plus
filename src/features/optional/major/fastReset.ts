@@ -7,7 +7,7 @@ import {
 } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
-import { speedrunSetFastReset } from "../../speedrun/exported";
+import { speedrunSetFastReset } from "../../speedrun/v";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 
 const v = {

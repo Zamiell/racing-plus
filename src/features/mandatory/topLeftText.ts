@@ -20,14 +20,14 @@ import { shouldShowRaceID } from "../race/raceStart";
 import { inSeededRace, raceShouldShowEndOfRunText } from "../race/v";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
 import {
-  speedrunGetFinishedFrames,
-  speedrunShouldShowEndOfRunText,
-} from "../speedrun/exported";
-import {
   getAverageTimePerCharacter,
   inSpeedrun,
   isOnFinalCharacter,
 } from "../speedrun/speedrun";
+import {
+  speedrunGetFinishedFrames,
+  speedrunShouldShowEndOfRunText,
+} from "../speedrun/v";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const STARTING_X = 55;

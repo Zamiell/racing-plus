@@ -29,13 +29,13 @@ import g from "../../../../globals";
 import { mod } from "../../../../mod";
 import { spawnTrophy } from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
-import { speedrunGetCharacterNum } from "../../../speedrun/exported";
 import { getSeason3BigChestReplacementAction } from "../../../speedrun/season3/bigChest";
 import {
   isOnFinalCharacter,
   onSpeedrunWithDarkRoomGoal,
   postSpawnCheckpoint,
 } from "../../../speedrun/speedrun";
+import { speedrunGetCharacterNum } from "../../../speedrun/v";
 import * as fastTravel from "./fastTravel";
 
 const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
@@ -139,13 +139,12 @@ enum SpeedrunDirection {
 function speedrunAlternate() {
   // Some seasons alternate between directions, so we need to make sure we only handle the intended
   // direction.
+  const characterNum = speedrunGetCharacterNum();
   const direction = onSpeedrunWithDarkRoomGoal()
     ? SpeedrunDirection.DOWN
     : SpeedrunDirection.UP;
   log(
-    `Season 2 - Big chest situation, character number: ${speedrunGetCharacterNum()}, direction: ${
-      SpeedrunDirection[direction]
-    } (${direction})`,
+    `Season 2 - Big chest situation, character number: ${characterNum}, direction: ${SpeedrunDirection[direction]} (${direction})`,
   );
 
   // The Polaroid / The Negative is optional in seasons that alternate direction.

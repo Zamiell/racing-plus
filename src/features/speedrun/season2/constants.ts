@@ -1,18 +1,8 @@
-import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import { getArrayIndexes } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
-
-export const SEASON_2_CHARACTERS = [
-  PlayerType.CAIN, // 2
-  PlayerType.EVE, // 5
-  PlayerType.DARK_JUDAS, // 12
-  PlayerType.FORGOTTEN, // 16
-  PlayerType.ISAAC_B, // 21
-  PlayerType.SAMSON_B, // 27
-  PlayerType.AZAZEL_B, // 28
-] as const;
 
 export const SEASON_2_STARTING_BUILDS = [
   // -------------------
@@ -183,8 +173,3 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
     const firstCollectible = build[0];
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });
-
-/** How long the randomly-selected character & build combination is "locked-in". */
-const SEASON_2_LOCK_MINUTES = 1.25;
-export const SEASON_2_LOCK_SECONDS = SEASON_2_LOCK_MINUTES * 60;
-export const SEASON_2_LOCK_MILLISECONDS = SEASON_2_LOCK_SECONDS * 1000;

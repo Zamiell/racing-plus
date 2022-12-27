@@ -16,7 +16,7 @@ import {
 import { RaceStatus } from "../../enums/RaceStatus";
 import g from "../../globals";
 import { mod } from "../../mod";
-import { speedrunIsFinished } from "../speedrun/exported";
+import { speedrunIsFinished } from "../speedrun/v";
 
 const v = {
   run: {

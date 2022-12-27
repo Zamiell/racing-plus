@@ -21,8 +21,7 @@ import * as timer from "../../timer";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
-import { speedrunGetCharacterNum } from "./exported";
-import v from "./v";
+import v, { speedrunGetCharacterNum } from "./v";
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
@@ -171,16 +170,6 @@ export function isOnFinalCharacter(): boolean {
 
 export function isOnFirstCharacter(): boolean {
   return v.persistent.characterNum === 1;
-}
-
-export function isSpeedrunWithRandomCharacterOrder(): boolean {
-  const challenge = Isaac.GetChallenge();
-
-  return (
-    challenge === ChallengeCustom.SEASON_2 ||
-    challenge === ChallengeCustom.SEASON_3 ||
-    challenge === ChallengeCustom.SEASON_4
-  );
 }
 
 export function inSpeedrun(): boolean {

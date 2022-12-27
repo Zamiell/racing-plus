@@ -10,6 +10,7 @@ import {
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
+import * as randomCharacterOrder from "../randomCharacterOrder";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
@@ -19,25 +20,28 @@ import {
   getFirstCharacter,
   inSpeedrun,
   isOnFirstCharacter,
-  isSpeedrunWithRandomCharacterOrder,
 } from "../speedrun";
-import v, { resetFirstCharacterVars, resetPersistentVars } from "../v";
+import v, {
+  speedrunHasErrors,
+  speedrunResetFirstCharacterVars,
+  speedrunResetPersistentVars,
+} from "../v";
 
 export function speedrunPostGameStarted(): void {
   if (!inSpeedrun()) {
-    resetPersistentVars();
+    speedrunResetPersistentVars();
     return;
   }
 
   if (v.persistent.resetAllVarsOnNextReset) {
     v.persistent.resetAllVarsOnNextReset = false;
-    resetPersistentVars();
+    speedrunResetPersistentVars();
   }
 
   const challenge = Isaac.GetChallenge();
   if (challenge !== v.persistent.currentlyPlayingChallenge) {
     v.persistent.currentlyPlayingChallenge = challenge;
-    resetPersistentVars();
+    speedrunResetPersistentVars();
   }
 
   liveSplitReset();
@@ -58,8 +62,14 @@ export function speedrunPostGameStarted(): void {
     return;
   }
 
-  resetFirstCharacterVars();
+  speedrunResetFirstCharacterVars();
   characterProgress.postGameStarted();
+  randomCharacterOrder.postGameStarted();
+
+  if (speedrunHasErrors()) {
+    return;
+  }
+
   season1.postGameStarted();
   season2PostGameStarted();
   season3PostGameStarted();
@@ -89,7 +99,7 @@ function setCorrectCharacter() {
   const character = player.GetPlayerType();
 
   // Character order is explicitly handled in some seasons.
-  if (isSpeedrunWithRandomCharacterOrder()) {
+  if (randomCharacterOrder.isSpeedrunWithRandomCharacterOrder()) {
     return false;
   }
 
@@ -123,9 +133,10 @@ function goBackToFirstCharacter() {
   v.persistent.characterNum = 1;
   restartOnNextFrame();
 
-  const firstCharacter = isSpeedrunWithRandomCharacterOrder()
-    ? PlayerType.ISAAC
-    : getFirstCharacter();
+  const firstCharacter =
+    randomCharacterOrder.isSpeedrunWithRandomCharacterOrder()
+      ? PlayerType.ISAAC
+      : getFirstCharacter();
   setRestartCharacter(firstCharacter);
 
   log("Restarting because we want to start from the first character again.");

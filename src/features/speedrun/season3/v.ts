@@ -1,30 +1,13 @@
-import { PlayerType } from "isaac-typescript-definitions";
+import { copyArray } from "isaacscript-common";
 import { mod } from "../../../mod";
-import { speedrunGetCharacterNum } from "../exported";
-import { Season3Goal } from "./constants";
+import { Season3Goal, SEASON_3_GOALS } from "./constants";
 
 const v = {
   persistent: {
-    selectedCharacters: [] as PlayerType[],
-    remainingCharacters: [] as PlayerType[],
-    /** Never start the same character twice in a row. */
-    lastSelectedCharacter: null as PlayerType | null,
-
     remainingGoals: [] as Season3Goal[],
-
-    /**
-     * The time that the randomly selected character was assigned. This is set to 0 when the
-     * Basement 2 boss is defeated.
-     */
-    timeAssigned: null as int | null,
   },
 
   run: {
-    errors: {
-      gameRecentlyOpened: false,
-      consoleRecentlyUsed: false,
-    },
-
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
 
@@ -36,11 +19,6 @@ export default v;
 
 export function init(): void {
   mod.saveDataManager("season3", v);
-}
-
-export function season3GetCurrentCharacter(): PlayerType | undefined {
-  const characterNum = speedrunGetCharacterNum();
-  return v.persistent.selectedCharacters[characterNum - 1];
 }
 
 export function season3HasBlueBabyGoal(): boolean {
@@ -97,4 +75,8 @@ export function season3HasOnlyDogmaLeft(): boolean {
 
 export function season3DogmaTrapdoorSpawned(): boolean {
   return v.run.season3DogmaTrapdoorSpawned;
+}
+
+export function season3ResetGoals(): void {
+  v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);
 }

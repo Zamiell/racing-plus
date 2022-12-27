@@ -6,11 +6,12 @@ import {
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
+import * as randomCharacterOrder from "../randomCharacterOrder";
 import { season2PostRender } from "../season2/callbacks/postRender";
 import { season3PostRender } from "../season3/callbacks/postRender";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
-import v from "../v";
+import v, { speedrunHasErrors } from "../v";
 
 const FADEOUT_SPEED = 0.0275;
 
@@ -24,6 +25,11 @@ export function speedrunPostRender(): void {
 
   speedrunTimer.postRender();
   characterProgress.postRender();
+  randomCharacterOrder.postRender();
+
+  if (speedrunHasErrors()) {
+    return;
+  }
 
   season2PostRender();
   season3PostRender();

@@ -1,35 +1,14 @@
-import { PlayerType } from "isaac-typescript-definitions";
+import { copyArray } from "isaacscript-common";
 import { mod } from "../../../mod";
-import { speedrunGetCharacterNum } from "../exported";
+import { speedrunGetCharacterNum } from "../v";
+import { SEASON_2_STARTING_BUILD_INDEXES } from "./constants";
 
 const v = {
   persistent: {
-    selectedCharacters: [] as PlayerType[],
-    remainingCharacters: [] as PlayerType[],
-    /** Never start the same character twice in a row. */
-    lastSelectedCharacter: null as PlayerType | null,
-
     selectedBuildIndexes: [] as int[],
     remainingBuildIndexes: [] as int[],
     /** Never start the same build twice in a row. */
     lastSelectedBuildIndex: null as int | null,
-
-    /** The time that the bans were set in the "Change Char Order" custom challenge. */
-    timeBansSet: null as int | null,
-
-    /**
-     * The time that the randomly selected character & build were assigned. This is set to 0 when
-     * the Basement 2 boss is defeated.
-     */
-    timeAssigned: null as int | null,
-  },
-
-  run: {
-    errors: {
-      gameRecentlyOpened: false,
-      consoleRecentlyUsed: false,
-      bansRecentlySet: false,
-    },
   },
 };
 export default v;
@@ -43,11 +22,9 @@ export function season2GetCurrentBuildIndex(): int | undefined {
   return v.persistent.selectedBuildIndexes[characterNum - 1];
 }
 
-export function season2GetCurrentCharacter(): PlayerType | undefined {
-  const characterNum = speedrunGetCharacterNum();
-  return v.persistent.selectedCharacters[characterNum - 1];
-}
-
-export function season2SetBansTime(): void {
-  v.persistent.timeBansSet = Isaac.GetTime();
+export function season2ResetBuilds(): void {
+  v.persistent.selectedBuildIndexes = [];
+  v.persistent.remainingBuildIndexes = copyArray(
+    SEASON_2_STARTING_BUILD_INDEXES,
+  );
 }

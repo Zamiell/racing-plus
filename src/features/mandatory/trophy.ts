@@ -9,8 +9,8 @@ import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
 import g from "../../globals";
 import { mod } from "../../mod";
 import { raceFinish } from "../race/raceFinish";
-import { speedrunIsFinished } from "../speedrun/exported";
 import * as speedrun from "../speedrun/speedrun";
+import { speedrunIsFinished } from "../speedrun/v";
 import { isSeededDeathActive } from "./seededDeath/v";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big

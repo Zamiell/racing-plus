@@ -5,7 +5,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerIs,
-  copyArray,
   getRandomArrayElementAndRemove,
   removeCollectibleCostume,
   smeltTrinket,
@@ -17,54 +16,27 @@ import {
   addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../../../utilsGlobals";
-import {
-  restartOnNextFrame,
-  setRestartCharacter,
-} from "../../../utils/restartOnNextFrame";
-import { getTimeConsoleUsed } from "../../../utils/timeConsoleUsed";
-import { getTimeGameOpened } from "../../../utils/timeGameOpened";
-import { speedrunGetCharacterNum, speedrunSetFastReset } from "../../exported";
+import { getStartingCharacter } from "../../randomCharacterOrder";
 import { getCharacterOrderSafe } from "../../speedrun";
-import { resetPersistentVars } from "../../v";
 import {
-  SEASON_2_CHARACTERS,
   SEASON_2_FORGOTTEN_EXCEPTIONS,
-  SEASON_2_LOCK_MILLISECONDS,
   SEASON_2_STARTING_BUILDS,
-  SEASON_2_STARTING_BUILD_INDEXES,
 } from "../constants";
 import { initSeason2StartingRoomSprites } from "../startingRoomSprites";
-import v, {
-  season2GetCurrentBuildIndex,
-  season2GetCurrentCharacter,
-} from "../v";
+import v, { season2GetCurrentBuildIndex } from "../v";
 
 const NUM_REVELATION_SOUL_HEARTS = 4;
 
 export function season2PostGameStarted(): void {
   const challenge = Isaac.GetChallenge();
   const player = Isaac.GetPlayer();
-  const character = player.GetPlayerType();
 
   if (challenge !== ChallengeCustom.SEASON_2) {
     return;
   }
 
-  if (checkErrors()) {
-    return;
-  }
-
-  checkFirstCharacterRefresh();
-
   const startingCharacter = getStartingCharacter();
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
-
-  if (character !== startingCharacter) {
-    speedrunSetFastReset();
-    restartOnNextFrame();
-    setRestartCharacter(startingCharacter);
-    return;
-  }
 
   const startingBuild = SEASON_2_STARTING_BUILDS[startingBuildIndex];
   if (startingBuild === undefined) {
@@ -77,40 +49,6 @@ export function season2PostGameStarted(): void {
   initSeason2StartingRoomSprites(startingBuild);
 }
 
-function checkErrors(): boolean {
-  const time = Isaac.GetTime();
-
-  // Game recently opened.
-  const timeGameOpened = getTimeGameOpened();
-  const gameUnlockTime = timeGameOpened + SEASON_2_LOCK_MILLISECONDS;
-  v.run.errors.gameRecentlyOpened = time <= gameUnlockTime;
-
-  // Console recently used.
-  const timeConsoleUsed = getTimeConsoleUsed();
-  if (timeConsoleUsed === null) {
-    v.run.errors.consoleRecentlyUsed = false;
-  } else {
-    const consoleUnlockTime = timeConsoleUsed + SEASON_2_LOCK_MILLISECONDS;
-    v.run.errors.consoleRecentlyUsed = time <= consoleUnlockTime;
-
-    // Force them back on the first character if they used the console.
-    if (v.run.errors.consoleRecentlyUsed) {
-      resetPersistentVars();
-    }
-  }
-
-  // Bans recently assigned.
-  if (v.persistent.timeBansSet === null) {
-    v.run.errors.bansRecentlySet = false;
-  } else {
-    const bansUnlockTime =
-      v.persistent.timeBansSet + SEASON_2_LOCK_MILLISECONDS;
-    v.run.errors.bansRecentlySet = time <= bansUnlockTime;
-  }
-
-  return v.run.errors.gameRecentlyOpened || v.run.errors.bansRecentlySet;
-}
-
 function removeItemsFromPools() {
   // These bans are from seeded races.
   g.itemPool.RemoveCollectible(CollectibleType.SOL);
@@ -121,73 +59,8 @@ function removeItemsFromPools() {
   }
 }
 
-function checkFirstCharacterRefresh() {
-  const characterNum = speedrunGetCharacterNum();
-  if (characterNum !== 1) {
-    return;
-  }
-
-  const time = Isaac.GetTime();
-  if (v.persistent.timeAssigned === null || v.persistent.timeAssigned > time) {
-    // It is possible for the time assignment to be in the future, since it is based on the time
-    // since the operating system started.
-    v.persistent.timeAssigned = time;
-  }
-
-  const buildLockedUntilTime =
-    v.persistent.timeAssigned + SEASON_2_LOCK_MILLISECONDS;
-  if (
-    time <= buildLockedUntilTime &&
-    v.persistent.selectedCharacters.length > 0 &&
-    v.persistent.selectedBuildIndexes.length > 0
-  ) {
-    return;
-  }
-
-  refreshStartingCharactersAndBuilds();
-}
-
-function refreshStartingCharactersAndBuilds() {
-  const time = Isaac.GetTime();
-
-  v.persistent.selectedCharacters = [];
-  v.persistent.remainingCharacters = copyArray(SEASON_2_CHARACTERS);
-
-  v.persistent.selectedBuildIndexes = [];
-  v.persistent.remainingBuildIndexes = copyArray(
-    SEASON_2_STARTING_BUILD_INDEXES,
-  );
-
-  // We will assign the character and the build in the next function.
-  v.persistent.timeAssigned = time;
-}
-
-function getStartingCharacter() {
-  // First, handle the case where there is no old starting character at all.
-  const oldStartingCharacter = season2GetCurrentCharacter();
-  if (oldStartingCharacter !== undefined) {
-    return oldStartingCharacter;
-  }
-
-  const characterExceptions =
-    v.persistent.lastSelectedCharacter === null
-      ? []
-      : [v.persistent.lastSelectedCharacter];
-
-  const startingCharacter = getRandomArrayElementAndRemove(
-    v.persistent.remainingCharacters,
-    undefined,
-    characterExceptions,
-  );
-
-  v.persistent.selectedCharacters.push(startingCharacter);
-  v.persistent.lastSelectedCharacter = startingCharacter;
-
-  return startingCharacter;
-}
-
 function getStartingBuildIndex(character: PlayerType) {
-  // First, handle the case where there is no old starting build at all.
+  // First, handle the case where we have already selected a build for this character.
   const oldStartingBuildIndex = season2GetCurrentBuildIndex();
   if (oldStartingBuildIndex !== undefined) {
     return oldStartingBuildIndex;
