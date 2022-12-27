@@ -61,6 +61,13 @@ const STORED_ITEM_GRID_INDEXES = [
 
 const STORAGE_ICON_OFFSET = Vector(0, -40);
 
+const BANNED_STORAGE_ACTIVE_COLLECTIBLES: ReadonlySet<CollectibleType> =
+  new Set([
+    CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
+    CollectibleType.DIPLOPIA, // 347
+    CollectibleType.MEGA_BLAST, // 441
+  ]);
+
 const v = {
   persistent: {
     storedCollectibles: [] as CollectibleType[],
@@ -96,7 +103,7 @@ function checkStoreCollectible() {
   }
 
   const collectibleType = player.QueuedItem.Item.ID;
-  if (collectibleType === CollectibleType.WE_NEED_TO_GO_DEEPER) {
+  if (BANNED_STORAGE_ACTIVE_COLLECTIBLES.has(collectibleType)) {
     sfxManager.Play(SoundEffect.BOSS_2_INTRO_ERROR_BUZZ);
     return;
   }
@@ -169,6 +176,12 @@ function giveStartingItems() {
 
   // Give extra items to some characters.
   switch (character) {
+    // 0
+    case PlayerType.ISAAC: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
+      break;
+    }
+
     // 13
     case PlayerType.LILITH: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);

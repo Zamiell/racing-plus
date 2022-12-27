@@ -241,7 +241,10 @@ Some builds are banned on certain characters:
 - Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
 - Stored collectibles cannot be rolled.
 - If you reset or die before touching the trophy, any collectibles that you stored on the run will be lost. Items already stored from previous characters will remain. (This prevents you from storing items from the Basement 1 Treasure Room.)
-- We Need to Go Deeper cannot be stored.
+- The following active items cannot be stored (since they would be too powerful):
+  - 84 - We Need to Go Deeper
+  - 347 - Diplopia
+  - 441 - Mega Blast
 
 <br>
 
