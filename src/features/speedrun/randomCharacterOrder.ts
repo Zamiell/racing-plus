@@ -64,7 +64,7 @@ const STARTING_CHARACTERS = {
     PlayerType.ISAAC, // 0
     PlayerType.JUDAS, // 3
     PlayerType.AZAZEL, // 7
-    PlayerType.LOST, // 10
+    PlayerType.LILITH, // 13
     PlayerType.APOLLYON, // 15
     PlayerType.BETHANY, // 18
     PlayerType.JACOB, // 19

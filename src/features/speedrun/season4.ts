@@ -66,6 +66,7 @@ const BANNED_STORAGE_ACTIVE_COLLECTIBLES: ReadonlySet<CollectibleType> =
     CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
     CollectibleType.DIPLOPIA, // 347
     CollectibleType.MEGA_BLAST, // 441
+    CollectibleType.CROOKED_PENNY, // 485
   ]);
 
 const v = {
@@ -243,6 +244,13 @@ export function preUseItemD6(player: EntityPlayer): boolean | undefined {
   }
 
   return undefined;
+}
+
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.MOVING_BOX (523)
+export function preUseItemMovingBox(player: EntityPlayer): boolean | undefined {
+  // Use the same logic as the normal D6.
+  return preUseItemD6(player);
 }
 
 // ModCallback.PRE_USE_ITEM (23)

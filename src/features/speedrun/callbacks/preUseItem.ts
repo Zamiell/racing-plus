@@ -23,6 +23,27 @@ export function d6(player: EntityPlayer): boolean | undefined {
   return undefined;
 }
 
+// CollectibleType.MOVING_BOX (523)
+export function movingBox(player: EntityPlayer): boolean | undefined {
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  let value: boolean | undefined;
+
+  value = preserveCheckpoint.preUseItemMovingBox(player);
+  if (value !== undefined) {
+    return value;
+  }
+
+  value = season4.preUseItemMovingBox(player);
+  if (value !== undefined) {
+    return value;
+  }
+
+  return undefined;
+}
+
 // CollectibleType.ETERNAL_D6 (609)
 export function eternalD6(player: EntityPlayer): boolean | undefined {
   if (!inSpeedrun()) {

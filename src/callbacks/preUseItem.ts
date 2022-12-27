@@ -38,6 +38,12 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
+    movingBox,
+    CollectibleType.MOVING_BOX, // 523
+  );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
     eternalD6,
     CollectibleType.ETERNAL_D6, // 609
   );
@@ -100,6 +106,18 @@ function d4(
   setCollectiblesRerolledForItemTracker();
 
   return undefined;
+}
+
+// CollectibleType.MOVING_BOX (523)
+function movingBox(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.movingBox(player);
 }
 
 // CollectibleType.ETERNAL_D6 (609)

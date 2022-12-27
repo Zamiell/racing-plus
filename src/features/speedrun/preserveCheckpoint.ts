@@ -34,6 +34,13 @@ export function preUseItemD6(player: EntityPlayer): boolean | undefined {
 }
 
 // ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.MOVING_BOX (523)
+export function preUseItemMovingBox(player: EntityPlayer): boolean | undefined {
+  // Use the same logic as the normal D6.
+  return preUseItemD6(player);
+}
+
+// ModCallback.PRE_USE_ITEM (23)
 // CollectibleType.ETERNAL_D6 (609)
 export function preUseItemEternalD6(player: EntityPlayer): boolean | undefined {
   // Use the same logic as the normal D6.

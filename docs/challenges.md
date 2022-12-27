@@ -245,6 +245,7 @@ Some builds are banned on certain characters:
   - 84 - We Need to Go Deeper
   - 347 - Diplopia
   - 441 - Mega Blast
+  - 485 - Crooked Penny
 
 <br>
 
