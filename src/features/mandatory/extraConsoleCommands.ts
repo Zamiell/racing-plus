@@ -71,6 +71,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("s1", s1);
   mod.addConsoleCommand("s2", s2);
   mod.addConsoleCommand("s3", s3);
+  mod.addConsoleCommand("s4", s4);
   mod.addConsoleCommand("seededRace", seededRace);
   mod.addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
   mod.addConsoleCommand("seededRaceBuild", seededRaceBuild);
@@ -226,6 +227,10 @@ function s2() {
 
 function s3() {
   goToChallenge(ChallengeCustom.SEASON_3);
+}
+
+function s4() {
+  goToChallenge(ChallengeCustom.SEASON_4);
 }
 
 function goToChallenge(challenge: Challenge) {

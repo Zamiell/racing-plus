@@ -4,6 +4,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import { getRandomArrayElement, newRNG, repeat } from "isaacscript-common";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import g from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { spawnDroppedChildsHeart } from "../../../optional/characters/samsonDropHeart";
@@ -20,7 +21,12 @@ import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
 
 export function season3PostGameStarted(): void {
+  const challenge = Isaac.GetChallenge();
   const player = Isaac.GetPlayer();
+
+  if (challenge !== ChallengeCustom.SEASON_3) {
+    return;
+  }
 
   giveStartingItems(player);
   removeItemsFromPools();

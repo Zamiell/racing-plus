@@ -227,12 +227,12 @@ Some builds are banned on certain characters:
 
 ### Storage
 
-- When holding an item above your head, you can hold down the map button to activate a "storage" mechanic.
-- When an item is stored, it will not be granted to the player, but will go into storage instead.
-- All stored items will appear during the starting room of next character in the speedrun.
-- If you do not take a previously stored item in the starting room, it will continue to be stored for subsequent runs.
-- Stored items are removed from pools when you store them (even though they don't go into your current inventory).
-- Stored items are removed from pools if they appear in the starting room of the run.
+- When holding a collectible above your head, you can hold down the map button to activate a "storage" mechanic.
+- When a collectible is stored, it will not be granted to the player, but will go into storage instead.
+- All stored collectibles will appear in the starting room of the next character in the speedrun.
+- If you do not take a stored collectible in the starting room, it will continue to be stored for future characters.
+- Stored collectibles are removed from pools when you store them (even though they don't go into your current inventory).
+- Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
 
 <br>
 

@@ -9,6 +9,7 @@ import * as roll from "../features/optional/other/roll";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import { racePostPEffectUpdate } from "../features/race/callbacks/postPEffectUpdate";
+import { speedrunPostPEffectUpdate } from "../features/speedrun/callbacks/postPEffectUpdate";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -21,8 +22,9 @@ function main(player: EntityPlayer) {
   }
 
   // Major
-  startWithD6.postPEffectUpdate(player);
   racePostPEffectUpdate(player);
+  speedrunPostPEffectUpdate(player);
+  startWithD6.postPEffectUpdate(player);
   fastTravelPostPEffectUpdate(player);
 
   // Gameplay
