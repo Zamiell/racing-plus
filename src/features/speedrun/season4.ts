@@ -268,10 +268,9 @@ export function postPlayerRender(player: EntityPlayer): void {
   }
 
   const sprite = playersStoringSprites.getAndSetDefault(playerIndex);
-  const position = Isaac.WorldToRenderPosition(
-    player.Position.add(STORAGE_ICON_OFFSET),
-  );
-  sprite.Render(position);
+  const playerScreenPosition = Isaac.WorldToScreen(player.Position);
+  const abovePlayerPosition = playerScreenPosition.add(STORAGE_ICON_OFFSET);
+  sprite.Render(abovePlayerPosition);
 }
 
 // ModCallbackCustom.PRE_ITEM_PICKUP
