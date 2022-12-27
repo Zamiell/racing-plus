@@ -77,10 +77,6 @@ const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
   newCollectibleSprite(CollectibleType.SCHOOLBAG),
 );
 
-export function season4Debug(): void {
-  v.persistent.storedCollectibles.push(CollectibleType.ALMOND_MILK);
-}
-
 export function init(): void {
   mod.saveDataManager("season4", v);
 }
@@ -200,8 +196,10 @@ function spawnStoredCollectibles() {
   for (let i = 0; i < v.persistent.storedCollectibles.length; i++) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const collectibleType = v.persistent.storedCollectibles[i]!;
-    const gridIndex =
-      STORED_ITEM_GRID_INDEXES[i % STORED_ITEM_GRID_INDEXES.length];
+    // If there are so many stored collectibles that they take up every available position in the
+    // room, then start spawning them on an overlap starting at the top left again.
+    const safeIndex = i % STORED_ITEM_GRID_INDEXES.length;
+    const gridIndex = STORED_ITEM_GRID_INDEXES[safeIndex];
     if (gridIndex === undefined) {
       error("Failed to find a grid index for a stored collectible.");
     }
