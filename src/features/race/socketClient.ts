@@ -9,9 +9,11 @@ let connectionAttemptFrame: int | undefined;
 let clientTCP: SocketClient | undefined;
 let clientUDP: SocketClient | undefined;
 
+/**
+ * Racing+ installs a sandbox that prevents mods from doing unsafe things. If the sandbox is in
+ * place, then we should be clear to request a socket later on.
+ */
 export function init(): void {
-  // Racing+ installs a sandbox that prevents mods from doing unsafe things. If the sandbox is in
-  // place, then we should be clear to request a socket later on.
   const [ok, requiredSandbox] = pcall(require, "sandbox");
   if (!ok) {
     log("Did not detect the sandbox environment.");

@@ -1,9 +1,4 @@
-import {
-  ISCFeature,
-  ModCallbackCustom,
-  setTracebackFunctionsGlobal,
-  upgradeMod,
-} from "isaacscript-common";
+import { ISCFeature, ModCallbackCustom, upgradeMod } from "isaacscript-common";
 import { MOD_NAME } from "./constants";
 
 const ISC_FEATURES_FOR_THIS_MOD = [
@@ -61,7 +56,6 @@ const CUSTOM_CALLBACKS_USED = [
   ModCallbackCustom.PRE_ITEM_PICKUP,
 ] as const;
 
-setTracebackFunctionsGlobal();
 const modVanilla = RegisterMod(MOD_NAME, 1);
 export const mod = upgradeMod(
   modVanilla,
