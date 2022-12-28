@@ -258,6 +258,37 @@ function spawnStoredCollectibles() {
   });
 }
 
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.DIPLOPIA (347)
+export function preUseItemDiplopia(player: EntityPlayer): boolean | undefined {
+  return preUseItemDuplicateCollectibles(player);
+}
+
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.CROOKED_PENNY (485)
+export function preUseItemCrookedPenny(
+  player: EntityPlayer,
+): boolean | undefined {
+  return preUseItemDuplicateCollectibles(player);
+}
+
+function preUseItemDuplicateCollectibles(
+  player: EntityPlayer,
+): boolean | undefined {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  if (inRoomWithSeason4StoredItems()) {
+    player.AnimateSad();
+    return true;
+  }
+
+  return undefined;
+}
+
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
   const challenge = Isaac.GetChallenge();

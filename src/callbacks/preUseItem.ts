@@ -38,8 +38,20 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
+    diplopia,
+    CollectibleType.DIPLOPIA, // 347
+  );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
     voidCollectible,
     CollectibleType.VOID, // 477
+  );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
+    crookedPenny,
+    CollectibleType.CROOKED_PENNY, // 485
   );
 
   mod.AddCallback(
@@ -114,6 +126,18 @@ function d4(
   return undefined;
 }
 
+// CollectibleType.DIPLOPIA (347)
+function diplopia(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.diplopia(player);
+}
+
 // CollectibleType.VOID (477)
 function voidCollectible(
   _collectibleType: CollectibleType,
@@ -124,6 +148,18 @@ function voidCollectible(
   _customVarData: int,
 ): boolean | undefined {
   return speedrunPreUseItem.voidCollectible(player);
+}
+
+// CollectibleType.CROOKED_PENNY (485)
+function crookedPenny(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.crookedPenny(player);
 }
 
 // CollectibleType.MOVING_BOX (523)
