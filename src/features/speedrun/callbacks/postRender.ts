@@ -8,11 +8,20 @@ import * as characterProgress from "../characterProgress";
 import * as randomCharacterOrder from "../randomCharacterOrder";
 import { season2PostRender } from "../season2/callbacks/postRender";
 import { season3PostRender } from "../season3/callbacks/postRender";
+import * as season4 from "../season4";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
 import v, { speedrunHasErrors } from "../v";
 
 const FADEOUT_SPEED = 0.0275;
+
+/**
+ * After using the `Game.Fadeout` method, we will be taken to the main menu. We can interrupt this
+ * by restarting the game on the frame before the fade out ends. 69 is the latest frame that works,
+ * determined via trial and error. Doing this is necessary because we do not want the player to be
+ * able to reset to skip having to watch the fade out animation.
+ */
+const DELAY_FRAMES_AFTER_FADEOUT = 69;
 
 export function speedrunPostRender(): void {
   if (!inSpeedrun()) {
@@ -32,6 +41,7 @@ export function speedrunPostRender(): void {
 
   season2PostRender();
   season3PostRender();
+  season4.postRender();
 }
 
 function checkBeginFadeOutAfterCheckpoint() {
@@ -44,12 +54,7 @@ function checkBeginFadeOutAfterCheckpoint() {
   // We grabbed the checkpoint, so fade out the screen before we reset.
   v.run.fadeFrame = null;
   game.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
-
-  // If we do nothing, the game will now take us to the main menu. We can interrupt going to the
-  // menu by restarting the game on the frame before it happens. 69 is the latest frame that works,
-  // determined via trial and error. Doing this is necessary because we do not want the player to be
-  // able to reset to skip having to watch the fade out animation.
-  v.run.resetFrame = renderFrameCount + 69;
+  v.run.resetFrame = renderFrameCount + DELAY_FRAMES_AFTER_FADEOUT;
 }
 
 function checkManualResetAtEndOfFadeout() {

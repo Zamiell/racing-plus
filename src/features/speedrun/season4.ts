@@ -26,6 +26,7 @@ import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
+import { drawErrorText } from "../mandatory/errors";
 import { isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
@@ -125,6 +126,31 @@ function checkStoreCollectible() {
   itemPool.RemoveCollectible(collectibleType);
 }
 
+// ModCallback.POST_RENDER (2)
+export function postRender(): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  drawErrors();
+}
+
+function drawErrors() {
+  const hud = game.GetHUD();
+
+  if (!hud.IsVisible()) {
+    return;
+  }
+
+  if (hotkeys.storage === -1) {
+    drawErrorText(
+      "You must set a hotkey to store items using Mod Config Menu.",
+    );
+  }
+}
+
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   const challenge = Isaac.GetChallenge();
@@ -209,9 +235,7 @@ function giveStartingItems() {
 }
 
 function spawnStoredCollectibles() {
-  for (let i = 0; i < v.persistent.storedCollectibles.length; i++) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const collectibleType = v.persistent.storedCollectibles[i]!;
+  v.persistent.storedCollectibles.forEach((collectibleType, i) => {
     // If there are so many stored collectibles that they take up every available position in the
     // room, then start spawning them on an overlap starting at the top left again.
     const safeIndex = i % STORED_ITEM_GRID_INDEXES.length;
@@ -221,7 +245,7 @@ function spawnStoredCollectibles() {
     }
 
     mod.spawnCollectible(collectibleType, gridIndex);
-  }
+  });
 }
 
 // ModCallback.PRE_USE_ITEM (23)
