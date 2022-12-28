@@ -38,6 +38,12 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
+    voidCollectible,
+    CollectibleType.VOID, // 477
+  );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
     movingBox,
     CollectibleType.MOVING_BOX, // 523
   );
@@ -108,6 +114,18 @@ function d4(
   return undefined;
 }
 
+// CollectibleType.VOID (477)
+function voidCollectible(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.voidCollectible(player);
+}
+
 // CollectibleType.MOVING_BOX (523)
 function movingBox(
   _collectibleType: CollectibleType,
@@ -121,6 +139,7 @@ function movingBox(
 }
 
 // CollectibleType.ETERNAL_D6 (609)
+// (The normal D6 callback does not fire for the Eternal D6.)
 function eternalD6(
   _collectibleType: CollectibleType,
   _rng: RNG,

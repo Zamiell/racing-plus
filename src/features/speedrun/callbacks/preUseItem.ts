@@ -1,5 +1,4 @@
-import * as preserveCheckpoint from "../preserveCheckpoint";
-import * as season4 from "../season4";
+import * as preserveCollectible from "../preserveCollectible";
 import { inSpeedrun } from "../speedrun";
 
 // CollectibleType.D6 (105)
@@ -8,19 +7,16 @@ export function d6(player: EntityPlayer): boolean | undefined {
     return undefined;
   }
 
-  let value: boolean | undefined;
+  return preserveCollectible.preUseItemD6(player);
+}
 
-  value = preserveCheckpoint.preUseItemD6(player);
-  if (value !== undefined) {
-    return value;
+// CollectibleType.VOID (477)
+export function voidCollectible(player: EntityPlayer): boolean | undefined {
+  if (!inSpeedrun()) {
+    return undefined;
   }
 
-  value = season4.preUseItemD6(player);
-  if (value !== undefined) {
-    return value;
-  }
-
-  return undefined;
+  return preserveCollectible.preUseItemVoid(player);
 }
 
 // CollectibleType.MOVING_BOX (523)
@@ -29,19 +25,7 @@ export function movingBox(player: EntityPlayer): boolean | undefined {
     return undefined;
   }
 
-  let value: boolean | undefined;
-
-  value = preserveCheckpoint.preUseItemMovingBox(player);
-  if (value !== undefined) {
-    return value;
-  }
-
-  value = season4.preUseItemMovingBox(player);
-  if (value !== undefined) {
-    return value;
-  }
-
-  return undefined;
+  return preserveCollectible.preUseItemMovingBox(player);
 }
 
 // CollectibleType.ETERNAL_D6 (609)
@@ -50,17 +34,5 @@ export function eternalD6(player: EntityPlayer): boolean | undefined {
     return undefined;
   }
 
-  let value: boolean | undefined;
-
-  value = preserveCheckpoint.preUseItemEternalD6(player);
-  if (value !== undefined) {
-    return value;
-  }
-
-  value = season4.preUseItemEternalD6(player);
-  if (value !== undefined) {
-    return value;
-  }
-
-  return undefined;
+  return preserveCollectible.preUseItemEternalD6(player);
 }

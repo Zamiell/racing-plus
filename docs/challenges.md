@@ -237,15 +237,11 @@ Some builds are banned on certain characters:
 - When a collectible is stored, it will not be granted to the player, but will go into storage instead.
 - All stored collectibles will appear in the starting room of the next character in the speedrun.
 - If you do not take a stored collectible in the starting room, it will continue to be stored for future characters.
-- Stored collectibles are removed from pools when you store them (even though they don't go into your current inventory).
+- You can only store an active collectible on the initial pickup. (In other words, if you have already touched the active collectible on the current run, then you cannot store it.)
+- Stored collectibles are removed from pools when you store them (even though they do not go into your inventory).
 - Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
-- Stored collectibles cannot be rolled.
+- Stored collectibles cannot be rolled, voided, or duplicated (with e.g. Diplopia or Crooked Penny).
 - If you reset or die before touching the trophy, any collectibles that you stored on the run will be lost. Items already stored from previous characters will remain. (This prevents you from storing items from the Basement 1 Treasure Room.)
-- The following active items cannot be stored (since they would be too powerful):
-  - 84 - We Need to Go Deeper
-  - 347 - Diplopia
-  - 441 - Mega Blast
-  - 485 - Crooked Penny
 
 <br>
 
@@ -254,6 +250,12 @@ Some builds are banned on certain characters:
 ## R+7 Season 5 (Babies)
 
 - You must defeat Blue Baby 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+
+<br>
+
+## R+7 Season 6 (Rolling)
+
+- Rolling
 
 <br>
 

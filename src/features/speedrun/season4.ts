@@ -1,13 +1,10 @@
 import {
   CollectibleType,
-  EntityType,
-  PickupVariant,
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
   arrayRemoveInPlace,
-  countEntities,
   DefaultMap,
   dequeueItem,
   emptyArray,
@@ -18,11 +15,11 @@ import {
   isPickingUpItemCollectible,
   newCollectibleSprite,
   PickingUpItem,
-  PickingUpItemCollectible,
   PlayerIndex,
   sfxManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
@@ -62,14 +59,6 @@ const STORED_ITEM_GRID_INDEXES = [
 
 const STORAGE_ICON_OFFSET = Vector(0, -40);
 
-const BANNED_STORAGE_ACTIVE_COLLECTIBLES: ReadonlySet<CollectibleType> =
-  new Set([
-    CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
-    CollectibleType.DIPLOPIA, // 347
-    CollectibleType.MEGA_BLAST, // 441
-    CollectibleType.CROOKED_PENNY, // 485
-  ]);
-
 const v = {
   persistent: {
     storedCollectibles: [] as CollectibleType[],
@@ -99,14 +88,16 @@ function checkStoreCollectible() {
 
   if (
     player.QueuedItem.Item === undefined ||
-    !player.QueuedItem.Item.IsCollectible()
+    !player.QueuedItem.Item.IsCollectible() ||
+    // Only allow active collectibles that have not already been touched in order to prevent abuse
+    // (e.g. shovel on all 7 characters).
+    player.QueuedItem.Touched
   ) {
     return;
   }
 
   const collectibleType = player.QueuedItem.Item.ID;
-  if (BANNED_STORAGE_ACTIVE_COLLECTIBLES.has(collectibleType)) {
-    sfxManager.Play(SoundEffect.BOSS_2_INTRO_ERROR_BUZZ);
+  if (collectibleType === CollectibleTypeCustom.CHECKPOINT) {
     return;
   }
 
@@ -171,6 +162,25 @@ function checkStorageAnimationComplete(player: EntityPlayer) {
   if (player.IsExtraAnimationFinished()) {
     v.run.playersCurrentlyStoring.delete(playerIndex);
     playersStoringSprites.delete(playerIndex);
+  }
+}
+
+// ModCallback.POST_USE_CARD (5)
+// Card.RUNE_BLACK (41)
+export function useCardBlackRune(player: EntityPlayer): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  preventBlackRuneOnStoredItems(player);
+}
+
+function preventBlackRuneOnStoredItems(player: EntityPlayer) {
+  if (inRoomWithSeason4StoredItems()) {
+    player.AnimateSad();
+    player.Kill();
   }
 }
 
@@ -248,44 +258,18 @@ function spawnStoredCollectibles() {
   });
 }
 
-// ModCallback.PRE_USE_ITEM (23)
-// CollectibleType.D6 (105)
-export function preUseItemD6(player: EntityPlayer): boolean | undefined {
-  // This feature only affects the starting room of the run.
-  const effectiveStage = getEffectiveStage();
-  if (effectiveStage !== 1 || !inStartingRoom()) {
+// ModCallback.POST_PLAYER_RENDER (32)
+export function postPlayerRender(player: EntityPlayer): void {
+  const challenge = Isaac.GetChallenge();
+
+  if (challenge !== ChallengeCustom.SEASON_4) {
     return;
   }
 
-  // Prevent using the D6 if there are one or more collectibles in the room.
-  const numCheckpoints = countEntities(
-    EntityType.PICKUP,
-    PickupVariant.COLLECTIBLE,
-  );
-  if (numCheckpoints > 0) {
-    player.AnimateSad();
-    return true;
-  }
-
-  return undefined;
+  drawStorageIcon(player);
 }
 
-// ModCallback.PRE_USE_ITEM (23)
-// CollectibleType.MOVING_BOX (523)
-export function preUseItemMovingBox(player: EntityPlayer): boolean | undefined {
-  // Use the same logic as the normal D6.
-  return preUseItemD6(player);
-}
-
-// ModCallback.PRE_USE_ITEM (23)
-// CollectibleType.ETERNAL_D6 (609)
-export function preUseItemEternalD6(player: EntityPlayer): boolean | undefined {
-  // Use the same logic as the normal D6.
-  return preUseItemD6(player);
-}
-
-// ModCallback.POST_PLAYER_RENDER (32)
-export function postPlayerRender(player: EntityPlayer): void {
+function drawStorageIcon(player: EntityPlayer) {
   const playerIndex = getPlayerIndex(player);
   if (!v.run.playersCurrentlyStoring.has(playerIndex)) {
     return;
@@ -307,23 +291,11 @@ export function preItemPickup(
     return;
   }
 
-  if (!isPickingUpItemCollectible(pickingUpItem)) {
-    return;
-  }
-
-  checkPlayerTakingStoredCollectible(pickingUpItem);
-}
-
-function checkPlayerTakingStoredCollectible(
-  pickingUpItemCollectible: PickingUpItemCollectible,
-) {
-  const effectiveStage = getEffectiveStage();
-
-  if (effectiveStage === 1 && inStartingRoom()) {
-    arrayRemoveInPlace(
-      v.persistent.storedCollectibles,
-      pickingUpItemCollectible.subType,
-    );
+  if (
+    isPickingUpItemCollectible(pickingUpItem) &&
+    inRoomWithSeason4StoredItems()
+  ) {
+    arrayRemoveInPlace(v.persistent.storedCollectibles, pickingUpItem.subType);
   }
 }
 
@@ -336,4 +308,17 @@ export function season4CheckpointTouched(): void {
   }
 
   emptyArray(v.persistent.storedCollectiblesOnThisRun);
+}
+
+export function inRoomWithSeason4StoredItems(): boolean {
+  const challenge = Isaac.GetChallenge();
+  const effectiveStage = getEffectiveStage();
+
+  return (
+    challenge === ChallengeCustom.SEASON_4 &&
+    effectiveStage === 1 &&
+    inStartingRoom()
+    // We don't want to check to see if one or more collectibles exist because the player could be
+    // in the process of taking one of them.
+  );
 }
