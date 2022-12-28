@@ -5,6 +5,7 @@
   "files": ["**"],
   "enableFiletypes": ["*"],
   "enableGlobDot": true,
+  "useGitignore": true,
   "ignorePaths": [
     "*.pyc",
     "*.wav",
