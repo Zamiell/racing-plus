@@ -16,7 +16,7 @@ export function postNewRoom(): void {
   checkRemoveRepentanceDoor();
 }
 
-// ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
   checkRemoveRepentanceDoor();
 }

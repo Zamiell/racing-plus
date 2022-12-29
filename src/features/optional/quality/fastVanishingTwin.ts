@@ -185,7 +185,7 @@ function duplicateBoss(boss: EntityNPC) {
   duplicatedBoss.Update();
 }
 
-// ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
   if (!config.fastVanishingTwin) {
     return;

@@ -94,12 +94,8 @@ function checkApplySolMapEffect() {
   g.l.UpdateVisibility();
 }
 
-// ModCallbackCustom.POST_ROOM_CLEAR_CHANGED
-export function postRoomClearChanged(roomClear: boolean): void {
-  if (!roomClear) {
-    return;
-  }
-
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
+export function preSpawnClearAward(): void {
   const roomType = g.r.GetType();
   if (roomType !== RoomType.BOSS) {
     return;

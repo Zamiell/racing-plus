@@ -11,14 +11,10 @@ export function fastClearPostRoomClearChanged(roomClear: boolean): void {
 }
 
 function checkVanillaRoomClear(roomClear: boolean) {
-  // Sometimes, the room clear state can go from cleared to uncleared (e.g. the player bombed an
-  // angel). Ignore these cases.
-  if (!roomClear) {
-    log("Room state changed to uncleared.");
-    return;
-  }
+  const verb = roomClear ? "cleared" : "uncleared";
+  log(`Room state changed to: ${verb}`);
 
-  if (!v.room.fastClearedRoom) {
+  if (roomClear && !v.room.fastClearedRoom) {
     log("Vanilla room clear detected.");
   }
 }

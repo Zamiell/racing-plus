@@ -74,7 +74,7 @@ function removeSeededItemsTrinkets() {
   }
 }
 
-// MC_PRE_SPAWN_CLEAN_AWARD (70)
+// MC_PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): boolean | undefined {
   if (shouldSpawnSeededDrop()) {
     spawnSeededDrop();

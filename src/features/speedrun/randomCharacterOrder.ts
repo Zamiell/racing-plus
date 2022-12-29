@@ -291,7 +291,7 @@ export function getStartingCharacter(): PlayerType {
   return startingCharacter;
 }
 
-// ModCallback.PRE_SPAWN_CLEAN_AWARD (70)
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
   if (!isSpeedrunWithRandomCharacterOrder()) {
     return;
