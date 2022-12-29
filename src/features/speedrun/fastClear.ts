@@ -9,7 +9,7 @@ import {
   removeDoor,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
 import { season3FastClear } from "./season3/fastClear";
 import { season3HasMotherGoal } from "./season3/v";

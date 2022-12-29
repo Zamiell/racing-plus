@@ -1,6 +1,6 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import {
   initGlowingCollectibleSprite,
   initGlowingTrinketSprite,

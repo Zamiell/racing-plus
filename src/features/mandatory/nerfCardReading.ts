@@ -6,7 +6,7 @@ import {
   LevelStage,
 } from "isaac-typescript-definitions";
 import { removeAllMatchingEntities } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {

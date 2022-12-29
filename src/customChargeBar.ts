@@ -13,7 +13,7 @@ import {
 } from "isaacscript-common";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
 import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
-import g from "./globals";
+import { g } from "./globals";
 import { config } from "./modConfigMenu";
 
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);

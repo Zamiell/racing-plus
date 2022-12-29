@@ -12,7 +12,7 @@ import {
   isJacobOrEsau,
   VectorZero,
 } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config, hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";

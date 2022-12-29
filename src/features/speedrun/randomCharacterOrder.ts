@@ -7,7 +7,7 @@ import {
   isRoomInsideGrid,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { drawErrorText } from "../mandatory/errors";
 import {
   restartOnNextFrame,

@@ -21,7 +21,7 @@ import {
   setRoomDisplayFlags,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.SOL_CUSTOM;

@@ -4,7 +4,7 @@
 
 import { EntityType, PitfallVariant } from "isaac-typescript-definitions";
 import { removeAllMatchingEntities } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_ROOM (19)

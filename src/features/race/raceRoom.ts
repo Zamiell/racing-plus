@@ -19,7 +19,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { initSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";

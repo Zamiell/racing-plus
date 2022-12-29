@@ -6,7 +6,7 @@ import {
 import { doesEntityExist, getEntities, logError } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { raceFinish } from "../race/raceFinish";
 import * as speedrun from "../speedrun/speedrun";

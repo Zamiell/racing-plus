@@ -10,7 +10,7 @@ import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTw
 import { showDreamCatcherItemPostNewLevel } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewLevel";
 import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
-import g from "../globals";
+import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {

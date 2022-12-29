@@ -4,7 +4,7 @@
 import { EntityType, RoomType } from "isaac-typescript-definitions";
 import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.PRE_ROOM_ENTITY_SPAWN (71)

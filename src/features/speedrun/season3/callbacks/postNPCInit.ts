@@ -4,7 +4,7 @@
 import { EntityType, LevelStage } from "isaac-typescript-definitions";
 import { spawnNPCWithSeed } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 
 const VANILLA_HUSH_SPAWN_POSITION = Vector(580, 260);
 

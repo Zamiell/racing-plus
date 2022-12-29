@@ -5,7 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import { asNumber, inStartingRoom, teleport } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 
 // ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED
 // GridEntityType.TELEPORTER (23)

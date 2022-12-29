@@ -28,7 +28,7 @@ import * as startWithD6 from "../features/optional/major/startWithD6";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
-import g from "../globals";
+import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {

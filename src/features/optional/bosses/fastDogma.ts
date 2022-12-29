@@ -19,7 +19,7 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../utils";
 

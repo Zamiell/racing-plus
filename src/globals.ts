@@ -1,7 +1,6 @@
 import { Globals } from "./classes/Globals";
 
-const globals = new Globals();
-export default globals;
+export const g = new Globals();
 
 declare let race: unknown;
-race = globals.race; // eslint-disable-line
+race = g.race; // eslint-disable-line

@@ -1,6 +1,6 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import { isGlitchedCollectible, log } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;

@@ -6,7 +6,7 @@ import {
   removeGridEntity,
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import {
   SEEDED_DEATH_DEBUFF_RENDER_FRAMES,

@@ -19,7 +19,7 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";

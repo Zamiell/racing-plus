@@ -17,7 +17,7 @@ import {
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import v from "../v";
 

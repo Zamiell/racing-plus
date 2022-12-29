@@ -1,6 +1,6 @@
 import { EntityType, RoomType } from "isaac-typescript-definitions";
 import { getNPCs, setRoomCleared } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 const ENTITY_TYPES_EXEMPT_FROM_REMOVAL: ReadonlySet<EntityType> = new Set([

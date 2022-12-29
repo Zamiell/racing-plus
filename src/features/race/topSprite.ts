@@ -7,7 +7,7 @@
 import { game, getScreenCenterPos } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { initSprite } from "../../sprite";
 
 const GFX_PATH = "gfx/race";

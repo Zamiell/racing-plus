@@ -1,6 +1,6 @@
 import { getPlayers, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import * as blackSprite from "../blackSprite";
 import * as checkStateComplete from "../checkStateComplete";

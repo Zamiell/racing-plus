@@ -10,7 +10,7 @@ import {
   repeat,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { spawnDroppedChildsHeart } from "../../../optional/characters/samsonDropHeart";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";

@@ -19,7 +19,7 @@ import {
   SPRITE_DIFFICULTY_OFFSET,
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
-import g from "../../globals";
+import { g } from "../../globals";
 import { initSprite } from "../../sprite";
 import * as socketClient from "../race/socketClient";
 

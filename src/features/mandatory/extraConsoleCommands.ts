@@ -27,7 +27,7 @@ import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";

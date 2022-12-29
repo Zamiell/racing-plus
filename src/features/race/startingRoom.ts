@@ -3,7 +3,7 @@ import { game } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import {
   initGlowingCollectibleSpriteFromServerCollectibleID,
   initGlowingTrinketSprite,

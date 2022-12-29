@@ -20,7 +20,7 @@ import {
 } from "isaacscript-common";
 import { COLLECTIBLE_LAYER } from "../../../constants";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { initCollectibleSprite } from "../../../sprite";

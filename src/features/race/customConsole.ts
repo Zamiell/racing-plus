@@ -14,7 +14,7 @@ import {
 } from "isaacscript-common";
 import { Colors } from "../../enums/Colors";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { TextSegment } from "../../types/TextSegment";

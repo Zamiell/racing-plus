@@ -1,5 +1,5 @@
 import { log } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { spawnEndOfRaceButtons } from "./endOfRaceButtons";
 import * as socket from "./socket";
 import v from "./v";

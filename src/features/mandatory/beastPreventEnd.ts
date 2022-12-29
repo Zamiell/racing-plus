@@ -10,7 +10,7 @@ import {
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { consoleCommand } from "../../utils";
 

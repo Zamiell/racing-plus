@@ -2,7 +2,7 @@ import { RoomType } from "isaac-typescript-definitions";
 import { anyPlayerCloserThan, game, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import {

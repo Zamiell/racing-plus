@@ -23,7 +23,7 @@ import { FastTravelState } from "../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";

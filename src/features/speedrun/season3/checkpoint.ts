@@ -7,7 +7,7 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { Season3Goal } from "./constants";
 import v from "./v";
 

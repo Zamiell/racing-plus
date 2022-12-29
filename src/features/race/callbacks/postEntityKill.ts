@@ -1,7 +1,7 @@
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { spawnTrophy } from "../../mandatory/trophy";
 

@@ -42,7 +42,7 @@ import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import * as roomsEntered from "../features/utils/numRoomsEntered";
-import g from "../globals";
+import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {

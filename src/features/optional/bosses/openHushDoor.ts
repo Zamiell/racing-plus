@@ -6,7 +6,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_LEVEL (18)

@@ -11,7 +11,7 @@ import {
   SECOND_IN_MILLISECONDS,
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
-import g from "../../globals";
+import { g } from "../../globals";
 import {
   getNumSacrifices,
   shouldShowNumSacrifices,

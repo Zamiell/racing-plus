@@ -16,7 +16,7 @@ import {
   spawnNPC,
   VectorZero,
 } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { initGlowingCollectibleSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
 import v from "./v";

@@ -7,7 +7,7 @@ import {
   repeat,
   spawnBoss,
 } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import v from "./v";
 

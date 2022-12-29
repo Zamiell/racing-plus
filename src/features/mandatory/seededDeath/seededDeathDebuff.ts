@@ -33,7 +33,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { TRANSFORMATION_TO_HELPERS } from "../../../objects/transformationToHelper";
 import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";

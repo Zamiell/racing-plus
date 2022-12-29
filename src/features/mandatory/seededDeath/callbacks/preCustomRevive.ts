@@ -19,7 +19,7 @@ import {
 } from "isaacscript-common";
 import { RevivalType } from "../../../../enums/RevivalType";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { DEVIL_DEAL_BUFFER_GAME_FRAMES } from "../constants";
 import {
   logSeededDeathStateChange,

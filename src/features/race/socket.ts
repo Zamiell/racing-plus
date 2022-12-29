@@ -2,7 +2,7 @@ import { GameStateFlag, ItemType } from "isaac-typescript-definitions";
 import { game, getRoomVariant, log, PickingUpItem } from "isaacscript-common";
 import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";

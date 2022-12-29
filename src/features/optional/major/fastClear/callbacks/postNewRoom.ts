@@ -7,7 +7,7 @@ import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeEntities,
 } from "isaacscript-common";
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import * as postItLivesOrHushPath from "../postItLivesOrHushPath";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 

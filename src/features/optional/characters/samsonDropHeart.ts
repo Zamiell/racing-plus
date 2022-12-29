@@ -4,7 +4,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import { getPlayersOfType, spawnTrinket, VectorZero } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 const BOTTOM_LEFT_GRID_INDEX = 106;

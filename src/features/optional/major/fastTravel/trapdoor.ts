@@ -22,7 +22,7 @@ import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import {
   season3HasOnlyBossRushLeft,
   season3HasOnlyHushLeft,

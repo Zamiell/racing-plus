@@ -30,7 +30,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { goingToRaceRoom } from "../race/raceRoom";
 

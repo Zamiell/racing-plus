@@ -13,7 +13,7 @@ import {
   newRNG,
   setCollectibleSubType,
 } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";

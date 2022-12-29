@@ -9,7 +9,7 @@ import {
 import { RaceData, RaceDataType } from "../../classes/RaceData";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import {
   restartOnNextFrame,
   setRestartSeed,

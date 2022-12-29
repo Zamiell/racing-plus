@@ -1,6 +1,6 @@
 import { game } from "isaacscript-common";
 import { Colors } from "../../enums/Colors";
-import g from "../../globals";
+import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { TextSegment } from "../../types/TextSegment";
 import {

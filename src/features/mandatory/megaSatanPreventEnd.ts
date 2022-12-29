@@ -4,7 +4,7 @@
 
 import { PickupVariant } from "isaac-typescript-definitions";
 import { addRoomClearCharges, spawnPickup } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.MEGA_SATAN_2 (275)

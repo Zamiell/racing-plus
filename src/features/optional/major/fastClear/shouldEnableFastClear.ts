@@ -1,6 +1,6 @@
 import { SeedEffect } from "isaac-typescript-definitions";
 import { game } from "isaacscript-common";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 
 export function shouldEnableFastClear(): boolean {

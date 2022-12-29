@@ -21,7 +21,7 @@ import {
   spawnEffect,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";

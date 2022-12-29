@@ -5,7 +5,7 @@ import {
   getRoomListIndex,
   repeat,
 } from "isaacscript-common";
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import v from "../v";
 
 /**

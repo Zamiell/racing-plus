@@ -1,6 +1,6 @@
 import { LevelCurse } from "isaac-typescript-definitions";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import {
   logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,

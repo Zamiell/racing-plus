@@ -1,5 +1,5 @@
 import { game } from "isaacscript-common";
-import g from "./globals";
+import { g } from "./globals";
 
 export function updateCachedAPIFunctions(): void {
   // Update some cached API functions. If we don't do this on every frame, the game can crash.

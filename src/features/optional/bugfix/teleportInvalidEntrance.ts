@@ -16,7 +16,7 @@ import {
   isRoomInsideGrid,
   log,
 } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 import { isFastTravelHappening } from "../major/fastTravel/v";

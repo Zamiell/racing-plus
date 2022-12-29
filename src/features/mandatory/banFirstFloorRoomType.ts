@@ -8,7 +8,7 @@ import {
   removeDoors,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";

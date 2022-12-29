@@ -26,7 +26,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { isDreamCatcherWarping } from "../../../optional/quality/showDreamCatcherItem/v";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";

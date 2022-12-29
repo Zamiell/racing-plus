@@ -3,7 +3,7 @@
 import { game } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { initSprite } from "../../sprite";
 import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";

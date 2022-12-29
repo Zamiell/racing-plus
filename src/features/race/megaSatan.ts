@@ -9,7 +9,7 @@ import { sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {

@@ -15,7 +15,7 @@ import {
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { getEffectiveDevilDeals } from "../../../../utils";
 import * as devilRooms from "./devilRooms.json";

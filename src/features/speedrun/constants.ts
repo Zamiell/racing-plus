@@ -1,6 +1,6 @@
 import { Challenge } from "isaac-typescript-definitions";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 
 export const CHALLENGE_DEFINITIONS: ReadonlyMap<
   Challenge,

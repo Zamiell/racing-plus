@@ -1,4 +1,4 @@
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../constants";
 
 /**

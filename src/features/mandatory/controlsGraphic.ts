@@ -14,7 +14,7 @@ import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 

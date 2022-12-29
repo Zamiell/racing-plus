@@ -1,5 +1,5 @@
 import { NpcState, RoomType } from "isaac-typescript-definitions";
-import g from "../../../../../globals";
+import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 
 export function pitfall(npc: EntityNPC): void {

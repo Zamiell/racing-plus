@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import {
   addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,

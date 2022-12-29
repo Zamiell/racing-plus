@@ -1,6 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { initGlowingCollectibleSprite, initSprite } from "../../../sprite";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 

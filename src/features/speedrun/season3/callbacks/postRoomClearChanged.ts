@@ -11,7 +11,7 @@ import {
   spawnPickup,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { season3HasHushGoal } from "../v";
 
 /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */

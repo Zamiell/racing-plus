@@ -7,7 +7,7 @@ import {
   log,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";

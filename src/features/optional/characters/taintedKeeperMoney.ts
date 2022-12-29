@@ -1,7 +1,7 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { getPlayersOfType } from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_GAME_STARTED (15)

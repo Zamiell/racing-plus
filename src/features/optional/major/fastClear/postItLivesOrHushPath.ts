@@ -25,7 +25,7 @@ import { ItLivesSituation } from "../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../utils";
 import { season3PostItLivesPath } from "../../../speedrun/season3/postItLivesPath";
 import {

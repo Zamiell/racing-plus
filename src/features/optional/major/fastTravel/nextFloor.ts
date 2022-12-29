@@ -19,7 +19,7 @@ import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";

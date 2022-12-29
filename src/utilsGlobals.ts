@@ -14,7 +14,7 @@ import {
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
-import g from "./globals";
+import { g } from "./globals";
 
 export function addCollectibleAndRemoveFromPools(
   player: EntityPlayer,

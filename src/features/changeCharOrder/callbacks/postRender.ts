@@ -7,7 +7,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";

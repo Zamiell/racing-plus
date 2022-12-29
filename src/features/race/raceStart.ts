@@ -1,7 +1,7 @@
 import { RaceVars } from "../../classes/RaceVars";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
-import g from "../../globals";
+import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { inRaceRoom } from "./raceRoom";
 

@@ -19,7 +19,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
-import g from "../../globals";
+import { g } from "../../globals";
 import { initGlowingCollectibleSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { speedrunSetBansTime } from "../speedrun/v";

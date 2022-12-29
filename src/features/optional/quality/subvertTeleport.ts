@@ -15,7 +15,7 @@ import {
   isCharacter,
   log,
 } from "isaacscript-common";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";

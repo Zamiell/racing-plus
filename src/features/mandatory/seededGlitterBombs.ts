@@ -12,7 +12,7 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 
 /** This chance is modified by 1% for every prize previously awarded on the floor. */

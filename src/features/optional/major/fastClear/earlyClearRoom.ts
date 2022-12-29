@@ -20,7 +20,7 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { speedrunPostFastClear } from "../../../speedrun/fastClear";
 import {
   CREEP_VARIANTS_TO_KILL,

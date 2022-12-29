@@ -20,7 +20,7 @@ import {
   setAllRNGToStartSeed,
   spawnPickupWithSeed,
 } from "isaacscript-common";
-import g from "../../globals";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 
 const v = {

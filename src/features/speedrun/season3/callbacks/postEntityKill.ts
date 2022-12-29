@@ -1,7 +1,7 @@
 import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
 import { asNumber, spawnPickup } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { season3HasDogmaGoal } from "../v";
 

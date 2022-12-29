@@ -1,7 +1,7 @@
 import { log } from "isaacscript-common";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as chat from "../chat";
 import * as endOfRaceButtons from "../endOfRaceButtons";

@@ -1,6 +1,6 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
-import g from "../../../../globals";
+import { g } from "../../../../globals";
 import { initGlowingCollectibleSprite, initSprite } from "../../../../sprite";
 import { bossPNGMap } from "./bossPNGMap";
 import v from "./v";

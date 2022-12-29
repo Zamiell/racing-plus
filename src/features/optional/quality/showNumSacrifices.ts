@@ -1,5 +1,5 @@
 import { RoomType } from "isaac-typescript-definitions";
-import g from "../../../globals";
+import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
