@@ -97,16 +97,11 @@ function drawIconSprite() {
 
 // ModCallback.ENTITY_TAKE_DMG (11)
 export function entityTakeDmgPlayer(
-  entity: Entity,
+  player: EntityPlayer,
   amount: float,
   damageFlags: BitFlags<DamageFlag>,
 ): void {
   if (!config.freeDevilItem) {
-    return;
-  }
-
-  const player = entity.ToPlayer();
-  if (player === undefined) {
     return;
   }
 
