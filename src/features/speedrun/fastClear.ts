@@ -1,7 +1,8 @@
-import { LevelStage, RoomType } from "isaac-typescript-definitions";
+import { Dimension, LevelStage, RoomType } from "isaac-typescript-definitions";
 import {
   getAngelRoomDoor,
   getDevilRoomDoor,
+  getDimension,
   getEffectiveStage,
   hasUnusedDoorSlot,
   isRoomInsideGrid,
@@ -54,12 +55,14 @@ export function speedrunShouldSpawnRepentanceDoor(): boolean {
   const roomType = g.r.GetType();
   const roomClear = g.r.IsClear();
   const insideGrid = isRoomInsideGrid();
+  const dimension = getDimension();
   const correctStageForRepentanceDoor = isCorrectStageForRepentanceDoor();
 
   return (
     correctStageForRepentanceDoor &&
     roomType === RoomType.BOSS &&
     insideGrid && // Handle the case of Emperor? card rooms.
+    dimension === Dimension.MAIN &&
     roomClear
   );
 }
