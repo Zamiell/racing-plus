@@ -1,4 +1,5 @@
 import * as preserveCollectible from "../preserveCollectible";
+import { season3PreUseItemGlowingHourGlass } from "../season3/callbacks/preUseItem";
 import * as season4 from "../season4";
 import { inSpeedrun } from "../speedrun";
 
@@ -18,6 +19,15 @@ export function diplopia(player: EntityPlayer): boolean | undefined {
   }
 
   return season4.preUseItemDiplopia(player);
+}
+
+// CollectibleType.GLOWING_HOUR_GLASS (422)
+export function glowingHourGlass(player: EntityPlayer): boolean | undefined {
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  return season3PreUseItemGlowingHourGlass(player);
 }
 
 // CollectibleType.VOID (477)
