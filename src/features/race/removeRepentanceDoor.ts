@@ -1,4 +1,8 @@
-import { EffectVariant, RoomType } from "isaac-typescript-definitions";
+import {
+  EffectVariant,
+  LevelStage,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
   getEffects,
@@ -64,7 +68,10 @@ function shouldRemoveRepentanceDoorOnSeededRace() {
  * the Mausoleum floors by deleting the doors.
  */
 function shouldRemoveRepentanceDoorOnBeastRace() {
-  return g.race.goal === RaceGoal.THE_BEAST && getEffectiveStage() === 5;
+  const effectiveStage = getEffectiveStage();
+  return (
+    g.race.goal === RaceGoal.THE_BEAST && effectiveStage === LevelStage.DEPTHS_1
+  );
 }
 
 function removeRepentanceDoor() {

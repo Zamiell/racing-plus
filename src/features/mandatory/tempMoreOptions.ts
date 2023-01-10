@@ -1,6 +1,10 @@
 // In some situations, we force the first Treasure Room to have two items.
 
-import { CollectibleType, RoomType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  LevelStage,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   getEffectiveStage,
   itemConfig,
@@ -27,7 +31,7 @@ export function postNewLevel(): void {
   // Ensure that the "More Options" buff does not persist beyond Basement 1. (It is removed as soon
   // as they enter the first Treasure Room, but they might have skipped the Basement 1 Treasure Room
   // for some reason.)
-  if (v.run.removeMoreOptions && effectiveStage >= 2) {
+  if (v.run.removeMoreOptions && effectiveStage >= LevelStage.BASEMENT_2) {
     v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.MORE_OPTIONS);
   }

@@ -1,5 +1,6 @@
 import {
   CollectibleType,
+  LevelStage,
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
@@ -347,7 +348,7 @@ export function inRoomWithSeason4StoredItems(): boolean {
 
   return (
     challenge === ChallengeCustom.SEASON_4 &&
-    effectiveStage === 1 &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
     inStartingRoom()
     // We don't want to check to see if one or more collectibles exist because the player could be
     // in the process of taking one of them.

@@ -7,6 +7,7 @@ import {
   EntityType,
   FallenVariant,
   ItemPoolType,
+  LevelStage,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
@@ -47,7 +48,7 @@ function featureEnabled() {
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
   const effectStage = getEffectiveStage();
-  if (effectStage !== 2) {
+  if (effectStage !== LevelStage.BASEMENT_2) {
     return;
   }
 

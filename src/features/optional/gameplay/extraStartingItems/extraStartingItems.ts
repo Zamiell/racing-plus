@@ -2,6 +2,7 @@ import {
   CollectibleType,
   EntityType,
   ItemPoolType,
+  LevelStage,
   PickupVariant,
   RoomType,
 } from "isaac-typescript-definitions";
@@ -69,7 +70,7 @@ export function postNewLevel(): void {
   // Ensure that the placeholders are removed beyond Basement 1. Placeholders are removed as soon as
   // the player exits the first Treasure Room, but they might have skipped the Basement 1 Treasure
   // Room for some reason.
-  if (effectiveStage >= 2 && !v.run.placeholdersRemoved) {
+  if (effectiveStage > LevelStage.BASEMENT_1 && !v.run.placeholdersRemoved) {
     removePlaceholdersFromPools();
   }
 }

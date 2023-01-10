@@ -1,4 +1,9 @@
-import { Challenge, PlayerType, RoomType } from "isaac-typescript-definitions";
+import {
+  Challenge,
+  LevelStage,
+  PlayerType,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   copyArray,
   game,
@@ -306,7 +311,11 @@ function checkResetTimeAssigned() {
   const effectiveStage = getEffectiveStage();
   const roomInsideGrid = isRoomInsideGrid();
 
-  if (effectiveStage === 2 && roomType === RoomType.BOSS && roomInsideGrid) {
+  if (
+    effectiveStage === LevelStage.BASEMENT_2 &&
+    roomType === RoomType.BOSS &&
+    roomInsideGrid
+  ) {
     v.persistent.timeCharacterAssigned = 0;
   }
 }

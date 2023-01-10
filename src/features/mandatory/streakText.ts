@@ -4,6 +4,7 @@ import {
   CollectibleType,
   FamiliarVariant,
   ItemType,
+  LevelStage,
   PillEffect,
   PlayerForm,
   UseFlag,
@@ -241,7 +242,7 @@ function showLevelText() {
   if (VanillaStreakText === undefined) {
     const text = getEnglishLevelName();
     setStreakText(text);
-  } else if (effectiveStage !== 1) {
+  } else if (effectiveStage !== LevelStage.BASEMENT_1) {
     g.l.ShowName(false);
   }
 }

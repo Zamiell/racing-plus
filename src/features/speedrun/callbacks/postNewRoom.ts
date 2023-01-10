@@ -50,7 +50,7 @@ function checkFirstCharacterFirstFloorDevilRoom() {
   v.level.previousRoomType = roomType;
 
   // Prevent players from resetting for a Devil Room item on the first character.
-  if (!isOnFirstCharacter() || effectiveStage !== 1) {
+  if (!isOnFirstCharacter() || effectiveStage !== LevelStage.BASEMENT_1) {
     return;
   }
 

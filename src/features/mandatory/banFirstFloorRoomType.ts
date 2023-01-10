@@ -1,4 +1,8 @@
-import { DisplayFlagZero, RoomType } from "isaac-typescript-definitions";
+import {
+  DisplayFlagZero,
+  LevelStage,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   getDoorsToRoomIndex,
   getEffectiveStage,
@@ -38,7 +42,7 @@ export function shouldBanFirstFloorTreasureRoom(): boolean {
   const effectiveStage = getEffectiveStage();
 
   return (
-    effectiveStage === 1 &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
     (inSeededRace() || challenge === ChallengeCustom.SEASON_2)
   );
 }
@@ -48,7 +52,7 @@ function shouldBanSpecialRoomsSeason2() {
   const effectiveStage = getEffectiveStage();
 
   return (
-    effectiveStage === 1 &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
     challenge === ChallengeCustom.SEASON_2 &&
     isOnFirstCharacter()
   );

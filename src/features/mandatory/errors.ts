@@ -1,4 +1,8 @@
-import { CollectibleType, ItemPoolType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  ItemPoolType,
+  LevelStage,
+} from "isaac-typescript-definitions";
 import {
   asCollectibleType,
   asNumber,
@@ -170,7 +174,7 @@ export function postRender(): boolean {
     const roomVisitedCount = getRoomVisitedCount();
 
     if (
-      effectiveStage === 1 &&
+      effectiveStage === LevelStage.BASEMENT_1 &&
       inStartingRoom() &&
       roomVisitedCount === 1 &&
       !isRandomBaby

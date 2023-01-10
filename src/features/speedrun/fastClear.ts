@@ -1,4 +1,4 @@
-import { RoomType } from "isaac-typescript-definitions";
+import { LevelStage, RoomType } from "isaac-typescript-definitions";
 import {
   getAngelRoomDoor,
   getDevilRoomDoor,
@@ -76,13 +76,17 @@ function isCorrectStageForRepentanceDoor(): boolean {
 
     return (
       // Basement 2 --> Downpour/Dross 2
-      (effectiveStage === 2 && !repentanceStage) ||
+      (effectiveStage === LevelStage.BASEMENT_2 && !repentanceStage) ||
       // Downpour/Dross 2 --> Mines/Ashpit 1
-      (effectiveStage === 3 && repentanceStage) ||
+      (effectiveStage === LevelStage.CAVES_1 && repentanceStage) ||
       // Mines/Ashpit 2 --> Mausoleum/Gehenna 1
-      (effectiveStage === 5 && repentanceStage)
+      (effectiveStage === LevelStage.DEPTHS_1 && repentanceStage)
     );
   }
 
-  return (effectiveStage === 1 || effectiveStage === 2) && !repentanceStage;
+  return (
+    (effectiveStage === LevelStage.BASEMENT_1 ||
+      effectiveStage === LevelStage.BASEMENT_2) &&
+    !repentanceStage
+  );
 }

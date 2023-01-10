@@ -2,6 +2,7 @@ import {
   CollectibleType,
   EffectVariant,
   GameStateFlag,
+  LevelStage,
   RoomType,
   TallLadderSubType,
 } from "isaac-typescript-definitions";
@@ -46,7 +47,11 @@ export function checkStartDreamCatcherWarp(): void {
   }
 
   // We only need to visit rooms upon reaching a new floor for the first time.
-  if (!inStartingRoom() || !isFirstVisit || effectiveStage === 1) {
+  if (
+    !inStartingRoom() ||
+    !isFirstVisit ||
+    effectiveStage === LevelStage.BASEMENT_1
+  ) {
     return;
   }
 

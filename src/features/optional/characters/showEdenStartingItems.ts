@@ -1,4 +1,8 @@
-import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
+import {
+  ActiveSlot,
+  CollectibleType,
+  LevelStage,
+} from "isaac-typescript-definitions";
 import {
   game,
   getEffectiveStage,
@@ -91,7 +95,11 @@ function shouldShowSprites() {
   const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();
 
-  return isEden(player) && effectiveStage === 1 && inStartingRoom();
+  return (
+    isEden(player) &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
+    inStartingRoom()
+  );
 }
 
 // ModCallback.POST_GAME_STARTED (15)

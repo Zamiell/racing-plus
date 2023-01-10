@@ -1,6 +1,7 @@
 // We want to place informational text for the player to the right of the heart containers (which
 // will depend on how many heart containers we have).
 
+import { LevelStage } from "isaac-typescript-definitions";
 import {
   game,
   getEffectiveStage,
@@ -117,7 +118,7 @@ export function postRender(): void {
 function shouldShowSeededRaceTimeOffset() {
   return (
     inSeededRace() &&
-    getEffectiveStage() > 1 &&
+    getEffectiveStage() > LevelStage.BASEMENT_1 &&
     inStartingRoom() &&
     g.r.IsFirstVisit() &&
     g.race.placeMid !== 1 // Only show it if we are not in first place.

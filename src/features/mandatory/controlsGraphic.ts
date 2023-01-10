@@ -3,7 +3,11 @@
 
 // This feature is not configurable because we destroy the original starting room graphic file.
 
-import { EffectVariant, StageType } from "isaac-typescript-definitions";
+import {
+  EffectVariant,
+  LevelStage,
+  StageType,
+} from "isaac-typescript-definitions";
 import {
   game,
   getEffectiveStage,
@@ -62,7 +66,7 @@ function shouldDrawControlsGraphic() {
 
   return (
     !isGreedMode &&
-    effectiveStage === 1 &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
     inStartingRoom() &&
     !inSeededOrDiversityRace()
   );

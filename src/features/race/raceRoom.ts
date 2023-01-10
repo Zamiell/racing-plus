@@ -2,6 +2,7 @@ import {
   EntityFlag,
   EntityType,
   GridRoom,
+  LevelStage,
   StageType,
 } from "isaac-typescript-definitions";
 import {
@@ -164,7 +165,10 @@ function gotoRaceRoom() {
   const stageType = g.l.GetStageType();
 
   // If we not already on the right floor, go there.
-  if (effectiveStage !== 1 || stageType !== StageType.WRATH_OF_THE_LAMB) {
+  if (
+    effectiveStage !== LevelStage.BASEMENT_1 ||
+    stageType !== StageType.WRATH_OF_THE_LAMB
+  ) {
     // Since we might be going to a new floor on frame 0, we have to specify that the
     // `POST_NEW_LEVEL` callback should fire.
     mod.forceNewLevelCallback();
@@ -330,7 +334,7 @@ export function goingToRaceRoom(): boolean {
 
   return (
     g.race.status === RaceStatus.OPEN &&
-    effectiveStage === 1 &&
+    effectiveStage === LevelStage.BASEMENT_1 &&
     (numRoomsEntered === 0 || numRoomsEntered === 1)
   );
 }
