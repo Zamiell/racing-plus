@@ -20,7 +20,7 @@ import {
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { g } from "../../globals";
-import { initGlowingCollectibleSprite } from "../../sprite";
+import { newGlowingCollectibleSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { speedrunSetBansTime } from "../speedrun/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
@@ -131,7 +131,7 @@ function createBuildVetoButtons() {
       error(`Failed to get the build at index: ${buildIndex}`);
     }
     const firstCollectibleType = build[0];
-    const characterSprite = initGlowingCollectibleSprite(firstCollectibleType);
+    const characterSprite = newGlowingCollectibleSprite(firstCollectibleType);
     v.room.sprites.characters.push(characterSprite);
   }
 }

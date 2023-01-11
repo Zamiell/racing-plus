@@ -23,7 +23,7 @@ import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
-import { initCollectibleSprite } from "../../../sprite";
+import { newCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utils";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
@@ -45,7 +45,7 @@ const v = {
 };
 
 function newMysteryGiftSprite() {
-  const sprite = initCollectibleSprite(CollectibleType.MYSTERY_GIFT);
+  const sprite = newCollectibleSprite(CollectibleType.MYSTERY_GIFT);
   sprite.Scale = Vector(0.666, 0.666);
 
   return sprite;

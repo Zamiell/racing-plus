@@ -2,9 +2,9 @@ import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
 import { g } from "../../../globals";
 import {
-  initGlowingCollectibleSprite,
-  initGlowingTrinketSprite,
-  initSprite,
+  newGlowingCollectibleSprite,
+  newGlowingTrinketSprite,
+  newSprite,
 } from "../../../sprite";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 
@@ -52,9 +52,9 @@ export function initSeason3StartingRoomSprites(
 ): void {
   resetSeason3StartingRoomSprites();
 
-  sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
-  sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
-  sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
+  sprites.diversityActive = newSprite(`${GFX_PATH}/diversity-active.anm2`);
+  sprites.diversityPassives = newSprite(`${GFX_PATH}/diversity-passives.anm2`);
+  sprites.diversityTrinket = newSprite(`${GFX_PATH}/diversity-trinket.anm2`);
 
   if (collectibleTypes.length !== 4) {
     error(
@@ -62,22 +62,22 @@ export function initSeason3StartingRoomSprites(
     );
   }
 
-  sprites.diversityItem1 = initGlowingCollectibleSprite(
+  sprites.diversityItem1 = newGlowingCollectibleSprite(
     collectibleTypes[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
   );
-  sprites.diversityItem2 = initGlowingCollectibleSprite(
+  sprites.diversityItem2 = newGlowingCollectibleSprite(
     collectibleTypes[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
   );
-  sprites.diversityItem3 = initGlowingCollectibleSprite(
+  sprites.diversityItem3 = newGlowingCollectibleSprite(
     collectibleTypes[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
   );
-  sprites.diversityItem4 = initGlowingCollectibleSprite(
+  sprites.diversityItem4 = newGlowingCollectibleSprite(
     collectibleTypes[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
   );
 
-  sprites.diversityItem5 = initGlowingTrinketSprite(trinketType);
+  sprites.diversityItem5 = newGlowingTrinketSprite(trinketType);
 
-  sprites.characterTitle = initSprite(`${GFX_PATH}/character.anm2`);
+  sprites.characterTitle = newSprite(`${GFX_PATH}/character.anm2`);
 }
 
 export function drawSeason3StartingRoomSprites(): void {

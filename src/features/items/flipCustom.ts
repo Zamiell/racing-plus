@@ -24,7 +24,7 @@ import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
-import { initCollectibleSprite } from "../../sprite";
+import { newCollectibleSprite } from "../../sprite";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.FLIP;
@@ -112,7 +112,7 @@ function newFlippedSprite(
   const collectibleTypeToUse = isBlindCollectible(nonFlippedCollectible)
     ? INVALID_COLLECTIBLE_TYPE
     : flippedCollectibleType;
-  const sprite = initCollectibleSprite(collectibleTypeToUse);
+  const sprite = newCollectibleSprite(collectibleTypeToUse);
 
   const faded = copyColor(sprite.Color);
   faded.A = FADE_AMOUNT;

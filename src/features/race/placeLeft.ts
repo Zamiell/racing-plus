@@ -4,7 +4,7 @@ import { game } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import { initSprite } from "../../sprite";
+import { newSprite } from "../../sprite";
 import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
 
@@ -63,7 +63,7 @@ export function postGameStarted(): void {
 
 export function statusOrMyStatusChanged(): void {
   if (g.race.status === RaceStatus.OPEN) {
-    sprite = initSprite(`${GFX_PATH}/pre-${g.race.myStatus}.anm2`);
+    sprite = newSprite(`${GFX_PATH}/pre-${g.race.myStatus}.anm2`);
   }
 }
 
@@ -72,7 +72,7 @@ export function placeChanged(): void {
   if (g.race.place === -1 || g.race.place > MAX_PLACE) {
     sprite = null;
   } else {
-    sprite = initSprite(`${GFX_PATH}/${g.race.place}.anm2`);
+    sprite = newSprite(`${GFX_PATH}/${g.race.place}.anm2`);
   }
 }
 
@@ -89,7 +89,7 @@ export function placeMidChanged(): void {
   if (g.race.placeMid === -1 || g.race.placeMid > MAX_PLACE) {
     sprite = null;
   } else {
-    sprite = initSprite(`${GFX_PATH}/${g.race.placeMid}.anm2`);
+    sprite = newSprite(`${GFX_PATH}/${g.race.placeMid}.anm2`);
   }
 }
 

@@ -2,11 +2,11 @@
 
 import { VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
-import { initSprite } from "../../../../sprite";
+import { newSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
 import v from "./v";
 
-const sprite = initSprite("gfx/black.anm2");
+const sprite = newSprite("gfx/black.anm2");
 
 export function draw(): void {
   if (v.run.state === FastTravelState.DISABLED) {

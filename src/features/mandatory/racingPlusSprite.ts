@@ -20,7 +20,7 @@ import {
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../constants";
 import { g } from "../../globals";
-import { initSprite } from "../../sprite";
+import { newSprite } from "../../sprite";
 import * as socketClient from "../race/socketClient";
 
 enum SpriteLayer {
@@ -31,7 +31,7 @@ enum SpriteLayer {
 /** This is on top of where the "No Achievements" icon would be. */
 const SPRITE_POSITION = Vector(4, 72);
 
-const sprite = initSprite("gfx/ui/racing_plus/racing_plus.anm2");
+const sprite = newSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {

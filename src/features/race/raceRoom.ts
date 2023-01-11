@@ -22,7 +22,7 @@ import {
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
-import { initSprite } from "../../sprite";
+import { newSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 import {
@@ -262,29 +262,27 @@ export function initSprites(): void {
   }
 
   // Top half
-  sprites.wait = initSprite(`${GFX_PATH}/wait.anm2`);
+  sprites.wait = newSprite(`${GFX_PATH}/wait.anm2`);
   initMyStatusSprite();
   initNumReadySprite();
-  sprites.slash = initSprite(`${GFX_PATH}/slash.anm2`);
+  sprites.slash = newSprite(`${GFX_PATH}/slash.anm2`);
   initNumEntrantsSprite();
 
   // Bottom half
   const isRanked = g.race.ranked || !g.race.solo;
   const ranked = isRanked ? "ranked" : "unranked";
-  sprites.ranked = initSprite(`${GFX_PATH}/ranked/${ranked}.anm2`);
-  sprites.rankedIcon = initSprite(`${GFX_PATH}/ranked/${ranked}-icon.anm2`);
-  sprites.format = initSprite(`${GFX_PATH}/formats/${g.race.format}.anm2`);
-  sprites.formatIcon = initSprite(
+  sprites.ranked = newSprite(`${GFX_PATH}/ranked/${ranked}.anm2`);
+  sprites.rankedIcon = newSprite(`${GFX_PATH}/ranked/${ranked}-icon.anm2`);
+  sprites.format = newSprite(`${GFX_PATH}/formats/${g.race.format}.anm2`);
+  sprites.formatIcon = newSprite(
     `${GFX_PATH}/formats/${g.race.format}-icon.anm2`,
   );
-  sprites.goal = initSprite(`${GFX_PATH}/goal.anm2`);
-  sprites.goalIcon = initSprite(`${GFX_PATH}/goals/${g.race.goal}.anm2`);
+  sprites.goal = newSprite(`${GFX_PATH}/goal.anm2`);
+  sprites.goalIcon = newSprite(`${GFX_PATH}/goals/${g.race.goal}.anm2`);
 }
 
 function initMyStatusSprite() {
-  sprites.myStatus = initSprite(
-    `${GFX_PATH}/my-status/${g.race.myStatus}.anm2`,
-  );
+  sprites.myStatus = newSprite(`${GFX_PATH}/my-status/${g.race.myStatus}.anm2`);
 }
 
 function initNumReadySprite() {
@@ -297,7 +295,7 @@ function initNumEntrantsSprite() {
 
 function initNumSprite(num: int) {
   const anm2Name = num > 50 ? "unknown" : num.toString();
-  return initSprite(`${GFX_PATH}/ready/${anm2Name}.anm2`);
+  return newSprite(`${GFX_PATH}/ready/${anm2Name}.anm2`);
 }
 
 export function statusChanged(): void {

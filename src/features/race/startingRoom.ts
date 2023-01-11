@@ -5,9 +5,9 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import {
-  initGlowingCollectibleSpriteFromServerCollectibleID,
-  initGlowingTrinketSprite,
-  initSprite,
+  newGlowingCollectibleSpriteFromServerCollectibleID,
+  newGlowingTrinketSprite,
+  newSprite,
 } from "../../sprite";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
@@ -190,41 +190,43 @@ function initSeededSprites() {
   const { startingItems } = g.race;
 
   const title = startingItems.length === 1 ? "item" : "build";
-  sprites.seededStartingTitle = initSprite(
+  sprites.seededStartingTitle = newSprite(
     `${GFX_PATH}/seeded-starting-${title}.anm2`,
   );
 
   if (startingItems.length === 1) {
     sprites.seededItemCenter =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
   } else if (startingItems.length === 2) {
-    sprites.seededItemLeft =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+    sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
+      startingItems[0],
+    );
     sprites.seededItemRight =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
   } else if (startingItems.length === 3) {
     sprites.seededItemCenter =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
     sprites.seededItemFarLeft =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
     sprites.seededItemFarRight =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
   } else if (startingItems.length === 4) {
-    sprites.seededItemLeft =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+    sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
+      startingItems[0],
+    );
     sprites.seededItemRight =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
     sprites.seededItemFarLeft =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
     sprites.seededItemFarRight =
-      initGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
+      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
   }
 }
 
 function initDiversitySprites() {
-  sprites.diversityActive = initSprite(`${GFX_PATH}/diversity-active.anm2`);
-  sprites.diversityPassives = initSprite(`${GFX_PATH}/diversity-passives.anm2`);
-  sprites.diversityTrinket = initSprite(`${GFX_PATH}/diversity-trinket.anm2`);
+  sprites.diversityActive = newSprite(`${GFX_PATH}/diversity-active.anm2`);
+  sprites.diversityPassives = newSprite(`${GFX_PATH}/diversity-passives.anm2`);
+  sprites.diversityTrinket = newSprite(`${GFX_PATH}/diversity-trinket.anm2`);
 
   if (g.race.startingItems.length !== 5) {
     error(
@@ -232,19 +234,19 @@ function initDiversitySprites() {
     );
   }
 
-  sprites.diversityItem1 = initGlowingCollectibleSpriteFromServerCollectibleID(
+  sprites.diversityItem1 = newGlowingCollectibleSpriteFromServerCollectibleID(
     g.race.startingItems[0],
   );
-  sprites.diversityItem2 = initGlowingCollectibleSpriteFromServerCollectibleID(
+  sprites.diversityItem2 = newGlowingCollectibleSpriteFromServerCollectibleID(
     g.race.startingItems[1],
   );
-  sprites.diversityItem3 = initGlowingCollectibleSpriteFromServerCollectibleID(
+  sprites.diversityItem3 = newGlowingCollectibleSpriteFromServerCollectibleID(
     g.race.startingItems[2],
   );
-  sprites.diversityItem4 = initGlowingCollectibleSpriteFromServerCollectibleID(
+  sprites.diversityItem4 = newGlowingCollectibleSpriteFromServerCollectibleID(
     g.race.startingItems[3],
   );
 
   const trinketType = g.race.startingItems[4] as TrinketType;
-  sprites.diversityItem5 = initGlowingTrinketSprite(trinketType);
+  sprites.diversityItem5 = newGlowingTrinketSprite(trinketType);
 }

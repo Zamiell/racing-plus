@@ -8,7 +8,7 @@ import { game, getScreenCenterPos } from "isaacscript-common";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import { initSprite } from "../../sprite";
+import { newSprite } from "../../sprite";
 
 const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;
@@ -86,7 +86,7 @@ export function statusChanged(): void {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING
   ) {
-    sprite = initSprite(GO_GFX_PATH);
+    sprite = newSprite(GO_GFX_PATH);
   }
 }
 
@@ -94,7 +94,7 @@ export function countdownChanged(): void {
   if (g.race.countdown === -1) {
     sprite = null;
   } else if (g.race.status === RaceStatus.STARTING) {
-    sprite = initSprite(`${GFX_PATH}/countdown/${g.race.countdown}.anm2`);
+    sprite = newSprite(`${GFX_PATH}/countdown/${g.race.countdown}.anm2`);
   }
 }
 
@@ -115,16 +115,16 @@ export function placeChanged(): void {
   if (g.race.place > MAX_PLACE) {
     sprite = null;
   } else {
-    sprite = initSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
+    sprite = newSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
   }
 }
 
 export function setErrorNormalMode(): void {
-  sprite = initSprite(`${GFX_PATH}/error-not-hard-mode.anm2`); // Error: You are not on hard mode.
+  sprite = newSprite(`${GFX_PATH}/error-not-hard-mode.anm2`); // Error: You are not on hard mode.
 }
 
 export function setErrorHardMode(): void {
-  sprite = initSprite(`${GFX_PATH}/error-hard-mode.anm2`); // Error: You are on hard mode.
+  sprite = newSprite(`${GFX_PATH}/error-hard-mode.anm2`); // Error: You are on hard mode.
 }
 
 export function resetSprite(): void {

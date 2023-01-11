@@ -17,7 +17,7 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { g } from "../../globals";
-import { initGlowingCollectibleSprite } from "../../sprite";
+import { newGlowingCollectibleSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
 import v from "./v";
 
@@ -28,7 +28,7 @@ const DPSSprite = Sprite();
 DPSSprite.Load("gfx/017.001_Shopkeeper.anm2", true);
 DPSSprite.Play("Shopkeeper 1", true);
 
-const victoryLapSprite = initGlowingCollectibleSprite(
+const victoryLapSprite = newGlowingCollectibleSprite(
   CollectibleType.FORGET_ME_NOW,
 );
 

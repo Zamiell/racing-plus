@@ -17,17 +17,17 @@ import { serverCollectibleIDToCollectibleType } from "./utils";
 /** e.g. Swallowed Penny is located in file "collectibles_2001.png". */
 const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
-export function initGlowingCollectibleSprite(
+export function newGlowingCollectibleSprite(
   collectibleType: CollectibleType,
 ): Sprite {
-  return initGlowingItemSprite(collectibleType);
+  return newGlowingItemSprite(collectibleType);
 }
 
 /**
  * When drawing sprites for collectibles received from the server, we need to account for custom
  * collectibles that have an ID between 1001 and 1999 instead of their real collectible type.
  */
-export function initGlowingCollectibleSpriteFromServerCollectibleID(
+export function newGlowingCollectibleSpriteFromServerCollectibleID(
   serverCollectibleID: int | undefined,
 ): Sprite {
   if (serverCollectibleID === undefined) {
@@ -39,22 +39,22 @@ export function initGlowingCollectibleSpriteFromServerCollectibleID(
   const collectibleType = serverCollectibleIDToCollectibleType(
     serverCollectibleID as ServerCollectibleID,
   );
-  return initGlowingCollectibleSprite(collectibleType);
+  return newGlowingCollectibleSprite(collectibleType);
 }
 
-export function initGlowingTrinketSprite(trinketType: TrinketType): Sprite {
+export function newGlowingTrinketSprite(trinketType: TrinketType): Sprite {
   // Golden trinkets should not have their ID modified.
   const itemID = isGoldenTrinketType(trinketType)
     ? asNumber(trinketType)
     : asNumber(trinketType) + GLOWING_IMAGE_TRINKET_OFFSET;
 
-  return initGlowingItemSprite(itemID);
+  return newGlowingItemSprite(itemID);
 }
 
-function initGlowingItemSprite(itemID: int): Sprite {
+function newGlowingItemSprite(itemID: int): Sprite {
   const directory = getDirectory(itemID);
   const filename = getFilename(itemID);
-  return initSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
+  return newSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
 }
 
 function getDirectory(itemID: int) {
@@ -131,7 +131,7 @@ function getFileNum(itemID: int) {
   return defaultReturn;
 }
 
-export function initCollectibleSprite(
+export function newCollectibleSprite(
   collectibleType: CollectibleType | -1,
 ): Sprite {
   const sprite = Sprite();
@@ -147,7 +147,7 @@ export function initCollectibleSprite(
   return sprite;
 }
 
-export function initSprite(anm2Path: string, pngPath?: string): Sprite {
+export function newSprite(anm2Path: string, pngPath?: string): Sprite {
   const sprite = Sprite();
 
   if (pngPath === undefined) {

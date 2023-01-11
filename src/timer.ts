@@ -7,25 +7,25 @@ import {
   isJacobOrEsau,
 } from "isaacscript-common";
 import { TimerType } from "./enums/TimerType";
-import { initSprite } from "./sprite";
+import { newSprite } from "./sprite";
 
 class TimerSprites {
-  clock = initSprite("gfx/timer/clock.anm2");
+  clock = newSprite("gfx/timer/clock.anm2");
 
   colons = {
-    afterMinutes: initSprite("gfx/timer/colon.anm2"),
-    afterHours: initSprite("gfx/timer/colon.anm2"),
+    afterMinutes: newSprite("gfx/timer/colon.anm2"),
+    afterHours: newSprite("gfx/timer/colon.anm2"),
   };
 
   digits = {
-    minute1: initSprite("gfx/timer/timer.anm2"),
-    minute2: initSprite("gfx/timer/timer.anm2"),
-    second1: initSprite("gfx/timer/timer.anm2"),
-    second2: initSprite("gfx/timer/timer.anm2"),
-    hour: initSprite("gfx/timer/timer.anm2"),
+    minute1: newSprite("gfx/timer/timer.anm2"),
+    minute2: newSprite("gfx/timer/timer.anm2"),
+    second1: newSprite("gfx/timer/timer.anm2"),
+    second2: newSprite("gfx/timer/timer.anm2"),
+    hour: newSprite("gfx/timer/timer.anm2"),
   };
 
-  digitMini = initSprite("gfx/timer/timer_mini.anm2");
+  digitMini = newSprite("gfx/timer/timer_mini.anm2");
 }
 
 const DIGIT_LENGTH = 7.25;

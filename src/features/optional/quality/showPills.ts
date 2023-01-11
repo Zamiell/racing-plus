@@ -20,7 +20,7 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
-import { initSprite } from "../../../sprite";
+import { newSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
 
 const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS: ReadonlyMap<
@@ -53,7 +53,7 @@ export function init(): void {
   mod.saveDataManager("showPills", v, featureEnabled);
 
   for (const pillColor of getNormalPillColors()) {
-    const sprite = initSprite(
+    const sprite = newSprite(
       "gfx/pills/pill.anm2",
       `gfx/pills/${pillColor}.png`,
     );

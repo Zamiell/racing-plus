@@ -7,14 +7,14 @@ import {
 } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
-import { initSprite } from "../../../sprite";
+import { newSprite } from "../../../sprite";
 import { shouldGetFreeDevilItemOnThisRun } from "../major/freeDevilItem";
 
 const ICON_SPRITE_POSITION = Vector(35, 33); // To the right of the coin count
 const TAINTED_ISAAC_OFFSET = Vector(4, 24);
 const FREE_DEVIL_DEAL_ICON_OFFSET = Vector(15, 0);
 
-const sprite = initSprite("gfx/ui/max_familiars.anm2");
+const sprite = newSprite("gfx/ui/max_familiars.anm2");
 
 const v = {
   run: {
