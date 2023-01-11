@@ -5,8 +5,8 @@ import { CollectibleType } from "isaac-typescript-definitions";
 import { anyPlayerHasCollectible } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const FADE_AMOUNT = 0.12;
-const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
+const FADE_ALPHA = 0.1;
+const FADED_COLOR = Color(1, 1, 1, FADE_ALPHA, 0, 0, 0);
 const DURATION = 1000;
 
 // ModCallbackCustom.POST_TEAR_INIT_LATE
