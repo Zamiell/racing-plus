@@ -1,18 +1,17 @@
 // Vasculitis causes tears to explode out of enemies. This is very confusing and makes it hard to
 // see real projectiles. Fade all tears of this nature so that they are easy to distinguish.
 
-import { CollectibleType, EntityType } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import { anyPlayerHasCollectible } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const FADE_AMOUNT = 0.15;
+const FADE_AMOUNT = 0.12;
 const FADED_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 const DURATION = 1000;
 
-// ModCallback.POST_TEAR_UPDATE (40)
+// ModCallbackCustom.POST_TEAR_INIT_LATE
 // TearVariant.BLOOD (1)
-// Setting the tear color does not work in the `POST_TEAR_INIT` callback, so we have to do it here.
-export function postTearUpdateBlood(tear: EntityTear): void {
+export function postTearInitLateBlood(tear: EntityTear): void {
   if (!config.fadeVasculitisTears) {
     return;
   }
@@ -23,15 +22,16 @@ export function postTearUpdateBlood(tear: EntityTear): void {
 }
 
 function isVasculitisTear(tear: EntityTear) {
-  // `tear.SpawnerType` will be equal to 1 if it was shot by the player.
-  Isaac.DebugString(`GETTING HERE - ${tear.SpawnerType}`);
+  // `tear.Parent` will not be equal undefined if it was shot by the player.
   return (
-    tear.FrameCount === 0 &&
-    tear.SpawnerType === EntityType.NULL &&
+    tear.Parent === undefined &&
     anyPlayerHasCollectible(CollectibleType.VASCULITIS)
   );
 }
 
+/**
+ * Setting the tear color does not work in the `POST_TEAR_INIT` callback, so we have to do it here.
+ */
 function fadeTear(tear: EntityTear) {
   tear.SetColor(FADED_COLOR, DURATION, 0);
 }
