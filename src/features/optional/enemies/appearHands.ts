@@ -2,39 +2,6 @@ import { SoundEffect } from "isaac-typescript-definitions";
 import { sfxManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-// ModCallback.POST_NPC_UPDATE (0)
-// EntityType.MOMS_HAND (213)
-export function postNPCUpdateMomsHand(npc: EntityNPC): void {
-  if (!config.appearHands) {
-    return;
-  }
-
-  checkFirstSpawn(npc);
-}
-
-// ModCallback.POST_NPC_UPDATE (0)
-// EntityType.MOMS_DEAD_HAND (287)
-export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
-  if (!config.appearHands) {
-    return;
-  }
-
-  checkFirstSpawn(npc);
-}
-
-/**
- * Play a custom "Appear" animation when Hands first spawn.
- *
- * This cannot be in the `POST_NPC_INIT` callback because if it is done there, a shadow will appear
- * below the hand, which does not look very good, and I don't know of a way to remove the shadow.
- */
-function checkFirstSpawn(npc: EntityNPC) {
-  if (npc.FrameCount === 0) {
-    const sprite = npc.GetSprite();
-    sprite.Play("Appear", true);
-  }
-}
-
 // ModCallback.PRE_NPC_UPDATE (69)
 // EntityType.MOMS_HAND (213)
 export function preNPCUpdateMomsHand(npc: EntityNPC): boolean | undefined {
@@ -74,4 +41,35 @@ export function postNewRoom(): void {
 
   // Mute the audio tell of Mom laughing, since it is obnoxious.
   sfxManager.Stop(SoundEffect.MOM_VOX_EVIL_LAUGH);
+}
+
+// ModCallback.POST_NPC_INIT_LATE
+// EntityType.MOMS_HAND (213)
+export function postNPCInitLateMomsHand(npc: EntityNPC): void {
+  if (!config.appearHands) {
+    return;
+  }
+
+  playCustomAppearAnimation(npc);
+}
+
+// ModCallbackCustom.POST_NPC_INIT_LATE
+// EntityType.MOMS_DEAD_HAND (287)
+export function postNPCInitLateMomsDeadHand(npc: EntityNPC): void {
+  if (!config.appearHands) {
+    return;
+  }
+
+  playCustomAppearAnimation(npc);
+}
+
+/**
+ * Play a custom animation when hands first spawn. (They jump up to the ceiling from the floor.)
+ *
+ * This cannot be in the `POST_NPC_INIT` callback because if it is done there, a shadow will appear
+ * below the hand, which does not look very good, and I don't know of a way to remove the shadow.
+ */
+function playCustomAppearAnimation(npc: EntityNPC) {
+  const sprite = npc.GetSprite();
+  sprite.Play("Appear", true);
 }

@@ -11,7 +11,7 @@ const DURATION = 1000;
 
 // ModCallback.POST_TEAR_UPDATE (40)
 // TearVariant.BLOOD (1)
-// Setting the tear color does not work in the PostTearInit callback, so we have to do it here.
+// Setting the tear color does not work in the `POST_TEAR_INIT` callback, so we have to do it here.
 export function postTearUpdateBlood(tear: EntityTear): void {
   if (!config.fadeVasculitisTears) {
     return;
@@ -24,6 +24,7 @@ export function postTearUpdateBlood(tear: EntityTear): void {
 
 function isVasculitisTear(tear: EntityTear) {
   // `tear.SpawnerType` will be equal to 1 if it was shot by the player.
+  Isaac.DebugString(`GETTING HERE - ${tear.SpawnerType}`);
   return (
     tear.FrameCount === 0 &&
     tear.SpawnerType === EntityType.NULL &&

@@ -5,8 +5,6 @@ import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
-import * as appearHands from "../features/optional/enemies/appearHands";
-import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
 import * as fastDusts from "../features/optional/enemies/fastDusts";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
@@ -143,13 +141,11 @@ function death(npc: EntityNPC) {
 
 // EntityType.MOMS_HAND (213)
 function momsHand(npc: EntityNPC) {
-  appearHands.postNPCUpdateMomsHand(npc);
   fastHands.postNPCUpdateMomsHand(npc);
 }
 
 // EntityType.WIZOOB (219)
 function wizoob(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateWizoob(npc);
   fastGhosts.postNPCUpdateWizoob(npc);
 }
 
@@ -160,7 +156,6 @@ function ragling(npc: EntityNPC) {
 
 // EntityType.THE_HAUNT (260)
 function haunt(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateHaunt(npc);
   fastHaunt.postNPCUpdateHaunt(npc);
 }
 
@@ -176,13 +171,11 @@ function lamb(npc: EntityNPC) {
 
 // EntityType.RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
-  disableInvulnerability.postNPCUpdateRedGhost(npc);
   fastGhosts.postNPCUpdateRedGhost(npc);
 }
 
 // EntityType.MOMS_DEAD_HAND (287)
 function momsDeadHand(npc: EntityNPC) {
-  appearHands.postNPCUpdateMomsDeadHand(npc);
   fastHands.postNPCUpdateMomsDeadHand(npc);
 }
 
