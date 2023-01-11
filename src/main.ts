@@ -30,7 +30,6 @@ import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
-import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as useCard from "./callbacks/postUseCard";
 import * as useItem from "./callbacks/postUseItem";
@@ -142,7 +141,6 @@ function registerCallbacksVanilla() {
   postPickupInit.init(); // 34
   postPickupUpdate.init(); // 35
   postPickupRender.init(); // 36
-  postTearUpdate.init(); // 40
   postProjectileInit.init(); // 43
   postLaserInit.init(); // 47
   postEffectInit.init(); // 54
