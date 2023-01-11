@@ -1,5 +1,6 @@
+import { LevelStage } from "isaac-typescript-definitions";
+import { getEffectiveStage, inStartingRoom } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 
 export function season3PreUseItemGlowingHourGlass(
   player: EntityPlayer,
@@ -14,11 +15,12 @@ export function season3PreUseItemGlowingHourGlass(
 
 /** It is possible to warp to Home by using the Glowing Hour Glass on the first room of the run. */
 function preventHomeWarp(player: EntityPlayer): boolean | undefined {
-  const roomsEntered = getNumRoomsEntered();
-  if (roomsEntered !== 1) {
-    return undefined;
+  const effectiveStage = getEffectiveStage();
+
+  if (effectiveStage === LevelStage.BASEMENT_1 && inStartingRoom()) {
+    player.AnimateSad();
+    return true;
   }
 
-  player.AnimateSad();
-  return true;
+  return undefined;
 }
