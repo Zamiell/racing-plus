@@ -1,10 +1,12 @@
 # Racing+ Version History and News
 
 <!-- markdownlint-disable MD001 MD034 -->
-<!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
+<!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
 ### _v0.89.4_ - January 12th, 2023
 
+- The Unseeded Ranked Solo Season 2 has concluded. Congratulations to Adrayon on 1st place with an average time of 9:33, thereisnofuture on 2nd place with an average time of 9:42, and kirakeepkool on 3rd place with an average time of 9:45.
+- ?Stephen is now added to the C Section build for seeded races and in season 2.
 - Fixed the bug in season 3 where the Glowing Hour Glass warp was not being properly detected. (Thanks tayu)
 
 ### _v0.89.4_ - January 11th, 2023
@@ -3211,7 +3213,7 @@ Client:
 
 ### _v0.16.0_ - March 18th, 2018
 
-- The Unseeded Ranked Solo Season 1 has concluded. Congratulations to BMZ_Loop on 1st place with an average time of 12:41, CrafterLynx on 2nd place with an average time of 12:51, and Dea1h with 3rd place with an average time of 13:12. Note that these times should be taken with a grain of salt, since the timing of the client was a little wonky until v0.15.0 (February 11th).
+- The Unseeded Ranked Solo Season 1 has concluded. Congratulations to BMZ_Loop on 1st place with an average time of 12:41, CrafterLynx on 2nd place with an average time of 12:51, and Dea1h on 3rd place with an average time of 13:12. Note that these times should be taken with a grain of salt, since the timing of the client was a little wonky until v0.15.0 (February 11th).
 - Season 2 has now started! The leaderboard has been completely reset. In Season 2, Judas will now start with the Schoolbag, but the category is otherwise the same.
 - You can now use the "Change Keybindings" custom challenge to set a unique key for fast-drop and a Schoolbag-switch.
   - If you do not have a binding set for fast-drop, the fast-drop feature will not function at all.

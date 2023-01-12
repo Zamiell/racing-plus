@@ -85,8 +85,12 @@ export function init(): void {
 }
 
 function checkStoreCollectible() {
-  const player = Isaac.GetPlayer();
+  const challenge = Isaac.GetChallenge();
+  if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
 
+  const player = Isaac.GetPlayer();
   if (
     player.QueuedItem.Item === undefined ||
     !player.QueuedItem.Item.IsCollectible() ||
