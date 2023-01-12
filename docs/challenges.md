@@ -243,6 +243,7 @@ Some builds are banned on certain characters:
 - Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
 - Stored collectibles cannot be rolled, voided, or duplicated (with e.g. Diplopia or Crooked Penny).
 - If you reset or die before touching the trophy, any collectibles that you stored on the run will be lost. Items already stored from previous characters will remain. (This prevents you from storing items from the Basement 1 Treasure Room.)
+- Mega Blast and Mega Mush will not appear in the starting room for Apollyon, but will remain in storage for subsequent characters.
 
 <br>
 

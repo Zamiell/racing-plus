@@ -25,7 +25,8 @@ import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 import { drawErrorText } from "../mandatory/errors";
-import { isOnFirstCharacter } from "./speedrun";
+import { BANNED_COLLECTIBLES_WITH_VOID } from "../mandatory/removeGloballyBannedItems/constants";
+import { getCurrentCharacter, isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
@@ -251,6 +252,16 @@ function giveStartingItems() {
 
 function spawnStoredCollectibles() {
   v.persistent.storedCollectibles.forEach((collectibleType, i) => {
+    // Since certain collectibles are supposed to be removed from pools on Apollyon, skip spawning
+    // them. (But leave them in storage for subsequent characters.)
+    const currentCharacter = getCurrentCharacter();
+    if (
+      currentCharacter === PlayerType.APOLLYON &&
+      BANNED_COLLECTIBLES_WITH_VOID.has(collectibleType)
+    ) {
+      return;
+    }
+
     // If there are so many stored collectibles that they take up every available position in the
     // room, then start spawning them on an overlap starting at the top left again.
     const safeIndex = i % STORED_ITEM_GRID_INDEXES.length;
