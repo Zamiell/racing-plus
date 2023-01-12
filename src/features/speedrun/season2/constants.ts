@@ -4,7 +4,10 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
 
-/** Roughly corresponds to `builds.json` from the `isaac-racing-common` repository. */
+/**
+ * Roughly corresponds to the ordering from `builds.json` from the `isaac-racing-common` repository,
+ * with some explicit exceptions outlined below.
+ */
 export const SEASON_2_STARTING_BUILDS = [
   // -------------------
   // Treasure Room items
