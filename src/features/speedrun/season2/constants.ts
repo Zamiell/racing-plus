@@ -4,6 +4,7 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
 
+/** Roughly corresponds to `builds.json` from the `isaac-racing-common` repository. */
 export const SEASON_2_STARTING_BUILDS = [
   // -------------------
   // Treasure Room items
@@ -15,11 +16,15 @@ export const SEASON_2_STARTING_BUILDS = [
   // 1
   [CollectibleType.DR_FETUS], // 52
 
+  // (Epic Fetus is too powerful to be included.)
+
   // 2
   [CollectibleType.IPECAC], // 149
 
   // 3
   [CollectibleType.MAGIC_MUSHROOM], // 12
+
+  // (Mom's Knife is too powerful to be included.)
 
   // 4
   [CollectibleType.POLYPHEMUS], // 169
@@ -30,33 +35,32 @@ export const SEASON_2_STARTING_BUILDS = [
   // 6
   [CollectibleType.TECH_X], // 395
 
-  // 7
-  [CollectibleType.C_SECTION], // 678
-
   // ----------------
   // Devil Room items
   // ----------------
 
-  // 8
+  // 7
   [CollectibleType.BRIMSTONE], // 118
 
-  // 9
+  // 8
   [CollectibleType.MAW_OF_THE_VOID], // 399
 
   // ----------------
   // Angel Room items
   // ----------------
 
-  // 10
+  // 9
   [CollectibleType.CROWN_OF_LIGHT], // 415
 
-  // 11
+  // 10
   [CollectibleType.GODHEAD], // 331
 
-  // 12
+  // 11
   [CollectibleType.SACRED_HEART], // 182
 
-  // 13
+  // (Spirit Sword is too powerful to be included.)
+
+  // 12
   // Revelation is nerfed (no soul hearts & no flight).
   [CollectibleType.REVELATION], // 643
 
@@ -64,10 +68,16 @@ export const SEASON_2_STARTING_BUILDS = [
   // Custom builds
   // -------------
 
+  // 13
+  [
+    CollectibleType.TWENTY_TWENTY, // 245
+    CollectibleType.INNER_EYE, // 2
+  ],
+
   // 14
   [
-    CollectibleType.TECHNOLOGY, // 68
-    CollectibleType.LUMP_OF_COAL, // 132
+    CollectibleType.C_SECTION, // 678
+    CollectibleType.STEVEN, // 50
   ],
 
   // 15
@@ -84,8 +94,8 @@ export const SEASON_2_STARTING_BUILDS = [
 
   // 17
   [
-    CollectibleType.MONSTROS_LUNG, // 229
-    CollectibleType.SAD_ONION, // 1
+    CollectibleType.DEAD_EYE, // 373
+    CollectibleType.JESUS_JUICE, // 197
   ],
 
   // 18
@@ -96,39 +106,39 @@ export const SEASON_2_STARTING_BUILDS = [
 
   // 19
   [
-    CollectibleType.TECH_5, // 244
-    CollectibleType.JESUS_JUICE, // 197
-  ],
-
-  // 20
-  [
-    CollectibleType.TWENTY_TWENTY, // 245
-    CollectibleType.INNER_EYE, // 2
-  ],
-
-  // 21
-  [
     CollectibleType.FIRE_MIND, // 257
     CollectibleTypeCustom.THIRTEEN_LUCK, // Custom
   ],
 
-  // 22
+  // 20
+  [
+    CollectibleType.HAEMOLACRIA, // 531
+    CollectibleType.SAD_ONION, // 1
+  ],
+
+  // 21
   [
     CollectibleType.INCUBUS, // 360
     CollectibleType.TWISTED_PAIR, // 698
     // The smelted Forgotten Lullaby is handled manually.
   ],
 
+  // 22
+  [
+    CollectibleType.MONSTROS_LUNG, // 229
+    CollectibleType.SAD_ONION, // 1
+  ],
+
   // 23
   [
-    CollectibleType.DEAD_EYE, // 373
-    CollectibleType.JESUS_JUICE, // 197
+    CollectibleType.TECHNOLOGY, // 68
+    CollectibleType.LUMP_OF_COAL, // 132
   ],
 
   // 24
   [
-    CollectibleType.HAEMOLACRIA, // 531
-    CollectibleType.SAD_ONION, // 1
+    CollectibleType.TECH_5, // 244
+    CollectibleType.JESUS_JUICE, // 197
   ],
 
   // 25
@@ -142,6 +152,8 @@ export const SEASON_2_STARTING_BUILDS = [
     CollectibleTypeCustom.SAWBLADE,
     CollectibleType.FATE, // 179
   ],
+
+  // (The builds with more than two items are too wonky to be included.)
 ] as const;
 
 /**

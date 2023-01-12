@@ -3,10 +3,25 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.89.4_ - January 12th, 2023
+### _v0.90.0_ - January 12th, 2023
 
 - The Unseeded Ranked Solo Season 2 has concluded. Congratulations to Adrayon on 1st place with an average time of 9:33, thereisnofuture on 2nd place with an average time of 9:42, and kirakeepkool on 3rd place with an average time of 9:45.
-- ?Stephen is now added to the C Section build for seeded races and in season 2.
+- In seeded races, the following builds have been changed:
+  - C Section - Added Steven.
+  - Cricket's Body - Added Steven.
+  - Dead Eye - Added Jesus Juice.
+  - Death's Touch - Added Sad Onion.
+  - Tech.5 - Added Jesus Juice.
+  - Godhead - Removed Cupid's Arrow.
+  - Sawblade - Added Fate.
+  - Fire Mind - Removed Mysterious Liquid.
+- In seeded races, the following builds have been deleted:
+  - Incubus + Incubus
+  - Twisted Pair + Twisted Pair
+- In seeded races, the following builds have been added:
+  - Incubus + Twisted Pair
+- In R+7 season 2, the following builds have been changed (so that they more closely match the builds from seeded races):
+  - C Section - Added Steven.
 - Fixed the bug in season 3 where the Glowing Hour Glass warp was not being properly detected. (Thanks tayu)
 
 ### _v0.89.4_ - January 11th, 2023
