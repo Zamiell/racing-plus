@@ -1,11 +1,30 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import * as dummyDPS from "../features/mandatory/dummyDPS";
+import * as fastPolycephalus from "../features/optional/bosses/fastBlastocyst";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";
 import { speedrunPostNPCRenderDogma } from "../features/speedrun/callbacks/postNPCRender";
 import { mod } from "../mod";
 
 export function init(): void {
+  mod.AddCallback(
+    ModCallback.POST_NPC_RENDER,
+    blastocystBig,
+    EntityType.BLASTOCYST_BIG, // 74
+  );
+
+  mod.AddCallback(
+    ModCallback.POST_NPC_RENDER,
+    blastocystMedium,
+    EntityType.BLASTOCYST_MEDIUM, // 75
+  );
+
+  mod.AddCallback(
+    ModCallback.POST_NPC_RENDER,
+    blastocystSmall,
+    EntityType.BLASTOCYST_SMALL, // 76
+  );
+
   mod.AddCallback(
     ModCallback.POST_NPC_RENDER,
     heretic,
@@ -23,6 +42,21 @@ export function init(): void {
     dummy,
     EntityType.DUMMY, // 964
   );
+}
+
+// EntityType.BLASTOCYST_BIG (74)
+function blastocystBig(npc: EntityNPC) {
+  fastPolycephalus.postNPCRenderBlastocystBig(npc);
+}
+
+// EntityType.BLASTOCYST_MEDIUM (75)
+function blastocystMedium(npc: EntityNPC) {
+  fastPolycephalus.postNPCRenderBlastocystMedium(npc);
+}
+
+// EntityType.BLASTOCYST_SMALL (76)
+function blastocystSmall(npc: EntityNPC) {
+  fastPolycephalus.postNPCRenderBlastocystSmall(npc);
 }
 
 // EntityType.HERETIC (905)

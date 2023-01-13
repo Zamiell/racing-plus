@@ -8,4 +8,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd "$DIR"
 
-npx eslint --print-config ./src/main.ts > debug.txt
+FILE_NAME="debug.txt"
+npx eslint --print-config ./src/main.ts > "$FILE_NAME"
+echo "Created file: $FILE_NAME"

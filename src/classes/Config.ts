@@ -24,6 +24,7 @@ export class Config {
   killExtraEnemies = true; // 45, 78
   fastPin = true; // 62
   preventDeathSlow = true; // 66
+  fastBlastocyst = true; // 74
   fastKrampus = true; // 81
   fastSatan = true; // 84
   fastHaunt = true; // 260

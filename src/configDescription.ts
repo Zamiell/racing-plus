@@ -284,10 +284,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     ],
   ],
   [
-    "fastKrampus", // 81
+    "fastBlastocyst", // 74
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0307",
+      "Fast The Haunt",
+      "Some animations in The Haunt fight are sped up.",
+    ],
+  ],
+  [
+    "fastKrampus", // 81
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0308",
       "Fast Krampus",
       "Make Krampus immediately drop his item once he is killed.",
     ],
@@ -296,7 +305,7 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0308",
+      "0309",
       "Fast Satan",
       "All of the waiting during the Satan Fight is removed.",
     ],
@@ -305,18 +314,9 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
     "fastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0309",
+      "0310",
       "Fast The Haunt",
       "Some animations in The Haunt fight are sped up.",
-    ],
-  ],
-  [
-    "fastAngels", // 271, 272
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0310",
-      "Fast angels",
-      "Make Uriel and Gabriel immediately drop their key piece once they are killed.",
     ],
   ],
 ];
@@ -324,10 +324,19 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
 // 0311-0320
 export const BOSS_CHANGES_2: ConfigDescriptions = [
   [
-    "consistentAngels", // 271, 272
+    "fastAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",
+      "Fast angels",
+      "Make Uriel and Gabriel immediately drop their key piece once they are killed.",
+    ],
+  ],
+  [
+    "consistentAngels", // 271, 272
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0312",
       "Consistent angels",
       "Prevent two of the same angel boss from spawning in the same room.",
     ],
@@ -336,7 +345,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "removeLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0312",
+      "0313",
       "Remove The Lamb body",
       "Remove The Lamb body entirely once it dies.",
     ],
@@ -345,7 +354,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "preventVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0313",
+      "0314",
       "Stop the Victory Lap popup",
       "Prevent the Victory Lap popup from appearing once you defeat The Lamb.",
     ],
@@ -354,7 +363,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0314",
+      "0315",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -363,7 +372,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0315",
+      "0316",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -372,7 +381,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastHeretic", // 905
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0316",
+      "0317",
       "Fast Heretic",
       "Make The Heretic fight start instantly.",
     ],
@@ -381,7 +390,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0317",
+      "0318",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -390,7 +399,7 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0318",
+      "0319",
       "Fast Dogma",
       "Speed up Dogma's death animation (and skip the death cutscene).",
     ],
@@ -404,6 +413,10 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       "Remove some of the animations in the Mega Satan fight.",
     ],
   ],
+];
+
+// 0311-0320
+export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 275
     [
@@ -413,10 +426,6 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       "Defeating Mega Satan no longer has a chance to immediately end the run.",
     ],
   ],
-];
-
-// 0311-0320
-export const BOSS_CHANGES_3: ConfigDescriptions = [
   [
     "", // 407
     [

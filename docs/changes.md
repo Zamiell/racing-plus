@@ -187,24 +187,25 @@ Post-flip actions:
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `0307` <!-- fastKrampus 81 --> Krampus will immediately drop his item once he is killed.
-- `0308` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
-- `0309` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
-- `0310` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
-- `0311` <!-- consistentAngels 271, 272 --> Angel types are now properly seeded and are no longer duplicated. Uriel is always given first.
-- `0312` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
+- `0307` <!-- fastBlastocyst 74 --> The death animation of Blastocyst is sped up.
+- `0308` <!-- fastKrampus 81 --> Krampus will immediately drop his item once he is killed.
+- `0309` <!-- fastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
+- `0310` <!-- fastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
+- `0311` <!-- fastAngels 271, 272 --> Uriel and Gabriel will immediately drop their key piece once they are killed.
+- `0312` <!-- consistentAngels 271, 272 --> Angel types are now properly seeded and are no longer duplicated. Uriel is always given first.
+- `0313` <!-- removeLambBody 273 --> The Lamb body is removed upon death.
 
 > Why? It can interfere with touching a trophy / chest.
 
-- `0313` <!-- preventVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
+- `0314` <!-- preventVictoryLapPopup 273 --> The "Would you like to do a Victory Lap!?" popup will no longer appear after defeating The Lamb.
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0314` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0315` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0316` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
-- `0317` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0318` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
+- `0315` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0316` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0317` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
+- `0318` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0319` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
