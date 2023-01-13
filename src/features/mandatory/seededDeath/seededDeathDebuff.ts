@@ -40,7 +40,7 @@ import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersS
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
-import v from "./v";
+import { v } from "./v";
 
 const NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES = 4;
 
@@ -181,7 +181,7 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
     : v.run.collectibles;
 
   const collectibleMap = mod.getPlayerCollectibleMap(player);
-  for (const [collectibleType, collectibleNum] of collectibleMap.entries()) {
+  for (const [collectibleType, collectibleNum] of collectibleMap) {
     repeat(collectibleNum, () => {
       if (!TRANSFORMATION_HELPERS_SET.has(collectibleType)) {
         collectibles.push(collectibleType);
@@ -355,7 +355,7 @@ function giveTransformationHelper(
   collectibleType: CollectibleType,
 ) {
   const transformations = getTransformationsForCollectibleType(collectibleType);
-  for (const transformation of transformations.values()) {
+  for (const transformation of transformations) {
     const helperCollectibleType = TRANSFORMATION_TO_HELPERS.get(transformation);
     if (helperCollectibleType !== undefined) {
       player.AddCollectible(helperCollectibleType);

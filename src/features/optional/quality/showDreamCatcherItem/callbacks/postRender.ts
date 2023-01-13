@@ -11,7 +11,7 @@ import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import * as sprites from "../sprites";
-import v, { DREAM_CATCHER_FEATURE_NAME } from "../v";
+import { DREAM_CATCHER_FEATURE_NAME, v } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
 
 export function showDreamCatcherItemPostRender(): void {

@@ -3,7 +3,7 @@ import { PlayerIndex } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
-const v = {
+export const v = {
   run: {
     /**
      * Track which pickups that we are automatically inserting so that we can display it to the
@@ -31,7 +31,6 @@ const v = {
     >,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("automaticItemInsertion", v, featureEnabled);

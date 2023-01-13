@@ -11,7 +11,7 @@ import {
   drawSeason3StartingRoomSprites,
   drawSeason3StartingRoomText,
 } from "../startingRoomSprites";
-import v from "../v";
+import { v } from "../v";
 
 export function season3PostRender(): void {
   const challenge = Isaac.GetChallenge();

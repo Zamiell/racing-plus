@@ -11,7 +11,7 @@ import { g } from "../../../globals";
 import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
-import v, { getSeasonDescription } from "../v";
+import { getSeasonDescription, v } from "../v";
 
 export function changeCharOrderPostRender(): void {
   const challenge = Isaac.GetChallenge();
@@ -72,10 +72,7 @@ function drawSeasonSprites() {
     return;
   }
 
-  for (const [
-    seasonAbbreviation,
-    seasonSprite,
-  ] of v.room.sprites.seasons.entries()) {
+  for (const [seasonAbbreviation, seasonSprite] of v.room.sprites.seasons) {
     const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
     if (position === undefined) {
       error(`Failed to find the positions for season: ${seasonAbbreviation}`);

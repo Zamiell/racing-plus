@@ -23,7 +23,7 @@ import { g } from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
-import v from "./v";
+import { v } from "./v";
 
 export function goto(upwards: boolean): void {
   const hud = game.GetHUD();

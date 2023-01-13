@@ -24,7 +24,7 @@ import { newGlowingCollectibleSprite } from "../../sprite";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { speedrunSetBansTime } from "../speedrun/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
-import v, { getSeasonDescription } from "./v";
+import { getSeasonDescription, v } from "./v";
 
 /** This is the largest value that works. */
 const FADE_RENDER_FRAMES = 38;

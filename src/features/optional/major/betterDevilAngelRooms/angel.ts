@@ -5,7 +5,7 @@ import {
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import * as angelRooms from "./angelRooms.json";
-import v from "./v";
+import { v } from "./v";
 
 export function angel(): void {
   const jsonRooms = angelRooms.rooms.room;

@@ -1,6 +1,6 @@
 import { ChampionColor } from "isaac-typescript-definitions";
 import { game } from "isaacscript-common";
-import v, { logFastClear } from "./v";
+import { logFastClear, v } from "./v";
 
 // ModCallback.POST_ENTITY_REMOVE (67)
 export function postEntityRemove(entity: Entity): void {

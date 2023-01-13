@@ -10,7 +10,7 @@ import { config } from "../../../../modConfigMenu";
 
 export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
 
-const v = {
+export const v = {
   level: {
     __ignoreGlowingHourGlass: true, // Tell the Save Data Manager to not revert this variable.
     warpState: DreamCatcherWarpState.INITIAL,
@@ -28,7 +28,6 @@ const v = {
     arrivedOnNewFloor: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager(DREAM_CATCHER_FEATURE_NAME, v, featureEnabled);

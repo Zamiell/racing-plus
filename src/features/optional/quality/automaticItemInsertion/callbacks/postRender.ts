@@ -8,7 +8,7 @@ import {
   isJacobOrEsau,
 } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
-import v from "../v";
+import { v } from "../v";
 
 const UI_X = 35;
 const COINS_X_OFFSET = 10; // For Deep Pockets

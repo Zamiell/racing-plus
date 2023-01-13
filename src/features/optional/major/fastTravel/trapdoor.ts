@@ -32,7 +32,7 @@ import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
-import v from "./v";
+import { v } from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
 

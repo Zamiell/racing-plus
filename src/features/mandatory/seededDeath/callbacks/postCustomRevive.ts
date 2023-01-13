@@ -5,7 +5,7 @@ import {
   logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
-import v from "../v";
+import { v } from "../v";
 import { playAppearAnimationAndFade } from "./postNewRoom";
 
 export function seededDeathPostCustomRevive(player: EntityPlayer): void {

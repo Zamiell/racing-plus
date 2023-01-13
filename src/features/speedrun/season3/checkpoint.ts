@@ -9,7 +9,7 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { g } from "../../../globals";
 import { Season3Goal } from "./constants";
-import v from "./v";
+import { v } from "./v";
 
 /** We need to remove the corresponding goal related to this Checkpoint. */
 export function season3CheckpointTouched(): void {

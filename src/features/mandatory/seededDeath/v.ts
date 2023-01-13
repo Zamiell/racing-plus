@@ -5,7 +5,7 @@ import { mod } from "../../../mod";
 import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
-const v = {
+export const v = {
   run: {
     state: SeededDeathState.DISABLED,
     dyingPlayerIndex: null as PlayerIndex | null,
@@ -34,7 +34,6 @@ const v = {
     switchingBackToGhostLazarus: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager(SEEDED_DEATH_FEATURE_NAME, v);

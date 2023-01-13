@@ -27,12 +27,13 @@ import {
 import { SEASON_2_NUM_BANS } from "./season2/constants";
 import { season2ResetBuilds } from "./season2/v";
 import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4";
-import v, {
+import {
   speedrunGetCharacterNum,
   speedrunGetCurrentSelectedCharacter,
   speedrunHasErrors,
   speedrunResetPersistentVars,
   speedrunSetFastReset,
+  v,
 } from "./v";
 
 const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER = [

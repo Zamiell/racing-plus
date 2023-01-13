@@ -32,7 +32,7 @@ import {
   TRAPDOOR_TOUCH_DISTANCE,
 } from "./constants";
 import * as state from "./state";
-import v from "./v";
+import { v } from "./v";
 
 /** One tile away from the top door in a 1x1 room. */
 export const NORMAL_TRAPDOOR_GRID_INDEX = 37;

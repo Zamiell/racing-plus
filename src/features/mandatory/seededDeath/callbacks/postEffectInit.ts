@@ -1,5 +1,5 @@
 import { shouldSeededDeathFeatureApply } from "../seededDeath";
-import v from "../v";
+import { v } from "../v";
 
 // EffectVariant.BLOOD_DROP (70)
 export function seededDeathPostEffectInitBloodDrop(effect: EntityEffect): void {

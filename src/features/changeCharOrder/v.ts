@@ -4,7 +4,7 @@ import { mod } from "../../mod";
 import { SeasonDescription } from "../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
 
-const v = {
+export const v = {
   persistent: {
     /** Indexed by speedrun abbreviation. */
     charOrders: new Map<string, PlayerType[]>(),
@@ -30,8 +30,6 @@ const v = {
     resetRenderFrame: null as int | null,
   },
 };
-
-export default v;
 
 export function init(): void {
   // We must initialize the table with default values or else the merge script will not copy over

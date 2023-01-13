@@ -19,7 +19,7 @@ import {
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
-import v from "../v";
+import { v } from "../v";
 
 const MAX_GET_COLLECTIBLE_ATTEMPTS = 100;
 

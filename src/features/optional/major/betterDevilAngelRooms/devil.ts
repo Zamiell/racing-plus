@@ -19,7 +19,7 @@ import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { getEffectiveDevilDeals } from "../../../../utils";
 import * as devilRooms from "./devilRooms.json";
-import v from "./v";
+import { v } from "./v";
 
 const NORMAL_ROOM_SUBTYPE = 0;
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;

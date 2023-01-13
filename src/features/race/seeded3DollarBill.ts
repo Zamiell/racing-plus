@@ -5,7 +5,7 @@ import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import v from "./v";
+import { v } from "./v";
 
 const REPLACED_ITEM = CollectibleType.THREE_DOLLAR_BILL;
 const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;

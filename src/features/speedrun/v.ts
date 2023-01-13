@@ -3,7 +3,7 @@ import { emptyArray } from "isaacscript-common";
 import { RepentanceDoorState } from "../../enums/RepentanceDoorState";
 import { mod } from "../../mod";
 
-const v = {
+export const v = {
   persistent: {
     characterNum: 1,
     liveSplitReset: false,
@@ -61,7 +61,6 @@ const v = {
     usedShovelFrame: null as int | null,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("speedrun", v);

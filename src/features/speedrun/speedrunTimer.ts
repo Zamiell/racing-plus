@@ -2,7 +2,7 @@ import { RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 import { TimerType } from "../../enums/TimerType";
 import * as timer from "../../timer";
 import { shouldDrawRaceTimer } from "../race/raceTimer";
-import v from "./v";
+import { v } from "./v";
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {

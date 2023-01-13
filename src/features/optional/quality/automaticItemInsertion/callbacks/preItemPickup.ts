@@ -14,7 +14,7 @@ import {
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { COLLECTIBLE_TO_PICKUP_DROPS_MAP } from "../constants";
-import v from "../v";
+import { v } from "../v";
 
 export function automaticItemInsertionPreItemPickup(
   player: EntityPlayer,

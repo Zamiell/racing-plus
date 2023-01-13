@@ -6,7 +6,7 @@ import { config } from "../../../../modConfigMenu";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
 
-const v = {
+export const v = {
   run: {
     state: FastTravelState.DISABLED,
     renderFramesPassed: 0,
@@ -89,7 +89,6 @@ const v = {
     teleporterSpawned: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager(FAST_TRAVEL_FEATURE_NAME, v, featureEnabled);

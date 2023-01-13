@@ -11,7 +11,7 @@ import { season3PostRender } from "../season3/callbacks/postRender";
 import * as season4 from "../season4";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
-import v, { speedrunHasErrors } from "../v";
+import { speedrunHasErrors, v } from "../v";
 
 const FADEOUT_SPEED = 0.0275;
 

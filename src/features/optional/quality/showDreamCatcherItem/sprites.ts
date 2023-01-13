@@ -3,7 +3,7 @@ import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
 import { g } from "../../../../globals";
 import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
 import { bossPNGMap } from "./bossPNGMap";
-import v from "./v";
+import { v } from "./v";
 
 const TOP_LEFT_GRID_INDEX = 32;
 const SPRITE_SPACING = 30;

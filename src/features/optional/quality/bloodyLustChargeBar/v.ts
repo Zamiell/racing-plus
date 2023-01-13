@@ -7,12 +7,11 @@ import { mod } from "../../../../mod";
 
 export const MAX_BLOODY_LUST_CHARGES = 6;
 
-const v = {
+export const v = {
   level: {
     playersNumHits: new DefaultMap<PlayerIndex, int>(0),
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("bloodyLustChargeBar", v);

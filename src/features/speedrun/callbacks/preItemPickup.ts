@@ -6,7 +6,7 @@ import { season3CheckpointTouched } from "../season3/checkpoint";
 import * as season4 from "../season4";
 import { season4CheckpointTouched } from "../season4";
 import { inSpeedrun } from "../speedrun";
-import v from "../v";
+import { v } from "../v";
 
 /** In render frames. */
 const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30;

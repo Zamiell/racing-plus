@@ -5,7 +5,7 @@ import { FastTravelState } from "../../../../enums/FastTravelState";
 import { isDreamCatcherWarping } from "../../quality/showDreamCatcherItem/v";
 import { FADE_TO_BLACK_FRAMES, FRAMES_BEFORE_JUMP } from "./constants";
 import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
-import v from "./v";
+import { v } from "./v";
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {

@@ -6,7 +6,7 @@ import {
   applySeededGhostFade,
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
-import v from "../v";
+import { v } from "../v";
 
 export function seededDeathPostFlip(player: EntityPlayer): void {
   if (!shouldSeededDeathFeatureApply()) {

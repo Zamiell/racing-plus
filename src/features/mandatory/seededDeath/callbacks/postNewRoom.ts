@@ -17,7 +17,7 @@ import {
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import { debuffOn, setCheckpointCollision } from "../seededDeathDebuff";
-import v from "../v";
+import { v } from "../v";
 
 export function seededDeathPostNewRoom(): void {
   if (!shouldSeededDeathFeatureApply()) {

@@ -24,7 +24,7 @@ import {
   CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT,
   CHANGE_CHAR_ORDER_ROOM_VARIANT,
 } from "../constants";
-import v from "../v";
+import { v } from "../v";
 
 export function charCharOrderPostNewRoom(): void {
   const challenge = Isaac.GetChallenge();

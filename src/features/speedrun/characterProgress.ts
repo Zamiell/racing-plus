@@ -12,7 +12,7 @@ import {
 } from "../../constants";
 import { shouldDrawPlaceLeftSprite } from "../race/placeLeft";
 import { CHALLENGE_DEFINITIONS } from "./constants";
-import v from "./v";
+import { v } from "./v";
 
 const STARTING_POSITION = Vector(23, 79);
 const RACE_PLACE_OFFSET = Vector(30, 0);

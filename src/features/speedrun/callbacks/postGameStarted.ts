@@ -22,10 +22,11 @@ import {
   inSpeedrun,
   isOnFirstCharacter,
 } from "../speedrun";
-import v, {
+import {
   speedrunHasErrors,
   speedrunResetFirstCharacterVars,
   speedrunResetPersistentVars,
+  v,
 } from "../v";
 
 export function speedrunPostGameStarted(): void {

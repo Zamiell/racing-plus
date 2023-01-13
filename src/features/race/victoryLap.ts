@@ -9,7 +9,7 @@ import {
 } from "isaacscript-common";
 import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
-import v from "./v";
+import { v } from "./v";
 
 const VICTORY_LAP_BOSSES: ReadonlyArray<
   [entityType: EntityType, variant: int, subType: int]

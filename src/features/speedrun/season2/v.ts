@@ -3,7 +3,7 @@ import { mod } from "../../../mod";
 import { speedrunGetCharacterNum } from "../v";
 import { SEASON_2_STARTING_BUILD_INDEXES } from "./constants";
 
-const v = {
+export const v = {
   persistent: {
     selectedBuildIndexes: [] as int[],
     remainingBuildIndexes: [] as int[],
@@ -11,7 +11,6 @@ const v = {
     lastSelectedBuildIndex: null as int | null,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("season2", v);

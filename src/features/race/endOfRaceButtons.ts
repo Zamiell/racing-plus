@@ -19,7 +19,7 @@ import {
 import { g } from "../../globals";
 import { newGlowingCollectibleSprite } from "../../sprite";
 import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
-import v from "./v";
+import { v } from "./v";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);
 const SPRITE_OFFSET_COLLECTIBLE = Vector(0, -40);

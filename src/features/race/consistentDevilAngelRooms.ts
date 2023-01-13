@@ -12,7 +12,7 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { anyPlayerIs, game, getRandom } from "isaacscript-common";
 import { g } from "../../globals";
-import v, { inSeededRace } from "./v";
+import { inSeededRace, v } from "./v";
 
 const CHANCE_TO_GET_ANGEL_ROOMS = 0.333;
 

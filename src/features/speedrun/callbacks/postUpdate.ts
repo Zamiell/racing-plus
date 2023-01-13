@@ -1,7 +1,7 @@
 import { getRepentanceDoor } from "isaacscript-common";
 import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
 import { inSpeedrun } from "../speedrun";
-import v from "../v";
+import { v } from "../v";
 
 export function speedrunPostUpdate(): void {
   if (!inSpeedrun()) {

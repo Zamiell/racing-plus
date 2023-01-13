@@ -11,7 +11,7 @@ import {
   TRAPDOOR_OPEN_DISTANCE,
   TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS,
 } from "./constants";
-import v from "./v";
+import { v } from "./v";
 
 export function open(
   entity: GridEntity | EntityEffect,

@@ -1,5 +1,5 @@
 import { shouldSeededDeathFeatureApply } from "../seededDeath";
-import v from "../v";
+import { v } from "../v";
 
 // LaserVariant.GIANT_RED (6)
 export function seededDeathPostLaserInitGiantRed(laser: EntityLaser): void {

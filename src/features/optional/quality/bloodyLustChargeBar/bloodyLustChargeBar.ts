@@ -6,7 +6,7 @@ import {
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
 import { config } from "../../../../modConfigMenu";
-import v, { MAX_BLOODY_LUST_CHARGES } from "./v";
+import { MAX_BLOODY_LUST_CHARGES, v } from "./v";
 
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_bloody_lust.anm2", true);

@@ -46,7 +46,7 @@ function hasFlyingCollectibleExceptForRevelation(player: EntityPlayer) {
   const flyingCollectibles = copySet(mod.getFlyingCollectibles(true));
   flyingCollectibles.delete(CollectibleType.REVELATION);
 
-  for (const collectibleType of flyingCollectibles.values()) {
+  for (const collectibleType of flyingCollectibles) {
     if (player.HasCollectible(collectibleType)) {
       return true;
     }

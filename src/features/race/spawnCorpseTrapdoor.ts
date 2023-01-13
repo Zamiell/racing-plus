@@ -12,7 +12,7 @@ import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import v from "./v";
+import { v } from "./v";
 
 const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
 

@@ -10,7 +10,7 @@ import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
 import { inSeededRace } from "../../race/v";
 import { QUARTER_FADED_COLOR, SEEDED_DEATH_DEBUG } from "./constants";
-import v from "./v";
+import { v } from "./v";
 
 export function applySeededGhostFade(
   player: EntityPlayer,

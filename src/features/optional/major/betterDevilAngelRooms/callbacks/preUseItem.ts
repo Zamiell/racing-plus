@@ -1,6 +1,6 @@
 import { game } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
-import v from "../v";
+import { v } from "../v";
 
 export function betterDevilAngelRoomsPreUseItemD4(): void {
   if (!config.betterDevilAngelRooms) {

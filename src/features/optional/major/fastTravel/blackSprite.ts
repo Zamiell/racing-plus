@@ -4,7 +4,7 @@ import { VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { newSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
-import v from "./v";
+import { v } from "./v";
 
 const sprite = newSprite("gfx/black.anm2");
 

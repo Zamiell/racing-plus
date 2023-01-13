@@ -7,7 +7,7 @@ import {
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
 import { debuffOff } from "../seededDeathDebuff";
-import v from "../v";
+import { v } from "../v";
 
 export function seededDeathPostUpdate(): void {
   if (!shouldSeededDeathFeatureApply()) {

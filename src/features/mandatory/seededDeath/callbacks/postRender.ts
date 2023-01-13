@@ -15,7 +15,7 @@ import {
   logSeededDeathStateChange,
   shouldSeededDeathFeatureApply,
 } from "../seededDeath";
-import v from "../v";
+import { v } from "../v";
 
 export function seededDeathPostRender(): void {
   if (!shouldSeededDeathFeatureApply()) {

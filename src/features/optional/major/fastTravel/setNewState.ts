@@ -41,7 +41,7 @@ import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravel";
 import * as nextFloor from "./nextFloor";
-import v from "./v";
+import { v } from "./v";
 
 export function setNewFastTravelState(fastTravelState: FastTravelState): void {
   v.run.state = fastTravelState;

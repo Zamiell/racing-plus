@@ -28,7 +28,7 @@ import {
 } from "../constantsCollectibles";
 import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
-import v from "../v";
+import { v } from "../v";
 
 export function season3PostGameStarted(): void {
   const challenge = Isaac.GetChallenge();

@@ -22,7 +22,7 @@ import * as timer from "../../timer";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
-import v, { speedrunGetCharacterNum } from "./v";
+import { speedrunGetCharacterNum, v } from "./v";
 
 const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM: ReadonlySet<Challenge> =
   new Set([ChallengeCustom.SEASON_2, ChallengeCustom.SEASON_4]);

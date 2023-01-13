@@ -28,7 +28,7 @@ import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
-import v, { DREAM_CATCHER_FEATURE_NAME } from "./v";
+import { DREAM_CATCHER_FEATURE_NAME, v } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
 

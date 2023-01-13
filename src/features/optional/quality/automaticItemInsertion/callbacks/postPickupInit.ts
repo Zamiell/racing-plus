@@ -6,7 +6,7 @@ import {
 import { config } from "../../../../../modConfigMenu";
 import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 import { PICKUP_VARIANT_CARD_OR_PILL } from "../constants";
-import v from "../v";
+import { v } from "../v";
 
 export function automaticItemInsertionPostPickupInit(
   pickup: EntityPickup,

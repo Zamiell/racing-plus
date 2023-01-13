@@ -23,7 +23,7 @@ import {
   SEASON_2_STARTING_BUILDS,
 } from "../constants";
 import { initSeason2StartingRoomSprites } from "../startingRoomSprites";
-import v, { season2GetCurrentBuildIndex } from "../v";
+import { season2GetCurrentBuildIndex, v } from "../v";
 
 const NUM_REVELATION_SOUL_HEARTS = 4;
 

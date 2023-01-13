@@ -5,7 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import { getAliveBosses, spawnTrinket } from "isaacscript-common";
 import { g } from "../../../../globals";
-import v from "./v";
+import { v } from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 

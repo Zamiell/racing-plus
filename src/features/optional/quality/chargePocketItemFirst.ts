@@ -399,7 +399,7 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
   }
 
   const activeItemsChanged = new Set<ActiveSlot>();
-  for (const [activeSlot, oldTotalCharge] of activeItemCharges.entries()) {
+  for (const [activeSlot, oldTotalCharge] of activeItemCharges) {
     if (isActiveSlotEmpty(player, activeSlot)) {
       continue;
     }

@@ -1,7 +1,7 @@
 import { mod } from "../../../mod";
 import { Season3Goal } from "./constants";
 
-const v = {
+export const v = {
   persistent: {
     remainingGoals: [] as Season3Goal[],
   },
@@ -14,7 +14,6 @@ const v = {
     season3DogmaTrapdoorSpawned: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("season3", v);

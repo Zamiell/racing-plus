@@ -3,7 +3,7 @@ import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { FAST_CLEAR_DEBUG } from "./constants";
 
-const v = {
+export const v = {
   room: {
     aliveEnemies: new Set<PtrHash>(),
     aliveBosses: new Set<PtrHash>(),
@@ -11,7 +11,6 @@ const v = {
     fastClearedRoom: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("fastClear", v, featureEnabled);

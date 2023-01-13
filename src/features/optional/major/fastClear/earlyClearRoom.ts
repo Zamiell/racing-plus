@@ -27,7 +27,7 @@ import {
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
 } from "./constants";
 import * as postItLivesOrHushPath from "./postItLivesOrHushPath";
-import v from "./v";
+import { v } from "./v";
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {

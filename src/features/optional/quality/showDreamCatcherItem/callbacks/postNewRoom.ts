@@ -22,7 +22,7 @@ import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import * as sprites from "../sprites";
-import v from "../v";
+import { v } from "../v";
 import { warpToNextDreamCatcherRoom } from "../warp";
 
 export function showDreamCatcherItemPostNewRoom(): void {

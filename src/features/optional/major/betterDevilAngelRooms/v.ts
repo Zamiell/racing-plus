@@ -2,7 +2,7 @@ import { newRNG, PlayerIndex, setAllRNGToStartSeed } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
-const v = {
+export const v = {
   run: {
     metKrampus: false,
 
@@ -38,7 +38,6 @@ const v = {
     usedD4Frame: null as int | null,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("betterDevilAngelRooms", v, featureEnabled);

@@ -2,10 +2,11 @@ import { TrapdoorVariant } from "isaac-typescript-definitions";
 import { PickingUpItem, spawnTrapdoorWithVariant } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
-import v, {
+import {
   season3DogmaTrapdoorSpawned,
   season3HasDogmaGoal,
   season3HasOnlyMotherLeft,
+  v,
 } from "../v";
 
 /** One tile away from the bottom door in a 1x1 room. */

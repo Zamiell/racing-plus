@@ -9,7 +9,7 @@ import {
   isDyingEggyWithNoSpidersLeft,
 } from "isaacscript-common";
 import * as trackingRemove from "./trackingRemove";
-import v, { logFastClear } from "./v";
+import { logFastClear, v } from "./v";
 
 // ModCallback.POST_NPC_UPDATE (0)
 export function postNPCUpdate(npc: EntityNPC): void {

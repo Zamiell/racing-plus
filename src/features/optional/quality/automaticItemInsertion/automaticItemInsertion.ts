@@ -1,7 +1,7 @@
 import { PickupVariant } from "isaac-typescript-definitions";
 import { game, isFirstPlayer, isKeeper } from "isaacscript-common";
 import { insertPickup } from "./insertPickup";
-import v from "./v";
+import { v } from "./v";
 
 export function insertPickupAndUpdateDelta(
   pickup: EntityPickup,

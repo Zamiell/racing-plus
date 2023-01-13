@@ -7,7 +7,7 @@ import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { ButtonDescription } from "../../types/ButtonDescription";
 
-const v = {
+export const v = {
   run: {
     /** Used for Tainted Keeper when racing to the Boss Rush. */
     madeBossRushItemsFree: false,
@@ -30,7 +30,6 @@ const v = {
     showEndOfRunText: false,
   },
 };
-export default v;
 
 export function init(): void {
   mod.saveDataManager("race", v, featureEnabled);

@@ -6,7 +6,7 @@ import {
   repeat,
 } from "isaacscript-common";
 import { g } from "../../../../../globals";
-import v from "../v";
+import { v } from "../v";
 
 /**
  * Guppy's Eye will not work correctly with Red Chests that grant a devil deal item because Racing+

@@ -12,7 +12,7 @@ import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { angel } from "../angel";
 import { checkRespawnKrampus, devil } from "../devil";
-import v from "../v";
+import { v } from "../v";
 
 export function betterDevilAngelRoomsPostNewRoom(): void {
   if (!config.betterDevilAngelRooms) {

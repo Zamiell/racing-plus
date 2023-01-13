@@ -8,7 +8,7 @@ import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import v from "./v";
+import { v } from "./v";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {

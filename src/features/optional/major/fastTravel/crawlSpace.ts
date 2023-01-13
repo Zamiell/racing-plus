@@ -35,7 +35,7 @@ import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import * as state from "./state";
-import v from "./v";
+import { v } from "./v";
 
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;
 const GRID_INDEX_SECRET_SHOP_LADDER = 25;

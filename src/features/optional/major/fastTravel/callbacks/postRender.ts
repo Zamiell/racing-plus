@@ -4,7 +4,7 @@ import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import * as blackSprite from "../blackSprite";
 import * as checkStateComplete from "../checkStateComplete";
-import v from "../v";
+import { v } from "../v";
 
 export function fastTravelPostRender(): void {
   if (!config.fastTravel) {

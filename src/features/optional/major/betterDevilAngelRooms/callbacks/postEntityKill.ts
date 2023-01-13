@@ -1,6 +1,6 @@
 import { FallenVariant } from "isaac-typescript-definitions";
 import { asNumber } from "isaacscript-common";
-import v from "../v";
+import { v } from "../v";
 
 export function betterDevilAngelRoomsPostEntityKillFallen(
   entity: Entity,
