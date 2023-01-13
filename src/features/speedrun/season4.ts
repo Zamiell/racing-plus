@@ -5,6 +5,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
+  anyPlayerIs,
   arrayRemoveInPlace,
   DefaultMap,
   dequeueItem,
@@ -26,7 +27,7 @@ import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 import { drawErrorText } from "../mandatory/errors";
 import { BANNED_COLLECTIBLES_WITH_VOID } from "../mandatory/removeGloballyBannedItems/constants";
-import { getCurrentCharacter, isOnFirstCharacter } from "./speedrun";
+import { isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
@@ -254,9 +255,8 @@ function spawnStoredCollectibles() {
   v.persistent.storedCollectibles.forEach((collectibleType, i) => {
     // Since certain collectibles are supposed to be removed from pools on Apollyon, skip spawning
     // them. (But leave them in storage for subsequent characters.)
-    const currentCharacter = getCurrentCharacter();
     if (
-      currentCharacter === PlayerType.APOLLYON &&
+      anyPlayerIs(PlayerType.APOLLYON) &&
       BANNED_COLLECTIBLES_WITH_VOID.has(collectibleType)
     ) {
       return;
