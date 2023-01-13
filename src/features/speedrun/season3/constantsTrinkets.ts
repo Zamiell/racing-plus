@@ -13,9 +13,7 @@ const DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY = [
   TrinketType.OUROBOROS_WORM,
 ] as const;
 
-export const DIVERSITY_TRINKET_TYPES: TrinketType[] = [];
-
-export function initDiversityTrinketTypes(): void {
+export const DIVERSITY_TRINKET_TYPES: readonly TrinketType[] = (() => {
   const vanillaTrinketArray = mod.getVanillaTrinketArray();
   const removedStartingTrinketTypesSet = new Set<TrinketType>([
     ...BANNED_TRINKETS,
@@ -23,11 +21,15 @@ export function initDiversityTrinketTypes(): void {
     ...DIVERSITY_TRINKET_TYPE_BLACKLIST_SEASON_ONLY,
   ]);
 
+  const diversityTrinketTypes: TrinketType[] = [];
+
   for (const trinketType of vanillaTrinketArray) {
     if (removedStartingTrinketTypesSet.has(trinketType)) {
       continue;
     }
 
-    DIVERSITY_TRINKET_TYPES.push(trinketType);
+    diversityTrinketTypes.push(trinketType);
   }
-}
+
+  return diversityTrinketTypes;
+})();

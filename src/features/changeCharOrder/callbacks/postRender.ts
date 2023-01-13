@@ -72,10 +72,15 @@ function drawSeasonSprites() {
     return;
   }
 
-  for (const [seasonAbbreviation, seasonSprite] of v.room.sprites.seasons) {
-    const position = CHANGE_CHAR_ORDER_POSITIONS[seasonAbbreviation];
+  for (const [challengeCustomAbbreviation, seasonSprite] of v.room.sprites
+    .seasons) {
+    const position = CHANGE_CHAR_ORDER_POSITIONS.get(
+      challengeCustomAbbreviation,
+    );
     if (position === undefined) {
-      error(`Failed to find the positions for season: ${seasonAbbreviation}`);
+      error(
+        `Failed to find the positions for season: ${challengeCustomAbbreviation}`,
+      );
     }
     const posButton = gridCoordinatesToWorldPosition(
       position.X,

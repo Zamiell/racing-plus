@@ -64,8 +64,6 @@ import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as season2 from "./features/speedrun/season2/v";
-import { initDiversityCollectibleTypes } from "./features/speedrun/season3/constantsCollectibles";
-import { initDiversityTrinketTypes } from "./features/speedrun/season3/constantsTrinkets";
 import * as season3 from "./features/speedrun/season3/v";
 import * as season4 from "./features/speedrun/season4";
 import * as speedrunVars from "./features/speedrun/v";
@@ -87,8 +85,6 @@ export function initFeatureVariables(): void {
   season2.init();
   season3.init();
   season4.init();
-  initDiversityCollectibleTypes();
-  initDiversityTrinketTypes();
   changeCharOrderVars.init();
 
   // Util

@@ -2,7 +2,7 @@ import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
 import { g } from "../../../../globals";
 import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
-import { bossPNGMap } from "./bossPNGMap";
+import { BOSS_PNG_MAP } from "./bossPNGMap";
 import { v } from "./v";
 
 const TOP_LEFT_GRID_INDEX = 32;
@@ -46,7 +46,7 @@ export function set(): void {
 }
 
 function initBossSprite(entityType: EntityType, variant: int) {
-  const pngArray = bossPNGMap.get(entityType);
+  const pngArray = BOSS_PNG_MAP.get(entityType);
   if (pngArray === undefined) {
     logError(
       `Failed to find the boss of entity type ${entityType} in the boss PNG map.`,

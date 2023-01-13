@@ -47,7 +47,7 @@ import {
   getFastClearNumAliveEnemies,
 } from "../major/fastClear/v";
 
-const SPLITTING_BOSS_ENTITY_TYPE_SET = new Set([
+const SPLITTING_BOSS_ENTITY_TYPE_SET: ReadonlySet<EntityType> = new Set([
   EntityType.FISTULA_BIG, // 71
   EntityType.FISTULA_MEDIUM, // 72
   EntityType.FISTULA_SMALL, // 73

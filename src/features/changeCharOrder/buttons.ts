@@ -21,6 +21,7 @@ import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { g } from "../../globals";
 import { newGlowingCollectibleSprite } from "../../sprite";
+import { ChallengeCustomAbbreviation } from "../speedrun/constants";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { speedrunSetBansTime } from "../speedrun/v";
 import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
@@ -160,31 +161,36 @@ function checkPressed(pressurePlate: GridEntityPressurePlate) {
 }
 
 function checkPressedPhaseSeasonSelect(pressurePlate: GridEntityPressurePlate) {
-  for (const [key, position] of Object.entries(CHANGE_CHAR_ORDER_POSITIONS)) {
+  for (const [
+    challengeCustomAbbreviation,
+    seasonDescription,
+  ] of CHANGE_CHAR_ORDER_POSITIONS) {
     const buttonPosition = gridCoordinatesToWorldPosition(
-      position.X,
-      position.Y,
+      seasonDescription.X,
+      seasonDescription.Y,
     );
     if (
       pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
       pressurePlate.Position.X === buttonPosition.X &&
       pressurePlate.Position.Y === buttonPosition.Y
     ) {
-      seasonButtonPressed(key);
+      seasonButtonPressed(challengeCustomAbbreviation);
       return;
     }
   }
 }
 
-function seasonButtonPressed(seasonChosenAbbreviation: string) {
+function seasonButtonPressed(
+  challengeCustomAbbreviation: ChallengeCustomAbbreviation,
+) {
   const gameFrameCount = game.GetFrameCount();
 
   const newPhase =
-    seasonChosenAbbreviation === "R7S2"
+    challengeCustomAbbreviation === ChallengeCustomAbbreviation.SEASON_2
       ? ChangeCharOrderPhase.BUILD_VETO
       : ChangeCharOrderPhase.CHARACTER_SELECT;
   v.room.phase = newPhase;
-  v.room.seasonChosenAbbreviation = seasonChosenAbbreviation;
+  v.room.challengeCustomAbbreviation = challengeCustomAbbreviation;
 
   removeAllMatchingGridEntities(GridEntityType.PRESSURE_PLATE);
 
@@ -236,18 +242,18 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   sprite.SetFrame("Default", v.room.charOrder.length);
   sprite.Color = ColorDefault; // Remove the fade.
 
-  if (v.room.seasonChosenAbbreviation === "R7S1") {
+  if (v.room.challengeCustomAbbreviation === "R7S1") {
     season1DeleteOtherCharButton(i);
   }
 
   // Check to see if this is our last character.
   if (v.room.charOrder.length === seasonDescription.numChars) {
     // We are done, so write the changes to persistent storage.
-    if (v.room.seasonChosenAbbreviation === null) {
+    if (v.room.challengeCustomAbbreviation === null) {
       error("seasonChosenAbbreviation was null.");
     }
     v.persistent.charOrders.set(
-      v.room.seasonChosenAbbreviation,
+      v.room.challengeCustomAbbreviation,
       v.room.charOrder,
     );
     game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
@@ -342,11 +348,11 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
   // Check to see if this is our last build.
   if (v.room.buildsChosen.length === seasonDescription.numBuildVetos) {
     // We are done, so write the changes to persistent storage.
-    if (v.room.seasonChosenAbbreviation === null) {
+    if (v.room.challengeCustomAbbreviation === null) {
       error("seasonChosenAbbreviation was null.");
     }
     v.persistent.charOrders.set(
-      v.room.seasonChosenAbbreviation,
+      v.room.challengeCustomAbbreviation,
       v.room.buildsChosen as PlayerType[],
     );
     speedrunSetBansTime();

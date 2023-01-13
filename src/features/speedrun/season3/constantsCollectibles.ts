@@ -132,10 +132,13 @@ const DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY = [
   CollectibleType.GLITCHED_CROWN, // 689
 ] as const;
 
-export const DIVERSITY_ACTIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];
-export const DIVERSITY_PASSIVE_COLLECTIBLE_TYPES: CollectibleType[] = [];
-
-export function initDiversityCollectibleTypes(): void {
+export const [
+  DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
+  DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+] = ((): [
+  activeCollectibleTypes: readonly CollectibleType[],
+  passiveCollectibleTypes: readonly CollectibleType[],
+] => {
   const vanillaCollectibleArray = mod.getVanillaCollectibleArray();
   const removedStartingCollectibleTypesSet = new Set<CollectibleType>([
     ...BANNED_COLLECTIBLES,
@@ -145,20 +148,25 @@ export function initDiversityCollectibleTypes(): void {
     ...DIVERSITY_COLLECTIBLE_TYPE_BLACKLIST_SEASON_ONLY,
   ]);
 
+  const activeCollectibleTypes: CollectibleType[] = [];
+  const passiveCollectibleTypes: CollectibleType[] = [];
+
   for (const collectibleType of vanillaCollectibleArray) {
     if (removedStartingCollectibleTypesSet.has(collectibleType)) {
       continue;
     }
 
     if (isActiveCollectible(collectibleType)) {
-      DIVERSITY_ACTIVE_COLLECTIBLE_TYPES.push(collectibleType);
+      activeCollectibleTypes.push(collectibleType);
     }
 
     if (isPassiveCollectible(collectibleType)) {
-      DIVERSITY_PASSIVE_COLLECTIBLE_TYPES.push(collectibleType);
+      passiveCollectibleTypes.push(collectibleType);
     }
   }
-}
+
+  return [activeCollectibleTypes, passiveCollectibleTypes];
+})();
 
 /**
  * To avoid duplicating logic, we grant the Schoolbag only after retrieving the 3 random passive

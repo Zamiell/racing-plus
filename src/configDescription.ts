@@ -2,14 +2,14 @@ import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
 
 export type ConfigDescriptions = ReadonlyArray<
-  [
+  readonly [
     keyof Config | keyof Hotkeys | "",
-    [ModConfigMenuOptionType, string, string, string],
+    readonly [ModConfigMenuOptionType, string, string, string],
   ]
 >;
 
 // 0001-0010
-export const MAJOR_CHANGES: ConfigDescriptions = [
+export const MAJOR_CHANGES = [
   [
     "clientCommunication",
     [
@@ -100,10 +100,10 @@ export const MAJOR_CHANGES: ConfigDescriptions = [
       "To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // n/a
-export const CUSTOM_HOTKEYS: ConfigDescriptions = [
+export const CUSTOM_HOTKEYS = [
   [
     "fastDropAll",
     [
@@ -176,10 +176,10 @@ export const CUSTOM_HOTKEYS: ConfigDescriptions = [
       "Do a barrel roll.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0201-0210
-export const CHARACTER_CHANGES: ConfigDescriptions = [
+export const CHARACTER_CHANGES = [
   [
     "judasAddBomb", // 3
     [
@@ -225,10 +225,10 @@ export const CHARACTER_CHANGES: ConfigDescriptions = [
       "Make Tainted Keeper start with 15 cents. This gives him enough money to start a Treasure Room item.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0301-0310
-export const BOSS_CHANGES_1: ConfigDescriptions = [
+export const BOSS_CHANGES_1 = [
   [
     "fadeBosses",
     [
@@ -319,10 +319,10 @@ export const BOSS_CHANGES_1: ConfigDescriptions = [
       "Some animations in The Haunt fight are sped up.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0311-0320
-export const BOSS_CHANGES_2: ConfigDescriptions = [
+export const BOSS_CHANGES_2 = [
   [
     "fastAngels", // 271, 272
     [
@@ -413,10 +413,10 @@ export const BOSS_CHANGES_2: ConfigDescriptions = [
       "Remove some of the animations in the Mega Satan fight.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0311-0320
-export const BOSS_CHANGES_3: ConfigDescriptions = [
+export const BOSS_CHANGES_3 = [
   [
     "", // 275
     [
@@ -444,10 +444,10 @@ export const BOSS_CHANGES_3: ConfigDescriptions = [
       "Defeating The Beast no longer has a chance to immediately end the run.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0401-0410
-export const ENEMY_CHANGES_1: ConfigDescriptions = [
+export const ENEMY_CHANGES_1 = [
   [
     "removeTreasureRoomEnemies",
     [
@@ -538,10 +538,10 @@ export const ENEMY_CHANGES_1: ConfigDescriptions = [
       "Make Polties & Kinetis show themselves immediately upon entering the room.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0411-0420
-export const ENEMY_CHANGES_2: ConfigDescriptions = [
+export const ENEMY_CHANGES_2 = [
   [
     "fastNeedles", // 881
     [
@@ -560,10 +560,10 @@ export const ENEMY_CHANGES_2: ConfigDescriptions = [
       "Make Dusts never disappear.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0501-0510
-export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
+export const QUALITY_OF_LIFE_CHANGES_1 = [
   [
     "speedUpFadeIn",
     [
@@ -654,10 +654,10 @@ export const QUALITY_OF_LIFE_CHANGES_1: ConfigDescriptions = [
       "Show a custom charge bar that lets you know how close you are to the blast firing.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0511-0520
-export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
+export const QUALITY_OF_LIFE_CHANGES_2 = [
   [
     "combinedDualityDoors", // 498
     [
@@ -748,10 +748,10 @@ export const QUALITY_OF_LIFE_CHANGES_2: ConfigDescriptions = [
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0521-0530
-export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
+export const QUALITY_OF_LIFE_CHANGES_3 = [
   [
     "automaticItemInsertion",
     [
@@ -806,10 +806,10 @@ export const QUALITY_OF_LIFE_CHANGES_3: ConfigDescriptions = [
       "On a new run, start in the center of the room (instead of at the bottom).",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0601-0610
-export const GAMEPLAY_CHANGES: ConfigDescriptions = [
+export const GAMEPLAY_CHANGES = [
   [
     "extraStartingItems",
     [
@@ -846,10 +846,10 @@ export const GAMEPLAY_CHANGES: ConfigDescriptions = [
       "Make Card Reading no longer spawn portals on Womb 2 and beyond.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // n/a
-export const REMOVALS: ConfigDescriptions = [
+export const REMOVALS = [
   [
     "",
     [
@@ -913,10 +913,10 @@ export const REMOVALS: ConfigDescriptions = [
       "Remove Mom's Knife from the Treasure Room pool specifically.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0801-0810
-export const CUTSCENE_CHANGES: ConfigDescriptions = [
+export const CUTSCENE_CHANGES = [
   [
     "fastTeleports",
     [
@@ -971,10 +971,10 @@ export const CUTSCENE_CHANGES: ConfigDescriptions = [
       "Pause and unpause the game instantaneously.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0901-0910
-export const BUG_FIXES_1: ConfigDescriptions = [
+export const BUG_FIXES_1 = [
   [
     "taintedIsaacCollectibleDelay",
     [
@@ -1056,10 +1056,10 @@ export const BUG_FIXES_1: ConfigDescriptions = [
       "Exits in an I AM ERROR room will be blocked if the room is not clear. (This is part of Fast-Travel.)",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 0911-0920
-export const BUG_FIXES_2: ConfigDescriptions = [
+export const BUG_FIXES_2 = [
   [
     "",
     [
@@ -1078,10 +1078,10 @@ export const BUG_FIXES_2: ConfigDescriptions = [
       "Make morphed GB Bug pickups seeded in order.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 1001-1010
-export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
+export const GRAPHIC_CHANGES_1 = [
   [
     "paschalCandle", // 3.221
     [
@@ -1172,10 +1172,10 @@ export const GRAPHIC_CHANGES_1: ConfigDescriptions = [
       "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 1011-1020
-export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
+export const GRAPHIC_CHANGES_2 = [
   [
     "", // 5.100.57, 5.100.128, 5.100.364
     [
@@ -1266,10 +1266,10 @@ export const GRAPHIC_CHANGES_2: ConfigDescriptions = [
       "Make elements on the screen easier to see and increase performance.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 1101-1110
-export const SOUND_CHANGES: ConfigDescriptions = [
+export const SOUND_CHANGES = [
   [
     "silenceMomDad",
     [
@@ -1279,10 +1279,10 @@ export const SOUND_CHANGES: ConfigDescriptions = [
       "The audio clips of mom and dad on the Ascent are silenced.",
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
 // 1201-1210
-export const OTHER_FEATURES: ConfigDescriptions = [
+export const OTHER_FEATURES = [
   [
     "shadows",
     [
@@ -1319,9 +1319,9 @@ export const OTHER_FEATURES: ConfigDescriptions = [
       'Enabled the "faded console display" feature in the "options.ini" file, which allows you to visually see when an error in the game happens.',
     ],
   ],
-];
+] as const satisfies ConfigDescriptions;
 
-export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
+export const ALL_CONFIG_DESCRIPTIONS = [
   ...MAJOR_CHANGES,
   ...CHARACTER_CHANGES,
   ...BOSS_CHANGES_1,
@@ -1341,6 +1341,8 @@ export const ALL_CONFIG_DESCRIPTIONS: ConfigDescriptions = [
   ...GRAPHIC_CHANGES_2,
   ...SOUND_CHANGES,
   ...OTHER_FEATURES,
-];
+] as const satisfies ConfigDescriptions;
 
-export const ALL_HOTKEY_DESCRIPTIONS: ConfigDescriptions = [...CUSTOM_HOTKEYS];
+export const ALL_HOTKEY_DESCRIPTIONS = [
+  ...CUSTOM_HOTKEYS,
+] as const satisfies ConfigDescriptions;
