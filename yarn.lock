@@ -1717,10 +1717,10 @@ eslint-plugin-import@^2.27.4:
     semver "^6.3.0"
     tsconfig-paths "^3.14.1"
 
-eslint-plugin-isaacscript@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-isaacscript/-/eslint-plugin-isaacscript-1.7.0.tgz#ea31b855536714ba8a4d7fc0c6cef2680a7a5b5b"
-  integrity sha512-pKdPiJYNE9SDEwvECG4lEgJao9aSqjH+RXxN3qOeu8urURSlfeuF02ZC8S9awze92ljwGDQVWtnvdgUxlwARwg==
+eslint-plugin-isaacscript@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-isaacscript/-/eslint-plugin-isaacscript-1.7.1.tgz#01f702d6b25e2ed9e859fb5de7a4d386d33a2c74"
+  integrity sha512-y0SeFL0lIguQhwy7kNn9/BzvKB5EvAazqjs++4fXeAGE4LVuiCbgJzQGIKC4Vzd4HgYH1kBlaBDuh1XK1UZWMw==
   dependencies:
     "@typescript-eslint/type-utils" "5.48.1"
     "@typescript-eslint/types" "5.48.1"
@@ -2701,10 +2701,10 @@ isaacscript-common@^20.3.0:
   dependencies:
     isaac-typescript-definitions "^10.1.5"
 
-isaacscript-lint@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.5.0.tgz#d5c29d6d08562761f65a9af162b3a39672ca4aca"
-  integrity sha512-gZl9xIpPnpdUjhbGzRBjUUyYOdSzFyYsG9SjnrmxMa0RbXxVdn7qFj4sjIb7UFgtN3O3HTnuvv+eeiIF6T21DQ==
+isaacscript-lint@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.5.1.tgz#5dcc23594d38c48748a1ca11823e31eed9cd994c"
+  integrity sha512-x55fqgF4rydgXkqDOvL+o3Gi29uW89b8RfXwCCus9Iboqbj0UVLi9nRq0Hy2P/eXu3U5KUFR4Ipg8l8x3KRXHA==
   dependencies:
     "@prettier/plugin-xml" "^2.2.0"
     "@typescript-eslint/eslint-plugin" "^5.48.1"
@@ -2717,7 +2717,7 @@ isaacscript-lint@^4.5.0:
     eslint-config-prettier "^8.6.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-import "^2.27.4"
-    eslint-plugin-isaacscript "^1.7.0"
+    eslint-plugin-isaacscript "^1.7.1"
     eslint-plugin-jsdoc "^39.6.4"
     eslint-plugin-no-type-assertion "^1.3.0"
     eslint-plugin-only-warn "^1.1.0"
