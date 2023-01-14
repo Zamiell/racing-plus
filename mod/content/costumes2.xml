@@ -1,3 +1,4 @@
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/costumes2.xsd" ?>
 <costumes anm2root="gfx/characters/">
   <!-- January 1st -->
   <costume anm2path="n016_new_years.anm2" type="none" />

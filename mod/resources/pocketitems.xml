@@ -4,6 +4,7 @@ Changes from vanilla:
   - Amnesia
   - ???
 -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/pocketitems.xsd" ?>
 <pocketitems>
   <card id="0" name="NULL" />
   <card type="tarot" pickup="1" description="#THE_FOOL_DESCRIPTION" id="1" name="#THE_FOOL_NAME" announcer="375" announcerdelay="60" mimiccharge="2" />

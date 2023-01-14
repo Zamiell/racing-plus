@@ -8,6 +8,7 @@ Changes from vanilla:
 - Added the "noeden" tag to the following banned trinkets:
   - Karma (85)
 -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/items_metadata.xsd" ?>
 <items>
   <item id="1" quality="3" tags="summonable tearsup offensive" />
   <item id="2" quality="2" tags="summonable offensive" />

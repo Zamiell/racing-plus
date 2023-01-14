@@ -2,6 +2,7 @@
 Changes from vanilla:
 - Removed Mom's Knife from the Treasure Room pool.
 -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/itempools.xsd" ?>
 <ItemPools>
   <Pool Name="treasure">
     <!--The Sad Onion-->

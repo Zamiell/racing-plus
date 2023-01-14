@@ -2,6 +2,7 @@
 Changes from vanilla:
 - Removed most animations.
 -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/giantbook.xsd" ?>
 <giantbook anm2root="gfx/ui/giantbook/">
   <entry id="6" anm2="GiantBook_EternalHeart.anm2" anim="Appear_SoulHeart" gfx="GiantBook_013_HeartPiece.png" />
   <entry id="11" anm2="GiantBook.anm2" anim="Appear" gfx="GiantBook_011_BookOfRevelations.png">

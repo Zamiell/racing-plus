@@ -1717,10 +1717,10 @@ eslint-plugin-import@^2.27.4:
     semver "^6.3.0"
     tsconfig-paths "^3.14.1"
 
-eslint-plugin-isaacscript@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-isaacscript/-/eslint-plugin-isaacscript-2.1.0.tgz#7ca8b2fcc761f38ad9044988285b56763d9dcf34"
-  integrity sha512-zKo5n/og+f0EVgO/RKBHWpeIaMEHmhGKGNrMmS+c+0CWN/ar+5Co6oAuJvbfV8/cdHks497O+uQ1NbZ+LBSQZg==
+eslint-plugin-isaacscript@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-isaacscript/-/eslint-plugin-isaacscript-2.1.1.tgz#0f7f4f74f03fb9244a5da50718fbdcaa3b4d64c6"
+  integrity sha512-LPNkRsM1dYS+prHsndWu+/p/fWvIHKPWN6A9r3yEmH9aSKn6rE2/ST25nePP+mrOqsgyxRtGBSpEmtlY66AMEg==
   dependencies:
     "@typescript-eslint/type-utils" "5.48.1"
     "@typescript-eslint/types" "5.48.1"
@@ -2701,10 +2701,10 @@ isaacscript-common@^20.3.1:
   dependencies:
     isaac-typescript-definitions "^11.0.0"
 
-isaacscript-lint@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.6.0.tgz#382ab3033f7421a469f87a75a3f580f7799754ea"
-  integrity sha512-43yf+65N5vMt+IkabDmXzgZCX6cmk8PARePy9EJN3ie1bncDUi1L10NJmpA1R+DUeSkMlNXKQxvczdpBPGnbJw==
+isaacscript-lint@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.6.1.tgz#ffc42da3d90e8f5bc263d41670d13c70a56a31f8"
+  integrity sha512-AhXW8WnZlC1sMSq32s/l1xOFhreMVpKpQORojxqlp4GhVKDuk8+WNWoAcQ6ld268N80mmKoDTb84PRJtV9rTRw==
   dependencies:
     "@prettier/plugin-xml" "^2.2.0"
     "@typescript-eslint/eslint-plugin" "^5.48.1"
@@ -2717,13 +2717,13 @@ isaacscript-lint@^4.6.0:
     eslint-config-prettier "^8.6.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-import "^2.27.4"
-    eslint-plugin-isaacscript "^2.1.0"
+    eslint-plugin-isaacscript "^2.1.1"
     eslint-plugin-jsdoc "^39.6.4"
     eslint-plugin-no-type-assertion "^1.3.0"
     eslint-plugin-only-warn "^1.1.0"
     eslint-plugin-sort-exports "^0.8.0"
     prettier "^2.8.2"
-    prettier-plugin-organize-imports "^3.2.1"
+    prettier-plugin-organize-imports "^3.2.2"
     ts-prune-2 "^0.10.7"
 
 isaacscript-spell@^1.2.26:
@@ -3573,10 +3573,10 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==
 
-prettier-plugin-organize-imports@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-organize-imports/-/prettier-plugin-organize-imports-3.2.1.tgz#7e0e0a18457e0166e740daaff1aed1c08069fcb9"
-  integrity sha512-bty7C2Ecard5EOXirtzeCAqj4FU4epeuWrQt/Z+sh8UVEpBlBZ3m3KNPz2kFu7KgRTQx/C9o4/TdquPD1jOqjQ==
+prettier-plugin-organize-imports@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-organize-imports/-/prettier-plugin-organize-imports-3.2.2.tgz#91993365e017daa5d0d28d8183179834224d8dd1"
+  integrity sha512-e97lE6odGSiHonHJMTYC0q0iLXQyw0u5z/PJpvP/3vRy6/Zi9kLBwFAbEGjDzIowpjQv8b+J04PDamoUSQbzGA==
 
 prettier@>=2.4.0, prettier@^2.8.2:
   version "2.8.2"
