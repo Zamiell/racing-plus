@@ -174,7 +174,7 @@ function shouldGetFreeDevilItemInThisRoom() {
  * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
  * price is less than 0 and is not `PickupPrice.FREE`. However, this does not work on Keeper,
  * because all Devil-Deal-style collectibles cost money. Furthermore, it does not work on Tainted
- * Keeper, because all collectibles cost money. It also fails with shop items
+ * Keeper, because all collectibles cost money. It also fails with shop items.
  *
  * For simplicity, this function assumes that every collectible in a Devil Room or Black Market
  * Keeper is a Devil-Deal-style collectible for Keeper and Tainted Keeper. This is not necessarily
