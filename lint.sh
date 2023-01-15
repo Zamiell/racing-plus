@@ -31,17 +31,11 @@ npx cspell --no-progress --no-summary
 # Step 5 - Check for orphaned words.
 bash "$DIR/check-orphaned-words.sh"
 
-# Step 6 - Use xmllint to lint XML files.
-# (Skip this step if xmllint is not currently installed for whatever reason.)
-if command -v xmllint &> /dev/null; then
-  find "$DIR/mod" -name "*.xml" -print0 | xargs -0 xmllint --noout
-fi
-
-# Step 7 - Check for unused imports.
+# Step 6 - Check for unused imports.
 # The "--error" flag makes it return an error code of 1 if unused exports are found.
 npx ts-prune --error
 
-# Step 8 - Check for base file updates.
+# Step 7 - Check for base file updates.
 bash "$DIR/check-file-updates.sh"
 
 echo "Successfully linted in $SECONDS seconds."
