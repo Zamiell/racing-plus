@@ -4,6 +4,7 @@ Notes:
 - We delete the "Blue Baby" icon from "hudpickups.png" so that it does not interfere with the
   character progression UI.
 -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/challenges.xsd" ?>
 <challenges version="1">
   <challenge name="R+7 Season 1" endstage="11" altpath="true" />
   <challenge name="R+7 Season 2" endstage="11" altpath="true" />

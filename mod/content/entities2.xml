@@ -1,3 +1,4 @@
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/entities2.xsd" ?>
 <entities anm2root="gfx/" version="5">
   <!-- FAMILIARS (3) -->
 
@@ -12,7 +13,7 @@
   <!-- The final vanilla pickup variant is: PickupVariant.MOMS_CHEST (390) -->
 
   <!-- For replacing the photos -->
-  <entity name="Invisible Pickup" id="5" variant="400" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Invisible Pickup" id="5" variant="400" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
@@ -24,14 +25,14 @@
     something other than 1000. Note that the "boss" tag must be set to "1" in order for this to work
     correctly. Also note that this will be killed with "debug 10".
   -->
-  <entity name="Room Clear Delay NPC" id="999" variant="0" baseHP="0" boss="1" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
+  <entity name="Room Clear Delay NPC" id="999" variant="0" anm2path="none.anm2" baseHP="0" boss="1" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
   <!-- EFFECTS (1000) -->
 
   <!-- For replacing grid entities -->
-  <entity name="Invisible Effect" id="1000" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Invisible Effect" id="1000" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
@@ -41,7 +42,7 @@
   </entity>
 
   <!-- For The Lamb -->
-  <entity name="Room Clear Delay Effect" id="1000" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
+  <entity name="Room Clear Delay Effect" id="1000" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 

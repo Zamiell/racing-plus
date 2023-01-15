@@ -1,4 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
+import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as fastColostomia from "../features/optional/bosses/fastColostomia";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
@@ -19,6 +20,12 @@ export function init(): void {
     ModCallback.POST_NPC_INIT,
     isaac,
     EntityType.ISAAC, // 102
+  );
+
+  mod.AddCallback(
+    ModCallback.POST_NPC_INIT,
+    gabriel,
+    EntityType.GABRIEL, // 272
   );
 
   mod.AddCallback(
@@ -46,6 +53,11 @@ function daddyLongLegs(npc: EntityNPC) {
 // EntityType.ISAAC (102)
 function isaac(npc: EntityNPC) {
   speedrunPostNPCInitIsaac(npc);
+}
+
+// EntityType.GABRIEL (272)
+function gabriel(npc: EntityNPC) {
+  doubleAngelNerf.postNPCInitGabriel(npc);
 }
 
 // EntityType.PITFALL (291)

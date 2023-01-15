@@ -1,3 +1,4 @@
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/itempools.xsd" ?>
 <ItemPools>
   <Pool Name="treasure">
     <!-- 12 -->

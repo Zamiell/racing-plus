@@ -1,4 +1,5 @@
 <!-- The "id" field is used to put the items on the death screen. -->
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/items.xsd" ?>
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
   <!-- +++++++++++++ -->
   <!-- Utility items -->

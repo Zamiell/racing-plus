@@ -1,3 +1,4 @@
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/sounds.xsd" ?>
 <sounds root="sfx/">
   <sound name="Speedrun Finish">
     <sample weight="1" path="speedrun_finish.wav" />
