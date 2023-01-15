@@ -16,7 +16,6 @@ import {
   LAST_VANILLA_CHARACTER,
   log,
   onSetSeed,
-  printConsole,
   restart,
 } from "isaacscript-common";
 import { logRaceData, RaceData } from "../../classes/RaceData";
@@ -98,7 +97,7 @@ function changeCharOrder() {
 }
 
 function debug(params: string) {
-  printConsole("Executing debug function.");
+  print("Executing debug function.");
   debugFunction(params);
 }
 
@@ -112,21 +111,21 @@ function disable() {
 
 function diversityRace(params: string) {
   if (params !== "") {
-    printConsole(
+    print(
       'The "diversityRace" command does not take any arguments. (Set the seed first before using this command.)',
     );
     return;
   }
 
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
-    printConsole(
+    print(
       'You must be connected to the Racing+ client in order to use the "diversityRace" command. (The R+ icon should be green.)',
     );
     return;
   }
 
   if (!onSetSeed()) {
-    printConsole(
+    print(
       "You are not on a set seed; assuming that you want to use the current seed for the fake diversity race.",
     );
   }
@@ -143,10 +142,8 @@ function diversityRace(params: string) {
   g.race.character = character;
   g.race.startingItems = copyArray(DEFAULT_DIVERSITY_RACE_STARTING_ITEMS);
 
-  printConsole(`Enabled fake diversity race mode for seed: ${startSeedString}`);
-  printConsole(
-    "You can go back to normal by using the command of: diversityRaceOff",
-  );
+  print(`Enabled fake diversity race mode for seed: ${startSeedString}`);
+  print("You can go back to normal by using the command of: diversityRaceOff");
   restart(g.race.character);
 }
 
@@ -156,7 +153,7 @@ function diversityRaceCharacter(params: string) {
 
 function diversityRaceOff() {
   g.race = new RaceData();
-  printConsole("Disabled diversity race mode.");
+  print("Disabled diversity race mode.");
   setUnseededWithRacingPlusLogic();
   restart();
 }
@@ -174,12 +171,12 @@ function move() {
 
 function race() {
   logRaceData(g.race);
-  printConsole('Logged the race statistics to the "log.txt" file.');
+  print('Logged the race statistics to the "log.txt" file.');
 }
 
 function raceCharacter(params: string) {
   if (params === "") {
-    printConsole("You must specify a character name or number.");
+    print("You must specify a character name or number.");
     return;
   }
 
@@ -188,14 +185,14 @@ function raceCharacter(params: string) {
   if (num === undefined) {
     const match = getMapPartialMatch(params, CHARACTER_NAME_TO_TYPE_MAP);
     if (match === undefined) {
-      printConsole(`Unknown character: ${params}`);
+      print(`Unknown character: ${params}`);
       return;
     }
 
     character = match[1];
   } else {
     if (num < FIRST_CHARACTER || num > LAST_VANILLA_CHARACTER) {
-      printConsole(`Invalid player sub-type: ${num}`);
+      print(`Invalid player sub-type: ${num}`);
       return;
     }
 
@@ -206,11 +203,11 @@ function raceCharacter(params: string) {
 
   const characterName = getCharacterName(character);
   restart(g.race.character);
-  printConsole(`Set the race character to: ${characterName} (${character})`);
+  print(`Set the race character to: ${characterName} (${character})`);
 }
 
 function rankedSoloReset() {
-  printConsole("This command has to be performed on the Racing+ client.");
+  print("This command has to be performed on the Racing+ client.");
 }
 
 function s0() {
@@ -235,7 +232,7 @@ function s4() {
 
 function goToChallenge(challenge: Challenge) {
   if (asNumber(challenge) === -1) {
-    printConsole("That challenge was not found.");
+    print("That challenge was not found.");
   } else {
     consoleCommand(`challenge ${challenge}`);
   }
@@ -243,21 +240,21 @@ function goToChallenge(challenge: Challenge) {
 
 function seededRace(params: string) {
   if (params !== "") {
-    printConsole(
+    print(
       'The "seededRace" command does not take any arguments. (Set the seed first before using this command.)',
     );
     return;
   }
 
   if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
-    printConsole(
+    print(
       'You must be connected to the Racing+ client in order to use the "seededRace" command. (The R+ icon should be green.)',
     );
     return;
   }
 
   if (!onSetSeed()) {
-    printConsole(
+    print(
       "You are not on a set seed; assuming that you want to use the current seed for the fake seeded race.",
     );
   }
@@ -274,10 +271,8 @@ function seededRace(params: string) {
   g.race.character = character;
   g.race.startingItems = copyArray(DEFAULT_SEEDED_RACE_STARTING_ITEMS);
 
-  printConsole(`Enabled fake seeded race mode for seed: ${startSeedString}`);
-  printConsole(
-    "You can go back to normal by using the command of: seededRaceOff",
-  );
+  print(`Enabled fake seeded race mode for seed: ${startSeedString}`);
+  print("You can go back to normal by using the command of: seededRaceOff");
   restart(g.race.character);
 }
 
@@ -286,12 +281,12 @@ function seededRaceCharacter(params: string) {
 }
 
 function seededRaceBuild() {
-  printConsole('Use the "seededRaceItem" command instead.');
+  print('Use the "seededRaceItem" command instead.');
 }
 
 function seededRaceItem(params: string) {
   if (params === "") {
-    printConsole(
+    print(
       'You must enter an collectible type. (For example, "114" for Mom\'s Knife, or "245,2" for 20/20 + The Inner Eye.)',
     );
     return;
@@ -302,18 +297,14 @@ function seededRaceItem(params: string) {
   for (const startingItemString of startingItemStrings) {
     const num = tonumber(startingItemString);
     if (num === undefined) {
-      printConsole(
-        `That is an invalid collectible type: ${startingItemString}`,
-      );
+      print(`That is an invalid collectible type: ${startingItemString}`);
       return;
     }
     startingItems.push(asCollectibleType(num));
   }
 
   g.race.startingItems = startingItems;
-  printConsole(
-    `Set the seeded race item(s) to: [${g.race.startingItems.join(",")}]`,
-  );
+  print(`Set the seeded race item(s) to: [${g.race.startingItems.join(",")}]`);
   restart();
 }
 
@@ -321,36 +312,36 @@ function seededRaceGoal(params: string) {
   const raceGoals = getEnumValues(RaceGoal);
   const raceGoal = params as RaceGoal;
   if (!raceGoals.includes(raceGoal)) {
-    printConsole(`That is an invalid race goal: ${params}`);
+    print(`That is an invalid race goal: ${params}`);
     return;
   }
 
   g.race.goal = raceGoal;
-  printConsole(`Set the seeded race goal to: ${g.race.goal}`);
+  print(`Set the seeded race goal to: ${g.race.goal}`);
   restart();
 }
 
 function seededRaceOff() {
   g.race = new RaceData();
-  printConsole("Disabled seeded race mode.");
+  print("Disabled seeded race mode.");
   setUnseededWithRacingPlusLogic();
   restart();
 }
 
 function seededRaceSeed(params: string) {
   if (params === "") {
-    printConsole("You must specify the seed.");
+    print("You must specify the seed.");
     return;
   }
 
   if (params.length !== 9 || params[5] !== " ") {
-    printConsole("That is an invalid format for the seed.");
+    print("That is an invalid format for the seed.");
     return;
   }
 
   g.race.seed = params;
 
-  printConsole(`Set the seeded race seed to: ${params}`);
+  print(`Set the seeded race seed to: ${params}`);
   restart();
 }
 
@@ -362,7 +353,7 @@ function unseedCommand() {
 function version() {
   const msg = `Racing+ version: ${VERSION}`;
   log(msg);
-  printConsole(msg);
+  print(msg);
 }
 
 // -----------
@@ -372,12 +363,12 @@ function version() {
 function devilAngelSet(params: string, devil: boolean) {
   const roomName = devil ? "Devil" : "Angel";
   if (params === "") {
-    printConsole(`You must provide an ${roomName} Room number.`);
+    print(`You must provide an ${roomName} Room number.`);
   }
 
   const num = tonumber(params);
   if (num === undefined) {
-    printConsole(`That is an invalid ${roomName} Room number.`);
+    print(`That is an invalid ${roomName} Room number.`);
     return;
   }
 

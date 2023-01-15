@@ -1,5 +1,5 @@
 import { Keyboard } from "isaac-typescript-definitions";
-import { log, printConsole, setLogFunctionsGlobal } from "isaacscript-common";
+import { log, setLogFunctionsGlobal } from "isaacscript-common";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
@@ -11,7 +11,7 @@ function debugCode(_params?: string) {
 
 /** Hotkey 1 is bound to F2. */
 export function hotkey1Function(): void {
-  printConsole("Hotkey 1 activated.");
+  print("Hotkey 1 activated.");
   debugCode();
 }
 
@@ -22,7 +22,7 @@ export function hotkey2Function(): void {
   hotkeys.storage = Keyboard.X;
   hotkeys.roll = Keyboard.G;
 
-  printConsole("Test hotkeys set.");
+  print("Test hotkeys set.");
 }
 
 export function debugFunction(params?: string): void {
