@@ -5,6 +5,7 @@ import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
+import * as fadeFriendlyEnemies from "../features/optional/enemies/fadeFriendlyEnemies";
 import * as fastDusts from "../features/optional/enemies/fastDusts";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
@@ -121,7 +122,11 @@ export function init(): void {
 }
 
 function main(npc: EntityNPC) {
+  // Major
   fastClearPostNPCUpdate.main(npc);
+
+  // Enemies
+  fadeFriendlyEnemies.postNPCUpdate(npc);
 }
 
 // EntityType.GLOBIN (24)

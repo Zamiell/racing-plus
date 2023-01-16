@@ -1,6 +1,6 @@
-import { getPickups, inRectangle } from "isaacscript-common";
+import { getPickups, inRectangle, setEntityOpacity } from "isaacscript-common";
 
-const MOSTLY_FADED_COLOR = Color(1, 1, 1, 0.3, 0, 0, 0);
+const FADE_AMOUNT = 0.3;
 const X_DISTANCE = 35;
 const Y_DISTANCE_ABOVE = 78;
 
@@ -14,7 +14,7 @@ export function postEffectUpdateDevil(effect: EntityEffect): void {
   );
   const rectangleBottomRight = Vector(
     effect.Position.X + X_DISTANCE,
-    effect.Position.Y, // Below the statue does not block visibility
+    effect.Position.Y, // Below the statue does not block visibility.
   );
 
   const pickups = getPickups();
@@ -22,6 +22,6 @@ export function postEffectUpdateDevil(effect: EntityEffect): void {
     inRectangle(pickup.Position, rectangleTopLeft, rectangleBottomRight),
   );
   if (isAnyPickupInRectangle) {
-    effect.SetColor(MOSTLY_FADED_COLOR, 1000, 0, true, true);
+    setEntityOpacity(effect, FADE_AMOUNT);
   }
 }

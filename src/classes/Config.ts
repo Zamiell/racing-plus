@@ -39,6 +39,7 @@ export class Config {
   fastDogma = true; // 950
 
   // Enemies
+  fadeFriendlyEnemies = true;
   removeTreasureRoomEnemies = true;
   clearerShadowAttacks = true;
   globinSoftlock = true; // 24

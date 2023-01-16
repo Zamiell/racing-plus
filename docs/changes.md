@@ -219,30 +219,34 @@ Post-flip actions:
 
 ### 4) Enemy Changes
 
-- `0401` <!-- removeTreasureRoomEnemies --> All enemies are removed from Treasure Rooms.
+- `0401` <!-- fadeFriendlyEnemies, statuseffects.anm2 --> Friendly enemies will be faded.
+
+> Why? Friendly enemies obfuscate real enemies, making it difficult to see what is happening on the screen.
+
+- `0402` <!-- removeTreasureRoomEnemies --> All enemies are removed from Treasure Rooms.
 
 > Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
 
-- `0402` <!-- clearerShadowAttacks --> A blue target is drawn on the ground for the Daddy Long Legs multi-stomp attack and rock projectiles to make it more clear where the attack is landing.
-- `0403` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `0403` <!-- clearerShadowAttacks --> A blue target is drawn on the ground for the Daddy Long Legs multi-stomp attack and rock projectiles to make it more clear where the attack is landing.
+- `0404` <!-- globinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `0404` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
-- `0405` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `0405` <!-- fastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
+- `0406` <!-- appearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `0406` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
+- `0407` <!-- disableInvulnerability 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
 
 > Why? No other enemies in the game are invulnerable during this time, so this mechanic is not consistent.
 
-- `0407` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
-- `0408` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
-- `0409` <!-- removeStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
-- `0410` <!-- fastPolties 816 --> Polties & Kinetis will now immediately show themselves.
-- `0411` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
-- `0412` <!-- fastDusts 882 --> Dusts will now never disappear.
+- `0408` <!-- fastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
+- `0409` <!-- replaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
+- `0410` <!-- removeStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
+- `0411` <!-- fastPolties 816 --> Polties & Kinetis will now immediately show themselves.
+- `0412` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
+- `0413` <!-- fastDusts 882 --> Dusts will now never disappear.
 
 ### 5) Quality of Life Changes
 

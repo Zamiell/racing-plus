@@ -449,10 +449,19 @@ export const BOSS_CHANGES_3 = [
 // 0401-0410
 export const ENEMY_CHANGES_1 = [
   [
-    "removeTreasureRoomEnemies",
+    "fadeFriendlyEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0401",
+      "Fade friendly enemies",
+      "Fade friendly enemies to make it easier to see the real ones.",
+    ],
+  ],
+  [
+    "removeTreasureRoomEnemies",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0402",
       "Remove Treasure Room enemies",
       "Remove all enemies from Treasure Rooms.",
     ],
@@ -461,7 +470,7 @@ export const ENEMY_CHANGES_1 = [
     "clearerShadowAttacks",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0402",
+      "0403",
       "Make shadow attacks clearer",
       "Make a blue target appear on the ground for the specific attacks that come from above.",
     ],
@@ -470,7 +479,7 @@ export const ENEMY_CHANGES_1 = [
     "globinSoftlock", // 24
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0403",
+      "0404",
       "Fix Globin softlocks",
       "Make Globins permanently die on the 4th regeneration to prevent Epic Fetus softlocks.",
     ],
@@ -479,7 +488,7 @@ export const ENEMY_CHANGES_1 = [
     "fastHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0404",
+      "0405",
       "Fast hands",
       "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
     ],
@@ -488,7 +497,7 @@ export const ENEMY_CHANGES_1 = [
     "appearHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0405",
+      "0406",
       "Reveal hands",
       "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
     ],
@@ -497,7 +506,7 @@ export const ENEMY_CHANGES_1 = [
     "disableInvulnerability", // 219, 260, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0406",
+      "0407",
       "Disable invulnerability",
       "Wizoobs, Red Ghosts, and Lil' Haunts no longer have invulnerability frames after spawning.",
     ],
@@ -506,7 +515,7 @@ export const ENEMY_CHANGES_1 = [
     "fastGhosts", // 219, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0407",
+      "0408",
       "Fast ghosts",
       "Wizoobs and Red Ghosts have faster attack patterns.",
     ],
@@ -515,7 +524,7 @@ export const ENEMY_CHANGES_1 = [
     "replaceCodWorms", // 221
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0408",
+      "0409",
       "Replace Cod Worms",
       "Cod Worms are replaced with Para-Bites.",
     ],
@@ -524,18 +533,9 @@ export const ENEMY_CHANGES_1 = [
     "removeStrayPitfalls", // 291
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0409",
+      "0410",
       "Remove stray Pitfalls",
       "Kill all Pitfalls on room clear.",
-    ],
-  ],
-  [
-    "fastPolties", // 816
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0410",
-      "Fast Polties/Kinetis",
-      "Make Polties & Kinetis show themselves immediately upon entering the room.",
     ],
   ],
 ] as const satisfies ConfigDescriptions;
@@ -543,10 +543,19 @@ export const ENEMY_CHANGES_1 = [
 // 0411-0420
 export const ENEMY_CHANGES_2 = [
   [
-    "fastNeedles", // 881
+    "fastPolties", // 816
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0411",
+      "Fast Polties/Kinetis",
+      "Make Polties & Kinetis show themselves immediately upon entering the room.",
+    ],
+  ],
+  [
+    "fastNeedles", // 881
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0412",
       "Fast Needles/Pasties",
       "Make Needles & Pasties spend less time underground.",
     ],
@@ -555,7 +564,7 @@ export const ENEMY_CHANGES_2 = [
     "fastDusts", // 882
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0412",
+      "0413",
       "Fast Dusts",
       "Make Dusts never disappear.",
     ],

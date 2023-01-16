@@ -1,5 +1,0 @@
-TODO Racing+ new features:
-- Fade friendly enemies from e.g. Mystery Egg
-- Change builds once Racing+ Ranked Solo Season 3 is over (to match Season 2)
-  - Ranked Solo Season 3 ended:  April 2nd, 2022 (estimated)
-  - Ranked Solo Season 3 length: 120 days
