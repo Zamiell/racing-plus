@@ -5,6 +5,7 @@
 
 ### _v0.91.1_ - January 17th, 2023
 
+- The projectiles from friendly enemies will now be faded.
 - Fixed the bug where switching between season 2 and season 3 could cause the wrong character to appear. (Thanks Seb)
 
 ### _v0.91.0_ - January 16th, 2023
