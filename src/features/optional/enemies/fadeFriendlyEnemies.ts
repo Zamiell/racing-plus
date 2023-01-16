@@ -1,10 +1,7 @@
 import { EntityFlag } from "isaac-typescript-definitions";
 import { setEntityOpacity } from "isaacscript-common";
 
-/**
- * We must fade it to a severe degree because the animated hearts above friendly entities are very
- * prominent.
- */
+/** The floating heart animation must be separately faded in "statuseffects.anm2". */
 const FADE_AMOUNT = 0.25;
 
 // ModCallback.POST_NPC_UPDATE (0)
