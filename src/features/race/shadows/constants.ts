@@ -19,7 +19,7 @@ export const BEACON_FIELDS = ["raceID", "userID", "message"] as const;
 export const BEACON_DATA_FORMAT = "IIc5";
 export const BEACON_MESSAGE = "HELLO";
 
-export const SHADOW_INTERVAL = 2; // In render frames
+export const SHADOW_INTERVAL_RENDER_FRAMES = 2;
 export const SHADOW_FIELDS = [
   "raceID",
   "userID",
@@ -35,17 +35,11 @@ export const SHADOW_FIELDS = [
   "overlayAnimationFrame",
   "username",
 ] as const;
-export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20"; // This matches the ShadowMessage interface
+
+/** This matches the `ShadowMessage` interface. */
+export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20";
 
 export const CHARACTER_LAYER_ID = 0;
 export const DEFAULT_CHARACTER_PNG =
   "characters/costumes/character_001_isaac.png";
-export const SHADOW_FADED_COLOR: Readonly<Color> = Color(
-  1,
-  1,
-  1,
-  0.075,
-  0,
-  0,
-  0,
-);
+export const SHADOW_FADE_AMOUNT = 0.075;

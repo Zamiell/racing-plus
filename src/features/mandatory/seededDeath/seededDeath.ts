@@ -1,36 +1,33 @@
 import { FamiliarVariant, PlayerType } from "isaac-typescript-definitions";
 import {
-  ColorDefault,
   getFamiliars,
   isCharacter,
   isJacobOrEsau,
   log,
+  setEntityOpacity,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
 import { inSeededRace } from "../../race/v";
-import { QUARTER_FADED_COLOR, SEEDED_DEATH_DEBUG } from "./constants";
+import { SEEDED_DEATH_DEBUG, SEEDED_DEATH_FADE_AMOUNT } from "./constants";
 import { v } from "./v";
 
 export function applySeededGhostFade(
   player: EntityPlayer,
   enabled: boolean,
 ): void {
-  const sprite = player.GetSprite();
-  const newColor = enabled ? QUARTER_FADED_COLOR : ColorDefault;
-  sprite.Color = newColor;
+  const alpha = enabled ? SEEDED_DEATH_FADE_AMOUNT : 1;
+  setEntityOpacity(player, alpha);
 
   if (isCharacter(player, PlayerType.SOUL)) {
     const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
     for (const forgottenBody of forgottenBodies) {
-      const forgottenSprite = forgottenBody.GetSprite();
-      forgottenSprite.Color = newColor;
+      setEntityOpacity(forgottenBody, alpha);
     }
   } else if (isJacobOrEsau(player)) {
     const twin = player.GetOtherTwin();
     if (twin !== undefined) {
-      const twinSprite = twin.GetSprite();
-      twinSprite.Color = newColor;
+      setEntityOpacity(twin, alpha);
     }
   }
 }

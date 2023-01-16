@@ -6,7 +6,6 @@ import {
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
 import {
-  ColorDefault,
   emptyArray,
   game,
   getPlayers,
@@ -14,6 +13,7 @@ import {
   isEven,
   removeAllMatchingGridEntities,
   removeGridEntity,
+  setSpriteOpacity,
   spawnGridEntityWithVariant,
   VectorZero,
 } from "isaacscript-common";
@@ -30,7 +30,7 @@ import { getSeasonDescription, v } from "./v";
 /** This is the largest value that works. */
 const FADE_RENDER_FRAMES = 38;
 
-const HALF_FADED_COLOR = Color(1, 1, 1, 0.5, 0, 0, 0);
+const FADE_AMOUNT = 0.5;
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
@@ -96,7 +96,7 @@ function createCharacterButtons() {
     characterSprite.SetFrame("Death", 5);
 
     // Fade the character so it looks like a ghost.
-    characterSprite.Color = HALF_FADED_COLOR;
+    setSpriteOpacity(characterSprite, FADE_AMOUNT);
 
     v.room.sprites.characters.push(characterSprite);
   }
@@ -240,7 +240,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   }
   sprite.Load("gfx/timer/timer.anm2", true);
   sprite.SetFrame("Default", v.room.charOrder.length);
-  sprite.Color = ColorDefault; // Remove the fade.
+  setSpriteOpacity(sprite, 1); // Remove the fade.
 
   if (v.room.challengeCustomAbbreviation === "R7S1") {
     season1DeleteOtherCharButton(i);

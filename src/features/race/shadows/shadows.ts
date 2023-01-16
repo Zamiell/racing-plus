@@ -14,6 +14,7 @@ import {
   getRoomListIndex,
   isActionPressedOnAnyInput,
   RENDER_FRAMES_PER_SECOND,
+  setSpriteOpacity,
   VectorZero,
 } from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
@@ -32,9 +33,9 @@ import {
   CHARACTER_LAYER_ID,
   DEFAULT_CHARACTER_PNG,
   SHADOW_DATA_FORMAT,
-  SHADOW_FADED_COLOR,
+  SHADOW_FADE_AMOUNT,
   SHADOW_FIELDS,
-  SHADOW_INTERVAL,
+  SHADOW_INTERVAL_RENDER_FRAMES,
 } from "./constants";
 import * as struct from "./struct";
 
@@ -81,7 +82,7 @@ const spriteCharacterMap = new DefaultMap<int, PlayerType | -1>(-1);
 function newShadowSprite() {
   const sprite = Sprite();
   sprite.Load("gfx/001.000_Player.anm2", true);
-  sprite.Color = SHADOW_FADED_COLOR;
+  setSpriteOpacity(sprite, SHADOW_FADE_AMOUNT);
 
   return sprite;
 }
@@ -152,7 +153,7 @@ function sendBeacon() {
 function sendShadow() {
   const renderFrameCount = Isaac.GetFrameCount();
 
-  if (renderFrameCount % SHADOW_INTERVAL === 0) {
+  if (renderFrameCount % SHADOW_INTERVAL_RENDER_FRAMES === 0) {
     return;
   }
 

@@ -6,7 +6,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
-  copyColor,
   DefaultMap,
   getCollectibleMaxCharges,
   getCollectibles,
@@ -15,6 +14,7 @@ import {
   isBlindCollectible,
   isTaintedLazarus,
   setCollectibleSubType,
+  setSpriteOpacity,
   spawnEffect,
   spawnEmptyCollectible,
   useActiveItemTemp,
@@ -114,9 +114,7 @@ function newFlippedSprite(
     : flippedCollectibleType;
   const sprite = newCollectibleSprite(collectibleTypeToUse);
 
-  const faded = copyColor(sprite.Color);
-  faded.A = FADE_AMOUNT;
-  sprite.Color = faded;
+  setSpriteOpacity(sprite, FADE_AMOUNT);
 
   return sprite;
 }

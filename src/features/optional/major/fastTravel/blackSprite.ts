@@ -1,6 +1,6 @@
 // We draw a black sprite on top of the screen in order to fade everything to black.
 
-import { VectorZero } from "isaacscript-common";
+import { setSpriteOpacity, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { newSprite } from "../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
@@ -16,21 +16,19 @@ export function draw(): void {
   // Conditionally adjust the opacity.
   if (v.run.state === FastTravelState.FADING_TO_BLACK) {
     const opacity = v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
-    sprite.Color = Color(1, 1, 1, opacity);
+    setSpriteOpacity(sprite, opacity);
   } else if (v.run.state === FastTravelState.FADING_IN) {
     const opacity = 1 - v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
-    sprite.Color = Color(1, 1, 1, opacity);
+    setSpriteOpacity(sprite, opacity);
   }
 
   sprite.RenderLayer(0, VectorZero);
 }
 
 export function setFullyOpaque(): void {
-  const opacity = 1;
-  sprite.Color = Color(1, 1, 1, opacity);
+  setSpriteOpacity(sprite, 1);
 }
 
 export function setFullyTransparent(): void {
-  const opacity = 0;
-  sprite.Color = Color(1, 1, 1, opacity);
+  setSpriteOpacity(sprite, 0);
 }
