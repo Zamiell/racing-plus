@@ -5,7 +5,7 @@
 
 ### _v0.91.0_ - January 16th, 2023
 
-- Friendly enemies are now faded by 75%. (This makes it easier to see what is happening when there is a lot of friendly enemies on the screen, which is a buff to Mystery Egg, Friend Finder and Friend Finder.)
+- Friendly enemies are now faded by 75%. (This makes it easier to see what is happening when there is a lot of friendly enemies on the screen, which is a buff to Mystery Egg and Friend Finder.)
 
 ### _v0.90.1_ - January 13th, 2023
 
