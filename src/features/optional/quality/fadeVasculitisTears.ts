@@ -2,13 +2,12 @@
 // see real projectiles. Fade all tears of this nature so that they are easy to distinguish.
 
 import { CollectibleType } from "isaac-typescript-definitions";
-import { anyPlayerHasCollectible } from "isaacscript-common";
+import { anyPlayerHasCollectible, setEntityOpacity } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const FADE_ALPHA = 0.1;
-const FADED_COLOR = Color(1, 1, 1, FADE_ALPHA, 0, 0, 0);
-const DURATION = 1000;
+const FADE_AMOUNT = 0.1;
 
+/** Setting the fade does not work in the `POST_TEAR_INIT` callback, so we have to do it here. */
 // ModCallbackCustom.POST_TEAR_INIT_LATE
 // TearVariant.BLOOD (1)
 export function postTearInitLateBlood(tear: EntityTear): void {
@@ -17,21 +16,17 @@ export function postTearInitLateBlood(tear: EntityTear): void {
   }
 
   if (isVasculitisTear(tear)) {
-    fadeTear(tear);
+    setEntityOpacity(tear, FADE_AMOUNT);
   }
 }
 
-function isVasculitisTear(tear: EntityTear) {
-  // `tear.Parent` will not be equal undefined if it was shot by the player.
+/**
+ * `tear.Parent` will be equal to undefined if it is a Vasculitis tear, because it is originating
+ * from the entity (and not the player or any familiar).
+ */
+function isVasculitisTear(tear: EntityTear): boolean {
   return (
     tear.Parent === undefined &&
     anyPlayerHasCollectible(CollectibleType.VASCULITIS)
   );
-}
-
-/**
- * Setting the tear color does not work in the `POST_TEAR_INIT` callback, so we have to do it here.
- */
-function fadeTear(tear: EntityTear) {
-  tear.SetColor(FADED_COLOR, DURATION, 0);
 }
