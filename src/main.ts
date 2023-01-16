@@ -20,6 +20,7 @@ import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
+import * as postLaserUpdate from "./callbacks/postLaserUpdate";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
@@ -29,6 +30,7 @@ import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
+import * as postProjectileUpdate from "./callbacks/postProjectileUpdate";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as useCard from "./callbacks/postUseCard";
@@ -142,7 +144,9 @@ function registerCallbacksVanilla() {
   postPickupUpdate.init(); // 35
   postPickupRender.init(); // 36
   postProjectileInit.init(); // 43
+  postProjectileUpdate.init(); // 44
   postLaserInit.init(); // 47
+  postLaserUpdate.init(); // 48
   postEffectInit.init(); // 54
   postEffectUpdate.init(); // 55
   postBombInit.init(); // 57

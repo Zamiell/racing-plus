@@ -12,7 +12,7 @@ export function seededDeathPostLaserInitGiantRed(laser: EntityLaser): void {
   }
 
   // There is no way to stop a Mega Blast while it is currently going. As a workaround, remove all
-  // "giant" lasers on initialization.
+  // `LaserVariant.GIANT_RED` lasers on initialization.
   laser.Remove();
 
   // Even though we delete it, it will still show up for a frame. Thus, the Mega Blast laser will
