@@ -20,15 +20,16 @@ export const v = {
 
     currentlyPlayingChallenge: null as Challenge | null,
 
-    // Variables for the random character order feature.
-    selectedCharacters: [] as PlayerType[],
-    remainingCharacters: [] as PlayerType[],
-    /** Never start the same character twice in a row. */
-    lastSelectedCharacter: null as PlayerType | null,
-    /** This is set to 0 when the Basement 2 boss is defeated. */
-    timeCharacterAssigned: null as int | null,
-    /** The time that the bans were set in the "Change Char Order" custom challenge. */
-    timeBansSet: null as int | null,
+    randomCharacterOrder: {
+      selectedCharacters: [] as PlayerType[],
+      remainingCharacters: [] as PlayerType[],
+      /** Never start the same character twice in a row. */
+      lastSelectedCharacter: null as PlayerType | null,
+      /** This is set to 0 when the Basement 2 boss is defeated. */
+      timeCharacterAssigned: null as int | null,
+      /** The time that the bans were set in the "Change Char Order" custom challenge. */
+      timeBansSet: null as int | null,
+    },
   },
 
   run: {
@@ -70,10 +71,15 @@ export function speedrunResetPersistentVars(): void {
   v.persistent.characterNum = 1;
   v.persistent.liveSplitReset = false;
   v.persistent.performedFastReset = false;
-
   v.persistent.startedSpeedrunFrame = null;
   v.persistent.startedCharacterFrame = null;
   emptyArray(v.persistent.characterRunFrames);
+
+  emptyArray(v.persistent.randomCharacterOrder.selectedCharacters);
+  emptyArray(v.persistent.randomCharacterOrder.remainingCharacters);
+  v.persistent.randomCharacterOrder.lastSelectedCharacter = null;
+  v.persistent.randomCharacterOrder.timeCharacterAssigned = null;
+  // `timeBansSet` is not reset since it has to do with the Change Char Order challenge.
 }
 
 export function speedrunResetFirstCharacterVars(): void {
@@ -96,7 +102,9 @@ export function speedrunGetCharacterNum(): number {
 
 /** Used for the random character order feature. */
 export function speedrunGetCurrentSelectedCharacter(): PlayerType | undefined {
-  return v.persistent.selectedCharacters[v.persistent.characterNum - 1];
+  return v.persistent.randomCharacterOrder.selectedCharacters[
+    v.persistent.characterNum - 1
+  ];
 }
 
 export function speedrunGetFinishedFrames(): number {
@@ -121,5 +129,5 @@ export function speedrunHasErrors(): boolean {
 }
 
 export function speedrunSetBansTime(): void {
-  v.persistent.timeBansSet = Isaac.GetTime();
+  v.persistent.randomCharacterOrder.timeBansSet = Isaac.GetTime();
 }

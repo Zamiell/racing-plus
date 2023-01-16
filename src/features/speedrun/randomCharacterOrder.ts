@@ -121,7 +121,7 @@ function drawErrors() {
     errorEventTime = getTimeConsoleUsed();
   } else if (v.run.errors.bansRecentlySet) {
     action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
-    errorEventTime = v.persistent.timeBansSet;
+    errorEventTime = v.persistent.randomCharacterOrder.timeBansSet;
   }
 
   if (action === null || errorEventTime === null) {
@@ -198,11 +198,12 @@ function checkErrors() {
   }
 
   // Bans recently assigned.
-  if (v.persistent.timeBansSet === null) {
+  if (v.persistent.randomCharacterOrder.timeBansSet === null) {
     v.run.errors.bansRecentlySet = false;
   } else {
     const bansUnlockTime =
-      v.persistent.timeBansSet + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+      v.persistent.randomCharacterOrder.timeBansSet +
+      RANDOM_CHARACTER_LOCK_MILLISECONDS;
     v.run.errors.bansRecentlySet = time <= bansUnlockTime;
   }
 }
@@ -215,19 +216,20 @@ function checkFirstCharacterRefresh() {
 
   const time = Isaac.GetTime();
   if (
-    v.persistent.timeCharacterAssigned === null ||
-    v.persistent.timeCharacterAssigned > time
+    v.persistent.randomCharacterOrder.timeCharacterAssigned === null ||
+    v.persistent.randomCharacterOrder.timeCharacterAssigned > time
   ) {
     // It is possible for the time assignment to be in the future, since it is based on the time
     // since the operating system started.
-    v.persistent.timeCharacterAssigned = time;
+    v.persistent.randomCharacterOrder.timeCharacterAssigned = time;
   }
 
   const buildLockedUntilTime =
-    v.persistent.timeCharacterAssigned + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+    v.persistent.randomCharacterOrder.timeCharacterAssigned +
+    RANDOM_CHARACTER_LOCK_MILLISECONDS;
   if (
     time > buildLockedUntilTime ||
-    v.persistent.selectedCharacters.length === 0
+    v.persistent.randomCharacterOrder.selectedCharacters.length === 0
   ) {
     refreshStartingCharactersAndOtherThings();
   }
@@ -243,9 +245,9 @@ function refreshStartingCharactersAndOtherThings() {
     );
   }
 
-  v.persistent.selectedCharacters = [];
-  v.persistent.remainingCharacters = copyArray(characters);
-  v.persistent.timeCharacterAssigned = time; // We will assign the character in the next function.
+  v.persistent.randomCharacterOrder.selectedCharacters = [];
+  v.persistent.randomCharacterOrder.remainingCharacters = copyArray(characters);
+  v.persistent.randomCharacterOrder.timeCharacterAssigned = time; // We will assign the character in the next function.
 
   switch (challenge) {
     case ChallengeCustom.SEASON_2: {
@@ -270,9 +272,9 @@ export function getStartingCharacter(): PlayerType {
 
   // Prepare a list of characters that should not be possible for this segment of the speedrun.
   const characterExceptions =
-    v.persistent.lastSelectedCharacter === null
+    v.persistent.randomCharacterOrder.lastSelectedCharacter === null
       ? []
-      : [v.persistent.lastSelectedCharacter];
+      : [v.persistent.randomCharacterOrder.lastSelectedCharacter];
   if (challenge === ChallengeCustom.SEASON_4) {
     const characterNum = speedrunGetCharacterNum();
     if (characterNum <= 2) {
@@ -286,13 +288,13 @@ export function getStartingCharacter(): PlayerType {
 
   // Select a new starting character.
   const startingCharacter = getRandomArrayElementAndRemove(
-    v.persistent.remainingCharacters,
+    v.persistent.randomCharacterOrder.remainingCharacters,
     undefined,
     characterExceptions,
   );
 
-  v.persistent.selectedCharacters.push(startingCharacter);
-  v.persistent.lastSelectedCharacter = startingCharacter;
+  v.persistent.randomCharacterOrder.selectedCharacters.push(startingCharacter);
+  v.persistent.randomCharacterOrder.lastSelectedCharacter = startingCharacter;
 
   return startingCharacter;
 }
@@ -317,6 +319,6 @@ function checkResetTimeAssigned() {
     roomType === RoomType.BOSS &&
     roomInsideGrid
   ) {
-    v.persistent.timeCharacterAssigned = 0;
+    v.persistent.randomCharacterOrder.timeCharacterAssigned = 0;
   }
 }
