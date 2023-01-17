@@ -2694,10 +2694,10 @@ isaacscript-common-ts@^1.6.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-1.6.0.tgz#c09aeb2efc1dc03c8f43702e232708efb273711c"
   integrity sha512-LVdTJ/u/+vo9rLgzDrwdcUjFYmeEkY/nkHepNhKGbRQnp0Ny3/CszIqkxJL6F+JdGyPpyx0GQpWYqx16lNArxQ==
 
-isaacscript-common@^20.5.0:
-  version "20.5.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-20.5.0.tgz#7deaffe42a7760f34f749cada96e63ffea783ae0"
-  integrity sha512-eSWG6O853JHVuyNBkXdou4LNlUU5n2lGnsqumsYnh27ooMfPkkVnbr9fjJqZLjV4MA+k3PRiQYXaq6w3jo/CoA==
+isaacscript-common@^20.11.0:
+  version "20.11.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-20.11.0.tgz#1d09f9c9ff5e1d1fe730c5890db643aaa7b0af22"
+  integrity sha512-RBfElRPPZQ7K4Cs7m0dLD3jWdhM/BgwiNUfiFgEUijbMWaIAHpBgNF8jlVCLUIyS1QYx72USADrZ+PI/hnTaVg==
   dependencies:
     isaac-typescript-definitions "^11.0.0"
 
@@ -2726,10 +2726,10 @@ isaacscript-lint@^4.6.2:
     prettier-plugin-organize-imports "^3.2.2"
     ts-prune-2 "^0.10.7"
 
-isaacscript-spell@^1.2.27:
-  version "1.2.27"
-  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.27.tgz#9040cc0e2ebdeb031e85484f202b2bac1e5c2bec"
-  integrity sha512-mQmm9G3KEI3Eb5Qhxtx33fCHoA/kYOZCOtc0skjZwgDQBhlsN71Ye7KiUF0AJYz+jCPguGceb2kHEofL9pd6Dg==
+isaacscript-spell@^1.2.28:
+  version "1.2.28"
+  resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.28.tgz#e0651d5dc684f68aa3141616b7e89a1a8f342f76"
+  integrity sha512-I1B3a8/KOOxHndfLY7HxkTDfHXt5DMuRZD2tFKGK9NLIkAng6VQTapUeBelDiP5U9llV5yda//gIftnSMLjtsw==
 
 isaacscript-tsconfig@^3.0.2:
   version "3.0.2"
