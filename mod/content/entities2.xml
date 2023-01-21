@@ -2,18 +2,20 @@
 <entities anm2root="gfx/" version="5">
   <!-- FAMILIARS (3) -->
 
-  <!-- collisionInterval is tick rate in game frames. -->
+  <!-- `collisionInterval` is tick rate in game frames. -->
   <entity name="Sawblade" id="3" anm2path="familiar/sawblade.anm2" baseHP="0" boss="0" champion="0" collisionDamage="10" collisionInterval="2" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="12" shadowSize="10" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
   </entity>
 
   <!-- PICKUPS (5) -->
-  <!-- We can't use auto-increment because having pickup variant 0 will crash the game under certain conditions. -->
-  <!-- https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278 -->
-  <!-- The final vanilla pickup variant is: PickupVariant.MOMS_CHEST (390) -->
+  <!--
+    We can't use auto-incrementation because having pickup variant 0 is not safe:
+    https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278
+    The final vanilla pickup variant is: `PickupVariant.MOMS_CHEST` (390)
+  -->
 
   <!-- For replacing the photos -->
-  <entity name="Invisible Pickup" id="5" variant="400" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Invisible Pickup" id="5" variant="401" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
@@ -30,30 +32,35 @@
   </entity>
 
   <!-- EFFECTS (1000) -->
+  <!--
+    We can't use auto-incrementation because having pickup variant 0 or 40 is not safe:
+    https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278
+    The final vanilla effect variant is: `EffectVariant.ULTRA_DEATH_SCYTHE` (199)
+  -->
 
   <!-- For replacing grid entities -->
-  <entity name="Invisible Effect" id="1000" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Invisible Effect" id="1000" variant="201" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
   <!-- For fast-travel -->
-  <entity name="Pitfall (Custom)" id="1000" anm2path="291.000_Pitfall.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Pitfall (Custom)" id="1000" variant="202" anm2path="291.000_Pitfall.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
   <!-- For The Lamb -->
-  <entity name="Room Clear Delay Effect" id="1000" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
+  <entity name="Room Clear Delay Effect" id="1000" variant="203" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="true" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
-  <entity name="Sticky Nickel Effect" id="1000" anm2path="items/pick ups/sticky_nickel_effect.anm2" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
+  <entity name="Sticky Nickel Effect" id="1000" variant="204" anm2path="items/pick ups/sticky_nickel_effect.anm2" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
   </entity>
 
   <!-- OTHER -->
 
   <!-- For races -->
-  <entity name="Race Trophy" id="1001" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
+  <entity name="Race Trophy" id="1001" variant="205" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 </entities>
