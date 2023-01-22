@@ -11,6 +11,7 @@ import {
   asNumber,
   DefaultMap,
   game,
+  getHUDOffsetVector,
   inStartingRoom,
   isCharacter,
   isChildPlayer,
@@ -27,7 +28,7 @@ import { newCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utils";
 import { inSeededRaceWithAllAngelRooms } from "../../race/consistentDevilAngelRooms";
 
-const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count
+const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count.
 const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);
 const COLLECTIBLE_OFFSET = Vector(0, 30);
 
@@ -85,13 +86,16 @@ function drawIconSprite() {
     return;
   }
 
+  const hudOffsetVector = getHUDOffsetVector();
+  const defaultPosition = ICON_SPRITE_POSITION.add(hudOffsetVector);
+
   const hasTaintedCharacterUI = anyPlayerIs(
     PlayerType.ISAAC_B, // 21
     PlayerType.BLUE_BABY_B, // 25
   );
   const position = hasTaintedCharacterUI
-    ? ICON_SPRITE_POSITION.add(TAINTED_CHARACTER_UI_OFFSET)
-    : ICON_SPRITE_POSITION;
+    ? defaultPosition.add(TAINTED_CHARACTER_UI_OFFSET)
+    : defaultPosition;
   iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }
 
