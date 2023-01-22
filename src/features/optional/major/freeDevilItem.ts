@@ -88,7 +88,6 @@ function drawIconSprite() {
 
   const hudOffsetVector = getHUDOffsetVector();
   const defaultPosition = ICON_SPRITE_POSITION.add(hudOffsetVector);
-
   const hasTaintedCharacterUI = anyPlayerIs(
     PlayerType.ISAAC_B, // 21
     PlayerType.BLUE_BABY_B, // 25

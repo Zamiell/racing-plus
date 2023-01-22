@@ -7,6 +7,7 @@
 
 - Fixed the bug with seeded death where the revival from Mysterious Paper was not being detected properly. (Thanks Gamonymous)
 - Fixed the bug where saving the character order for a custom challenge was not working properly. (Thanks Gamonymous)
+- Fixed the bug where some UI elements did not account for `HudOffset` in the "options.ini" file. (Thanks Hispa)
 
 ### _v0.91.1_ - January 17th, 2023
 
