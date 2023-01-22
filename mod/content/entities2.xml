@@ -1,4 +1,3 @@
-<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/entities2.xsd" ?>
 <entities anm2root="gfx/" version="5">
   <!-- FAMILIARS (3) -->
 
@@ -15,7 +14,7 @@
   -->
 
   <!-- For replacing the photos -->
-  <entity name="Invisible Pickup" id="5" variant="401" anm2path="none.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
+  <entity name="Invisible Pickup" id="5" variant="401" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 
