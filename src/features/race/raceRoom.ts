@@ -15,6 +15,7 @@ import {
   getRoomGridIndex,
   getRoomStageID,
   getRoomVariant,
+  getScreenCenterPos,
   removeAllDoors,
   removeEntities,
   spawnNPC,
@@ -90,58 +91,51 @@ function drawSprites() {
 }
 
 function getPosition(spriteName: keyof typeof sprites): Vector {
-  const centerPos = g.r.GetCenterPos();
-  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
+  const screenCenterPos = getScreenCenterPos();
 
   switch (spriteName) {
     case "wait": {
-      return Vector(renderPosition.X, renderPosition.Y - 80);
+      return screenCenterPos.add(Vector(0, -80));
     }
 
     case "myStatus": {
-      return Vector(renderPosition.X, renderPosition.Y - 40);
+      return screenCenterPos.add(Vector(0, -40));
     }
 
     case "numReady": {
-      return Vector(renderPosition.X - 20, renderPosition.Y - 15);
+      return screenCenterPos.add(Vector(-20, -15));
     }
 
     case "slash": {
-      return Vector(renderPosition.X, renderPosition.Y - 15);
+      return screenCenterPos.add(Vector(0, -15));
     }
 
     case "numEntrants": {
-      return Vector(renderPosition.X + 20, renderPosition.Y - 15);
+      return screenCenterPos.add(Vector(20, -15));
     }
 
     case "ranked": {
-      return Vector(renderPosition.X - X_SPACING, renderPosition.Y + Y_SPACING);
+      return screenCenterPos.add(Vector(X_SPACING * -1, Y_SPACING));
     }
 
     case "rankedIcon": {
-      return Vector(
-        renderPosition.X - X_SPACING,
-        renderPosition.Y + Y_SPACING + 23,
-      );
+      return screenCenterPos.add(Vector(X_SPACING * -1, Y_SPACING + 23));
     }
 
     case "format": {
-      return Vector(renderPosition.X + X_SPACING, renderPosition.Y + Y_SPACING);
+      return screenCenterPos.add(Vector(X_SPACING, Y_SPACING));
     }
 
     case "formatIcon": {
-      return Vector(
-        renderPosition.X + X_SPACING,
-        renderPosition.Y + Y_SPACING + 23,
-      );
+      return screenCenterPos.add(Vector(X_SPACING, Y_SPACING + 23));
     }
 
     case "goal": {
-      return Vector(renderPosition.X - 25, renderPosition.Y + 95);
+      return screenCenterPos.add(Vector(-25, 95));
     }
 
     case "goalIcon": {
-      return Vector(renderPosition.X + 25, renderPosition.Y + 95);
+      return screenCenterPos.add(Vector(25, 95));
     }
 
     default: {

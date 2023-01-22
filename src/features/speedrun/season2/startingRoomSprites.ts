@@ -11,6 +11,8 @@ const TOP_RIGHT_GRID_INDEX = 42;
 const SPRITE_TITLE_OFFSET = Vector(0, -30);
 const SPRITE_ITEM_OFFSET = 15;
 
+const SEASON_2_CHARACTER_NAME_OFFSET = Vector(0, -11);
+
 const sprites = {
   /** The "Character" yellow sprite. */
   characterTitle: null as Sprite | null,
@@ -92,9 +94,9 @@ export function drawSeason2StartingRoomSprites(): void {
 
 function getPosition(spriteName: keyof typeof sprites): Vector {
   const topLeftPositionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  const topLeftPosition = Isaac.WorldToRenderPosition(topLeftPositionGame);
+  const topLeftPosition = Isaac.WorldToScreen(topLeftPositionGame);
   const topRightPositionGame = g.r.GetGridPosition(TOP_RIGHT_GRID_INDEX);
-  const topRightPosition = Isaac.WorldToRenderPosition(topRightPositionGame);
+  const topRightPosition = Isaac.WorldToScreen(topRightPositionGame);
 
   switch (spriteName) {
     case "characterTitle": {
@@ -138,8 +140,8 @@ export function drawSeason2StartingRoomText(): void {
   const characterName = getPlayerName(player);
 
   const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  let position = Isaac.WorldToRenderPosition(positionGame);
-  position = position.add(Vector(0, -11));
+  const positionWithoutOffset = Isaac.WorldToScreen(positionGame);
+  const position = positionWithoutOffset.add(SEASON_2_CHARACTER_NAME_OFFSET);
 
   const font = fonts.droid;
   const length = font.GetStringWidthUTF8(characterName);

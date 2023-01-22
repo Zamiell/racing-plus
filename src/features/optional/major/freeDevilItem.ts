@@ -226,7 +226,7 @@ export function postPickupRenderCollectible(
 
   const ptrHash = GetPtrHash(pickup);
   const sprite = v.room.spriteMap.getAndSetDefault(ptrHash);
-  const worldPosition = Isaac.WorldToRenderPosition(pickup.Position);
+  const worldPosition = Isaac.WorldToScreen(pickup.Position);
   const position = worldPosition.add(renderOffset).add(COLLECTIBLE_OFFSET);
   sprite.RenderLayer(COLLECTIBLE_LAYER, position);
 }

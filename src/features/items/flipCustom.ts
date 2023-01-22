@@ -280,9 +280,7 @@ export function postPickupRenderCollectible(
     flippedCollectibleType,
     collectible,
   );
-  const pickupRenderPosition = Isaac.WorldToRenderPosition(
-    collectible.Position,
-  );
+  const pickupRenderPosition = Isaac.WorldToScreen(collectible.Position);
   const renderPosition = pickupRenderPosition
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);

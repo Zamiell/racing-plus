@@ -1,5 +1,5 @@
 import { TrinketType } from "isaac-typescript-definitions";
-import { game } from "isaacscript-common";
+import { game, getScreenCenterPos } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -81,65 +81,64 @@ function drawSprites() {
 }
 
 function getPosition(spriteName: keyof typeof sprites): Vector {
-  const centerPos = g.r.GetCenterPos();
-  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
-  const itemRow1Y = renderPosition.Y - 10;
+  const screenCenterPos = getScreenCenterPos();
+  const itemRow1Y = -10;
 
   switch (spriteName) {
     case "seededStartingTitle": {
-      return Vector(renderPosition.X, renderPosition.Y - 40);
+      return screenCenterPos.add(Vector(0, -40));
     }
 
     case "seededItemCenter": {
-      return Vector(renderPosition.X, itemRow1Y);
+      return screenCenterPos.add(Vector(0, itemRow1Y));
     }
 
     case "seededItemLeft": {
-      return Vector(renderPosition.X - 15, itemRow1Y);
+      return screenCenterPos.add(Vector(-15, itemRow1Y));
     }
 
     case "seededItemRight": {
-      return Vector(renderPosition.X + 15, itemRow1Y);
+      return screenCenterPos.add(Vector(15, itemRow1Y));
     }
 
     case "seededItemFarLeft": {
-      return Vector(renderPosition.X - 45, itemRow1Y);
+      return screenCenterPos.add(Vector(-45, itemRow1Y));
     }
 
     case "seededItemFarRight": {
-      return Vector(renderPosition.X + 45, itemRow1Y);
+      return screenCenterPos.add(Vector(45, itemRow1Y));
     }
 
     case "diversityActive": {
-      return Vector(renderPosition.X - 90, renderPosition.Y - 70);
+      return screenCenterPos.add(Vector(-90, -70));
     }
 
     case "diversityPassives": {
-      return Vector(renderPosition.X + 90, renderPosition.Y - 40);
+      return screenCenterPos.add(Vector(90, -40));
     }
 
     case "diversityTrinket": {
-      return Vector(renderPosition.X - 90, renderPosition.Y + 30);
+      return screenCenterPos.add(Vector(-90, 30));
     }
 
     case "diversityItem1": {
-      return Vector(renderPosition.X - 90, renderPosition.Y - 40);
+      return screenCenterPos.add(Vector(-90, -40));
     }
 
     case "diversityItem2": {
-      return Vector(renderPosition.X + 60, itemRow1Y);
+      return screenCenterPos.add(Vector(60, itemRow1Y));
     }
 
     case "diversityItem3": {
-      return Vector(renderPosition.X + 90, itemRow1Y);
+      return screenCenterPos.add(Vector(90, itemRow1Y));
     }
 
     case "diversityItem4": {
-      return Vector(renderPosition.X + 120, itemRow1Y);
+      return screenCenterPos.add(Vector(120, itemRow1Y));
     }
 
     case "diversityItem5": {
-      return Vector(renderPosition.X - 90, renderPosition.Y + 60);
+      return screenCenterPos.add(Vector(-90, 60));
     }
   }
 }

@@ -2,6 +2,7 @@ import { CollectibleType } from "isaac-typescript-definitions";
 import {
   fonts,
   game,
+  getHUDOffsetVector,
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
   isBethany,
@@ -46,7 +47,6 @@ function drawCoinsDelta() {
     return;
   }
 
-  const text = getDeltaText(v.run.delta.coins);
   const fade = getFade(v.run.delta.coinsFrame);
   if (fade <= 0) {
     v.run.delta.coins = null;
@@ -57,13 +57,15 @@ function drawCoinsDelta() {
   const player = Isaac.GetPlayer();
   const isJacobAndEsau = isJacobOrEsau(player);
   const hasDeepPockets = player.HasCollectible(CollectibleType.DEEP_POCKETS);
+
   const x = hasDeepPockets ? UI_X + COINS_X_OFFSET : UI_X;
   // Note that Bethany's coins are in the same place as the other characters, so there is no need to
   // account for her offset in this function.
   const y = isJacobAndEsau ? COINS_Y + JACOB_ESAU_Y_OFFSET : COINS_Y;
 
-  const color = getTextColor(fade);
-  fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
+  const text = getDeltaText(v.run.delta.coins);
+
+  drawFont(x, y, fade, text);
 }
 
 function drawKeysDelta() {
@@ -71,7 +73,6 @@ function drawKeysDelta() {
     return;
   }
 
-  const text = getDeltaText(v.run.delta.keys);
   const fade = getFade(v.run.delta.keysFrame);
   if (fade <= 0) {
     v.run.delta.keys = null;
@@ -80,6 +81,8 @@ function drawKeysDelta() {
   }
 
   const player = Isaac.GetPlayer();
+
+  const x = UI_X;
   let y = KEYS_Y;
   if (isJacobOrEsau(player)) {
     y += JACOB_ESAU_Y_OFFSET;
@@ -87,8 +90,9 @@ function drawKeysDelta() {
     y += BETHANY_Y_KEY_OFFSET;
   }
 
-  const color = getTextColor(fade);
-  fonts.pfTempestaSevenCondensed.DrawString(text, UI_X, y, color, 0, true);
+  const text = getDeltaText(v.run.delta.keys);
+
+  drawFont(x, y, fade, text);
 }
 
 function drawBombsDelta() {
@@ -96,7 +100,6 @@ function drawBombsDelta() {
     return;
   }
 
-  const text = getDeltaText(v.run.delta.bombs);
   const fade = getFade(v.run.delta.bombsFrame);
   if (fade <= 0) {
     v.run.delta.bombs = null;
@@ -105,6 +108,8 @@ function drawBombsDelta() {
   }
 
   const player = Isaac.GetPlayer();
+
+  const x = UI_X;
   let y = BOMBS_Y;
   if (isJacobOrEsau(player)) {
     y += JACOB_ESAU_Y_OFFSET;
@@ -112,8 +117,9 @@ function drawBombsDelta() {
     y += BETHANY_Y_BOMB_OFFSET;
   }
 
-  const color = getTextColor(fade);
-  fonts.pfTempestaSevenCondensed.DrawString(text, UI_X, y, color, 0, true);
+  const text = getDeltaText(v.run.delta.bombs);
+
+  drawFont(x, y, fade, text);
 }
 
 function drawBloodOrSoulChargeDelta() {
@@ -124,7 +130,6 @@ function drawBloodOrSoulChargeDelta() {
     return;
   }
 
-  const text = getDeltaText(v.run.delta.bloodOrSoulCharge);
   const fade = getFade(v.run.delta.bloodOrSoulChargeFrame);
   if (fade <= 0) {
     v.run.delta.bloodOrSoulCharge = null;
@@ -132,24 +137,18 @@ function drawBloodOrSoulChargeDelta() {
     return;
   }
 
-  const color = getTextColor(fade);
-  fonts.pfTempestaSevenCondensed.DrawString(
-    text,
-    UI_X,
-    BLOOD_SOUL_CHARGE_Y,
-    color,
-    0,
-    true,
-  );
+  const x = UI_X;
+  const y = BLOOD_SOUL_CHARGE_Y;
+
+  const text = getDeltaText(v.run.delta.bloodOrSoulCharge);
+
+  drawFont(x, y, fade, text);
 }
 
 function drawPocketItemsDelta() {
   if (v.run.delta.pocketItem === null || v.run.delta.pocketItemFrame === null) {
     return;
   }
-
-  const string = v.run.delta.pocketItem.toString();
-  const text = `+${string}`;
 
   // Don't show pocket items delta on Jacob & Esau since their HUD is different.
   const player = Isaac.GetPlayer();
@@ -164,20 +163,20 @@ function drawPocketItemsDelta() {
     return;
   }
 
-  const color = getTextColor(fade);
   const bottomRightPos = getScreenBottomRightPos();
   const x = bottomRightPos.X - BOTTOM_CORNER_OFFSET;
   const y = bottomRightPos.Y - BOTTOM_CORNER_OFFSET;
-  fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
+
+  const string = v.run.delta.pocketItem.toString();
+  const text = `+${string}`;
+
+  drawFont(x, y, fade, text);
 }
 
 function drawTrinketsDelta() {
   if (v.run.delta.trinket === null || v.run.delta.trinketFrame === null) {
     return;
   }
-
-  const string = v.run.delta.trinket.toString();
-  const text = `+${string}`;
 
   const fade = getFade(v.run.delta.trinketFrame);
   if (fade <= 0) {
@@ -186,14 +185,17 @@ function drawTrinketsDelta() {
     return;
   }
 
-  const color = getTextColor(fade);
   const bottomLeftPos = getScreenBottomLeftPos();
   const x = bottomLeftPos.X + BOTTOM_CORNER_OFFSET;
   const y = bottomLeftPos.Y - BOTTOM_CORNER_OFFSET;
-  fonts.pfTempestaSevenCondensed.DrawString(text, x, y, color, 0, true);
+
+  const string = v.run.delta.trinket.toString();
+  const text = `+${string}`;
+
+  drawFont(x, y, fade, text);
 }
 
-function getFade(frame: int) {
+function getFade(frame: int): float {
   const gameFrameCount = game.GetFrameCount();
   const elapsedFrames = gameFrameCount - frame;
 
@@ -205,11 +207,26 @@ function getFade(frame: int) {
   return 1 - 0.02 * fadeFrames;
 }
 
-function getTextColor(fade: float) {
+function drawFont(x: float, y: float, fade: float, text: string) {
+  const hudOffsetVector = getHUDOffsetVector();
+  const position = Vector(x, y).add(hudOffsetVector);
+
+  const color = getTextColor(fade);
+  fonts.pfTempestaSevenCondensed.DrawString(
+    text,
+    position.X,
+    position.Y,
+    color,
+    0,
+    true,
+  );
+}
+
+function getTextColor(fade: float): KColor {
   return KColor(0, 0.75, 0, fade);
 }
 
-function getDeltaText(delta: int) {
+function getDeltaText(delta: int): string {
   const deltaString = delta.toString();
   const paddedDeltaString = deltaString.padStart(2, "0");
   return `+${paddedDeltaString}`;

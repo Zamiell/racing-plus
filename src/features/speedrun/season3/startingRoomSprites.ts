@@ -1,6 +1,10 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
-import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
-import { g } from "../../../globals";
+import {
+  fonts,
+  getPlayerName,
+  getScreenCenterPos,
+  KColorDefault,
+} from "isaacscript-common";
 import {
   newGlowingCollectibleSprite,
   newGlowingTrinketSprite,
@@ -90,45 +94,43 @@ export function drawSeason3StartingRoomSprites(): void {
 }
 
 function getPosition(spriteName: keyof typeof sprites): Vector {
-  const centerPos = g.r.GetCenterPos();
-  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
-  const itemRow1Y = renderPosition.Y - 40;
+  const screenCenterPos = getScreenCenterPos();
 
   switch (spriteName) {
     case "diversityActive": {
-      return Vector(renderPosition.X - 90, renderPosition.Y - 70);
+      return screenCenterPos.add(Vector(-90, -70));
     }
 
     case "diversityPassives": {
-      return Vector(renderPosition.X + 90, renderPosition.Y - 70);
+      return screenCenterPos.add(Vector(90, -70));
     }
 
     case "diversityTrinket": {
-      return Vector(renderPosition.X - 90, renderPosition.Y + 30);
+      return screenCenterPos.add(Vector(-90, 30));
     }
 
     case "diversityItem1": {
-      return Vector(renderPosition.X - 90, renderPosition.Y - 40);
+      return screenCenterPos.add(Vector(-90, -40));
     }
 
     case "diversityItem2": {
-      return Vector(renderPosition.X + 60, itemRow1Y);
+      return screenCenterPos.add(Vector(60, -40));
     }
 
     case "diversityItem3": {
-      return Vector(renderPosition.X + 90, itemRow1Y);
+      return screenCenterPos.add(Vector(90, -40));
     }
 
     case "diversityItem4": {
-      return Vector(renderPosition.X + 120, itemRow1Y);
+      return screenCenterPos.add(Vector(120, -40));
     }
 
     case "diversityItem5": {
-      return Vector(renderPosition.X - 90, renderPosition.Y + 60);
+      return screenCenterPos.add(Vector(-90, 60));
     }
 
     case "characterTitle": {
-      return Vector(renderPosition.X + 90, renderPosition.Y + 30);
+      return screenCenterPos.add(Vector(90, 30));
     }
   }
 }
@@ -143,11 +145,10 @@ export function drawSeason3StartingRoomText(): void {
   const player = Isaac.GetPlayer();
   const characterName = getPlayerName(player);
 
-  const centerPos = g.r.GetCenterPos();
-  const renderPosition = Isaac.WorldToRenderPosition(centerPos);
+  const screenCenterPos = getScreenCenterPos();
 
   // Matches the offset from the `getPosition` function.
-  const position = Vector(renderPosition.X + 90, renderPosition.Y + 50);
+  const position = Vector(screenCenterPos.X + 90, screenCenterPos.Y + 50);
 
   const font = fonts.droid;
   const length = font.GetStringWidthUTF8(characterName);
