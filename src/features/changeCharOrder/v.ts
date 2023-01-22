@@ -3,7 +3,7 @@ import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { mod } from "../../mod";
 import { SeasonDescription } from "../../types/SeasonDescription";
 import { ChallengeCustomAbbreviation } from "../speedrun/constants";
-import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
+import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 
 export const v = {
   persistent: {
@@ -31,8 +31,7 @@ export const v = {
 export function init(): void {
   // We must initialize the table with default values or else the merge script will not copy over
   // old persistent data.
-  for (const key of Object.keys(CHANGE_CHAR_ORDER_POSITIONS)) {
-    const challengeCustomAbbreviation = key as ChallengeCustomAbbreviation;
+  for (const challengeCustomAbbreviation of CHANGE_CHAR_ORDER_POSITIONS_MAP.keys()) {
     v.persistent.charOrders.set(
       challengeCustomAbbreviation,
       [] as PlayerType[],
@@ -53,7 +52,7 @@ export function getSeasonDescription(): SeasonDescription {
     error("seasonChosenAbbreviation is null.");
   }
 
-  const seasonDescription = CHANGE_CHAR_ORDER_POSITIONS.get(
+  const seasonDescription = CHANGE_CHAR_ORDER_POSITIONS_MAP.get(
     v.room.challengeCustomAbbreviation,
   );
   if (seasonDescription === undefined) {

@@ -10,7 +10,7 @@ import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
 import { g } from "../../../globals";
 import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
-import { CHANGE_CHAR_ORDER_POSITIONS } from "../constants";
+import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "../constants";
 import { getSeasonDescription, v } from "../v";
 
 export function changeCharOrderPostRender(): void {
@@ -74,7 +74,7 @@ function drawSeasonSprites() {
 
   for (const [challengeCustomAbbreviation, seasonSprite] of v.room.sprites
     .seasons) {
-    const position = CHANGE_CHAR_ORDER_POSITIONS.get(
+    const position = CHANGE_CHAR_ORDER_POSITIONS_MAP.get(
       challengeCustomAbbreviation,
     );
     if (position === undefined) {

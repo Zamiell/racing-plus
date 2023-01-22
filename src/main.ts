@@ -97,9 +97,9 @@ function main() {
 
   if (g.debug) {
     log("Racing+ debug mode enabled.");
-    mod.saveDataManagerSetGlobal();
     setLogFunctionsGlobal();
     setTracebackFunctionsGlobal();
+    mod.saveDataManagerSetGlobal();
 
     // F1 shows the version of Racing+.
     mod.setHotkey(Keyboard.F2, hotkey1Function);

@@ -8,7 +8,7 @@ export const CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT = "1a";
 /** This is a Cellar room with 1 Gaper in it and no grid entities. */
 export const CHANGE_CHAR_ORDER_ROOM_VARIANT = 5;
 
-export const CHANGE_CHAR_ORDER_POSITIONS: ReadonlyMap<
+export const CHANGE_CHAR_ORDER_POSITIONS_MAP: ReadonlyMap<
   ChallengeCustomAbbreviation,
   SeasonDescription
 > = new Map([

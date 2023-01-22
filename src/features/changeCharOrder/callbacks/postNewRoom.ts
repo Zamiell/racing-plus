@@ -20,7 +20,7 @@ import { mod } from "../../../mod";
 import { consoleCommand } from "../../../utils";
 import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 import {
-  CHANGE_CHAR_ORDER_POSITIONS,
+  CHANGE_CHAR_ORDER_POSITIONS_MAP,
   CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT,
   CHANGE_CHAR_ORDER_ROOM_VARIANT,
 } from "../constants";
@@ -79,7 +79,7 @@ function setupButtonRoom() {
   for (const [
     challengeCustomAbbreviation,
     seasonDescription,
-  ] of CHANGE_CHAR_ORDER_POSITIONS) {
+  ] of CHANGE_CHAR_ORDER_POSITIONS_MAP) {
     if (seasonDescription.hidden !== undefined) {
       continue;
     }

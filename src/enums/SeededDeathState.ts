@@ -2,8 +2,8 @@ export enum SeededDeathState {
   DISABLED,
 
   /**
-   * After we return true from the PreCustomRevive callback, the custom callback will give us a 1-Up
-   * and then we have to wait for the PostCustomRevive callback to fire.
+   * After we return true from the `PRE_CUSTOM_REVIVE` callback, the custom callback will give us a
+   * 1-Up and then we have to wait for the `POST_CUSTOM_REVIVE` callback to fire.
    *
    * Between these two events, it is possible to perform a room transition (e.g. if we die via
    * running into a Curse Room door at full speed). However, we don't need to handle this case,

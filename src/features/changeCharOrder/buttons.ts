@@ -24,7 +24,7 @@ import { newGlowingCollectibleSprite } from "../../sprite";
 import { ChallengeCustomAbbreviation } from "../speedrun/constants";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
 import { speedrunSetBansTime } from "../speedrun/v";
-import { CHANGE_CHAR_ORDER_POSITIONS } from "./constants";
+import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 import { getSeasonDescription, v } from "./v";
 
 /** This is the largest value that works. */
@@ -164,7 +164,7 @@ function checkPressedPhaseSeasonSelect(pressurePlate: GridEntityPressurePlate) {
   for (const [
     challengeCustomAbbreviation,
     seasonDescription,
-  ] of CHANGE_CHAR_ORDER_POSITIONS) {
+  ] of CHANGE_CHAR_ORDER_POSITIONS_MAP) {
     const buttonPosition = gridCoordinatesToWorldPosition(
       seasonDescription.X,
       seasonDescription.Y,

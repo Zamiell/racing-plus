@@ -33,7 +33,7 @@
 
   <!-- EFFECTS (1000) -->
   <!--
-    We can't use auto-incrementation because having pickup variant 0 or 40 is not safe:
+    We can't use auto-incrementation because having effect variant 0 or 40 is not safe:
     https://github.com/Meowlala/RepentanceAPIIssueTracker/issues/436#issuecomment-1073173278
     The final vanilla effect variant is: `EffectVariant.ULTRA_DEATH_SCYTHE` (199)
   -->
