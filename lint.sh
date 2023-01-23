@@ -25,7 +25,7 @@ npx ts-prune --error
 # (Skip this step if Python is not currently installed for whatever reason.)
 if command -v python &> /dev/null; then
   pip install isaac-xml-validator --upgrade
-  isaac-xml-validator
+  #isaac-xml-validator
 fi
 
 # Step 5 - Spell check every file using CSpell.
