@@ -2681,10 +2681,10 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.1.tgz#b312d902b313f81e4eaf98b6361ba2b45cd694bb"
   integrity sha512-/kppl+R+LO5VmhYSEWARUFjodS25D68gvj8W7z0I7OWhUla5xWu8KL6CtB2V0R6yqhnRgbcaREMr4EEM6htLPQ==
 
-isaac-typescript-definitions@^11.0.1:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-11.0.1.tgz#b398046968858ea7f8d120524cdb2bf41062582b"
-  integrity sha512-e2qSBvu/kG7xtxm/bJAvzXnOGe7Ye6geiTKFIncWZlATMua9KvTmJR0NdUF6OCdWQMTFcvqFaNJ0VkuLZi7EXg==
+isaac-typescript-definitions@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-11.0.3.tgz#cc76b367efd3e6d678202c710a365e49b597d9a4"
+  integrity sha512-UkSwFgfsN0mVLtNTOuJC64flv4KBq3FeI1S2E4TNvXHP30gXdruhr/MGZPni3fYcw1f91KAfrHUW/7+IhvwucQ==
   dependencies:
     lua-types "^2.13.1"
 
@@ -2693,12 +2693,12 @@ isaacscript-common-ts@^1.7.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-1.7.0.tgz#78ad61efdb80000c39f60f39fad6cdf0e07b65f2"
   integrity sha512-tjrmPHnRUu7EKIuabIpi8BwGKXm52oNhdhwTC+K/bkPdrCLemptWfRv+8sAYqb2htQWFPuTqdlttpCLcaiwFMA==
 
-isaacscript-common@^20.13.1:
-  version "20.13.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-20.13.1.tgz#80d9c33610e26dff25d92a7a5df2071409aa0072"
-  integrity sha512-v6lBO1yrCvxdrLC3cycYS0pHWYlUgm06m/7uhB9ID+WZ6fe7cEEBQw4AgY2R43YSrWWHy8sUPwQYodaGftXUpg==
+isaacscript-common@^20.14.5:
+  version "20.14.5"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-20.14.5.tgz#15a387babe261b8ad2394b904c7b1b37fd755250"
+  integrity sha512-ivatAyidboMgn0UucjeXEiim+vdMHsdebKU9Rk2OuJ+VJN7OGh72uxqdscdgRlQzJmO2hEFpTORjoiWcwnfW4Q==
   dependencies:
-    isaac-typescript-definitions "^11.0.1"
+    isaac-typescript-definitions "^11.0.3"
 
 isaacscript-lint@^4.7.0:
   version "4.7.0"
@@ -2737,10 +2737,10 @@ isaacscript-tsconfig@^3.0.2:
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.4.6:
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.4.6.tgz#8857b848d325ff14eaf32e91e7db567347f740a3"
-  integrity sha512-hpB0pMNqSbnrvehuYlmSjY+1N8Fqq46HNWKkIOhVIcBbQ0oNnz+rwqvQM6SMfWNL73OrpX/pVSK5+TyKdH/XkA==
+isaacscript@^3.4.8:
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.4.8.tgz#d34fdfb663fd60969aa3b82675e57b642dffb8d8"
+  integrity sha512-F+347joFIC88iLv+qg4ZZ81UDq7eqfaqVuBk6G71claurdktcfGfsBhXU8ntxqLJZPctb19vWaWICv0OOVIwvw==
   dependencies:
     ajv "^8.12.0"
     chalk "4.1.2"

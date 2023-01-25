@@ -60,7 +60,7 @@ const STORED_ITEM_GRID_INDEXES = [
   114, 115, 116, 117, 118,
 ] as const;
 
-const STORAGE_ICON_OFFSET = Vector(0, -40);
+const STORAGE_ICON_OFFSET = Vector(0, -30);
 
 const v = {
   persistent: {
