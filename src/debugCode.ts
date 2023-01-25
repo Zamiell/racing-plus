@@ -1,6 +1,5 @@
 import { Keyboard } from "isaac-typescript-definitions";
-import { iRange, log, setLogFunctionsGlobal } from "isaacscript-common";
-import { v } from "./features/speedrun/season4";
+import { log, setLogFunctionsGlobal } from "isaacscript-common";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
@@ -8,8 +7,6 @@ import { hotkeys } from "./modConfigMenu";
 /** Currently, F2 is set to execute this function. */
 function debugCode(_params?: string) {
   // Add code here.
-  // eslint-disable-next-line isaacscript/strict-enums
-  v.persistent.storedCollectibles = iRange(1, 73);
 }
 
 /** Hotkey 1 is bound to F2. */

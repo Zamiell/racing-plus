@@ -148,7 +148,7 @@ const COLLECTIBLE_OVERFLOW_LENGTH = 40;
 
 const STORAGE_ICON_OFFSET = Vector(0, -30);
 
-export const v = {
+const v = {
   persistent: {
     storedCollectibles: [] as CollectibleType[],
     storedCollectiblesOnThisRun: [] as CollectibleType[],
