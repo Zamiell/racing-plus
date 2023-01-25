@@ -34,35 +34,121 @@ export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.JACOB, // 19
 ] as const;
 
-const STORED_ITEM_GRID_INDEXES = [
+const STORED_ITEM_POSITIONS = [
   // Row 1 left
-  16, 17, 18, 19, 20,
+  Vector(80, 160),
+  Vector(120, 160),
+  Vector(160, 160),
+  Vector(200, 160),
+  Vector(240, 160),
 
   // Row 1 right
-  24, 25, 26, 27, 28,
+  Vector(400, 160),
+  Vector(440, 160),
+  Vector(480, 160),
+  Vector(520, 160),
+  Vector(560, 160),
 
   // Row 2 left
-  46, 47, 48, 49, 50,
+  Vector(80, 240),
+  Vector(120, 240),
+  Vector(160, 240),
+  Vector(200, 240),
+  Vector(240, 240),
 
   // Row 2 right
-  54, 55, 56, 57, 58,
+  Vector(400, 240),
+  Vector(440, 240),
+  Vector(480, 240),
+  Vector(520, 240),
+  Vector(560, 240),
 
   // Row 3 left
-  76, 77, 78, 79, 80,
+  Vector(80, 320),
+  Vector(120, 320),
+  Vector(160, 320),
+  Vector(200, 320),
+  Vector(240, 320),
 
   // Row 3 right
-  84, 85, 86, 87, 88,
+  Vector(400, 320),
+  Vector(440, 320),
+  Vector(480, 320),
+  Vector(520, 320),
+  Vector(560, 320),
 
   // Row 4 left
-  106, 107, 108, 109, 110,
+  Vector(80, 400),
+  Vector(120, 400),
+  Vector(160, 400),
+  Vector(200, 400),
+  Vector(240, 400),
 
   // Row 4 right
-  114, 115, 116, 117, 118,
+  Vector(400, 400),
+  Vector(440, 400),
+  Vector(480, 400),
+  Vector(520, 400),
+  Vector(560, 400),
+
+  // --------
+  // Overflow
+  // --------
+
+  // Row 1 left
+  Vector(100, 160),
+  Vector(140, 160),
+  Vector(180, 160),
+  Vector(220, 160),
+
+  // Row 1 right
+  Vector(420, 160),
+  Vector(460, 160),
+  Vector(500, 160),
+  Vector(540, 160),
+
+  // Row 2 left
+  Vector(100, 240),
+  Vector(140, 240),
+  Vector(180, 240),
+  Vector(220, 240),
+
+  // Row 2 right
+  Vector(420, 240),
+  Vector(460, 240),
+  Vector(500, 240),
+  Vector(540, 240),
+
+  // Row 3 left
+  Vector(100, 320),
+  Vector(140, 320),
+  Vector(180, 320),
+  Vector(220, 320),
+
+  // Row 3 right
+  Vector(420, 320),
+  Vector(460, 320),
+  Vector(500, 320),
+  Vector(540, 320),
+
+  // Row 4 left
+  Vector(100, 400),
+  Vector(140, 400),
+  Vector(180, 400),
+  Vector(220, 400),
+
+  // Row 4 right
+  Vector(420, 400),
+  Vector(460, 400),
+  Vector(500, 400),
+  Vector(540, 400),
 ] as const;
+
+const COLLECTIBLE_OVERFLOW_LENGTH = 40;
 
 const STORAGE_ICON_OFFSET = Vector(0, -30);
 
-const v = {
+export const v = {
   persistent: {
     storedCollectibles: [] as CollectibleType[],
     storedCollectiblesOnThisRun: [] as CollectibleType[],
@@ -264,13 +350,19 @@ function spawnStoredCollectibles() {
 
     // If there are so many stored collectibles that they take up every available position in the
     // room, then start spawning them on an overlap starting at the top left again.
-    const safeIndex = i % STORED_ITEM_GRID_INDEXES.length;
-    const gridIndex = STORED_ITEM_GRID_INDEXES[safeIndex];
-    if (gridIndex === undefined) {
-      error("Failed to find a grid index for a stored collectible.");
+    const safeIndex = i % STORED_ITEM_POSITIONS.length;
+    const position = STORED_ITEM_POSITIONS[safeIndex];
+    if (position === undefined) {
+      error("Failed to find a position for a stored collectible.");
     }
 
-    mod.spawnCollectible(collectibleType, gridIndex);
+    const collectible = mod.spawnCollectible(collectibleType, position);
+    if (v.persistent.storedCollectibles.length > COLLECTIBLE_OVERFLOW_LENGTH) {
+      collectible.Size /= 3;
+
+      const sprite = collectible.GetSprite();
+      sprite.Scale = Vector(0.666, 0.666);
+    }
   });
 }
 
