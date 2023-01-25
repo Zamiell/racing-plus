@@ -65,3 +65,12 @@ export function eternalD6(player: EntityPlayer): boolean | undefined {
 
   return preserveCollectible.preUseItemEternalD6(player);
 }
+
+// CollectibleType.ABYSS (706)
+export function abyss(player: EntityPlayer): boolean | undefined {
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  return preserveCollectible.preUseItemAbyss(player);
+}

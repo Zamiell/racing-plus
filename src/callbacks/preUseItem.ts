@@ -74,6 +74,12 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
+    abyss,
+    CollectibleType.ABYSS, // 706
+  );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
     flip,
     CollectibleType.FLIP, // 711
   );
@@ -203,6 +209,18 @@ function eternalD6(
   _customVarData: int,
 ): boolean | undefined {
   return speedrunPreUseItem.eternalD6(player);
+}
+
+// CollectibleType.ABYSS (706)
+function abyss(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.abyss(player);
 }
 
 // CollectibleType.FLIP (711)

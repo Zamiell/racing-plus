@@ -5,7 +5,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerIs,
+  anyPlayerHasCollectible,
   arrayRemoveInPlace,
   DefaultMap,
   dequeueItem,
@@ -256,7 +256,7 @@ function spawnStoredCollectibles() {
     // Since certain collectibles are supposed to be removed from pools on Apollyon, skip spawning
     // them. (But leave them in storage for subsequent characters.)
     if (
-      anyPlayerIs(PlayerType.APOLLYON) &&
+      anyPlayerHasCollectible(CollectibleType.VOID) &&
       BANNED_COLLECTIBLES_WITH_VOID.has(collectibleType)
     ) {
       return;

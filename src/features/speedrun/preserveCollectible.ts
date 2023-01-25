@@ -29,6 +29,12 @@ export function preUseItemEternalD6(player: EntityPlayer): boolean | undefined {
   return preUseItemDangerousCollectible(player);
 }
 
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.ABYSS (706)
+export function preUseItemAbyss(player: EntityPlayer): boolean | undefined {
+  return preUseItemDangerousCollectible(player);
+}
+
 /** Prevent deleting collectibles under certain conditions. */
 function preUseItemDangerousCollectible(
   player: EntityPlayer,
