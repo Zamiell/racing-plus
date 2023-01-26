@@ -8,7 +8,7 @@ import {
   RoomShape,
 } from "isaac-typescript-definitions";
 import {
-  doesEntityExist,
+  doesAnyEntityExist,
   getAllPlayers,
   getDoorSlotEnterPosition,
   getFamiliars,
@@ -68,14 +68,7 @@ function shouldSubvertTeleport() {
     return false;
   }
 
-  for (const entityType of ENTITY_TYPES_THAT_CAUSE_TELEPORT) {
-    const entityExists = doesEntityExist(entityType, -1, -1, true);
-    if (entityExists) {
-      return true;
-    }
-  }
-
-  return false;
+  return doesAnyEntityExist(ENTITY_TYPES_THAT_CAUSE_TELEPORT, true);
 }
 
 function subvertTeleport() {
