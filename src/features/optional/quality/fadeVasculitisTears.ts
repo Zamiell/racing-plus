@@ -21,12 +21,13 @@ export function postTearInitLateBlood(tear: EntityTear): void {
 }
 
 /**
- * `tear.Parent` will be equal to undefined if it is a Vasculitis tear, because it is originating
- * from the entity (and not the player or any familiar).
+ * Both `tear.Parent` and `tear.SpawnerEntity` will be equal to undefined if it is a Vasculitis
+ * tear, because it is originating from the entity (and not the player or any familiar).
  */
 function isVasculitisTear(tear: EntityTear): boolean {
   return (
     tear.Parent === undefined &&
+    tear.SpawnerEntity === undefined &&
     anyPlayerHasCollectible(CollectibleType.VASCULITIS)
   );
 }
