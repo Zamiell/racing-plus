@@ -15,6 +15,7 @@ import {
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
 } from "isaacscript-common";
+import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
 import { mod } from "../../mod";
@@ -161,8 +162,13 @@ export function postRender(): boolean {
   }
 
   if (inSpeedrun() && !checkValidCharOrder()) {
+    const challenge = Isaac.GetChallenge();
+    const thingToSet =
+      challenge === ChallengeCustom.SEASON_2
+        ? "item bans"
+        : "a character order";
     drawErrorText(
-      'You must set a character order first by using the "Change Char Order" custom challenge.',
+      `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
     );
     return true;
   }
