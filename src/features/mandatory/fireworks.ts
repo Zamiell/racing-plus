@@ -4,7 +4,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   game,
   getPlayers,
   newRNG,
@@ -50,11 +50,7 @@ function makeFireworksQuieter() {
     return;
   }
 
-  const numFireworks = countEntities(
-    EntityType.EFFECT,
-    EffectVariant.FIREWORKS,
-  );
-  if (numFireworks > 0) {
+  if (doesEntityExist(EntityType.EFFECT, EffectVariant.FIREWORKS)) {
     sfxManager.AdjustVolume(SoundEffect.BOSS_1_EXPLOSIONS, 0.2);
   }
 }

@@ -43,7 +43,7 @@ const collectiblePlaceholderReverseMap = new Map<
   CollectibleType,
   CollectibleType
 >();
-for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
+for (const [key, value] of COLLECTIBLE_REPLACEMENT_MAP) {
   collectiblePlaceholderReverseMap.set(value, key);
 }
 

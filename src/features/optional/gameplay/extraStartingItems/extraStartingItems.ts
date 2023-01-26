@@ -7,7 +7,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   getCollectibles,
   getEffectiveStage,
   setCollectibleSubType,
@@ -101,19 +101,17 @@ export function postNewRoom(): void {
 function rollDuplicateItems() {
   const startSeed = g.seeds.GetStartSeed();
 
-  const numDeathTouches = countEntities(
+  const deathsTouchExists = doesEntityExist(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
     CollectibleType.DEATHS_TOUCH,
   );
-  const deathsTouchExists = numDeathTouches > 0;
 
-  const numMagicMushrooms = countEntities(
+  const magicMushroomExists = doesEntityExist(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
     CollectibleType.MAGIC_MUSHROOM,
   );
-  const magicMushroomExists = numMagicMushrooms > 0;
 
   for (const collectible of getCollectibles()) {
     // Ignore empty pedestals (i.e. items that have already been taken by the player).

@@ -15,7 +15,7 @@ export function postNewLevel(): void {
     return;
   }
 
-  for (const soundEffect of MOM_AND_DAD_SOUND_EFFECTS.values()) {
+  for (const soundEffect of MOM_AND_DAD_SOUND_EFFECTS) {
     sfxManager.Stop(soundEffect);
   }
 }

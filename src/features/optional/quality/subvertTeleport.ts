@@ -8,7 +8,7 @@ import {
   RoomShape,
 } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   getAllPlayers,
   getDoorSlotEnterPosition,
   getFamiliars,
@@ -20,11 +20,11 @@ import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 
-const ENTITIES_THAT_CAUSE_TELEPORT: ReadonlySet<EntityType> = new Set([
+const ENTITY_TYPES_THAT_CAUSE_TELEPORT = [
   EntityType.GURDY, // 36
   EntityType.MOM, // 45
   EntityType.MOMS_HEART, // 78
-]);
+] as const;
 
 type OneByOneRoomDoorSlot =
   | DoorSlot.LEFT_0
@@ -68,9 +68,9 @@ function shouldSubvertTeleport() {
     return false;
   }
 
-  for (const entityType of ENTITIES_THAT_CAUSE_TELEPORT.values()) {
-    const numEntities = countEntities(entityType, -1, -1, true);
-    if (numEntities > 0) {
+  for (const entityType of ENTITY_TYPES_THAT_CAUSE_TELEPORT) {
+    const entityExists = doesEntityExist(entityType, -1, -1, true);
+    if (entityExists) {
       return true;
     }
   }

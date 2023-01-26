@@ -20,6 +20,7 @@
   </entity>
 
   <!-- NPCS -->
+  <!-- The final vanilla NPC entity type is: `EntityType.HORNFEL_DOOR` (967) -->
 
   <!--
     For the Boss Rush, the room clear delay effect does not work to stop bosses from being spawned,
@@ -57,10 +58,8 @@
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
   </entity>
 
-  <!-- OTHER -->
-
   <!-- For races -->
-  <entity name="Race Trophy" id="1001" variant="205" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
+  <entity name="Race Trophy" id="1000" variant="205" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />
   </entity>
 </entities>

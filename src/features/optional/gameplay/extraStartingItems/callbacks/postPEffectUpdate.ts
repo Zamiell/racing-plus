@@ -12,7 +12,7 @@ export function extraStartingItemsPostPEffectUpdate(
   for (const [
     placeholderCollectibleType,
     collectibleType,
-  ] of COLLECTIBLE_REPLACEMENT_MAP.entries()) {
+  ] of COLLECTIBLE_REPLACEMENT_MAP) {
     if (!player.HasCollectible(placeholderCollectibleType)) {
       continue;
     }

@@ -15,6 +15,7 @@ export const EffectVariantCustom = {
   STICKY_NICKEL: Isaac.GetEntityVariantByName(
     "Sticky Nickel Effect",
   ) as EffectVariant,
+  RACE_TROPHY: Isaac.GetEntityVariantByName("Race Trophy") as EffectVariant,
 } as const;
 
 validateCustomEnum("EffectVariantCustom", EffectVariantCustom);

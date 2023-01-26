@@ -44,28 +44,28 @@ export function postGameStartedFirst(): void {
 }
 
 function removeBannedItemsFromPools() {
-  for (const bannedCollectible of BANNED_COLLECTIBLES.values()) {
+  for (const bannedCollectible of BANNED_COLLECTIBLES) {
     g.itemPool.RemoveCollectible(bannedCollectible);
   }
 
-  for (const bannedTrinket of BANNED_TRINKETS.values()) {
+  for (const bannedTrinket of BANNED_TRINKETS) {
     g.itemPool.RemoveTrinket(bannedTrinket);
   }
 
   if (anyPlayerHasCollectible(CollectibleType.VOID)) {
     v.run.startedWithVoid = true;
 
-    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID.values()) {
+    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
       g.itemPool.RemoveCollectible(bannedCollectible);
     }
   }
 
   if (inSeededRace()) {
-    for (const bannedCollectible of BANNED_COLLECTIBLES_ON_SEEDED_RACES.values()) {
+    for (const bannedCollectible of BANNED_COLLECTIBLES_ON_SEEDED_RACES) {
       g.itemPool.RemoveCollectible(bannedCollectible);
     }
 
-    for (const bannedTrinket of BANNED_TRINKETS_ON_SEEDED_RACES.values()) {
+    for (const bannedTrinket of BANNED_TRINKETS_ON_SEEDED_RACES) {
       g.itemPool.RemoveTrinket(bannedTrinket);
     }
   }
@@ -93,7 +93,7 @@ function replaceEdenBannedItems() {
 
   const edens = getPlayersOfType(PlayerType.EDEN, PlayerType.EDEN_B);
   for (const player of edens) {
-    for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES.values()) {
+    for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES) {
       if (player.HasCollectible(collectibleType)) {
         player.RemoveCollectible(collectibleType);
         addNewRandomPassiveToEden(player);
@@ -104,7 +104,7 @@ function replaceEdenBannedItems() {
       addNewRandomPassiveToEden(player);
     }
 
-    for (const trinketType of BANNED_TRINKETS_ON_SEEDED_RACES.values()) {
+    for (const trinketType of BANNED_TRINKETS_ON_SEEDED_RACES) {
       if (player.HasTrinket(trinketType)) {
         player.TryRemoveTrinket(trinketType);
         // (Do not reward them with a new trinket, since Eden does not always start with a trinket.)

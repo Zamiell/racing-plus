@@ -9,7 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   asNumber,
-  countEntities,
+  doesEntityExist,
   getRoomSubType,
   removeAllDoors,
   removeAllEffects,
@@ -18,10 +18,10 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../utils";
+import { doesTrophyExist } from "../../mandatory/trophy";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -52,19 +52,17 @@ function enteredDogmaRoom() {
 
   // Don't do anything if we already spawned Dogma. (It is possible to get here twice on the same
   // frame.)
-  const numDogmas = countEntities(EntityType.DOGMA);
-  if (numDogmas > 0) {
+  if (doesEntityExist(EntityType.DOGMA)) {
     return;
   }
 
   // Don't do anything if we have already defeated Dogma. (This is possible in Season 3.)
-  const numCheckpoint = countEntities(
+  const checkpointExists = doesEntityExist(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
     CollectibleTypeCustom.CHECKPOINT,
   );
-  const numTrophy = countEntities(EntityTypeCustom.RACE_TROPHY);
-  if (numCheckpoint > 0 || numTrophy > 0) {
+  if (checkpointExists || doesTrophyExist()) {
     return;
   }
 

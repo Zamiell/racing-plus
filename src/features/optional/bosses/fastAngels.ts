@@ -15,7 +15,7 @@ import {
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   asNumber,
-  countEntities,
+  doesEntityExist,
   findFreePosition,
   getCollectibleName,
   log,
@@ -154,18 +154,16 @@ function getAngelCollectibleType(
   const hasFiligreeFeather = anyPlayerHasTrinket(TrinketType.FILIGREE_FEATHERS);
   const hasKeyPiece1 = anyPlayerHasCollectible(CollectibleType.KEY_PIECE_1);
   const hasKeyPiece2 = anyPlayerHasCollectible(CollectibleType.KEY_PIECE_2);
-  const numKeyPiece1 = countEntities(
+  const keyPiece1Spawned = doesEntityExist(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
     CollectibleType.KEY_PIECE_1,
   );
-  const keyPiece1Spawned = numKeyPiece1 > 0;
-  const numKeyPiece2 = countEntities(
+  const keyPiece2Spawned = doesEntityExist(
     EntityType.PICKUP,
     PickupVariant.COLLECTIBLE,
     CollectibleType.KEY_PIECE_2,
   );
-  const keyPiece2Spawned = numKeyPiece2 > 0;
 
   // First, handle the special case of the Filigree Feather trinket.
   if (hasFiligreeFeather) {

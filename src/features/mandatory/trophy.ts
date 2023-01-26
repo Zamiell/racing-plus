@@ -1,11 +1,12 @@
 import {
   CollectibleAnimation,
   EntityPartition,
+  EntityType,
   PlayerItemAnimation,
 } from "isaac-typescript-definitions";
-import { doesEntityExist, getEntities, logError } from "isaacscript-common";
+import { doesEntityExist, getEffects, logError } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import { EntityTypeCustom } from "../../enums/EntityTypeCustom";
+import { EffectVariantCustom } from "../../enums/EffectVariantCustom";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { raceFinish } from "../race/raceFinish";
@@ -33,8 +34,8 @@ export function spawnTrophy(position: Vector): void {
   }
 
   const [_entity, index] = mod.spawnPersistentEntity(
-    EntityTypeCustom.RACE_TROPHY,
-    0,
+    EntityType.EFFECT,
+    EffectVariantCustom.RACE_TROPHY,
     0,
     position,
   );
@@ -54,7 +55,7 @@ function checkTouch() {
 
   // We cannot perform this check in the NPCUpdate callback since it will not fire during the
   // "Appear" animation.
-  const trophies = getEntities(EntityTypeCustom.RACE_TROPHY);
+  const trophies = getEffects(EffectVariantCustom.RACE_TROPHY);
   for (const trophy of trophies) {
     const playersInRange = Isaac.FindInRadius(
       trophy.Position,
@@ -100,5 +101,5 @@ function touch(entity: Entity, player: EntityPlayer) {
 }
 
 export function doesTrophyExist(): boolean {
-  return doesEntityExist(EntityTypeCustom.RACE_TROPHY);
+  return doesEntityExist(EntityType.EFFECT, EffectVariantCustom.RACE_TROPHY);
 }

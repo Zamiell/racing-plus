@@ -2,7 +2,7 @@
 
 import { EntityType, PinVariant } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   newRNG,
   removeAllMatchingEntities,
   repeat,
@@ -36,8 +36,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  const numScolexes = countEntities(SCOLEX_TYPE, SCOLEX_VARIANT, -1, true);
-  if (numScolexes === 0) {
+  const scolexesExist = doesEntityExist(SCOLEX_TYPE, SCOLEX_VARIANT, -1, true);
+  if (!scolexesExist) {
     return;
   }
 

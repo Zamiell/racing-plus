@@ -9,7 +9,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
-  countEntities,
+  doesEntityExist,
   game,
   getGridEntities,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
@@ -247,14 +247,14 @@ function checkItLivesWrongPath() {
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
-      const numHeavenDoors = countEntities(
+      const heavenDoorsExist = doesEntityExist(
         EntityType.EFFECT,
         EffectVariant.HEAVEN_LIGHT_DOOR,
       );
-      if (numHeavenDoors === 0) {
+      if (!heavenDoorsExist) {
         spawnHeavenDoor(positionCenter);
         log(
-          "Manually spawned a heaven door to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
+          "Manually spawned a heaven door to prevent a soft-lock. (It Lives must not have been killed with fast-clear.)",
         );
       }
 
