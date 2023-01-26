@@ -111,5 +111,4 @@ export class Config {
   // Other
   shadows = false;
   chat = true;
-  roll = false;
 }

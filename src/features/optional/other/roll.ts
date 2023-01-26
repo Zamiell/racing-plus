@@ -12,9 +12,8 @@ import {
   isJacobOrEsau,
   VectorZero,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
-import { config, hotkeys } from "../../../modConfigMenu";
+import { hotkeys } from "../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../utils";
 
 const FEATURE_NAME = "roll";
@@ -43,11 +42,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.roll;
+  // Hard-coded for now.
+  return false;
 }
 
 function checkStartRoll() {
-  if (!rollEnabled()) {
+  if (!featureEnabled()) {
     return;
   }
 
@@ -113,7 +113,7 @@ function getRollingAnimation(direction: Direction) {
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  if (!rollEnabled()) {
+  if (!featureEnabled()) {
     return;
   }
 
@@ -198,8 +198,4 @@ function getRollPlayer() {
   }
 
   return player;
-}
-
-function rollEnabled() {
-  return config.roll && g.debug;
 }

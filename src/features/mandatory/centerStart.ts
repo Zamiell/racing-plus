@@ -17,10 +17,12 @@ export function postGameStarted(): void {
   pickUpTaintedForgotten();
 }
 
+/**
+ * By default, the `centerPlayers` function will put Tainted Forgotten on top of Tainted Soul, and
+ * Tainted Soul will automatically pick up Tainted Forgotten after a short delay. Speed this up
+ * slightly by manually making Tainted Soul pick up Tainted Forgotten.
+ */
 function pickUpTaintedForgotten() {
-  // By default, the `centerPlayers` function will put Tainted Forgotten on top of Tainted Soul, and
-  // Tainted Soul will automatically pick up Tainted Forgotten after a short delay. Speed this up
-  // slightly by manually making Tainted Soul pick up Tainted Forgotten.
   for (const player of getPlayers()) {
     if (isCharacter(player, PlayerType.SOUL_B)) {
       const taintedForgotten = player.GetOtherTwin();
