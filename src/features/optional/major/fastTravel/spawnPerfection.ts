@@ -3,13 +3,13 @@ import {
   RoomType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { getAliveBosses, spawnTrinket } from "isaacscript-common";
+import { getAliveBosses, ReadonlySet, spawnTrinket } from "isaacscript-common";
 import { g } from "../../../../globals";
 import { v } from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 
-const SPLITTING_BOSSES: ReadonlySet<EntityType> = new Set([
+const SPLITTING_BOSSES = new ReadonlySet<EntityType>([
   EntityType.FISTULA_BIG, // 71
   EntityType.FISTULA_MEDIUM, // 72
 ]);

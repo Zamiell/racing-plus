@@ -10,6 +10,7 @@ import {
   giveTrinketsBack,
   isCharacter,
   isEden,
+  ReadonlySet,
   sfxManager,
   temporarilyRemoveTrinkets,
   useActiveItemTemp,
@@ -31,21 +32,20 @@ import * as tempMoreOptions from "../mandatory/tempMoreOptions";
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in
  * Racing+.
  */
-const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS: ReadonlySet<PlayerType> =
-  new Set([
-    PlayerType.JACOB, // 19
-    PlayerType.ESAU, // 20
-    PlayerType.MAGDALENE_B, // 22
-    PlayerType.JUDAS_B, // 24
-    PlayerType.BLUE_BABY_B, // 25
-    PlayerType.EVE_B, // 26
-    PlayerType.LAZARUS_B, // 29
-    PlayerType.APOLLYON_B, // 34
-    PlayerType.BETHANY_B, // 36
-    PlayerType.JACOB_B, // 37
-    PlayerType.LAZARUS_2_B, // 38
-    PlayerType.JACOB_2_B, // 39
-  ]);
+const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new ReadonlySet<PlayerType>([
+  PlayerType.JACOB, // 19
+  PlayerType.ESAU, // 20
+  PlayerType.MAGDALENE_B, // 22
+  PlayerType.JUDAS_B, // 24
+  PlayerType.BLUE_BABY_B, // 25
+  PlayerType.EVE_B, // 26
+  PlayerType.LAZARUS_B, // 29
+  PlayerType.APOLLYON_B, // 34
+  PlayerType.BETHANY_B, // 36
+  PlayerType.JACOB_B, // 37
+  PlayerType.LAZARUS_2_B, // 38
+  PlayerType.JACOB_2_B, // 39
+]);
 
 function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
   return CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character);

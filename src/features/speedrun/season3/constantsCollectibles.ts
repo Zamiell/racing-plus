@@ -3,7 +3,11 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { isActiveCollectible, isPassiveCollectible } from "isaacscript-common";
+import {
+  isActiveCollectible,
+  isPassiveCollectible,
+  ReadonlyMap,
+} from "isaacscript-common";
 import { mod } from "../../../mod";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removeGloballyBannedItems/constants";
 import { BANNED_DIVERSITY_COLLECTIBLES } from "../../race/formatSetup";
@@ -173,10 +177,10 @@ export const [
  * collectibles. Thus, as a consequence, we have to blacklist the Schoolbag so that it is not
  * pre-selected.
  */
-export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
+export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES = new ReadonlyMap<
   PlayerType,
   Set<CollectibleType>
-> = new Map([
+>([
   // 3
   [PlayerType.JUDAS, new Set([CollectibleType.SCHOOLBAG])],
 
@@ -193,10 +197,10 @@ export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES: ReadonlyMap<
   [PlayerType.JACOB_B, new Set([CollectibleType.SCHOOLBAG])],
 ]);
 
-export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES: ReadonlyMap<
+export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES = new ReadonlyMap<
   PlayerType,
   Set<TrinketType>
-> = new Map([
+>([
   // 26
   [PlayerType.EVE_B, new Set([TrinketType.APPLE_OF_SODOM])],
 ]);

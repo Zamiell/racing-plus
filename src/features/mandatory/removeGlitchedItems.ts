@@ -1,11 +1,11 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
-import { isGlitchedCollectible, log } from "isaacscript-common";
+import { isGlitchedCollectible, log, ReadonlySet } from "isaacscript-common";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
 
-const ROOM_TYPES_TO_CHECK: ReadonlySet<RoomType> = new Set([
+const ROOM_TYPES_TO_CHECK = new ReadonlySet<RoomType>([
   RoomType.SECRET,
   RoomType.ERROR,
 ]);

@@ -3,16 +3,17 @@ import {
   PickupVariant,
   TrinketType,
 } from "isaac-typescript-definitions";
+import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
 
 /**
  * We use an arbitrary value of -1 to indicate that the collectible drops either a card or a pill.
  */
 export const PICKUP_VARIANT_CARD_OR_PILL = -1 as PickupVariant;
 
-export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
+export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
   CollectibleType,
   PickupVariant[]
-> = new Map([
+>([
   [CollectibleType.PHD, [PickupVariant.PILL]], // 75
   [CollectibleType.MOMS_PURSE, [PickupVariant.TRINKET]], // 139
   [
@@ -95,7 +96,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP: ReadonlyMap<
   [CollectibleType.MOMS_RING, [PickupVariant.TAROT_CARD]], // 732
 ]);
 
-export const DETRIMENTAL_TRINKETS: ReadonlySet<TrinketType> = new Set([
+export const DETRIMENTAL_TRINKETS = new ReadonlySet<TrinketType>([
   TrinketType.PURPLE_HEART, // 5
   TrinketType.MOMS_TOENAIL, // 16
   TrinketType.MATCH_STICK, // 41

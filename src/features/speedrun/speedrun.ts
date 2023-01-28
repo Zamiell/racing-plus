@@ -7,6 +7,7 @@ import {
 import {
   isEven,
   log,
+  ReadonlySet,
   removeCollectibleFromAllPlayers,
   removeCollectibleFromItemTracker,
   removeCollectiblePickupDelay,
@@ -24,8 +25,11 @@ import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
 import { speedrunGetCharacterNum, v } from "./v";
 
-const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM: ReadonlySet<Challenge> =
-  new Set([ChallengeCustom.SEASON_2, ChallengeCustom.SEASON_4]);
+const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM =
+  new ReadonlySet<Challenge>([
+    ChallengeCustom.SEASON_2,
+    ChallengeCustom.SEASON_4,
+  ]);
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();

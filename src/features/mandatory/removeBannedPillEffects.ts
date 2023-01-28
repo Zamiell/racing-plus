@@ -3,8 +3,9 @@
 // Lemon Party. If this happens, convert them to specific other pills.
 
 import { PillEffect } from "isaac-typescript-definitions";
+import { ReadonlyMap } from "isaacscript-common";
 
-const BANNED_PILLS: ReadonlyMap<PillEffect, PillEffect> = new Map([
+const BANNED_PILLS = new ReadonlyMap<PillEffect, PillEffect>([
   [PillEffect.AMNESIA, PillEffect.HORF], // 25
   [PillEffect.QUESTION_MARKS, PillEffect.IM_EXCITED], // 31
 ]);

@@ -1,4 +1,5 @@
 import { PlayerType } from "isaac-typescript-definitions";
+import { ReadonlyMap } from "isaacscript-common";
 import { SeasonDescription } from "../../types/SeasonDescription";
 import { ChallengeCustomAbbreviation } from "../speedrun/constants";
 
@@ -8,10 +9,10 @@ export const CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT = "1a";
 /** This is a Cellar room with 1 Gaper in it and no grid entities. */
 export const CHANGE_CHAR_ORDER_ROOM_VARIANT = 5;
 
-export const CHANGE_CHAR_ORDER_POSITIONS_MAP: ReadonlyMap<
+export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
   ChallengeCustomAbbreviation,
   SeasonDescription
-> = new Map([
+>([
   [
     ChallengeCustomAbbreviation.SEASON_1,
     {

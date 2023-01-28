@@ -5,14 +5,14 @@ import {
   LambVariant,
   NpcState,
 } from "isaac-typescript-definitions";
-import { asNumber } from "isaacscript-common";
+import { asNumber, ReadonlySet } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const FADE_AMOUNT = 0.4;
 const FADE_COLOR = Color(1, 1, 1, FADE_AMOUNT, 0, 0, 0);
 
-const MULTI_SEGMENT_BOSSES: ReadonlySet<EntityType> = new Set([
+const MULTI_SEGMENT_BOSSES = new ReadonlySet<EntityType>([
   EntityType.LARRY_JR, // 19 (and The Hollow / Tuff Twins / The Shell)
   EntityType.PIN, // 62 (and Scolex / Frail / Wormwood)
   EntityType.GEMINI, // 79 (and Steven / Blighted Ovum)

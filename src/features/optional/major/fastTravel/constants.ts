@@ -1,18 +1,18 @@
+import { ReadonlySet } from "isaacscript-common";
+
 export const FAST_TRAVEL_DEBUG = false as boolean;
 export const FAST_TRAVEL_FEATURE_NAME = "fastTravel";
 
-export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL: ReadonlySet<string> = new Set(
-  [
-    "Death",
-    "Happy",
-    "Sad",
-    "Jump",
-    "RollingLeft",
-    "RollingRight",
-    "RollingDown",
-    "RollingUp",
-  ],
-);
+export const ANIMATIONS_THAT_PREVENT_FAST_TRAVEL = new ReadonlySet<string>([
+  "Death",
+  "Happy",
+  "Sad",
+  "Jump",
+  "RollingLeft",
+  "RollingRight",
+  "RollingDown",
+  "RollingUp",
+]);
 
 /** This also applies to crawl spaces. The value was determined through trial and error. */
 export const TRAPDOOR_OPEN_DISTANCE = 60;

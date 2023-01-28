@@ -27,6 +27,7 @@ import {
   newRNG,
   openAllDoors,
   parseEntityTypeVariantString,
+  ReadonlySet,
   repeat,
   sfxManager,
   spawnNPC,
@@ -47,7 +48,7 @@ import {
   getFastClearNumAliveEnemies,
 } from "../major/fastClear/v";
 
-const SPLITTING_BOSS_ENTITY_TYPE_SET: ReadonlySet<EntityType> = new Set([
+const SPLITTING_BOSS_ENTITY_TYPE_SET = new ReadonlySet<EntityType>([
   EntityType.FISTULA_BIG, // 71
   EntityType.FISTULA_MEDIUM, // 72
   EntityType.FISTULA_SMALL, // 73
@@ -57,6 +58,13 @@ const SPLITTING_BOSS_ENTITY_TYPE_SET: ReadonlySet<EntityType> = new Set([
   EntityType.FALLEN, // 81
   EntityType.BROWNIE, // 402
 ]);
+
+const BOSS_POSITIONS: ReadonlyArray<Readonly<Vector>> = [
+  gridCoordinatesToWorldPosition(7, 6), // Left of the items
+  gridCoordinatesToWorldPosition(18, 7), // Right of the items
+  gridCoordinatesToWorldPosition(12, 2), // Above the items
+  /// gridCoordinatesToWorldPosition(13, 11), // Below the items (currently unused)
+] as const;
 
 /**
  * Krampus, Uriel, and Gabriel are not included in the boss set from the standard library, so we do
@@ -92,9 +100,7 @@ const BOSS_RUSH_EXCLUSIONS = [
   `${EntityType.COLOSTOMIA}.0`, // 917.0
 ] as const;
 
-const BOSS_RUSH_BOSSES = getBossRushBosses();
-
-function getBossRushBosses(): readonly string[] {
+const BOSS_RUSH_BOSSES: readonly string[] = (() => {
   const bossSet = copySet(getAllBossesSet(false));
 
   for (const entityTypeVariantString of BOSS_RUSH_EXCLUSIONS) {
@@ -102,7 +108,7 @@ function getBossRushBosses(): readonly string[] {
   }
 
   return [...bossSet.values()];
-}
+})();
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */
 const NUM_TOTAL_BOSSES = 30;
@@ -272,14 +278,7 @@ function getNumBossSegments(entityType: EntityType): int {
 }
 
 function getBossSpawnPosition(bossNum: int): Vector {
-  const bossPositions: readonly Vector[] = [
-    gridCoordinatesToWorldPosition(7, 6), // Left of the items
-    gridCoordinatesToWorldPosition(18, 7), // Right of the items
-    gridCoordinatesToWorldPosition(12, 2), // Above the items
-    /// gridCoordinatesToWorldPosition(13, 11), // Below the items (currently unused)
-  ];
-
-  const basePosition = bossPositions[bossNum];
+  const basePosition = BOSS_POSITIONS[bossNum];
   if (basePosition === undefined) {
     error(`Failed to get the base boss position for boss number: ${bossNum}`);
   }

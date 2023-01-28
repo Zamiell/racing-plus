@@ -1,8 +1,9 @@
 // cspell:disable
 
 import { PlayerType } from "isaac-typescript-definitions";
+import { ReadonlyMap } from "isaacscript-common";
 
-export const CHARACTER_PNG_MAP: ReadonlyMap<PlayerType, string> = new Map([
+export const CHARACTER_PNG_MAP = new ReadonlyMap<PlayerType, string>([
   [PlayerType.ISAAC, "characters/costumes/character_001_isaac.png"], // 0
   [PlayerType.MAGDALENE, "characters/costumes/character_002_magdalene.png"], // 1
   [PlayerType.CAIN, "characters/costumes/character_003_cain.png"], // 2

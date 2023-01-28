@@ -5,11 +5,11 @@
 // Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma).
 
 import { EntityType } from "isaac-typescript-definitions";
-import { getNPCs } from "isaacscript-common";
+import { getNPCs, ReadonlySet } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
-const BUGGED_NPC_TYPES: ReadonlySet<EntityType> = new Set([
+const BUGGED_NPC_TYPES = new ReadonlySet<EntityType>([
   EntityType.GLOBIN, // 24
   EntityType.BOIL, // 30
   EntityType.FISTULA_BIG, // 71 (also includes Teratoma)

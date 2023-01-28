@@ -45,8 +45,10 @@ interface ShadowData {
   y: float;
   stage: LevelStage;
   stageType: StageType;
-  /** Equal to the list index specifically. */
+
+  /** Equal to the room list index specifically. */
   roomIndex: int;
+
   character: PlayerType;
   animation: string;
   animationFrame: int;
@@ -63,8 +65,10 @@ interface ShadowMessage {
   y: float;
   stage: LevelStage;
   stageType: StageType;
-  /** Equal to the list index specifically. */
+
+  /** Equal to the room list index specifically. */
   roomIndex: int;
+
   character: PlayerType;
   animation: string;
   animationFrame: int;

@@ -1,9 +1,9 @@
 import { EntityType, RoomType } from "isaac-typescript-definitions";
-import { getNPCs, setRoomCleared } from "isaacscript-common";
+import { getNPCs, ReadonlySet, setRoomCleared } from "isaacscript-common";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
-const ENTITY_TYPES_EXEMPT_FROM_REMOVAL: ReadonlySet<EntityType> = new Set([
+const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new ReadonlySet<EntityType>([
   EntityType.ETERNAL_FLY,
   EntityType.DARK_ESAU,
 ]);

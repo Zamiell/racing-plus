@@ -66,9 +66,8 @@ import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { v } from "./v";
 
-const VICTORY_LAP_BOSSES: ReadonlyArray<
-  readonly [entityType: EntityType, variant: int, subType: int]
-> = [
+/** Contains tuples of: `[entityType: EntityType, variant: int, subType: int]` */
+const VICTORY_LAP_BOSSES = [
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.NORMAL], // 19.0.0
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.GREEN], // 19.0.1
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.BLUE], // 19.0.2

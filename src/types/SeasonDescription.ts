@@ -1,13 +1,15 @@
 import { PlayerType } from "isaac-typescript-definitions";
 
 export interface SeasonDescription {
-  X: int;
-  Y: int;
-  numChars: int;
-  charPositions: ReadonlyArray<
+  readonly X: int;
+  readonly Y: int;
+  readonly numChars: int;
+  readonly charPositions: ReadonlyArray<
     readonly [character: PlayerType, x: int, y: int]
   >;
-  buildPositions?: ReadonlyArray<readonly [buildIndex: int, x: int, y: int]>;
-  numBuildVetos?: int;
-  hidden?: boolean;
+  readonly buildPositions?: ReadonlyArray<
+    readonly [buildIndex: int, x: int, y: int]
+  >;
+  readonly numBuildVetos?: int;
+  readonly hidden?: boolean;
 }

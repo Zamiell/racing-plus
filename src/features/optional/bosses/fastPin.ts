@@ -3,14 +3,14 @@
 // underground.)
 
 import { EntityType, NpcState, PinVariant } from "isaac-typescript-definitions";
-import { asNumber, getNPCs } from "isaacscript-common";
+import { asNumber, getNPCs, ReadonlySet } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
 const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;
 
-const PIN_VARIANTS_TO_SPEED_UP_TEAR_ATTACK: ReadonlySet<PinVariant> = new Set([
+const PIN_VARIANTS_TO_SPEED_UP_TEAR_ATTACK = new ReadonlySet<PinVariant>([
   PinVariant.PIN,
   PinVariant.FRAIL,
   PinVariant.SCOLEX,

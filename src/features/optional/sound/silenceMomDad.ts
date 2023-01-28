@@ -1,8 +1,8 @@
 import { SoundEffect } from "isaac-typescript-definitions";
-import { sfxManager } from "isaacscript-common";
+import { ReadonlySet, sfxManager } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
-const MOM_AND_DAD_SOUND_EFFECTS: ReadonlySet<SoundEffect> = new Set([
+const MOM_AND_DAD_SOUND_EFFECTS = new ReadonlySet<SoundEffect>([
   SoundEffect.MOM_AND_DAD_1,
   SoundEffect.MOM_AND_DAD_2,
   SoundEffect.MOM_AND_DAD_3,

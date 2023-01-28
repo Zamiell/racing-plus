@@ -1,5 +1,5 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { getArrayIndexes } from "isaacscript-common";
+import { getArrayIndexes, ReadonlySet } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
@@ -163,7 +163,7 @@ export const SEASON_2_STARTING_BUILDS = [
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
  * characters, so to compensate for this, he is guaranteed a good starting item.
  */
-const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<CollectibleType> = new Set([
+const SEASON_2_FORGOTTEN_BUILDS = new ReadonlySet<CollectibleType>([
   CollectibleType.MAGIC_MUSHROOM, // 12
   CollectibleType.CHOCOLATE_MILK, // 69
   CollectibleType.IPECAC, // 149
@@ -178,6 +178,7 @@ const SEASON_2_FORGOTTEN_BUILDS: ReadonlySet<CollectibleType> = new Set([
 export const SEASON_2_STARTING_BUILD_INDEXES: readonly int[] = getArrayIndexes(
   SEASON_2_STARTING_BUILDS,
 );
+
 export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
   SEASON_2_STARTING_BUILD_INDEXES.filter((buildIndex) => {
     const build = SEASON_2_STARTING_BUILDS[buildIndex];

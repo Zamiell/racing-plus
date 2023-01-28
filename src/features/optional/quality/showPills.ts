@@ -16,6 +16,7 @@ import {
   KColorDefault,
   log,
   NUM_PILLS_IN_POOL,
+  ReadonlyMap,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { mod } from "../../../mod";
@@ -23,10 +24,10 @@ import { config } from "../../../modConfigMenu";
 import { newSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
 
-const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS: ReadonlyMap<
+const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   PillEffect,
   PillEffect
-> = new Map([
+>([
   // In vanilla, this converts to ???, but in Racing+ we manually convert it to I'm Excited!!!
   [PillEffect.TELEPILLS, PillEffect.IM_EXCITED], // 19
 

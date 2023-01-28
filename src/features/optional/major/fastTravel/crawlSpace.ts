@@ -22,6 +22,7 @@ import {
   isRoomInsideGrid,
   LadderSubTypeCustom,
   log,
+  ReadonlyMap,
   removeGridEntity,
   spawnEffect,
   spawnTeleporter,
@@ -45,7 +46,7 @@ const TOP_OF_LADDER_POSITION = Vector(120, 160);
 // eslint-disable-next-line isaacscript/strict-enums
 const CUSTOM_SECRET_SHOP_LADDER_SUB_TYPE: LadderSubTypeCustom = 200;
 
-const DEVIL_ANGEL_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
+const DEVIL_ANGEL_EXIT_MAP = new ReadonlyMap<int, Direction>([
   [7, Direction.UP], // Top door
   [74, Direction.RIGHT], // Right door
   [127, Direction.DOWN], // Bottom door
@@ -56,14 +57,14 @@ const DEVIL_ANGEL_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
  * Even though the Boss Rush is a 2x2 room, it is not possible for doors to spawn in other locations
  * than these 4 spots.
  */
-const BOSS_RUSH_EXIT_MAP: ReadonlyMap<int, Direction> = new Map([
+const BOSS_RUSH_EXIT_MAP = new ReadonlyMap<int, Direction>([
   [7, Direction.UP], // Top left door
   [112, Direction.LEFT], // Left top door
   [139, Direction.RIGHT], // Right top door
   [427, Direction.DOWN], // Bottom left door
 ]);
 
-const ONE_BY_ONE_ROOM_ENTER_MAP: ReadonlyMap<Direction, int> = new Map([
+const ONE_BY_ONE_ROOM_ENTER_MAP = new ReadonlyMap<Direction, int>([
   [Direction.LEFT, 73], // 0 (returning from the right door)
   [Direction.UP, 112], // 1 (returning from the bottom door)
   [Direction.RIGHT, 61], // 2 (returning from the left door)

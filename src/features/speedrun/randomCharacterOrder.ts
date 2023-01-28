@@ -10,6 +10,7 @@ import {
   getEffectiveStage,
   getRandomArrayElementAndRemove,
   isRoomInsideGrid,
+  ReadonlySet,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
@@ -42,8 +43,9 @@ const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER = [
   ChallengeCustom.SEASON_4,
 ] as const;
 
-const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET: ReadonlySet<Challenge> =
-  new Set(CHALLENGES_WITH_RANDOM_CHARACTER_ORDER);
+const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET = new ReadonlySet<Challenge>(
+  CHALLENGES_WITH_RANDOM_CHARACTER_ORDER,
+);
 
 const STARTING_CHARACTERS = {
   [ChallengeCustom.SEASON_2]: [
