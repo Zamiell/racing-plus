@@ -27,8 +27,6 @@
     "isaacscript-common": "^21.1.1",
     "isaacscript-lint": "^4.8.0",
     "isaacscript-spell": "^1.2.31",
-    "luabundle": "^1.6.0",
-    "luabundler": "^1.2.2",
     "typescript": "^4.9.4",
     "typescript-to-lua": "^1.12.1"
   }
