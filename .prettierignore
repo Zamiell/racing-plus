@@ -1,6 +1,11 @@
 # Ignore compiled output.
 dist
 
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Ignore all of the XML files created by Basement Renovator.
 mod/content/rooms/**/*.xml
 mod/content/luarooms/**/*.xml
