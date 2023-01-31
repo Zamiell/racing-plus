@@ -1,4 +1,4 @@
-.prettierrc.js
+.prettierrc.cjs
 check-file-updates.sh:check-file-updates.sh
 check-orphaned-words.sh
 tsconfig.eslint.json
