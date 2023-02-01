@@ -34,6 +34,12 @@ jobs:
       - name: Perform automated checks
         run: bash lint.sh
 
+      - name: Upload the mod to Steam Workshop (if this is a release commit)
+        uses: IsaacScript/isaac-steam-workshop-upload@v1
+        if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
+        env:
+          CONFIG_VDF_CONTENTS: ${{ secrets.CONFIG_VDF_CONTENTS }}
+
   discord:
     name: Discord Failure Notification
     needs: [build_and_lint]

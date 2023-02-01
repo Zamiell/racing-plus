@@ -94,9 +94,7 @@ function liveSplitReset() {
   }
 }
 
-/**
- * @returns True if the current character was wrong.
- */
+/** @returns True if the current character was wrong. */
 function setCorrectCharacter() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
