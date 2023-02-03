@@ -27,7 +27,7 @@ npx ts-prune --error
 if command -v python &> /dev/null; then
   pip install isaac-xml-validator --upgrade --quiet
   # @template-ignore-next-line
-  isaac-xml-validator --quiet --ignore cutscenes.xml
+  isaac-xml-validator --ignore cutscenes.xml
 fi
 
 # Spell check every file using CSpell.
