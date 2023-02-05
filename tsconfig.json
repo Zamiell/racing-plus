@@ -4,12 +4,6 @@
   // https://github.com/IsaacScript/isaacscript-tsconfig/blob/main/tsconfig.mod.json
   "extends": "isaacscript-tsconfig/tsconfig.mod.json",
 
-  // https://www.typescriptlang.org/docs/handbook/compiler-options.html
-  "compilerOptions": {
-    // Specifies the root folder within your source files.
-    "rootDir": "./src",
-  },
-
   // A list of the TypeScript files to compile.
   "include": ["./src/**/*.ts"],
 

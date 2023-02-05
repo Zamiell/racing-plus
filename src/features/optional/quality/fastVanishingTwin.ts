@@ -7,16 +7,15 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  checkFamiliarFromCollectibles,
   game,
   getBosses,
   getCollectibles,
   getFamiliars,
   isStoryBoss,
   spawnEffect,
-  spawnFamiliar,
   spawnNPC,
   VectorOne,
-  VectorZero,
 } from "isaacscript-common";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
@@ -25,10 +24,6 @@ import { config } from "../../../modConfigMenu";
 const HP_MULTIPLIER = 0.75; // Matches vanilla
 
 const v = {
-  run: {
-    shouldRespawnVanishingTwin: false,
-  },
-
   room: {
     shouldSpawnTwoBossItems: false,
     spawnClearAwardFrame: null as int | null,
@@ -86,18 +81,11 @@ export function postNewLevel(): void {
     return;
   }
 
-  if (!v.run.shouldRespawnVanishingTwin) {
-    return;
-  }
-  v.run.shouldRespawnVanishingTwin = false;
-
   const player = Isaac.GetPlayer();
-  spawnFamiliar(
-    FamiliarVariant.VANISHING_TWIN,
-    0,
-    player.Position,
-    VectorZero,
+  checkFamiliarFromCollectibles(
     player,
+    CollectibleType.VANISHING_TWIN,
+    FamiliarVariant.VANISHING_TWIN,
   );
 }
 
@@ -155,7 +143,6 @@ export function postNewRoom(): void {
       vanishingTwin.Position,
     );
   }
-  v.run.shouldRespawnVanishingTwin = true;
 
   duplicateBoss(boss);
 }

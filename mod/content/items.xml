@@ -5,10 +5,10 @@
   <!-- Utility items -->
   <!-- +++++++++++++ -->
 
-  <passive description="Congratulations!" gfx="Trophy.png" name="Trophy" hidden="true" tags="quest" />
-  <passive description="On to the next character!" gfx="Checkpoint.png" name="Checkpoint" hidden="true" tags="quest" id="1" />
-  <passive description="Reset to the first character" gfx="questionmark.png" name="Reset" hidden="true" tags="quest" />
-  <active description="Something went wrong" gfx="Debug.png" maxcharges="0" name="Debug" hidden="true" tags="quest" />
+  <passive name="Trophy" description="Congratulations!" gfx="Trophy.png" hidden="true" tags="quest" />
+  <passive name="Checkpoint" description="On to the next character!" gfx="Checkpoint.png" hidden="true" tags="quest" id="1" />
+  <passive name="Reset" description="Reset to the first character" gfx="questionmark.png" hidden="true" tags="quest" />
+  <active name="Debug" description="Something went wrong" gfx="Debug.png" maxcharges="0" hidden="true" tags="quest" />
 
   <!-- ++++++++++++ -->
   <!-- Custom items -->
@@ -16,29 +16,29 @@
   <!-- (see "SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP") -->
 
   <!-- Server Collectible ID: 1001 -->
-  <passive description="An explosive amount of luck" gfx="13_Luck.png" name="13 Luck" quality="4" cache="luck" hidden="true" id="2" />
+  <passive name="13 Luck" description="An explosive amount of luck" gfx="13_Luck.png" quality="4" cache="luck" hidden="true" id="2" />
 
   <!-- Server Collectible ID: 1002 -->
-  <passive description="A fantastic amount of luck" gfx="15_Luck.png" name="15 Luck" quality="4" cache="luck" hidden="true" id="3" />
+  <passive name="15 Luck" description="A fantastic amount of luck" gfx="15_Luck.png" quality="4" cache="luck" hidden="true" id="3" />
 
   <!-- Server Collectible ID: 1003 -->
-  <familiar description="Slice your enemies" gfx="Sawblade.png" name="Sawblade" quality="4" hidden="true" id="4" />
+  <familiar name="Sawblade" description="Slice your enemies" gfx="Sawblade.png" quality="4" hidden="true" id="4" />
 
   <!-- ++++++++++++++++++++ -->
   <!-- Vanilla replacements -->
   <!-- ++++++++++++++++++++ -->
 
   <!-- 191 -->
-  <passive cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" name="3 Dollar Bill (Seeded)" hidden="true" id="5" />
+  <passive name="3 Dollar Bill (Seeded)" cache="all" description="Rainbow tears" gfx="Collectibles_191_3DollarBill.png" hidden="true" id="5" />
 
   <!-- 194 -->
-  <passive cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" name="Magic 8 Ball (Seeded)" hidden="true" id="6" />
+  <passive name="Magic 8 Ball (Seeded)" cache="shotspeed" description="Shot speed up" gfx="Collectibles_194_Magic8Ball.png" hidden="true" id="6" />
 
   <!-- 588 -->
-  <passive gfx="Collectibles_588_Sol.png" name="Sol (Custom)" description="Radiant victory" hidden="true" id="7" />
+  <passive name="Sol (Custom)" gfx="Collectibles_588_Sol.png" description="Radiant victory" hidden="true" id="7" />
 
   <!-- 711 -->
-  <active gfx="Collectibles_711_Flip.png" name="Flip (Custom)" description="Twist of fate" maxcharges="6" hidden="true" id="8" />
+  <active name="Flip (Custom)" gfx="Collectibles_711_Flip.png" description="Twist of fate" maxcharges="6" hidden="true" id="8" />
 
   <!-- ++++++++++++ -->
   <!-- Placeholders -->
@@ -50,35 +50,35 @@
   -->
 
   <!-- 12 -->
-  <passive description="" gfx="questionmark.png" name="Magic Mushroom Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Magic Mushroom Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 168 -->
-  <passive description="" gfx="questionmark.png" name="Epic Fetus Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Epic Fetus Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 182 -->
-  <passive description="" gfx="questionmark.png" name="Sacred Heart Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Sacred Heart Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 237 -->
-  <passive description="" gfx="questionmark.png" name="Death's Touch Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Death's Touch Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 311 -->
   <!-- We do not give the Judas' Shadow Placeholder a "offensive" tag to match how it is in vanilla. -->
-  <passive description="" gfx="questionmark.png" name="Judas' Shadow Placeholder" quality="4" tags="noeden" />
+  <passive name="Judas' Shadow Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden" />
 
   <!-- 331 -->
-  <passive description="" gfx="questionmark.png" name="Godhead Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Godhead Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 360 -->
-  <passive description="" gfx="questionmark.png" name="Incubus Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Incubus Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 399 -->
-  <passive description="" gfx="questionmark.png" name="Maw of the Void Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Maw of the Void Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 415 -->
-  <passive description="" gfx="questionmark.png" name="Crown of Light Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Crown of Light Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- 698 -->
-  <passive description="" gfx="questionmark.png" name="Twisted Pair Placeholder" quality="4" tags="noeden offensive" />
+  <passive name="Twisted Pair Placeholder" description="" gfx="questionmark.png" quality="4" tags="noeden offensive" />
 
   <!-- ++++++++++++++++++++++ -->
   <!-- Transformation helpers -->
@@ -88,38 +88,38 @@
   <!-- (We don't need to specify the "noeden" tag because hidden items are never given to Eden.) -->
 
   <!-- 0 -->
-  <passive description="" gfx="questionmark.png" name="Guppy Transformation Helper" hidden="true" tags="guppy quest" />
+  <passive name="Guppy Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="guppy quest" />
 
   <!-- 1 -->
-  <passive description="" gfx="questionmark.png" name="Beelzebub Transformation Helper" hidden="true" tags="fly quest" />
+  <passive name="Beelzebub Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="fly quest" />
 
   <!-- 2 -->
-  <passive description="" gfx="questionmark.png" name="Fun Guy Transformation Helper" hidden="true" tags="mushroom quest" />
+  <passive name="Fun Guy Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="mushroom quest" />
 
   <!-- 3 -->
-  <passive description="" gfx="questionmark.png" name="Seraphim Transformation Helper" hidden="true" tags="angel quest" />
+  <passive name="Seraphim Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="angel quest" />
 
   <!-- 4 -->
-  <passive description="" gfx="questionmark.png" name="Bob Transformation Helper" hidden="true" tags="bob quest" />
+  <passive name="Bob Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="bob quest" />
 
   <!-- 5 -->
-  <passive description="" gfx="questionmark.png" name="Spun Transformation Helper" hidden="true" tags="syringe quest" />
+  <passive name="Spun Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="syringe quest" />
 
   <!-- 6 -->
-  <passive description="" gfx="questionmark.png" name="Yes Mother Transformation Helper" hidden="true" tags="mom quest" />
+  <passive name="Yes Mother Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="mom quest" />
 
   <!-- 7 -->
-  <passive description="" gfx="questionmark.png" name="Conjoined Transformation Helper" hidden="true" tags="baby quest" />
+  <passive name="Conjoined Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="baby quest" />
 
   <!-- 8 -->
-  <passive description="" gfx="questionmark.png" name="Leviathan Transformation Helper" hidden="true" tags="devil quest" />
+  <passive name="Leviathan Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="devil quest" />
 
   <!-- 9 -->
-  <passive description="" gfx="questionmark.png" name="Oh Crap Transformation Helper" hidden="true" tags="poop quest" />
+  <passive name="Oh Crap Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="poop quest" />
 
   <!-- 10 -->
-  <passive description="" gfx="questionmark.png" name="Bookworm Transformation Helper" hidden="true" tags="book quest" />
+  <passive name="Bookworm Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="book quest" />
 
   <!-- 12 -->
-  <passive description="" gfx="questionmark.png" name="Spider Baby Transformation Helper" hidden="true" tags="spider quest" />
+  <passive name="Spider Baby Transformation Helper" description="" gfx="questionmark.png" hidden="true" tags="spider quest" />
 </items>
