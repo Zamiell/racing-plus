@@ -1180,10 +1180,10 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-convert-xml-to-json@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/convert-xml-to-json/-/convert-xml-to-json-1.0.1.tgz#cc30a11e7b797c7c3b3e97e7177f9d0e223129fb"
-  integrity sha512-ypZyv5a6d1Zoa9LmOdGi7RlTbrem/FmEp1x049dFWIKciHJsPczPhSeWdWqaI/EtGg0e1RksRe9esBKY5Y6Mag==
+convert-xml-to-json@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/convert-xml-to-json/-/convert-xml-to-json-1.0.3.tgz#37794839346410455bf2560d4093f61415a6e465"
+  integrity sha512-TzmxLatIajD/jVfhqGrQqnuDy1WIdidb2Jbu8eAtsKjnJAUzmTYmGbBUBXRe1deGVXJrN69T/4mIFrF3hnVPXQ==
   dependencies:
     chalk "4.1.2"
     source-map-support "^0.5.21"
