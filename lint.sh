@@ -27,7 +27,9 @@ npx ts-prune --error
 if command -v python &> /dev/null; then
   pip install isaac-xml-validator --upgrade --quiet
   # @template-ignore-next-line
-  isaac-xml-validator --ignore cutscenes.xml
+  # Commented out temporarily until Wofsauge can fix:
+  # https://github.com/wofsauge/isaac-xml-validator/issues/33
+  #isaac-xml-validator --quiet --ignore "cutscenes.xml"
 fi
 
 # Spell check every file using CSpell.
@@ -39,6 +41,7 @@ bash "$DIR/check-orphaned-words.sh"
 
 # @template-customization-start
 #  Check for base file updates.
+# Commented out while the check refactor occurs.
 #bash "$DIR/check-file-updates.sh" # TODO
 #npx isaacscript check # TODO
 # @template-customization-end
