@@ -1180,15 +1180,15 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-convert-xml-to-json@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/convert-xml-to-json/-/convert-xml-to-json-1.0.0.tgz#42dfecccb9d1d3004883df0987a15fb43891f37a"
-  integrity sha512-pZpoIQCsKbD3pQjZ8B4j88kXLTCyjGGPmbADhQ7h6OajtB4Eb5MEb8rCaoy4juXZL7+Dhzw0Opbuzd9W/Mcbxg==
+convert-xml-to-json@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/convert-xml-to-json/-/convert-xml-to-json-1.0.1.tgz#cc30a11e7b797c7c3b3e97e7177f9d0e223129fb"
+  integrity sha512-ypZyv5a6d1Zoa9LmOdGi7RlTbrem/FmEp1x049dFWIKciHJsPczPhSeWdWqaI/EtGg0e1RksRe9esBKY5Y6Mag==
   dependencies:
-    chalk "^4.1.2"
+    chalk "4.1.2"
     source-map-support "^0.5.21"
     xml2js "^0.4.23"
-    yargs "^17.2.1"
+    yargs "^17.6.2"
 
 core-util-is@^1.0.3:
   version "1.0.3"
@@ -4346,7 +4346,7 @@ yargs-parser@^21.1.1:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
   integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
 
-yargs@^17.2.1, yargs@^17.6.2:
+yargs@^17.6.2:
   version "17.6.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.6.2.tgz#2e23f2944e976339a1ee00f18c77fedee8332541"
   integrity sha512-1/9UrdHjDZc0eOU0HxOHoS78C69UD3JRMvzlJ7S79S2nTaWRA/whGCTV8o9e/N/1Va9YIV7Q4sOxD8VV4pCWOw==

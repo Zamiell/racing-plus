@@ -21,7 +21,7 @@
   "author": "Zamiell",
   "type": "commonjs",
   "dependencies": {
-    "convert-xml-to-json": "^1.0.0",
+    "convert-xml-to-json": "^1.0.1",
     "isaac-typescript-definitions": "^11.1.1",
     "isaacscript": "^3.5.0",
     "isaacscript-common": "^21.2.0",
