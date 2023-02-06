@@ -1,4 +1,4 @@
-# Ignore compiled output.
+# Compiled output
 dist
 
 # Package manager lock files
@@ -6,17 +6,22 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# Ignore all of the XML files created by Basement Renovator.
+# XML files created by Basement Renovator
 mod/content/rooms/**/*.xml
 mod/content/luarooms/**/*.xml
 mod/resources/rooms/**/*.xml
 mod/resources/luarooms/**/*.xml
+customStages/**/*.xml
 
-# Ignore all of the XML files created by the animation editor.
+# XML files created by the animation editor
 mod/resources/**/*.anm2
+
+# @template-customization-start
 
 # The mod checksums.
 sha1.json
 
 # The JSON rooms.
 src/features/optional/major/betterDevilAngelRooms/*.json
+
+# @template-customization-end

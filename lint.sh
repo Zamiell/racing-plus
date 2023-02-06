@@ -18,7 +18,7 @@ npx prettier --loglevel warn --check .
 # "--max-warnings 0" makes warnings fail in CI, since we set all ESLint errors to warnings.
 npx eslint --max-warnings 0 .
 
-# Check for unused imports.
+# Check for unused exports.
 # "--error" makes it return an error code of 1 if unused exports are found.
 npx ts-prune --error
 
@@ -27,9 +27,7 @@ npx ts-prune --error
 if command -v python &> /dev/null; then
   pip install isaac-xml-validator --upgrade --quiet
   # @template-ignore-next-line
-  # Commented out temporarily until Wofsauge can fix:
-  # https://github.com/wofsauge/isaac-xml-validator/issues/33
-  #isaac-xml-validator --quiet --ignore "cutscenes.xml"
+  isaac-xml-validator --quiet --ignore "cutscenes.xml"
 fi
 
 # Spell check every file using CSpell.
@@ -41,9 +39,7 @@ bash "$DIR/check-orphaned-words.sh"
 
 # @template-customization-start
 #  Check for base file updates.
-# Commented out while the check refactor occurs.
-#bash "$DIR/check-file-updates.sh" # TODO
-#npx isaacscript check # TODO
+npx isaacscript check
 # @template-customization-end
 
 echo "Successfully linted in $SECONDS seconds."

@@ -7,16 +7,25 @@
   "enableGlobDot": true,
   "useGitignore": true,
   "ignorePaths": [
+    "*.anm2",
     "*.pyc",
+    "*.stb",
     "*.wav",
     ".git/**",
     "dist/**",
-    "node_modules/**",
-    "mod/**/*.anm2",
     "mod/main.lua",
+    "mod/content/rooms/**",
+    "@template-customization-start",
     "mod/resources/fortunes.txt",
+    "@template-customization-end",
     "mod/resources/rooms/**",
-    "sha1.json"
+    "node_modules/**",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "@template-customization-start",
+    "sha1.json",
+    "@template-customization-end",
+    "yarn.lock"
   ],
   "words": [
     "antizoubilamak",

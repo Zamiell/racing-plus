@@ -1430,11 +1430,6 @@ dot-prop@^6.0.1:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv@^16.0.3:
-  version "16.0.3"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
-  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
-
 eastasianwidth@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
@@ -2117,7 +2112,7 @@ got@^12.1.0:
     p-cancelable "^3.0.0"
     responselike "^3.0.0"
 
-graceful-fs@4.2.10, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.4, graceful-fs@^4.2.6:
+graceful-fs@4.2.10, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.4, graceful-fs@^4.2.6:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
@@ -2548,10 +2543,10 @@ isaac-typescript-definitions@^11.1.0, isaac-typescript-definitions@^11.1.1:
   dependencies:
     lua-types "^2.13.1"
 
-isaacscript-common-ts@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-3.2.0.tgz#47d6abe236aeadcf1d169892dcac13f7234e39bc"
-  integrity sha512-GU88rkzKoBE43uubDKJZXabwTOrD9WpVf7iavnCq3dStWu0M+7tuQHklLwLizLw9yN1UIASc9fd9bPqUi40DLA==
+isaacscript-common-ts@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-8.0.2.tgz#9df9c8b1362bee124d83052906f2fc2d0eeefb9a"
+  integrity sha512-mVoooMhTXs6GPGA4eHLgfQuwB95CY0+ppTbwbEdM8Iq78PUhy4ITExjaUfMeIikAcRTJOSbuJSPdesWnW9Exyg==
 
 isaacscript-common@^21.2.0:
   version "21.2.0"
@@ -2591,30 +2586,29 @@ isaacscript-spell@^1.2.34:
   resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.34.tgz#3e5c9b105c61c3cc9363c929d224e7145e57be8a"
   integrity sha512-CKN8odIcT2r9kBziDnlGR2rNJ/Ag37K/99h0W86ZD5iKAgWxiT9boM9f+ym1dUfX8lb6reIfSnnK9TjiKGTVvw==
 
-isaacscript-tsconfig@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-3.0.4.tgz#67cf50bb39ddc05785d0ccff6d78d7796de60689"
-  integrity sha512-BDdKDMeTZU64/7AcpJv1NxosIydc6PaIMMaBbNGwQBPiwBNzAhG3ZYQSSnf+J6+QHyfHl3c8D0GULpRn/djLEA==
+isaacscript-tsconfig@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-tsconfig/-/isaacscript-tsconfig-4.0.0.tgz#34e3befb2cb6b1b813be7135c8828f3228296cd9"
+  integrity sha512-28vpFez7IDwXzNozd4jfQSLDLAWCrVy3Rqcw3Xy5ClEI3XDB+Xxa+ZZfQ7sB0+SpmuChFOtI+KErlISLOP9xpQ==
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.5.0.tgz#2bd979364bd4a0fb2139c8f6bda3144d19309711"
-  integrity sha512-8CMtQo/Bg9g2vLPjAmDcwGol4Qo2dw7dNtiUbqFySUahMop2M7wURYbVplQWODX+fv9V13TfnoPgoKkymbOXGQ==
+isaacscript@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.4.tgz#f1b6220c6a9c7a223221ba69e8c0320b3523e195"
+  integrity sha512-pf2FNcx1/ThfoINlXVUNV6+VUajjkgfL9yrK+rMVCRBhdR8VIMdINWSeYqAGEWj2nTADhYAUMctCdBHn1Jv/dg==
   dependencies:
     ajv "^8.12.0"
     chalk "4.1.2"
     command-exists "^1.2.9"
-    dotenv "^16.0.3"
     figlet "^1.5.2"
     git-dirty "^1.0.2"
     glob "^8.1.0"
-    isaacscript-common-ts "^3.2.0"
-    isaacscript-tsconfig "^3.0.4"
+    isaacscript-common-ts "^8.0.2"
     jsonc-parser "^3.2.0"
+    klaw-sync "^6.0.0"
     moment "^2.29.4"
-    npm-check-updates "^16.6.3"
+    npm-check-updates "^16.6.4"
     prompt "^1.3.0"
     source-map "^0.7.4"
     source-map-support "^0.5.21"
@@ -2740,6 +2734,13 @@ keyv@^4.5.2:
   integrity sha512-5MHbFaKn8cNSmVW7BYnijeAVlE4cYA/SVkifVgrh7yotnfhKmjuXpDKjrABLnT0SfHWV21P8ow07OGfRrNDg8g==
   dependencies:
     json-buffer "3.0.1"
+
+klaw-sync@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/klaw-sync/-/klaw-sync-6.0.0.tgz#1fd2cfd56ebb6250181114f0a581167099c2b28c"
+  integrity sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==
+  dependencies:
+    graceful-fs "^4.1.11"
 
 kleur@^4.0.1:
   version "4.1.5"
@@ -3079,7 +3080,7 @@ npm-bundled@^3.0.0:
   dependencies:
     npm-normalize-package-bin "^3.0.0"
 
-npm-check-updates@^16.6.3:
+npm-check-updates@^16.6.4:
   version "16.6.4"
   resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.6.4.tgz#5e8c266b12f6250b31ee8cff9c661ed90ecdc0fc"
   integrity sha512-YZ99u6l7GFG5y1/XapEqlMwUWVEJfwXbOsf6SU5X1YuKEHpWbC+98cL/F7TALKjVAMwOrx43WopeBspatxh/Kw==

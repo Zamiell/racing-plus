@@ -12,10 +12,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          # The default version is 14. The ESLint config requires at least Node 16 to work properly.
-          # We use 18, which is the official LTS version.
-          node-version: "18"
-          cache: "yarn"
+          node-version: lts/*
+          cache: yarn
 
       - name: Retrieve the cached "node_modules" directory (if present)
         uses: actions/cache@v3
@@ -34,12 +32,15 @@ jobs:
       - name: Perform automated checks
         run: bash lint.sh
 
+      # @template-customization-start
       - name: Upload the mod to Steam Workshop (if this is a release commit)
         uses: IsaacScript/isaac-steam-workshop-upload@v1
         if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
         env:
           CONFIG_VDF_CONTENTS: ${{ secrets.CONFIG_VDF_CONTENTS }}
+      # @template-customization-end
 
+  # @template-customization-start
   discord:
     name: Discord Failure Notification
     needs: [build_and_lint]
@@ -53,3 +54,4 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ env.WORKFLOW_CONCLUSION }}
           title: ""
+  # @template-customization-end

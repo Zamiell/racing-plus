@@ -1,7 +1,10 @@
 // The configuration file for TypeScript.
 {
+  // We specify the schema to get auto-complete and validation.
+  "$schema": "https://raw.githubusercontent.com/IsaacScript/isaacscript/main/packages/isaacscript-cli/schemas/tsconfig-isaacscript-schema.json",
+
   // We extend the standard IsaacScript config:
-  // https://github.com/IsaacScript/isaacscript-tsconfig/blob/main/tsconfig.mod.json
+  // https://github.com/IsaacScript/isaacscript/blob/main/packages/isaacscript-tsconfig/tsconfig.mod.json
   "extends": "isaacscript-tsconfig/tsconfig.mod.json",
 
   // A list of the TypeScript files to compile.
@@ -20,10 +23,19 @@
       { "name": "isaacscript/src/plugins/noExtendedEnums.js" },
 
       // Uncomment this and recompile the mod to enable crash debugging, which will tell you the
-      // exact line of the mod that is causing the crash.
+      // exact line of the mod that is causing the crash. For more information, read the comment at
+      // the top of the file:
+      // https://github.com/IsaacScript/isaacscript/blob/main/packages/isaacscript-cli/src/plugins/addCrashDebugStatements.ts
       // { "name": "isaacscript/src/plugins/addCrashDebugStatements.js" },
     ],
     "noHeader": true,
     "noImplicitGlobalVariables": true,
+  },
+
+  // IsaacScript settings
+  "isaacscript": {
+    // A list of objects that represent the custom stages that are in your mod, if any. See:
+    // https://isaacscript.github.io/main/custom-stages
+    "customStages": [],
   },
 }

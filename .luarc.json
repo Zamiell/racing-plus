@@ -119,7 +119,6 @@
     "SackSubType",
     "SeedEffect",
     "Seeds",
-    "ShockwaveParams",
     "SkinColor",
     "SortingLayer",
     "SoundEffect",
@@ -145,10 +144,7 @@
     "SandboxGetParentFunctionDescription",
     "SandboxGetTime",
     "SandboxGetTraceback",
-    "SandboxTraceback",
-    "__PATCHED_ERROR",
-    "BabiesModGlobals",
-    "VanillaStreakText"
+    "SandboxTraceback"
   ],
   "preloadFileSize": 5000,
   "runtime.version": "Lua 5.3"

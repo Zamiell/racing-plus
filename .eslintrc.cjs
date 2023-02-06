@@ -1,12 +1,13 @@
 // This is the configuration file for ESLint, the TypeScript linter:
-// https://eslint.org/docs/user-guide/configuring
+// https://eslint.org/docs/latest/use/configure/
 module.exports = {
   extends: [
-    // The linter base is the shared IsaacScript config:
-    // https://github.com/IsaacScript/eslint-config-isaacscript/blob/main/mod.js
+    // The linter base is the IsaacScript mod config:
+    // https://github.com/IsaacScript/isaacscript/blob/main/packages/eslint-config-isaacscript/mod.js
     "eslint-config-isaacscript/mod",
   ],
 
+  // The ".prettierrc.cjs" file is ignored by default, so we have to un-ignore it.
   ignorePatterns: ["!.prettierrc.cjs"],
 
   parserOptions: {
@@ -16,5 +17,7 @@ module.exports = {
     project: "./tsconfig.eslint.json",
   },
 
-  rules: {},
+  rules: {
+    // Insert changed or disabled rules here, if necessary.
+  },
 };

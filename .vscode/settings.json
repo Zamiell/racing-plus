@@ -14,15 +14,15 @@
     ".env*": "shellscript", // e.g. ".env.example" is the same as ".env".
   },
 
-  // Linux line endings are used in this project.
+  // We want to always use "lf" to be consistent with all platforms.
   "files.eol": "\n",
 
   // Automatically removing all trailing whitespace when saving a file.
   "files.trimTrailingWhitespace": true,
 
   // Configure glob patterns for excluding files and folders in full text searches and quick open.
-  // (File extensions must be specified or the glob won't work properly.)
   "search.exclude": {
+    "**/*.mp3": true,
     "**/*.png": true,
     "**/*.wav": true,
     "**/dist/": true,
@@ -47,10 +47,6 @@
   // By default, VSCode will prefer non-relative paths for deeply nested files.
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-
-  // By default, VSCode will use the bundled TypeScript version instead of the one matching this
-  // project.
-  "typescript.tsdk": "node_modules\\typescript\\lib",
 
   // Automatically run the formatter when certain files are saved.
   "[javascript]": {
@@ -90,8 +86,10 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
   },
+  // @template-customization-start
   "[python]": {
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
   },
+  // @template-customization-end
 }
