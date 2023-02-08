@@ -15,16 +15,16 @@
     "dist/**",
     "mod/main.lua",
     "mod/content/rooms/**",
-    "@template-customization-start",
+    // @template-customization-start
     "mod/resources/fortunes.txt",
-    "@template-customization-end",
+    // @template-customization-end
     "mod/resources/rooms/**",
     "node_modules/**",
     "package-lock.json",
     "pnpm-lock.yaml",
-    "@template-customization-start",
+    // @template-customization-start
     "sha1.json",
-    "@template-customization-end",
+    // @template-customization-end
     "yarn.lock"
   ],
   "words": [

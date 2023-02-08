@@ -34,8 +34,8 @@ fi
 # "--no-progress" and "--no-summary" make it only output errors.
 npx cspell --no-progress --no-summary .
 
-# Check for orphaned words.
-bash "$DIR/check-orphaned-words.sh"
+# Check for unused CSpell words.
+npx cspell-check-unused-words
 
 # @template-customization-start
 

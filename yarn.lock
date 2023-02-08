@@ -1261,6 +1261,14 @@ crypto-random-string@^4.0.0:
   dependencies:
     type-fest "^1.0.1"
 
+cspell-check-unused-words@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cspell-check-unused-words/-/cspell-check-unused-words-1.0.2.tgz#a03fdb09435e5f720edf7d2b7bbb489e1de2cd0f"
+  integrity sha512-pG+RyJls2QHpW+pPSGzg6oePL2CQxJ7s0l23DCv5GFpN8ne3U5h/ZpkeQz0Yka0Gm/gOR2V1VoZiCr24iyL2gA==
+  dependencies:
+    jsonc-parser "^3.2.0"
+    source-map-support "^0.5.21"
+
 cspell-dictionary@6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/cspell-dictionary/-/cspell-dictionary-6.22.0.tgz#d6b64d5fba0f1644a546b8b78a1a1c4fc74805df"
@@ -1607,10 +1615,10 @@ eslint-config-airbnb-typescript@^17.0.0:
   dependencies:
     eslint-config-airbnb-base "^15.0.0"
 
-eslint-config-isaacscript@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-isaacscript/-/eslint-config-isaacscript-3.3.1.tgz#ecbcc86fbb9405ec3094fa80cc5a4b89fdafa46d"
-  integrity sha512-OUen3zBWfZAZWsffwtdCuDChLVVmuCho2/YvquQsxNSSVtpP23JeXxOlH2rBtq+iRDmqKLzvQw1SLWvlNJWIGg==
+eslint-config-isaacscript@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-isaacscript/-/eslint-config-isaacscript-3.4.1.tgz#c0dffda3d21c155c875b3e1601fd44af2feeb14e"
+  integrity sha512-zSrtH4ptm2PHkeGSoR6NFAhXvl/C9HXHRhSg0iWCKDubtNDzAMw36jC2k8mjQZwXw/E04x4/EAMhxkMHibYZ+g==
 
 eslint-config-prettier@^8.6.0:
   version "8.6.0"
@@ -2668,20 +2676,21 @@ isaacscript-common@^21.2.0:
   dependencies:
     isaac-typescript-definitions "^11.1.0"
 
-isaacscript-lint@^4.8.5:
-  version "4.8.5"
-  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.8.5.tgz#151ecdfd2c8fca4b62988c62c8708578e314b366"
-  integrity sha512-fi55wMTUV1900NXLVUxta1FZ+fcQduxHNx9LAL9hs+WHm375LC++1oXolTKTT1Bs2FwaWIqbmYyZ3cj+z22QZg==
+isaacscript-lint@^4.10.2:
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.10.2.tgz#246719fa086844d0133b63207f89f45202b28d68"
+  integrity sha512-IdlLKdgKWzqoMY7abJz/FqLigt1+dPE4sP6Q+8xhucEkr+o3S82oQ0fn3MfwDMbO2E5Ngbd+KsdivtfOrqkdDQ==
   dependencies:
     "@prettier/plugin-xml" "^2.2.0"
     "@tsconfig/recommended" "^1.0.2"
     "@typescript-eslint/eslint-plugin" "^5.51.0"
     "@typescript-eslint/parser" "^5.51.0"
     cspell "^6.22.0"
+    cspell-check-unused-words "^1.0.2"
     eslint "^8.33.0"
     eslint-config-airbnb-base "^15.0.0"
     eslint-config-airbnb-typescript "^17.0.0"
-    eslint-config-isaacscript "^3.3.1"
+    eslint-config-isaacscript "^3.4.1"
     eslint-config-prettier "^8.6.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-import "^2.27.5"
@@ -2709,10 +2718,10 @@ isaacscript-tsconfig@^4.0.0:
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.6.11:
-  version "3.6.11"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.11.tgz#0785b1709340b516fcc3af8063955e6b4d37083a"
-  integrity sha512-Q10s1US70MtYoOWf7jwZ6/NcgR4Rg7XzBkEtczRPDRXIaeJru3xOJaidhpSDk0nSSuwbqrrslhTY+LVwOHialg==
+isaacscript@^3.6.22:
+  version "3.6.22"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.22.tgz#eee71f8ea796c24a49f5c72ef1ce19e043b208f7"
+  integrity sha512-9MWDpq60fx51nKyVUpBODikUdVRuYDPnfeWtqr9XiDT0xPZUkwvSnD/JWkcLhYkPTKPukhlO2uFwtZh4q1Dx6w==
   dependencies:
     ajv "^8.12.0"
     chalk "4.1.2"
