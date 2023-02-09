@@ -14,7 +14,7 @@ import {
   getEnumValues,
   getMapPartialMatch,
   LAST_VANILLA_CHARACTER,
-  log,
+  logAndPrint,
   onSetSeed,
   restart,
 } from "isaacscript-common";
@@ -57,12 +57,11 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("changeCharOrder", changeCharOrder);
   mod.addConsoleCommand("d", debug);
   mod.addConsoleCommand("devilSet", devilSet);
-  mod.addConsoleCommand("disable", disable);
+  mod.addConsoleCommand("disableAllSettings", disableAllSettings);
   mod.addConsoleCommand("diversityRace", diversityRace);
   mod.addConsoleCommand("diversityRaceCharacter", diversityRaceCharacter);
   mod.addConsoleCommand("diversityRaceOff", diversityRaceOff);
-  mod.addConsoleCommand("enable", enable);
-  mod.addConsoleCommand("move", move);
+  mod.addConsoleCommand("enableAllSettings", enableAllSettings);
   mod.addConsoleCommand("race", race);
   mod.addConsoleCommand("raceCharacter", raceCharacter);
   mod.addConsoleCommand("rankedSoloReset", rankedSoloReset);
@@ -94,6 +93,7 @@ function cco() {
 
 function changeCharOrder() {
   consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
+  print("Going to: Change Char Order");
 }
 
 function debug(params: string) {
@@ -105,8 +105,9 @@ function devilSet(params: string) {
   devilAngelSet(params, true);
 }
 
-function disable() {
+function disableAllSettings() {
   setAllModConfigMenuSettings(false);
+  print("Disabled all settings in Mod Config Menu.");
 }
 
 function diversityRace(params: string) {
@@ -158,15 +159,9 @@ function diversityRaceOff() {
   restart();
 }
 
-function enable() {
+function enableAllSettings() {
   setAllModConfigMenuSettings(true);
-}
-
-/** Move the player to a specific position. */
-function move() {
-  const player = Isaac.GetPlayer();
-  const oneByOneRoomRightDoorNextToLoadingZone = Vector(593, 280); // 593 works, 593.1 is too far
-  player.Position = oneByOneRoomRightDoorNextToLoadingZone;
+  print("Enabled all settings in Mod Config Menu.");
 }
 
 function race() {
@@ -212,22 +207,27 @@ function rankedSoloReset() {
 
 function s0() {
   goToChallenge(Challenge.NULL);
+  print("Going to: [no challenge]");
 }
 
 function s1() {
   goToChallenge(ChallengeCustom.SEASON_1);
+  print("Going to: R+7 Season 1");
 }
 
 function s2() {
   goToChallenge(ChallengeCustom.SEASON_2);
+  print("Going to: R+7 Season 2");
 }
 
 function s3() {
   goToChallenge(ChallengeCustom.SEASON_3);
+  print("Going to: R+7 Season 3");
 }
 
 function s4() {
   goToChallenge(ChallengeCustom.SEASON_4);
+  print("Going to: R+7 Season 4");
 }
 
 function goToChallenge(challenge: Challenge) {
@@ -352,8 +352,7 @@ function unseedCommand() {
 
 function version() {
   const msg = `Racing+ version: ${VERSION}`;
-  log(msg);
-  print(msg);
+  logAndPrint(msg);
 }
 
 // -----------
@@ -373,4 +372,5 @@ function devilAngelSet(params: string, devil: boolean) {
   }
 
   setDevilAngelDebugRoom(num);
+  print(`Set ${roomName} Room number to: ${num}`);
 }
