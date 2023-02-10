@@ -2664,14 +2664,14 @@ isaacscript-common-ts@^10.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-10.0.0.tgz#f1037ad8856ef37860964b2987b913aa2e289280"
   integrity sha512-lacHMi0+2ovSuMrtz253XjvDX1i4bER5eNbWsRBTOQp56ZTX5aGC9zKg6GyaDULTfwL/K/bD1mVG69qvsAqChQ==
 
-isaacscript-common@^21.2.0:
-  version "21.3.0"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-21.3.0.tgz#2eb30b845b551e257e0ce2076313c91f558b7ecf"
-  integrity sha512-ngo9vzE+FVKmKEWPy0WoVf6amDDbP8BPkJ13Su9NlP9R+uAxW1hsTKZnwPE014zp8rPlbZahyl2hIKMEGKJ7Ug==
+isaacscript-common@^21.5.1:
+  version "21.5.1"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-21.5.1.tgz#c3d1dd54bab690e066f9ce6e8cd58babc45c46fc"
+  integrity sha512-OUKQb4Kjn2ivTdAO2xAq0Eg9X4EQGV+wwPkyjngdSG1rbRjGVPskv6Oyjt7CSh/wjP1Aq4NKt31XMIZvgx7QpA==
   dependencies:
     isaac-typescript-definitions "^11.1.1"
 
-isaacscript-lint@^4.10.2:
+isaacscript-lint@^4.10.5:
   version "4.10.5"
   resolved "https://registry.yarnpkg.com/isaacscript-lint/-/isaacscript-lint-4.10.5.tgz#65a6daaee2f584d0608303bc7feee7371132b349"
   integrity sha512-BZ8pkaGFnhGaPhp912S4YMOHQTdb6HCEE3Ec7lZjSegdRdccfNACr6zkK15C8c9/uiPxkKT6OwAd7FpKJSM5Qw==
@@ -2701,7 +2701,7 @@ isaacscript-lint@^4.10.2:
     prettier-plugin-organize-imports "^3.2.2"
     ts-prune-2 "^0.10.7"
 
-isaacscript-spell@^1.2.34:
+isaacscript-spell@^1.2.35:
   version "1.2.35"
   resolved "https://registry.yarnpkg.com/isaacscript-spell/-/isaacscript-spell-1.2.35.tgz#1e835dc17814f6b5142bf058cce7789a9eba1dbb"
   integrity sha512-dw9vZ8BlspEnhf9ndE5mAP+InOXuODktJLgcrGlXl5LAe6kGRyTIIOYqGhvSFaWoB8rEf+GzWaXHzp5PkJ3F6A==
@@ -2713,7 +2713,7 @@ isaacscript-tsconfig@^4.0.0:
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.6.26:
+isaacscript@^3.6.30:
   version "3.6.30"
   resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.30.tgz#a9257cbdbc5666a6c9bc1e161df0cfc0b77e8bc7"
   integrity sha512-JGb/o6ZcHGohUSPM/C0SsKvetJ2l3fF6zk6xOFE/veV+FR/3l7/u+cRsDOAQSxGoBFd7p1pgvAWzvlEkyD7gDg==
