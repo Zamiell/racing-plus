@@ -3,22 +3,19 @@ import {
   CacheFlag,
   CardType,
   CollectibleType,
-  DisplayFlag,
   RoomType,
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
   addCollectibleCostume,
-  addFlag,
   anyPlayerHasCollectible,
   getPlayerFromIndex,
   getPlayerIndex,
   getPlayersWithCollectible,
-  getRoomDisplayFlags,
   getRoomGridIndex,
   getRoomGridIndexesForType,
   PlayerIndex,
-  setRoomDisplayFlags,
+  setRoomVisible,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { g } from "../../globals";
@@ -88,10 +85,7 @@ function checkApplySolMapEffect() {
     return;
   }
 
-  const displayFlags = getRoomDisplayFlags(solRoomGridIndex);
-  const displayFlagsWithIcon = addFlag(displayFlags, DisplayFlag.SHOW_ICON);
-  setRoomDisplayFlags(solRoomGridIndex, displayFlagsWithIcon);
-  g.l.UpdateVisibility();
+  setRoomVisible(solRoomGridIndex);
 }
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)

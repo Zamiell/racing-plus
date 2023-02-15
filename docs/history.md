@@ -6,6 +6,7 @@
 ### _v0.91.8_ - February 15th, 2023
 
 - Fixed the bug where exiting a crawl space would cause an error. (Thanks sisuka)
+- !Fixed the bug where the game could crash on starting a new run under certain conditions. (Thanks mgln)
 
 ### _v0.91.8_ - February 13th, 2023
 

@@ -190,7 +190,8 @@ export function isActionTriggeredItem(
   }
 
   // Prevent using the active item before the charges have been swapped.
-  const roomFrameCount = g.r.GetFrameCount();
+  const room = game.GetRoom(); // We cannot use the cached room object inside of an input callback.
+  const roomFrameCount = room.GetFrameCount();
   const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   const batteryBumCharging =
