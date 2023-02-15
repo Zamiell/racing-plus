@@ -76,16 +76,19 @@ function checkRemoveSolBuff() {
 }
 
 function checkApplySolMapEffect() {
+  Isaac.DebugString("GETTING HERE 0");
   if (!anyPlayerHasCollectible(NEW_COLLECTIBLE_TYPE)) {
     return;
   }
 
-  const solRoomGridIndex = getSolBossRoomGridIndex();
-  if (solRoomGridIndex === undefined) {
+  Isaac.DebugString("GETTING HERE 1");
+  const solBossRoomGridIndex = getSolBossRoomGridIndex();
+  if (solBossRoomGridIndex === undefined) {
     return;
   }
 
-  setRoomVisible(solRoomGridIndex);
+  setRoomVisible(solBossRoomGridIndex);
+  Isaac.DebugString("GETTING HERE 2");
 }
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
