@@ -80,7 +80,7 @@ export function draw(
 
   const sprites = spriteCollectionMap.getAndSetDefault(timerType);
 
-  const [hours, minute1, minute2, second1, second2, tenths] =
+  const { hours, minute1, minute2, second1, second2, tenths } =
     convertSecondsToTimerValues(seconds);
 
   const positionClock = Vector(startingX + 34, startingY + 45);
@@ -138,9 +138,14 @@ export function draw(
   sprites.digitMini.RenderLayer(0, positionTenths);
 }
 
-export function convertSecondsToTimerValues(
-  totalSeconds: int,
-): [int, int, int, int, int, int] {
+export function convertSecondsToTimerValues(totalSeconds: int): {
+  hours: int;
+  minute1: int;
+  minute2: int;
+  second1: int;
+  second2: int;
+  tenths: int;
+} {
   // Calculate the hours digit.
   const hours = math.floor(totalSeconds / 3600);
 
@@ -190,5 +195,5 @@ export function convertSecondsToTimerValues(
   const decimals = rawSeconds - math.floor(rawSeconds);
   const tenths = math.floor(decimals * 10);
 
-  return [hours, minute1, minute2, second1, second2, tenths];
+  return { hours, minute1, minute2, second1, second2, tenths };
 }
