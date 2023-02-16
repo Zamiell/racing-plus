@@ -1,9 +1,6 @@
+import { LevelStage, RoomType } from "isaac-typescript-definitions";
 import {
-  DisplayFlagZero,
-  LevelStage,
-  RoomType,
-} from "isaac-typescript-definitions";
-import {
+  clearRoomDisplayFlags,
   getDoorsToRoomIndex,
   getEffectiveStage,
   getPlayers,
@@ -13,6 +10,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
+import { mod } from "../../mod";
 import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
@@ -91,20 +89,12 @@ function outsideBannedRoom(bannedRoomType: RoomType) {
   removeDoors(...doorsToBannedRooms);
 
   // Delete the icon on the minimap. (This has to be done on every room, because it will reappear.)
-  if (MinimapAPI === undefined) {
-    for (const roomGridIndex of bannedRoomGridIndexes) {
-      const roomDesc = g.l.GetRoomByIdx(roomGridIndex);
-      roomDesc.DisplayFlags = DisplayFlagZero;
-    }
-  } else {
-    for (const roomGridIndex of bannedRoomGridIndexes) {
-      const roomDesc = MinimapAPI.GetRoomByIdx(roomGridIndex);
-      if (roomDesc !== undefined) {
-        roomDesc.Remove();
-      }
-    }
-  }
+  for (const roomGridIndex of bannedRoomGridIndexes) {
+    clearRoomDisplayFlags(roomGridIndex);
 
-  // Setting the display flag will not actually update the map.
-  g.l.UpdateVisibility();
+    // Work around the bug with MinimapAPI not having callback priority.
+    mod.runNextRenderFrame(() => {
+      clearRoomDisplayFlags(roomGridIndex);
+    });
+  }
 }

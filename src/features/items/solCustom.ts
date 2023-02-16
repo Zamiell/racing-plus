@@ -3,11 +3,13 @@ import {
   CacheFlag,
   CardType,
   CollectibleType,
+  DisplayFlag,
   RoomType,
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
   addCollectibleCostume,
+  addRoomDisplayFlag,
   anyPlayerHasCollectible,
   getPlayerFromIndex,
   getPlayerIndex,
@@ -15,7 +17,6 @@ import {
   getRoomGridIndex,
   getRoomGridIndexesForType,
   PlayerIndex,
-  setRoomVisible,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { g } from "../../globals";
@@ -85,7 +86,7 @@ function checkApplySolMapEffect() {
     return;
   }
 
-  setRoomVisible(solBossRoomGridIndex);
+  addRoomDisplayFlag(solBossRoomGridIndex, DisplayFlag.SHOW_ICON);
 }
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
