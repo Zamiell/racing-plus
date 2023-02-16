@@ -1,11 +1,11 @@
 import {
+  DoorSlot,
   EntityFlag,
   GameStateFlag,
-  GridEntityType,
   LevelStage,
   RoomType,
+  SoundEffect,
   StageType,
-  TeleporterState,
 } from "isaac-typescript-definitions";
 import {
   changeRoom,
@@ -18,10 +18,9 @@ import {
   log,
   onRepentanceStage,
   removeDoor,
-  removeGridEntity,
   setStage,
+  sfxManager,
   spawnNPC,
-  spawnTeleporter,
   VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
@@ -37,8 +36,6 @@ import {
   season3HasMegaSatanGoal,
 } from "../v";
 
-const LEFT_OF_TOP_DOOR_GRID_INDEX = 20;
-
 export function season3PostNewRoom(): void {
   const challenge = Isaac.GetChallenge();
 
@@ -51,13 +48,13 @@ export function season3PostNewRoom(): void {
     resetSeason3StartingRoomSprites();
   }
 
-  checkMegaSatanTeleporter();
+  checkSpawnMegaSatanDoor();
   checkDadsNoteRoom();
   checkBeastRoom();
   checkBlueWombRoom();
 }
 
-function checkMegaSatanTeleporter() {
+function checkSpawnMegaSatanDoor() {
   const stage = g.l.GetStage();
 
   if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
@@ -68,30 +65,12 @@ function checkMegaSatanTeleporter() {
     return;
   }
 
-  let gridEntity = g.r.GetGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX);
-
-  // Sometimes, there will be a decoration in the room on the specific tile. Remove it if this is
-  // the case.
-  if (
-    gridEntity !== undefined &&
-    gridEntity.GetType() !== GridEntityType.TELEPORTER
-  ) {
-    removeGridEntity(LEFT_OF_TOP_DOOR_GRID_INDEX, true);
-    gridEntity = undefined;
-  }
-
-  if (gridEntity === undefined) {
-    // If the teleporter does not already exist, spawn it. Note that we do not want to spawn it
-    // where the top door would be, because that is the position that they will return to if they
-    // e.g. die in the Mega Satan fight with Dead Cat.
-    spawnTeleporter(LEFT_OF_TOP_DOOR_GRID_INDEX);
-  } else {
-    // If we return to the starting room after the teleporter has already been activated, then we
-    // have to manually change the state to allow the player to return to the Mega Satan room.
-    const gridEntityType = gridEntity.GetType();
-    if (gridEntityType === GridEntityType.TELEPORTER) {
-      gridEntity.State = TeleporterState.NORMAL;
-    }
+  g.r.TrySpawnMegaSatanRoomDoor(true); // It has to be forced in order to work.
+  const topDoor = g.r.GetDoor(DoorSlot.UP_0);
+  if (topDoor !== undefined) {
+    const player = Isaac.GetPlayer();
+    topDoor.TryUnlock(player, true);
+    sfxManager.Stop(SoundEffect.UNLOCK);
   }
 }
 

@@ -91,7 +91,7 @@ export function getAverageTimePerCharacter(): string {
   const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
   const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
 
-  const [hours, minute1, minute2, second1, second2] =
+  const { hours, minute1, minute2, second1, second2 } =
     timer.convertSecondsToTimerValues(averageSeconds);
 
   if (hours > 0) {

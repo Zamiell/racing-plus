@@ -200,7 +200,7 @@ Some builds are banned on certain characters:
   - Dogma (without The Beast fight)
 - You can only complete the Mega Satan goal on the second character and beyond. Except for that, you can do the goals in any order that you like.
 - Some goals are altered:
-  - Mega Satan - The key pieces are not required; a teleporter will appear in the starting room of The Chest and the Dark Room.
+  - Mega Satan - The key pieces are not required.
   - Hush - The Blue Baby phase of the fight will be automatically skipped.
   - Mother - The door to Downpour/Dross will appear on the second floor and will be automatically unlocked.
   - Dogma - Will appear in place of Dad's Note.
