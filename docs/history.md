@@ -6,6 +6,7 @@
 ### _v0.91.11_ - February 17th, 2023
 
 - In Season 3, the door to Mega Satan's room will now be used instead of a teleporter. (This means that Star of Bethlehem will work properly.) (Thanks Monkeypot & Gamonymous)
+- Fixed the bug where some costumes for Mysterious Liquid would not display correctly. Thanks to Gamonymous for this.
 
 ### _v0.91.10_ - February 16th, 2023
 
@@ -219,7 +220,7 @@
 ### _v0.85.2_ - August 28th, 2022
 
 - The Heretic fight will now immediately start as soon as you enter the room. (Thanks Hispa)
-- Fixed the bug where some of the diversity sprites would not match the collectible sprite. (Thanks to Gamonymous for coding this.)
+- Fixed the bug where some of the diversity sprites would not match the collectible sprite. Thanks to Gamonymous for coding this.
 - Fixed the bug where the automatic item insertion feature would override Alabaster Box when playing as Bethany. (Thanks Gamonymous)
 - Fixed the bug where in season 3, Samson would not start with a dropped Child's Heart. (Thanks TNTerminator)
 
@@ -1464,7 +1465,7 @@
 - There is no a visual indication on the UI when something is automatically inserted into your inventory.
 - The pill from Spun is now automatically inserted.
 - Trinkets from Mom's Purse are now automatically inserted.
-- Pickups from Mom's Purse, Clear Rune, Booster Pack, Consolation Prize, False PHD, and Keeper's Sack are now included. (Thanks to Gamonymous for this.)
+- Pickups from Mom's Purse, Clear Rune, Booster Pack, Consolation Prize, False PHD, and Keeper's Sack are now included. Thanks to Gamonymous for this.
 - The Match Stick trinket will no longer automatically inserted.
 - The 'M trinket will no longer automatically inserted.
 - Fixed the bug where cards and pills were not automatically inserted under certain circumstances.
@@ -1517,7 +1518,7 @@
 - The Void door will now be automatically removed on races to Hush.
 - Poops will no longer play an appear animation in Devil/Angel rooms.
 - Pitfalls will no longer play an appear animation in Devil/Angel rooms.
-- Fixed the bug where you got softlocked in an I AM ERROR room on races to Mother. (Thanks to Gamonymous for this.)
+- Fixed the bug where you got softlocked in an I AM ERROR room on races to Mother. Thanks to Gamonymous for this.
 - Fixed the bug where the trapdoor was weird after It Lives / Hush.
 - Fixed the bug where extra photos would spawn if you exited and re-entered the boss room.
 - Fixed the bug where the retracting spikes would not work properly in in Devil/Angel rooms.
@@ -1547,7 +1548,7 @@
 ### _v0.58.36_ - August 7st, 2021
 
 - New feature: seeded Devil Rooms and Angel Rooms.
-- Fixed the bug where Treasure Rooms in Downpour 1 were empty. (Thanks to Gamonymous for this.)
+- Fixed the bug where Treasure Rooms in Downpour 1 were empty. Thanks to Gamonymous for this.
 
 ### _v0.58.35_ - July 31st, 2021
 
@@ -1565,9 +1566,9 @@
 
 ### _v0.58.30_ - July 28th, 2021
 
-- Added The Beast goal for races. (Thanks to Gamonymous for this.)
-- Fixed the bug where the finish button was not showing up under certain conditions. (Thanks to Gamonymous for this.)
-- Fixed various bugs on the Ascent. (Thanks to Gamonymous for this.)
+- Added The Beast goal for races. Thanks to Gamonymous for this.
+- Fixed the bug where the finish button was not showing up under certain conditions. Thanks to Gamonymous for this.
+- Fixed various bugs on the Ascent. Thanks to Gamonymous for this.
 - Fixed the bug where items were not removed from the first floor Treasure Room in seeded races.
 - Fixed fireworks not being spawned under certain conditions.
 
