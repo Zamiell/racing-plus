@@ -35,6 +35,14 @@ export function preUseItemAbyss(player: EntityPlayer): boolean | undefined {
   return preUseItemDangerousCollectible(player);
 }
 
+// ModCallback.PRE_USE_ITEM (23)
+// CollectibleType.SPINDOWN_DICE (723)
+export function preUseItemSpindownDice(
+  player: EntityPlayer,
+): boolean | undefined {
+  return preUseItemDangerousCollectible(player);
+}
+
 /** Prevent deleting collectibles under certain conditions. */
 function preUseItemDangerousCollectible(
   player: EntityPlayer,

@@ -83,6 +83,12 @@ export function init(): void {
     flip,
     CollectibleType.FLIP, // 711
   );
+
+  mod.AddCallback(
+    ModCallback.PRE_USE_ITEM,
+    spindownDice,
+    CollectibleType.SPINDOWN_DICE, // 723
+  );
 }
 
 // CollectibleType.D6 (105)
@@ -221,6 +227,18 @@ function abyss(
   _customVarData: int,
 ): boolean | undefined {
   return speedrunPreUseItem.abyss(player);
+}
+
+// CollectibleType.SPINDOWN_DICE (723)
+function spindownDice(
+  _collectibleType: CollectibleType,
+  _rng: RNG,
+  player: EntityPlayer,
+  _useFlags: BitFlags<UseFlag>,
+  _activeSlot: ActiveSlot,
+  _customVarData: int,
+): boolean | undefined {
+  return speedrunPreUseItem.spindownDice(player);
 }
 
 // CollectibleType.FLIP (711)

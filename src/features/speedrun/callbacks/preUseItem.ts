@@ -74,3 +74,12 @@ export function abyss(player: EntityPlayer): boolean | undefined {
 
   return preserveCollectible.preUseItemAbyss(player);
 }
+
+// CollectibleType.SPINDOWN_DICE (723)
+export function spindownDice(player: EntityPlayer): boolean | undefined {
+  if (!inSpeedrun()) {
+    return undefined;
+  }
+
+  return preserveCollectible.preUseItemSpindownDice(player);
+}
