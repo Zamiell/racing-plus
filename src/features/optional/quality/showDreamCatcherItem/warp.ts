@@ -28,7 +28,11 @@ import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
-import { DREAM_CATCHER_FEATURE_NAME, v } from "./v";
+import {
+  CardReadingPortalDescription,
+  DREAM_CATCHER_FEATURE_NAME,
+  v,
+} from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
 
@@ -86,11 +90,11 @@ function startWarp() {
   // (Glowing Hourglass does not properly restore Card Reading portals.)
   const cardReadingPortals = getEffects(EffectVariant.PORTAL_TELEPORT);
   for (const cardReadingPortal of cardReadingPortals) {
-    const tuple: [int, Vector] = [
-      cardReadingPortal.SubType,
-      cardReadingPortal.Position,
-    ];
-    v.level.cardReadingPortalDescriptions.push(tuple);
+    const cardReadingPortalDescription = {
+      subType: cardReadingPortal.SubType,
+      position: cardReadingPortal.Position,
+    } as const satisfies CardReadingPortalDescription;
+    v.level.cardReadingPortalDescriptions.push(cardReadingPortalDescription);
   }
 
   log(
@@ -140,8 +144,9 @@ export function warpToNextDreamCatcherRoom(): void {
   // If the player has Card Reading, moving away from the room would delete the portals, so respawn
   // them if necessary.
   if (!shouldRemoveEndGamePortals()) {
-    for (const portalDescription of v.level.cardReadingPortalDescriptions) {
-      const [subType, position] = portalDescription;
+    for (const cardReadingPortalDescription of v.level
+      .cardReadingPortalDescriptions) {
+      const { subType, position } = cardReadingPortalDescription;
       spawnEffect(EffectVariant.PORTAL_TELEPORT, subType, position);
     }
   }

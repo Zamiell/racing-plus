@@ -3,6 +3,11 @@ import { PlayerIndex } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
+export interface PickupQueueEntry {
+  readonly pickupVariant: PickupVariant;
+  readonly playerIndex: PlayerIndex;
+}
+
 export const v = {
   run: {
     /**
@@ -26,9 +31,7 @@ export const v = {
   },
 
   room: {
-    pickupQueue: [] as Array<
-      [pickupVariant: PickupVariant, playerIndex: PlayerIndex]
-    >,
+    pickupQueue: [] as PickupQueueEntry[],
   },
 };
 

@@ -24,12 +24,12 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
     return;
   }
 
-  const tuple = v.room.pickupQueue[index];
-  if (tuple === undefined) {
+  const pickupQueueEntry = v.room.pickupQueue[index];
+  if (pickupQueueEntry === undefined) {
     return;
   }
 
-  const [, playerIndex] = tuple;
+  const { playerIndex } = pickupQueueEntry;
   const player = getPlayerFromIndex(playerIndex);
   if (player === undefined) {
     return;
@@ -40,20 +40,19 @@ function checkIfExpectingPickupDrop(pickup: EntityPickup) {
 }
 
 function findMatchingPickupQueueIndex(pickup: EntityPickup): int | undefined {
-  const index = v.room.pickupQueue.findIndex(
-    ([lookingForPickupVariant, playerIndex]) => {
-      const player = getPlayerFromIndex(playerIndex);
-      if (player === undefined) {
-        return false;
-      }
+  const index = v.room.pickupQueue.findIndex((pickupQueueEntry) => {
+    const { pickupVariant, playerIndex } = pickupQueueEntry;
+    const player = getPlayerFromIndex(playerIndex);
+    if (player === undefined) {
+      return false;
+    }
 
-      const effectivePickupVariant = getEffectivePickupVariant(
-        pickup,
-        lookingForPickupVariant,
-      );
-      return effectivePickupVariant === pickup.Variant;
-    },
-  );
+    const effectivePickupVariant = getEffectivePickupVariant(
+      pickup,
+      pickupVariant,
+    );
+    return effectivePickupVariant === pickup.Variant;
+  });
 
   return index === -1 ? undefined : index;
 }

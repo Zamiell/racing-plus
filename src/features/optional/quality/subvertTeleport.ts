@@ -33,9 +33,7 @@ type OneByOneRoomDoorSlot =
   | DoorSlot.DOWN_0;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT: {
-  readonly [key in DoorSlot]: OneByOneRoomDoorSlot;
-} = {
+const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT = {
   // If we teleported into the room, use the default position.
   [DoorSlot.NO_DOOR_SLOT]: DoorSlot.DOWN_0, // -1
 
@@ -47,7 +45,7 @@ const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT: {
   [DoorSlot.UP_1]: DoorSlot.DOWN_0, // 5
   [DoorSlot.RIGHT_1]: DoorSlot.LEFT_0, // 6
   [DoorSlot.DOWN_1]: DoorSlot.UP_0, // 7
-} as const;
+} as const satisfies Record<DoorSlot, OneByOneRoomDoorSlot>;
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {

@@ -9,12 +9,11 @@ import {
   collectibleHasTag,
   getPlayerIndex,
   PickingUpItem,
-  PlayerIndex,
 } from "isaacscript-common";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { COLLECTIBLE_TO_PICKUP_DROPS_MAP } from "../constants";
-import { v } from "../v";
+import { PickupQueueEntry, v } from "../v";
 
 export function automaticItemInsertionPreItemPickup(
   player: EntityPlayer,
@@ -52,11 +51,11 @@ function checkIfItemDropsPickups(
   // This item drops pickups, so record what we expect to spawn, and then wait for later.
   for (const pickupVariant of pickupVariants) {
     const playerIndex = getPlayerIndex(player);
-    const queueArray: [PickupVariant, PlayerIndex] = [
+    const pickupQueueEntry = {
       pickupVariant,
       playerIndex,
-    ];
-    v.room.pickupQueue.push(queueArray);
+    } as const satisfies PickupQueueEntry;
+    v.room.pickupQueue.push(pickupQueueEntry);
   }
 }
 
@@ -81,10 +80,10 @@ function checkIfThirdSpunItem(
   if (spunCollectibles.length === 2) {
     // We already have two Spun items and we are picking up a third one.
     const playerIndex = getPlayerIndex(player);
-    const queueArray: [PickupVariant, PlayerIndex] = [
-      PickupVariant.PILL,
+    const pickupQueueEntry = {
+      pickupVariant: PickupVariant.PILL,
       playerIndex,
-    ];
-    v.room.pickupQueue.push(queueArray);
+    } as const satisfies PickupQueueEntry;
+    v.room.pickupQueue.push(pickupQueueEntry);
   }
 }

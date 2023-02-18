@@ -8,6 +8,11 @@ import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 
+export interface CardReadingPortalDescription {
+  readonly subType: int;
+  readonly position: Vector;
+}
+
 export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
 
 export const v = {
@@ -16,9 +21,7 @@ export const v = {
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
     floorDisplayFlags: new Map<int, BitFlags<DisplayFlag>>(),
-    cardReadingPortalDescriptions: [] as Array<
-      [subType: int, position: Vector]
-    >,
+    cardReadingPortalDescriptions: [] as CardReadingPortalDescription[],
     health: null as PlayerHealth | null,
 
     collectibles: [] as CollectibleType[],

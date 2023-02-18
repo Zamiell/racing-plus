@@ -75,7 +75,7 @@ function createCharacterButtons() {
   const seasonDescription = getSeasonDescription();
 
   emptyArray(v.room.sprites.characters);
-  for (const [characterID, x, y] of seasonDescription.charPositions) {
+  for (const { character, x, y } of seasonDescription.charPositions) {
     // Spawn buttons for each characters.
     const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
@@ -88,7 +88,7 @@ function createCharacterButtons() {
     // Spawn the character graphic next to the button.
     const characterSprite = Sprite();
     characterSprite.Load(
-      `gfx/change-char-order/characters/${characterID}.anm2`,
+      `gfx/change-char-order/characters/${character}.anm2`,
       true,
     );
 
@@ -116,7 +116,7 @@ function createBuildVetoButtons() {
 
   // We use the "characters" array for the builds to avoid making a new data structure.
   emptyArray(v.room.sprites.characters);
-  for (const [buildIndex, x, y] of seasonDescription.buildPositions) {
+  for (const { buildIndex, x, y } of seasonDescription.buildPositions) {
     // Spawn buttons for each characters.
     const position = gridCoordinatesToWorldPosition(x, y);
     const gridIndex = g.r.GetGridIndex(position);
@@ -147,15 +147,18 @@ export function postPressurePlateUpdate(
 function checkPressed(pressurePlate: GridEntityPressurePlate) {
   switch (v.room.phase) {
     case ChangeCharOrderPhase.SEASON_SELECT: {
-      return checkPressedPhaseSeasonSelect(pressurePlate);
+      checkPressedPhaseSeasonSelect(pressurePlate);
+      break;
     }
 
     case ChangeCharOrderPhase.CHARACTER_SELECT: {
-      return checkPressedPhaseCharacterSelect(pressurePlate);
+      checkPressedPhaseCharacterSelect(pressurePlate);
+      break;
     }
 
     case ChangeCharOrderPhase.BUILD_VETO: {
-      return checkPressedPhaseBuildVeto(pressurePlate);
+      checkPressedPhaseBuildVeto(pressurePlate);
+      break;
     }
   }
 }
@@ -206,8 +209,8 @@ function checkPressedPhaseCharacterSelect(
 ) {
   const seasonDescription = getSeasonDescription();
 
-  seasonDescription.charPositions.forEach((tuple, i) => {
-    const [, x, y] = tuple;
+  seasonDescription.charPositions.forEach((charPosition, i) => {
+    const { x, y } = charPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
       pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
@@ -223,12 +226,12 @@ function checkPressedPhaseCharacterSelect(
 function characterButtonPressed(gridEntity: GridEntity, i: int) {
   const seasonDescription = getSeasonDescription();
 
-  const tuple = seasonDescription.charPositions[i];
-  if (tuple === undefined) {
+  const charPosition = seasonDescription.charPositions[i];
+  if (charPosition === undefined) {
     error(`Failed to find the positions for character: ${i}`);
   }
-  const characterID = tuple[0];
-  v.room.charOrder.push(characterID);
+  const { character } = charPosition;
+  v.room.charOrder.push(character);
 
   // Mark that we have pressed this button.
   gridEntity.VarData = 1;
@@ -278,11 +281,11 @@ function season1DeleteOtherCharButton(i: int) {
 function deleteCharacterButtonAtIndex(i: int) {
   const seasonDescription = getSeasonDescription();
 
-  const tuple = seasonDescription.charPositions[i];
-  if (tuple === undefined) {
+  const charPosition = seasonDescription.charPositions[i];
+  if (charPosition === undefined) {
     error(`Failed to find the positions for character: ${i}`);
   }
-  const [, x, y] = tuple;
+  const { x, y } = charPosition;
   const position = gridCoordinatesToWorldPosition(x, y);
   const gridEntity = g.r.GetGridEntityFromPos(position);
   if (gridEntity !== undefined) {
@@ -300,8 +303,8 @@ function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
     error("buildPositions is undefined.");
   }
 
-  seasonDescription.buildPositions.forEach((tuple, i) => {
-    const [, x, y] = tuple;
+  seasonDescription.buildPositions.forEach((buildPosition, i) => {
+    const { x, y } = buildPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
       pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
@@ -327,11 +330,11 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
     return;
   }
 
-  const tuple = seasonDescription.buildPositions[i];
-  if (tuple === undefined) {
+  const buildPosition = seasonDescription.buildPositions[i];
+  if (buildPosition === undefined) {
     error(`Failed to find the positions for build: ${i}`);
   }
-  const buildIndex = tuple[0];
+  const { buildIndex } = buildPosition;
   v.room.buildsChosen.push(buildIndex);
 
   // Mark that we have pressed this button.

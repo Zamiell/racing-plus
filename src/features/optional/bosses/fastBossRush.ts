@@ -59,7 +59,7 @@ const SPLITTING_BOSS_ENTITY_TYPE_SET = new ReadonlySet<EntityType>([
   EntityType.BROWNIE, // 402
 ]);
 
-const BOSS_POSITIONS: ReadonlyArray<Readonly<Vector>> = [
+const BOSS_POSITIONS = [
   gridCoordinatesToWorldPosition(7, 6), // Left of the items
   gridCoordinatesToWorldPosition(18, 7), // Right of the items
   gridCoordinatesToWorldPosition(12, 2), // Above the items

@@ -99,11 +99,11 @@ function drawCharacterSprites() {
   const seasonDescription = getSeasonDescription();
 
   v.room.sprites.characters.forEach((characterSprite, i) => {
-    const tuple = seasonDescription.charPositions[i];
-    if (tuple === undefined) {
+    const charPosition = seasonDescription.charPositions[i];
+    if (charPosition === undefined) {
       error(`Failed to find the positions for character: ${i}`);
     }
-    const [, x, y] = tuple;
+    const { x, y } = charPosition;
     const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
     renderPosition.Y += 10; // Nudge it a bit upwards to make it look better
@@ -123,11 +123,11 @@ function drawBuildVetoSprites() {
       error("buildPositions was undefined.");
     }
 
-    const tuple = seasonDescription.buildPositions[i];
-    if (tuple === undefined) {
+    const buildPosition = seasonDescription.buildPositions[i];
+    if (buildPosition === undefined) {
       error(`Failed to find the positions for build: ${i}`);
     }
-    const [, x, y] = tuple;
+    const { x, y } = buildPosition;
     const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
     const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
     characterSprite.Render(renderPosition, VectorZero, VectorZero);
