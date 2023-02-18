@@ -54,6 +54,7 @@ WINDOWS_FILES=$(
   --exclude-dir='rooms' \
   --exclude-dir='pre-flipped' \
   --exclude='*.fnt' \
+  --exclude='*.jpg' \
   --exclude='*.png' \
   --exclude='*.pyc' \
   --exclude='*.stb' \
