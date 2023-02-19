@@ -11,6 +11,7 @@ import {
   getRandomArrayElementAndRemove,
   isRoomInsideGrid,
   ReadonlySet,
+  removeAllDoors,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
@@ -160,6 +161,7 @@ export function postGameStarted(): void {
 
   checkErrors();
   if (speedrunHasErrors()) {
+    removeAllDoors();
     return;
   }
 
