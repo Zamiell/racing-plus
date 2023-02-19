@@ -8,10 +8,10 @@
 - The Baby Plum from Plum Flute will now be faded. (The tears from it will also be faded.)
 - In season 4, extra starting items will now be removed if you revive as a different character.
 - In season 4, We Need to Go Deeper, Mega Blast, and Mega Mush can no longer be stored.
+- In season 4, you can no longer store items if you are on the final character.
 - Fixed the bug in season 4 where you could use Spindown Dice on stored items.
 - !Show pills based on screen size.
 - !Show second timer based on screen size.
-- !Disable storage on final character.
 
 ### _v0.92.0_ - February 18th, 2023
 

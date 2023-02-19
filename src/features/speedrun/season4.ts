@@ -27,7 +27,7 @@ import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 import { drawErrorText } from "../mandatory/errors";
-import { isOnFirstCharacter } from "./speedrun";
+import { isOnFinalCharacter, isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
@@ -201,6 +201,10 @@ export function init(): void {
 function checkStoreCollectible() {
   const challenge = Isaac.GetChallenge();
   if (challenge !== ChallengeCustom.SEASON_4) {
+    return;
+  }
+
+  if (isOnFinalCharacter()) {
     return;
   }
 
