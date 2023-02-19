@@ -1,7 +1,7 @@
 import { CollectibleType, DamageFlag } from "isaac-typescript-definitions";
 import {
   addFlag,
-  getActiveItemSlot,
+  getActiveItemSlots,
   getTotalCharge,
   hasArmor,
   hasFlag,
@@ -69,16 +69,15 @@ function checkDischargeNotchedAxe(
     return;
   }
 
-  const activeSlot = getActiveItemSlot(player, CollectibleType.NOTCHED_AXE);
-  if (activeSlot === undefined) {
-    return;
-  }
+  const activeSlots = getActiveItemSlots(player, CollectibleType.NOTCHED_AXE);
 
-  const previousCharge = getTotalCharge(player, activeSlot);
-  let newCharge = previousCharge - 2;
-  if (newCharge < 0) {
-    newCharge = 0;
-  }
+  for (const activeSlot of activeSlots) {
+    const previousCharge = getTotalCharge(player, activeSlot);
+    let newCharge = previousCharge - 2;
+    if (newCharge < 0) {
+      newCharge = 0;
+    }
 
-  player.SetActiveCharge(newCharge, activeSlot);
+    player.SetActiveCharge(newCharge, activeSlot);
+  }
 }

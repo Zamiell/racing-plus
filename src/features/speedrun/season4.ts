@@ -1,4 +1,5 @@
 import {
+  ActiveSlot,
   CollectibleType,
   LevelStage,
   PlayerType,
@@ -10,15 +11,19 @@ import {
   dequeueItem,
   emptyArray,
   game,
+  getCharacterStartingCollectibles,
   getEffectiveStage,
   getPlayerIndex,
+  hasCollectibleInActiveSlot,
   inStartingRoom,
+  isActiveCollectible,
   isPickingUpItemCollectible,
   newCollectibleSprite,
   PickingUpItem,
   PlayerIndex,
   ReadonlyMap,
   ReadonlySet,
+  removeCollectible,
   sfxManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
@@ -304,12 +309,33 @@ function checkChangedCharacter(player: EntityPlayer) {
     return;
   }
 
-  const collectibleTypes =
-    EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(startingCharacter);
-  if (collectibleTypes !== undefined) {
-    for (const collectibleType of collectibleTypes) {
+  const startingCollectibleTypes = [
+    ...getCharacterStartingCollectibles(character),
+  ];
+  if (startingCharacter === PlayerType.JACOB) {
+    // Racing+ artificially gives Jacob an extra D6.
+    startingCollectibleTypes.push(CollectibleType.D6);
+  }
+
+  for (const collectibleType of startingCollectibleTypes) {
+    // Don't remove the D6 if it is in the pocket item slot.
+    if (
+      !isActiveCollectible(collectibleType) ||
+      hasCollectibleInActiveSlot(
+        player,
+        collectibleType,
+        ActiveSlot.PRIMARY,
+        ActiveSlot.SECONDARY,
+      )
+    ) {
       player.RemoveCollectible(collectibleType);
     }
+  }
+
+  const extraStartingCollectibleTypes =
+    EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(startingCharacter);
+  if (extraStartingCollectibleTypes !== undefined) {
+    removeCollectible(player, ...extraStartingCollectibleTypes);
   }
 
   v.run.playersRemovedExtraStartingItems.add(playerIndex);
