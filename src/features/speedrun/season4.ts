@@ -310,7 +310,7 @@ function checkChangedCharacter(player: EntityPlayer) {
   }
 
   const startingCollectibleTypes = [
-    ...getCharacterStartingCollectibles(character),
+    ...getCharacterStartingCollectibles(startingCharacter),
   ];
   if (startingCharacter === PlayerType.JACOB) {
     // Racing+ artificially gives Jacob an extra D6.
