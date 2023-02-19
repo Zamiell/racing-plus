@@ -14,7 +14,7 @@ const GFX_PATH = "gfx/race";
 const GO_GFX_PATH = `${GFX_PATH}/countdown/go.anm2`;
 const MAX_PLACE = 32; // There are only big sprites created for places up to 32
 
-let sprite: Sprite | null = null;
+let sprite: Sprite | undefined;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
@@ -36,7 +36,7 @@ function drawSprite() {
     return;
   }
 
-  if (sprite !== null) {
+  if (sprite !== undefined) {
     const position = getPosition();
     sprite.RenderLayer(0, position);
   }
@@ -49,11 +49,11 @@ function getPosition() {
 
 function hideGoSprite() {
   if (
-    sprite !== null &&
+    sprite !== undefined &&
     sprite.GetFilename() === GO_GFX_PATH &&
     shouldHideGoSprite()
   ) {
-    sprite = null;
+    sprite = undefined;
   }
 }
 
@@ -92,7 +92,7 @@ export function statusChanged(): void {
 
 export function countdownChanged(): void {
   if (g.race.countdown === -1) {
-    sprite = null;
+    sprite = undefined;
   } else if (g.race.status === RaceStatus.STARTING) {
     sprite = newSprite(`${GFX_PATH}/countdown/${g.race.countdown}.anm2`);
   }
@@ -102,7 +102,7 @@ export function countdownChanged(): void {
 export function postNewRoom(): void {
   // Remove the "1st place" graphic from the top if we have entered a new room.
   if (g.race.status === RaceStatus.NONE || g.raceVars.finished) {
-    sprite = null;
+    sprite = undefined;
   }
 }
 
@@ -113,7 +113,7 @@ export function placeChanged(): void {
 
   // The client won't send a new place for solo races.
   if (g.race.place > MAX_PLACE) {
-    sprite = null;
+    sprite = undefined;
   } else {
     sprite = newSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
   }
@@ -128,5 +128,5 @@ export function setErrorHardMode(): void {
 }
 
 export function resetSprite(): void {
-  sprite = null;
+  sprite = undefined;
 }

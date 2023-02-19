@@ -49,7 +49,7 @@ export function getCharacterOrder(
 
 export function getSeasonDescription(): SeasonDescription {
   if (v.room.challengeCustomAbbreviation === null) {
-    error("seasonChosenAbbreviation is null.");
+    error("challengeCustomAbbreviation is null.");
   }
 
   const seasonDescription = CHANGE_CHAR_ORDER_POSITIONS_MAP.get(

@@ -253,7 +253,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   if (v.room.charOrder.length === seasonDescription.numChars) {
     // We are done, so write the changes to persistent storage.
     if (v.room.challengeCustomAbbreviation === null) {
-      error("seasonChosenAbbreviation was null.");
+      error("challengeCustomAbbreviation was null.");
     }
     v.persistent.charOrders.set(
       v.room.challengeCustomAbbreviation,
@@ -352,7 +352,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
   if (v.room.buildsChosen.length === seasonDescription.numBuildVetos) {
     // We are done, so write the changes to persistent storage.
     if (v.room.challengeCustomAbbreviation === null) {
-      error("seasonChosenAbbreviation was null.");
+      error("challengeCustomAbbreviation was null.");
     }
     v.persistent.charOrders.set(
       v.room.challengeCustomAbbreviation,

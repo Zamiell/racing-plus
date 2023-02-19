@@ -77,7 +77,7 @@ interface ShadowMessage {
   username: string;
 }
 
-let lastBeaconFrame: int | null = null;
+let lastBeaconFrame: int | undefined;
 
 /** Indexed by user ID. */
 const spriteMap = new DefaultMap<int, Sprite>(() => newShadowSprite());
@@ -131,7 +131,7 @@ function sendBeacon() {
   const renderFrameCount = Isaac.GetFrameCount();
 
   if (
-    lastBeaconFrame !== null &&
+    lastBeaconFrame !== undefined &&
     renderFrameCount < lastBeaconFrame + BEACON_INTERVAL
   ) {
     return;
@@ -206,7 +206,7 @@ function getShadows() {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition,no-constant-condition
   while (true) {
     const rawData = socket.readUDP();
-    if (rawData === null) {
+    if (rawData === undefined) {
       break;
     }
 

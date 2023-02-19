@@ -57,7 +57,7 @@ export function postFamiliarRenderGBBug(familiar: EntityFamiliar): void {
 
 function replaceSpawnedPickup() {
   const pickup = getLastSpawnedPickup();
-  if (pickup === null) {
+  if (pickup === undefined) {
     return;
   }
 
@@ -65,12 +65,12 @@ function replaceSpawnedPickup() {
   spawnGBBugPickup(pickup);
 }
 
-function getLastSpawnedPickup() {
+function getLastSpawnedPickup(): EntityPickup | undefined {
   if (
     v.run.lastSpawnedPickupPtrHash === null ||
     v.run.lastSpawnedPickupFrame === null
   ) {
-    return null;
+    return undefined;
   }
 
   const gameFrameCount = game.GetFrameCount();
@@ -89,7 +89,7 @@ function getLastSpawnedPickup() {
     return pickup;
   }
 
-  return null;
+  return undefined;
 }
 
 function spawnGBBugPickup(oldPickup: EntityPickup) {

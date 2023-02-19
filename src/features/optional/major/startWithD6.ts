@@ -108,7 +108,7 @@ export function preUseItemFlip(
   // ActiveSlot passed by the callback because it will be -1 when Flip is triggered via a room
   // clear.
   const flipActiveSlot = getFlipActiveSlot(player);
-  if (flipActiveSlot === null) {
+  if (flipActiveSlot === undefined) {
     return;
   }
 
@@ -126,7 +126,7 @@ export function preUseItemFlip(
   v.run.currentFlipCharge = flipTriggeredByRoomClear ? flipCharge : 0;
 }
 
-function getFlipActiveSlot(player: EntityPlayer) {
+function getFlipActiveSlot(player: EntityPlayer): ActiveSlot | undefined {
   for (const activeSlot of [ActiveSlot.PRIMARY, ActiveSlot.SECONDARY]) {
     const activeItem = player.GetActiveItem(activeSlot);
     if (
@@ -137,7 +137,7 @@ function getFlipActiveSlot(player: EntityPlayer) {
     }
   }
 
-  return null;
+  return undefined;
 }
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
@@ -169,7 +169,7 @@ export function postFlip(player: EntityPlayer): void {
   // Flip is maintained between characters. However, this does not happen if the item is in a normal
   // active slot, so we have to manually ensure that the charge state is duplicated.
   const flipActiveSlot = getFlipActiveSlot(player);
-  if (flipActiveSlot === null) {
+  if (flipActiveSlot === undefined) {
     return;
   }
 

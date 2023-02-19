@@ -113,9 +113,9 @@ function read() {
   return true;
 }
 
-export function readUDP(): string | null {
+export function readUDP(): string | undefined {
   if (!socketClient.isActive()) {
-    return null;
+    return undefined;
   }
 
   const { data, errMsg } = socketClient.receiveUDP();
@@ -126,7 +126,7 @@ export function readUDP(): string | null {
       reset();
     }
 
-    return null;
+    return undefined;
   }
 
   return data;

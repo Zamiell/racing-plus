@@ -5,7 +5,7 @@ const NOTIFICATION_TEXT =
   "Subscribe to Mod Config Menu to enable custom hotkeys for Racing+";
 
 let displayedNotification = false;
-let timer: int | null = null;
+let timer: int | undefined;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
@@ -13,13 +13,13 @@ export function postRender(): void {
     return;
   }
 
-  if (timer === null) {
+  if (timer === undefined) {
     return;
   }
 
   timer--;
   if (timer === 0) {
-    timer = null;
+    timer = undefined;
     return;
   }
 
