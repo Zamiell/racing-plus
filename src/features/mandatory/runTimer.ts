@@ -15,7 +15,7 @@ import * as timer from "../../timer";
 import { getNumIdentifiedPills } from "../optional/quality/showPills";
 
 const RUN_TIMER_X = 52;
-const RUN_TIMER_Y = 49;
+const RUN_TIMER_Y = 64; // Aligned with the key count.
 const RUN_TIMER_Y_TAINTED_ISAAC_MOD = 18;
 
 const v = {

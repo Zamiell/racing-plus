@@ -8,7 +8,7 @@
 - Changed the description of the D6 to "The D6" so that the UI does not change when the map key is held down.
 - !Show pills based on screen size.
 - !Show second timer based on screen size.
-- !Fixed the bug where the in-game timer overlapped with the free devil deal icon.
+- Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
 - !Fixed the bug where the in-game timer used render frames instead of game frames.
 - !Fixed the bug in season 3 where ???. (Thanks TNTerminator)
 - !Class holiday hats.
