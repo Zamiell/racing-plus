@@ -5,7 +5,6 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
   arrayRemoveInPlace,
   DefaultMap,
   dequeueItem,
@@ -28,7 +27,6 @@ import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
 import { drawErrorText } from "../mandatory/errors";
-import { BANNED_COLLECTIBLES_WITH_VOID } from "../mandatory/removeGloballyBannedItems/constants";
 import { isOnFirstCharacter } from "./speedrun";
 
 export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
@@ -182,8 +180,8 @@ const v = {
 
   run: {
     playersCurrentlyStoring: new Set<PlayerIndex>(),
-    startedAsChar: PlayerType.POSSESSOR,
-    removedExtraStartingItems: false,
+    playersStartingCharacter: new Map<PlayerIndex, PlayerType>(),
+    playersRemovedExtraStartingItems: new Set<PlayerIndex>(),
   },
 };
 
@@ -272,6 +270,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
   }
 
   checkStorageAnimationComplete(player);
+  checkChangedCharacter(player);
 }
 
 function checkStorageAnimationComplete(player: EntityPlayer) {
@@ -284,6 +283,32 @@ function checkStorageAnimationComplete(player: EntityPlayer) {
     v.run.playersCurrentlyStoring.delete(playerIndex);
     playersStoringSprites.delete(playerIndex);
   }
+}
+
+function checkChangedCharacter(player: EntityPlayer) {
+  const character = player.GetPlayerType();
+  const playerIndex = getPlayerIndex(player);
+
+  const removedExtraStartingItems =
+    v.run.playersRemovedExtraStartingItems.has(playerIndex);
+  if (removedExtraStartingItems) {
+    return;
+  }
+
+  const startingCharacter = v.run.playersStartingCharacter.get(playerIndex);
+  if (startingCharacter === undefined || startingCharacter === character) {
+    return;
+  }
+
+  const collectibleTypes =
+    EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(startingCharacter);
+  if (collectibleTypes !== undefined) {
+    for (const collectibleType of collectibleTypes) {
+      player.RemoveCollectible(collectibleType);
+    }
+  }
+
+  v.run.playersRemovedExtraStartingItems.add(playerIndex);
 }
 
 // ModCallback.POST_USE_CARD (5)
@@ -348,15 +373,6 @@ function giveStartingItems() {
 
 function spawnStoredCollectibles() {
   v.persistent.storedCollectibles.forEach((collectibleType, i) => {
-    // Since certain collectibles are supposed to be removed from pools on Apollyon, skip spawning
-    // them. (But leave them in storage for subsequent characters.)
-    if (
-      anyPlayerHasCollectible(CollectibleType.VOID) &&
-      BANNED_COLLECTIBLES_WITH_VOID.has(collectibleType)
-    ) {
-      return;
-    }
-
     // If there are so many stored collectibles that they take up every available position in the
     // room, then start spawning them on an overlap starting at the top left again.
     const safeIndex = i % STORED_ITEM_POSITIONS.length;
@@ -427,6 +443,13 @@ function drawStorageIcon(player: EntityPlayer) {
   const playerScreenPosition = Isaac.WorldToScreen(player.Position);
   const abovePlayerPosition = playerScreenPosition.add(STORAGE_ICON_OFFSET);
   sprite.Render(abovePlayerPosition);
+}
+
+// ModCallbackCustom.POST_PLAYER_INIT_LATE
+export function postPlayerInitLate(player: EntityPlayer): void {
+  const character = player.GetPlayerType();
+  const playerIndex = getPlayerIndex(player);
+  v.run.playersStartingCharacter.set(playerIndex, character);
 }
 
 // ModCallbackCustom.PRE_ITEM_PICKUP
