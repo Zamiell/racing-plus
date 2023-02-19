@@ -3,15 +3,18 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.94.0_ - February 20th, 2023 (Unreleased)
+
+- !Show pills based on screen size.
+- !Show second timer based on screen size.
+
 ### _v0.93.0_ - February 19th, 2023
 
 - The Baby Plum from Plum Flute will now be faded. (The tears from it will also be faded.)
 - In season 4, all of a character's starting items will now be removed if you revive as a different character.
 - In season 4, We Need to Go Deeper, Mega Blast, and Mega Mush can no longer be stored.
-- In season 4, you can no longer store items if you are on the final character.
+- In season 4, you can no longer store new items if you are on the final character.
 - Fixed the bug in season 4 where you could use Spindown Dice on stored items.
-- !Show pills based on screen size.
-- !Show second timer based on screen size.
 
 ### _v0.92.0_ - February 18th, 2023
 

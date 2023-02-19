@@ -160,6 +160,13 @@ export function postRender(): void {
   drawTextAndSprite();
 }
 
+/**
+ * We want to align the pill display with the bottom of the screen so that it displays properly on
+ * different kinds of resolutions (and grows upward as the player identifies more pills). Thus, we
+ * start by calculating the total height of the pill display.
+ *
+ * TODO
+ */
 function drawTextAndSprite() {
   const font = fonts.droid;
 
