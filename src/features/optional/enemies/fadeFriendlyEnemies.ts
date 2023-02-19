@@ -1,4 +1,8 @@
-import { EntityFlag } from "isaac-typescript-definitions";
+import {
+  EntityFlag,
+  EntityType,
+  FamiliarVariant,
+} from "isaac-typescript-definitions";
 import { setEntityOpacity } from "isaacscript-common";
 
 /** The floating heart animation must be separately faded in "statuseffects.anm2". */
@@ -9,6 +13,22 @@ const FADE_AMOUNT = 0.25;
 export function postNPCUpdate(npc: EntityNPC): void {
   if (npc.HasEntityFlags(EntityFlag.FRIENDLY)) {
     setEntityOpacity(npc, FADE_AMOUNT);
+  }
+}
+
+// ModCallback.POST_FAMILIAR_UPDATE (6)
+// FamiliarVariant.BABY_PLUM (224)
+export function postFamiliarUpdateBabyPlum(familiar: EntityFamiliar): void {
+  setEntityOpacity(familiar, FADE_AMOUNT);
+}
+
+// ModCallback.POST_TEAR_UPDATE (40)
+export function postTearUpdate(tear: EntityTear): void {
+  if (
+    tear.SpawnerType === EntityType.FAMILIAR &&
+    tear.SpawnerVariant === (FamiliarVariant.BABY_PLUM as int)
+  ) {
+    setEntityOpacity(tear, FADE_AMOUNT);
   }
 }
 
