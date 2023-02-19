@@ -114,8 +114,8 @@ export function postRender(): void {
 }
 
 function drawErrors() {
-  let action: string | null = null;
-  let errorEventTime: int | null = null;
+  let action: string | undefined;
+  let errorEventTime: int | undefined;
   if (v.run.errors.gameRecentlyOpened) {
     action = "opening the game";
     errorEventTime = getTimeGameOpened();
@@ -124,10 +124,10 @@ function drawErrors() {
     errorEventTime = getTimeConsoleUsed();
   } else if (v.run.errors.bansRecentlySet) {
     action = `assigning your ${SEASON_2_NUM_BANS} build bans`;
-    errorEventTime = v.persistent.randomCharacterOrder.timeBansSet;
+    errorEventTime = v.persistent.randomCharacterOrder.timeBansSet ?? undefined;
   }
 
-  if (action === null || errorEventTime === null) {
+  if (action === undefined || errorEventTime === undefined) {
     return;
   }
 
@@ -188,7 +188,7 @@ function checkErrors() {
 
   // Console recently used.
   const timeConsoleUsed = getTimeConsoleUsed();
-  if (timeConsoleUsed === null) {
+  if (timeConsoleUsed === undefined) {
     v.run.errors.consoleRecentlyUsed = false;
   } else {
     const consoleUnlockTime =

@@ -1,7 +1,7 @@
 import { Keyboard } from "isaac-typescript-definitions";
 import { isKeyboardPressed } from "isaacscript-common";
 
-let timeConsoleOpenedOrUsed: int | null = null;
+let timeConsoleOpenedOrUsed: int | undefined;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
@@ -16,6 +16,6 @@ export function executeCmd(): void {
   timeConsoleOpenedOrUsed = Isaac.GetTime();
 }
 
-export function getTimeConsoleUsed(): int | null {
+export function getTimeConsoleUsed(): int | undefined {
   return timeConsoleOpenedOrUsed;
 }
