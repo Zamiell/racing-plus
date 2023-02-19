@@ -18,6 +18,8 @@ import {
   newCollectibleSprite,
   PickingUpItem,
   PlayerIndex,
+  ReadonlyMap,
+  ReadonlySet,
   sfxManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
@@ -33,6 +35,30 @@ export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
   PlayerType.JACOB, // 19
 ] as const;
+
+const EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
+  PlayerType,
+  CollectibleType[]
+>([
+  // 13
+  [PlayerType.LILITH, [CollectibleType.DUALITY]],
+
+  // 18
+  [PlayerType.BETHANY, [CollectibleType.DUALITY]],
+
+  // 19
+  [
+    PlayerType.JACOB,
+    [CollectibleType.THERES_OPTIONS, CollectibleType.MORE_OPTIONS],
+  ],
+]);
+
+const BANNED_COLLECTIBLES_WITH_STORAGE = new ReadonlySet<CollectibleType>([
+  CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
+  CollectibleType.MEGA_BLAST, // 441
+  CollectibleType.MEGA_MUSH, // 625
+  CollectibleTypeCustom.CHECKPOINT,
+]);
 
 const STORED_ITEM_POSITIONS = [
   // Row 1 left
@@ -156,6 +182,8 @@ const v = {
 
   run: {
     playersCurrentlyStoring: new Set<PlayerIndex>(),
+    startedAsChar: PlayerType.POSSESSOR,
+    removedExtraStartingItems: false,
   },
 };
 
@@ -190,7 +218,7 @@ function checkStoreCollectible() {
   }
 
   const collectibleType = player.QueuedItem.Item.ID;
-  if (collectibleType === CollectibleTypeCustom.CHECKPOINT) {
+  if (BANNED_COLLECTIBLES_WITH_STORAGE.has(collectibleType)) {
     return;
   }
 
@@ -304,36 +332,17 @@ function giveStartingItems() {
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 
-  // Give extra items to some characters.
-  switch (character) {
-    // 0
-    case PlayerType.ISAAC: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
-      break;
+  const collectibleTypes = EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(character);
+  if (collectibleTypes !== undefined) {
+    for (const collectibleType of collectibleTypes) {
+      addCollectibleAndRemoveFromPools(player, collectibleType);
     }
+  }
 
-    // 13
-    case PlayerType.LILITH: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      break;
-    }
-
-    // 18
-    case PlayerType.BETHANY: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.DUALITY);
-      break;
-    }
-
-    // 19
-    case PlayerType.JACOB: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.THERES_OPTIONS); // 249
-      addCollectibleAndRemoveFromPools(player, CollectibleType.MORE_OPTIONS); // 414
-      break;
-    }
-
-    default: {
-      break;
-    }
+  // Isaac is bugged in challenges; he must be explicitly given the D6. (Additionally, we don't want
+  // the revival nerf mechanic to apply to the D6 in this situation.)
+  if (character === PlayerType.ISAAC) {
+    addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
   }
 }
 

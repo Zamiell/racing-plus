@@ -225,6 +225,7 @@ Some builds are banned on certain characters:
 - Jacob & Esau start with There's Options & More Options.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 - Jacob & Esau and Bethany will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
+- If you transform into a different character mid-way through the run, the extra starting items will be removed.
 
 ### Goal
 
@@ -233,14 +234,20 @@ Some builds are banned on certain characters:
 
 ### Storage
 
-- When holding a collectible above your head, you can hold down the map button to activate a "storage" mechanic.
+#### Basic Description
+
+- When holding a collectible above your head, you can hold down the a button to activate a "storage" mechanic.
 - When a collectible is stored, it will not be granted to the player, but will go into storage instead.
 - All stored collectibles will appear in the starting room of the next character in the speedrun.
 - If you do not take a stored collectible in the starting room, it will continue to be stored for future characters.
+
+#### Extra Storage Rules
+
+- We Need to Go Deeper, Mega Blast, and Mega Mush can not be stored.
 - You can only store an active collectible on the initial pickup. (In other words, if you have already touched the active collectible on the current run, then you cannot store it.)
 - Stored collectibles are removed from pools when you store them (even though they do not go into your inventory).
 - Stored collectibles are not removed from pools if they appear in the starting room of the run (but they are removed if you take them).
-- Stored collectibles cannot be rolled, voided, or duplicated (with e.g. Diplopia or Crooked Penny).
+- Stored collectibles cannot be rolled, voided, duplicated, or moved (with e.g. D6, D100, Eternal D6, Spindown Dice, Void, Abyss, Diplopia, Crooked Penny, Moving Box, or Dice Shard).
 - If you reset or die before touching the trophy, any collectibles that you stored on the run will be lost. Items already stored from previous characters will remain. (This prevents you from storing items from the Basement 1 Treasure Room.)
 - Mega Blast and Mega Mush will not appear in the starting room for Apollyon, but will remain in storage for subsequent characters.
 

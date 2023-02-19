@@ -5,6 +5,9 @@
 
 ### _v0.92.0_ - February 19th, 2023
 
+- !In season 4, extra starting items will now be removed if you revive as a different character.
+- In season 4, We Need to Go Deeper, Mega Blast, and Mega Mush can no longer be stored.
+- !Baby Plum and bullets will now be faded.
 - Fixed the bug in season 4 where you could use Spindown Dice on stored items.
 
 ### _v0.92.0_ - February 18th, 2023
