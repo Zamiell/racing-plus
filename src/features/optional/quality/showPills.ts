@@ -12,6 +12,7 @@ import {
   getNormalPillColors,
   getPHDPillEffect,
   getPillEffectName,
+  getScreenBottomY,
   isActionPressedOnAnyInput,
   KColorDefault,
   log,
@@ -37,6 +38,8 @@ const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Horf!
   [PillEffect.LEMON_PARTY, PillEffect.HORF], // 26
 ]);
+
+const LINE_HEIGHT = 20;
 
 /** These are not meant to ever be reset. */
 const pillSprites = new Map<PillColor, Sprite>();
@@ -170,19 +173,16 @@ export function postRender(): void {
 function drawTextAndSprite() {
   const font = fonts.droid;
 
+  // We add one because of the header.
+  const totalHeight = LINE_HEIGHT * (1 + v.run.pillsIdentified.length);
+  const bottomY = getScreenBottomY();
+
   const x = 80;
-  let baseY = 97;
-  for (let i = 9; i <= 12; i++) {
-    // Avoid overflow on the bottom if we identify a lot of pills.
-    if (v.run.pillsIdentified.length >= i) {
-      baseY -= 20;
-    }
-  }
+  const baseY = bottomY - totalHeight;
 
   const pillsIdentifiedText = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
-  font.DrawString(pillsIdentifiedText, x - 10, baseY - 9 + 20, KColorDefault);
+  font.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
 
-  baseY += 20;
   v.run.pillsIdentified.forEach((pillEntry, i) => {
     // Show the pill sprite.
     const y = baseY + 20 * (i + 1);
@@ -194,7 +194,7 @@ function drawTextAndSprite() {
       );
       return;
     }
-    sprite.RenderLayer(0, position);
+    sprite.Render(position);
 
     // Show the pill effect as text.
     let pillEffectName = getPillEffectName(pillEntry.effect);

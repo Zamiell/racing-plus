@@ -84,7 +84,7 @@ export function draw(
     convertSecondsToTimerValues(seconds);
 
   const positionClock = Vector(startingX + 34, startingY + 45);
-  sprites.clock.RenderLayer(0, positionClock);
+  sprites.clock.Render(positionClock);
 
   if (hours > 0) {
     // The format is "#.##.##" (instead of "##.##", which is the default).
@@ -96,33 +96,33 @@ export function draw(
       startingY,
     );
     sprites.digits.hour.SetFrame("Default", hours);
-    sprites.digits.hour.RenderLayer(0, positionHours);
+    sprites.digits.hour.Render(positionHours);
 
     const positionColon = Vector(startingX - DIGIT_LENGTH + 7, startingY + 19);
-    sprites.colons.afterHours.RenderLayer(0, positionColon);
+    sprites.colons.afterHours.Render(positionColon);
   }
 
   const positionMinute1 = Vector(startingX, startingY);
   sprites.digits.minute1.SetFrame("Default", minute1);
-  sprites.digits.minute1.RenderLayer(0, positionMinute1);
+  sprites.digits.minute1.Render(positionMinute1);
 
   const positionMinute2 = Vector(startingX + DIGIT_LENGTH, startingY);
   sprites.digits.minute2.SetFrame("Default", minute2);
-  sprites.digits.minute2.RenderLayer(0, positionMinute2);
+  sprites.digits.minute2.Render(positionMinute2);
 
   const positionColon1 = Vector(startingX + DIGIT_LENGTH + 10, startingY + 19);
-  sprites.colons.afterMinutes.RenderLayer(0, positionColon1);
+  sprites.colons.afterMinutes.Render(positionColon1);
 
   const positionSecond1 = Vector(startingX + DIGIT_LENGTH + 11, startingY);
   sprites.digits.second1.SetFrame("Default", second1);
-  sprites.digits.second1.RenderLayer(0, positionSecond1);
+  sprites.digits.second1.Render(positionSecond1);
 
   const positionSecond2 = Vector(
     startingX + DIGIT_LENGTH + 11 + DIGIT_LENGTH + 1 - hourAdjustment2,
     startingY,
   );
   sprites.digits.second2.SetFrame("Default", second2);
-  sprites.digits.second2.RenderLayer(0, positionSecond2);
+  sprites.digits.second2.Render(positionSecond2);
 
   const positionTenths = Vector(
     startingX +
@@ -135,7 +135,7 @@ export function draw(
     startingY + 1,
   );
   sprites.digitMini.SetFrame("Default", tenths);
-  sprites.digitMini.RenderLayer(0, positionTenths);
+  sprites.digitMini.Render(positionTenths);
 }
 
 export function convertSecondsToTimerValues(totalSeconds: int): {

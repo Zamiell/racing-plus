@@ -5,9 +5,9 @@
 
 ### _v0.94.0_ - February 20th, 2023 (Unreleased)
 
-- !Show pills based on screen size.
-- !Show second timer based on screen size.
+- The pill identification UI will now start from the bottom of the screen and grow upwards. This should make it work better on smaller resolutions.
 - Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
+- !Show second timer based on screen size.
 - !Fixed the bug where the in-game timer used render frames instead of game frames.
 - !Fixed the bug in season 3 where ???. (Thanks TNTerminator)
 - !Class holiday hats.
