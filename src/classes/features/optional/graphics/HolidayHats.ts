@@ -14,8 +14,8 @@ const CURRENT_HOLIDAY = Holiday.NONE as Holiday;
 export class HolidayHats extends ConfigurableModFeature {
   configKey: keyof Config = "holidayHats";
 
-  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED)
-  postGameStartedReordered(): void {
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
     addHolidayHat();
   }
 }

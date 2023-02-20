@@ -17,13 +17,13 @@ import {
   spawnGridEntityWithVariant,
   VectorZero,
 } from "isaacscript-common";
+import { speedrunSetBansTime } from "../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { g } from "../../globals";
 import { newGlowingCollectibleSprite } from "../../sprite";
 import { ChallengeCustomAbbreviation } from "../speedrun/constants";
 import { SEASON_2_STARTING_BUILDS } from "../speedrun/season2/constants";
-import { speedrunSetBansTime } from "../speedrun/v";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 import { getSeasonDescription, v } from "./v";
 

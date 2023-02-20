@@ -6,7 +6,7 @@ import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
-import * as errors from "./features/mandatory/errors";
+import { errorsInit } from "./features/mandatory/errors/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -104,7 +104,7 @@ export function initFeatureVariables(): void {
   disableMultiplayer.init();
   drawVersion.init();
   dummyDPS.init();
-  errors.init();
+  errorsInit();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
   seededGlitterBombs.init();

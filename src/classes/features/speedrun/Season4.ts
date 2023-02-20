@@ -26,14 +26,11 @@ import {
   newCollectibleSprite,
   PickingUpItem,
   PlayerIndex,
-  ReadonlyMap,
-  ReadonlySet,
   removeCollectible,
   removeCollectibleFromPools,
   sfxManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import {
   isOnFinalCharacter,
   isOnFirstCharacter,
@@ -42,148 +39,14 @@ import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-
-export const STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
-  PlayerType.BETHANY, // 18
-  PlayerType.JACOB, // 19
-] as const;
-
-const EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
-  PlayerType,
-  CollectibleType[]
->([
-  // 13
-  [PlayerType.LILITH, [CollectibleType.BIRTHRIGHT]],
-
-  // 18
-  [PlayerType.BETHANY, [CollectibleType.DUALITY]],
-
-  // 19
-  [
-    PlayerType.JACOB,
-    [CollectibleType.THERES_OPTIONS, CollectibleType.MORE_OPTIONS],
-  ],
-]);
-
-const BANNED_COLLECTIBLES = [CollectibleType.WE_NEED_TO_GO_DEEPER] as const;
-
-const BANNED_COLLECTIBLES_WITH_STORAGE = new ReadonlySet<CollectibleType>([
-  CollectibleTypeCustom.CHECKPOINT,
-]);
-
-const STORED_ITEM_POSITIONS = [
-  // Row 1 left
-  Vector(80, 160),
-  Vector(120, 160),
-  Vector(160, 160),
-  Vector(200, 160),
-  Vector(240, 160),
-
-  // Row 1 right
-  Vector(400, 160),
-  Vector(440, 160),
-  Vector(480, 160),
-  Vector(520, 160),
-  Vector(560, 160),
-
-  // Row 2 left
-  Vector(80, 240),
-  Vector(120, 240),
-  Vector(160, 240),
-  Vector(200, 240),
-  Vector(240, 240),
-
-  // Row 2 right
-  Vector(400, 240),
-  Vector(440, 240),
-  Vector(480, 240),
-  Vector(520, 240),
-  Vector(560, 240),
-
-  // Row 3 left
-  Vector(80, 320),
-  Vector(120, 320),
-  Vector(160, 320),
-  Vector(200, 320),
-  Vector(240, 320),
-
-  // Row 3 right
-  Vector(400, 320),
-  Vector(440, 320),
-  Vector(480, 320),
-  Vector(520, 320),
-  Vector(560, 320),
-
-  // Row 4 left
-  Vector(80, 400),
-  Vector(120, 400),
-  Vector(160, 400),
-  Vector(200, 400),
-  Vector(240, 400),
-
-  // Row 4 right
-  Vector(400, 400),
-  Vector(440, 400),
-  Vector(480, 400),
-  Vector(520, 400),
-  Vector(560, 400),
-
-  // --------
-  // Overflow
-  // --------
-
-  // Row 1 left
-  Vector(100, 160),
-  Vector(140, 160),
-  Vector(180, 160),
-  Vector(220, 160),
-
-  // Row 1 right
-  Vector(420, 160),
-  Vector(460, 160),
-  Vector(500, 160),
-  Vector(540, 160),
-
-  // Row 2 left
-  Vector(100, 240),
-  Vector(140, 240),
-  Vector(180, 240),
-  Vector(220, 240),
-
-  // Row 2 right
-  Vector(420, 240),
-  Vector(460, 240),
-  Vector(500, 240),
-  Vector(540, 240),
-
-  // Row 3 left
-  Vector(100, 320),
-  Vector(140, 320),
-  Vector(180, 320),
-  Vector(220, 320),
-
-  // Row 3 right
-  Vector(420, 320),
-  Vector(460, 320),
-  Vector(500, 320),
-  Vector(540, 320),
-
-  // Row 4 left
-  Vector(100, 400),
-  Vector(140, 400),
-  Vector(180, 400),
-  Vector(220, 400),
-
-  // Row 4 right
-  Vector(420, 400),
-  Vector(460, 400),
-  Vector(500, 400),
-  Vector(540, 400),
-] as const;
-
-const COLLECTIBLE_OVERFLOW_LENGTH = 40;
-
-const STORAGE_ICON_OFFSET = Vector(0, -30);
+import {
+  SEASON_4_BANNED_COLLECTIBLES,
+  SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE,
+  SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH,
+  SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP,
+  SEASON_4_STORAGE_ICON_OFFSET,
+  SEASON_4_STORED_ITEM_POSITIONS,
+} from "./season4Constants";
 
 const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
   newCollectibleSprite(CollectibleType.SCHOOLBAG),
@@ -266,16 +129,18 @@ export class Season4 extends ChallengeModFeature {
 
     const sprite = playersStoringSprites.getAndSetDefault(playerIndex);
     const playerScreenPosition = Isaac.WorldToScreen(player.Position);
-    const abovePlayerPosition = playerScreenPosition.add(STORAGE_ICON_OFFSET);
+    const abovePlayerPosition = playerScreenPosition.add(
+      SEASON_4_STORAGE_ICON_OFFSET,
+    );
     sprite.Render(abovePlayerPosition);
   }
 
-  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED)
-  postGameStartedReordered(): void {
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
     this.resetDataStructures();
     this.giveStartingItems();
     this.spawnStoredCollectibles();
-    removeCollectibleFromPools(...BANNED_COLLECTIBLES);
+    removeCollectibleFromPools(...SEASON_4_BANNED_COLLECTIBLES);
   }
 
   resetDataStructures(): void {
@@ -295,7 +160,7 @@ export class Season4 extends ChallengeModFeature {
     const character = player.GetPlayerType();
 
     const collectibleTypes =
-      EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(character);
+      SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(character);
     if (collectibleTypes !== undefined) {
       for (const collectibleType of collectibleTypes) {
         addCollectibleAndRemoveFromPools(player, collectibleType);
@@ -313,15 +178,16 @@ export class Season4 extends ChallengeModFeature {
     v.persistent.storedCollectibles.forEach((collectibleType, i) => {
       // If there are so many stored collectibles that they take up every available position in the
       // room, then start spawning them on an overlap starting at the top left again.
-      const safeIndex = i % STORED_ITEM_POSITIONS.length;
-      const position = STORED_ITEM_POSITIONS[safeIndex];
+      const safeIndex = i % SEASON_4_STORED_ITEM_POSITIONS.length;
+      const position = SEASON_4_STORED_ITEM_POSITIONS[safeIndex];
       if (position === undefined) {
         error("Failed to find a position for a stored collectible.");
       }
 
       const collectible = mod.spawnCollectible(collectibleType, position);
       if (
-        v.persistent.storedCollectibles.length > COLLECTIBLE_OVERFLOW_LENGTH
+        v.persistent.storedCollectibles.length >
+        SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH
       ) {
         collectible.Size /= 3;
 
@@ -388,7 +254,7 @@ export class Season4 extends ChallengeModFeature {
     }
 
     const extraStartingCollectibleTypes =
-      EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(startingCharacter);
+      SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP.get(startingCharacter);
     if (extraStartingCollectibleTypes !== undefined) {
       removeCollectible(player, ...extraStartingCollectibleTypes);
     }
@@ -440,7 +306,7 @@ function checkStoreCollectible() {
   }
 
   const collectibleType = player.QueuedItem.Item.ID;
-  if (BANNED_COLLECTIBLES_WITH_STORAGE.has(collectibleType)) {
+  if (SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE.has(collectibleType)) {
     return;
   }
 

@@ -6,7 +6,8 @@ import {
 } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
-import { errorsPostGameStarted, hasErrors } from "../features/mandatory/errors";
+import { errorsPostGameStarted } from "../features/mandatory/errors/errors";
+import { hasErrors } from "../features/mandatory/errors/v";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";

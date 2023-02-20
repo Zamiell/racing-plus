@@ -15,6 +15,7 @@ import {
   sfxManager,
   sumArray,
 } from "isaacscript-common";
+import { randomCharacterOrderResetPersistentVars } from "../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../enums/SoundEffectCustom";
@@ -23,7 +24,11 @@ import * as timer from "../../timer";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
-import { speedrunGetCharacterNum, v } from "./v";
+import {
+  speedrunGetCharacterNum,
+  speedrunResetPersistentVarsSpeedrun,
+  v,
+} from "./v";
 
 const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM =
   new ReadonlySet<Challenge>([
@@ -222,4 +227,9 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
       }
     }, 4);
   }
+}
+
+export function speedrunResetPersistentVars(): void {
+  speedrunResetPersistentVarsSpeedrun();
+  randomCharacterOrderResetPersistentVars();
 }

@@ -9,6 +9,7 @@ import {
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
+import { getStartingCharacter } from "../../../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { g } from "../../../../globals";
@@ -16,7 +17,6 @@ import {
   addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
 } from "../../../../utilsGlobals";
-import { getStartingCharacter } from "../../randomCharacterOrder";
 import { getCharacterOrderSafe } from "../../speedrun";
 import {
   SEASON_2_FORGOTTEN_EXCEPTIONS,

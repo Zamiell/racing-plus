@@ -19,9 +19,5 @@ module.exports = {
 
   rules: {
     // Insert changed or disabled rules here, if necessary.
-    // @template-customization-start
-    "class-methods-use-this": "off",
-    "no-new": "off",
-    // @template-customization-end
   },
 };

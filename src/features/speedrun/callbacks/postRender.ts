@@ -1,16 +1,19 @@
 import { FadeoutTarget } from "isaac-typescript-definitions";
 import { game, getCharacterName, log } from "isaacscript-common";
 import {
+  isSpeedrunWithRandomCharacterOrder,
+  speedrunHasErrors,
+} from "../../../classes/features/speedrun/RandomCharacterOrder";
+import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
-import * as randomCharacterOrder from "../randomCharacterOrder";
 import { season2PostRender } from "../season2/callbacks/postRender";
 import { season3PostRender } from "../season3/callbacks/postRender";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
-import { speedrunHasErrors, v } from "../v";
+import { v } from "../v";
 
 const FADEOUT_SPEED = 0.0275;
 
@@ -32,7 +35,6 @@ export function speedrunPostRender(): void {
 
   speedrunTimer.postRender();
   characterProgress.postRender();
-  randomCharacterOrder.postRender();
 
   if (speedrunHasErrors()) {
     return;
@@ -74,7 +76,7 @@ function speedrunSetNextCharacterAndRestart() {
   log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
 
   // Speedruns with a random character order will set the next character using its own code.
-  if (!randomCharacterOrder.isSpeedrunWithRandomCharacterOrder()) {
+  if (!isSpeedrunWithRandomCharacterOrder()) {
     const character = getCurrentCharacter();
     setRestartCharacter(character);
 

@@ -2,7 +2,7 @@ import { ModCallback } from "isaac-typescript-definitions";
 import { updateCachedAPIFunctions } from "../cache";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
-import * as errors from "../features/mandatory/errors";
+import * as errors from "../features/mandatory/errors/errors";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";

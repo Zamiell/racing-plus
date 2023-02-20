@@ -1,5 +1,9 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
+import {
+  isSpeedrunWithRandomCharacterOrder,
+  speedrunHasErrors,
+} from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
@@ -10,7 +14,6 @@ import {
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
-import * as randomCharacterOrder from "../randomCharacterOrder";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
@@ -20,13 +23,9 @@ import {
   getFirstCharacter,
   inSpeedrun,
   isOnFirstCharacter,
-} from "../speedrun";
-import {
-  speedrunHasErrors,
-  speedrunResetFirstCharacterVars,
   speedrunResetPersistentVars,
-  v,
-} from "../v";
+} from "../speedrun";
+import { speedrunResetFirstCharacterVars, v } from "../v";
 
 export function speedrunPostGameStarted(): void {
   if (!inSpeedrun()) {
@@ -65,7 +64,6 @@ export function speedrunPostGameStarted(): void {
 
   speedrunResetFirstCharacterVars();
   characterProgress.postGameStarted();
-  randomCharacterOrder.postGameStarted();
 
   if (speedrunHasErrors()) {
     return;
@@ -98,7 +96,7 @@ function setCorrectCharacter() {
   const character = player.GetPlayerType();
 
   // Character order is explicitly handled in some seasons.
-  if (randomCharacterOrder.isSpeedrunWithRandomCharacterOrder()) {
+  if (isSpeedrunWithRandomCharacterOrder()) {
     return false;
   }
 
@@ -132,10 +130,9 @@ function goBackToFirstCharacter() {
   v.persistent.characterNum = 1;
   restartOnNextFrame();
 
-  const firstCharacter =
-    randomCharacterOrder.isSpeedrunWithRandomCharacterOrder()
-      ? PlayerType.ISAAC
-      : getFirstCharacter();
+  const firstCharacter = isSpeedrunWithRandomCharacterOrder()
+    ? PlayerType.ISAAC
+    : getFirstCharacter();
   setRestartCharacter(firstCharacter);
 
   log("Restarting because we want to start from the first character again.");

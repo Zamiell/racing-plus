@@ -12,39 +12,27 @@ import {
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
+  isRepentance,
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
-import { mod } from "../../mod";
-import { checkValidCharOrder, inSpeedrun } from "../speedrun/speedrun";
+import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { PlayerTypeCustom } from "../../../enums/PlayerTypeCustom";
+import { mod } from "../../../mod";
+import { checkValidCharOrder, inSpeedrun } from "../../speedrun/speedrun";
+import { drawErrorText } from "./utils";
+import { v } from "./v";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;
 const COLLECTIBLE_TO_CHECK = CollectibleType.DEATH_CERTIFICATE;
 const ITEM_POOL_TO_CHECK = ItemPoolType.SECRET;
-const STARTING_X = 115;
-const STARTING_Y = 70;
-const MAX_CHARACTERS = 50;
-
-const v = {
-  run: {
-    corrupted: false,
-    incompleteSave: false,
-    otherModsEnabled: false,
-  },
-};
-
-export function init(): void {
-  mod.saveDataManager("errors", v);
-}
 
 // ModCallback.POST_RENDER (2)
 /** @returns True if there are one or more errors. */
 export function postRender(): boolean {
-  if (REPENTANCE === undefined) {
+  if (v.run.afterbirthPlus) {
     drawErrorText(
       "You must have the Repentance DLC installed in order to use Racing+.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.",
     );
@@ -72,7 +60,14 @@ export function postRender(): boolean {
     return true;
   }
 
-  if (inSpeedrun() && !checkValidCharOrder()) {
+  if (v.run.babiesModEnabled) {
+    drawErrorText(
+      "You must turn off The Babies Mod when playing characters other than Random Baby.",
+    );
+    return true;
+  }
+
+  if (v.run.invalidCharOrder) {
     const challenge = Isaac.GetChallenge();
     const thingToSet =
       challenge === ChallengeCustom.SEASON_2
@@ -84,63 +79,24 @@ export function postRender(): boolean {
     return true;
   }
 
-  if (BabiesModGlobals !== undefined) {
-    const player = Isaac.GetPlayer();
-    const isRandomBaby = isCharacter(player, PlayerTypeCustom.RANDOM_BABY);
-    const effectiveStage = getEffectiveStage();
-    const roomVisitedCount = getRoomVisitedCount();
-
-    if (
-      effectiveStage === LevelStage.BASEMENT_1 &&
-      inStartingRoom() &&
-      roomVisitedCount === 1 &&
-      !isRandomBaby
-    ) {
-      drawErrorText(
-        "You must turn off The Babies Mod when playing characters other than Random Baby.",
-      );
-      return true;
-    }
-  }
-
   return false;
-}
-
-export function drawErrorText(text: string): void {
-  const x = STARTING_X;
-  let y = STARTING_Y;
-
-  text = `Error: ${text}`;
-
-  for (const line of text.split("\n")) {
-    const splitLines = getSplitLines(line);
-    for (const splitLine of splitLines) {
-      Isaac.RenderText(splitLine, x, y, 2, 2, 2, 2);
-      y += 10;
-    }
-  }
-}
-
-function getSplitLines(line: string): string[] {
-  let spaceLeft = MAX_CHARACTERS;
-  const words = line.split(" ");
-  words.forEach((word, i) => {
-    if (word.length + 1 > spaceLeft) {
-      words[i] = `\n${word}`;
-      spaceLeft = MAX_CHARACTERS - word.length;
-    } else {
-      spaceLeft -= word.length + 1;
-    }
-  });
-
-  return words.join(" ").split("\n");
 }
 
 // ModCallback.POST_GAME_STARTED (15)
 export function errorsPostGameStarted(): void {
+  checkAfterbirthPlus();
   checkCorruptMod();
   checkIncompleteSave();
   checkOtherModsEnabled();
+  checkBabiesModEnabled();
+  checkInvalidCharOrder();
+}
+
+function checkAfterbirthPlus() {
+  if (!isRepentance()) {
+    log(`Error: Afterbirth+ detected.`);
+    v.run.afterbirthPlus = true;
+  }
 }
 
 /**
@@ -223,7 +179,30 @@ function checkOtherModsEnabled() {
   }
 }
 
-export function hasErrors(): boolean {
-  const errors = Object.values(v.run);
-  return errors.includes(true);
+function checkBabiesModEnabled() {
+  if (BabiesModGlobals === undefined) {
+    return;
+  }
+
+  const player = Isaac.GetPlayer();
+  const isRandomBaby = isCharacter(player, PlayerTypeCustom.RANDOM_BABY);
+  const effectiveStage = getEffectiveStage();
+  const roomVisitedCount = getRoomVisitedCount();
+
+  if (
+    effectiveStage === LevelStage.BASEMENT_1 &&
+    inStartingRoom() &&
+    roomVisitedCount === 1 &&
+    !isRandomBaby
+  ) {
+    v.run.babiesModEnabled = true;
+    log("Error: Babies Mod detected.");
+  }
+}
+
+function checkInvalidCharOrder() {
+  if (inSpeedrun() && !checkValidCharOrder()) {
+    v.run.invalidCharOrder = true;
+    log(`Error: Invalid character order detected.`);
+  }
 }
