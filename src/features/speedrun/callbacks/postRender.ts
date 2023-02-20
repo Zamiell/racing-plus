@@ -8,7 +8,6 @@ import * as characterProgress from "../characterProgress";
 import * as randomCharacterOrder from "../randomCharacterOrder";
 import { season2PostRender } from "../season2/callbacks/postRender";
 import { season3PostRender } from "../season3/callbacks/postRender";
-import * as season4 from "../season4";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";
 import { speedrunHasErrors, v } from "../v";
@@ -41,7 +40,6 @@ export function speedrunPostRender(): void {
 
   season2PostRender();
   season3PostRender();
-  season4.postRender();
 }
 
 function checkBeginFadeOutAfterCheckpoint() {

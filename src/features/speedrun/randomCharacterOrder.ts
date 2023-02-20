@@ -13,9 +13,11 @@ import {
   ReadonlySet,
   removeAllDoors,
 } from "isaacscript-common";
+import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "../../classes/features/speedrun/Season4";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
-import { drawErrorText } from "../mandatory/errors";
+import { hotkeys } from "../../modConfigMenu";
+import { drawErrorText, errorsExist } from "../mandatory/errors";
 import {
   restartOnNextFrame,
   setRestartCharacter,
@@ -28,7 +30,6 @@ import {
 } from "./constants";
 import { SEASON_2_NUM_BANS } from "./season2/constants";
 import { season2ResetBuilds } from "./season2/v";
-import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4";
 import {
   speedrunGetCharacterNum,
   speedrunGetCurrentSelectedCharacter,
@@ -106,6 +107,11 @@ export function postRender(): void {
     return;
   }
 
+  // We don't want to display two errors at the same time.
+  if (errorsExist()) {
+    return;
+  }
+
   // We do not have to check if the game is paused because the pause menu will be drawn on top of
   // the starting room sprites. (And we do not have to worry about the room slide animation because
   // the starting room sprites are not shown once we re-enter the room.)
@@ -116,7 +122,11 @@ export function postRender(): void {
 function drawErrors() {
   let action: string | undefined;
   let errorEventTime: int | undefined;
-  if (v.run.errors.gameRecentlyOpened) {
+
+  if (v.run.errors.hotkeyNotAssigned) {
+    action = "hotkeyNotAssigned";
+    errorEventTime = 0;
+  } else if (v.run.errors.gameRecentlyOpened) {
     action = "opening the game";
     errorEventTime = getTimeGameOpened();
   } else if (v.run.errors.consoleRecentlyUsed) {
@@ -140,6 +150,10 @@ function drawErrors() {
 }
 
 function getErrorMessage(action: string, secondsRemaining: int) {
+  if (action === "hotkeyNotAssigned") {
+    return "You must set a hotkey to store items using Mod Config Menu. (Restart the game after this is done.)";
+  }
+
   if (secondsRemaining > RANDOM_CHARACTER_LOCK_SECONDS) {
     return 'Please set your item vetos for Season 2 again in the "Change Char Order" custom challenge.';
   }
@@ -180,6 +194,9 @@ export function postGameStarted(): void {
 /** The errors set in this function must correspond to the `v.run.errors` object. */
 function checkErrors() {
   const time = Isaac.GetTime();
+
+  // Hotkeys
+  v.run.errors.hotkeyNotAssigned = hotkeys.storage === -1;
 
   // Game recently opened.
   const timeGameOpened = getTimeGameOpened();

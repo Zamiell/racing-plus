@@ -80,6 +80,7 @@ import { MOD_NAME, VERSION } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
 import { enableExtraConsoleCommandsRacingPlus } from "./features/mandatory/extraConsoleCommands";
 import { g } from "./globals";
+import { initFeatureClasses } from "./initFeatureClasses";
 import { initFeatureVariables } from "./initFeatureVariables";
 import { initMinimapAPI } from "./minimapAPI";
 import { mod } from "./mod";
@@ -89,6 +90,7 @@ main();
 function main() {
   welcomeBanner();
   initFeatureVariables();
+  initFeatureClasses();
   initMinimapAPI();
 
   enableExtraConsoleCommandsRacingPlus();

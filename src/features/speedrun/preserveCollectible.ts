@@ -2,8 +2,8 @@
 
 import { EntityType, PickupVariant } from "isaac-typescript-definitions";
 import { doesEntityExist } from "isaacscript-common";
+import { inRoomWithSeason4StoredItems } from "../../classes/features/speedrun/Season4";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import { inRoomWithSeason4StoredItems } from "./season4";
 
 // ModCallback.PRE_USE_ITEM (23)
 // CollectibleType.D6 (105)

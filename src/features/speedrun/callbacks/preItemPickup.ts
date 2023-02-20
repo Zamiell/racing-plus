@@ -1,10 +1,9 @@
 import { ItemType } from "isaac-typescript-definitions";
 import { PickingUpItem } from "isaacscript-common";
+import { season4CheckpointTouched } from "../../../classes/features/speedrun/Season4";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { season3PreItemPickup } from "../season3/callbacks/preItemPickup";
 import { season3CheckpointTouched } from "../season3/checkpoint";
-import * as season4 from "../season4";
-import { season4CheckpointTouched } from "../season4";
 import { inSpeedrun } from "../speedrun";
 import { v } from "../v";
 
@@ -21,7 +20,6 @@ export function speedrunPreItemPickup(
 
   checkCheckpointTouched(player, pickingUpItem);
   season3PreItemPickup(player, pickingUpItem);
-  season4.preItemPickup(player, pickingUpItem);
 }
 
 function checkCheckpointTouched(

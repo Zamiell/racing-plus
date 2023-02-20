@@ -41,8 +41,17 @@ export function init(): void {
   mod.saveDataManager("errors", v);
 }
 
-export function check(): boolean {
-  return isCorruptMod() || isIncompleteSave() || areOtherModsEnabled();
+/** Called from `ModCallbacksCustom.POST_GAME_STARTED_REORDERED`. */
+// ModCallback.POST_GAME_STARTED (15)
+export function postGameStarted(): void {
+  checkCorruptMod();
+  checkIncompleteSave();
+  checkOtherModsEnabled();
+}
+
+export function errorsExist(): boolean {
+  const errors = Object.values(v.run);
+  return errors.includes(true);
 }
 
 /**
@@ -53,7 +62,7 @@ export function check(): boolean {
  * "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
  * function returns true if the `POST_GAME_STARTED` callback should halt.
  */
-function isCorruptMod() {
+function checkCorruptMod() {
   const sprite = Sprite();
   sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
   sprite.SetFrame("Scene", 0);
@@ -66,12 +75,10 @@ function isCorruptMod() {
     );
     v.run.corrupted = true;
   }
-
-  return v.run.corrupted;
 }
 
 /** Check to see if Death Certificate is unlocked. */
-function isIncompleteSave() {
+function checkIncompleteSave() {
   const isDeathCertificateUnlocked = mod.isCollectibleUnlocked(
     COLLECTIBLE_TO_CHECK,
     ITEM_POOL_TO_CHECK,
@@ -86,8 +93,6 @@ function isIncompleteSave() {
       )} from pool ${ItemPoolType[ITEM_POOL_TO_CHECK]}.)`,
     );
   }
-
-  return v.run.incompleteSave;
 }
 
 /**
@@ -96,7 +101,7 @@ function isIncompleteSave() {
  *
  * We hardcode a check for External Item Descriptions, since it is a popular mod.
  */
-function areOtherModsEnabled() {
+function checkOtherModsEnabled() {
   const correctLastCollectibleTypeRacingPlus = asCollectibleType(
     asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) + NUM_RACING_PLUS_ITEMS,
   );
@@ -127,11 +132,10 @@ function areOtherModsEnabled() {
     log("Error: StageAPI detected.");
     v.run.otherModsEnabled = true;
   }
-
-  return v.run.otherModsEnabled;
 }
 
 // ModCallback.POST_RENDER (2)
+/** @returns True if there are one or more errors. */
 export function postRender(): boolean {
   if (REPENTANCE === undefined) {
     drawErrorText(

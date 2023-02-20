@@ -44,6 +44,9 @@ export const v = {
 
     /** Used for the random character order feature. */
     errors: {
+      // We put all speedrun errors here to avoid having two sets of text drawn at the same time.
+      hotkeyNotAssigned: false,
+
       gameRecentlyOpened: false,
       consoleRecentlyUsed: false,
       bansRecentlySet: false,
@@ -121,11 +124,8 @@ export function speedrunSetFastReset(): void {
 
 /** The errors set in this function must correspond to the `v.run.errors` object. */
 export function speedrunHasErrors(): boolean {
-  return (
-    v.run.errors.gameRecentlyOpened ||
-    v.run.errors.consoleRecentlyUsed ||
-    v.run.errors.bansRecentlySet
-  );
+  const errors = Object.values(v.run.errors);
+  return errors.includes(true);
 }
 
 export function speedrunSetBansTime(): void {

@@ -64,7 +64,6 @@ import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as season2 from "./features/speedrun/season2/v";
 import * as season3 from "./features/speedrun/season3/v";
-import * as season4 from "./features/speedrun/season4";
 import * as speedrunVars from "./features/speedrun/v";
 import * as roomsEntered from "./features/utils/numRoomsEntered";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
@@ -83,7 +82,6 @@ export function initFeatureVariables(): void {
   speedrunVars.init();
   season2.init();
   season3.init();
-  season4.init();
   changeCharOrderVars.init();
 
   // Util

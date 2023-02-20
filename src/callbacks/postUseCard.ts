@@ -74,8 +74,8 @@ function justice(
 // Card.RUNE_BLACK (41)
 function blackRune(
   _cardType: CardType,
-  player: EntityPlayer,
+  _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  speedrunPostUseCard.blackRune(player);
+  speedrunPostUseCard.blackRune();
 }
