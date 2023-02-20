@@ -1,4 +1,8 @@
-import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
+import {
+  CollectibleSpriteLayer,
+  CollectibleType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   asCollectibleType,
   asNumber,
@@ -9,7 +13,6 @@ import {
   isModdedCollectibleType,
   LAST_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
-import { COLLECTIBLE_LAYER } from "./constants";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
 import { serverCollectibleIDToCollectibleType } from "./utils";
@@ -141,7 +144,7 @@ export function newCollectibleSprite(
   const gfxFilename = getCollectibleGfxFilename(
     asCollectibleType(collectibleType),
   );
-  sprite.ReplaceSpritesheet(COLLECTIBLE_LAYER, gfxFilename);
+  sprite.ReplaceSpritesheet(CollectibleSpriteLayer.HEAD, gfxFilename);
   sprite.LoadGraphics();
 
   return sprite;

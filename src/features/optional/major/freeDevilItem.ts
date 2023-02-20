@@ -1,4 +1,5 @@
 import {
+  CollectibleSpriteLayer,
   CollectibleType,
   DamageFlag,
   PickupPrice,
@@ -19,7 +20,6 @@ import {
   onDarkRoom,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
-import { COLLECTIBLE_LAYER } from "../../../constants";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
@@ -95,7 +95,7 @@ function drawIconSprite() {
   const position = hasTaintedCharacterUI
     ? defaultPosition.add(TAINTED_CHARACTER_UI_OFFSET)
     : defaultPosition;
-  iconSprite.RenderLayer(COLLECTIBLE_LAYER, position);
+  iconSprite.RenderLayer(CollectibleSpriteLayer.HEAD, position);
 }
 
 // ModCallback.ENTITY_TAKE_DMG (11)
@@ -231,5 +231,5 @@ export function postPickupRenderCollectible(
   const sprite = v.room.spriteMap.getAndSetDefault(ptrHash);
   const worldPosition = Isaac.WorldToScreen(pickup.Position);
   const position = worldPosition.add(renderOffset).add(COLLECTIBLE_OFFSET);
-  sprite.RenderLayer(COLLECTIBLE_LAYER, position);
+  sprite.RenderLayer(CollectibleSpriteLayer.HEAD, position);
 }

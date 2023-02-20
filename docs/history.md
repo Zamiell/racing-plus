@@ -5,7 +5,11 @@
 
 ### _v0.94.0_ - February 20th, 2023 (Unreleased)
 
-- The pill identification UI will now start from the bottom of the screen and grow upwards. This should make it work better on smaller resolutions.
+- A second timer will now be shown in speedruns that represent the time since the last checkpoint.
+  - It will only be shown on the second character and beyond
+  - It will not be displayed on smaller resolutions, since it would overlap with the trinket UI.
+  - This feature is toggleable via Mod Config Menu.
+- The pill identification UI will now start from the bottom of the screen and grow upwards. (This should make it work better on smaller resolutions.)
 - Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
 - !Show second timer based on screen size.
 - !Fixed the bug where the in-game timer used render frames instead of game frames.

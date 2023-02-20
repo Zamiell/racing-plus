@@ -1,4 +1,5 @@
 import {
+  CollectibleSpriteLayer,
   CollectibleType,
   EffectVariant,
   PoofSubType,
@@ -19,7 +20,6 @@ import {
   spawnEmptyCollectible,
   useActiveItemTemp,
 } from "isaacscript-common";
-import { COLLECTIBLE_LAYER } from "../../constants";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { g } from "../../globals";
 import { mod } from "../../mod";
@@ -284,7 +284,7 @@ export function postPickupRenderCollectible(
   const renderPosition = pickupRenderPosition
     .add(renderOffset)
     .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);
-  flippedSprite.RenderLayer(COLLECTIBLE_LAYER, renderPosition);
+  flippedSprite.RenderLayer(CollectibleSpriteLayer.HEAD, renderPosition);
 }
 
 // ModCallbackCustom.POST_PURCHASE

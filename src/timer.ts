@@ -6,6 +6,7 @@ import {
   isBethany,
   isJacobOrEsau,
 } from "isaacscript-common";
+import { RACE_TIMER_POSITION_X, RACE_TIMER_POSITION_Y } from "./constants";
 import { TimerType } from "./enums/TimerType";
 import { newSprite } from "./sprite";
 
@@ -29,17 +30,17 @@ class TimerSprites {
 }
 
 const DIGIT_LENGTH = 7.25;
-const RACE_TIMER_POSITION = Vector(19, 198); // Directly below the stat HUD
 
 const spriteCollectionMap = new DefaultMap<int, TimerSprites>(
   () => new TimerSprites(),
 );
 
+/** By default, it will use the draw position of the race/speedrun timer. */
 export function draw(
   timerType: TimerType,
   seconds: int,
-  startingX?: int,
-  startingY?: int,
+  startingX = RACE_TIMER_POSITION_X,
+  startingY = RACE_TIMER_POSITION_Y,
 ): void {
   const hud = game.GetHUD();
   if (!hud.IsVisible()) {
@@ -53,14 +54,8 @@ export function draw(
     return;
   }
 
-  if (startingX === undefined) {
-    startingX = RACE_TIMER_POSITION.X;
-  }
-  if (startingY === undefined) {
-    startingY = RACE_TIMER_POSITION.Y;
-  }
-
   const player = Isaac.GetPlayer();
+
   const HUDOffsetVector = getHUDOffsetVector();
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;

@@ -1311,12 +1311,21 @@ export const OTHER_FEATURES = [
     ],
   ],
   [
-    "roll",
+    "chat",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1202",
+      "Draw race chat",
+      "Enable the drawing of race chat on the screen.",
+    ],
+  ],
+  [
+    "characterTimer",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1203",
-      "Enable rolling",
-      "Turn on experimental rolling, which will invalidate your run for online races and offline leaderboards.",
+      "Enable character timer",
+      "Enable a second timer that displays the time since the last checkpoint.",
     ],
   ],
   [

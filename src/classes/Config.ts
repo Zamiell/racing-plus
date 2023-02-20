@@ -111,4 +111,5 @@ export class Config {
   // Other
   shadows = false;
   chat = true;
+  characterTimer = true;
 }

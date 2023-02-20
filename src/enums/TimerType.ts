@@ -1,5 +1,6 @@
 export enum TimerType {
   RACE_OR_SPEEDRUN,
+  SPEEDRUN_CHARACTER,
   RUN_REAL_TIME,
   SEEDED_DEATH,
 }
