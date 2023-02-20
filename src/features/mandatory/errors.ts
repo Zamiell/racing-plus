@@ -43,13 +43,13 @@ export function init(): void {
 
 /** Called from `ModCallbacksCustom.POST_GAME_STARTED_REORDERED`. */
 // ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
+export function errorsPostGameStarted(): void {
   checkCorruptMod();
   checkIncompleteSave();
   checkOtherModsEnabled();
 }
 
-export function errorsExist(): boolean {
+export function hasErrors(): boolean {
   const errors = Object.values(v.run);
   return errors.includes(true);
 }

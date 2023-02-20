@@ -17,7 +17,7 @@ import { STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "../../classes/features
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
 import { hotkeys } from "../../modConfigMenu";
-import { drawErrorText, errorsExist } from "../mandatory/errors";
+import { drawErrorText, hasErrors } from "../mandatory/errors";
 import {
   restartOnNextFrame,
   setRestartCharacter,
@@ -108,7 +108,7 @@ export function postRender(): void {
   }
 
   // We don't want to display two errors at the same time.
-  if (errorsExist()) {
+  if (hasErrors()) {
     return;
   }
 

@@ -6,7 +6,7 @@ import {
 } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
-import * as errors from "../features/mandatory/errors";
+import { errorsPostGameStarted, hasErrors } from "../features/mandatory/errors";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -64,8 +64,8 @@ function main(isContinued: boolean) {
   }
 
   // Check for errors that should prevent the mod from doing anything.
-  errors.postGameStarted();
-  if (errors.errorsExist()) {
+  errorsPostGameStarted();
+  if (hasErrors()) {
     removeAllDoors();
     return;
   }
