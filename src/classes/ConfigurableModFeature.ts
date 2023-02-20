@@ -3,9 +3,11 @@ import { mod } from "../mod";
 import { config } from "../modConfigMenu";
 import { Config } from "./Config";
 
-export class ConfigurableModFeature extends ModFeature {
-  constructor(configKey: keyof Config) {
-    super(mod);
-    this.shouldCallbackMethodsFire = () => config[configKey];
+export abstract class ConfigurableModFeature extends ModFeature {
+  abstract configKey: keyof Config;
+
+  constructor() {
+    super(mod, false);
+    this.shouldCallbackMethodsFire = () => config[this.configKey];
   }
 }

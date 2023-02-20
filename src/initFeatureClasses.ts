@@ -1,11 +1,17 @@
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { Season4 } from "./classes/features/speedrun/Season4";
-import { ChallengeCustom } from "./enums/ChallengeCustom";
 
-export function initFeatureClasses(): void {
+const FEATURE_CLASSES = [
   // Speedrun
-  new Season4(ChallengeCustom.SEASON_4);
+  Season4,
 
   // Graphics
-  new HolidayHats("holidayHats");
+  HolidayHats,
+] as const;
+
+export function initFeatureClasses(): void {
+  for (const constructor of FEATURE_CLASSES) {
+    const instantiatedClass = new constructor();
+    instantiatedClass.init();
+  }
 }

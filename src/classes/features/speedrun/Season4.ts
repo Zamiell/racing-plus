@@ -1,7 +1,6 @@
 import {
   ActiveSlot,
   CardType,
-  Challenge,
   CollectibleType,
   LevelStage,
   ModCallback,
@@ -204,8 +203,10 @@ const v = {
 };
 
 export class Season4 extends ChallengeModFeature {
-  constructor(challenge: Challenge) {
-    super(challenge);
+  challenge = ChallengeCustom.SEASON_4;
+
+  constructor() {
+    super();
 
     // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
     const keyboardFunc = () =>
