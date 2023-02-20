@@ -15,7 +15,6 @@
 - Fixed the bug where the in-game timer used render frames instead of game frames.
 - Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
 - Fixed the bug where in season 4, Lilith started with Duality instead of Birthright. (Thanks Pingouin23)
-- !Class holiday hats.
 
 ### _v0.93.0_ - February 19th, 2023
 
