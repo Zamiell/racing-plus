@@ -41,99 +41,6 @@ export function init(): void {
   mod.saveDataManager("errors", v);
 }
 
-/** Called from `ModCallbacksCustom.POST_GAME_STARTED_REORDERED`. */
-// ModCallback.POST_GAME_STARTED (15)
-export function errorsPostGameStarted(): void {
-  checkCorruptMod();
-  checkIncompleteSave();
-  checkOtherModsEnabled();
-}
-
-export function hasErrors(): boolean {
-  const errors = Object.values(v.run);
-  return errors.includes(true);
-}
-
-/**
- * If Racing+ is turned on from the mod menu and then the user immediately tries to play, it won't
- * work properly; some things like boss cutscenes will still be enabled. In order to fix this, the
- * game needs to be completely restarted. One way to detect this corrupted state is to get how many
- * frames there are in the currently loaded boss cutscene animation file (located at
- * "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
- * function returns true if the `POST_GAME_STARTED` callback should halt.
- */
-function checkCorruptMod() {
-  const sprite = Sprite();
-  sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
-  sprite.SetFrame("Scene", 0);
-  sprite.SetLastFrame();
-  const lastFrame = sprite.GetFrame();
-
-  if (lastFrame !== 0) {
-    log(
-      `Error: Corrupted Racing+ instantiation detected. (The last frame of the "Scene" animation is frame ${lastFrame}.)`,
-    );
-    v.run.corrupted = true;
-  }
-}
-
-/** Check to see if Death Certificate is unlocked. */
-function checkIncompleteSave() {
-  const isDeathCertificateUnlocked = mod.isCollectibleUnlocked(
-    COLLECTIBLE_TO_CHECK,
-    ITEM_POOL_TO_CHECK,
-  );
-
-  v.run.incompleteSave = !isDeathCertificateUnlocked;
-
-  if (v.run.incompleteSave) {
-    log(
-      `Error: Incomplete save file detected. (Failed to get collectible ${getCollectibleName(
-        COLLECTIBLE_TO_CHECK,
-      )} from pool ${ItemPoolType[ITEM_POOL_TO_CHECK]}.)`,
-    );
-  }
-}
-
-/**
- * Check to see if there are any mods enabled that have added custom items. (It is difficult to
- * detect other mods in other ways.)
- *
- * We hardcode a check for External Item Descriptions, since it is a popular mod.
- */
-function checkOtherModsEnabled() {
-  const correctLastCollectibleTypeRacingPlus = asCollectibleType(
-    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) + NUM_RACING_PLUS_ITEMS,
-  );
-  const correctLastCollectibleTypeRacingPlusBabiesMod = asCollectibleType(
-    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) +
-      NUM_RACING_PLUS_ITEMS +
-      NUM_BABIES_MOD_ITEMS,
-  );
-  const correctLastCollectibleType =
-    BabiesModGlobals === undefined
-      ? correctLastCollectibleTypeRacingPlus
-      : correctLastCollectibleTypeRacingPlusBabiesMod;
-
-  const lastCollectibleType = mod.getLastCollectibleType();
-  if (lastCollectibleType !== correctLastCollectibleType) {
-    log(
-      `Error: Other mods detected. (The highest collectible ID is ${lastCollectibleType}, but it should be ${correctLastCollectibleType}.)`,
-    );
-    v.run.otherModsEnabled = true;
-  }
-
-  if (EID !== undefined) {
-    log("Error: External Item Descriptions detected.");
-    v.run.otherModsEnabled = true;
-  }
-
-  if (StageAPI !== undefined) {
-    log("Error: StageAPI detected.");
-    v.run.otherModsEnabled = true;
-  }
-}
-
 // ModCallback.POST_RENDER (2)
 /** @returns True if there are one or more errors. */
 export function postRender(): boolean {
@@ -227,4 +134,96 @@ function getSplitLines(line: string): string[] {
   });
 
   return words.join(" ").split("\n");
+}
+
+// ModCallback.POST_GAME_STARTED (15)
+export function errorsPostGameStarted(): void {
+  checkCorruptMod();
+  checkIncompleteSave();
+  checkOtherModsEnabled();
+}
+
+/**
+ * If Racing+ is turned on from the mod menu and then the user immediately tries to play, it won't
+ * work properly; some things like boss cutscenes will still be enabled. In order to fix this, the
+ * game needs to be completely restarted. One way to detect this corrupted state is to get how many
+ * frames there are in the currently loaded boss cutscene animation file (located at
+ * "gfx/ui/boss/versusscreen.anm2"). Racing+ removes boss cutscenes, so this value should be 0. This
+ * function returns true if the `POST_GAME_STARTED` callback should halt.
+ */
+function checkCorruptMod() {
+  const sprite = Sprite();
+  sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
+  sprite.SetFrame("Scene", 0);
+  sprite.SetLastFrame();
+  const lastFrame = sprite.GetFrame();
+
+  if (lastFrame !== 0) {
+    log(
+      `Error: Corrupted Racing+ instantiation detected. (The last frame of the "Scene" animation is frame ${lastFrame}.)`,
+    );
+    v.run.corrupted = true;
+  }
+}
+
+/** Check to see if Death Certificate is unlocked. */
+function checkIncompleteSave() {
+  const isDeathCertificateUnlocked = mod.isCollectibleUnlocked(
+    COLLECTIBLE_TO_CHECK,
+    ITEM_POOL_TO_CHECK,
+  );
+
+  v.run.incompleteSave = !isDeathCertificateUnlocked;
+
+  if (v.run.incompleteSave) {
+    log(
+      `Error: Incomplete save file detected. (Failed to get collectible ${getCollectibleName(
+        COLLECTIBLE_TO_CHECK,
+      )} from pool ${ItemPoolType[ITEM_POOL_TO_CHECK]}.)`,
+    );
+  }
+}
+
+/**
+ * Check to see if there are any mods enabled that have added custom items. (It is difficult to
+ * detect other mods in other ways.)
+ *
+ * We hardcode a check for External Item Descriptions, since it is a popular mod.
+ */
+function checkOtherModsEnabled() {
+  const correctLastCollectibleTypeRacingPlus = asCollectibleType(
+    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) + NUM_RACING_PLUS_ITEMS,
+  );
+  const correctLastCollectibleTypeRacingPlusBabiesMod = asCollectibleType(
+    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) +
+      NUM_RACING_PLUS_ITEMS +
+      NUM_BABIES_MOD_ITEMS,
+  );
+  const correctLastCollectibleType =
+    BabiesModGlobals === undefined
+      ? correctLastCollectibleTypeRacingPlus
+      : correctLastCollectibleTypeRacingPlusBabiesMod;
+
+  const lastCollectibleType = mod.getLastCollectibleType();
+  if (lastCollectibleType !== correctLastCollectibleType) {
+    log(
+      `Error: Other mods detected. (The highest collectible ID is ${lastCollectibleType}, but it should be ${correctLastCollectibleType}.)`,
+    );
+    v.run.otherModsEnabled = true;
+  }
+
+  if (EID !== undefined) {
+    log("Error: External Item Descriptions detected.");
+    v.run.otherModsEnabled = true;
+  }
+
+  if (StageAPI !== undefined) {
+    log("Error: StageAPI detected.");
+    v.run.otherModsEnabled = true;
+  }
+}
+
+export function hasErrors(): boolean {
+  const errors = Object.values(v.run);
+  return errors.includes(true);
 }

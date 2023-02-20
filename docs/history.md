@@ -12,8 +12,8 @@
 - The pill identification UI will now start from the bottom of the screen and grow upwards. (This should make it work better on smaller resolutions.)
 - In season 4, We Need to Go Deeper is now removed from all pools.
 - In season 4, Mega Blast and Mega Mush are no longer immune from storage.
-- Fixed the bug where the in-game timer used render frames instead of game frames.
-- Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
+- Fixed the bug where the in-game run timer used render frames instead of game frames.
+- Fixed the bug where the in-game run timer overlapped with the free devil deal icon and the max familiars icon.
 - Fixed the bug where in season 4, Lilith started with Duality instead of Birthright. (Thanks Pingouin23)
 
 ### _v0.93.0_ - February 19th, 2023
