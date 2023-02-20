@@ -75,7 +75,7 @@ function drawSprites() {
   for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
       const position = getPosition(spriteName as keyof typeof sprites);
-      sprite.RenderLayer(0, position);
+      sprite.Render(position);
     }
   }
 }

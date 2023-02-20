@@ -22,7 +22,7 @@ export function postRender(): void {
 function drawSprite() {
   if (shouldDrawPlaceLeftSprite() && sprite !== undefined) {
     const position = getPosition();
-    sprite.RenderLayer(0, position);
+    sprite.Render(position);
   }
 }
 

@@ -87,7 +87,7 @@ function drawSeasonSprites() {
       position.Y - 1,
     );
     const posRender = Isaac.WorldToScreen(posButton);
-    seasonSprite.RenderLayer(0, posRender);
+    seasonSprite.Render(posRender);
   }
 }
 

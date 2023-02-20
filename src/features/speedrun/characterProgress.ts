@@ -90,28 +90,28 @@ function drawCharacterProgressAndSeasonIcon() {
   const digit3 = 7; // Assume a 7 character speedrun by default.
 
   sprites.digits.digit1.SetFrame("Default", digit1);
-  sprites.digits.digit1.RenderLayer(0, position);
+  sprites.digits.digit1.Render(position);
 
   if (digit2 !== -1) {
     sprites.digits.digit2.SetFrame("Default", digit2);
     const digit2Modification = Vector(digitLength - 1, 0);
     const digit2Position = position.add(digit2Modification);
-    sprites.digits.digit2.RenderLayer(0, digit2Position);
+    sprites.digits.digit2.Render(digit2Position);
   }
 
   const slashModification = Vector(digitLength - 1 + adjustment1, 0);
   const slashPosition = position.add(slashModification);
-  sprites.slash.RenderLayer(0, slashPosition);
+  sprites.slash.Render(slashPosition);
 
   sprites.digits.digit3.SetFrame("Default", digit3);
   const digit3Modification = Vector(digitLength + adjustment2 + 5, 0);
   const digit3Position = position.add(digit3Modification);
-  sprites.digits.digit3.RenderLayer(0, digit3Position);
+  sprites.digits.digit3.Render(digit3Position);
 
   // Draw the sprite for the season icon.
   const spacing = 17;
   const posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
-  sprites.seasonIcon.RenderLayer(0, posSeason);
+  sprites.seasonIcon.Render(posSeason);
 }
 
 // ModCallback.POST_GAME_STARTED (15)

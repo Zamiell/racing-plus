@@ -22,7 +22,7 @@ export function draw(): void {
     setSpriteOpacity(sprite, opacity);
   }
 
-  sprite.RenderLayer(0, VectorZero);
+  sprite.Render(VectorZero);
 }
 
 export function setFullyOpaque(): void {

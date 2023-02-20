@@ -8,7 +8,7 @@ import { v } from "./v";
 const TOP_LEFT_GRID_INDEX = 32;
 const SPRITE_SPACING = 30;
 
-let dreamCatcherSprite: Sprite | null = null;
+let dreamCatcherSprite: Sprite | undefined;
 const itemSprites: Sprite[] = [];
 const bossSprites: Sprite[] = [];
 
@@ -67,7 +67,7 @@ function initBossSprite(entityType: EntityType, variant: int) {
 }
 
 export function reset(): void {
-  dreamCatcherSprite = null;
+  dreamCatcherSprite = undefined;
   emptyArray(itemSprites);
   emptyArray(bossSprites);
 }
@@ -102,9 +102,9 @@ export function draw(): void {
     return;
   }
 
-  if (dreamCatcherSprite !== null) {
+  if (dreamCatcherSprite !== undefined) {
     const renderPosition = Isaac.WorldToScreen(topLeftRoomPosition);
-    dreamCatcherSprite.RenderLayer(0, renderPosition);
+    dreamCatcherSprite.Render(renderPosition);
   }
 
   itemSprites.forEach((sprite, i) => {
@@ -112,7 +112,7 @@ export function draw(): void {
     const numRightShifts = i;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
-    sprite.RenderLayer(0, position);
+    sprite.Render(position);
   });
 
   bossSprites.forEach((sprite, i) => {
@@ -120,6 +120,6 @@ export function draw(): void {
     const numRightShifts = i + itemSprites.length;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
-    sprite.RenderLayer(0, position);
+    sprite.Render(position);
   });
 }

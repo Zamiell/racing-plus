@@ -19,8 +19,8 @@ const PASSIVE_COLLECTIBLE_SPRITE_OFFSET = Vector(30, 0);
 const PASSIVE_COLLECTIBLE_SPRITE_POSITION =
   ACTIVE_COLLECTIBLE_SPRITE_POSITION.add(PASSIVE_COLLECTIBLE_SPRITE_OFFSET);
 
-let activeSprite: Sprite | null = null;
-let passiveSprite: Sprite | null = null;
+let activeSprite: Sprite | undefined;
+let passiveSprite: Sprite | undefined;
 
 const v = {
   run: {
@@ -60,11 +60,11 @@ function drawItemSprites() {
     return;
   }
 
-  if (activeSprite !== null) {
-    activeSprite.RenderLayer(0, ACTIVE_COLLECTIBLE_SPRITE_POSITION);
+  if (activeSprite !== undefined) {
+    activeSprite.Render(ACTIVE_COLLECTIBLE_SPRITE_POSITION);
   }
-  if (passiveSprite !== null) {
-    passiveSprite.RenderLayer(0, PASSIVE_COLLECTIBLE_SPRITE_POSITION);
+  if (passiveSprite !== undefined) {
+    passiveSprite.Render(PASSIVE_COLLECTIBLE_SPRITE_POSITION);
   }
 }
 
@@ -79,8 +79,8 @@ export function postNewRoom(): void {
 }
 
 function resetItemSprites() {
-  activeSprite = null;
-  passiveSprite = null;
+  activeSprite = undefined;
+  passiveSprite = undefined;
 }
 
 function setItemSprites() {

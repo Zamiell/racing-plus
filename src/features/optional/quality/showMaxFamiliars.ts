@@ -67,5 +67,5 @@ function drawSprite() {
     ? position1.add(FREE_DEVIL_DEAL_ICON_OFFSET)
     : position1;
 
-  sprite.RenderLayer(0, position2);
+  sprite.Render(position2);
 }

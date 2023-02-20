@@ -38,7 +38,7 @@ function drawSprite() {
 
   if (sprite !== undefined) {
     const position = getPosition();
-    sprite.RenderLayer(0, position);
+    sprite.Render(position);
   }
 }
 
