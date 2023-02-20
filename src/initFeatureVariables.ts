@@ -3,7 +3,6 @@ import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
-import * as disableMultiplayer from "./features/mandatory/disableMultiplayer";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
 import { errorsInit } from "./features/mandatory/errors/v";
@@ -101,7 +100,6 @@ export function initFeatureVariables(): void {
   seededGBBug.init();
   trophy.init();
   fireworks.init();
-  disableMultiplayer.init();
   drawVersion.init();
   dummyDPS.init();
   errorsInit();

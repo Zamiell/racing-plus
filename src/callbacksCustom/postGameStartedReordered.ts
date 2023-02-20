@@ -5,7 +5,6 @@ import {
   removeAllDoors,
 } from "isaacscript-common";
 import * as centerStart from "../features/mandatory/centerStart";
-import * as disableMultiplayer from "../features/mandatory/disableMultiplayer";
 import { errorsPostGameStarted } from "../features/mandatory/errors/errors";
 import { hasErrors } from "../features/mandatory/errors/v";
 import * as fireworks from "../features/mandatory/fireworks";
@@ -37,7 +36,11 @@ import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {
-  mod.AddCallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, main);
+  mod.AddCallbackCustom(
+    ModCallbackCustom.POST_GAME_STARTED_REORDERED,
+    main,
+    undefined,
+  );
 }
 
 function main(isContinued: boolean) {
@@ -55,9 +58,6 @@ function main(isContinued: boolean) {
   if (MinimapAPI !== undefined) {
     MinimapAPI.Config.Disable = false;
   }
-
-  // Handle features that need to run regardless of whether the run is continued or not.
-  disableMultiplayer.postGameStarted();
 
   if (isContinued) {
     postGameStartedContinued();

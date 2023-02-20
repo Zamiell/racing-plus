@@ -1,8 +1,12 @@
+import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 import { Season4 } from "./classes/features/speedrun/Season4";
 
 const FEATURE_CLASSES = [
+  // Mandatory
+  DisableMultiplayer,
+
   // Speedrun
   RandomCharacterOrder,
   Season4,
