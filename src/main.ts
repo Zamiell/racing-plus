@@ -28,7 +28,6 @@ import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postPlayerInit from "./callbacks/postPlayerInit";
-import * as postPlayerRender from "./callbacks/postPlayerRender";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postProjectileUpdate from "./callbacks/postProjectileUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -65,6 +64,7 @@ import * as postNPCInitLate from "./callbacksCustom/postNPCInitLate";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
+import * as postPlayerRenderReordered from "./callbacksCustom/postPlayerRenderReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
@@ -141,7 +141,6 @@ function registerCallbacksVanilla() {
   preFamiliarCollision.init(); // 26
   postNPCInit.init(); // 27
   postNPCRender.init(); // 28
-  postPlayerRender.init(); // 32
   postPickupInit.init(); // 34
   postPickupUpdate.init(); // 35
   postPickupRender.init(); // 36
@@ -183,6 +182,7 @@ function registerCallbacksCustom() {
   postPEffectUpdateReordered.init();
   postPickupCollect.init();
   postPlayerChangeType.init();
+  postPlayerRenderReordered.init();
   postPressurePlateUpdate.init();
   postPurchase.init();
   postRoomClearChanged.init();

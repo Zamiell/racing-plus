@@ -116,25 +116,6 @@ export class Season4 extends ChallengeModFeature {
     return undefined;
   }
 
-  @Callback(ModCallback.POST_PLAYER_RENDER) // 32
-  postPlayerRender(player: EntityPlayer): void {
-    this.drawStorageIcon(player);
-  }
-
-  drawStorageIcon(player: EntityPlayer): void {
-    const playerIndex = getPlayerIndex(player);
-    if (!v.run.playersCurrentlyStoring.has(playerIndex)) {
-      return;
-    }
-
-    const sprite = playersStoringSprites.getAndSetDefault(playerIndex);
-    const playerScreenPosition = Isaac.WorldToScreen(player.Position);
-    const abovePlayerPosition = playerScreenPosition.add(
-      SEASON_4_STORAGE_ICON_OFFSET,
-    );
-    sprite.Render(abovePlayerPosition);
-  }
-
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
     this.resetDataStructures();
@@ -267,6 +248,25 @@ export class Season4 extends ChallengeModFeature {
     const character = player.GetPlayerType();
     const playerIndex = getPlayerIndex(player);
     v.run.playersStartingCharacter.set(playerIndex, character);
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_PLAYER_RENDER_REORDERED)
+  postPlayerRenderReordered(player: EntityPlayer): void {
+    this.drawStorageIcon(player);
+  }
+
+  drawStorageIcon(player: EntityPlayer): void {
+    const playerIndex = getPlayerIndex(player);
+    if (!v.run.playersCurrentlyStoring.has(playerIndex)) {
+      return;
+    }
+
+    const sprite = playersStoringSprites.getAndSetDefault(playerIndex);
+    const playerScreenPosition = Isaac.WorldToScreen(player.Position);
+    const abovePlayerPosition = playerScreenPosition.add(
+      SEASON_4_STORAGE_ICON_OFFSET,
+    );
+    sprite.Render(abovePlayerPosition);
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)

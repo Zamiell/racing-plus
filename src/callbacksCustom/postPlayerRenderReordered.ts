@@ -1,5 +1,4 @@
-import { ModCallback } from "isaac-typescript-definitions";
-import { isChildPlayer } from "isaacscript-common";
+import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
 import * as fastTeleports from "../features/optional/cutscenes/fastTeleports";
 import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
@@ -8,7 +7,7 @@ import * as taintedSamsonChargeBar from "../features/optional/quality/taintedSam
 import { mod } from "../mod";
 
 export function init(): void {
-  mod.AddCallback(ModCallback.POST_PLAYER_RENDER, main);
+  mod.AddCallbackCustom(ModCallbackCustom.POST_PLAYER_RENDER_REORDERED, main);
 }
 
 function main(player: EntityPlayer) {
