@@ -13,7 +13,6 @@ import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacri
 import * as removeGlitchedItems from "./features/mandatory/removeGlitchedItems";
 import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
-import * as runTimer from "./features/mandatory/runTimer";
 import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
@@ -102,7 +101,6 @@ export function initFeatureVariables(): void {
   seededTeleports.init();
   seededFloors.init();
   seededGBBug.init();
-  runTimer.init();
   trophy.init();
   fireworks.init();
   disableMultiplayer.init();

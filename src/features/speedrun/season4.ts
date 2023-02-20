@@ -28,6 +28,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
+import { g } from "../../globals";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../utilsGlobals";
@@ -56,10 +57,9 @@ const EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
   ],
 ]);
 
+const BANNED_COLLECTIBLES = [CollectibleType.WE_NEED_TO_GO_DEEPER] as const;
+
 const BANNED_COLLECTIBLES_WITH_STORAGE = new ReadonlySet<CollectibleType>([
-  CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
-  CollectibleType.MEGA_BLAST, // 441
-  CollectibleType.MEGA_MUSH, // 625
   CollectibleTypeCustom.CHECKPOINT,
 ]);
 
@@ -381,6 +381,10 @@ export function postGameStarted(): void {
 
   giveStartingItems();
   spawnStoredCollectibles();
+
+  for (const collectibleType of BANNED_COLLECTIBLES) {
+    g.itemPool.RemoveCollectible(collectibleType);
+  }
 }
 
 function giveStartingItems() {

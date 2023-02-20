@@ -1,7 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
-import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import * as trophy from "../features/mandatory/trophy";
@@ -27,7 +26,6 @@ function main() {
   seededDeathPostUpdate();
   fireworks.postUpdate();
   showLevelTextOnTab.postUpdate();
-  runTimer.postUpdate();
 
   // Major
   racePostUpdate();

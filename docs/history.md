@@ -10,9 +10,10 @@
   - It will not be displayed on smaller resolutions, since it would overlap with the trinket UI.
   - This feature is toggleable via Mod Config Menu.
 - The pill identification UI will now start from the bottom of the screen and grow upwards. (This should make it work better on smaller resolutions.)
+- !In season 4, We Need to Go Deeper is now removed from all pools.
+- !In season 4, Mega Blast and Mega Mush are no longer immune from storage.
+- Fixed the bug where the in-game timer used render frames instead of game frames.
 - Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
-- !Show second timer based on screen size.
-- !Fixed the bug where the in-game timer used render frames instead of game frames.
 - !Fixed the bug in season 3 where ???. (Thanks TNTerminator)
 - !Class holiday hats.
 
