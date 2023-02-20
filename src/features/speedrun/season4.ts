@@ -45,7 +45,7 @@ const EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
   CollectibleType[]
 >([
   // 13
-  [PlayerType.LILITH, [CollectibleType.DUALITY]],
+  [PlayerType.LILITH, [CollectibleType.BIRTHRIGHT]],
 
   // 18
   [PlayerType.BETHANY, [CollectibleType.DUALITY]],

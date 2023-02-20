@@ -6,15 +6,15 @@
 ### _v0.94.0_ - February 20th, 2023 (Unreleased)
 
 - A second timer will now be shown in speedruns that represent the time since the last checkpoint.
-  - It will only be shown on the second character and beyond
-  - It will not be displayed on smaller resolutions, since it would overlap with the trinket UI.
+  - It will only be shown on the second character and beyond.
+  - It will not be shown on smaller resolutions, since it would overlap with the trinket UI.
   - This feature is toggleable via Mod Config Menu.
 - The pill identification UI will now start from the bottom of the screen and grow upwards. (This should make it work better on smaller resolutions.)
-- !In season 4, We Need to Go Deeper is now removed from all pools.
-- !In season 4, Mega Blast and Mega Mush are no longer immune from storage.
+- In season 4, We Need to Go Deeper is now removed from all pools.
+- In season 4, Mega Blast and Mega Mush are no longer immune from storage.
 - Fixed the bug where the in-game timer used render frames instead of game frames.
 - Fixed the bug where the in-game timer overlapped with the free devil deal icon and the max familiars icon.
-- !Fixed the bug in season 3 where ???. (Thanks TNTerminator)
+- Fixed the bug where in season 4, Lilith started with Duality instead of Birthright. (Thanks Pingouin23)
 - !Class holiday hats.
 
 ### _v0.93.0_ - February 19th, 2023
