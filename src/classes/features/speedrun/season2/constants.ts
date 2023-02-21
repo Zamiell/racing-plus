@@ -1,6 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { getArrayIndexes, ReadonlySet } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
 export const SEASON_2_NUM_BANS = 3;
 
@@ -189,3 +189,5 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
     const firstCollectible = build[0];
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });
+
+export const NUM_REVELATION_SOUL_HEARTS = 4;

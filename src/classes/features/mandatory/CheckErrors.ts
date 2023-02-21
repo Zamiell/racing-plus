@@ -23,7 +23,6 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../../enums/PlayerTypeCustom";
-import { SEASON_2_NUM_BANS } from "../../../features/speedrun/season2/constants";
 import {
   checkValidCharOrder,
   inSpeedrun,
@@ -40,6 +39,7 @@ import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
   RANDOM_CHARACTER_LOCK_SECONDS,
 } from "../speedrun/RandomCharacterOrder";
+import { SEASON_2_NUM_BANS } from "../speedrun/season2/constants";
 import { hasErrors, v } from "./checkErrors/v";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);

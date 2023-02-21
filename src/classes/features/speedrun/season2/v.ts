@@ -1,6 +1,5 @@
 import { copyArray } from "isaacscript-common";
-import { mod } from "../../../mod";
-import { speedrunGetCharacterNum } from "../v";
+import { speedrunGetCharacterNum } from "../../../../features/speedrun/v";
 import { SEASON_2_STARTING_BUILD_INDEXES } from "./constants";
 
 export const v = {
@@ -11,10 +10,6 @@ export const v = {
     lastSelectedBuildIndex: null as int | null,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager("season2", v);
-}
 
 export function season2GetCurrentBuildIndex(): int | undefined {
   const characterNum = speedrunGetCharacterNum();

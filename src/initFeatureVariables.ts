@@ -58,7 +58,6 @@ import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
-import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
 import { mod } from "./mod";
@@ -74,7 +73,6 @@ export function initFeatureVariables(): void {
   shadows.init();
   planetariumFix.init();
   speedrunVars.init();
-  season2.init();
   changeCharOrderVars.init();
 
   // Util

@@ -18,7 +18,6 @@ import {
   ReadonlySet,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { season2ResetBuilds } from "../../../features/speedrun/season2/v";
 import { onSeason } from "../../../features/speedrun/speedrun";
 import {
   speedrunGetCharacterNum,
@@ -31,6 +30,7 @@ import {
 import { g } from "../../../globals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
+import { season2ResetBuilds } from "./season2/v";
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 
 /** How long the randomly-selected character and/or build combination is "locked-in". */

@@ -22,7 +22,6 @@ import {
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { speedrunResetPersistentVars } from "../resetVars";
-import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import {
   checkValidCharOrder,
   getCurrentCharacter,
@@ -77,8 +76,6 @@ export function speedrunPostGameStarted(): void {
   speedrunResetFirstCharacterVars();
   characterProgress.postGameStarted();
   giveAchievementItems();
-
-  season2PostGameStarted();
 
   // We give the More Options buff last in case one of the seasons grants a normal More Options.
   giveMoreOptionsBuff();

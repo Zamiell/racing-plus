@@ -1,8 +1,8 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
-import { g } from "../../../globals";
-import { mod } from "../../../mod";
-import { newGlowingCollectibleSprite, newSprite } from "../../../sprite";
+import { g } from "../../../../globals";
+import { mod } from "../../../../mod";
+import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -27,17 +27,17 @@ const sprites = {
   seededItemFarRight: null as Sprite | null,
 };
 
-export function resetSeason2StartingRoomSprites(): void {
+export function season2ResetStartingRoomSprites(): void {
   for (const keyString of Object.keys(sprites)) {
     const key = keyString as keyof typeof sprites;
     sprites[key] = null;
   }
 }
 
-export function initSeason2StartingRoomSprites(
+export function season2InitStartingRoomSprites(
   startingBuild: readonly CollectibleType[],
 ): void {
-  resetSeason2StartingRoomSprites();
+  season2ResetStartingRoomSprites();
 
   sprites.characterTitle = newSprite(`${GFX_PATH}/character.anm2`);
 
@@ -83,7 +83,7 @@ export function initSeason2StartingRoomSprites(
   }
 }
 
-export function drawSeason2StartingRoomSprites(): void {
+export function season2DrawStartingRoomSprites(): void {
   for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
       const position = getPosition(spriteName as keyof typeof sprites);
@@ -129,7 +129,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
   }
 }
 
-export function drawSeason2StartingRoomText(): void {
+export function season2DrawStartingRoomText(): void {
   if (!mod.inFirstRoom()) {
     return;
   }

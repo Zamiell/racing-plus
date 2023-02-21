@@ -72,6 +72,7 @@ import {
   inClearedMomBossRoom,
 } from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import { hasErrors } from "../mandatory/checkErrors/v";
 import {
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_GOALS,
@@ -110,6 +111,10 @@ export class Season3 extends ChallengeModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
+    if (hasErrors()) {
+      return;
+    }
+
     const hud = game.GetHUD();
     if (!hud.IsVisible()) {
       return;
@@ -214,6 +219,10 @@ export class Season3 extends ChallengeModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
+    if (hasErrors()) {
+      return;
+    }
+
     const player = Isaac.GetPlayer();
 
     if (isOnFirstCharacter()) {
@@ -512,7 +521,7 @@ export class Season3 extends ChallengeModFeature {
 
     v.run.season3TrapdoorBetweenPhotosSpawned = false;
 
-    const goal = season3GetGoalCorrespondingToRoom();
+    const goal = getGoalCorrespondingToRoom();
     if (goal !== undefined) {
       arrayRemoveInPlace(v.persistent.remainingGoals, goal);
     }
@@ -551,7 +560,7 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
     return BigChestReplacementAction.HEAVEN_DOOR;
   }
 
-  const goal = season3GetGoalCorrespondingToRoom();
+  const goal = getGoalCorrespondingToRoom();
   if (goal === undefined) {
     return BigChestReplacementAction.LEAVE_ALONE;
   }
@@ -566,7 +575,7 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
     : BigChestReplacementAction.CHECKPOINT;
 }
 
-function season3GetGoalCorrespondingToRoom(): Season3Goal | undefined {
+function getGoalCorrespondingToRoom(): Season3Goal | undefined {
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
   const repentanceStage = onRepentanceStage();

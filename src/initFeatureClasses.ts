@@ -5,6 +5,7 @@ import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
 import { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 import { Season1 } from "./classes/features/speedrun/Season1";
+import { Season2 } from "./classes/features/speedrun/Season2";
 import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
 
@@ -16,6 +17,7 @@ const FEATURE_CLASSES = [
   // Speedrun
   RandomCharacterOrder,
   Season1,
+  Season2,
   Season3,
   Season4,
 

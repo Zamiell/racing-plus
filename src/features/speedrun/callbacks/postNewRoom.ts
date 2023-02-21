@@ -24,7 +24,6 @@ import { mod } from "../../../mod";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
 import { speedrunShouldSpawnRepentanceDoor } from "../fastClear";
-import { season2PostNewRoom } from "../season2/callbacks/postNewRoom";
 import { inSpeedrun, isOnFirstCharacter } from "../speedrun";
 import { v } from "../v";
 
@@ -37,7 +36,6 @@ export function speedrunPostNewRoom(): void {
   checkWomb2IAmError();
   checkEnteringClearedBossRoom();
   checkEnteringRoomWithCheckpoint();
-  season2PostNewRoom();
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {

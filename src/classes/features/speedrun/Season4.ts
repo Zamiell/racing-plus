@@ -41,6 +41,7 @@ import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import { hasErrors } from "../mandatory/checkErrors/v";
 import {
   SEASON_4_BANNED_COLLECTIBLES,
   SEASON_4_BANNED_COLLECTIBLES_PAST_FIRST_CHAR,
@@ -125,6 +126,10 @@ export class Season4 extends ChallengeModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
+    if (hasErrors()) {
+      return;
+    }
+
     this.resetDataStructures();
     this.giveStartingItems();
     this.spawnStoredCollectibles();
