@@ -20,6 +20,7 @@ import {
   log,
   ModCallbackCustom,
   PriorityCallbackCustom,
+  removeAllDoors,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
@@ -40,7 +41,7 @@ import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
   RANDOM_CHARACTER_LOCK_SECONDS,
 } from "../speedrun/RandomCharacterOrder";
-import { v } from "./checkErrors/v";
+import { hasErrors, v } from "./checkErrors/v";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;
@@ -145,6 +146,10 @@ export class CheckErrors extends MandatoryModFeature {
     checkConsoleRecentlyUsed();
     checkBansRecentlySet();
     checkStorageHotkey();
+
+    if (hasErrors()) {
+      removeAllDoors();
+    }
   }
 }
 

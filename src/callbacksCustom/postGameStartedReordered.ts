@@ -1,10 +1,5 @@
-import {
-  getCharacterName,
-  log,
-  ModCallbackCustom,
-  removeAllDoors,
-} from "isaacscript-common";
-import { hasErrors } from "../classes/features/mandatory/CheckErrors";
+import { getCharacterName, log, ModCallbackCustom } from "isaacscript-common";
+import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
@@ -65,7 +60,6 @@ function main(isContinued: boolean) {
 
   // Check for errors that should prevent the mod from doing anything.
   if (hasErrors()) {
-    removeAllDoors();
     return;
   }
 
