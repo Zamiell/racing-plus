@@ -1,6 +1,8 @@
 import { ModFeature } from "isaacscript-common";
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
+import { DrawControls } from "./classes/features/mandatory/DrawControls";
+import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
 import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
@@ -16,12 +18,13 @@ import { Season4 } from "./classes/features/speedrun/Season4";
 
 const FEATURE_CLASSES = [
   // Mandatory
-  LogConsoleCommands,
-  RestartOnNextFrame,
-  TimeConsoleUsed,
   CheckErrors,
   DisableMultiplayer,
+  ForceFadedConsoleDisplay,
+  LogConsoleCommands,
   RacingPlusIcon,
+  RestartOnNextFrame,
+  TimeConsoleUsed,
 
   // Speedrun
   RandomCharacterOrder,
@@ -37,6 +40,7 @@ const FEATURE_CLASSES = [
   SpeedUpFadeIn,
 
   // GFX
+  DrawControls,
   HolidayHats,
 ] as const satisfies ReadonlyArray<typeof ModFeature>;
 
