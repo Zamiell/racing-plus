@@ -4,7 +4,7 @@ import { RaceData } from "./RaceData";
 import { RaceVars } from "./RaceVars";
 
 export class Globals {
-  debug = false;
+  debug = true;
 
   // Cache some API classes.
   l = game.GetLevel();
