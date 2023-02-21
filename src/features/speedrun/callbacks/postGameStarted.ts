@@ -1,10 +1,20 @@
-import { PlayerType } from "isaac-typescript-definitions";
+import {
+  CollectibleType,
+  PlayerType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { hasErrors } from "../../../classes/features/mandatory/checkErrors/v";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { g } from "../../../globals";
+import {
+  addCollectibleAndRemoveFromPools,
+  giveTrinketAndRemoveFromPools,
+} from "../../../utilsGlobals";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
+import { spawnDroppedChildsHeart } from "../../optional/characters/samsonDropHeart";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,
@@ -12,7 +22,6 @@ import {
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { speedrunResetPersistentVars } from "../resetVars";
-import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
 import {
@@ -68,8 +77,8 @@ export function speedrunPostGameStarted(): void {
 
   speedrunResetFirstCharacterVars();
   characterProgress.postGameStarted();
+  giveAchievementItems();
 
-  season1.postGameStarted();
   season2PostGameStarted();
   season3PostGameStarted();
 
@@ -141,6 +150,59 @@ function goBackToFirstCharacter() {
   v.persistent.liveSplitReset = true;
 
   return true;
+}
+
+/**
+ * For some reason, characters do not start with items that are granted by achievements while in
+ * challenges.
+ */
+function giveAchievementItems() {
+  const player = Isaac.GetPlayer();
+  const character = player.GetPlayerType();
+
+  switch (character) {
+    // 0
+    case PlayerType.ISAAC: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
+      break;
+    }
+
+    // 2
+    case PlayerType.CAIN: {
+      giveTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
+      break;
+    }
+
+    // 5
+    case PlayerType.EVE: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
+      break;
+    }
+
+    // 6
+    case PlayerType.SAMSON: {
+      spawnDroppedChildsHeart(player);
+      break;
+    }
+
+    // 10
+    case PlayerType.LOST: {
+      // Holy Mantle is not removed from pools while in a custom challenge.
+      g.itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);
+      break;
+    }
+
+    // 14
+    case PlayerType.KEEPER: {
+      addCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
+      giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
+      break;
+    }
+
+    default: {
+      break;
+    }
+  }
 }
 
 function giveMoreOptionsBuff() {

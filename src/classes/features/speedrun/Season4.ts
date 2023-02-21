@@ -155,12 +155,6 @@ export class Season4 extends ChallengeModFeature {
         addCollectibleAndRemoveFromPools(player, collectibleType);
       }
     }
-
-    // Isaac is bugged in challenges; he must be explicitly given the D6. (Additionally, we don't
-    // want the revival nerf mechanic to apply to the D6 in this situation.)
-    if (character === PlayerType.ISAAC) {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
-    }
   }
 
   spawnStoredCollectibles(): void {

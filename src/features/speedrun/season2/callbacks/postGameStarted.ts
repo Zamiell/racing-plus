@@ -13,10 +13,7 @@ import { getStartingCharacter } from "../../../../classes/features/speedrun/Rand
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { g } from "../../../../globals";
-import {
-  addCollectibleAndRemoveFromPools,
-  giveTrinketAndRemoveFromPools,
-} from "../../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { getCharacterOrderSafe } from "../../speedrun";
 import {
   SEASON_2_FORGOTTEN_EXCEPTIONS,
@@ -169,21 +166,8 @@ function giveStartingItems(
   // Everyone starts with the Compass in this season.
   addCollectibleAndRemoveFromPools(player, CollectibleType.COMPASS);
 
+  // Some characters get additional items in this season.
   switch (character) {
-    // 2
-    case PlayerType.CAIN: {
-      // Cain does not automatically start with the Paper Clip in custom challenges.
-      giveTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
-      break;
-    }
-
-    // 5
-    case PlayerType.EVE: {
-      // Eve does not automatically start with the Razor in custom challenges.
-      addCollectibleAndRemoveFromPools(player, CollectibleType.RAZOR_BLADE);
-      break;
-    }
-
     case PlayerType.ISAAC_B: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;

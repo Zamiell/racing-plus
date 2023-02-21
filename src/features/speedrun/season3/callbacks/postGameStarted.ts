@@ -14,7 +14,6 @@ import { v } from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
-import { spawnDroppedChildsHeart } from "../../../optional/characters/samsonDropHeart";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
 import { isOnFirstCharacter } from "../../speedrun";
 import {
@@ -136,20 +135,8 @@ function giveStartingItems(player: EntityPlayer) {
   const character = player.GetPlayerType();
 
   switch (character) {
-    // 4
-    case PlayerType.BLUE_BABY: {
-      addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
-      break;
-    }
-
-    // 6
-    case PlayerType.SAMSON: {
-      // Samson does not start with Child's Heart in challenges for some reason.
-      spawnDroppedChildsHeart(player);
-      break;
-    }
-
-    // 24
+    // 4, 24
+    case PlayerType.BLUE_BABY:
     case PlayerType.JUDAS_B: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
       break;

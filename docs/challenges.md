@@ -45,8 +45,8 @@
   - 21 - Tainted Isaac (with Birthright)
   - 27 - Tainted Samson
   - 28 - Tainted Azazel
-- Tainted Isaac starts with Birthright.
 - All characters start with the Compass.
+- Tainted Isaac starts with Birthright.
 
 ### Goal
 
