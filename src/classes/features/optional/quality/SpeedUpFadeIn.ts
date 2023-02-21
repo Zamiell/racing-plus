@@ -1,5 +1,3 @@
-// Get rid of the slow fade-in at the beginning of a run.
-
 import { ModCallback } from "isaac-typescript-definitions";
 import { Callback, game } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -14,8 +12,10 @@ const v = {
   },
 };
 
+/** Get rid of the slow fade-in at the beginning of a run. */
 export class SpeedUpFadeIn extends ConfigurableModFeature {
   configKey: keyof Config = "speedUpFadeIn";
+  v = v;
 
   @Callback(ModCallback.POST_RENDER) // 2
   postRender(): void {

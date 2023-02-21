@@ -67,6 +67,7 @@ const v = {
 
 export class Season4 extends ChallengeModFeature {
   challenge = ChallengeCustom.SEASON_4;
+  v = v;
 
   constructor() {
     super();

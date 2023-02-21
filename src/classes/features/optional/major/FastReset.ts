@@ -24,6 +24,7 @@ const v = {
 
 export class FastReset extends ConfigurableModFeature {
   configKey: keyof Config = "fastReset";
+  v = v;
 
   @Callback(ModCallback.POST_RENDER) // 2
   postRender(): void {
