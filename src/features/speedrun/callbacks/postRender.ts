@@ -1,9 +1,7 @@
 import { FadeoutTarget } from "isaac-typescript-definitions";
 import { game, getCharacterName, log } from "isaacscript-common";
-import {
-  isSpeedrunWithRandomCharacterOrder,
-  speedrunHasErrors,
-} from "../../../classes/features/speedrun/RandomCharacterOrder";
+import { hasErrors } from "../../../classes/features/mandatory/CheckErrors";
+import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import {
   restartOnNextFrame,
   setRestartCharacter,
@@ -36,7 +34,7 @@ export function speedrunPostRender(): void {
   speedrunTimer.postRender();
   characterProgress.postRender();
 
-  if (speedrunHasErrors()) {
+  if (hasErrors()) {
     return;
   }
 

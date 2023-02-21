@@ -1,7 +1,6 @@
 import { Challenge } from "isaac-typescript-definitions";
 import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import { g } from "../../globals";
 
 export enum ChallengeCustomAbbreviation {
   SEASON_1 = "R7S1",
@@ -23,10 +22,3 @@ export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
 export const CUSTOM_CHALLENGES_SET = new ReadonlySet<Challenge>(
   CHALLENGE_DEFINITIONS.keys(),
 );
-
-/** How long the randomly-selected character and/or build combination is "locked-in". */
-const RANDOM_CHARACTER_SELECTION_LOCK_MINUTES = g.debug ? 0.01 : 1.25;
-export const RANDOM_CHARACTER_LOCK_SECONDS =
-  RANDOM_CHARACTER_SELECTION_LOCK_MINUTES * 60;
-export const RANDOM_CHARACTER_LOCK_MILLISECONDS =
-  RANDOM_CHARACTER_LOCK_SECONDS * 1000;

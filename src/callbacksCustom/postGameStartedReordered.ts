@@ -4,9 +4,8 @@ import {
   ModCallbackCustom,
   removeAllDoors,
 } from "isaacscript-common";
+import { hasErrors } from "../classes/features/mandatory/CheckErrors";
 import * as centerStart from "../features/mandatory/centerStart";
-import { errorsPostGameStarted } from "../features/mandatory/errors/errors";
-import { hasErrors } from "../features/mandatory/errors/v";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -65,7 +64,6 @@ function main(isContinued: boolean) {
   }
 
   // Check for errors that should prevent the mod from doing anything.
-  errorsPostGameStarted();
   if (hasErrors()) {
     removeAllDoors();
     return;

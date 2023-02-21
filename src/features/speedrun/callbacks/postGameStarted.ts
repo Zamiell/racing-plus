@@ -1,9 +1,7 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
-import {
-  isSpeedrunWithRandomCharacterOrder,
-  speedrunHasErrors,
-} from "../../../classes/features/speedrun/RandomCharacterOrder";
+import { hasErrors } from "../../../classes/features/mandatory/checkErrors/v";
+import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
@@ -29,6 +27,12 @@ import { speedrunResetFirstCharacterVars, v } from "../v";
 
 export function speedrunPostGameStarted(): void {
   if (!inSpeedrun()) {
+    speedrunResetPersistentVars();
+    return;
+  }
+
+  // Force them back to the first character if there are any errors.
+  if (hasErrors()) {
     speedrunResetPersistentVars();
     return;
   }
@@ -64,10 +68,6 @@ export function speedrunPostGameStarted(): void {
 
   speedrunResetFirstCharacterVars();
   characterProgress.postGameStarted();
-
-  if (speedrunHasErrors()) {
-    return;
-  }
 
   season1.postGameStarted();
   season2PostGameStarted();

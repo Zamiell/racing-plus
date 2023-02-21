@@ -5,7 +5,6 @@ import * as sawblade from "./features/items/sawblade";
 import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as dummyDPS from "./features/mandatory/dummyDPS";
-import { errorsInit } from "./features/mandatory/errors/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -102,7 +101,6 @@ export function initFeatureVariables(): void {
   fireworks.init();
   drawVersion.init();
   dummyDPS.init();
-  errorsInit();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
   seededGlitterBombs.init();

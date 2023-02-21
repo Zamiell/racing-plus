@@ -1,5 +1,3 @@
-import { mod } from "../../../mod";
-
 export const v = {
   run: {
     afterbirthPlus: false,
@@ -8,12 +6,12 @@ export const v = {
     otherModsEnabled: false,
     babiesModEnabled: false,
     invalidCharOrder: false,
+    seasonGameRecentlyOpened: false,
+    seasonConsoleRecentlyUsed: false,
+    seasonBansRecentlySet: false,
+    season4StorageHotkeyNotSet: false,
   },
 };
-
-export function errorsInit(): void {
-  mod.saveDataManager("errors", v);
-}
 
 export function hasErrors(): boolean {
   const errors = Object.values(v.run);

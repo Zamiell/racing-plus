@@ -17,7 +17,7 @@ import {
   spawnGridEntityWithVariant,
   VectorZero,
 } from "isaacscript-common";
-import { speedrunSetBansTime } from "../../classes/features/speedrun/RandomCharacterOrder";
+import { setBuildBansTime } from "../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
 import { g } from "../../globals";
@@ -358,7 +358,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.challengeCustomAbbreviation,
       v.room.buildsChosen as PlayerType[],
     );
-    speedrunSetBansTime();
+    setBuildBansTime();
     game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
     v.room.challengeTarget = ChallengeCustom.SEASON_2;
     v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;

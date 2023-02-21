@@ -1,5 +1,7 @@
-const timeGameOpened = Isaac.GetTime();
+/** In milliseconds. */
+const TIME_GAME_OPENED = Isaac.GetTime();
 
+/** In milliseconds. */
 export function getTimeGameOpened(): int {
-  return timeGameOpened;
+  return TIME_GAME_OPENED;
 }
