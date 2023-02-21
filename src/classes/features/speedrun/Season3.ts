@@ -41,7 +41,8 @@ export class Season3 extends ChallengeModFeature {
   challenge = ChallengeCustom.SEASON_3;
   v = v;
 
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.GLOWING_HOUR_GLASS) // 23, 422
+  // 23, 422
+  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.GLOWING_HOUR_GLASS)
   preUseItemGlowingHourGlass(
     _collectibleType: CollectibleType,
     _rng: RNG,
@@ -60,6 +61,29 @@ export class Season3 extends ChallengeModFeature {
     }
 
     return undefined;
+  }
+
+  // 28, 950
+  @Callback(ModCallback.POST_NPC_RENDER, EntityType.DOGMA)
+  postNPCRenderDogma(npc: EntityNPC): void {
+    this.deathFadeOut(npc);
+  }
+
+  /**
+   * In season 3, dogma is removed in the middle of his phase 2 death animation, which looks buggy.
+   * To counteract this, slowly fade him out as he dies.
+   */
+  deathFadeOut(npc: EntityNPC): void {
+    const sprite = npc.GetSprite();
+    const animation = sprite.GetAnimation();
+    if (animation !== "Death") {
+      return;
+    }
+
+    const frame = sprite.GetFrame();
+    const alpha = 1 - frame * 0.025;
+    const fadeColor = Color(1, 1, 1, alpha, 0, 0, 0);
+    npc.SetColor(fadeColor, 1000, 0, true, true);
   }
 
   // 68, 950, 2

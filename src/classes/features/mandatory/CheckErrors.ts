@@ -54,7 +54,8 @@ const MAX_CHARACTERS_PER_LINE = 50;
 export class CheckErrors extends MandatoryModFeature {
   v = v;
 
-  @Callback(ModCallback.POST_RENDER) // 2
+  // 2
+  @Callback(ModCallback.POST_RENDER)
   postRender(): void {
     if (v.run.afterbirthPlus) {
       drawErrorText(

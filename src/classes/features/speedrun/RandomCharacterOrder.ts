@@ -140,6 +140,31 @@ export class RandomCharacterOrder extends ChallengeModFeature {
   challenge = CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET;
   v = v;
 
+  @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD) // 70
+  preSpawnClearAward(): boolean | undefined {
+    if (!isSpeedrunWithRandomCharacterOrder()) {
+      return;
+    }
+
+    this.checkResetTimeAssigned();
+    return undefined;
+  }
+
+  /** Reset the starting character timer if we just killed the Basement 2 boss. */
+  checkResetTimeAssigned(): void {
+    const roomType = g.r.GetType();
+    const effectiveStage = getEffectiveStage();
+    const roomInsideGrid = isRoomInsideGrid();
+
+    if (
+      effectiveStage === LevelStage.BASEMENT_2 &&
+      roomType === RoomType.BOSS &&
+      roomInsideGrid
+    ) {
+      v.persistent.timeCharacterAssigned = 0;
+    }
+  }
+
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
     if (hasErrors()) {
@@ -150,7 +175,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
-    const startingCharacter = getStartingCharacter();
+    const startingCharacter = getRandomlySelectedStartingCharacter();
     if (character !== startingCharacter) {
       speedrunSetFastReset();
       restartOnNextFrame();
@@ -209,34 +234,9 @@ export class RandomCharacterOrder extends ChallengeModFeature {
       }
     }
   }
-
-  @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD) // 70
-  preSpawnClearAward(): boolean | undefined {
-    if (!isSpeedrunWithRandomCharacterOrder()) {
-      return;
-    }
-
-    this.checkResetTimeAssigned();
-    return undefined;
-  }
-
-  /** Reset the starting character timer if we just killed the Basement 2 boss. */
-  checkResetTimeAssigned(): void {
-    const roomType = g.r.GetType();
-    const effectiveStage = getEffectiveStage();
-    const roomInsideGrid = isRoomInsideGrid();
-
-    if (
-      effectiveStage === LevelStage.BASEMENT_2 &&
-      roomType === RoomType.BOSS &&
-      roomInsideGrid
-    ) {
-      v.persistent.timeCharacterAssigned = 0;
-    }
-  }
 }
 
-export function getStartingCharacter(): PlayerType {
+export function getRandomlySelectedStartingCharacter(): PlayerType {
   // First, handle the case where we have already selected a starting character.
   const oldStartingCharacter = speedrunGetCurrentSelectedCharacter();
   if (oldStartingCharacter !== undefined) {

@@ -79,7 +79,8 @@ export class Season4 extends ChallengeModFeature {
     mod.setConditionalHotkey(keyboardFunc, checkStoreCollectible);
   }
 
-  @Callback(ModCallback.POST_USE_CARD, CardType.RUNE_BLACK) // 5, 41
+  // 5, 41
+  @Callback(ModCallback.POST_USE_CARD, CardType.RUNE_BLACK)
   useCardBlackRune(_card: CardType, player: EntityPlayer): void {
     this.preventBlackRuneOnStoredItems(player);
   }
@@ -91,7 +92,8 @@ export class Season4 extends ChallengeModFeature {
     }
   }
 
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.DIPLOPIA) // 23, 347
+  // 23, 347
+  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.DIPLOPIA)
   preUseItemDiplopia(
     _collectibleType: CollectibleType,
     _rng: RNG,
@@ -100,7 +102,8 @@ export class Season4 extends ChallengeModFeature {
     return this.preUseItemDuplicateCollectibles(player);
   }
 
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.CROOKED_PENNY) // 23, 485
+  // 23, 485
+  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.CROOKED_PENNY)
   preUseItemCrookedPenny(
     _collectibleType: CollectibleType,
     _rng: RNG,

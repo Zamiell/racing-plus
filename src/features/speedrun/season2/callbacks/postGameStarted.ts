@@ -9,7 +9,7 @@ import {
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
-import { getStartingCharacter } from "../../../../classes/features/speedrun/RandomCharacterOrder";
+import { getRandomlySelectedStartingCharacter } from "../../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
@@ -29,7 +29,7 @@ export function season2PostGameStarted(): void {
   }
 
   const player = Isaac.GetPlayer();
-  const startingCharacter = getStartingCharacter();
+  const startingCharacter = getRandomlySelectedStartingCharacter();
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
 
   const startingBuild = SEASON_2_STARTING_BUILDS[startingBuildIndex];

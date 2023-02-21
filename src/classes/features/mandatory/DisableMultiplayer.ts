@@ -14,6 +14,7 @@ export class DisableMultiplayer extends MandatoryModFeature {
    *
    * Thus, we need to perform the check on every frame.
    */
+  // 1
   @Callback(ModCallback.POST_UPDATE)
   postUpdate(): void {
     if (!isMultiplayer()) {

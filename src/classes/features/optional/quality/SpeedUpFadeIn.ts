@@ -17,7 +17,8 @@ export class SpeedUpFadeIn extends ConfigurableModFeature {
   configKey: keyof Config = "speedUpFadeIn";
   v = v;
 
-  @Callback(ModCallback.POST_RENDER) // 2
+  // 2
+  @Callback(ModCallback.POST_RENDER)
   postRender(): void {
     if (this.shouldSpeedUpFadeIn()) {
       this.speedUpFadeIn();

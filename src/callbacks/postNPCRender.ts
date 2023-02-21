@@ -3,7 +3,6 @@ import * as dummyDPS from "../features/mandatory/dummyDPS";
 import * as fastPolycephalus from "../features/optional/bosses/fastBlastocyst";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";
-import { speedrunPostNPCRenderDogma } from "../features/speedrun/callbacks/postNPCRender";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -66,7 +65,6 @@ function heretic(npc: EntityNPC) {
 
 // EntityType.DOGMA (950)
 function dogma(npc: EntityNPC) {
-  speedrunPostNPCRenderDogma(npc);
   fastDogma.postNPCRenderDogma(npc);
 }
 
