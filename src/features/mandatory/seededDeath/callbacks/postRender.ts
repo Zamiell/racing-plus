@@ -1,10 +1,10 @@
 import { CardType } from "isaac-typescript-definitions";
 import { isKeeper, RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import { TimerType } from "../../../../enums/TimerType";
 import { mod } from "../../../../mod";
 import * as timer from "../../../../timer";
+import { onSeason } from "../../../speedrun/speedrun";
 import {
   SEEDED_DEATH_FEATURE_NAME,
   SEEDED_DEATH_TIMER_SEASON_OFFSET_X,
@@ -56,7 +56,6 @@ function postRenderCheckDrawTimer() {
   }
 
   const renderFrameCount = Isaac.GetFrameCount();
-  const challenge = Isaac.GetChallenge();
 
   const remainingFrames = v.run.debuffEndFrame - renderFrameCount;
   const seconds = remainingFrames / RENDER_FRAMES_PER_SECOND;
@@ -64,7 +63,7 @@ function postRenderCheckDrawTimer() {
   let startingX = SEEDED_DEATH_TIMER_STARTING_X;
   const startingY = SEEDED_DEATH_TIMER_STARTING_Y;
 
-  if (challenge === ChallengeCustom.SEASON_2) {
+  if (onSeason(2)) {
     startingX += SEEDED_DEATH_TIMER_SEASON_OFFSET_X;
   }
 

@@ -19,11 +19,11 @@ import {
   NUM_PILLS_IN_POOL,
   ReadonlyMap,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { newSprite } from "../../../sprite";
 import { PillDescription } from "../../../types/PillDescription";
+import { onSeason } from "../../speedrun/speedrun";
 
 const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   PillEffect,
@@ -140,8 +140,7 @@ export function postRender(): void {
   }
 
   // This feature is disabled in season 3. (The pills text will overlap with the goals.)
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_3) {
+  if (onSeason(3)) {
     return;
   }
 

@@ -22,7 +22,6 @@ import {
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -37,6 +36,7 @@ import {
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
 import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
+import { onSeason } from "../../../speedrun/speedrun";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
@@ -128,7 +128,6 @@ function setGameStateFlags(position: Vector) {
 
 function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
   const gridIndex = g.r.GetGridIndex(position);
-  const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
@@ -137,8 +136,7 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
       g.race.myStatus === RacerStatus.RACING &&
       g.race.goal === RaceGoal.THE_BEAST &&
       gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
-      (challenge === ChallengeCustom.SEASON_3 &&
-        gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
+      (onSeason(3) && gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
     clearedMomBossRoom &&
     !repentanceStage
   );
@@ -146,12 +144,11 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
 
 function goingToCorpse1ThroughCustomTrapdoor(position: Vector): boolean {
   const gridIndex = g.r.GetGridIndex(position);
-  const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
   return (
-    challenge === ChallengeCustom.SEASON_3 &&
+    onSeason(3) &&
     gridIndex === NORMAL_TRAPDOOR_GRID_INDEX &&
     clearedMomBossRoom &&
     repentanceStage

@@ -15,13 +15,13 @@ import {
   removeAllMatchingEntities,
   setStage,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import * as seededFloors from "../../../mandatory/seededFloors";
+import { onSeason } from "../../../speedrun/speedrun";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import { v } from "./v";
 
@@ -139,12 +139,10 @@ function getNextStageTypeCustom(upwards: boolean) {
  * Specific races and multi-character speedruns take the player to The Ascent in a non-vanilla way.
  */
 function isRaceDestinationTheAscent(): boolean {
-  const challenge = Isaac.GetChallenge();
-
   return (
     (g.race.status === RaceStatus.IN_PROGRESS &&
       g.race.myStatus === RacerStatus.RACING &&
       g.race.goal === RaceGoal.THE_BEAST) ||
-    challenge === ChallengeCustom.SEASON_3
+    onSeason(3)
   );
 }

@@ -21,13 +21,13 @@ import {
   PriorityCallbackCustom,
   removeAllDoors,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../../enums/PlayerTypeCustom";
 import { SEASON_2_NUM_BANS } from "../../../features/speedrun/season2/constants";
 import {
   checkValidCharOrder,
   inSpeedrun,
+  onSeason,
 } from "../../../features/speedrun/speedrun";
 import { getTimeConsoleUsed } from "../../../features/utils/timeConsoleUsed";
 import { getTimeGameOpened } from "../../../features/utils/timeGameOpened";
@@ -77,11 +77,7 @@ export class CheckErrors extends MandatoryModFeature {
         "You must turn off The Babies Mod when playing characters other than Random Baby.",
       );
     } else if (v.run.invalidCharOrder) {
-      const challenge = Isaac.GetChallenge();
-      const thingToSet =
-        challenge === ChallengeCustom.SEASON_2
-          ? "item bans"
-          : "a character order";
+      const thingToSet = onSeason(2) ? "item bans" : "a character order";
       drawErrorText(
         `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
       );
@@ -266,8 +262,7 @@ function checkInvalidCharOrder() {
 }
 
 function checkStorageHotkey() {
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_4 && hotkeys.storage === -1) {
+  if (onSeason(4) && hotkeys.storage === -1) {
     v.run.season4StorageHotkeyNotSet = true;
     log("Error: Storage hotkey not set.");
   }

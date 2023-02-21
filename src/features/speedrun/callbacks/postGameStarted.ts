@@ -2,7 +2,6 @@ import { PlayerType } from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { hasErrors } from "../../../classes/features/mandatory/checkErrors/v";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
@@ -12,6 +11,7 @@ import {
   setRestartCharacter,
 } from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
+import { speedrunResetPersistentVars } from "../resetVars";
 import * as season1 from "../season1";
 import { season2PostGameStarted } from "../season2/callbacks/postGameStarted";
 import { season3PostGameStarted } from "../season3/callbacks/postGameStarted";
@@ -21,7 +21,7 @@ import {
   getFirstCharacter,
   inSpeedrun,
   isOnFirstCharacter,
-  speedrunResetPersistentVars,
+  onSeason,
 } from "../speedrun";
 import { speedrunResetFirstCharacterVars, v } from "../v";
 
@@ -145,7 +145,6 @@ function goBackToFirstCharacter() {
 
 function giveMoreOptionsBuff() {
   const player = Isaac.GetPlayer();
-  const challenge = Isaac.GetChallenge();
 
   // Only seasons with Treasure Rooms need the More Options buff.
   if (shouldBanFirstFloorTreasureRoom()) {
@@ -155,7 +154,7 @@ function giveMoreOptionsBuff() {
   // The first character of the speedrun always gets a temporary More Options to speed up the
   // process of getting a run going. (On season 3, every character gets this temporary buff in order
   // to match how diversity races work.)
-  if (isOnFirstCharacter() || challenge === ChallengeCustom.SEASON_3) {
+  if (isOnFirstCharacter() || onSeason(3)) {
     tempMoreOptions.give(player);
   }
 }

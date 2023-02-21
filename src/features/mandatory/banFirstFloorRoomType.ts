@@ -8,11 +8,10 @@ import {
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { inSeededRace } from "../race/v";
-import { isOnFirstCharacter } from "../speedrun/speedrun";
+import { isOnFirstCharacter, onSeason } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES = [
@@ -36,21 +35,11 @@ export function postNewRoom(): void {
 }
 
 export function shouldBanFirstFloorTreasureRoom(): boolean {
-  const challenge = Isaac.GetChallenge();
-
-  return (
-    onFirstFloor() && (inSeededRace() || challenge === ChallengeCustom.SEASON_2)
-  );
+  return onFirstFloor() && (inSeededRace() || onSeason(2));
 }
 
 function shouldBanSpecialRoomsSeason2() {
-  const challenge = Isaac.GetChallenge();
-
-  return (
-    onFirstFloor() &&
-    challenge === ChallengeCustom.SEASON_2 &&
-    isOnFirstCharacter()
-  );
+  return onSeason(2) && onFirstFloor() && isOnFirstCharacter();
 }
 
 function postNewRoomCheckForRoomType(bannedRoomType: RoomType) {

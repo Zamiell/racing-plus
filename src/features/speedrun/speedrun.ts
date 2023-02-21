@@ -15,7 +15,6 @@ import {
   sfxManager,
   sumArray,
 } from "isaacscript-common";
-import { randomCharacterOrderResetPersistentVars } from "../../classes/features/speedrun/RandomCharacterOrder";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../enums/SoundEffectCustom";
@@ -24,17 +23,20 @@ import * as timer from "../../timer";
 import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
-import {
-  speedrunGetCharacterNum,
-  speedrunResetPersistentVarsSpeedrun,
-  v,
-} from "./v";
+import { speedrunGetCharacterNum, v } from "./v";
 
 const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM =
   new ReadonlySet<Challenge>([
     ChallengeCustom.SEASON_2,
     ChallengeCustom.SEASON_4,
   ]);
+
+const SEASON_NUM_TO_CHALLENGE = {
+  1: ChallengeCustom.SEASON_1,
+  2: ChallengeCustom.SEASON_2,
+  3: ChallengeCustom.SEASON_3,
+  4: ChallengeCustom.SEASON_4,
+} as const;
 
 export function checkValidCharOrder(): boolean {
   const challenge = Isaac.GetChallenge();
@@ -190,6 +192,13 @@ export function inSpeedrun(): boolean {
   return CUSTOM_CHALLENGES_SET.has(challenge);
 }
 
+export function onSeason(num: keyof typeof SEASON_NUM_TO_CHALLENGE): boolean {
+  const challenge = Isaac.GetChallenge();
+  const challengeCustom = SEASON_NUM_TO_CHALLENGE[num];
+
+  return challenge === challengeCustom;
+}
+
 export function onSpeedrunWithDarkRoomGoal(): boolean {
   const challenge = Isaac.GetChallenge();
 
@@ -227,9 +236,4 @@ export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
       }
     }, 4);
   }
-}
-
-export function speedrunResetPersistentVars(): void {
-  speedrunResetPersistentVarsSpeedrun();
-  randomCharacterOrderResetPersistentVars();
 }

@@ -33,6 +33,7 @@ import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import {
   isOnFinalCharacter,
   isOnFirstCharacter,
+  onSeason,
 } from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
@@ -352,11 +353,7 @@ export function season4CheckpointTouched(): void {
 }
 
 export function inRoomWithSeason4StoredItems(): boolean {
-  const challenge = Isaac.GetChallenge();
-
-  return (
-    challenge === ChallengeCustom.SEASON_4 && onFirstFloor() && inStartingRoom()
-    // We don't want to check to see if one or more collectibles exist because the player could be
-    // in the process of taking one of them.
-  );
+  // We don't want to check to see if one or more collectibles exist because the player could be in
+  // the process of taking one of them.
+  return onSeason(4) && onFirstFloor() && inStartingRoom();
 }

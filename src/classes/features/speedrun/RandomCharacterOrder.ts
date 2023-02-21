@@ -19,6 +19,7 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { season2ResetBuilds } from "../../../features/speedrun/season2/v";
+import { onSeason } from "../../../features/speedrun/speedrun";
 import {
   speedrunGetCharacterNum,
   speedrunSetFastReset,
@@ -236,8 +237,6 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 }
 
 export function getStartingCharacter(): PlayerType {
-  const challenge = Isaac.GetChallenge();
-
   // First, handle the case where we have already selected a starting character.
   const oldStartingCharacter = speedrunGetCurrentSelectedCharacter();
   if (oldStartingCharacter !== undefined) {
@@ -249,7 +248,7 @@ export function getStartingCharacter(): PlayerType {
     v.persistent.lastSelectedCharacter === null
       ? []
       : [v.persistent.lastSelectedCharacter];
-  if (challenge === ChallengeCustom.SEASON_4) {
+  if (onSeason(4)) {
     const characterNum = speedrunGetCharacterNum();
     if (characterNum <= 2) {
       for (const character of SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND) {

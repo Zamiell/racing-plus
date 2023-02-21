@@ -10,11 +10,10 @@ import {
   removeDoor,
 } from "isaacscript-common";
 import { season3HasMotherGoal } from "../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
 import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
 import { season3FastClear } from "./season3/fastClear";
-import { inSpeedrun } from "./speedrun";
+import { inSpeedrun, onSeason } from "./speedrun";
 
 export function speedrunPostFastClear(): void {
   if (!inSpeedrun()) {
@@ -68,11 +67,10 @@ export function speedrunShouldSpawnRepentanceDoor(): boolean {
 }
 
 function isCorrectStageForRepentanceDoor(): boolean {
-  const challenge = Isaac.GetChallenge();
   const effectiveStage = getEffectiveStage();
   const repentanceStage = onRepentanceStage();
 
-  if (challenge === ChallengeCustom.SEASON_3) {
+  if (onSeason(3)) {
     if (!season3HasMotherGoal()) {
       return false;
     }

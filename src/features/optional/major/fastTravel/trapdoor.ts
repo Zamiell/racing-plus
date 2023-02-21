@@ -22,12 +22,12 @@ import {
   season3HasOnlyHushLeft,
   season3HasOnlyMotherLeft,
 } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
+import { onSeason } from "../../../speedrun/speedrun";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";
@@ -109,7 +109,6 @@ function shouldRemove() {
   const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const stage = g.l.GetStage();
   const roomType = g.r.GetType();
-  const challenge = Isaac.GetChallenge();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
@@ -128,7 +127,7 @@ function shouldRemove() {
   }
 
   if (
-    challenge === ChallengeCustom.SEASON_3 &&
+    onSeason(3) &&
     season3HasOnlyBossRushLeft() &&
     stage === LevelStage.DEPTHS_2
   ) {
@@ -153,7 +152,7 @@ function shouldRemove() {
   }
 
   if (
-    challenge === ChallengeCustom.SEASON_3 &&
+    onSeason(3) &&
     season3HasOnlyHushLeft() &&
     stage === LevelStage.WOMB_2 &&
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
@@ -224,7 +223,7 @@ function shouldRemove() {
 
   // In season 3, delete the trapdoors to the normal path when the only goal remaining is Mother.
   if (
-    challenge === ChallengeCustom.SEASON_3 &&
+    onSeason(3) &&
     season3HasOnlyMotherLeft() &&
     (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
     !inSecretExit()

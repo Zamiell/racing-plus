@@ -20,7 +20,6 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { ItLivesSituation } from "../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
@@ -30,6 +29,7 @@ import { hasPolaroidOrNegative } from "../../../../utils";
 import { season3PostItLivesPath } from "../../../speedrun/season3/postItLivesPath";
 import {
   inSpeedrun,
+  onSeason,
   onSpeedrunWithDarkRoomGoal,
 } from "../../../speedrun/speedrun";
 
@@ -76,11 +76,9 @@ function manuallySpawn() {
 
 // Figure out if we need to spawn either a trapdoor, a heaven door, or both.
 function getItLivesSituation(): ItLivesSituation {
-  const challenge = Isaac.GetChallenge();
-
   // Speedrun seasons have set goals.
   if (inSpeedrun()) {
-    if (challenge === ChallengeCustom.SEASON_3) {
+    if (onSeason(3)) {
       return season3PostItLivesPath();
     }
 

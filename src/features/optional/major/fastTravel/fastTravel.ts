@@ -16,7 +16,6 @@ import {
   log,
   onRepentanceStage,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -27,6 +26,7 @@ import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
 import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
+import { onSeason } from "../../../speedrun/speedrun";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
@@ -78,7 +78,6 @@ function getCustomSpriteFilename(
   const stage = g.l.GetStage();
   const roomGridIndex = getRoomGridIndex();
   const gridIndex = g.r.GetGridIndex(entity.Position);
-  const challenge = Isaac.GetChallenge();
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
@@ -105,7 +104,7 @@ function getCustomSpriteFilename(
 
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
-        challenge === ChallengeCustom.SEASON_3 &&
+        onSeason(3) &&
         clearedMomBossRoom &&
         !repentanceStage &&
         gridIndex === INVERTED_TRAPDOOR_GRID_INDEX
@@ -114,7 +113,7 @@ function getCustomSpriteFilename(
       }
 
       if (
-        challenge === ChallengeCustom.SEASON_3 &&
+        onSeason(3) &&
         clearedMomBossRoom &&
         repentanceStage &&
         gridIndex === NORMAL_TRAPDOOR_GRID_INDEX

@@ -34,7 +34,6 @@ import {
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
@@ -43,6 +42,7 @@ import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { setStreakText } from "../../mandatory/streakText";
+import { onSeason } from "../../speedrun/speedrun";
 import {
   getFastClearNumAliveBosses,
   getFastClearNumAliveEnemies,
@@ -366,10 +366,9 @@ function finish() {
 function spawnBossRushFinishReward() {
   const roomSeed = g.r.GetSpawnSeed();
   const centerPos = g.r.GetCenterPos();
-  const challenge = Isaac.GetChallenge();
 
   const position = findFreePosition(centerPos, true);
-  if (challenge === ChallengeCustom.SEASON_3) {
+  if (onSeason(3)) {
     // The big chest will get replaced with either a checkpoint or a trophy on the next frame.
     spawnPickup(PickupVariant.BIG_CHEST, 0, position);
     return;

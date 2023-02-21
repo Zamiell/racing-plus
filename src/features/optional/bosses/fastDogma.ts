@@ -16,12 +16,12 @@ import {
   removeAllNPCs,
   spawnNPC,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { consoleCommand } from "../../../utils";
 import { doesTrophyExist } from "../../mandatory/trophy";
+import { onSeason } from "../../speedrun/speedrun";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -85,8 +85,7 @@ export function postEntityKillDogma(entity: Entity): void {
   }
 
   // This feature does not apply when playing Season 3.
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_3) {
+  if (onSeason(3)) {
     return;
   }
 

@@ -6,9 +6,9 @@ import {
   log,
   setEntityOpacity,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
 import { inSeededRace } from "../../race/v";
+import { onSeason } from "../../speedrun/speedrun";
 import { SEEDED_DEATH_DEBUG, SEEDED_DEATH_FADE_AMOUNT } from "./constants";
 import { v } from "./v";
 
@@ -43,7 +43,5 @@ export function logSeededDeathStateChange(): void {
 }
 
 export function shouldSeededDeathFeatureApply(): boolean {
-  const challenge = Isaac.GetChallenge();
-
-  return inSeededRace() || challenge === ChallengeCustom.SEASON_2;
+  return inSeededRace() || onSeason(2);
 }

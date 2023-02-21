@@ -19,7 +19,6 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -32,6 +31,7 @@ import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import { getSeason3BigChestReplacementAction } from "../../../speedrun/season3/bigChest";
 import {
   isOnFinalCharacter,
+  onSeason,
   onSpeedrunWithDarkRoomGoal,
   postSpawnCheckpoint,
 } from "../../../speedrun/speedrun";
@@ -51,8 +51,6 @@ export function postPickupInitBigChest(pickup: EntityPickup): void {
 }
 
 function getReplacementAction() {
-  const challenge = Isaac.GetChallenge();
-
   // First, handle the common case of Cathedral and Sheol. (This avoids duplication below.)
   if (onCathedral() && anyPlayerHasCollectible(CollectibleType.POLAROID)) {
     return BigChestReplacementAction.HEAVEN_DOOR;
@@ -61,16 +59,16 @@ function getReplacementAction() {
     return BigChestReplacementAction.TRAPDOOR;
   }
 
-  if (challenge === ChallengeCustom.SEASON_1) {
+  if (onSeason(1)) {
     return speedrunUp();
   }
-  if (challenge === ChallengeCustom.SEASON_2) {
+  if (onSeason(2)) {
     return speedrunAlternate();
   }
-  if (challenge === ChallengeCustom.SEASON_3) {
+  if (onSeason(3)) {
     return getSeason3BigChestReplacementAction();
   }
-  if (challenge === ChallengeCustom.SEASON_4) {
+  if (onSeason(4)) {
     return speedrunAlternate();
   }
 
