@@ -1,4 +1,3 @@
-import * as dummyDPS from "./classes/features/optional/enemies/DummyDPS";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
@@ -88,7 +87,6 @@ export function initFeatureVariables(): void {
   trophy.init();
   fireworks.init();
   drawVersion.init();
-  dummyDPS.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
   seededGlitterBombs.init();

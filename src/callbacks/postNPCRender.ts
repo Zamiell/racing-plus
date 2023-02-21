@@ -1,5 +1,4 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import * as dummyDPS from "../classes/features/optional/enemies/DummyDPS";
 import * as fastPolycephalus from "../features/optional/bosses/fastBlastocyst";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";
@@ -35,12 +34,6 @@ export function init(): void {
     dogma,
     EntityType.DOGMA, // 950
   );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_RENDER,
-    dummy,
-    EntityType.DUMMY, // 964
-  );
 }
 
 // EntityType.BLASTOCYST_BIG (74)
@@ -66,9 +59,4 @@ function heretic(npc: EntityNPC) {
 // EntityType.DOGMA (950)
 function dogma(npc: EntityNPC) {
   fastDogma.postNPCRenderDogma(npc);
-}
-
-// EntityType.DUMMY (964)
-function dummy(npc: EntityNPC) {
-  dummyDPS.postNPCRenderDummy(npc);
 }

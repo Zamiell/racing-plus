@@ -3,7 +3,6 @@ import {
   EntityType,
   ModCallback,
 } from "isaac-typescript-definitions";
-import * as dummyDPS from "../classes/features/optional/enemies/DummyDPS";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as removeArmor from "../features/optional/bosses/removeArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
@@ -31,12 +30,6 @@ export function init(): void {
     ModCallback.ENTITY_TAKE_DMG,
     gabriel,
     EntityType.GABRIEL, // 272
-  );
-
-  mod.AddCallback(
-    ModCallback.ENTITY_TAKE_DMG,
-    dummy,
-    EntityType.DUMMY, // 964
   );
 }
 
@@ -102,15 +95,4 @@ function gabriel(
   _countdownFrames: int,
 ): boolean | undefined {
   return doubleAngelNerf.entityTakeDmgGabriel(source);
-}
-
-// EntityType.DUMMY (964)
-function dummy(
-  _entity: Entity,
-  amount: float,
-  _damageFlags: BitFlags<DamageFlag>,
-  _source: EntityRef,
-  _countdownFrames: int,
-): boolean | undefined {
-  return dummyDPS.entityTakeDmgDummy(amount);
 }
