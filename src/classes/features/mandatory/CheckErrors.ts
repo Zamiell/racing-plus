@@ -20,6 +20,7 @@ import {
   onFirstFloor,
   PriorityCallbackCustom,
   removeAllDoors,
+  TIME_GAME_OPENED,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../../enums/PlayerTypeCustom";
@@ -29,7 +30,6 @@ import {
   onSeason,
 } from "../../../features/speedrun/speedrun";
 import { getTimeConsoleUsed } from "../../../features/utils/timeConsoleUsed";
-import { getTimeGameOpened } from "../../../features/utils/timeGameOpened";
 import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
@@ -89,7 +89,7 @@ export class CheckErrors extends MandatoryModFeature {
     } else if (v.run.seasonGameRecentlyOpened) {
       const text = this.getSeasonErrorMessage(
         "opening the game",
-        getTimeGameOpened(),
+        TIME_GAME_OPENED,
       );
       drawErrorText(text);
     } else if (v.run.seasonConsoleRecentlyUsed) {
@@ -275,8 +275,7 @@ function checkGameRecentlyOpened() {
   }
 
   const time = Isaac.GetTime();
-  const timeGameOpened = getTimeGameOpened();
-  const gameUnlockTime = timeGameOpened + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  const gameUnlockTime = TIME_GAME_OPENED + RANDOM_CHARACTER_LOCK_MILLISECONDS;
   if (time <= gameUnlockTime) {
     v.run.seasonGameRecentlyOpened = true;
     log("Error: Game recently opened.");
