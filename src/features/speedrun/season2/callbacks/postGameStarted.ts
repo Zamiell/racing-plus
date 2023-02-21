@@ -10,11 +10,10 @@ import {
   smeltTrinket,
 } from "isaacscript-common";
 import { getStartingCharacter } from "../../../../classes/features/speedrun/RandomCharacterOrder";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
-import { getCharacterOrderSafe } from "../../speedrun";
+import { getCharacterOrderSafe, onSeason } from "../../speedrun";
 import {
   SEASON_2_FORGOTTEN_EXCEPTIONS,
   SEASON_2_STARTING_BUILDS,
@@ -25,13 +24,11 @@ import { season2GetCurrentBuildIndex, v } from "../v";
 const NUM_REVELATION_SOUL_HEARTS = 4;
 
 export function season2PostGameStarted(): void {
-  const challenge = Isaac.GetChallenge();
-  const player = Isaac.GetPlayer();
-
-  if (challenge !== ChallengeCustom.SEASON_2) {
+  if (!onSeason(2)) {
     return;
   }
 
+  const player = Isaac.GetPlayer();
   const startingCharacter = getStartingCharacter();
   const startingBuildIndex = getStartingBuildIndex(startingCharacter);
 

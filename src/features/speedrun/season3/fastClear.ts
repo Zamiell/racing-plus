@@ -8,14 +8,12 @@ import {
   season3HasHushGoal,
   season3HasOnlyDogmaLeft,
 } from "../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../utilsGlobals";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../optional/major/fastTravel/fastTravel";
+import { onSeason } from "../speedrun";
 
 export function season3FastClear(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

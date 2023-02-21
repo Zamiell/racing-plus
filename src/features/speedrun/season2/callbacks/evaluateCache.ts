@@ -4,15 +4,14 @@ import {
   hasFlyingTransformation,
   isFlyingCharacter,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../speedrun";
 import { SEASON_2_STARTING_BUILDS } from "../constants";
 import { season2GetCurrentBuildIndex } from "../v";
 
 // CacheFlag.FLYING (1 << 7)
 export function season2EvaluateCacheFlying(player: EntityPlayer): void {
-  const challenge = Isaac.GetChallenge();
-  if (challenge !== ChallengeCustom.SEASON_2) {
+  if (!onSeason(2)) {
     return;
   }
 

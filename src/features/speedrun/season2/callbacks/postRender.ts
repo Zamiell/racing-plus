@@ -1,18 +1,16 @@
 import { game } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { onSeason } from "../../speedrun";
 import {
   drawSeason2StartingRoomSprites,
   drawSeason2StartingRoomText,
 } from "../startingRoomSprites";
 
 export function season2PostRender(): void {
-  const hud = game.GetHUD();
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_2) {
+  if (!onSeason(2)) {
     return;
   }
 
+  const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;
   }

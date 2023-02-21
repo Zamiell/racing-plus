@@ -11,11 +11,10 @@ import {
   repeat,
 } from "isaacscript-common";
 import { v } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
-import { isOnFirstCharacter } from "../../speedrun";
+import { isOnFirstCharacter, onSeason } from "../../speedrun";
 import {
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_GOALS,
@@ -31,12 +30,11 @@ import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
 
 export function season3PostGameStarted(): void {
-  const challenge = Isaac.GetChallenge();
-  const player = Isaac.GetPlayer();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
+
+  const player = Isaac.GetPlayer();
 
   if (isOnFirstCharacter()) {
     v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);

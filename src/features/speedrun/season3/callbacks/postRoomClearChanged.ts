@@ -11,14 +11,12 @@ import {
   spawnPickup,
 } from "isaacscript-common";
 import { season3HasHushGoal } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
+import { onSeason } from "../../speedrun";
 
 /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */
 export function season3PostRoomClearChanged(roomClear: boolean): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

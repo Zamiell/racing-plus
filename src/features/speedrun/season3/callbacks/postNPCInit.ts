@@ -3,16 +3,14 @@
 
 import { EntityType, LevelStage } from "isaac-typescript-definitions";
 import { spawnNPCWithSeed } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
+import { onSeason } from "../../speedrun";
 
 const VANILLA_HUSH_SPAWN_POSITION = Vector(580, 260);
 
 // EntityType.ISAAC (102)
 export function season3PostNPCInitIsaac(npc: EntityNPC): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

@@ -287,8 +287,7 @@ export class Season4 extends ChallengeModFeature {
 
 function checkStoreCollectible() {
   // We have to explicitly check for the challenge since this is not fired from a callback.
-  const challenge = Isaac.GetChallenge();
-  if (challenge !== ChallengeCustom.SEASON_4) {
+  if (!onSeason(4)) {
     return;
   }
 
@@ -337,13 +336,9 @@ function storeCollectible(
 
 // Called from the `ModCallbackCustom.PRE_ITEM_PICKUP` callback.
 export function season4CheckpointTouched(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_4) {
-    return;
+  if (onSeason(4)) {
+    emptyArray(v.persistent.storedCollectiblesOnThisRun);
   }
-
-  emptyArray(v.persistent.storedCollectiblesOnThisRun);
 }
 
 export function inRoomWithSeason4StoredItems(): boolean {

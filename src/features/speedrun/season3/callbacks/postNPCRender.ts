@@ -1,10 +1,8 @@
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { onSeason } from "../../speedrun";
 
 // EntityType.DOGMA (950)
 export function season3PostNPCRenderDogma(npc: EntityNPC): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

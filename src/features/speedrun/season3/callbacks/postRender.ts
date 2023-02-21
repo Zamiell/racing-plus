@@ -6,7 +6,7 @@ import {
   KColorDefault,
 } from "isaacscript-common";
 import { v } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { onSeason } from "../../speedrun";
 import { SEASON_3_GOALS } from "../constants";
 import {
   drawSeason3StartingRoomSprites,
@@ -14,8 +14,7 @@ import {
 } from "../startingRoomSprites";
 
 export function season3PostRender(): void {
-  const challenge = Isaac.GetChallenge();
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

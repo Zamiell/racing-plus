@@ -7,15 +7,13 @@ import {
   onRepentanceStage,
 } from "isaacscript-common";
 import { v } from "../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { g } from "../../../globals";
+import { onSeason } from "../speedrun";
 import { Season3Goal } from "./constants";
 
 /** We need to remove the corresponding goal related to this Checkpoint. */
 export function season3CheckpointTouched(): void {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

@@ -1,14 +1,13 @@
 import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
 import { asNumber, spawnPickup } from "isaacscript-common";
 import { season3HasDogmaGoal } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../speedrun";
 
 // EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {
-  const challenge = Isaac.GetChallenge();
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

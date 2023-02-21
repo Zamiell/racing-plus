@@ -9,8 +9,8 @@ import {
   season3HasGoalThroughWomb1,
   v,
 } from "../../../../classes/features/speedrun/season3/v";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { onSeason } from "../../speedrun";
 
 /** One tile away from the bottom door in a 1x1 room. */
 export const INVERTED_TRAPDOOR_GRID_INDEX = 97;
@@ -19,8 +19,7 @@ export function season3PreItemPickup(
   _player: EntityPlayer,
   _pickingUpItem: PickingUpItem,
 ): void {
-  const challenge = Isaac.GetChallenge();
-  if (challenge !== ChallengeCustom.SEASON_3) {
+  if (!onSeason(3)) {
     return;
   }
 

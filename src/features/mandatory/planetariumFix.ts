@@ -6,11 +6,11 @@ import {
   getRoomGridIndexesForType,
   log,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
+import { onSeason } from "../speedrun/speedrun";
 import { decrementNumRoomsEntered } from "../utils/numRoomsEntered";
 
 enum PlanetariumFixWarpState {
@@ -34,9 +34,7 @@ export function init(): void {
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
-  const challenge = Isaac.GetChallenge();
-
-  if (!inSeededRace() && challenge !== ChallengeCustom.SEASON_2) {
+  if (!inSeededRace() && !onSeason(2)) {
     return false;
   }
 
