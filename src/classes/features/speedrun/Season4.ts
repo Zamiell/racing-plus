@@ -49,7 +49,7 @@ import {
   SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP,
   SEASON_4_STORAGE_ICON_OFFSET,
   SEASON_4_STORED_ITEM_POSITIONS,
-} from "./season4Constants";
+} from "./season4/constants";
 
 const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
   newCollectibleSprite(CollectibleType.SCHOOLBAG),

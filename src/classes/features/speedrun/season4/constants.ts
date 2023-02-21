@@ -1,6 +1,6 @@
 import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
 import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
 export const SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
