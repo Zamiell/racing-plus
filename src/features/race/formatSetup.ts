@@ -211,8 +211,6 @@ export function giveDiversityItemsAndDoItemBans(
   collectibleTypes: CollectibleType[],
   trinketType: TrinketType,
 ): void {
-  trinketType = TrinketType.FOUND_SOUL;
-
   log("Granting Diversity items:");
   for (const collectibleType of collectibleTypes) {
     log(`- ${getCollectibleName(collectibleType)}`);
