@@ -1092,10 +1092,28 @@ export const BUG_FIXES_2 = [
 // 1001-1010
 export const GRAPHIC_CHANGES_1 = [
   [
-    "paschalCandle", // 3.221
+    "hudOffsetFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1001",
+      "Fix HUD offset",
+      "Fix the default HUD offset to be the same as it was in Afterbirth+.",
+    ],
+  ],
+  [
+    "drawControls",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1002",
+      "Draw Controls",
+      "Draw the controls on the starting room of the run.",
+    ],
+  ],
+  [
+    "paschalCandle", // 3.221
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1003",
       "Better Paschal Candle",
       'Make Paschal Candle "fill up" so that you can easily tell at a glance if it is maxed out.',
     ],
@@ -1104,7 +1122,7 @@ export const GRAPHIC_CHANGES_1 = [
     "scaredHeart", // 5.10.9
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1002",
+      "1004",
       "Distinct Scared Hearts",
       "Make Sticky Nickels have a custom animation so that they are easier to identify.",
     ],
@@ -1113,7 +1131,7 @@ export const GRAPHIC_CHANGES_1 = [
     "stickyNickel", // 5.20.6
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1003",
+      "1005",
       "Distinct Sticky Nickels",
       "Make Sticky Nickels have a custom effect so that they are easier to identify.",
     ],
@@ -1122,25 +1140,16 @@ export const GRAPHIC_CHANGES_1 = [
     "uniqueCardBacks", // 5.300
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1004",
+      "1006",
       "Unique card backs",
       "Make some cards have a unique card back or modified graphic so that they are easier to identify.",
-    ],
-  ],
-  [
-    "hudOffsetFix",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1005",
-      "Fix HUD offset",
-      "Fix the default HUD offset to be the same as it was in Afterbirth+.",
     ],
   ],
   [
     "holidayHats",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1006",
+      "1007",
       "Holiday hats",
       "Show a festive hat during a holiday.",
     ],

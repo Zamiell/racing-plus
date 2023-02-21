@@ -98,11 +98,12 @@ export class Config {
   removeInvalidPitfalls = true;
 
   // GFX
+  hudOffsetFix = true;
+  drawControls = true;
   paschalCandle = true; // 3.221
   scaredHeart = true; // 5.10.9
   stickyNickel = true; // 5.20.6
   uniqueCardBacks = true; // 5.300
-  hudOffsetFix = true;
   holidayHats = true;
 
   // Sounds

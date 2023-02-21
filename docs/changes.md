@@ -400,15 +400,16 @@ Post-flip actions:
 
 ### 10) Graphics Fixes
 
-- `1001` <!-- paschalCandle 3.221 --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
-- `1002` <!-- scaredHeart 5.10.9 --> Scared Hearts now have a custom animation so that they are easier to identify.
-- `1003` <!-- stickyNickel 5.20.6 --> Sticky Nickels now have a custom effect so that they are easier to identify.
-- `1004` <!-- uniqueCardBacks 5.300 --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
-- `1005` <!-- hudOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
+- `1001` <!-- hudOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
+- `1002` <!-- drawControls --> The controls graphic is drawn on the ground of the starting room of the run, as normal. (Disable this if you prefer there to be no controls.)
+- `1003` <!-- paschalCandle 3.221 --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- `1004` <!-- scaredHeart 5.10.9 --> Scared Hearts now have a custom animation so that they are easier to identify.
+- `1005` <!-- stickyNickel 5.20.6 --> Sticky Nickels now have a custom effect so that they are easier to identify.
+- `1006` <!-- uniqueCardBacks 5.300 --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
 
 > Why? This is how it was in Afterbirth+ and is likely the intended default value.
 
-- `1006` <!-- holidayHats --> Show a festive hat during a holiday.
+- `1007` <!-- holidayHats --> Show a festive hat during a holiday.
 - <!-- "ui_hearts.png" --> The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - <!-- 5.70 --> Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - <!-- 5.70 --> The color of some pills are changed to make them easier to identify at a glance:

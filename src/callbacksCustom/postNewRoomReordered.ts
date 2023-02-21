@@ -13,7 +13,6 @@ import { updateCachedAPIFunctions } from "../cache";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
 import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
-import * as controlsGraphic from "../features/mandatory/controlsGraphic";
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
@@ -70,7 +69,6 @@ function main() {
   // Mandatory
   removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
-  controlsGraphic.postNewRoom();
   beastPreventEnd.postNewRoom();
   tempMoreOptions.postNewRoom();
   banFirstFloorRoomType.postNewRoom();
