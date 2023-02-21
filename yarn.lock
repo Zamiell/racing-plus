@@ -2669,7 +2669,7 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.1.tgz#b312d902b313f81e4eaf98b6361ba2b45cd694bb"
   integrity sha512-/kppl+R+LO5VmhYSEWARUFjodS25D68gvj8W7z0I7OWhUla5xWu8KL6CtB2V0R6yqhnRgbcaREMr4EEM6htLPQ==
 
-isaac-typescript-definitions@^12.0.0, isaac-typescript-definitions@^12.0.1:
+isaac-typescript-definitions@^12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-12.0.1.tgz#2e79bd17a3401b58ff29455658c1bcc0429ddf26"
   integrity sha512-rPfRFcMmPyjOoYKezDaaL8s1QF6jXmXMBhSAygy+MPXmSxwGo6/0fYMDJIxxCbubqcZnrXXJuo7mjQ8wKsR1Aw==
@@ -2681,12 +2681,12 @@ isaacscript-common-ts@^10.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-10.0.0.tgz#f1037ad8856ef37860964b2987b913aa2e289280"
   integrity sha512-lacHMi0+2ovSuMrtz253XjvDX1i4bER5eNbWsRBTOQp56ZTX5aGC9zKg6GyaDULTfwL/K/bD1mVG69qvsAqChQ==
 
-isaacscript-common@^26.1.1:
-  version "26.1.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-26.1.1.tgz#b3d99e97598283aeeb1725e18f34491001e9ea5f"
-  integrity sha512-YxT+LsN20tLpQt+fnYJfwAQYqJcKNrEYIc4nA7xKtIkC6Rg7AGX3oEA1df2GWbKIaNjvYjU1v/g9GK4VYhpOBw==
+isaacscript-common@^26.1.2:
+  version "26.1.2"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-26.1.2.tgz#73d1b7b3088710453781ed87f5f6906716cd28e0"
+  integrity sha512-XzVwEhkHnhoN6ZMUgkRVPT3wh5MiWI7WFL80C6/wCMMnikP68t9MyrcMUR0K/f0jXYrELrghe0213Ewm1iLGQA==
   dependencies:
-    isaac-typescript-definitions "^12.0.0"
+    isaac-typescript-definitions "^12.0.1"
 
 isaacscript-lint@^4.13.1:
   version "4.13.1"
