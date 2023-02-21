@@ -41,6 +41,7 @@ import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
   SEASON_4_BANNED_COLLECTIBLES,
+  SEASON_4_BANNED_COLLECTIBLES_PAST_FIRST_CHAR,
   SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE,
   SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH,
   SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP,
@@ -122,7 +123,13 @@ export class Season4 extends ChallengeModFeature {
     this.resetDataStructures();
     this.giveStartingItems();
     this.spawnStoredCollectibles();
+
     removeCollectibleFromPools(...SEASON_4_BANNED_COLLECTIBLES);
+    if (!isOnFirstCharacter()) {
+      removeCollectibleFromPools(
+        ...SEASON_4_BANNED_COLLECTIBLES_PAST_FIRST_CHAR,
+      );
+    }
   }
 
   resetDataStructures(): void {

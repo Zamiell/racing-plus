@@ -28,6 +28,10 @@ export const SEASON_4_BANNED_COLLECTIBLES = [
   CollectibleType.WE_NEED_TO_GO_DEEPER,
 ] as const;
 
+export const SEASON_4_BANNED_COLLECTIBLES_PAST_FIRST_CHAR = [
+  CollectibleType.GENESIS,
+] as const;
+
 export const SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE =
   new ReadonlySet<CollectibleType>([CollectibleTypeCustom.CHECKPOINT]);
 
