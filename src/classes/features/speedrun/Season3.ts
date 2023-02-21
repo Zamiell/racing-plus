@@ -1,18 +1,24 @@
 import {
   CollectibleType,
   DogmaVariant,
+  EffectVariant,
   EntityType,
+  LevelStage,
   ModCallback,
   PickupVariant,
+  RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
   Callback,
   CallbackCustom,
   inStartingRoom,
+  isRoomInsideGrid,
   ModCallbackCustom,
   onFirstFloor,
   onRepentanceStage,
+  removeAllEffects,
+  removeAllTrapdoors,
   spawnPickup,
   spawnTrapdoorWithVariant,
 } from "isaacscript-common";
@@ -24,6 +30,7 @@ import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
   season3HasDogmaGoal,
   season3HasGoalThroughWomb1,
+  season3HasHushGoal,
   v,
 } from "./season3/v";
 
@@ -82,6 +89,36 @@ export class Season3 extends ChallengeModFeature {
         futureEntity.Remove();
       }
     }, 41); // 42 triggers the static.
+  }
+
+  /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */
+  @CallbackCustom(ModCallbackCustom.POST_ROOM_CLEAR_CHANGED, true)
+  postRoomClearChangedTrue(): void {
+    this.checkHushCleared();
+  }
+
+  /**
+   * Fast clear will be triggered after clearing Hush, so to avoid conflicting with that feature, we
+   * spawn the Checkpoint in the `POST_ROOM_CLEAR_CHANGED` callback, which only triggers on the
+   * subsequent frame.
+   */
+  checkHushCleared(): void {
+    const stage = g.l.GetStage();
+    const roomType = g.r.GetType();
+
+    if (
+      stage === LevelStage.BLUE_WOMB &&
+      roomType === RoomType.BOSS &&
+      isRoomInsideGrid() &&
+      season3HasHushGoal()
+    ) {
+      removeAllTrapdoors();
+      removeAllEffects(EffectVariant.HEAVEN_LIGHT_DOOR);
+
+      // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
+      const centerPos = g.r.GetCenterPos();
+      spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
+    }
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)

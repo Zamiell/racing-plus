@@ -1,6 +1,5 @@
 import { ModCallbackCustom } from "isaacscript-common";
 import { fastClearPostRoomClearChanged } from "../features/optional/major/fastClear/callbacks/postRoomClearChanged";
-import { speedrunPostRoomClearChanged } from "../features/speedrun/callbacks/postRoomClearChanged";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -14,5 +13,4 @@ export function init(): void {
  */
 function main(roomClear: boolean) {
   fastClearPostRoomClearChanged(roomClear);
-  speedrunPostRoomClearChanged(roomClear);
 }
