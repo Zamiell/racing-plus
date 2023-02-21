@@ -41,7 +41,6 @@ import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/sh
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
-import * as roomsEntered from "../features/utils/numRoomsEntered";
 import { g } from "../globals";
 import { mod } from "../mod";
 
@@ -67,9 +66,6 @@ function main() {
   log(
     `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Grid index: ${roomGridIndex}${roomGridIndexSuffix} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
-
-  // Utils
-  roomsEntered.postNewRoom();
 
   // Mandatory
   removeGloballyBannedItems.postNewRoom();

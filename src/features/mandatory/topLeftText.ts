@@ -12,6 +12,7 @@ import {
 } from "isaacscript-common";
 import { VERSION } from "../../constants";
 import { g } from "../../globals";
+import { mod } from "../../mod";
 import {
   getNumSacrifices,
   shouldShowNumSacrifices,
@@ -28,7 +29,6 @@ import {
   speedrunGetFinishedFrames,
   speedrunShouldShowEndOfRunText,
 } from "../speedrun/v";
-import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const STARTING_X = 55;
 const STARTING_Y = 10;
@@ -76,7 +76,7 @@ export function postRender(): void {
     if (speedrunShouldShowEndOfRunText()) {
       lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
     } else {
-      const numRoomsEntered = getNumRoomsEntered();
+      const numRoomsEntered = mod.getNumRoomsEntered();
       lines.push(`Rooms entered: ${numRoomsEntered}`);
     }
 

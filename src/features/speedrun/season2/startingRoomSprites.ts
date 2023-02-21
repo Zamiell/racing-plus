@@ -1,8 +1,8 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
 import { g } from "../../../globals";
+import { mod } from "../../../mod";
 import { newGlowingCollectibleSprite, newSprite } from "../../../sprite";
-import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -130,9 +130,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
 }
 
 export function drawSeason2StartingRoomText(): void {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered !== 1) {
+  if (!mod.inFirstRoom()) {
     return;
   }
 

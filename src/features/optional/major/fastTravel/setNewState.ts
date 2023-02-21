@@ -37,7 +37,6 @@ import {
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
 import { onSeason } from "../../../speedrun/speedrun";
-import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravel";
@@ -276,7 +275,7 @@ function setGoingToNewFloor() {
   // the starting room of the floor) so that the room type and room grid index remain unchanged for
   // the purposes of calculating the next stage and stage type.
   changeRoom(roomGridIndex);
-  decrementNumRoomsEntered(); // This should not count as entering a room.
+  mod.deleteLastRoomDescription(); // This should not count as entering a room.
   // (Technically, we only need to change the room if the player has used a Strength card, which
   // will be the exception rather than the norm. However, if we do not change the room, a weird bug
   // can occur where the location of the wall on the new floor can get messed up. This can be

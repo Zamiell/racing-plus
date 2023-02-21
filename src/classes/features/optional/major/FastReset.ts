@@ -11,7 +11,7 @@ import {
   restart,
 } from "isaacscript-common";
 import { speedrunSetFastReset } from "../../../../features/speedrun/v";
-import { getNumRoomsEntered } from "../../../../features/utils/numRoomsEntered";
+import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -68,7 +68,7 @@ export class FastReset extends ConfigurableModFeature {
 
   reset(): void {
     const renderFrameCount = Isaac.GetFrameCount();
-    const numRoomsEntered = getNumRoomsEntered();
+    const numRoomsEntered = mod.getNumRoomsEntered();
 
     if (numRoomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
       // Speedrun functionality relies on knowing whether or not a fast-reset occurred.

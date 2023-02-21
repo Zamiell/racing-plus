@@ -5,7 +5,7 @@ import {
   getScreenCenterPos,
   KColorDefault,
 } from "isaacscript-common";
-import { getNumRoomsEntered } from "../../../../features/utils/numRoomsEntered";
+import { mod } from "../../../../mod";
 import {
   newGlowingCollectibleSprite,
   newGlowingTrinketSprite,
@@ -136,9 +136,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
 }
 
 export function season3DrawStartingRoomText(): void {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered !== 1) {
+  if (!mod.inFirstRoom()) {
     return;
   }
 

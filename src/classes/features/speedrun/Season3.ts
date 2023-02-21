@@ -1,30 +1,48 @@
 import {
   CollectibleType,
   DogmaVariant,
+  DoorSlot,
   EffectVariant,
+  EntityFlag,
   EntityType,
+  GameStateFlag,
   LevelStage,
   ModCallback,
   PickupVariant,
   RoomType,
+  SoundEffect,
+  StageType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
   Callback,
   CallbackCustom,
+  changeRoom,
+  DOGMA_ROOM_GRID_INDEX,
   game,
+  getBlueWombDoor,
+  inBeastRoom,
   inStartingRoom,
   isRoomInsideGrid,
+  log,
   ModCallbackCustom,
   onFirstFloor,
   onRepentanceStage,
   removeAllEffects,
   removeAllTrapdoors,
+  removeDoor,
+  setStage,
+  sfxManager,
+  spawnNPC,
   spawnNPCWithSeed,
   spawnPickup,
   spawnTrapdoorWithVariant,
+  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
+import { isDreamCatcherWarping } from "../../../features/optional/quality/showDreamCatcherItem/v";
+import { isOnFirstCharacter } from "../../../features/speedrun/speedrun";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { inClearedMomBossRoom } from "../../../utilsGlobals";
@@ -37,11 +55,13 @@ import { season3CheckDrawGoals } from "./season3/drawGoals";
 import {
   season3DrawStartingRoomSprites,
   season3DrawStartingRoomText,
+  season3ResetStartingRoomSprites,
 } from "./season3/startingRoomSprites";
 import {
   season3HasDogmaGoal,
   season3HasGoalThroughWomb1,
   season3HasHushGoal,
+  season3HasMegaSatanGoal,
   v,
 } from "./season3/v";
 
@@ -152,6 +172,104 @@ export class Season3 extends ChallengeModFeature {
         futureEntity.Remove();
       }
     }, 41); // 42 triggers the static.
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    if (!mod.inFirstRoom()) {
+      season3ResetStartingRoomSprites();
+    }
+
+    this.checkSpawnMegaSatanDoor();
+    this.checkDadsNoteRoom();
+    this.checkBeastRoom();
+    this.checkBlueWombRoom();
+  }
+
+  checkSpawnMegaSatanDoor(): void {
+    const stage = g.l.GetStage();
+
+    if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
+      return;
+    }
+
+    if (!season3HasMegaSatanGoal() || isOnFirstCharacter()) {
+      return;
+    }
+
+    g.r.TrySpawnMegaSatanRoomDoor(true); // It has to be forced in order to work.
+    const topDoor = g.r.GetDoor(DoorSlot.UP_0);
+    if (topDoor !== undefined) {
+      const player = Isaac.GetPlayer();
+      topDoor.TryUnlock(player, true);
+      sfxManager.Stop(SoundEffect.UNLOCK);
+    }
+  }
+
+  checkDadsNoteRoom(): void {
+    const backwardsPathInit = game.GetStateFlag(
+      GameStateFlag.BACKWARDS_PATH_INIT,
+    );
+    const stage = g.l.GetStage();
+    const roomType = g.r.GetType();
+    const repentanceStage = onRepentanceStage();
+    const roomInsideGrid = isRoomInsideGrid();
+
+    if (
+      season3HasDogmaGoal() &&
+      stage === LevelStage.DEPTHS_2 &&
+      repentanceStage &&
+      roomType === RoomType.BOSS &&
+      roomInsideGrid &&
+      backwardsPathInit &&
+      !isDreamCatcherWarping()
+    ) {
+      // Take them directly to Home to avoid wasting time.
+      setStage(LevelStage.HOME, StageType.WRATH_OF_THE_LAMB);
+      changeRoom(DOGMA_ROOM_GRID_INDEX);
+      this.spawnRoomClearDelayNPC();
+    }
+  }
+
+  /**
+   * If we clear the room, a random pickup will spawn, which may interfere with picking up the
+   * checkpoint/trophy. Since we spawn the Big Chest based on when Dogma dies, we can safely spawn a
+   * room clear delay NPC to prevent the normal room clear from ever happening.
+   *
+   * Using a room clear delay effect for this purpose does not work.
+   */
+  spawnRoomClearDelayNPC(): void {
+    const roomClearDelayNPC = spawnNPC(
+      EntityTypeCustom.ROOM_CLEAR_DELAY_NPC,
+      0,
+      0,
+      VectorZero,
+    );
+    roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
+    log('Spawned the "Room Clear Delay NPC" custom entity (for Dogma).');
+  }
+
+  /**
+   * Sometimes, Dogma will not play its death animation for an unknown reason. If this happens, the
+   * player will be teleported to The Beast room. Try to detect this and teleport them back.
+   */
+  checkBeastRoom(): void {
+    if (inBeastRoom()) {
+      // We do not need to change the stage, as doing that would delete the spawned Checkpoint.
+      changeRoom(DOGMA_ROOM_GRID_INDEX);
+    }
+  }
+
+  /** Guard against the player accidentally going to Hush. */
+  checkBlueWombRoom(): void {
+    if (season3HasHushGoal()) {
+      return;
+    }
+
+    const blueWombDoor = getBlueWombDoor();
+    if (blueWombDoor !== undefined) {
+      removeDoor(blueWombDoor);
+    }
   }
 
   /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */

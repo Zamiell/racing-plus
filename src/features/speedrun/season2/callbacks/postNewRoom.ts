@@ -1,4 +1,4 @@
-import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
+import { mod } from "../../../../mod";
 import { onSeason } from "../../speedrun";
 import { resetSeason2StartingRoomSprites } from "../startingRoomSprites";
 
@@ -7,9 +7,7 @@ export function season2PostNewRoom(): void {
     return;
   }
 
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered !== 1) {
+  if (!mod.inFirstRoom()) {
     resetSeason2StartingRoomSprites();
   }
 }

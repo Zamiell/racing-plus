@@ -11,7 +11,6 @@ import { mod } from "../../mod";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
 import { onSeason } from "../speedrun/speedrun";
-import { decrementNumRoomsEntered } from "../utils/numRoomsEntered";
 
 enum PlanetariumFixWarpState {
   INITIAL,
@@ -74,7 +73,7 @@ function warpToNextRoom() {
     log(
       `Planetarium Fix - Arrived at room: ${roomGridIndex} (room type: ${roomType})`,
     );
-    decrementNumRoomsEntered(); // This should not count as entering a room.
+    mod.deleteLastRoomDescription(); // This should not count as entering a room.
     return;
   }
 

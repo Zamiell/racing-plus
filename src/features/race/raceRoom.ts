@@ -10,7 +10,6 @@ import {
   getRoomStageID,
   getRoomVariant,
   getScreenCenterPos,
-  onFirstFloor,
   removeAllDoors,
   removeEntities,
   spawnNPC,
@@ -20,7 +19,6 @@ import { g } from "../../globals";
 import { mod } from "../../mod";
 import { newSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
-import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 import {
   RACE_ROOM_LEVEL as RACE_ROOM_LEVEL_STAGE,
   RACE_ROOM_POSITION,
@@ -176,14 +174,12 @@ function gotoRaceRoom() {
 }
 
 function shouldGotoRaceRoom() {
-  const numRoomsEntered = getNumRoomsEntered();
-
   return (
     (g.race.status === RaceStatus.OPEN ||
       g.race.status === RaceStatus.STARTING) &&
     // Only bring them to the race room if they are not in the middle of a run.
     // (e.g. the only room that they have entered is the starting room on Basement 1)
-    numRoomsEntered === 1
+    mod.inFirstRoom()
   );
 }
 
@@ -315,14 +311,4 @@ export function numEntrantsChanged(): void {
   if (g.race.status === RaceStatus.OPEN) {
     initNumEntrantsSprite();
   }
-}
-
-export function goingToRaceRoom(): boolean {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  return (
-    g.race.status === RaceStatus.OPEN &&
-    onFirstFloor() &&
-    (numRoomsEntered === 0 || numRoomsEntered === 1)
-  );
 }

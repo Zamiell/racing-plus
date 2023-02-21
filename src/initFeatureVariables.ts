@@ -60,7 +60,6 @@ import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as season2 from "./features/speedrun/season2/v";
 import * as speedrunVars from "./features/speedrun/v";
-import * as roomsEntered from "./features/utils/numRoomsEntered";
 import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
 import { mod } from "./mod";
 import * as modConfigMenu from "./modConfigMenu";
@@ -80,7 +79,6 @@ export function initFeatureVariables(): void {
 
   // Util
   restartOnNextFrame.init();
-  roomsEntered.init();
 
   // Mandatory
   streakText.init();

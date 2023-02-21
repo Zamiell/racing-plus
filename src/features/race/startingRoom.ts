@@ -4,12 +4,12 @@ import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
+import { mod } from "../../mod";
 import {
   newGlowingCollectibleSpriteFromServerCollectibleID,
   newGlowingTrinketSprite,
   newSprite,
 } from "../../sprite";
-import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -145,9 +145,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const numRoomsEntered = getNumRoomsEntered();
-
-  if (numRoomsEntered > 1) {
+  if (!mod.inFirstRoom()) {
     resetSprites();
   }
 }

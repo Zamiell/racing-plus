@@ -25,7 +25,6 @@ import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import {
   CardReadingPortalDescription,
@@ -115,7 +114,7 @@ export function warpToNextDreamCatcherRoom(): void {
   if (roomGridIndex !== undefined) {
     log(`Dream Catcher - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
-    decrementNumRoomsEntered(); // This should not count as entering a room.
+    mod.deleteLastRoomDescription(); // This should not count as entering a room.
     return;
   }
 

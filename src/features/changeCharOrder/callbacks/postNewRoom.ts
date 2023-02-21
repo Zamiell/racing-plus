@@ -18,7 +18,6 @@ import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { consoleCommand } from "../../../utils";
-import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
 import {
   CHANGE_CHAR_ORDER_POSITIONS_MAP,
   CHANGE_CHAR_ORDER_ROOM_STAGE_ARGUMENT,
@@ -32,7 +31,7 @@ export function charCharOrderPostNewRoom(): void {
     return;
   }
 
-  const numRoomsEntered = getNumRoomsEntered();
+  const numRoomsEntered = mod.getNumRoomsEntered();
 
   if (numRoomsEntered === 1) {
     gotoButtonRoom();

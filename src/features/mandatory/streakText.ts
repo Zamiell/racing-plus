@@ -30,9 +30,9 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { PlayerTypeCustom } from "../../enums/PlayerTypeCustom";
+import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
-import { goingToRaceRoom } from "../race/raceRoom";
 
 const FRAMES_BEFORE_FADE = 50;
 
@@ -229,8 +229,9 @@ function shouldShowLevelText() {
 }
 
 function showLevelText() {
-  // Going to the race room is a special case; we don't want to display the level text here.
-  if (goingToRaceRoom()) {
+  // Going to or being in the race room is a special case; we don't want to display the level text
+  // here.
+  if (g.race.status === RaceStatus.OPEN && onFirstFloor()) {
     return;
   }
 
