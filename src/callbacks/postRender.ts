@@ -1,8 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { updateCachedAPIFunctions } from "../cache";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
-import * as restartOnNextFrame from "../classes/features/mandatory/RestartOnNextFrame";
-import * as timeConsoleUsed from "../classes/features/mandatory/TimeConsoleUsed";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -29,11 +27,6 @@ export function init(): void {
 function main() {
   updateCachedAPIFunctions();
 
-  if (restartOnNextFrame.isRestartingOnNextFrame()) {
-    restartOnNextFrame.postRender();
-    return;
-  }
-
   // If there are any errors, we can skip the remainder of this function.
   if (hasErrors()) {
     return;
@@ -42,9 +35,6 @@ function main() {
   // For mod features that draw UI elements to the screen, we should early return if the HUD is not
   // visible. However, the game is considered to be paused during the room slide animation, so in
   // most cases, we do not want to check to see if the game is paused.
-
-  // Utils
-  timeConsoleUsed.postRender();
 
   // Mandatory
   modConfigNotify.postRender();

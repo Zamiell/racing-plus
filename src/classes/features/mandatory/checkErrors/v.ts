@@ -1,5 +1,7 @@
-// We need to separate out the variables to prevent circular dependencies.
-
+/**
+ * We need to separate the variables from the feature class in order to prevent circular
+ * dependencies.
+ */
 export const v = {
   run: {
     afterbirthPlus: false,

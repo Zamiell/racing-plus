@@ -37,10 +37,10 @@ export class RestartOnNextFrame extends MandatoryModFeature {
     }
 
     v.run.restartOnNextRenderFrame = false;
-    this.checkSpecialRestart();
+    this.performRestart();
   }
 
-  checkSpecialRestart(): void {
+  performRestart(): void {
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
     const startSeedString = g.seeds.GetStartSeedString();
