@@ -22,7 +22,7 @@ import {
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
-import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/Season3";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/season3/constants";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../enums/RaceGoal";

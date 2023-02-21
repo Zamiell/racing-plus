@@ -140,7 +140,8 @@ export class RandomCharacterOrder extends ChallengeModFeature {
   challenge = CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET;
   v = v;
 
-  @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD) // 70
+  // 70
+  @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
     if (!isSpeedrunWithRandomCharacterOrder()) {
       return;

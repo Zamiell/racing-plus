@@ -1,34 +1,13 @@
 import { ButtonAction } from "isaac-typescript-definitions";
 import {
   fonts,
-  game,
   isActionPressedOnAnyInput,
   KColorDefault,
 } from "isaacscript-common";
-import { v } from "../../../../classes/features/speedrun/season3/v";
-import { onSeason } from "../../speedrun";
-import { SEASON_3_GOALS } from "../constants";
-import {
-  drawSeason3StartingRoomSprites,
-  drawSeason3StartingRoomText,
-} from "../startingRoomSprites";
+import { SEASON_3_GOALS } from "./constants";
+import { v } from "./v";
 
-export function season3PostRender(): void {
-  if (!onSeason(3)) {
-    return;
-  }
-
-  const hud = game.GetHUD();
-  if (!hud.IsVisible()) {
-    return;
-  }
-
-  drawSeason3StartingRoomSprites();
-  drawSeason3StartingRoomText();
-  checkDrawGoals();
-}
-
-function checkDrawGoals() {
+export function season3CheckDrawGoals(): void {
   if (isActionPressedOnAnyInput(ButtonAction.MAP) || v.run.goalCompleted) {
     drawGoals();
   }

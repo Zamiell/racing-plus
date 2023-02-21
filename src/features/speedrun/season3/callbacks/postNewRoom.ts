@@ -23,6 +23,7 @@ import {
   spawnNPC,
   VectorZero,
 } from "isaacscript-common";
+import { season3ResetStartingRoomSprites } from "../../../../classes/features/speedrun/season3/startingRoomSprites";
 import {
   season3HasDogmaGoal,
   season3HasHushGoal,
@@ -33,7 +34,6 @@ import { g } from "../../../../globals";
 import { isDreamCatcherWarping } from "../../../optional/quality/showDreamCatcherItem/v";
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter, onSeason } from "../../speedrun";
-import { resetSeason3StartingRoomSprites } from "../startingRoomSprites";
 
 export function season3PostNewRoom(): void {
   if (!onSeason(3)) {
@@ -42,7 +42,7 @@ export function season3PostNewRoom(): void {
 
   const numRoomsEntered = getNumRoomsEntered();
   if (numRoomsEntered !== 1) {
-    resetSeason3StartingRoomSprites();
+    season3ResetStartingRoomSprites();
   }
 
   checkSpawnMegaSatanDoor();

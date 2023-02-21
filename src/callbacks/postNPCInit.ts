@@ -4,7 +4,6 @@ import * as fastColostomia from "../features/optional/bosses/fastColostomia";
 import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as betterDevilAngelRoomsPostNPCInit from "../features/optional/major/betterDevilAngelRooms/callbacks/postNPCInit";
 import { fastClearPostNPCInit } from "../features/optional/major/fastClear/callbacks/postNPCInit";
-import { speedrunPostNPCInitIsaac } from "../features/speedrun/callbacks/postNPCInit";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -14,12 +13,6 @@ export function init(): void {
     ModCallback.POST_NPC_INIT,
     daddyLongLegs,
     EntityType.DADDY_LONG_LEGS, // 101
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_INIT,
-    isaac,
-    EntityType.ISAAC, // 102
   );
 
   mod.AddCallback(
@@ -48,11 +41,6 @@ function main(npc: EntityNPC) {
 // EntityType.DADDY_LONG_LEGS (101)
 function daddyLongLegs(npc: EntityNPC) {
   clearerShadowAttacks.postNPCInitDaddyLongLegs(npc);
-}
-
-// EntityType.ISAAC (102)
-function isaac(npc: EntityNPC) {
-  speedrunPostNPCInitIsaac(npc);
 }
 
 // EntityType.GABRIEL (272)

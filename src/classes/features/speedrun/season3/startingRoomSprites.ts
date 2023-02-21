@@ -5,12 +5,12 @@ import {
   getScreenCenterPos,
   KColorDefault,
 } from "isaacscript-common";
+import { getNumRoomsEntered } from "../../../../features/utils/numRoomsEntered";
 import {
   newGlowingCollectibleSprite,
   newGlowingTrinketSprite,
   newSprite,
-} from "../../../sprite";
-import { getNumRoomsEntered } from "../../utils/numRoomsEntered";
+} from "../../../../sprite";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -43,18 +43,18 @@ const sprites = {
   characterTitle: null as Sprite | null,
 };
 
-export function resetSeason3StartingRoomSprites(): void {
+export function season3ResetStartingRoomSprites(): void {
   for (const keyString of Object.keys(sprites)) {
     const key = keyString as keyof typeof sprites;
     sprites[key] = null;
   }
 }
 
-export function initSeason3StartingRoomSprites(
+export function season3InitStartingRoomSprites(
   collectibleTypes: CollectibleType[],
   trinketType: TrinketType,
 ): void {
-  resetSeason3StartingRoomSprites();
+  season3ResetStartingRoomSprites();
 
   sprites.diversityActive = newSprite(`${GFX_PATH}/diversity-active.anm2`);
   sprites.diversityPassives = newSprite(`${GFX_PATH}/diversity-passives.anm2`);
@@ -84,7 +84,7 @@ export function initSeason3StartingRoomSprites(
   sprites.characterTitle = newSprite(`${GFX_PATH}/character.anm2`);
 }
 
-export function drawSeason3StartingRoomSprites(): void {
+export function season3DrawStartingRoomSprites(): void {
   for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite !== null) {
       const position = getPosition(spriteName as keyof typeof sprites);
@@ -135,7 +135,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
   }
 }
 
-export function drawSeason3StartingRoomText(): void {
+export function season3DrawStartingRoomText(): void {
   const numRoomsEntered = getNumRoomsEntered();
 
   if (numRoomsEntered !== 1) {

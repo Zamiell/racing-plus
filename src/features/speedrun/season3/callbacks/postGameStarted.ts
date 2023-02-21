@@ -10,15 +10,16 @@ import {
   removeCollectibleFromPools,
   repeat,
 } from "isaacscript-common";
+import {
+  NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
+  SEASON_3_GOALS,
+} from "../../../../classes/features/speedrun/season3/constants";
+import { season3InitStartingRoomSprites } from "../../../../classes/features/speedrun/season3/startingRoomSprites";
 import { v } from "../../../../classes/features/speedrun/season3/v";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
 import { giveDiversityItemsAndDoItemBans } from "../../../race/formatSetup";
 import { isOnFirstCharacter, onSeason } from "../../speedrun";
-import {
-  NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
-  SEASON_3_GOALS,
-} from "../constants";
 import {
   BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
   DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
@@ -27,7 +28,6 @@ import {
   DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
 } from "../constantsCollectibles";
 import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
-import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
 
 export function season3PostGameStarted(): void {
   if (!onSeason(3)) {
@@ -52,7 +52,7 @@ export function season3PostGameStarted(): void {
   );
   giveDiversityItemsAndDoItemBans(player, collectibleTypes, trinketType);
 
-  initSeason3StartingRoomSprites(collectibleTypes, trinketType);
+  season3InitStartingRoomSprites(collectibleTypes, trinketType);
 }
 
 function getRandomDiversityItems(

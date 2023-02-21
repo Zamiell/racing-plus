@@ -1,7 +1,5 @@
-import {
-  Season3Goal,
-  SEASON_3_GOALS_THROUGH_WOMB_1,
-} from "../../../../features/speedrun/season3/constants";
+import { SEASON_3_GOALS_THROUGH_WOMB_1 } from "./constants";
+import { Season3Goal } from "./Season3Goal";
 
 export const v = {
   persistent: {

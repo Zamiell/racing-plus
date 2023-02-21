@@ -1,16 +1,5 @@
 import { ReadonlySet } from "isaacscript-common";
-
-export const NUM_DIVERSITY_PASSIVE_COLLECTIBLES = 3;
-
-export enum Season3Goal {
-  BLUE_BABY = "Blue Baby",
-  THE_LAMB = "The Lamb",
-  MEGA_SATAN = "Mega Satan",
-  BOSS_RUSH = "Boss Rush",
-  HUSH = "Hush",
-  MOTHER = "Mother",
-  DOGMA = "Dogma",
-}
+import { Season3Goal } from "./Season3Goal";
 
 /** We can't use `getEnumValues` on `Season3Goal` because they will be in a random order. */
 export const SEASON_3_GOALS = [
@@ -29,3 +18,9 @@ export const SEASON_3_GOALS_THROUGH_WOMB_1 = new ReadonlySet([
   Season3Goal.MEGA_SATAN,
   Season3Goal.HUSH,
 ]);
+
+/** One tile away from the bottom door in a 1x1 room. */
+export const SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX = 97;
+
+export const NUM_DIVERSITY_PASSIVE_COLLECTIBLES = 3;
+export const VANILLA_HUSH_SPAWN_POSITION = Vector(580, 260);

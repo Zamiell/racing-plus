@@ -12,6 +12,7 @@ import {
 import {
   Callback,
   CallbackCustom,
+  game,
   inStartingRoom,
   isRoomInsideGrid,
   ModCallbackCustom,
@@ -19,6 +20,7 @@ import {
   onRepentanceStage,
   removeAllEffects,
   removeAllTrapdoors,
+  spawnNPCWithSeed,
   spawnPickup,
   spawnTrapdoorWithVariant,
 } from "isaacscript-common";
@@ -28,18 +30,37 @@ import { mod } from "../../../mod";
 import { inClearedMomBossRoom } from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
+  SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX,
+  VANILLA_HUSH_SPAWN_POSITION,
+} from "./season3/constants";
+import { season3CheckDrawGoals } from "./season3/drawGoals";
+import {
+  season3DrawStartingRoomSprites,
+  season3DrawStartingRoomText,
+} from "./season3/startingRoomSprites";
+import {
   season3HasDogmaGoal,
   season3HasGoalThroughWomb1,
   season3HasHushGoal,
   v,
 } from "./season3/v";
 
-/** One tile away from the bottom door in a 1x1 room. */
-export const SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX = 97;
-
 export class Season3 extends ChallengeModFeature {
   challenge = ChallengeCustom.SEASON_3;
   v = v;
+
+  // 2
+  @Callback(ModCallback.POST_RENDER)
+  postRender(): void {
+    const hud = game.GetHUD();
+    if (!hud.IsVisible()) {
+      return;
+    }
+
+    season3DrawStartingRoomSprites();
+    season3DrawStartingRoomText();
+    season3CheckDrawGoals();
+  }
 
   // 23, 422
   @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.GLOWING_HOUR_GLASS)
@@ -61,6 +82,24 @@ export class Season3 extends ChallengeModFeature {
     }
 
     return undefined;
+  }
+
+  // 27, 102
+  @Callback(ModCallback.POST_NPC_INIT, EntityType.ISAAC)
+  postNPCInitIsaac(npc: EntityNPC): void {
+    const stage = g.l.GetStage();
+    if (stage !== LevelStage.BLUE_WOMB) {
+      return;
+    }
+
+    npc.Remove();
+    spawnNPCWithSeed(
+      EntityType.HUSH,
+      0,
+      0,
+      VANILLA_HUSH_SPAWN_POSITION,
+      npc.InitSeed,
+    );
   }
 
   // 28, 950

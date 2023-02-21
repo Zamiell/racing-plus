@@ -16,7 +16,7 @@ import {
   log,
   onRepentanceStage,
 } from "isaacscript-common";
-import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/Season3";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/season3/constants";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { FastTravelState } from "../../../../enums/FastTravelState";
