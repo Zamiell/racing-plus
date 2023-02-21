@@ -16,7 +16,6 @@ import { automaticItemInsertionPostRender } from "../features/optional/quality/a
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
-import * as speedUpFadeIn from "../features/optional/quality/speedUpFadeIn";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
@@ -67,7 +66,6 @@ function main() {
   showEdenStartingItems.postRender();
 
   // QoL
-  speedUpFadeIn.postRender();
   showDreamCatcherItemPostRender(); // 566
   showMaxFamiliars.postRender();
   // Should be after the "Show Max Familiars" feature so that the text has priority.

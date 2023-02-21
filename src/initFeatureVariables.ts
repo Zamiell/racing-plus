@@ -54,7 +54,6 @@ import * as showDreamCatcherItemVars from "./features/optional/quality/showDream
 import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
-import * as speedUpFadeIn from "./features/optional/quality/speedUpFadeIn";
 import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
@@ -139,7 +138,6 @@ export function initFeatureVariables(): void {
   fastVanishingTwin.init(); // 697
   removePerfectionVelocity.init(); // 145
   showMaxFamiliars.init();
-  speedUpFadeIn.init();
   automaticItemInsertion.init();
   chargePocketItemFirst.init();
 
