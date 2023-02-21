@@ -23,13 +23,13 @@ import {
   speedrunGetCharacterNum,
   speedrunSetFastReset,
 } from "../../../features/speedrun/v";
-import {
-  restartOnNextFrame,
-  setRestartCharacter,
-} from "../../../features/utils/restartOnNextFrame";
 import { g } from "../../../globals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
+import {
+  restartOnNextFrame,
+  setRestartCharacter,
+} from "../mandatory/RestartOnNextFrame";
 import { season2ResetBuilds } from "./season2/v";
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 

@@ -6,7 +6,6 @@ import {
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
-import * as executeCmd from "./callbacks/executeCmd";
 import * as getPillEffect from "./callbacks/getPillEffect";
 import * as inputAction from "./callbacks/inputAction";
 import * as postBombInit from "./callbacks/postBombInit";
@@ -133,7 +132,6 @@ function registerCallbacksVanilla() {
   inputAction.init(); // 13
   postGameEnd.init(); // 16
   preGameExit.init(); // 17
-  executeCmd.init(); // 22
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
   postFamiliarRender.init(); // 25

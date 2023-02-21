@@ -1,6 +1,10 @@
+import { ModFeature } from "isaacscript-common";
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
+import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
+import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
+import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
@@ -12,6 +16,9 @@ import { Season4 } from "./classes/features/speedrun/Season4";
 
 const FEATURE_CLASSES = [
   // Mandatory
+  LogConsoleCommands,
+  RestartOnNextFrame,
+  TimeConsoleUsed,
   CheckErrors,
   DisableMultiplayer,
   RacingPlusIcon,
@@ -31,7 +38,7 @@ const FEATURE_CLASSES = [
 
   // GFX
   HolidayHats,
-] as const;
+] as const satisfies ReadonlyArray<typeof ModFeature>;
 
 export function initFeatureClasses(): void {
   for (const constructor of FEATURE_CLASSES) {

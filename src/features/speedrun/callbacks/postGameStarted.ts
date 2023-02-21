@@ -5,6 +5,11 @@ import {
 } from "isaac-typescript-definitions";
 import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
 import { hasErrors } from "../../../classes/features/mandatory/checkErrors/v";
+import {
+  isRestartingOnNextFrame,
+  restartOnNextFrame,
+  setRestartCharacter,
+} from "../../../classes/features/mandatory/RestartOnNextFrame";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { g } from "../../../globals";
@@ -15,11 +20,6 @@ import {
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import { spawnDroppedChildsHeart } from "../../optional/characters/samsonDropHeart";
-import {
-  isRestartingOnNextFrame,
-  restartOnNextFrame,
-  setRestartCharacter,
-} from "../../utils/restartOnNextFrame";
 import * as characterProgress from "../characterProgress";
 import { speedrunResetPersistentVars } from "../resetVars";
 import {

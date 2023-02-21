@@ -1,5 +1,4 @@
 import {
-  Challenge,
   CollectibleType,
   EntityType,
   PlayerType,
@@ -93,16 +92,6 @@ export function movePlayersAndFamiliars(position: Vector): void {
   for (const familiar of getFamiliars()) {
     familiar.Position = position;
   }
-}
-
-export function restartChallenge(challenge: Challenge): void {
-  // This command will change the challenge of the run and restart the game.
-  consoleCommand(`challenge ${challenge}`);
-}
-
-export function restartSeed(seed: string): void {
-  // This command will change the seed of the run and restart the game.
-  consoleCommand(`seed ${seed}`);
 }
 
 export function serverCollectibleIDToCollectibleType(

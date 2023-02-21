@@ -26,7 +26,7 @@ import { g } from "../../../globals";
 import { newSprite } from "../../../sprite";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
 
-enum SpriteLayer {
+enum RacingPlusSpriteLayer {
   BLUE,
   GREEN,
 }
@@ -54,8 +54,8 @@ export class RacingPlusIcon extends MandatoryModFeature {
     }
 
     const spriteLayer = socketClient.isActive()
-      ? SpriteLayer.GREEN
-      : SpriteLayer.BLUE;
+      ? RacingPlusSpriteLayer.GREEN
+      : RacingPlusSpriteLayer.BLUE;
     const position = getRacingPlusIconPosition();
     racingPlusSprite.RenderLayer(spriteLayer, position);
   }

@@ -29,7 +29,6 @@ import {
   inSpeedrun,
   onSeason,
 } from "../../../features/speedrun/speedrun";
-import { getTimeConsoleUsed } from "../../../features/utils/timeConsoleUsed";
 import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
@@ -41,6 +40,7 @@ import {
 } from "../speedrun/RandomCharacterOrder";
 import { SEASON_2_NUM_BANS } from "../speedrun/season2/constants";
 import { hasErrors, v } from "./checkErrors/v";
+import { getTimeConsoleUsed } from "./TimeConsoleUsed";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;

@@ -6,14 +6,14 @@ import {
   log,
   onFirstFloor,
 } from "isaacscript-common";
+import {
+  restartOnNextFrame,
+  setRestartSeed,
+} from "../../classes/features/mandatory/RestartOnNextFrame";
 import { RaceData, RaceDataType } from "../../classes/RaceData";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import {
-  restartOnNextFrame,
-  setRestartSeed,
-} from "../utils/restartOnNextFrame";
 import * as placeLeft from "./placeLeft";
 import * as raceRoom from "./raceRoom";
 import { raceStart } from "./raceStart";

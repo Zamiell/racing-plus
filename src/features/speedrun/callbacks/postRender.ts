@@ -1,10 +1,10 @@
 import { FadeoutTarget } from "isaac-typescript-definitions";
 import { game, getCharacterName, log } from "isaacscript-common";
-import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../utils/restartOnNextFrame";
+} from "../../../classes/features/mandatory/RestartOnNextFrame";
+import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import * as characterProgress from "../characterProgress";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
 import * as speedrunTimer from "../speedrunTimer";

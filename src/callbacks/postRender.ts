@@ -1,6 +1,8 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { updateCachedAPIFunctions } from "../cache";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
+import * as restartOnNextFrame from "../classes/features/mandatory/RestartOnNextFrame";
+import * as timeConsoleUsed from "../classes/features/mandatory/TimeConsoleUsed";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -18,8 +20,6 @@ import * as showPills from "../features/optional/quality/showPills";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
-import * as restartOnNextFrame from "../features/utils/restartOnNextFrame";
-import * as timeConsoleUsed from "../features/utils/timeConsoleUsed";
 import { mod } from "../mod";
 
 export function init(): void {

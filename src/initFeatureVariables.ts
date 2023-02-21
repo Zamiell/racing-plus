@@ -59,7 +59,6 @@ import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import * as speedrunVars from "./features/speedrun/v";
-import * as restartOnNextFrame from "./features/utils/restartOnNextFrame";
 import { mod } from "./mod";
 import * as modConfigMenu from "./modConfigMenu";
 import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
@@ -74,9 +73,6 @@ export function initFeatureVariables(): void {
   planetariumFix.init();
   speedrunVars.init();
   changeCharOrderVars.init();
-
-  // Util
-  restartOnNextFrame.init();
 
   // Mandatory
   streakText.init();
