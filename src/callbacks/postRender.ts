@@ -10,7 +10,6 @@ import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbac
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
-import * as fastReset from "../features/optional/major/fastReset";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
@@ -62,7 +61,6 @@ function main() {
   speedrunPostRender();
   changeCharOrderPostRender();
   fastTravelPostRender();
-  fastReset.postRender();
   freeDevilItem.postRender();
 
   // Chars

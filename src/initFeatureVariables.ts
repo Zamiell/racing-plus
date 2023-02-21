@@ -39,7 +39,6 @@ import * as fastDrop from "./features/optional/hotkeys/fastDrop";
 import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
-import * as fastReset from "./features/optional/major/fastReset";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as startWithD6 from "./features/optional/major/startWithD6";
@@ -109,7 +108,6 @@ export function initFeatureVariables(): void {
   startWithD6.init();
   fastClearVars.init();
   fastTravelVars.init();
-  fastReset.init();
   betterDevilAngelRoomsVars.init();
   freeDevilItem.init();
 
