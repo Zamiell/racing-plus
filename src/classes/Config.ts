@@ -52,6 +52,7 @@ export class Config {
   fastPolties = true; // 816
   fastNeedles = true; // 881
   fastDusts = true; // 882
+  dummyDPS = true; // 964
 
   // QoL
   speedUpFadeIn = true;

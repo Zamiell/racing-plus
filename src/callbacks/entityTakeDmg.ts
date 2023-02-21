@@ -3,8 +3,8 @@ import {
   EntityType,
   ModCallback,
 } from "isaac-typescript-definitions";
+import * as dummyDPS from "../classes/features/optional/enemies/DummyDPS";
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
-import * as dummyDPS from "../features/mandatory/dummyDPS";
 import * as removeArmor from "../features/optional/bosses/removeArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as freeDevilItem from "../features/optional/major/freeDevilItem";

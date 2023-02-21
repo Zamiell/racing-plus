@@ -247,6 +247,7 @@ Post-flip actions:
 - `0411` <!-- fastPolties 816 --> Polties & Kinetis will now immediately show themselves.
 - `0412` <!-- fastNeedles 881 --> Needles & Pasties will now spend less time underground.
 - `0413` <!-- fastDusts 882 --> Dusts will now never disappear.
+- `0414` <!-- dummyDPS 964 --> Dummies will show the damage per second (in addition to the normal damage numbers).
 
 ### 5) Quality of Life Changes
 

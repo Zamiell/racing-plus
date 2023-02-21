@@ -1,5 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import * as dummyDPS from "../features/mandatory/dummyDPS";
+import * as dummyDPS from "../classes/features/optional/enemies/DummyDPS";
 import * as fastPolycephalus from "../features/optional/bosses/fastBlastocyst";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";

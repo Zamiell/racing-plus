@@ -19,7 +19,8 @@ See also:
 - [Mod changes](docs/changes.md)
 - [Race formats](docs/race-formats.md)
 - [Custom challenges](docs/challenges.md) (i.e. multi-character speedruns)
-- [Version history](https://github.com/Zamiell/isaac-racing-client/blob/master/HISTORY.md)
+- [Version history on GitHub](https://github.com/Zamiell/isaac-racing-client/blob/master/HISTORY.md)
+- [Version history on the Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/changelog/857628390)
 - [Known bugs](docs/bugs.md)
 
 You may also be interested in [the client repository](https://github.com/Zamiell/isaac-racing-client) or [the server repository](https://github.com/Zamiell/isaac-racing-server).
