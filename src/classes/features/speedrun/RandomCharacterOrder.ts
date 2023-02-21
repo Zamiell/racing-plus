@@ -110,13 +110,6 @@ const v = {
      */
     timeBuildBansSet: null as int | null,
   },
-
-  run: {
-    errors: {
-      consoleRecentlyUsed: false,
-      bansRecentlySet: false,
-    },
-  },
 };
 
 export function isSpeedrunWithRandomCharacterOrder(): boolean {
