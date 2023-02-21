@@ -6,7 +6,6 @@ import {
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
-import * as getPillEffect from "./callbacks/getPillEffect";
 import * as inputAction from "./callbacks/inputAction";
 import * as postBombInit from "./callbacks/postBombInit";
 import * as postCurseEval from "./callbacks/postCurseEval";
@@ -150,7 +149,6 @@ function registerCallbacksVanilla() {
   postEffectUpdate.init(); // 55
   postBombInit.init(); // 57
   preGetCollectible.init(); // 62
-  getPillEffect.init(); // 65
   postEntityRemove.init(); // 67
   postEntityKill.init(); // 68
   preNPCUpdate.init(); // 69

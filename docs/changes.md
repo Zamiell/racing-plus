@@ -39,7 +39,7 @@ In terms of what to change about the game, the mod has several goals, and attemp
 1. to fix bugs and imperfections
 1. to keep the game as "vanilla" as possible
 
-Furthermore, the mod attempts to remove all situations where the player is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for Wizoobs to appear, etc.).
+Furthermore, the mod attempts to remove all situations where the player is forced to sit and wait without performing any inputs (e.g. waiting for the Hush door to open, waiting for death animations to end, etc.).
 
 <br>
 
@@ -202,16 +202,16 @@ Post-flip actions:
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
 - `0315` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0316` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0317` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
-- `0318` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0319` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
+- `0316` <!-- fastHush 407 --> Hush no longer plays an appear animation.
+- `0317` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0318` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
+- `0319` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0320` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
 - <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 
-- <!-- "407.000_hush.anm2" & hushCollisionFix 407 --> Hush no longer plays an appear animation.
 - <!-- "00.special rooms.xml" 907 --> Great Gideon will no longer appear as a boss in Mines/Ashpit.
 - <!-- beastPreventEnd 951 --> Defeating The Beast no longer immediately ends the run.
 

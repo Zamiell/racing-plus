@@ -19,6 +19,7 @@ import {
   GAMEPLAY_CHANGES,
   GRAPHIC_CHANGES_1,
   GRAPHIC_CHANGES_2,
+  GRAPHIC_CHANGES_3,
   MAJOR_CHANGES,
   OTHER_FEATURES,
   QUALITY_OF_LIFE_CHANGES_1,
@@ -31,6 +32,7 @@ import { mod } from "./mod";
 
 const CATEGORY_NAME = "Racing+";
 const PRESETS_NAME = "Presets";
+const MAX_CONFIG_PAGE_LENGTH = 10;
 
 const v = {
   persistent: {
@@ -70,6 +72,7 @@ export function init(): void {
   registerSubMenuConfig("Fixes (2)", BUG_FIXES_2);
   registerSubMenuConfig("GFX (1)", GRAPHIC_CHANGES_1);
   registerSubMenuConfig("GFX (2)", GRAPHIC_CHANGES_2);
+  registerSubMenuConfig("GFX (3)", GRAPHIC_CHANGES_3);
   registerSubMenuConfig("Sounds", SOUND_CHANGES);
   registerSubMenuConfig("Other", OTHER_FEATURES);
 }
@@ -176,9 +179,9 @@ function registerSubMenuConfig(
     return;
   }
 
-  if (descriptions.length > 10) {
+  if (descriptions.length > MAX_CONFIG_PAGE_LENGTH) {
     error(
-      "One of the config descriptions was longer than 10 elements. Move some elements into a new category.",
+      `The config descriptions for "${subMenuName}" was longer than ${MAX_CONFIG_PAGE_LENGTH} elements. Move some elements into a new category.`,
     );
   }
 

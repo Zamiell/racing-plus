@@ -5,8 +5,11 @@ import { DrawControls } from "./classes/features/mandatory/DrawControls";
 import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
 import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
+import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
+import { FastHush } from "./classes/features/optional/bosses/FastHush";
+import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
@@ -23,6 +26,7 @@ const FEATURE_CLASSES = [
   ForceFadedConsoleDisplay,
   LogConsoleCommands,
   RacingPlusIcon,
+  RemoveBannedPillEffects,
   RestartOnNextFrame,
   TimeConsoleUsed,
 
@@ -35,6 +39,12 @@ const FEATURE_CLASSES = [
 
   // Major
   FastReset,
+
+  // Bosses
+  FastHush, // 407
+
+  // Enemies
+  DummyDPS, // 964
 
   // QoL
   SpeedUpFadeIn,

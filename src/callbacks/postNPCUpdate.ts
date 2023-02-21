@@ -1,5 +1,4 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import * as hushCollisionFix from "../features/mandatory/hushCollisionFix";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
@@ -88,12 +87,6 @@ export function init(): void {
     ModCallback.POST_NPC_UPDATE,
     stoney,
     EntityType.STONEY, // 302
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    hush,
-    EntityType.HUSH, // 407
   );
 
   mod.AddCallback(
@@ -187,11 +180,6 @@ function momsDeadHand(npc: EntityNPC) {
 // EntityType.STONEY (302)
 function stoney(npc: EntityNPC) {
   fastClearPostNPCUpdate.stoney(npc);
-}
-
-// EntityType.HUSH (407)
-function hush(npc: EntityNPC) {
-  hushCollisionFix.postNPCUpdateHush(npc);
 }
 
 // EntityType.BIG_HORN (411)

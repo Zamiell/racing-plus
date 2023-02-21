@@ -369,10 +369,19 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "fastBigHorn", // 411
+    "fastHush", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0316",
+      "Fast Hush",
+      "Make Hush skip the appear animation.",
+    ],
+  ],
+  [
+    "fastBigHorn", // 411
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0317",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -381,7 +390,7 @@ export const BOSS_CHANGES_2 = [
     "fastHeretic", // 905
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0317",
+      "0318",
       "Fast Heretic",
       "Make The Heretic fight start instantly.",
     ],
@@ -390,7 +399,7 @@ export const BOSS_CHANGES_2 = [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0318",
+      "0319",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
@@ -399,11 +408,15 @@ export const BOSS_CHANGES_2 = [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0319",
+      "0320",
       "Fast Dogma",
       "Speed up Dogma's death animation (and skip the death cutscene).",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 0311-0320
+export const BOSS_CHANGES_3 = [
   [
     "", // 274, 275
     [
@@ -413,10 +426,6 @@ export const BOSS_CHANGES_2 = [
       "Remove some of the animations in the Mega Satan fight.",
     ],
   ],
-] as const satisfies ConfigDescriptions;
-
-// 0311-0320
-export const BOSS_CHANGES_3 = [
   [
     "", // 275
     [
@@ -567,6 +576,15 @@ export const ENEMY_CHANGES_2 = [
       "0413",
       "Fast Dusts",
       "Make Dusts never disappear.",
+    ],
+  ],
+  [
+    "dummyDPS", // 964
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0414",
+      "Dummy DPS",
+      "Make Dummies show the damage per second.",
     ],
   ],
 ] as const satisfies ConfigDescriptions;
@@ -1181,6 +1199,10 @@ export const GRAPHIC_CHANGES_1 = [
       "The color of some pills are changed to make them easier to identify at a glance.",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2 = [
   [
     "",
     [
@@ -1190,10 +1212,6 @@ export const GRAPHIC_CHANGES_1 = [
       "The colors of some Purity auras have been changed to make them easier to see. Speed is now green and range is now yellow.",
     ],
   ],
-] as const satisfies ConfigDescriptions;
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2 = [
   [
     "", // 5.100.57, 5.100.128, 5.100.364
     [
@@ -1275,6 +1293,10 @@ export const GRAPHIC_CHANGES_2 = [
       "Set the opacity for fortunes and custom seeds to 15%.",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 1011-1020
+export const GRAPHIC_CHANGES_3 = [
   [
     "",
     [
@@ -1366,6 +1388,7 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...BUG_FIXES_2,
   ...GRAPHIC_CHANGES_1,
   ...GRAPHIC_CHANGES_2,
+  ...GRAPHIC_CHANGES_3,
   ...SOUND_CHANGES,
   ...OTHER_FEATURES,
 ] as const satisfies ConfigDescriptions;

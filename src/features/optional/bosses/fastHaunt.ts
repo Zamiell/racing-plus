@@ -94,29 +94,17 @@ function checkAngrySkinAnimation(npc: EntityNPC) {
   switch (animation) {
     // The Haunt will play the "AngrySkin" animation when all of the Lil' Haunts are defeated.
     case "AngrySkin": {
-      const spedUpSpeed = 2;
-      if (sprite.PlaybackSpeed !== spedUpSpeed) {
-        sprite.PlaybackSpeed = spedUpSpeed;
-      }
-
+      sprite.PlaybackSpeed = 2;
       break;
     }
 
     case "Peel": {
-      const spedUpSpeed = 4;
-      if (sprite.PlaybackSpeed !== spedUpSpeed) {
-        sprite.PlaybackSpeed = spedUpSpeed;
-      }
-
+      sprite.PlaybackSpeed = 4;
       break;
     }
 
     case "IdleNoSkin": {
-      const normalSpeed = 1;
-      if (sprite.PlaybackSpeed !== normalSpeed) {
-        sprite.PlaybackSpeed = normalSpeed;
-      }
-
+      sprite.PlaybackSpeed = 1;
       break;
     }
   }
