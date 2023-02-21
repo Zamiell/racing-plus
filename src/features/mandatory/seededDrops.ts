@@ -16,12 +16,32 @@ import {
   log,
   newRNG,
   onSetSeed,
+  removeCollectibleFromPools,
+  removeTrinketFromPools,
   repeat,
   setAllRNGToStartSeed,
   spawnPickupWithSeed,
 } from "isaacscript-common";
 import { g } from "../../globals";
 import { mod } from "../../mod";
+
+/** Collectibles that change room drop calculation. */
+const BANNED_COLLECTIBLES_FOR_SEEDED_DROPS = [
+  CollectibleType.LUCKY_FOOT, // 46
+] as const;
+
+/** Trinkets that change room drop calculation. */
+const BANNED_TRINKETS_FOR_SEEDED_DROPS = [
+  TrinketType.DAEMONS_TAIL, // 22
+  TrinketType.CHILDS_HEART, // 34
+  TrinketType.RUSTED_KEY, // 36
+  TrinketType.MATCH_STICK, // 41
+  TrinketType.LUCKY_TOE, // 42
+  TrinketType.SAFETY_CAP, // 44
+  TrinketType.ACE_SPADES, // 45
+  TrinketType.WATCH_BATTERY, // 72
+  TrinketType.NUH_UH, // 165
+] as const;
 
 const v = {
   run: {
@@ -61,16 +81,8 @@ function initRNG() {
 function removeSeededItemsTrinkets() {
   if (onSetSeed()) {
     // Remove certain items and trinkets that change room drop calculation.
-    g.itemPool.RemoveCollectible(CollectibleType.LUCKY_FOOT); // 46
-    g.itemPool.RemoveTrinket(TrinketType.DAEMONS_TAIL); // 22
-    g.itemPool.RemoveTrinket(TrinketType.CHILDS_HEART); // 34
-    g.itemPool.RemoveTrinket(TrinketType.RUSTED_KEY); // 36
-    g.itemPool.RemoveTrinket(TrinketType.MATCH_STICK); // 41
-    g.itemPool.RemoveTrinket(TrinketType.LUCKY_TOE); // 42
-    g.itemPool.RemoveTrinket(TrinketType.SAFETY_CAP); // 44
-    g.itemPool.RemoveTrinket(TrinketType.ACE_SPADES); // 45
-    g.itemPool.RemoveTrinket(TrinketType.WATCH_BATTERY); // 72
-    g.itemPool.RemoveTrinket(TrinketType.NUH_UH); // 165
+    removeCollectibleFromPools(...BANNED_COLLECTIBLES_FOR_SEEDED_DROPS);
+    removeTrinketFromPools(...BANNED_TRINKETS_FOR_SEEDED_DROPS);
   }
 }
 

@@ -11,6 +11,8 @@ import {
   getCollectibles,
   getPlayersOfType,
   newRNG,
+  removeCollectibleFromPools,
+  removeTrinketFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
 import { g } from "../../../globals";
@@ -44,30 +46,17 @@ export function postGameStartedFirst(): void {
 }
 
 function removeBannedItemsFromPools() {
-  for (const bannedCollectible of BANNED_COLLECTIBLES) {
-    g.itemPool.RemoveCollectible(bannedCollectible);
-  }
-
-  for (const bannedTrinket of BANNED_TRINKETS) {
-    g.itemPool.RemoveTrinket(bannedTrinket);
-  }
+  removeCollectibleFromPools(...BANNED_COLLECTIBLES);
+  removeTrinketFromPools(...BANNED_TRINKETS);
 
   if (anyPlayerHasCollectible(CollectibleType.VOID)) {
     v.run.startedWithVoid = true;
-
-    for (const bannedCollectible of BANNED_COLLECTIBLES_WITH_VOID) {
-      g.itemPool.RemoveCollectible(bannedCollectible);
-    }
+    removeCollectibleFromPools(...BANNED_COLLECTIBLES_WITH_VOID);
   }
 
   if (inSeededRace()) {
-    for (const bannedCollectible of BANNED_COLLECTIBLES_ON_SEEDED_RACES) {
-      g.itemPool.RemoveCollectible(bannedCollectible);
-    }
-
-    for (const bannedTrinket of BANNED_TRINKETS_ON_SEEDED_RACES) {
-      g.itemPool.RemoveTrinket(bannedTrinket);
-    }
+    removeCollectibleFromPools(...BANNED_COLLECTIBLES_ON_SEEDED_RACES);
+    removeTrinketFromPools(...BANNED_TRINKETS_ON_SEEDED_RACES);
   }
 
   // Tainted Magdalene is invincible with Sharp Plug.

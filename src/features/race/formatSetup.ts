@@ -11,6 +11,8 @@ import {
   isCharacter,
   isEden,
   ReadonlySet,
+  removeCollectibleFromPools,
+  removeTrinketFromPools,
   sfxManager,
   temporarilyRemoveTrinkets,
   useActiveItemTemp,
@@ -235,13 +237,8 @@ export function giveDiversityItemsAndDoItemBans(
     addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
 
-  for (const bannedCollectibleType of BANNED_DIVERSITY_COLLECTIBLES) {
-    g.itemPool.RemoveCollectible(bannedCollectibleType);
-  }
-
-  for (const bannedTrinketType of BANNED_DIVERSITY_TRINKETS) {
-    g.itemPool.RemoveTrinket(bannedTrinketType);
-  }
+  removeCollectibleFromPools(...BANNED_DIVERSITY_COLLECTIBLES);
+  removeTrinketFromPools(...BANNED_DIVERSITY_TRINKETS);
 }
 
 function shouldGetSchoolbagInDiversity(player: EntityPlayer): boolean {

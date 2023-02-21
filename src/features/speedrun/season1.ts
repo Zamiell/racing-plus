@@ -43,7 +43,7 @@ function giveStartingItems() {
 
     // 14
     case PlayerType.KEEPER: {
-      // Keeper does not get the Wooden Nickel in challenges.
+      // Keeper does not get the Wooden Nickel or the Store Key in challenges.
       addCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
       giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
       break;

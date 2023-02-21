@@ -7,6 +7,7 @@ import {
   copyArray,
   getRandomArrayElement,
   newRNG,
+  removeCollectibleFromPools,
   repeat,
 } from "isaacscript-common";
 import { v } from "../../../../classes/features/speedrun/season3/v";
@@ -43,7 +44,9 @@ export function season3PostGameStarted(): void {
   }
 
   giveStartingItems(player);
-  removeItemsFromPools();
+
+  // In addition to the "normal" diversity bans, some additional items are removed from pools.
+  removeCollectibleFromPools(...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY);
 
   const startSeed = g.seeds.GetStartSeed();
   const [collectibleTypes, trinketType] = getRandomDiversityItems(
@@ -126,13 +129,6 @@ function isTrinketTypeBannedOnThisCharacter(
   }
 
   return bannedTrinketTypes.has(trinketType);
-}
-
-/** In addition to the "normal" diversity bans, some additional items are removed from pools. */
-function removeItemsFromPools() {
-  for (const collectibleType of BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY) {
-    g.itemPool.RemoveCollectible(collectibleType);
-  }
 }
 
 /** Some characters start with additional items to make them stronger. */
