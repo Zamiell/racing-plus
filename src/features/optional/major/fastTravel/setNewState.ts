@@ -22,6 +22,7 @@ import {
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/Season3";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -35,7 +36,6 @@ import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
-import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import { onSeason } from "../../../speedrun/speedrun";
 import { decrementNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import * as blackSprite from "./blackSprite";
@@ -136,7 +136,7 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
       g.race.myStatus === RacerStatus.RACING &&
       g.race.goal === RaceGoal.THE_BEAST &&
       gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
-      (onSeason(3) && gridIndex === INVERTED_TRAPDOOR_GRID_INDEX)) &&
+      (onSeason(3) && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX)) &&
     clearedMomBossRoom &&
     !repentanceStage
   );

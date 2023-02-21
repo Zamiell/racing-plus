@@ -12,8 +12,8 @@ export const v = {
     /** Used to display the remaining goals during the fade out. */
     goalCompleted: false,
 
-    /** Used to not spawn a second trapdoor on taking a second collectible. */
-    season3DogmaTrapdoorSpawned: false,
+    /** Used to spawn a second trapdoor after taking a collectible. */
+    season3TrapdoorBetweenPhotosSpawned: false,
   },
 };
 

@@ -20,7 +20,7 @@ export function season3CheckpointTouched(): void {
   // Show the remaining goals.
   v.run.goalCompleted = true;
 
-  v.run.season3DogmaTrapdoorSpawned = false;
+  v.run.season3TrapdoorBetweenPhotosSpawned = false;
 
   const goal = getSeason3GoalCorrespondingToRoom();
   if (goal !== undefined) {

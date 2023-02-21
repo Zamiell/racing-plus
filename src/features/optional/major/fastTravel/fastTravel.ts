@@ -16,6 +16,7 @@ import {
   log,
   onRepentanceStage,
 } from "isaacscript-common";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/Season3";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -25,7 +26,6 @@ import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
-import { INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/callbacks/preItemPickup";
 import { onSeason } from "../../../speedrun/speedrun";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
@@ -107,7 +107,7 @@ function getCustomSpriteFilename(
         onSeason(3) &&
         clearedMomBossRoom &&
         !repentanceStage &&
-        gridIndex === INVERTED_TRAPDOOR_GRID_INDEX
+        gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }

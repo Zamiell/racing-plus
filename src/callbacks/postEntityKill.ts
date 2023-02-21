@@ -13,7 +13,6 @@ import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
-import { speedrunPostEntityKillDogma } from "../features/speedrun/callbacks/postEntityKill";
 import { mod } from "../mod";
 
 const POST_ENTITY_KILL_DEBUG = false as boolean;
@@ -148,7 +147,6 @@ function hush(entity: Entity) {
 
 // EntityType.DOGMA (950)
 function dogma(entity: Entity) {
-  speedrunPostEntityKillDogma(entity);
   fastDogma.postEntityKillDogma(entity);
 }
 

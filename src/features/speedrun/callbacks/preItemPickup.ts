@@ -2,13 +2,11 @@ import { ItemType } from "isaac-typescript-definitions";
 import { PickingUpItem } from "isaacscript-common";
 import { season4CheckpointTouched } from "../../../classes/features/speedrun/Season4";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { season3PreItemPickup } from "../season3/callbacks/preItemPickup";
 import { season3CheckpointTouched } from "../season3/checkpoint";
 import { inSpeedrun } from "../speedrun";
 import { v } from "../v";
 
-/** In render frames. */
-const DELAY_FRAMES_BEFORE_STARTING_FADEOUT = 30;
+const DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT = 30;
 
 export function speedrunPreItemPickup(
   player: EntityPlayer,
@@ -19,7 +17,6 @@ export function speedrunPreItemPickup(
   }
 
   checkCheckpointTouched(player, pickingUpItem);
-  season3PreItemPickup(player, pickingUpItem);
 }
 
 function checkCheckpointTouched(
@@ -42,7 +39,8 @@ function checkCheckpointTouched(
   player.ControlsEnabled = false;
 
   // Mark to fade out after the "Checkpoint" text has displayed on the screen for a little bit.
-  v.run.fadeFrame = renderFrameCount + DELAY_FRAMES_BEFORE_STARTING_FADEOUT;
+  v.run.fadeFrame =
+    renderFrameCount + DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT;
 
   // Record how long this run took.
   if (v.persistent.startedCharacterFrame !== null) {
