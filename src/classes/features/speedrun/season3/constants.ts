@@ -1,5 +1,5 @@
 import { ReadonlySet } from "isaacscript-common";
-import { Season3Goal } from "./Season3Goal";
+import { Season3Goal } from "../../../../enums/Season3Goal";
 
 /** We can't use `getEnumValues` on `Season3Goal` because they will be in a random order. */
 export const SEASON_3_GOALS = [

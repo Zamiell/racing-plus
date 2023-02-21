@@ -1,5 +1,5 @@
+import { Season3Goal } from "../../../../enums/Season3Goal";
 import { SEASON_3_GOALS_THROUGH_WOMB_1 } from "./constants";
-import { Season3Goal } from "./Season3Goal";
 
 export const v = {
   persistent: {

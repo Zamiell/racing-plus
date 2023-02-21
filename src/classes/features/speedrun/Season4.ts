@@ -2,6 +2,7 @@ import {
   ActiveSlot,
   CardType,
   CollectibleType,
+  ItemType,
   ModCallback,
   PlayerType,
   SoundEffect,
@@ -30,6 +31,7 @@ import {
   sfxManager,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import {
   isOnFinalCharacter,
   isOnFirstCharacter,
@@ -286,6 +288,15 @@ export class Season4 extends ChallengeModFeature {
       );
     }
   }
+
+  @CallbackCustom(
+    ModCallbackCustom.PRE_ITEM_PICKUP,
+    ItemType.PASSIVE,
+    CollectibleTypeCustom.CHECKPOINT,
+  )
+  preItemPickupCheckpoint(): void {
+    emptyArray(v.persistent.storedCollectiblesOnThisRun);
+  }
 }
 
 function checkStoreCollectible() {
@@ -335,13 +346,6 @@ function storeCollectible(
 
   const itemPool = game.GetItemPool();
   itemPool.RemoveCollectible(collectibleType);
-}
-
-// Called from the `ModCallbackCustom.PRE_ITEM_PICKUP` callback.
-export function season4CheckpointTouched(): void {
-  if (onSeason(4)) {
-    emptyArray(v.persistent.storedCollectiblesOnThisRun);
-  }
 }
 
 export function inRoomWithSeason4StoredItems(): boolean {

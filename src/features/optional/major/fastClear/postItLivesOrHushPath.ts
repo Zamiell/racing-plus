@@ -20,13 +20,13 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { season3GetItLivesSituation } from "../../../../classes/features/speedrun/Season3";
 import { ItLivesSituation } from "../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { hasPolaroidOrNegative } from "../../../../utils";
-import { season3PostItLivesPath } from "../../../speedrun/season3/postItLivesPath";
 import {
   inSpeedrun,
   onSeason,
@@ -79,7 +79,7 @@ function getItLivesSituation(): ItLivesSituation {
   // Speedrun seasons have set goals.
   if (inSpeedrun()) {
     if (onSeason(3)) {
-      return season3PostItLivesPath();
+      return season3GetItLivesSituation();
     }
 
     const itLivesSituation = onSpeedrunWithDarkRoomGoal()

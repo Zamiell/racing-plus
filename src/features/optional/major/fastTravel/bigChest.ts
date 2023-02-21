@@ -18,6 +18,7 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
@@ -28,7 +29,6 @@ import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { spawnTrophy } from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
-import { getSeason3BigChestReplacementAction } from "../../../speedrun/season3/bigChest";
 import {
   isOnFinalCharacter,
   onSeason,
@@ -66,7 +66,7 @@ function getReplacementAction() {
     return speedrunAlternate();
   }
   if (onSeason(3)) {
-    return getSeason3BigChestReplacementAction();
+    return season3GetBigChestReplacementAction();
   }
   if (onSeason(4)) {
     return speedrunAlternate();

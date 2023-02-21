@@ -4,13 +4,10 @@ import {
   removeDoor,
   removeGridEntity,
 } from "isaacscript-common";
-import {
-  season3HasHushGoal,
-  season3HasOnlyDogmaLeft,
-} from "../../../classes/features/speedrun/season3/v";
-import { inClearedMomBossRoom } from "../../../utilsGlobals";
-import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../optional/major/fastTravel/fastTravel";
-import { onSeason } from "../speedrun";
+import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../../../features/optional/major/fastTravel/fastTravel";
+import { onSeason } from "../../../../features/speedrun/speedrun";
+import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { season3HasHushGoal, season3HasOnlyDogmaLeft } from "./v";
 
 export function season3FastClear(): void {
   if (!onSeason(3)) {

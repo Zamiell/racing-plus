@@ -9,10 +9,10 @@ import {
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";
+import { season3FastClear } from "../../classes/features/speedrun/season3/fastClear";
 import { season3HasMotherGoal } from "../../classes/features/speedrun/season3/v";
 import { g } from "../../globals";
 import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
-import { season3FastClear } from "./season3/fastClear";
 import { inSpeedrun, onSeason } from "./speedrun";
 
 export function speedrunPostFastClear(): void {

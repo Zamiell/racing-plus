@@ -1,8 +1,6 @@
 import { ItemType } from "isaac-typescript-definitions";
 import { PickingUpItem } from "isaacscript-common";
-import { season4CheckpointTouched } from "../../../classes/features/speedrun/Season4";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { season3CheckpointTouched } from "../season3/checkpoint";
 import { inSpeedrun } from "../speedrun";
 import { v } from "../v";
 
@@ -53,8 +51,4 @@ function checkCheckpointTouched(
 
   // Show the run summary (including the average time per character for the run so far).
   v.room.showEndOfRunText = true;
-
-  // Perform season-specific actions.
-  season3CheckpointTouched();
-  season4CheckpointTouched();
 }

@@ -6,31 +6,45 @@ import {
   EntityFlag,
   EntityType,
   GameStateFlag,
+  ItemType,
   LevelStage,
   ModCallback,
   PickupVariant,
+  PlayerType,
   RoomType,
   SoundEffect,
   StageType,
   TrapdoorVariant,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  arrayRemoveInPlace,
   Callback,
   CallbackCustom,
   changeRoom,
+  copyArray,
   DOGMA_ROOM_GRID_INDEX,
   game,
   getBlueWombDoor,
+  getRandomArrayElement,
   inBeastRoom,
+  inMegaSatanRoom,
   inStartingRoom,
   isRoomInsideGrid,
   log,
   ModCallbackCustom,
+  newRNG,
+  onCathedral,
+  onChest,
+  onDarkRoom,
   onFirstFloor,
   onRepentanceStage,
+  onSheol,
   removeAllEffects,
   removeAllTrapdoors,
+  removeCollectibleFromPools,
   removeDoor,
+  repeat,
   setStage,
   sfxManager,
   spawnNPC,
@@ -39,28 +53,52 @@ import {
   spawnTrapdoorWithVariant,
   VectorZero,
 } from "isaacscript-common";
+import { BigChestReplacementAction } from "../../../enums/BigChestReplacementAction";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
+import { ItLivesSituation } from "../../../enums/ItLivesSituation";
+import { Season3Goal } from "../../../enums/Season3Goal";
 import { isDreamCatcherWarping } from "../../../features/optional/quality/showDreamCatcherItem/v";
-import { isOnFirstCharacter } from "../../../features/speedrun/speedrun";
+import { giveDiversityItemsAndDoItemBans } from "../../../features/race/formatSetup";
+import {
+  isOnFinalCharacter,
+  isOnFirstCharacter,
+} from "../../../features/speedrun/speedrun";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
-import { inClearedMomBossRoom } from "../../../utilsGlobals";
+import {
+  addCollectibleAndRemoveFromPools,
+  inClearedMomBossRoom,
+} from "../../../utilsGlobals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
+  NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
+  SEASON_3_GOALS,
   SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX,
   VANILLA_HUSH_SPAWN_POSITION,
 } from "./season3/constants";
+import {
+  BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY,
+  DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
+  DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES,
+  DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES,
+  DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+} from "./season3/constantsCollectibles";
+import { DIVERSITY_TRINKET_TYPES } from "./season3/constantsTrinkets";
 import { season3CheckDrawGoals } from "./season3/drawGoals";
 import {
   season3DrawStartingRoomSprites,
   season3DrawStartingRoomText,
+  season3InitStartingRoomSprites,
   season3ResetStartingRoomSprites,
 } from "./season3/startingRoomSprites";
 import {
+  season3HasBlueBabyGoal,
   season3HasDogmaGoal,
   season3HasGoalThroughWomb1,
   season3HasHushGoal,
+  season3HasLambGoal,
   season3HasMegaSatanGoal,
   v,
 } from "./season3/v";
@@ -172,6 +210,129 @@ export class Season3 extends ChallengeModFeature {
         futureEntity.Remove();
       }
     }, 41); // 42 triggers the static.
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    const player = Isaac.GetPlayer();
+
+    if (isOnFirstCharacter()) {
+      v.persistent.remainingGoals = copyArray(SEASON_3_GOALS);
+    }
+
+    this.giveStartingItems(player);
+
+    // In addition to the "normal" diversity bans, some additional items are removed from pools.
+    removeCollectibleFromPools(...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY);
+
+    const startSeed = g.seeds.GetStartSeed();
+    const { collectibleTypes, trinketType } = this.getRandomDiversityItems(
+      player,
+      startSeed,
+    );
+    giveDiversityItemsAndDoItemBans(player, collectibleTypes, trinketType);
+
+    season3InitStartingRoomSprites(collectibleTypes, trinketType);
+  }
+
+  /** Some characters start with additional items to make them stronger. */
+  giveStartingItems(player: EntityPlayer): void {
+    const character = player.GetPlayerType();
+
+    switch (character) {
+      // 4, 24
+      case PlayerType.BLUE_BABY:
+      case PlayerType.JUDAS_B: {
+        addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
+        break;
+      }
+
+      default: {
+        break;
+      }
+    }
+  }
+
+  getRandomDiversityItems(
+    player: EntityPlayer,
+    startSeed: Seed,
+  ): { collectibleTypes: CollectibleType[]; trinketType: TrinketType } {
+    const rng = newRNG(startSeed);
+    const character = player.GetPlayerType();
+
+    let activeCollectibleType: CollectibleType;
+    do {
+      activeCollectibleType = getRandomArrayElement(
+        DIVERSITY_ACTIVE_COLLECTIBLE_TYPES,
+        rng,
+      );
+    } while (
+      player.HasCollectible(activeCollectibleType) ||
+      this.isCollectibleTypeBannedOnThisCharacter(
+        activeCollectibleType,
+        character,
+      )
+    );
+
+    const passiveCollectibleTypes: CollectibleType[] = [];
+    repeat(NUM_DIVERSITY_PASSIVE_COLLECTIBLES, () => {
+      let passiveCollectibleType: CollectibleType;
+      do {
+        passiveCollectibleType = getRandomArrayElement(
+          DIVERSITY_PASSIVE_COLLECTIBLE_TYPES,
+          rng,
+          passiveCollectibleTypes,
+        );
+      } while (
+        player.HasCollectible(passiveCollectibleType) ||
+        this.isCollectibleTypeBannedOnThisCharacter(
+          activeCollectibleType,
+          character,
+        )
+      );
+      passiveCollectibleTypes.push(passiveCollectibleType);
+    });
+
+    let trinketType: TrinketType;
+    do {
+      trinketType = getRandomArrayElement(DIVERSITY_TRINKET_TYPES, rng);
+    } while (
+      player.HasTrinket(trinketType) ||
+      this.isTrinketTypeBannedOnThisCharacter(trinketType, character)
+    );
+
+    const collectibleTypes = [
+      activeCollectibleType,
+      ...passiveCollectibleTypes,
+    ];
+
+    return { collectibleTypes, trinketType };
+  }
+
+  isCollectibleTypeBannedOnThisCharacter(
+    collectibleType: CollectibleType,
+    character: PlayerType,
+  ): boolean {
+    const bannedCollectibleTypes =
+      DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES.get(character);
+    if (bannedCollectibleTypes === undefined) {
+      return false;
+    }
+
+    return bannedCollectibleTypes.has(collectibleType);
+  }
+
+  isTrinketTypeBannedOnThisCharacter(
+    trinketType: TrinketType,
+    character: PlayerType,
+  ): boolean {
+    const bannedTrinketTypes =
+      DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES.get(character);
+    if (bannedTrinketTypes === undefined) {
+      return false;
+    }
+
+    return bannedTrinketTypes.has(trinketType);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
@@ -339,4 +500,106 @@ export class Season3 extends ChallengeModFeature {
 
     v.run.season3TrapdoorBetweenPhotosSpawned = true;
   }
+
+  @CallbackCustom(
+    ModCallbackCustom.PRE_ITEM_PICKUP,
+    ItemType.PASSIVE,
+    CollectibleTypeCustom.CHECKPOINT,
+  )
+  preItemPickupCheckpoint(): void {
+    // Show the remaining goals.
+    v.run.goalCompleted = true;
+
+    v.run.season3TrapdoorBetweenPhotosSpawned = false;
+
+    const goal = season3GetGoalCorrespondingToRoom();
+    if (goal !== undefined) {
+      arrayRemoveInPlace(v.persistent.remainingGoals, goal);
+    }
+  }
+}
+
+export function season3GetItLivesSituation(): ItLivesSituation {
+  if (season3HasMegaSatanGoal()) {
+    return ItLivesSituation.BOTH;
+  }
+
+  const hasBlueBaby = season3HasBlueBabyGoal();
+  const hasLamb = season3HasLambGoal();
+
+  if (hasBlueBaby && hasLamb) {
+    return ItLivesSituation.BOTH;
+  }
+
+  if (hasBlueBaby) {
+    return ItLivesSituation.HEAVEN_DOOR;
+  }
+
+  if (hasLamb) {
+    return ItLivesSituation.TRAPDOOR;
+  }
+
+  return ItLivesSituation.NEITHER;
+}
+
+export function season3GetBigChestReplacementAction(): BigChestReplacementAction {
+  if (onSheol()) {
+    return BigChestReplacementAction.TRAPDOOR;
+  }
+
+  if (onCathedral()) {
+    return BigChestReplacementAction.HEAVEN_DOOR;
+  }
+
+  const goal = season3GetGoalCorrespondingToRoom();
+  if (goal === undefined) {
+    return BigChestReplacementAction.LEAVE_ALONE;
+  }
+
+  // Don't allow repeat goals over the course of the same 7 character speedrun.
+  if (!v.persistent.remainingGoals.includes(goal)) {
+    return BigChestReplacementAction.LEAVE_ALONE;
+  }
+
+  return isOnFinalCharacter()
+    ? BigChestReplacementAction.TROPHY
+    : BigChestReplacementAction.CHECKPOINT;
+}
+
+function season3GetGoalCorrespondingToRoom(): Season3Goal | undefined {
+  const stage = g.l.GetStage();
+  const roomType = g.r.GetType();
+  const repentanceStage = onRepentanceStage();
+
+  // First, check for goals related to the specific room type.
+  if (roomType === RoomType.BOSS_RUSH) {
+    return Season3Goal.BOSS_RUSH;
+  }
+
+  if (inMegaSatanRoom()) {
+    return Season3Goal.MEGA_SATAN;
+  }
+
+  // Second, check for goals relating to the stage.
+  if (stage === LevelStage.BLUE_WOMB) {
+    return Season3Goal.HUSH;
+  }
+
+  if (onChest()) {
+    return Season3Goal.BLUE_BABY;
+  }
+
+  if (onDarkRoom()) {
+    return Season3Goal.THE_LAMB;
+  }
+
+  if (stage === LevelStage.WOMB_2 && repentanceStage) {
+    return Season3Goal.MOTHER;
+  }
+
+  if (stage === LevelStage.HOME) {
+    return Season3Goal.DOGMA;
+  }
+
+  return undefined;
 }
