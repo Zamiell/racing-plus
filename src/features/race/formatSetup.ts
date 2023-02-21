@@ -7,9 +7,12 @@ import {
 import {
   characterStartsWithActiveItem,
   copyArray,
+  getCollectibleName,
+  getTrinketName,
   giveTrinketsBack,
   isCharacter,
   isEden,
+  log,
   ReadonlySet,
   removeCollectibleFromPools,
   removeTrinketFromPools,
@@ -208,6 +211,14 @@ export function giveDiversityItemsAndDoItemBans(
   collectibleTypes: CollectibleType[],
   trinketType: TrinketType,
 ): void {
+  trinketType = TrinketType.FOUND_SOUL;
+
+  log("Granting Diversity items:");
+  for (const collectibleType of collectibleTypes) {
+    log(`- ${getCollectibleName(collectibleType)}`);
+  }
+  log(`- ${getTrinketName(trinketType)}`);
+
   // Avoid giving more options on Tainted Dead Lazarus.
   if (!isCharacter(player, PlayerType.LAZARUS_2_B)) {
     tempMoreOptions.give(player);

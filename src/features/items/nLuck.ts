@@ -84,8 +84,8 @@ function getCharacterLuckModifier(player: EntityPlayer) {
   }
 }
 
-// ModCallback.POST_PLAYER_INIT (9)
-export function postPlayerInit(player: EntityPlayer): void {
+// ModCallbackCustom.POST_PLAYER_INIT_FIRST
+export function postPlayerInitFirst(player: EntityPlayer): void {
   if (isEden(player)) {
     mapSetPlayer(v.run.edenBaseLuckMap, player, player.Luck);
   }

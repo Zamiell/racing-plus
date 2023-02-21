@@ -27,7 +27,6 @@ import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
-import * as postPlayerInit from "./callbacks/postPlayerInit";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postProjectileUpdate from "./callbacks/postProjectileUpdate";
 import * as postRender from "./callbacks/postRender";
@@ -64,6 +63,7 @@ import * as postNPCInitLate from "./callbacksCustom/postNPCInitLate";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerChangeType from "./callbacksCustom/postPlayerChangeType";
+import * as postPlayerInitFirst from "./callbacksCustom/postPlayerInitFirst";
 import * as postPlayerRenderReordered from "./callbacksCustom/postPlayerRenderReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
@@ -127,7 +127,6 @@ function registerCallbacksVanilla() {
   postFamiliarUpdate.init(); // 6
   postFamiliarInit.init(); // 7
   evaluateCache.init(); // 8
-  postPlayerInit.init(); // 9
   usePill.init(); // 10
   entityTakeDmg.init(); // 11
   postCurseEval.init(); // 12
@@ -182,6 +181,7 @@ function registerCallbacksCustom() {
   postPEffectUpdateReordered.init();
   postPickupCollect.init();
   postPlayerChangeType.init();
+  postPlayerInitFirst.init();
   postPlayerRenderReordered.init();
   postPressurePlateUpdate.init();
   postPurchase.init();

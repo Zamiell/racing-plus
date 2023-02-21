@@ -7,14 +7,30 @@ import { MandatoryModFeature } from "../../MandatoryModFeature";
  * run is forcefully ended.
  */
 export class DisableMultiplayer extends MandatoryModFeature {
-  @Callback(ModCallback.POST_PLAYER_INIT) // 9
-  postPlayerInit(): void {
-    if (isMultiplayer()) {
-      // Play an animation to let the player know that multiplayer is illegal.
-      const player = Isaac.GetPlayer();
-      player.AnimateSad();
-
-      game.Fadeout(0.05, FadeoutTarget.TITLE_SCREEN);
+  /**
+   * - The `isMultiplayer` function does not work properly in the `POST_PLAYER_INIT` callback.
+   * - If we use the `POST_PLAYER_INIT_FIRST` callback, then the players will be able to continue
+   *   the run.
+   *
+   * Thus, we need to perform the check on every frame.
+   */
+  @Callback(ModCallback.POST_UPDATE)
+  postUpdate(): void {
+    if (!isMultiplayer()) {
+      return;
     }
+
+    const player = Isaac.GetPlayer();
+    const sprite = player.GetSprite();
+    const animation = sprite.GetAnimation();
+    if (animation === "Sad") {
+      // We are already fading out.
+      return;
+    }
+
+    // Play an animation to let the player know that multiplayer is illegal.
+    player.AnimateSad();
+
+    game.Fadeout(0.04, FadeoutTarget.TITLE_SCREEN);
   }
 }
