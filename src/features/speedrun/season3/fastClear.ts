@@ -4,10 +4,13 @@ import {
   removeDoor,
   removeGridEntity,
 } from "isaacscript-common";
+import {
+  season3HasHushGoal,
+  season3HasOnlyDogmaLeft,
+} from "../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../utilsGlobals";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../optional/major/fastTravel/fastTravel";
-import { season3HasHushGoal, season3HasOnlyDogmaLeft } from "./v";
 
 export function season3FastClear(): void {
   const challenge = Isaac.GetChallenge();

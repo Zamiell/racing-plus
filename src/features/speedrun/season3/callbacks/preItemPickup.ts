@@ -4,9 +4,13 @@ import {
   PickingUpItem,
   spawnTrapdoorWithVariant,
 } from "isaacscript-common";
+import {
+  season3HasDogmaGoal,
+  season3HasGoalThroughWomb1,
+  v,
+} from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
-import { season3HasDogmaGoal, season3HasGoalThroughWomb1, v } from "../v";
 
 /** One tile away from the bottom door in a 1x1 room. */
 export const INVERTED_TRAPDOOR_GRID_INDEX = 97;

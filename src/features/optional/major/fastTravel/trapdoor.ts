@@ -17,17 +17,17 @@ import {
   onSheol,
   removeGridEntity,
 } from "isaacscript-common";
+import {
+  season3HasOnlyBossRushLeft,
+  season3HasOnlyHushLeft,
+  season3HasOnlyMotherLeft,
+} from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
-import {
-  season3HasOnlyBossRushLeft,
-  season3HasOnlyHushLeft,
-  season3HasOnlyMotherLeft,
-} from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";

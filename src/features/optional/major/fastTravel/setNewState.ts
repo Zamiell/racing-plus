@@ -18,6 +18,7 @@ import {
   isCharacter,
   log,
   onRepentanceStage,
+  ReadonlySet,
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
@@ -83,7 +84,7 @@ export function setFadingToBlack(
   v.run.repentanceSecretExit = inSecretExit();
   logFastTravelStateChanged();
 
-  const whitelist = new Set([
+  const whitelist = new ReadonlySet([
     // Allow the player to toggle the map.
     ButtonAction.MAP,
 

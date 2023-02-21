@@ -9,6 +9,7 @@ import {
   newRNG,
   repeat,
 } from "isaacscript-common";
+import { v } from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
 import { addCollectibleAndRemoveFromPools } from "../../../../utilsGlobals";
@@ -28,7 +29,6 @@ import {
 } from "../constantsCollectibles";
 import { DIVERSITY_TRINKET_TYPES } from "../constantsTrinkets";
 import { initSeason3StartingRoomSprites } from "../startingRoomSprites";
-import { v } from "../v";
 
 export function season3PostGameStarted(): void {
   const challenge = Isaac.GetChallenge();

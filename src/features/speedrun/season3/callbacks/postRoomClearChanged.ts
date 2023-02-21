@@ -10,9 +10,9 @@ import {
   removeAllTrapdoors,
   spawnPickup,
 } from "isaacscript-common";
+import { season3HasHushGoal } from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
-import { season3HasHushGoal } from "../v";
 
 /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */
 export function season3PostRoomClearChanged(roomClear: boolean): void {

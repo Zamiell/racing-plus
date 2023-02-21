@@ -1,11 +1,10 @@
-import { LevelStage } from "isaac-typescript-definitions";
 import {
   arrayEquals,
-  getEffectiveStage,
   inStartingRoom,
   isArray,
   isTable,
   log,
+  onFirstFloor,
 } from "isaacscript-common";
 import { RaceData, RaceDataType } from "../../classes/RaceData";
 import { RaceFormat } from "../../enums/RaceFormat";
@@ -95,7 +94,6 @@ const functionMap = new Map<
 
 functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
   const newStatus = newValue as RaceStatus;
-  const effectiveStage = getEffectiveStage();
 
   switch (newStatus) {
     case RaceStatus.NONE: {
@@ -110,7 +108,7 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
 
     case RaceStatus.OPEN: {
       // If we are in the first room of a run, go to the race room.
-      if (effectiveStage === LevelStage.BASEMENT_1 && inStartingRoom()) {
+      if (onFirstFloor() && inStartingRoom()) {
         restartOnNextFrame();
         log("Restarting to go to the race room.");
       }

@@ -8,12 +8,12 @@ import {
 } from "isaac-typescript-definitions";
 import {
   getCollectibles,
-  getEffectiveStage,
   getEffects,
   getPlayers,
   getRandom,
   getRepentanceDoor,
   hasUnusedDoorSlot,
+  onFirstFloor,
   removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -45,12 +45,11 @@ export function speedrunPostNewRoom(): void {
 function checkFirstCharacterFirstFloorDevilRoom() {
   const roomType = g.r.GetType();
   const { previousRoomType } = v.level;
-  const effectiveStage = getEffectiveStage();
 
   v.level.previousRoomType = roomType;
 
   // Prevent players from resetting for a Devil Room item on the first character.
-  if (!isOnFirstCharacter() || effectiveStage !== LevelStage.BASEMENT_1) {
+  if (!isOnFirstCharacter() || !onFirstFloor()) {
     return;
   }
 

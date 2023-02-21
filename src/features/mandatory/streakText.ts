@@ -4,7 +4,6 @@ import {
   CollectibleType,
   FamiliarVariant,
   ItemType,
-  LevelStage,
   PillEffect,
   PlayerForm,
   UseFlag,
@@ -16,7 +15,6 @@ import {
   game,
   getCardName,
   getCollectibleName,
-  getEffectiveStage,
   getEnglishLevelName,
   getFamiliars,
   getPillEffectName,
@@ -26,6 +24,7 @@ import {
   getTrinketName,
   hasFlag,
   newRNG,
+  onFirstFloor,
   PickingUpItem,
   setSeed,
 } from "isaacscript-common";
@@ -230,8 +229,6 @@ function shouldShowLevelText() {
 }
 
 function showLevelText() {
-  const effectiveStage = getEffectiveStage();
-
   // Going to the race room is a special case; we don't want to display the level text here.
   if (goingToRaceRoom()) {
     return;
@@ -242,7 +239,7 @@ function showLevelText() {
   if (VanillaStreakText === undefined) {
     const text = getEnglishLevelName();
     setStreakText(text);
-  } else if (effectiveStage !== LevelStage.BASEMENT_1) {
+  } else if (!onFirstFloor()) {
     g.l.ShowName(false);
   }
 }

@@ -23,6 +23,11 @@ import {
   spawnNPC,
   VectorZero,
 } from "isaacscript-common";
+import {
+  season3HasDogmaGoal,
+  season3HasHushGoal,
+  season3HasMegaSatanGoal,
+} from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { g } from "../../../../globals";
@@ -30,11 +35,6 @@ import { isDreamCatcherWarping } from "../../../optional/quality/showDreamCatche
 import { getNumRoomsEntered } from "../../../utils/numRoomsEntered";
 import { isOnFirstCharacter } from "../../speedrun";
 import { resetSeason3StartingRoomSprites } from "../startingRoomSprites";
-import {
-  season3HasDogmaGoal,
-  season3HasHushGoal,
-  season3HasMegaSatanGoal,
-} from "../v";
 
 export function season3PostNewRoom(): void {
   const challenge = Isaac.GetChallenge();

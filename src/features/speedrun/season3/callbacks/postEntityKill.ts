@@ -1,9 +1,9 @@
 import { DogmaVariant, PickupVariant } from "isaac-typescript-definitions";
 import { asNumber, spawnPickup } from "isaacscript-common";
+import { season3HasDogmaGoal } from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
-import { season3HasDogmaGoal } from "../v";
 
 // EntityType.DOGMA (950)
 export function season3PostEntityKillDogma(entity: Entity): void {

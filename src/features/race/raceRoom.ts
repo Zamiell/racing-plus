@@ -1,10 +1,4 @@
-import {
-  EntityFlag,
-  EntityType,
-  GridRoom,
-  LevelStage,
-  StageType,
-} from "isaac-typescript-definitions";
+import { EntityFlag, EntityType, GridRoom } from "isaac-typescript-definitions";
 import {
   asNumber,
   game,
@@ -16,6 +10,7 @@ import {
   getRoomStageID,
   getRoomVariant,
   getScreenCenterPos,
+  onFirstFloor,
   removeAllDoors,
   removeEntities,
   spawnNPC,
@@ -27,9 +22,11 @@ import { newSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
 import { getNumRoomsEntered } from "../utils/numRoomsEntered";
 import {
+  RACE_ROOM_LEVEL as RACE_ROOM_LEVEL_STAGE,
   RACE_ROOM_POSITION,
   RACE_ROOM_STAGE_ARGUMENT,
   RACE_ROOM_STAGE_ID,
+  RACE_ROOM_STAGE_TYPE,
   RACE_ROOM_VARIANT,
 } from "./constants";
 
@@ -160,8 +157,8 @@ function gotoRaceRoom() {
 
   // If we not already on the right floor, go there.
   if (
-    effectiveStage !== LevelStage.BASEMENT_1 ||
-    stageType !== StageType.WRATH_OF_THE_LAMB
+    effectiveStage !== RACE_ROOM_LEVEL_STAGE ||
+    stageType !== RACE_ROOM_STAGE_TYPE
   ) {
     // Since we might be going to a new floor on frame 0, we have to specify that the
     // `POST_NEW_LEVEL` callback should fire.
@@ -321,12 +318,11 @@ export function numEntrantsChanged(): void {
 }
 
 export function goingToRaceRoom(): boolean {
-  const effectiveStage = getEffectiveStage();
   const numRoomsEntered = getNumRoomsEntered();
 
   return (
     g.race.status === RaceStatus.OPEN &&
-    effectiveStage === LevelStage.BASEMENT_1 &&
+    onFirstFloor() &&
     (numRoomsEntered === 0 || numRoomsEntered === 1)
   );
 }

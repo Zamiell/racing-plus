@@ -1,7 +1,6 @@
 import {
   CollectibleType,
   ItemPoolType,
-  LevelStage,
   ModCallback,
 } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
@@ -10,7 +9,6 @@ import {
   asNumber,
   Callback,
   getCollectibleName,
-  getEffectiveStage,
   getEnumLength,
   getRoomVisitedCount,
   inStartingRoom,
@@ -19,6 +17,7 @@ import {
   LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
   ModCallbackCustom,
+  onFirstFloor,
   PriorityCallbackCustom,
   removeAllDoors,
 } from "isaacscript-common";
@@ -246,11 +245,10 @@ function checkBabiesModEnabled() {
 
   const player = Isaac.GetPlayer();
   const isRandomBaby = isCharacter(player, PlayerTypeCustom.RANDOM_BABY);
-  const effectiveStage = getEffectiveStage();
   const roomVisitedCount = getRoomVisitedCount();
 
   if (
-    effectiveStage === LevelStage.BASEMENT_1 &&
+    onFirstFloor() &&
     inStartingRoom() &&
     roomVisitedCount === 1 &&
     !isRandomBaby

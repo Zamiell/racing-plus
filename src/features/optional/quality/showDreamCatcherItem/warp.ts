@@ -2,7 +2,6 @@ import {
   CollectibleType,
   EffectVariant,
   GameStateFlag,
-  LevelStage,
   RoomType,
   TallLadderSubType,
 } from "isaac-typescript-definitions";
@@ -10,7 +9,6 @@ import {
   anyPlayerHasCollectible,
   changeRoom,
   game,
-  getEffectiveStage,
   getEffects,
   getFloorDisplayFlags,
   getPlayers,
@@ -18,6 +16,7 @@ import {
   getRoomGridIndexesForType,
   inStartingRoom,
   log,
+  onFirstFloor,
   onSetSeed,
   spawnEffect,
 } from "isaacscript-common";
@@ -40,7 +39,6 @@ export function checkStartDreamCatcherWarp(): void {
   const isGreedMode = game.IsGreedMode();
   const onTheAscent = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const isFirstVisit = g.r.IsFirstVisit();
-  const effectiveStage = getEffectiveStage();
 
   if (v.level.warpState !== DreamCatcherWarpState.INITIAL) {
     return;
@@ -51,11 +49,7 @@ export function checkStartDreamCatcherWarp(): void {
   }
 
   // We only need to visit rooms upon reaching a new floor for the first time.
-  if (
-    !inStartingRoom() ||
-    !isFirstVisit ||
-    effectiveStage === LevelStage.BASEMENT_1
-  ) {
+  if (onFirstFloor() || !inStartingRoom() || !isFirstVisit) {
     return;
   }
 

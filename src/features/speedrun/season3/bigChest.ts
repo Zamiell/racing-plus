@@ -1,8 +1,8 @@
 import { onCathedral, onSheol } from "isaacscript-common";
+import { v } from "../../../classes/features/speedrun/season3/v";
 import { BigChestReplacementAction } from "../../../enums/BigChestReplacementAction";
 import { isOnFinalCharacter } from "../speedrun";
 import { getSeason3GoalCorrespondingToRoom } from "./checkpoint";
-import { v } from "./v";
 
 export function getSeason3BigChestReplacementAction(): BigChestReplacementAction {
   if (onSheol()) {

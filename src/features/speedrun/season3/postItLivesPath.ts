@@ -1,9 +1,9 @@
-import { ItLivesSituation } from "../../../enums/ItLivesSituation";
 import {
   season3HasBlueBabyGoal,
   season3HasLambGoal,
   season3HasMegaSatanGoal,
-} from "./v";
+} from "../../../classes/features/speedrun/season3/v";
+import { ItLivesSituation } from "../../../enums/ItLivesSituation";
 
 export function season3PostItLivesPath(): ItLivesSituation {
   if (season3HasMegaSatanGoal()) {

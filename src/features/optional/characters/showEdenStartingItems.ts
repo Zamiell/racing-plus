@@ -1,14 +1,5 @@
-import {
-  ActiveSlot,
-  CollectibleType,
-  LevelStage,
-} from "isaac-typescript-definitions";
-import {
-  game,
-  getEffectiveStage,
-  inStartingRoom,
-  isEden,
-} from "isaacscript-common";
+import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
+import { game, inStartingRoom, isEden, onFirstFloor } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { newGlowingCollectibleSprite } from "../../../sprite";
@@ -92,14 +83,9 @@ function setItemSprites() {
 
 // Only show the sprites in the starting room of the first floor.
 function shouldShowSprites() {
-  const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();
 
-  return (
-    isEden(player) &&
-    effectiveStage === LevelStage.BASEMENT_1 &&
-    inStartingRoom()
-  );
+  return isEden(player) && onFirstFloor() && inStartingRoom();
 }
 
 // ModCallback.POST_GAME_STARTED (15)

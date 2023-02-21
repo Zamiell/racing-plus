@@ -1,8 +1,8 @@
 // We want the player to always be able to take an item on the first floor Treasure Room without
 // spending a bomb or being forced to walk on spikes.
 
-import { EntityType, LevelStage, RoomType } from "isaac-typescript-definitions";
-import { getEffectiveStage, getRoomVariant } from "isaacscript-common";
+import { EntityType, RoomType } from "isaac-typescript-definitions";
+import { getRoomVariant, inRoomType, onFirstFloor } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
@@ -15,14 +15,12 @@ export function preRoomEntitySpawn(
     return undefined;
   }
 
-  const effectiveStage = getEffectiveStage();
-  const roomType = g.r.GetType();
   const roomFrameCount = g.r.GetFrameCount();
   const roomVariant = getRoomVariant();
 
   if (
-    effectiveStage !== LevelStage.BASEMENT_1 ||
-    roomType !== RoomType.TREASURE ||
+    !onFirstFloor() ||
+    !inRoomType(RoomType.TREASURE) ||
     roomFrameCount !== -1
   ) {
     return undefined;

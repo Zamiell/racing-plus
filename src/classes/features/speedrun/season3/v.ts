@@ -1,5 +1,7 @@
-import { mod } from "../../../mod";
-import { Season3Goal, SEASON_3_GOALS_THROUGH_WOMB_1 } from "./constants";
+import {
+  Season3Goal,
+  SEASON_3_GOALS_THROUGH_WOMB_1,
+} from "../../../../features/speedrun/season3/constants";
 
 export const v = {
   persistent: {
@@ -14,10 +16,6 @@ export const v = {
     season3DogmaTrapdoorSpawned: false,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager("season3", v);
-}
 
 export function season3HasBlueBabyGoal(): boolean {
   return v.persistent.remainingGoals.includes(Season3Goal.BLUE_BABY);

@@ -2,7 +2,6 @@ import {
   ActiveSlot,
   CardType,
   CollectibleType,
-  LevelStage,
   ModCallback,
   PlayerType,
   SoundEffect,
@@ -16,7 +15,6 @@ import {
   emptyArray,
   game,
   getCharacterStartingCollectibles,
-  getEffectiveStage,
   getPlayerIndex,
   hasCollectibleInActiveSlot,
   inStartingRoom,
@@ -24,6 +22,7 @@ import {
   isPickingUpItemCollectible,
   ModCallbackCustom,
   newCollectibleSprite,
+  onFirstFloor,
   PickingUpItem,
   PlayerIndex,
   removeCollectible,
@@ -354,12 +353,9 @@ export function season4CheckpointTouched(): void {
 
 export function inRoomWithSeason4StoredItems(): boolean {
   const challenge = Isaac.GetChallenge();
-  const effectiveStage = getEffectiveStage();
 
   return (
-    challenge === ChallengeCustom.SEASON_4 &&
-    effectiveStage === LevelStage.BASEMENT_1 &&
-    inStartingRoom()
+    challenge === ChallengeCustom.SEASON_4 && onFirstFloor() && inStartingRoom()
     // We don't want to check to see if one or more collectibles exist because the player could be
     // in the process of taking one of them.
   );

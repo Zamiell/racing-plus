@@ -38,12 +38,6 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
-    glowingHourGlass,
-    CollectibleType.GLOWING_HOUR_GLASS, // 422
-  );
-
-  mod.AddCallback(
-    ModCallback.PRE_USE_ITEM,
     voidCollectible,
     CollectibleType.VOID, // 477
   );
@@ -130,18 +124,6 @@ function d4(
   setCollectiblesRerolledForItemTracker();
 
   return undefined;
-}
-
-// CollectibleType.GLOWING_HOUR_GLASS (422)
-function glowingHourGlass(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  return speedrunPreUseItem.glowingHourGlass(player);
 }
 
 // CollectibleType.VOID (477)

@@ -1,5 +1,4 @@
 import * as preserveCollectible from "../preserveCollectible";
-import { season3PreUseItemGlowingHourGlass } from "../season3/callbacks/preUseItem";
 import { inSpeedrun } from "../speedrun";
 
 // CollectibleType.D6 (105)
@@ -9,15 +8,6 @@ export function d6(player: EntityPlayer): boolean | undefined {
   }
 
   return preserveCollectible.preUseItemD6(player);
-}
-
-// CollectibleType.GLOWING_HOUR_GLASS (422)
-export function glowingHourGlass(player: EntityPlayer): boolean | undefined {
-  if (!inSpeedrun()) {
-    return undefined;
-  }
-
-  return season3PreUseItemGlowingHourGlass(player);
 }
 
 // CollectibleType.VOID (477)

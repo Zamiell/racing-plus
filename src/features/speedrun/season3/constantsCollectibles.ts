@@ -7,6 +7,7 @@ import {
   isActiveCollectible,
   isPassiveCollectible,
   ReadonlyMap,
+  ReadonlySet,
 } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removeGloballyBannedItems/constants";
@@ -179,28 +180,28 @@ export const [
  */
 export const DIVERSITY_CHARACTER_BANNED_COLLECTIBLE_TYPES = new ReadonlyMap<
   PlayerType,
-  Set<CollectibleType>
+  ReadonlySet<CollectibleType>
 >([
   // 3
-  [PlayerType.JUDAS, new Set([CollectibleType.SCHOOLBAG])],
+  [PlayerType.JUDAS, new ReadonlySet([CollectibleType.SCHOOLBAG])],
 
   // 4
-  [PlayerType.BLUE_BABY, new Set([CollectibleType.SCHOOLBAG])],
+  [PlayerType.BLUE_BABY, new ReadonlySet([CollectibleType.SCHOOLBAG])],
 
   // 24
-  [PlayerType.JUDAS_B, new Set([CollectibleType.SCHOOLBAG])],
+  [PlayerType.JUDAS_B, new ReadonlySet([CollectibleType.SCHOOLBAG])],
 
   // 26
-  [PlayerType.EVE_B, new Set([CollectibleType.SCHOOLBAG])],
+  [PlayerType.EVE_B, new ReadonlySet([CollectibleType.SCHOOLBAG])],
 
   // 37
-  [PlayerType.JACOB_B, new Set([CollectibleType.SCHOOLBAG])],
+  [PlayerType.JACOB_B, new ReadonlySet([CollectibleType.SCHOOLBAG])],
 ]);
 
 export const DIVERSITY_CHARACTER_BANNED_TRINKET_TYPES = new ReadonlyMap<
   PlayerType,
-  Set<TrinketType>
+  ReadonlySet<TrinketType>
 >([
   // 26
-  [PlayerType.EVE_B, new Set([TrinketType.APPLE_OF_SODOM])],
+  [PlayerType.EVE_B, new ReadonlySet([TrinketType.APPLE_OF_SODOM])],
 ]);

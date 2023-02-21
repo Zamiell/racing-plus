@@ -5,13 +5,13 @@ import {
   isActionPressedOnAnyInput,
   KColorDefault,
 } from "isaacscript-common";
+import { v } from "../../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { SEASON_3_GOALS } from "../constants";
 import {
   drawSeason3StartingRoomSprites,
   drawSeason3StartingRoomText,
 } from "../startingRoomSprites";
-import { v } from "../v";
 
 export function season3PostRender(): void {
   const challenge = Isaac.GetChallenge();

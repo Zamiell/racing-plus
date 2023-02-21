@@ -1,10 +1,10 @@
-import { LevelStage, RoomType } from "isaac-typescript-definitions";
+import { RoomType } from "isaac-typescript-definitions";
 import {
   clearRoomDisplayFlags,
   getDoorsToRoomIndex,
-  getEffectiveStage,
   getPlayers,
   getRoomGridIndexesForType,
+  onFirstFloor,
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
@@ -37,20 +37,17 @@ export function postNewRoom(): void {
 
 export function shouldBanFirstFloorTreasureRoom(): boolean {
   const challenge = Isaac.GetChallenge();
-  const effectiveStage = getEffectiveStage();
 
   return (
-    effectiveStage === LevelStage.BASEMENT_1 &&
-    (inSeededRace() || challenge === ChallengeCustom.SEASON_2)
+    onFirstFloor() && (inSeededRace() || challenge === ChallengeCustom.SEASON_2)
   );
 }
 
 function shouldBanSpecialRoomsSeason2() {
   const challenge = Isaac.GetChallenge();
-  const effectiveStage = getEffectiveStage();
 
   return (
-    effectiveStage === LevelStage.BASEMENT_1 &&
+    onFirstFloor() &&
     challenge === ChallengeCustom.SEASON_2 &&
     isOnFirstCharacter()
   );

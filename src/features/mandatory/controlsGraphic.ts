@@ -3,15 +3,11 @@
 
 // This feature is not configurable because we destroy the original starting room graphic file.
 
-import {
-  EffectVariant,
-  LevelStage,
-  StageType,
-} from "isaac-typescript-definitions";
+import { EffectVariant, StageType } from "isaac-typescript-definitions";
 import {
   game,
-  getEffectiveStage,
   inStartingRoom,
+  onFirstFloor,
   spawnEffect,
 } from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../enums/CreepRedSubTypeCustom";
@@ -58,15 +54,16 @@ function drawControlsGraphic() {
   }
 }
 
+/**
+ * Only draw the graphic in the starting room of the first floor. We ignore Greed Mode to simplify
+ * things, even though on vanilla, the sprite will display in Greed Mode.
+ */
 function shouldDrawControlsGraphic() {
-  // Only draw the graphic in the starting room of the first floor. We ignore Greed Mode to simplify
-  // things, even though on vanilla, the sprite will display in Greed Mode.
   const isGreedMode = game.IsGreedMode();
-  const effectiveStage = getEffectiveStage();
 
   return (
     !isGreedMode &&
-    effectiveStage === LevelStage.BASEMENT_1 &&
+    onFirstFloor() &&
     inStartingRoom() &&
     !inSeededOrDiversityRace()
   );

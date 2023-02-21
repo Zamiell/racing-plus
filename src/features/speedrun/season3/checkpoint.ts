@@ -6,10 +6,10 @@ import {
   onDarkRoom,
   onRepentanceStage,
 } from "isaacscript-common";
+import { v } from "../../../classes/features/speedrun/season3/v";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { g } from "../../../globals";
 import { Season3Goal } from "./constants";
-import { v } from "./v";
 
 /** We need to remove the corresponding goal related to this Checkpoint. */
 export function season3CheckpointTouched(): void {
