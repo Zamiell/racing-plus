@@ -1,3 +1,5 @@
+import { ReadonlySet } from "isaacscript-common";
+
 export const NUM_DIVERSITY_PASSIVE_COLLECTIBLES = 3;
 
 export enum Season3Goal {
@@ -20,3 +22,10 @@ export const SEASON_3_GOALS = [
   Season3Goal.MOTHER,
   Season3Goal.DOGMA,
 ] as const;
+
+export const SEASON_3_GOALS_THROUGH_WOMB_1 = new ReadonlySet([
+  Season3Goal.BLUE_BABY,
+  Season3Goal.THE_LAMB,
+  Season3Goal.MEGA_SATAN,
+  Season3Goal.HUSH,
+]);

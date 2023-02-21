@@ -86,6 +86,10 @@ export class CheckErrors extends MandatoryModFeature {
       drawErrorText(
         `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
       );
+    } else if (v.run.season4StorageHotkeyNotSet) {
+      drawErrorText(
+        "You must set a hotkey to store items using Mod Config Menu. (Restart the game after this is done.)",
+      );
     } else if (v.run.seasonGameRecentlyOpened) {
       const text = this.getSeasonErrorMessage(
         "opening the game",
@@ -104,10 +108,6 @@ export class CheckErrors extends MandatoryModFeature {
         getBuildBansTime() ?? 0,
       );
       drawErrorText(text);
-    } else if (v.run.season4StorageHotkeyNotSet) {
-      drawErrorText(
-        "You must set a hotkey to store items using Mod Config Menu. (Restart the game after this is done.)",
-      );
     }
   }
 
@@ -142,10 +142,10 @@ export class CheckErrors extends MandatoryModFeature {
     checkOtherModsEnabled();
     checkBabiesModEnabled();
     checkInvalidCharOrder();
+    checkStorageHotkey();
     checkGameRecentlyOpened();
     checkConsoleRecentlyUsed();
     checkBansRecentlySet();
-    checkStorageHotkey();
 
     if (hasErrors()) {
       removeAllDoors();
@@ -267,6 +267,14 @@ function checkInvalidCharOrder() {
   }
 }
 
+function checkStorageHotkey() {
+  const challenge = Isaac.GetChallenge();
+  if (challenge === ChallengeCustom.SEASON_4 && hotkeys.storage === -1) {
+    v.run.season4StorageHotkeyNotSet = true;
+    log("Error: Storage hotkey not set.");
+  }
+}
+
 function checkGameRecentlyOpened() {
   if (!isSpeedrunWithRandomCharacterOrder()) {
     return;
@@ -315,14 +323,6 @@ function checkBansRecentlySet() {
   if (time <= bansUnlockTime) {
     v.run.seasonBansRecentlySet = true;
     log("Error: Build bans recently set.");
-  }
-}
-
-function checkStorageHotkey() {
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_4 && hotkeys.storage === -1) {
-    v.run.season4StorageHotkeyNotSet = true;
-    log("Error: Storage hotkey not set.");
   }
 }
 

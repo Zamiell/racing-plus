@@ -1,5 +1,5 @@
 import { mod } from "../../../mod";
-import { Season3Goal } from "./constants";
+import { Season3Goal, SEASON_3_GOALS_THROUGH_WOMB_1 } from "./constants";
 
 export const v = {
   persistent: {
@@ -71,6 +71,8 @@ export function season3HasOnlyDogmaLeft(): boolean {
   );
 }
 
-export function season3DogmaTrapdoorSpawned(): boolean {
-  return v.run.season3DogmaTrapdoorSpawned;
+export function season3HasGoalThroughWomb1(): boolean {
+  return v.persistent.remainingGoals.some((goal) =>
+    SEASON_3_GOALS_THROUGH_WOMB_1.has(goal),
+  );
 }

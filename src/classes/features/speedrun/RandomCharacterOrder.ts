@@ -13,6 +13,7 @@ import {
   getEffectiveStage,
   getRandomArrayElementAndRemove,
   isRoomInsideGrid,
+  logError,
   ModCallbackCustom,
   ReadonlySet,
 } from "isaacscript-common";
@@ -257,6 +258,12 @@ export function getStartingCharacter(): PlayerType {
         }
       }
     }
+  }
+
+  // Provide a fail-safe for a corrupted data structure.
+  if (v.persistent.remainingCharacters.length === 0) {
+    logError("Failed to get a remaining character.");
+    return PlayerType.ISAAC;
   }
 
   // Select a new starting character.

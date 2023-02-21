@@ -1,3 +1,5 @@
+// We need to separate out the variables to prevent circular dependencies.
+
 export const v = {
   run: {
     afterbirthPlus: false,
@@ -6,10 +8,10 @@ export const v = {
     otherModsEnabled: false,
     babiesModEnabled: false,
     invalidCharOrder: false,
+    season4StorageHotkeyNotSet: false,
     seasonGameRecentlyOpened: false,
     seasonConsoleRecentlyUsed: false,
     seasonBansRecentlySet: false,
-    season4StorageHotkeyNotSet: false,
   },
 };
 

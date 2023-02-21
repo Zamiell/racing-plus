@@ -1,13 +1,12 @@
 import { TrapdoorVariant } from "isaac-typescript-definitions";
-import { PickingUpItem, spawnTrapdoorWithVariant } from "isaacscript-common";
+import {
+  onRepentanceStage,
+  PickingUpItem,
+  spawnTrapdoorWithVariant,
+} from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { inClearedMomBossRoom } from "../../../../utilsGlobals";
-import {
-  season3DogmaTrapdoorSpawned,
-  season3HasDogmaGoal,
-  season3HasOnlyMotherLeft,
-  v,
-} from "../v";
+import { season3HasDogmaGoal, season3HasGoalThroughWomb1, v } from "../v";
 
 /** One tile away from the bottom door in a 1x1 room. */
 export const INVERTED_TRAPDOOR_GRID_INDEX = 97;
@@ -21,27 +20,31 @@ export function season3PreItemPickup(
     return;
   }
 
+  // We don't check for the Polaroid / Negative because the players could re-roll the photos.
   spawnTrapdoorOnTakeMomCollectible();
 }
 
 /**
- * The trapdoor to Womb 2 in Mausoleum Mom boss room or to the Dogma goal should only spawn after
- * the players have taken a collectible.
+ * We need to spawn an extra trapdoor in two situations:
+ * - If on Depths 2, spawn an extra trapdoor to Mausoleum 2 (Dogma).
+ * - If on Mausoleum 2, spawn an extra trapdoor to Womb 1.
  */
 function spawnTrapdoorOnTakeMomCollectible() {
+  if (v.run.season3DogmaTrapdoorSpawned) {
+    return;
+  }
+
   if (!inClearedMomBossRoom()) {
     return;
   }
 
-  if (!season3HasDogmaGoal()) {
+  // Depths 2 --> Mausoleum 2 (Dogma)
+  if (!onRepentanceStage() && !season3HasDogmaGoal()) {
     return;
   }
 
-  if (season3HasOnlyMotherLeft()) {
-    return;
-  }
-
-  if (season3DogmaTrapdoorSpawned()) {
+  // Mausoleum 2 --> Womb 1
+  if (onRepentanceStage() && !season3HasGoalThroughWomb1()) {
     return;
   }
 
