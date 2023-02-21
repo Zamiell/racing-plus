@@ -1,5 +1,6 @@
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
+import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
@@ -13,6 +14,7 @@ const FEATURE_CLASSES = [
   // Mandatory
   CheckErrors,
   DisableMultiplayer,
+  RacingPlusIcon,
 
   // Speedrun
   RandomCharacterOrder,

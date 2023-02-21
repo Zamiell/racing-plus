@@ -4,7 +4,6 @@ import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as forceFadedConsoleDisplay from "../features/mandatory/forceFadedConsoleDisplay";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
-import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
@@ -68,7 +67,6 @@ function main(isContinued: boolean) {
   removeGloballyBannedItems.postGameStartedFirst();
 
   // Mandatory
-  racingPlusSprite.postGameStarted();
   modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();

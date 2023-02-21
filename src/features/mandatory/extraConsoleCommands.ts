@@ -18,6 +18,7 @@ import {
   onSetSeed,
   restart,
 } from "isaacscript-common";
+import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/RacingPlusIcon";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugCode";
@@ -32,7 +33,6 @@ import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
 import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
-import { setUnseededWithRacingPlusLogic } from "./racingPlusSprite";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
   CollectibleType.CRICKETS_HEAD,

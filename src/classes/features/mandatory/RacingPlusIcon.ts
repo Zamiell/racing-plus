@@ -1,16 +1,18 @@
-// In the "hudpickups.png" file, we blank out the "No Achievements" icon. For every run, we draw a
-// "R+" icon on top of where the "No Achievements" icon would normally be.
-
 import {
   Challenge,
   Difficulty,
+  ModCallback,
   SeedEffect,
 } from "isaac-typescript-definitions";
+import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
+  CallbackCustom,
   game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  ModCallbackCustom,
+  PriorityCallback,
   setUnseeded,
 } from "isaacscript-common";
 import {
@@ -18,10 +20,11 @@ import {
   SPRITE_CHALLENGE_OFFSET,
   SPRITE_DIFFICULTY_OFFSET,
   SPRITE_JACOB_ESAU_OFFSET,
-} from "../../constants";
-import { g } from "../../globals";
-import { newSprite } from "../../sprite";
-import * as socketClient from "../race/socketClient";
+} from "../../../constants";
+import * as socketClient from "../../../features/race/socketClient";
+import { g } from "../../../globals";
+import { newSprite } from "../../../sprite";
+import { MandatoryModFeature } from "../../MandatoryModFeature";
 
 enum SpriteLayer {
   BLUE,
@@ -31,23 +34,39 @@ enum SpriteLayer {
 /** This is on top of where the "No Achievements" icon would be. */
 const SPRITE_POSITION = Vector(4, 72);
 
-const sprite = newSprite("gfx/ui/racing_plus/racing_plus.anm2");
+const racingPlusSprite = newSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
-// ModCallback.POST_RENDER (2)
-export function postRender(): void {
-  const hud = game.GetHUD();
-  if (!hud.IsVisible()) {
-    return;
+/**
+ * In the "hudpickups.png" file, we blank out the "No Achievements" icon. For every run, we draw a
+ * "R+" icon on top of where the "No Achievements" icon would normally be.
+ */
+export class RacingPlusIcon extends MandatoryModFeature {
+  /**
+   * We specify a late callback priority since we want the icon to be drawn on top of everything
+   * else.
+   */
+  // 2
+  @PriorityCallback(ModCallback.POST_RENDER, CallbackPriority.LATE)
+  postRender(): void {
+    const hud = game.GetHUD();
+    if (!hud.IsVisible()) {
+      return;
+    }
+
+    const spriteLayer = socketClient.isActive()
+      ? SpriteLayer.GREEN
+      : SpriteLayer.BLUE;
+    const position = getRacingPlusIconPosition();
+    racingPlusSprite.RenderLayer(spriteLayer, position);
   }
 
-  const spriteLayer = socketClient.isActive()
-    ? SpriteLayer.GREEN
-    : SpriteLayer.BLUE;
-  const position = getPosition();
-  sprite.RenderLayer(spriteLayer, position);
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    disableAchievements();
+  }
 }
 
-export function getPosition(): Vector {
+export function getRacingPlusIconPosition(): Vector {
   const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
   const player = Isaac.GetPlayer();
@@ -77,16 +96,11 @@ export function getPosition(): Vector {
   return position;
 }
 
-// ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  disableAchievements();
-}
-
 /**
- * We want this sprite to appear on all runs, so we need to disable achievements on all runs. The
- * easiest way to do this without affecting gameplay is to enable an easter egg that prevents a
- * curse from appearing. (This will have no effect since all curses are removed in the
- * `POST_CURSE_EVAL` callback anyway.)
+ * We want the vanilla "no achievements" icon to appear in order to create a gap for the Racing+
+ * icon. Thus, we need to disable achievements on all runs. The easiest way to do this without
+ * affecting gameplay is to enable an easter egg that prevents a curse from appearing. Doing this
+ * will have no effect since all curses are removed in the `POST_CURSE_EVAL` callback anyway.
  *
  * Note that not all easter eggs prevent achievements, but this one does.
  */
@@ -94,6 +108,7 @@ function disableAchievements() {
   g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
 }
 
+/** Similar to the `setUnseeded` function from "isaacscript-common". */
 export function setUnseededWithRacingPlusLogic(): void {
   setUnseeded();
 

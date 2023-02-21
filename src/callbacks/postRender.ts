@@ -4,7 +4,6 @@ import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
-import * as racingPlusSprite from "../features/mandatory/racingPlusSprite";
 import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
@@ -74,7 +73,4 @@ function main() {
 
   // Other
   customConsole.postRender();
-
-  // We want the "R+" sprite to be drawn on top of everything.
-  racingPlusSprite.postRender();
 }

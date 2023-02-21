@@ -1,11 +1,11 @@
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen.
 
 import { game } from "isaacscript-common";
+import { getRacingPlusIconPosition } from "../../classes/features/mandatory/RacingPlusIcon";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { newSprite } from "../../sprite";
-import * as racingPlusSprite from "../mandatory/racingPlusSprite";
 import { inRaceRoom } from "./raceRoom";
 
 const GFX_PATH = "gfx/race/place-left";
@@ -21,7 +21,7 @@ export function postRender(): void {
 
 function drawSprite() {
   if (shouldDrawPlaceLeftSprite() && sprite !== undefined) {
-    const position = getPosition();
+    const position = getPlaceSpritePosition();
     sprite.Render(position);
   }
 }
@@ -50,8 +50,9 @@ export function shouldDrawPlaceLeftSprite(): boolean {
   return true;
 }
 
-function getPosition() {
-  return racingPlusSprite.getPosition().add(SPRITE_OFFSET);
+function getPlaceSpritePosition() {
+  const position = getRacingPlusIconPosition();
+  return position.add(SPRITE_OFFSET);
 }
 
 // ModCallback.POST_GAME_STARTED (15)
