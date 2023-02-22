@@ -28,10 +28,10 @@ import * as showEdenStartingItems from "../features/optional/characters/showEden
 import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
+import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
-import * as roll from "../features/optional/other/roll";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";

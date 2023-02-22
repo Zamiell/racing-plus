@@ -4,8 +4,8 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import * as removeArmor from "../features/optional/bosses/removeArmor";
+import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
-import * as roll from "../features/optional/other/roll";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import { mod } from "../mod";
 

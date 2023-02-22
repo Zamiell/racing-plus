@@ -34,11 +34,11 @@ import * as extraStartingItems from "./features/optional/gameplay/extraStartingI
 import * as stickyNickel from "./features/optional/graphics/stickyNickel";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
+import * as roll from "./features/optional/hotkeys/roll";
 import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
-import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as bloodyLustChargeBar from "./features/optional/quality/bloodyLustChargeBar/v";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
