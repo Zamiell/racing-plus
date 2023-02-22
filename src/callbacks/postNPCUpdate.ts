@@ -9,19 +9,12 @@ import * as fastDusts from "../features/optional/enemies/fastDusts";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as fastNeedles from "../features/optional/enemies/fastNeedles";
-import * as globinSoftlock from "../features/optional/enemies/globinSoftlock";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
 
 export function init(): void {
   mod.AddCallback(ModCallback.POST_NPC_UPDATE, main);
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    globin,
-    EntityType.GLOBIN, // 24
-  );
 
   mod.AddCallback(
     ModCallback.POST_NPC_UPDATE,
@@ -120,11 +113,6 @@ function main(npc: EntityNPC) {
 
   // Enemies
   fadeFriendlyEnemies.postNPCUpdate(npc);
-}
-
-// EntityType.GLOBIN (24)
-function globin(npc: EntityNPC) {
-  globinSoftlock.postNPCUpdateGlobin(npc);
 }
 
 // EntityType.PIN (62)

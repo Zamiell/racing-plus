@@ -29,7 +29,6 @@ import * as preventVictoryLapPopup from "./features/optional/bosses/preventVicto
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
-import * as globinSoftlock from "./features/optional/enemies/globinSoftlock";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as stickyNickel from "./features/optional/graphics/stickyNickel";
 import * as autofire from "./features/optional/hotkeys/autofire";
@@ -96,9 +95,6 @@ export function initFeatureVariables(): void {
   fastDrop.init();
   schoolbagSwitch.init();
   autofire.init();
-
-  // Enemies
-  globinSoftlock.init();
 
   // Bosses
   killExtraEnemies.init(); // 45, 78
