@@ -18,6 +18,7 @@ import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventE
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { FastDusts } from "./classes/features/optional/enemies/FastDusts";
+import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
@@ -74,6 +75,7 @@ const FEATURE_CLASSES = [
   // Enemies
   GlobinSoftlock, // 24
   AppearHands, // 213, 287
+  FastPolties, // 816
   FastDusts, // 882
   DummyDPS, // 964
 
