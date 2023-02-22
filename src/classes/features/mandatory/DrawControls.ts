@@ -1,8 +1,3 @@
-// Racing+ reimplements the controls graphic in the starting room so that it will not interfere with
-// other kinds of graphics. Some code is borrowed from Revelations / StageAPI.
-
-// This feature is not configurable because we destroy the original starting room graphic file.
-
 import { EffectVariant, StageType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
@@ -23,6 +18,10 @@ import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 
+/**
+ * Racing+ reimplements the controls graphic in the starting room so that it will not interfere with
+ * other kinds of graphics. Some code is borrowed from Revelations / StageAPI.
+ */
 export class DrawControls extends ConfigurableModFeature {
   configKey: keyof Config = "DrawControls";
 

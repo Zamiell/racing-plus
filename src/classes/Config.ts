@@ -47,8 +47,8 @@ export class Config {
   RemoveTreasureRoomEnemies = true;
   ClearerShadowAttacks = true;
   GlobinSoftlock = true; // 24
-  FastHands = true; // 213, 287
   AppearHands = true; // 213, 287
+  FastHands = true; // 213, 287
   VulnerableGhosts = true; // 219, 260, 285
   FastGhosts = true; // 219, 285
   ReplaceCodWorms = true; // 221

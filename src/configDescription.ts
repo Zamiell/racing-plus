@@ -491,21 +491,21 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "FastHands", // 213, 287
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0405",
-      "Fast hands",
-      "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
-    ],
-  ],
-  [
     "AppearHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0406",
+      "0405",
       "Reveal hands",
       "Mom's Hands and Mom's Dead Hands will play an \"Appear\" animation.",
+    ],
+  ],
+  [
+    "FastHands", // 213, 287
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0406",
+      "Fast hands",
+      "Mom's Hands and Mom's Dead Hands have faster attack patterns.",
     ],
   ],
   [

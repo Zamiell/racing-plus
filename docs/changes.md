@@ -233,8 +233,8 @@ Post-flip actions:
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `0405` <!-- FastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
-- `0406` <!-- AppearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `0405` <!-- AppearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `0406` <!-- FastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 

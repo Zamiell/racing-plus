@@ -18,6 +18,8 @@ import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventE
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { FastDusts } from "./classes/features/optional/enemies/FastDusts";
+import { FastGhosts } from "./classes/features/optional/enemies/FastGhosts";
+import { FastHands } from "./classes/features/optional/enemies/FastHands";
 import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
@@ -76,7 +78,9 @@ const FEATURE_CLASSES = [
   // Enemies
   GlobinSoftlock, // 24
   AppearHands, // 213, 287
+  FastHands, // 213, 287
   VulnerableGhosts, // 219, 260, 285
+  FastGhosts, // 219, 285
   FastPolties, // 816
   FastDusts, // 882
   DummyDPS, // 964

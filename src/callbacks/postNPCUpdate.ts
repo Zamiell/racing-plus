@@ -5,9 +5,6 @@ import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as fadeFriendlyEnemies from "../features/optional/enemies/fadeFriendlyEnemies";
-import * as fastGhosts from "../features/optional/enemies/fastGhosts";
-import * as fastHands from "../features/optional/enemies/fastHands";
-import * as fastNeedles from "../features/optional/enemies/fastNeedles";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
@@ -25,18 +22,6 @@ export function init(): void {
     ModCallback.POST_NPC_UPDATE,
     death,
     EntityType.DEATH, // 66
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    momsHand,
-    EntityType.MOMS_HAND, // 213
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    wizoob,
-    EntityType.WIZOOB, // 219
   );
 
   mod.AddCallback(
@@ -65,18 +50,6 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.POST_NPC_UPDATE,
-    redGhost,
-    EntityType.RED_GHOST, // 285
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    momsDeadHand,
-    EntityType.MOMS_DEAD_HAND, // 287
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
     stoney,
     EntityType.STONEY, // 302
   );
@@ -91,12 +64,6 @@ export function init(): void {
     ModCallback.POST_NPC_UPDATE,
     darkEsau,
     EntityType.DARK_ESAU, // 866
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    needle,
-    EntityType.NEEDLE, // 881
   );
 }
 
@@ -116,16 +83,6 @@ function pin(npc: EntityNPC) {
 // EntityType.DEATH (66)
 function death(npc: EntityNPC) {
   preventDeathSlow.postNPCUpdateDeath(npc);
-}
-
-// EntityType.MOMS_HAND (213)
-function momsHand(npc: EntityNPC) {
-  fastHands.postNPCUpdateMomsHand(npc);
-}
-
-// EntityType.WIZOOB (219)
-function wizoob(npc: EntityNPC) {
-  fastGhosts.postNPCUpdateWizoob(npc);
 }
 
 // EntityType.RAGLING (246)
@@ -148,16 +105,6 @@ function lamb(npc: EntityNPC) {
   removeLambBody.postNPCUpdateLamb(npc);
 }
 
-// EntityType.RED_GHOST (285)
-function redGhost(npc: EntityNPC) {
-  fastGhosts.postNPCUpdateRedGhost(npc);
-}
-
-// EntityType.MOMS_DEAD_HAND (287)
-function momsDeadHand(npc: EntityNPC) {
-  fastHands.postNPCUpdateMomsDeadHand(npc);
-}
-
 // EntityType.STONEY (302)
 function stoney(npc: EntityNPC) {
   fastClearPostNPCUpdate.stoney(npc);
@@ -171,9 +118,4 @@ function bigHorn(npc: EntityNPC) {
 // EntityType.DARK_ESAU (866)
 function darkEsau(npc: EntityNPC) {
   racePostNPCUpdateDarkEsau(npc);
-}
-
-// EntityType.NEEDLE (881)
-function needle(npc: EntityNPC) {
-  fastNeedles.postNPCUpdateNeedle(npc);
 }
