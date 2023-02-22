@@ -1,8 +1,6 @@
-// EntityType.PICKUP (5)
-
 import { validateCustomEnum } from "isaacscript-common";
 
-// PickupVariant.COLLECTIBLE (100)
+/** For `EntityType.PICKUP` (5), `PickupVariant.COLLECTIBLE` (100). */
 export const CollectibleTypeCustom = {
   // Utility items
   TROPHY: Isaac.GetItemIdByName("Trophy"),

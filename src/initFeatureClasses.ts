@@ -20,6 +20,7 @@ import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { FastDusts } from "./classes/features/optional/enemies/FastDusts";
 import { FastGhosts } from "./classes/features/optional/enemies/FastGhosts";
 import { FastHands } from "./classes/features/optional/enemies/FastHands";
+import { FastNeedles } from "./classes/features/optional/enemies/FastNeedles";
 import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
@@ -82,6 +83,7 @@ const FEATURE_CLASSES = [
   VulnerableGhosts, // 219, 260, 285
   FastGhosts, // 219, 285
   FastPolties, // 816
+  FastNeedles, // 881
   FastDusts, // 882
   DummyDPS, // 964
 

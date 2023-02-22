@@ -12,7 +12,7 @@ import {
   log,
   RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
-import { Colors } from "../../enums/Colors";
+import { HexColors } from "../../enums/HexColors";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
@@ -230,19 +230,19 @@ function drawConsole() {
   const textSegments: TextSegment[] = [
     {
       text: ">",
-      color: Colors.WHITE,
+      color: HexColors.WHITE,
     },
     {
       text: front,
-      color: Colors.WHITE,
+      color: HexColors.WHITE,
     },
     {
       text: "|",
-      color: Colors.YELLOW,
+      color: HexColors.YELLOW,
     },
     {
       text: back,
-      color: Colors.WHITE,
+      color: HexColors.WHITE,
     },
   ];
 
@@ -260,7 +260,7 @@ export function drawText(
 
   for (const textSegment of textSegments) {
     const hexColor =
-      textSegment.color === undefined ? Colors.WHITE : textSegment.color;
+      textSegment.color === undefined ? HexColors.WHITE : textSegment.color;
     const kColor = hexToKColor(hexColor, alpha);
     font.DrawString(textSegment.text, x, y, kColor, 0, true);
 

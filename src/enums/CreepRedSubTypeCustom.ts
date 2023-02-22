@@ -1,5 +1,4 @@
-// EntityType.EFFECT (1000)
-// EffectVariant.PLAYER_CREEP_RED (46)
+/** For `EntityType.EFFECT` (1000), `EffectVariant.PLAYER_CREEP_RED` (46). */
 export enum CreepRedSubTypeCustom {
   VANILLA = 0,
 

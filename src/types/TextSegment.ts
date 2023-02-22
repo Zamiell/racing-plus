@@ -1,6 +1,6 @@
-import { Colors } from "../enums/Colors";
+import { HexColors } from "../enums/HexColors";
 
 export interface TextSegment {
   text: string;
-  color?: Colors;
+  color?: HexColors;
 }

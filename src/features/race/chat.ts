@@ -1,5 +1,5 @@
 import { game } from "isaacscript-common";
-import { Colors } from "../../enums/Colors";
+import { HexColors } from "../../enums/HexColors";
 import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { TextSegment } from "../../types/TextSegment";
@@ -64,7 +64,7 @@ function drawChat() {
       },
       {
         text: chatMessage.username,
-        color: Colors.GREEN,
+        color: HexColors.GREEN,
       },
       {
         text: `> ${chatMessage.msg}`,

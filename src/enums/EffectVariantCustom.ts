@@ -1,7 +1,7 @@
 import { EffectVariant } from "isaac-typescript-definitions";
 import { validateCustomEnum } from "isaacscript-common";
 
-// EntityType.EFFECT (1000)
+/** For `EntityType.EFFECT` (1000). */
 export const EffectVariantCustom = {
   INVISIBLE_EFFECT: Isaac.GetEntityVariantByName(
     "Invisible Effect",
