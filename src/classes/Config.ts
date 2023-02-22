@@ -49,7 +49,7 @@ export class Config {
   GlobinSoftlock = true; // 24
   FastHands = true; // 213, 287
   AppearHands = true; // 213, 287
-  DisableInvulnerability = true; // 219, 260, 285
+  VulnerableGhosts = true; // 219, 260, 285
   FastGhosts = true; // 219, 285
   ReplaceCodWorms = true; // 221
   RemoveStrayPitfalls = true; // 291

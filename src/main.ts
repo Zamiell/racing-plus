@@ -54,7 +54,6 @@ import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
-import * as postNPCInitLate from "./callbacksCustom/postNPCInitLate";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
 import * as postPlayerInitFirst from "./callbacksCustom/postPlayerInitFirst";
@@ -166,7 +165,6 @@ function registerCallbacksCustom() {
   postItemPickup.init();
   postNewLevelReordered.init();
   postNewRoomReordered.init();
-  postNPCInitLate.init();
   postPEffectUpdateReordered.init();
   postPickupCollect.init();
   postPlayerInitFirst.init();

@@ -20,6 +20,7 @@ import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { FastDusts } from "./classes/features/optional/enemies/FastDusts";
 import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
+import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
@@ -75,6 +76,7 @@ const FEATURE_CLASSES = [
   // Enemies
   GlobinSoftlock, // 24
   AppearHands, // 213, 287
+  VulnerableGhosts, // 219, 260, 285
   FastPolties, // 816
   FastDusts, // 882
   DummyDPS, // 964
