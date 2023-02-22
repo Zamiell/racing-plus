@@ -8,7 +8,6 @@ import * as openHushDoor from "../features/optional/bosses/openHushDoor";
 import { extraStartingItemsPostNewLevel } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewLevel";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { showDreamCatcherItemPostNewLevel } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewLevel";
-import * as silenceMomDad from "../features/optional/sound/silenceMomDad";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import { g } from "../globals";
 import { mod } from "../mod";
@@ -45,9 +44,6 @@ function main() {
   openHushDoor.postNewLevel();
   showDreamCatcherItemPostNewLevel(); // 566
   fastVanishingTwin.postNewLevel(); // 697
-
-  // Sounds
-  silenceMomDad.postNewLevel();
 
   // Items
   solCustom.postNewLevel();

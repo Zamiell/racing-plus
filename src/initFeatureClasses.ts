@@ -19,6 +19,7 @@ import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
+import { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 import { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 import { Season1 } from "./classes/features/speedrun/Season1";
 import { Season2 } from "./classes/features/speedrun/Season2";
@@ -89,7 +90,7 @@ const FEATURE_CLASSES = [
   HolidayHats,
 
   // Sounds
-  // TODO
+  SilenceMomDad,
 
   // Other
   // TODO
