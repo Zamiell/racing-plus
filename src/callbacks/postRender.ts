@@ -10,7 +10,6 @@ import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
-import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
@@ -49,7 +48,6 @@ function main() {
   speedrunPostRender();
   changeCharOrderPostRender();
   fastTravelPostRender();
-  freeDevilItem.postRender();
 
   // Chars
   showEdenStartingItems.postRender();

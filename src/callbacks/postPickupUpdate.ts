@@ -1,7 +1,6 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import * as removeGlitchedItems from "../features/mandatory/removeGlitchedItems";
 import * as taintedIsaacCollectibleDelay from "../features/optional/bugfix/taintedIsaacCollectibleDelay";
-import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -18,9 +17,6 @@ function collectibleCallback(pickup: EntityPickup) {
 
   // Mandatory
   removeGlitchedItems.postPickupUpdateCollectible(collectible);
-
-  // Major
-  freeDevilItem.postPickupUpdateCollectible(collectible);
 
   // Bug fixes
   taintedIsaacCollectibleDelay.postPickupUpdateCollectible(collectible);

@@ -8,7 +8,6 @@ import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as inputAction from "./callbacks/inputAction";
 import * as postBombInit from "./callbacks/postBombInit";
-import * as postCurseEval from "./callbacks/postCurseEval";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
@@ -125,7 +124,6 @@ function registerCallbacksVanilla() {
   evaluateCache.init(); // 8
   usePill.init(); // 10
   entityTakeDmg.init(); // 11
-  postCurseEval.init(); // 12
   inputAction.init(); // 13
   postGameEnd.init(); // 16
   preGameExit.init(); // 17

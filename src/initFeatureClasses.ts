@@ -1,4 +1,6 @@
 import { ModFeature } from "isaacscript-common";
+import { DisableCurses } from "./classes/features/major/DisableCurses";
+import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
@@ -43,9 +45,9 @@ const FEATURE_CLASSES = [
 
   // Major
   StartWithD6,
-  // - DisableCurses,
+  DisableCurses,
   // - BetterDevilAngelRooms,
-  // - FreeDevilItem,
+  FreeDevilItem,
   // - DoubleAngelNerf,
   FastReset,
   // - FastClear,

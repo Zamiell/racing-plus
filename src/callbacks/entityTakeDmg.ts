@@ -6,7 +6,6 @@ import {
 import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as removeArmor from "../features/optional/bosses/removeArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
-import * as freeDevilItem from "../features/optional/major/freeDevilItem";
 import * as roll from "../features/optional/other/roll";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import { mod } from "../mod";
@@ -52,7 +51,7 @@ function main(
 // EntityType.PLAYER (1)
 function entityTakeDmgPlayer(
   entity: Entity,
-  amount: float,
+  _amount: float,
   damageFlags: BitFlags<DamageFlag>,
   _source: EntityRef,
   _countdownFrames: int,
@@ -63,7 +62,6 @@ function entityTakeDmgPlayer(
   }
 
   // Major
-  freeDevilItem.entityTakeDmgPlayer(player, amount, damageFlags);
   fastTravelEntityTakeDmgPlayer(damageFlags);
 
   // QoL

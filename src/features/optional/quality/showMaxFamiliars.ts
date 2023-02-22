@@ -5,10 +5,10 @@ import {
   game,
   MAX_NUM_FAMILIARS,
 } from "isaacscript-common";
+import { shouldGetFreeDevilItemOnThisRun } from "../../../classes/features/major/FreeDevilItem";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { newSprite } from "../../../sprite";
-import { shouldGetFreeDevilItemOnThisRun } from "../major/freeDevilItem";
 
 const ICON_SPRITE_POSITION = Vector(35, 33); // To the right of the coin count
 const TAINTED_ISAAC_OFFSET = Vector(4, 24);

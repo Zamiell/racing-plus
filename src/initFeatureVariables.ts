@@ -38,7 +38,6 @@ import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
-import * as freeDevilItem from "./features/optional/major/freeDevilItem";
 import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as bloodyLustChargeBar from "./features/optional/quality/bloodyLustChargeBar/v";
@@ -92,7 +91,6 @@ export function initFeatureVariables(): void {
   fastClearVars.init();
   fastTravelVars.init();
   betterDevilAngelRoomsVars.init();
-  freeDevilItem.init();
 
   // Hotkeys
   fastDrop.init();
