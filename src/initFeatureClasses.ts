@@ -27,6 +27,7 @@ import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
 import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
 
+/** TODO: Search for all `config` to ensure that no functions have early return with it. */
 const FEATURE_CLASSES = [
   // Mandatory
   CheckErrors,

@@ -25,7 +25,6 @@ import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/pre
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
-import * as appearHands from "../features/optional/enemies/appearHands";
 import * as removeTreasureRoomEnemies from "../features/optional/enemies/removeTreasureRoomEnemies";
 import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
 import * as roll from "../features/optional/hotkeys/roll";
@@ -90,7 +89,6 @@ function main() {
 
   // Enemies
   fastSatan.postNewRoom();
-  appearHands.postNewRoom();
   removeTreasureRoomEnemies.postNewRoom();
 
   // QoL

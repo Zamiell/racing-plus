@@ -1,17 +1,10 @@
 import { EntityType, HauntVariant } from "isaac-typescript-definitions";
 import { ModCallbackCustom } from "isaacscript-common";
-import * as appearHands from "../features/optional/enemies/appearHands";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
 import * as fastPolties from "../features/optional/enemies/fastPolties";
 import { mod } from "../mod";
 
 export function init(): void {
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_NPC_INIT_LATE,
-    momsHand,
-    EntityType.MOMS_HAND, // 213
-  );
-
   mod.AddCallbackCustom(
     ModCallbackCustom.POST_NPC_INIT_LATE,
     wizoob,
@@ -33,20 +26,9 @@ export function init(): void {
 
   mod.AddCallbackCustom(
     ModCallbackCustom.POST_NPC_INIT_LATE,
-    momsDeadHand,
-    EntityType.MOMS_DEAD_HAND, // 287
-  );
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_NPC_INIT_LATE,
     polty,
     EntityType.POLTY, // 816
   );
-}
-
-// EntityType.MOMS_HAND (213)
-function momsHand(npc: EntityNPC) {
-  appearHands.postNPCInitLateMomsHand(npc);
 }
 
 // EntityType.WIZOOB (219)
@@ -62,11 +44,6 @@ function lilHaunt(npc: EntityNPC) {
 // EntityType.RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
   disableInvulnerability.postNPCInitLateRedGhost(npc);
-}
-
-// EntityType.MOMS_DEAD_HAND (287)
-function momsDeadHand(npc: EntityNPC) {
-  appearHands.postNPCInitLateMomsDeadHand(npc);
 }
 
 // EntityType.POLTY (816)

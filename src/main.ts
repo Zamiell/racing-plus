@@ -36,7 +36,6 @@ import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preFamiliarCollision from "./callbacks/preFamiliarCollision";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
-import * as preNPCUpdate from "./callbacks/preNPCUpdate";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
@@ -147,7 +146,6 @@ function registerCallbacksVanilla() {
   preGetCollectible.init(); // 62
   postEntityRemove.init(); // 67
   postEntityKill.init(); // 68
-  preNPCUpdate.init(); // 69
   preSpawnClearAward.init(); // 70
   preRoomEntitySpawn.init(); // 71
 }
