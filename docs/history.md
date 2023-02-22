@@ -6,6 +6,7 @@
 ### _v0.94.6_ - February 23rd, 2023 (Unreleased)
 
 - In season 4, Genesis is now removed from pools on all runs. (Thanks Monkeypot)
+- Fixed the bug where item wisps could give you infinite items under certain circumstances. (Thanks Rollmop)
 
 ### _v0.94.5_ - February 22nd, 2023
 
