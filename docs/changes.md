@@ -77,7 +77,7 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 - <!-- doubleAngelNerf --> Uriel and Gabriel can no longer damage each other. To balance this, Gabriel's HP is reduced to that of Uriel. (660 --> 400)
 
-> Why? This greatly increases the RNG having to do with Angel Rooms.
+> Why? This greatly decreases the RNG having to do with Angel Rooms.
 
 ### 5) Fast-Reset
 

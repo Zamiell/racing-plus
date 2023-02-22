@@ -50,7 +50,6 @@ const FEATURE_CLASSES = [
   DisableCurses,
   // - BetterDevilAngelRooms,
   FreeDevilItem,
-  // - DoubleAngelNerf,
   FastReset,
   // - FastClear,
   // - FastTravel,
